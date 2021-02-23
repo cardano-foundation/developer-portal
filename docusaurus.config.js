@@ -1,13 +1,13 @@
 module.exports = {
   title: 'Cardano Developer Portal',
   tagline: 'together, we can change the world for the better',
-  url: 'https://dazzling-agnesi-a7ee3a.netlify.app',
+  url: 'https://staging-dev-portal.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'katomm', // Usually your GitHub org/user name.
-  projectName: 'developer-portal', // Usually your repo name.
+  organizationName: 'cardano-foundation', // GitHub org/user name.
+  projectName: 'developer-portal',        // Repo name.
   themeConfig: {
 
     // Announcement Bar 
@@ -15,7 +15,7 @@ module.exports = {
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
-        '⭐️ If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/katomm/developer-portal">GitHub</a>! ⭐️',
+        '⭐️ If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
       backgroundColor: '#6684CE', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
@@ -79,7 +79,7 @@ module.exports = {
           position: 'left'
         },
         {
-          href: 'https://github.com/katomm/developer-portal',
+          href: 'https://github.com/cardano-foundation/developer-portal',
           label: 'GitHub',
           position: 'right',
         },
@@ -161,13 +161,13 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/katomm/developer-portal/edit/master',
+            'https://github.com/cardano-foundation/developer-portal/edit/main',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/katomm/developer-portal/edit/master',
+            'https://github.com/cardano-foundation/developer-portal/edit/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
