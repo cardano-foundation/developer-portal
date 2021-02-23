@@ -11,16 +11,15 @@ module.exports = {
   themeConfig: {
 
     // Announcement Bar 
-    /*
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
         '⭐️ If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
-      backgroundColor: '#6684CE', // Defaults to `#fff`.
+      backgroundColor: '#58595B', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
     },
-    */
+    
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
