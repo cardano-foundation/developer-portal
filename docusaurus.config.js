@@ -9,7 +9,7 @@ module.exports = {
   organizationName: 'cardano-foundation', // GitHub org/user name.
   projectName: 'developer-portal',        // Repo name.
   themeConfig: {
-
+    
     // Dark / Light Mode
     colorMode: {
       disableSwitch: false,
@@ -62,11 +62,12 @@ module.exports = {
 
       // 
       // Navbar title and logo
+      hideOnScroll: false,
       title: 'Developers', 
       logo: {
-        alt: 'Cardano Developer Portal Logo',
-        src: 'img/cardano-black.png',      // should be svg
-        srcDark: 'img/cardano-white.png', // should be svg
+        alt: 'Cardano Logo',
+        src: 'img/cardano-black.svg',      
+        srcDark: 'img/cardano-white.svg', 
       },
 
       //
