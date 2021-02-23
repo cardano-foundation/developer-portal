@@ -9,7 +9,10 @@ module.exports = {
   organizationName: 'cardano-foundation', // GitHub org/user name.
   projectName: 'developer-portal',        // Repo name.
   themeConfig: {
-    
+
+    // Docs Sidebar
+    hideableSidebar: true,
+
     // Dark / Light Mode
     colorMode: {
       disableSwitch: false,
