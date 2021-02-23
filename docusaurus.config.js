@@ -10,17 +10,32 @@ module.exports = {
   projectName: 'developer-portal',        // Repo name.
   themeConfig: {
 
+    // Dark / Light Mode
+    colorMode: {
+      disableSwitch: false,
+      // with true defaultMode is overridden by user system preferences.
+      respectPrefersColorScheme: true,
+      switchConfig: {
+        darkIcon: "🌙",
+        darkIconStyle: {
+          marginLeft: "2px",
+        },
+        lightIcon: "☀️",
+        lightIconStyle: {
+          marginLeft: "1px",
+        },
+      },
+    },
     // Announcement Bar 
-    /*
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
-        '⭐️ If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
-      backgroundColor: '#6684CE', // Defaults to `#fff`.
+        'If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
+      backgroundColor: '#58595B', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
     },
-    */
+    
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
@@ -60,7 +75,7 @@ module.exports = {
         {
           to: 'docs/',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: 'Documentation',
           position: 'left',
         },
         {
@@ -108,6 +123,10 @@ module.exports = {
             {
               label: 'Cardano Forum',
               href: 'https://forum.cardano.org/c/developers/29',
+            },
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/kfATXEENPD',
             },
             {
               label: 'Reddit',
