@@ -109,6 +109,10 @@ module.exports = {
               href: 'https://forum.cardano.org/c/developers/29',
             },
             {
+              label: 'Discord',
+              href: 'https://discord.gg/kfATXEENPD',
+            },
+            {
               label: 'Reddit',
               href: 'https://www.reddit.com/r/CardanoDevelopers/',
             },
