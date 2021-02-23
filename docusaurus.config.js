@@ -10,11 +10,27 @@ module.exports = {
   projectName: 'developer-portal',        // Repo name.
   themeConfig: {
 
+    // Dark / Light Mode
+    colorMode: {
+      disableSwitch: false,
+      // with true defaultMode is overridden by user system preferences.
+      respectPrefersColorScheme: true,
+      switchConfig: {
+        darkIcon: "🌙",
+        darkIconStyle: {
+          marginLeft: "2px",
+        },
+        lightIcon: "☀️",
+        lightIconStyle: {
+          marginLeft: "1px",
+        },
+      },
+    },
     // Announcement Bar 
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
-        '⭐️ If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
+        'If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
       backgroundColor: '#58595B', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
