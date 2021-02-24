@@ -1,6 +1,6 @@
 ---
 id: portal-contribute
-title: How to contribute
+title: How to contribute to the develooper portal
 sidebar_label: How to contribute
 ---
 
