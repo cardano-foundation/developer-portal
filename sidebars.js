@@ -1,7 +1,20 @@
 module.exports = {
   someSidebar: {
-    'Developer Portal': ['portal-style-guide', 'portal-contribute',],
-    'Learn Cardano': ['vision-and-mission', 'why-cardano'],
-    'Getting Started': ['cardano-node'],
+    'Learn Cardano': [
+        'introduction', 
+        'vision-and-mission', 
+        'why-cardano',
+      ],
+    'Getting Started': [
+        'cardano-node'
+    ],
+    'Community': [
+        'community-ambassador-program',
+    ],
+    'Contribution': [
+        'portal-contribute',
+        'portal-style-guide', 
+    ],
   },
 };
+ 
