@@ -6,9 +6,12 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'cardano-foundation', // GitHub org/user name.
-  projectName: 'developer-portal',        // Repo name.
+  organizationName: 'cardano-foundation', 
+  projectName: 'developer-portal',        
   themeConfig: {
+
+    // Docs Sidebar
+    hideableSidebar: true,
 
     // Dark / Light Mode
     colorMode: {
@@ -26,6 +29,7 @@ module.exports = {
         },
       },
     },
+
     // Announcement Bar 
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
@@ -43,34 +47,24 @@ module.exports = {
     metadatas: [{name: 'twitter:card', content: 'summary'}],
     
 
-    // Algolia Docsearch
-    // Don't forget to apply here: https://docsearch.algolia.com/apply/
+    // Algolia Search
     algolia: {
       appId: '6QH8YVQXAE', 
-      apiKey: '6033c09f3af6454c8c25efce0460b84a', // search-only API key, revoke this once the repo goes public
+      apiKey: '6033c09f3af6454c8c25efce0460b84a', 
       indexName: 'developer-portal',
-
-      // Optional: see doc section bellow
       contextualSearch: true,
-
-      // Optional: Algolia search parameters
-      searchParameters: {},
-
-      //... other Algolia params
     },
-    navbar: {
 
-      // 
-      // Navbar title and logo
+    // Navbar title, logo and items
+    navbar: {
+      hideOnScroll: false,
       title: 'Developers', 
       logo: {
-        alt: 'Cardano Developer Portal Logo',
-        src: 'img/cardano-black.png',      // should be svg
-        srcDark: 'img/cardano-white.png', // should be svg
+        alt: 'Cardano Logo',
+        src: 'img/cardano-black.svg',      
+        srcDark: 'img/cardano-white.svg', 
       },
 
-      //
-      // Navbar items
       items: [
         {
           to: 'docs/',
@@ -158,7 +152,7 @@ module.exports = {
       ],
 
       // No copyright, this belongs to the Cardano Community
-      //copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      // copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
   },
   plugins: [
@@ -178,13 +172,11 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           editUrl:
             'https://github.com/cardano-foundation/developer-portal/edit/main',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
           editUrl:
             'https://github.com/cardano-foundation/developer-portal/edit/main',
         },
