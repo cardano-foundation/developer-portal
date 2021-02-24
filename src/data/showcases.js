@@ -3,6 +3,7 @@
  *
  * Requirements for adding your site to our showcase:
  * - It must be built on Cardano and have a real usecase. Preferably but not necessarily dapps.
+ *   Please exclude pooltools and explorers for the time being.
  * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
  * - The code is publicly available (not decided yet if this is a requirement)
  *
