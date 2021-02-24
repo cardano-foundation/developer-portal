@@ -1,10 +1,13 @@
 {
   "index_name": "developer-portal",
   "start_urls": [
-    "https://dazzling-agnesi-a7ee3a.netlify.app/docs"
+    "https://staging-dev-portal.netlify.app/docs",
+    "https://staging-dev-portal.netlify.app/tools",
+    "https://staging-dev-portal.netlify.app/showcase",
+    "https://staging-dev-portal.netlify.app/blog/"
   ],
   "sitemap_urls": [
-    "https://dazzling-agnesi-a7ee3a.netlify.app/sitemap.xml"
+    "https://staging-dev-portal.netlify.app/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "stop_urls": [],
@@ -42,7 +45,7 @@
     ]
   },
   "conversation_id": [
-    "1"
+    "1417357410"
   ],
-  "nb_hits": 0
+  "nb_hits": 900
 }
