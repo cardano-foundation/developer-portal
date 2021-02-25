@@ -41,7 +41,7 @@ const features = [
   {
     title: 'Adrestia - SDKs and APIs',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    targetUrl: 'docs/adrestia-overview',
     description: (
       <>
         Depending on the use-cases you have and the control that you seek, you may use any of the components below.
@@ -51,7 +51,7 @@ const features = [
   {
     title: 'Resources',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    targetUrl: 'docs/resources-overview',
     description: (
       <>  
       Community, research paper, news, events, funding.

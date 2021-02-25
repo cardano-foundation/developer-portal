@@ -11,6 +11,12 @@ module.exports = {
     'Smart Contracts': [
       'plutus-overview'
     ],
+    'Adrestia': [
+      'adrestia-overview'
+    ],
+    'Resources': [
+      'resources-overview'
+    ],
     'Community': [
         'community-ambassador-program',
     ],
