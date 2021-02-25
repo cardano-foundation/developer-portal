@@ -30,7 +30,7 @@ const features = [
   {
     title: 'Smart Contracts and Building DApps',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    targetUrl: 'docs/plutus-overview',
     description: (
       <>
         Creating smart contracts and decentralized applications with Cardano.
@@ -41,7 +41,7 @@ const features = [
   {
     title: 'Adrestia - SDKs and APIs',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    targetUrl: 'docs/adrestia-overview',
     description: (
       <>
         Depending on the use-cases you have and the control that you seek, you may use any of the components below.
@@ -51,7 +51,7 @@ const features = [
   {
     title: 'Resources',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    targetUrl: 'docs/resources-overview',
     description: (
       <>  
       Community, research paper, news, events, funding.
