@@ -30,7 +30,7 @@ const features = [
   {
     title: 'Smart Contracts and Building DApps',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    targetUrl: 'docs/plutus-overview',
     description: (
       <>
         Creating smart contracts and decentralized applications with Cardano.

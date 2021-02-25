@@ -8,6 +8,9 @@ module.exports = {
     'Getting Started': [
         'cardano-node'
     ],
+    'Smart Contracts': [
+      'plutus-overview'
+    ],
     'Community': [
         'community-ambassador-program',
     ],
