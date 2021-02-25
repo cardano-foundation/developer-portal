@@ -1,6 +1,8 @@
 ---
 id: plutus-overview
 title: Plutus Overview
+description: Plutus Overview
+image: ./img/og-developer-portal.png
 --- 
 
 This is a placeholder page.

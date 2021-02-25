@@ -2,6 +2,8 @@
 id: adrestia-overview
 title: Adrestia Components
 sidebar_label: Components
+description: Adrestia Components 
+image: ./img/og-developer-portal.png
 --- 
 
 This is a placeholder page.
