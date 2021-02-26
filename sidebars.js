@@ -1,17 +1,17 @@
 module.exports = {
   someSidebar: {
     'Learn Cardano': [
-        'introduction', 
-        'vision-and-mission', 
+        'introduction',
+        'vision-and-mission',
         'why-cardano',
       ],
     'Getting Started': [
         'cardano-node'
     ],
-    'Smart Contracts': [
+    'Smart Contracts and Building DApps': [
       'plutus-overview'
     ],
-    'Adrestia': [
+    'Adrestia - SDKs and APIs': [
       'adrestia-overview'
     ],
     'Resources': [
@@ -22,8 +22,7 @@ module.exports = {
     ],
     'Contribution': [
         'portal-contribute',
-        'portal-style-guide', 
+        'portal-style-guide',
     ],
   },
 };
- 
