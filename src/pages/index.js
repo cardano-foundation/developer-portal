@@ -10,7 +10,7 @@ const features = [
   {
     title: 'Learn Cardano',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs/vision-and-mission/',
+    targetUrl: 'docs/learn-cardano/token-locking',
     description: (
       <>
         Learn how Cardano works with the vision and mission, inspiration, why cardano, and key concepts.
@@ -20,7 +20,7 @@ const features = [
   {
     title: 'Getting Started',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs/cardano-node',
+    targetUrl: 'docs/getting-started/cardano-node',
     description: (
       <>
         Step by step instructions, tech, stake pools.
@@ -53,7 +53,7 @@ const features = [
     imageUrl: 'img/cardano-black.png',
     targetUrl: 'docs/resources-overview',
     description: (
-      <>  
+      <>
       Community, research paper, news, events, funding.
       </>
     ),
@@ -77,7 +77,7 @@ function Feature({imageUrl, title, description, targetUrl}) {
         </div>
       </Link>
       )}
-       
+
     </div>
   );
 }

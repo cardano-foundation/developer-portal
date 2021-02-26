@@ -1,9 +1,7 @@
 module.exports = {
   someSidebar: {
     'Learn Cardano': [
-        'introduction',
-        'vision-and-mission',
-        'why-cardano',
+        'learn-cardano/token-locking',
       ],
     'Getting Started': [
         'getting-started/cardano-node'
