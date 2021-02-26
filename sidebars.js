@@ -7,7 +7,13 @@ module.exports = {
         'getting-started/cardano-node'
     ],
     'Smart Contracts and Building DApps': [
-      'plutus-overview'
+        {
+          type: "category",
+          label: "Plutus",
+          items: [
+                    "smart-contracts-and-building-dapps/plutus/plutus-overview",
+                  ],
+        },
     ],
     'Adrestia - SDKs and APIs': [
       'adrestia-overview'
