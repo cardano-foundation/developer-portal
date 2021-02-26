@@ -6,8 +6,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'cardano-foundation', 
-  projectName: 'developer-portal',        
+  organizationName: 'cardano-foundation',
+  projectName: 'developer-portal',
   themeConfig: {
 
     // Docs Sidebar
@@ -30,7 +30,7 @@ module.exports = {
       },
     },
 
-    // Announcement Bar 
+    // Announcement Bar
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
@@ -39,18 +39,18 @@ module.exports = {
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
     },
-    
+
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
     image: 'mg/og-developer-portal.png',
     metadatas: [{name: 'twitter:card', content: 'summary'}],
-    
+
 
     // Algolia Search
     algolia: {
-      appId: '6QH8YVQXAE', 
-      apiKey: '6033c09f3af6454c8c25efce0460b84a', 
+      appId: '6QH8YVQXAE',
+      apiKey: '6033c09f3af6454c8c25efce0460b84a',
       indexName: 'developer-portal',
       contextualSearch: true,
     },
@@ -58,33 +58,33 @@ module.exports = {
     // Navbar title, logo and items
     navbar: {
       hideOnScroll: false,
-      title: 'Developers', 
+      title: 'Developers',
       logo: {
         alt: 'Cardano Logo',
-        src: 'img/cardano-black.svg',      
-        srcDark: 'img/cardano-white.svg', 
+        src: 'img/cardano-black.svg',
+        srcDark: 'img/cardano-white.svg',
       },
 
       items: [
         {
-          to: 'docs/',
+          to: 'docs/resources/developer-portal-updates',
           activeBasePath: 'docs',
           label: 'Documentation',
           position: 'left',
         },
         {
-          to: 'tools', 
-          label: 'Tools', 
+          to: 'tools',
+          label: 'Tools',
           position: 'left'
         },
         {
-          to: 'showcase', 
-          label: 'Showcase', 
+          to: 'showcase',
+          label: 'Showcase',
           position: 'left'
         },
         {
-          to: 'blog/', 
-          label: 'Spotlight', 
+          to: 'blog/',
+          label: 'Spotlight',
           position: 'left'
         },
         {
@@ -92,7 +92,7 @@ module.exports = {
           label: 'GitHub',
           position: 'right',
         },
-        
+
       ],
     },
     footer: {

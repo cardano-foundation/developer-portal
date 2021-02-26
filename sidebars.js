@@ -19,7 +19,7 @@ module.exports = {
       'adrestia-SDKs-and-APIs/adrestia-cardano-node'
     ],
     'Resources': [
-      'resources-overview'
+      'resources/developer-portal-updates'
     ],
     'Community': [
         'community-ambassador-program',

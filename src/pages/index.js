@@ -51,7 +51,7 @@ const features = [
   {
     title: 'Resources',
     imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs/resources-overview',
+    targetUrl: 'docs/resources/developer-portal-updates',
     description: (
       <>
       Community, research paper, news, events, funding.
