@@ -6,7 +6,7 @@ module.exports = {
         'why-cardano',
       ],
     'Getting Started': [
-        'cardano-node'
+        'getting-started/cardano-node'
     ],
     'Smart Contracts and Building DApps': [
       'plutus-overview'
