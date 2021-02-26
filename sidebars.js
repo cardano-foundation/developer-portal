@@ -16,7 +16,7 @@ module.exports = {
         },
     ],
     'Adrestia - SDKs and APIs': [
-      'adrestia-overview'
+      'adrestia-SDKs-and-APIs/adrestia-cardano-node'
     ],
     'Resources': [
       'resources-overview'
