@@ -6,6 +6,9 @@
  */
 
 /* You can override the default Infima variables here. */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
 :root {
   --ifm-color-primary: #0538AF;
   --ifm-color-primary-dark: #325CBD;
@@ -17,15 +20,13 @@
   --ifm-code-font-size: 95%;
 }
 
-html[data-theme="dark"] {
-  --ifm-color-primary: #325CBD;
-  --ifm-color-primary-dark: #0538AF;
-  --ifm-color-primary-darker: #0538AF;
-  --ifm-color-primary-darkest: #0538AF;
-  --ifm-color-primary-light: #0538AF;
-  --ifm-color-primary-lighter: #0538AF;
-  --ifm-color-primary-lightest: #0538AF;
-  --ifm-code-font-size: 95%;
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(1.5rem); }
+}
+
+main {
+  margin: 1rem 0 5rem 0;
 }
 
 .docusaurus-highlight-code-line {
@@ -33,4 +34,35 @@ html[data-theme="dark"] {
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.card {
+  padding: 1rem;
+  margin-top: 0rem;
+  animation: fadeInUp 400ms backwards;
+  animation-delay: 150ms;
+  transition-property: all;
+  transition-duration: 200ms;
+  box-shadow: 0 8px 28px 4px rgba(86,91,115,0.15);
+}
+
+
+.card a {
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translate(0px, -5px);
+}
+
+.footer--dark {
+  background-color: #232323 !important;
+}
+
+footer .text--center {
+  padding: 2rem 0 0 0;
+}
+
+.card__header h3 {
+  color: #4169E1;
 }
