@@ -53,3 +53,7 @@ html[data-theme="dark"] {
 .card:hover {
   transform: translate(0px, -5px);
 }
+ 
+.footer--dark {
+  background-color: #232323 !important;
+}
