@@ -35,6 +35,10 @@ html[data-theme="dark"] {
   padding: 0 var(--ifm-pre-padding);
 }
 
+@keyframes fadeInUp {
+   0% { opacity: 0; transform: translateY(1.5rem); }
+ }
+
 .card {
    padding: 1rem;
    margin-top: 0rem;
@@ -44,8 +48,7 @@ html[data-theme="dark"] {
    transition-duration: 200ms;
    box-shadow: 0 8px 28px 4px rgba(86,91,115,0.15);
   }
-  
-  
+    
 .card a {
    text-decoration: none;
 }
