@@ -69,7 +69,7 @@ module.exports = {
         {
           to: 'docs/resources/developer-portal-updates',
           activeBasePath: 'docs',
-          label: 'Documentation',
+          label: 'Docs',
           position: 'left',
         },
         {
