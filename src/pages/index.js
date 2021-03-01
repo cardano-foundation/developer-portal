@@ -1,79 +1,99 @@
-import React from "react";
-import clsx from "clsx";
-import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "./styles.module.css";
+import React from 'react';
+import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import styles from './styles.module.css';
 
 const features = [
   {
-    title: '📖 Learn Cardano',
-    imageUrl: 'docs/learn-cardano/token-locking',
+    title: 'Learn Cardano',
+    imageUrl: 'img/cardano-black.png',
+    targetUrl: 'docs/learn-cardano/token-locking',
     description: (
-      <>Learn how Cardano works with the vision and mission, inspiration, why cardano, and key concepts.</>
+      <>
+        Learn how Cardano works with the vision and mission, inspiration, why cardano, and key concepts.
+      </>
     ),
   },
   {
-    title: <>🤓 Getting Started</>,
-    imageUrl: 'docs/getting-started/cardano-node',
+    title: 'Getting Started',
+    imageUrl: 'img/cardano-black.png',
+    targetUrl: 'docs/getting-started/cardano-node',
     description: (
-      <>Step by step instructions, node installion, stake pool operators and managing wallets</>
+      <>
+        Step by step instructions, tech, stake pools.
+      </>
     ),
   },
   {
-    title: <>👨‍💻 Smart Contracts and Building DApps</>,
-    imageUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
+    title: 'Smart Contracts and Building DApps',
+    imageUrl: 'img/cardano-black.png',
+    targetUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
     description: (
-      <>Build smart contracts and dapps with Plutus, Marlowe and Glow.</>
+      <>
+        Creating smart contracts and decentralized applications with Cardano.
+      </>
+    ),
+  },
+
+  {
+    title: 'Adrestia - SDKs and APIs',
+    imageUrl: 'img/cardano-black.png',
+    targetUrl: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
+    description: (
+      <>
+        Depending on the use-cases you have and the control that you seek, you may use any of the components below.
+      </>
     ),
   },
   {
-    title: <>⚒️ Adrestia - SDKs and APIs</>,
-    imageUrl: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
+    title: 'Resources',
+    imageUrl: 'img/cardano-black.png',
+    targetUrl: 'docs/resources/developer-portal-updates',
     description: (
-      <>Depending on the use-cases you have and the control that you seek, you can choose specific Cardano components .</>
-    ),
-  },
-  {
-    title: <>💡 Resources</>,
-    imageUrl: 'docs/resources/developer-portal-updates',
-    description: (
-      <>Check latest updates, releases, research papers, news, events, fundings and be part of the community.</>
+      <>
+      Community, research paper, news, events, funding.
+      </>
     ),
   },
 ];
 
-function Feature({ imageUrl, title, description }) {
-  const imgUrl = useBaseUrl(imageUrl);
+function Feature({imageUrl, title, description, targetUrl}) {
+  const imgUrl = useBaseUrl(imageUrl); // not used right now
+  const trgUrl = useBaseUrl(targetUrl);
   return (
-    <div className={clsx("col col--4", styles.feature)}>
+    <div className={clsx('col col--4', styles.feature)}>
       {imgUrl && (
-        <Link className="navbar__link" to={imgUrl}>
-          <div className="card">
-            <div className="card__header">
-              <h3>{title}</h3>
-            </div>
-            <div className="card__body">
-              <p>{description}</p>
-            </div>
+        <Link className="navbar__link" to={trgUrl}>
+        <div className="card">
+          <div className="card__header">
+            <h3>{title}</h3>
           </div>
-        </Link>
+          <div className="card__body">
+            <p>{description}</p>
+          </div>
+        </div>
+      </Link>
       )}
+
     </div>
   );
 }
 
 function Home() {
   const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
+  const {siteConfig = {}} = context;
   return (
-    <Layout title="Homepage" description="Cardano Developer Portal">
-      {/* <header className={clsx("hero hero--primary", styles.heroBanner)}> */}
-      {/* <div className="container">
+    <Layout
+      title={`Overview`}
+      description="Cardano Developer Portal">
+      <header className={clsx('hero hero--primary', styles.heroBanner)}>
+        <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p> */}
-      {/* <div className={styles.buttons}>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <div className={styles.buttons}>
             <Link
               className={clsx(
                 'button button--outline button--secondary button--lg',
@@ -82,18 +102,14 @@ function Home() {
               to={useBaseUrl('docs/')}>
               Get Started
             </Link>
-          </div> */}
-      {/* </div> */}
-      {/* </header> */}
+          </div>
+        </div>
+      </header>
       <main>
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
-            <div class="alert alert--primary" role="alert">
-            <center>
-            <h2> Welcome to the developer portal on everything about Cardano blockchain</h2></center>
-            </div>
-              <div className="row cards__container">
+              <div className="row">
                 {features.map((props, idx) => (
                   <Feature key={idx} {...props} />
                 ))}

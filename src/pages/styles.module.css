@@ -10,16 +10,14 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-image: url('/img/hero-header-zoom.png');  
+  background-size: cover;
 }
 
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
   }
-}
-
-.cardTitle {
-  color: blue;
 }
 
 .buttons {
