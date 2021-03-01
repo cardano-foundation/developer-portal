@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Learn Cardano',
-    imageUrl: 'img/cardano-black.png',
+    //imageUrl: 'img/cardano-black.png',
     targetUrl: 'docs/learn-cardano/token-locking',
     description: (
       <>
@@ -19,7 +19,7 @@ const features = [
   },
   {
     title: 'Getting Started',
-    imageUrl: 'img/cardano-black.png',
+    //imageUrl: 'img/cardano-black.png',
     targetUrl: 'docs/getting-started/cardano-node',
     description: (
       <>
@@ -29,7 +29,7 @@ const features = [
   },
   {
     title: 'Smart Contracts and Building DApps',
-    imageUrl: 'img/cardano-black.png',
+    //imageUrl: 'img/cardano-black.png',
     targetUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
     description: (
       <>
@@ -40,7 +40,7 @@ const features = [
 
   {
     title: 'Adrestia - SDKs and APIs',
-    imageUrl: 'img/cardano-black.png',
+    //imageUrl: 'img/cardano-black.png',
     targetUrl: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
     description: (
       <>
@@ -50,7 +50,7 @@ const features = [
   },
   {
     title: 'Resources',
-    imageUrl: 'img/cardano-black.png',
+    //imageUrl: 'img/cardano-black.png',
     targetUrl: 'docs/resources/developer-portal-updates',
     description: (
       <>
@@ -65,10 +65,15 @@ function Feature({imageUrl, title, description, targetUrl}) {
   const trgUrl = useBaseUrl(targetUrl);
   return (
     <div className={clsx('col col--4', styles.feature)}>
-      {imgUrl && (
+      {targetUrl && (
         <Link className="navbar__link" to={trgUrl}>
         <div className="card">
           <div className="card__header">
+          {imgUrl && (
+            <div className="text--center">
+               <img className={styles.featureImage} src={imgUrl} alt={title}/>
+            </div>
+          )}
             <h3>{title}</h3>
           </div>
           <div className="card__body">
