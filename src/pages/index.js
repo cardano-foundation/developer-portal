@@ -37,6 +37,7 @@ const features = [
       </>
     ),
   },
+/*
   {
     title: 'Adrestia - SDKs and APIs',
     //imageUrl: 'img/cardano-black.png',
@@ -56,7 +57,7 @@ const features = [
       Community, research paper, news, events, funding.
       </>
     ),
-  },
+  },*/
 ];
 
 function Feature({imageUrl, title, description, targetUrl}) {
