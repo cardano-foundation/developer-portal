@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Learn Cardano',
-    //imageUrl: 'img/cardano-black.png',
+    imageUrl: 'img/card-learn-cardano.svg',
     targetUrl: 'docs/learn-cardano/token-locking',
     description: (
       <>
@@ -19,7 +19,7 @@ const features = [
   },
   {
     title: 'Getting Started',
-    //imageUrl: 'img/cardano-black.png',
+    imageUrl: 'img/card-getting-started.svg',
     targetUrl: 'docs/getting-started/cardano-node',
     description: (
       <>
@@ -29,7 +29,7 @@ const features = [
   },
   {
     title: 'Smart Contracts and Building DApps',
-    //imageUrl: 'img/cardano-black.png',
+    imageUrl: 'img/card-smart-contracts.svg',
     targetUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
     description: (
       <>
@@ -37,7 +37,6 @@ const features = [
       </>
     ),
   },
-
   {
     title: 'Adrestia - SDKs and APIs',
     //imageUrl: 'img/cardano-black.png',
