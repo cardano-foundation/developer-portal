@@ -58,7 +58,7 @@ module.exports = {
     // Navbar title, logo and items
     navbar: {
       hideOnScroll: false,
-      title: 'Cardano Developer Portal',
+      title: 'Developers',
       logo: {
         alt: 'Cardano Logo',
         src: 'img/cardano-black.svg',
@@ -66,15 +66,20 @@ module.exports = {
       },
 
       items: [
-        
+        {
+          to: 'docs/resources/developer-portal-updates',
+          activeBasePath: 'docs',
+          label: 'Docs',
+          position: 'left',
+        },
         {
           to: 'tools',
-          label: 'Developer Tools',
+          label: 'Tools',
           position: 'left'
         },
         {
           to: 'showcase',
-          label: 'Showcases',
+          label: 'Showcase',
           position: 'left'
         },
         {
