@@ -23,7 +23,7 @@ function Showcase() {
           <p>{DESCRIPTION}</p>
           <p>
             <a
-              className={'button button--primary'}
+              className={'button button--primary button--lg'}
               href={EDIT_URL}
               target={'_blank'}>
               Add your project!
