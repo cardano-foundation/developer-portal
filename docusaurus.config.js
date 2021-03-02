@@ -89,8 +89,8 @@ module.exports = {
         },
         {
           href: 'https://github.com/cardano-foundation/developer-portal',
-          label: 'GitHub',
           position: 'right',
+          className: 'header-github-link',
         },
 
       ],
@@ -101,6 +101,14 @@ module.exports = {
         {
           title: 'Docs',
           items: [
+            {
+              label: 'Adrestia - SDKs and APIs',
+              to: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
+            },
+            {
+              label: 'Resources',
+              to: 'docs/resources/developer-portal-updates',
+            },
             {
               label: 'Style Guide',
               to: 'docs/',
@@ -144,8 +152,12 @@ module.exports = {
               href: 'https://www.cardano.org',
             },
             {
-              label: 'Developer Spotlight',
-              to: 'blog',
+              label: 'Cardano Documentation',
+              href: 'https://docs.cardano.org/en/latest/',
+            },
+            {
+              label: 'Testnets',
+              to: 'https://developers.cardano.org/en/testnets/cardano/overview/',
             },
           ],
         },
