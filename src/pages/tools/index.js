@@ -23,10 +23,10 @@ function BuilderTools() {
           <p>{DESCRIPTION}</p>
           <p>
             <a
-              className={'button button--primary'}
+              className={'button button--primary button--lg'}
               href={EDIT_URL}
               target={'_blank'}>
-              Add your project!
+              Add your tool!
             </a>
           </p>
         </div>
