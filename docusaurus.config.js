@@ -89,8 +89,8 @@ module.exports = {
         },
         {
           href: 'https://github.com/cardano-foundation/developer-portal',
-          label: 'GitHub',
           position: 'right',
+          className: 'header-github-link',
         },
 
       ],
