@@ -66,6 +66,20 @@ const tools = [
     website: 'https://playground.plutus.iohkdev.io',
     source: 'https://github.com/input-output-hk/plutus', 
   },
+  {
+    title: 'Token Tool',
+    description: 'Keep track of native tokens on testnet and mainnet.',
+    preview: require('./builder-tools/tokentool.png'),
+    website: 'https://tokentool.io',
+    // offers no source
+  },
+  {
+    title: 'Transaction Meta Data Browser',
+    description: 'Keep track of native tokens on testnet and mainnet.',
+    preview: require('./builder-tools/transaction-meta-data-browser.png'),
+    website: 'https://bi.stakepoolcentral.com/transactiondata',
+    // offers no source
+  },
 ];
 
 tools.forEach((tool) => {
