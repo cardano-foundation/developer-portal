@@ -1,7 +1,8 @@
 ---
-id: why-cardano
-title: Why Cardano?
-description: Why Cardano?
+id: introduction
+title: Introduction
+slug: /
+description: Cardano developer portal introduction
 image: ./img/og-developer-portal.png
 --- 
 

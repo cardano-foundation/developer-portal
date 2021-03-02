@@ -2,9 +2,10 @@
  * ADD YOUR SITE TO THE CARDANO DEVELOPER PORTAL SHOWCASE:
  *
  * Requirements for adding your site to our showcase:
- * - It is a real site with real content and adds value to Cardano developers
+ * - It must be built on Cardano and have a real usecase. Preferably but not necessarily dapps.
+ *   Please exclude pooltools and explorers for the time being.
  * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
- * - The code is publicly available (not decided yet)
+ * - The code is publicly available (not decided yet if this is a requirement)
  *
  * Instructions:
  * - Add your site in the json array below, in alphabetical order of title
@@ -17,7 +18,7 @@
  * If you edit this file through the Github interface, you can:
  * - Submit first your showcase.js edit PR
  * - This will create a branch on your Docusaurus fork (usually "patch-1")
- * - Go to https://github.com/<username>/developerportal/tree/<branch>/website/src/data/showcase
+ * - Go to https://github.com/<username>/developer-portal/tree/<branch>/website/src/data/showcase
  * - Drag-and-drop an image here to add it to your existing PR
  *
  */

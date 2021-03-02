@@ -1,6 +1,8 @@
 ---
 id: vision-and-mission
 title: Vision and Mission
+description: The vision and mission of Cardano. 
+image: ./img/og-developer-portal.png
 --- 
 
 This is an apple 🍎.  

@@ -1,6 +1,7 @@
 # Cardano Developer Portal
 
-to build the Cardano developer portal we have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+we wanted to build an open and inclusive, easy to use developer portal that offers guidance and allows community contribution. To achieve this we have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.  
+
 
 ## Make sure to have:  
 [Node.js](https://nodejs.org/en/download/) version >= 10.15.1 or above  
@@ -11,12 +12,12 @@ On macOS you also need Xcode and CLT
 ## Clone the repo
 
 ```console
-git clone https://github.com/katomm/developer-portal.git
+git clone https://github.com/cardano-foundation/developer-portal.git
 ```
 
 ## Navigate into the folder
 
-```
+```console
 cd developer-portal
 ```
 

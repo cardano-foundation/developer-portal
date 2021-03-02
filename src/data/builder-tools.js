@@ -2,9 +2,10 @@
  * ADD YOUR TOOL TO THE CARDANO DEVELOPER PORTAL:
  *
  * Requirements for adding your tool:
- * - It is a real tool that adds value to Cardano developers
+ * - It is a real tool that adds value to Cardano developers. 
+ *   Please exclude pooltools and explorers for the time being.
  * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
- * - The code is publicly available (not decided yet)
+ * - The code is publicly available (not decided yet if this is a requirement)
  *
  * Instructions:
  * - Add your tool in the json array below, in alphabetical order of title

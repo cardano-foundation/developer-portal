@@ -12,7 +12,7 @@ const TITLE = 'Builder Tools';
 const DESCRIPTION =
   'Tools to help you build on Cardano.';
 const EDIT_URL =
-  'https://github.com/katomm/developer-portal/edit/master/src/data/builder-tools.js';
+  'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/builder-tools.js';
 
 function BuilderTools() {
   return (

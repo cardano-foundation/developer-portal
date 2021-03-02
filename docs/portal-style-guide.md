@@ -2,7 +2,8 @@
 id: portal-style-guide
 title: Style Guide
 sidebar_label: Style Guide
-slug: /
+description: Style guide for the Cardano developer portal.
+image: ./img/og-developer-portal.png
 ---
 
 You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/).

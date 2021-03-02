@@ -1,7 +1,9 @@
 ---
 id: portal-contribute
-title: How to contribute
+title: How to contribute to the develooper portal
 sidebar_label: How to contribute
+description: How to contribute to the Cardano developer portal
+image: ./img/og-developer-portal.png
 ---
 
 Let's make people clear how they can contribute. Also make sure to link [the markdown features.](https://v2.docusaurus.io/docs/markdown-features)

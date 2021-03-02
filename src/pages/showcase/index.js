@@ -12,7 +12,7 @@ const TITLE = 'Showcase';
 const DESCRIPTION =
   'See the awesome projects people are building with Cardano.';
 const EDIT_URL =
-  'https://github.com/katomm/developer-portal/edit/master/src/data/showcases.js';
+  'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/showcases.js';
 
 function Showcase() {
   return (

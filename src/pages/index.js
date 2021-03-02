@@ -9,8 +9,8 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Learn Cardano',
-    imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs/vision-and-mission/',
+    imageUrl: 'img/card-learn-cardano.svg',
+    targetUrl: 'docs/learn-cardano/token-locking',
     description: (
       <>
         Learn how Cardano works with the vision and mission, inspiration, why cardano, and key concepts.
@@ -19,8 +19,8 @@ const features = [
   },
   {
     title: 'Getting Started',
-    imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs/cardano-node',
+    imageUrl: 'img/card-getting-started.svg',
+    targetUrl: 'docs/getting-started/cardano-node',
     description: (
       <>
         Step by step instructions, tech, stake pools.
@@ -29,19 +29,19 @@ const features = [
   },
   {
     title: 'Smart Contracts and Building DApps',
-    imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    imageUrl: 'img/card-smart-contracts.svg',
+    targetUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
     description: (
       <>
         Creating smart contracts and decentralized applications with Cardano.
       </>
     ),
   },
-
+/*
   {
     title: 'Adrestia - SDKs and APIs',
-    imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    //imageUrl: 'img/cardano-black.png',
+    targetUrl: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
     description: (
       <>
         Depending on the use-cases you have and the control that you seek, you may use any of the components below.
@@ -50,14 +50,14 @@ const features = [
   },
   {
     title: 'Resources',
-    imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs',
+    //imageUrl: 'img/cardano-black.png',
+    targetUrl: 'docs/resources/developer-portal-updates',
     description: (
-      <>  
+      <>
       Community, research paper, news, events, funding.
       </>
     ),
-  },
+  },*/
 ];
 
 function Feature({imageUrl, title, description, targetUrl}) {
@@ -65,10 +65,15 @@ function Feature({imageUrl, title, description, targetUrl}) {
   const trgUrl = useBaseUrl(targetUrl);
   return (
     <div className={clsx('col col--4', styles.feature)}>
-      {imgUrl && (
+      {targetUrl && (
         <Link className="navbar__link" to={trgUrl}>
         <div className="card">
           <div className="card__header">
+          {imgUrl && (
+            <div className="text--center">
+               <img className={styles.featureImage} src={imgUrl} alt={title}/>
+            </div>
+          )}
             <h3>{title}</h3>
           </div>
           <div className="card__body">
@@ -77,7 +82,7 @@ function Feature({imageUrl, title, description, targetUrl}) {
         </div>
       </Link>
       )}
-       
+
     </div>
   );
 }
@@ -87,8 +92,8 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`Overview`}
+      description="Cardano Developer Portal">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -96,11 +101,11 @@ function Home() {
           <div className={styles.buttons}>
             <Link
               className={clsx(
-                'button button--outline button--secondary button--lg',
+                'button button--outline button--warn button--lg',
                 styles.getStarted,
               )}
               to={useBaseUrl('docs/')}>
-              Get Started
+              Sign Up
             </Link>
           </div>
         </div>
