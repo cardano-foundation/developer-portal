@@ -152,8 +152,12 @@ module.exports = {
               href: 'https://www.cardano.org',
             },
             {
-              label: 'Developer Spotlight',
-              to: 'blog',
+              label: 'Cardano Documentation',
+              href: 'https://docs.cardano.org/en/latest/',
+            },
+            {
+              label: 'Testnets',
+              to: 'https://developers.cardano.org/en/testnets/cardano/overview/',
             },
           ],
         },
