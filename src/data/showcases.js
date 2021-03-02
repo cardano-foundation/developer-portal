@@ -25,6 +25,13 @@
 
 const showcases = [
   {
+    title: 'Cardano Kidz',
+    description: 'Cardano non fungible token (NFT) design cards in lovely design.',
+    preview: require('./showcase/cardanokidz.png'),
+    website: 'https://www.cardanokidz.com',
+    // offers no source 
+  },
+  {
     title: 'Meta Data Connector',
     description: 'Proof of concept product to formally leverage transactional metadata on Cardano for supply chain tracking.',
     preview: require('./showcase/baiawine.png'),
