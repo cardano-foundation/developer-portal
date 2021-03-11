@@ -6,6 +6,9 @@ module.exports = {
     'Payment Integration': [
       'payment-integration/overview',
     ],
+    'Native Tokens': [
+      'native-tokens/overview',
+    ],
     'Learn Cardano': [
         'learn-cardano/token-locking',
       ],
