@@ -26,6 +26,7 @@ module.exports = {
     ],
     'Contribution': [
         'portal-contribute',
+        'portal-example',
         'portal-style-guide',
     ],
   },
