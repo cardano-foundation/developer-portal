@@ -19,13 +19,13 @@ module.exports = {
       // with true defaultMode is overridden by user system preferences.
       respectPrefersColorScheme: true,
       switchConfig: {
-        darkIcon: "🌙",
+        darkIcon: '🌙',
         darkIconStyle: {
-          marginLeft: "2px",
+          marginLeft: '2px',
         },
-        lightIcon: "☀️",
+        lightIcon: '☀️',
         lightIconStyle: {
-          marginLeft: "1px",
+          marginLeft: '1px',
         },
       },
     },

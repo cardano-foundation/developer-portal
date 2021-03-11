@@ -19,36 +19,36 @@ module.exports = {
         type: 'category',
         label: 'Plutus',
         items: [
-                  "unused/smart-contracts-and-building-dapps/plutus/plutus-overview",
+                  'unused/smart-contracts-and-building-dapps/plutus/plutus-overview',
                 ],
       },
       {
-        type: "category",
-        label: "Community",
+        type: 'category',
+        label: 'Community',
         items: [
-                  "unused/community-ambassador-program",
+                  'unused/community-ambassador-program',
                 ],
       },
       {
-        type: "category",
-        label: "Resources",
+        type: 'category',
+        label: 'Resources',
         items: [
-                  "unused/resources/developer-portal-updates",
+                  'unused/resources/developer-portal-updates',
                 ],
       },
       {
-        type: "category",
-        label: "Adrestia - SDKs and APIs",
+        type: 'category',
+        label: 'Adrestia - SDKs and APIs',
         items: [
-                  "unused/adrestia-SDKs-and-APIs/adrestia-cardano-node",
+                  'unused/adrestia-SDKs-and-APIs/adrestia-cardano-node',
                 ],
       },
       {
-        type: "category",
-        label: "Learn Cardano",
+        type: 'category',
+        label: 'Learn Cardano',
         items: [
                   'getting-started/cardano-node',
-                   "unused/learn-cardano/token-locking",
+                   'unused/learn-cardano/token-locking',
                 ],
       },
   ],
