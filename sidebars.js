@@ -1,5 +1,8 @@
 module.exports = {
   someSidebar: {
+    'Transaction Metadata': [
+      'transaction-metadata/overview',
+    ],
     'Learn Cardano': [
         'learn-cardano/token-locking',
       ],
