@@ -102,15 +102,15 @@ module.exports = {
           items: [
             {
               label: 'Adrestia - SDKs and APIs',
-              to: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
+              to: 'docs/unused/adrestia-SDKs-and-APIs/adrestia-cardano-node',
             },
             {
               label: 'Resources',
-              to: 'docs/resources/developer-portal-updates',
+              to: 'docs/unused/resources/developer-portal-updates',
             },
             {
               label: 'Style Guide',
-              to: 'docs/',
+              to: 'docs/portal-style-guide',
             },
             {
               label: 'Contribute',

@@ -10,7 +10,7 @@ const features = [
   {
     title: 'Learn Cardano',
     imageUrl: 'img/card-learn-cardano.svg',
-    targetUrl: 'docs/learn-cardano/token-locking',
+    targetUrl: 'docs/transaction-metadata/overview',
     description: (
       <>
         Learn how Cardano works with the vision and mission, inspiration, why cardano, and key concepts.
@@ -20,7 +20,7 @@ const features = [
   {
     title: 'Getting Started',
     imageUrl: 'img/card-getting-started.svg',
-    targetUrl: 'docs/getting-started/cardano-node',
+    targetUrl: 'docs/payment-integration/overview',
     description: (
       <>
         Step by step instructions, tech, stake pools.
@@ -30,7 +30,7 @@ const features = [
   {
     title: 'Smart Contracts and Building DApps',
     imageUrl: 'img/card-smart-contracts.svg',
-    targetUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
+    targetUrl: 'docs/native-tokens/overview',
     description: (
       <>
         Creating smart contracts and decentralized applications with Cardano.
