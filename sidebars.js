@@ -3,6 +3,9 @@ module.exports = {
     'Transaction Metadata': [
       'transaction-metadata/overview',
     ],
+    'Payment Integration': [
+      'payment-integration/overview',
+    ],
     'Learn Cardano': [
         'learn-cardano/token-locking',
       ],
