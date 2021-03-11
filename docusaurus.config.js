@@ -67,12 +67,6 @@ module.exports = {
 
       items: [
         {
-          to: 'docs/resources/developer-portal-updates',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
-        },
-        {
           to: 'tools',
           label: 'Tools',
           position: 'left'
@@ -86,6 +80,11 @@ module.exports = {
           to: 'blog/',
           label: 'Spotlight',
           position: 'left'
+        },
+        {
+          href: 'https://docs.cardano.org/en/latest/',
+          label: 'Docs',
+          position: 'left',
         },
         {
           href: 'https://github.com/cardano-foundation/developer-portal',
