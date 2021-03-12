@@ -6,6 +6,8 @@ description: Transaction Metadata Overview
 image: ./img/og-developer-portal.png
 --- 
 
+![img](../../static/img/card-transaction-metadata.svg)
+
 This is just a placeholder page. 
 
 ## Code Examples

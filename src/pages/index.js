@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Transaction Metadata',
-    imageUrl: 'img/card-learn-cardano.svg',
+    imageUrl: 'img/card-transaction-metadata.svg',
     targetUrl: 'docs/transaction-metadata/overview',
     description: (
       <>
@@ -21,7 +21,7 @@ const features = [
   },
   {
     title: 'Payment Integration',
-    imageUrl: 'img/card-getting-started.svg',
+    imageUrl: 'img/card-payment-integration.svg',
     targetUrl: 'docs/payment-integration/overview',
     description: (
       <>
@@ -33,7 +33,7 @@ const features = [
   },
   {
     title: 'Native Tokens',
-    imageUrl: 'img/card-smart-contracts.svg',
+    imageUrl: 'img/card-native-tokens.svg',
     targetUrl: 'docs/native-tokens/overview',
     description: (
       <>

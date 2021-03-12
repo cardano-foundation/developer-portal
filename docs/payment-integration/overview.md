@@ -6,6 +6,8 @@ description: Payment Integration
 image: ./img/og-developer-portal.png
 --- 
 
+![img](../../static/img/card-payment-integration.svg)
+
 This is just a placeholder page. 
 
 ## Code Examples

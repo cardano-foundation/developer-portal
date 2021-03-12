@@ -6,6 +6,8 @@ description: Native Tokens
 image: ./img/og-developer-portal.png
 --- 
 
+![img](../../static/img/card-native-tokens.svg)
+
 This is just a placeholder page. 
 
 ## Code Examples
