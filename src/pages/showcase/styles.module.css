@@ -5,6 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+ .heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-image: url('/img/hero-header-zoom.png');  
+  background-size: cover;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
 .showcaseUser {
   height: 100%;
 }

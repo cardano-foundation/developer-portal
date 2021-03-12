@@ -19,13 +19,13 @@ module.exports = {
       // with true defaultMode is overridden by user system preferences.
       respectPrefersColorScheme: true,
       switchConfig: {
-        darkIcon: "🌙",
+        darkIcon: '🌙',
         darkIconStyle: {
-          marginLeft: "2px",
+          marginLeft: '2px',
         },
-        lightIcon: "☀️",
+        lightIcon: '☀️',
         lightIconStyle: {
-          marginLeft: "1px",
+          marginLeft: '1px',
         },
       },
     },
@@ -67,12 +67,6 @@ module.exports = {
 
       items: [
         {
-          to: 'docs/resources/developer-portal-updates',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
-        },
-        {
           to: 'tools',
           label: 'Tools',
           position: 'left'
@@ -86,6 +80,11 @@ module.exports = {
           to: 'blog/',
           label: 'Spotlight',
           position: 'left'
+        },
+        {
+          href: 'https://docs.cardano.org/en/latest/',
+          label: 'Docs',
+          position: 'left',
         },
         {
           href: 'https://github.com/cardano-foundation/developer-portal',
@@ -103,15 +102,15 @@ module.exports = {
           items: [
             {
               label: 'Adrestia - SDKs and APIs',
-              to: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
+              to: 'docs/unused/adrestia-SDKs-and-APIs/adrestia-cardano-node',
             },
             {
               label: 'Resources',
-              to: 'docs/resources/developer-portal-updates',
+              to: 'docs/unused/resources/developer-portal-updates',
             },
             {
               label: 'Style Guide',
-              to: 'docs/',
+              to: 'docs/portal-style-guide',
             },
             {
               label: 'Contribute',

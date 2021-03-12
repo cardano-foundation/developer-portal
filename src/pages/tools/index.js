@@ -1,34 +1,44 @@
-
 import React from 'react';
-
-import Image from '@theme/IdealImage';
-import Layout from '@theme/Layout';
-
 import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import Image from '@theme/IdealImage';
 import styles from './styles.module.css';
 import tools from '../../data/builder-tools';
 
-const TITLE = 'Builder Tools';
-const DESCRIPTION =
-  'Tools to help you build on Cardano.';
-const EDIT_URL =
-  'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/builder-tools.js';
+const TITLE       = 'Builder Tools';
+const DESCRIPTION = 'Tools to help you build on Cardano';
+const EDIT_URL    =  'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/builder-tools.js';
+const CTA         = 'Add your tool';
+
+function PortalHeader() {
+    return (
+        <header className={clsx('hero hero--primary', styles.heroBanner)}>
+          <div className="container">
+            <h1 className="hero__title">{TITLE}</h1>
+            <p className="hero__subtitle">{DESCRIPTION}</p>
+            <div className={styles.buttons}>
+            <Link
+              className={clsx(
+                'button button--outline button--warn button--lg',
+                styles.getStarted,
+              )}
+              href={EDIT_URL}
+              target={'_blank'}>
+              {CTA}
+            </Link>
+          </div>
+          </div>
+        </header> 
+    );
+  }
 
 function BuilderTools() {
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
+      <PortalHeader />
       <main className="container margin-vert--lg">
         <div className="text--center margin-bottom--xl">
-          <h1>{TITLE}</h1>
-          <p>{DESCRIPTION}</p>
-          <p>
-            <a
-              className={'button button--primary button--lg'}
-              href={EDIT_URL}
-              target={'_blank'}>
-              Add your tool!
-            </a>
-          </p>
         </div>
         <div className="row">
           {tools.map((tool) => (
@@ -81,3 +91,5 @@ function BuilderTools() {
 }
 
 export default BuilderTools;
+
+

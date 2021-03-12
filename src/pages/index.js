@@ -8,32 +8,38 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Learn Cardano',
-    imageUrl: 'img/card-learn-cardano.svg',
-    targetUrl: 'docs/learn-cardano/token-locking',
+    title: 'Transaction Metadata',
+    imageUrl: 'img/card-transaction-metadata.svg',
+    targetUrl: 'docs/transaction-metadata/overview',
     description: (
       <>
-        Learn how Cardano works with the vision and mission, inspiration, why cardano, and key concepts.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+        magna aliquyam erat, sed diam voluptua.
       </>
     ),
   },
   {
-    title: 'Getting Started',
-    imageUrl: 'img/card-getting-started.svg',
-    targetUrl: 'docs/getting-started/cardano-node',
+    title: 'Payment Integration',
+    imageUrl: 'img/card-payment-integration.svg',
+    targetUrl: 'docs/payment-integration/overview',
     description: (
       <>
-        Step by step instructions, tech, stake pools.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+        magna aliquyam erat, sed diam voluptua.
       </>
     ),
   },
   {
-    title: 'Smart Contracts and Building DApps',
-    imageUrl: 'img/card-smart-contracts.svg',
-    targetUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
+    title: 'Native Tokens',
+    imageUrl: 'img/card-native-tokens.svg',
+    targetUrl: 'docs/native-tokens/overview',
     description: (
       <>
-        Creating smart contracts and decentralized applications with Cardano.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+        magna aliquyam erat, sed diam voluptua.
       </>
     ),
   },
@@ -104,7 +110,7 @@ function Home() {
                 'button button--outline button--warn button--lg',
                 styles.getStarted,
               )}
-              to={useBaseUrl('docs/')}>
+              to={useBaseUrl('docs/portal-signup')}>
               Sign Up
             </Link>
           </div>

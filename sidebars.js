@@ -1,32 +1,56 @@
 module.exports = {
   someSidebar: {
-    'Learn Cardano': [
-        'learn-cardano/token-locking',
-      ],
-    'Getting Started': [
-        'getting-started/cardano-node'
+    'Transaction Metadata': [
+      'transaction-metadata/overview',
     ],
-    'Smart Contracts and Building DApps': [
-        {
-          type: "category",
-          label: "Plutus",
-          items: [
-                    "smart-contracts-and-building-dapps/plutus/plutus-overview",
-                  ],
-        },
+    'Payment Integration': [
+      'payment-integration/overview',
     ],
-    'Adrestia - SDKs and APIs': [
-      'adrestia-SDKs-and-APIs/adrestia-cardano-node'
-    ],
-    'Resources': [
-      'resources/developer-portal-updates'
-    ],
-    'Community': [
-        'community-ambassador-program',
+    'Native Tokens': [
+      'native-tokens/overview',
     ],
     'Contribution': [
         'portal-contribute',
+        'portal-example',
         'portal-style-guide',
     ],
+    'Unused': [
+      {
+        type: 'category',
+        label: 'Plutus',
+        items: [
+                  'unused/smart-contracts-and-building-dapps/plutus/plutus-overview',
+                ],
+      },
+      {
+        type: 'category',
+        label: 'Community',
+        items: [
+                  'unused/community-ambassador-program',
+                ],
+      },
+      {
+        type: 'category',
+        label: 'Resources',
+        items: [
+                  'unused/resources/developer-portal-updates',
+                ],
+      },
+      {
+        type: 'category',
+        label: 'Adrestia - SDKs and APIs',
+        items: [
+                  'unused/adrestia-SDKs-and-APIs/adrestia-cardano-node',
+                ],
+      },
+      {
+        type: 'category',
+        label: 'Learn Cardano',
+        items: [
+                  'getting-started/cardano-node',
+                   'unused/learn-cardano/token-locking',
+                ],
+      },
+  ],
   },
 };
