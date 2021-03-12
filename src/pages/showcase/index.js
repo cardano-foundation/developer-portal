@@ -1,34 +1,45 @@
 
 import React from 'react';
-
-import Image from '@theme/IdealImage';
-import Layout from '@theme/Layout';
-
 import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import Image from '@theme/IdealImage';
 import styles from './styles.module.css';
 import showcases from '../../data/showcases';
 
-const TITLE = 'Showcase';
-const DESCRIPTION =
-  'See the awesome projects people are building with Cardano.';
-const EDIT_URL =
-  'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/showcases.js';
+const TITLE       = 'Showcase';
+const DESCRIPTION = 'See the awesome projects people are building with Cardano';
+const EDIT_URL    = 'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/showcases.js';
+const CTA         = 'Add your project';
+
+function PortalHeader() {
+  return (
+      <header className={clsx('hero hero--primary', styles.heroBanner)}>
+        <div className="container">
+          <h1 className="hero__title">{TITLE}</h1>
+          <p className="hero__subtitle">{DESCRIPTION}</p>
+          <div className={styles.buttons}>
+          <Link
+            className={clsx(
+              'button button--outline button--warn button--lg',
+              styles.getStarted,
+            )}
+            href={EDIT_URL}
+            target={'_blank'}>
+            {CTA}
+          </Link>
+        </div>
+        </div>
+      </header> 
+  );
+}
 
 function Showcase() {
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
+      <PortalHeader />
       <main className="container margin-vert--lg">
         <div className="text--center margin-bottom--xl">
-          <h1>{TITLE}</h1>
-          <p>{DESCRIPTION}</p>
-          <p>
-            <a
-              className={'button button--primary button--lg'}
-              href={EDIT_URL}
-              target={'_blank'}>
-              Add your project!
-            </a>
-          </p>
         </div>
         <div className="row">
           {showcases.map((showcase) => (
