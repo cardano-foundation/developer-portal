@@ -110,7 +110,7 @@ function Home() {
                 'button button--outline button--warn button--lg',
                 styles.getStarted,
               )}
-              to={useBaseUrl('docs/')}>
+              to={useBaseUrl('docs/portal-signup')}>
               Sign Up
             </Link>
           </div>
