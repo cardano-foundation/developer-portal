@@ -1,3 +1,10 @@
+
+
+// GitHub Settings  
+const repository = 'https://github.com/cardano-foundation/developer-portal';
+const branch     = 'staging';
+
+// Docusaurus Config
 module.exports = {
   title: 'Cardano Developer Portal',
   tagline: 'together, we can change the world for the better',
@@ -8,6 +15,10 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'cardano-foundation',
   projectName: 'developer-portal',
+  customFields: {
+    repository : `${repository}`,
+    branch     : `${branch}`,
+  },
   themeConfig: {
 
     // Docs Sidebar
@@ -34,7 +45,7 @@ module.exports = {
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
-        'If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
+      `If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
       backgroundColor: '#58595B', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
@@ -87,7 +98,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/cardano-foundation/developer-portal',
+          href: `${repository}`,
           position: 'right',
           className: 'header-github-link',
         },
@@ -184,12 +195,12 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/cardano-foundation/developer-portal/edit/main',
+          `${repository}/edit/${branch}`,
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/cardano-foundation/developer-portal/edit/main',
+          `${repository}/edit/${branch}`,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
