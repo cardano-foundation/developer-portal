@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -6,13 +5,17 @@ import Link from '@docusaurus/Link';
 import Image from '@theme/IdealImage';
 import styles from './styles.module.css';
 import showcases from '../../data/showcases';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const TITLE       = 'Showcase';
 const DESCRIPTION = 'See the awesome projects people are building with Cardano';
-const EDIT_URL    = 'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/showcases.js';
 const CTA         = 'Add your project';
+const FILENAME    = 'showcases.js'
 
 function PortalHeader() {
+  const context = useDocusaurusContext();
+  const { siteConfig = {} } = context;
+  const EDIT_URL    = `${siteConfig.customFields.repository}/edit/${siteConfig.customFields.branch}/src/data/${FILENAME}`;
   return (
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">

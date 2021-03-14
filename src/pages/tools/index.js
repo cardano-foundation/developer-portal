@@ -5,13 +5,17 @@ import Link from '@docusaurus/Link';
 import Image from '@theme/IdealImage';
 import styles from './styles.module.css';
 import tools from '../../data/builder-tools';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const TITLE       = 'Builder Tools';
 const DESCRIPTION = 'Tools to help you build on Cardano';
-const EDIT_URL    =  'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/builder-tools.js';
 const CTA         = 'Add your tool';
+const FILENAME    = 'builder-tools.js'
 
 function PortalHeader() {
+  const context = useDocusaurusContext();
+  const { siteConfig = {} } = context;
+  const EDIT_URL    = `${siteConfig.customFields.repository}/edit/${siteConfig.customFields.branch}/src/data/${FILENAME}`;
     return (
         <header className={clsx('hero hero--primary', styles.heroBanner)}>
           <div className="container">
