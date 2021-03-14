@@ -1,46 +1,20 @@
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 import Image from '@theme/IdealImage';
 import styles from './styles.module.css';
 import tools from '../../data/builder-tools';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import PortalHero from '../portalhero';
 
 const TITLE       = 'Builder Tools';
 const DESCRIPTION = 'Tools to help you build on Cardano';
 const CTA         = 'Add your tool';
 const FILENAME    = 'builder-tools.js'
 
-function PortalHeader() {
-  const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
-  const EDIT_URL    = `${siteConfig.customFields.repository}/edit/${siteConfig.customFields.branch}/src/data/${FILENAME}`;
-    return (
-        <header className={clsx('hero hero--primary', styles.heroBanner)}>
-          <div className="container">
-            <h1 className="hero__title">{TITLE}</h1>
-            <p className="hero__subtitle">{DESCRIPTION}</p>
-            <div className={styles.buttons}>
-            <Link
-              className={clsx(
-                'button button--outline button--warn button--lg',
-                styles.getStarted,
-              )}
-              href={EDIT_URL}
-              target={'_blank'}>
-              {CTA}
-            </Link>
-          </div>
-          </div>
-        </header> 
-    );
-  }
-
 function BuilderTools() {
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <PortalHeader />
+      <PortalHero title={TITLE} description={DESCRIPTION} cta={CTA} filename={FILENAME}/>
       <main className="container margin-vert--lg">
         <div className="text--center margin-bottom--xl">
         </div>
@@ -95,5 +69,3 @@ function BuilderTools() {
 }
 
 export default BuilderTools;
-
-
