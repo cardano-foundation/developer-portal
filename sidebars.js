@@ -2,12 +2,13 @@ module.exports = {
   someSidebar: {
     'Transaction Metadata': [
       'transaction-metadata/overview',
+      'transaction-metadata/how-to-create-a-metadata-transaction'
     ],
     'Payment Integration': [
       'payment-integration/overview',
     ],
     'Native Tokens': [
-      'native-tokens/overview',
+      'native-tokens/submit-entry-to-cardano-token-registry',
     ],
     'Contribution': [
         'portal-contribute',
