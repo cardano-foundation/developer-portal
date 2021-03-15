@@ -43,6 +43,18 @@ const features = [
       </>
     ),
   },
+  {
+    title: 'Stake Pool Course',
+    imageUrl: 'img/card-stake-pool-course.svg',
+    targetUrl: 'docs/stake-pool-course/overview',
+    description: (
+      <>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+        magna aliquyam erat, sed diam voluptua.
+      </>
+    ),
+  },
 /*
   {
     title: 'Adrestia - SDKs and APIs',

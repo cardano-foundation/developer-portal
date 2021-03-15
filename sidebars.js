@@ -10,6 +10,17 @@ module.exports = {
     'Native Tokens': [
       'native-tokens/submit-entry-to-cardano-token-registry',
     ],
+    'Stake Pool Course': [
+      'stake-pool-course/overview',
+      {
+        type: 'category',
+        label: 'Introduction',
+        items: [
+                  'stake-pool-course/introduction',
+                  'stake-pool-course/why-cardano',
+                ],
+      },
+    ],
     'Contribution': [
         'portal-contribute',
         'portal-example',
