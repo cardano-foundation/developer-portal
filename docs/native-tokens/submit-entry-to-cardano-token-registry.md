@@ -3,17 +3,19 @@ id: submit-entry-to-cardano-token-registry
 title: How to Submit Metadata Mappings to the Cardano Token Registry
 ---
 
+
 This article explains the steps to create a mapping file, representing a native token, and submit it to the Cardano Token Registry.
 
 :::note
 Note that this article assumes you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/) example.
 :::
 
-# Mapping Definition
+
+## Mapping Definition
 
 A mapping is the association of  a unique on-chain identifier with a set of  human-readable attributes. As a user, you generate a mapping file (JSON format), containing the mapping itself and the relevant cryptographic setup validating that you are the person who minted that token. That file can then be sent out to the registry for review and inclusion.
 
-# Native Asset Identification
+## Native Asset Identification
 
 An asset is uniquely identified by an **assetID**, which is a pair of both the **PolicyID** and the asset name.
 
@@ -23,18 +25,18 @@ The **PolicyID** is computed by applying a hash function to the policy itself (t
 
 The **AssetName** is an immutable property to distinguish different assets within the same policy. It describes the token in a human-readable name up to 32 bytes (4-50 characters long).
 
-# Adding to the Registry
+## Adding to the Registry
 
 1. Create your native token
 2. Prepare JSON mapping file for submission
 3. Creating the Pull Request (PR)
 
-## Creating your Native Token
+### Creating your Native Token
 
 Native tokens is an accounting system defined as part of the cryptocurrency ledger and enables tokens to be tracked, sent and received within the Cardano blockchain. After you finish the steps in [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
 
 
-## Prepare JSON Mapping File for Submission
+### Prepare JSON Mapping File for Submission
 
 Use the [cardano-metadata-submitter](https://github.com/input-output-hk/cardano-metadata-submitter) tool to prepare a JSON mapping file for submission. This can be done manually if you are able to compile the cryptographic primitives yourself but it is recommended that you use the cardano-metadata-submitter tool.
 
@@ -46,7 +48,7 @@ By creating a mapping file, you effectively create a record that maps human-read
 * **URL -** Optional - Site to be associated with that token,
 * **Logo -** Optional  - Associated logo to be picked up by the wallets displaying your token.
 
-### Example for Creating a Mapping File
+#### Example for Creating a Mapping File
 
 To create a new entry, you must first obtain your metadata subject. The subject is defined as the concatenation of the base16-encoded **PolicyID** and base16-encoded **AssetName** of your asset.
 
