@@ -2,6 +2,7 @@ module.exports = {
   someSidebar: {
     'Transaction Metadata': [
       'transaction-metadata/overview',
+      'transaction-metadata/how-to-create-a-metadata-transaction'
     ],
     'Payment Integration': [
       'payment-integration/overview',

@@ -1,8 +1,13 @@
-# How to Submit Mappings to the Cardano Token Registry
+---
+id: submit-entry-to-cardano-token-registry
+title: How to Submit Metadata Mappings to the Cardano Token Registry
+---
 
 This article explains the steps to create a mapping file, representing a native token, and submit it to the Cardano Token Registry.
 
-> **_NOTE:_** this article assumes you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/) example.
+:::note
+Note that this article assumes you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/) example.
+:::
 
 ## Mapping Definition
 
