@@ -7,7 +7,7 @@ module.exports = {
       'payment-integration/overview',
     ],
     'Native Tokens': [
-      'native-tokens/overview',
+      'native-tokens/submit-entry-to-cardano-token-registry',
     ],
     'Contribution': [
         'portal-contribute',
