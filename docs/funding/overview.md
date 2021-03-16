@@ -1,9 +1,16 @@
 ---
-id: portal-example
-title: Code examples
-sidebar_label: Code examples
+id: overview
+title: Funding
+sidebar_label: Overview
+description: Learn how to get your idea funded
+image: ./img/og-developer-portal.png
 --- 
 
+![img](../../static/img/card-funding.svg)
+
+This is just a placeholder page. 
+
+## Code Examples
 Example to present different examples in different languages.
 
 import Tabs from '@theme/Tabs';
@@ -48,7 +55,7 @@ Note that the empty lines above and below each language block (in the *md file) 
 
 
 
-# Additional example
+## Additional example
 
 We should do the same with for example operating systems. We can also switch multiple tabs at the same time based on user input.
 
@@ -79,7 +86,3 @@ We should do the same with for example operating systems. We can also switch mul
 <TabItem value="mac">Use Command + V to paste.</TabItem>
 <TabItem value="linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
-
-## Video: What’s an Ouroboros and how you cook it?
-
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

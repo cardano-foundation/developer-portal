@@ -8,14 +8,27 @@ import styles from './styles.module.css';
 
 const features = [
   {
+    title: 'Getting Started',
+    imageUrl: 'img/card-getting-started.svg',
+    targetUrl: 'docs/getting-started/overview',
+    description: (
+      <>
+        Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam 
+        rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, 
+        sem quam semper libero, sit amet adipiscing sem neque sed ipsum. 
+      </>
+    ),
+  },
+  {
     title: 'Transaction Metadata',
     imageUrl: 'img/card-transaction-metadata.svg',
     targetUrl: 'docs/transaction-metadata/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-        magna aliquyam erat, sed diam voluptua.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+        Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+        natoque penatibus et magnis dis parturient montes, nascetur 
+        ridiculus mus. 
       </>
     ),
   },
@@ -25,9 +38,8 @@ const features = [
     targetUrl: 'docs/payment-integration/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-        magna aliquyam erat, sed diam voluptua.
+        Donec quam felis, ultricies nec, pellentesque eu, pretium 
+        quis, sem. Nulla consequat massa quis enim.
       </>
     ),
   },
@@ -37,9 +49,31 @@ const features = [
     targetUrl: 'docs/native-tokens/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-        magna aliquyam erat, sed diam voluptua.
+        Donec pede justo, fringilla vel, aliquet nec, vulputate 
+        eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis 
+        vitae, justo.
+      </>
+    ),
+  },
+  {
+    title: 'Stake Pool Course',
+    imageUrl: 'img/card-stake-pool-course.svg',
+    targetUrl: 'docs/stake-pool-course/overview',
+    description: (
+      <>
+        Nullam dictum felis eu pede mollis pretium. Integer tincidunt. 
+        Cras dapibus
+      </>
+    ),
+  },
+  {
+    title: 'Funding',
+    imageUrl: 'img/card-funding.svg',
+    targetUrl: 'docs/funding/overview',
+    description: (
+      <>
+        Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien 
+        ut libero venenatis faucibus. Nullam quis ante.
       </>
     ),
   },
