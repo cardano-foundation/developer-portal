@@ -16,6 +16,6 @@ To complete this course you need a Linux System. If you have a computer running 
 
 :::info This is also in the Handbook 
 
-You may prefer the written tutorial [how to install VirtualBox](../handbook/setup-virtual-box) in the stake pool operator handbook.
+You may prefer the written tutorial [how to install VirtualBox](../handbook/setup-virtual-box-written) in the stake pool operator handbook.
 
 :::
