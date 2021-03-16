@@ -8,6 +8,18 @@ import styles from './styles.module.css';
 
 const features = [
   {
+    title: 'Getting Started',
+    imageUrl: 'img/card-getting-started.svg',
+    targetUrl: 'docs/getting-started/overview',
+    description: (
+      <>
+        Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam 
+        rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, 
+        sem quam semper libero, sit amet adipiscing sem neque sed ipsum. 
+      </>
+    ),
+  },
+  {
     title: 'Transaction Metadata',
     imageUrl: 'img/card-transaction-metadata.svg',
     targetUrl: 'docs/transaction-metadata/overview',
@@ -51,6 +63,18 @@ const features = [
       <>
         Nullam dictum felis eu pede mollis pretium. Integer tincidunt. 
         Cras dapibus
+      </>
+    ),
+  },
+  {
+    title: 'Funding',
+    imageUrl: 'img/card-funding.svg',
+    targetUrl: 'docs/funding/overview',
+    description: (
+      <>
+        Donec pede justo, fringilla vel, aliquet nec, vulputate 
+        eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis 
+        vitae, justo.
       </>
     ),
   },

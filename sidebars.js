@@ -1,5 +1,8 @@
 module.exports = {
   someSidebar: {
+    'Getting Started': [
+      'getting-started/overview',
+    ],
     'Transaction Metadata': [
       'transaction-metadata/overview',
       'transaction-metadata/how-to-create-a-metadata-transaction'
@@ -40,6 +43,9 @@ module.exports = {
                 ],
       },
     ],
+    'Funding': [
+      'funding/overview',
+    ],
     'Contribution': [
         'portal-contribute',
         'portal-example',
@@ -78,8 +84,8 @@ module.exports = {
         type: 'category',
         label: 'Learn Cardano',
         items: [
-                  'getting-started/cardano-node',
-                   'unused/learn-cardano/token-locking',
+                  'unused/learn-cardano/cardano-node',
+                  'unused/learn-cardano/token-locking',
                 ],
       },
   ],
