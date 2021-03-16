@@ -27,6 +27,15 @@ module.exports = {
         label: 'Lesson 1',
         items: [
                   'stake-pool-course/lesson-1/setup-a-server-on-aws',
+                  'stake-pool-course/lesson-1/setup-virtual-box',
+                ],
+      },
+      {
+        type: 'category',
+        label: 'Handbook',
+        items: [
+                  'stake-pool-course/handbook/setup-a-server-on-aws-written',
+                  'stake-pool-course/handbook/setup-virtual-box-written',
                 ],
       },
     ],

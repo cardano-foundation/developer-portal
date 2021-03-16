@@ -1,5 +1,5 @@
 ---
-id: setup-a-server-on-aws
+id: setup-a-server-on-aws-written
 title: Setup a Linux server on AWS
 sidebar_label: Setup a Linux server on AWS
 description: Learn how to setup Linux server on AWS.
@@ -60,7 +60,7 @@ Congratulations! You have now access to a machine running Linux.
 
 
 
-:::tip
+:::tip questions or suggestions?
 
 If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible. 
 

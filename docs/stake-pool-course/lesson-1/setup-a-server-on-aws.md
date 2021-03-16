@@ -1,7 +1,7 @@
 ---
 id: setup-a-server-on-aws
-title: Setup a server on AWS
-sidebar_label: Setup a server on AWS
+title: Setup a Linux server on AWS
+sidebar_label: Setup a Linux server on AWS
 description: Learn how to setup a server on AWS.
 image: ./img/og-developer-portal.png
 --- 
@@ -17,12 +17,5 @@ To complete this course you need a Linux System. If you have a computer running 
 :::info This is also in the Handbook 
 
 You may prefer the written tutorial [how to setup a Linux server on AWS](../handbook/setup-a-server-on-aws) in the stake pool operator handbook.
-
-:::
-
-
-:::tip questions or suggestions?
-
-If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible. 
 
 :::
