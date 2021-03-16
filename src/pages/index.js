@@ -72,9 +72,8 @@ const features = [
     targetUrl: 'docs/funding/overview',
     description: (
       <>
-        Donec pede justo, fringilla vel, aliquet nec, vulputate 
-        eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis 
-        vitae, justo.
+        Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien 
+        ut libero venenatis faucibus. Nullam quis ante.
       </>
     ),
   },
