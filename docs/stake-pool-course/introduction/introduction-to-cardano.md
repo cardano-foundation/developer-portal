@@ -14,7 +14,7 @@ In this lesson you will learn why Cardano is the most advanced cryptocurrency an
 <br/><br/>  
 
   
-:::tip
+:::tip questions or suggestions?
 
 If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible. 
 

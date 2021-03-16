@@ -22,6 +22,13 @@ module.exports = {
                   'stake-pool-course/introduction/ouroboros-protocol',
                 ],
       },
+      {
+        type: 'category',
+        label: 'Lesson 1',
+        items: [
+                  'stake-pool-course/lesson-1/setup-a-server-on-aws',
+                ],
+      },
     ],
     'Contribution': [
         'portal-contribute',
