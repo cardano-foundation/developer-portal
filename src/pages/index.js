@@ -13,9 +13,10 @@ const features = [
     targetUrl: 'docs/transaction-metadata/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-        magna aliquyam erat, sed diam voluptua.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+        Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+        natoque penatibus et magnis dis parturient montes, nascetur 
+        ridiculus mus. 
       </>
     ),
   },
@@ -25,9 +26,8 @@ const features = [
     targetUrl: 'docs/payment-integration/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-        magna aliquyam erat, sed diam voluptua.
+        Donec quam felis, ultricies nec, pellentesque eu, pretium 
+        quis, sem. Nulla consequat massa quis enim.
       </>
     ),
   },
@@ -37,9 +37,9 @@ const features = [
     targetUrl: 'docs/native-tokens/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-        magna aliquyam erat, sed diam voluptua.
+        Donec pede justo, fringilla vel, aliquet nec, vulputate 
+        eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis 
+        vitae, justo.
       </>
     ),
   },
@@ -49,9 +49,8 @@ const features = [
     targetUrl: 'docs/stake-pool-course/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore 
-        magna aliquyam erat, sed diam voluptua.
+        Nullam dictum felis eu pede mollis pretium. Integer tincidunt. 
+        Cras dapibus
       </>
     ),
   },
