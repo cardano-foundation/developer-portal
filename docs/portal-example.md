@@ -79,3 +79,7 @@ We should do the same with for example operating systems. We can also switch mul
 <TabItem value="mac">Use Command + V to paste.</TabItem>
 <TabItem value="linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
+
+## Video: What’s an Ouroboros and how you cook it?
+
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

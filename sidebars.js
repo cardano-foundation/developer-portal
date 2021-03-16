@@ -16,8 +16,10 @@ module.exports = {
         type: 'category',
         label: 'Introduction',
         items: [
-                  'stake-pool-course/introduction',
                   'stake-pool-course/why-cardano',
+                  'stake-pool-course/about-cardano',
+                  'stake-pool-course/introduction-to-cardano',
+                  'stake-pool-course/ouroboros-protocol',
                 ],
       },
     ],
