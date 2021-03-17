@@ -42,6 +42,7 @@ module.exports = {
                   'stake-pool-course/handbook/setup-a-server-on-aws-written',
                   'stake-pool-course/handbook/setup-virtual-box-written',
                   'stake-pool-course/handbook/setup-firewall',
+                  'stake-pool-course/handbook/install-cardano-node-written',
                 ],
       },
     ],
