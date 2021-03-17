@@ -32,6 +32,7 @@ module.exports = {
         items: [
                   'stake-pool-course/lesson-1/setup-a-server-on-aws',
                   'stake-pool-course/lesson-1/setup-virtual-box',
+                  'stake-pool-course/lesson-1/alternative-to-aws',
                 ],
       },
       {
@@ -40,6 +41,7 @@ module.exports = {
         items: [
                   'stake-pool-course/handbook/setup-a-server-on-aws-written',
                   'stake-pool-course/handbook/setup-virtual-box-written',
+                  'stake-pool-course/handbook/setup-firewall',
                 ],
       },
     ],
