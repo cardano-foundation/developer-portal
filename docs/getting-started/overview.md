@@ -6,83 +6,26 @@ description: Getting Started
 image: ./img/og-developer-portal.png
 --- 
 
+Welcome to the Cardano Developer portal. This page will help you find your way around quickly.
+
 ![img](../../static/img/card-getting-started.svg)
 
-This is just a placeholder page. 
+## Getting started with Marlowe 
+Marlowe is the domain-specific language for financial contracts on Cardano. 
+Take a look at the [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/tutorial/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/). 
 
-## Code Examples
-Example to present different examples in different languages.
+Talk to others about [Marlowe on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram there is a dedicated [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+## Getting started with Plutus 
+Plutus is the smart contract platform of the Cardano blockchain.
+Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutorial/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Plutus Playground](https://playground.plutus.iohkdev.io).
 
-<Tabs
-  defaultValue="js"
-  values={[
-    {label: 'JavaScript', value: 'js'},
-    {label: 'PHP', value: 'php'},
-    {label: 'Python', value: 'py'},
-  ]}>
-  <TabItem value="js">
+Talk to others about [Plutus on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-plutus/148) or if you prefer Telegram we welcome you to the [Cardano Developers Telegram Group](https://t.me/CardanoDevelopersOfficial).
 
-```js
-  function helloWorld() {
-    console.log('Hello, world!');
-  }
-```
+## Getting started with Haskell
+Haskell is the the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend you check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 
 
-  </TabItem>
-  <TabItem value="php">
+Learning Haskell is made easy with this illustrated guide, one of the most engaging ways to learn this fascinating programming language.
 
-```php
-  <?php echo '<p>Hello, world!</p>'; ?>
-```
-
-  </TabItem>
-  <TabItem value="py">
-
-```py
-def hello_world():
-  print 'Hello, world!'
-```
-
-  </TabItem>
-</Tabs>
-
-:::note
-Note that the empty lines above and below each language block (in the *md file) is intentional. 
-:::
-
-
-
-## Additional example
-
-We should do the same with for example operating systems. We can also switch multiple tabs at the same time based on user input.
-
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + C to copy.</TabItem>
-<TabItem value="mac">Use Command + C to copy.</TabItem>
-<TabItem value="linux">Use Ctrl + C to copy.</TabItem>
-</Tabs>
-
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + V to paste.</TabItem>
-<TabItem value="mac">Use Command + V to paste.</TabItem>
-<TabItem value="linux">Use Ctrl + V to paste.</TabItem>
-</Tabs>
+## Getting started with Stake Pools
+For people who want to learn how to run a stake pool we offer the [Cardano Stake Pool Course](../stake-pool-course/overview).

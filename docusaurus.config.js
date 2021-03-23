@@ -45,7 +45,8 @@ module.exports = {
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
-      `If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
+      //`If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
+      `Support the Cardano Stack Exchange proposal <a target="_blank" rel="noopener noreferrer" href="https://area51.stackexchange.com/proposals/125174/cardano?referrer=YWI2YzZhYjZmZTVjODFjOTllMDk5YTU2MDk3YjM1NjE2NTRjZjk1NzUzOGVjNjg5ZWEzNTA5NjQ3YjQyNTg4Ne5A16BO-qeH4pXFAL-53fFirIzQZfSEYKOnpbAIMnZD0">by clicking here</a>! ⭐️`,
       backgroundColor: '#58595B', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
@@ -193,6 +194,8 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
           `${repository}/edit/${branch}`,
