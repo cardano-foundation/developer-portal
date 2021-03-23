@@ -32,11 +32,18 @@ const showcases = [
     // offers no source 
   },
   {
+    title: 'Cardano Wall',
+    description: 'Demonstrates serveral use cases for transaction metdata. You can sign messages and create proof of existence for files.',
+    preview: require('./showcase/cardanowall.png'),
+    website: 'https://cardanowall.com/en/explore/',
+    // offers no source 
+  },
+  {
     title: 'Meta Data Connector',
     description: 'Proof of concept product to formally leverage transactional metadata on Cardano for supply chain tracking.',
     preview: require('./showcase/baiawine.png'),
     website: 'https://www.baiawine.com',
-    source: 'https://github.com/cardano-foundation/FIXME', 
+    // source: 'https://github.com/cardano-foundation/FIXME', // will offer source
   },
 ];
 
