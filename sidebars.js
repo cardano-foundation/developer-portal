@@ -5,7 +5,9 @@ module.exports = {
     ],
     'Transaction Metadata': [
       'transaction-metadata/overview',
-      'transaction-metadata/how-to-create-a-metadata-transaction'
+      'transaction-metadata/metadata-server',
+      'transaction-metadata/metadata-mappings-potential-use-cases',
+      'transaction-metadata/how-to-create-a-metadata-transaction',
     ],
     'Payment Integration': [
       'payment-integration/overview',

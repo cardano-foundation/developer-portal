@@ -5,12 +5,6 @@ title: How to Create a Metadata Transaction
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A **metadata transaction** is a secure record of immutable and authentic on-chain data. It allows you to send the transaction with metadata as JSON in the payload. The metadata hash is part of the transaction body covered by all transaction signatures. This allows for integrity checking and authentication of the metadata.
-
-:::note
-Note that to submit a transaction to the Cardano blockchain with metadata you will need to have access to the address, have at least 1 ada in your wallet, and to include the metadata in your transaction body.
-:::
-
 ## Prerequisites
 
 Before creating a metadata transaction, you will need to install the [cardano-node](https://github.com/input-output-hk/cardano-node#cardano-node-overview) and to follow instructions on how to launch [cardano-CLI](https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli).
