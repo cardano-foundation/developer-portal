@@ -110,24 +110,17 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Developer Portal',
           items: [
             {
-              label: 'Adrestia - SDKs and APIs',
-              to: 'docs/unused/adrestia-SDKs-and-APIs/adrestia-cardano-node',
-            },
-            {
-              label: 'Resources',
-              to: 'docs/unused/resources/developer-portal-updates',
+              label: 'How to Contribute',
+              to: 'docs/portal-contribute/',
             },
             {
               label: 'Style Guide',
               to: 'docs/portal-style-guide',
             },
-            {
-              label: 'Contribute',
-              to: 'docs/portal-contribute/',
-            },
+            
           ],
         },
         {
