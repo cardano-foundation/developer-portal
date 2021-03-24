@@ -46,8 +46,8 @@ module.exports = {
       id: 'support_us', // Any value that will identify this message.
       content:
       //`If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
-      `Support the Cardano Stack Exchange proposal <a target="_blank" rel="noopener noreferrer" href="https://area51.stackexchange.com/proposals/125174/cardano?referrer=YWI2YzZhYjZmZTVjODFjOTllMDk5YTU2MDk3YjM1NjE2NTRjZjk1NzUzOGVjNjg5ZWEzNTA5NjQ3YjQyNTg4Ne5A16BO-qeH4pXFAL-53fFirIzQZfSEYKOnpbAIMnZD0">by clicking here</a>! ⭐️`,
-      backgroundColor: '#58595B', // Defaults to `#fff`.
+      `<strong>Support the Cardano Stack Exchange proposal <a target="_blank" rel="noopener noreferrer" href="https://area51.stackexchange.com/proposals/125174/cardano?referrer=YWI2YzZhYjZmZTVjODFjOTllMDk5YTU2MDk3YjM1NjE2NTRjZjk1NzUzOGVjNjg5ZWEzNTA5NjQ3YjQyNTg4Ne5A16BO-qeH4pXFAL-53fFirIzQZfSEYKOnpbAIMnZD0">by clicking here</a></strong>`,
+      backgroundColor: '#FD7575', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
     },
@@ -110,28 +110,21 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Developer Portal',
           items: [
             {
-              label: 'Adrestia - SDKs and APIs',
-              to: 'docs/unused/adrestia-SDKs-and-APIs/adrestia-cardano-node',
-            },
-            {
-              label: 'Resources',
-              to: 'docs/unused/resources/developer-portal-updates',
+              label: 'How to Contribute',
+              to: 'docs/portal-contribute/',
             },
             {
               label: 'Style Guide',
               to: 'docs/portal-style-guide',
             },
-            {
-              label: 'Contribute',
-              to: 'docs/portal-contribute/',
-            },
+            
           ],
         },
         {
-          title: 'Community',
+          title: 'Developer Community',
           items: [
             {
               label: 'Cardano Forum',
@@ -150,25 +143,45 @@ module.exports = {
               href: 'https://area51.stackexchange.com/proposals/125174/cardano',
             },
             {
+              label: 'Slack',
+              href: 'https://join.slack.com/t/iohkdevcommunity/shared_invite/zt-mdvb06fr-8Tv8pjl~iR0~lGrimqK_yg',
+            },
+            {
               label: 'Telegram',
               href: 'https://t.me/CardanoDevelopersOfficial',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'More about Cardano',
           items: [
             {
-              label: 'Cardano Website',
+              label: 'Cardano Explorer',
+              href: 'https://explorer.cardano.org',
+            },
+            {
+              label: 'Cardano Foundation',
+              href: 'https://www.cardanofoundation.org',
+            },
+            {
+              label: 'Documentation',
+              href: 'https://docs.cardano.org',
+            },
+            {
+              label: 'Cardano.org',
               href: 'https://www.cardano.org',
             },
             {
-              label: 'Cardano Documentation',
-              href: 'https://docs.cardano.org/en/latest/',
+              label: 'Why Cardano',
+              href: 'https://why.cardano.org',
             },
             {
-              label: 'Testnets',
-              to: 'https://developers.cardano.org/en/testnets/cardano/overview/',
+              label: 'Daedalus',
+              href: 'https://daedaluswallet.io',
+            },
+            {
+              label: 'Cardano Testnets',
+              to: 'https://testnet.iohkdev.io',
             },
           ],
         },
