@@ -156,19 +156,35 @@ module.exports = {
           ],
         },
         {
-          title: 'More',
+          title: 'More about Cardano',
           items: [
             {
-              label: 'Cardano Website',
+              label: 'Cardano Explorer',
+              href: 'https://explorer.cardano.org',
+            },
+            {
+              label: 'Cardano Foundation',
+              href: 'https://www.cardanofoundation.org',
+            },
+            {
+              label: 'Documentation',
+              href: 'https://docs.cardano.org',
+            },
+            {
+              label: 'Cardano.org',
               href: 'https://www.cardano.org',
             },
             {
-              label: 'Cardano Documentation',
-              href: 'https://docs.cardano.org/en/latest/',
+              label: 'Why Cardano',
+              href: 'https://why.cardano.org',
             },
             {
-              label: 'Testnets',
-              to: 'https://developers.cardano.org/en/testnets/cardano/overview/',
+              label: 'Daedalus',
+              href: 'https://daedaluswallet.io',
+            },
+            {
+              label: 'Cardano Testnets',
+              to: 'https://testnet.iohkdev.io',
             },
           ],
         },
