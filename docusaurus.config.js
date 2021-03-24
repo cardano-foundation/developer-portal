@@ -131,7 +131,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Community',
+          title: 'Developer Community',
           items: [
             {
               label: 'Cardano Forum',
@@ -148,6 +148,10 @@ module.exports = {
             {
               label: 'Stack Exchange',
               href: 'https://area51.stackexchange.com/proposals/125174/cardano',
+            },
+            {
+              label: 'Slack',
+              href: 'https://join.slack.com/t/iohkdevcommunity/shared_invite/zt-mdvb06fr-8Tv8pjl~iR0~lGrimqK_yg',
             },
             {
               label: 'Telegram',
