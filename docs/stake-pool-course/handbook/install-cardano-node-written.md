@@ -4,7 +4,7 @@ title: Install cardano-node
 sidebar_label: Install cardano-node
 description: Learn how to install cardano-node and all its dependencies.
 image: ./img/og-developer-portal.png
---- 
+---
 
 ## Latest version 1.24.2
 
@@ -133,7 +133,7 @@ sudo make install
 cd ..
 ```
 
-Alternatively, the ghcup tool can be used to install and set several versions of GHC: 
+Alternatively, the ghcup tool can be used to install and set several versions of GHC:
 
 ```text
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
