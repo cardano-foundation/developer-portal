@@ -172,12 +172,12 @@ module.exports = {
               href: 'https://why.cardano.org',
             },
             {
-              label: 'Daedalus',
+              label: 'Daedalus Wallet',
               href: 'https://daedaluswallet.io',
             },
             {
-              label: 'Cardano Testnets',
-              to: 'https://testnet.iohkdev.io',
+              label: 'Project Catalyst',
+              to: 'https://project-catalyst.github.io',
             },
           ],
         },
