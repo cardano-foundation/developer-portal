@@ -2,6 +2,9 @@ module.exports = {
   someSidebar: {
     'Getting Started': [
       'getting-started/overview',
+      'getting-started/blockfrost',
+      'getting-started/cardano-serialization-lib',
+      'getting-started/dandelion-apis'
     ],
     'Transaction Metadata': [
       'transaction-metadata/overview',

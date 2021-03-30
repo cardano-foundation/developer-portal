@@ -6,7 +6,7 @@ description: Getting Started
 image: ./img/og-developer-portal.png
 --- 
 
-Welcome to the Cardano Developer portal. This page will help you find your way around quickly.
+Welcome to the Cardano Developer portal. This category will help you find your way around quickly.
 
 ![img](../../static/img/card-getting-started.svg)
 

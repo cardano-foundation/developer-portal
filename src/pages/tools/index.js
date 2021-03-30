@@ -35,9 +35,16 @@ function BuilderTools() {
                     </div>
                   </div>
                 </div>
-                {(tool.website || tool.source) && (
+                {(tool.website || tool.gettingstarted) && (
                   <div className="card__footer">
                     <div className="button-group button-group--block">
+                    {tool.gettingstarted && (
+                        <a
+                          className="button button--small button--secondary button--block"
+                          href={tool.gettingstarted}>
+                          Getting Started
+                        </a>
+                      )}
                       {tool.website && (
                         <a
                           className="button button--small button--secondary button--block"
@@ -45,15 +52,6 @@ function BuilderTools() {
                           target="_blank"
                           rel="noreferrer noopener">
                           Website
-                        </a>
-                      )}
-                      {tool.source && (
-                        <a
-                          className="button button--small button--secondary button--block"
-                          href={tool.source}
-                          target="_blank"
-                          rel="noreferrer noopener">
-                          Source
                         </a>
                       )}
                     </div>
