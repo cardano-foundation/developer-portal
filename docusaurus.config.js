@@ -164,10 +164,6 @@ module.exports = {
               href: 'https://www.cardanofoundation.org',
             },
             {
-              label: 'Documentation',
-              href: 'https://docs.cardano.org',
-            },
-            {
               label: 'Cardano.org',
               href: 'https://www.cardano.org',
             },
