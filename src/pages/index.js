@@ -13,9 +13,7 @@ const features = [
     targetUrl: 'docs/getting-started/overview',
     description: (
       <>
-        Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam 
-        rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, 
-        sem quam semper libero, sit amet adipiscing sem neque sed ipsum. 
+        Welcome to the Cardano Developer portal. This category will help you find your way around quickly. 
       </>
     ),
   },
@@ -25,10 +23,7 @@ const features = [
     targetUrl: 'docs/transaction-metadata/overview',
     description: (
       <>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-        Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-        natoque penatibus et magnis dis parturient montes, nascetur 
-        ridiculus mus. 
+        Learn what transaction metadata is, how to add it to a transaction, how to view the metadata and what potential use cases are.
       </>
     ),
   },
@@ -38,8 +33,7 @@ const features = [
     targetUrl: 'docs/payment-integration/overview',
     description: (
       <>
-        Donec quam felis, ultricies nec, pellentesque eu, pretium 
-        quis, sem. Nulla consequat massa quis enim.
+        How to integrate Cardano into existing websites and services.
       </>
     ),
   },
@@ -49,9 +43,7 @@ const features = [
     targetUrl: 'docs/native-tokens/overview',
     description: (
       <>
-        Donec pede justo, fringilla vel, aliquet nec, vulputate 
-        eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis 
-        vitae, justo.
+        Learn what native tokens are, how to mint them, which policies can be used and how to create NFT.
       </>
     ),
   },
@@ -61,8 +53,7 @@ const features = [
     targetUrl: 'docs/stake-pool-course/overview',
     description: (
       <>
-        Nullam dictum felis eu pede mollis pretium. Integer tincidunt. 
-        Cras dapibus
+        A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
       </>
     ),
   },
@@ -72,8 +63,7 @@ const features = [
     targetUrl: 'docs/funding/overview',
     description: (
       <>
-        Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien 
-        ut libero venenatis faucibus. Nullam quis ante.
+        Learn how Project Catalyst is bringing on-chain governance to the Cardano blockchain by allowing the community to self-determine priorities for growth. 
       </>
     ),
   },
