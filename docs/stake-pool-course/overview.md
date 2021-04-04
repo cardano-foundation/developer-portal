@@ -26,6 +26,22 @@ After finishing the first lesson, you will learn the following:
 4. [How to install cardano-node](../stake-pool-course/lesson-1/install-cardano-node)
 5. [How to start a Cardano node and get configuration files](../stake-pool-course/lesson-1/run-cardano-node)
 
+### Lesson 2
+
+After finishing the second lesson, you will learn the following:
+
+* [What is a UTxO model](../stake-pool-course/lesson-2/utxo)
+* [How to create payment keys and addresses with the CLI](../stake-pool-course/lesson-2/payment-keys-and-address)
+* [How to request the faucet](../stake-pool-course/lesson-2/faucet)
+* [How to create and submit transactions](../stake-pool-course/lesson-2/transaction)
+
+### Lesson 3
+
+After finishing the second lesson, you will learn the following:
+
+* [How to create Payment keys and addresses, Stake keys and addresses](../stake-pool-course/lesson-3/create-stake-keys-and-address)
+* [How to register the stake key](../stake-pool-course/lesson-3/register-stake-key)
+
 ## Welcome to the course
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/RRTjCGYBLRk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>

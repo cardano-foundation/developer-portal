@@ -6,7 +6,7 @@ description: Learn how to run cardano-node
 image: ./img/og-developer-portal.png
 ---
 
-In this course, we use the **CARDANO TESTNET,** so let's get the configuration files for it.
+In this course, we use the **Cardano TESTNET**, so let's get the configuration files for it.
 
 :::note
 Do not use MAINNET during taking this course

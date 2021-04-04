@@ -8,7 +8,7 @@ image: ./img/og-developer-portal.png
 
 This lesson explains how to configure a server in a different server provider, as shown in the following video tutorial:
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/4Um9pCsZVSE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/4Um9pCsZVSE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>  
 
 :::note

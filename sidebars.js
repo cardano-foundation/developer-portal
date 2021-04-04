@@ -41,6 +41,25 @@ module.exports = {
       },
       {
         type: 'category',
+        label: 'Lesson 2',
+        items: [
+                  'stake-pool-course/lesson-2/cli',
+                  'stake-pool-course/lesson-2/utxo',
+                  'stake-pool-course/lesson-2/payment-keys-and-address',
+                  'stake-pool-course/lesson-2/faucet',
+                  'stake-pool-course/lesson-2/transaction',
+                ],
+      },
+      {
+        type: 'category',
+        label: 'Lesson 3',
+        items: [
+                  'stake-pool-course/lesson-3/create-stake-keys-and-address',
+                  'stake-pool-course/lesson-3/register-stake-key',
+                ],
+      },
+      {
+        type: 'category',
         label: 'Handbook',
         items: [
                   'stake-pool-course/handbook/setup-virtual-box-written',
@@ -48,6 +67,10 @@ module.exports = {
                   'stake-pool-course/handbook/setup-firewall',
                   'stake-pool-course/handbook/install-cardano-node-written',
                   'stake-pool-course/handbook/run-cardano-node-handbook',
+                  'stake-pool-course/handbook/use-cli',
+                  'stake-pool-course/handbook/utxo-model',
+                  'stake-pool-course/handbook/keys-addresses',
+
                 ],
       },
     ],
