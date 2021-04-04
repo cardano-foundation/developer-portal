@@ -202,3 +202,5 @@ This is a caution
 This is a warning
 
 :::
+
+Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
