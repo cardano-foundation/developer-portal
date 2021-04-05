@@ -45,6 +45,13 @@ const showcases = [
     website: 'https://www.baiawine.com',
     // source: 'https://github.com/cardano-foundation/FIXME', // will offer source
   },
+  {
+    title: 'Spacebudz',
+    description: 'The first algorithmically created NFT trading cards.',
+    preview: require('./showcase/spacebudz.png'),
+    website: 'https://spacebudz.io',
+    // offers no source
+  },
 ];
 
 showcases.forEach((showcase) => {
