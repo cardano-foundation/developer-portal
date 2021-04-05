@@ -3,10 +3,10 @@
 we wanted to build an open and inclusive, easy to use developer portal that offers guidance and allows community contribution. To achieve this we have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.  
 
 
-## Make sure to have:  
-[Node.js](https://nodejs.org/en/download/) version >= 10.15.1 or above  
+## Requirements:  
+[Node.js](https://nodejs.org/en/download/) version >= 12.13.0 or above  
 [Yarn](https://yarnpkg.com/en/) version >= 1.5  
-On macOS you also need Xcode and CLT
+On macOS you also need Xcode and Command Line Tools.
 
 
 ## Clone the repo
@@ -42,11 +42,3 @@ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
