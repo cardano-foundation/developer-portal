@@ -134,8 +134,8 @@ function Home() {
                 'button button--outline button--warn button--lg',
                 styles.getStarted,
               )}
-              to={useBaseUrl('docs/portal-signup')}>
-              Sign Up
+              to={useBaseUrl('docs/getting-started/overview')}>
+              Getting Started
             </Link>
           </div>
         </div>
