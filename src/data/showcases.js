@@ -25,11 +25,32 @@
 
 const showcases = [
   {
+    title: 'Cardano Kidz',
+    description: 'Cardano non fungible token (NFT) design cards in lovely design.',
+    preview: require('./showcase/cardanokidz.png'),
+    website: 'https://www.cardanokidz.com',
+    // offers no source 
+  },
+  {
+    title: 'Cardano Wall',
+    description: 'Demonstrates serveral use cases for transaction metdata. You can sign messages and create proof of existence for files.',
+    preview: require('./showcase/cardanowall.png'),
+    website: 'https://cardanowall.com/en/explore/',
+    // offers no source 
+  },
+  {
     title: 'Meta Data Connector',
     description: 'Proof of concept product to formally leverage transactional metadata on Cardano for supply chain tracking.',
     preview: require('./showcase/baiawine.png'),
     website: 'https://www.baiawine.com',
-    source: 'https://github.com/cardano-foundation/FIXME', 
+    // source: 'https://github.com/cardano-foundation/FIXME', // will offer source
+  },
+  {
+    title: 'Spacebudz',
+    description: 'The first algorithmically created NFT trading cards.',
+    preview: require('./showcase/spacebudz.png'),
+    website: 'https://spacebudz.io',
+    // offers no source
   },
 ];
 

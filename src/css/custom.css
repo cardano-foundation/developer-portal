@@ -18,13 +18,13 @@
 }
 
 html[data-theme="dark"] {
-  --ifm-color-primary: #325CBD;
-  --ifm-color-primary-dark: #0538AF;
-  --ifm-color-primary-darker: #0538AF;
-  --ifm-color-primary-darkest: #0538AF;
-  --ifm-color-primary-light: #0538AF;
-  --ifm-color-primary-lighter: #0538AF;
-  --ifm-color-primary-lightest: #0538AF;
+  --ifm-color-primary: #6684CE;
+  --ifm-color-primary-dark: #6684CE;
+  --ifm-color-primary-darker: #6684CE;
+  --ifm-color-primary-darkest: #6684CE;
+  --ifm-color-primary-light: #6684CE;
+  --ifm-color-primary-lighter: #6684CE;
+  --ifm-color-primary-lightest: #6684CE;
   --ifm-code-font-size: 95%;
 }
 

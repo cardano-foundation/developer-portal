@@ -8,32 +8,62 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Learn Cardano',
-    imageUrl: 'img/card-learn-cardano.svg',
-    targetUrl: 'docs/learn-cardano/token-locking',
-    description: (
-      <>
-        Learn how Cardano works with the vision and mission, inspiration, why cardano, and key concepts.
-      </>
-    ),
-  },
-  {
     title: 'Getting Started',
     imageUrl: 'img/card-getting-started.svg',
-    targetUrl: 'docs/getting-started/cardano-node',
+    targetUrl: 'docs/getting-started/overview',
     description: (
       <>
-        Step by step instructions, tech, stake pools.
+        Welcome to the Cardano Developer portal. This category will help you find your way around quickly. 
       </>
     ),
   },
   {
-    title: 'Smart Contracts and Building DApps',
-    imageUrl: 'img/card-smart-contracts.svg',
-    targetUrl: 'docs/smart-contracts-and-building-dapps/plutus/plutus-overview',
+    title: 'Transaction Metadata',
+    imageUrl: 'img/card-transaction-metadata.svg',
+    targetUrl: 'docs/transaction-metadata/overview',
     description: (
       <>
-        Creating smart contracts and decentralized applications with Cardano.
+        Learn what transaction metadata is, how to add it to a transaction, how to view the metadata and what potential use cases are.
+      </>
+    ),
+  },
+  {
+    title: 'Payment Integration',
+    imageUrl: 'img/card-payment-integration.svg',
+    targetUrl: 'docs/payment-integration/overview',
+    description: (
+      <>
+        How to integrate Cardano into existing websites and services.
+      </>
+    ),
+  },
+  {
+    title: 'Native Tokens',
+    imageUrl: 'img/card-native-tokens.svg',
+    targetUrl: 'docs/native-tokens/overview',
+    description: (
+      <>
+        Learn what native tokens are, how to mint them, which policies can be used and how to create NFT.
+      </>
+    ),
+  },
+  {
+    title: 'Stake Pool Course',
+    imageUrl: 'img/card-stake-pool-course.svg',
+    targetUrl: 'docs/stake-pool-course/overview',
+    description: (
+      <>
+        A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
+      </>
+    ),
+  },
+  {
+    title: 'Funding',
+    imageUrl: 'img/card-funding.svg',
+    targetUrl: 'docs/funding/overview',
+    description: (
+      <>
+        Learn how Project Catalyst is bringing on-chain governance to the Cardano blockchain by allowing the community to self-determine priorities for growth. 
       </>
     ),
   },
@@ -104,8 +134,8 @@ function Home() {
                 'button button--outline button--warn button--lg',
                 styles.getStarted,
               )}
-              to={useBaseUrl('docs/')}>
-              Sign Up
+              to={useBaseUrl('docs/getting-started/overview')}>
+              Getting Started
             </Link>
           </div>
         </div>

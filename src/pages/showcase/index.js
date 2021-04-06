@@ -1,34 +1,22 @@
-
 import React from 'react';
-
-import Image from '@theme/IdealImage';
-import Layout from '@theme/Layout';
-
 import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Image from '@theme/IdealImage';
 import styles from './styles.module.css';
 import showcases from '../../data/showcases';
+import PortalHero from '../portalhero';
 
-const TITLE = 'Showcase';
-const DESCRIPTION =
-  'See the awesome projects people are building with Cardano.';
-const EDIT_URL =
-  'https://github.com/cardano-foundation/developer-portal/edit/main/src/data/showcases.js';
+const TITLE       = 'Showcase';
+const DESCRIPTION = 'See the awesome projects people are building with Cardano';
+const CTA         = 'Add your project';
+const FILENAME    = 'showcases.js'
 
 function Showcase() {
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
+      <PortalHero title={TITLE} description={DESCRIPTION} cta={CTA} filename={FILENAME}/>
       <main className="container margin-vert--lg">
         <div className="text--center margin-bottom--xl">
-          <h1>{TITLE}</h1>
-          <p>{DESCRIPTION}</p>
-          <p>
-            <a
-              className={'button button--primary'}
-              href={EDIT_URL}
-              target={'_blank'}>
-              Add your project!
-            </a>
-          </p>
         </div>
         <div className="row">
           {showcases.map((showcase) => (

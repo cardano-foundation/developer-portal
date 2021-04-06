@@ -1,3 +1,10 @@
+
+
+// GitHub Settings  
+const repository = 'https://github.com/cardano-foundation/developer-portal';
+const branch     = 'staging';
+
+// Docusaurus Config
 module.exports = {
   title: 'Cardano Developer Portal',
   tagline: 'together, we can change the world for the better',
@@ -8,6 +15,10 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'cardano-foundation',
   projectName: 'developer-portal',
+  customFields: {
+    repository : `${repository}`,
+    branch     : `${branch}`,
+  },
   themeConfig: {
 
     // Docs Sidebar
@@ -19,13 +30,13 @@ module.exports = {
       // with true defaultMode is overridden by user system preferences.
       respectPrefersColorScheme: true,
       switchConfig: {
-        darkIcon: "🌙",
+        darkIcon: '🌙',
         darkIconStyle: {
-          marginLeft: "2px",
+          marginLeft: '2px',
         },
-        lightIcon: "☀️",
+        lightIcon: '☀️',
         lightIconStyle: {
-          marginLeft: "1px",
+          marginLeft: '1px',
         },
       },
     },
@@ -34,8 +45,9 @@ module.exports = {
     announcementBar: {
       id: 'support_us', // Any value that will identify this message.
       content:
-        'If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/cardano-foundation/developer-portal">GitHub</a>! ⭐️',
-      backgroundColor: '#58595B', // Defaults to `#fff`.
+      //`If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
+      `<strong>Support the Cardano Stack Exchange proposal <a target="_blank" rel="noopener noreferrer" href="https://area51.stackexchange.com/proposals/125174/cardano?referrer=YWI2YzZhYjZmZTVjODFjOTllMDk5YTU2MDk3YjM1NjE2NTRjZjk1NzUzOGVjNjg5ZWEzNTA5NjQ3YjQyNTg4Ne5A16BO-qeH4pXFAL-53fFirIzQZfSEYKOnpbAIMnZD0">by clicking here</a></strong>`,
+      backgroundColor: '#FD7575', // Defaults to `#fff`.
       textColor: '#ffffff', // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
     },
@@ -67,12 +79,6 @@ module.exports = {
 
       items: [
         {
-          to: 'docs/resources/developer-portal-updates',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
-        },
-        {
           to: 'tools',
           label: 'Tools',
           position: 'left'
@@ -88,7 +94,12 @@ module.exports = {
           position: 'left'
         },
         {
-          href: 'https://github.com/cardano-foundation/developer-portal',
+          href: 'https://docs.cardano.org/en/latest/',
+          label: 'Docs',
+          position: 'left',
+        },
+        {
+          href: `${repository}`,
           position: 'right',
           className: 'header-github-link',
         },
@@ -99,28 +110,21 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Developer Portal',
           items: [
             {
-              label: 'Adrestia - SDKs and APIs',
-              to: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
-            },
-            {
-              label: 'Resources',
-              to: 'docs/resources/developer-portal-updates',
+              label: 'How to Contribute',
+              to: 'docs/portal-contribute/',
             },
             {
               label: 'Style Guide',
-              to: 'docs/',
+              to: 'docs/portal-style-guide',
             },
-            {
-              label: 'Contribute',
-              to: 'docs/portal-contribute/',
-            },
+            
           ],
         },
         {
-          title: 'Community',
+          title: 'Developer Community',
           items: [
             {
               label: 'Cardano Forum',
@@ -139,25 +143,41 @@ module.exports = {
               href: 'https://area51.stackexchange.com/proposals/125174/cardano',
             },
             {
+              label: 'Slack',
+              href: 'https://join.slack.com/t/iohkdevcommunity/shared_invite/zt-mdvb06fr-8Tv8pjl~iR0~lGrimqK_yg',
+            },
+            {
               label: 'Telegram',
               href: 'https://t.me/CardanoDevelopersOfficial',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'More about Cardano',
           items: [
             {
-              label: 'Cardano Website',
+              label: 'Cardano Explorer',
+              href: 'https://explorer.cardano.org',
+            },
+            {
+              label: 'Cardano Foundation',
+              href: 'https://www.cardanofoundation.org',
+            },
+            {
+              label: 'Cardano.org',
               href: 'https://www.cardano.org',
             },
             {
-              label: 'Cardano Documentation',
-              href: 'https://docs.cardano.org/en/latest/',
+              label: 'Why Cardano',
+              href: 'https://why.cardano.org',
             },
             {
-              label: 'Testnets',
-              to: 'https://developers.cardano.org/en/testnets/cardano/overview/',
+              label: 'Daedalus Wallet',
+              href: 'https://daedaluswallet.io',
+            },
+            {
+              label: 'Project Catalyst',
+              to: 'https://project-catalyst.github.io',
             },
           ],
         },
@@ -183,14 +203,16 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/cardano-foundation/developer-portal/edit/main',
+          `${repository}/edit/${branch}`,
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/cardano-foundation/developer-portal/edit/main',
+          `${repository}/edit/${branch}`,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
