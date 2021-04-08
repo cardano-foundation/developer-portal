@@ -17,5 +17,5 @@ This lesson explains how to create those keys and addresses keys, as shown in th
 <br/><br/>
 
 :::note
-Please check the [instructions guideline on how to create Payment and Stake keys](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/keys_and_addresses.html)
+Please check the [instructions guideline on how to create Payment and Stake keys](../handbook/create-stake-pool-keys)
 :::

@@ -11,5 +11,5 @@ This lesson explains how to create a simple transaction, as shown in the followi
 <br/><br/>
 
 :::note
-Please check the [instructions guideline on how to create a simple transaction](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/simple_transaction.html)
+Please check the [instructions guideline on how to create a simple transaction](../handbook/create-simple-transaction)
 :::

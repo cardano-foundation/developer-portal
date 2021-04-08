@@ -60,6 +60,29 @@ module.exports = {
       },
       {
         type: 'category',
+        label: 'Lesson 4',
+        items: [
+                  'stake-pool-course/lesson-4/kes',
+                  'stake-pool-course/lesson-4/understanding-pledge',
+                  'stake-pool-course/lesson-4/stakepools-keys',
+                  'stake-pool-course/lesson-4/topology-files',
+                  'stake-pool-course/lesson-4/register-stake-pool',
+                  'stake-pool-course/lesson-4/secure-crypto-keys',
+
+                ],
+      },
+      {
+        type: 'category',
+        label: 'Lesson 5',
+        items: [
+                  'stake-pool-course/lesson-5/logging-prometheus',
+                  'stake-pool-course/lesson-5/grafana',
+
+
+                ],
+      },
+      {
+        type: 'category',
         label: 'Handbook',
         items: [
                   'stake-pool-course/handbook/setup-virtual-box-written',
@@ -70,10 +93,26 @@ module.exports = {
                   'stake-pool-course/handbook/use-cli',
                   'stake-pool-course/handbook/utxo-model',
                   'stake-pool-course/handbook/keys-addresses',
+                  'stake-pool-course/handbook/create-simple-transaction',
+                  'stake-pool-course/handbook/create-stake-pool-keys',
+                  'stake-pool-course/handbook/register-stake-keys',
+                  'stake-pool-course/handbook/generate-stake-pool-keys',
+                  'stake-pool-course/handbook/configure-topology-files',
+                  'stake-pool-course/handbook/register-stake-pool-metadata',
+                  'stake-pool-course/handbook/configure-topology-files',
 
                 ],
       },
-    ],
+    {
+      type: 'category',
+      label: 'Assignments',
+      items: [
+                'stake-pool-course/assignments/assignment-1',
+                'stake-pool-course/assignments/assignment-2',
+                'stake-pool-course/assignments/kes_period',
+              ],
+    },
+  ],
     'Funding': [
       'funding/overview',
     ],

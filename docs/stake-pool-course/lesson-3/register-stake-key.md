@@ -11,5 +11,5 @@ This lesson explains how to register a stake address and stake key to receive re
 <br/><br/>
 
 :::note
-Please check the [instructions guideline on how to register a stake key](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/register_key.html)
+Please check the [instructions guideline on how to register a stake key](../handbook/register-stake-keys)
 :::
