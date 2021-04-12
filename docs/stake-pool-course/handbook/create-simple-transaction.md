@@ -19,7 +19,7 @@ Creating a transaction requires various steps:
 
 Get the protocol parameters and save them to `protocol.json` with:
 
-```
+```sh
 cardano-cli query protocol-parameters \
   --mainnet \
   --out-file protocol.json
@@ -27,7 +27,7 @@ cardano-cli query protocol-parameters \
 
 ## Get the transaction hash and index of the **UTXO** to spend:
 
-```
+```sh
 cardano-cli query utxo \
   --address $(cat payment.addr) \
   --mainnet
@@ -57,7 +57,7 @@ A simple transaction needs one input, a valid UTXO from `payment.addr`, and two 
 * Output2: The address that receives the change of the transaction.
 
 Note that to calculate the fee you need to include the draft transaction
-```
+```sh
     cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.draft \
     --tx-in-count 1 \
@@ -75,7 +75,7 @@ all amounts must be in Lovelace:
     expr <UTXO BALANCE> - <AMOUNT TO SEND> - <TRANSACTION FEE>
 
 For example, if we send 10 ADA from a UTxO containing 20 ADA, the change to send back to `payment.addr` after paying the fee is: 9.832035 ADA
-```
+```sh
 expr 20000000 - 10000000 - 167965
 9832035
 ```
@@ -89,7 +89,7 @@ Query the tip of the blockchain:
     cardano-cli query tip --mainnet
 
 Look for the value of `slotNo`
-```
+```json
     {
         "blockNo": 16829,
         "headerHash": "3e6f59b10d605e7f59ba8383cb0ddcd42480ddcc0a85d41bad1e4648eb5465ad",
@@ -101,7 +101,7 @@ Calculate your TTL, for example:  369200 + 200 slots = 369400
 ## Build the transaction
 
 We write the transaction in a file, we will name it `tx.raw`.
-```
+```sh
     cardano-cli transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
     --tx-out $(cat payment2.addr)+10000000 \
@@ -114,7 +114,7 @@ We write the transaction in a file, we will name it `tx.raw`.
 ## Sign the transaction
 
 Sign the transaction with the signing key **payment.skey** and save the signed transaction in **tx.signed**
-```
+```sh
     cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
@@ -123,7 +123,7 @@ Sign the transaction with the signing key **payment.skey** and save the signed t
 ```
 
 ## Submit the transaction
-```
+```sh
     cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
@@ -132,7 +132,7 @@ Sign the transaction with the signing key **payment.skey** and save the signed t
 ## Check the balances
 
 We must give it some time to get incorporated into the blockchain, but eventually, we will see the effect:
-```
+```sh
 cardano-cli query utxo \
 --address $(cat payment.addr) \
 --mainnet
