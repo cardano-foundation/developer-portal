@@ -46,6 +46,12 @@ const showcases = [
     // source: 'https://github.com/cardano-foundation/FIXME', // will offer source
   },
   {
+    title: 'NFT Maker',
+    description: 'Create your own NFT by uploading an image and paying some ada.',
+    preview: require('./showcase/nft-maker.png'),
+    website: 'https://www.nft-maker.io',
+  },
+  {
     title: 'Spacebudz',
     description: 'The first algorithmically created NFT trading cards.',
     preview: require('./showcase/spacebudz.png'),
