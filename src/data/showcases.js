@@ -40,7 +40,7 @@ const showcases = [
   },
   {
     title: 'Meta Data Connector',
-    description: 'Proof of concept product to formally leverage transactional metadata on Cardano for supply chain tracking.',
+    description: 'Cardano Foundation’s supply chain traceability and anti-counterfeit solution together with Scantrust.',
     preview: require('./showcase/baiawine.png'),
     website: 'https://www.baiawine.com',
     // source: 'https://github.com/cardano-foundation/FIXME', // will offer source
@@ -50,6 +50,7 @@ const showcases = [
     description: 'Create your own NFT by uploading an image and paying some ada.',
     preview: require('./showcase/nft-maker.png'),
     website: 'https://www.nft-maker.io',
+    // offers no source
   },
   {
     title: 'Spacebudz',
