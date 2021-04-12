@@ -113,6 +113,10 @@ module.exports = {
           title: 'Developer Portal',
           items: [
             {
+              label: 'Contributors',
+              to: 'docs/portal-contributors/',
+            },
+            {
               label: 'How to Contribute',
               to: 'docs/portal-contribute/',
             },
