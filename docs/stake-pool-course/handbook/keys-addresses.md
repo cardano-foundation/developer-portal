@@ -18,7 +18,7 @@ In the Shelley era of Cardano, every stakeholder can have two sets of keys and a
 
 To generate a _payment key pair_:
 
-```
+```sh
 cardano-cli address key-gen \
 --verification-key-file payment.vkey \
 --signing-key-file payment.skey
@@ -43,7 +43,7 @@ Where the `hex-here` is generated as `0x5880 | xprv | pub | chaincode`
 ## Stake key pair
 To generate a _stake key pair_ :
 
-```
+```sh
 cardano-cli stake-address key-gen \
 --verification-key-file stake.vkey \
 --signing-key-file stake.skey
@@ -51,7 +51,7 @@ cardano-cli stake-address key-gen \
 ## Payment address
 Both verification keys (`payment.vkey` and `stake.vkey`) are used to build the address and the resulting `payment address` is associated with these keys.
 
-```
+```sh
 cardano-cli address build \
 --payment-verification-key-file payment.vkey \
 --stake-verification-key-file stake.vkey \
@@ -62,7 +62,7 @@ cardano-cli address build \
 
 To generate a `stake address`:
 
-```
+```sh
 cardano-cli stake-address build \
 --stake-verification-key-file stake.vkey \
 --out-file stake.addr \
@@ -79,7 +79,7 @@ Ensure that your node has synced to the current block height which can be checke
 
 To query the balance of an address we need a running node and the environment variable `CARDANO_NODE_SOCKET_PATH` set to the path of the node.socket:
 
-```
+```sh
 cardano-cli query utxo \
 --address $(cat payment.addr) \
 --mainnet
