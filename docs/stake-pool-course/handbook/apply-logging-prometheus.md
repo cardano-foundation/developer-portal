@@ -1,5 +1,5 @@
 ---
-id: configure-topology-files
+id: apply-logging-prometheus
 title: Monitoring a Node with Prometheus
 sidebar_label: Monitoring a node with prometheus
 description: Monitoring a Node with Prometheus
