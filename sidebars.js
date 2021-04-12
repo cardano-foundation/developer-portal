@@ -120,6 +120,7 @@ module.exports = {
       'funding/overview',
     ],
     'Contribution': [
+        'portal-contributors',
         'portal-contribute',
         'portal-style-guide',
     ],
