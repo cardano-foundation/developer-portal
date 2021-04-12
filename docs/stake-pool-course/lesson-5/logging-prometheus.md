@@ -11,5 +11,5 @@ This lesson explains how to perform logging and monitoring with prometheus, as s
 <br/><br/>
 
 :::note
-Please check the [instructions guideline on how to perform logging and monitoring with prometheus](../handbook/configure-topology-files)
+Please check the [instructions guideline on how to perform logging and monitoring with prometheus](../handbook/apply-logging-prometheus)
 :::

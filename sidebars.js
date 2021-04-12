@@ -102,7 +102,7 @@ module.exports = {
                   'stake-pool-course/handbook/generate-stake-pool-keys',
                   'stake-pool-course/handbook/configure-topology-files',
                   'stake-pool-course/handbook/register-stake-pool-metadata',
-                  'stake-pool-course/handbook/configure-topology-files',
+                  'stake-pool-course/handbook/apply-logging-prometheus',
 
                 ],
       },
