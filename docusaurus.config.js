@@ -160,28 +160,24 @@ module.exports = {
           title: 'More about Cardano',
           items: [
             {
-              label: 'Cardano Explorer',
-              href: 'https://explorer.cardano.org',
+              label: 'Cardano Enterprise',
+              href: 'https://cardano.org/enterprise',
             },
             {
               label: 'Cardano Foundation',
               href: 'https://www.cardanofoundation.org',
             },
             {
-              label: 'Cardano.org',
-              href: 'https://www.cardano.org',
+              label: 'Development Updates',
+              to: 'https://cardanoupdates.com',
             },
             {
-              label: 'Why Cardano',
+              label: 'Ouroboros Protocol',
+              to: 'https://cardano.org/ouroboros/',
+            },
+            {
+              label: 'Why Cardano?',
               href: 'https://why.cardano.org',
-            },
-            {
-              label: 'Daedalus Wallet',
-              href: 'https://daedaluswallet.io',
-            },
-            {
-              label: 'Project Catalyst',
-              to: 'https://project-catalyst.github.io',
             },
           ],
         },
