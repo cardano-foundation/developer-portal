@@ -12,8 +12,8 @@ module.exports = {
       'transaction-metadata/metadata-mappings-potential-use-cases',
       'transaction-metadata/how-to-create-a-metadata-transaction',
     ],
-    'Payment Integration': [
-      'payment-integration/overview',
+    'Cardano Integration': [
+      'cardano-integration/overview',
     ],
     'Native Tokens': [
       'native-tokens/overview',

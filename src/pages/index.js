@@ -28,9 +28,9 @@ const features = [
     ),
   },
   {
-    title: 'Payment Integration',
+    title: 'Cardano Integration',
     imageUrl: 'img/card-payment-integration.svg',
-    targetUrl: 'docs/payment-integration/overview',
+    targetUrl: 'docs/cardano-integration/overview',
     description: (
       <>
         How to integrate Cardano into existing websites and services.
