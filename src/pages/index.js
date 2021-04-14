@@ -48,12 +48,12 @@ const features = [
     ),
   },
   {
-    title: 'Stake Pool Course',
+    title: 'Stake Pool Operation',
     imageUrl: 'img/card-stake-pool-course.svg',
-    targetUrl: 'docs/stake-pool-course/overview',
+    targetUrl: 'docs/stake-pool-operation/overview',
     description: (
       <>
-        A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
+        Learn what it takes to become a Cardano stake pool operator from a technical and marketing perspective.
       </>
     ),
   },
