@@ -48,22 +48,22 @@ const features = [
     ),
   },
   {
-    title: 'Stake Pool Course',
+    title: 'Stake Pool Operation',
     imageUrl: 'img/card-stake-pool-course.svg',
-    targetUrl: 'docs/stake-pool-course/overview',
+    targetUrl: 'docs/stake-pool-operation/overview',
     description: (
       <>
-        A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
+        Learn what it takes to become a Cardano stake pool operator from a technical and marketing perspective.
       </>
     ),
   },
   {
-    title: 'Funding',
+    title: 'Project Funding',
     imageUrl: 'img/card-funding.svg',
     targetUrl: 'docs/funding/overview',
     description: (
       <>
-        Learn how Project Catalyst is bringing on-chain governance to the Cardano blockchain by allowing the community to self-determine priorities for growth. 
+        Find out what opportunities are available to get your project funded. 
       </>
     ),
   },
