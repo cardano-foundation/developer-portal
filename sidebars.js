@@ -116,7 +116,7 @@ module.exports = {
               ],
     },
   ],
-    'Funding': [
+    'Project Funding': [
       'funding/overview',
     ],
     'Contribution': [

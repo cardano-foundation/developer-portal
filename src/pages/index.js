@@ -58,12 +58,12 @@ const features = [
     ),
   },
   {
-    title: 'Funding',
+    title: 'Project Funding',
     imageUrl: 'img/card-funding.svg',
     targetUrl: 'docs/funding/overview',
     description: (
       <>
-        Learn how Project Catalyst is bringing on-chain governance to the Cardano blockchain by allowing the community to self-determine priorities for growth. 
+        Find out what opportunities are available to get your project funded. 
       </>
     ),
   },
