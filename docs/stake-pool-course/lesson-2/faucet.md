@@ -10,6 +10,6 @@ This lesson explains how to get some test tokens to pay for the stake pool certi
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Phy8cRBdEEw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
 
-:::note
-Request tokens using the [Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet/)
+:::info
+Request tokens using the [testnet faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet/)
 :::
