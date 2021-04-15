@@ -70,7 +70,9 @@ This address __CAN'T__ receive payments but will receive the rewards from partic
 
 ## Query the balance of an address
 
-> NOTE: Ensure that your node has synced to the current block height which can be checked at [explorer.cardano.org](https://explorer.cardano.org). If it is not, you may see an error referring to the Byron Era.
+:::note
+Ensure that your node has synced to the current block height which can be checked at [explorer.cardano.org](https://explorer.cardano.org). If it is not, you may see an error referring to the Byron Era.
+:::
 
 To query the balance of an address we need a running node and the environment variable `CARDANO_NODE_SOCKET_PATH` set to the path of the node.socket:
 
@@ -80,4 +82,6 @@ cardano-cli query utxo \
 --mainnet
 ```
 
-**Note**`--mainnet` identifies the Cardano mainnet, for testnets use `--testnet-magic 1097911063` instead.
+:::note
+`--mainnet` identifies the Cardano mainnet, for testnets use `--testnet-magic 1097911063` instead.
+:::

@@ -38,7 +38,7 @@ cardano-cli query utxo \
 Create a draft for the transaction and save it in tx.draft
 
 :::note
-Note that for `--tx-in` we use the following syntax: `TxHash#TxIx` where `TxHash` is the transaction hash and `TxIx` is the index; for `--tx-out` we use: `TxOut+Lovelace` where `TxOut` is the hex encoded address followed by the amount in `Lovelace`. For the transaction draft --tx-out, --invalid-hereafter and --fee can be set to zero.
+For `--tx-in` we use the following syntax: `TxHash#TxIx` where `TxHash` is the transaction hash and `TxIx` is the index; for `--tx-out` we use: `TxOut+Lovelace` where `TxOut` is the hex encoded address followed by the amount in `Lovelace`. For the transaction draft --tx-out, --invalid-hereafter and --fee can be set to zero.
 :::note
 
     cardano-cli transaction build-raw \
@@ -151,5 +151,5 @@ cardano-cli query utxo \
 ```
 
 :::note
-**Note**`--mainnet` identifies the Cardano mainnet, for testnets use `--testnet-magic 1097911063` instead.
+`--mainnet` identifies the Cardano mainnet, for testnets use `--testnet-magic 1097911063` instead.
 :::note

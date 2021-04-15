@@ -48,5 +48,5 @@ You have to replace `a.b.c.d` with the public IP-address of your Cardano Node se
 On your browser open `a.b.c.d:9090`, pick one or more interesting metrics to graph and enjoy!
 
 :::note
-**NOTE**: Security configurations you should perform on your monitoring server are out of scope for this tutorial.
+Security configurations you should perform on your monitoring server are out of scope for this tutorial.
 :::

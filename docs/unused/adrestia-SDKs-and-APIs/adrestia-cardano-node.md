@@ -81,7 +81,7 @@ This refers to the client that is used for running a node. The general synopsis 
 
 * ``--port`` - Specify which port to assign to the node.
 
-* ``--config`` - Specify the filepath to the config ``.yaml`` file. This file is responsible for all the other node's required settings. See examples in ``configuration`` (e.g. `config-0.yaml <configuration/defaults/liveview/config-0.yaml>`_).
+* ``--config`` - Specify the filepath to the config ``.yaml`` file. This file is responsible for all the other node's required settings. See examples in ``configuration`` (e.g. `config-0.yaml <configuration/defaults/liveview/config-0.yaml>`).
 
 * ``--validate-db`` - Flag to revalidate all on-disk database files
 
@@ -121,8 +121,10 @@ The general synopsis is as follows:
 
    Usage: cardano-cli (Era based commands | Byron specific commands | Miscellaneous commands)
 
-> NOTE: the exact invocation command depends on the environment.  If you have only built ``cardano-cli``, without installing it, then you have to prepend :code:`cabal run -- `
+:::note
+The exact invocation command depends on the environment.  If you have only built ``cardano-cli``, without installing it, then you have to prepend :code:`cabal run -- `
 before :code:`cardano-cli`.  We henceforth assume that the necessary environment-specific adjustment has been made, so we only mention ``cardano-cli``.
+:::
 
 The subcommands are subdivided in groups, and their full list can be seen in the output of ``cardano-cli --help``.
 
@@ -184,7 +186,10 @@ illustrates available options.
 Key operations
 ==============
 
-Note that key operations do not support password-protected keys.
+
+:::note
+key operations do not support password-protected keys.
+:::
 
 Signing key generation & verification key extraction
 ----------------------------------------------------
@@ -409,9 +414,10 @@ Thanks for your interest in building native tokens on Cardano. To help you get s
 `Developer Documentation for Native Tokens <https://developers.cardano.org/en/development-environments/native-tokens/native-tokens/>`_
 
 
-**Please note that over the holiday period, technical support for the pre-production environment and token builder tool will be extremely limited**. Support is unavailable between the dates of 23rd - 27th December and 31 December - 3rd January inclusive. Outside these hours, our technical and community teams will be periodically checking in on the GitHub repo and dedicated Cardano Forum discussion forum, to expedite any urgent queries or requests. We encourage you to draw on community feedback and support as much as possible.
-
-If you require test ada during this period, please `fill out this form <https://input-output.typeform.com/to/KmeBcnDa>`_ and you will be sent your test ada. Note that until the wallet backend is fully integrated, this is an essentially manual process and there may therefore be some delay before the request is processed.  For technical reasons, it may only be possible to fund newly created addresses that have been properly set up on the Pre-Production Environment.  Unfortunately, since the form only records payment addresses, it will not be possible to contact you if the funding attempt fails, or to notify you that it has succeeded. Please check that you have submitted the address correctly, and retry if you need to
+:::note
+over the holiday period, technical support for the pre-production environment and token builder tool will be extremely limited. Support is unavailable between the dates of 23rd - 27th December and 31 December - 3rd January inclusive. Outside these hours, our technical and community teams will be periodically checking in on the GitHub repo and dedicated Cardano Forum discussion forum, to expedite any urgent queries or requests. We encourage you to draw on community feedback and support as much as possible.
+If you require test ada during this period, please `fill out this form <https://input-output.typeform.com/to/KmeBcnDa>`_ and you will be sent your test ada. Note that until the wallet backend is fully integrated, this is an essentially manual process and there may therefore be some delay before the request is processed.  For technical reasons, it may only be possible to fund newly created addresses that have been properly set up on the Pre-Production Environment.  Unfortunately, since the form only records payment addresses, it will not be possible to contact you if the funding attempt fails, or to notify you that it has succeeded. Please check that you have submitted the address correctly, and retry if you need to.
+:::
 
 API Documentation
 =================
