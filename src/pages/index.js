@@ -48,16 +48,6 @@ const features = [
     ),
   },
   {
-    title: 'Stake Pool Operation',
-    imageUrl: 'img/card-stake-pool-course.svg',
-    targetUrl: 'docs/stake-pool-operation/overview',
-    description: (
-      <>
-        Learn what it takes to become a Cardano stake pool operator from a technical and marketing perspective.
-      </>
-    ),
-  },
-  {
     title: 'Project Funding',
     imageUrl: 'img/card-funding.svg',
     targetUrl: 'docs/funding/overview',
@@ -67,27 +57,16 @@ const features = [
       </>
     ),
   },
-/*
   {
-    title: 'Adrestia - SDKs and APIs',
-    //imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs/adrestia-SDKs-and-APIs/adrestia-cardano-node',
+    title: 'Stake Pool Operation',
+    imageUrl: 'img/card-stake-pool-course.svg',
+    targetUrl: 'docs/stake-pool-operation/overview',
     description: (
       <>
-        Depending on the use-cases you have and the control that you seek, you may use any of the components below.
+        Learn what it takes to become a Cardano stake pool operator from a technical and marketing perspective.
       </>
     ),
   },
-  {
-    title: 'Resources',
-    //imageUrl: 'img/cardano-black.png',
-    targetUrl: 'docs/resources/developer-portal-updates',
-    description: (
-      <>
-      Community, research paper, news, events, funding.
-      </>
-    ),
-  },*/
 ];
 
 function Feature({imageUrl, title, description, targetUrl}) {
