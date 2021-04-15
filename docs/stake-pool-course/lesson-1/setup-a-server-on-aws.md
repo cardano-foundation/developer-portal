@@ -11,6 +11,6 @@ This lesson explains how to setup Linux server on AWS, as shown in the following
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/6f1CQGTd4Lo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allowfullscreen;"></iframe>
 <br/><br/>  
 
-:::note
-Please check the [instructions guideline on how to setup a server on AWS](../handbook/setup-a-server-on-aws-written)
+:::info This is also in the Handbook 
+To be able to follow the video better you can find the written tutorial [how to setup a server on AWS](../handbook/setup-a-server-on-aws-written) in the stake pool operator handbook.
 :::

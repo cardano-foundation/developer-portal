@@ -11,6 +11,6 @@ This lesson explains how to run a Cardano node and get configuration files on Li
 <iframe width="100%" height="325" src="https://www.youtube.com/embed//miYXZFBrOJ8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
 
-:::note
-Please check the [instructions guideline on how to run a node](../handbook/run-cardano-node-handbook)
+:::info This is also in the Handbook 
+To be able to follow the video better you can find the written tutorial [how to run a node](../handbook/run-cardano-node-handbook) in the stake pool operator handbook.
 :::
