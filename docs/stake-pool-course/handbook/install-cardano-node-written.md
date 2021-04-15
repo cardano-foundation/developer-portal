@@ -231,7 +231,8 @@ git checkout tags/<the-tag-you-want>
 cabal update
 cabal build cardano-node cardano-cli
 ```
-_Note:_ This is a good time to backup your current binaries (in case you have to revert to an earlier version). Something like this will work:
+
+This is a good time to backup your current binaries (in case you have to revert to an earlier version). Something like this will work:
 ```sh
 cd ~/.local/bin
 mv cardano-cli cardano-cli-backup
@@ -244,4 +245,6 @@ cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-<NEW VERSION>/x/c
 cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-<NEW VERSION>/x/cardano-cli/build/cardano-cli/cardano-cli ~/.local/bin/
 ```
 
-_Note:_ It might be necessary to delete the `db`-folder \(the database-folder\) before running an updated version of the node.
+:::note
+It might be necessary to delete the `db`-folder \(the database-folder\) before running an updated version of the node.
+:::
