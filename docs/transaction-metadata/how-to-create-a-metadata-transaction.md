@@ -1,6 +1,9 @@
 ---
 id: how-to-create-a-metadata-transaction
 title: How to Create a Metadata Transaction
+sidebar_label: Create a Metadata Transaction
+description: How to Create a Metadata Transaction
+image: ./img/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
