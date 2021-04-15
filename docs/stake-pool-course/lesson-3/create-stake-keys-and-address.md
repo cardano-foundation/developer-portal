@@ -16,6 +16,6 @@ This lesson explains how to create those keys and addresses keys, as shown in th
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/GgLjH3CfGhc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
 
-:::note
-Please check the [instructions guideline on how to create Payment and Stake keys](../handbook/create-stake-pool-keys)
+:::info This is also in the Handbook 
+To be able to follow the video better you can find the written tutorial [how to create Payment and Stake keys](../handbook/create-stake-pool-keys) in the stake pool operator handbook.
 :::
