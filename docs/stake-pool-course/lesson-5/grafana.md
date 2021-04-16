@@ -10,6 +10,6 @@ This lesson explains how to use Grafana dashboard, as shown in the following vid
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/KsYqeEjjVbQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
 
-:::note
-Please check the [instructions guideline on how to use Grafana](https://docs.cardano.org/projects/cardano-node/en/latest/logging-monitoring/grafana.html)
+:::info This is also in the Handbook 
+To be able to follow the video better you can find the written tutorial [how to use Grafana](https://docs.cardano.org/projects/cardano-node/en/latest/logging-monitoring/grafana.html) in the stake pool operator handbook.
 :::

@@ -9,6 +9,6 @@ This lesson explains the UTxO model to get a better understanding of how transac
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Eq4gS2mXhKk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
 
-:::note
-Please check the [UTxO model details](../handbook/utxo-model)
+:::info This is also in the Handbook 
+Please see the [UTxO model details](../handbook/utxo-model)
 :::
