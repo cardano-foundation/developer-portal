@@ -7,7 +7,7 @@ image: ./img/og-developer-portal.png
 ---
 
 ## Install VirtualBox
-This video explains how to install VirtualBox on your machine, as shown in the following video tutorial:
+Learn how to install VirtualBox on your machine and in it a Linux system:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/jYisjnTxtms" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br/><br/>  
@@ -17,7 +17,7 @@ To be able to follow the video better you can find the written tutorial [how to 
 :::
 
 ## Setup a Linux server on AWS
-This video explains how to setup Linux server on AWS, as shown in the following video tutorial:
+Learn how to set up a Linux server on AWS:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/6f1CQGTd4Lo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allowfullscreen;"></iframe>
 <br/><br/>  
@@ -27,7 +27,7 @@ To be able to follow the video better you can find the written tutorial [how to 
 :::
 
 ## Alternative to AWS
-This video explains how to configure a server in a different server provider, as shown in the following video tutorial:
+Learn how to configure a server on a different service provider:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/4Um9pCsZVSE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>  
@@ -37,7 +37,7 @@ To be able to follow the video better you can find the written tutorial [how to 
 :::
 
 ## Install cardano-node
-This video explains how to install cardano-node with all necessary dependencies on Linux, as shown in the following video tutorial:
+Learn how to install cardano-node with all necessary dependencies on Linux:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/zW8gmRzRXP0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
@@ -47,7 +47,7 @@ To be able to follow the video better you can find the written tutorial [how to 
 :::
 
 ## Run cardano-node
-This video explains how to run a Cardano node and get configuration files on Linux, as shown in the following video tutorial:
+Learn how to run a cardano-node and get configuration files on Linux:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed//miYXZFBrOJ8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
