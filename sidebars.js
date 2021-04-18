@@ -27,17 +27,7 @@ module.exports = {
                   'stake-pool-course/overview',
                   'stake-pool-course/introduction-to-cardano',
                   'stake-pool-course/lesson-1',
-                  {
-                    type: 'category',
-                    label: 'Lesson 2',
-                    items: [
-                              'stake-pool-course/lesson-2/cli',
-                              'stake-pool-course/lesson-2/utxo',
-                              'stake-pool-course/lesson-2/payment-keys-and-address',
-                              'stake-pool-course/lesson-2/faucet',
-                              'stake-pool-course/lesson-2/transaction',
-                            ],
-                  },
+                  'stake-pool-course/lesson-2',
                   {
                     type: 'category',
                     label: 'Lesson 3',

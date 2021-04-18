@@ -37,10 +37,10 @@ After finishing the first lesson, you will learn the following:
 
 After finishing the second lesson, you will learn the following:
 
-* [What is a UTxO model](../stake-pool-course/lesson-2/utxo)
-* [How to create payment keys and addresses with the CLI](../stake-pool-course/lesson-2/payment-keys-and-address)
-* [How to request the faucet](../stake-pool-course/lesson-2/faucet)
-* [How to create and submit transactions](../stake-pool-course/lesson-2/transaction)
+* [What is the UTxO model](../stake-pool-course/lesson-2#the-utxo-model)
+* [How to create payment keys and addresses with the CLI](../stake-pool-course/lesson-2#generate-payment-keys-and-addresses)
+* [How to request the faucet](../stake-pool-course/lesson-2#request-funds-to-the-faucet)
+* [How to create and submit transactions](../stake-pool-course/lesson-2#create-a-simple-transaction)
 
 ### Lesson 3
 
