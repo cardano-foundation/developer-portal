@@ -138,8 +138,6 @@ At the same time, when the aggregate stake of a stake pool grows beyond a certai
 
 All these functionalities make Ouroboros the best proof of stake ledger protocol to date. And its only implementation is currently in the Cardano blockchain.
 
-![Ouroboros protocol](https://github.com/cardano-foundation/stake-pool-school-handbook/tree/3abbeae984eb17aab3778e922956e72ae1cd702a/.gitbook/assets/ouroborosprotocol-blueprint-vertical.jpg)
-
 ## How it works <a id="9621"></a>
 
 1. **Time** is divided into epochs and slots and begins at Genesis. At most one block is produced in every slot. Only the slot leader can sign a block for a particular slot.
