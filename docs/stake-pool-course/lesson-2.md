@@ -8,7 +8,7 @@ image: ./img/og-developer-portal.png
 
 ## Using the cardano-cli
 
-This lesson explains how to use the cardano-cli to interact with the node and how to get access to the help included for every command, as shown in the following video tutorial:
+Learn how to use the cardano-cli to interact with the node and how to get access to the help included for every command:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/PK-pnnEEvSY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
@@ -19,7 +19,7 @@ To be able to follow the video better you can find the written tutorial [how to 
 
 ## The UTxO Model
 
-This lesson explains the UTxO model to get a better understanding of how transactions work in the Cardano blockchain, as shown in the following video tutorial:
+Learn the UTxO model to get a better understanding of how transactions work in the Cardano blockchain:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Eq4gS2mXhKk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
@@ -30,7 +30,7 @@ Please see the [UTxO model details](handbook/utxo-model)
 
 ## Generate Payment Keys and Addresses
 
-This lesson explains how to generate your payment keys and addresses. This will allow you to receive and send funds to other payment addresses, as shown in the following video tutorial:
+Learn how to generate your payment keys and addresses. This will allow you to receive and send funds to other payment addresses:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/rF1gU4HvBwU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
@@ -39,9 +39,9 @@ This lesson explains how to generate your payment keys and addresses. This will 
 To be able to follow the video better you can find the written tutorial [how to create keys and addresses](handbook/keys-addresses) in the stake pool operator handbook.
 :::
 
-## Request Funds to the Faucet
+## Request Funds from the Faucet
 
-This lesson explains how to get some test tokens to pay for the stake pool certificates, create transactions and more, as shown in the following video tutorial:
+Learn how to get some test tokens to pay for the stake pool certificates, create transactions and more, as shown in the following video tutorial:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Phy8cRBdEEw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
@@ -52,7 +52,7 @@ Request tokens using the [testnet faucet](https://developers.cardano.org/en/test
 
 ## Create a Simple Transaction
 
-This lesson explains how to create a simple transaction, as shown in the following video tutorial:
+Learn how to create a simple transaction:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/C6lnrBCVxHk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
