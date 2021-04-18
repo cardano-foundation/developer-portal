@@ -90,7 +90,7 @@ module.exports = {
         },
         {
           to: 'blog/',
-          label: 'Spotlight',
+          label: 'Dev Blog',
           position: 'left'
         },
         {
