@@ -29,18 +29,7 @@ module.exports = {
                   'stake-pool-course/lesson-1',
                   'stake-pool-course/lesson-2',
                   'stake-pool-course/lesson-3',
-                  {
-                    type: 'category',
-                    label: 'Lesson 4',
-                    items: [
-                              'stake-pool-course/lesson-4/kes',
-                              'stake-pool-course/lesson-4/understanding-pledge',
-                              'stake-pool-course/lesson-4/stakepools-keys',
-                              'stake-pool-course/lesson-4/topology-files',
-                              'stake-pool-course/lesson-4/register-stake-pool',
-                              'stake-pool-course/lesson-4/secure-crypto-keys',
-                            ],
-                  },
+                  'stake-pool-course/lesson-4',
                   {
                     type: 'category',
                     label: 'Lesson 5',
