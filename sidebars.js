@@ -28,14 +28,7 @@ module.exports = {
                   'stake-pool-course/introduction-to-cardano',
                   'stake-pool-course/lesson-1',
                   'stake-pool-course/lesson-2',
-                  {
-                    type: 'category',
-                    label: 'Lesson 3',
-                    items: [
-                              'stake-pool-course/lesson-3/create-stake-keys-and-address',
-                              'stake-pool-course/lesson-3/register-stake-key',
-                            ],
-                  },
+                  'stake-pool-course/lesson-3',
                   {
                     type: 'category',
                     label: 'Lesson 4',
