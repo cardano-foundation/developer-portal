@@ -31,7 +31,7 @@ We need the following packages and tools on our Linux system to download the sou
 * the Haskell build tool `cabal`,
 * the GHC Haskell compiler.
 
-If we are using an AWS instance running Amazon Linux AMI 2 \(see the [AWS walk-through](../lesson-1/setup-a-server-on-aws.md) for how to get such an instance up and running\) or another CentOS/RHEL based system, we can install these dependencies as follows:
+If we are using an AWS instance running Amazon Linux AMI 2 \(see the [AWS walk-through](../lesson-1#setup-a-linux-server-on-aws) for how to get such an instance up and running\) or another CentOS/RHEL based system, we can install these dependencies as follows:
 
 ```sh
 sudo yum update -y

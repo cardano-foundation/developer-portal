@@ -19,11 +19,13 @@ module.exports = {
     ],
     'Stake Pool Operation': [
       'stake-pool-operation/overview',
+      
       {
         type: 'category',
         label: 'Stake Pool Course',
         items: [
                   'stake-pool-course/overview',
+                  'stake-pool-course/lesson-1',
                   {
                     type: 'category',
                     label: 'Introduction',
@@ -32,17 +34,6 @@ module.exports = {
                               'stake-pool-course/introduction/about-cardano',
                               'stake-pool-course/introduction/introduction-to-cardano',
                               'stake-pool-course/introduction/ouroboros-protocol',
-                            ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Lesson 1',
-                    items: [
-                              'stake-pool-course/lesson-1/setup-virtual-box',
-                              'stake-pool-course/lesson-1/setup-a-server-on-aws',
-                              'stake-pool-course/lesson-1/alternative-to-aws',
-                              'stake-pool-course/lesson-1/install-cardano-node',
-                              'stake-pool-course/lesson-1/run-cardano-node',
                             ],
                   },
                   {

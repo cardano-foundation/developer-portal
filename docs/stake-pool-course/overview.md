@@ -27,11 +27,11 @@ The course consists of several lessons and a handbook that provides full instruc
 
 After finishing the first lesson, you will learn the following:
 
-1. [How to setup VirtualBox](../stake-pool-course/lesson-1/setup-virtual-box)
-2. [How to setup a Linux server on AWS](../stake-pool-course/lesson-1/setup-a-server-on-aws)
-3. [How to configure a server in different server providers](../stake-pool-course/lesson-1/alternative-to-aws)
-4. [How to install cardano-node](../stake-pool-course/lesson-1/install-cardano-node)
-5. [How to start a Cardano node and get configuration files](../stake-pool-course/lesson-1/run-cardano-node)
+1. [How to setup VirtualBox](../stake-pool-course/lesson-1#install-virtualbox)
+2. [How to setup a Linux server on AWS](../stake-pool-course/lesson-1#setup-a-linux-server-on-aws)
+3. [How to configure a server in different server providers](../stake-pool-course/lesson-1#alternative-to-aws)
+4. [How to install cardano-node](../stake-pool-course/lesson-1#install-cardano-node)
+5. [How to start cardano-node and get configuration files](../stake-pool-course/lesson-1#run-cardano-node)
 
 ### Lesson 2
 
