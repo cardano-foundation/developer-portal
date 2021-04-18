@@ -25,17 +25,8 @@ module.exports = {
         label: 'Stake Pool Course',
         items: [
                   'stake-pool-course/overview',
+                  'stake-pool-course/introduction-to-cardano',
                   'stake-pool-course/lesson-1',
-                  {
-                    type: 'category',
-                    label: 'Introduction',
-                    items: [
-                              'stake-pool-course/introduction/why-cardano',
-                              'stake-pool-course/introduction/about-cardano',
-                              'stake-pool-course/introduction/introduction-to-cardano',
-                              'stake-pool-course/introduction/ouroboros-protocol',
-                            ],
-                  },
                   {
                     type: 'category',
                     label: 'Lesson 2',

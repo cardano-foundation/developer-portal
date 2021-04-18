@@ -37,6 +37,8 @@ To be able to follow the video better you can find the written tutorial [how to 
 :::
 
 ## Install cardano-node
+The Cardano node is the core component that underpins the Cardano network. Ultimately, a blockchain network is just a collection of interconnected nodes, all working together to validate transactions and blocks by means of consensus. The definition of consensus for any given network varies, but for the Cardano network it’s defined by the Ouroboros protocol. 
+
 Learn how to install cardano-node with all necessary dependencies on Linux:
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/zW8gmRzRXP0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
