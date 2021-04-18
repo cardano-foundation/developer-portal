@@ -88,13 +88,13 @@ The underlying problem is that Bitcoin makes a clear distinction between the act
 
 ### Ouroboros, a Proof-of-stake consensus algorithm
 
-In Ouroboros, there is no race between stakeholders to produce a block. Instead, a slot leader is randomly selected, proportionally to the amount of tokens he owns \(the stake\), to get the opportunity to produce a new block.
+In Ouroboros, there is no race between stakeholders to produce a block. Instead, a slot leader is randomly selected, proportionally to the amount of tokens he owns (the stake), to get the opportunity to produce a new block.
 
-So it is not hashing power what gives you the opportunity to produce a new block \(and get rewarded for it\), it is your stake what increases your chances to be elected.
+So it is not hashing power what gives you the opportunity to produce a new block (and get rewarded for it), it is your stake what increases your chances to be elected.
 
 Since there is no race to mine a block, there is no waste of energy or computational resources. In that sense, Ouroboros is a more efficient and cheaper protocol to run than Bitcoin’s proof-of-work, while keeping all the security guarantees.
 
-### What if you are not online? \(Stake pools\)
+### What if you are not online? (Stake pools)
 
 To produce a block you have to be online, but asking everyone to be online at every moment is impractical and unrealistic. This is why Ouroboros introduces the figure of _Stake Delegation_. As stakeholder, you can delegate your stake to a third party to act on your behalf whenever you are elected slot leader. Such delegates are known as _staking pools_. They are members of the community that commit to run the protocol on your behalf and to be online close to 100% of the time.
 
@@ -114,15 +114,15 @@ To participate in the protocol, you can choose a staking pool or choose to act o
 
 ### What if for some reason there is a fork? 
 
-Given that stakeholders are not always online, they come and go \(a.k.a. dynamic availability\), and sometimes they are offline for long periods, it is important for them to be able to resynchronize with the correct chain when they come back online.
+Given that stakeholders are not always online, they come and go (a.k.a. dynamic availability), and sometimes they are offline for long periods, it is important for them to be able to resynchronize with the correct chain when they come back online.
 
 The key feature of Ouroboros Genesis is that thanks to a unique chain selection rule, it allows new or re-joining parties to synchronize to the “good chain” with only a trusted copy of the genesis block. This makes the protocol secure against the so-called “long-range attack”.
 
 ### Self-produced randomness 
 
-Making the slot leader selection fair and secure **\(staking procedure\)** requires a good source of randomness.
+Making the slot leader selection fair and secure **(staking procedure)** requires a good source of randomness.
 
-Ouroboros protocol \(specifically Ouroboros Praos and Ouroboros Genesis\) incorporates a Global Random Oracle feature that produces new and fresh randomness at every epoch.
+Ouroboros protocol (specifically Ouroboros Praos and Ouroboros Genesis) incorporates a Global Random Oracle feature that produces new and fresh randomness at every epoch.
 
 This is achieved by the implementation of a Verifiable Random Function. When evaluated with the key of a stakeholder, It returns a random value which is stored in every new block produced. The hashing of all values from the previous epoch becomes the random seed for the staking procedure. The blockchain itself becomes its source of new randomness.
 
@@ -144,20 +144,20 @@ All these functionalities make Ouroboros the best proof of stake ledger protocol
 2. **Register:** The first thing a user needs to do to participate in the protocol is registering to:
 3. the network, to synchronize with the ledger;
 4. global clock, that indicates the current slot;
-5. a global random oracle that produces random values \(v\) and delivers them to the user.
+5. a global random oracle that produces random values (v) and delivers them to the user.
 6. **Staking procedure**
 
-3.1 At the beginning of every epoch, the online stakeholders fetch \(from the blockchain\) the **stake distribution** from the last block of 2 epochs ago. For example, if the current epoch is epoch 100, the stake distribution used is the distribution as it was in the last block of epoch 98.
+3.1 At the beginning of every epoch, the online stakeholders fetch (from the blockchain) the **stake distribution** from the last block of 2 epochs ago. For example, if the current epoch is epoch 100, the stake distribution used is the distribution as it was in the last block of epoch 98.
 
-3.2 **Random Oracle**: Is a hashing function that takes the random values “v” \(included in each block by the slot leader for this purpose\) from the first ⅔ slots in previous epoch and hash them together and use it as the random seed to select the slot leaders.
+3.2 **Random Oracle**: Is a hashing function that takes the random values “v” (included in each block by the slot leader for this purpose) from the first ⅔ slots in previous epoch and hash them together and use it as the random seed to select the slot leaders.
 
-3.3 Stakeholders evaluate with their **secret key** the **Verifiable Random Function \(VRF\)** at every slot. If the output value \(v\) is below a certain threshold, the party becomes slot leader for that block.
+3.3 Stakeholders evaluate with their **secret key** the **Verifiable Random Function (VRF)** at every slot. If the output value (v) is below a certain threshold, the party becomes slot leader for that block.
 
-1. **Certificate:** The **VRF** produces two outputs: **a random value \(v\)** and a **proof \(π\)** that the slot leader will include in the block he produces to certify that he is the legitimate slot leader for that particular slot.
+1. **Certificate:** The **VRF** produces two outputs: **a random value (v)** and a **proof (π)** that the slot leader will include in the block he produces to certify that he is the legitimate slot leader for that particular slot.
 2. Slot leader performs the following duties
 3. Collects the transactions to be included in his block.
-4. Includes in his block the random value \(v\) and proof \(π\) obtained from the VRF output.
-5. Before broadcasting the block, the slot leader generates a new secret key **\(Key-evolving signature\)**. The public key remains the same, but the secret key is updated in every step and the old key is erased.
+4. Includes in his block the random value (v) and proof (π) obtained from the VRF output.
+5. Before broadcasting the block, the slot leader generates a new secret key **(Key-evolving signature)**. The public key remains the same, but the secret key is updated in every step and the old key is erased.
 6. It is impossible to forge old signatures with new keys. And it is also impossible to derive previous keys from new ones.
 7. Finally, the slot leader broadcast the new block to the network.
 8. The **rewards** obtained by the slot leaders are calculated at the end of the epoch. Rewards come from transaction fees and funds from the ADA reserve.
@@ -166,9 +166,9 @@ All these functionalities make Ouroboros the best proof of stake ledger protocol
 
 A key aspect of the procedure described above is that from time to time, it will produce slots without a slot leader and slots with multiple slot leaders. Meaning that nodes might receive valid chains from multiple sources. To determine which chain to adopt, each party collects all valid chains and applies the Chain Selection Rule. The same thing is done by users that have been offline for a while and need to synchronize with the blockchain.
 
-The node filters all valid chains \(chains whose signatures are consistent with the genesis block and with the keys recorded in the Key Evolving Signature protocol, the variable random function and the global random oracle.
+The node filters all valid chains (chains whose signatures are consistent with the genesis block and with the keys recorded in the Key Evolving Signature protocol, the variable random function and the global random oracle.
 
-Then applies the Chain Selection Rule: pick the longest chain as long as it grows more quickly \(is denser\) in the slots following the last common block to both competing chains.
+Then applies the Chain Selection Rule: pick the longest chain as long as it grows more quickly (is denser) in the slots following the last common block to both competing chains.
 
 This chain selection rule allows for a party that joins the network at any time to synchronize with the correct blockchain, based only on a trusted copy of the genesis block and by observing how the chain grows for a sufficient time.
 
