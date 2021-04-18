@@ -46,8 +46,8 @@ After finishing the second lesson, you will learn the following:
 
 After finishing the third lesson, you will learn the following:
 
-* [How to create payment keys and addresses, Stake keys and addresses](../stake-pool-course/lesson-3/create-stake-keys-and-address)
-* [How to register the stake key](../stake-pool-course/lesson-3/register-stake-key)
+* [How to create stake pool keys and addresses](../stake-pool-course/lesson-3#create-stake-pool-keys-and-adresses)
+* [How to create and register a stake pool certificate](../stake-pool-course/lesson-3#create-and-register-a-stake-pool-certificate)
 
 ### Lesson 4
 
