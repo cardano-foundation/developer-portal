@@ -30,14 +30,7 @@ module.exports = {
                   'stake-pool-course/lesson-2',
                   'stake-pool-course/lesson-3',
                   'stake-pool-course/lesson-4',
-                  {
-                    type: 'category',
-                    label: 'Lesson 5',
-                    items: [
-                              'stake-pool-course/lesson-5/logging-prometheus',
-                              'stake-pool-course/lesson-5/grafana',
-                            ],
-                  },
+                  'stake-pool-course/lesson-5',
                   {
                     type: 'category',
                     label: 'Handbook',

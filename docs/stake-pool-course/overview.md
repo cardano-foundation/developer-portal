@@ -64,8 +64,8 @@ After finishing the fourth lesson, you will learn the following:
 
 After finishing the fifth lesson, you will learn the following:
 
-* [How to perform logging and monitoring with prometheus](../stake-pool-course/lesson-5/logging-prometheus)
-* [How to use Grafana dashboard](../stake-pool-course/lesson-5/grafana)
+* [How to perform logging and monitoring with prometheus](../stake-pool-course/lesson-5#logging-and-monitoring-with-prometheus)
+* [How to use Grafana dashboard](../stake-pool-course/lesson-5#grafana-dashboard)
 
 ## Course Guides and Handbook
 
