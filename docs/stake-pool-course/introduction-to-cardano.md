@@ -72,7 +72,7 @@ Blockchains require an agreement mechanism between the participants of the netwo
 
 The goal of the consensus protocol is to ensure that only one chain is adopted and followed, otherwise, the system would collapse immediately.
 
-### The Proof-of-work consensus algorithm <a id="ade6"></a>
+### The Proof-of-work consensus algorithm
 
 Bitcoin implemented a Proof-of-work consensus algorithm. In this protocol, for a new block to be added to the blockchain, the node that attempts it must provide a proof-of-work, which is expressed by the solution of a mathematical puzzle. This process is known as mining.
 
@@ -86,7 +86,7 @@ Apart from the environmental concerns, the rewards scheme of the proof-of-work a
 
 The underlying problem is that Bitcoin makes a clear distinction between the actual users of the network and the miners. Owning Bitcoins does not grant you any control over the network, nor any power over the decisions on the evolution of it. The system is controlled by a small pool of developers and miners.
 
-### Ouroboros, a Proof-of-stake consensus algorithm. <a id="9e48"></a>
+### Ouroboros, a Proof-of-stake consensus algorithm
 
 In Ouroboros, there is no race between stakeholders to produce a block. Instead, a slot leader is randomly selected, proportionally to the amount of tokens he owns \(the stake\), to get the opportunity to produce a new block.
 
@@ -94,13 +94,13 @@ So it is not hashing power what gives you the opportunity to produce a new block
 
 Since there is no race to mine a block, there is no waste of energy or computational resources. In that sense, Ouroboros is a more efficient and cheaper protocol to run than Bitcoin’s proof-of-work, while keeping all the security guarantees.
 
-### What if you are not online? \(Stake pools\) <a id="7855"></a>
+### What if you are not online? \(Stake pools\)
 
 To produce a block you have to be online, but asking everyone to be online at every moment is impractical and unrealistic. This is why Ouroboros introduces the figure of _Stake Delegation_. As stakeholder, you can delegate your stake to a third party to act on your behalf whenever you are elected slot leader. Such delegates are known as _staking pools_. They are members of the community that commit to run the protocol on your behalf and to be online close to 100% of the time.
 
 An important thing to notice is that you only delegate your rights to participate in the protocol, not your actual funds. Your ADA are still secure and under your control in your wallet, and funds are not locked, you can still make transactions.
 
-### What about the incentives? <a id="9175"></a>
+### What about the incentives?
 
 Stakeholders that issue blocks are incentivized to participate in the protocol by collecting transaction fees. But Ouroboros does not incentivize stakeholders to invest computational resources to issue blocks. Rather, availability and transaction verification are prefered.
 
@@ -112,13 +112,13 @@ In the case of stake pools, those get a fraction of the rewards to cover operati
 
 To participate in the protocol, you can choose a staking pool or choose to act on your own at any moment creating your own stake pool.
 
-### What if for some reason there is a fork? <a id="4d6a"></a>
+### What if for some reason there is a fork? 
 
 Given that stakeholders are not always online, they come and go \(a.k.a. dynamic availability\), and sometimes they are offline for long periods, it is important for them to be able to resynchronize with the correct chain when they come back online.
 
 The key feature of Ouroboros Genesis is that thanks to a unique chain selection rule, it allows new or re-joining parties to synchronize to the “good chain” with only a trusted copy of the genesis block. This makes the protocol secure against the so-called “long-range attack”.
 
-### Self-produced randomness <a id="82e5"></a>
+### Self-produced randomness 
 
 Making the slot leader selection fair and secure **\(staking procedure\)** requires a good source of randomness.
 
@@ -128,7 +128,7 @@ This is achieved by the implementation of a Verifiable Random Function. When eva
 
 This is why the protocol is named Ouroboros, the snake that eats its own tail.
 
-### Promoting decentralization <a id="5128"></a>
+### Promoting decentralization 
 
 Finally, the Ouroboros incentives mechanism promotes the decentralization of the system in a better way than Proof-of-work does. Because Ouroboros considers two key scenarios:
 
@@ -138,7 +138,7 @@ At the same time, when the aggregate stake of a stake pool grows beyond a certai
 
 All these functionalities make Ouroboros the best proof of stake ledger protocol to date. And its only implementation is currently in the Cardano blockchain.
 
-## How it works <a id="9621"></a>
+## How it works 
 
 1. **Time** is divided into epochs and slots and begins at Genesis. At most one block is produced in every slot. Only the slot leader can sign a block for a particular slot.
 2. **Register:** The first thing a user needs to do to participate in the protocol is registering to:
