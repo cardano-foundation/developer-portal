@@ -16,11 +16,7 @@ image: ./img/og-developer-portal.png
 
 ## Stake Pool Course
 A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
-[Start the course](../stake-pool-course/overview)
- 
-:::danger Testnet only
-The whole stake pool course is only on the testnet. Before you run your pool on the mainnet, you should have practised a lot on the testnet, know how to rotate your KES keys and have great understanding of stake pool security.
-:::
+[Start today with the course](../stake-pool-course/overview).
 
 ## Marketing
 *FIXME* Content placeholder.

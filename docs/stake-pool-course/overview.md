@@ -10,6 +10,10 @@ image: ./img/og-developer-portal.png
 
 This course is designed to (re)introduce you to Cardano, walk you through how to set up a stake pool, and provide guidance on managing and maintaining your stake pool to ensure optimal performance and profitability.
 
+:::danger Testnet only
+The whole stake pool course is only on the testnet. Before you run your pool on the mainnet, you should have practised a lot on the testnet, know how to rotate your KES keys and have great understanding of stake pool security.
+:::
+
 ## What you will learn
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Jb08HTkk7yo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
