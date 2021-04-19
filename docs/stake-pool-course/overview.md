@@ -6,18 +6,14 @@ description: This course is designed to (re)introduce you to Cardano, walk you t
 image: ./img/og-developer-portal.png
 ---
 
-We are glad that you are interested in setting up a stake pool on Cardano.
+**Welcome**, we are glad that you are interested in setting up a stake pool on Cardano.
 
-This course is designed to \(re\)introduce you to Cardano, walk you through how to set up a stake pool, and provide guidance on managing and maintaining your stake pool to ensure optimal performance and profitability.
-
-## Welcome to the course
-
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/RRTjCGYBLRk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
+This course is designed to (re)introduce you to Cardano, walk you through how to set up a stake pool, and provide guidance on managing and maintaining your stake pool to ensure optimal performance and profitability.
 
 ## What you will learn
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Jb08HTkk7yo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
-<br/><br/>
+<br/>
 
 ## Course Syllabus
 
@@ -74,9 +70,6 @@ This course has everything you may need from video tutorials to the [supportive 
 ## Course Assignments
 
 To make sure that you fully understand the course, please complete the [Assignments](../stake-pool-course/assignments/assignment-1).
-
-
-## Questions and Suggestions
 
 :::tip questions or suggestions?
 If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible.
