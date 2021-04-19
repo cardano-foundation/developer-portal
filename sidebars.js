@@ -19,71 +19,18 @@ module.exports = {
     ],
     'Stake Pool Operation': [
       'stake-pool-operation/overview',
+      
       {
         type: 'category',
         label: 'Stake Pool Course',
         items: [
                   'stake-pool-course/overview',
-                  {
-                    type: 'category',
-                    label: 'Introduction',
-                    items: [
-                              'stake-pool-course/introduction/why-cardano',
-                              'stake-pool-course/introduction/about-cardano',
-                              'stake-pool-course/introduction/introduction-to-cardano',
-                              'stake-pool-course/introduction/ouroboros-protocol',
-                            ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Lesson 1',
-                    items: [
-                              'stake-pool-course/lesson-1/setup-virtual-box',
-                              'stake-pool-course/lesson-1/setup-a-server-on-aws',
-                              'stake-pool-course/lesson-1/alternative-to-aws',
-                              'stake-pool-course/lesson-1/install-cardano-node',
-                              'stake-pool-course/lesson-1/run-cardano-node',
-                            ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Lesson 2',
-                    items: [
-                              'stake-pool-course/lesson-2/cli',
-                              'stake-pool-course/lesson-2/utxo',
-                              'stake-pool-course/lesson-2/payment-keys-and-address',
-                              'stake-pool-course/lesson-2/faucet',
-                              'stake-pool-course/lesson-2/transaction',
-                            ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Lesson 3',
-                    items: [
-                              'stake-pool-course/lesson-3/create-stake-keys-and-address',
-                              'stake-pool-course/lesson-3/register-stake-key',
-                            ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Lesson 4',
-                    items: [
-                              'stake-pool-course/lesson-4/kes',
-                              'stake-pool-course/lesson-4/understanding-pledge',
-                              'stake-pool-course/lesson-4/stakepools-keys',
-                              'stake-pool-course/lesson-4/topology-files',
-                              'stake-pool-course/lesson-4/register-stake-pool',
-                              'stake-pool-course/lesson-4/secure-crypto-keys',
-                            ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Lesson 5',
-                    items: [
-                              'stake-pool-course/lesson-5/logging-prometheus',
-                              'stake-pool-course/lesson-5/grafana',
-                            ],
-                  },
+                  'stake-pool-course/introduction-to-cardano',
+                  'stake-pool-course/lesson-1',
+                  'stake-pool-course/lesson-2',
+                  'stake-pool-course/lesson-3',
+                  'stake-pool-course/lesson-4',
+                  'stake-pool-course/lesson-5',
                   {
                     type: 'category',
                     label: 'Handbook',

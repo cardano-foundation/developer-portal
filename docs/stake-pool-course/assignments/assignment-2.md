@@ -22,7 +22,7 @@ Complete the following tasks in a second server:
 7. Build the node from source in your new server or Virtual Machine.
 8. Get Configuration files
 
-Repeat what you learned on [Lesson 1](../lesson-1/install-cardano-node)
+Repeat what you learned on [Lesson 1](../lesson-1#install-cardano-node)
 
 
 :::note
