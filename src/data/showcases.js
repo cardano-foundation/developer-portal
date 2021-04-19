@@ -53,8 +53,8 @@ const showcases = [
     // offers no source
   },
   {
-    title: 'Spacebudz',
-    description: 'The first algorithmically created NFT trading cards.',
+    title: 'SpaceBudz',
+    description: 'The first full on-chain NFT platform on Cardano consisting of 10,000 unique little astronauts',
     preview: require('./showcase/spacebudz.png'),
     website: 'https://spacebudz.io',
     // offers no source
