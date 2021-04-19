@@ -15,6 +15,7 @@
   --ifm-color-primary-lighter: #325CBD;
   --ifm-color-primary-lightest: #325CBD;
   --ifm-code-font-size: 95%;
+  --ifm-footer-link-hover-color: #6684CE;
 }
 
 html[data-theme="dark"] {
@@ -58,6 +59,10 @@ html[data-theme="dark"] {
   transform: translate(0px, -5px);
 }
  
+.footer-- {
+  background-color: #973434 !important;
+}
+
 .footer--dark {
   background-color: #232323 !important;
 }
