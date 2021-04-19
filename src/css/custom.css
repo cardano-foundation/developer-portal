@@ -58,10 +58,6 @@ html[data-theme="dark"] {
 .card:hover {
   transform: translate(0px, -5px);
 }
- 
-.footer-- {
-  background-color: #973434 !important;
-}
 
 .footer--dark {
   background-color: #232323 !important;
