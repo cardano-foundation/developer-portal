@@ -24,6 +24,13 @@ const tools = [
     gettingstarted: "/docs/getting-started/blockfrost",
   },
   {
+    title: "cardanocli-js",
+    description: "A library that wraps the cardano-cli in JavaScript.",
+    preview: require("./builder-tools/cardanocli-js.png"),
+    website: "https://github.com/Berry-Pool/cardanocli-js",
+    gettingstarted: "/docs/getting-started/cardanocli-js",
+  },
+  {
     title: "Cardano Serialization Library",
     description:
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
@@ -70,13 +77,6 @@ const tools = [
     description: "Keep track of native tokens on testnet and mainnet.",
     preview: require("./builder-tools/transaction-meta-data-browser.png"),
     website: "https://bi.stakepoolcentral.com/transactiondata",
-  },
-  {
-    title: "cardanocli-js",
-    description: "A library that wraps the cardano-cli in JavaScript",
-    preview: require("./builder-tools/cardanocli-js.png"),
-    website: "https://github.com/Berry-Pool/cardanocli-js",
-    gettingstarted: "/docs/getting-started/cardanocli-js",
   },
 ];
 
