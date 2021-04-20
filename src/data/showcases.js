@@ -25,38 +25,43 @@
 
 const showcases = [
   {
-    title: 'Cardano Kidz',
-    description: 'Cardano non fungible token (NFT) design cards in lovely design.',
-    preview: require('./showcase/cardanokidz.png'),
-    website: 'https://www.cardanokidz.com',
-    // offers no source 
-  },
-  {
-    title: 'Cardano Wall',
-    description: 'Demonstrates serveral use cases for transaction metdata. You can sign messages and create proof of existence for files.',
-    preview: require('./showcase/cardanowall.png'),
-    website: 'https://cardanowall.com/en/explore/',
-    // offers no source 
-  },
-  {
-    title: 'Meta Data Connector',
-    description: 'Cardano Foundation’s supply chain traceability and anti-counterfeit solution together with Scantrust.',
-    preview: require('./showcase/baiawine.png'),
-    website: 'https://www.baiawine.com',
-    // source: 'https://github.com/cardano-foundation/FIXME', // will offer source
-  },
-  {
-    title: 'NFT Maker',
-    description: 'Create your own NFT by uploading an image and paying some ada.',
-    preview: require('./showcase/nft-maker.png'),
-    website: 'https://www.nft-maker.io',
+    title: "Cardano Kidz",
+    description:
+      "Cardano non fungible token (NFT) design cards in lovely design.",
+    preview: require("./showcase/cardanokidz.png"),
+    website: "https://www.cardanokidz.com",
     // offers no source
   },
   {
-    title: 'Spacebudz',
-    description: 'The first algorithmically created NFT trading cards.',
-    preview: require('./showcase/spacebudz.png'),
-    website: 'https://spacebudz.io',
+    title: "Cardano Wall",
+    description:
+      "Demonstrates serveral use cases for transaction metdata. You can sign messages and create proof of existence for files.",
+    preview: require("./showcase/cardanowall.png"),
+    website: "https://cardanowall.com/en/explore/",
+    // offers no source
+  },
+  {
+    title: "Meta Data Connector",
+    description:
+      "Cardano Foundation’s supply chain traceability and anti-counterfeit solution together with Scantrust.",
+    preview: require("./showcase/baiawine.png"),
+    website: "https://www.baiawine.com",
+    // source: 'https://github.com/cardano-foundation/FIXME', // will offer source
+  },
+  {
+    title: "NFT Maker",
+    description:
+      "Create your own NFT by uploading an image and paying some ada.",
+    preview: require("./showcase/nft-maker.png"),
+    website: "https://www.nft-maker.io",
+    // offers no source
+  },
+  {
+    title: "SpaceBudz",
+    description:
+      "The first full on-chain NFT platform on Cardano consisting of 10,000 unique little astronauts.",
+    preview: require("./showcase/spacebudz.png"),
+    website: "https://spacebudz.io",
     // offers no source
   },
 ];
@@ -65,10 +70,11 @@ showcases.forEach((showcase) => {
   if (
     !showcase.preview ||
     (showcase.preview instanceof String &&
-      (showcase.preview.startsWith('http') || showcase.preview.startsWith('//')))
+      (showcase.preview.startsWith("http") ||
+        showcase.preview.startsWith("//")))
   ) {
     throw new Error(
-      `Bad showcase site image preview = ${showcase.preview}. The image should be hosted on developer portal site, and not use remote HTTP or HTTPS URLs`,
+      `Bad showcase site image preview = ${showcase.preview}. The image should be hosted on developer portal site, and not use remote HTTP or HTTPS URLs`
     );
   }
 });
