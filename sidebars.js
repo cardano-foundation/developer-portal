@@ -20,7 +20,7 @@ module.exports = {
     ],
     'Stake Pool Operation': [
       'stake-pool-operation/overview',
-      
+
       {
         type: 'category',
         label: 'Stake Pool Course',
@@ -67,6 +67,10 @@ module.exports = {
   ],
     'Project Funding': [
       'funding/overview',
+      'funding/dcfund',
+      'funding/cfund',
+      'funding/communication-channels',
+      'funding/faq',
     ],
     'Contribution': [
         'portal-contributors',
