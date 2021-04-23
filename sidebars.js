@@ -67,8 +67,10 @@ module.exports = {
   ],
     'Project Funding': [
       'funding/overview',
-      'funding/types-of-funding',
-      'funding/fund-your-project',
+      'funding/dcfund',
+      'funding/cfund',
+      'funding/communication-channels',
+      'funding/faq',
     ],
     'Contribution': [
         'portal-contributors',

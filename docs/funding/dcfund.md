@@ -1,12 +1,16 @@
 ---
-id: fund-your-project
-title: Fund your Project
-sidebar_label: Fund your project
-description: Fund your project
+id: dcfund
+title: Fund your Project with Catalyst
+sidebar_label: Fund your project with Catalyst
+description: Fund your project with Catalyst
 image: ./img/og-developer-portal.png
 ---
 
-This section explains different ways to participate in the project Catalyst.
+This section explains different ways to participate in the project [Catalyst](https://cardano.ideascale.com/).
+
+:::note
+We already launched more than 4 funds, each fund of them is divided into different categories to make your options wider, to attract your great proposals and we will keep launching more funds so stay tuned. Our plan is simple, Growing together!
+:::
 
 ## As a Proposer
 
@@ -21,7 +25,7 @@ You can provide reviews and assessment and mentor proposers in their delivery an
 Use the voting app to choose ideas with impact worth funding (260,000 USD available). Download Catalyst voting app via [Apple store](https://apps.apple.com/kg/app/catalyst-voting/id1517473397) or via [Google Play store](https://play.google.com/store/apps/details?id=io.iohk.vitvoting&gl=US).
 
 :::note
-Please check the [User guide - Ways to participate in Project Catalyst](https://forum.cardano.org/t/user-guide-ways-to-participate-in-project-catalyst/49405).
+Please check the [**User guide - Ways to participate in Project Catalyst**](https://forum.cardano.org/t/user-guide-ways-to-participate-in-project-catalyst/49405).
 :::
 
 ## Why to participate
@@ -48,17 +52,7 @@ Please check the [User guide - Ways to participate in Project Catalyst](https://
 * [Project Catalyst Fund3 Kick off town hall and Q&A - January 2021](https://www.youtube.com/watch?v=GjPhxXDFv58)
 * [Project Catalyst Fund2s Weekly town hall and Q&A - September 2020](https://www.youtube.com/watch?v=Xa2HZ5kuKp4)
 
-## Communication channels
 
-* [Telegram Announcements](https://t.me/cardanocatalyst)
-* [Telegram Catalyst Chat](https://t.me/joinchat/JL08XEfhBVIB1NFXx8XwiA)
-* [General Voltaire discussions](https://t.me/CardanoGovernanceOfficial)
-* [Improving project Catalyst process on Ideascale](https://cardano.ideascale.com/a/campaign-home/25622)
-* [Cardano Project Catalyst Discord](https://discord.gg/TTZKB9M)
-
-## FAQ
-
-* [Catalyst - Fund4 FAQ](https://iohk.zendesk.com/hc/en-us/articles/900006490763-Catalyst-Fund4-FAQ)
-* [Project Catalyst Fund3 voting instructions](https://iohk.zendesk.com/hc/en-us/articles/900004485866-Project-Catalyst-Fund3-voting-instructions)
-* [Catalyst - Fund3 FAQ](https://iohk.zendesk.com/hc/en-us/articles/900004448046-Catalyst-Fund3-FAQ)
-* [Check rewards from Catalyst project Fund2](https://iohk.zendesk.com/hc/en-us/articles/900005194523-Check-rewards-from-Catalyst-project-Fund2)
+:::note
+Check [**Guides and FAQ section**](../funding/FAQ) to find many important guides and answers for many questions, maybe your question is already answered! Check our [**Channels**](../funding/communication-channels)
+:::
