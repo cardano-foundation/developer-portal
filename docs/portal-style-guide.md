@@ -6,41 +6,189 @@ description: Style guide for the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 
-You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/).
+You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/). [Markdown](https://github.github.com/gfm/) is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
 
-## Markdown Syntax
+## Markdown Examples
 
-To serve as an example page when styling markdown based Docusaurus sites.
+This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. 
 
-## Headers
+Let's start with the basics:
 
-# H1 - Create the best documentation
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## H2 - Create the best documentation
+<Tabs
+  defaultValue="text"
+  values={[
+    {label: 'Text', value: 'text' },
+    {label: 'Headers', value: 'headers' },
+    {label: 'Links', value: 'links' },
+    {label: 'Quotes', value: 'quotes' },
+    {label: 'Images', value: 'images' },
+    {label: 'Lists', value: 'lists' },
+  ]}>
+  <TabItem value="text">
 
-### H3 - Create the best documentation
+```text
+Emphasis, aka italics, with *asterisks* 
+or _underscores_.
 
-#### H4 - Create the best documentation
-
-##### H5 - Create the best documentation
-
-###### H6 - Create the best documentation
-
----
-
-## Emphasis
-
-Emphasis, aka italics, with *asterisks* or _underscores_.
-
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+Strong emphasis, aka bold, with **asterisks** 
+or __underscores__.
 
 Combined emphasis with **asterisks and _underscores_**.
 
 Strikethrough uses two tildes. ~~Scratch this.~~
 
----
+You can even [link to the Forum!](https://forum.cardano.org)
+```
 
-## Lists
+Emphasis, aka italics, with *asterisks* 
+or _underscores_.
+
+Strong emphasis, aka bold, with **asterisks** 
+or __underscores__.
+
+Combined emphasis with **asterisks and _underscores_**.
+
+Strikethrough uses two tildes. ~~Scratch this.~~
+
+You can even [link to the Forum!](https://forum.cardano.org)
+
+  </TabItem>
+  <TabItem value="headers">
+
+```
+# Structured documents
+
+As a rule, it is useful to have different levels
+of headings to structure your documents. Start rows 
+with a `#` to create headings. Several `##` in a row 
+indicate smaller heading sizes.
+
+## This is a second-tier heading
+
+### This is a third-tier heading
+
+You can use one `#` all the way up to `######` six for 
+different heading sizes.
+```
+
+# Structured documents
+
+As a rule, it is useful to have different levels
+of headings to structure your documents. Start rows 
+with a `#` to create headings. Several `##` in a row 
+indicate smaller heading sizes.
+
+## This is a second-tier heading
+
+### This is a third-tier heading
+
+You can use one `#` all the way up to `######` six for 
+different heading sizes.
+
+  </TabItem>
+  <TabItem value="links">
+
+```text
+[I'm an inline-style link](https://forum.cardano.org)
+
+[I'm an inline-style link with title](https://forum.cardano.org "Cardano Forum")
+
+[I'm a reference-style link][arbitrary case-insensitive reference text]
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself].
+
+URLs and URLs in angle brackets will automatically get turned into links. http://www.cardano.org or <http://www.cardano.org>.
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.cardano.org
+[1]: https://forum.cardano.org
+[link text itself]: https://www.cardano.org
+```
+
+[I'm an inline-style link](https://forum.cardano.org)
+
+[I'm an inline-style link with title](https://forum.cardano.org "Cardano Forum")
+
+[I'm a reference-style link][arbitrary case-insensitive reference text]
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself].
+
+URLs and URLs in angle brackets will automatically get turned into links. http://www.cardano.org or <http://www.cardano.org>.
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.cardano.org
+[1]: https://forum.cardano.org
+[link text itself]: https://www.cardano.org
+
+
+  </TabItem>
+  <TabItem value="quotes">
+
+```text
+If you'd like to quote someone, use the > character 
+before the line:
+
+> It’s not about who’s first to market or how quickly 
+we can upgrade something. It’s about what’s fit for 
+purpose. - Charles Hoskinson
+```
+
+If you'd like to quote someone, use the > character 
+before the line:
+
+> It’s not about who’s first to market or how quickly 
+we can upgrade something. It’s about what’s fit for 
+purpose. - Charles Hoskinson
+
+  </TabItem>
+  <TabItem value="images">
+
+```text
+Here's is the Plutus logo (hover to see the title text):
+Inline-style: ![alt text](../static/img/logo-plutus-small.png 'This is the Plutus logo inline-style')
+
+Reference-style: ![alt text][logo]
+[logo]: ../static/img/logo-plutus-small.png 'This is the Plutus logo reference-style'
+
+Images from any folder can be used by providing path to file. Path should be relative to markdown file:
+![alt text](../static/img/logo-plutus.png)
+```
+
+Here's is the Plutus logo (hover to see the title text):
+Inline-style: ![alt text](../static/img/logo-plutus-small.png 'This is the Plutus logo inline-style')
+
+Reference-style: ![alt text][logo]
+[logo]: ../static/img/logo-plutus-small.png 'This is the Plutus logo reference-style'
+
+Images from any folder can be used by providing path to file. Path should be relative to markdown file:
+![alt text](../static/img/logo-plutus.png)
+
+  </TabItem>
+  <TabItem value="lists">
+
+```text
+1. First ordered list item
+1. Another item
+   - Unordered sub-list.
+1. Actual numbers don't matter, just that it's a number
+   1. Ordered sub-list
+1. And another item.
+
+* Unordered list can use asterisks
+
+- Or minuses
+
++ Or pluses
+```
 
 1. First ordered list item
 1. Another item
@@ -55,45 +203,12 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 + Or pluses
 
----
 
-## Links
-
-[I'm an inline-style link](https://www.google.com/)
-
-[I'm an inline-style link with title](https://www.google.com/ "Google's Homepage")
-
-[I'm a reference-style link][arbitrary case-insensitive reference text]
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links. http://www.example.com/ or <http://www.example.com/> and sometimes example.com (but not on GitHub, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org/
-[1]: http://slashdot.org/
-[link text itself]: http://www.reddit.com/
+  </TabItem>
+</Tabs>
 
 ---
-
-## Images
-
-Here's our logo (hover to see the title text):
-
-Inline-style: ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Logo Title Text 1')
-
-Reference-style: ![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Logo Title Text 2'
-
-Images from any folder can be used by providing path to file. Path should be relative to markdown file.
-
-![img](../static/img/logo.svg)
-
----
+ 
 
 ## Code
 
@@ -140,8 +255,10 @@ top
 
 Example to present different examples in different languages.
 
+```
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+``` 
 
 <Tabs
   defaultValue="js"
