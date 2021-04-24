@@ -139,7 +139,7 @@ before the line:
 
 > It’s not about who’s first to market or how quickly 
 we can upgrade something. It’s about what’s fit for 
-purpose. - Charles Hoskinson
+purpose. - **Charles Hoskinson**
 ```
 
 If you'd like to quote someone, use the > character 
@@ -147,7 +147,7 @@ before the line:
 
 > It’s not about who’s first to market or how quickly 
 we can upgrade something. It’s about what’s fit for 
-purpose. - Charles Hoskinson
+purpose. - **Charles Hoskinson**
 
   </TabItem>
   <TabItem value="images">
@@ -333,11 +333,44 @@ function HelloCodeTitle(props) {
 ---
 ## Tabs
 
-Example to present different examples in different languages.
+You can use tabs for example to display code examples in different languages:
 
-```
+```html
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="js"
+  values={[
+    {label: 'JavaScript', value: 'js'},
+    {label: 'PHP', value: 'php'},
+    {label: 'Python', value: 'py'},
+  ]}>
+  <TabItem value="js">
+
+    ```js
+      function helloWorld() {
+        console.log('Hello, world!');
+      }
+    ```
+
+  </TabItem>
+  <TabItem value="php">
+
+    ```php
+      <?php echo '<p>Hello, world!</p>'; ?>
+    ```
+
+  </TabItem>
+  <TabItem value="py">
+
+    ```py
+    def hello_world():
+      print 'Hello, world!'
+    ```
+
+  </TabItem>
+</Tabs>
 ``` 
 
 <Tabs
@@ -381,7 +414,37 @@ Note that the empty lines above and below each language block (in the *md file) 
 
 ## Synching tab choices
 
-We can also switch multiple tabs at the same time based on user input.
+You can also switch multiple tabs at the same time based on user input:
+
+```html
+<Tabs
+  groupId="operating-systems"
+  defaultValue="win"
+  values={[
+    {label: 'Windows', value: 'win'},
+    {label: 'macOS', value: 'mac'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}>
+<TabItem value="win">Use Ctrl + C to copy.</TabItem>
+<TabItem value="mac">Use Command + C to copy.</TabItem>
+<TabItem value="linux">Use Ctrl + C to copy.</TabItem>
+</Tabs>
+
+<Tabs
+  groupId="operating-systems"
+  defaultValue="win"
+  values={[
+    {label: 'Windows', value: 'win'},
+    {label: 'macOS', value: 'mac'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}>
+<TabItem value="win">Use Ctrl + V to paste.</TabItem>
+<TabItem value="mac">Use Command + V to paste.</TabItem>
+<TabItem value="linux">Use Ctrl + V to paste.</TabItem>
+</Tabs>
+```
 
 <Tabs
   groupId="operating-systems"
@@ -411,7 +474,13 @@ We can also switch multiple tabs at the same time based on user input.
 <TabItem value="linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
 
-## Video: Youtube
+## Video embedding
+
+Use this code to embed YouTube videos:
+
+```html
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+```
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
@@ -419,7 +488,15 @@ We can also switch multiple tabs at the same time based on user input.
 
 ## Tables
 
-Colons can be used to align columns.
+Colons can be used to align columns:
+
+```text
+| Tables        |      Are      |   Cool |
+| ------------- | :-----------: | -----: |
+| col 3 is      | right-aligned | \$1600 |
+| col 2 is      |   centered    |   \$12 |
+| zebra stripes |   are neat    |    \$1 |
+```
 
 | Tables        |      Are      |   Cool |
 | ------------- | :-----------: | -----: |
@@ -429,6 +506,13 @@ Colons can be used to align columns.
 
 There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
 
+```text
+| Markdown | Less      | Pretty     |
+| -------- | --------- | ---------- |
+| _Still_  | `renders` | **nicely** |
+| 1        | 2         | 3          |
+```
+
 | Markdown | Less      | Pretty     |
 | -------- | --------- | ---------- |
 | _Still_  | `renders` | **nicely** |
@@ -436,17 +520,19 @@ There must be at least 3 dashes separating each header cell. The outer pipes (|)
 
 ---
 
-## Blockquotes
-
-> Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
-
-Quote break.
-
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ **Markdown** into a blockquote.
-
----
-
 ## Inline HTML
+
+Inline HTML is basically possible, but should be avoided for various reasons.
+
+```html
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+```
 
 <dl>
   <dt>Definition list</dt>
@@ -460,15 +546,31 @@ Quote break.
 
 ## Line Breaks
 
+```text
 Here's a line for us to start with.
 
 This line is separated from the one above by two newlines, so it will be a _separate paragraph_.
+This line is also a separate paragraph, but... This line is only separated by a single newline, so it's a separate line in the _same paragraph_.
+```
 
+Here's a line for us to start with.
+
+This line is separated from the one above by two newlines, so it will be a _separate paragraph_.
 This line is also a separate paragraph, but... This line is only separated by a single newline, so it's a separate line in the _same paragraph_.
 
 ---
 
 ## Admonitions
+
+These different admonitions are available to you. As a general rule: don't overdo it and avoid using admonitions in a row.
+
+```text
+:::note
+
+This is a note
+
+:::
+```
 
 :::note
 
@@ -476,11 +578,27 @@ This is a note
 
 :::
 
+```text
 :::tip
 
 This is a tip
 
 :::
+```
+
+:::tip
+
+This is a tip
+
+:::
+
+```text
+:::important
+
+This is important
+
+:::
+```
 
 :::important
 
@@ -488,15 +606,43 @@ This is important
 
 :::
 
+```text
+:::caution
+
+This is a caution
+
+:::
+```
+
 :::caution
 
 This is a caution
 
 :::
 
+```text
 :::warning
 
 This is a warning
+
+:::
+```
+:::warning
+
+This is a warning
+
+:::
+
+```text
+:::tip Custom Title
+
+This is a tip admonition with a custom title
+
+:::
+```
+:::tip  Custom Title
+
+This is a tip admonition with a custom title
 
 :::
 
