@@ -212,45 +212,125 @@ Images from any folder can be used by providing path to file. Path should be rel
 
 ## Code
 
+In the developer portal you will often have to display code. You can display code with different syntax highlighting:
+<Tabs
+  defaultValue="js"
+  values={[
+    {label: 'JavaScript', value: 'js' },
+    {label: 'Python', value: 'py' },
+    {label: 'JSON', value: 'json' },
+    {label: 'Shell', value: 'sh' },
+    {label: 'Text', value: 'txt' },
+    {label: 'Extras', value: 'extras' },
+  ]}>
+<TabItem value="js">
+
+    ```javascript
+    var s = 'JavaScript syntax highlighting';
+    alert(s);```
+    ```
+
 ```javascript
 var s = 'JavaScript syntax highlighting';
 alert(s);
 ```
+
+</TabItem>
+<TabItem value="py">
+
+    ```python
+    s = "Python syntax highlighting"
+    print(s)
+    ```
 
 ```python
 s = "Python syntax highlighting"
 print(s)
 ```
 
+</TabItem>
+<TabItem value="json">
+
+    ```json
+    {
+      "json_number": 225,
+      "json_boolean": true,
+      "json_string": "JSON syntax highlighting"
+    }
+    ```
+
+```json
+{
+  "json_number": 225,
+  "json_boolean": true,
+  "json_string": "JSON syntax highlighting"
+}
+```
+
+</TabItem>
+<TabItem value="sh">
+
+    ```shell
+    ls 
+    echo "Shell syntax highlighting"
+    sudo dmesg
+    top
+    ```
+
+```shell
+ls 
+echo "Shell syntax highlighting"
+sudo dmesg
+top
+```
+
+</TabItem>
+<TabItem value="txt">
+
+    ```
+    No language indicated, so no syntax highlighting.
+    But let's throw in a <b>tag</b>.
+    ```
+
 ```
 No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
 
-```js {2}
+</TabItem>
+<TabItem value="extras">
+
+    ```javascript {2,3}
+    function highlightMe() {
+      console.log('This line can be highlighted!');
+      console.log('You can also highlight multiple lines');
+    }
+    ```
+
+```javascript {2,3}
 function highlightMe() {
   console.log('This line can be highlighted!');
+  console.log('You can also highlight multiple lines');
 }
 ```
 
----
+You can add a title to the code block by adding `title` key after the language (leave a space between them).
 
-## Shell
+    ```jsx title="/src/components/HelloCodeTitle.js"
+    function HelloCodeTitle(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+    ```
 
-```sh 
-ls
-sudo dmesg
-top
+```jsx title="/src/components/HelloCodeTitle.js"
+function HelloCodeTitle(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
 ```
-
-```sh  {3}
-ls
-sudo dmesg
-top
-```
+  </TabItem>
+</Tabs>
 
 ---
-
 ## Tabs
 
 Example to present different examples in different languages.
