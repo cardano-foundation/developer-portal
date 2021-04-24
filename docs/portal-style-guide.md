@@ -564,6 +564,18 @@ This line is also a separate paragraph, but... This line is only separated by a 
 
 These different admonitions are available to you. As a general rule: don't overdo it and avoid using admonitions in a row.
 
+<Tabs
+  defaultValue="warning"
+  values={[
+    {label: 'Note', value: 'note'},
+    {label: 'Tip', value: 'tip'},
+    {label: 'Important', value: 'important'},
+    {label: 'Caution', value: 'caution'},
+    {label: 'Warning', value: 'warning'},
+    {label: 'Custom', value: 'custom'},
+  ]}>
+  <TabItem value="note">
+
 ```text
 :::note
 
@@ -577,6 +589,9 @@ This is a note
 This is a note
 
 :::
+
+  </TabItem>
+  <TabItem value="tip">
 
 ```text
 :::tip
@@ -592,6 +607,9 @@ This is a tip
 
 :::
 
+  </TabItem>
+  <TabItem value="important">
+
 ```text
 :::important
 
@@ -605,6 +623,9 @@ This is important
 This is important
 
 :::
+
+  </TabItem>
+  <TabItem value="caution">
 
 ```text
 :::caution
@@ -620,6 +641,9 @@ This is a caution
 
 :::
 
+  </TabItem>
+  <TabItem value="warning">
+
 ```text
 :::warning
 
@@ -632,6 +656,9 @@ This is a warning
 This is a warning
 
 :::
+
+  </TabItem>
+  <TabItem value="custom">
 
 ```text
 :::tip Custom Title
@@ -645,5 +672,8 @@ This is a tip admonition with a custom title
 This is a tip admonition with a custom title
 
 :::
+
+  </TabItem>
+</Tabs>
 
 Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
