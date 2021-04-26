@@ -6,41 +6,189 @@ description: Style guide for the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 
-You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/).
+You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/). [Markdown](https://github.github.com/gfm/) is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
 
-## Markdown Syntax
+## Markdown Examples
 
-To serve as an example page when styling markdown based Docusaurus sites.
+This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. 
 
-## Headers
+Let's start with the basics:
 
-# H1 - Create the best documentation
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## H2 - Create the best documentation
+<Tabs
+  defaultValue="text"
+  values={[
+    {label: 'Text', value: 'text' },
+    {label: 'Headers', value: 'headers' },
+    {label: 'Links', value: 'links' },
+    {label: 'Quotes', value: 'quotes' },
+    {label: 'Images', value: 'images' },
+    {label: 'Lists', value: 'lists' },
+  ]}>
+  <TabItem value="text">
 
-### H3 - Create the best documentation
+```text
+Emphasis, aka italics, with *asterisks* 
+or _underscores_.
 
-#### H4 - Create the best documentation
-
-##### H5 - Create the best documentation
-
-###### H6 - Create the best documentation
-
----
-
-## Emphasis
-
-Emphasis, aka italics, with *asterisks* or _underscores_.
-
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+Strong emphasis, aka bold, with **asterisks** 
+or __underscores__.
 
 Combined emphasis with **asterisks and _underscores_**.
 
 Strikethrough uses two tildes. ~~Scratch this.~~
 
----
+You can even [link to the Forum!](https://forum.cardano.org)
+```
 
-## Lists
+Emphasis, aka italics, with *asterisks* 
+or _underscores_.
+
+Strong emphasis, aka bold, with **asterisks** 
+or __underscores__.
+
+Combined emphasis with **asterisks and _underscores_**.
+
+Strikethrough uses two tildes. ~~Scratch this.~~
+
+You can even [link to the Forum!](https://forum.cardano.org)
+
+  </TabItem>
+  <TabItem value="headers">
+
+```
+# Structured documents
+
+As a rule, it is useful to have different levels
+of headings to structure your documents. Start rows 
+with a `#` to create headings. Several `##` in a row 
+indicate smaller heading sizes.
+
+## This is a second-tier heading
+
+### This is a third-tier heading
+
+You can use one `#` all the way up to `######` six for 
+different heading sizes.
+```
+
+# Structured documents
+
+As a rule, it is useful to have different levels
+of headings to structure your documents. Start rows 
+with a `#` to create headings. Several `##` in a row 
+indicate smaller heading sizes.
+
+## This is a second-tier heading
+
+### This is a third-tier heading
+
+You can use one `#` all the way up to `######` six for 
+different heading sizes.
+
+  </TabItem>
+  <TabItem value="links">
+
+```text
+[I'm an inline-style link](https://forum.cardano.org)
+
+[I'm an inline-style link with title](https://forum.cardano.org "Cardano Forum")
+
+[I'm a reference-style link][arbitrary case-insensitive reference text]
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself].
+
+URLs and URLs in angle brackets will automatically get turned into links. http://www.cardano.org or <http://www.cardano.org>.
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.cardano.org
+[1]: https://forum.cardano.org
+[link text itself]: https://www.cardano.org
+```
+
+[I'm an inline-style link](https://forum.cardano.org)
+
+[I'm an inline-style link with title](https://forum.cardano.org "Cardano Forum")
+
+[I'm a reference-style link][arbitrary case-insensitive reference text]
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself].
+
+URLs and URLs in angle brackets will automatically get turned into links. http://www.cardano.org or <http://www.cardano.org>.
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.cardano.org
+[1]: https://forum.cardano.org
+[link text itself]: https://www.cardano.org
+
+
+  </TabItem>
+  <TabItem value="quotes">
+
+```text
+If you'd like to quote someone, use the > character 
+before the line:
+
+> It’s not about who’s first to market or how quickly 
+we can upgrade something. It’s about what’s fit for 
+purpose. - **Charles Hoskinson**
+```
+
+If you'd like to quote someone, use the > character 
+before the line:
+
+> It’s not about who’s first to market or how quickly 
+we can upgrade something. It’s about what’s fit for 
+purpose. - **Charles Hoskinson**
+
+  </TabItem>
+  <TabItem value="images">
+
+```text
+Here's is the Plutus logo (hover to see the title text):
+Inline-style: ![alt text](../static/img/logo-plutus-small.png 'This is the Plutus logo inline-style')
+
+Reference-style: ![alt text][logo]
+[logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
+
+Images from any folder can be used by providing path to file. Path should be relative to markdown file:
+![alt text](../static/img/logo-plutus.png)
+```
+
+Here's is the Plutus logo (hover to see the title text):
+Inline-style: ![alt text](../static/img/logo-plutus-small.png 'This is the Plutus logo inline-style')
+
+Reference-style: ![alt text][logo]
+[logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
+
+Images from any folder can be used by providing path to file. Path should be relative to markdown file:
+![alt text](../static/img/logo-plutus.png)
+
+  </TabItem>
+  <TabItem value="lists">
+
+```text
+1. First ordered list item
+1. Another item
+   - Unordered sub-list.
+1. Actual numbers don't matter, just that it's a number
+   1. Ordered sub-list
+1. And another item.
+
+* Unordered list can use asterisks
+
+- Or minuses
+
++ Or pluses
+```
 
 1. First ordered list item
 1. Another item
@@ -55,93 +203,175 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 + Or pluses
 
----
 
-## Links
-
-[I'm an inline-style link](https://www.google.com/)
-
-[I'm an inline-style link with title](https://www.google.com/ "Google's Homepage")
-
-[I'm a reference-style link][arbitrary case-insensitive reference text]
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links. http://www.example.com/ or <http://www.example.com/> and sometimes example.com (but not on GitHub, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org/
-[1]: http://slashdot.org/
-[link text itself]: http://www.reddit.com/
+  </TabItem>
+</Tabs>
 
 ---
-
-## Images
-
-Here's our logo (hover to see the title text):
-
-Inline-style: ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Logo Title Text 1')
-
-Reference-style: ![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Logo Title Text 2'
-
-Images from any folder can be used by providing path to file. Path should be relative to markdown file.
-
-![img](../static/img/logo.svg)
-
----
+ 
 
 ## Code
+
+In the developer portal you will often have to display code. You can display code with different syntax highlighting:
+<Tabs
+  defaultValue="js"
+  values={[
+    {label: 'JavaScript', value: 'js' },
+    {label: 'Python', value: 'py' },
+    {label: 'JSON', value: 'json' },
+    {label: 'Shell', value: 'sh' },
+    {label: 'Text', value: 'txt' },
+    {label: 'Extras', value: 'extras' },
+  ]}>
+<TabItem value="js">
+
+    ```javascript
+    var s = 'JavaScript syntax highlighting';
+    alert(s);```
+    ```
 
 ```javascript
 var s = 'JavaScript syntax highlighting';
 alert(s);
 ```
 
+</TabItem>
+<TabItem value="py">
+
+    ```python
+    s = "Python syntax highlighting"
+    print(s)
+    ```
+
 ```python
 s = "Python syntax highlighting"
 print(s)
 ```
+
+</TabItem>
+<TabItem value="json">
+
+    ```json
+    {
+      "json_number": 225,
+      "json_boolean": true,
+      "json_string": "JSON syntax highlighting"
+    }
+    ```
+
+```json
+{
+  "json_number": 225,
+  "json_boolean": true,
+  "json_string": "JSON syntax highlighting"
+}
+```
+
+</TabItem>
+<TabItem value="sh">
+
+    ```shell
+    ls 
+    echo "Shell syntax highlighting"
+    sudo dmesg
+    top
+    ```
+
+```shell
+ls 
+echo "Shell syntax highlighting"
+sudo dmesg
+top
+```
+
+</TabItem>
+<TabItem value="txt">
+
+    ```
+    No language indicated, so no syntax highlighting.
+    But let's throw in a <b>tag</b>.
+    ```
 
 ```
 No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
 
-```js {2}
+</TabItem>
+<TabItem value="extras">
+
+    ```javascript {2,3}
+    function highlightMe() {
+      console.log('This line can be highlighted!');
+      console.log('You can also highlight multiple lines');
+    }
+    ```
+
+```javascript {2,3}
 function highlightMe() {
   console.log('This line can be highlighted!');
+  console.log('You can also highlight multiple lines');
 }
 ```
 
----
+You can add a title to the code block by adding `title` key after the language (leave a space between them).
 
-## Shell
+    ```jsx title="/src/components/HelloCodeTitle.js"
+    function HelloCodeTitle(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+    ```
 
-```sh 
-ls
-sudo dmesg
-top
+```jsx title="/src/components/HelloCodeTitle.js"
+function HelloCodeTitle(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
 ```
-
-```sh  {3}
-ls
-sudo dmesg
-top
-```
+  </TabItem>
+</Tabs>
 
 ---
-
 ## Tabs
 
-Example to present different examples in different languages.
+You can use tabs for example to display code examples in different languages:
 
+```html
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="js"
+  values={[
+    {label: 'JavaScript', value: 'js'},
+    {label: 'PHP', value: 'php'},
+    {label: 'Python', value: 'py'},
+  ]}>
+  <TabItem value="js">
+
+    ```js
+      function helloWorld() {
+        console.log('Hello, world!');
+      }
+    ```
+
+  </TabItem>
+  <TabItem value="php">
+
+    ```php
+      <?php echo '<p>Hello, world!</p>'; ?>
+    ```
+
+  </TabItem>
+  <TabItem value="py">
+
+    ```py
+    def hello_world():
+      print 'Hello, world!'
+    ```
+
+  </TabItem>
+</Tabs>
+``` 
 
 <Tabs
   defaultValue="js"
@@ -184,7 +414,37 @@ Note that the empty lines above and below each language block (in the *md file) 
 
 ## Synching tab choices
 
-We can also switch multiple tabs at the same time based on user input.
+You can also switch multiple tabs at the same time based on user input:
+
+```html
+<Tabs
+  groupId="operating-systems"
+  defaultValue="win"
+  values={[
+    {label: 'Windows', value: 'win'},
+    {label: 'macOS', value: 'mac'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}>
+<TabItem value="win">Use Ctrl + C to copy.</TabItem>
+<TabItem value="mac">Use Command + C to copy.</TabItem>
+<TabItem value="linux">Use Ctrl + C to copy.</TabItem>
+</Tabs>
+
+<Tabs
+  groupId="operating-systems"
+  defaultValue="win"
+  values={[
+    {label: 'Windows', value: 'win'},
+    {label: 'macOS', value: 'mac'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}>
+<TabItem value="win">Use Ctrl + V to paste.</TabItem>
+<TabItem value="mac">Use Command + V to paste.</TabItem>
+<TabItem value="linux">Use Ctrl + V to paste.</TabItem>
+</Tabs>
+```
 
 <Tabs
   groupId="operating-systems"
@@ -214,7 +474,13 @@ We can also switch multiple tabs at the same time based on user input.
 <TabItem value="linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
 
-## Video: Youtube
+## Video embedding
+
+Use this code to embed YouTube videos:
+
+```html
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+```
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
@@ -222,7 +488,15 @@ We can also switch multiple tabs at the same time based on user input.
 
 ## Tables
 
-Colons can be used to align columns.
+Colons can be used to align columns:
+
+```text
+| Tables        |      Are      |   Cool |
+| ------------- | :-----------: | -----: |
+| col 3 is      | right-aligned | \$1600 |
+| col 2 is      |   centered    |   \$12 |
+| zebra stripes |   are neat    |    \$1 |
+```
 
 | Tables        |      Are      |   Cool |
 | ------------- | :-----------: | -----: |
@@ -232,6 +506,13 @@ Colons can be used to align columns.
 
 There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
 
+```text
+| Markdown | Less      | Pretty     |
+| -------- | --------- | ---------- |
+| _Still_  | `renders` | **nicely** |
+| 1        | 2         | 3          |
+```
+
 | Markdown | Less      | Pretty     |
 | -------- | --------- | ---------- |
 | _Still_  | `renders` | **nicely** |
@@ -239,17 +520,19 @@ There must be at least 3 dashes separating each header cell. The outer pipes (|)
 
 ---
 
-## Blockquotes
-
-> Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
-
-Quote break.
-
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ **Markdown** into a blockquote.
-
----
-
 ## Inline HTML
+
+Inline HTML is basically possible, but should be avoided for various reasons.
+
+```html
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+```
 
 <dl>
   <dt>Definition list</dt>
@@ -263,15 +546,43 @@ Quote break.
 
 ## Line Breaks
 
+```text
 Here's a line for us to start with.
 
 This line is separated from the one above by two newlines, so it will be a _separate paragraph_.
+This line is also a separate paragraph, but... This line is only separated by a single newline, so it's a separate line in the _same paragraph_.
+```
 
+Here's a line for us to start with.
+
+This line is separated from the one above by two newlines, so it will be a _separate paragraph_.
 This line is also a separate paragraph, but... This line is only separated by a single newline, so it's a separate line in the _same paragraph_.
 
 ---
 
 ## Admonitions
+
+These different admonitions are available to you. As a general rule: don't overdo it and avoid using admonitions in a row.
+
+<Tabs
+  defaultValue="warning"
+  values={[
+    {label: 'Note', value: 'note'},
+    {label: 'Tip', value: 'tip'},
+    {label: 'Important', value: 'important'},
+    {label: 'Caution', value: 'caution'},
+    {label: 'Warning', value: 'warning'},
+    {label: 'Custom', value: 'custom'},
+  ]}>
+  <TabItem value="note">
+
+```text
+:::note
+
+This is a note
+
+:::
+```
 
 :::note
 
@@ -279,11 +590,33 @@ This is a note
 
 :::
 
+  </TabItem>
+  <TabItem value="tip">
+
+```text
 :::tip
 
 This is a tip
 
 :::
+```
+
+:::tip
+
+This is a tip
+
+:::
+
+  </TabItem>
+  <TabItem value="important">
+
+```text
+:::important
+
+This is important
+
+:::
+```
 
 :::important
 
@@ -291,16 +624,56 @@ This is important
 
 :::
 
+  </TabItem>
+  <TabItem value="caution">
+
+```text
+:::caution
+
+This is a caution
+
+:::
+```
+
 :::caution
 
 This is a caution
 
 :::
 
+  </TabItem>
+  <TabItem value="warning">
+
+```text
 :::warning
 
 This is a warning
 
 :::
+```
+:::warning
+
+This is a warning
+
+:::
+
+  </TabItem>
+  <TabItem value="custom">
+
+```text
+:::tip Custom Title
+
+This is a tip admonition with a custom title
+
+:::
+```
+:::tip  Custom Title
+
+This is a tip admonition with a custom title
+
+:::
+
+  </TabItem>
+</Tabs>
 
 Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
