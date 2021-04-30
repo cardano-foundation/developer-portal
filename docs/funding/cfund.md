@@ -1,8 +1,8 @@
 ---
 id: cfund
 title: Fund your Project with cFund
-sidebar_label: Fund your project with cFund
-description: Fund your project with cFund
+sidebar_label: cFund
+description: cFund
 image: ./img/og-developer-portal.png
 ---
 

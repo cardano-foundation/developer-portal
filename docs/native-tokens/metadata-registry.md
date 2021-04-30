@@ -14,3 +14,7 @@ The registry should provide some form of authentication to control who can modif
 
 Registration of metadata mappings is optional and is independent of any on-chain activities.
 Users may choose to register metadata mappings with a server so that applications using the server can query and display additional human readable data relevant to the on-chain identifier.
+
+## What is Cardano Token Registry
+
+The [Cardano Token Registry](../native-tokens/submit-entry-to-cardano-token-registry) exposes the functionality of a key-value store and enables querying by users and applications of metadata associated with on-chain identifiers from a database through a RESTful API.

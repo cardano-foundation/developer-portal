@@ -29,17 +29,13 @@ The **cFund** started in July 2020 with different important aims:
 
 The first **cFund** investment took place In April 2021, it provided $500,000 to innovative enterprise-grade fintech technology called [COTI the currency of the internet](https://coti.io/). **COTI** secured the investment to support stakeholder-driven payment solutions and enables them to pack digitally any currency.
 
-:::note
+:::tip Submit a Proposal with cFund.
 Please check the [**cFund section**](../funding/cfund) to understand how to submit a proposal through cFund.
 :::
 
 ### dcFund
 The **dcFund** or decentralized fund is represented with the [**project Catalyst**](https://cardano.ideascale.com/) aiming to provide a safe and lively environment to explore the highest potential of human collaboration.
 
-:::note
-Please check the [**dcFund section**](../funding/dcfund) to understand how to submit a proposal through Catalyst project.
-:::
-
-:::note
-New funding announcements are always available on [**Cardano Ideascale**](https://cardano.ideascale.com/), so make sure that you are always up to date and ready to participate in new challenges. Check [**Funds timeline**](https://cardanocataly.st/funds/).
+:::tip Catalyst Announcements and Timeline
+Please check the [**dcFund section**](../funding/dcfund) to understand how to submit a proposal through Catalyst project. Note that new funding announcements are always available on [**Cardano Ideascale**](https://cardano.ideascale.com/), so make sure that you are always up to date and ready to participate in new challenges. Check [**Funds timeline**](https://cardanocataly.st/funds/).
 :::

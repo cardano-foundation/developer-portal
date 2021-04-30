@@ -1,16 +1,15 @@
 ---
 id: submit-entry-to-cardano-token-registry
-title: Step-By-Step Guide (Linux / Mac OS)
+title: Submit Metadata to Cardano Token Registry
 ---
 
 ## How to Submit Metadata Mappings to the Cardano Token Registry
 
 This article outlines the steps required to create a metadata mapping for a native token, and submit it to the Cardano Token Registry. The Cardano Token Registry currently supports mappings for Native Tokens only.
 
-:::note
-This article assumes you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/) example.
+:::tip Minting A New Native Asset
+This article assumes that you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://docs.cardano.org/en/latest/native-tokens/getting-started-with-native-tokens.html#example-minting-a-new-native-token) example.
 :::
-
 
 ## Mapping Definition
 
@@ -34,8 +33,7 @@ Adding to the Registry
 
 ### Creating your Native Token
 
-Native tokens is an accounting system defined as part of the cryptocurrency ledger that enables tokens to be tracked, sent, and received within the Cardano blockchain. After the steps in [Minting A New Native Asset](https://developers.cardano.org/en/development-environments/native-tokens/working-with-multi-asset-tokens/), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
-
+Native tokens is an accounting system defined as part of the cryptocurrency ledger that enables tokens to be tracked, sent, and received within the Cardano blockchain. After the steps in [Minting A New Native Asset](https://docs.cardano.org/en/latest/native-tokens/getting-started-with-native-tokens.html#example-minting-a-new-native-token), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
 
 ### Prepare JSON Mapping File for Submission
 
@@ -137,6 +135,6 @@ git push submission HEAD
 
 Create a [pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
 
-:::note
+:::note Review PR request
 From here you will see your PR show up in Github - Foundation registry operators will review it for well formedness, proper content and to see how it fared with the automated tests - it might be that you are asked to modify some items, that it gets rejected - or even merged! You’ll be notified through Github/email and can add to the comments or see what is happening. The wiki should help guide you through the specific steps - do ask or raise issues in the repository if you get stuck.
 :::
