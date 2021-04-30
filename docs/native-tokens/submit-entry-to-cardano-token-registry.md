@@ -1,9 +1,8 @@
 ---
 id: submit-entry-to-cardano-token-registry
-title: Submit Metadata to Cardano Token Registry
+title: How to Submit Metadata Mappings to the Cardano Token Registry
+sidebar_label: Submit Metadata to Cardano Token Registry
 ---
-
-## How to Submit Metadata Mappings to the Cardano Token Registry
 
 This article outlines the steps required to create a metadata mapping for a native token, and submit it to the Cardano Token Registry. The Cardano Token Registry currently supports mappings for Native Tokens only.
 
