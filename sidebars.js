@@ -69,8 +69,6 @@ module.exports = {
       'funding/overview',
       'funding/dcfund',
       'funding/cfund',
-      'funding/communication-channels',
-      'funding/faq',
     ],
     'Contribution': [
         'portal-contributors',
