@@ -130,7 +130,7 @@ function ShowcaseCards({ filteredProjects }) {
     <section className="container margin-top--lg">
       <h2>
         {filteredProjects.length} project
-        {filteredProjects.length > 1 ? "s" : ""}
+        {filteredProjects.length > 1 ? "s" : ""} 
       </h2>
       <div className="margin-top--lg">
         {filteredProjects.length > 0 ? (

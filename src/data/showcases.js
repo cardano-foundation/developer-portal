@@ -39,6 +39,13 @@ export const Tags = {
     icon: null,
   },
 
+  // Pool Tools
+  pooltool: {
+    label: "Pool Tools",
+    description: "Pool tools provide delegates with the necessary tools to find a good pool.",
+    icon: null,
+  },
+
   // Native tokens related projects, maybe later we distinguish between NFT
   tokens: {
     label: "Native Tokens",
@@ -139,6 +146,33 @@ const Showcases = [
     source: null,
     tags: ["explorer"],
   },
+  {
+    title: "Adafolio",
+    description:
+      "Adafolio provides a place to create and share multi-delegation portfolios.",
+    preview: require("./showcase/adafolio.png"),
+    website: "https://adafolio.com",
+    source: null,
+    tags: ["pooltool"],
+  },
+  {
+    title: "Adapools",
+    description:
+      "Was one of the first pool tools and was always further developed.",
+    preview: require("./showcase/adapools.png"),
+    website: "https://adapools.org/",
+    source: null,
+    tags: ["pooltool"],
+  },
+  {
+    title: "PoolTool",
+    description:
+      "One of the most feature-rich, unbiased pool tools. Also offers a native app.",
+    preview: require("./showcase/pooltool.png"),
+    website: "https://pooltool.io",
+    source: null,
+    tags: ["pooltool"],
+  }, 
 ];
 
 export const TagList = Object.keys(Tags);
