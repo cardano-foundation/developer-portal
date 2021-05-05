@@ -1,119 +1,121 @@
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css';
+import React from "react";
+import clsx from "clsx";
+import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./styles.module.css";
 
 const features = [
   {
-    title: 'Getting Started',
-    imageUrl: 'img/card-getting-started.svg',
-    targetUrl: 'docs/getting-started/overview',
+    title: "Getting Started",
+    imageUrl: "img/card-getting-started.svg",
+    targetUrl: "docs/getting-started/overview",
     description: (
       <>
-        Welcome to the Cardano Developer portal. This category will help you find your way around quickly. 
+        Welcome to the Cardano Developer portal. This category will help you
+        find your way around quickly.
       </>
     ),
   },
   {
-    title: 'Transaction Metadata',
-    imageUrl: 'img/card-transaction-metadata.svg',
-    targetUrl: 'docs/transaction-metadata/overview',
+    title: "Transaction Metadata",
+    imageUrl: "img/card-transaction-metadata.svg",
+    targetUrl: "docs/transaction-metadata/overview",
     description: (
       <>
-        Learn what transaction metadata is, how to add it to a transaction, how to view the metadata and what potential use cases are.
+        Learn what transaction metadata is, how to add it to a transaction, how
+        to view the metadata and what potential use cases are.
       </>
     ),
   },
   {
-    title: 'Cardano Integration',
-    imageUrl: 'img/card-payment-integration.svg',
-    targetUrl: 'docs/cardano-integration/overview',
+    title: "Cardano Integration",
+    imageUrl: "img/card-payment-integration.svg",
+    targetUrl: "docs/cardano-integration/overview",
+    description: (
+      <>How to integrate Cardano into existing websites and services.</>
+    ),
+  },
+  {
+    title: "Native Tokens",
+    imageUrl: "img/card-native-tokens.svg",
+    targetUrl: "docs/native-tokens/overview",
     description: (
       <>
-        How to integrate Cardano into existing websites and services.
+        Learn what native tokens are, how to mint them, which policies can be
+        used and how to create NFT.
       </>
     ),
   },
   {
-    title: 'Native Tokens',
-    imageUrl: 'img/card-native-tokens.svg',
-    targetUrl: 'docs/native-tokens/overview',
+    title: "Project Funding",
+    imageUrl: "img/card-funding.svg",
+    targetUrl: "docs/funding/overview",
     description: (
-      <>
-        Learn what native tokens are, how to mint them, which policies can be used and how to create NFT.
-      </>
+      <>Find out what opportunities are available to get your project funded.</>
     ),
   },
   {
-    title: 'Project Funding',
-    imageUrl: 'img/card-funding.svg',
-    targetUrl: 'docs/funding/overview',
+    title: "Stake Pool Operation",
+    imageUrl: "img/card-stake-pool-course.svg",
+    targetUrl: "docs/stake-pool-operation/overview",
     description: (
       <>
-        Find out what opportunities are available to get your project funded. 
-      </>
-    ),
-  },
-  {
-    title: 'Stake Pool Operation',
-    imageUrl: 'img/card-stake-pool-course.svg',
-    targetUrl: 'docs/stake-pool-operation/overview',
-    description: (
-      <>
-        Learn what it takes to become a Cardano stake pool operator from a technical and marketing perspective.
+        Learn what it takes to become a Cardano stake pool operator from a
+        technical and marketing perspective.
       </>
     ),
   },
 ];
 
-function Feature({imageUrl, title, description, targetUrl}) {
+function Feature({ imageUrl, title, description, targetUrl }) {
   const imgUrl = useBaseUrl(imageUrl); // not used right now
   const trgUrl = useBaseUrl(targetUrl);
   return (
-    <div className={clsx('col col--4', styles.feature)}>
+    <div className={clsx("col col--4", styles.feature)}>
       {targetUrl && (
         <Link className="navbar__link" to={trgUrl}>
-        <div className="card">
-          <div className="card__header">
-          {imgUrl && (
-            <div className="text--center">
-               <img className={styles.featureImage} src={imgUrl} alt={title}/>
+          <div className="card">
+            <div className="card__header">
+              {imgUrl && (
+                <div className="text--center">
+                  <img
+                    className={styles.featureImage}
+                    src={imgUrl}
+                    alt={title}
+                  />
+                </div>
+              )}
+              <h3>{title}</h3>
             </div>
-          )}
-            <h3>{title}</h3>
+            <div className="card__body">
+              <p>{description}</p>
+            </div>
           </div>
-          <div className="card__body">
-            <p>{description}</p>
-          </div>
-        </div>
-      </Link>
+        </Link>
       )}
-
     </div>
   );
 }
 
 function Home() {
   const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
+  const { siteConfig = {} } = context;
   return (
-    <Layout
-      title={`Overview`}
-      description="Cardano Developer Portal">
-      <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <Layout title={`Overview`} description="Cardano Developer Portal">
+      <header className={clsx("hero hero--primary", styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className={styles.buttons}>
             <Link
               className={clsx(
-                'button button--outline button--lg',
-                styles.getStarted,
+                "button button--outline button--lg",
+                styles.getStarted
               )}
-              to={useBaseUrl('docs/getting-started/overview')}>
+              to={useBaseUrl("docs/getting-started/overview")}
+            >
               Getting Started
             </Link>
           </div>
