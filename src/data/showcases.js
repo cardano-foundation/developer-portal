@@ -25,6 +25,13 @@ export const Tags = {
     icon: <>⭐️</>,
   },
 
+  // Cardano Block Explorers
+  explorer: {
+    label: "Block Explorers",
+    description: "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+    icon: null,
+  },
+
   // For open-source sites, a link to the source code is required
   opensource: {
     label: "Open-Source",
@@ -86,6 +93,51 @@ const Showcases = [
     website: "https://spacebudz.io",
     source: null,
     tags: ["tokens"],
+  },
+  {
+    title: "ADAex",
+    description:
+      "A classic block explorer that also offers a Cardano rich list.",
+    preview: require("./showcase/adaex.png"),
+    website: "https://adaex.org",
+    source: null,
+    tags: ["explorer"],
+  },
+  {
+    title: "AdaStat",
+    description:
+      "The browser, inconspicuous at first glance, offers a great many statistics and insights.",
+    preview: require("./showcase/adastat.png"),
+    website: "https://adastat.net",
+    source: null,
+    tags: ["explorer"],
+  },
+  {
+    title: "Cardano Explorer",
+    description:
+      "The Cardano explorer built by IOHK, one of the founding entities of Cardano.",
+    preview: require("./showcase/cardanoexplorer.png"),
+    website: "https://explorer.cardano.org",
+    source: null,
+    tags: ["explorer"],
+  },
+  {
+    title: "Cardano Scan",
+    description:
+      "A combination of block explorer and pool tool, uses it's own implementation of db-sync.",
+    preview: require("./showcase/cardanoscan.png"),
+    website: "https://cardanoscan.io/",
+    source: null,
+    tags: ["explorer"],
+  },
+  {
+    title: "Pool PM",
+    description:
+      "Block explorer that brought out a new, refreshing concept to visualize transactions.",
+    preview: require("./showcase/poolpm.png"),
+    website: "https://pool.pm",
+    source: null,
+    tags: ["explorer"],
   },
 ];
 
