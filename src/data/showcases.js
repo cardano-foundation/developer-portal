@@ -2,7 +2,7 @@
  * ADD YOUR PROJECT TO THE CARDANO DEVELOPER PORTAL SHOWCASE:
  *
  * Requirements for adding your project to our showcase:
- * - It must be built on Cardano and have a real usecase. 
+ * - It must be built on Cardano and have a real usecase.
  * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
  *
  * Instructions:
@@ -28,7 +28,8 @@ export const Tags = {
   // Cardano Block Explorers
   explorer: {
     label: "Block Explorers",
-    description: "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+    description:
+      "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
     icon: null,
   },
 
@@ -42,7 +43,8 @@ export const Tags = {
   // Pool Tools
   pooltool: {
     label: "Pool Tools",
-    description: "Pool tools provide delegates with the necessary tools to find a good pool.",
+    description:
+      "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
   },
 
@@ -50,6 +52,14 @@ export const Tags = {
   tokens: {
     label: "Native Tokens",
     description: "Native Tokens",
+    icon: null,
+  },
+
+  // Wallets
+  wallet: {
+    label: "Wallets",
+    description:
+      "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
   },
 };
@@ -81,7 +91,7 @@ const Showcases = [
     preview: require("./showcase/baiawine.png"),
     website: "https://www.baiawine.com",
     source: "https://github.com/cardano-foundation",
-    tags: ["featured", "opensource"],
+    tags: ["opensource", "featured"],
   },
   {
     title: "NFT Maker",
@@ -172,7 +182,43 @@ const Showcases = [
     website: "https://pooltool.io",
     source: null,
     tags: ["pooltool"],
-  }, 
+  },
+  {
+    title: "AdaLite",
+    description:
+      "AdaLite was developed by vacuumlabs, they were also responsible for the Cardano Ledger app and won the crypto puzzle at the IOHK Summit 2019.",
+    preview: require("./showcase/adalite.png"),
+    website: "https://adalite.io",
+    source: null,
+    tags: ["wallet"],
+  },
+  {
+    title: "Atomic Wallet",
+    description:
+      "Multi-cryptocurrency wallet that supports Cardano. During the integration they contributed code to the Cardano Rust library.",
+    preview: require("./showcase/atomicwallet.png"),
+    website: "https://atomicwallet.io",
+    source: null,
+    tags: ["wallet"],
+  },
+  {
+    title: "Daedalus",
+    description:
+      "Daedalus is a full node and developed by IOHK, one of the founding entities of Cardano.",
+    preview: require("./showcase/daedalus.png"),
+    website: "https://daedaluswallet.io",
+    source: "https://github.com/input-output-hk/daedalus",
+    tags: ["wallet", "opensource", "featured"],
+  },
+  {
+    title: "Yoroi",
+    description:
+      "Yoroi is a lightweight node and developed by EMURGO, one of the founding entities of Cardano.",
+    preview: require("./showcase/yoroi.png"),
+    website: "https://yoroi-wallet.com",
+    source: "https://github.com/Emurgo/yoroi-frontend",
+    tags: ["wallet", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
