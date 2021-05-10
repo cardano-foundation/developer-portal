@@ -17,6 +17,10 @@ You can use Cardano to build:
 * Stake pools
 * Smart contracts
 
+::: note Cardano Integration Components
+You can use [**Adrestia**](https://github.com/input-output-hk/adrestia) as a collection of components and SDKs for easy to integrate with Cardano.
+:::
+
 ## Metadata transactions
 
 [Transaction metadata](../transaction-metadata/overview) is the process of inserting and storing data on the Cardano blockchain. You can insert different types of data such as numerical data and written details to be validated and giving all support to transactions. Please check the following resources for more information:
