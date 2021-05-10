@@ -12,9 +12,9 @@ The Cardano blockchain is a third-generation blockchain that solves the main pro
 * Interoperability.  The ability to see and access information across various blockchain systems
 * Sustainability.
 
-You can use Cardano to create:
+You can use Cardano to build:
 * Metadata transactions
-* Stake pool
+* Stake pools
 * Smart contracts
 
 ## Metadata transactions
