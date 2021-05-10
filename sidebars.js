@@ -2,6 +2,7 @@ module.exports = {
   someSidebar: {
     "Getting Started": [
       "getting-started/overview",
+      "getting-started/build-on-cardano",
       "getting-started/blockfrost",
       "getting-started/cardano-serialization-lib",
       "getting-started/cardanocli-js",
