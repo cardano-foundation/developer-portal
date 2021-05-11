@@ -322,6 +322,33 @@ const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "Pool Stats",
+    description:
+      "Pool tool and insights visualized by heat maps.",
+    preview: require("./showcase/poolstats.png"),
+    website: "https://poolstats.org",
+    source: null,
+    tags: ["pooltool", "analytics"],
+  },
+  {
+    title: "Ada Tools",
+    description:
+      "Visualizes the nodes on a globe and also provides various tools.",
+    preview: require("./showcase/poolstats.png"),
+    website: "https://adatools.io/hologram",
+    source: null,
+    tags: ["pooltool", "analytics", "tokens"],
+  },
+  {
+    title: "See Ada",
+    description:
+      "This project tracks the controlled stake of the top pool operators and monitors decentralization.",
+    preview: require("./showcase/seeada.png"),
+    website: "https://seeada.org",
+    source: null,
+    tags: ["analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
