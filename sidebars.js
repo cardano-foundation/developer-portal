@@ -13,7 +13,13 @@ module.exports = {
     ],
     "Cardano Integration": [
       "cardano-integration/overview",
-      "cardano-integration/listening-for-payments"
+      {
+        type: "category",
+        label: "Cardano CLI",
+        items: [
+          "cardano-integration/cli/listening-for-payments"
+        ]
+      }
     ],
     "Native Tokens": [
       "native-tokens/overview",

@@ -13,8 +13,8 @@ import TabItem from '@theme/TabItem';
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
-    {label: 'C#', value: 'cs'},
     {label: 'Python', value: 'py'},
+    {label: 'C#', value: 'cs'}
   ]}>
   <TabItem value="js">
 
@@ -26,7 +26,7 @@ const CARDANO_CLI_PATH = "cardano-cli";
 const CARDANO_ERA_FLAG = "--mary-era";
 const CARDANO_NETWORK_MAGIC = 1097911063;
 const CARDANO_KEYS_DIR = "keys";
-const TOTAL_EXPECTED_LOVELACE = 1_000_000;
+const TOTAL_EXPECTED_ADA = 1;
 const LOVELACE_PER_ADA = 1_000_000;
 
 const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
@@ -46,8 +46,8 @@ for(let x = 2; x < utxoTableRows.length; x++) {
 }
 
 console.log(`Total ADA Received: ${totalLovelaceRecv / LOVELACE_PER_ADA}`);
-console.log(`Expected ADA Payment: ${TOTAL_EXPECTED_LOVELACE / LOVELACE_PER_ADA}`);
-console.log(`Payment Complete: ${(totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE ? "✅":"❌")}`);
+console.log(`Expected ADA Payment: ${TOTAL_EXPECTED_ADA}`);
+console.log(`Payment Complete: ${(totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA ? "✅":"❌")}`);
 ```
 
   </TabItem>
@@ -100,15 +100,14 @@ const string CARDANO_CLI_PATH = "cardano-cli";
 const string CARDANO_ERA_FLAG = "--mary-era";
 const int CARDANO_NETWORK_MAGIC = 1097911063;
 const string CARDANO_KEYS_DIR = "keys";
-const long TOTAL_EXPECTED_LOVELACE = 1_000_000;
+const long TOTAL_EXPECTED_ADA = 1;
 const long LOVELACE_PER_ADA = 1_000_000;
 
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
-var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(
-" ",
-"query", "utxo", CARDANO_ERA_FLAG,
-"--testnet-magic", CARDANO_NETWORK_MAGIC,
-"--address", walletAddress
+var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
+    "query", "utxo", CARDANO_ERA_FLAG,
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
 ), noEcho: true);
 
 var utxoTableRows = rawUtxoTable.Trim().Split("\n");
@@ -121,8 +120,8 @@ for(var x = 2; x < utxoTableRows.Length; x++)
 }
 
 Console.WriteLine($"Total ADA Received: {totalLovelaceRecv / LOVELACE_PER_ADA}");
-Console.WriteLine($"Expected ADA Payment: {TOTAL_EXPECTED_LOVELACE / LOVELACE_PER_ADA}");
-Console.WriteLine($"Payment Complete: {(totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE ? "✅":"❌")}");
+Console.WriteLine($"Expected ADA Payment: {TOTAL_EXPECTED_ADA}");
+Console.WriteLine($"Payment Complete: {(totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA ? "✅":"❌")}");
 ```
 
   </TabItem>
