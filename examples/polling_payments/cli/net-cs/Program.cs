@@ -7,11 +7,11 @@ using SimpleExec;
 const string CARDANO_CLI_PATH = "cardano-cli";
 const string CARDANO_ERA_FLAG = "--mary-era";
 const int CARDANO_NETWORK_MAGIC = 1097911063;
-const string CARDANO_KEYS_PATH = "keys";
+const string CARDANO_KEYS_DIR = "keys";
 const long TOTAL_EXPECTED_LOVELACE = 1_000_000;
-const long LOVELACE_PER_ADA = 1000000;
+const long LOVELACE_PER_ADA = 1_000_000;
 
-var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_PATH, "payment.addr"));
+var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
 var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(
     " ",
     "query", "utxo", CARDANO_ERA_FLAG,
