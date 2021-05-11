@@ -28,15 +28,23 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs
-defaultValue="sh"
+defaultValue="curl"
 values={[
-{label: 'Curl', value: 'sh'},
+{label: 'curl', value: 'curl'},
+{label: 'wget', value: 'wget'},
 {label: 'PHP', value: 'php'},
 ]}>
-<TabItem value="sh">
+<TabItem value="curl">
 
 ```sh
 curl -H 'project_id: 1234567890' https://cardano-mainnet.blockfrost.io/api/v0/epochs/latest
+```
+
+  </TabItem>
+  <TabItem value="wget">
+
+```sh
+wget --header='project_id: 1234567890' -qO- https://cardano-mainnet.blockfrost.io/api/v0/epochs/latest
 ```
 
   </TabItem>
@@ -78,15 +86,24 @@ If you have done everything correctly you will get a response in JSON format, si
 Let's look into another example and query data of a specific stake pool. You need to provide a Bech32 or hexadecimal `pool_id`.
 
 <Tabs
-defaultValue="sh"
+defaultValue="curl"
 values={[
-{label: 'Curl', value: 'sh'},
+{label: 'curl', value: 'curl'},
+{label: 'wget', value: 'wget'},
 {label: 'PHP', value: 'php'},
 ]}>
-<TabItem value="sh">
+<TabItem value="curl">
 
 ```sh
 curl -H 'project_id: 1234567890' https://cardano-mainnet.blockfrost.io/api/v0/pools/c1cadab46b74defa9f79b59b617fe2a50bdbce6b367e472b6109a7bc
+
+```
+
+  </TabItem>
+<TabItem value="wget">
+
+```sh
+wget --header='project_id: 1234567890' -qO- https://cardano-mainnet.blockfrost.io/api/v0/pools/c1cadab46b74defa9f79b59b617fe2a50bdbce6b367e472b6109a7bc
 
 ```
 
@@ -141,18 +158,27 @@ You will get a response in JSON format, similar to this:
 
 ## Query information of a specific asset
 
-Let's look at this last example and query information of a specific native token on Cardano. You need to provide the string concatenation of the `policy_id` and hex-encoded `asset_name`. 
+Let's look at this last example and query information of a specific native token on Cardano. You need to provide the string concatenation of the `policy_id` and hex-encoded `asset_name`.
 
 <Tabs
-defaultValue="sh"
+defaultValue="curl"
 values={[
-{label: 'Curl', value: 'sh'},
+{label: 'curl', value: 'curl'},
+{label: 'wget', value: 'wget'},
 {label: 'PHP', value: 'php'},
 ]}>
-<TabItem value="sh">
+<TabItem value="curl">
 
 ```sh
 curl -H 'project_id: 1234567890' https://cardano-mainnet.blockfrost.io/api/v0/assets/d894897411707efa755a76deb66d26dfd50593f2e70863e1661e98a07370616365636f696e73
+
+```
+
+  </TabItem>
+  <TabItem value="wget">
+
+```sh
+wget --header='project_id: 1234567890' -qO- https://cardano-mainnet.blockfrost.io/api/v0/assets/d894897411707efa755a76deb66d26dfd50593f2e70863e1661e98a07370616365636f696e73
 
 ```
 
