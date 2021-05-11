@@ -139,6 +139,54 @@ You will get a response in JSON format, similar to this:
 }
 ```
 
+## Query information of a specific asset
+
+Let's look at this last example and query information of a specific native token on Cardano. You need to provide the string concatenation of the `policy_id` and hex-encoded `asset_name`. 
+
+<Tabs
+defaultValue="sh"
+values={[
+{label: 'Curl', value: 'sh'},
+{label: 'PHP', value: 'php'},
+]}>
+<TabItem value="sh">
+
+```sh
+curl -H 'project_id: 1234567890' https://cardano-mainnet.blockfrost.io/api/v0/assets/d894897411707efa755a76deb66d26dfd50593f2e70863e1661e98a07370616365636f696e73
+
+```
+
+  </TabItem>
+  <TabItem value="php">
+
+```php
+$headers = array('http'=> array(
+					 'method' => 'GET',
+					 'header' => 'project_id: 1234567890'
+					)
+   			    );
+$context = stream_context_create($headers);
+$json = file_get_contents('https://cardano-mainnet.blockfrost.io/api/v0/assets/d894897411707efa755a76deb66d26dfd50593f2e70863e1661e98a07370616365636f696e73', false, $context);
+$parsedJson = json_decode($json);
+```
+
+  </TabItem>
+</Tabs>
+
+You will get this JSON response:
+
+```json
+{
+  "policy_id": "d894897411707efa755a76deb66d26dfd50593f2e70863e1661e98a0",
+  "asset_name": "7370616365636f696e73",
+  "fingerprint": "asset1pmmzqf2akudknt05ealtvcvsy7n6wnc9dd03mf",
+  "quantity": "50000000",
+  "initial_mint_tx_hash": "3cce12c77b9d11d70575320c4f2834b26debb065308fbe43954018fbeb90010d",
+  "onchain_metadata": null,
+  "metadata": null
+}
+```
+
 ## Blockfrost documentation
 
-Visit [docs.blockfrost.io](https://docs.blockfrost.io) to see the complete API documentation.
+Blockfrost has a powerful API with which you can do a lot of things. Visit [docs.blockfrost.io](https://docs.blockfrost.io) to see the complete API documentation.
