@@ -320,7 +320,7 @@ const Showcases = [
     preview: require("./showcase/cardanoupdates.png"),
     website: "https://cardanoupdates.com",
     source: null,
-    tags: ["tokens"],
+    tags: ["analytics"],
   },
 ];
 
