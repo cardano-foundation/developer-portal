@@ -25,6 +25,14 @@ export const Tags = {
     icon: <>⭐️</>,
   },
 
+   // Analytics
+   analytics: {
+    label: "Analytics",
+    description:
+      "Tools that provide special insights related to Cardano.",
+    icon: null,
+  },
+
   // Cardano Block Explorers
   explorer: {
     label: "Block Explorers",
@@ -48,10 +56,24 @@ export const Tags = {
     icon: null,
   },
 
-  // Native tokens related projects, maybe later we distinguish between NFT
+  // Meta data projects
+  metadata: {
+    label: "Metadata",
+    description: "Transaction metadata",
+    icon: null,
+  },
+
+  // Native tokens related projects
   tokens: {
     label: "Native Tokens",
     description: "Native Tokens",
+    icon: null,
+  },
+
+  // NFT projects
+  nft: {
+    label: "NFT",
+    description: "Non-Fungible Token (NFT)",
     icon: null,
   },
 
@@ -73,7 +95,7 @@ const Showcases = [
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
-    tags: ["tokens"],
+    tags: ["tokens", "nft"],
   },
   {
     title: "Cardano Wall",
@@ -82,7 +104,7 @@ const Showcases = [
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
-    tags: ["featured"],
+    tags: ["featured", "metadata"],
   },
   {
     title: "Meta Data Connector",
@@ -91,7 +113,7 @@ const Showcases = [
     preview: require("./showcase/baiawine.png"),
     website: "https://www.baiawine.com",
     source: "https://github.com/cardano-foundation",
-    tags: ["opensource", "featured"],
+    tags: ["opensource", "featured", "metadata"],
   },
   {
     title: "NFT Maker",
@@ -100,7 +122,7 @@ const Showcases = [
     preview: require("./showcase/nft-maker.png"),
     website: "https://www.nft-maker.io",
     source: null,
-    tags: ["tokens"],
+    tags: ["tokens", "nft"],
   },
   {
     title: "SpaceBudz",
@@ -109,7 +131,7 @@ const Showcases = [
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
-    tags: ["tokens"],
+    tags: ["tokens", "nft"],
   },
   {
     title: "ADAex",
@@ -172,7 +194,7 @@ const Showcases = [
     preview: require("./showcase/adapools.png"),
     website: "https://adapools.org/",
     source: null,
-    tags: ["pooltool"],
+    tags: ["pooltool", "analytics"],
   },
   {
     title: "PoolTool",
@@ -181,7 +203,7 @@ const Showcases = [
     preview: require("./showcase/pooltool.png"),
     website: "https://pooltool.io",
     source: null,
-    tags: ["pooltool"],
+    tags: ["pooltool", "analytics"],
   },
   {
     title: "AdaLite",
@@ -218,6 +240,87 @@ const Showcases = [
     website: "https://yoroi-wallet.com",
     source: "https://github.com/Emurgo/yoroi-frontend",
     tags: ["wallet", "opensource"],
+  },
+  {
+    title: "Crypto Mage",
+    description:
+      "Cardano NFT game.",
+    preview: require("./showcase/cryptomage.png"),
+    website: "https://cryptomage.net",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Cardano Warriors",
+    description:
+      "Cardano NFT game.",
+    preview: require("./showcase/cardanowarriors.png"),
+    website: "https://www.cardanowarriors.io",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Native Tokens",
+    description:
+      "Provides insights into native tokens on Cardano mainnet.",
+    preview: require("./showcase/nativetokens.png"),
+    website: "https://nativetokens.da.iogservices.io",
+    source: null,
+    tags: ["tokens", "analytics"],
+  },
+  {
+    title: "Cardano Cubes",
+    description:
+      "Cardano NFT game.",
+    preview: require("./showcase/cardanocubes.png"),
+    website: "https://cardanocubes.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Cardano Assets",
+    description:
+      "Overview of native tokens on Cardano.",
+    preview: require("./showcase/cardanoassets.png"),
+    website: "https://cardanoassets.com",
+    source: null,
+    tags: ["tokens", "analytics"],
+  },
+  {
+    title: "NFTea",
+    description:
+      "Sometimes all you need is a good cup of NFTea.",
+    preview: require("./showcase/nftea.png"),
+    website: "https://cardanonftea.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Cardano Bits",
+    description:
+      "The first eight bit pixel art on Cardano.",
+    preview: require("./showcase/cardanobits.png"),
+    website: "https://cardanobits.art",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Crypto Knitties",
+    description:
+      "Adorable, cuddly and unique, CryptoKnitties are collectable knitted NFT companions for your Cardano wallet.",
+    preview: require("./showcase/cryptoknitties.png"),
+    website: "https://adaknitties.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Cardano Updates",
+    description:
+      "Follow the development of Cardano in real time without the hassle of GitHub.",
+    preview: require("./showcase/cardanoupdates.png"),
+    website: "https://cardanoupdates.com",
+    source: null,
+    tags: ["tokens"],
   },
 ];
 
