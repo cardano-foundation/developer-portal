@@ -349,6 +349,24 @@ const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "Cardano Blockchain Insights",
+    description:
+      "A Google Data Studio dashboard that visualizes many Cardano on-chain metrics.",
+    preview: require("./showcase/cardano-blockchain-insights.png"),
+    website: "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Xhibit",
+    description:
+      "Create your own NFT or look into recently minted NFTs on Cardano.",
+    preview: require("./showcase/xhibit.png"),
+    website: "https://xhibit.io",
+    source: null,
+    tags: ["featured", "tokens", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
