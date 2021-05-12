@@ -367,6 +367,22 @@ const Showcases = [
     source: null,
     tags: ["featured", "tokens", "nft"],
   },
+  {
+    title: "Token Tool",
+    description: "Keep track of native tokens on testnet and mainnet.",
+    preview: require("./showcase/tokentool.png"),
+    website: "https://tokentool.io",
+    source: null,
+    tags: ["tokens"],
+  },
+  {
+    title: "Transaction Meta Data Browser",
+    description: "Browse and search different types of transaction metadata on Cardano.",
+    preview: require("./showcase/transaction-meta-data-browser.png"),
+    website: "https://bi.stakepoolcentral.com/transactiondata",
+    source: null,
+    tags: ["featured", "metadata"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
