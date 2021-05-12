@@ -25,11 +25,10 @@ export const Tags = {
     icon: <>⭐️</>,
   },
 
-   // Analytics
-   analytics: {
+  // Analytics
+  analytics: {
     label: "Analytics",
-    description:
-      "Tools that provide special insights related to Cardano.",
+    description: "Tools that provide special insights related to Cardano.",
     icon: null,
   },
 
@@ -44,8 +43,7 @@ export const Tags = {
   // Games
   game: {
     label: "Games",
-    description:
-      "Games on the Cardano blockchain.",
+    description: "Games on the Cardano blockchain.",
     icon: null,
   },
 
@@ -251,8 +249,7 @@ const Showcases = [
   },
   {
     title: "Crypto Mage",
-    description:
-      "Cardano NFT game.",
+    description: "Cardano NFT game.",
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
@@ -260,8 +257,7 @@ const Showcases = [
   },
   {
     title: "Cardano Warriors",
-    description:
-      "Cardano NFT game.",
+    description: "Cardano NFT game.",
     preview: require("./showcase/cardanowarriors.png"),
     website: "https://www.cardanowarriors.io",
     source: null,
@@ -269,8 +265,7 @@ const Showcases = [
   },
   {
     title: "Native Tokens",
-    description:
-      "Provides insights into native tokens on Cardano mainnet.",
+    description: "Provides insights into native tokens on Cardano mainnet.",
     preview: require("./showcase/nativetokens.png"),
     website: "https://nativetokens.da.iogservices.io",
     source: null,
@@ -278,8 +273,7 @@ const Showcases = [
   },
   {
     title: "Cardano Cubes",
-    description:
-      "Cardano NFT game.",
+    description: "Cardano NFT game.",
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
@@ -287,8 +281,7 @@ const Showcases = [
   },
   {
     title: "Cardano Assets",
-    description:
-      "Overview of native tokens on Cardano.",
+    description: "Overview of native tokens on Cardano.",
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
@@ -296,8 +289,7 @@ const Showcases = [
   },
   {
     title: "NFTea",
-    description:
-      "Sometimes all you need is a good cup of NFTea.",
+    description: "Sometimes all you need is a good cup of NFTea.",
     preview: require("./showcase/nftea.png"),
     website: "https://cardanonftea.com",
     source: null,
@@ -305,8 +297,7 @@ const Showcases = [
   },
   {
     title: "Cardano Bits",
-    description:
-      "The first eight bit pixel art on Cardano.",
+    description: "The first eight bit pixel art on Cardano.",
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
@@ -332,8 +323,7 @@ const Showcases = [
   },
   {
     title: "Pool Stats",
-    description:
-      "Pool tool and insights visualized by heat maps.",
+    description: "Pool tool and insights visualized by heat maps.",
     preview: require("./showcase/poolstats.png"),
     website: "https://poolstats.org",
     source: null,
@@ -362,7 +352,8 @@ const Showcases = [
     description:
       "A Google Data Studio dashboard that visualizes many Cardano on-chain metrics.",
     preview: require("./showcase/cardano-blockchain-insights.png"),
-    website: "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
+    website:
+      "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
     source: null,
     tags: ["analytics"],
   },
@@ -385,7 +376,8 @@ const Showcases = [
   },
   {
     title: "Transaction Meta Data Browser",
-    description: "Browse and search different types of transaction metadata on Cardano.",
+    description:
+      "Browse and search different types of transaction metadata on Cardano.",
     preview: require("./showcase/transaction-meta-data-browser.png"),
     website: "https://bi.stakepoolcentral.com/transactiondata",
     source: null,
