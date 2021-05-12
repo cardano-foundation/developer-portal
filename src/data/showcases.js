@@ -15,7 +15,7 @@
 import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
 
-// List of available tags. (PLEASE DO NOT ADD NEW TAGS)
+// List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
   // PLEASE DO NOT USE THIS TAG: we choose the features projects (process TBD)
   featured: {
@@ -38,6 +38,14 @@ export const Tags = {
     label: "Block Explorers",
     description:
       "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+    icon: null,
+  },
+
+  // Games
+  game: {
+    label: "Games",
+    description:
+      "Games on the Cardano blockchain.",
     icon: null,
   },
 
@@ -248,7 +256,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["featured", "tokens", "nft", "game"],
   },
   {
     title: "Cardano Warriors",
@@ -257,7 +265,7 @@ const Showcases = [
     preview: require("./showcase/cardanowarriors.png"),
     website: "https://www.cardanowarriors.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["tokens", "nft", "game"],
   },
   {
     title: "Native Tokens",
@@ -275,7 +283,7 @@ const Showcases = [
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["tokens", "nft", "game"],
   },
   {
     title: "Cardano Assets",
