@@ -15,7 +15,7 @@
 import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
 
-// List of available tags. (PLEASE DO NOT ADD NEW TAGS)
+// List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
   // PLEASE DO NOT USE THIS TAG: we choose the features projects (process TBD)
   featured: {
@@ -25,11 +25,10 @@ export const Tags = {
     icon: <>⭐️</>,
   },
 
-   // Analytics
-   analytics: {
+  // Analytics
+  analytics: {
     label: "Analytics",
-    description:
-      "Tools that provide special insights related to Cardano.",
+    description: "Tools that provide special insights related to Cardano.",
     icon: null,
   },
 
@@ -38,6 +37,13 @@ export const Tags = {
     label: "Block Explorers",
     description:
       "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+    icon: null,
+  },
+
+  // Games
+  game: {
+    label: "Games",
+    description: "Games on the Cardano blockchain.",
     icon: null,
   },
 
@@ -243,26 +249,23 @@ const Showcases = [
   },
   {
     title: "Crypto Mage",
-    description:
-      "Cardano NFT game.",
+    description: "Cardano NFT game.",
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["featured", "tokens", "nft", "game"],
   },
   {
     title: "Cardano Warriors",
-    description:
-      "Cardano NFT game.",
+    description: "Cardano NFT game.",
     preview: require("./showcase/cardanowarriors.png"),
     website: "https://www.cardanowarriors.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["tokens", "nft", "game"],
   },
   {
     title: "Native Tokens",
-    description:
-      "Provides insights into native tokens on Cardano mainnet.",
+    description: "Provides insights into native tokens on Cardano mainnet.",
     preview: require("./showcase/nativetokens.png"),
     website: "https://nativetokens.da.iogservices.io",
     source: null,
@@ -270,17 +273,15 @@ const Showcases = [
   },
   {
     title: "Cardano Cubes",
-    description:
-      "Cardano NFT game.",
+    description: "Cardano NFT game.",
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["tokens", "nft", "game"],
   },
   {
     title: "Cardano Assets",
-    description:
-      "Overview of native tokens on Cardano.",
+    description: "Overview of native tokens on Cardano.",
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
@@ -288,8 +289,7 @@ const Showcases = [
   },
   {
     title: "NFTea",
-    description:
-      "Sometimes all you need is a good cup of NFTea.",
+    description: "Sometimes all you need is a good cup of NFTea.",
     preview: require("./showcase/nftea.png"),
     website: "https://cardanonftea.com",
     source: null,
@@ -297,8 +297,7 @@ const Showcases = [
   },
   {
     title: "Cardano Bits",
-    description:
-      "The first eight bit pixel art on Cardano.",
+    description: "The first eight bit pixel art on Cardano.",
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
@@ -320,7 +319,69 @@ const Showcases = [
     preview: require("./showcase/cardanoupdates.png"),
     website: "https://cardanoupdates.com",
     source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Pool Stats",
+    description: "Pool tool and insights visualized by heat maps.",
+    preview: require("./showcase/poolstats.png"),
+    website: "https://poolstats.org",
+    source: null,
+    tags: ["pooltool", "analytics"],
+  },
+  {
+    title: "Ada Tools",
+    description:
+      "Visualizes the nodes on a globe and also provides various tools.",
+    preview: require("./showcase/adatools.png"),
+    website: "https://adatools.io/hologram",
+    source: null,
+    tags: ["pooltool", "analytics", "tokens"],
+  },
+  {
+    title: "See Ada",
+    description:
+      "This project tracks the controlled stake of the top pool operators and monitors decentralization.",
+    preview: require("./showcase/seeada.png"),
+    website: "https://seeada.org",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Cardano Blockchain Insights",
+    description:
+      "A Google Data Studio dashboard that visualizes many Cardano on-chain metrics.",
+    preview: require("./showcase/cardano-blockchain-insights.png"),
+    website:
+      "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Xhibit",
+    description:
+      "Create your own NFT or look into recently minted NFTs on Cardano.",
+    preview: require("./showcase/xhibit.png"),
+    website: "https://xhibit.io",
+    source: null,
+    tags: ["featured", "tokens", "nft"],
+  },
+  {
+    title: "Token Tool",
+    description: "Keep track of native tokens on testnet and mainnet.",
+    preview: require("./showcase/tokentool.png"),
+    website: "https://tokentool.io",
+    source: null,
     tags: ["tokens"],
+  },
+  {
+    title: "Transaction Meta Data Browser",
+    description:
+      "Browse and search different types of transaction metadata on Cardano.",
+    preview: require("./showcase/transaction-meta-data-browser.png"),
+    website: "https://bi.stakepoolcentral.com/transactiondata",
+    source: null,
+    tags: ["featured", "metadata"],
   },
 ];
 
