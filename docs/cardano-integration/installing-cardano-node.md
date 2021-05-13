@@ -8,7 +8,7 @@ description: This guide shows how to build and install the cardano-node and card
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this guide, we will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, straight from the source-code.
+In this guide, we will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code.
 
 :::note
 If you want to avoid compiling the binaries yourself, the **latest** version of the `cardano-node` and `cardano-cli` may be downloaded from the [cardano-node GitHub Releases](https://github.com/input-output-hk/cardano-node/releases) page.
@@ -32,7 +32,7 @@ To set up the components, you will need:
 
 ### Linux
 
-#### Installation dependencies
+#### Installing Operating System dependencies
 
 To download the source code and build it, you need the following packages and tools on your Linux system:
 
@@ -113,7 +113,7 @@ cabal-install version 3.4.0.0
 compiled using version 3.4.0.0 of the Cabal library
 ```
 
-***please confirm that the versions you have installed matches the recommended versions above, if not check if you have missed any of the steps mentioned above.***
+***please confirm that the versions you have installed matches the recommended versions above, if not check if you have missed any of the previous steps.***
 
 #### Downloading & Compiling
 
@@ -123,7 +123,7 @@ Let's create a working directory to store the source-code and builds for the com
 mkdir -p ~/cardano-src
 cd ~/cardano-src
 ```
-Next we will download, compile and install one of the dependencies that Cardano components require called `libsodium`
+Next we will download, compile and install `libsodium`.
 
 ```bash
 git clone https://github.com/input-output-hk/libsodium
@@ -135,14 +135,14 @@ make
 sudo make install
 ```
 
-Then we will add the following environment variables to your shell profile. E.G `.zshrc` or `.bashrc` depending on what shell application you are using. Add the following to the bottom of your shell profile/config file.
+Then we will add the following environment variables to your shell profile. E.G `~/.zshrc` or `~/.bashrc` depending on what shell application you are using. Add the following to the bottom of your shell profile/config file. This is so that the compiler can be aware that `libsodium` is installed on your system.
 
 ```bash
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
-Once saved, we will then reload your shell profile to load the new variables. We can do that by typing `source ~/.bashrc` or `source ~/.zshrc`.
+Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source ~/.bashrc` or `source ~/.zshrc` (***depending on the shell application that you use***).
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
 
@@ -157,26 +157,25 @@ git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
-
-:::important
-You can check the latest available version / tag by visiting the `cardano-node` [Github Release](https://github.com/input-output-hk/cardano-node/releases) page. At the time of writing this, the current version is `1.27.0`.
-:::
-
 Switch the repository to the latest tagged commit: 
 
 ```bash
 git checkout tags/1.27.0
 ```
 
+:::important
+You can check the latest available version / tag by visiting the `cardano-node` [Github Release](https://github.com/input-output-hk/cardano-node/releases) page. At the time of writing this, the current version is `1.27.0`.
+:::
+
 ##### Configuring the build options
 
-We explicitly use the GHC version that we installed earlier. This avoids defaulting to a system version of GHC that might be newer or older than the one you have installed.
+We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
 cabal configure --with-compiler=ghc-8.10.2
 ```
 
-Update the local project file to use the VRF library that you installed earlier.
+Update the local project file to use `libsodium` that you installed earlier.
 
 ```bash
 echo "package cardano-crypto-praos" >>  cabal.project.local
@@ -196,13 +195,13 @@ cp -p "$(./scripts/bin-path.sh cardano-node)" ~/.local/bin/
 cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
 ```
 
-We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`~/.zshrc` or `~/.bashrc` depending on the shell application you use.)
+We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`~/.zshrc` or `~/.bashrc` ***depending on the shell application you use***)
 
 ```bash
 export PATH="~/.local/bin/:$PATH"
 ```
 
-Once saved, reload your shell profile by typing `source ~/.zshrc` or `source ~/.bashrc` depending on the shell application you use.
+Once saved, reload your shell profile by typing `source ~/.zshrc` or `source ~/.bashrc` (***depending on the shell application you use***).
 
 Check the version that has been installed:
 ```
