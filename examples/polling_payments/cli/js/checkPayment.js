@@ -18,12 +18,15 @@ const rawUtxoTable = cmd.runSync([
 
 const utxoTableRows = rawUtxoTable.data.trim().split('\n');
 let totalLovelaceRecv = 0;
+let isPaymentComplete = false;
 
 for(let x = 2; x < utxoTableRows.length; x++) {
     const cells = utxoTableRows[x].split(" ").filter(i => i);
     totalLovelaceRecv += parseInt(cells[2]);
 }
 
-console.log(`Total ADA Received: ${totalLovelaceRecv / LOVELACE_PER_ADA}`);
-console.log(`Expected ADA Payment: ${TOTAL_EXPECTED_ADA}`);
-console.log(`Payment Complete: ${(totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA ? "✅":"❌")}`);
+isPaymentComplete = totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA;
+
+console.log(`Total Received: ${totalLovelaceRecv / LOVELACE_PER_ADA} ADA`);
+console.log(`Expected Payment: ${TOTAL_EXPECTED_ADA} ADA`);
+console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);

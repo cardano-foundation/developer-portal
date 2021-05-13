@@ -20,6 +20,7 @@ var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
 
 var utxoTableRows = rawUtxoTable.Trim().Split("\n");
 var totalLovelaceRecv = 0L;
+var isPaymentComplete = false;
 
 for(var x = 2; x < utxoTableRows.Length; x++)
 {
@@ -27,6 +28,8 @@ for(var x = 2; x < utxoTableRows.Length; x++)
     totalLovelaceRecv +=  long.Parse(cells[2]);
 }
 
+isPaymentComplete = totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA;
+
 Console.WriteLine($"Total ADA Received: {totalLovelaceRecv / LOVELACE_PER_ADA}");
 Console.WriteLine($"Expected ADA Payment: {TOTAL_EXPECTED_ADA}");
-Console.WriteLine($"Payment Complete: {(totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA ? "✅":"❌")}");
+Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");
