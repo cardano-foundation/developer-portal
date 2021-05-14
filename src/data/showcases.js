@@ -47,6 +47,13 @@ export const Tags = {
     icon: null,
   },
 
+  // Gateways
+  gateway: {
+    label: "Gateways",
+    description: "Payment Gateway Providers.",
+    icon: null,
+  },
+
   // For open-source sites, a link to the source code is required
   opensource: {
     label: "Open-Source",
@@ -400,6 +407,24 @@ const Showcases = [
     website: "https://dbooster.io/calendar",
     source: null,
     tags: ["featured", "analytics"],
+  },
+  {
+    title: "NOWPayments",
+    description:
+      "Payment gateway provider to accept ada payments and ada donations.",
+    preview: require("./showcase/nowpayments.png"),
+    website: "https://nowpayments.io",
+    source: null,
+    tags: ["featured", "gateway"],
+  },
+  {
+    title: "Coti adaPay",
+    description:
+      "Payment gateway provider to accept ada payments and ada donations.",
+    preview: require("./showcase/cotiadapay.png"),
+    website: "https://adapay.coti.io",
+    source: null,
+    tags: ["gateway"],
   },
 ];
 
