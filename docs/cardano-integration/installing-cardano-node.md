@@ -11,9 +11,13 @@ import TabItem from '@theme/TabItem';
 In this guide, we will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code.
 
 :::note
-If you want to avoid compiling the binaries yourself, the **latest** version of the `cardano-node` and `cardano-cli` may be downloaded from the [cardano-node GitHub Releases](https://github.com/input-output-hk/cardano-node/releases) page.
+If you want to avoid compiling the binaries yourself, You can download the latest pre-built binaries of `cardano-node` and `cardano-cli` from the links below. 
 
-The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** to take advantage of the associated performance advantages.
+- [Linux](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-linux/latest-finished)
+- [MacOS](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-macos/latest-finished)
+- [Windows](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-win64/latest-finished)
+
+The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
 
 ### Prerequisites
