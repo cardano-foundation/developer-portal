@@ -383,6 +383,24 @@ const Showcases = [
     source: null,
     tags: ["featured", "metadata"],
   },
+  {
+    title: "PoolTool Mobile",
+    description:
+      "Explore Cardano, track your rewards and get notified to take action on certain events.",
+    preview: require("./showcase/pooltoolmobile.png"),
+    website: "https://pooltool.io/mobile",
+    source: null,
+    tags: ["featured", "pooltool", "analytics"],
+  },
+  {
+    title: "Rewards Calendar",
+    description:
+      "Shows the epochs and rewards in a calendar.",
+    preview: require("./showcase/rewardscalendar.png"),
+    website: "https://dbooster.io/calendar",
+    source: null,
+    tags: ["featured", "analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
