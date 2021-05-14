@@ -40,10 +40,10 @@ module.exports = {
 
     // Announcement Bar
     announcementBar: {
-      id: "support_us", // Any value that will identify this message.
+      id: "support_se", // Any value that will identify this message.
       content:
         //`If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
-        `<strong>Support the Cardano Stack Exchange proposal <a target="_blank" rel="noopener noreferrer" href="https://area51.stackexchange.com/proposals/125174/cardano?referrer=YWI2YzZhYjZmZTVjODFjOTllMDk5YTU2MDk3YjM1NjE2NTRjZjk1NzUzOGVjNjg5ZWEzNTA5NjQ3YjQyNTg4Ne5A16BO-qeH4pXFAL-53fFirIzQZfSEYKOnpbAIMnZD0">by clicking here</a></strong>`,
+        `<strong>Join the Cardano Stack Exchange Beta <a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">by clicking here</a></strong>`,
       backgroundColor: "#FD7575", // Defaults to `#fff`.
       textColor: "#ffffff", // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.
@@ -137,7 +137,7 @@ module.exports = {
             },
             {
               label: "Stack Exchange",
-              href: "https://area51.stackexchange.com/proposals/125174/cardano",
+              href: "https://cardano.stackexchange.com",
             },
             {
               label: "Slack",
