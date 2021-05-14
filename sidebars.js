@@ -3,7 +3,6 @@ module.exports = {
     "Getting Started": [
       "getting-started/overview",
       "getting-started/blockfrost",
-      "getting-started/cardano-serialization-lib",
       "getting-started/cardanocli-js",
       "getting-started/dandelion-apis",
       "getting-started/ogmios",
