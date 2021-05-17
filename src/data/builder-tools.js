@@ -36,7 +36,7 @@ const tools = [
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
-    gettingstarted: "/docs/getting-started/cardano-serialization-lib",
+    gettingstarted: null,
   },
   {
     title: "Dandelion APIs",
@@ -52,12 +52,14 @@ const tools = [
       "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
     preview: require("./builder-tools/plutus-playground.png"),
     website: "https://alpha.marlowe.iohkdev.io/#/",
+    gettingstarted: null,
   },
   {
     title: "Ogmios",
     description: "Ogmios offers a JSON-WSP interface through WebSockets.",
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ktorz.github.io/cardano-ogmios/",
+    gettingstarted: "/docs/getting-started/ogmios",
   },
   {
     title: "Plutus Playground",
@@ -65,18 +67,7 @@ const tools = [
       "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
     preview: require("./builder-tools/plutus-playground.png"),
     website: "https://playground.plutus.iohkdev.io",
-  },
-  {
-    title: "Token Tool",
-    description: "Keep track of native tokens on testnet and mainnet.",
-    preview: require("./builder-tools/tokentool.png"),
-    website: "https://tokentool.io",
-  },
-  {
-    title: "Transaction Meta Data Browser",
-    description: "Keep track of native tokens on testnet and mainnet.",
-    preview: require("./builder-tools/transaction-meta-data-browser.png"),
-    website: "https://bi.stakepoolcentral.com/transactiondata",
+    gettingstarted: null,
   },
 ];
 
