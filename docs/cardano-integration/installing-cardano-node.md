@@ -1,8 +1,9 @@
 ---
 id: installing-cardano-node
 title: Compiling and Installing cardano-node and cardano-cli from source
-sidebar_label: Installing cardano-node and cardano-cli from source
+sidebar_label: Installing Cardano Node and CLI
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
+image: ./img/og-developer-portal.png
 --- 
 
 import Tabs from '@theme/Tabs';
@@ -395,5 +396,4 @@ cardano-node --version
 Congratulations, you have successfully installed Cardano components into your MacOS system! 🎉🎉🎉
 
 
-
-### Windows
+## Windows
