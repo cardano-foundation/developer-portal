@@ -172,7 +172,7 @@ Output example (a transaction id):
 
 Useful links:
 
-- [Link][[gimbalabs-rosetta-api] to Gimbalabs's endpoints information and official documentation
+- [Link][gimbalabs-rosetta-api] to Gimbalabs's endpoints information and official documentation
 - [Link][rosetta-official-doc] to project's official documentation
 [gimbalabs-rosetta-api]: https://gimbalabs.com/dandelionapis/rosetta-api
 [rosetta-official-doc]: https://github.com/input-output-hk/cardano-rosetta#documentation
@@ -227,7 +227,7 @@ Output example:
 
 Useful links:
 
-- [Link][[gimbalabs-ogmios-api] to Gimbalabs's endpoints information and official documentation
+- [Link][gimbalabs-ogmios-api] to Gimbalabs's endpoints information and official documentation
 - [Link][ogmios-official-doc] to project's official documentation
 [gimbalabs-ogmios-api]: https://gimbalabs.com/dandelionapis/ogmios-api
 [ogmios-official-doc]: https://ktorz.github.io/cardano-ogmios/
@@ -311,6 +311,6 @@ curl -s "https://postgrest-api.mainnet.dandelion.link/tx_metadata?json->>Network
 
 ## Deploy your own Dandelion
 
-If you already have Docker installed, you are almost done for using Dandelion in your local development environment. Please refer to [the official documentation][local-dandelion-deploy] and please, do not hesitate to ask for support in our dedicated [Discord channel][discord-dandelion], we know operating systems, networks and cloud providers might differ a lot and give random problems!
+If you already have Docker installed, you are almost done for using Dandelion in your local development environment. Please refer to [the official documentation][local-dandelion-deploy] to do so and do not hesitate to ask for support in our dedicated [Discord channel][discord-dandelion], we know operating systems, networks and cloud providers might differ a lot and give random problems!
 [discord-dandelion]: https://discord.gg/qDc3f9R7Ab
 [local-dandelion-deploy]: https://gitlab.com/gimbalabs/dandelion/kustomize-dandelion#local-deployment
