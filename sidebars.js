@@ -11,7 +11,17 @@ module.exports = {
       "transaction-metadata/overview",
       "transaction-metadata/how-to-create-a-metadata-transaction",
     ],
-    "Cardano Integration": ["cardano-integration/overview"],
+    "Cardano Integration": [
+      "cardano-integration/overview",
+      "cardano-integration/installing-cardano-node",
+      {
+        type: "category",
+        label: "Cardano CLI",
+        items: [
+          "cardano-integration/cli/listening-for-payments"
+        ]
+      }
+    ],
     "Native Tokens": [
       "native-tokens/overview",
       "native-tokens/submit-entry-to-cardano-token-registry",

@@ -21,6 +21,11 @@ module.exports = {
     // Docs Sidebar
     hideableSidebar: true,
 
+    // Additional Language Syntax Highlighting
+    prism: {
+      additionalLanguages: ['csharp'],
+    },
+    
     // Dark / Light Mode
     colorMode: {
       disableSwitch: false,
