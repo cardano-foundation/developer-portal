@@ -9,7 +9,7 @@ image: ./img/og-developer-portal.png
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this guide, we will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code.
+In this guide, we will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. This will enable you to interact with the **Cardano** blockchain including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting / burning **native tokens**, creating a **stake pool**, executing **smart-contracts** and so much more!
 
 :::note
 If you want to avoid compiling the binaries yourself, You can download the latest pre-built binaries of `cardano-node` and `cardano-cli` from the links below. 
@@ -36,6 +36,8 @@ To set up the components, you will need:
 * [Windows](#windows)
 
 ## Linux
+
+In this section, we will walk you through the process of downloading, compiling and installing `cardano-node` and `cardano-cli` in your **Linux** based operating system. 
 
 #### Installing Operating System dependencies
 
@@ -220,6 +222,8 @@ Congratulations, you have successfully installed Cardano components into your Li
 
 ## MacOS
 
+In this section, we will walk you through the process of downloading, compiling and installing `cardano-node` and `cardano-cli` in your **MacOS** based operating system. 
+
 :::note
 Please not that this guide only supports [Intel based Apple MacOS](https://en.wikipedia.org/wiki/Mac_transition_to_Intel_processors) hardware, [Apple Silicon (M1)](https://en.wikipedia.org/wiki/Apple_M1) hardware guide is still in-progress.
 :::
@@ -397,3 +401,7 @@ Congratulations, you have successfully installed Cardano components into your Ma
 
 
 ## Windows
+
+:::important
+Currently, the **Windows** installation guide is still in-progress. In the meantime we recommend using [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/) to get a Linux environment on-top of Windows. Once you have that installed you can use the [Linux](#linux) guide to install and run `cardano-node`.
+:::
