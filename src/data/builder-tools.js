@@ -41,7 +41,7 @@ const tools = [
   {
     title: "Dandelion APIs",
     description:
-      "Dandelion provides various endpoints to explore, sign and submit Cardano transactions.",
+      "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
     preview: require("./builder-tools/dandelion-apis.png"),
     website: "https://gimbalabs.com/dandelionapis",
     gettingstarted: "/docs/getting-started/dandelion-apis",
