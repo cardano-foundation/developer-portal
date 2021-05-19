@@ -14,7 +14,7 @@ This guide assumes you have installed `cardano-node` and `cardano-cli` into your
 :::
 
 :::important
-This guide does not explain how to run a block-producing `cardano-node` or running a **Cardano Stake Pool**. For more information regarding that topic, please visit the [Stake Pool Operation](/docs/stake-pool-operation/overview) section.
+This guide does not cover the topic of running a block-producing `cardano-node` or running a **Cardano Stake Pool**. For more information regarding that topic, please visit the [Stake Pool Operation](/docs/stake-pool-operation/overview) section.
 :::
 
 ### Configuration Files
@@ -144,6 +144,19 @@ We will focus on six key command-line parameters for running a node:
 **`--socket-path`** : This expects the path to the `unix socket` or `named pipe` path that the `cardano-node` will use for [IPC (Inter-Process-Communication)](https://en.wikipedia.org/wiki/Inter-process_communication).
 
 > The `cardano-node` uses **IPC (Inter-Process-Communication)** for communicating with some of the other **Cardano** components like `cardano-cli`, `cardano-wallet` and `cardano-db-sync`. In **Linux** and **MacOS** it uses something called [unix sockets](https://en.wikipedia.org/wiki/Unix_domain_socket) and [Named Pipes](https://docs.microsoft.com/en-us/windows/win32/ipc/named-pipes) in **Windows**.
+> 
+> Here is an example `--socket-path` argument for **Linux**:
+```
+--socket-path ~/cardano/db/node.socket
+```
+> As you can see, the argument points to a file, since **unix sockets** are represented as a file. In this case we put the socket file in the `db` directory that we have just created before.
+> 
+> In **Windows**, the `--socket-path` argument would look something like this:
+```
+--socket-path "\\\\.\\pipe\\cardano-node-testnet"
+```
+> As you notice its almost like a network `URI` or a network `Path` than a file, this is a key difference that you will have to be aware depending on your operating system. You can replace the string `cardano-node-testnet` in the argument to whatever you like, this example path in particular is used in [Daedalus Testnet Wallet](https://daedaluswallet.io) uses.
+>
 
 **`--host-addr`** : 
 
