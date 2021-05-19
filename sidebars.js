@@ -13,7 +13,9 @@ module.exports = {
     ],
     "Cardano Integration": [
       "cardano-integration/overview",
+      "cardano-integration/cardano-components",
       "cardano-integration/installing-cardano-node",
+      "cardano-integration/running-cardano",
       {
         type: "category",
         label: "Cardano CLI",

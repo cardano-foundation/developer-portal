@@ -1,13 +1,12 @@
 ---
 id: installing-cardano-node
 title: Compiling and Installing cardano-node and cardano-cli from source
-sidebar_label: Installing Cardano Node and CLI
+sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
 image: ./img/og-developer-portal.png
 --- 
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+### Overview 
 
 In this guide, we will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. This will enable you to interact with the **Cardano** blockchain including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting / burning **native tokens**, creating a **stake pool**, executing **smart-contracts** and so much more!
 
@@ -403,5 +402,5 @@ Congratulations, you have successfully installed Cardano components into your Ma
 ## Windows
 
 :::important
-Currently, the **Windows** installation guide is still in-progress. In the meantime we recommend using [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/) to get a Linux environment on-top of Windows. Once you have that installed you can use the [Linux](#linux) guide to install and run `cardano-node`.
+Currently, the **Windows** installation guide is still in-progress. In the meantime we recommend using [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/) to get a Linux environment on-top of Windows. Once you have that installed you can use the [Linux](#linux) guide to install and run `cardano-node` within **WSL**.
 :::
