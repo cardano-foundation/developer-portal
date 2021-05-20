@@ -18,7 +18,7 @@ module.exports = {
       "cardano-integration/running-cardano",
       {
         type: "category",
-        label: "Cardano CLI",
+        label: "Use cases",
         items: [
           "cardano-integration/cli/listening-for-payments"
         ]

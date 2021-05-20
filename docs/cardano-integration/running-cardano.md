@@ -257,7 +257,7 @@ Finally, we can now test querying the blockchain tip of our `cardano-node`:
     "slotNo": 27149964
 }
 
-What you are seeing is the tip data of your node, In this case it means that you are synced up to `blockNo: 2598870` and `slotNo: 27149964`.
+What you are seeing is the local tip data of your node, In this case it means that you are synced up to `blockNo: 2598870` and `slotNo: 27149964`.
 
 To know whether you are fully synced or not you can check the **Cardano Blockchain Explorer** of the relevant network:
 
