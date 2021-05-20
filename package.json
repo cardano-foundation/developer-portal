@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.0",
-    "@docusaurus/plugin-content-docs": "^2.0.0-beta.0",
-    "@docusaurus/plugin-ideal-image": "^2.0.0-beta.0",
+    "@docusaurus/plugin-content-docs": "2.0.0-beta.0",
+    "@docusaurus/plugin-ideal-image": "2.0.0-beta.0",
     "@docusaurus/preset-classic": "2.0.0-beta.0",
-    "@docusaurus/theme-search-algolia": "^2.0.0-beta.0",
+    "@docusaurus/theme-search-algolia": "2.0.0-beta.0",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
     "react": "^17.0.2",
@@ -33,9 +33,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engineStrict": true,
-  "engines": {
-    "node": ">=12.13.0"
   }
 }
