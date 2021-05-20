@@ -64,7 +64,7 @@ To run `cardano-node` you enter something like this into the terminal:
    --database-path path/to/db \
    --socket-path path/to/db/node.socket \
    --host-addr x.x.x.x \
-   --port 3001 \
+   --port 3001 
    --config path/to/mainnet-config.json
 ```
 
@@ -123,7 +123,7 @@ We will focus on six key command-line parameters for running a node:
 --topology ~/cardano/topology.json
 ```
 
-**`--database-path`** : This expects the path to a directory where we will store the actual blockchain data like **blocks**, **transactions**, **metadata** and other types of data that people has stored in the **Cardano** blockchain. We explore on how we can query those kinds of data in the [cardano-db-sync](/cardano-db-sync) section.
+**`--database-path`** : This expects the path to a directory where we will store the actual blockchain data like **blocks**, **transactions**, **metadata** and other types of data that people has stored in the **Cardano** blockchain. We explore on how we can query those kinds of data in the cardano-db-sync section.
 
 > For example, let us say that we decided that all things **Cardano** will be the path `~/cardano`. Then we could create a database directory like so `mkdir -p ~/cardano/db`.
 > The directory structure would then be something like this:
