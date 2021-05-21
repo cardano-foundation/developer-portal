@@ -36,6 +36,9 @@ You can obtain the current **Cardano** blockchain network configuration files he
 
 
 #### Mainnet / Production
+
+**NetworkMagic**: `764824073`
+
 ```
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-config.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-byron-genesis.json
@@ -44,14 +47,25 @@ https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finishe
 ```
 
 #### Testnet / Sandbox
+
+**NetworkMagic**: `1097911063`
+
 ```
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-config.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-topology.json
 ```
+
+Now maybe you are asking what is the difference between `mainnet` and `testnet` and why are there two networks? To put simply, **Cardano** is an open-source blockchain and anyone is free to spin-up their own networks based on the **Cardano** software stack. The `mainnet` network is the very first one that was established way back in 2017 during the start of the **Byron** era. In a way, everyone partcipating in the network has agreed or made a consensus that this is where all the real value of **Cardano** lives.
+
+But because of that, testing the network features and capabilities can be expensive and will consume real value. So **IOG** has spun-up a sandbox version of the network, where instead of using real `ADA` tokens for transactions you will instead use the `tADA` or **Test ADA** that lives in the **sandbox** version and we call this the `testnet`. Alternatively, you can also spin-up your own custom **Cardano** network but that is outside the scope of this guide.
+
 :::note
-This section will be updated as new **Cardano** networks come online with their respective configuration files.
+
+Each network has its own `config` file, `genesis` file(s), `topology` file and its own unique identifier called the **Network Magic**.
+
+This section will be updated as new **Cardano** networks come online with their respective configuration files and **Network Magic**.
 :::
 
 ### Running the node
@@ -187,12 +201,12 @@ Here is a realistic example for running `cardano-node`:
 
 ```bash
 cardano-node run \
---config testnet-config.json \
+--config /home/user/cardano/testnet-config.json \
 --database-path /home/user/cardano/db/ \
 --socket-path /home/user/cardano/db/node.socket \
 --host-addr 127.0.0.1 \
---port 9999 \
---topology testnet-topology.json
+--port 1337 \
+--topology /home/user/cardano/testnet-topology.json
 ```
 
 If you have everything set correctly, you should see something like this:
@@ -238,7 +252,7 @@ But before we can do that, `cardano-cli` and other **Cardano** software componen
 
 So we will set that in `~/.bashrc` or `~/.zshrc` depending on which shell application that you use. In Windows you can follow this guide: [How to Set Environment Variable in Windows](https://phoenixnap.com/kb/windows-set-environment-variable).
 
-Add this line to the bottom of your shell profile:
+Add this line to the bottom of your shell profile (**MacOS** and **Linux**):
 ```
 export CARDANO_NODE_SOCKET_PATH="/home/user/cardano/db/node.socket"
 ```
@@ -247,7 +261,7 @@ Once saved, reload your shell/terminal for changes to take effect.
 
 Finally, we can now test querying the blockchain tip of our `cardano-node`:
 
-- Run `cardano-node` in a seperate terminal for it to start syncing.
+- Run `cardano-node` in a seperate terminal for it to start syncing (if not already).
 - Open another terminal and run the following command `cardano-cli query tip --testnet-magic 1097911063`.
 > You should see something like this:
 > ```json
@@ -256,6 +270,10 @@ Finally, we can now test querying the blockchain tip of our `cardano-node`:
     "headerHash": "e5be38153db4dc639134969e6449f37e105e0c5228f828f76a885968b4423aaf",
     "slotNo": 27149964
 }
+
+:::note
+We include `--testnet-magic <NetworkMagic>` in the parameter for `cardano-cli query tip` because we are using a `testnet` node. If you intend to query `mainnet` network instead. Please use the `--mainnet` parameter instead and make sure your node is connected to the `mainnet` network.
+:::
 
 What you are seeing is the local tip data of your node, In this case it means that you are synced up to `blockNo: 2598870` and `slotNo: 27149964`.
 
