@@ -59,7 +59,7 @@ https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finishe
 
 Now maybe you are asking what is the difference between `mainnet` and `testnet` and why are there two networks? To put simply, **Cardano** is an open-source blockchain and anyone is free to spin-up their own networks based on the **Cardano** software stack. The `mainnet` network is the very first one that was established way back in 2017 during the start of the **Byron** era. In a way, everyone partcipating in the network has agreed or made a consensus that this is where all the real value of **Cardano** lives.
 
-But because of that, testing the network features and capabilities can be expensive and will consume real value. So **IOG** has spun-up a sandbox version of the network, where instead of using real `ADA` tokens for transactions you will instead use the `tADA` or **Test ADA** that lives in the **sandbox** version and we call this the `testnet`. Alternatively, you can also spin-up your own custom **Cardano** network but that is outside the scope of this guide.
+But because of that, testing the network features and capabilities can be expensive and will consume real value. So [InputOutputGlobal](https://iohk.io) has spun-up a sandbox version of the network, where instead of using real `ADA` tokens for transactions you will instead use the `tADA` or **Test ADA** that lives in the **sandbox** version and we call this the `testnet`. Alternatively, you can also spin-up your own custom **Cardano** network but that is outside the scope of this guide.
 
 :::note
 
