@@ -142,7 +142,7 @@ We will focus on six key command-line parameters for running a node:
 
 **`--database-path`** : This expects the path to a directory where we will store the actual blockchain data like **blocks**, **transactions**, **metadata** and other types of data that people has stored in the **Cardano** blockchain. We explore on how we can query those kinds of data in the cardano-db-sync section. ***@TODO: link to the cardano-db-sync section.***
 
-> For example, let us say that we decided that all things **Cardano** will be the path `/home/user/cardano/`. Then we could create a database directory like so `mkdir -p /home/user/cardano/db`.
+> For example, let us say that we decided that all files required by `cardano-node` will be in the path `/home/user/cardano/`. Then we could create a database directory like so `mkdir -p /home/user/cardano/db`.
 > The directory structure would then be something like this:
 ```
 /home/user/cardano/
