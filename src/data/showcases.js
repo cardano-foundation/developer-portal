@@ -434,6 +434,15 @@ const Showcases = [
     source: null,
     tags: ["gateway"],
   },
+  {
+    title: "Gimbalabs",
+    description:
+      "Gimbalabs is a collaborative community and space where dApps and OpenSource tools are develop in the \"Playground\" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!",
+    preview: require("./showcase/gimbalabs.png"),
+    website: "https://gimbalabs.com",
+    source: "https://gitlab.com/gimbalabs",
+    tags: ["educational", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
