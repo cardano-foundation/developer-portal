@@ -40,6 +40,14 @@ export const Tags = {
     icon: null,
   },
 
+  // Educational
+  explorer: {
+    label: "Educational",
+    description:
+      "Educational projects that will help you onboarding to Cardano.",
+    icon: null,
+  },
+ 
   // Games
   game: {
     label: "Games",
