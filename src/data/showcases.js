@@ -41,7 +41,7 @@ export const Tags = {
   },
 
   // Educational
-  explorer: {
+  educational: {
     label: "Educational",
     description:
       "Educational projects that will help you onboarding to Cardano.",
