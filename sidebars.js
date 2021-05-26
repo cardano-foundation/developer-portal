@@ -81,37 +81,5 @@ module.exports = {
       "portal-contribute",
       "portal-style-guide",
     ],
-    Unused: [
-      {
-        type: "category",
-        label: "Plutus",
-        items: [
-          "unused/smart-contracts-and-building-dapps/plutus/plutus-overview",
-        ],
-      },
-      {
-        type: "category",
-        label: "Community",
-        items: ["unused/community-ambassador-program"],
-      },
-      {
-        type: "category",
-        label: "Resources",
-        items: ["unused/resources/developer-portal-updates"],
-      },
-      {
-        type: "category",
-        label: "Adrestia - SDKs and APIs",
-        items: ["unused/adrestia-SDKs-and-APIs/adrestia-cardano-node"],
-      },
-      {
-        type: "category",
-        label: "Learn Cardano",
-        items: [
-          "unused/learn-cardano/cardano-node",
-          "unused/learn-cardano/token-locking",
-        ],
-      },
-    ],
   },
 };
