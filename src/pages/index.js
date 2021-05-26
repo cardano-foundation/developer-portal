@@ -19,6 +19,14 @@ const features = [
     ),
   },
   {
+    title: "Integrate Cardano",
+    imageUrl: "img/card-payment-integration.svg",
+    targetUrl: "docs/cardano-integration/overview",
+    description: (
+      <>How to integrate Cardano into existing websites and services.</>
+    ),
+  },
+  {
     title: "Build with Transaction Metadata",
     imageUrl: "img/card-transaction-metadata.svg",
     targetUrl: "docs/transaction-metadata/overview",
@@ -27,14 +35,6 @@ const features = [
         Learn what transaction metadata is, how to add it to a transaction, how
         to view the metadata and what potential use cases are.
       </>
-    ),
-  },
-  {
-    title: "Integrate Cardano",
-    imageUrl: "img/card-payment-integration.svg",
-    targetUrl: "docs/cardano-integration/overview",
-    description: (
-      <>How to integrate Cardano into existing websites and services.</>
     ),
   },
   {

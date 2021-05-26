@@ -7,10 +7,6 @@ module.exports = {
       "getting-started/dandelion-apis",
       "getting-started/ogmios",
     ],
-    "Build with Transaction Metadata": [
-      "transaction-metadata/overview",
-      "transaction-metadata/how-to-create-a-metadata-transaction",
-    ],
     "Integrate Cardano": [
       "cardano-integration/overview",
       "cardano-integration/cardano-components",
@@ -24,10 +20,15 @@ module.exports = {
         ]
       }
     ],
+    "Build with Transaction Metadata": [
+      "transaction-metadata/overview",
+      "transaction-metadata/how-to-create-a-metadata-transaction",
+    ],
     "Discover Native Tokens": [
       "native-tokens/overview",
       "native-tokens/submit-entry-to-cardano-token-registry",
     ],
+    "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
     "Operate a Stake Pool": [
       "stake-pool-operation/overview",
 
@@ -75,8 +76,7 @@ module.exports = {
         ],
       },
     ],
-    "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
-    Contribution: [
+    "Contribute to the Developer Portal": [
       "portal-contributors",
       "portal-contribute",
       "portal-style-guide",
