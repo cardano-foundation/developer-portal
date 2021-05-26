@@ -441,7 +441,7 @@ const Showcases = [
     preview: require("./showcase/gimbalabs.png"),
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
-    tags: ["educational", "opensource"],
+    tags: ["featured", "educational", "opensource"],
   },
 ];
 
