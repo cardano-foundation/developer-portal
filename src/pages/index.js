@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 
 const features = [
   {
-    title: "Getting Started",
+    title: "Get Started",
     imageUrl: "img/card-getting-started.svg",
     targetUrl: "docs/getting-started/overview",
     description: (
@@ -19,7 +19,7 @@ const features = [
     ),
   },
   {
-    title: "Transaction Metadata",
+    title: "Build with Transaction Metadata",
     imageUrl: "img/card-transaction-metadata.svg",
     targetUrl: "docs/transaction-metadata/overview",
     description: (
@@ -30,7 +30,7 @@ const features = [
     ),
   },
   {
-    title: "Cardano Integration",
+    title: "Integrate Cardano",
     imageUrl: "img/card-payment-integration.svg",
     targetUrl: "docs/cardano-integration/overview",
     description: (
@@ -38,7 +38,7 @@ const features = [
     ),
   },
   {
-    title: "Native Tokens",
+    title: "Discover Native Tokens",
     imageUrl: "img/card-native-tokens.svg",
     targetUrl: "docs/native-tokens/overview",
     description: (
@@ -49,7 +49,7 @@ const features = [
     ),
   },
   {
-    title: "Project Funding",
+    title: "Fund a Project",
     imageUrl: "img/card-funding.svg",
     targetUrl: "docs/funding/overview",
     description: (
@@ -57,7 +57,7 @@ const features = [
     ),
   },
   {
-    title: "Stake Pool Operation",
+    title: "Operate a Stake Pool",
     imageUrl: "img/card-stake-pool-course.svg",
     targetUrl: "docs/stake-pool-operation/overview",
     description: (

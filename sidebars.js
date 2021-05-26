@@ -1,17 +1,17 @@
 module.exports = {
   someSidebar: {
-    "Getting Started": [
+    "Get Started": [
       "getting-started/overview",
       "getting-started/blockfrost",
       "getting-started/cardanocli-js",
       "getting-started/dandelion-apis",
       "getting-started/ogmios",
     ],
-    "Transaction Metadata": [
+    "Build with Transaction Metadata": [
       "transaction-metadata/overview",
       "transaction-metadata/how-to-create-a-metadata-transaction",
     ],
-    "Cardano Integration": [
+    "Integrate Cardano": [
       "cardano-integration/overview",
       "cardano-integration/cardano-components",
       "cardano-integration/installing-cardano-node",
@@ -24,11 +24,11 @@ module.exports = {
         ]
       }
     ],
-    "Native Tokens": [
+    "Discover Native Tokens": [
       "native-tokens/overview",
       "native-tokens/submit-entry-to-cardano-token-registry",
     ],
-    "Stake Pool Operation": [
+    "Operate a Stake Pool": [
       "stake-pool-operation/overview",
 
       {
@@ -75,7 +75,7 @@ module.exports = {
         ],
       },
     ],
-    "Project Funding": ["funding/overview", "funding/dcfund", "funding/cfund"],
+    "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
     Contribution: [
       "portal-contributors",
       "portal-contribute",
