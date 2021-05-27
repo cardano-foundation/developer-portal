@@ -9,7 +9,7 @@ function PortalHero({ title, description, cta, filename }) {
   const { siteConfig = {} } = context;
   const EDIT_URL = `${siteConfig.customFields.repository}/edit/${siteConfig.customFields.branch}/src/data/${filename}`;
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+    <header className={clsx("hero hero--primary", styles.heroBanner)} style={{backgroundImage: "url('/img/hero-header-zoom.png')"}}>
       <div className="container">
         <h1 className="hero__title">{title}</h1>
         <p className="hero__subtitle">{description}</p>

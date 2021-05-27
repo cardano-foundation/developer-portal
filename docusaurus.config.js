@@ -48,7 +48,7 @@ module.exports = {
       id: "support_se", // Any value that will identify this message.
       content:
         //`If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
-        `<strong>Join the Cardano Stack Exchange Beta <a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">by clicking here</a></strong>`,
+        `<strong>Cardano Stack Exchange is now open to the public. ⭐️<a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">Join us!</a></strong>`,
       backgroundColor: "#FD7575", // Defaults to `#fff`.
       textColor: "#ffffff", // Defaults to `#000`.
       isCloseable: true, // Defaults to `true`.

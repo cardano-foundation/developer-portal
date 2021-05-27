@@ -18,7 +18,7 @@ Talk to others about [Marlowe on the Cardano Forum](https://forum.cardano.org/c/
 
 ## Getting started with Plutus 
 Plutus is the smart contract platform of the Cardano blockchain.
-Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutorial/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Plutus Playground](https://playground.plutus.iohkdev.io).
+Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutorial/index.html) if you want to learn Plutus from the beginning or dive straight into the [Plutus Playground](https://playground.plutus.iohkdev.io).
 
 Talk to others about [Plutus on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-plutus/148) or if you prefer Telegram we welcome you to the [Cardano Developers Telegram Group](https://t.me/CardanoDevelopersOfficial).
 
