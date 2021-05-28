@@ -76,8 +76,8 @@ Next, we generate our **payment key-pair** using `cardano-cli`:
 
 ```bash
 cardano-cli address key-gen \
---verification-key-file /home/user/cardano/keys/payment.vkey \
---signing-key-file /home/user/cardano/keys/payment.skey
+--verification-key-file /home/user/cardano/keys/payment1.vkey \
+--signing-key-file /home/user/cardano/keys/payment1.skey
 ```
 
 `cardano-cli address key-gen` : generates a **payment key-pair**.
@@ -90,8 +90,8 @@ You should now have two files in your `keys` directory like so:
 
 ```bash
 /home/user/cardano/keys/
-├── payment.skey
-└── payment.vkey
+├── payment1.skey
+└── payment1.vkey
 
 0 directories, 2 files
 ```
@@ -123,8 +123,8 @@ Since we now have our **payment key-pair**, the next step would be to generate a
 
 ```bash
 cardano-cli address build \
---payment-verification-key-file /home/user/cardano/keys/payment.vkey \
---out-file /home/user/cardano/keys/payment.addr \
+--payment-verification-key-file /home/user/cardano/keys/payment1.vkey \
+--out-file /home/user/cardano/keys/payment1.addr \
 --testnet-magic 1097911063
 ```
 
@@ -136,30 +136,31 @@ cardano-cli address build \
 
 `--testnet-magic` : The **NetworkMagic** of the network that where you want to use the wallet address.
 
-You should now have `payment.vkey`, `payment.skey` and `payment.addr` in your `keys` directory. It should look something like this:
+You should now have `payment1.vkey`, `payment1.skey` and `payment1.addr` in your `keys` directory. It should look something like this:
 
 ```bash
 /home/user/cardano/keys/
-├── payment.addr
-├── payment.skey
-└── payment.vkey
+├── payment1.addr
+├── payment1.skey
+└── payment1.vkey
 
 0 directories, 3 files
 ```
 
-The `payment.addr` file contains the derived **wallet address** from your `vkey` file. It should look something like this:
+The `payment1.addr` file contains the derived **wallet address** from your `vkey` file. It should look something like this:
 
 ```
 addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
 
 :::note
- If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. If you want to learn more about the different **Cardano** blockchain networks, please read the [Running cardano-node](/docs/cardano-integration/running-cardano#mainnet--production) guide.
-
  You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use-cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
 
   - `mainnet` addresses are **prefixed** with the string value `addr1`. 
   - `testnet` addresses are **prefixed** with the string value `addr_test1`. 
+
+
+ If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. You can learn more about the different **Cardano** blockchain networks here: [Running cardano-node](/docs/cardano-integration/running-cardano#mainnet--production)
 :::
 
 #### Querying the wallet **UTXO** with `cardano-cli`
@@ -170,7 +171,7 @@ Now that we have a **wallet address**, we can then query the **UTXO** of the add
 cardano-cli query utxo \
 --mary-era \
 --testnet-magic 1097911063 \
---address $(cat /home/user/cardano/keys/payment.addr)
+--address $(cat /home/user/cardano/keys/payment1.addr)
 ```
 
 `cardano-cli query utxo` : Queries the wallet address **UTXO**.
@@ -179,7 +180,7 @@ cardano-cli query utxo \
 
 `--testnet-magic 1097911063` : Specifies that we want to query the `testnet` **Cardano** network.
 
-`--address $(cat /home/user/cardano/keys/payment.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `/home/user/cardano/keys/payment.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
+`--address $(cat /home/user/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `/home/user/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
 ```
 --address addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
@@ -187,9 +188,293 @@ cardano-cli query utxo \
 You should see something like this:
 
 ```
-    TxHash                                 TxIx        Amount
------------------------------------------------------------------
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
 ```
 
 
-Now you might find it odd that there is not much information in the output, but that is totally normal as there is no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
+Now you might find it odd that there is not much information in the result given the command, but that is totally normal as there are no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
+
+Our next step is to request some `tADA` from the **Cardano Testnet Faucet**. **@TODO**
+
+Once you requested some `tADA` from the **Cardano Testnet Faucet** we can then run the query again and you should see something like this:
+
+```
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85     0        1000000000 lovelace
+```
+
+This result tells us that there is one **UTXO (unspent transaction output)** with the amount of 1,000,000,000 `lovelaces` in our specific **wallet address**, that means our wallet has a balance of `1,000 tADA`. 
+
+The result also specifies that the **UTXO** **transaction id** (`TxHash` / `TxId`) is `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85` with the **transaction index** of `0`.
+
+:::note
+In the `mainnet` or `testnet`, the `lovelace` is the unit used to represent `ADA` in **transactions** and **UTXO**. 
+
+Where `1 ADA` is equal to `1,000,000 lovelace`, so moving forward we will be using `lovelace` instead of `ADA` / `tADA`.
+
+You can also use the `TxHash` to view the complete transaction via the **Cardano Blockchain Explorer** for the relevant network. You can check the specific transaction for the example **UTXO** here: [f3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85](https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85)
+
+To learn more about **UTXO (unspent transaction output)** and how transactions work for the **UTXO Model**, we recommend watching this [lecture](https://youtu.be/EoO76YCSTLo?list=PLJ3w5xyG4JWmBVIigNBytJhvSSfZZzfTm&t=1854) by [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at [InputOutputGlobal](https://iohk.io).
+:::
+
+### Creating simple transactions
+
+To have a clearer understanding of how sending transaction works using `cardano-cli`, first lets create another wallet like so:
+
+**Generate payment key-pair**
+```bash
+cardano-cli address key-gen \
+--verification-key-file /home/user/cardano/keys/payment2.vkey \
+--signing-key-file /home/user/cardano/keys/payment2.skey 
+```
+
+**Generate wallet address**
+```bash
+cardano-cli address build \
+--payment-verification-key-file /home/user/cardano/keys/payment2.vkey \
+--out-file /home/user/cardano/keys/payment2.addr \
+--testnet-magic 1097911063
+```
+
+Once complete you should have the following directory structure:
+
+```bash
+/home/user/cardano/keys
+├── payment1.addr
+├── payment1.skey
+├── payment1.vkey
+├── payment2.addr
+├── payment2.skey
+└── payment2.vkey
+
+0 directories, 6 files
+```
+
+Querying the **UTXO** for the second wallet `payment2.addr` should give you a familiar result:
+
+```bash
+cardano-cli query utxo \
+--mary-era \
+--testnet-magic 1097911063 \
+--address $(cat /home/user/cardano/keys/payment2.addr)
+```
+
+**UTXO Result**
+```
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+```
+
+Again, this is to be expected as the `payment2.addr` wallet address and keys has just recently been generated. So we expect that no one has sent any `tADA` to this wallet yet.
+
+In this example, we now have two wallets. We can call them `payment1` and `payment2`. Now remember that we requested some `tADA` from the faucet for `payment1` wallet, and thats how we have the following:
+
+`payment1` **wallet**: `1,000 ADA`
+
+```
+UTXO
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85     0        1000000000 lovelace
+```
+
+`payment2` **wallet**: `0 ADA`
+```
+UTXO
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+```
+
+Now let's say we want to send `250 ADA` or `250,000,000 lovelace` to `payment2` **wallet**, how can we achieve that?
+
+We start by building a **draft** transaction like so:
+
+**Query Protocol Parameters**
+```bash
+cardano-cli query protocol-parameters \
+  --testnet-magic 1097911063 \
+  --mary-era \
+  --out-file /home/user/cardano/protocol.json
+```
+This will produce a **JSON** file containing the latest on-chain protocol parameters.
+```json
+{
+    "poolDeposit": 500000000,
+    "protocolVersion": {
+        "minor": 0,
+        "major": 4
+    },
+    "minUTxOValue": 1000000,
+    "decentralisationParam": 0,
+    "maxTxSize": 16384,
+    "minPoolCost": 340000000,
+    "minFeeA": 44,
+    "maxBlockBodySize": 65536,
+    "minFeeB": 155381,
+    "eMax": 18,
+    "extraEntropy": {
+        "tag": "NeutralNonce"
+    },
+    "maxBlockHeaderSize": 1100,
+    "keyDeposit": 2000000,
+    "nOpt": 500,
+    "rho": 3.0e-3,
+    "tau": 0.2,
+    "a0": 0.3
+}
+```
+
+
+**Create draft transaction**
+```bash
+cardano-cli transaction build-raw \
+--tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
+--tx-out $(cat /home/user/cardano/keys/payment2.addr)+0 \
+--tx-out $(cat /home/user/cardano/keys/payment1.addr)+0 \
+--mary-era \
+--fee 0 \
+--out-file /home/user/cardano/tx.draft
+```
+
+`cardano-cli transaction build-raw` : This tells `cardano-cli` to build a raw transaction.
+
+`--tx-in` : This specifices the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have different `TxHash` and `TxIdx`.
+
+`--tx-out` : This specifies the target **wallet address**, **assets** and **quantity** to be sent to. You can add as many **UTXO** outputs as you want as long as the total **UTXO** input can satisfy the **assets** and **quantity** specified.
+
+`--fee` : This specifies the fee amount of the transaction in `lovelace`.
+
+`--out-file` : This is the path to the transaction file that will be generated.
+
+In this case, we are just building a draft transaction to calculate how much fee would the transaction need. We can do that by executing the following command: 
+
+```bash
+cardano-cli transaction calculate-min-fee \
+--tx-body-file /home/user/cardano/tx.draft \
+--tx-in-count 1 \
+--tx-out-count 2 \
+--witness-count 1 \
+--testnet-magic 1097911063 \
+--protocol-params-file /home/user/cardano/protocol.json
+```
+
+You should see something like this for the output: 
+
+```bash
+174169 Lovelace
+```
+
+You will notice that we use the `protocol.json` we queried awhile ago to calculate the transaction fee:
+```
+--protocol-params-file /home/user/cardano/protocol.json
+```
+
+That is because the transaction fee calculation results changes depending on the on-chain protocol parameters.
+
+The `--witness-count 1` basically tells `cardano-cli` that there will be only `1` **signing key** required for this transaction to be valid. Since the **UTXO** input involved in this transaction will only be coming from `payment1`, then that means we indeed only need `1` key to sign the transaction.
+
+```bash
+--witness-count 1
+```
+
+We can then finally build the real transaction like so:
+
+```bash
+cardano-cli transaction build-raw \
+--tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
+--tx-out $(cat /home/user/cardano/keys/payment2.addr)+250000000 \
+--tx-out $(cat /home/user/cardano/keys/payment1.addr)+749825831 \
+--mary-era \
+--fee 174169 \
+--out-file /home/user/cardano/tx.draft
+```
+
+To recap, We want to send `250,000,000 lovelace` from `payment1` wallet to `payment2` wallet. Our `payment1` wallet had the following **UTXO**:
+
+```
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85     0        1000000000 lovelace
+```
+
+So we will use the `TxHash` `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85` and `TxId` `0` as our `--tx-input`. 
+
+```bash
+--tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0
+```
+
+We then tell `cardano-cli` that we the destination of the `250,000,000 lovelace` is the **wallet address** of `payment2`.
+
+```bash
+--tx-out $(cat /home/user/cardano/keys/payment2.addr)+250000000
+```
+
+Now, we still have `750000000 lovelace` as the change amount, so we will simply send it back to ourselves like so:
+
+```bash
+--tx-out $(cat /home/user/cardano/keys/payment1.addr)+749825831
+```
+
+Now an important question you might ask here is that, why is the amount `749825831 lovelace`? Well remember that we calculated the fee to be `174169 lovelace` and someone has to pay the transaction fee. So we calculate that `750000000 - 174169 = 749825831` and so the total change would be `749825831 lovelace`.
+
+We then specify the transaction fee like so:
+
+```
+--fee 174169
+```
+
+And then we specify where we will save the transaction file:
+
+```
+--out-file /home/user/cardano/tx.draft
+```
+
+Now that we have the transaction file, we must sign the transaction in-order to prove that we are the owner of the input **UTXO** that was used.
+
+```bash
+cardano-cli transaction sign \
+--tx-body-file /home/user/cardano/tx.draft \
+--signing-key-file /home/user/cardano/keys/payment1.skey \
+--testnet-magic 1097911063 \
+--out-file /home/user/cardano/tx.signed
+```
+
+`--signing-key-file /home/user/cardano/keys/payment1.skey` : This argument tells the `cardano-cli` that we will use `payment1.skey` to sign the transaction.
+
+Finally, we submit the transaction to the blockchain!
+
+```bash
+cardano-cli transaction submit \
+--tx-file /home/user/cardano/tx.signed \
+--testnet-magic 1097911063 
+```
+:::important
+If you have waited too long to sign and submit the transaction, the fees might've changed during that time and therefore the transaction might get rejected by the network. To solve this, you simply have to **recalculate the fees, rebuild the transaction, sign it and submit it**!
+:::
+
+Checking the balances of both wallets `payment1` and `payment2` you should see the following:
+
+```bash
+# payment1 wallet UTXO
+❯ cardano-cli query utxo --mary-era --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment1.addr)
+
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     1        749825303 lovelace
+
+# payment2 wallet UTXO
+❯ cardano-cli query utxo --mary-era --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment2.addr)
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     0        250000000 lovelace
+```
+
+Congratulations, You have created and sent your first **Cardano** transaction! 🎉🎉🎉
+### Cardano Wallet
+### Cardano Testnet Faucet
+**@TODO**
+
+
+
