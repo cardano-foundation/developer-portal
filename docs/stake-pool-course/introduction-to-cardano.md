@@ -142,25 +142,21 @@ All these functionalities make Ouroboros the best proof of stake ledger protocol
 
 1. **Time** is divided into epochs and slots and begins at Genesis. At most one block is produced in every slot. Only the slot leader can sign a block for a particular slot.
 2. **Register:** The first thing a user needs to do to participate in the protocol is registering to:
-3. the network, to synchronize with the ledger;
-4. global clock, that indicates the current slot;
-5. a global random oracle that produces random values (v) and delivers them to the user.
-6. **Staking procedure**
-
-3.1 At the beginning of every epoch, the online stakeholders fetch (from the blockchain) the **stake distribution** from the last block of 2 epochs ago. For example, if the current epoch is epoch 100, the stake distribution used is the distribution as it was in the last block of epoch 98.
-
-3.2 **Random Oracle**: Is a hashing function that takes the random values “v” (included in each block by the slot leader for this purpose) from the first ⅔ slots in previous epoch and hash them together and use it as the random seed to select the slot leaders.
-
-3.3 Stakeholders evaluate with their **secret key** the **Verifiable Random Function (VRF)** at every slot. If the output value (v) is below a certain threshold, the party becomes slot leader for that block.
-
-1. **Certificate:** The **VRF** produces two outputs: **a random value (v)** and a **proof (π)** that the slot leader will include in the block he produces to certify that he is the legitimate slot leader for that particular slot.
-2. Slot leader performs the following duties
-3. Collects the transactions to be included in his block.
-4. Includes in his block the random value (v) and proof (π) obtained from the VRF output.
-5. Before broadcasting the block, the slot leader generates a new secret key **(Key-evolving signature)**. The public key remains the same, but the secret key is updated in every step and the old key is erased.
-6. It is impossible to forge old signatures with new keys. And it is also impossible to derive previous keys from new ones.
-7. Finally, the slot leader broadcast the new block to the network.
-8. The **rewards** obtained by the slot leaders are calculated at the end of the epoch. Rewards come from transaction fees and funds from the ADA reserve.
+    1. a network to synchronize with the ledger
+    2. a global clock that indicates the current slot
+    3. a global random oracle that produces random values \(v\) and delivers them to the user
+3. **Staking procedure**
+    1. At the beginning of every epoch, the online stakeholders fetch \(from the blockchain\) the **stake distribution** from the last block of 2 epochs ago. For example, if the current epoch is epoch 100, the stake distribution used is the distribution as it was in the last block of epoch 98.
+    2. **Random Oracle**: Is a hashing function that takes the random values “v” \(included in each block by the slot leader for this purpose\) from the first ⅔ slots in previous epoch and hash them together and use it as the random seed to select the slot leaders.
+    3. Stakeholders evaluate with their **secret key** the **Verifiable Random Function \(VRF\)** at every slot. If the output value \(v\) is below a certain threshold, the party becomes slot leader for that block.
+        1. **Certificate:** The **VRF** produces two outputs: **a random value \(v\)** and a **proof \(π\)** that the slot leader will include in the block he produces to certify that he is the legitimate slot leader for that particular slot.
+        2. Slot leader performs the following duties
+        3. Collects the transactions to be included in his block.
+        4. Includes in his block the random value \(v\) and proof \(π\) obtained from the VRF output.
+        5. Before broadcasting the block, the slot leader generates a new secret key **\(Key-evolving signature\)**. The public key remains the same, but the secret key is updated in every step and the old key is erased.
+        6. It is impossible to forge old signatures with new keys. And it is also impossible to derive previous keys from new ones.
+        7. Finally, the slot leader broadcast the new block to the network.
+        8. The **rewards** obtained by the slot leaders are calculated at the end of the epoch. Rewards come from transaction fees and funds from the ADA reserve.
 
 **What happens in the case of a fork in the chain?**
 
