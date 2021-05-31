@@ -50,7 +50,7 @@ Always download the wallets from official sources. There are many fake wallets, 
 
 ### Creating a wallet
 
-As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some programmability which is important when we are talking about **Cardano** integrations for different kinds of use-cases.
+As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use-cases.
 
 :::important
 Please make sure your `cardano-node` is synchronizing and connected to the `testnet` network before proceeding.
