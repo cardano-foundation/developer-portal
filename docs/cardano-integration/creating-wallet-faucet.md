@@ -22,7 +22,7 @@ So you installed your `cardano-node` and got it running, you probably even tried
 
 First we have to look at the applications we can use to create wallets.
 
-- [Daedalus](https://daedaluswallet.io/) : **Daedalus Wallet** is the official **Cardano** full-node wallet, which is a [GUI (Graphical User Interface)](https://en.wikipedia.org/wiki/Graphical_user_interface) application for the Desktop (**Linux**, **MacOS**, **Windows**). That means that users will get to use a nice (UI) user-interface, buttons and layout to interact with the **Cardano** blockchain.
+- [Daedalus](https://daedaluswallet.io/) : **Daedalus Wallet** is the official **Cardano** full-node wallet, which is a [GUI (Graphical User Interface)](https://en.wikipedia.org/wiki/Graphical_user_interface) application for the Desktop (**Linux**, **MacOS**, **Windows**). That means that users will get to use a nice UI (User Interface), buttons and layout to interact with the **Cardano** blockchain.
 
     A full-node wallet basically means that it has to synchronize and download the blockchain first before users are able to send transactions and interact with the wallet.
     
@@ -30,7 +30,7 @@ First we have to look at the applications we can use to create wallets.
 
 - [Yoroi](https://yoroi-wallet.com/#/) : **Yoroi Wallet** is the official **Cardano** light-wallet, It is available as a **mobile application** and as a **browser extension**. 
   
-  A light-wallet means that users will not be forced to download the entire blockchain, Instead **Yoroi** hosts a backend server and downloads the blockchain data for the user without the user exposing sensitive data(**Private Keys**) to the server and ultimately maintaining security. This achieves a faster experience for the user due to the fact the user will not have to wait for minutes to hours before being able to use the wallet.
+  A light-wallet means that users will not be forced to download the entire blockchain, Instead **Yoroi** has a backend server and downloads the blockchain data for the user without the user exposing sensitive data(**Private Keys**) to the server and ultimately maintaining security. This achieves a faster experience for the user due to the fact the user will not have to wait for hours before being able to use the wallet.
 
   It is open-source mainly being developed by [Emurgo](https://emurgo.io), A company based in [Japan](https://en.wikipedia.org/wiki/Japan) which focuses on Business and Enterprise adoption of the **Cardano** blockchain. It is also one of the three foundational entities of the **Cardano** project.
 
@@ -52,7 +52,7 @@ Always download the wallets from official sources. There are many fake wallets, 
 
 As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some programmability which is important when we are talking about **Cardano** integrations for different kinds of use-cases.
 
-:::note
+:::important
 Please make sure your `cardano-node` is synchronizing and connected to the `testnet` network before proceeding.
 :::
 
@@ -96,10 +96,11 @@ You should now have two files in your `keys` directory like so:
 0 directories, 2 files
 ```
 
-Lets try to understand what are these keys used for in a very high-level overview that is relevant to our topic:
+Lets try to understand what are these keys are used for in a very high-level overview that is relevant to our topic:
 
 - `.vkey` / **Public Verification Key** : Is used to derive a **Cardano** wallet address, a wallet address is basically the hash string value that you share to other users to provide them a way to send `ADA` / `tADA` or other assets in the **Cardano** blockchain into your wallet.
-    ***The verification key file should look something like this***:
+
+    **The verification key file should look something like this**:
     ```json
     {
         "type": "PaymentVerificationKeyShelley_ed25519",
@@ -108,9 +109,9 @@ Lets try to understand what are these keys used for in a very high-level overvie
     }
     ```
 
-- `.skey` / **Private Signing Key** : Is used to sign / approve transactions for your wallet. As you can imagine, it is very important to not expose this file and must be kept secure.
+- `.skey` / **Private Signing Key** : Is used to sign / approve transactions for your wallet. As you can imagine, it is very important to not expose this file to the public and must be kept secure.
 
-    ***The signing key file should look something like this***:
+    **The signing key file should look something like this**:
     ```json
     {
         "type": "PaymentSigningKeyShelley_ed25519",
@@ -160,7 +161,7 @@ addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
   - `testnet` addresses are **prefixed** with the string value `addr_test1`. 
 
 
- If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. You can learn more about the different **Cardano** blockchain networks here: [Running cardano-node](/docs/cardano-integration/running-cardano#mainnet--production)
+ If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. You can learn more about the different **Cardano** blockchain networks [here](/docs/cardano-integration/running-cardano#mainnet--production).
 :::
 
 #### Querying the wallet **UTXO** with `cardano-cli`
@@ -193,7 +194,7 @@ You should see something like this:
 ```
 
 
-Now you might find it odd that there is not much information in the result given the command, but that is totally normal as there are no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
+Now you might find it odd that there is not much information in the result given by the command, but that is totally normal as there are no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
 
 Our next step is to request some `tADA` from the **Cardano Testnet Faucet**. **@TODO**
 
@@ -221,7 +222,7 @@ To learn more about **UTXO (unspent transaction output)** and how transactions w
 
 ### Creating simple transactions
 
-To have a clearer understanding of how sending transaction works using `cardano-cli`, first lets create another wallet like so:
+To have a clearer understanding of how sending transactions work using `cardano-cli`, first lets create another wallet like so:
 
 **Generate payment key-pair**
 ```bash
@@ -271,7 +272,7 @@ Again, this is to be expected as the `payment2.addr` wallet address and keys has
 
 In this example, we now have two wallets. We can call them `payment1` and `payment2`. Now remember that we requested some `tADA` from the faucet for `payment1` wallet, and thats how we have the following:
 
-`payment1` **wallet**: `1,000 ADA`
+`payment1` **wallet**: `1,000,000,000 lovelace`
 
 ```
 UTXO
@@ -280,16 +281,16 @@ UTXO
 cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85     0        1000000000 lovelace
 ```
 
-`payment2` **wallet**: `0 ADA`
+`payment2` **wallet**: `0 lovelace`
 ```
 UTXO
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 ```
 
-Now let's say we want to send `250 ADA` or `250,000,000 lovelace` to `payment2` **wallet**, how can we achieve that?
+Now let's say we want to send `250,000,000 lovelace` to `payment2` **wallet**, how can we achieve that?
 
-We start by building a **draft** transaction like so:
+We start by storing the current on-chain protocol parameters to a **JSON** file:
 
 **Query Protocol Parameters**
 ```bash
@@ -298,7 +299,7 @@ cardano-cli query protocol-parameters \
   --mary-era \
   --out-file /home/user/cardano/protocol.json
 ```
-This will produce a **JSON** file containing the latest on-chain protocol parameters.
+This will produce a **JSON** file that looks something like this:
 ```json
 {
     "poolDeposit": 500000000,
@@ -328,6 +329,9 @@ This will produce a **JSON** file containing the latest on-chain protocol parame
 
 
 **Create draft transaction**
+
+Next, we create a draft transaction like so:
+
 ```bash
 cardano-cli transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
@@ -340,15 +344,15 @@ cardano-cli transaction build-raw \
 
 `cardano-cli transaction build-raw` : This tells `cardano-cli` to build a raw transaction.
 
-`--tx-in` : This specifices the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have different `TxHash` and `TxIdx`.
+`--tx-in` : This specifices the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have a unique `TxHash` and `TxIdx` within all your inputs.
 
-`--tx-out` : This specifies the target **wallet address**, **assets** and **quantity** to be sent to. You can add as many **UTXO** outputs as you want as long as the total **UTXO** input can satisfy the **assets** and **quantity** specified.
+`--tx-out` : This specifies the target **wallet address**, **assets** and **quantity** to be sent to. You can add as many **UTXO** outputs as you want as long as the total **UTXO** input can satisfy the **assets** and **quantity** specified by the output.
 
 `--fee` : This specifies the fee amount of the transaction in `lovelace`.
 
 `--out-file` : This is the path to the transaction file that will be generated.
 
-In this case, we are just building a draft transaction to calculate how much fee would the transaction need. We can do that by executing the following command: 
+In this case, we are just built a draft transaction to calculate how much fee would the transaction need. We can do that by executing the following command: 
 
 ```bash
 cardano-cli transaction calculate-min-fee \
@@ -373,11 +377,7 @@ You will notice that we use the `protocol.json` we queried awhile ago to calcula
 
 That is because the transaction fee calculation results changes depending on the on-chain protocol parameters.
 
-The `--witness-count 1` basically tells `cardano-cli` that there will be only `1` **signing key** required for this transaction to be valid. Since the **UTXO** input involved in this transaction will only be coming from `payment1`, then that means we indeed only need `1` key to sign the transaction.
-
-```bash
---witness-count 1
-```
+The `--witness-count 1` basically tells `cardano-cli` that there will be only `1` **signing key** required for this transaction to be valid. Since the **UTXO** input involved in this transaction will only be coming from `payment1` wallet, so that means we indeed only need `1` key to sign the transaction.
 
 We can then finally build the real transaction like so:
 
@@ -417,7 +417,7 @@ Now, we still have `750000000 lovelace` as the change amount, so we will simply 
 --tx-out $(cat /home/user/cardano/keys/payment1.addr)+749825831
 ```
 
-Now an important question you might ask here is that, why is the amount `749825831 lovelace`? Well remember that we calculated the fee to be `174169 lovelace` and someone has to pay the transaction fee. So we calculate that `750000000 - 174169 = 749825831` and so the total change would be `749825831 lovelace`.
+Now an important question you might ask here is that, why is the amount `749825831 lovelace`? Well remember that we calculated the fee to be `174169 lovelace` and someone has to shoulder the transaction fee, so we decide that `payment` should pay for the fee with the change `lovelace` amount. So we calculate that `750000000 - 174169 = 749825831` and so the total change would be `749825831 lovelace`.
 
 We then specify the transaction fee like so:
 
@@ -454,7 +454,7 @@ cardano-cli transaction submit \
 If you have waited too long to sign and submit the transaction, the fees might've changed during that time and therefore the transaction might get rejected by the network. To solve this, you simply have to **recalculate the fees, rebuild the transaction, sign it and submit it**!
 :::
 
-Checking the balances of both wallets `payment1` and `payment2` you should see the following:
+Checking the balances of both wallets `payment1` and `payment2`:
 
 ```bash
 # payment1 wallet UTXO
@@ -470,6 +470,8 @@ Checking the balances of both wallets `payment1` and `payment2` you should see t
 --------------------------------------------------------------------------------------
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     0        250000000 lovelace
 ```
+
+As we can, `payment2` now has a **UTXO** with the amount of `250,000,000 lovelace` with the change returned to `payment1` and has generated a new **UTXO** with the amount of `749,825,303 lovelace` as-well.
 
 Congratulations, You have created and sent your first **Cardano** transaction! 🎉🎉🎉
 ### Cardano Wallet
