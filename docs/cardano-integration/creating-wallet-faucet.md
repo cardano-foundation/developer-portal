@@ -13,7 +13,9 @@ In this guide, we will show you how to create a **Cardano** wallet, receive some
 :::note
 This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/cardano-integration/installing-cardano-node) guide for instructions on how to do that.
 
-It is also recommended to read [Running cardano-node](/docs/cardano-integration/running-cardano) guide before proceeding.
+You must also connect your `cardano-node` to the `testnet` network and make sure it is fully synchronized.
+
+If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/cardano-integration/running-cardano) guide before proceeding.
 :::
 
 ### Cardano Wallets 
@@ -220,7 +222,7 @@ You can also use the `TxHash` to view the complete transaction via the **Cardano
 To learn more about **UTXO (unspent transaction output)** and how transactions work for the **UTXO Model**, we recommend watching this [lecture](https://youtu.be/EoO76YCSTLo?list=PLJ3w5xyG4JWmBVIigNBytJhvSSfZZzfTm&t=1854) by [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at [InputOutputGlobal](https://iohk.io).
 :::
 
-### Creating simple transactions
+#### Creating simple transactions
 
 To have a clearer understanding of how sending transactions work using `cardano-cli`, first lets create another wallet like so:
 
@@ -471,10 +473,12 @@ Checking the balances of both wallets `payment1` and `payment2`:
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     0        250000000 lovelace
 ```
 
-As we can, `payment2` now has a **UTXO** with the amount of `250,000,000 lovelace` with the change returned to `payment1` and has generated a new **UTXO** with the amount of `749,825,303 lovelace` as-well.
+As we can see, `payment2` now has a **UTXO** with the amount of `250,000,000 lovelace` with the change amount returned to `payment1` and has generated a new **UTXO** with the amount of `749,825,303 lovelace` as-well.
 
-Congratulations, You have created and sent your first **Cardano** transaction! 🎉🎉🎉
-### Cardano Wallet
+Congratulations, You have created and sent your first **Cardano** transaction using `cardano-cli`! 🎉🎉🎉
+
+#### Creating a wallet with `cardano-cli`
+
 ### Cardano Testnet Faucet
 **@TODO**
 

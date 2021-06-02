@@ -16,6 +16,7 @@ module.exports = {
       "cardano-integration/cardano-components",
       "cardano-integration/installing-cardano-node",
       "cardano-integration/running-cardano",
+      "cardano-integration/installing-cardano-wallet",
       "cardano-integration/creating-wallet-faucet",
       {
         type: "category",
