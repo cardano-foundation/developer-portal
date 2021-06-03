@@ -54,15 +54,18 @@ Always download the wallets from official sources. There are many fake wallets, 
 
 As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use-cases.
 
-:::important
-Please make sure your `cardano-node` is synchronizing and connected to the `testnet` network before proceeding.
-:::
 
 #### Creating a wallet with `cardano-cli`
 
 :::note
 In this section, We will use the path `/home/user/cardano` to store all the `cardano-cli` related files as an example, please replace it with the directory you have choosen to store the files.
+:::
 
+:::important
+Please make sure your `cardano-node` is connected and synchronized to the `testnet` network before proceeding.
+:::
+
+:::warning
 In a production environment, it might not be a good idea to store wallets / keys in a public server unless you know what you are doing.
 :::
 
@@ -477,8 +480,255 @@ As we can see, `payment2` now has a **UTXO** with the amount of `250,000,000 lov
 
 Congratulations, You have created and sent your first **Cardano** transaction using `cardano-cli`! 🎉🎉🎉
 
-#### Creating a wallet with `cardano-cli`
+#### Creating a wallet with `cardano-wallet`
 
+:::note
+This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](/docs/cardano-integration/installing-cardano-wallet) guide for instructions on how to do that.
+
+We will use the path `/home/user/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have choosen to store the files.
+:::
+
+:::important
+Please make sure your `cardano-node` is connected and synchronized to the `testnet` network before proceeding.
+:::
+
+:::warning
+In a production environment, it might not be a good idea to store wallets / keys in a public server unless you know what you are doing.
+:::
+
+First, lets create a directory to store all our `wallets` like so:
+
+```bash
+mkdir -p /home/user/cardano/wallets
+```
+
+Make sure we are inside the `wallets` directory `cd /home/user/cardano/wallets`.
+
+**Starting cardano-wallet as an REST API server**
+
+We will be focusing on the [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) that `cardano-wallet` provides. In-order to interact with the API, we must first start the server.
+
+Full documentation of the `cardano-wallet` [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) can be found here: [https://input-output-hk.github.io/cardano-wallet/api/edge](https://input-output-hk.github.io/cardano-wallet/api/edge)
+
+```bash
+cardano-wallet serve \
+--port 1338 \
+--testnet /home/user/cardano/testnet-byron-genesis.json \
+--database /home/user/cardano/wallets/db \
+--node-socket $CARDANO_NODE_SOCKET_PATH
+```
+
+`cardano-wallet serve` : Runs `cardano-wallet` as a web server that provides a [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer).
+
+`--port` : Specifies the port that the web server will listen to for any requests.
+
+> You can choose whatever `port` number you like, but it is recommended to use `port` numbers `1024` and above. See [Registered Port](https://www.sciencedirect.com/topics/computer-science/registered-port) for more information.
+
+`--testnet` : Specifies the **Byron** genesis file path for the `testnet` network.
+
+> This should match the genesis file that the `cardano-node` you are connected is using as-well. If you meant to connect to `mainnet` then use the `--mainnet` flag and the `mainnet` **Byron** genesis file instead.
+
+`--database` : Specifies the path where the wallet database will be saved.
+
+> It is important to note that the wallet creation function requires a passphrase so all the walelt data will be encrypted by the passphrase.
+
+`--node-socket` : Specifies the `cardano-node` socket path that will be used by the `cardano-wallet` to communicate with the node.
+
+> The `cardano-node` uses **IPC (Inter-Process-Communication)** for communicating with the other **Cardano** components like `cardano-cli`, `cardano-wallet` and `cardano-db-sync`. In **Linux** and **MacOS** it uses something called [unix sockets](https://en.wikipedia.org/wiki/Unix_domain_socket) and [Named Pipes](https://docs.microsoft.com/en-us/windows/win32/ipc/named-pipes) in **Windows**.
+> 
+> Here is an example `--socket-path` argument for **Linux**:
+```
+--socket-path /home/user/cardano/db/node.socket
+```
+> As you can see the argument points to a file since **unix sockets** are represented as files (like everything else in **Linux**). In this case we put the socket file in the `db` directory that we have just created before.
+> 
+> In **Windows**, the `--socket-path` argument would look something like this:
+```
+--socket-path "\\\\.\\pipe\\cardano-node-testnet"
+```
+> As you notice its almost like a network `URI` or a network `Path` than a file, this is a key difference that you will have to be aware depending on your operating system. You can replace the string `cardano-node-testnet` in the argument to whatever you like, this example path in particular is used in the [Daedalus Testnet Wallet](https://daedaluswallet.io) for **Windows**.
+
+Once the server is running you should see sometihng like this (among other things): 
+
+```
+[cardano-wallet.network:Info:12] [2021-06-03 13:48:24.82 UTC] Protocol parameters for tip are:
+ Decentralization level: 100.00%
+ Transaction parameters: [Fee policy: 155381.0 + 44.0x, Tx max size: 16384]
+ Desired number of pools: 500
+ Minimum UTxO value: 1.000000
+ Eras:
+   - byron from -0
+   - shelley from 74
+   - allegra from 102
+   - mary from 112
+
+Slotting parameters for tip are:
+ Slot length:        1s
+ Epoch length:       432000
+ Active slot coeff:  5.0e-2
+ Security parameter: 2160 block
+
+
+[cardano-wallet.main:Info:4] [2021-06-03 13:48:24.86 UTC] Wallet backend server listening on http://127.0.0.1:1337/
+```
+
+**Checking Wallet Server Information**
+
+The first thing we can test if the wallet server is working correctly is to query the network information via the API.
+
+```bash
+curl --request GET \
+  --url http://localhost:1337/v2/network/information | jq
+```
+
+The result should be something like this: 
+
+```json
+{
+  "node_era": "mary",
+  "network_tip": {
+    "slot_number": 408744,
+    "absolute_slot_number": 28359144,
+    "time": "2021-06-03T13:52:40Z",
+    "epoch_number": 135
+  },
+  "next_epoch": {
+    "epoch_start_time": "2021-06-03T20:20:16Z",
+    "epoch_number": 136
+  },
+  "sync_progress": {
+    "status": "ready"
+  },
+  "node_tip": {
+    "height": {
+      "unit": "block",
+      "quantity": 2639489
+    },
+    "slot_number": 408722,
+    "absolute_slot_number": 28359122,
+    "time": "2021-06-03T13:52:18Z",
+    "epoch_number": 135
+  }
+}
+```
+
+It is important to make sure that the `sync_progress.status` is equal to `ready` before proceeding.
+
+**Creating the wallet**
+
+To create a wallet we must first generate a wallet **recovery phrase** using the `cardano-wallet` in the CLI.
+
+```bash
+cardano-wallet recovery-phrase generate
+```
+
+You should get a **24-word mnemonic seed** in return similar to this: 
+
+```
+kit soup various toe cloud humor clip radio medal ladder casino sock various distance staff analyst success trade deal split leaf away pair camp
+```
+
+We can now create a **Cardano** wallet using the `/v2/wallets` API endpoint:
+
+```bash
+curl --request POST \
+  --url http://localhost:1337/v2/wallets \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"name": "test_cf_1",
+	"mnemonic_sentence": ["shift", "badge", "heavy", "action", "tube", "divide", "course", "quality", "capable", "velvet", "cart", "marriage", "vague", "aware", "maximum", "exist", "crime", "file", "analyst", "great", "cabbage", "course", "sad", "apology"],
+	"passphrase": "test123456"
+}' | jq
+```
+
+Our requests payload data looks like this:
+
+```json
+{
+	"name": "test2",
+	"mnemonic_sentence": ["kit", "soup", "various", "toe", "cloud", "humor", "clip", "radio", "medal", "ladder", "casino", "sock", "various", "distance", "staff", "analyst", "success", "trade", "deal", "split", "leaf", "away", "pair", "camp"],
+	"passphrase": "test123456"
+}
+```
+
+`name` : The name of the wallet.
+
+`passphrase` : Sets the security phrase to protect the funds inside the wallet. It will be required everytime you need write access to the wallet, more specifically sending assets.
+
+`mnemonic_sentence` : This is the wallet **recovery phrase** formatted into a `JSON` array.
+
+If succesful, you should see something like this: 
+
+```json
+{
+  "address_pool_gap": 20,
+  "passphrase": {
+    "last_updated_at": "2021-06-03T14:25:18.2676524Z"
+  },
+  "balance": {
+    "available": {
+      "unit": "lovelace",
+      "quantity": 0
+    },
+    "total": {
+      "unit": "lovelace",
+      "quantity": 0
+    },
+    "reward": {
+      "unit": "lovelace",
+      "quantity": 0
+    }
+  },
+  "id": "5076b34c6949dbd150eb9c39039037543946bdce",
+  "state": {
+    "status": "syncing",
+    "progress": {
+      "unit": "percent",
+      "quantity": 0
+    }
+  },
+  "name": "test_cf_1",
+  "assets": {
+    "available": [],
+    "total": []
+  },
+  "tip": {
+    "height": {
+      "unit": "block",
+      "quantity": 0
+    },
+    "slot_number": 0,
+    "absolute_slot_number": 0,
+    "time": "2019-07-24T20:20:16Z",
+    "epoch_number": 0
+  },
+  "delegation": {
+    "next": [],
+    "active": {
+      "status": "not_delegating"
+    }
+  }
+}
+```
+
+Initially, the newly created/restored wallet will need to be synced before it can be used. You can verify if the wallet is already synced by executing the following request:
+
+```bash
+curl --request GET   --url http://localhost:1337/v2/wallets/c4d4e240d499cce3fed8fd885491803885fdf323 | jq '.state'
+```
+
+***It is important to note that the `c4d4e240d499cce3fed8fd885491803885fdf323` string is actually the `wallet.id` of the previously generated wallet.***
+
+You should see something like this:
+
+```json
+{
+  "status": "ready"
+}
+```
+
+### Wallet Security
+**@TODO**
 ### Cardano Testnet Faucet
 **@TODO**
 

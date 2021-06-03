@@ -246,6 +246,7 @@ To download the source code and build it, you need the following packages and to
 In order for the `cardano-node` and `cardano-cli` components to compile properly we will need to install some libraries via `brew`: 
 
 ```bash
+brew install jq
 brew install libtool
 brew install autoconf
 brew install automake
