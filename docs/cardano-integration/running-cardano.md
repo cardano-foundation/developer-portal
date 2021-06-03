@@ -57,16 +57,16 @@ https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finishe
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-topology.json
 ```
 
-Now maybe you are asking what is the difference between `mainnet` and `testnet` and why are there two networks? To put simply, **Cardano** is an open-source blockchain and anyone is free to spin-up their own networks based on the **Cardano** software stack. The `mainnet` network is the very first one that was established way back in 2017 during the start of the **Byron** era. In a way, everyone partcipating in the network has agreed or made a consensus that this is where all the real value of **Cardano** lives.
-
-But because of that, testing the network features and capabilities can be expensive and will consume real value. So [InputOutputGlobal](https://iohk.io) has spun-up a sandbox version of the network, where instead of using real `ADA` tokens for transactions you will instead use the `tADA` or **Test ADA** that lives in the **sandbox** version and we call this the `testnet`. Alternatively, you can also spin-up your own custom **Cardano** network but that is outside the scope of this guide.
-
 :::note
 
 Each network has its own `config` file, `genesis` file(s), `topology` file and its own unique identifier called the **Network Magic**.
 
 This section will be updated as new **Cardano** networks come online with their respective configuration files and **Network Magic**.
 :::
+
+Now maybe you are asking what is the difference between `mainnet` and `testnet` and why are there two networks? To put simply, **Cardano** is an open-source blockchain and anyone is free to spin-up their own networks based on the **Cardano** software components. The `mainnet` network is the very first one that was established way back in 2017 during the start of the **Byron** era. In a way, everyone partcipating in the network has agreed or made a consensus that this is where all the real value of **Cardano** lives.
+
+But testing the network features and capabilities can be expensive and will consume real value. So [InputOutputGlobal](https://iohk.io) has spun-up a sandbox version of the network, where instead of using real `ADA` tokens for transactions you will instead use the `tADA` or **Test ADA** that lives in the **sandbox** version and we call this the `testnet`. Alternatively, you can also spin-up your own custom **Cardano** network but that is outside the scope of this guide.
 
 ### Running the node
 
@@ -248,7 +248,7 @@ Syncing the blockchain from zero can take awhile, please be patient. If you want
 
 Now that we have `cardano-node` running and syncing, we can test it out by querying the blockchain tip data, That is the current point your local node is synced up to. To do this we use the `cardano-cli` command line application.
 
-But before we can do that, `cardano-cli` and other **Cardano** software components needs to know where the node socket file is located. In the previous example we have saved it to the path `/home/user/cardano/db/node.socket`. The components reads the shell environment variable `CARDANO_NODE_SOCKET_PATH` to do this.
+But before we can do that, `cardano-cli` and other **Cardano** software components needs to know where the node socket file is located. In the previous example we have saved it to the path `/home/user/cardano/db/node.socket`. The components reads the shell environment variable `CARDANO_NODE_SOCKET_PATH` to find this.
 
 So we will set that in `~/.bashrc` or `~/.zshrc` depending on which shell application that you use. In Windows you can follow this guide: [How to Set Environment Variable in Windows](https://phoenixnap.com/kb/windows-set-environment-variable).
 
@@ -275,7 +275,7 @@ Finally, we can now test querying the blockchain tip of our `cardano-node`:
 We include `--testnet-magic <NetworkMagic>` in the parameter for `cardano-cli query tip` because we are using a `testnet` node. If you intend to query `mainnet` network instead. Please use the `--mainnet` parameter instead and make sure your node is connected to the `mainnet` network.
 :::
 
-What you are seeing is the local tip data of your node, In this case it means that you are synced up to `blockNo: 2598870` and `slotNo: 27149964`.
+What you are seeing here is the local tip data of your node, In this case it means that you are synced up to `blockNo: 2598870` and `slotNo: 27149964`.
 
 To know whether you are fully synced or not you can check the **Cardano Blockchain Explorer** of the relevant network:
 
