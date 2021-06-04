@@ -75,7 +75,7 @@ First, lets create a directory to store all our `keys` like so:
 mkdir -p /home/user/cardano/keys
 ```
 
-Make sure we are inside the `keys` directory `cd /home/user/cardano/keys`.
+Make sure we are inside the `keys` directory like so: `cd /home/user/cardano/keys`
 
 Next, we generate our **payment key-pair** using `cardano-cli`:
 
@@ -101,7 +101,7 @@ You should now have two files in your `keys` directory like so:
 0 directories, 2 files
 ```
 
-Lets try to understand what are these keys are used for in a very high-level overview that is relevant to our topic:
+Lets try to understand what these keys are used for in a very high-level overview that is relevant to our topic:
 
 - `.vkey` / **Public Verification Key** : Is used to derive a **Cardano** wallet address, a wallet address is basically the hash string value that you share to other users to provide them a way to send `ADA` / `tADA` or other assets in the **Cardano** blockchain into your wallet.
 
@@ -169,7 +169,7 @@ addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
  If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. You can learn more about the different **Cardano** blockchain networks [here](/docs/cardano-integration/running-cardano#mainnet--production).
 :::
 
-#### Querying the wallet **UTXO** with `cardano-cli`
+#### Querying the wallet **UTXO (Unspent Transaction Output)** with `cardano-cli`
 
 Now that we have a **wallet address**, we can then query the **UTXO** of the address like so: 
 
@@ -211,12 +211,12 @@ Once you requested some `tADA` from the **Cardano Testnet Faucet** we can then r
 cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85     0        1000000000 lovelace
 ```
 
-This result tells us that there is one **UTXO (unspent transaction output)** with the amount of 1,000,000,000 `lovelaces` in our specific **wallet address**, that means our wallet has a balance of `1,000 tADA`. 
+This result tells us that there is one **UTXO** with the amount of 1,000,000,000 `lovelaces` in our specific **wallet address**, that means our wallet has a balance of `1,000 tADA`. 
 
 The result also specifies that the **UTXO** **transaction id** (`TxHash` / `TxId`) is `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85` with the **transaction index** of `0`.
 
 :::note
-In the `mainnet` or `testnet`, the `lovelace` is the unit used to represent `ADA` in **transactions** and **UTXO**. 
+In the **Cardano** blockchain, the `lovelace` is the unit used to represent `ADA` in **transactions** and **UTXO**. 
 
 Where `1 ADA` is equal to `1,000,000 lovelace`, so moving forward we will be using `lovelace` instead of `ADA` / `tADA`.
 
@@ -357,7 +357,7 @@ cardano-cli transaction build-raw \
 
 `--out-file` : This is the path to the transaction file that will be generated.
 
-In this case, we are just built a draft transaction to calculate how much fee would the transaction need. We can do that by executing the following command: 
+In this case, we are just building a draft transaction to calculate how much fee would the transaction need. We can do that by executing the following command: 
 
 ```bash
 cardano-cli transaction calculate-min-fee \
@@ -410,7 +410,7 @@ So we will use the `TxHash` `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f9072
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0
 ```
 
-We then tell `cardano-cli` that we the destination of the `250,000,000 lovelace` is the **wallet address** of `payment2`.
+We then tell `cardano-cli` that the destination of the `250,000,000 lovelace` is the **wallet address** of `payment2`.
 
 ```bash
 --tx-out $(cat /home/user/cardano/keys/payment2.addr)+250000000
@@ -502,13 +502,9 @@ First, lets create a directory to store all our `wallets` like so:
 mkdir -p /home/user/cardano/wallets
 ```
 
-Make sure we are inside the `wallets` directory `cd /home/user/cardano/wallets`.
-
-**Starting cardano-wallet as an REST API server**
+**Starting cardano-wallet as a REST API server**
 
 We will be focusing on the [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) that `cardano-wallet` provides. In-order to interact with the API, we must first start the server.
-
-Full documentation of the `cardano-wallet` [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) can be found here: [https://input-output-hk.github.io/cardano-wallet/api/edge](https://input-output-hk.github.io/cardano-wallet/api/edge)
 
 ```bash
 cardano-wallet serve \
@@ -530,7 +526,7 @@ cardano-wallet serve \
 
 `--database` : Specifies the path where the wallet database will be saved.
 
-> It is important to note that the wallet creation function requires a passphrase so all the walelt data will be encrypted by the passphrase.
+> It is important to note that the wallet creation function requires a passphrase so all the wallet data will be encrypted by the passphrase.
 
 `--node-socket` : Specifies the `cardano-node` socket path that will be used by the `cardano-wallet` to communicate with the node.
 
@@ -574,7 +570,7 @@ Slotting parameters for tip are:
 
 **Checking Wallet Server Information**
 
-The first thing we can test if the wallet server is working correctly is to query the network information via the API.
+The first thing we can do to test if the wallet server is working correctly is to query the network information via the API.
 
 ```bash
 curl --request GET \
@@ -726,6 +722,273 @@ You should see something like this:
   "status": "ready"
 }
 ```
+
+**Receiving tADA (Test ADA)**
+
+Now that we have created a wallet, we can now request some tADA from the **Testnet Faucet**. But before we can do that we must first get a cardano address for our wallet.
+
+We can do that by executing the command:
+
+```bash
+curl --request GET \
+  --url 'http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce/addresses?state=unused' | jq '.[0]'
+```
+
+The result should be something like this:
+
+```json
+{
+  "derivation_path": [
+    "1852H",
+    "1815H",
+    "0H",
+    "0",
+    "0"
+  ],
+  "id": "addr_test1qzf9q3qjcaf6kxshwjfw9ge29njtm56r2a08g49l79xgt4je0592agqpwraqajx2dsu2sxj64uese5s4qum293wuc00q7j6vsp",
+  "state": "unused"
+}
+```
+It is important to note that the parameter of this request is the **wallet id** of the target wallet you want to get the address. In this case it is `5076b34c6949dbd150eb9c39039037543946bdce` our previously generated wallet.
+
+We are basically querying the first wallet address that has not been used just yet, Indicated by `state: "unused"`. As we can see the wallet address value is: `addr_test1qpnjt8umuwr5f2y59avklhu8hd7h2uf4zfanxxr4nmqqsaw679hxgdmrtsjequ8ka27rm8366e6p7au9y89h6slmrjwskfmcef`
+
+Now we can finally request some `tADA` with the wallet address from the **Testnet Faucet**: **@TODO**
+
+Once you requested some `tADA` from the **Testnet Faucet**, we can then check if it has arrived into our wallet like so:
+
+```bash
+curl --request GET \
+  --url http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce | jq '.balance'
+```
+
+You should see something like this:
+
+```json
+{
+  "available": {
+    "unit": "lovelace",
+    "quantity": 1000000000
+  },
+  "total": {
+    "unit": "lovelace",
+    "quantity": 1000000000
+  },
+  "reward": {
+    "unit": "lovelace",
+    "quantity": 0
+  }
+}
+```
+
+As we can see here we have a total of `1,000,000,000 lovelace` available to spend that we received from the **Testnet Faucet**.
+
+#### Creating simple transactions
+
+To have a clearer understanding of how sending transactions work using `cardano-wallet`, first lets create another wallet like so:
+
+**Generate recovery-phrase**
+
+```bash
+cardano-wallet recovery-phrase generate
+```
+**Recovery-phrase result**
+
+```
+then tattoo copy glance silk kitchen kingdom pioneer off path connect artwork alley smooth also foil glare trouble erupt move position merge scale echo
+```
+**Create Wallet Request**
+```bash
+curl --request POST \
+  --url http://localhost:1337/v2/wallets \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"name": "test_cf_2",
+	"mnemonic_sentence": ["then", "tattoo", "copy", "glance", "silk", "kitchen", "kingdom", "pioneer", "off", "path", "connect", "artwork", "alley", "smooth", "also", "foil", "glare", "trouble", "erupt", "move", "position", "merge", "scale", "echo"],
+	"passphrase": "test123456"
+}' | jq
+```
+
+**Create Wallet Result**
+
+```json
+{
+  "address_pool_gap": 20,
+  "passphrase": {
+    "last_updated_at": "2021-06-04T11:39:06.8887923Z"
+  },
+  "balance": {
+    "available": {
+      "unit": "lovelace",
+      "quantity": 0
+    },
+    "total": {
+      "unit": "lovelace",
+      "quantity": 0
+    },
+    "reward": {
+      "unit": "lovelace",
+      "quantity": 0
+    }
+  },
+  "id": "4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb",
+  "state": {
+    "status": "syncing",
+    "progress": {
+      "unit": "percent",
+      "quantity": 0
+    }
+  },
+  "name": "test_cf_2",
+  "assets": {
+    "available": [],
+    "total": []
+  },
+  "tip": {
+    "height": {
+      "unit": "block",
+      "quantity": 0
+    },
+    "slot_number": 0,
+    "absolute_slot_number": 0,
+    "time": "2019-07-24T20:20:16Z",
+    "epoch_number": 0
+  },
+  "delegation": {
+    "next": [],
+    "active": {
+      "status": "not_delegating"
+    }
+  }
+}
+```
+
+We now have the following wallets:
+
+```
+                  WalletId                   Wallet Name   Balance(Lovelace)  
+ ------------------------------------------ ------------- ------------------- 
+  5076b34c6949dbd150eb9c39039037543946bdce   test_cf_1            1000000000  
+  4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb   test_cf_2                     0  
+
+```
+
+Now let's say that we want to send `250,000,000 lovelaces` to `test_cf_2` wallet. Well first we have to get `test_cf_2` wallet address like so:
+
+```bash
+curl --request GET \
+  --url 'http://localhost:1337/v2/wallets/4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb/addresses?state=unused' | jq '.[0]'
+```
+
+and we should see something like this:
+
+```json
+{
+  "derivation_path": [
+    "1852H",
+    "1815H",
+    "0H",
+    "0",
+    "0"
+  ],
+  "id": "addr_test1qzyfnjk3zmgzmvnnvnpeguv6se2ptjj3w3uuh30llqe5xdtzdduxxvke8rekwukyn0qt9g5pahasrnrdmv7nr86x537qxdgza0",
+  "state": "unused"
+}
+```
+
+So now that we have `test_cf_2` wallet address `addr_test1qzyfnjk3zmgzmvnnvnpeguv6se2ptjj3w3uuh30llqe5xdtzdduxxvke8rekwukyn0qt9g5pahasrnrdmv7nr86x537qxdgza0`. We can now use it to send some `tADA` to it from `test_cf_1` wallet like so:
+
+```bash
+curl --request POST \
+  --url http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce/transactions \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"passphrase": "test123456",
+	"payments": [
+		{
+			"address": "addr_test1qzyfnjk3zmgzmvnnvnpeguv6se2ptjj3w3uuh30llqe5xdtzdduxxvke8rekwukyn0qt9g5pahasrnrdmv7nr86x537qxdgza0",
+			"amount": {
+				"quantity": 250000000,
+				"unit": "lovelace"
+			}
+		}
+	]
+}'
+```
+
+:::note
+Remember, we use the `test_cf_1` wallet id in the `http://localhost:1337/v2/wallets/<walletId>` endpoint, because we want the `test_cf_1` to send to `test_cf_2` wallet address.
+:::
+
+Now we can check `test_cf_2` wallet balance like so:
+
+```bash
+curl --request GET \
+  --url http://localhost:1337/v2/wallets/4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb | jq '.balance'
+```
+
+And we should see that indeed the `250,000,000 tADA` has been received (***you might need to wait for a few seconds***).
+
+```json
+{
+  "available": {
+    "unit": "lovelace",
+    "quantity": 250000000
+  },
+  "total": {
+    "unit": "lovelace",
+    "quantity": 250000000
+  },
+  "reward": {
+    "unit": "lovelace",
+    "quantity": 0
+  }
+}
+```
+
+Checking `test_cf_1` wallet balance should show you something like this:
+
+```json
+{
+  "available": {
+    "unit": "lovelace",
+    "quantity": 749831199
+  },
+  "total": {
+    "unit": "lovelace",
+    "quantity": 749831199
+  },
+  "reward": {
+    "unit": "lovelace",
+    "quantity": 0
+  }
+}
+```
+
+Our wallets should now be the following:
+
+```
+                  WalletId                   Wallet Name   Balance(Lovelace)  
+ ------------------------------------------ ------------- ------------------- 
+  5076b34c6949dbd150eb9c39039037543946bdce   test_cf_1             749831199  
+  4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb   test_cf_2             250000000  
+
+```
+
+:::note
+
+It is important to note that `cardano-wallet` has automatically determined the fee for the transaction to send `250,000,000 lovelace` from wallet `test_cf_1` to `test_cf_2` and `cardano_wallet` has deducted the fee from `test_cf_1` wallet automatically.
+
+:::
+
+:::tip
+
+Full documentation of the `cardano-wallet` [REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) can be found here: [https://input-output-hk.github.io/cardano-wallet/api/edge](https://input-output-hk.github.io/cardano-wallet/api/edge)
+
+:::
+
+Congratulations, You have created and sent your first **Cardano** transaction using `cardano-wallet`! 🎉🎉🎉
+
 
 ### Wallet Security
 **@TODO**
