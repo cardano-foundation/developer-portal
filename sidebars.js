@@ -31,6 +31,7 @@ module.exports = {
     "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
     "Operate a Stake Pool": [
       "stake-pool-operation/overview",
+      "stake-pool-operation/marketing-stake-pool",
 
       {
         type: "category",
