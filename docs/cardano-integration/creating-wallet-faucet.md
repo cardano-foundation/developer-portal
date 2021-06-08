@@ -222,7 +222,10 @@ Where `1 ADA` is equal to `1,000,000 lovelace`, so moving forward we will be usi
 
 You can also use the `TxHash` to view the complete transaction via the **Cardano Blockchain Explorer** for the relevant network. You can check the specific transaction for the example **UTXO** here: [f3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85](https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85)
 
-To learn more about **UTXO (unspent transaction output)** and how transactions work for the **UTXO Model**, we recommend watching this [lecture](https://youtu.be/EoO76YCSTLo?list=PLJ3w5xyG4JWmBVIigNBytJhvSSfZZzfTm&t=1854) by [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at [InputOutputGlobal](https://iohk.io).
+To learn more about **UTXO (unspent transaction output)** and how transactions work for the **UTXO Model**, we recommend watching this lecture by [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at [InputOutputGlobal](https://iohk.io).
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/EoO76YCSTLo?t=1854" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
 :::
 
 #### Creating simple transactions
@@ -865,13 +868,10 @@ curl --request POST \
 
 We now have the following wallets:
 
-```
-                  WalletId                   Wallet Name   Balance(Lovelace)  
- ------------------------------------------ ------------- ------------------- 
-  5076b34c6949dbd150eb9c39039037543946bdce   test_cf_1            1000000000  
-  4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb   test_cf_2                     0  
-
-```
+| WalletId                                        | Wallet Name       | Balance(Lovelace)     |
+| --------                                        | ---------         | ----------            |
+| 5076b34c6949dbd150eb9c39039037543946bdce        | test_cf_1         | 1000000000            |
+| 4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb        | test_cf_2         | 0                     | 
 
 Now let's say that we want to send `250,000,000 lovelaces` to `test_cf_2` wallet. Well first we have to get `test_cf_2` wallet address like so:
 
@@ -967,13 +967,11 @@ Checking `test_cf_1` wallet balance should show you something like this:
 
 Our wallets should now be the following:
 
-```
-                  WalletId                   Wallet Name   Balance(Lovelace)  
- ------------------------------------------ ------------- ------------------- 
-  5076b34c6949dbd150eb9c39039037543946bdce   test_cf_1             749831199  
-  4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb   test_cf_2             250000000  
+| WalletId                                        | Wallet Name       | Balance(Lovelace)     |
+| --------                                        | ---------         | ----------            |
+| 5076b34c6949dbd150eb9c39039037543946bdce        | test_cf_1         | 749831199             |
+| 4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb        | test_cf_2         | 250000000             |
 
-```
 
 :::note
 
