@@ -15,8 +15,8 @@ Ogmios doesn’t do much more than what the node itself does. It’s pretty much
 The easiest way to get started with Ogmios is to use [docker](https://www.docker.com). Since Ogmios requires the presence of a Cardano node, it makes sense to use docker-compose to orchestrate both services. A compose file is available on the Ogmios repository, get it via:
 
 ```sh
-git clone --depth 1 https://github.com/KtorZ/cardano-ogmios.git
-cd cardano-ogmios
+git clone --depth 1 https://github.com/CardanoSolutions/ogmios.git
+cd ogmios
 ```
 
 

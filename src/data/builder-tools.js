@@ -58,7 +58,7 @@ const tools = [
     title: "Ogmios",
     description: "Ogmios offers a JSON-WSP interface through WebSockets.",
     preview: require("./builder-tools/ogmios.png"),
-    website: "https://ktorz.github.io/cardano-ogmios/",
+    website: "https://ogmios.dev",
     gettingstarted: "/docs/getting-started/ogmios",
   },
   {
