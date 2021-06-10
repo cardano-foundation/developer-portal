@@ -25,3 +25,5 @@ Everyone is welcome to contribute to the Cardano Developer Portal. Below is just
   }}
 />](https://github.com/cardano-foundation)
  
+
+Furthermore, we thank all those who are listed on the [contributors page in the repository](https://github.com/cardano-foundation/developer-portal/graphs/contributors) because they have made at least one commit. 
