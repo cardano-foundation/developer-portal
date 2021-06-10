@@ -6,6 +6,7 @@ module.exports = {
       "getting-started/cardanocli-js",
       "getting-started/dandelion-apis",
       "getting-started/ogmios",
+      "getting-started/smart-contracts-signpost",
     ],
     "Integrate Cardano": [
       "cardano-integration/overview",
