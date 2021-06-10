@@ -14,13 +14,7 @@ module.exports = {
       "cardano-integration/running-cardano",
       "cardano-integration/installing-cardano-wallet",
       "cardano-integration/creating-wallet-faucet",
-      {
-        type: "category",
-        label: "Use cases",
-        items: [
-          "cardano-integration/cli/listening-for-payments"
-        ]
-      }
+      "cardano-integration/listening-for-payments"
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",

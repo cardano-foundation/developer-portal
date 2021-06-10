@@ -134,13 +134,13 @@ cardano-cli address build \
 --testnet-magic 1097911063
 ```
 
-`cardano-cli address build` : Generates a **wallet address** from a `vkey` file.
+- `cardano-cli address build` : Generates a **wallet address** from a `vkey` file.
 
-`--payment-verification-key-file` : The path to the `vkey` file to be used for the derivation.
+- `--payment-verification-key-file` : The path to the `vkey` file to be used for the derivation.
 
-`--out-file` : The path to save the wallet address file.
+- `--out-file` : The path to save the wallet address file.
 
-`--testnet-magic` : The **NetworkMagic** of the network that where you want to use the wallet address.
+- `--testnet-magic` : The **NetworkMagic** of the network that where you want to use the wallet address.
 
 You should now have `payment1.vkey`, `payment1.skey` and `payment1.addr` in your `keys` directory. It should look something like this:
 
@@ -180,13 +180,13 @@ cardano-cli query utxo \
 --address $(cat /home/user/cardano/keys/payment1.addr)
 ```
 
-`cardano-cli query utxo` : Queries the wallet address **UTXO**.
+- `cardano-cli query utxo` : Queries the wallet address **UTXO**.
 
-`--mary-era` : Specifies that we want to query using the **Mary Era** rules.
+- `--mary-era` : Specifies that we want to query using the **Mary Era** rules.
 
-`--testnet-magic 1097911063` : Specifies that we want to query the `testnet` **Cardano** network.
+- `--testnet-magic 1097911063` : Specifies that we want to query the `testnet` **Cardano** network.
 
-`--address $(cat /home/user/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `/home/user/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
+- `--address $(cat /home/user/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `/home/user/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
 ```
 --address addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
@@ -199,7 +199,7 @@ You should see something like this:
 ```
 
 
-Now you might find it odd that there is not much information in the result given by the command, but that is totally normal as there are no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
+Now you might find it odd that there is not much information in the result that was returned the command, but that is totally normal as there are no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
 
 Our next step is to request some `tADA` from the **Cardano Testnet Faucet**. **@TODO**
 
