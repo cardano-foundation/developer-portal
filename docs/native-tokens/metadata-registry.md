@@ -1,10 +1,10 @@
 ---
-id: overview
+id: metadata-registry
 title: Cardano Metadata Registry
 sidebar_label: Metadata Registry
 ---
 
-## What is a Metadata Registry?
+## What is a Metadata Registry Test?
 
 The metadata server needs some way to add and modify metadata entries. The method for doing so is largely up to the implementor, but in most cases, a registry will provide an interface that allows users to register metadata mappings that can subsequently be queried via the metadata server’s API.
 

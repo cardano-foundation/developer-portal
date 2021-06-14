@@ -26,6 +26,7 @@ module.exports = {
     ],
     "Discover Native Tokens": [
       "native-tokens/overview",
+      "native-tokens/metadata-registry",
       "native-tokens/submit-entry-to-cardano-token-registry",
     ],
     "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
