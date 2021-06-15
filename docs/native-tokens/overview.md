@@ -4,6 +4,6 @@ title: Overview
 sidebar_label: Overview
 ---
 
-![img](../../static/img/card-native-tokens-title.svg)
+![Cardano Discover Native Tokens](../../static/img/card-native-tokens-title.svg)
 
 Placeholder!

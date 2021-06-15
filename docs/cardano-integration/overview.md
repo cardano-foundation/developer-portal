@@ -7,5 +7,5 @@ image: ./img/og-developer-portal.png
 --- 
 
 
-![img](../../static/img/card-payment-integration-title.svg)
+![Cardano Integration](../../static/img/card-payment-integration-title.svg)
 This is just a placeholder page. 
