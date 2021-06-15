@@ -6,7 +6,7 @@ description: Stake Pool Operation
 image: ./img/og-developer-portal.png
 ---
 
-![img](../../static/img/card-stake-pool-course.svg)
+![Cardano Operate a Stake Pool](../../static/img/card-stake-pool-course-title.svg)
 
 ## Prerequisites 
 *FIXME* Content placeholder. Manage expectations here for operating a stake pool. Do not push people away. You can learn everything.

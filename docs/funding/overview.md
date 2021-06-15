@@ -6,7 +6,7 @@ description: Find out what opportunities are available to get your project funde
 image: ./img/og-developer-portal.png
 ---
 
-![img](../../static/img/card-funding.svg)
+![Cardano Fund a Project](../../static/img/card-funding-title.svg)
 
 In this article, you can find out what opportunities are available to get your project funded and how types of funding are bringing on-chain governance to the Cardano blockchain by allowing the community to self-determine priorities for growth.
 
