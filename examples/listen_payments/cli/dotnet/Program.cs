@@ -1,23 +1,35 @@
-﻿using System;
-using System.Linq;
+﻿/*
+ * Generate a new project with `dotnet new console`
+ *
+ * Filename: Program.cs
+ * 
+ */
+using System;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
+
+// Install using command `dotnet add package SimpleExec --version 7.0.0`
 using SimpleExec;
 
+// Path to the cardano-cli binary or use the global one
 const string CARDANO_CLI_PATH = "cardano-cli";
-const string CARDANO_ERA_FLAG = "--mary-era";
+// The `testnet` identifier number
 const int CARDANO_NETWORK_MAGIC = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample
 const string CARDANO_KEYS_DIR = "keys";
-const long TOTAL_EXPECTED_ADA = 1;
-const long LOVELACE_PER_ADA = 1_000_000;
+// The total payment we expect in lovelace unit
+const long TOTAL_EXPECTED_LOVELACE = 1000000;
 
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
+
 var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
-    "query", "utxo", CARDANO_ERA_FLAG,
+    "query", "utxo",
     "--testnet-magic", CARDANO_NETWORK_MAGIC,
     "--address", walletAddress
 ), noEcho: true);
 
+// Calculate total lovelace of the UTXO(s) inside the wallet address
 var utxoTableRows = rawUtxoTable.Trim().Split("\n");
 var totalLovelaceRecv = 0L;
 var isPaymentComplete = false;
@@ -28,8 +40,10 @@ for(var x = 2; x < utxoTableRows.Length; x++)
     totalLovelaceRecv +=  long.Parse(cells[2]);
 }
 
-isPaymentComplete = totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA;
+// Determine if the total lovelace received is more than or equal to
+// the total expected lovelace and displaying the results.
+isPaymentComplete = totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE;
 
-Console.WriteLine($"Total ADA Received: {totalLovelaceRecv / LOVELACE_PER_ADA}");
-Console.WriteLine($"Expected ADA Payment: {TOTAL_EXPECTED_ADA}");
+Console.WriteLine($"Total Received: {totalLovelaceRecv} LOVELACE");
+Console.WriteLine($"Expected Payment: {TOTAL_EXPECTED_LOVELACE} LOVELACE");
 Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");

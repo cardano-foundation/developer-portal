@@ -24,7 +24,7 @@ To understand how something like this could work in a technical point of view, l
 
 So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has choosen and added all the items into the **shopping cart**. The next step would then be to checkout and pay for the items, Of course we will be using **Cardano** for that!
 
-The **front-end** application would then request for a wallet address from the backend service and render a QR code to the **customer** to be scanned via a **Cardano wallet**. The backend service would then know that it has to query the wallet address using `cardano-cli` with a certain time interval to confirm and alert the **front-end** application that the payment has completed succesfully.
+The **front-end** application would then request for a **wallet address** from the backend service and render a QR code to the **customer** to be scanned via a **Cardano wallet**. The backend service would then know that it has to query the **wallet address** using `cardano-cli` with a certain time interval to confirm and alert the **front-end** application that the payment has completed succesfully.
 
 In the meantime the transaction is then being processed and settled within the **Cardano** network. We can see in the diagram above that both parties are ultimately connected to the network via the `cardano-node` software component.
 
@@ -42,14 +42,10 @@ All the code examples in this article assumes that you will save all the source-
 First, lets create a directory to store our sample project:
 
 ```bash
-mkdir -p /home/user/receive-ada-sample
+mkdir -p /home/user/receive-ada-sample/keys
 ```
 
 Next, we generate our **payment key-pair** using `cardano-cli`:
-
-```
-mkdir -p /home/user/receive-ada-sample/keys
-```
 
 ```bash
 cardano-cli address key-gen \
@@ -76,11 +72,11 @@ Your directory structure should now look like this:
     └── payment.vkey
 ```
 
-Now using your **programming language** of choice we create our first lines of code!
+Now using your **programming language** of choice we create our first few lines of code!
 
 **Initial Variables**
 
-First we will set the initial variables that we will be using: 
+First we will set the initial variables that we will be using as explained below: 
 
 <Tabs
   defaultValue="js"
@@ -107,9 +103,9 @@ const CARDANO_CLI_PATH = "cardano-cli";
 // The `testnet` identifier number
 const CARDANO_NETWORK_MAGIC = 1097911063;
 // The directory where we store our payment keys
-// assuming our current directory context is /home/user/receive-ada-sample/receive-ada-sample
+// assuming our current directory context is /home/user/receive-ada-sample
 const CARDANO_KEYS_DIR = "keys";
-// The imaginary total payment we expect in lovelace unit
+// The total payment we expect in lovelace unit
 const TOTAL_EXPECTED_LOVELACE = 1000000;
 ```
   </TabItem>
@@ -118,12 +114,38 @@ const TOTAL_EXPECTED_LOVELACE = 1000000;
   <TabItem value="py">
   </TabItem>
   <TabItem value="cs">
+
+```csharp
+/*
+ * Generate a new project with `dotnet new console`
+ *
+ * Filename: Program.cs
+ * 
+ */
+using System;
+using System.IO;
+using System.Linq;
+
+// Install using command `dotnet add package SimpleExec --version 7.0.0`
+using SimpleExec;
+
+// Path to the cardano-cli binary or use the global one
+const string CARDANO_CLI_PATH = "cardano-cli";
+// The `testnet` identifier number
+const int CARDANO_NETWORK_MAGIC = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample
+const string CARDANO_KEYS_DIR = "keys";
+// The total payment we expect in lovelace unit
+const long TOTAL_EXPECTED_LOVELACE = 1000000;
+```
+
   </TabItem>
 </Tabs>
 
 **Read Wallet Address Value**
 
-Next, we get the string value of the wallet address from the `payment.addr` file that we generated awhile ago, like so:
+Next, we get the string value of the **wallet address** from the `payment.addr` file that we generated awhile ago, like so:
 
 <Tabs
   defaultValue="js"
@@ -163,12 +185,40 @@ const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toStri
   <TabItem value="py">
   </TabItem>
   <TabItem value="cs">
+
+```csharp
+/*
+ * Generate a new project with `dotnet new console`
+ *
+ * Filename: Program.cs
+ * 
+ */
+using System;
+using System.IO;
+using System.Linq;
+
+// Install using command `dotnet add package SimpleExec --version 7.0.0`
+using SimpleExec;
+
+// Path to the cardano-cli binary or use the global one
+const string CARDANO_CLI_PATH = "cardano-cli";
+// The `testnet` identifier number
+const int CARDANO_NETWORK_MAGIC = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample
+const string CARDANO_KEYS_DIR = "keys";
+// The total payment we expect in lovelace unit
+const long TOTAL_EXPECTED_LOVELACE = 1000000;
+
+var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
+```
+
   </TabItem>
 </Tabs>
 
-**Execute cardano-cli command**
+**Query UTXO**
 
-Then we execute `cardano-cli` programatically and telling it to query the **UTXO** for the wallet address that we have generated with our keys and save the `stdout` result to our `rawUtxoTable` variable.
+Then we execute `cardano-cli` programatically and telling it to query the **UTXO** for the **wallet address** that we have generated with our keys and save the `stdout` result to our `rawUtxoTable` variable.
 
 
 <Tabs
@@ -217,12 +267,47 @@ const rawUtxoTable = cmd.runSync([
   <TabItem value="py">
   </TabItem>
   <TabItem value="cs">
+
+```csharp
+/*
+ * Generate a new project with `dotnet new console`
+ *
+ * Filename: Program.cs
+ * 
+ */
+using System;
+using System.IO;
+using System.Linq;
+
+// Install using command `dotnet add package SimpleExec --version 7.0.0`
+using SimpleExec;
+
+// Path to the cardano-cli binary or use the global one
+const string CARDANO_CLI_PATH = "cardano-cli";
+// The `testnet` identifier number
+const int CARDANO_NETWORK_MAGIC = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample
+const string CARDANO_KEYS_DIR = "keys";
+// The total payment we expect in lovelace unit
+const long TOTAL_EXPECTED_LOVELACE = 1000000;
+
+var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
+
+// We use the SimpleExec dotnet library to execute shell commands and read the output data
+var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
+    "query", "utxo",
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
+), noEcho: true);
+
+```
   </TabItem>
 </Tabs>
 
 **Process UTXO Table**
 
-Once we have access to the **UTXO** table string, we will then process it and compute the total lovelace that the wallet currently has.
+Once we have access to the **UTXO** table string, we will then parse it and compute the total lovelace that the wallet currently has.
 
 
 <Tabs
@@ -281,12 +366,57 @@ for(let x = 2; x < utxoTableRows.length; x++) {
   <TabItem value="py">
   </TabItem>
   <TabItem value="cs">
+
+```csharp
+/*
+ * Generate a new project with `dotnet new console`
+ *
+ * Filename: Program.cs
+ * 
+ */
+using System;
+using System.IO;
+using System.Linq;
+
+// Install using command `dotnet add package SimpleExec --version 7.0.0`
+using SimpleExec;
+
+// Path to the cardano-cli binary or use the global one
+const string CARDANO_CLI_PATH = "cardano-cli";
+// The `testnet` identifier number
+const int CARDANO_NETWORK_MAGIC = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample
+const string CARDANO_KEYS_DIR = "keys";
+// The total payment we expect in lovelace unit
+const long TOTAL_EXPECTED_LOVELACE = 1000000;
+
+var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
+
+var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
+    "query", "utxo", CARDANO_ERA_FLAG,
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
+), noEcho: true);
+
+// Calculate total lovelace of the UTXO(s) inside the wallet address
+var utxoTableRows = rawUtxoTable.Trim().Split("\n");
+var totalLovelaceRecv = 0L;
+var isPaymentComplete = false;
+
+for(var x = 2; x < utxoTableRows.Length; x++)
+{
+    var cells = utxoTableRows[x].Split(" ").Where(c => c.Trim() != string.Empty).ToArray();
+    totalLovelaceRecv +=  long.Parse(cells[2]);
+}
+```
+
   </TabItem>
 </Tabs>
 
 **Determining if payment is succesful**
 
-Once we have the total, we will then determine using our code if a specific payment is a success, ultimately sending or shipping the item if it is indeed succesful. In our example, we expect that the payment is equal to `1,000,000 lovelace` that we defined in our `TOTAL_EXPECTED_LOVELACE` constant variable.
+Once we have the total lovelace amount, we will then determine using our code if a specific payment is a success, ultimately sending or shipping the item if it is indeed succesful. In our example, we expect that the payment is equal to `1,000,000 lovelace` that we defined in our `TOTAL_EXPECTED_LOVELACE` constant variable.
 
 <Tabs
   defaultValue="js"
@@ -352,6 +482,59 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
   <TabItem value="py">
   </TabItem>
   <TabItem value="cs">
+
+```csharp
+/*
+ * Generate a new project with `dotnet new console`
+ *
+ * Filename: Program.cs
+ * 
+ */
+using System;
+using System.IO;
+using System.Linq;
+
+// Install using command `dotnet add package SimpleExec --version 7.0.0`
+using SimpleExec;
+
+// Path to the cardano-cli binary or use the global one
+const string CARDANO_CLI_PATH = "cardano-cli";
+// The `testnet` identifier number
+const int CARDANO_NETWORK_MAGIC = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample
+const string CARDANO_KEYS_DIR = "keys";
+// The total payment we expect in lovelace unit
+const long TOTAL_EXPECTED_LOVELACE = 1000000;
+
+var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
+
+var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
+    "query", "utxo", CARDANO_ERA_FLAG,
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
+), noEcho: true);
+
+// Calculate total lovelace of the UTXO(s) inside the wallet address
+var utxoTableRows = rawUtxoTable.Trim().Split("\n");
+var totalLovelaceRecv = 0L;
+var isPaymentComplete = false;
+
+for(var x = 2; x < utxoTableRows.Length; x++)
+{
+    var cells = utxoTableRows[x].Split(" ").Where(c => c.Trim() != string.Empty).ToArray();
+    totalLovelaceRecv +=  long.Parse(cells[2]);
+}
+
+// Determine if the total lovelace received is more than or equal to
+// the total expected lovelace and displaying the results.
+isPaymentComplete = totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE;
+
+Console.WriteLine($"Total Received: {totalLovelaceRecv} LOVELACE");
+Console.WriteLine($"Expected Payment: {TOTAL_EXPECTED_LOVELACE} LOVELACE");
+Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");
+```
+
   </TabItem>
 </Tabs>
 
@@ -422,59 +605,44 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
 
 
 ```ts
-import * as fs from 'fs';
-import cmd from 'node-cmd';
-
-const CARDANO_CLI_PATH = "cardano-cli";
-const CARDANO_NETWORK_MAGIC = 1097911063;
-const CARDANO_KEYS_DIR = "keys";
-const TOTAL_EXPECTED_LOVELACE = 1000000;
-const LOVELACE_PER_ADA = 1000000;
-
-const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
-const rawUtxoTable = cmd.runSync([
-    CARDANO_CLI_PATH,
-    "query", "utxo",
-    "--testnet-magic", CARDANO_NETWORK_MAGIC,
-    "--address", walletAddress
-].join(" "));
-
-const utxoTableRows = rawUtxoTable.data.trim().split('\n');
-let totalLovelaceRecv = 0;
-
-for(let x = 2; x < utxoTableRows.length; x++) {
-    const cells = utxoTableRows[x].split(" ").filter(i => i);
-    totalLovelaceRecv += parseInt(cells[2]);
-}
-
-console.log(`Total ADA Received: ${totalLovelaceRecv / LOVELACE_PER_ADA}`);
-console.log(`Expected ADA Payment: ${TOTAL_EXPECTED_LOVELACE / LOVELACE_PER_ADA}`);
-console.log(`Payment Complete: ${(totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE ? "✅":"❌")}`);
 ```
 
   </TabItem>
   <TabItem value="cs">
 
 ```csharp
+/*
+ * Generate a new project with `dotnet new console`
+ *
+ * Filename: Program.cs
+ * 
+ */
 using System;
-using System.Linq;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
+
+// Install using command `dotnet add package SimpleExec --version 7.0.0`
 using SimpleExec;
 
+// Path to the cardano-cli binary or use the global one
 const string CARDANO_CLI_PATH = "cardano-cli";
+// The `testnet` identifier number
 const int CARDANO_NETWORK_MAGIC = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample
 const string CARDANO_KEYS_DIR = "keys";
-const long TOTAL_EXPECTED_ADA = 1;
-const long LOVELACE_PER_ADA = 1000000;
+// The total payment we expect in lovelace unit
+const long TOTAL_EXPECTED_LOVELACE = 1000000;
 
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
+
 var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
     "query", "utxo",
     "--testnet-magic", CARDANO_NETWORK_MAGIC,
     "--address", walletAddress
 ), noEcho: true);
 
+// Calculate total lovelace of the UTXO(s) inside the wallet address
 var utxoTableRows = rawUtxoTable.Trim().Split("\n");
 var totalLovelaceRecv = 0L;
 var isPaymentComplete = false;
@@ -485,20 +653,19 @@ for(var x = 2; x < utxoTableRows.Length; x++)
     totalLovelaceRecv +=  long.Parse(cells[2]);
 }
 
-isPaymentComplete = totalLovelaceRecv / LOVELACE_PER_ADA >= TOTAL_EXPECTED_ADA;
+// Determine if the total lovelace received is more than or equal to
+// the total expected lovelace and displaying the results.
+isPaymentComplete = totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE;
 
-Console.WriteLine($"Total ADA Received: {totalLovelaceRecv / LOVELACE_PER_ADA}");
-Console.WriteLine($"Expected ADA Payment: {TOTAL_EXPECTED_ADA}");
+Console.WriteLine($"Total Received: {totalLovelaceRecv} LOVELACE");
+Console.WriteLine($"Expected Payment: {TOTAL_EXPECTED_LOVELACE} LOVELACE");
 Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");
-
 ```
 
   </TabItem>
   <TabItem value="python">
 
     ```py
-    def hello_world():
-      print 'Hello, world!'
     ```
 
   </TabItem>
@@ -528,7 +695,7 @@ Your project directory should look something like this:
 ├── package-lock.json
 └── package.json
 
-4 directories, 14 files
+1 directories, 6 files
 ```
 
   </TabItem>
@@ -541,7 +708,18 @@ Your project directory should look something like this:
   </TabItem>
   <TabItem value="cs">
 
-```csharp
+```bash
+# Excluding bin and obj directories
+
+/home/user/receive-ada-sample/receive-ada-sample
+├── Program.cs
+├── dotnet.csproj
+├── keys
+│   ├── payment.addr
+│   ├── payment.skey
+│   └── payment.vkey
+
+1 directories, 5 files
 ```
 
   </TabItem>
@@ -582,7 +760,11 @@ Payment Complete: ❌
   </TabItem>
   <TabItem value="cs">
 
-```csharp
+```bash
+❯ dotnet run
+Total Received: 0 LOVELACE
+Expected Payment: 1000000 LOVELACE
+Payment Complete: ❌
 ```
 
   </TabItem>
@@ -598,19 +780,29 @@ The code is telling us that our current wallet has received a total of `0 lovela
 
 ### Complete the payment
 
-What we can do to simulate a succesful payment is to send some `lovelace` into the **wallet address** that we have just generated for this project. We can get that by reading the contents of the `payment.addr` file like so: 
+What we can do to simulate a succesful payment is to send atleast `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We can get the **wallet address** by reading the contents of the `payment.addr` file like so: 
 
 ```bash
 cat /home/user/receive-ada-sample/receive-ada-sample/keys/payment.addr
 ```
 
-You should see the wallet address like so:
+You should see the **wallet address** value:
 
 ```
 addr_test1vpfkp665a6wn7nxvjql5vdn5g5a94tc22njf4lf98afk6tgnz5ge4
 ```
 
-Now simply send some `lovelace` to this **wallet address** or request some `test ADA` funds from the **Testnet Faucet**. Once you have done that we can now run the code again and we should see a succesful result this time.
+Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ADA` funds from the **Testnet Faucet**. Once complete, we can now run the code again and we should see a succesful result this time.
+
+<Tabs
+  defaultValue="js"
+  values={[
+    {label: 'JavaScript', value: 'js'},
+    {label: 'Typescript', value: 'ts'},
+    {label: 'Python', value: 'py'},
+    {label: 'C#', value: 'cs'}
+  ]}>
+  <TabItem value="js">
 
 ```bash
 ❯ node checkPayment.js
@@ -618,6 +810,32 @@ Total Received: 1000000000 LOVELACE
 Expected Payment: 1000000 LOVELACE
 Payment Complete: ✅
 ```
+
+  </TabItem>
+  <TabItem value="ts">
+
+
+```ts
+```
+
+  </TabItem>
+  <TabItem value="cs">
+
+```bash
+❯ dotnet run
+Total Received: 1000000000 LOVELACE
+Expected Payment: 1000000 LOVELACE
+Payment Complete: ✅
+```
+
+  </TabItem>
+  <TabItem value="python">
+
+    ```py
+    ```
+
+  </TabItem>
+</Tabs>
 
 :::note
 It might take 20 seconds or more for the transaction to propagate within the network depending on the network health, so you will have to be patient.
