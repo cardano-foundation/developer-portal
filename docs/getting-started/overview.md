@@ -5,7 +5,7 @@ sidebar_label: Overview
 description: Getting Started
 image: ./img/og-developer-portal.png
 --- 
-![img](../../static/img/card-getting-started.svg)
+![img](../../static/img/card-getting-started-title.svg)
 
 Welcome to the Cardano Developer portal. This category will help you find your way around quickly. 
 
