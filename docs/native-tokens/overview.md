@@ -19,11 +19,14 @@ Here's a brief overview what you need to know before we dive in any deeper.
 ### How we interact with the blockchain
 Pretty much every interaction with the Cardano network / blockchain comes down to a transaction. With this in mind we can break interactions down into two layers.
 
+![img](../../static/img/nfts/overview_nfts.svg)
+
 The top layer is more focused on a visual approach and covers regular interaction. 
-This includes sending and recieving ADA or tokens, delegation your stake or voting. All of those interactions can be done through wallets like the full node Daedalus wallet or the more lightweight Yoroi wallet.
+This includes sending and recieving ada or tokens, delegation your stake or voting. All of those interactions can be done through wallets like the full node Daedalus wallet or the more lightweight Yoroi wallet.
 
 But if we want to drill down and have more possibilites to interact and make more "custom" interactions we need to go one layer below. 
-In this layer we need a full node to issue transactions with custom parameters. A full node is - most of the time - a compiled binary of the official latest cardano-node repository. There are alternatives out there but we'll focus on the linux version.
+In this layer we need a full node to issue transactions with custom parameters. 
+A full node is - most of the time - a compiled binary of the official latest cardano-node repository. There are alternatives out there but we'll focus on the linux version.
 
 So what kind of advanced transactions can we build with a full node and how?
 The current way is to work with the command line and issue your transactions from there. 
