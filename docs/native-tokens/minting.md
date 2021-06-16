@@ -1,5 +1,5 @@
 ---
 id: minting
-title: Cardano Metadata Registry
-sidebar_label: Minting overview
+title: Minting native assets
+sidebar_label: Minting native assets
 ---

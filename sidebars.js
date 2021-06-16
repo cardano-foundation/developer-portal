@@ -26,6 +26,8 @@ module.exports = {
     ],
     "Discover Native Tokens": [
       "native-tokens/overview",
+      "native-tokens/minting",
+      "native-tokens/minting_nfts",
       "native-tokens/metadata-registry",
       "native-tokens/submit-entry-to-cardano-token-registry",
     ],

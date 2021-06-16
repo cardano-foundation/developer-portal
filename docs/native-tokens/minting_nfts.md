@@ -1,5 +1,5 @@
 ---
 id: minting_nfts
-title: Cardano Metadata Registry
+title: Minting NFTs
 sidebar_label: Minting NFTs
 ---

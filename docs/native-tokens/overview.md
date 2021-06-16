@@ -9,9 +9,9 @@ Disclaimer: This instruction was written in june 2021 and content may be subject
 ## What are Native Tokens / Assets?
 
 The Cardano Blockchain features a very unique ability to create, interact and destroy custom tokens (or so called 'assets') in a native way.
-Native in this case means besides sending, and recieving the 'official currency' ADA you are also able to interact with custom assets out of the box - without the need for smart contracts.
+Native in this case means besides sending, and recieving the 'official currency' ada you are also able to interact with custom assets out of the box - without the need for smart contracts.
 
-The functionality is already built in and native assets can almost be treated like ADA in every way.
+The functionality is already built in and native assets can almost be treated like ada in every way. There are some constraints (which we will cover later) but for now you can imagine native assets as a possibility to generate your own, custom 
 
 ## What you need to know 
 Here's a brief overview what you need to know before we dive in any deeper.
@@ -39,10 +39,16 @@ In the future this probably will also be the place where smart contracts are wri
 
 Since we already learnt that interaction with the network is almost always a transaction we need to be aware of a few things which are enforced through network parameters.
 
-1. Issuing a transaction and sending something always requires a fee to be paid. As of now the fee depends on the size of the transaction (read: how much "information" gets sent). The size varies from a simple transaction like "A sends 2 ADA to B" to much more complex transaction which may have additional metadata attached to them.
-2. There is a minimum value which needs to be sent which is currently set to 1 ADA. This means if we want to send token we at least need to include 1 ADA to the transaction. This is to prevent creating large sums of custom tokens and spamming the network with custom token transactions.
+1. Issuing a transaction and sending something always requires a fee to be paid. 
+As of now the fee depends on the size of the transaction (read: how much "information" gets sent). The size varies from a simple transaction like "A sends 2 ADA to B" to much more complex transaction which may have additional metadata attached to them.
+2. There is a minimum value which needs to be sent. The value is currently set to 1 ada. This means if we want to send token we at least need to include 1 ADA to the transaction. This is to prevent creating large sums of custom tokens and spamming the network with custom token transactions.
 
-## Minting "regular" token 
+Keep those constraints in mind if you want to work with native assets
+
+## Difference between "regular" token and NFTs
+
+Native assets can be created with a transaction issued through the cardano node cli.
+The transaction gets supplied by additional parameters (which we will go through in more detail in the [Minting native assets](minting)) section.
 
 ## Minting NFTs
 Minting NFTs takes the same approach like minting "regular" tokens with a little twist. 
