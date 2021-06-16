@@ -112,6 +112,24 @@ const TOTAL_EXPECTED_LOVELACE = 1000000;
   <TabItem value="ts">
   </TabItem>
   <TabItem value="py">
+
+```python
+# filename: checkPayment.js
+# coding: utf-8
+import os
+import subprocess
+
+# Path to the cardano-cli binary or use the global one
+CARDANO_CLI_PATH = "cardano-cli"
+# The `testnet` identifier number
+CARDANO_NETWORK_MAGIC = 1097911063
+# The directory where we store our payment keys
+# assuming our current directory context is /home/user/receive-ada-sample
+CARDANO_KEYS_DIR = "keys"
+# The total payment we expect in lovelace unit
+TOTAL_EXPECTED_LOVELACE = 1000000
+```
+
   </TabItem>
   <TabItem value="cs">
 
@@ -158,7 +176,7 @@ Next, we get the string value of the **wallet address** from the `payment.addr` 
 
   <TabItem value="js">
 
-```js {19}
+```js {19-20}
 /*
  * Filename: checkPayment.js
  */
@@ -177,16 +195,39 @@ const CARDANO_KEYS_DIR = "keys";
 // The imaginary total payment we expect in lovelace unit
 const TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address value from payment.addr file
 const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
 ```
   </TabItem>
   <TabItem value="ts">
   </TabItem>
   <TabItem value="py">
+
+```python {16-20}
+# filename: checkPayment.js
+# coding: utf-8
+import os
+import subprocess
+
+# Path to the cardano-cli binary or use the global one
+CARDANO_CLI_PATH = "cardano-cli"
+# The `testnet` identifier number
+CARDANO_NETWORK_MAGIC = 1097911063
+# The directory where we store our payment keys
+# assuming our current directory context is /home/user/receive-ada-sample
+CARDANO_KEYS_DIR = "keys"
+# The total payment we expect in lovelace unit
+TOTAL_EXPECTED_LOVELACE = 1000000
+
+# Read wallet address value from payment.addr file
+with open(os.path.join(CARDANO_KEYS_DIR, "payment.addr"), 'r') as file:
+    walletAddress = file.read()
+```
+
   </TabItem>
   <TabItem value="cs">
 
-```csharp
+```csharp {24-25}
 /*
  * Generate a new project with `dotnet new console`
  *
@@ -210,6 +251,7 @@ const string CARDANO_KEYS_DIR = "keys";
 // The total payment we expect in lovelace unit
 const long TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address value from payment.addr file
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
 ```
 
@@ -265,10 +307,39 @@ const rawUtxoTable = cmd.runSync([
   <TabItem value="ts">
   </TabItem>
   <TabItem value="py">
+
+```python {20-30}
+# filename: checkPayment.js
+# coding: utf-8
+import os
+import subprocess
+
+# Path to the cardano-cli binary or use the global one
+CARDANO_CLI_PATH = "cardano-cli"
+# The `testnet` identifier number
+CARDANO_NETWORK_MAGIC = 1097911063
+# The directory where we store our payment keys
+# assuming our current directory context is /home/user/receive-ada-sample
+CARDANO_KEYS_DIR = "keys"
+# The total payment we expect in lovelace unit
+TOTAL_EXPECTED_LOVELACE = 1000000
+
+# Read wallet address string value from payment.addr file
+with open(os.path.join(CARDANO_KEYS_DIR, "payment.addr"), 'r') as file:
+    walletAddress = file.read()
+
+# We tell python to execute cardano-cli shell command to query the UTXO and read the output data
+rawUtxoTable = subprocess.check_output([
+    CARDANO_CLI_PATH,
+    'query', 'utxo',
+    '--testnet-magic', str(CARDANO_NETWORK_MAGIC),
+    '--address', walletAddress])
+```
+
   </TabItem>
   <TabItem value="cs">
 
-```csharp
+```csharp {27-35}
 /*
  * Generate a new project with `dotnet new console`
  *
@@ -292,6 +363,7 @@ const string CARDANO_KEYS_DIR = "keys";
 // The total payment we expect in lovelace unit
 const long TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
 
 // We use the SimpleExec dotnet library to execute shell commands and read the output data
@@ -321,7 +393,7 @@ Once we have access to the **UTXO** table string, we will then parse it and comp
 
   <TabItem value="js">
 
-```js {29-38}
+```js {30-38}
 /*
  * Filename: checkPayment.js
  */
@@ -340,6 +412,7 @@ const CARDANO_KEYS_DIR = "keys";
 // The imaginary total payment we expect in lovelace unit
 const TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
 
 // We use the node-cmd npm library to execute shell commands and read the output data
@@ -364,10 +437,48 @@ for(let x = 2; x < utxoTableRows.length; x++) {
   <TabItem value="ts">
   </TabItem>
   <TabItem value="py">
+
+```python {27-35}
+# filename: checkPayment.js
+# coding: utf-8
+import os
+import subprocess
+
+# Path to the cardano-cli binary or use the global one
+CARDANO_CLI_PATH = "cardano-cli"
+# The `testnet` identifier number
+CARDANO_NETWORK_MAGIC = 1097911063
+# The directory where we store our payment keys
+# assuming our current directory context is /home/user/receive-ada-sample
+CARDANO_KEYS_DIR = "keys"
+# The total payment we expect in lovelace unit
+TOTAL_EXPECTED_LOVELACE = 1000000
+
+# Read wallet address string value from payment.addr file
+with open(os.path.join(CARDANO_KEYS_DIR, "payment.addr"), 'r') as file:
+    walletAddress = file.read()
+
+# We tell python to execute cardano-cli shell command to query the UTXO and read the output data
+rawUtxoTable = subprocess.check_output([
+    CARDANO_CLI_PATH,
+    'query', 'utxo',
+    '--testnet-magic', str(CARDANO_NETWORK_MAGIC),
+    '--address', walletAddress])
+
+# Calculate total lovelace of the UTXO(s) inside the wallet address
+utxoTableRows = rawUtxoTable.strip().splitlines()
+totalLovelaceRecv = 0
+isPaymentComplete = False
+
+for x in range(2, len(utxoTableRows)):
+    cells = utxoTableRows[x].split()
+    totalLovelaceRecv +=  int(cells[2])
+```
+
   </TabItem>
   <TabItem value="cs">
 
-```csharp
+```csharp {34-45}
 /*
  * Generate a new project with `dotnet new console`
  *
@@ -391,8 +502,10 @@ const string CARDANO_KEYS_DIR = "keys";
 // The total payment we expect in lovelace unit
 const long TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
 
+// We use the SimpleExec library to execute cardano-cli shell command to query the wallet UTXO and read the output data
 var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
     "query", "utxo", CARDANO_ERA_FLAG,
     "--testnet-magic", CARDANO_NETWORK_MAGIC,
@@ -429,7 +542,7 @@ Once we have the total lovelace amount, we will then determine using our code if
 
   <TabItem value="js">
 
-```js {39-45}
+```js {40-50}
 /*
  * Filename: checkPayment.js
  */
@@ -448,6 +561,7 @@ const CARDANO_KEYS_DIR = "keys";
 // The imaginary total payment we expect in lovelace unit
 const TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
 
 // We use the node-cmd npm library to execute shell commands and read the output data
@@ -480,10 +594,56 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
   <TabItem value="ts">
   </TabItem>
   <TabItem value="py">
+
+```python {36-50}
+# filename: checkPayment.js
+# coding: utf-8
+import os
+import subprocess
+
+# Path to the cardano-cli binary or use the global one
+CARDANO_CLI_PATH = "cardano-cli"
+# The `testnet` identifier number
+CARDANO_NETWORK_MAGIC = 1097911063
+# The directory where we store our payment keys
+# assuming our current directory context is /home/user/receive-ada-sample
+CARDANO_KEYS_DIR = "keys"
+# The total payment we expect in lovelace unit
+TOTAL_EXPECTED_LOVELACE = 1000000
+
+# Read wallet address string value from payment.addr file
+with open(os.path.join(CARDANO_KEYS_DIR, "payment.addr"), 'r') as file:
+    walletAddress = file.read()
+
+# We tell python to execute cardano-cli shell command to query the UTXO and read the output data
+rawUtxoTable = subprocess.check_output([
+    CARDANO_CLI_PATH,
+    'query', 'utxo',
+    '--testnet-magic', str(CARDANO_NETWORK_MAGIC),
+    '--address', walletAddress])
+
+# Calculate total lovelace of the UTXO(s) inside the wallet address
+utxoTableRows = rawUtxoTable.strip().splitlines()
+totalLovelaceRecv = 0
+isPaymentComplete = False
+
+for x in range(2, len(utxoTableRows)):
+    cells = utxoTableRows[x].split()
+    totalLovelaceRecv +=  int(cells[2])
+
+# Determine if the total lovelace received is more than or equal to
+# the total expected lovelace and displaying the results.
+isPaymentComplete = totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE
+
+print("Total Received: %s LOVELACE" % totalLovelaceRecv)
+print("Expected Payment: %s LOVELACE" % TOTAL_EXPECTED_LOVELACE)
+print("Payment Complete: %s" % {True: "✅", False: "❌"} [isPaymentComplete])
+```
+
   </TabItem>
   <TabItem value="cs">
 
-```csharp
+```csharp {45-55}
 /*
  * Generate a new project with `dotnet new console`
  *
@@ -507,8 +667,10 @@ const string CARDANO_KEYS_DIR = "keys";
 // The total payment we expect in lovelace unit
 const long TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
 
+// We use the SimpleExec library to execute cardano-cli shell command to query the wallet UTXO and read the output data
 var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
     "query", "utxo", CARDANO_ERA_FLAG,
     "--testnet-magic", CARDANO_NETWORK_MAGIC,
@@ -571,6 +733,7 @@ const CARDANO_KEYS_DIR = "keys";
 // The imaginary total payment we expect in lovelace unit
 const TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
 
 // We use the node-cmd npm library to execute shell commands and read the output data
@@ -634,8 +797,10 @@ const string CARDANO_KEYS_DIR = "keys";
 // The total payment we expect in lovelace unit
 const long TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 var walletAddress = await File.ReadAllTextAsync(Path.Combine(CARDANO_KEYS_DIR, "payment.addr"));
 
+// We use the SimpleExec library to execute cardano-cli shell command to query the wallet UTXO and read the output data
 var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
     "query", "utxo",
     "--testnet-magic", CARDANO_NETWORK_MAGIC,
@@ -663,10 +828,52 @@ Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");
 ```
 
   </TabItem>
-  <TabItem value="python">
+  <TabItem value="py">
 
-    ```py
-    ```
+```python
+# filename: checkPayment.js
+# coding: utf-8
+import os
+import subprocess
+
+# Path to the cardano-cli binary or use the global one
+CARDANO_CLI_PATH = "cardano-cli"
+# The `testnet` identifier number
+CARDANO_NETWORK_MAGIC = 1097911063
+# The directory where we store our payment keys
+# assuming our current directory context is /home/user/receive-ada-sample
+CARDANO_KEYS_DIR = "keys"
+# The total payment we expect in lovelace unit
+TOTAL_EXPECTED_LOVELACE = 1000000
+
+# Read wallet address value from payment.addr file
+with open(os.path.join(CARDANO_KEYS_DIR, "payment.addr"), 'r') as file:
+    walletAddress = file.read()
+
+# We tell python to execute cardano-cli shell command to query the UTXO and read the output data
+rawUtxoTable = subprocess.check_output([
+    CARDANO_CLI_PATH,
+    'query', 'utxo',
+    '--testnet-magic', str(CARDANO_NETWORK_MAGIC),
+    '--address', walletAddress])
+
+# Calculate total lovelace of the UTXO(s) inside the wallet address
+utxoTableRows = rawUtxoTable.strip().splitlines()
+totalLovelaceRecv = 0
+isPaymentComplete = False
+
+for x in range(2, len(utxoTableRows)):
+    cells = utxoTableRows[x].split()
+    totalLovelaceRecv +=  int(cells[2])
+
+# Determine if the total lovelace received is more than or equal to
+# the total expected lovelace and displaying the results.
+isPaymentComplete = totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE
+
+print("Total Received: %s LOVELACE" % totalLovelaceRecv)
+print("Expected Payment: %s LOVELACE" % TOTAL_EXPECTED_LOVELACE)
+print("Payment Complete: %s" % {True: "✅", False: "❌"} [isPaymentComplete])
+```
 
   </TabItem>
 </Tabs>
@@ -723,10 +930,18 @@ Your project directory should look something like this:
 ```
 
   </TabItem>
-  <TabItem value="python">
+  <TabItem value="py">
 
-    ```py
-    ```
+```bash
+/home/user/receive-ada-sample/receive-ada-sample
+├── checkPayment.py
+└── keys
+    ├── payment.addr
+    ├── payment.skey
+    └── payment.vkey
+
+1 directory, 4 files
+```
 
   </TabItem>
 </Tabs>
@@ -768,10 +983,14 @@ Payment Complete: ❌
 ```
 
   </TabItem>
-  <TabItem value="python">
+  <TabItem value="py">
 
-    ```py
-    ```
+```bash
+❯ python checkPayment.py 
+Total Received: 0 LOVELACE
+Expected Payment: 1000000 LOVELACE
+Payment Complete: ❌
+```
 
   </TabItem>
 </Tabs>
@@ -829,10 +1048,14 @@ Payment Complete: ✅
 ```
 
   </TabItem>
-  <TabItem value="python">
+  <TabItem value="py">
 
-    ```py
-    ```
+```py
+❯ python checkPayment.py 
+Total Received: 1000000000 LOVELACE
+Expected Payment: 1000000 LOVELACE
+Payment Complete: ✅
+```
 
   </TabItem>
 </Tabs>
