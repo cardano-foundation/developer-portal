@@ -110,6 +110,27 @@ const TOTAL_EXPECTED_LOVELACE = 1000000;
 ```
   </TabItem>
   <TabItem value="ts">
+
+```ts
+/*
+ * Filename: checkPayment.ts
+ */
+
+import * as fs from 'fs';
+// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+const cmd: any = require('node-cmd');
+
+// Path to the cardano-cli binary or use the global one
+const CARDANO_CLI_PATH: string = "cardano-cli";
+// The `testnet` identifier number
+const CARDANO_NETWORK_MAGIC: number = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample/receive-ada-sample
+const CARDANO_KEYS_DIR: string = "keys";
+// The total payment we expect in lovelace unit
+const TOTAL_EXPECTED_LOVELACE: number = 1000000;
+```
+
   </TabItem>
   <TabItem value="py">
 
@@ -200,6 +221,30 @@ const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toStri
 ```
   </TabItem>
   <TabItem value="ts">
+
+```ts {19-20}
+/*
+ * Filename: checkPayment.ts
+ */
+
+import * as fs from 'fs';
+// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+const cmd: any = require('node-cmd');
+
+// Path to the cardano-cli binary or use the global one
+const CARDANO_CLI_PATH: string = "cardano-cli";
+// The `testnet` identifier number
+const CARDANO_NETWORK_MAGIC: number = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample/receive-ada-sample
+const CARDANO_KEYS_DIR: string = "keys";
+// The imaginary total payment we expect in lovelace unit
+const TOTAL_EXPECTED_LOVELACE: number = 1000000;
+
+// Read wallet address string value from payment.addr file
+const walletAddress: string = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
+```
+
   </TabItem>
   <TabItem value="py">
 
@@ -274,7 +319,7 @@ Then we execute `cardano-cli` programatically and telling it to query the **UTXO
 
   <TabItem value="js">
 
-```js {21-27}
+```js {22-29}
 /*
  * Filename: checkPayment.js
  */
@@ -293,6 +338,7 @@ const CARDANO_KEYS_DIR = "keys";
 // The imaginary total payment we expect in lovelace unit
 const TOTAL_EXPECTED_LOVELACE = 1000000;
 
+// Read wallet address string value from payment.addr file
 const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
 
 // We use the node-cmd npm library to execute shell commands and read the output data
@@ -305,6 +351,38 @@ const rawUtxoTable = cmd.runSync([
 ```
   </TabItem>
   <TabItem value="ts">
+
+```ts {22-29}
+/*
+ * Filename: checkPayment.ts
+ */
+
+import * as fs from 'fs';
+// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+const cmd: any = require('node-cmd');
+
+// Path to the cardano-cli binary or use the global one
+const CARDANO_CLI_PATH: string = "cardano-cli";
+// The `testnet` identifier number
+const CARDANO_NETWORK_MAGIC: number = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample/receive-ada-sample
+const CARDANO_KEYS_DIR: string = "keys";
+// The imaginary total payment we expect in lovelace unit
+const TOTAL_EXPECTED_LOVELACE: number = 1000000;
+
+// Read wallet address string value from payment.addr file
+const walletAddress: string = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
+
+// We use the node-cmd npm library to execute shell commands and read the output data
+const rawUtxoTable: any = cmd.runSync([
+    CARDANO_CLI_PATH,
+    "query", "utxo",
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
+].join(" "));
+```
+
   </TabItem>
   <TabItem value="py">
 
@@ -435,6 +513,48 @@ for(let x = 2; x < utxoTableRows.length; x++) {
 ```
   </TabItem>
   <TabItem value="ts">
+
+```ts {30-38}
+/*
+ * Filename: checkPayment.ts
+ */
+
+import * as fs from 'fs';
+// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+const cmd: any = require('node-cmd');
+
+// Path to the cardano-cli binary or use the global one
+const CARDANO_CLI_PATH: string = "cardano-cli";
+// The `testnet` identifier number
+const CARDANO_NETWORK_MAGIC: number = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample/receive-ada-sample
+const CARDANO_KEYS_DIR: string = "keys";
+// The imaginary total payment we expect in lovelace unit
+const TOTAL_EXPECTED_LOVELACE: number = 1000000;
+
+// Read wallet address string value from payment.addr file
+const walletAddress: string = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
+
+// We use the node-cmd npm library to execute shell commands and read the output data
+const rawUtxoTable: any = cmd.runSync([
+    CARDANO_CLI_PATH,
+    "query", "utxo",
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
+].join(" "));
+
+// Calculate total lovelace of the UTXO(s) inside the wallet address
+const utxoTableRows: string[] = rawUtxoTable.data.trim().split('\n');
+let totalLovelaceRecv: number = 0;
+let isPaymentComplete: boolean = false;
+
+for (let x = 2; x < utxoTableRows.length; x++) {
+    const cells = utxoTableRows[x].split(" ").filter((i: string) => i);
+    totalLovelaceRecv += parseInt(cells[2]);
+}
+```
+
   </TabItem>
   <TabItem value="py">
 
@@ -592,6 +712,56 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
 ```
   </TabItem>
   <TabItem value="ts">
+
+```ts {40-50}
+/*
+ * Filename: checkPayment.ts
+ */
+
+import * as fs from 'fs';
+// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+const cmd: any = require('node-cmd');
+
+// Path to the cardano-cli binary or use the global one
+const CARDANO_CLI_PATH: string = "cardano-cli";
+// The `testnet` identifier number
+const CARDANO_NETWORK_MAGIC: number = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample/receive-ada-sample
+const CARDANO_KEYS_DIR: string = "keys";
+// The imaginary total payment we expect in lovelace unit
+const TOTAL_EXPECTED_LOVELACE: number = 1000000;
+
+// Read wallet address string value from payment.addr file
+const walletAddress: string = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
+
+// We use the node-cmd npm library to execute shell commands and read the output data
+const rawUtxoTable: any = cmd.runSync([
+    CARDANO_CLI_PATH,
+    "query", "utxo",
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
+].join(" "));
+
+// Calculate total lovelace of the UTXO(s) inside the wallet address
+const utxoTableRows: string[] = rawUtxoTable.data.trim().split('\n');
+let totalLovelaceRecv: number = 0;
+let isPaymentComplete: boolean = false;
+
+for (let x = 2; x < utxoTableRows.length; x++) {
+    const cells = utxoTableRows[x].split(" ").filter((i: string) => i);
+    totalLovelaceRecv += parseInt(cells[2]);
+}
+
+// Determine if the total lovelace received is more than or equal to
+// the total expected lovelace and displaying the results.
+isPaymentComplete = totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE;
+
+console.log(`Total Received: ${totalLovelaceRecv} LOVELACE`);
+console.log(`Expected Payment: ${TOTAL_EXPECTED_LOVELACE} LOVELACE`);
+console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
+```
+
   </TabItem>
   <TabItem value="py">
 
@@ -767,8 +937,56 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
   <TabItem value="ts">
 
 
+
 ```ts
+/*
+ * Filename: checkPayment.ts
+ */
+
+import * as fs from 'fs';
+// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+const cmd: any = require('node-cmd');
+
+// Path to the cardano-cli binary or use the global one
+const CARDANO_CLI_PATH: string = "cardano-cli";
+// The `testnet` identifier number
+const CARDANO_NETWORK_MAGIC: number = 1097911063;
+// The directory where we store our payment keys
+// assuming our current directory context is /home/user/receive-ada-sample/receive-ada-sample
+const CARDANO_KEYS_DIR: string = "keys";
+// The imaginary total payment we expect in lovelace unit
+const TOTAL_EXPECTED_LOVELACE: number = 1000000;
+
+// Read wallet address string value from payment.addr file
+const walletAddress: string = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toString();
+
+// We use the node-cmd npm library to execute shell commands and read the output data
+const rawUtxoTable: any = cmd.runSync([
+    CARDANO_CLI_PATH,
+    "query", "utxo",
+    "--testnet-magic", CARDANO_NETWORK_MAGIC,
+    "--address", walletAddress
+].join(" "));
+
+// Calculate total lovelace of the UTXO(s) inside the wallet address
+const utxoTableRows: string[] = rawUtxoTable.data.trim().split('\n');
+let totalLovelaceRecv: number = 0;
+let isPaymentComplete: boolean = false;
+
+for (let x = 2; x < utxoTableRows.length; x++) {
+    const cells = utxoTableRows[x].split(" ").filter((i: string) => i);
+    totalLovelaceRecv += parseInt(cells[2]);
+}
+
+// Determine if the total lovelace received is more than or equal to
+// the total expected lovelace and displaying the results.
+isPaymentComplete = totalLovelaceRecv >= TOTAL_EXPECTED_LOVELACE;
+
+console.log(`Total Received: ${totalLovelaceRecv} LOVELACE`);
+console.log(`Expected Payment: ${TOTAL_EXPECTED_LOVELACE} LOVELACE`);
+console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
 ```
+
 
   </TabItem>
   <TabItem value="cs">
@@ -909,7 +1127,19 @@ Your project directory should look something like this:
   <TabItem value="ts">
 
 
-```ts
+```bash
+# Excluding node_modules directory
+
+/home/user/receive-ada-sample/receive-ada-sample
+├── checkPayment.ts
+├── keys
+│   ├── payment.addr
+│   ├── payment.skey
+│   └── payment.vkey
+├── package-lock.json
+└── package.json
+
+1 directories, 6 files
 ```
 
   </TabItem>
@@ -969,7 +1199,11 @@ Payment Complete: ❌
   <TabItem value="ts">
 
 
-```ts
+```bash
+❯ ts-node checkPayment.ts
+Total Received: 0 LOVELACE
+Expected Payment: 1000000 LOVELACE
+Payment Complete: ❌
 ```
 
   </TabItem>
@@ -1034,7 +1268,11 @@ Payment Complete: ✅
   <TabItem value="ts">
 
 
-```ts
+```bash
+❯ ts-node checkPayment.ts
+Total Received: 1000000000 LOVELACE
+Expected Payment: 1000000 LOVELACE
+Payment Complete: ✅
 ```
 
   </TabItem>
