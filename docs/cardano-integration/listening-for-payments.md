@@ -1,7 +1,7 @@
 ---
 id: listening-for-payments
-title: Listening for ADA Payments using cardano-cli
-sidebar_label: Receiving Payments (CLI)
+title: Listening for ADA payments using cardano-cli
+sidebar_label: Receiving payments (CLI)
 description: How to listen for ADA Payments using the cardano-cli
 --- 
 import Tabs from '@theme/Tabs';
