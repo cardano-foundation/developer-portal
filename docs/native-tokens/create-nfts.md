@@ -13,6 +13,10 @@ Minting requires a certain amount of skill in navigating and working with Linux 
 
 We will not go into the details on how to spin up a Cardano node, but this is covered in the [integrate Cardano category](../cardano-integration/installing-cardano-node).
 
+:::note
+There are several ways to create NFTs with images. Because there is no standard to which everyone would have agreed, we show how to do it according to this [NFT Metdata Standard Proposal](https://github.com/cardano-foundation/CIPs/pull/85/commits/ed48e5a38b75eb31f16288338a3c1ef93fecde47).
+:::
+
 ## Assumptions
 
 Here are some assumptions we are going to make about you — the reader:
