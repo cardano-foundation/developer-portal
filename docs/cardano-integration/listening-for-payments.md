@@ -80,6 +80,7 @@ First we will set the initial variables that we will be using as explained below
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -188,6 +189,7 @@ Next, we get the string value of the **wallet address** from the `payment.addr` 
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -310,6 +312,7 @@ Then we execute `cardano-cli` programatically and telling it to query the **UTXO
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -462,6 +465,7 @@ Once we have access to the **UTXO** table string, we will then parse it and comp
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -653,6 +657,7 @@ Once we have the total lovelace amount, we will then determine using our code if
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -876,6 +881,7 @@ Our final code should look something like this:
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -1100,6 +1106,7 @@ Your project directory should look something like this:
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -1180,6 +1187,7 @@ Now we are ready to test 🚀, running the code should give us the following res
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -1249,6 +1257,7 @@ Now simply send atleast `1,000,000 lovelace` to this **wallet address** or reque
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
