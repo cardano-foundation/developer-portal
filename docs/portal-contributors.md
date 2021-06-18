@@ -27,4 +27,12 @@ sources={{
   }}
 />](https://github.com/cardano-foundation)
 
+[<ThemedImage
+alt="IOHK Logo"
+sources={{
+    light: useBaseUrl('/img/logo-iohk-lightmode.svg'),
+    dark: useBaseUrl('/img/logo-iohk-darkmode.svg'),
+  }}
+/>](https://github.com/input-output-hk)
+
 Furthermore, we thank all those who are listed on the [contributors page in the repository](https://github.com/cardano-foundation/developer-portal/graphs/contributors) because they have made at least one commit.
