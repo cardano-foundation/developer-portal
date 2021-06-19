@@ -6,6 +6,24 @@ sidebar_label: Minting NFTs
 
 
 ## What's different?
+What is the difference between native assets and NFTs? Basically native assets and NFTs are the same. But there are some additional characteristics which apply to a NFT.
+
+1. As the name states - it must be 'non-fungible'. This means you need to have unique identifiers or attributes, attached to a token to make it distinguishable from others.
+2. Most of the times a NFT should live on the blockchain forever. Therefore we need some sort of mechanism to ensure 
+
+## The policyID and metadata attributes
+Native assets in cardano feature the following characteristics:
+1. An amount / value (how much are there?)
+2. A name 
+3. A unique policyID
+
+Since names are not and can be easily duplicated, Cardano NFTs need to be identified by the policyID. This ID is unique and attached permanently to the asset.
+It results from the policy script which defines characteristics such as who can mit tokens and when those actions can be made.
+
+In addition there 
+
+
+## Time locking
 
 ### Pre-requisites
 

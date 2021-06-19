@@ -4,8 +4,10 @@ title: Minting native assets
 sidebar_label: Minting native assets
 ---
 
-In this section we will be minting native assets - not NFTs. It is strongly advised to work through this section and get a better understand as to how transactions and minting works.
-Minting NFTs will follow the same process, with only a few tweaks.
+In this section we will be minting native assets - <b>not NFTs</b>. 
+
+It is strongly advised to work through this section and get a better understand as to how transactions and minting works.  
+Minting NFTs will follow the same process, with only a few tweaks. If you want to jump to NFTs, please visit [Minting NFTs](minting_nfts.md).
 
 ## Pre-requisites
 
@@ -175,7 +177,7 @@ For our transaction calculations we need some of the current protocol parameters
 cardano-cli query protocol-parameters --$testnet --out-file protocol.json
 ```
 
-## Minting
+## Minting native assets
 
 ### Generate the policy
 
@@ -259,7 +261,7 @@ Your output should look something like this (fictional example):
 ```bash
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
-9e5847067135be32d6d44f40f0e07fe37c02c14df121dcd378a4083f4f3453e0     0        989460421 lovelace
+b35a4ba9ef3ce21adcd6879d08553642224304704d206c74d3ffb3e6eed3ca28     0        1000000000 lovelace
 ```
 
 Since we need each of those values in our transaction we will store them individually in a corresponding variable.
@@ -274,9 +276,9 @@ policyid=$(cat policy/policyID)
 For our fictional example this would result in the following output - <b>please adjust your values accordingly</b>:
 
 ```bash
-$ txhash="9e5847067135be32d6d44f40f0e07fe37c02c14df121dcd378a4083f4f3453e0"
+$ txhash="b35a4ba9ef3ce21adcd6879d08553642224304704d206c74d3ffb3e6eed3ca28"
 $ txix="0"
-$ funds="989460421"
+$ funds="1000000000"
 $ policyid=$(cat policy/policyID)
 ```
 
@@ -388,14 +390,15 @@ cardano-cli query utxo --address $address --$testnet
 and should see something like this (fictional example):
 
 ```bash
-                          TxHash                                 TxIx        Amount
+                           TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
-b96d4ef07818b897c229bfed2b3164cf3d793c2f8b36ace65ea34f9271f4b84f     0        999639298 lovelace + 10000000 618cd384a82259f04a823f4bea32310600606fb8b43e2abf97d9cf5d.Testtoken + 10000000 618cd384a82259f04a823f4bea32310600606fb8b43e2abf97d9cf5d.SecondTesttoken
+d82e82776b3588c1a2c75245a20a9703f971145d1ca9fba4ad11f50803a43190     0        999824071 lovelace + 10000000 45fb072eb2d45b8be940c13d1f235fa5a8263fc8ebe8c1af5194ea9c.SecondTesttoken + 10000000 45fb072eb2d45b8be940c13d1f235fa5a8263fc8ebe8c1af5194ea9c.Testtoken
 ```
 
 ## Sending token to a wallet
 
 To send token to a wallet we need to build another transaction - this time only without the minting parameter.
+We will set up our variables accordingly.
 
 ```bash
 fee="0"
@@ -403,10 +406,21 @@ reciever="Insert wallet address here"
 reciever_output="10000000"
 txhash=""
 txix=""
-funds="Only the availiable lovelace"
+funds="Amout of lovelace"
 ```
 
-You should have still access to the other variables from the minting process.
+Again - here ist an example of how it would look like if we use our fictional example:
+
+```bash
+$ fee="0"
+$ reciever="addr_test1qp0al5v8mvwv9mzn77ls0tev3t838yp9ghvgxf9t5qa4sqlua2ywcygl3d356c34576elq5mcacg88gaevceyc5tulwsmk7s8v"
+$ reciever_output="10000000"
+$ txhash="d82e82776b3588c1a2c75245a20a9703f971145d1ca9fba4ad11f50803a43190"
+$ txix="0"
+$ funds="999824071"
+```
+
+You should still have access to the other variables from the minting process.
 Please check if those variables are set:
 
 ```bash
@@ -419,9 +433,9 @@ echo Policy ID: $policyid
 We will be sending 2 of our first tokens 'Testtoken' to the foreign address.  
 A few things worth pointing out:
 
-1. We are forced to send at least a minimum of 1 ada (1000000 lovelace) to the remote address. We can not send tokens only. So we need to factor this value in to our output. We will reference the output value of the remote address with the variable reciever_output.
+1. We are forced to send at least a minimum of 1 ada (1000000 lovelace) to the foreign address. We can not send tokens only. So we need to factor this value in to our output. We will reference the output value of the remote address with the variable reciever_output.
 2. Apart from the recieving address we also need to set our own address as an additional output. Since we don’t want to send everything we have to the remote address, we’re going to use our own address to recieve everything else, coming from the input.
-3. Our own address therefore needs to recieve our funds, subtracted by the transaction fee as well as the minimum of 1 ad we need to send to the other address and
+3. Our own address therefore needs to recieve our funds, subtracted by the transaction fee as well as the minimum of 1 ada we need to send to the other address and
 4. all of the tokens the txhash currently holds, subtracted by the tokens we send.
 
 :::note
@@ -438,20 +452,14 @@ cardano-cli transaction build-raw  \
 --fee $fee  \
 --tx-in $txhash#$txix  \
 --tx-out $reciever+$reciever_output+"2 $policyid.$tokenname1"  \
---tx-out $address+$output+"999998 $policyid.$tokenname1 + 1000000 $policyid.$tokenname2"  \
+--tx-out $address+$output+"9999998 $policyid.$tokenname1 + 10000000 $policyid.$tokenname2"  \
 --out-file rec_matx.raw
 ```
 
 Again we are going to calculate the fee and save it in a variable.
 
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
---tx-body-file rec_matx.raw \
---tx-in-count 1 \
---tx-out-count 2 \
---witness-count 1 \
---testnet-magic 3 \
---protocol-params-file protocol.json) |  cut -d " " -f1)
+fee=$(cardano-cli transaction calculate-min-fee --tx-body-file rec_matx.raw --tx-in-count 1 --tx-out-count 2 --witness-count 1 --$testnet --protocol-params-file protocol.json | cut -d " " -f1)
 ```
 
 As stated above, we need to calculate the leftovers which are going to get sent back to our address.
@@ -469,7 +477,7 @@ cardano-cli transaction build-raw  \
 --fee $fee  \
 --tx-in $txhash#$txix  \
 --tx-out $reciever+$reciever_output+"2 $policyid.$tokenname1"  \
---tx-out $address+$output+"999998 $policyid.$tokenname1 + 1000000 $policyid.$tokenname2"  \
+--tx-out $address+$output+"9999998 $policyid.$tokenname1 + 10000000 $policyid.$tokenname2"  \
 --out-file rec_matx.raw
 ```
 
@@ -483,7 +491,12 @@ Send it:
 cardano-cli transaction submit --tx-file rec_matx.signed --$testnet
 ```
 
-## How to burn token
+After a few seconds you the reciever should have their tokens. For this example a Daedalus testnet wallet is used.
+
+![img](../../static/img/nfts/daedalus_tokens_rec.PNG)
+
+
+## Burning token
 
 or the last part of our token lifecycle we will burn 5000 of our newly made tokens <i>SecondTesttoken</i>and therefore destroying them permanently.
 
@@ -506,7 +519,7 @@ Let’s set our variables accordingly (if not already set). Variables like addre
 txhash="insert your txhash here"
 txix="insert your TxIx here"
 funds="insert Amount only in here"
-fee="0"
+burnfee="0"
 policyid=$(cat policy/policyID)
 burnoutput="0"
 ```
@@ -518,7 +531,7 @@ You will issue a new minting action, but this time with a <b>negative</b> input.
 cardano-cli transaction build-raw \
  --fee $burnfee \
  --tx-in $txhash#$txix \
- --tx-out $address+$burnoutput+"999998 $policyid.$tokenname1 + 99500 $policyid.$tokenname2"  \
+ --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
  --mint="-5000 $policyid.$tokenname2" \
  --out-file burning.raw
  ```
@@ -531,7 +544,7 @@ The math is:
 :::
 
 As usual, we need to calculate the fee. 
-To make a better differentiation we are going to name the variable <i>burnfee</i>:
+To make a better differentiation we named the variable <i>burnfee</i>:
 
 ```bash
 burnfee=$(cardano-cli transaction calculate-min-fee --tx-body-file burning.raw --tx-in-count 1 --tx-out-count 1 --witness-count 1 --$testnet --protocol-params-file protocol.json | cut -d " " -f1)
@@ -548,7 +561,7 @@ Re-build the transaction with the correct amounts
 cardano-cli transaction build-raw \
  --fee $burnfee \
  --tx-in $txhash#$txix \
- --tx-out $address+$burnoutput+"999998 $policyid.$tokenname1 + 99500 $policyid.$tokenname2"  \
+ --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
  --mint="-5000 $policyid.$tokenname2" \
  --out-file burning.raw
  ```
@@ -571,8 +584,15 @@ Send it:
 cardano-cli transaction submit --tx-file burning.signed --$testnet
 ```
 
-Check your address — you should now have 5000 tokens less than before.
+Check your address: 
 
 ```bash
 cardano-cli query utxo --address $address --$testnet
+```
+
+You should now have 5000 tokens less than before:
+```bash
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+f56e2800b7b5980de6a57ebade086a54aaf0457ec517e13012571b712cf53fb3     1        989643170 lovelace + 10000000 45fb072eb2d45b8be940c13d1f235fa5a8263fc8ebe8c1af5194ea9c.SecondTesttoken + 9999998 45fb072eb2d45b8be940c13d1f235fa5a8263fc8ebe8c1af5194ea9c.Testtoken
 ```
