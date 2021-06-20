@@ -4,7 +4,18 @@ title: Cardano Metadata Registry
 sidebar_label: Overview
 ---
 
+:::note
 Disclaimer: This instruction was written in june 2021 and content may be subject to change in the future.
+
+There are currently two ways to make your NFTs:
+
+- For the not so tech-savvy through someone else. The [showcase section](../../showcase/?tags=nft) has a few services that offer this.
+- For the more tech-savvy on a Cardano node. If you want to have full control over your tokens, you need to mint them **yourself**. And this is what this section is all about.
+
+Minting requires a certain amount of skill in navigating and working with Linux through the terminal as well as a running Cardano node.
+
+We will not go into the details on how to spin up a Cardano node, but this is covered in the [integrate Cardano category](../cardano-integration/installing-cardano-node).
+:::
 
 ## What are Native Tokens / Assets?
 
