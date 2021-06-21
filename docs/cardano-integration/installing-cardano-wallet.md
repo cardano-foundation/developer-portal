@@ -37,7 +37,7 @@ You must connect your `cardano-node` to the `testnet` network and make sure it i
 
 ## MacOS / Linux
 
-In this section, we will walk you through the process of downloading, compiling and installing `cardano-wallet` into your **Linux** based operating system. 
+In this section, we will walk you through the process of downloading, compiling and installing `cardano-wallet` into your **Linux / MacOS** based operating system. 
 
 #### Downloading & Compiling
 
