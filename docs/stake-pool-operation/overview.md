@@ -10,13 +10,22 @@ image: ./img/og-developer-portal.png
 
 This section covers the following:
 
-* [How to promote a stake pool](../stake-pool-operation/marketing-stake-pool), a marketing approach for your stake pool
-* [Start today with the stake pool course](../stake-pool-course/overview), a walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
-* How to secure your stake pool, security above comforts and everything else.
+* [How to promote a stake pool](../stake-pool-operation/marketing-stake-pool)
+* [Stake pool course](../stake-pool-course/overview)
+* How to secure your stake pool
 
 ## What is a stake pool
 
 A stake pool is a Cardano node that runs along with other nodes within the Cardano blockchain network to participate in all important aspects such as validating blocks, generating new blocks and keeping the network secure. A stake pool is similar to a mining pool that includes the pooling of hash-rate in PoW blockchain systems. However, a stake pool is only available on PoS blockchains. A staking pool allows one or multiple ada holders to combine their staking power to increase the chances of earning rewards. When you create a staking pool, you participate in the process of verifying and validating new blocks to have a higher possibility of receiving the block rewards.
+
+## Prerequisites
+
+As a first step, a stake pool operator should [install a Cardano node](../cardano-integration/installing-cardano-node) and then start to [generate the stake pool registration certificate](https://docs.cardano.org/getting-started/operating-a-stake-pool/creating-keys-and-certificates)
+
+For the hardware requirements, you need the following:
+* 8 GB of RAM
+* A network connection with 1 GB of bandwidth per hour
+* A public IP4 address
 
 For more information, you can read the article [A guide to becoming a stake pool operator](https://forum.cardano.org/t/a-guide-to-becoming-a-stake-pool-operator/36505).
 
@@ -46,6 +55,20 @@ Note that users usually select a pool with the highest ranking or lowest fee. To
 ### Stake and saturation
 
 Users can always check the stake value before deciding to delegate their stake to your pool. It shows how much ADA has been delegated to your pool. The total amount of ADA that can be staked by a pool, the saturation limit, is around 64m ADA. It is critical to understand this point as a stake pool with a total stake higher than the network saturation limit will result in reducing rewards. When your stake pool reaches the maximum staking amount, it will be considered a saturated pool. After that, all stake delegators receive lower rewards than before saturation.  This fact motivates users to delegate to another stake pool with a smaller stake than yours to promote decentralization.
+
+## Stake Pool Course
+A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
+
+[Start today with the stake pool course](../stake-pool-course/overview).
+
+## Marketing
+
+A marketing approach for your stake pool with best practices of other SPOs.
+
+[Promote your stake pool](../stake-pool-operation/marketing-stake-pool).
+
+## Security
+*FIXME* Content placeholder. Security above comforts and everything else.
 
 ## Resources
 
