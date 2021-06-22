@@ -114,12 +114,13 @@ cd nft/
 For better readability and debugging of failed transactions we will set important values in a more readable variable.
 ```bash
 tokenname="NFT_1"
+tokenamount="1"
 fee="0"
 output="0"
 ipfs_hash="please insert your ipfs hash here"
 ```
 :::note
-The IFPS hash is a key requirement and can be found once you upload your image to IPFS. Here's an example of how the IPFS looks like when a image is uploaded in [pianata](https://pinata.cloud/)
+The IFPS hash is a key requirement and can be found once you upload your image to IPFS. Here's an example of how the IPFS looks like when a image is uploaded in [pinata](https://pinata.cloud/)
 ![img](../../static/img/nfts/pinata_pin.PNG)
 :::
 
@@ -146,8 +147,14 @@ address=$(cat payment.addr)
 
 ### Fund the address
 
-Submiting transactions always requires you to pay a fee. Sending native assets requires also requires to send at least 1 ada.  
+Submiting transactions always requires you to pay a fee. 
+Sending native assets requires also requires to send at least 1 ada.  
 So make sure the address you are going to use as the input for the minting transaction has sufficient funds. 
+For our example the newly generated address was funded with 10 ADA.
+
+```bash
+cardano-cli query utxo --address $address --mainnet
+```
 
 ### Export protocol parameters
 
@@ -247,6 +254,12 @@ nano policy/policy.script
 Be aware the the slot number is defined as a integer and therefore needs no double quotation marks whereas the keyHash is defined as a string and needs to be wrapped in double quotation marks.
 :::
 
+Take note of your slotnumber and save it in a variable
+
+```bash
+slotnumber="Replace this with your slot number"
+```
+
 The last step is to generate the policyID:
 
 ```bash
@@ -254,7 +267,7 @@ cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/
 ```
 
 ### Metadata
-Since we now have our policy defined and also our policyID, we need to adjust our metadata information.
+Since we now have our policy as well as our policyID defined, we need to adjust our metadata information.
 
 Here’s an example of the metadata.json which we’ll use for this guide:
 
@@ -263,10 +276,9 @@ Here’s an example of the metadata.json which we’ll use for this guide:
         "721": {
             "please_insert_policyID_here": {
               "NFT_1": {
-                "description": "This is just a testtoken",
-                "name": "One of ten testtokens",
+                "description": "This is my first NFT thanks to the Cardano foundation",
+                "name": "Cardano foundation NFT guide token",
                 "id": 1,
-                "name": "This is my first test token",
                 "image": ""
               }
             }
@@ -298,5 +310,112 @@ echo "}" >> metadata.json
 ```
 
 
-
 ### Crafting the transaction
+
+Let's begin building our transaction.
+Before we start we will again, need some setup, to make the transaction building easier.
+Query your payment address and take note of the different values present.
+
+```bash
+cardano-cli query utxo --address $address --mainnet
+```
+
+Your output should look something like this (fictional example):
+
+```bash
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+b35a4ba9ef3ce21adcd6879d08553642224304704d206c74d3ffb3e6eed3ca28     0        1000000000 lovelace
+```
+
+Since we need each of those values in our transaction we will store them individually in a corresponding variable.
+
+```bash
+txhash="insert your txhash here"
+txix="insert your TxIx here"
+funds="insert Amount in lovelace here"
+policyid=$(cat policy/policyID)
+```
+
+If you're unsure, check if all of the other needed variables for the transaction are set:
+
+``bash
+echo $fee
+echo $address
+echo $output
+echo $tokenamount
+echo $policyid
+echo $tokenname
+echo $slotnumber
+```
+
+If everything is set, run this command to generate a raw transaction file.
+
+```bash
+cardano-cli transaction build-raw \
+--fee $fee  \
+--tx-in $txhash#$txix  \
+--tx-out $address+$output+"$tokenamount $policyid.$tokenname" \
+--mint="$tokenamount $policyid.$tokenname" \
+--metadata-json-file metadata.json  \
+--invalid-hereafter $slotnumber
+--out-file matx.raw
+```
+
+As with every other transaction we need to calculate the fee and the output and save them in the correspondong variables (which are currently set to zero).
+
+Use this command to set the <i>$fee</i> variable.
+```bash
+fee=$(cardano-cli transaction calculate-min-fee --tx-body-file matx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 1 --mainnet --protocol-params-file protocol.json | cut -d " " -f1)
+```
+
+And this command to calculate the correct value for <i>$output</i>.
+```bash
+output=$(expr $funds - $fee)
+```
+
+With the newly set values, re-issue the building of the raw transaction.
+
+```bash
+cardano-cli transaction build-raw \
+--fee $fee  \
+--tx-in $txhash#$txix  \
+--tx-out $address+$output+"$tokenamount $policyid.$tokenname" \
+--mint="$tokenamount $policyid.$tokenname" \
+--metadata-json-file metadata.json  \
+--invalid-hereafter $slotnumber
+--out-file matx.raw
+```
+
+```bash
+cardano-cli transaction sign  \
+--signing-key-file payment.skey  \
+--signing-key-file policy/policy.skey  \
+--script-file policy/policy.script  \
+--mainnet --tx-body-file matx.raw  \
+--out-file matx.signed
+```
+
+:::note
+The signed transaction will be saved in a new file called <i>matx.signed</i> instead of <i>matx.raw</i>.
+:::
+
+Now we are going to submit the transaction, therefore minting our native assets:
+```bash
+cardano-cli transaction submit --tx-file matx.signed --mainnet
+```
+
+Congratulations we have now successfully minted our own token.
+After a couple of seconds we can check the output address
+```bash
+cardano-cli query utxo --address $address --mainnet
+```
+
+and should see something like this:
+
+### Displaying your NFT
+
+One of the most adopted NFT browers is [pool.pm](https://pool.pm/tokens).
+Simply enter your address in the search bar, hit enter and your NFT will be displayed with all it's attributes and the corresponding image.
+
+![img]
