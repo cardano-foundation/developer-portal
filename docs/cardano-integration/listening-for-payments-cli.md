@@ -1,8 +1,8 @@
 ---
-id: listening-for-payments
+id: listening-for-payments-cli
 title: Listening for ADA payments using cardano-cli
-sidebar_label: Receiving payments (CLI)
-description: How to listen for ADA Payments using the cardano-cli
+sidebar_label: Receiving payments (cardano-cli)
+description: How to listen for ADA Payments with the cardano-cli
 --- 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 ### Overview 
 :::note
 This guide assumes that you have basic understanding of `cardano-cli`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/cardano-integration/installing-cardano-node), [Running cardano-node](/docs/cardano-integration/running-cardano) and [Exploring Cardano Wallets](/docs/cardano-integration/creating-wallet-faucet) guides first.
+
+This guide also assumes that you have `cardano-node` running in the background and connected to the `testnet` network.
 :::
 
 ### Use case
