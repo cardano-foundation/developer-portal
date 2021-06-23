@@ -1,7 +1,7 @@
 ---
 id: marketing-stake-pool
-title: Marketing a stake pool
-sidebar_label: Marketing a stake pool
+title: Marketing a Stake pool
+sidebar_label: Marketing a Stake Pool
 description: This article explains how to promote a stake pool.
 image: ./img/og-developer-portal.png
 ---

@@ -14,6 +14,7 @@ Everyone is welcome to contribute to the Cardano Developer Portal. Below is just
 ## People
 
 - [Alex Ruttkowski](https://github.com/ruttkowa)
+- [Kyle Solomon](https://github.com/adosiawolf)
 - [Markus Gufler](https://github.com/gufmar)
 - [Priyank](https://github.com/rdlrt)
 
