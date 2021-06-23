@@ -15,7 +15,7 @@ It is noteworthy to mention that the Developer Portal covers everything you can 
 Cardano is a collection of open-source, patent-free protocols. It's a platform that enables you to store, transform, and manage value, identity and governance. 
 
 ## How did it start?
-Cardano started as a significant research and development project in 2015, and it took almost two years of research to get to a position where writing code could begin. 
+Cardano started as a significant research and development project in 2015, and it took almost two years of research to get to a position to start writing code. 
 
 The point of Cardano was to ask: What do we need to achieve to provide a financial and social operating system for billions of people on a sustainable basis? What collections of technologies do we need to bring together to get everything at an affordable cost?
 
