@@ -29,8 +29,7 @@ module.exports = {
     "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
     "Operate a Stake Pool": [
       "stake-pool-operation/overview",
-      "stake-pool-operation/marketing-stake-pool",
-
+      "stake-pool-operation/cardano-key-pairs",
       {
         type: "category",
         label: "Stake Pool Course",
@@ -74,6 +73,7 @@ module.exports = {
           },
         ],
       },
+      "stake-pool-operation/marketing-stake-pool",
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
