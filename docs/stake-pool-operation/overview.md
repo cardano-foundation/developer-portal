@@ -14,7 +14,7 @@ Manage expectations here for operating a stake pool. Do not push people away. In
 
 ## Security
 *FIXME* Content placeholder.   
-Security above comforts and everything else. More mindset and less "change default SSH port". Maybe start with [learning about Cardano key pairs](cardano-keypairs).
+Security above comforts and everything else. More mindset and less "change default SSH port". Maybe start with [learning about Cardano key pairs](cardano-key-pairs).
 
 ## Stake Pool Course
 A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
