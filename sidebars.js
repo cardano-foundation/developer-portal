@@ -6,19 +6,17 @@ module.exports = {
       "getting-started/cardanocli-js",
       "getting-started/dandelion-apis",
       "getting-started/ogmios",
+      "getting-started/smart-contracts-signpost",
     ],
     "Integrate Cardano": [
       "cardano-integration/overview",
       "cardano-integration/cardano-components",
       "cardano-integration/installing-cardano-node",
       "cardano-integration/running-cardano",
-      {
-        type: "category",
-        label: "Use cases",
-        items: [
-          "cardano-integration/cli/listening-for-payments"
-        ]
-      }
+      "cardano-integration/installing-cardano-wallet",
+      "cardano-integration/creating-wallet-faucet",
+      "cardano-integration/listening-for-payments-cli",
+      "cardano-integration/listening-for-payments-wallet"
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
@@ -29,13 +27,13 @@ module.exports = {
       "native-tokens/minting",
       "native-tokens/minting_nfts",
       "native-tokens/metadata-registry",
-      "native-tokens/submit-entry-to-cardano-token-registry",
+      "native-tokens/create-nfts",
+      "native-tokens/submit-entry-to-cardano-token-registry"
     ],
     "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
     "Operate a Stake Pool": [
       "stake-pool-operation/overview",
-      "stake-pool-operation/marketing-stake-pool",
-
+      "stake-pool-operation/cardano-key-pairs",
       {
         type: "category",
         label: "Stake Pool Course",
@@ -79,6 +77,7 @@ module.exports = {
           },
         ],
       },
+      "stake-pool-operation/marketing-stake-pool",
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",

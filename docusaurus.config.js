@@ -1,6 +1,5 @@
 // GitHub Settings
-const repository = "https://github.com/cardano-foundation/developer-portal";
-const branch = "staging";
+const vars = require('./variables')
 
 // Docusaurus Config
 module.exports = {
@@ -14,8 +13,8 @@ module.exports = {
   organizationName: "cardano-foundation",
   projectName: "developer-portal",
   customFields: {
-    repository: `${repository}`,
-    branch: `${branch}`,
+    repository: `${vars.repository}`,
+    branch: `${vars.branch}`,
   },
   themeConfig: {
     // Docs Sidebar
@@ -99,7 +98,7 @@ module.exports = {
           position: "left",
         },
         {
-          href: `${repository}`,
+          href: `${vars.repository}`,
           position: "right",
           className: "header-github-link",
         },
@@ -205,11 +204,11 @@ module.exports = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: `${repository}/edit/${branch}`,
+          editUrl: `${vars.repository}/edit/${vars.branch}`,
         },
         blog: {
           showReadingTime: true,
-          editUrl: `${repository}/edit/${branch}`,
+          editUrl: `${vars.repository}/edit/${vars.branch}`,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

@@ -1,8 +1,10 @@
 ---
 id: overview
-title: Cardano Metadata Registry
+title: Discover Native Tokens
 sidebar_label: Overview
 ---
+
+![Cardano Discover Native Tokens](../../static/img/card-native-tokens-title.svg)
 
 :::note
 Disclaimer: This instruction was written in june 2021 and content may be subject to change in the future.

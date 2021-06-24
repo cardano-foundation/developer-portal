@@ -1,31 +1,54 @@
 ---
 id: overview
-title: Getting Started
+title: Get Started
 sidebar_label: Overview
 description: Getting Started
 image: ./img/og-developer-portal.png
 --- 
+![Cardano Get Started](../../static/img/card-getting-started-title.svg)
 
-Welcome to the Cardano Developer portal. This category will help you find your way around quickly.
+Welcome to the Cardano Developer portal. This category will help you find your way around quickly. 
 
-![img](../../static/img/card-getting-started.svg)
+It is noteworthy to mention that the Developer Portal covers everything you can currently do on the Cardano mainnet. If your goal is to learn about Cardano's [smart contracts](smart-contracts-signpost), please visit [this signpost article](smart-contracts-signpost) to get you up to speed.
 
-## Getting started with Marlowe 
-Marlowe is the domain-specific language for financial contracts on Cardano. 
-Take a look at the [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/tutorial/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/). 
+## What is Cardano? 
+Cardano is a collection of open-source, patent-free protocols. It's a platform that enables you to store, transform, and manage value, identity and governance. 
 
-Talk to others about [Marlowe on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram there is a dedicated [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
+## How did it start?
+Cardano started as a significant research and development project in 2015, and it took almost two years of research to get to a position where writing code could begin. 
 
-## Getting started with Plutus 
-Plutus is the smart contract platform of the Cardano blockchain.
-Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutorial/index.html) if you want to learn Plutus from the beginning or dive straight into the [Plutus Playground](https://playground.plutus.iohkdev.io).
+The point of Cardano was to ask: What do we need to achieve to provide a financial and social operating system for billions of people on a sustainable basis? What collections of technologies do we need to bring together to get everything at an affordable cost?
 
-Talk to others about [Plutus on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-plutus/148) or if you prefer Telegram we welcome you to the [Cardano Developers Telegram Group](https://t.me/CardanoDevelopersOfficial).
+Besides cryptographic research, there was game-theoretic research, identity-management research and programming-language research. This academic rigour process has produced more than 100 academic papers. Many of them were accepted in cryptography conferences like Eurocrypt and Asiacrypt and went through the standard peer-review process. The paper [“Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol”](https://eprint.iacr.org/2016/889.pdf) has made it to the top of [the most cited security papers from 2015-2019](https://sweis.medium.com/most-cited-security-papers-from-2015-2019-d21515db3681). 
 
-## Getting started with Haskell
-Haskell is the the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend you check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 
+## What you need to bring
+To get the most out of the Cardano Developer Portal, you should already have programming experience and understand basic blockchain concepts. Terms like nodes, blocks, signatures, transactions, keys and hashes should not be foreign words. 
 
-Learning Haskell is made easy with this illustrated guide, one of the most engaging ways to learn this fascinating programming language.
+In case you are unfamiliar with these terms, start with the [stake pool course](../stake-pool-course/overview), even if you don't want to run a stake pool. The [course](../stake-pool-course/overview) will help you understand basic concepts.
 
-## Getting started with Stake Pools
-For people who want to learn how to run a stake pool we offer the [Cardano Stake Pool Course](../stake-pool-course/overview).
+## Cardano is different 
+If you already have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
+
+- It makes sense to get your head around the [concept of UTxO](../stake-pool-course/lesson-2#the-utxo-model) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/04/13/plutus-what-you-need-to-know/).
+
+- [Tokens on Cardano](../native-tokens/overview) are not built with smart contracts. Our native tokens live on the ledger, and the protocol knows that there are tokens, and it treats them as first-class citizens. This is quite different from our peers, where the protocol only knows smart contracts. Technically you don't transfer tokens, you call methods of different smart contracts.
+
+- Most of the time, you don’t even need to use smart contracts for various use cases. With [native tokens](../native-tokens/overview), you use the core infrastructure, and the network has to do everything else. For example, instead of running a smart contract and calling a method called transfer(), on Cardano you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
+
+
+## Why build on Cardano?
+- Cardano offers a better infrastructure. Build products that run faster, are more secure and are also more cost-effective to use.
+
+- Cardano offers accurate cost predictability when it comes to transactions. There are no auctions about transaction fees.
+
+- Cardano has an energetic community and more than one million wallets. If you stick to certain standards, we are keen to try out and engage with new products. Participating now makes you a first mover.
+
+## What you can do on Cardano today
+- You can send and receive [native tokens](../native-tokens/overview), including ada.
+- You can issue [native tokens](../native-tokens/overview) and [NFTs](../native-tokens/create-nfts).
+- You can add [metadata to transactions](../transaction-metadata/overview) to give transactions a story, a background or even an identity. 
+- You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/overview). You can even use transaction metadata to validate and verify external physical products and genuine articles.
+- You can [setup, manage and maintain a stake pool](../stake-pool-operation/overview) on Cardano.
+- You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
+- You can [vote with your ada](../funding/overview) to distribute over a billion dollars worth of venture capital and earn rewards by doing so.
+- You can get [your project funded](../funding/overview). In cycles of about 6 to 8 weeks, projects can be proposed, discussed and voted on by the Cardano community.
