@@ -92,7 +92,7 @@ Apart from the same requisites as on the [minting native assets](minting.md) gui
 --> Only one signature allowed (which we will create in this guide)  
 --> No further minting or burning of the asset allowed after 10000 blocks have passend since the transaction was made
 4. Hash if uploaded image to IPFS  
---> We will use this [image](https://gateway.pinata.cloud/ipfs/QmcPiDP1THtK2gfnwAJDQiPynf4F78aVQPSYZWKaDra2V8)
+--> We will use this [image](https://gateway.pinata.cloud/ipfs/QmRhTTbUrPYEw3mJGGhQqQST9k86v1DPBiTTWJGKDJsVFw)
 
 :::note
 We recommend upload images to IPFS as it is the most common decentralized storage service. There are alternatives but IFPS has the biggest adoption in terms of how many NFTs got minted.
@@ -113,7 +113,7 @@ cd nft/
 ### Set variables
 For better readability and debugging of failed transactions we will set important values in a more readable variable.
 ```bash
-tokenname="NFT_1"
+tokenname="NFT1"
 tokenamount="1"
 fee="0"
 output="0"
@@ -156,6 +156,12 @@ For our example the newly generated address was funded with 10 ADA.
 cardano-cli query utxo --address $address --mainnet
 ```
 
+You should see something like this.
+```bash
+                           TxHash                                 TxIx        Amount
+--------------------------------------------------------------------------------------
+974e98c4529f8fc75fa8baf5618f7b5ade81aa9ed29ce33cd1c2f2e70838180e     0        10000000 lovelace
+```
 ### Export protocol parameters
 
 For our transaction calculations we need some of the current protocol parameters. The parameters can be saved in a file called <i>protocol.json</i> with this command:
@@ -214,22 +220,22 @@ In order to set everything at once and just copy and paste it, use this command(
 
 ```bash
 echo "{" >> policy/policy.script
-echo "  \"type\": \"all\"" >> policy/policy.script 
+echo "  \"type\": \"all\"," >> policy/policy.script 
 echo "  \"scripts\":" >> policy/policy.script 
 echo "  [" >> policy/policy.script 
 echo "   {" >> policy/policy.script 
-echo "     \"type\": \"before\"" >> policy/policy.script 
+echo "     \"type\": \"before\"," >> policy/policy.script 
 echo "     \"slot\": $(expr $(cardano-cli query tip --mainnet | jq .slot?) + 10000)" >> policy/policy.script
 echo "   }," >> policy/policy.script 
 echo "   {" >> policy/policy.script
-echo "     \"type\": \"sig\"" >> policy/policy.script 
-echo "     \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"," >> policy/policy.script 
+echo "     \"type\": \"sig\"," >> policy/policy.script 
+echo "     \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"" >> policy/policy.script 
 echo "   }" >> policy/policy.script
 echo "  ]" >> policy/policy.script 
 echo "}" >> policy/policy.script
 ```
 
-If this command is not working, please set the key hash and correct slot manually.
+<b>If this command is not working, please set the key hash and correct slot manually.</b>
 
 To generate the keyHash use the following command:
 ```bash
@@ -254,10 +260,16 @@ nano policy/policy.script
 Be aware the the slot number is defined as a integer and therefore needs no double quotation marks whereas the keyHash is defined as a string and needs to be wrapped in double quotation marks.
 :::
 
-Take note of your slotnumber and save it in a variable
+Take note of your slotnumber and save it in a variable.
 
 ```bash
 slotnumber="Replace this with your slot number"
+```
+
+And save the location of the script file into a variable as well.
+
+```bash
+script="policy/policy.script"
 ```
 
 The last step is to generate the policyID:
@@ -275,7 +287,7 @@ Here’s an example of the metadata.json which we’ll use for this guide:
 {
         "721": {
             "please_insert_policyID_here": {
-              "NFT_1": {
+              "NFT1": {
                 "description": "This is my first NFT thanks to the Cardano foundation",
                 "name": "Cardano foundation NFT guide token",
                 "id": 1,
@@ -296,20 +308,24 @@ If you want to generate it "on the fly" use the following commands:
 
 ```bash
 echo "{" >> metadata.json
-echo "  \"721: {" >> metadata.json 
+echo "  \"721\": {" >> metadata.json 
 echo "    \"$(cat policy/policyID)\": {" >> metadata.json 
 echo "      \"$(echo $tokenname)\": {" >> metadata.json
 echo "        \"description\": \"This is my first NFT thanks to the Cardano foundation\"," >> metadata.json
 echo "        \"name\": \"Cardano foundation NFT guide token\"," >> metadata.json
-echo "        \"id\": 1," >> metadata.json
-echo "        \"image\": \"$(echo $ipfs_hash)\"" >> metadata.json
+echo "        \"id\": \"1\"," >> metadata.json
+echo "        \"image\": \"ipfs://$(echo $ipfs_hash)\"" >> metadata.json
 echo "      }" >> metadata.json
 echo "    }" >> metadata.json 
 echo "  }" >> metadata.json 
 echo "}" >> metadata.json
 ```
 
+:::note
+Please make sure the image value / IFPS hash is set with the correct protocol pre-fix <i>ipfs://</i>  
+(for example <i>"ipfs://QmRhTTbUrPYEw3mJGGhQqQST9k86v1DPBiTTWJGKDJsVFw"</i>)
 
+:::
 ### Crafting the transaction
 
 Let's begin building our transaction.
@@ -339,7 +355,7 @@ policyid=$(cat policy/policyID)
 
 If you're unsure, check if all of the other needed variables for the transaction are set:
 
-``bash
+```bash
 echo $fee
 echo $address
 echo $output
@@ -347,6 +363,7 @@ echo $tokenamount
 echo $policyid
 echo $tokenname
 echo $slotnumber
+echo $script
 ```
 
 If everything is set, run this command to generate a raw transaction file.
@@ -357,8 +374,9 @@ cardano-cli transaction build-raw \
 --tx-in $txhash#$txix  \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname" \
 --mint="$tokenamount $policyid.$tokenname" \
+--minting-script-file $script \
 --metadata-json-file metadata.json  \
---invalid-hereafter $slotnumber
+--invalid-hereafter $slotnumber \
 --out-file matx.raw
 ```
 
@@ -382,16 +400,18 @@ cardano-cli transaction build-raw \
 --tx-in $txhash#$txix  \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname" \
 --mint="$tokenamount $policyid.$tokenname" \
+--minting-script-file $script \
 --metadata-json-file metadata.json  \
---invalid-hereafter $slotnumber
+--invalid-hereafter $slotnumber \
 --out-file matx.raw
 ```
+
+Sign the transaction
 
 ```bash
 cardano-cli transaction sign  \
 --signing-key-file payment.skey  \
 --signing-key-file policy/policy.skey  \
---script-file policy/policy.script  \
 --mainnet --tx-body-file matx.raw  \
 --out-file matx.signed
 ```
@@ -418,4 +438,55 @@ and should see something like this:
 One of the most adopted NFT browers is [pool.pm](https://pool.pm/tokens).
 Simply enter your address in the search bar, hit enter and your NFT will be displayed with all it's attributes and the corresponding image.
 
-![img]
+
+![img](../../static/img/nfts/poolpm_nft.png)
+
+
+You can check it out yourself and see the NFT created for this tutorial [here](https://pool.pm/6574f051ee0c4cae35c0407b9e104ed8b3c9cab31dfb61308d69f33c.NFT1).
+
+
+## Burn your token
+
+In case you messed something up and want to re-start you can always burn your token if the slot, defined in your policy script isn't over yet.
+Assmuning you have still every varialbe set, you need to re-set:
+
+```bash
+burnfee="0"
+burnoutput="0"
+txhash="Insert your utxo holding the NFT"
+txix="Insert your txix"
+```
+
+The transaction looks like this:
+
+```bash
+cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slot --out-file burning.raw
+```
+
+:::note
+The minting paramater is now called with a negative value, therefore destorying one token.
+:::
+
+Calculate the fee to burn token.
+
+```bash
+burnfee=$(cardano-cli transaction calculate-min-fee --tx-body-file burning.raw --tx-in-count 1 --tx-out-count 1 --witness-count 1 --mainnet --protocol-params-file protocol.json | cut -d " " -f1)
+```
+
+Calculate the leftovers / output.
+```bash
+burnoutput=$(expr $funds - $burnfee)
+```
+
+Re-run the transaction build.
+```bash
+cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter 33005389 --out-file burning.raw
+```
+Sign the transaction.
+```bash
+cardano-cli transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --mainnet  --tx-body-file burning.raw --out-file burning.signed
+```
+Full send.
+```bash
+cardano-cli transaction submit --tx-file burning.signed --mainnet
+```
