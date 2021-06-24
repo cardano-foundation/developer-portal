@@ -120,7 +120,7 @@ const TOTAL_EXPECTED_LOVELACE = 1000000;
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -232,7 +232,7 @@ const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toStri
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -363,7 +363,7 @@ const rawUtxoTable = cmd.runSync([
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -526,7 +526,7 @@ for(let x = 2; x < utxoTableRows.length; x++) {
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -726,7 +726,7 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -952,7 +952,7 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one

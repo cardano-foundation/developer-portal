@@ -58,32 +58,23 @@ First, we create our new **wallet** via `cardano-wallet` **REST API**:
 
   <TabItem value="js">
 
-```csharp
-using System;
-using System.IO;
-using System.Linq;
-
-// Install using command `dotnet add package SimpleExec --version 7.0.0`
-using SimpleExec;
-
-var mnemonicSeed = await Command.ReadAsync("cardano-wallet", "recovery-phrase generate", noEcho: true);
-Console.WriteLine(mnemonicSeed);
+```js
+// Please add this dependency using npm install node-cmd
+import cmd from 'node-cmd';
+const mnemonicSeed = cmd.runSync(["cardano-wallet","recovery-phrase", "generate"].join(" ")).data;
+console.log(mnemonicSeed);
 ```
 
   </TabItem>
 
   <TabItem value="py">
 
-```csharp
-using System;
-using System.IO;
-using System.Linq;
+```py
+import subprocess
 
-// Install using command `dotnet add package SimpleExec --version 7.0.0`
-using SimpleExec;
-
-var mnemonicSeed = await Command.ReadAsync("cardano-wallet", "recovery-phrase generate", noEcho: true);
-Console.WriteLine(mnemonicSeed);
+mnemonid_seed = subprocess.check_output([
+    'cardano-wallet', 'recovery-phrase', 'generate'
+])
 ```
 
   </TabItem>
@@ -106,22 +97,19 @@ Console.WriteLine(mnemonicSeed);
 
   <TabItem value="ts">
 
-```csharp
-using System;
-using System.IO;
-using System.Linq;
+```ts
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
+const cmd: any = require('node-cmd');
 
-// Install using command `dotnet add package SimpleExec --version 7.0.0`
-using SimpleExec;
-
-var mnemonicSeed = await Command.ReadAsync("cardano-wallet", "recovery-phrase generate", noEcho: true);
-Console.WriteLine(mnemonicSeed);
+const mnemonicSeed: string = cmd.runSync(["cardano-wallet", "recovery-phrase", "generate"].join(" ")).data;
 ```
 
   </TabItem>
 </Tabs>
 
 ** Restore wallet from seed ** 
+
+We will then pass the generated seed to the wallet create / restore endpoint of `cardano-wallet`.
 
 <Tabs
   defaultValue="js"
@@ -136,68 +124,60 @@ Console.WriteLine(mnemonicSeed);
 
   <TabItem value="js">
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
+```js
+// Please add this dependency using npm install node-fetch
+import fetch from 'node-fetch';
 
-var hc = new HttpClient();
-
-var payload = new StringContent(JsonSerializer.Serialize(new
-{
-    name = "test_cf_1",
-    mnemonic_sentence = new[] { "expose", "biology", "will", "pause", "taxi", "behave", "inquiry", "lock", "matter", "pride", "divorce", "model", "little", "easily", "solid", "need", "dose", "sadness", "kitchen", "pyramid", "erosion", "shoulder", "double", "fragile" },
-    passphrase = "test123456"
-}), Encoding.UTF8, "application/json");
-
-var resp = await hc.PostAsync("http://localhost:9998/v2/wallets", payload);
+const resp = await fetch("http://localhost:9998/v2/wallets", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name: "test_cf_1",
+        mnemonic_sentence: ["expose", "biology", "will", "pause", "taxi", "behave", "inquiry", "lock", "matter", "pride", "divorce", "model", "little", "easily", "solid", "need", "dose", "sadness", "kitchen", "pyramid", "erosion", "shoulder", "double", "fragile"],
+        passphrase: "test123456"
+    })
+});
 ```
 
   </TabItem>
 
   <TabItem value="ts">
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
+```ts
+// Please add this dependency using npm install node-fetch and npm install @types/node-fetch
+import fetch from 'node-fetch';
+import { Response } from 'node-fetch';
 
-var hc = new HttpClient();
-
-var payload = new StringContent(JsonSerializer.Serialize(new
-{
-    name = "test_cf_1",
-    mnemonic_sentence = new[] { "expose", "biology", "will", "pause", "taxi", "behave", "inquiry", "lock", "matter", "pride", "divorce", "model", "little", "easily", "solid", "need", "dose", "sadness", "kitchen", "pyramid", "erosion", "shoulder", "double", "fragile" },
-    passphrase = "test123456"
-}), Encoding.UTF8, "application/json");
-
-// Assuming cardano-wallet is listening on port 9998
-var resp = await hc.PostAsync("http://localhost:9998/v2/wallets", payload);
+const resp: Response = await fetch("http://localhost:9998/v2/wallets", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name: "test_cf_1",
+        mnemonic_sentence: ["expose", "biology", "will", "pause", "taxi", "behave", "inquiry", "lock", "matter", "pride", "divorce", "model", "little", "easily", "solid", "need", "dose", "sadness", "kitchen", "pyramid", "erosion", "shoulder", "double", "fragile"],
+        passphrase: "test123456"
+    })
+});
 ```
 
   </TabItem>
 
   <TabItem value="py">
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
+```py
+# pip install requests
+import requests
 
-var hc = new HttpClient();
+data = {
+    'name'                  :   'test_cf_1',
+    'mnemonic_sentence'     :  ["expose", "biology", "will", "pause", "taxi", "behave", "inquiry", "lock", "matter", "pride", "divorce", "model", "little", "easily", "solid", "need", "dose", "sadness", "kitchen", "pyramid", "erosion", "shoulder", "double", "fragile"],
+    'passphrase'            :   'test123456'
+}
 
-var payload = new StringContent(JsonSerializer.Serialize(new
-{
-    name = "test_cf_1",
-    mnemonic_sentence = new[] { "expose", "biology", "will", "pause", "taxi", "behave", "inquiry", "lock", "matter", "pride", "divorce", "model", "little", "easily", "solid", "need", "dose", "sadness", "kitchen", "pyramid", "erosion", "shoulder", "double", "fragile" },
-    passphrase = "test123456"
-}), Encoding.UTF8, "application/json");
-
-// Assuming cardano-wallet is listening on port 9998
-var resp = await hc.PostAsync("http://localhost:9998/v2/wallets", payload);
+r = requests.post("http://localhost:9998/v2/wallets", json=data)
 ```
 
   </TabItem>
@@ -227,7 +207,7 @@ var resp = await hc.PostAsync("http://localhost:9998/v2/wallets", payload);
 
 </Tabs>
 
-** Get a unused wallet address to receive some payments **
+**Get a unused wallet address to receive some payments**
 
 We will get a **wallet address** to show to the customers and for them to send payments to the wallet. In this case we can use the address to request some `tADA` from the **Testnet Faucet** and simulate a payment:
 
@@ -245,42 +225,41 @@ We will get a **wallet address** to show to the customers and for them to send p
 
   <TabItem value="js">
 
-```csharp
-// Retrieve wallet address from previously created wallet
-// Replace with the wallet Id you previously generated above
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-var getAddressResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}/addresses?state=unused");
-var jsonString = await getAddressResp.Content.ReadAsStringAsync();
-var addressResponse = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var firstWalletAddress = addressResponse[0].GetProperty("id");
+```js
+// Please add this dependency using npm install node-fetch
+import fetch from 'node-fetch';
+const walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
+const resp = await fetch(`http://localhost:9998/v2/wallets/${walletId}/addresses?state=unused`);
+const addresses = await resp.json();
+const firstWalletAddress = addresses[0].id;
 ```
 
   </TabItem>
 
   <TabItem value="ts">
 
-```csharp
-// Retrieve wallet address from previously created wallet
-// Replace with the wallet Id you previously generated above
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-var getAddressResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}/addresses?state=unused");
-var jsonString = await getAddressResp.Content.ReadAsStringAsync();
-var addressResponse = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var firstWalletAddress = addressResponse[0].GetProperty("id");
+```ts
+// Please add this dependency using npm install node-fetch and npm install @types/node-fetch
+import fetch from 'node-fetch';
+import { Response } from 'node-fetch';
+
+const walletId: string = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
+const resp: Response = await fetch(`http://localhost:9998/v2/wallets/${walletId}/addresses?state=unused`);
+const addresses: any = await resp.json();
+const firstWalletAddress: string = addresses[0].id;
 ```
 
   </TabItem>
 
   <TabItem value="py">
 
-```csharp
-// Retrieve wallet address from previously created wallet
-// Replace with the wallet Id you previously generated above
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-var getAddressResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}/addresses?state=unused");
-var jsonString = await getAddressResp.Content.ReadAsStringAsync();
-var addressResponse = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var firstWalletAddress = addressResponse[0].GetProperty("id");
+```python
+# pip install requests
+import requests
+walletId = '101b3814d6977de4b58c9dedc67b87c63a4f36dd'
+r = requests.get('http://localhost:9998/v2/wallets/%s/addresses?state=unused' % walletId)
+addresses = r.json()
+firstWalletAddress = addresses[0]['id']
 ```
 
   </TabItem>
@@ -325,47 +304,39 @@ We will then retrieve the wallet details to get stuff like its `sync status`, `n
   <TabItem value="js">
 
 ```csharp
-// Get Wallet Details / Balance
-// Replace with your wallet Id
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-// The total payment we expect in lovelace unit
-var totalExpectedLovelace = 1000000;
-var getWalletResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}");
-var jsonString = await getWalletResp.Content.ReadAsStringAsync();
-var walletResp = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var balance = walletResp.GetProperty("balance").GetProperty("total").GetProperty("quantity").GetInt32();
+// Please add this dependency using npm install node-fetch
+import fetch from 'node-fetch';
+const walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
+const resp = await fetch(`http://localhost:9998/v2/wallets/${walletId}`);
+const wallet = await resp.json();
+const balance = wallet.balance.total.quantity;
 ```
 
   </TabItem>
 
   <TabItem value="ts">
 
-```csharp
-// Get Wallet Details / Balance
-// Replace with your wallet Id
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-// The total payment we expect in lovelace unit
-var totalExpectedLovelace = 1000000;
-var getWalletResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}");
-var jsonString = await getWalletResp.Content.ReadAsStringAsync();
-var walletResp = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var balance = walletResp.GetProperty("balance").GetProperty("total").GetProperty("quantity").GetInt32();
+```ts
+// Please add this dependency using npm install node-fetch and npm install @types/node-fetch
+import fetch from 'node-fetch';
+import { Response } from 'node-fetch';
+const walletId: string = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
+const resp: Response = await fetch(`http://localhost:9998/v2/wallets/${walletId}`);
+const wallet: any = await resp.json();
+const balance: number = wallet.balance.total.quantity;
 ```
 
   </TabItem>
 
   <TabItem value="py">
 
-```csharp
-// Get Wallet Details / Balance
-// Replace with your wallet Id
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-// The total payment we expect in lovelace unit
-var totalExpectedLovelace = 1000000;
-var getWalletResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}");
-var jsonString = await getWalletResp.Content.ReadAsStringAsync();
-var walletResp = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var balance = walletResp.GetProperty("balance").GetProperty("total").GetProperty("quantity").GetInt32();
+```py
+# pip install requests
+import requests
+walletId = '101b3814d6977de4b58c9dedc67b87c63a4f36dd'
+r = requests.get('http://localhost:9998/v2/wallets/%s' % walletId)
+wallet = r.json()
+balance = wallet['balance']['total']['quantity']
 ```
 
   </TabItem>
@@ -411,87 +382,66 @@ Our final code should look something like this:
 
   <TabItem value="js">
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-
-using var hc = new HttpClient();
-// Get Wallet Details / Balance
-// Replace with your wallet Id
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
+```js
+// Please add this dependency using npm install node-fetch
+import fetch from 'node-fetch';
+const walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
 // The total payment we expect in lovelace unit
-var totalExpectedLovelace = 1000000;
-var getWalletResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}");
-var jsonString = await getWalletResp.Content.ReadAsStringAsync();
-var walletResp = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var balance = walletResp.GetProperty("balance").GetProperty("total").GetProperty("quantity").GetInt32();
+const totalExpectedLovelace = 1000000;
+const resp = await fetch(`http://localhost:9998/v2/wallets/${walletId}`);
+const wallet = await resp.json();
+const balance = wallet.balance.total.quantity;
 
 // Check if payment is complete
-var isPaymentComplete = balance >= totalExpectedLovelace;
+const isPaymentComplete = balance >= totalExpectedLovelace;
 
-Console.WriteLine($"Total Received: {balance} LOVELACE");
-Console.WriteLine($"Expected Payment: {totalExpectedLovelace} LOVELACE");
-Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");
+console.log(`Total Received: ${balance} LOVELACE`);
+console.log(`Expected Payment: ${totalExpectedLovelace} LOVELACE`);
+console.log(`Payment Complete: ${(isPaymentComplete ? "✅":"❌")}`);
 ```
 
   </TabItem>
 
   <TabItem value="ts">
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-
-using var hc = new HttpClient();
-// Get Wallet Details / Balance
-// Replace with your wallet Id
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-// The total payment we expect in lovelace unit
-var totalExpectedLovelace = 1000000;
-var getWalletResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}");
-var jsonString = await getWalletResp.Content.ReadAsStringAsync();
-var walletResp = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var balance = walletResp.GetProperty("balance").GetProperty("total").GetProperty("quantity").GetInt32();
+```ts
+// Please add this dependency using npm install node-fetch and npm install @types/node-fetch
+import fetch from 'node-fetch';
+import { Response } from 'node-fetch';
+const walletId: string = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
+const totalExpectedLovelace: number = 1000000;
+const resp: Response = await fetch(`http://localhost:9998/v2/wallets/${walletId}`);
+const wallet: any = await resp.json();
+const balance: number = wallet.balance.total.quantity;
 
 // Check if payment is complete
-var isPaymentComplete = balance >= totalExpectedLovelace;
+const isPaymentComplete: boolean = balance >= totalExpectedLovelace;
 
-Console.WriteLine($"Total Received: {balance} LOVELACE");
-Console.WriteLine($"Expected Payment: {totalExpectedLovelace} LOVELACE");
-Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");
+console.log(`Total Received: ${balance} LOVELACE`);
+console.log(`Expected Payment: ${totalExpectedLovelace} LOVELACE`);
+console.log(`Payment Complete: ${(isPaymentComplete ? "✅":"❌")}`);
 ```
 
   </TabItem>
 
   <TabItem value="py">
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
+```py
+# coding: utf-8
+# pip install requests
+import requests
+walletId = '101b3814d6977de4b58c9dedc67b87c63a4f36dd'
+r = requests.get('http://localhost:9998/v2/wallets/%s' % walletId)
+wallet = r.json()
+balance = wallet['balance']['total']['quantity']
+totalExpectedLovelace = 1000000
 
-using var hc = new HttpClient();
-// Get Wallet Details / Balance
-// Replace with your wallet Id
-var walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-// The total payment we expect in lovelace unit
-var totalExpectedLovelace = 1000000;
-var getWalletResp = await hc.GetAsync($"http://localhost:9998/v2/wallets/{walletId}");
-var jsonString = await getWalletResp.Content.ReadAsStringAsync();
-var walletResp = JsonSerializer.Deserialize<JsonElement>(jsonString);
-var balance = walletResp.GetProperty("balance").GetProperty("total").GetProperty("quantity").GetInt32();
+# Check if payment is complete
+isPaymentComplete = balance >= totalExpectedLovelace
 
-// Check if payment is complete
-var isPaymentComplete = balance >= totalExpectedLovelace;
-
-Console.WriteLine($"Total Received: {balance} LOVELACE");
-Console.WriteLine($"Expected Payment: {totalExpectedLovelace} LOVELACE");
-Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}");
+print("Total Received: %s LOVELACE" % balance)
+print("Expected Payment: %s LOVELACE" % totalExpectedLovelace)
+print("Payment Complete: %s" % {True: "✅", False: "❌"} [isPaymentComplete])
 ```
 
   </TabItem>
