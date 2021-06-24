@@ -412,4 +412,3 @@ Next, we will talk about how to [run cardano-node](/docs/cardano-integration/run
 :::important
 Currently, the **Windows** installation guide is still in-progress. In the meantime we recommend using [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/) to get a Linux environment on-top of Windows. Once you have that installed you can use the [Linux](#linux) guide to install and run `cardano-node` within **WSL**.
 :::
-Simplicity Simplicity 

@@ -1,8 +1,8 @@
 ---
-id: listening-for-payments
+id: listening-for-payments-cli
 title: Listening for ADA payments using cardano-cli
-sidebar_label: Receiving payments (CLI)
-description: How to listen for ADA Payments using the cardano-cli
+sidebar_label: Receiving payments (cardano-cli)
+description: How to listen for ADA Payments with the cardano-cli
 --- 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 ### Overview 
 :::note
 This guide assumes that you have basic understanding of `cardano-cli`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/cardano-integration/installing-cardano-node), [Running cardano-node](/docs/cardano-integration/running-cardano) and [Exploring Cardano Wallets](/docs/cardano-integration/creating-wallet-faucet) guides first.
+
+This guide also assumes that you have `cardano-node` running in the background and connected to the `testnet` network.
 :::
 
 ### Use case
@@ -80,6 +82,7 @@ First we will set the initial variables that we will be using as explained below
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -117,7 +120,7 @@ const TOTAL_EXPECTED_LOVELACE = 1000000;
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -188,6 +191,7 @@ Next, we get the string value of the **wallet address** from the `payment.addr` 
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -228,7 +232,7 @@ const walletAddress = fs.readFileSync(`${CARDANO_KEYS_DIR}/payment.addr`).toStri
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -310,6 +314,7 @@ Then we execute `cardano-cli` programatically and telling it to query the **UTXO
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -358,7 +363,7 @@ const rawUtxoTable = cmd.runSync([
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -462,6 +467,7 @@ Once we have access to the **UTXO** table string, we will then parse it and comp
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -520,7 +526,7 @@ for(let x = 2; x < utxoTableRows.length; x++) {
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -653,6 +659,7 @@ Once we have the total lovelace amount, we will then determine using our code if
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -719,7 +726,7 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -876,6 +883,7 @@ Our final code should look something like this:
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -944,7 +952,7 @@ console.log(`Payment Complete: ${(isPaymentComplete ? "✅" : "❌")}`);
  */
 
 import * as fs from 'fs';
-// Please add this dependency using npm install node-cmd but there is no @type definition for typescript
+// Please add this dependency using npm install node-cmd but there is no @type definition for it
 const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
@@ -1100,6 +1108,7 @@ Your project directory should look something like this:
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -1180,6 +1189,7 @@ Now we are ready to test 🚀, running the code should give us the following res
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
@@ -1249,6 +1259,7 @@ Now simply send atleast `1,000,000 lovelace` to this **wallet address** or reque
 
 <Tabs
   defaultValue="js"
+  groupId="language"
   values={[
     {label: 'JavaScript', value: 'js'},
     {label: 'Typescript', value: 'ts'},
