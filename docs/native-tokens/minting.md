@@ -1,13 +1,13 @@
 ---
 id: minting
-title: Minting native assets
-sidebar_label: Minting native assets
+title: Minting Native Assets
+sidebar_label: Minting Native Assets
 ---
 
 In this section, we will be minting native assets - **not NFTs**. 
 
 It is strongly advised to work through this section and get a better understanding of how transactions and minting works.  
-Minting NFTs will follow the same process, with only a few tweaks. If you want to jump to NFTs, please visit [Minting NFTs](minting_nfts.md).
+Minting NFTs will follow the same process, with only a few tweaks. If you want to jump to NFTs, please visit [Minting NFTs](minting-nfts.md).
 
 ## Prerequisites
 
