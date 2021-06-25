@@ -45,10 +45,10 @@ If you have experience with other smart contract platforms and want to start bui
 
 ## What you can do on Cardano today
 - You can send and receive [native tokens](../native-tokens/overview), including ada.
-- You can issue [native tokens](../native-tokens/overview) and [NFTs](../native-tokens/create-nfts).
-- You can add [metadata to transactions](../transaction-metadata/overview) to give transactions a story, a background, or even an identity. 
-- You can prove the existence of a file, text, or any other data at a specific point in time with [transaction metadata](../transaction-metadata/overview). You can even use transaction metadata to validate and verify external physical products and genuine articles.
-- You can [set up, manage and maintain a stake pool](../stake-pool-operation/overview) on Cardano.
+- You can issue [native tokens](../native-tokens/overview) and [NFTs](../native-tokens/minting-nfts).
+- You can add [metadata to transactions](../transaction-metadata/overview) to give transactions a story, a background or even an identity. 
+- You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/overview). You can even use transaction metadata to validate and verify external physical products and genuine articles.
+- You can [setup, manage and maintain a stake pool](../stake-pool-operation/overview) on Cardano.
 - You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
 - You can [vote with your ada](../funding/overview) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on Project Catalyst.
 - You can earn ada rewards by voting on proposals. 

@@ -1,8 +1,17 @@
 ---
-id: submit-entry-to-cardano-token-registry
-title: How to Submit Metadata Mappings to the Cardano Token Registry
-sidebar_label: Submit Metadata to Cardano Token Registry
+id: cardano-token-registry
+title: Cardano Token Registry
+sidebar_label: Cardano Token Registry
 ---
+
+The Cardano Token Registry exposes the functionality of a key-value store and enables querying by users and applications of metadata associated with on-chain identifiers from a database through a RESTful API.
+
+## Who should register metadata?
+
+Registration of metadata mappings is optional and is independent of any on-chain activities.
+Users may choose to register metadata mappings with a server so that applications using the server can query and display additional human readable data relevant to the on-chain identifier.
+
+## Submit metadata to Cardano token registry
 
 This article outlines the steps required to create a metadata mapping for a native token, and submit it to the Cardano Token Registry. The Cardano Token Registry currently supports mappings for Native Tokens only.
 
@@ -10,11 +19,11 @@ This article outlines the steps required to create a metadata mapping for a nati
 This article assumes that you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://docs.cardano.org/en/latest/native-tokens/getting-started-with-native-tokens.html#example-minting-a-new-native-token) example.
 :::
 
-## Mapping Definition
+## Mapping definition
 
 A mapping is the association of  a unique on-chain identifier with a set of  human-readable attributes. As a user, you generate a mapping file (JSON format), containing the mapping itself and the relevant cryptographic setup validating that you are the person who minted that token. That file can then be sent out to the registry for review and inclusion.
 
-## Native Asset Identification
+## Native asset identification
 
 An asset is uniquely identified by an **assetID**, which is a pair of both the **PolicyID** and the asset name.
 
@@ -30,9 +39,9 @@ Adding to the Registry
 2. Prepare JSON mapping file for submission
 3. Creating the Pull Request (PR)
 
-### Creating your Native Token
+### Creating your native token
 
-Native tokens is an accounting system defined as part of the cryptocurrency ledger that enables tokens to be tracked, sent, and received within the Cardano blockchain. After the steps in [Minting A New Native Asset](https://docs.cardano.org/en/latest/native-tokens/getting-started-with-native-tokens.html#example-minting-a-new-native-token), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
+Native tokens is an accounting system defined as part of the cryptocurrency ledger that enables tokens to be tracked, sent, and received within the Cardano blockchain. After the steps in [minting native assets](minting.md), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
 
 ### Prepare JSON Mapping File for Submission
 
