@@ -24,8 +24,9 @@ module.exports = {
     ],
     "Discover Native Tokens": [
       "native-tokens/overview",
-      "native-tokens/create-nfts",
-      "native-tokens/submit-entry-to-cardano-token-registry",
+      "native-tokens/minting",
+      "native-tokens/minting-nfts",
+      "native-tokens/cardano-token-registry"
     ],
     "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
     "Operate a Stake Pool": [
