@@ -16,7 +16,7 @@ Users may choose to register metadata mappings with a server so that application
 This article outlines the steps required to create a metadata mapping for a native token, and submit it to the Cardano Token Registry. The Cardano Token Registry currently supports mappings for Native Tokens only.
 
 :::tip Minting A New Native Asset
-This article assumes that you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [Minting A New Native Asset](https://docs.cardano.org/en/latest/native-tokens/getting-started-with-native-tokens.html#example-minting-a-new-native-token) example.
+This article assumes that you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [minting a new native asset](minting.md) example.
 :::
 
 ## Mapping definition

@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Stake Pool Operation
+title: Operate a Stake Pool
 sidebar_label: Overview
 description: Stake Pool Operation
 image: ./img/og-developer-portal.png
@@ -8,24 +8,49 @@ image: ./img/og-developer-portal.png
 
 ![Cardano Operate a Stake Pool](../../static/img/card-stake-pool-course-title.svg)
 
-## Prerequisites 
-*FIXME* Content placeholder.  
-Manage expectations here for operating a stake pool. Do not push people away. In terms of the basic requirements for running a pool, we should be talking about knowledge and experience. Linux and networking skills, terminal and cli stuff, the ability to implement best practices, etc, we also want to manage expectations that not everyone should run a pool unless these people are willing to learn and read a ton. This is not easy content and should be written by good SPOs.
+There are excellent guides on how to get `cardano-node` as a stake pool up and running. You could even get one up without much Linux knowledge or worrying about best practices. Just copy the commands from the instructions and paste them into your shell.
 
-## Security
-*FIXME* Content placeholder.   
-Security above comforts and everything else. More mindset and less "change default SSH port". Maybe start with [learning about Cardano key pairs](cardano-key-pairs).
+Unfortunately, getting your node just up and running is not enough. You need to be able to maintain it, update it and keep it safe. To achieve this, you have to understand what you are doing. 
 
-## Stake Pool Course
+After you have mastered these basics, you also have to market your stake pool well to make it a success.
+
+## What requirements should people meet who want to learn how to operate a stake pool? 
+- Server administration skills. You need to know how to operate, maintain and secure your server with the operating system of your choice. 
+- This includes a good understanding of how networks work, how to backup and restore systems.
+- Familiar with reading documentation and adopting best practices.
+- Have a basic understanding of Cardano, blockchain, wallets and key pairs. 
+
+## What if I don't meet the requirements?
+If you don't meet all of of the requirements, you need a strong will to learn and expect that you won't know it all in a few weeks. 
+
+We saw people who had no idea about Linux, shells, networking, but they had commitment and enough time to deal with it properly and they run a successful stake pool today. It's not for everyone and it won't be easy. A few links to get you started:
+- [Start playing around with Linux](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview).
+- [Have a look at nix and NixOS](https://nixos.org).
+- [Choose security over comfort](#choose-security-over-comfort).
+- [Complete the stake pool course](#stake-pool-course).
+- [Stake pool operator forum](https://forum.cardano.org/c/staking-delegation/156).
+
+## Choose security over comfort
+When operating a stake pool, best practices should always be a top priority. Security is not a switch you can flip or a setting you make in a configuration file. It is a mindset and a lifestyle. 
+- [Discuss security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157).
+
+Learn to understand which keys there are, which are hot, sensitive and which you should never store on a server, even if it is convenient. 
+- [Read about Cardano key pairs](cardano-key-pairs).
+
+
+## Stake pool course
 A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
-[Start today with the course](../stake-pool-course/overview).
+- [Start today with the stake pool course](../stake-pool-course/overview).
 
-## Marketing
+## Marketing your stake pool
 If you are a stake pool operator, you may have already noticed that it is not enough to have a technically flawless stake pool running. 
 
-You also have to build your pool around a brand that manages to attract enough stake (delegators) within the Cardano community. [Read here for a few ideas on how you can do that](marketing-stake-pool).
+You also have to build your pool around a brand that manages to attract enough stake (delegators) within the Cardano community. 
+- [Read here for a few ideas on how you can do that](marketing-stake-pool).
 
-## Resources
-*FIXME* Content placeholder.  
-If we don't get enough content in to the portal at launch, we link to everything.   
-Also: What about community resources? Guild tools, CNCLI etc
+## Stake pool operator resources
+- [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their CNTools and top-notch content. 
+- [CNCLI a collection of utilities](https://github.com/AndrewWestberg/cncli) to enhance and extend cardano-cli. 
+- [Jormanager](https://bitbucket.org/muamw10/jormanager/src/develop/) a Cardano stake pool management software. 
+- [Stake pool operator scripts](https://github.com/gitmachtl/scripts) by Martin Lang. 
+- [Coin Cashew guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
