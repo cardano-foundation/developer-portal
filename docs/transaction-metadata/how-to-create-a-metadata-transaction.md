@@ -1,6 +1,9 @@
 ---
 id: how-to-create-a-metadata-transaction
 title: How to Create a Metadata Transaction
+sidebar_label: Create a Metadata Transaction
+description: How to Create a Metadata Transaction
+image: ./img/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -126,10 +129,10 @@ cabal exec cardano-cli -- transaction build-raw
 
 ## References
 
-* [Stakepool Metadata Aggregation Server (SMASH).](https://docs.cardano.org/projects/smash/en/latest/)
-* [Delegation Design Spec, Appendix E.](https://hydra.iohk.io/job/Cardano/cardano-ledger-specs/delegationDesignSpec/latest/download-by-type/doc-pdf/delegation_design_spec)
 * [Cardano Shelley Ledger Spec, Figure 10.](https://hydra.iohk.io/job/Cardano/cardano-ledger-specs/specs.shelley-ledger/latest/download-by-type/doc-pdf/ledger-spec)
 * [cardano-wallet OpenAPI Documentation, Shelley / Transactions / Create.](https://input-output-hk.github.io/cardano-wallet/api/edge/#operation/postTransaction)
-* [cardano-wallet OpenAPI Specification, scroll to TransactionMetadataValue.](https://github.com/input-output-hk/cardano-wallet/blob/master/specifications/api/swagger.yaml)
 
-> **_NOTE:-** please watch the Cardano [metadata workshop](https://www.crowdcast.io/e/metadata) for creating and submitting a metadata transaction to the Cardano blockchain ([presentation attached](https://docs.google.com/presentation/d/1ursHchJiBP5ZVuXcW2uVJMmzXjlJk_di65CKmAplEy4/edit#slide=id.gb7121fc2c5_4_0)). You can find more technical details in the [metadata transaction](https://docs.cardano.org/projects/cardano-node/en/latest/reference/tx-metadata.html?highlight=metadata) documentation and the [postTransaction API](https://input-output-hk.github.io/cardano-wallet/api/edge/#operation/postTransaction).
+
+:::note 
+Please watch the Cardano [metadata workshop](https://www.crowdcast.io/e/metadata) for creating and submitting a metadata transaction to the Cardano blockchain ([presentation attached](https://docs.google.com/presentation/d/1ursHchJiBP5ZVuXcW2uVJMmzXjlJk_di65CKmAplEy4/edit#slide=id.gb7121fc2c5_4_0)). You can find more technical details in the [metadata transaction](https://docs.cardano.org/projects/cardano-node/en/latest/reference/tx-metadata.html?highlight=metadata) documentation and the [postTransaction API](https://input-output-hk.github.io/cardano-wallet/api/edge/#operation/postTransaction).
+:::

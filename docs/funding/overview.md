@@ -1,88 +1,45 @@
 ---
 id: overview
-title: Funding
+title: Fund a Project
 sidebar_label: Overview
-description: Learn how to get your idea funded
+description: Find out what opportunities are available to get your project funded.
 image: ./img/og-developer-portal.png
---- 
+---
 
-![img](../../static/img/card-funding.svg)
+![Cardano Fund a Project](../../static/img/card-funding-title.svg)
 
-This is just a placeholder page. 
+Find out what opportunities are available to get your project funded and how types of funding are bringing on-chain governance to the Cardano blockchain by allowing the community to self-determine priorities for growth.
 
-## Code Examples
-Example to present different examples in different languages.
+## Types of funding
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+Choose one of two different funding types to promote projects that will further develop the overall ecosystem.
 
-<Tabs
-  defaultValue="js"
-  values={[
-    {label: 'JavaScript', value: 'js'},
-    {label: 'PHP', value: 'php'},
-    {label: 'Python', value: 'py'},
-  ]}>
-  <TabItem value="js">
+* dcFund, decentralized funding (Project Catalyst)
+* cFund, centralized funding
 
-```js
-  function helloWorld() {
-    console.log('Hello, world!');
-  }
-```
+## dcFund (Project Catalyst)
 
-  </TabItem>
-  <TabItem value="php">
+The **dcFund** or decentralized fund is represented with [Project Catalyst](https://cardano.ideascale.com/). Catalyst aims to provide a safe and lively environment to explore the highest potential of human collaboration. The source of funds come directly from the Cardano Treasury.
 
-```php
-  <?php echo '<p>Hello, world!</p>'; ?>
-```
+Visit the [dcFund section](../funding/dcfund) to understand how to submit a proposal through Project Catalyst.
 
-  </TabItem>
-  <TabItem value="py">
+:::tip Catalyst Announcements and Timeline
+The best way to keep up to date with Project Catalyst is to follow [the announcement channel on Telegram](https://t.me/cardanocatalyst). 
 
-```py
-def hello_world():
-  print 'Hello, world!'
-```
-
-  </TabItem>
-</Tabs>
-
-:::note
-Note that the empty lines above and below each language block (in the *md file) is intentional. 
+There is also a community-developed page on [Project Catalyst timelines](https://cardanocataly.st/funds/), but please be aware that there is a lot of movement, and the information there could be out of date.
 :::
 
+## cFund
 
+The [cFund](https://cfund.vc/) is a venture fund that manages all centralized fund operations secured by [IOHK](https://iohk.io/) and [Wave Financial](https://wavegp.com/) where each of them participated with 10$ million to back ambitious founders globally. Compared to Project Catalyst, the funds available here are relatively small.
 
-## Additional example
+The **cFund** started in July 2020 with the goals to achieve:
+* Growing the Cardano ecosystem.
+* Working with governments, especially in developing countries in Africa and South America.
+* Providing access to high-speed, adaptable financing for founders to be able to manage payment flows and invest in the Cardano ecosystem.
 
-We should do the same with for example operating systems. We can also switch multiple tabs at the same time based on user input.
+The first **cFund** investment took place In April 2021. It provided $500,000 to innovative enterprise-grade fintech technology called [COTI, the currency of the internet](https://coti.io/). **COTI** secured the investment to support stakeholder-driven payment solutions and enables them to pack digitally any currency.
 
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + C to copy.</TabItem>
-<TabItem value="mac">Use Command + C to copy.</TabItem>
-<TabItem value="linux">Use Ctrl + C to copy.</TabItem>
-</Tabs>
-
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + V to paste.</TabItem>
-<TabItem value="mac">Use Command + V to paste.</TabItem>
-<TabItem value="linux">Use Ctrl + V to paste.</TabItem>
-</Tabs>
+:::tip Submit a Proposal with cFund.
+Please check the [**cFund section**](../funding/cfund) to understand how to submit a proposal through cFund.
+:::

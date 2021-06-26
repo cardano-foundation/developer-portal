@@ -18,3 +18,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Common Examples
+**/keys**
+
+# .NET Examples
+**/bin**
+**/obj**
+
+# JS / TS Examples
+**/node_modules

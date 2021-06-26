@@ -15,6 +15,7 @@
   --ifm-color-primary-lighter: #325CBD;
   --ifm-color-primary-lightest: #325CBD;
   --ifm-code-font-size: 95%;
+  --ifm-footer-link-hover-color: #6684CE;
 }
 
 html[data-theme="dark"] {
@@ -26,6 +27,11 @@ html[data-theme="dark"] {
   --ifm-color-primary-lighter: #6684CE;
   --ifm-color-primary-lightest: #6684CE;
   --ifm-code-font-size: 95%;
+}
+
+.button {
+  border-style: solid !important;
+  border-width: 1px !important;
 }
 
 .docusaurus-highlight-code-line {
@@ -57,7 +63,7 @@ html[data-theme="dark"] {
 .card:hover {
   transform: translate(0px, -5px);
 }
- 
+
 .footer--dark {
   background-color: #232323 !important;
 }
