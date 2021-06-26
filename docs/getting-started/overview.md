@@ -24,7 +24,7 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 ## What you need to bring
 To get the most out of the Cardano Developer Portal, you should already have programming experience and understand basic blockchain concepts. Terms like nodes, blocks, signatures, transactions, keys and hashes should not be foreign words. 
 
-In case you are unfamiliar with these terms, start with the [stake pool course](../stake-pool-course/overview), even if you don't want to run a stake pool. The [course](../stake-pool-course/overview) will help you understand basic concepts.
+In case you are unfamiliar with these terms, start with the [stake pool course](../stake-pool-operation/overview#stake-pool-course), even if you don't want to run a stake pool. The [course](../stake-pool-operation/overview#stake-pool-course) will help you understand basic concepts.
 
 ## Cardano is different 
 If you already have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
