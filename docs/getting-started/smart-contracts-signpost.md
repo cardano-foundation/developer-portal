@@ -33,6 +33,6 @@ The Plutus pioneer program was created in order to recruit and train developers 
 **This course is not for coding beginners.** You do not need to be an expert in formal methods, but programming experience and a general aptitude for logical and mathematical thinking are highly advisable. We recommend to [get started with Haskell](#get-started-with-haskell) before taking the course.
 
 Prior knowledge of Haskell or functional programming is also recommended, as Plutus is heavily based on Haskell and includes advanced features like Template Haskell, type-level programming, and effect systems.
-- [Apply for the Plutus Pioneer Program](https://developers.cardano.org/en/plutus-pioneer-program/)
+- [Apply for the Plutus Pioneer Program](https://input-output.typeform.com/to/fNd3RBX9)
 
 
