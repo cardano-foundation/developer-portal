@@ -10,6 +10,10 @@ module.exports = {
         label: "Serialization-Lib",
         items: [
           "getting-started/cardano-serialization-lib/overview",
+          "getting-started/cardano-serialization-lib/prerequisite-knowledge",
+          "getting-started/cardano-serialization-lib/generating-keys",
+          "getting-started/cardano-serialization-lib/generating-transactions",
+          "getting-started/cardano-serialization-lib/transaction-metadata",
         ],
       },
       "getting-started/ogmios",
