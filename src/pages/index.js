@@ -13,7 +13,7 @@ const features = [
     targetUrl: "docs/getting-started/overview",
     description: (
       <>
-        Welcome to the Cardano Developer portal. This category will help you
+        Welcome to the Cardano Developer Portal. This category will help you
         find your way around quickly.
       </>
     ),
@@ -53,7 +53,7 @@ const features = [
     imageUrl: "img/card-funding.svg",
     targetUrl: "docs/funding/overview",
     description: (
-      <>Find out what opportunities are available to get your project funded.</>
+      <>Learn what Project Catalyst is and what opportunities are available to get your ideas funded.</>
     ),
   },
   {
@@ -116,7 +116,7 @@ function Home() {
               )}
               to={useBaseUrl("docs/getting-started/overview")}
             >
-              Getting Started
+              Get Started
             </Link>
           </div>
         </div>

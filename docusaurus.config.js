@@ -122,6 +122,10 @@ module.exports = {
               label: "Style Guide",
               to: "docs/portal-style-guide",
             },
+            {
+              label: "Raise an Issue",
+              href: "https://github.com/cardano-foundation/developer-portal/issues",
+            },
           ],
         },
         {
