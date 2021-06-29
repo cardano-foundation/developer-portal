@@ -5,6 +5,13 @@ module.exports = {
       "getting-started/blockfrost",
       "getting-started/cardanocli-js",
       "getting-started/dandelion-apis",
+      {
+        type: "category",
+        label: "Serialization-Lib",
+        items: [
+          "getting-started/cardano-serialization-lib/overview",
+        ],
+      },
       "getting-started/ogmios",
       "getting-started/smart-contracts-signpost",
     ],

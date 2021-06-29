@@ -36,7 +36,7 @@ const tools = [
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
-    gettingstarted: null,
+    gettingstarted: "/docs/getting-started/cardano-serialization-lib/overview",
   },
   {
     title: "Dandelion APIs",
