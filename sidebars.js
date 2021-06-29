@@ -2,29 +2,42 @@ module.exports = {
   someSidebar: {
     "Get Started": [
       "getting-started/overview",
-      "getting-started/blockfrost",
-      "getting-started/cardanocli-js",
-      "getting-started/dandelion-apis",
       {
         type: "category",
-        label: "Serialization-Lib",
+        label: "Cardano Components",
         items: [
-          "getting-started/cardano-serialization-lib/overview",
-          "getting-started/cardano-serialization-lib/prerequisite-knowledge",
-          "getting-started/cardano-serialization-lib/generating-keys",
-          "getting-started/cardano-serialization-lib/generating-transactions",
-          "getting-started/cardano-serialization-lib/transaction-metadata",
+          "getting-started/cardano-components",
+          "getting-started/installing-cardano-node",
+          "getting-started/running-cardano",
+          "getting-started/installing-cardano-wallet",
         ],
       },
-      "getting-started/ogmios",
+      {
+        type: "category",
+        label: "Builder Tools",
+        items: [
+          "getting-started/blockfrost",
+          "getting-started/cardanocli-js",
+          "getting-started/dandelion-apis",
+          "getting-started/ogmios",
+          {
+            type: "category",
+            label: "Serialization-Lib",
+            items: [
+              "getting-started/cardano-serialization-lib/overview",
+              "getting-started/cardano-serialization-lib/prerequisite-knowledge",
+              "getting-started/cardano-serialization-lib/generating-keys",
+              "getting-started/cardano-serialization-lib/generating-transactions",
+              "getting-started/cardano-serialization-lib/transaction-metadata",
+            ],
+          },
+        ],
+      },
+      
       "getting-started/smart-contracts-signpost",
     ],
     "Integrate Cardano": [
       "cardano-integration/overview",
-      "cardano-integration/cardano-components",
-      "cardano-integration/installing-cardano-node",
-      "cardano-integration/running-cardano",
-      "cardano-integration/installing-cardano-wallet",
       "cardano-integration/creating-wallet-faucet",
       "cardano-integration/listening-for-payments-cli",
       "cardano-integration/listening-for-payments-wallet"
