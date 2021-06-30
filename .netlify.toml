@@ -1,9 +1,0 @@
-# Use this file as your netlify.toml file
-# client side route redirects are auto generated.
-#
-# developers.cardano.org -> testnets.cardano.org redirects
-
-[[redirects]]
-  from = "/en/testnets/cardano/this-is-an-example/"
-  to = "https://docs.cardano.org/native-tokens/getting-started"
-  status = 301
