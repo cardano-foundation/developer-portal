@@ -1,8 +1,8 @@
 ---
 id: ogmios
-title: Getting Started with Ogmios
+title: Get Started with Ogmios
 sidebar_label: Ogmios
-description: Getting Started with Ogmios
+description: Get Started with Ogmios
 image: ./img/og-developer-portal.png
 ---
 

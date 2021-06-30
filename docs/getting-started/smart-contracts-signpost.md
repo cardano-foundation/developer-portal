@@ -2,7 +2,7 @@
 id: smart-contracts-signpost
 title: Get started with smart contracts
 sidebar_label: Smart Contracts
-description: Getting Started with smart contracts
+description: Get started with smart contracts
 image: ./img/og-developer-portal.png
 --- 
 

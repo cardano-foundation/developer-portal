@@ -1,8 +1,8 @@
 ---
 id: overview
-title: Getting Started with Cardano Serialization Lib
+title: Get Started with Cardano Serialization Lib
 sidebar_label: Overview
-description: Getting Started with Cardano Serialization Lib
+description: Get Started with Cardano Serialization Lib
 image: ./img/og-developer-portal.png
 --- 
  
