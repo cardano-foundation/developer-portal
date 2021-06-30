@@ -1,148 +1,178 @@
 ---
 id: cardano-token-registry
 title: Cardano Token Registry
-sidebar_label: Cardano Token Registry
+sidebar_label: Token Registry
 ---
 
-The Cardano Token Registry exposes the functionality of a key-value store and enables querying by users and applications of metadata associated with on-chain identifiers from a database through a RESTful API.
+The [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata that can map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).
+
+A [server](#server-and-api) exposes the functionality of a key-value store, allowing users and applications to query registry entries through a RESTful API.
+
+While this registry is limited in scope to handle native tokens only, it will also serve to facilitate a discussion and introduce a standard for a metadata distribution system that is currently put forward as a [draft CIP](https://github.com/michaelpj/CIPs/blob/cip-metadata-server/cip-metadata-server.md).
+
 
 ## Who should register metadata?
 
-Registration of metadata mappings is optional and is independent of any on-chain activities.
-Users may choose to register metadata mappings with a server so that applications using the server can query and display additional human readable data relevant to the on-chain identifier.
+Registration of metadata mappings is optional and is independent of any on-chain activities. Users may choose to register metadata mappings with a server so that applications (for example a wallet) using the server can query and display additional human readable data relevant to the on-chain identifier.
 
-## Submit metadata to Cardano token registry
 
-This article outlines the steps required to create a metadata mapping for a native token, and submit it to the Cardano Token Registry. The Cardano Token Registry currently supports mappings for Native Tokens only.
+## New registration
 
-:::tip Minting A New Native Asset
-This article assumes that you have already created a native token with associated policy script, **PolicyID**, private key that you used to sign, etc. If you need to create a native token, please follow the steps of [minting a new native asset](minting.md) example.
-:::
+New submissions to this registry will take the form of a GitHub Pull Request with the addition of one JSON file to the [mappings/](https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings) folder. Submissions will be subject to automated checking for well-formedness and human vetting before being merged to the registry.
 
-## Mapping definition
 
-A mapping is the association of  a unique on-chain identifier with a set of  human-readable attributes. As a user, you generate a mapping file (JSON format), containing the mapping itself and the relevant cryptographic setup validating that you are the person who minted that token. That file can then be sent out to the registry for review and inclusion.
+## Updating existing entries
 
-## Native asset identification
+Modification of entries in this registry will take the form of a GitHub Pull Request with the modification of one or more JSON files in the [mappings/](https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings) folder. Submissions will be subject to automated checking for well-formedness and human vetting before being merged to the registry.
 
-An asset is uniquely identified by an **assetID**, which is a pair of both the **PolicyID** and the asset name.
 
-The **PolicyID** is the unique identifier associated with a minting policy, which determines whether a transaction is allowed to mint or burn a particular token.
+## Semantic content of registry entries
 
-The **PolicyID** is computed by applying a hash function to the policy itself (the monetary script). A **PolicyID** can have multiple asset names, so different policies can use the same asset names for different assets. Assets with the same **assetID** are fungible with each other, and are not fungible with assets that have a different **assetID**.
+Each entry contains the following information:
 
-The **AssetName** is an immutable property to distinguish different assets within the same policy.
+**Name**         | **Required/Optional**|**Description**
+---              | ---       | ---
+`subject`        | Required  | The base16-encoded policyId + base16-encoded assetName
+`policy`         | Required  | The script that hashes to the policyId
+`name`           | Required  | A human-readable name for the subject, suitable for use in an interface
+`description`    | Required  | A human-readable description for the subject, suitable for use in an interface
+`ticker`         | Optional  | A human-readable ticker name for the subject, suitable for use in an interface
+`url`            | Optional  | A HTTPS URL (web page relating to the token)
+`logo`           | Optional  | A PNG image file as a byte string
 
-Adding to the Registry
+For a comprehensive description of all fields and how to generate them, please see [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools).  
 
-1. Create your native token
-2. Prepare JSON mapping file for submission
-3. Creating the Pull Request (PR)
+                       
 
-### Creating your native token
+## Submission well-formedness rules
 
-Native tokens is an accounting system defined as part of the cryptocurrency ledger that enables tokens to be tracked, sent, and received within the Cardano blockchain. After the steps in [minting native assets](minting.md), you will have the policy script, associated private key/s, **PolicyID** and **AssetName**, which are requirements for preparing your JSON mapping file.
+1. Submissions to the registry must consist of a single commit, directly off the **main** branch of the [**cardano-token-registry**](https://github.com/cardano-foundation/cardano-token-registry) repository.
 
-### Prepare JSON Mapping File for Submission
+2. Submissions must add or modify files in the [mappings/](https://github.com/cardano-foundation/cardano-token-registry/tree/master/mappings) folder.
 
-Use the [cardano-metadata-submitter](https://github.com/input-output-hk/cardano-metadata-submitter) tool to prepare a JSON mapping file for submission. This can be done manually if you are able to compile the cryptographic primitives yourself, but it is recommended that you use the cardano-metadata-submitter tool.
+3. The file name must match the encoded `"subject"` key of the entry, all lowercase.
 
-By creating a mapping file, you effectively create a record that maps human-readable content to the unique token identifier of the tokens you have minted, such as:
+4. The maximum file size of a single metadata entry is 370KB.
 
-* **Name -** Required - What is your token name? Non unique / Doesn’t have to be the same as the **AssetName**.
-* **Description -** Required - A short explanation about your token,
-* **Ticker -** Optional - Non unique, limit 4 characters,
-* **URL -** Optional - Site to be associated with that token,
-* **Logo -** Optional  - Associated logo to be picked up by the wallets displaying your token.
 
-#### Example for Creating a Mapping File
+## Server and API
 
-To create a new entry, you must first obtain your metadata subject. The subject is defined as the concatenation of the base16-encoded **PolicyID** and base16-encoded **AssetName** of your asset.
+Users and applications can query this registry through an API at `https://tokens.cardano.org/metadata`.
 
-This example uses the following native asset:
-```
-Baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f.myassetname
-```
+The API documentation and source code for the server implementation is available with the [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools).        
+            
+Use of the `https://tokens.cardano.org/metadata` API is subject to the [API Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/API_Terms_of_Use.md).  
 
-#### 1) Encode your **assetName** with base16:
-```
-echo -n "myassetname" | xxd -ps
+   
+## How to prepare an entry for the token registry
+
+### Prerequisites
+To register native token mappings, it is recommended to have pre-existing knowledge about Cardano native assets. Start by reading through the [minting a new native asset](minting.md) example.  
+
+After creating a Cardano native asset you will need the following to proceed with the steps to generate a mapping for the registry:     
+
+- The monetary policy script for your native asset.
+- The assetName associated with the monetary policy script.
+- The policyId of the monetary policy script.
+- The private key/s used to define your asset policy.
+- Install `offchain-metadata-tools` (see [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools)).
+
+### Step 1: Generate the 'subject'
+
+To create a new mapping, you must first obtain your metadata subject. The subject is defined as the concatenation of the base16-encoded policyId and base16-encoded assetName of your asset. In case your assetName is empty, then the policyId is your subject.
+
+For this example, we will consider the following native asset:
+
+`baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f.myassetname`
+
+- Base16 encode your assetName:
+
+```shell
+$ echo -n "myassetname" | xxd -ps
 6d7961737365746e616d65
 ```
+- Concatenate the policyId with the base16-encoded assetName to obtain the 'subject' for your entry: 
 
-#### 2) Concatenate the **PolicyID** with the base16-encoded **assetName** to obtain the 'subject' for your entry:
-```
-baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65
-```
+`baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65`
 
-#### 3) Initiate a draft file using the ‘subject’ value:
-```
-cardano-metadata-submitter --init baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65
-```
+### Step 2: Prepare a draft entry
 
-#### 4) Add the required fields:
-```
-cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 \
---name "My Gaming Token" \
---description "A currency for the Metaverse." \
---policy policy.json
-```
+- Initialise a new draft entry for the subject using `token-metadata-creator`
 
-If desired, add optional fields:
+```shell
+token-metadata-creator entry --init baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65
 ```
-cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 \
+This creates a draft JSON file named after your subject.
+
+### Step 3: Add required fields 
+
+```shell
+token-metadata-creator entry baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 \
+  --name "My Gaming Token" \
+  --description "A currency for the Metaverse." \
+  --policy policy.json
+```
+Where `policy.json` is the monetary policy script file that hashes to the policyId.
+
+### Step 4: Add optional fields 
+
+```shell
+token-metadata-creator entry baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 \
   --ticker "TKN" \
   --url "https://finalfantasy.fandom.com/wiki/Gil" \
-  --logo "icon.png"
+  --logo "icon.png" \
+  --decimals 4         
 ```
 
-#### 5) Sign your file
+### Step 5: Sign your metadata
 
-This is important as the signature will be used and compared with the signature from the asset policy forging script. This step validates the original monetary script and generates signatures for each mapping in the JSON file:
-```
-cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 -a policy.skey
-```
+Each metadata item must be signed with the key/s used to define your asset policy. For this example we assume only a single signing key is required to validate the monetary policy script and that all metadata fields will be signed at once with the signing key file. Please refer to [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools) for more granular options.
 
-#### 6) Finalize your Submission
-```
-cardano-metadata-submitter baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 --finalize
+```shell
+token-metadata-creator entry baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 -a policy.skey
 ```
 
+### Step 6: Finalize your mapping
 
-You’re now ready to submit your mapping file to the [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry).
+This will run some additional validations on your submission and check that it is considered valid.
 
-### Pull Request and Validation Process
+```shell
+token-metadata-creator entry baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 --finalize
+```
+Your finalized metadata file is now ready to submit to the [cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry).  
 
-The final step is to submit the mapping to the registry. This is done by submitting a Pull Request to the Cardano Foundation’s [Token Registry repository](https://github.com/cardano-foundation/cardano-token-registry).
+## How to submit an entry to the token registry
 
-Please see below for general steps, check the [Wiki](https://github.com/cardano-foundation/cardano-token-registry/wiki) or FAQs or more information.
+### Prerequisites
 
-#### Fork and clone the repo
+To submit a metadata entry for a native asset on Cardano, you must first follow the steps in [how to prepare an entry for the token registry](#how-to-prepare-an-entry-for-the-token-registry) and have a finalised metadata file ready for submission.
+
+### Step 1: Fork and clone the registry repository
 
 [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) your own copy of [cardano-foundation/cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry) to your account.
 
 Then clone a local copy:
+```shell
+$ git clone git@github.com:<your-github-username>/cardano-token-registry
+$ cd cardano-token-registry
 ```
-git clone git@github.com:<your-github-username>/cardano-token-registry
-cd cardano-token-registry
+### Step 2: Add your metadata entry to the 'mappings' folder
+
+```shell
+$ cp /path-to-my-file/baa83...d65.json mappings/
 ```
 
-#### Add the mapping to /mappings/ folder
-```
-cp /path-to-your-file/baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65.json mappings/
+### Step 3: Create a commit for the submission
+
+```shell
+$ git add mappings/baa83...d65.json
+$ git commit -m "Your Token Name"
+$ git push origin HEAD
 ```
 
-#### Commit to the repo
-```
-git add registry/baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65.json
-git commit -m "Your Token Name"
-git push submission HEAD
-```
-
-#### Make a Pull request
+### Step 4: Make a Pull Request
 
 Create a [pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
 
-:::note Review PR request
-From here you will see your PR show up in Github - Foundation registry operators will review it for well formedness, proper content and to see how it fared with the automated tests - it might be that you are asked to modify some items, that it gets rejected - or even merged! You’ll be notified through Github/email and can add to the comments or see what is happening. The wiki should help guide you through the specific steps - do ask or raise issues in the repository if you get stuck.
-:::
+If the pull request validations pass, your submission will be reviewed and merged to the main branch subject to the [Registry Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/Registry_Terms_of_Use.md).
+It may take a few hours following a merge to the main branch before your entry is added to the database and available via the api query.
