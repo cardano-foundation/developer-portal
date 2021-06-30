@@ -47,7 +47,7 @@ Powerful and flexible enough to be used to power wallets and exchanges!
 
 This library generates both [Typescript](https://www.typescriptlang.org/) and [Flow](https://flow.org/) type definitions,
 so it’s often easiest to see what is possible by just looking at the
-types! You can find the Flow types [here](../../../static/img/builder-tools/cardano-serialization-lib/rust/pkg/cardano_serialization_lib.js.flow).
+types! You can find the Flow types [here](https://github.com/Emurgo/cardano-serialization-lib/blob/master/rust/pkg/cardano_serialization_lib.js.flow).
 
 You can also look in the [example](https://github.com/Emurgo/cardano-serialization-lib/tree/master/example) folder to see how to use this library from Typescript or just experiment with the library.
 
