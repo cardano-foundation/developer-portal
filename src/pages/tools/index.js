@@ -47,7 +47,7 @@ function BuilderTools() {
                           className="button button--small button--secondary button--block"
                           href={tool.gettingstarted}
                         >
-                          Getting Started
+                          Get Started
                         </a>
                       )}
                       {tool.website && (
