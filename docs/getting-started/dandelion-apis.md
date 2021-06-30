@@ -1,8 +1,8 @@
 ---
 id: dandelion-apis
-title: Getting Started with Dandelion APIs
+title: Get Started with Dandelion APIs
 sidebar_label: Dandelion APIs
-description: Getting Started with Dandelion APIs
+description: Get Started with Dandelion APIs
 image: ./img/og-developer-portal.png
 --- 
 

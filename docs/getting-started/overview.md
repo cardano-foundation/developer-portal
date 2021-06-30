@@ -2,7 +2,7 @@
 id: overview
 title: Get Started
 sidebar_label: Overview
-description: Getting Started
+description: Get Started
 image: ./img/og-developer-portal.png
 --- 
 ![Cardano Get Started](../../static/img/card-getting-started-title.svg)

@@ -223,7 +223,7 @@ cardano-node --version
 
 Congratulations, you have successfully installed Cardano components into your Linux system! 🎉🎉🎉
 
-Next, we will talk about how to [run cardano-node](/docs/cardano-integration/running-cardano).
+Next, we will talk about how to [run cardano-node](running-cardano.md).
 
 ## MacOS
 
@@ -405,7 +405,7 @@ cardano-node --version
 
 Congratulations, you have successfully installed Cardano components into your MacOS system! 🎉🎉🎉
 
-Next, we will talk about how to [run cardano-node](/docs/cardano-integration/running-cardano).
+Next, we will talk about how to [run cardano-node](running-cardano.md).
 
 ## Windows
 

@@ -20,13 +20,13 @@ If you want to avoid compiling the binaries yourself, You can download the lates
 - [MacOS](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-macos64/latest)
 - [Windows](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-macos64/latest)
   
-This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/cardano-integration/installing-cardano-node) guide for instructions on how to do that.
+This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/getting-started/installing-cardano-node) guide for instructions on how to do that.
 
 :::
 
 :::important
 
-You must connect your `cardano-node` to the `testnet` network and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/cardano-integration/running-cardano) guide before proceeding.
+You must connect your `cardano-node` to the `testnet` network and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](running-cardano.md) guide before proceeding.
 
 :::
 
@@ -41,7 +41,7 @@ In this section, we will walk you through the process of downloading, compiling 
 
 #### Downloading & Compiling
 
-If you have followed the [Installing cardano-node](/docs/cardano-integration/installing-cardano-node) guide, You should have the `~/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
+If you have followed the [Installing cardano-node](/docs/getting-started/installing-cardano-node) guide, You should have the `~/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
 
 ```bash
 mkdir -p ~/cardano-src
