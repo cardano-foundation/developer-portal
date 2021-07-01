@@ -1314,4 +1314,4 @@ It might take 20 seconds or more for the transaction to propagate within the net
 :::
 
 
-Congratulations, we are now able to detect succesful **Cardano** payments programatically. This should help you bring integrations to your existing or new upcoming applications. 🎉🎉🎉
+Congratulations, you are now able to detect succesful **Cardano** payments programatically. This should help you bring integrations to your existing or new upcoming applications. 🎉🎉🎉

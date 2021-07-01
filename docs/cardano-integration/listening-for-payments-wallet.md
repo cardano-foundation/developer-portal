@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 :::note
 This guide assumes that you have basic understanding of `cardano-wallet`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/cardano-integration/installing-cardano-node), [Running cardano-node](/docs/cardano-integration/running-cardano) and [Exploring Cardano Wallets](/docs/cardano-integration/creating-wallet-faucet) guides first.
 
-This guide also assumed that you have `cardano-node` and `cardano-wallet` running in the background and connected to the `testnet` network.
+This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to the `testnet` network.
 :::
 
 ### Use case
@@ -33,11 +33,6 @@ In the meantime the transaction is then being processed and settled within the *
 ### Time to code!
 
 Now let's get our hands dirty and see how we can implement something like this in actual code.
-
-:::note
-In this section, We will use the path `/home/user/receive-ada-sample` to store all the related files as an example, please replace it with the directory you have choosen to store the files. 
-All the code examples in this article assumes that you will save all the source-code-files under the root of this directory.
-:::
 
 **Generate Wallet and Request some tADA**
 
@@ -597,4 +592,4 @@ It might take 20 seconds or more for the transaction to propagate within the net
 :::
 
 
-Congratulations, we are now able to detect succesful **Cardano** payments programatically. This should help you bring integrations to your existing or new upcoming applications. 🎉🎉🎉
+Congratulations, you are now able to detect succesful **Cardano** payments programatically. This should help you bring integrations to your existing or new upcoming applications. 🎉🎉🎉

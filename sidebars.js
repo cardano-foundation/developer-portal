@@ -20,7 +20,8 @@ module.exports = {
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
-      "transaction-metadata/how-to-create-a-metadata-transaction",
+      "transaction-metadata/how-to-create-a-metadata-transaction-cli",
+      "transaction-metadata/how-to-create-a-metadata-transaction-wallet",
     ],
     "Discover Native Tokens": [
       "native-tokens/overview",
