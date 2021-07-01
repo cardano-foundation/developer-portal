@@ -1,8 +1,8 @@
 ---
 id: how-to-create-a-metadata-transaction-cli
-title: How to Create a Metadata Transaction using cardano-cli
-sidebar_label: Create a Metadata Transaction (CLI)
-description: How to Create a Metadata Transaction using `cardano-cli`
+title: How to create a metadata transaction using cardano-cli
+sidebar_label: Create a metadata transaction (CLI)
+description: How to create a metadata transaction using `cardano-cli`
 image: ./img/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
