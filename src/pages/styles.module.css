@@ -16,10 +16,12 @@
 
 html[data-theme=light] .heroBanner {
   background-image: url(/img/dev-portal-hero-light.webp);
+  background-color: #383fd0;
 }
 
 html[data-theme=dark] .heroBanner {
   background-image: url(/img/dev-portal-hero-dark.webp);
+  background-color: #2da48d;
 }
 
 @media screen and (max-width: 1024px) {
