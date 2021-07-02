@@ -10,8 +10,22 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-image: url("/img/hero-header-zoom.png");
-  background-size: cover;
+  background-size: auto;
+  background-position: 59% 50%;
+}
+
+html[data-theme=light] .heroBanner {
+  background-image: url(/img/dev-portal-hero-light.webp);
+}
+
+html[data-theme=dark] .heroBanner {
+  background-image: url(/img/dev-portal-hero-dark.webp);
+}
+
+@media screen and (max-width: 1024px) {
+  .heroBanner {
+    background-position: 34% 50%;
+  }
 }
 
 @media screen and (max-width: 966px) {

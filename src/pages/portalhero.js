@@ -4,12 +4,12 @@ import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-function PortalHero({ title, description, cta, filename }) {
+function PortalHero({ title, description, cta, filename, url }) {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const EDIT_URL = `${siteConfig.customFields.repository}/edit/${siteConfig.customFields.branch}/src/data/${filename}`;
+  const EDIT_URL = !filename ? url : `${siteConfig.customFields.repository}/edit/${siteConfig.customFields.branch}/src/data/${filename}`;
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)} style={{backgroundImage: "url('/img/hero-header-zoom.png')"}}>
+    <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">{title}</h1>
         <p className="hero__subtitle">{description}</p>
@@ -19,8 +19,8 @@ function PortalHero({ title, description, cta, filename }) {
               "button button--outline button--warn button--lg",
               styles.getStarted
             )}
-            href={EDIT_URL}
-            target={"_blank"}
+            {...(filename && {href: EDIT_URL, target: "_blank"})}
+            {...(!filename && {to: url})}
           >
             {cta}
           </Link>
