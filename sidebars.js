@@ -52,7 +52,11 @@ module.exports = {
       "native-tokens/minting-nfts",
       "native-tokens/cardano-token-registry"
     ],
-    "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
+    "Fund your Project": [
+      "funding/overview", 
+      "funding/project-catalyst", 
+      "funding/alternatives"
+    ],
     "Operate a Stake Pool": [
       "stake-pool-operation/overview",
       "stake-pool-operation/cardano-key-pairs",

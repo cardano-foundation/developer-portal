@@ -1,45 +1,15 @@
 ---
 id: overview
-title: Fund a Project
+title: Fund your Project
 sidebar_label: Overview
 description: Find out what opportunities are available to get your project funded.
 image: ./img/og-developer-portal.png
 ---
 
-![Cardano Fund a Project](../../static/img/card-funding-title.svg)
+![Cardano Fund your Project](../../static/img/card-funding-title.svg)
 
-Find out what opportunities are available to get your project funded and how types of funding are bringing on-chain governance to the Cardano blockchain by allowing the community to self-determine priorities for growth.
+Cardano was already designed with sustainability in mind. The point was to create a system that governs and also finance itself without being dependent on donations.  Cardano has a built-in treasury system that gets a constant stream of funds from transactions fees and treasury taxes. This is explained in detail in [treasuries with Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0). 
 
-## Types of funding
+## Project Catalyst
 
-Choose one of two different funding types to promote projects that will further develop the overall ecosystem.
-
-* dcFund, decentralized funding (Project Catalyst)
-* cFund, centralized funding
-
-## dcFund (Project Catalyst)
-
-The **dcFund** or decentralized fund is represented with [Project Catalyst](https://cardano.ideascale.com/). Catalyst aims to provide a safe and lively environment to explore the highest potential of human collaboration. The source of funds come directly from the Cardano Treasury.
-
-Visit the [dcFund section](../funding/dcfund) to understand how to submit a proposal through Project Catalyst.
-
-:::tip Catalyst Announcements and Timeline
-The best way to keep up to date with Project Catalyst is to follow [the announcement channel on Telegram](https://t.me/cardanocatalyst). 
-
-There is also a community-developed page on [Project Catalyst timelines](https://cardanocataly.st/funds/), but please be aware that there is a lot of movement, and the information there could be out of date.
-:::
-
-## cFund
-
-The [cFund](https://cfund.vc/) is a venture fund that manages all centralized fund operations secured by [IOHK](https://iohk.io/) and [Wave Financial](https://wavegp.com/) where each of them participated with 10$ million to back ambitious founders globally. Compared to Project Catalyst, the funds available here are relatively small.
-
-The **cFund** started in July 2020 with the goals to achieve:
-* Growing the Cardano ecosystem.
-* Working with governments, especially in developing countries in Africa and South America.
-* Providing access to high-speed, adaptable financing for founders to be able to manage payment flows and invest in the Cardano ecosystem.
-
-The first **cFund** investment took place In April 2021. It provided $500,000 to innovative enterprise-grade fintech technology called [COTI, the currency of the internet](https://coti.io/). **COTI** secured the investment to support stakeholder-driven payment solutions and enables them to pack digitally any currency.
-
-:::tip Submit a Proposal with cFund.
-Please check the [**cFund section**](../funding/cfund) to understand how to submit a proposal through cFund.
-:::
+[Project Catalyst](project-catalyst), Cardano's innovation platform, is the current way to access the funds of the treasury system. It is seen as a stepping stone to Voltaire and aims to provide a safe and lively environment to explore the highest potential of human collaboration. 
