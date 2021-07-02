@@ -6,7 +6,7 @@ description: Get Started in the Cardano Developer Community
 image: ./img/og-developer-portal.png
 --- 
 
-Apart from the two main platforms [Stack Exchange](https://cardano.stackexchange.com) and [Cardano Forum](https://forum.cardano.org/c/developers/29), Cardano developers and stake pool operators spread across different platforms. Each with its own niche.
+Apart from the two leading platforms [Stack Exchange](https://cardano.stackexchange.com) and [Cardano Forum](https://forum.cardano.org/c/developers/29), Cardano developers and stake pool operators spread across different platforms. Each with its niche.
 
 ## Cardano developers channels
 
@@ -17,7 +17,7 @@ Stack Exchange communities are democratically created and maintained. It is a qu
 The developer categories on the [Cardano Forum](https://forum.cardano.org/c/developers/29) is an excellent place for extensive discussions and opinions, but also to get support. 
 
 [**discord.com**](https://discord.gg/kfATXEENPD)  
-Visit the developer categories on the [Cardano Community Discord](https://discord.gg/kfATXEENPD) if you prefer chat style conversations.
+Visit the developer categories on the [Cardano Community Discord](https://discord.gg/kfATXEENPD) if you prefer chat-style conversations.
 
 [**reddit.com/r/CardanoDevelopers**](https://www.reddit.com/r/CardanoDevelopers/)  
 A subreddit dedicated to everyone building on the Cardano blockchain.        
@@ -31,7 +31,7 @@ Dedicated channel for Marlowe developers and users. Marlowe is a specialized dom
 ## Stake pool operator channels
 
 [**t.me/CardanoStakePoolWorkgroup**](https://t.me/CardanoStakePoolWorkgroup)  
-Best practice workgroup on Telegram for stake pool operators. This group is very busy. A good resource to search for answers.
+Best practice workgroup on Telegram for stake pool operators. This group is hectic. A good resource to search for answers.
 
 [**forum.cardano.org**](https://forum.cardano.org/c/staking-delegation/156)  
 If you care about well structured, long format discussions, visit the stake pool operator categories on [forum.cardano.org](https://forum.cardano.org/c/staking-delegation/156).
