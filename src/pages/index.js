@@ -50,7 +50,7 @@ const features = [
     ),
   },
   {
-    title: "Fund a Project",
+    title: "Fund your Project",
     imageUrl: "img/card-funding.svg",
     targetUrl: "docs/funding/overview",
     description: (
