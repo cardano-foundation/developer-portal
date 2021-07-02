@@ -132,29 +132,16 @@ module.exports = {
           title: "Developer Community",
           items: [
             {
-              label: "Cardano Forum",
-              href: "https://forum.cardano.org/c/developers/29",
-            },
-            {
-              label: "Discord",
-              href: "https://discord.gg/kfATXEENPD",
-            },
-            {
-              label: "Reddit",
-              href: "https://www.reddit.com/r/CardanoDevelopers/",
-            },
-            {
               label: "Stack Exchange",
               href: "https://cardano.stackexchange.com",
             },
             {
-              label: "Slack",
-              href:
-                "https://join.slack.com/t/iohkdevcommunity/shared_invite/zt-mdvb06fr-8Tv8pjl~iR0~lGrimqK_yg",
+              label: "Cardano Forum",
+              href: "https://forum.cardano.org/c/developers/29",
             },
             {
-              label: "Telegram",
-              href: "https://t.me/CardanoDevelopersOfficial",
+              label: "More",
+              to: "docs/getting-started/cardano-developer-community",
             },
           ],
         },
