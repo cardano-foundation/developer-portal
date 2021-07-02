@@ -1,8 +1,8 @@
 ---
 id: cardanocli-js
-title: Getting Started with cardanocli-js
+title: Get Started with cardanocli-js
 sidebar_label: cardanocli-js
-description: Getting Started with cardanocli-js
+description: Get Started with cardanocli-js
 image: ./img/og-developer-portal.png
 ---
 
@@ -29,7 +29,7 @@ cd cardanocli-js
 npm install
 ```
 
-## Getting started
+## Get started
 
 ```javascript
 const CardanocliJs = require("cardanocli-js");

@@ -5,6 +5,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
+import PortalHero from "./portalhero";
 
 const features = [
   {
@@ -13,7 +14,7 @@ const features = [
     targetUrl: "docs/getting-started/overview",
     description: (
       <>
-        Welcome to the Cardano Developer portal. This category will help you
+        Welcome to the Cardano Developer Portal. This category will help you
         find your way around quickly.
       </>
     ),
@@ -53,7 +54,7 @@ const features = [
     imageUrl: "img/card-funding.svg",
     targetUrl: "docs/funding/overview",
     description: (
-      <>Find out what opportunities are available to get your project funded.</>
+      <>Learn what Project Catalyst is and what opportunities are available to get your ideas funded.</>
     ),
   },
   {
@@ -104,23 +105,12 @@ function Home() {
   const { siteConfig = {} } = context;
   return (
     <Layout title={`Overview`} description="Cardano Developer Portal">
-      <header className={clsx("hero hero--primary", styles.heroBanner)} style={{backgroundImage: "url('/img/hero-header-zoom.png')"}}>
-        <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
-            <Link
-              className={clsx(
-                "button button--outline button--lg",
-                styles.getStarted
-              )}
-              to={useBaseUrl("docs/getting-started/overview")}
-            >
-              Getting Started
-            </Link>
-          </div>
-        </div>
-      </header>
+      <PortalHero
+        title={siteConfig.title}
+        description={siteConfig.tagline}
+        cta={'Get Started'}
+        url={useBaseUrl("docs/getting-started/overview")}
+      />
       <main>
         {features && features.length > 0 && (
           <section className={styles.features}>

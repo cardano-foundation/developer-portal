@@ -1,0 +1,5 @@
+# Redirects from what the browser requests to what we serve
+# Can be used for developers.cardano.org -> testnets.cardano.org redirects
+
+/en/testnets/cardano/this-is-an-example-1/ https://docs.cardano.org/native-tokens/getting-started
+/en/testnets/cardano/this-is-an-example-2/ https://docs.cardano.org/rosetta/learn-rosetta

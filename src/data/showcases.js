@@ -128,15 +128,6 @@ const Showcases = [
     tags: ["featured", "metadata"],
   },
   {
-    title: "Meta Data Connector",
-    description:
-      "Cardano Foundation’s supply chain traceability and anti-counterfeit solution together with Scantrust.",
-    preview: require("./showcase/baiawine.png"),
-    website: "https://www.baiawine.com",
-    source: "https://github.com/cardano-foundation",
-    tags: ["opensource", "featured", "metadata"],
-  },
-  {
     title: "NFT Maker",
     description:
       "Create your own NFT by uploading an image and paying some ada.",
