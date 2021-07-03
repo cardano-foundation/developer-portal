@@ -2,7 +2,7 @@
 id: cardano-developer-community
 title: Get Started in the Cardano Developer Community
 sidebar_label: Developer Community
-description: Get Started in the Cardano Developer Community
+description: Get Started in the Cardano Developer Community.
 image: ./img/og-developer-portal.png
 --- 
 

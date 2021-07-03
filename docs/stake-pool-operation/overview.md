@@ -2,7 +2,7 @@
 id: overview
 title: Operate a Stake Pool
 sidebar_label: Overview
-description: Stake Pool Operation
+description: Operate a Cardano stake pool.
 image: ./img/og-developer-portal.png
 ---
 

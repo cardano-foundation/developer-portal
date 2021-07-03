@@ -2,7 +2,7 @@
 id: lesson-1
 title: Lesson 1
 sidebar_label: Lesson 1
-description: Stake Pool Course Lesson 1
+description: "Stake pool course: Lesson 1."
 image: ./img/og-developer-portal.png
 ---
 

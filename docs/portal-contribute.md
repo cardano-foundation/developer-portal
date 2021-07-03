@@ -2,7 +2,7 @@
 id: portal-contribute
 title: How to contribute to the developer portal
 sidebar_label: How to contribute
-description: How to contribute to the Cardano developer portal
+description: How to contribute to the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 

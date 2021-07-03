@@ -2,7 +2,7 @@
 id: setup-virtual-box-written
 title: Installing VirtualBox
 sidebar_label: Installing VirtualBox
-description: Learn how to install and setup VirtualBox
+description: "Stake pool course: Learn how to install and setup VirtualBox."
 image: ./img/og-developer-portal.png
 ---
 

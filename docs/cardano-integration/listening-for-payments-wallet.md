@@ -1,8 +1,9 @@
 ---
 id: listening-for-payments-wallet
-title: Listening for ADA payments using cardano-wallet
+title: Listening for ada payments using cardano-wallet
 sidebar_label: Receiving payments (cardano-wallet)
-description: How to listen for ADA Payments with the cardano-wallet
+description: How to listen for ada Payments with the cardano-wallet.
+image: ./img/og-developer-portal.png
 --- 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -2,6 +2,8 @@
 id: overview
 title: Discover Native Tokens
 sidebar_label: Overview
+description: Discover Cardano's native tokens. 
+image: ./img/og-developer-portal.png
 ---
 
 ![Cardano Discover Native Tokens](../../static/img/card-native-tokens-title.svg)

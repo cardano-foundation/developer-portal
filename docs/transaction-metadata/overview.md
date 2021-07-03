@@ -2,7 +2,7 @@
 id: overview
 title: Transaction Metadata
 sidebar_label: Overview
-description: Transaction Metadata Overview
+description: Build with transaction metadata.
 image: ./img/og-developer-portal.png
 ---
 

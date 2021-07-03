@@ -2,7 +2,7 @@
 id: configure-topology-files
 title: Configure Topology Files
 sidebar_label: Configure topology files
-description: Learn how to Create Stake Pool Keys
+description: "Stake pool course: Learn how to create stake pool keys."
 image: ./img/og-developer-portal.png
 ---
 

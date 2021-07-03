@@ -2,7 +2,7 @@
 id: cardano-key-pairs
 title: Cardano Key Pairs
 sidebar_label: Cardano Key Pairs
-description: Learn about Cardano key pairs
+description: Learn about Cardano key pairs.
 image: ./img/og-developer-portal.png
 ---
 

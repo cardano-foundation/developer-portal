@@ -2,6 +2,7 @@
 id: kes_period
 title:  KES Periods
 sidebar_label:  KES periods
+description: "Stake pool course: KES period assignment." 
 image: ./img/og-developer-portal.png
 ---
 
