@@ -1,5 +1,6 @@
 ---
 id: overview
+slug: /stake-pool-operation/
 title: Operate a Stake Pool
 sidebar_label: Overview
 description: Operate a Cardano stake pool.
@@ -40,7 +41,7 @@ Learn to understand which keys there are, which are hot, sensitive and which you
 
 ## Stake pool course
 A walk through how to set up manage and maintain your stake pool to ensure optimal performance and profitability.
-- [Start today with the stake pool course](../stake-pool-course/overview).
+- [Start today with the stake pool course](../stake-pool-course/).
 
 ## Marketing your stake pool
 If you are a stake pool operator, you may have already noticed that it is not enough to have a technically flawless stake pool running. 

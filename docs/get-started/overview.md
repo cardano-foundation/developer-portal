@@ -25,16 +25,16 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 ## What you need to bring
 To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts such as nodes, blocks, signatures, transactions, keys, and hashes. 
 
-If you are unfamiliar with these terms, start with the [stake pool course](../stake-pool-operation/overview#stake-pool-course)). It will help you understand basic concepts, even if you don't want to run a stake pool. 
+If you are unfamiliar with these terms, start with the [stake pool course](../stake-pool-operation/#stake-pool-course)). It will help you understand basic concepts, even if you don't want to run a stake pool. 
 
 ## Cardano is different 
 If you have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
 
 - It makes sense to get your head around the [concept of UTxO](../stake-pool-course/lesson-2#the-utxo-model) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/04/13/plutus-what-you-need-to-know/).
 
-- [Tokens on Cardano](../native-tokens/overview) are not built with smart contracts. Instead, tokens are native and live on the ledger. The protocol treats them as first-class citizens, like ada. It is quite different from our peers that don’t have native tokens and need to use a smart contract to send tokens. 
+- [Tokens on Cardano](../native-tokens/) are not built with smart contracts. Instead, tokens are native and live on the ledger. The protocol treats them as first-class citizens, like ada. It is quite different from our peers that don’t have native tokens and need to use a smart contract to send tokens. 
 
-- [Native tokens](../native-tokens/overview) use the core infrastructure, and the network has to do everything else. For example, instead of running a smart contract and calling a method called transfer. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
+- [Native tokens](../native-tokens/) use the core infrastructure, and the network has to do everything else. For example, instead of running a smart contract and calling a method called transfer. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
 
 
 ## Why build on Cardano?
@@ -45,11 +45,11 @@ If you have experience with other smart contract platforms and want to start bui
 - Cardano has an energetic community and more than one million wallets. If you stick to specific standards, we are keen to try out and engage with new products. Participating now makes you a first mover.
 
 ## What you can do on Cardano today
-- You can send and receive [native tokens](../native-tokens/overview), including ada.
-- You can issue [native tokens](../native-tokens/overview) and [NFTs](../native-tokens/minting-nfts).
-- You can add [metadata to transactions](../transaction-metadata/overview) to give transactions a story, a background or even an identity. 
-- You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/overview). You can even use transaction metadata to validate and verify external physical products and genuine articles.
-- You can [setup, manage and maintain a stake pool](../stake-pool-operation/overview) on Cardano.
+- You can send and receive [native tokens](../native-tokens/), including ada.
+- You can issue [native tokens](../native-tokens/) and [NFTs](../native-tokens/minting-nfts).
+- You can add [metadata to transactions](../transaction-metadata/) to give transactions a story, a background or even an identity. 
+- You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/). You can even use transaction metadata to validate and verify external physical products and genuine articles.
+- You can [setup, manage and maintain a stake pool](../stake-pool-operation/) on Cardano.
 - You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
 - You can [vote with your ada](../fund-your-project/) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on Project Catalyst.
 - You can earn ada rewards by voting on proposals. 

@@ -30,7 +30,7 @@ const features = [
   {
     title: "Build with Transaction Metadata",
     imageUrl: "img/card-transaction-metadata.svg",
-    targetUrl: "docs/transaction-metadata/overview",
+    targetUrl: "docs/transaction-metadata/",
     description: (
       <>
         Learn what transaction metadata is, how to add it to a transaction, how
@@ -41,7 +41,7 @@ const features = [
   {
     title: "Discover Native Tokens",
     imageUrl: "img/card-native-tokens.svg",
-    targetUrl: "docs/native-tokens/overview",
+    targetUrl: "docs/native-tokens/",
     description: (
       <>
         Learn what native tokens are, how to mint them, which policies can be
@@ -60,7 +60,7 @@ const features = [
   {
     title: "Operate a Stake Pool",
     imageUrl: "img/card-stake-pool-course.svg",
-    targetUrl: "docs/stake-pool-operation/overview",
+    targetUrl: "docs/stake-pool-operation/",
     description: (
       <>
         Learn what it takes to become a Cardano stake pool operator from a
