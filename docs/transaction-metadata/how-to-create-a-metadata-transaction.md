@@ -12,10 +12,6 @@ import TabItem from '@theme/TabItem';
 
 Before creating a metadata transaction, you will need to install the [cardano-node](https://github.com/input-output-hk/cardano-node#cardano-node-overview) and to follow instructions on how to launch [cardano-CLI](https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli).
 
-:::note
-Please check the [cardano-node](https://docs.cardano.org/projects/cardano-node/en/latest/) and [cardano-cli](https://docs.cardano.org/projects/cardano-node/en/latest/reference/cardano-node-cli-reference.html) documentation for more details.
-:::
-
 ## Metadata Structure
 
 The metadata structure is represented as a map from:
