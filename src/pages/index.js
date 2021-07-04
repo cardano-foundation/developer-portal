@@ -10,8 +10,8 @@ import PortalHero from "./portalhero";
 const features = [
   {
     title: "Get Started",
-    imageUrl: "img/card-getting-started.svg",
-    targetUrl: "docs/getting-started/overview",
+    imageUrl: "img/card-get-started.svg",
+    targetUrl: "docs/get-started/",
     description: (
       <>
         Welcome to the Cardano Developer Portal. This category will help you
@@ -109,7 +109,7 @@ function Home() {
         title={siteConfig.title}
         description={siteConfig.tagline}
         cta={'Get Started'}
-        url={useBaseUrl("docs/getting-started/overview")}
+        url={useBaseUrl("docs/get-started/")}
       />
       <main>
         {features && features.length > 0 && (

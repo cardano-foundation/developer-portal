@@ -48,7 +48,7 @@ developer-portal
 │   └── *.md
 ├── docs
 │   ├── funding
-│   ├── getting-started
+│   ├── get-started
 │   ├── native-tokens
 │   ├── payment-integration
 │   ├── stake-pool-course

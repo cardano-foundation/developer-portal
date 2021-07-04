@@ -12,13 +12,13 @@ Blockfrost provides API to access and process information stored on the Cardano 
 
 [Sign in on Blockfrost](https://blockfrost.io/auth/signin) with your GitHub account. No registration required. Enter a project name and select Cardano mainnet or Cardano testnet, depending on your needs.
 
-![img](../../static/img/getting-started/blockfrost/1-add-project.png)
+![img](../../static/img/get-started/blockfrost/1-add-project.png)
 
 ## Get your API key
 
 After clicking on `Save Project` you will immediately get your `API KEY`. Save it. You will need this key for every request.
 
-![img](../../static/img/getting-started/blockfrost/2-get-api-key.png)
+![img](../../static/img/get-started/blockfrost/2-get-api-key.png)
 
 ## Query the latest epoch
 

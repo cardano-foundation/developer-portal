@@ -142,7 +142,7 @@ module.exports = {
             },
             {
               label: "More",
-              to: "docs/getting-started/cardano-developer-community",
+              to: "docs/get-started/cardano-developer-community",
             },
           ],
         },

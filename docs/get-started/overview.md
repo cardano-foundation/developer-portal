@@ -1,11 +1,12 @@
 ---
 id: overview
+slug: /get-started/
 title: Get Started
 sidebar_label: Overview
 description: Get Started
 image: ./img/og-developer-portal.png
 --- 
-![Cardano Get Started](../../static/img/card-getting-started-title.svg)
+![Cardano Get Started](../../static/img/card-get-started-title.svg)
 
 Welcome to the Cardano Developer portal. This category will help you find your way around quickly. 
 

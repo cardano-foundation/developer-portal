@@ -40,7 +40,7 @@ import TabItem from '@theme/TabItem';
 
 ## Cardano GraphQL
 
-![img](../../static/img/getting-started/dandelion-apis/showcase-graphql-api.png)
+![img](../../static/img/get-started/dandelion-apis/showcase-graphql-api.png)
 
 Useful links:
 
@@ -80,7 +80,7 @@ Output example:
 
 ## Cardano Explorer
 
-![img](../../static/img/getting-started/dandelion-apis/showcase-explorer-api.png)
+![img](../../static/img/get-started/dandelion-apis/showcase-explorer-api.png)
 
 Useful links:
 
@@ -133,7 +133,7 @@ Output example (REDACTED):
 
 ## Cardano Submit 
 
-![img](../../static/img/getting-started/dandelion-apis/showcase-submit-api.png)
+![img](../../static/img/get-started/dandelion-apis/showcase-submit-api.png)
 
 Useful links:
 
@@ -168,7 +168,7 @@ Output example (a transaction id):
 
 ## Cardano Rosetta
 
-![img](../../static/img/getting-started/dandelion-apis/showcase-rosetta-api.png)
+![img](../../static/img/get-started/dandelion-apis/showcase-rosetta-api.png)
 
 Useful links:
 
@@ -223,7 +223,7 @@ Output example:
 
 ## Ogmios
 
-![img](../../static/img/getting-started/dandelion-apis/showcase-ogmios-api.png)
+![img](../../static/img/get-started/dandelion-apis/showcase-ogmios-api.png)
 
 Useful links:
 
@@ -272,7 +272,7 @@ Output example:
 
 ## PostgREST
 
-![img](../../static/img/getting-started/dandelion-apis/showcase-postgrest-api.png)
+![img](../../static/img/get-started/dandelion-apis/showcase-postgrest-api.png)
 
 Useful links:
 
