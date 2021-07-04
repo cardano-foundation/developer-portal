@@ -2,7 +2,7 @@
 id: run-cardano-node-handbook
 title: Get configuration files
 sidebar_label: Run cardano-node
-description: Learn how to run cardano-node
+description: "Stake pool course: Learn how to run cardano-node."
 image: ./img/og-developer-portal.png
 ---
 

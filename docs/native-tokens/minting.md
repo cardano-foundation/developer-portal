@@ -2,6 +2,8 @@
 id: minting
 title: Minting Native Assets
 sidebar_label: Minting Native Assets
+description: How to mint native tokens on Cardano. 
+image: ./img/og-developer-portal.png
 ---
 
 In this section, we will be minting native assets - **not NFTs**. 

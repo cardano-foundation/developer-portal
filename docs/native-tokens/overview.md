@@ -1,7 +1,10 @@
 ---
 id: overview
+slug: /native-tokens/
 title: Discover Native Tokens
 sidebar_label: Overview
+description: Discover Cardano's native tokens. 
+image: ./img/og-developer-portal.png
 ---
 
 ![Cardano Discover Native Tokens](../../static/img/card-native-tokens-title.svg)
@@ -14,7 +17,7 @@ There are currently two ways to make your NFTs:
 
 Minting requires a certain amount of skill in navigating and working with Linux through the terminal as well as a running Cardano node.
 
-We will not go into the details on how to spin up a Cardano node, but this is covered in the [integrate Cardano category](../getting-started/installing-cardano-node).
+We will not go into the details on how to spin up a Cardano node, but this is covered in the [integrate Cardano category](../get-started/installing-cardano-node).
 :::
 
 ## What are native tokens/assets?

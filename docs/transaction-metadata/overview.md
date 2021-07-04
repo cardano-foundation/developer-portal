@@ -1,8 +1,9 @@
 ---
 id: overview
-title: Transaction Metadata
+slug: /transaction-metadata/
+title: Build with transaction metadata
 sidebar_label: Overview
-description: Transaction Metadata Overview
+description: Build with transaction metadata.
 image: ./img/og-developer-portal.png
 ---
 

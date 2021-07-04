@@ -2,6 +2,7 @@
 id: keys-addresses
 title: Creating keys and addresses
 sidebar_label: Creating keys and addresses
+description: "Stake pool course: Creating keys and addresses."
 image: ./img/og-developer-portal.png
 ---
 

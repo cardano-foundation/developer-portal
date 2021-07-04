@@ -2,7 +2,7 @@
 id: introduction-to-cardano
 title: (Re)introduction into Cardano
 sidebar_label: (Re)introduction into Cardano
-description: (Re)introduction into Cardano
+description: "Stake pool course: (Re)introduction into Cardano."
 image: ./img/og-developer-portal.png
 ---
 

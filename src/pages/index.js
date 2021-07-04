@@ -10,8 +10,8 @@ import PortalHero from "./portalhero";
 const features = [
   {
     title: "Get Started",
-    imageUrl: "img/card-getting-started.svg",
-    targetUrl: "docs/getting-started/overview",
+    imageUrl: "img/card-get-started.svg",
+    targetUrl: "docs/get-started/",
     description: (
       <>
         Welcome to the Cardano Developer Portal. This category will help you
@@ -21,8 +21,8 @@ const features = [
   },
   {
     title: "Integrate Cardano",
-    imageUrl: "img/card-payment-integration.svg",
-    targetUrl: "docs/cardano-integration/overview",
+    imageUrl: "img/card-integrate-cardano.svg",
+    targetUrl: "docs/integrate-cardano/",
     description: (
       <>How to integrate Cardano into existing websites and services.</>
     ),
@@ -30,7 +30,7 @@ const features = [
   {
     title: "Build with Transaction Metadata",
     imageUrl: "img/card-transaction-metadata.svg",
-    targetUrl: "docs/transaction-metadata/overview",
+    targetUrl: "docs/transaction-metadata/",
     description: (
       <>
         Learn what transaction metadata is, how to add it to a transaction, how
@@ -41,7 +41,7 @@ const features = [
   {
     title: "Discover Native Tokens",
     imageUrl: "img/card-native-tokens.svg",
-    targetUrl: "docs/native-tokens/overview",
+    targetUrl: "docs/native-tokens/",
     description: (
       <>
         Learn what native tokens are, how to mint them, which policies can be
@@ -51,16 +51,16 @@ const features = [
   },
   {
     title: "Fund your Project",
-    imageUrl: "img/card-funding.svg",
-    targetUrl: "docs/funding/overview",
+    imageUrl: "img/card-fund-your-project.svg",
+    targetUrl: "docs/fund-your-project/",
     description: (
       <>Learn what Project Catalyst is and what opportunities are available to get your ideas funded.</>
     ),
   },
   {
     title: "Operate a Stake Pool",
-    imageUrl: "img/card-stake-pool-course.svg",
-    targetUrl: "docs/stake-pool-operation/overview",
+    imageUrl: "img/card-operate-a-stake-pool.svg",
+    targetUrl: "docs/operate-a-stake-pool/",
     description: (
       <>
         Learn what it takes to become a Cardano stake pool operator from a
@@ -109,7 +109,7 @@ function Home() {
         title={siteConfig.title}
         description={siteConfig.tagline}
         cta={'Get Started'}
-        url={useBaseUrl("docs/getting-started/overview")}
+        url={useBaseUrl("docs/get-started/")}
       />
       <main>
         {features && features.length > 0 && (

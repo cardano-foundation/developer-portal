@@ -2,7 +2,7 @@
 id: setup-firewall
 title: Setup Firewall
 sidebar_label: Setup Firewall
-description: Learn how to setup a basic firewall
+description: "Stake pool course: Learn how to setup a basic firewall."
 image: ./img/og-developer-portal.png
 --- 
 

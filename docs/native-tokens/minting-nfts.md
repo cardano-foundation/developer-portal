@@ -2,6 +2,8 @@
 id: minting-nfts
 title: Minting NFTs
 sidebar_label: Minting NFTs
+description: How to mint NFTs on Cardano. 
+image: ./img/og-developer-portal.png
 ---
 :::note
 There are many ways to realize NFTs with Cardano. In this guide, we will concentrate on the most dominant way, which is to attach storage references of other services like [IPFS](https://ipfs.io/) to our tokens.

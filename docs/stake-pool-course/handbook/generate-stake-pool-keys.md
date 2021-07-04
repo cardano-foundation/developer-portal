@@ -2,6 +2,7 @@
 id: generate-stake-pool-keys
 title: Generate Stake Pool Keys
 sidebar_label: Generate stake pool keys
+description: "Stake pool course: Generate stake pool keys."
 image: ./img/og-developer-portal.png
 ---
 

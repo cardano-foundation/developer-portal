@@ -1,46 +1,46 @@
 module.exports = {
   someSidebar: {
     "Get Started": [
-      "getting-started/overview",
+      "get-started/overview",
       {
         type: "category",
         label: "Cardano Components",
         items: [
-          "getting-started/cardano-components",
-          "getting-started/installing-cardano-node",
-          "getting-started/running-cardano",
-          "getting-started/installing-cardano-wallet",
+          "get-started/cardano-components",
+          "get-started/installing-cardano-node",
+          "get-started/running-cardano",
+          "get-started/installing-cardano-wallet",
         ],
       },
       {
         type: "category",
         label: "Builder Tools",
         items: [
-          "getting-started/blockfrost",
-          "getting-started/cardanocli-js",
-          "getting-started/dandelion-apis",
-          "getting-started/ogmios",
+          "get-started/blockfrost",
+          "get-started/cardanocli-js",
+          "get-started/dandelion-apis",
+          "get-started/ogmios",
           {
             type: "category",
             label: "Serialization-Lib",
             items: [
-              "getting-started/cardano-serialization-lib/overview",
-              "getting-started/cardano-serialization-lib/prerequisite-knowledge",
-              "getting-started/cardano-serialization-lib/generating-keys",
-              "getting-started/cardano-serialization-lib/generating-transactions",
-              "getting-started/cardano-serialization-lib/transaction-metadata",
+              "get-started/cardano-serialization-lib/overview",
+              "get-started/cardano-serialization-lib/prerequisite-knowledge",
+              "get-started/cardano-serialization-lib/generating-keys",
+              "get-started/cardano-serialization-lib/generating-transactions",
+              "get-started/cardano-serialization-lib/transaction-metadata",
             ],
           },
         ],
       },
-      "getting-started/smart-contracts-signpost",
-      "getting-started/cardano-developer-community",
+      "get-started/smart-contracts-signpost",
+      "get-started/cardano-developer-community",
     ],
     "Integrate Cardano": [
-      "cardano-integration/overview",
-      "cardano-integration/creating-wallet-faucet",
-      "cardano-integration/listening-for-payments-cli",
-      "cardano-integration/listening-for-payments-wallet"
+      "integrate-cardano/overview",
+      "integrate-cardano/creating-wallet-faucet",
+      "integrate-cardano/listening-for-payments-cli",
+      "integrate-cardano/listening-for-payments-wallet"
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
@@ -53,13 +53,13 @@ module.exports = {
       "native-tokens/cardano-token-registry"
     ],
     "Fund your Project": [
-      "funding/overview", 
-      "funding/project-catalyst", 
-      "funding/alternatives"
+      "fund-your-project/overview", 
+      "fund-your-project/project-catalyst", 
+      "fund-your-project/alternatives"
     ],
     "Operate a Stake Pool": [
-      "stake-pool-operation/overview",
-      "stake-pool-operation/cardano-key-pairs",
+      "operate-a-stake-pool/overview",
+      "operate-a-stake-pool/cardano-key-pairs",
       {
         type: "category",
         label: "Stake Pool Course",
@@ -103,7 +103,7 @@ module.exports = {
           },
         ],
       },
-      "stake-pool-operation/marketing-stake-pool",
+      "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
