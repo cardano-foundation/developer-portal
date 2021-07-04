@@ -51,6 +51,6 @@ If you have experience with other smart contract platforms and want to start bui
 - You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/overview). You can even use transaction metadata to validate and verify external physical products and genuine articles.
 - You can [setup, manage and maintain a stake pool](../stake-pool-operation/overview) on Cardano.
 - You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
-- You can [vote with your ada](../funding/overview) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on Project Catalyst.
+- You can [vote with your ada](../fund-your-project/) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on Project Catalyst.
 - You can earn ada rewards by voting on proposals. 
-- You can get [your project funded](../funding/overview). Every 6 to 8 weeks, projects can be proposed, discussed, and voted on by the Cardano community.
+- You can get [your project funded](../fund-your-project/). Every 6 to 8 weeks, projects can be proposed, discussed, and voted on by the Cardano community.

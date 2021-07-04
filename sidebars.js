@@ -53,9 +53,9 @@ module.exports = {
       "native-tokens/cardano-token-registry"
     ],
     "Fund your Project": [
-      "funding/overview", 
-      "funding/project-catalyst", 
-      "funding/alternatives"
+      "fund-your-project/overview", 
+      "fund-your-project/project-catalyst", 
+      "fund-your-project/alternatives"
     ],
     "Operate a Stake Pool": [
       "stake-pool-operation/overview",

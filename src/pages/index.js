@@ -51,8 +51,8 @@ const features = [
   },
   {
     title: "Fund your Project",
-    imageUrl: "img/card-funding.svg",
-    targetUrl: "docs/funding/overview",
+    imageUrl: "img/card-fund-your-project.svg",
+    targetUrl: "docs/fund-your-project/",
     description: (
       <>Learn what Project Catalyst is and what opportunities are available to get your ideas funded.</>
     ),

@@ -47,10 +47,10 @@ developer-portal
 │   ├── 2021-02-03-february.md
 │   └── *.md
 ├── docs
-│   ├── funding
+│   ├── fund-your-project
 │   ├── get-started
 │   ├── native-tokens
-│   ├── payment-integration
+│   ├── integrate-cardano
 │   ├── stake-pool-course
 │   ├── transaction-metadata
 │   └── *.md
