@@ -49,8 +49,9 @@ developer-portal
 ├── docs
 │   ├── fund-your-project
 │   ├── get-started
-│   ├── native-tokens
 │   ├── integrate-cardano
+│   ├── native-tokens
+│   ├── operate-a-stake-pool
 │   ├── stake-pool-course
 │   ├── transaction-metadata
 │   └── *.md

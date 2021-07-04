@@ -1,13 +1,13 @@
 ---
 id: overview
-slug: /stake-pool-operation/
+slug: /operate-a-stake-pool/
 title: Operate a Stake Pool
 sidebar_label: Overview
 description: Operate a Cardano stake pool.
 image: ./img/og-developer-portal.png
 ---
 
-![Cardano Operate a Stake Pool](../../static/img/card-stake-pool-course-title.svg)
+![Cardano Operate a Stake Pool](../../static/img/card-operate-a-stake-pool-title.svg)
 
 There are excellent guides on how to get `cardano-node` as a stake pool up and running. You could even get one up without much Linux knowledge or worrying about best practices. Just copy the commands from the instructions and paste them into your shell.
 

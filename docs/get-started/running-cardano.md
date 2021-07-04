@@ -14,7 +14,7 @@ This guide assumes you installed `cardano-node` and `cardano-cli` into your syst
 :::
 
 :::important
-This guide does not cover the topic of running a block-producing `cardano-node` or running a **Cardano Stake Pool**. For more information regarding that topic, please visit the [Stake Pool Operation](/docs/stake-pool-operation/) section.
+This guide does not cover the topic of running a block-producing `cardano-node` or running a **Cardano Stake Pool**. For more information regarding that topic, please visit the [Stake Pool Operation](/docs/operate-a-stake-pool/) section.
 :::
 
 ### Configuration Files

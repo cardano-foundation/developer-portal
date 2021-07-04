@@ -59,8 +59,8 @@ const features = [
   },
   {
     title: "Operate a Stake Pool",
-    imageUrl: "img/card-stake-pool-course.svg",
-    targetUrl: "docs/stake-pool-operation/",
+    imageUrl: "img/card-operate-a-stake-pool.svg",
+    targetUrl: "docs/operate-a-stake-pool/",
     description: (
       <>
         Learn what it takes to become a Cardano stake pool operator from a

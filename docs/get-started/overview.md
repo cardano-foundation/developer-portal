@@ -25,7 +25,7 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 ## What you need to bring
 To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts such as nodes, blocks, signatures, transactions, keys, and hashes. 
 
-If you are unfamiliar with these terms, start with the [stake pool course](../stake-pool-operation/#stake-pool-course)). It will help you understand basic concepts, even if you don't want to run a stake pool. 
+If you are unfamiliar with these terms, start with the [stake pool course](../operate-a-stake-pool/#stake-pool-course)). It will help you understand basic concepts, even if you don't want to run a stake pool. 
 
 ## Cardano is different 
 If you have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
@@ -49,7 +49,7 @@ If you have experience with other smart contract platforms and want to start bui
 - You can issue [native tokens](../native-tokens/) and [NFTs](../native-tokens/minting-nfts).
 - You can add [metadata to transactions](../transaction-metadata/) to give transactions a story, a background or even an identity. 
 - You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/). You can even use transaction metadata to validate and verify external physical products and genuine articles.
-- You can [setup, manage and maintain a stake pool](../stake-pool-operation/) on Cardano.
+- You can [setup, manage and maintain a stake pool](../operate-a-stake-pool/) on Cardano.
 - You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
 - You can [vote with your ada](../fund-your-project/) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on Project Catalyst.
 - You can earn ada rewards by voting on proposals. 

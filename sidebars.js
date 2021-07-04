@@ -58,8 +58,8 @@ module.exports = {
       "fund-your-project/alternatives"
     ],
     "Operate a Stake Pool": [
-      "stake-pool-operation/overview",
-      "stake-pool-operation/cardano-key-pairs",
+      "operate-a-stake-pool/overview",
+      "operate-a-stake-pool/cardano-key-pairs",
       {
         type: "category",
         label: "Stake Pool Course",
@@ -103,7 +103,7 @@ module.exports = {
           },
         ],
       },
-      "stake-pool-operation/marketing-stake-pool",
+      "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
