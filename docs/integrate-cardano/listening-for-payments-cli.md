@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ### Overview 
 :::note
-This guide assumes that you have basic understanding of `cardano-cli`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/get-started/installing-cardano-node), [Running cardano-node](/docs/get-started/running-cardano) and [Exploring Cardano Wallets](/docs/cardano-integration/creating-wallet-faucet) guides first.
+This guide assumes that you have basic understanding of `cardano-cli`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/get-started/installing-cardano-node), [Running cardano-node](/docs/get-started/running-cardano) and [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guides first.
 
 This guide also assumes that you have `cardano-node` running in the background and connected to the `testnet` network.
 :::
@@ -18,12 +18,12 @@ This guide also assumes that you have `cardano-node` running in the background a
 ### Use case
 There are many possible reasons why you would want to have the functionality of listening for `ADA` payments, but a very obvious use case would be for something like an **online shop** or a **payment gateway** that uses `ADA` tokens as the currency.
 
-![img](../../static/img/cardano-integrations/ada-online-shop.png)
+![img](../../static/img/integrate-cardano/ada-online-shop.png)
 
 ### Technical Flow
 To understand how something like this could work in a technical point of view, let's take a look at the following diagram:
 
-![img](../../static/img/cardano-integrations/ada-payment-flow.png)
+![img](../../static/img/integrate-cardano/ada-payment-flow.png)
 
 So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has choosen and added all the items into the **shopping cart**. The next step would then be to checkout and pay for the items, Of course we will be using **Cardano** for that!
 

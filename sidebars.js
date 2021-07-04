@@ -37,10 +37,10 @@ module.exports = {
       "get-started/cardano-developer-community",
     ],
     "Integrate Cardano": [
-      "cardano-integration/overview",
-      "cardano-integration/creating-wallet-faucet",
-      "cardano-integration/listening-for-payments-cli",
-      "cardano-integration/listening-for-payments-wallet"
+      "integrate-cardano/overview",
+      "integrate-cardano/creating-wallet-faucet",
+      "integrate-cardano/listening-for-payments-cli",
+      "integrate-cardano/listening-for-payments-wallet"
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
