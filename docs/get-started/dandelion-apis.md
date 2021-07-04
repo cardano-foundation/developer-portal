@@ -30,7 +30,7 @@ These are the links to github repositories and a brief description for all of th
 - [rosetta-api][gh-cardano-rosetta]: use this API to integrate your application with multiple blockchains in a simpler, faster, and more reliable way
 [gh-hasura-graphql]: https://github.com/input-output-hk/cardano-graphql
 [gh-cardano-rest]: https://github.com/input-output-hk/cardano-rest
-[gh-ogmios]: https://github.com/KtorZ/cardano-ogmios
+[gh-ogmios]: https://github.com/cardanosolutions/ogmios
 [gh-cardano-db-sync]: https://github.com/input-output-hk/cardano-db-sync
 [gh-cardano-rosetta]: https://github.com/input-output-hk/cardano-rosetta
 [gh-postgrest]: https://github.com/PostgREST/postgrest
@@ -230,7 +230,7 @@ Useful links:
 - [Link][gimbalabs-ogmios-api] to Gimbalabs's endpoints information and official documentation
 - [Link][ogmios-official-doc] to project's official documentation
 [gimbalabs-ogmios-api]: https://gimbalabs.com/dandelionapis/ogmios-api
-[ogmios-official-doc]: https://ktorz.github.io/cardano-ogmios/
+[ogmios-official-doc]: https://github.com/cardanosolutions/ogmios
 
 Usage examples:
 
