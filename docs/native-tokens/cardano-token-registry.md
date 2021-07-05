@@ -34,13 +34,14 @@ Each entry contains the following information:
 
 **Name**         | **Required/Optional**|**Description**
 ---              | ---       | ---
-`subject`        | Required  | The base16-encoded policyId + base16-encoded assetName
-`policy`         | Required  | The script that hashes to the policyId
-`name`           | Required  | A human-readable name for the subject, suitable for use in an interface
-`description`    | Required  | A human-readable description for the subject, suitable for use in an interface
-`ticker`         | Optional  | A human-readable ticker name for the subject, suitable for use in an interface
-`url`            | Optional  | A HTTPS URL (web page relating to the token)
-`logo`           | Optional  | A PNG image file as a byte string
+`subject`        | Required  | The base16-encoded policyId + base16-encoded assetName.
+`policy`         | Required  | The script that hashes to the policyId.
+`name`           | Required  | A human-readable name for the subject, suitable for use in an interface.
+`description`    | Required  | A human-readable description for the subject, suitable for use in an interface.
+`ticker`         | Optional  | A human-readable ticker name for the subject, suitable for use in an interface.
+`url`            | Optional  | A HTTPS URL (web page relating to the token).
+`logo`           | Optional  | A PNG image file as a byte string.
+`decimals`       | Optional  | Recommended value for decimal places. Native tokens are represented as whole numbers (numbers without decimals) on the blockchain.
 
 For a comprehensive description of all fields and how to generate them, please see [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools).  
 
