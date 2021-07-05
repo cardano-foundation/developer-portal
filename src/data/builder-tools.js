@@ -21,14 +21,14 @@ const tools = [
     description: "Instant and scaleable API to the Cardano blockchain.",
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
-    gettingstarted: "/docs/getting-started/blockfrost",
+    gettingstarted: "/docs/get-started/blockfrost",
   },
   {
     title: "cardanocli-js",
     description: "A library that wraps the cardano-cli in JavaScript.",
     preview: require("./builder-tools/cardanocli-js.png"),
     website: "https://github.com/Berry-Pool/cardanocli-js",
-    gettingstarted: "/docs/getting-started/cardanocli-js",
+    gettingstarted: "/docs/get-started/cardanocli-js",
   },
   {
     title: "Cardano Serialization Library",
@@ -36,7 +36,7 @@ const tools = [
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
-    gettingstarted: "/docs/getting-started/cardano-serialization-lib/overview",
+    gettingstarted: "/docs/get-started/cardano-serialization-lib/overview",
   },
   {
     title: "Dandelion APIs",
@@ -44,7 +44,7 @@ const tools = [
       "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
     preview: require("./builder-tools/dandelion-apis.png"),
     website: "https://gimbalabs.com/dandelionapis",
-    gettingstarted: "/docs/getting-started/dandelion-apis",
+    gettingstarted: "/docs/get-started/dandelion-apis",
   },
   {
     title: "Marlowe Playground",
@@ -59,7 +59,7 @@ const tools = [
     description: "Ogmios offers a JSON-WSP interface through WebSockets.",
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
-    gettingstarted: "/docs/getting-started/ogmios",
+    gettingstarted: "/docs/get-started/ogmios",
   },
   {
     title: "Plutus Playground",

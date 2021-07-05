@@ -2,6 +2,7 @@
 id: assignment-2
 title: Assignment 2
 sidebar_label: Assignment 2
+description: "Stake pool course: Assignment 2."
 image: ./img/og-developer-portal.png
 ---
 

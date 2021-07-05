@@ -43,14 +43,15 @@ module.exports = {
     },
 
     // Announcement Bar
+    // id: always change it when changing the announcement
+    // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: "support_se", // Any value that will identify this message.
+      id: "support_se1", // Any value that will identify this message.
       content:
-        //`If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
         `<strong>Cardano Stack Exchange is now open to the public. ⭐️<a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">Join us!</a></strong>`,
-      backgroundColor: "#FD7575", // Defaults to `#fff`.
-      textColor: "#ffffff", // Defaults to `#000`.
-      isCloseable: true, // Defaults to `true`.
+      backgroundColor: "#2AA18A", 
+      textColor: "#FFFFFF", // Use #FFFFFF
+      isCloseable: true, // Use true
     },
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
@@ -132,29 +133,16 @@ module.exports = {
           title: "Developer Community",
           items: [
             {
-              label: "Cardano Forum",
-              href: "https://forum.cardano.org/c/developers/29",
-            },
-            {
-              label: "Discord",
-              href: "https://discord.gg/kfATXEENPD",
-            },
-            {
-              label: "Reddit",
-              href: "https://www.reddit.com/r/CardanoDevelopers/",
-            },
-            {
               label: "Stack Exchange",
               href: "https://cardano.stackexchange.com",
             },
             {
-              label: "Slack",
-              href:
-                "https://join.slack.com/t/iohkdevcommunity/shared_invite/zt-mdvb06fr-8Tv8pjl~iR0~lGrimqK_yg",
+              label: "Cardano Forum",
+              href: "https://forum.cardano.org/c/developers/29",
             },
             {
-              label: "Telegram",
-              href: "https://t.me/CardanoDevelopersOfficial",
+              label: "More",
+              to: "docs/get-started/cardano-developer-community",
             },
           ],
         },

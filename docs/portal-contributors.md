@@ -2,7 +2,7 @@
 id: portal-contributors
 title: Contributors
 sidebar_label: Contributors
-description: Thank you for contributing consistently to the Cardano developer portal
+description: Thank you for contributing to the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 

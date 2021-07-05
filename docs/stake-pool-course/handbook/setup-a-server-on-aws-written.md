@@ -2,7 +2,7 @@
 id: setup-a-server-on-aws-written
 title: Setup a Linux server on AWS
 sidebar_label: Setup a Linux server on AWS
-description: Learn how to setup Linux server on AWS.
+description: "Stake pool course: Learn how to setup Linux server on AWS."
 image: ./img/og-developer-portal.png
 --- 
 

@@ -2,7 +2,7 @@
 id: portal-contribute
 title: How to contribute to the developer portal
 sidebar_label: How to contribute
-description: How to contribute to the Cardano developer portal
+description: How to contribute to the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 
@@ -47,10 +47,11 @@ developer-portal
 │   ├── 2021-02-03-february.md
 │   └── *.md
 ├── docs
-│   ├── funding
-│   ├── getting-started
+│   ├── fund-your-project
+│   ├── get-started
+│   ├── integrate-cardano
 │   ├── native-tokens
-│   ├── payment-integration
+│   ├── operate-a-stake-pool
 │   ├── stake-pool-course
 │   ├── transaction-metadata
 │   └── *.md

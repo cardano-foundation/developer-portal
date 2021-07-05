@@ -2,7 +2,7 @@
 id: create-stake-pool-keys
 title: Create Stake Pool Keys
 sidebar_label: Create stake pool keys
-description: Learn how to Create Stake Pool Keys
+description: "Stake pool course: Learn how to create stake pool keys."
 image: ./img/og-developer-portal.png
 ---
 
