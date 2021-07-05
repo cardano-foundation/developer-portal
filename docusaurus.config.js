@@ -56,7 +56,7 @@ module.exports = {
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "mg/og-developer-portal.png",
+    image: "img/og-developer-portal.png",
     metadatas: [{ name: "twitter:card", content: "summary" }],
 
     // Algolia Search

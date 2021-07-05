@@ -1,7 +1,12 @@
 {
   "index_name": "developer-portal",
   "start_urls": [
-    "https://staging-dev-portal.netlify.app/docs",
+    "https://staging-dev-portal.netlify.app/docs/get-started/",
+    "https://staging-dev-portal.netlify.app/docs/integrate-cardano/",
+    "https://staging-dev-portal.netlify.app/docs/transaction-metadata/",
+    "https://staging-dev-portal.netlify.app/docs/native-tokens/",
+    "https://staging-dev-portal.netlify.app/docs/fund-your-project/",
+    "https://staging-dev-portal.netlify.app/docs/operate-a-stake-pool/",
     "https://staging-dev-portal.netlify.app/tools",
     "https://staging-dev-portal.netlify.app/showcase",
     "https://staging-dev-portal.netlify.app/blog/"
