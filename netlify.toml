@@ -1,0 +1,15 @@
+# Use this file as your netlify.toml file
+# client side route redirects are auto
+# generated.
+
+# test redirects:
+
+[[redirects]]
+  from = "/get-started/*"
+  to = "/docs/get-started/"
+  status = 301
+  
+[[redirects]]
+  from = "/roadmap"
+  to = "https://roadmap.cardano.org/en/"
+  status = 200
