@@ -13,30 +13,26 @@ image: ./img/og-developer-portal.png
 
 The **Cardano Transaction Metadata** is a feature that allows anyone to embed metadata into transactions and ultimately storing metadata into the blockchain. It can be useful to alot of use-case and has been used for things like **supply-chain tracking**, **on-chain-voting**, **non fungible tokens** and so much more. The possibilities are endless!
 
-## Data Format
+## Schema
 
-Metadata can be expressed as a JSON object with some restrictions:
+Metadata can be expressed as a `JSON` object with some restrictions:
 
-All top-level keys must be integers between 0 and 2^64 - 1.
-Each metadata value is tagged with its type.
-Strings must be at most 64 bytes when UTF-8 encoded.
-Bytestrings are hex-encoded, with a maximum length of 64 bytes.
-Metadata aren't stored as JSON on the Cardano blockchain but are instead stored using a compact binary encoding (CBOR).
+All top-level keys must be **integers** between 0 and 2^64 - 1. Each metadata value is tagged with its type. **Strings** must be at most 64 bytes when UTF-8 encoded. **Bytestrings** are hex-encoded, with a maximum length of 64 bytes. Metadata aren't stored as `JSON` on the Cardano blockchain but are instead stored using a compact binary encoding (**CBOR**).
 
 The binary encoding of metadata values supports three simple types:
 
-Integers in the range -(2^64 - 1) to 2^64 - 1
-Strings (UTF-8 encoded)
-Bytestrings
-And two compound types:
+- Integers in the range `-(2^64 - 1) to 2^64 - 1`
+- Strings (`UTF-8` encoded)
+- Bytestrings
+- And two compound types:
+    - Lists of metadata values
+    - Mappings from metadata values to metadata values
 
-Lists of metadata values
-Mappings from metadata values to metadata values
 It is possible to transform any JSON object into this schema.
 
-However, if your application uses floating point values, they will need to be converted somehow, according to your requirements. Likewise for null or bool values. When reading metadata from chain, be aware that integers may exceed the javascript numeric range, and may need special "bigint" parsing.
+However, if your application uses floating point values, they will need to be converted somehow, according to your requirements. Likewise for **null** or **bool** values. When reading metadata from chain, be aware that **integers** may exceed the programming language of choice numeric range, and may need special **bigint** parsing.
 
-Example metadata:
+**Example metadata**:
 
 ```json
 {
@@ -71,7 +67,7 @@ Example metadata:
 }
 ```
 
-This is equivalent to the normalized JSON version:
+**This is equivalent to the normalized JSON version**:
 
 ```json
 {
@@ -82,3 +78,7 @@ This is equivalent to the normalized JSON version:
     "4": { "key": "value" }  // Object
 }
 ```
+
+## Explore
+
+We encourage developers to explore and be creative of what is possible with **Cardano Transaction Metadata**, up next we discuss on the ways you can create a transactions with metadata embedded into it.

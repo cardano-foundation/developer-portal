@@ -11,3 +11,4 @@ image: ./img/og-developer-portal.png
 - `cardano-wallet`
 - `cardano-db-sync`
 - `cardano-addresses`
+- `bech32`
