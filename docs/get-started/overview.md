@@ -23,9 +23,9 @@ The purpose of Cardano was to ask: How can we build a sustainable financial and 
 Besides cryptographic research, there was game-theoretic research, identity-management research, and programming-language research. This academic rigor process produced more than 100 academic papers. Most were accepted in cryptography conferences like Eurocrypt and Asiacrypt and went through the standard peer-review process. For example, the paper [“Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol”](https://eprint.iacr.org/2016/889.pdf) was [the most cited security paper from 2015-2019](https://sweis.medium.com/most-cited-security-papers-from-2015-2019-d21515db3681). 
 
 ## What you need to bring
-To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts such as nodes, blocks, signatures, transactions, keys, and hashes. 
+To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts such as addresses, transactions, key derivation, networking and UTxO. 
 
-If you are unfamiliar with these terms, start with the [stake pool course](../operate-a-stake-pool/#stake-pool-course)). It will help you understand basic concepts, even if you don't want to run a stake pool. 
+If you are unfamiliar with these terms, start with [technical concepts](technical-concepts) and maybe afterwards complete the [stake pool course](../operate-a-stake-pool/#stake-pool-course). It will also help you understand basic concepts, even if you don't want to run a stake pool. 
 
 ## Cardano is different 
 If you have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
