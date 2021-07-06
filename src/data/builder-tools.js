@@ -38,12 +38,28 @@ const tools = [
     gettingstarted: "/docs/get-started/cardano-serialization-lib/overview",
   },
   {
+    title: "Cardano Client Library",
+    description:
+      "A client library for Cardano in Java. For some features like transaction signing and address generation, it currently uses cardano-serialization-lib rust library though JNI.",
+    preview: require("./builder-tools/cardano-client-lib.png"),
+    website: "https://github.com/bloxbean/cardano-client-lib",
+    gettingstarted: null,
+  },
+  {
     title: "Dandelion APIs",
     description:
       "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
     preview: require("./builder-tools/dandelion-apis.png"),
     website: "https://gimbalabs.com/dandelionapis",
     gettingstarted: "/docs/get-started/dandelion-apis",
+  },
+  {
+    title: "Heidrun",
+    description:
+      "An automation platform for Cardano to trigger various action based on detecting payment to a wallet address.",
+    preview: require("./builder-tools/heidrun.png"),
+    website: "https://github.com/adosia/Heidrun",
+    gettingstarted: null,
   },
   {
     title: "Marlowe Playground",
