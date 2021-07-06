@@ -9,11 +9,11 @@ image: ./img/og-developer-portal.png
 To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts such as [addresses](#addresses), [transactions](#transactions), [key derivation](#key-derivation), [networking](#networking) and [UTxO](#unspent-transaction-output-utxo).
 
 ## Addresses
-Cardano Addresses are used as destinations to send ada on the blockchain. We break them down into their component parts and show how they're created.  
+Cardano Addresses are used as destinations to send ada on the blockchain. We break them down into their parts and show how they're created.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Transactions
-Learn what is inside the guts of a Cardano transaction. We show how unsigned and signed transaction look like and we cover how signing works.  
+Learn what is inside the guts of a Cardano transaction. We show how unsigned and signed transactions look like, and we cover how signing works.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Unspent Transaction Output (UTxO)
@@ -36,8 +36,8 @@ Learn how transactions make it from the mempool into blocks and how blocks move 
 We answer your questions about how nodes on Cardano talk to each other. Learn about TCP Sockets,  mini-protocols and the future of P2P.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/pyhYtLgn1r0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
-## Cardano Improvment Proposals (CIP)
-The [Cardano Improvement Proposal](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/CIP-0001.md) (CIP) process allows the community to interact with the Cardano Foundation to improve the cardano ecosystem in a formal way.  
+## Cardano Improvement Proposals (CIP)
+The [Cardano Improvement Proposal](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/CIP-0001.md) (CIP) process allows the community to interact with the Cardano Foundation to improve the Cardano ecosystem in a formal way.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/z9wz_WJGGiQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Slot Lottery
