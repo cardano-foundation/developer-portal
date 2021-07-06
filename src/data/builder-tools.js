@@ -1,18 +1,17 @@
 /*
  * ADD YOUR TOOL TO THE CARDANO DEVELOPER PORTAL:
  *
- * Requirements for adding your tool:
- * - It is a real tool that adds value to Cardano developers.
- *   Please exclude pooltools and explorers for the time being.
- * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
- * - The code is publicly available (not decided yet if this is a requirement)
+ * Requirements for adding your builder tool:
+ * - It is an actual builder tool that adds value to Cardano developers.
+ * - It has a stable domain name (a random for example, Netlify/Vercel domain is not allowed)
+ * - The GitHub account that adds the project must not be new. 
+ * - The GitHub account must have a history/or already be known in the Cardano community.
  *
  * Instructions:
  * - Add your tool in the json array below, in alphabetical order of title
- * - Add a local image preview (decent screenshot of your tool)
+ * - Add a local image preview (decent screenshot or logo of your tool)
  *
  * The image must be added to the GitHub repository, and use `require("image")`
- *
  */
 
 const tools = [
