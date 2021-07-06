@@ -81,4 +81,4 @@ However, if your application uses floating point values, they will need to be co
 
 ## Explore
 
-We encourage developers to explore and be creative of what is possible with **Cardano Transaction Metadata**, up next we discuss on the ways you can create a transactions with metadata embedded into it.
+We encourage developers to explore and be creative of what is possible with **Cardano Transaction Metadata**, up next we discuss the different ways you can create a transactions with metadata embedded into it.
