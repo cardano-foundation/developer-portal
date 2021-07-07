@@ -6,19 +6,19 @@ description: Get started with the technical concepts behind Cardano.
 image: ./img/og-developer-portal.png
 --- 
 
-To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts such as [addresses](#addresses), [transactions](#transactions), [key derivation](#key-derivation), [networking](#networking) and [UTxO](#unspent-transaction-output-utxo).
+To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts such as [UTxO](#unspent-transaction-output-utxo), [transactions](#transactions), [addresses](#addresses), [key derivation](#key-derivation), and [networking](#networking).
 
-## Addresses
-Cardano Addresses are used as destinations to send ada on the blockchain. We break them down into their parts and show how they're created.  
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+## Unspent Transaction Output (UTxO)
+UTxO or Unspent Transaction Outputs are how ada moves around the Cardano network. Learn how they work in the Cardano ledger.  
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/e4YZkgi4V3U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Transactions
 Learn what is inside the guts of a Cardano transaction. We show how unsigned and signed transactions look like, and we cover how signing works.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
-## Unspent Transaction Output (UTxO)
-UTxO or Unspent Transaction Outputs are how ada moves around the Cardano network. Learn how they work in the Cardano ledger.  
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/e4YZkgi4V3U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+## Addresses
+Cardano Addresses are used as destinations to send ada on the blockchain. We break them down into their parts and show how they're created.  
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Mnemonic seed phrase (BIP39)
 BIP39 is the standard for creating a mnemonic seed phrase for wallets. In this video, we break down how it's created from randomness on Cardano.  
