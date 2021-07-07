@@ -1,18 +1,17 @@
 /*
  * ADD YOUR TOOL TO THE CARDANO DEVELOPER PORTAL:
  *
- * Requirements for adding your tool:
- * - It is a real tool that adds value to Cardano developers.
- *   Please exclude pooltools and explorers for the time being.
- * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
- * - The code is publicly available (not decided yet if this is a requirement)
+ * Requirements for adding your builder tool:
+ * - It is an actual builder tool that adds value to Cardano developers.
+ * - It has a stable domain name (a random for example, Netlify/Vercel domain is not allowed)
+ * - The GitHub account that adds the project must not be new. 
+ * - The GitHub account must have a history/or already be known in the Cardano community.
  *
  * Instructions:
  * - Add your tool in the json array below, in alphabetical order of title
- * - Add a local image preview (decent screenshot of your tool)
+ * - Add a local image preview (decent screenshot or logo of your tool)
  *
  * The image must be added to the GitHub repository, and use `require("image")`
- *
  */
 
 const tools = [
@@ -39,6 +38,14 @@ const tools = [
     gettingstarted: "/docs/get-started/cardano-serialization-lib/overview",
   },
   {
+    title: "Cardano Client Library",
+    description:
+      "A client library for Cardano in Java. For some features like transaction signing and address generation, it currently uses cardano-serialization-lib rust library though JNI.",
+    preview: require("./builder-tools/cardano-client-lib.png"),
+    website: "https://github.com/bloxbean/cardano-client-lib",
+    gettingstarted: null,
+  },
+  {
     title: "Dandelion APIs",
     description:
       "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
@@ -47,13 +54,21 @@ const tools = [
     gettingstarted: "/docs/get-started/dandelion-apis",
   },
   {
+    title: "Heidrun",
+    description:
+      "An automation platform for Cardano to trigger various action based on detecting payment to a wallet address.",
+    preview: require("./builder-tools/heidrun.png"),
+    website: "https://github.com/adosia/Heidrun",
+    gettingstarted: null,
+  },
+  /*{
     title: "Marlowe Playground",
     description:
       "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
-    preview: require("./builder-tools/plutus-playground.png"),
+    preview: require("./builder-tools/marlowe-playground.png"),
     website: "https://alpha.marlowe.iohkdev.io/#/",
     gettingstarted: null,
-  },
+  },*/
   {
     title: "Ogmios",
     description: "Ogmios offers a JSON-WSP interface through WebSockets.",
@@ -61,7 +76,7 @@ const tools = [
     website: "https://ogmios.dev",
     gettingstarted: "/docs/get-started/ogmios",
   },
-  {
+  /*{
     title: "Plutus Playground",
     description:
       "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
@@ -69,6 +84,7 @@ const tools = [
     website: "https://playground.plutus.iohkdev.io",
     gettingstarted: null,
   },
+  */
 ];
 
 tools.forEach((tool) => {

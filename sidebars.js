@@ -33,6 +33,7 @@ module.exports = {
           },
         ],
       },
+      "get-started/technical-concepts",
       "get-started/smart-contracts-signpost",
       "get-started/cardano-developer-community",
     ],

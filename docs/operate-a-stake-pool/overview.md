@@ -50,8 +50,10 @@ You also have to build your pool around a brand that manages to attract enough s
 - [Read here for a few ideas on how you can do that](marketing-stake-pool).
 
 ## Stake pool operator resources
-- [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their CNTools and top-notch content. 
-- [CNCLI a collection of utilities](https://github.com/AndrewWestberg/cncli) to enhance and extend cardano-cli. 
+- [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content. 
+- [Topology Updater](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater) is intended to be a temporary solution to allow everyone to activate their relay nodes without having to postpone and wait for manual topology completion requests.
+- [CNCLI](https://github.com/AndrewWestberg/cncli) is a collection of utilitiesto enhance and extend cardano-cli. 
 - [Jormanager](https://bitbucket.org/muamw10/jormanager/src/develop/) a Cardano stake pool management software. 
-- [Stake pool operator scripts](https://github.com/gitmachtl/scripts) by Martin Lang. 
-- [Coin Cashew guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
+- [Stake Pool Operator Scripts](https://github.com/gitmachtl/scripts) a collection of scripts to manage your stake pool step-by-step. 
+- [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
+- [Pool Veterinary](http://pool.vet) will help you see if your Cardano stake pool is working and find out why it may not be.

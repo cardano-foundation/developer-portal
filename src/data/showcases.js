@@ -2,12 +2,14 @@
  * ADD YOUR PROJECT TO THE CARDANO DEVELOPER PORTAL SHOWCASE:
  *
  * Requirements for adding your project to our showcase:
- * - It must be built on Cardano and have a real usecase.
+ * - It must be built on Cardano and have a real use case. For example, a forum where people can talk about Cardano is great, but nothing for this showcase section.
  * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
+ * - The GitHub account that adds the project must not be new. 
+ * - The GitHub account must have a history/or already be known in the Cardano community.
  *
  * Instructions:
  * - Add your project in the json array below
- * - Add a local image preview (decent screenshot of your project)
+ * - Add a local image preview (decent screenshot or logo of your project)
  *
  * The image must be added to the GitHub repository, and use `require("image")`
  */
@@ -107,12 +109,13 @@ export const Tags = {
   },
 };
 
-// Add your site to this list
+// Add your project to (THE END OF) this list.
+// Please don't add the "featured"-tag yourself.
 const Showcases = [
   {
     title: "Cardano Kidz",
     description:
-      "Cardano non fungible token (NFT) design cards in lovely design.",
+      "Some of the very first, if not the first minted (born) on the Cardano blockchain in lovely design.",
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
@@ -134,7 +137,7 @@ const Showcases = [
     preview: require("./showcase/nft-maker.png"),
     website: "https://www.nft-maker.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["featured", "tokens", "nft"],
   },
   {
     title: "SpaceBudz",
@@ -255,7 +258,7 @@ const Showcases = [
   },
   {
     title: "Crypto Mage",
-    description: "Cardano NFT game.",
+    description: "This game centered around incredible wizards who create magic, increase their skills, find totems, learn craft, complete quests, and much more.",
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
@@ -263,7 +266,7 @@ const Showcases = [
   },
   {
     title: "Cardano Warriors",
-    description: "Cardano NFT game.",
+    description: "The retro RPG NFT Collection minted in Cardano Blockchain.",
     preview: require("./showcase/cardanowarriors.png"),
     website: "https://www.cardanowarriors.io",
     source: null,
@@ -278,8 +281,8 @@ const Showcases = [
     tags: ["tokens", "analytics"],
   },
   {
-    title: "Cardano Cubes",
-    description: "Cardano NFT game.",
+    title: "Cardano Cubes & Blockemon",
+    description: "Play Blockemon and have your moves quickly verified by, and forever stored on Cardano.",
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
@@ -370,7 +373,7 @@ const Showcases = [
     preview: require("./showcase/xhibit.png"),
     website: "https://xhibit.io",
     source: null,
-    tags: ["featured", "tokens", "nft"],
+    tags: ["tokens", "nft"],
   },
   {
     title: "Token Tool",
@@ -433,6 +436,33 @@ const Showcases = [
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
     tags: ["featured", "educational", "opensource"],
+  },
+  {
+    title: "ccwallet.io",
+    description:
+      "The alternative Cardano light wallet in the browser. Aims to add features most requested by the Cardano community.",
+    preview: require("./showcase/ccwallet.png"),
+    website: "https://ccwallet.io",
+    source: null,
+    tags: ["wallet"],
+  },
+  {
+    title: "Jetchicken",
+    description:
+      "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
+    preview: require("./showcase/jetchicken.png"),
+    website: "https://jetchicken.io",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "unsigned_algorithms",
+    description:
+      "The first algorithmically generated art living on Cardano.",
+    preview: require("./showcase/unsigned-algorithms.png"),
+    website: "https://www.unsigs.com",
+    source: null,
+    tags: ["tokens", "nft"],
   },
 ];
 

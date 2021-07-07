@@ -10,13 +10,17 @@ The Cardano Developer Portal covers everything that is available on the mainnet.
 
 ## Get started with Marlowe 
 Marlowe is the domain-specific language for financial contracts on Cardano. 
-Take a look at the [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/). 
+Take a look at the [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/): 
+
+[![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://alpha.marlowe.iohkdev.io/).
 
 Talk to others about [Marlowe on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram there is a dedicated [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
 ## Get started with Plutus 
 Plutus is the smart contract platform of the Cardano blockchain.
-Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutorial/index.html) if you want to learn Plutus from the beginning or dive straight into the [Plutus Playground](https://playground.plutus.iohkdev.io).
+Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutorial/index.html) if you want to learn Plutus from the beginning or dive straight into the [Plutus Playground](https://playground.plutus.iohkdev.io):
+
+[![Plutus Playground](../../static/img/get-started/smart-contracts/plutus-playground.jpg)](https://playground.plutus.iohkdev.io)
 
 [Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/overview.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program. 
 
