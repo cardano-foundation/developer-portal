@@ -61,14 +61,14 @@ const tools = [
     website: "https://github.com/adosia/Heidrun",
     gettingstarted: null,
   },
-  {
+  /*{
     title: "Marlowe Playground",
     description:
       "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
-    preview: require("./builder-tools/plutus-playground.png"),
+    preview: require("./builder-tools/marlowe-playground.png"),
     website: "https://alpha.marlowe.iohkdev.io/#/",
     gettingstarted: null,
-  },
+  },*/
   {
     title: "Ogmios",
     description: "Ogmios offers a JSON-WSP interface through WebSockets.",
@@ -76,7 +76,7 @@ const tools = [
     website: "https://ogmios.dev",
     gettingstarted: "/docs/get-started/ogmios",
   },
-  {
+  /*{
     title: "Plutus Playground",
     description:
       "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
@@ -84,6 +84,7 @@ const tools = [
     website: "https://playground.plutus.iohkdev.io",
     gettingstarted: null,
   },
+  */
 ];
 
 tools.forEach((tool) => {
