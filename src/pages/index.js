@@ -14,8 +14,8 @@ const features = [
     targetUrl: "docs/get-started/",
     description: (
       <>
-        Welcome to the Cardano Developer Portal. This category will help you
-        find your way around quickly.
+        Get an overview of Cardano, understand the components, discover builder
+        tools, learn technical concepts and connect to the developer community.
       </>
     ),
   },
@@ -24,7 +24,10 @@ const features = [
     imageUrl: "img/card-integrate-cardano.svg",
     targetUrl: "docs/integrate-cardano/",
     description: (
-      <>How to integrate Cardano into existing websites and services.</>
+      <>
+        Explore Cardano wallets and learn how to integrate Cardano into
+        applications and websites.
+      </>
     ),
   },
   {
@@ -44,8 +47,8 @@ const features = [
     targetUrl: "docs/native-tokens/",
     description: (
       <>
-        Learn what native tokens are, how to mint them, which policies can be
-        used and how to create NFT.
+        Read what native tokens are, how to mint them, ways to create NFT and
+        why you don't need smart contracts for all this.
       </>
     ),
   },
@@ -54,7 +57,10 @@ const features = [
     imageUrl: "img/card-fund-your-project.svg",
     targetUrl: "docs/fund-your-project/",
     description: (
-      <>Learn what Project Catalyst is and what opportunities are available to get your ideas funded.</>
+      <>
+        Understand Project Catalyst and how you can use it to fund your projects
+        if you build on Cardano.
+      </>
     ),
   },
   {

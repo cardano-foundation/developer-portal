@@ -4,7 +4,7 @@ const vars = require('./variables')
 // Docusaurus Config
 module.exports = {
   title: "Cardano Developer Portal",
-  tagline: "together, we can change the world for the better",
+  tagline: "let's build better",
   url: "https://staging-dev-portal.netlify.app",
   baseUrl: "/",
   onBrokenLinks: "throw",
