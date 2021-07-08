@@ -205,7 +205,7 @@ var resp = await hc.PostAsync("http://localhost:9998/v2/wallets", payload);
 
 **Get a unused wallet address to receive some payments**
 
-We will get a **wallet address** to show to the customers and for them to send payments to the wallet. In this case we can use the address to request some `tADA` from the **Testnet Faucet** and simulate a payment:
+We will get a **wallet address** to show to the customers and for them to send payments to the wallet. In this case we can use the address to request some `tADA` from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet) and simulate a payment:
 
 
 <Tabs
@@ -534,7 +534,7 @@ The code is telling us that our current wallet has received a total of `0 lovela
 
 What we can do to simulate a succesful payment is to send atleast `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We show how you can get the **wallet address** via code in the examples above.
 
-Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ADA` funds from the **Testnet Faucet**. Once complete, we can now run the code again and we should see a succesful result this time.
+Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ADA` funds from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet). Once complete, we can now run the code again and we should see a succesful result this time.
 
 <Tabs
   defaultValue="js"
