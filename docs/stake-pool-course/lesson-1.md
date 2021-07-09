@@ -30,14 +30,14 @@ Learn how to configure a server on a different service provider. To be able to f
 ## Install cardano-node
 The Cardano node is the core component that underpins the Cardano network. Ultimately, a blockchain network is just a collection of interconnected nodes, all working together to validate transactions and blocks by means of consensus. The definition of consensus for any given network varies, but for the Cardano network it’s defined by the Ouroboros protocol. 
 
-Learn how to install cardano-node with all necessary dependencies on Linux. To be able to follow the video better you can find the written tutorial [how to install cardano-node](handbook/install-cardano-node-written) in the stake pool operator handbook.
+Learn how to install cardano-node with all necessary dependencies on Linux. To be able to follow the video better you can find the written tutorial [how to install cardano-node](/docs/get-started/installing-cardano-node) in the stake pool operator handbook.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/zW8gmRzRXP0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
 
 
 ## Run cardano-node
-Learn how to run a cardano-node and get configuration files on Linux. To be able to follow the video better you can find the written tutorial [how to run a node](handbook/run-cardano-node-handbook) in the stake pool operator handbook.
+Learn how to run a cardano-node and get configuration files on Linux. To be able to follow the video better you can find the written tutorial [how to run a node](/docs/get-started/running-cardano) in the stake pool operator handbook.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed//miYXZFBrOJ8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
