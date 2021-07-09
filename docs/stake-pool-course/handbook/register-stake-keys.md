@@ -2,7 +2,7 @@
 id: register-stake-keys
 title: Register Stake Address on the Blockchain
 sidebar_label: Register stake pool keys
-description: Learn how to Create Stake Pool Keys
+description: "Stake pool course: Learn how to create stake pool keys."
 image: ./img/og-developer-portal.png
 ---
 

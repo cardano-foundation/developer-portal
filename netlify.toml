@@ -1,0 +1,455 @@
+# Use this file as your netlify.toml file
+# client side route redirects are auto
+# generated.
+
+# developers.cardano.org -> testnets.cardano.org redirects:
+
+[[redirects]]
+  from = "/en/testnets/cardano/overview/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/overview/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/about/testnet-introduction/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/about/testnet-introduction/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/about/understanding-the-delegation-mechanism/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/about/understanding-the-delegation-mechanism/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/about/what-is-a-stake-pool/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/about/what-is-a-stake-pool/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/about/supported-platforms/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/about/supported-platforms/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/about/the-testnet-faucet/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/about/the-testnet-faucet/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/what-is-a-cardano-node/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/what-is-a-cardano-node/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/creating-a-stake-pool/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/wallet/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/wallet/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/building-the-node-using-nix/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/building-the-node-using-nix/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/building-the-node-from-source/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/building-the-node-from-source/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/running-a-node-as-a-relay/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/running-a-node-as-a-relay/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/running-the-node-using-docker/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/running-the-node-using-docker/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/running-the-node-on-an-aws-instance/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/installing-and-running-the-cardano-node/running-the-node-on-an-aws-instance/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/configuring-a-node-using-yaml/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/configuring-a-node-using-yaml/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/pledging-and-rewards/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/pledging-and-rewards/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/SP_metadata_register/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/SP_metadata_register/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/get-started/registering-a-stake-pool-on-the-blockchain/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/get-started/registering-a-stake-pool-on-the-blockchain/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/monitor/monitoring-the-stake-pool/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/monitor/monitoring-the-stake-pool/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/monitor/monitoring-the-cardano-node/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/monitor/monitoring-the-cardano-node/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/transactions/creating-transactions/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/transactions/creating-transactions/X"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/transactions/diagnosing-transactions/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/transactions/diagnosing-transactions/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/configuration/system-configuration/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/configuration/system-configuration/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/configuration/modifying-stake-pool-details-en.md/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/configuration/modifying-stake-pool-details-en.md/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/configuration/retiring-a-stake-pool/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/configuration/retiring-a-stake-pool/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/resources/cli-references/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/resources/cli-references/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/resources/links/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/resources/links/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/resources/support/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/resources/support/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/resources/release-notes/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/resources/release-notes/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/resources/providing-feedback/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/resources/providing-feedback/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/resources/community/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/resources/community/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/resources/contribute/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/resources/contribute/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/tools/faucet/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/tools/faucet/"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/cardano/tools/staking-calculator/"
+  to = "https://testnets.cardano.org/en/testnets/cardano/tools/staking-calculator"
+  status = 301
+
+[[redirects]]
+  from = "/en/testnets/alonzo-testnet/"
+  to = "https://testnets.cardano.org/en/testnets/alonzo-testnet/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/welcome/"
+  to = "https://testnets.cardano.org/en/virtual-machines/welcome/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/overview/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/overview/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/about/devnet-skill-set/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/about/devnet-skill-set/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/about/kevm-testnet-support/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/about/kevm-testnet-support/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/about/iele_vm_architecture/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/about/iele_vm_architecture/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/getting-started/using-the-kevm-devnet/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/getting-started/using-the-kevm-devnet/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/getting-started/using-the-kevm-basics/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/getting-started/using-the-kevm-basics/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/getting-started/mallet-end-to-end/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/getting-started/mallet-end-to-end/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/getting-started/hello-world-example/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/getting-started/hello-world-example/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/getting-started/cardano-kevm-smart-contracts-demo/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/getting-started/cardano-kevm-smart-contracts-demo/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/resources/rpc-endpoints.md/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/resources/rpc-endpoints.md/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/resources/links/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/resources/links/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/kevm/resources/support-and-help/"
+  to = "https://testnets.cardano.org/en/virtual-machines/kevm/resources/support-and-help/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/overview/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/overview/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/about/devnet-skill-set/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/about/devnet-skill-set/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/about/smart_contracts_architecture.md/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/about/smart_contracts_architecture.md/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/getting-started/using-the-evm-devnet/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/getting-started/using-the-evm-devnet/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/getting-started/mallet-end-to-end/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/getting-started/mallet-end-to-end/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/getting-started/block-explorer/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/getting-started/block-explorer/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/resources/rpc-endpoints.md/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/resources/rpc-endpoints.md/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/evm/resources/support-and-help/"
+  to = "https://testnets.cardano.org/en/virtual-machines/evm/resources/support-and-help/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/overview/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/overview/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/skills-and-requirements/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/skills-and-requirements/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/the-iele-virtual-machine/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/the-iele-virtual-machine/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/advantages-of-using-iele/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/advantages-of-using-iele/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/iele-architecture/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/iele-architecture/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/semantics-based-compilation/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/semantics-based-compilation/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/formal-verification/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/formal-verification/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/inspiration-for-the-k-framework/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/inspiration-for-the-k-framework/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/about/k-framework-for-cardano-and-iele/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/about/k-framework-for-cardano-and-iele/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/resources/links/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/resources/links/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/iele/resources/support-and-help/"
+  to = "https://testnets.cardano.org/en/virtual-machines/iele/resources/support-and-help/"
+  status = 301
+
+[[redirects]]
+  from = "/en/virtual-machines/FAQ_virtual-machines/"
+  to = "https://testnets.cardano.org/en/virtual-machines/FAQ_virtual-machines/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/plutus/overview/"
+  to = "https://testnets.cardano.org/en/programming-languages/plutus/overview/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/plutus/getting-started/"
+  to = "https://testnets.cardano.org/en/programming-languages/plutus/getting-started/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/plutus/resources/"
+  to = "https://testnets.cardano.org/en/programming-languages/plutus/resources/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/marlowe/overview/"
+  to = "https://testnets.cardano.org/en/programming-languages/marlowe/overview/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/marlowe/about/skills-and-requirements/"
+  to = "https://testnets.cardano.org/en/programming-languages/marlowe/about/skills-and-requirements/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/marlowe/getting-started/modelling-financial-products-in-marlowe/"
+  to = "https://testnets.cardano.org/en/programming-languages/marlowe/getting-started/modelling-financial-products-in-marlowe/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/marlowe/getting-started/sample-marlowe-smart-contracts/"
+  to = "https://testnets.cardano.org/en/programming-languages/marlowe/getting-started/sample-marlowe-smart-contracts/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/marlowe/getting-started/using-the-marlowe-playground/"
+  to = "https://testnets.cardano.org/en/programming-languages/marlowe/getting-started/using-the-marlowe-playground/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/marlowe/resources/links/"
+  to = "https://testnets.cardano.org/en/programming-languages/marlowe/resources/links/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/overview/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/overview/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-install/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-install/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-test-network/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-test-network/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-tutorial/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-tutorial/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-tutorial/buy-signature/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-tutorial/buy-signature/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-tutorial/coin-flip/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-tutorial/coin-flip/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-tutorial/rock-paper-scissors/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-tutorial/rock-paper-scissors/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-tutorial/deadman-switch/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-tutorial/deadman-switch/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-tutorial/simple-auction/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-tutorial/simple-auction/"
+  status = 301
+
+[[redirects]]
+  from = "/en/programming-languages/glow/getting-started/glow-tutorial/crowdfund/"
+  to = "https://testnets.cardano.org/en/programming-languages/glow/getting-started/glow-tutorial/crowdfund/"
+  status = 301
+
+[[redirects]]
+  from = "/en/plutus-pioneer-program/"
+  to = "https://testnets.cardano.org/en/plutus-pioneer-program/"
+  status = 301
+
+[[redirects]]
+  from = "/plutus-pioneer-program/"
+  to = "https://testnets.cardano.org/plutus-pioneer-program/"
+  status = 301

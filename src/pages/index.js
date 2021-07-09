@@ -5,31 +5,35 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
+import PortalHero from "./portalhero";
 
 const features = [
   {
     title: "Get Started",
-    imageUrl: "img/card-getting-started.svg",
-    targetUrl: "docs/getting-started/overview",
+    imageUrl: "img/card-get-started.svg",
+    targetUrl: "docs/get-started/",
     description: (
       <>
-        Welcome to the Cardano Developer portal. This category will help you
-        find your way around quickly.
+        Get an overview of Cardano, understand the components, discover builder
+        tools, learn technical concepts and connect to the developer community.
       </>
     ),
   },
   {
     title: "Integrate Cardano",
-    imageUrl: "img/card-payment-integration.svg",
-    targetUrl: "docs/cardano-integration/overview",
+    imageUrl: "img/card-integrate-cardano.svg",
+    targetUrl: "docs/integrate-cardano/",
     description: (
-      <>How to integrate Cardano into existing websites and services.</>
+      <>
+        Explore Cardano wallets and learn how to integrate Cardano into
+        applications and websites.
+      </>
     ),
   },
   {
     title: "Build with Transaction Metadata",
     imageUrl: "img/card-transaction-metadata.svg",
-    targetUrl: "docs/transaction-metadata/overview",
+    targetUrl: "docs/transaction-metadata/",
     description: (
       <>
         Learn what transaction metadata is, how to add it to a transaction, how
@@ -40,26 +44,29 @@ const features = [
   {
     title: "Discover Native Tokens",
     imageUrl: "img/card-native-tokens.svg",
-    targetUrl: "docs/native-tokens/overview",
+    targetUrl: "docs/native-tokens/",
     description: (
       <>
-        Learn what native tokens are, how to mint them, which policies can be
-        used and how to create NFT.
+        Read what native tokens are, how to mint them, ways to create NFT and
+        why you don't need smart contracts for all this.
       </>
     ),
   },
   {
-    title: "Fund a Project",
-    imageUrl: "img/card-funding.svg",
-    targetUrl: "docs/funding/overview",
+    title: "Fund your Project",
+    imageUrl: "img/card-fund-your-project.svg",
+    targetUrl: "docs/fund-your-project/",
     description: (
-      <>Find out what opportunities are available to get your project funded.</>
+      <>
+        Understand Project Catalyst and how you can use it to fund your projects
+        if you build on Cardano.
+      </>
     ),
   },
   {
     title: "Operate a Stake Pool",
-    imageUrl: "img/card-stake-pool-course.svg",
-    targetUrl: "docs/stake-pool-operation/overview",
+    imageUrl: "img/card-operate-a-stake-pool.svg",
+    targetUrl: "docs/operate-a-stake-pool/",
     description: (
       <>
         Learn what it takes to become a Cardano stake pool operator from a
@@ -103,24 +110,13 @@ function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
   return (
-    <Layout title={`Overview`} description="Cardano Developer Portal">
-      <header className={clsx("hero hero--primary", styles.heroBanner)} style={{backgroundImage: "url('/img/hero-header-zoom.png')"}}>
-        <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
-            <Link
-              className={clsx(
-                "button button--outline button--lg",
-                styles.getStarted
-              )}
-              to={useBaseUrl("docs/getting-started/overview")}
-            >
-              Getting Started
-            </Link>
-          </div>
-        </div>
-      </header>
+    <Layout description="Cardano Developer Portal">
+      <PortalHero
+        title={siteConfig.title}
+        description={siteConfig.tagline}
+        cta={'Get Started'}
+        url={useBaseUrl("docs/get-started/")}
+      />
       <main>
         {features && features.length > 0 && (
           <section className={styles.features}>

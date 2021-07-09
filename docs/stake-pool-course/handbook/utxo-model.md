@@ -2,6 +2,7 @@
 id: utxo-model
 title: Classic UTxO model
 sidebar_label: Classic UTxO model
+description: "Stake pool course: The classic UTxO model." 
 image: ./img/og-developer-portal.png
 ---
 

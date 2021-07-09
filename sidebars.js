@@ -1,26 +1,53 @@
 module.exports = {
   someSidebar: {
     "Get Started": [
-      "getting-started/overview",
-      "getting-started/blockfrost",
-      "getting-started/cardanocli-js",
-      "getting-started/dandelion-apis",
-      "getting-started/ogmios",
-      "getting-started/smart-contracts-signpost",
+      "get-started/overview",
+      {
+        type: "category",
+        label: "Cardano Components",
+        items: [
+          "get-started/cardano-components",
+          "get-started/installing-cardano-node",
+          "get-started/running-cardano",
+          "get-started/installing-cardano-wallet",
+        ],
+      },
+      {
+        type: "category",
+        label: "Builder Tools",
+        items: [
+          "get-started/blockfrost",
+          "get-started/cardanocli-js",
+          "get-started/dandelion-apis",
+          "get-started/ogmios",
+          {
+            type: "category",
+            label: "Serialization-Lib",
+            items: [
+              "get-started/cardano-serialization-lib/overview",
+              "get-started/cardano-serialization-lib/prerequisite-knowledge",
+              "get-started/cardano-serialization-lib/generating-keys",
+              "get-started/cardano-serialization-lib/generating-transactions",
+              "get-started/cardano-serialization-lib/transaction-metadata",
+            ],
+          },
+        ],
+      },
+      "get-started/technical-concepts",
+      "get-started/smart-contracts-signpost",
+      "get-started/cardano-developer-community",
     ],
     "Integrate Cardano": [
-      "cardano-integration/overview",
-      "cardano-integration/cardano-components",
-      "cardano-integration/installing-cardano-node",
-      "cardano-integration/running-cardano",
-      "cardano-integration/installing-cardano-wallet",
-      "cardano-integration/creating-wallet-faucet",
-      "cardano-integration/listening-for-payments-cli",
-      "cardano-integration/listening-for-payments-wallet"
+      "integrate-cardano/overview",
+      "integrate-cardano/creating-wallet-faucet",
+      "integrate-cardano/listening-for-payments-cli",
+      "integrate-cardano/listening-for-payments-wallet"
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
-      "transaction-metadata/how-to-create-a-metadata-transaction",
+      "transaction-metadata/how-to-create-a-metadata-transaction-cli",
+      "transaction-metadata/how-to-create-a-metadata-transaction-wallet",
+      "transaction-metadata/retrieving-metadata",
     ],
     "Discover Native Tokens": [
       "native-tokens/overview",
@@ -28,10 +55,14 @@ module.exports = {
       "native-tokens/minting-nfts",
       "native-tokens/cardano-token-registry"
     ],
-    "Fund a Project": ["funding/overview", "funding/dcfund", "funding/cfund"],
+    "Fund your Project": [
+      "fund-your-project/overview", 
+      "fund-your-project/project-catalyst", 
+      "fund-your-project/alternatives"
+    ],
     "Operate a Stake Pool": [
-      "stake-pool-operation/overview",
-      "stake-pool-operation/cardano-key-pairs",
+      "operate-a-stake-pool/overview",
+      "operate-a-stake-pool/cardano-key-pairs",
       {
         type: "category",
         label: "Stake Pool Course",
@@ -50,8 +81,8 @@ module.exports = {
               "stake-pool-course/handbook/setup-virtual-box-written",
               "stake-pool-course/handbook/setup-a-server-on-aws-written",
               "stake-pool-course/handbook/setup-firewall",
-              "stake-pool-course/handbook/install-cardano-node-written",
-              "stake-pool-course/handbook/run-cardano-node-handbook",
+              // "stake-pool-course/handbook/install-cardano-node-written",
+              // "stake-pool-course/handbook/run-cardano-node-handbook",
               "stake-pool-course/handbook/use-cli",
               "stake-pool-course/handbook/utxo-model",
               "stake-pool-course/handbook/keys-addresses",
@@ -75,7 +106,7 @@ module.exports = {
           },
         ],
       },
-      "stake-pool-operation/marketing-stake-pool",
+      "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",

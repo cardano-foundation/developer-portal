@@ -4,7 +4,7 @@ const vars = require('./variables')
 // Docusaurus Config
 module.exports = {
   title: "Cardano Developer Portal",
-  tagline: "together, we can change the world for the better",
+  tagline: "let's build better",
   url: "https://staging-dev-portal.netlify.app",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -43,19 +43,20 @@ module.exports = {
     },
 
     // Announcement Bar
+    // id: always change it when changing the announcement
+    // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: "support_se", // Any value that will identify this message.
+      id: "support_se1", // Any value that will identify this message.
       content:
-        //`If you like the new portal, give it a star on <a target="_blank" rel="noopener noreferrer" href="${repository}">GitHub</a>! ⭐️`,
         `<strong>Cardano Stack Exchange is now open to the public. ⭐️<a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">Join us!</a></strong>`,
-      backgroundColor: "#FD7575", // Defaults to `#fff`.
-      textColor: "#ffffff", // Defaults to `#000`.
-      isCloseable: true, // Defaults to `true`.
+      backgroundColor: "#2AA18A", 
+      textColor: "#FFFFFF", // Use #FFFFFF
+      isCloseable: true, // Use true
     },
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "mg/og-developer-portal.png",
+    image: "img/og-developer-portal.png",
     metadatas: [{ name: "twitter:card", content: "summary" }],
 
     // Algolia Search
@@ -122,35 +123,26 @@ module.exports = {
               label: "Style Guide",
               to: "docs/portal-style-guide",
             },
+            {
+              label: "Raise an Issue",
+              href: "https://github.com/cardano-foundation/developer-portal/issues",
+            },
           ],
         },
         {
           title: "Developer Community",
           items: [
             {
-              label: "Cardano Forum",
-              href: "https://forum.cardano.org/c/developers/29",
-            },
-            {
-              label: "Discord",
-              href: "https://discord.gg/kfATXEENPD",
-            },
-            {
-              label: "Reddit",
-              href: "https://www.reddit.com/r/CardanoDevelopers/",
-            },
-            {
               label: "Stack Exchange",
               href: "https://cardano.stackexchange.com",
             },
             {
-              label: "Slack",
-              href:
-                "https://join.slack.com/t/iohkdevcommunity/shared_invite/zt-mdvb06fr-8Tv8pjl~iR0~lGrimqK_yg",
+              label: "Cardano Forum",
+              href: "https://forum.cardano.org/c/developers/29",
             },
             {
-              label: "Telegram",
-              href: "https://t.me/CardanoDevelopersOfficial",
+              label: "More",
+              to: "docs/get-started/cardano-developer-community",
             },
           ],
         },
@@ -167,22 +159,18 @@ module.exports = {
             },
             {
               label: "Development Updates",
-              to: "https://cardanoupdates.com",
+              href: "https://cardanoupdates.com",
             },
             {
               label: "Ouroboros Protocol",
-              to: "https://cardano.org/ouroboros/",
-            },
-            {
-              label: "Why Cardano?",
-              href: "https://why.cardano.org",
+              href: "https://cardano.org/ouroboros/",
             },
           ],
         },
       ],
 
-      // No copyright, this belongs to the Cardano Community
-      // copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      // Let's use the copyright footer for terms and privacy policy for now
+      copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" class="footer__link-item"">Privacy Policy</a>`,
     },
   },
   plugins: [

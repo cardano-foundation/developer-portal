@@ -2,7 +2,7 @@
 id: use-cli
 title: Command Line Interface
 sidebar_label: Command Line Interface
-description: Learn how to use CLI
+description: "Stake pool course: Learn how to use command line interface (cli)."
 image: ./img/og-developer-portal.png
 ---
 

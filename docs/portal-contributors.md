@@ -2,21 +2,22 @@
 id: portal-contributors
 title: Contributors
 sidebar_label: Contributors
-description: Thank you for contributing consistently to the Cardano developer portal
+description: Thank you for contributing to the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Everyone is welcome to contribute to the Cardano Developer Portal. Below is just a thank you to the people and organizations who either contribute consistently or have made an exceptional contribution.
+Everyone is welcome to contribute to the Cardano Developer Portal. Below is just a thank you to the people and organizations who either contribute consistently or have made an exceptional contribution, listed in chronological order:
 
 ## People
 
+- [Priyank](https://github.com/rdlrt)
+- [Markus Gufler](https://github.com/gufmar)
 - [Alex Ruttkowski](https://github.com/ruttkowa)
 - [Kyle Solomon](https://github.com/adosiawolf)
-- [Markus Gufler](https://github.com/gufmar)
-- [Priyank](https://github.com/rdlrt)
+- [Andrew Westberg](https://github.com/AndrewWestberg)
 
 ## Organizations
 

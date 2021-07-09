@@ -1,8 +1,8 @@
 ---
 id: apply-logging-prometheus
 title: Monitoring a Node with Prometheus
-sidebar_label: Monitoring a node with prometheus
-description: Monitoring a Node with Prometheus
+sidebar_label: Monitoring a node with Prometheus
+description: "Stake pool course: Monitoring a node with Prometheus."
 image: ./img/og-developer-portal.png
 ---
 

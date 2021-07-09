@@ -1,7 +1,10 @@
 ---
 id: overview
+slug: /native-tokens/
 title: Discover Native Tokens
 sidebar_label: Overview
+description: Discover Cardano's native tokens. 
+image: ./img/og-developer-portal.png
 ---
 
 ![Cardano Discover Native Tokens](../../static/img/card-native-tokens-title.svg)
@@ -14,7 +17,7 @@ There are currently two ways to make your NFTs:
 
 Minting requires a certain amount of skill in navigating and working with Linux through the terminal as well as a running Cardano node.
 
-We will not go into the details on how to spin up a Cardano node, but this is covered in the [integrate Cardano category](../cardano-integration/installing-cardano-node).
+We will not go into the details on how to spin up a Cardano node, but this is covered in the [integrate Cardano category](../get-started/installing-cardano-node).
 :::
 
 ## What are native tokens/assets?
@@ -62,6 +65,6 @@ Please keep those constraints in mind if you want to work with native assets.
 Technically speaking, there is no real difference between "regular" token/native assets and NFTs. 
 Both of them can be created with a transaction issued through the cardano node cli and are native assets.
 
-Compared to "regular" native assets ranging from only 1 unit to multiple millions, an NFT is a single native asset that can not be re-minted or destroyed, living forever on the blockchain.
+Compared to fungible native assets, which can range into millions of interchangeable tokens, an NFT is a single native asset that can not be re-minted or destroyed, living forever on the blockchain.
 
 

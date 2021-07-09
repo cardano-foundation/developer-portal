@@ -2,7 +2,7 @@
 id: install-cardano-node-written
 title: Install cardano-node
 sidebar_label: Install cardano-node
-description: Learn how to install cardano-node and all its dependencies.
+description: "Stake pool course: Learn how to install cardano-node and all its dependencies."
 image: ./img/og-developer-portal.png
 ---
 
