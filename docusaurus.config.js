@@ -159,11 +159,11 @@ module.exports = {
             },
             {
               label: "Development Updates",
-              to: "https://cardanoupdates.com",
+              href: "https://cardanoupdates.com",
             },
             {
               label: "Ouroboros Protocol",
-              to: "https://cardano.org/ouroboros/",
+              href: "https://cardano.org/ouroboros/",
             },
             {
               label: "Why Cardano?",
@@ -173,8 +173,8 @@ module.exports = {
         },
       ],
 
-      // No copyright, this belongs to the Cardano Community
-      // copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      // Let's use the copyright footer for terms and privacy policy for now
+      copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" class="footer__link-item"">Privacy Policy</a>`,
     },
   },
   plugins: [
