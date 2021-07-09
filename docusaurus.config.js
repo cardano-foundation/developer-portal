@@ -165,10 +165,6 @@ module.exports = {
               label: "Ouroboros Protocol",
               href: "https://cardano.org/ouroboros/",
             },
-            {
-              label: "Why Cardano?",
-              href: "https://why.cardano.org",
-            },
           ],
         },
       ],
