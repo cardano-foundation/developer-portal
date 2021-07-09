@@ -110,7 +110,7 @@ function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
   return (
-    <Layout title={`Overview`} description="Cardano Developer Portal">
+    <Layout description="Cardano Developer Portal">
       <PortalHero
         title={siteConfig.title}
         description={siteConfig.tagline}
