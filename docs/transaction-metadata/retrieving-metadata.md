@@ -1,20 +1,20 @@
 ---
 id: retrieving-metadata
-title: Retreiving your metadata
-sidebar_label: Retreiving your metadata
+title: Retrieving your metadata
+sidebar_label: Retrieving your metadata
 description: We will discuss the many ways to retrieve your metadata from the Cardano blockchain.
 image: ./img/og-developer-portal.png
 ---
 
 ## Overview
 
-There are many ways to retrieve metadata stored in the **Cardano** blockchain. In this article we discuss the different components and ways that can help us retrieve all kinds blockchain data.
+There are many ways to retrieve metadata stored in the **Cardano** blockchain. This article discusses the different components and ways that can help us retrieve all kinds of blockchain data.
 
 ## Blockfrost
 
-[Blockfrost](/docs/get-started/blockfrost) provides an **API** to access the **Cardano** blockchain fast and easy. 
+[Blockfrost](/docs/get-started/blockfrost) provides an **API** to access the **Cardano** blockchain fast and easily. 
 
-To retrieve metadata using **Blockfrost** we simply call a specific endpoint for **transaction metadata** that they provide.
+To retrieve metadata using **Blockfrost**, we call a specific endpoint for **transaction metadata** that they provide.
 
 ** Query 1337 Metadata **
 
@@ -37,7 +37,7 @@ You should see something like this:
 ]
 ```
 
-In this example we query the **Cardano Mainnet** for any metadata under the key `1337` and we see a few of the many metadata that is already inserted into the **Cardano** blockchain under that key. It is now up to your implementation on how you want to cache and sort through all the data that lives on-chain. **Blockfrost** provides `paging` and `ordering` parameters.
+In this example, we query the **Cardano Mainnet** for any metadata under the key `1337`. We see a few of the many metadata that is already inserted into the **Cardano** blockchain under that key. It is now up to your implementation how you want to cache and sort through all the data that lives on-chain. **Blockfrost** provides `paging` and `ordering` parameters.
 
 Please visit their official [documentation](https://docs.blockfrost.io) to know more.
 
