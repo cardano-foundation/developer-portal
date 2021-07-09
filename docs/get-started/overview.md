@@ -30,7 +30,7 @@ If you are unfamiliar with these terms, start with [technical concepts](technica
 ## Cardano is different 
 If you have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
 
-- It makes sense to get your head around the [concept of UTxO](technical-concepts#unspent-transaction-output-utxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/04/13/plutus-what-you-need-to-know/).
+- It makes sense to get your head around the [concept of UTxO](technical-concepts#unspent-transaction-output-utxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/).
 - [Tokens on Cardano](../native-tokens/) are not built with smart contracts. Instead, tokens are native and live on the ledger. The protocol treats them as first-class citizens, like ada. It is quite different from our peers that don’t have native tokens and need to use a smart contract to send tokens. 
 - [Native tokens](../native-tokens/) use the core infrastructure, and the network has to do everything else. For example, instead of running a smart contract and calling a method called transfer. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
 
