@@ -6,15 +6,15 @@ description: How to mint NFTs on Cardano.
 image: ./img/og-developer-portal.png
 ---
 :::note
-There are many ways to realize NFTs with Cardano. In this guide, we will concentrate on the most dominant way, which is to attach storage references of other services like [IPFS](https://ipfs.io/) to our tokens.
+There are many ways to realize NFTs with Cardano. However, in this guide, we will concentrate on the most dominant way, to attach storage references of other services like [IPFS](https://ipfs.io/) to our tokens.
 :::
 
 ## What's the difference?
 What is the difference between native assets and NFTs?  
-From a technical point of view, NFTs are exactly the same as native assets. But there are some additional characteristics that make a native  asset truly an NFT:
+From a technical point of view, NFTs are the same as native assets. But some additional characteristics make a native asset truly an NFT:
 
 1. As the name states - it must be 'non-fungible. This means you need to have unique identifiers or attributes attached to a token to make it distinguishable from others.
-2. Most of the times, an NFT should live on the blockchain forever. Therefore we need some mechanism to ensure an NFT stays unique and can not be duplicated.
+2. Most of the time, NFT's should live on the blockchain forever. Therefore we need some mechanism to ensure an NFT stays unique and can not be duplicated.
 
 ### The policyID 
 Native assets in Cardano feature the following characteristics:
@@ -56,7 +56,7 @@ Here is an example from [nft-maker.io](https://www.nft-maker.io/)
   }
 }
 ```
-Metadata helps us to display things like image URIs and stuff that truly makes it an NFT. With this workaround of attaching metadata, third party platforms like [pool.pm](https://pool.pm/) can easily trace back to the last minting transaction, read the metadata and query images and attributes accordingly.
+Metadata helps us to display things like image URIs and stuff that truly makes it an NFT. With this workaround of attaching metadata, third-party platforms like [pool.pm](https://pool.pm/) can easily trace back to the last minting transaction, read the metadata, and query images and attributes accordingly.
 The query would look something like this:
 
 1. Get asset name and `policyID`.
@@ -68,14 +68,14 @@ The query would look something like this:
 
 :::note
 **There is currently no agreed standard as to how an NFT or the metadata is defined.**
-There is a [Cardano Improvement Proposal](https://github.com/cardano-foundation/CIPs/pull/85) if you want to follow the discussion.
+However, there is a [Cardano Improvement Proposal](https://github.com/cardano-foundation/CIPs/pull/85) if you want to follow the discussion.
 :::
 
 ### Time locking
 
 Since NFTs are likely to be traded or sold, they should follow a more strict policy. Most of the time, a value is defined by the (artificial) scarcity of an asset.
 
-You can regulate such factors with  [multisignature scripts](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md).
+You can regulate such factors with  [multi-signature scripts](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md).
 
 For this guide, we will choose the following constraints:
 
@@ -88,7 +88,7 @@ Apart from the same requisites as on the [minting native assets](minting.md) gui
 
 1. Obviously, what / how many NFTs you want to make.  
 --> We are going to make only one NFT
-2. A already populated `metadata.json`  
+2. An already populated `metadata.json`  
 3. Know how your minting policy should look like.
 --> Only one signature allowed (which we will create in this guide)  
 --> No further minting or burning of the asset allowed after 10000 blocks have passed since the transaction was made
@@ -149,7 +149,7 @@ address=$(cat payment.addr)
 ### Fund the address
 
 Submitting transactions always require you to pay a fee. 
-Sending native assets requires also requires sending at least 1 ada.  
+Sending native assets requires sending at least 1 ada.  
 So make sure the address you are going to use as the input for the minting transaction has sufficient funds. 
 For our example, the newly generated address was funded with 10 ada.
 
@@ -172,7 +172,7 @@ cardano-cli query protocol-parameters --mainnet --out-file protocol.json
 ```
 
 ### Creating the policyID
-Just as in generating native assets, we will first of all need to generate some policy-related files like key pairs and a policy script.
+Just as in generating native assets, we will need to generate some policy-related files like key pairs and a policy script.
 
 ```bash
 mkdir policy
@@ -216,7 +216,7 @@ For this specific purpose `policy.script` file which will look like this:
 
 As you can see, we need to adjust two values here, the `slot` number as well as the `keyHash`.
 
-To set everything at once and just copy and paste it, use this command(s):
+To set everything at once and copy and paste it, use this command(s):
 **You need to have the `jq` installed to parse the tip correctly!**
 
 ```bash
@@ -261,7 +261,7 @@ nano policy/policy.script
 Be aware the slot number is defined as an integer and therefore needs no double quotation marks, whereas the `keyHash` is defined as a string and needs to be wrapped in double quotation marks.
 :::
 
-Take note of your slot number and save it in a variable.
+Please take note of your slot number and save it in a variable.
 
 ```bash
 slotnumber="Replace this with your slot number"
@@ -300,12 +300,12 @@ Here’s an example of the metadata.json which we’ll use for this guide:
 ```
 
 :::note
-The third element in the hierarchy needs to have the same name as our NFT native asset will be named.
+The third element in the hierarchy needs to have the same name as our NFT native asset.
 :::
 
 Save this file as `metadata.json`. 
 
-If you want to generate it "on the fly" use the following commands:
+If you want to generate it "on the fly," use the following commands:
 
 ```bash
 echo "{" >> metadata.json
@@ -381,14 +381,14 @@ cardano-cli transaction build-raw \
 --out-file matx.raw
 ```
 
-As with every other transaction, we need to calculate the fee and the output and save them in the corresponding variables (which are currently set to zero).
+As with every other transaction, we need to calculate the fee and the output and save them in the corresponding variables (currently set to zero).
 
 Use this command to set the <i>$fee</i> variable.
 ```bash
 fee=$(cardano-cli transaction calculate-min-fee --tx-body-file matx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 1 --mainnet --protocol-params-file protocol.json | cut -d " " -f1)
 ```
 
-And this command to calculate the correct value for <i>$output</i>.
+And this command calculates the correct value for <i>$output</i>.
 ```bash
 output=$(expr $funds - $fee)
 ```
@@ -448,7 +448,7 @@ You can check it out yourself and see the NFT created for this tutorial [here](h
 
 ## Burn your token
 
-In case you messed something up and want to re-start, you can always burn your token if the slot defined in your policy script isn't over yet.
+If you messed something up and want to re-start, you can always burn your token if the slot defined in your policy script isn't over yet.
 Assuming you have still every variable set, you need to re-set:
 
 ```bash
@@ -474,7 +474,7 @@ Calculate the fee to burn the token.
 burnfee=$(cardano-cli transaction calculate-min-fee --tx-body-file burning.raw --tx-in-count 1 --tx-out-count 1 --witness-count 1 --mainnet --protocol-params-file protocol.json | cut -d " " -f1)
 ```
 
-Calculate the leftovers / output.
+Calculate the leftovers/output.
 ```bash
 burnoutput=$(expr $funds - $burnfee)
 ```
