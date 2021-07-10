@@ -89,6 +89,11 @@ module.exports = {
           position: "left",
         },
         {
+          to: "docs/get-started/testnets-and-devnets",
+          label: "Testnets",
+          position: "left",
+        },
+        {
           to: "blog/",
           label: "Dev Blog",
           position: "left",
