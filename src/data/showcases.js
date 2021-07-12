@@ -555,6 +555,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CHEFF 3D NFT Explorer",
+    description:
+      "The first and greatest mobile NFT explorer for Cardano, see your NFT in augmented reality and interact with them on 3D environment.",
+    preview: require("./showcase/cheff.png"),
+    website: "https://apps.apple.com/us/app/cheff-nft-explorer/id1572987723",
+    source: null,
+    tags: ["nft"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
