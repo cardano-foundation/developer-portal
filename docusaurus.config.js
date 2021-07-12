@@ -46,9 +46,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: "support_se1", // Any value that will identify this message.
+      id: "survey_op1", // Any value that will identify this message.
       content:
-        `<strong>Cardano Stack Exchange is now open to the public. ⭐️<a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">Join us!</a></strong>`,
+        `<strong>Welcome to the new Developer Portal.🎉 Your opinion matters! Please take 2 minutes to <a target="_blank" rel="noopener noreferrer" href="https://cardanocommunity.typeform.com/to/f2lKIRB6">fill out our survey</a>.</strong>`,
       backgroundColor: "#2AA18A", 
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -86,6 +86,11 @@ module.exports = {
         {
           to: "showcase",
           label: "Showcase",
+          position: "left",
+        },
+        {
+          to: "docs/get-started/testnets-and-devnets",
+          label: "Testnets",
           position: "left",
         },
         {

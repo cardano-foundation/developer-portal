@@ -111,6 +111,7 @@ export const Tags = {
 
 // Add your project to (THE END OF) this list.
 // Please don't add the "featured"-tag yourself.
+// Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
   {
     title: "Cardano Kidz",
@@ -119,7 +120,7 @@ const Showcases = [
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Cardano Wall",
@@ -146,7 +147,7 @@ const Showcases = [
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "ADAex",
@@ -262,7 +263,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["featured", "tokens", "nft", "game"],
+    tags: ["featured", "nft", "game"],
   },
   {
     title: "Cardano Warriors",
@@ -270,7 +271,7 @@ const Showcases = [
     preview: require("./showcase/cardanowarriors.png"),
     website: "https://www.cardanowarriors.io",
     source: null,
-    tags: ["tokens", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Native Tokens",
@@ -286,7 +287,7 @@ const Showcases = [
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
-    tags: ["tokens", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Cardano Assets",
@@ -302,7 +303,7 @@ const Showcases = [
     preview: require("./showcase/nftea.png"),
     website: "https://cardanonftea.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Cardano Bits",
@@ -310,7 +311,7 @@ const Showcases = [
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Crypto Knitties",
@@ -319,7 +320,7 @@ const Showcases = [
     preview: require("./showcase/cryptoknitties.png"),
     website: "https://adaknitties.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Cardano Updates",
@@ -453,7 +454,7 @@ const Showcases = [
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "unsigned_algorithms",
@@ -462,7 +463,97 @@ const Showcases = [
     preview: require("./showcase/unsigned-algorithms.png"),
     website: "https://www.unsigs.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
+  },
+  {
+    title: "ADA Dolls",
+    description:
+      "There are 10,000 unique dolls. These will be randomly generated from a possible outcome of 1,000,000 doll combinations.",
+    preview: require("./showcase/ada-dolls.png"),
+    website: "https://adadolls.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "ADA Monsterz",
+    description:
+      "Collect. Trade. Share. Have Fun!",
+    preview: require("./showcase/ada-monsterz.png"),
+    website: "https://adamonsterz.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Canuckz NFTs",
+    description:
+      "Limited Edition Collectibles on the Cardano Blockchain.",
+    preview: require("./showcase/canuckz.png"),
+    website: "https://canuckz-nft.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardacity",
+    description:
+      "Your city is coming to Cardano.",
+    preview: require("./showcase/cardacity.png"),
+    website: "https://carda.city",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardano Gods",
+    description:
+      "Behold the mighty Cardano Gods. A full on-chain NFT art project on Cardano network.",
+    preview: require("./showcase/cardano-gods.png"),
+    website: "https://cardanogods.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardano Idols",
+    description:
+      "Tributes to our Cardano idols.",
+    preview: require("./showcase/cardano-idols.png"),
+    website: "https://www.cardanoidols.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardinos",
+    description:
+      "Cardinos were born from a late night conversation about how simply awesome Dinosaurs and NFTs are.",
+    preview: require("./showcase/cardinos.png"),
+    website: "https://cardinos.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Clay Mates",
+    description:
+      "Of clay - duh! Collectibles brought to life and re-homed on the Cardano blockchain.",
+    preview: require("./showcase/clay-mates.png"),
+    website: "https://www.claymates.org",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Crypto Doggies",
+    description:
+      "Collect, trade, have fun, save real dogs!",
+    preview: require("./showcase/crypto-doggies.png"),
+    website: "https://cryptodoggies.org",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "The Hoskinsons",
+    description:
+      "The Hoskinsons is an original NFT collection commemorating the founders, developers, and personalities of the Cardano platform.",
+    preview: require("./showcase/the-hoskinsons.png"),
+    website: "https://thehoskinsons.com",
+    source: null,
+    tags: ["nft"],
   },
 ];
 

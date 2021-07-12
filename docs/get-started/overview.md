@@ -8,7 +8,7 @@ image: ./img/og-developer-portal.png
 --- 
 ![Cardano Get Started](../../static/img/card-get-started-title.svg)
 
-Welcome to the Cardano Developer Portal. This content is for technical people, if you are looking for a Cardano wallet please head to the [showcase section](../../showcase).
+Welcome to the Cardano Developer Portal. This content is for technical people; if you are looking for a Cardano wallet please head to the [showcase section](../../showcase).
 
 It is noteworthy to mention that the Developer Portal covers everything you can do **today** on the Cardano **mainnet**. If your goal is to learn about Cardano's [smart contracts](smart-contracts-signpost), please visit [this signpost article](smart-contracts-signpost) to point you in the right direction.
 
@@ -25,14 +25,14 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 ## What you need to bring
 To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](technical-concepts#unspent-transaction-output-utxo), [transactions](technical-concepts#transactions), [addresses](technical-concepts#addresses), [key derivation](technical-concepts#key-derivation), and [networking](technical-concepts#networking). 
 
-If you are unfamiliar with these terms, start with [technical concepts](technical-concepts) and maybe afterwards complete the [stake pool course](../operate-a-stake-pool/#stake-pool-course). It will also help you understand basic concepts, even if you don't want to run a stake pool. 
+If you are unfamiliar with these terms, start with [technical concepts](technical-concepts), and you can complete the [stake pool course](../operate-a-stake-pool/#stake-pool-course) afterward. It will also help you understand basic concepts, even if you don't want to run a stake pool. 
 
 ## Cardano is different 
 If you have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
 
 - It makes sense to get your head around the [concept of UTxO](technical-concepts#unspent-transaction-output-utxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/).
 - [Tokens on Cardano](../native-tokens/) are not built with smart contracts. Instead, tokens are native and live on the ledger. The protocol treats them as first-class citizens, like ada. It is quite different from our peers that don’t have native tokens and need to use a smart contract to send tokens. 
-- [Native tokens](../native-tokens/) use the core infrastructure, and the network has to do everything else. For example, instead of running a smart contract and calling a method called transfer. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
+- [Native tokens](../native-tokens/) use the core infrastructure, and the network has to do everything else instead of running a smart contract and calling a method called 'transfer'. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
 
 ## What you can do on Cardano today
 - You can send and receive [native tokens](../native-tokens/), including ada.
@@ -42,12 +42,12 @@ If you have experience with other smart contract platforms and want to start bui
 - You can participate in the [Cardano Improvement Proposals](technical-concepts#cardano-improvement-proposals-cip) (CIP) process.
 
 ## Why build on Cardano?
-- Cardano offers a better infrastructure to build products because it is faster, more secure, and more cost-effective.
+- Cardano offers a better infrastructure to build products because it is faster, more secure, and cost-effective.
 - Cardano offers accurate cost predictability when it comes to transactions. There are no auctions for transaction fees.
 - Cardano has an energetic community and more than one million wallets. If you stick to specific standards, we are keen to try out and engage with new products. Participating now makes you a first mover.
-- Cardano brings its own venture fund. If you build on Cardano you can get [your project funded](../fund-your-project/). Every 6 to 8 weeks, projects can be proposed, discussed, and voted on by the Cardano community.
+- Cardano brings its venture fund. If you build on Cardano you can get [your project funded](../fund-your-project/). Every 6 to 8 weeks, projects can be proposed, discussed, and voted on by the Cardano community.
 - Cardano is a proof-of-stake blockchain. By design, it consumes much less energy and computational power.
-- Cardano is built with the rigour of high-assurance formal development methods. The consensus mechanism [Ouroboros](https://cardano.org/ouroboros/) was delivered with several peer-reviewed papers presented in top-tier conferences and publications in cybersecurity and cryptography. If you build on Cardano, you build on this foundation.
+- Cardano is built with the rigor of high-assurance formal development methods. The consensus mechanism [Ouroboros](https://cardano.org/ouroboros/) was delivered with several peer-reviewed papers presented in top-tier conferences and publications in cybersecurity and cryptography. If you build on Cardano, you build on this foundation.
 
 ## What you can build on Cardano today
 - You can [integrate Cardano](../integrate-cardano) into existing websites and services.

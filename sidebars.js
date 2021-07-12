@@ -34,6 +34,7 @@ module.exports = {
         ],
       },
       "get-started/technical-concepts",
+      "get-started/testnets-and-devnets",
       "get-started/smart-contracts-signpost",
       "get-started/cardano-developer-community",
     ],
