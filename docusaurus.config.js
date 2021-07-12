@@ -177,6 +177,12 @@ module.exports = {
       // Let's use the copyright footer for terms and privacy policy for now
       copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" class="footer__link-item"">Privacy Policy</a>`,
     },
+    gtag: {
+      // You can also use your "G-" Measurement ID here.
+      trackingID: 'GTM-5NM3NX4',
+      // Optional fields.
+      anonymizeIP: false, // Should IPs be anonymized?
+    },
   },
   plugins: [
     [
@@ -187,7 +193,7 @@ module.exports = {
         min: 640, // min resized image's size. if original is lower, use that size.
         steps: 2, // the max number of images generated between min and max (inclusive)
       },
-    ],
+    ]
   ],
   presets: [
     [
