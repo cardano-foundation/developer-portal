@@ -12,7 +12,7 @@ The Cardano Developer Portal covers everything that is available on the mainnet.
 Marlowe is the domain-specific language for financial contracts on Cardano. 
 Take a look at the [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/): 
 
-[![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://alpha.marlowe.iohkdev.io/).
+[![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://alpha.marlowe.iohkdev.io/)
 
 Talk to others about [Marlowe on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram there is a dedicated [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
