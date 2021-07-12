@@ -5,7 +5,7 @@ const vars = require('./variables')
 module.exports = {
   title: "Cardano Developer Portal",
   tagline: "let's build better",
-  url: "https://staging-dev-portal.netlify.app",
+  url: "https://developers.cardano.org",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
