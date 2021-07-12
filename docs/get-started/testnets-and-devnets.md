@@ -18,7 +18,7 @@ Because the Cardano testnet is an independent network, separate from the Cardano
 ## Where to get test ada?
 Test ada is worth nothing. With it you can safely perform all tests free of charge - the reason why you want to develop on the testnet. 
 
-To get free test ada, you need to visit the [Cardano testnet faucet](/docs/integrate-cardano/creating-wallet-faucet#cardano-testnet-faucet). 
+To get free test ada, you need to visit the [Cardano testnet faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet/). 
 
 ## What kind of monitoring tools are available for the testnet?
 - [Grafana dashboard](https://monitoring.cardano-testnet.iohkdev.io/grafana/d/Oe0reiHef/cardano-application-metrics-v2?orgId=1&refresh=1m&from=now-7d&to=now) provides many health metrics.
@@ -32,6 +32,6 @@ The developer portal covers everything that you can do on Cardano Mainnet today.
 If you miss information about virtual machines like [KEVM](https://testnets.cardano.org/en/virtual-machines/kevm/overview/), [IELE](https://testnets.cardano.org/en/virtual-machines/iele/overview/), and [EVM](https://testnets.cardano.org/en/virtual-machines/evm/overview/) or programming languages like [Plutus](https://testnets.cardano.org/en/programming-languages/plutus/overview/), [Marlowe](https://testnets.cardano.org/en/programming-languages/marlowe/overview/) and [Glow](https://testnets.cardano.org/en/programming-languages/glow/overview/), visit [testnets.cardano.org](https://testnets.cardano.org).
 
 ### Smart Contracts
-To get you up to speed with the Smart Contract functionality coming to Cardano, we prepared  [get started with smart contracts on Cardano](/docs/get-started/smart-contracts-signpost).
+To get you up to speed with the Smart Contract functionality coming to Cardano, we prepared [get started with smart contracts on Cardano](/docs/get-started/smart-contracts-signpost).
 
 
