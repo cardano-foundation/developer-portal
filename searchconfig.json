@@ -1,18 +1,18 @@
 {
   "index_name": "developer-portal",
   "start_urls": [
-    "https://staging-dev-portal.netlify.app/docs/get-started/",
-    "https://staging-dev-portal.netlify.app/docs/integrate-cardano/",
-    "https://staging-dev-portal.netlify.app/docs/transaction-metadata/",
-    "https://staging-dev-portal.netlify.app/docs/native-tokens/",
-    "https://staging-dev-portal.netlify.app/docs/fund-your-project/",
-    "https://staging-dev-portal.netlify.app/docs/operate-a-stake-pool/",
-    "https://staging-dev-portal.netlify.app/tools",
-    "https://staging-dev-portal.netlify.app/showcase",
-    "https://staging-dev-portal.netlify.app/blog/"
+    "https://developers.cardano.org/docs/get-started/",
+    "https://developers.cardano.org/docs/integrate-cardano/",
+    "https://developers.cardano.org/docs/transaction-metadata/",
+    "https://developers.cardano.org/docs/native-tokens/",
+    "https://developers.cardano.org/docs/fund-your-project/",
+    "https://developers.cardano.org/docs/operate-a-stake-pool/",
+    "https://developers.cardano.org/tools",
+    "https://developers.cardano.org/showcase",
+    "https://developers.cardano.org/blog/"
   ],
   "sitemap_urls": [
-    "https://staging-dev-portal.netlify.app/sitemap.xml"
+    "https://developers.cardano.org/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "stop_urls": [],
