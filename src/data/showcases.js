@@ -111,6 +111,7 @@ export const Tags = {
 
 // Add your project to (THE END OF) this list.
 // Please don't add the "featured"-tag yourself.
+// Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
   {
     title: "Cardano Kidz",
@@ -119,7 +120,7 @@ const Showcases = [
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Cardano Wall",
@@ -146,7 +147,7 @@ const Showcases = [
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "ADAex",
@@ -262,7 +263,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["featured", "tokens", "nft", "game"],
+    tags: ["featured", "nft", "game"],
   },
   {
     title: "Cardano Warriors",
@@ -270,7 +271,7 @@ const Showcases = [
     preview: require("./showcase/cardanowarriors.png"),
     website: "https://www.cardanowarriors.io",
     source: null,
-    tags: ["tokens", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Native Tokens",
@@ -286,7 +287,7 @@ const Showcases = [
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
-    tags: ["tokens", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Cardano Assets",
@@ -302,7 +303,7 @@ const Showcases = [
     preview: require("./showcase/nftea.png"),
     website: "https://cardanonftea.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Cardano Bits",
@@ -310,7 +311,7 @@ const Showcases = [
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Crypto Knitties",
@@ -319,7 +320,7 @@ const Showcases = [
     preview: require("./showcase/cryptoknitties.png"),
     website: "https://adaknitties.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "Cardano Updates",
@@ -453,7 +454,7 @@ const Showcases = [
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
   {
     title: "unsigned_algorithms",
@@ -462,7 +463,7 @@ const Showcases = [
     preview: require("./showcase/unsigned-algorithms.png"),
     website: "https://www.unsigs.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
 ];
 
