@@ -2,11 +2,6 @@
 # client side route redirects are auto
 # generated.
 
-[[redirects]]
-  from = "/home/"
-  to = "https://developers.cardano.org"
-  status = 200
-
 # developers.cardano.org -> testnets.cardano.org redirects:
 
 [[redirects]]
@@ -450,7 +445,7 @@
   status = 301
 
 [[redirects]]
-  from = "/en/plutus-pioneer-program/"
+ from = "/en/plutus-pioneer-program/"
   to = "https://testnets.cardano.org/en/plutus-pioneer-program/"
   status = 301
 
