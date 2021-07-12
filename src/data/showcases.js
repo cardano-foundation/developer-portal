@@ -465,6 +465,96 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "ADA Dolls",
+    description:
+      "There are 10,000 unique dolls. These will be randomly generated from a possible outcome of 1,000,000 doll combinations.",
+    preview: require("./showcase/ada-dolls.png"),
+    website: "https://adadolls.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "ADA Monsterz",
+    description:
+      "Collect. Trade. Share. Have Fun!",
+    preview: require("./showcase/ada-monsterz.png"),
+    website: "https://adamonsterz.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Canuckz NFTs",
+    description:
+      "Limited Edition Collectibles on the Cardano Blockchain.",
+    preview: require("./showcase/canuckz.png"),
+    website: "https://canuckz-nft.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardacity",
+    description:
+      "Your city is coming to Cardano.",
+    preview: require("./showcase/cardacity.png"),
+    website: "https://carda.city",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardano Gods",
+    description:
+      "Behold the mighty Cardano Gods. A full on-chain NFT art project on Cardano network.",
+    preview: require("./showcase/cardano-gods.png"),
+    website: "https://cardanogods.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardano Idols",
+    description:
+      "Tributes to our Cardano idols.",
+    preview: require("./showcase/cardano-idols.png"),
+    website: "https://www.cardanoidols.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Cardinos",
+    description:
+      "Cardinos were born from a late night conversation about how simply awesome Dinosaurs and NFTs are.",
+    preview: require("./showcase/cardinos.png"),
+    website: "https://cardinos.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Clay Mates",
+    description:
+      "Of clay - duh! Collectibles brought to life and re-homed on the Cardano blockchain.",
+    preview: require("./showcase/clay-mates.png"),
+    website: "https://www.claymates.org",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Crypto Doggies",
+    description:
+      "Collect, trade, have fun, save real dogs!",
+    preview: require("./showcase/crypto-doggies.png"),
+    website: "https://cryptodoggies.org",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "The Hoskinsons",
+    description:
+      "The Hoskinsons is an original NFT collection commemorating the founders, developers, and personalities of the Cardano platform.",
+    preview: require("./showcase/the-hoskinsons.png"),
+    website: "https://thehoskinsons.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
