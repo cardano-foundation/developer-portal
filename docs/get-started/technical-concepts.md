@@ -20,6 +20,10 @@ Learn what is inside the guts of a Cardano transaction. We show how unsigned and
 Cardano Addresses are used as destinations to send ada on the blockchain. We break them down into their parts and show how they're created.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
+## Transaction Fees
+Understand how transaction fees are calculated on Cardano. Brief coverage of the topics reserve and treasury.  
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
 ## Mnemonic seed phrase (BIP39)
 BIP39 is the standard for creating a mnemonic seed phrase for wallets. In this video, we break down how it's created from randomness on Cardano.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/5P1jx1ELUHk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
