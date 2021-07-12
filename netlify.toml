@@ -2,6 +2,11 @@
 # client side route redirects are auto
 # generated.
 
+[[redirects]]
+  from = "/home/"
+  to = "https://developers.cardano.org"
+  status = 200
+
 # developers.cardano.org -> testnets.cardano.org redirects:
 
 [[redirects]]
