@@ -573,6 +573,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Pigy Token",
+    description:
+      "The Meme Token for Cardano Stake-Pool-Operators and Delegators",
+    preview: require("./showcase/pigytokenproject.png"),
+    website: "https://pigytoken.com/",
+    source: null,
+    tags: ["tokens"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
