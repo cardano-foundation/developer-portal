@@ -17,7 +17,7 @@
 const tools = [
   {
     title: "Blockfrost",
-    description: "Instant and scaleable API to the Cardano blockchain.",
+    description: "Instant and scalable API to the Cardano blockchain.",
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
     gettingstarted: "/docs/get-started/blockfrost",

@@ -560,10 +560,27 @@ const Showcases = [
     description:
       "The first and greatest mobile NFT explorer for Cardano, see your NFT in augmented reality and interact with them on 3D environment.",
     preview: require("./showcase/cheff.png"),
-    website: "https://apps.apple.com/us/app/cheff-nft-explorer/id1572987723",
+    website: "https://www.cheffwallets.com",
     source: null,
     tags: ["nft"],
-  }
+  },
+    title: "DEADPXLZ",
+    description:
+      "The first interactive NFT collectibles on the Cardano blockchain.",
+    preview: require("./showcase/deadpxlz.png"),
+    website: "https://pxlz.org",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Kryptoids",
+    description:
+      "Legendary creatures on the Cardano blockchain!",
+    preview: require("./showcase/kryptoids.png"),
+    website: "https://kryptoids.monster",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
