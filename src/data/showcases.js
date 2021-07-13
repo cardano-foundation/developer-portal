@@ -573,6 +573,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Stellar Hood",
+    description:
+      "Explore the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
+    preview: require("./showcase/stellarhood.png"),
+    website: "https://stellarhood.com",
+    source: null,
+    tags: ["nft"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
