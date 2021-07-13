@@ -227,7 +227,7 @@ In the developer portal you will often have to display code. You can display cod
 
     ```javascript
     var s = 'JavaScript syntax highlighting';
-    alert(s);```
+    alert(s);
     ```
 
 ```javascript
