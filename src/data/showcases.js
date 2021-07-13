@@ -573,6 +573,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Crowdano Crowdfunding",
+    description:
+      "Trustless crowdfunding enabled through the use of Cardano Smart Contracts",
+    preview: require("./showcase/crowdano.png"),
+    website: "https://crowdano.io",
+    source: "https://github.com/ejane24/crowdano",
+    tags: ["opensource"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
