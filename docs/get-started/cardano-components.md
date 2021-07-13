@@ -16,4 +16,4 @@ image: ./img/og-developer-portal.png
 - [`cardano-ledger-specs`](https://github.com/input-output-hk/cardano-ledger-specs#cardano-ledger) is the formal specification and executable model of the ledger rules introduced by the Shelley release.
 - [`bech32`](https://github.com/input-output-hk/bech32#bech32-command-line) is the Haskell implementation of the Bech32 address format (BIP 0173).
 - [`smash`](https://github.com/input-output-hk/smash#smash-overview) is the stake pool metadata aggregation server. It provides off-chain metadata linked to the on-chain registrations of the stake pools.
-- [`ouroboros-network`](https://github.com/input-output-hk/ouroboros-network/#ouroboros-network) is a module that provides mnemonic (backup phrase) creation, and conversion of a mnemonic to seed for wallet restoration, and address derivation functionalities.
+- [`ouroboros-network`](https://github.com/input-output-hk/ouroboros-network/#ouroboros-network) is a network package which implements the ouroboros family of protocols, multiplexing layer.
