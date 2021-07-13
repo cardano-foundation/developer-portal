@@ -555,6 +555,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Kryptoids",
+    description:
+      "Legendary Creatures on the Cardano Blockchain!",
+    preview: require("./showcase/kryptoids.png"),
+    website: "https://kryptoids.monster",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
