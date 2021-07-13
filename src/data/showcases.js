@@ -108,10 +108,11 @@ export const Tags = {
     icon: null,
   },
   
+  // Travel
   travel: {
     label: "Travel",
     description: "Go to explore the world without a middleman",
-    icon: null,
+    icon: <>🏝</>,
   }
 };
 
