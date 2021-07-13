@@ -555,6 +555,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "DEADPXLZ",
+    description:
+      "The first interactive NFT collectibles on the Cardano blockchain.",
+    preview: require("./showcase/deadpxlz.png"),
+    website: "https://pxlz.org",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
