@@ -107,6 +107,12 @@ export const Tags = {
       "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
   },
+  
+  travel: {
+    label: "Travel",
+    description: "Go to explore the world without a middleman",
+    icon: null,
+  }
 };
 
 // Add your project to (THE END OF) this list.
@@ -272,6 +278,14 @@ const Showcases = [
     website: "https://www.cardanowarriors.io",
     source: null,
     tags: ["nft", "game"],
+  },
+  {
+    title: "Copandpase",
+    description: "Once a passsport around the world.",
+    preview: require("./showcase/copandpase.png"),
+    website: "http://www.copandpase.com",
+    source: null,
+    tags: ["travel", "featured"],
   },
   {
     title: "Native Tokens",
