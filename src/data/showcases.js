@@ -573,6 +573,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Nami",
+    description:
+      "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
+    preview: require("./showcase/namiwallet.png"),
+    website: "https://namiwallet.io",
+    source: "https://github.com/Berry-Pool/nami-wallet",
+    tags: ["wallet", "opensource", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
