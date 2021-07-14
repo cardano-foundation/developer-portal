@@ -5,7 +5,7 @@
  * - It must be built on Cardano and have a real use case. For example, a forum where 
  *   people can talk about Cardano is great, but nothing for this showcase section.
  * - It needs to run on Cardano mainnet.
- * - It needs to have enough community reputation
+ * - It needs to have enough community reputation.
  * - It needs to provide a unique value from existing showcase items. (we can't list 
  *   thousands of NFT or native tokens with the current UI)
  * - It has a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
