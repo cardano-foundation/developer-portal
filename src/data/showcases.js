@@ -573,6 +573,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "JES-Art",
+    description:
+      "16 year old female fine art NFTs on the Cardano blockchain!",
+    preview: require("./showcase/jesart.png"),
+    website: "https://www.jes-art.com",
+    source: null,
+    tags: ["nft"],
+  },  
 ];
 
 export const TagList = Object.keys(Tags);
