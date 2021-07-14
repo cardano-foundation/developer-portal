@@ -589,6 +589,14 @@ const Showcases = [
     source: "https://github.com/Berry-Pool/nami-wallet",
     tags: ["wallet", "opensource", "nft"],
   },
+  {
+    title: "Politikoz | NFTs on Cardano!",
+    description: "The Cardano On-Chain Lottery Game.",
+    preview: require("./showcase/politikoz.png"),
+    website: "https://www.politikoz.io",
+    source: null,
+    tags: ["nft", "game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
