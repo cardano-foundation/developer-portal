@@ -6,15 +6,11 @@ description: Style guide for the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 
-<!-- markdownlint-disable-file MD004 -->
-<!-- markdownlint-disable-file MD034 -->
-<!-- markdownlint-disable-file MD046 -->
-
 You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/). [Markdown](https://github.github.com/gfm/) is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
 
 ## Markdown Examples
 
-This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive.
+This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. Read the [docusaurus markdown features](https://docusaurus.io/docs/next/markdown-features) for more examples.
 
 Let's start with the basics:
 
@@ -46,13 +42,12 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 You can even [link to the Forum!](https://forum.cardano.org)
 ```
-<!-- markdownlint-disable MD009-->
-Emphasis, aka italics, with *asterisks* 
+
+Emphasis, aka italics, with *asterisks*
 or _underscores_.
 
-Strong emphasis, aka bold, with **asterisks** 
+Strong emphasis, aka bold, with **asterisks**
 or __underscores__.
-<!-- markdownlint-enable MD009-->
 
 Combined emphasis with **asterisks and _underscores_**.
 
@@ -63,34 +58,45 @@ You can even [link to the Forum!](https://forum.cardano.org)
   </TabItem>
   <TabItem value="headers">
 
+:::note Avoid top-level headings
+
+`#Level 1` headings are rendered automatically from the `title` property of your `frontmatter`. <br /> Therefore use `## Level 2` headings as the top most heading in the docs.
+
+:::
+
 ```md
-# Structured documents
+---
+id: front-matter
+title: I am the frontmatter
+description: Always include the frontmatter in your documents
+---
+
+## Structured documents
 
 As a rule, it is useful to have different levels
 of headings to structure your documents. Start rows 
-with a `#` to create headings. Several `##` in a row 
+with a `##` to create headings. Several `#` in a row 
 indicate smaller heading sizes.
 
-## This is a second-tier heading
+### This is a level 3 heading
 
-### This is a third-tier heading
+#### This is a level 4 heading
 
-You can use one `#` all the way up to `######` six for 
-different heading sizes.
+You can use up to `######` six for different heading sizes.
+
 ```
 
-<!-- markdownlint-disable MD025 -->
-# Structured documents
-<!-- markdownlint-enable MD025 -->
+# I am the frontmatter
+
+## Structured documents
 
 As a rule, it is useful to have different levels of headings to structure your documents. Start rows with a `#` to create headings. Several `##` in a row indicate smaller heading sizes.
 
-## This is a second-tier heading
+### This is a level 3 heading
 
-### This is a third-tier heading
+#### This is a level 4 heading
 
-You can use one `#` all the way up to `######` six for
-different heading sizes.
+You can use up to `######` six for different heading sizes.
 
   </TabItem>
   <TabItem value="links">
@@ -205,9 +211,9 @@ Images from any folder can be used by providing path to file. Path should be rel
 
 + Or pluses
 
-<!-- markdownlint-disable-next-line MD009 -->
-
+<!-- -->
   </TabItem>
+
 </Tabs>
 
 ---
@@ -514,17 +520,17 @@ Colons can be used to align columns:
 
 ```text
 | Tables        |      Are      |   Cool |
-| ------------- | :-----------: | -----: |
-| col 3 is      | right-aligned | \$1600 |
-| col 2 is      |   centered    |   \$12 |
-| zebra stripes |   are neat    |    \$1 |
+| ------------- | :-----------  | -----: |
+| col 3 is      | right-aligned |  $1600 |
+| col 2 is      |   centered    |    $12 |
+| zebra stripes |   are neat    |     $1 |
 ```
 
 | Tables        |      Are      |   Cool |
 | ------------- | :-----------: | -----: |
-| col 3 is      | right-aligned | \$1600 |
-| col 2 is      |   centered    |   \$12 |
-| zebra stripes |   are neat    |    \$1 |
+| col 3 is      | right-aligned |  $1600 |
+| col 2 is      |   centered    |    $12 |
+| zebra stripes |   are neat    |     $1 |
 
 There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
 
@@ -701,3 +707,96 @@ This is a tip admonition with a custom title
 </Tabs>
 
 Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
+
+## Editor extensions and configurations
+
+Last but not least, let's talk about editors, extensions and configurations.
+
+You can use any text editor you like to write markdown. [Visual Studio Code](https://code.visualstudio.com/), [Sublime](https://www.sublimetext.com/), [Atom](https://atom.io/), etc. have plugins that help you adhere to style guides by displaying warnings if you break the rules.
+
+Below are some extensions for these editors that help you write clean guides for the developer portal.
+
+### markdownlint
+
+Adds syntax highligting for markdown files and display configurable warnings for invalid formatting.
+
+<Tabs
+  defaultValue="vscode"
+  values={[
+    {label: 'Visual Studio Code', value: 'vscode'},
+    {label: 'Sublime', value: 'sublime'},
+  ]}>
+  <TabItem value="vscode">
+
+* Install the extension via *Command Palette (Ctrl+P)* using `ext install DavidAnson.vscode-markdownlint`
+
+* Add a `.markdownlint.json` file to your project with the following configuration.
+
+```json
+{
+    "line-length": false,
+    "MD004" : false,
+    "MD033":{
+        "allowed_elements": ["TabItem", "br", "iframe", "dl", "dt","dd", "em"]
+    },
+    "MD034" : false,
+    "MD046" : false
+}
+```
+
+  </TabItem>
+  <TabItem value="sublime">
+
+1. Install SublimeLinter as described [here](http://www.sublimelinter.com/en/stable/)
+2. Install [Node.js](https://nodejs.org)
+3. Install `markdownlint` by using `npm install -g markdownlint-cli`
+4. Within Sublime Text's *Command Palette (Ctrl+Shift+P)* type `install` and select `Package Control: Install Package`.
+5. When the plug-in list appears, type `markdownlint` and select `SublimeLinter-contrib-markdownlint`.
+
+* Add a `.markdownlintrc` file to your project with the following configuration.
+
+```json
+{
+    "line-length": false,
+    "MD004" : false,
+    "MD033":{
+        "allowed_elements": ["TabItem", "br", "iframe", "dl", "dt","dd", "em"]
+    },
+    "MD034" : false,
+    "MD046" : false
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### markdowntables
+
+Helps you work with tables
+
+<Tabs
+  defaultValue="vscode"
+  values={[
+    {label: 'Visual Studio Code', value: 'vscode'}
+  ]}>
+  <TabItem value="vscode">
+
+* Install the extension via *Command Palette (Ctrl+P)* using `ext install pharndt.vscode-markdown-table`
+
+| Keybindings     |                            |
+| --------------- | -------------------------- |
+| `Ctrl+Q Ctrl+F` | format table under cursor. |
+| `Ctrl+Q Space`  | clear cell under cursor.   |
+| `Ctrl+Q Ctrl+Q` | toggle table mode          |
+
+* In table mode
+
+| Keybindings    |                                                |
+| -------------- | ---------------------------------------------- |
+| `Tab`          | navigate to the next cell in table             |
+| `Shift+Tab`    | navigate to the previous cell in table         |
+| `Alt+Numpad +` | Create new column left to the current position |
+| `Alt+Numpad -` | delete current column                          |
+
+  </TabItem>
+</Tabs>
