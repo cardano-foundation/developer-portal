@@ -6,11 +6,15 @@ description: Style guide for the Cardano developer portal.
 image: ./img/og-developer-portal.png
 ---
 
+<!-- markdownlint-disable-file MD004 -->
+<!-- markdownlint-disable-file MD034 -->
+<!-- markdownlint-disable-file MD046 -->
+
 You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/). [Markdown](https://github.github.com/gfm/) is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
 
 ## Markdown Examples
 
-This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. 
+This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive.
 
 Let's start with the basics:
 
@@ -42,12 +46,13 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 You can even [link to the Forum!](https://forum.cardano.org)
 ```
-
+<!-- markdownlint-disable MD009-->
 Emphasis, aka italics, with *asterisks* 
 or _underscores_.
 
 Strong emphasis, aka bold, with **asterisks** 
 or __underscores__.
+<!-- markdownlint-enable MD009-->
 
 Combined emphasis with **asterisks and _underscores_**.
 
@@ -58,7 +63,7 @@ You can even [link to the Forum!](https://forum.cardano.org)
   </TabItem>
   <TabItem value="headers">
 
-```
+```md
 # Structured documents
 
 As a rule, it is useful to have different levels
@@ -74,18 +79,17 @@ You can use one `#` all the way up to `######` six for
 different heading sizes.
 ```
 
+<!-- markdownlint-disable MD025 -->
 # Structured documents
+<!-- markdownlint-enable MD025 -->
 
-As a rule, it is useful to have different levels
-of headings to structure your documents. Start rows 
-with a `#` to create headings. Several `##` in a row 
-indicate smaller heading sizes.
+As a rule, it is useful to have different levels of headings to structure your documents. Start rows with a `#` to create headings. Several `##` in a row indicate smaller heading sizes.
 
 ## This is a second-tier heading
 
 ### This is a third-tier heading
 
-You can use one `#` all the way up to `######` six for 
+You can use one `#` all the way up to `######` six for
 different heading sizes.
 
   </TabItem>
@@ -129,7 +133,6 @@ Some text to show that the reference links can follow later.
 [1]: https://forum.cardano.org
 [link text itself]: https://www.cardano.org
 
-
   </TabItem>
   <TabItem value="quotes">
 
@@ -142,12 +145,9 @@ we can upgrade something. It’s about what’s fit for
 purpose. - **Charles Hoskinson**
 ```
 
-If you'd like to quote someone, use the > character 
-before the line:
+If you'd like to quote someone, use the > character before the line:
 
-> It’s not about who’s first to market or how quickly 
-we can upgrade something. It’s about what’s fit for 
-purpose. - **Charles Hoskinson**
+> It’s not about who’s first to market or how quickly we can upgrade something. It’s about what’s fit for purpose. - **Charles Hoskinson**
 
   </TabItem>
   <TabItem value="images">
@@ -177,11 +177,11 @@ Images from any folder can be used by providing path to file. Path should be rel
 
 ```text
 1. First ordered list item
-1. Another item
+2. Another item
    - Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
+3. Actual numbers don't matter, just that it's a number
    1. Ordered sub-list
-1. And another item.
+4. And another item.
 
 * Unordered list can use asterisks
 
@@ -197,18 +197,20 @@ Images from any folder can be used by providing path to file. Path should be rel
    1. Ordered sub-list
 1. And another item.
 
+<!-- -->
+
 * Unordered list can use asterisks
 
 - Or minuses
 
 + Or pluses
 
+<!-- markdownlint-disable-next-line MD009 -->
 
   </TabItem>
 </Tabs>
 
 ---
- 
 
 ## Code
 
@@ -218,6 +220,7 @@ In the developer portal you will often have to display code. You can display cod
   values={[
     {label: 'JavaScript', value: 'js' },
     {label: 'Python', value: 'py' },
+    {label: 'C#', value: 'cs' },
     {label: 'JSON', value: 'json' },
     {label: 'Shell', value: 'sh' },
     {label: 'Text', value: 'txt' },
@@ -246,6 +249,21 @@ alert(s);
 ```python
 s = "Python syntax highlighting"
 print(s)
+```
+
+</TabItem>
+<TabItem value="cs">
+
+    ```csharp
+    using System;
+    var s = "c# syntax highlighting";
+    Console.WriteLine(s);
+    ```
+
+```csharp
+using System;
+var s = "c# syntax highlighting";
+Console.WriteLine(s);
 ```
 
 </TabItem>
@@ -292,10 +310,12 @@ top
     But let's throw in a <b>tag</b>.
     ```
 
+<!-- markdownlint-disable MD040-->
 ```
 No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
+<!-- markdownlint-enable MD040-->
 
 </TabItem>
 <TabItem value="extras">
@@ -327,10 +347,12 @@ function HelloCodeTitle(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 ```
+
   </TabItem>
 </Tabs>
 
 ---
+
 ## Tabs
 
 You can use tabs for example to display code examples in different languages:
@@ -371,7 +393,7 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
 </Tabs>
-``` 
+```
 
 <Tabs
   defaultValue="js"
@@ -383,16 +405,16 @@ import TabItem from '@theme/TabItem';
   <TabItem value="js">
 
 ```js
-  function helloWorld() {
-    console.log('Hello, world!');
-  }
+function helloWorld() {
+  console.log('Hello, world!');
+}
 ```
 
   </TabItem>
   <TabItem value="php">
 
 ```php
-  <?php echo '<p>Hello, world!</p>'; ?>
+<?php echo '<p>Hello, world!</p>'; ?>
 ```
 
   </TabItem>
@@ -407,10 +429,10 @@ def hello_world():
 </Tabs>
 
 :::note
-Note that the empty lines above and below each language block (in the *md file) is intentional. 
+Note that the empty lines above and below each language block (in the *md file) is intentional.
 :::
 
---- 
+---
 
 ## Synching tab choices
 
@@ -651,6 +673,7 @@ This is a warning
 
 :::
 ```
+
 :::warning
 
 This is a warning
@@ -667,6 +690,7 @@ This is a tip admonition with a custom title
 
 :::
 ```
+
 :::tip  Custom Title
 
 This is a tip admonition with a custom title
