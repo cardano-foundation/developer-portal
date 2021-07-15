@@ -28,3 +28,6 @@ yarn-error.log*
 
 # JS / TS Examples
 **/node_modules
+
+# vscode
+.vscode
