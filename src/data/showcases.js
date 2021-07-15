@@ -589,6 +589,24 @@ const Showcases = [
     source: "https://github.com/Berry-Pool/nami-wallet",
     tags: ["wallet", "opensource", "nft"],
   },
+  {
+    title: "Cardano Waves",
+    description:
+      "The largest collection of real-time charts for the Cardano network and community.",
+    preview: require("./showcase/cardano-waves.png"),
+    website: "https://cardanowaves.com",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Cardano Alerts",
+    description:
+      "Get wallet notifications or keep tabs on your Cardano stake pool with real time alerts.",
+    preview: require("./showcase/cardano-alerts.png"),
+    website: "https://cardanoalerts.com",
+    source: null,
+    tags: ["pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
