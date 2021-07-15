@@ -22,7 +22,7 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      additionalLanguages: ['csharp'],
+      additionalLanguages: ['csharp', 'php'],
     },
     
     // Dark / Light Mode
