@@ -41,6 +41,7 @@ module.exports = {
     "Integrate Cardano": [
       "integrate-cardano/overview",
       "integrate-cardano/creating-wallet-faucet",
+      "integrate-cardano/multi-witness-transactions-cli",
       "integrate-cardano/listening-for-payments-cli",
       "integrate-cardano/listening-for-payments-wallet"
     ],
