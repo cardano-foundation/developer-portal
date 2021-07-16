@@ -616,6 +616,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+  {
+    title: "Finger Monsters",
+    description:
+      "Terrifying Finger Monsters from your childhood have returned, but on the Cardano blockchain.",
+    preview: require("./showcase/fingermonsters.png"),
+    website: "https://www.fingermonsters.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
