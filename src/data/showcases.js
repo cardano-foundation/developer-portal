@@ -616,6 +616,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+  {
+    title: "CNFT.IO",
+    description:
+      "All things Cardano Non-Fungible Tokens | #CNFTs",
+    preview: require("./showcase/cnft.png"),
+    website: "https://www.cnft.io",
+    source: "https://github.com/Cardano-NFTs/api",
+    tags: ["tokens", "nft", "Block Explorers", "Metadata", "Native Tokens"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
