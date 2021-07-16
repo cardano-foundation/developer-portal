@@ -607,6 +607,15 @@ const Showcases = [
     source: null,
     tags: ["pooltool"],
   },
+  {
+    title: "Metro Mermaids NFT Maker",
+    description:
+      "Mint and Burn NFTs",
+    preview: require("./showcase/metromermaids.png"),
+    website: "https://mint.metromermaids.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);

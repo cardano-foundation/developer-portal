@@ -10,7 +10,7 @@ You can write content using [GitHub-flavored Markdown syntax](https://github.git
 
 ## Markdown Examples
 
-This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. 
+This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. Read the [docusaurus markdown features](https://docusaurus.io/docs/next/markdown-features) for more examples.
 
 Let's start with the basics:
 
@@ -43,10 +43,10 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 You can even [link to the Forum!](https://forum.cardano.org)
 ```
 
-Emphasis, aka italics, with *asterisks* 
+Emphasis, aka italics, with *asterisks*
 or _underscores_.
 
-Strong emphasis, aka bold, with **asterisks** 
+Strong emphasis, aka bold, with **asterisks**
 or __underscores__.
 
 Combined emphasis with **asterisks and _underscores_**.
@@ -58,35 +58,45 @@ You can even [link to the Forum!](https://forum.cardano.org)
   </TabItem>
   <TabItem value="headers">
 
-```
-# Structured documents
+:::note Avoid top-level headings
+
+`#Level 1` headings are rendered automatically from the `title` property of your `frontmatter`. <br /> Therefore use `## Level 2` headings as the top most heading in the docs.
+
+:::
+
+```md
+---
+id: front-matter
+title: I am the frontmatter
+description: Always include the frontmatter in your documents
+---
+
+## Structured documents
 
 As a rule, it is useful to have different levels
 of headings to structure your documents. Start rows 
-with a `#` to create headings. Several `##` in a row 
+with a `##` to create headings. Several `#` in a row 
 indicate smaller heading sizes.
 
-## This is a second-tier heading
+### This is a level 3 heading
 
-### This is a third-tier heading
+#### This is a level 4 heading
 
-You can use one `#` all the way up to `######` six for 
-different heading sizes.
+You can use up to `######` six for different heading sizes.
+
 ```
 
-# Structured documents
+# I am the frontmatter
 
-As a rule, it is useful to have different levels
-of headings to structure your documents. Start rows 
-with a `#` to create headings. Several `##` in a row 
-indicate smaller heading sizes.
+## Structured documents
 
-## This is a second-tier heading
+As a rule, it is useful to have different levels of headings to structure your documents. Start rows with a `#` to create headings. Several `##` in a row indicate smaller heading sizes.
 
-### This is a third-tier heading
+### This is a level 3 heading
 
-You can use one `#` all the way up to `######` six for 
-different heading sizes.
+#### This is a level 4 heading
+
+You can use up to `######` six for different heading sizes.
 
   </TabItem>
   <TabItem value="links">
@@ -129,7 +139,6 @@ Some text to show that the reference links can follow later.
 [1]: https://forum.cardano.org
 [link text itself]: https://www.cardano.org
 
-
   </TabItem>
   <TabItem value="quotes">
 
@@ -142,12 +151,9 @@ we can upgrade something. It’s about what’s fit for
 purpose. - **Charles Hoskinson**
 ```
 
-If you'd like to quote someone, use the > character 
-before the line:
+If you'd like to quote someone, use the > character before the line:
 
-> It’s not about who’s first to market or how quickly 
-we can upgrade something. It’s about what’s fit for 
-purpose. - **Charles Hoskinson**
+> It’s not about who’s first to market or how quickly we can upgrade something. It’s about what’s fit for purpose. - **Charles Hoskinson**
 
   </TabItem>
   <TabItem value="images">
@@ -177,11 +183,11 @@ Images from any folder can be used by providing path to file. Path should be rel
 
 ```text
 1. First ordered list item
-1. Another item
+2. Another item
    - Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
+3. Actual numbers don't matter, just that it's a number
    1. Ordered sub-list
-1. And another item.
+4. And another item.
 
 * Unordered list can use asterisks
 
@@ -197,18 +203,20 @@ Images from any folder can be used by providing path to file. Path should be rel
    1. Ordered sub-list
 1. And another item.
 
+<!-- -->
+
 * Unordered list can use asterisks
 
 - Or minuses
 
 + Or pluses
 
-
+<!-- -->
   </TabItem>
+
 </Tabs>
 
 ---
- 
 
 ## Code
 
@@ -218,6 +226,7 @@ In the developer portal you will often have to display code. You can display cod
   values={[
     {label: 'JavaScript', value: 'js' },
     {label: 'Python', value: 'py' },
+    {label: 'C#', value: 'cs' },
     {label: 'JSON', value: 'json' },
     {label: 'Shell', value: 'sh' },
     {label: 'Text', value: 'txt' },
@@ -246,6 +255,21 @@ alert(s);
 ```python
 s = "Python syntax highlighting"
 print(s)
+```
+
+</TabItem>
+<TabItem value="cs">
+
+    ```csharp
+    using System;
+    var s = "c# syntax highlighting";
+    Console.WriteLine(s);
+    ```
+
+```csharp
+using System;
+var s = "c# syntax highlighting";
+Console.WriteLine(s);
 ```
 
 </TabItem>
@@ -292,10 +316,12 @@ top
     But let's throw in a <b>tag</b>.
     ```
 
+<!-- markdownlint-disable MD040-->
 ```
 No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
+<!-- markdownlint-enable MD040-->
 
 </TabItem>
 <TabItem value="extras">
@@ -327,10 +353,12 @@ function HelloCodeTitle(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 ```
+
   </TabItem>
 </Tabs>
 
 ---
+
 ## Tabs
 
 You can use tabs for example to display code examples in different languages:
@@ -371,7 +399,7 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
 </Tabs>
-``` 
+```
 
 <Tabs
   defaultValue="js"
@@ -383,16 +411,16 @@ import TabItem from '@theme/TabItem';
   <TabItem value="js">
 
 ```js
-  function helloWorld() {
-    console.log('Hello, world!');
-  }
+function helloWorld() {
+  console.log('Hello, world!');
+}
 ```
 
   </TabItem>
   <TabItem value="php">
 
 ```php
-  <?php echo '<p>Hello, world!</p>'; ?>
+<?php echo '<p>Hello, world!</p>'; ?>
 ```
 
   </TabItem>
@@ -407,10 +435,10 @@ def hello_world():
 </Tabs>
 
 :::note
-Note that the empty lines above and below each language block (in the *md file) is intentional. 
+Note that the empty lines above and below each language block (in the *md file) is intentional.
 :::
 
---- 
+---
 
 ## Synching tab choices
 
@@ -493,16 +521,16 @@ Colons can be used to align columns:
 ```text
 | Tables        |      Are      |   Cool |
 | ------------- | :-----------: | -----: |
-| col 3 is      | right-aligned | \$1600 |
-| col 2 is      |   centered    |   \$12 |
-| zebra stripes |   are neat    |    \$1 |
+| col 3 is      | right-aligned |  $1600 |
+| col 2 is      |   centered    |    $12 |
+| zebra stripes |   are neat    |     $1 |
 ```
 
 | Tables        |      Are      |   Cool |
 | ------------- | :-----------: | -----: |
-| col 3 is      | right-aligned | \$1600 |
-| col 2 is      |   centered    |   \$12 |
-| zebra stripes |   are neat    |    \$1 |
+| col 3 is      | right-aligned |  $1600 |
+| col 2 is      |   centered    |    $12 |
+| zebra stripes |   are neat    |     $1 |
 
 There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
 
@@ -651,6 +679,7 @@ This is a warning
 
 :::
 ```
+
 :::warning
 
 This is a warning
@@ -667,6 +696,7 @@ This is a tip admonition with a custom title
 
 :::
 ```
+
 :::tip  Custom Title
 
 This is a tip admonition with a custom title
@@ -677,3 +707,96 @@ This is a tip admonition with a custom title
 </Tabs>
 
 Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
+
+## Editor extensions and configurations
+
+Last but not least, let's talk about editors, extensions and configurations.
+
+You can use any text editor you like to write markdown. [Visual Studio Code](https://code.visualstudio.com/), [Sublime](https://www.sublimetext.com/), [Atom](https://atom.io/), etc. have plugins that help you adhere to style guides by displaying warnings if you break the rules.
+
+Below are some extensions for these editors that help you write clean guides for the developer portal.
+
+### markdownlint
+
+Adds syntax highligting for markdown files and display configurable warnings for invalid formatting.
+
+<Tabs
+  defaultValue="vscode"
+  values={[
+    {label: 'Visual Studio Code', value: 'vscode'},
+    {label: 'Sublime', value: 'sublime'},
+  ]}>
+  <TabItem value="vscode">
+
+* Install the extension via *Command Palette (Ctrl+P)* using `ext install DavidAnson.vscode-markdownlint`
+
+* Add a `.markdownlint.json` file to your project with the following configuration.
+
+```json
+{
+    "line-length": false,
+    "MD004" : false,
+    "MD033":{
+        "allowed_elements": ["TabItem", "br", "iframe", "dl", "dt","dd", "em"]
+    },
+    "MD034" : false,
+    "MD046" : false
+}
+```
+
+  </TabItem>
+  <TabItem value="sublime">
+
+1. Install SublimeLinter as described [here](http://www.sublimelinter.com/en/stable/)
+2. Install [Node.js](https://nodejs.org)
+3. Install `markdownlint` by using `npm install -g markdownlint-cli`
+4. Within Sublime Text's *Command Palette (Ctrl+Shift+P)* type `install` and select `Package Control: Install Package`.
+5. When the plug-in list appears, type `markdownlint` and select `SublimeLinter-contrib-markdownlint`.
+
+* Add a `.markdownlintrc` file to your project with the following configuration.
+
+```json
+{
+    "line-length": false,
+    "MD004" : false,
+    "MD033":{
+        "allowed_elements": ["TabItem", "br", "iframe", "dl", "dt","dd", "em"]
+    },
+    "MD034" : false,
+    "MD046" : false
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### markdowntables
+
+Helps you work with tables
+
+<Tabs
+  defaultValue="vscode"
+  values={[
+    {label: 'Visual Studio Code', value: 'vscode'}
+  ]}>
+  <TabItem value="vscode">
+
+* Install the extension via *Command Palette (Ctrl+P)* using `ext install pharndt.vscode-markdown-table`
+
+| Keybindings     |                            |
+| --------------- | -------------------------- |
+| `Ctrl+Q Ctrl+F` | format table under cursor. |
+| `Ctrl+Q Space`  | clear cell under cursor.   |
+| `Ctrl+Q Ctrl+Q` | toggle table mode          |
+
+* In table mode
+
+| Keybindings    |                                                |
+| -------------- | ---------------------------------------------- |
+| `Tab`          | navigate to the next cell in table             |
+| `Shift+Tab`    | navigate to the previous cell in table         |
+| `Alt+Numpad +` | Create new column left to the current position |
+| `Alt+Numpad -` | delete current column                          |
+
+  </TabItem>
+</Tabs>
