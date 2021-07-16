@@ -616,6 +616,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+  {
+    title: "Professor Cardano",
+    description:
+      "An exciting project to bring the Periodic Table of Elementsto life through limited edition CNFT’s",
+    preview: require("./showcase/professorcardano.png"),
+    website: "https://www.professorcardano.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
