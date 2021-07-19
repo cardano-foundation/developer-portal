@@ -1,17 +1,27 @@
 /*
- * ADD YOUR PROJECT TO THE CARDANO DEVELOPER PORTAL SHOWCASE:
+ * SHOWCASE SECTION INFO
  *
- * Requirements for adding your project to our showcase:
- * - It must be built on Cardano and have a real use case. For example, a forum where people can talk about Cardano is great, but nothing for this showcase section.
- * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
+ * The project showcase should be a place where someone new to the ecosystem 
+ * can come to see what can be done - it should not be seen as a database where 
+ * every project is promoted.
+ * 
+ * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
+ * - It must be built on Cardano and have a real use case. For example, a forum where 
+ *   people can talk about Cardano is great, but nothing for this showcase section.
+ * - It has to run on Cardano mainnet.
+ * - It has to have a running product. (no presale, no protected pages, no coming soon messages)
+ * - It has to have enough community reputation.
+ * - It has to provide a unique value from existing showcase items. (we can't list 
+ *   thousands of NFT or native tokens with the current UI)
+ * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
+ *   URL shortener, no app store links, or similar)
  * - The GitHub account that adds the project must not be new. 
  * - The GitHub account must have a history/or already be known in the Cardano community.
  *
- * Instructions:
- * - Add your project in the json array below
- * - Add a local image preview (decent screenshot or logo of your project)
- *
- * The image must be added to the GitHub repository, and use `require("image")`
+ * INSTRUCTIONS:
+ * - Add your project in the JSON array below.
+ * - Add a local image preview. (decent screenshot or logo of your project)
+ * - The image must be added to the GitHub repository and use `require("image")`.
  */
 
 import React from "react";
@@ -432,7 +442,7 @@ const Showcases = [
   {
     title: "Gimbalabs",
     description:
-      "Gimbalabs is a collaborative community and space where dApps and OpenSource tools are develop in the \"Playground\" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!",
+      "Gimbalabs is a collaborative community and space where dApps and OpenSource tools are developed in the \"Playground\" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!",
     preview: require("./showcase/gimbalabs.png"),
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
@@ -581,6 +591,60 @@ const Showcases = [
     website: "https://pigytoken.com/",
     source: null,
     tags: ["tokens"],
+   },
+  {
+    title: "Stellar Hood",
+    description:
+      "Explore one of the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
+    preview: require("./showcase/stellarhood.png"),
+    website: "https://stellarhood.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Nami",
+    description:
+      "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
+    preview: require("./showcase/namiwallet.png"),
+    website: "https://namiwallet.io",
+    source: "https://github.com/Berry-Pool/nami-wallet",
+    tags: ["wallet", "opensource", "nft"],
+  },
+  {
+    title: "Cardano Waves",
+    description:
+      "The largest collection of real-time charts for the Cardano network and community.",
+    preview: require("./showcase/cardano-waves.png"),
+    website: "https://cardanowaves.com",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Cardano Alerts",
+    description:
+      "Get wallet notifications or keep tabs on your Cardano stake pool with real time alerts.",
+    preview: require("./showcase/cardano-alerts.png"),
+    website: "https://cardanoalerts.com",
+    source: null,
+    tags: ["pooltool"],
+  },
+  {
+    title: "Metro Mermaids NFT Maker",
+    description:
+      "Mint and Burn NFTs",
+    preview: require("./showcase/metromermaids.png"),
+    website: "https://mint.metromermaids.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Cardano Token and NFT Builder",
+    description:
+      "Create your own native tokens and NFT in a few clicks without any code.",
+    preview: require("./showcase/token-builder.png"),
+    website: "https://cardano-native-token.com/",
+    source: null,
+    tags: ["tokens", "nft"],
   },
 ];
 

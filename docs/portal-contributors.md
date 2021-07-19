@@ -18,6 +18,7 @@ Everyone is welcome to contribute to the Cardano Developer Portal. Below is just
 - [Alex Ruttkowski](https://github.com/ruttkowa)
 - [Kyle Solomon](https://github.com/adosiawolf)
 - [Andrew Westberg](https://github.com/AndrewWestberg)
+- [Alexander Klee](https://github.com/tweakch)
 
 ## Organizations
 

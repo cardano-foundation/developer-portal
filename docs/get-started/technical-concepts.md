@@ -22,7 +22,7 @@ Cardano Addresses are used as destinations to send ada on the blockchain. We bre
 
 ## Transaction Fees
 Understand how transaction fees are calculated on Cardano. Brief coverage of the topics reserve and treasury.  
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/lpSIpPWp7H8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Mnemonic seed phrase (BIP39)
 BIP39 is the standard for creating a mnemonic seed phrase for wallets. In this video, we break down how it's created from randomness on Cardano.  
