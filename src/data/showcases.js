@@ -584,6 +584,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "Stellar Hood",
+    description:
+      "Explore one of the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
+    preview: require("./showcase/stellarhood.png"),
+    website: "https://stellarhood.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "Nami",
     description:
       "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
