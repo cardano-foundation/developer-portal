@@ -28,7 +28,7 @@ Timestamping is useful for any transaction which requires payment details to be 
 Essentially, metadata can be used to tell the story of a transaction. When paired with off-chain infrastructure, such as physical identifiers, metadata can serve as a confirmation or assurance of authenticity.
 
 ## Metadata Workshop
-On 18 January 2021, Jeremy Firster and Mel McCann from the Cardano Foundation’s integrations team delivered a workshop on transaction metadata. Together with Alan McSherry and Ben O’Hanlon from IOHK, Jeremy and Mel introduced transaction metadata and discussed its potential for building applications on Cardano.
+On 18 January 2021, Jeremy Firster and Mel McCann from the Cardano Foundation’s integrations team delivered a workshop on transaction metadata. Together with Alan McSherry and Ben O’Hanlon from IOHK, Jeremy and Mel introduced transaction metadata and discussed its potential for building applications on Cardano. [The slides of the presentation are also available](https://docs.google.com/presentation/d/1KUy83TxpJwIxMHYoQQK6SYynTKrmokxgv_vRa3bpGw4/edit?usp=sharing).  
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/LrN3ETZ3fRM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
