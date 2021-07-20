@@ -586,7 +586,7 @@ const Showcases = [
   {
     title: "Stellar Hood",
     description:
-      "Explore one of the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
+      "Explore the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
     preview: require("./showcase/stellarhood.png"),
     website: "https://stellarhood.com",
     source: null,
