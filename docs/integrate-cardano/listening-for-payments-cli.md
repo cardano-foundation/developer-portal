@@ -22,7 +22,7 @@ There are many possible reasons why you would want to have the functionality of 
 
 ![img](../../static/img/integrate-cardano/ada-online-shop.png)
 
-## Technical Flow
+## Technical flow
 
 To understand how something like this could work in a technical point of view, let's take a look at the following diagram:
 
@@ -43,7 +43,7 @@ In this section, We will use the path `/home/user/receive-ada-sample` to store a
 All the code examples in this article assumes that you will save all the source-code-files under the root of this directory.
 :::
 
-### Generate Keys and Request some tADA
+### Generate keys and request tADA
 
 First, lets create a directory to store our sample project:
 
@@ -80,7 +80,7 @@ Your directory structure should now look like this:
 
 Now using your **programming language** of choice we create our first few lines of code!
 
-### Initial Variables
+### Initial variables
 
 First we will set the initial variables that we will be using as explained below:
 
@@ -170,7 +170,7 @@ const long TOTAL_EXPECTED_LOVELACE = 1000000;
   </TabItem>
 </Tabs>
 
-### Read Wallet Address Value
+### Read wallet address value
 
 Next, we get the string value of the **wallet address** from the `payment.addr` file that we generated awhile ago. Add the following lines to your code:
 
@@ -285,7 +285,7 @@ var rawUtxoTable = await Command.ReadAsync(CARDANO_CLI_PATH, string.Join(" ",
   </TabItem>
 </Tabs>
 
-### Process UTxO Table
+### Process UTxO table
 
 Once we have access to the **UTXO** table string, we will then parse it and compute the total lovelace that the wallet currently has.
 
@@ -360,7 +360,7 @@ foreach(var row in utxoTableRows.Skip(2)){
   </TabItem>
 </Tabs>
 
-### Determining if payment is succesful
+### Determine if payment is succesful
 
 Once we have the total lovelace amount, we will then determine using our code if a specific payment is a success, ultimately sending or shipping the item if it is indeed succesful. In our example, we expect that the payment is equal to `1,000,000 lovelace` that we defined in our `TOTAL_EXPECTED_LOVELACE` constant variable.
 
@@ -428,7 +428,7 @@ System.Console.WriteLine($"Payment Complete: {(isPaymentComplete ? "✅":"❌")}
   </TabItem>
 </Tabs>
 
-## Running and Testing
+## Running and testing
 
 Our final code should look something like this:
 
@@ -770,7 +770,7 @@ Payment Complete: ❌
 
 The code is telling us that our current wallet has received a total of `0 lovelace` and it expected `1,000,000 lovelace`, therefore it concluded that the payment is not complete.
 
-### Complete the payment
+## Complete the payment
 
 What we can do to simulate a succesful payment is to send atleast `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We can get the **wallet address** by reading the contents of the `payment.addr` file like so:
 
