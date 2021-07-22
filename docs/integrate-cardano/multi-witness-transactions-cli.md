@@ -181,7 +181,7 @@ This scenario is pretty straight forward and looks like this.
 
 ![img](../../static/img/integrate-cardano/multi-witness-transaction.png "Multi witness flow")
 
-As you can see in the diagram above, we will build and submit a **multi-witness transaction**, having *two inputs* and only *one output*.
+As you can see in the diagram above, we will build and submit a **multi-witness transaction**, having *two inputs* and *one output*.
 
 :::note
 
