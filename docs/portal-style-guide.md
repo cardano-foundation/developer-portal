@@ -800,3 +800,22 @@ Helps you work with tables
 
   </TabItem>
 </Tabs>
+
+### rest-book
+
+When you write guides for `cardano-wallet` or other components with an API, you might want to include the response for a certain request in your guide. It can be useful not to leave the environment of your editor as to not loose focus or get distracted. `rest-book` allows you to execute HTTP requests within your editor.
+
+<Tabs
+  defaultValue="vscode"
+  values={[
+    {label: 'Visual Studio Code', value: 'vscode'}
+  ]}>
+
+<TabItem value="vscode">
+
+* Install the extension via *Command Palette (Ctrl+P)* using `ext install tanhakabir.rest-book`
+* Open or create a `.restbook` file to use the extension.
+  
+</TabItem>
+
+</Tabs>
