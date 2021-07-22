@@ -153,7 +153,7 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "The first full on-chain NFT platform on Cardano consisting of 10,000 unique little astronauts.",
+      "The first full NFT platform on Cardano consisting of 10,000 unique little astronauts.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
