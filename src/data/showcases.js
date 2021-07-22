@@ -153,7 +153,7 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "The first full on-chain NFT platform on Cardano consisting of 10,000 unique little astronauts.",
+      "The first full NFT platform on Cardano consisting of 10,000 unique little astronauts.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
@@ -584,6 +584,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "Stellar Hood",
+    description:
+      "Explore one of the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
+    preview: require("./showcase/stellarhood.png"),
+    website: "https://stellarhood.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "Nami",
     description:
       "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
@@ -616,6 +625,15 @@ const Showcases = [
       "Mint and Burn NFTs",
     preview: require("./showcase/metromermaids.png"),
     website: "https://mint.metromermaids.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Cardano Token and NFT Builder",
+    description:
+      "Create your own native tokens and NFT in a few clicks without any code.",
+    preview: require("./showcase/token-builder.png"),
+    website: "https://cardano-native-token.com/",
     source: null,
     tags: ["tokens", "nft"],
   },

@@ -181,7 +181,7 @@ module.exports = {
       // You can also use your "G-" Measurement ID here.
       trackingID: 'GTM-5NM3NX4',
       // Optional fields.
-      anonymizeIP: false, // Should IPs be anonymized?
+      anonymizeIP: true, // Should IPs be anonymized?
     },
   },
   plugins: [

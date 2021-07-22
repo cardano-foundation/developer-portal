@@ -14,7 +14,7 @@ To contribute to the Cardano developer portal you must first install it locally.
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/en/download/) version >= 12.13.0 or above (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed
+- [Node.js](https://nodejs.org/en/download/) version >= 12.13.0 or above (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
 - [Yarn](https://yarnpkg.com/en/) version >= 1.5 (which can be checked by running `yarn --version`). Yarn is a performant package manager for JavaScript and replaces the `npm` client. It is not strictly necessary but highly encouraged.
 - On macOS you also need Xcode and Command Line Tools.
 
@@ -81,14 +81,14 @@ developer-portal
 
 - `/blog/` - Contains the blog Markdown files for the developer spotlight.
 - `/docs/` - Contains the Markdown files for the docs. Customize the order of the docs sidebar in `sidebars.js`. 
-- `/src/` - Non-documentation files like pages or custom React components. You don't have to strictly put your non-documentation files in here but putting them under a centralized directory makes it easier to specify in case you need to do some sort of linting/processing
+- `/src/` - Non-documentation files like pages or custom React components. You don't have to strictly put your non-documentation files in here but putting them under a centralized directory makes it easier to specify in case you need to do some sort of linting/processing.
     - `/src/data/builder-tools` - Screenshots for the builder tools section.
     - `/src/data/builder-tools.js` - Definition file for the builder tools section.
     - `/src/data/showcase` - Screenshots for the showcase section.
     - `/src/data/showcase.js` - Definition file for the showcase section.
     - `/src/pages` - Any files within this directory will be converted into a website page. 
-- `/static/` - Static directory. Any contents inside here will be copied into the root of the final `build` directory
+- `/static/` - Static directory. Any contents inside here will be copied into the root of the final `build` directory.
 - `/docusaurus.config.js` - A config file containing the site configuration. 
-- `/package.json` - A Docusaurus website is a React app. You can install and use any npm packages you like in them
-- `/sidebar.js` - Used by the documentation to specify the order of documents in the sidebar
+- `/package.json` - A Docusaurus website is a React app. You can install and use any npm packages you like in them.
+- `/sidebar.js` - Used by the documentation to specify the order of documents in the sidebar.
 
