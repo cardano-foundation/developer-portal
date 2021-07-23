@@ -124,15 +124,6 @@ export const Tags = {
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
   {
-  title: "NFTdot",
-    description:
-      "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
-    preview: require("./showcase/nftdot.png"),
-    website: "https://www.nftdot.io",
-    source: null,
-    tags: ["nft"],
-  },
-  {
     title: "Cardano Kidz",
     description:
       "Some of the very first, if not the first minted (born) on the Cardano blockchain in lovely design.",
@@ -645,6 +636,15 @@ const Showcases = [
     website: "https://cardano-native-token.com/",
     source: null,
     tags: ["tokens", "nft"],
+  },
+  {
+  title: "NFTdot",
+    description:
+      "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
+    preview: require("./showcase/nftdot.png"),
+    website: "https://www.nftdot.io",
+    source: null,
+    tags: ["nft"],
   },
 ];
 
