@@ -20,6 +20,7 @@ module.exports = {
           "get-started/cardanocli-js",
           "get-started/dandelion-apis",
           "get-started/ogmios",
+          "get-started/cardanosharp-wallet",
           {
             type: "category",
             label: "Serialization-Lib",
