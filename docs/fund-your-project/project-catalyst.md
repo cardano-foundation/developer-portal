@@ -65,6 +65,5 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 ## FAQ
 
 Find common FAQ and the FAQ of previous funds on Project Catalyst:
-* [Participation FAQ](https://intercom.help/ideascale/en/articles/682830-participation-faq-s)
 * [General Project Catalyst FAQ](https://cardanocataly.st/faq/)
 * [Project Catalyst FAQ + Timelines](https://iohk.zendesk.com/hc/en-us/articles/900006490763-Project-Catalyst-FAQ)
