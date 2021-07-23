@@ -52,6 +52,14 @@ const tools = [
     gettingstarted: null,
   },
   {
+    title: "CardanoSharp Wallet",
+    description:
+      "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
+    preview: require("./builder-tools/cardanosharp.png"),
+    website: "https://github.com/CardanoSharp/cardanosharp-wallet",
+    gettingstarted: "/docs/get-started/cardanosharp-wallet",
+  },
+  {
     title: "Dandelion APIs",
     description:
       "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
