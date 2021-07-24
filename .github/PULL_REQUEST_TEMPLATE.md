@@ -6,6 +6,8 @@
 4. Summon a reviewr using @mentions (optional)
 5. Click "Create pull request"
 
+---
+
 ## Showcase addition
 
 * Name: *Project name*
@@ -25,15 +27,19 @@
   * `nft`
   * `wallet`
 
+---
+
 ## Updating documentation
 
 Fixes #<issue_id>
 
 > If there is no issue for it, (i.e. typos or new article), remove the issue above and just provide the description.
 
-### Description
+#### Description
 
 *Describe what you added or removed to improve the content of the developer portal.*
+
+---
 
 ## Bugfix
 
@@ -41,9 +47,11 @@ Fixes #<issue_id>
 
 > If you found a 0Day bug and there is no issue for it, please [create one now](https://github.com/cardano-foundation/developer-portal/issues/new)
 
-### Description
+#### Description
 
 > Describe what you did to fix the issue
+
+---
 
 ## Quickfix
 
