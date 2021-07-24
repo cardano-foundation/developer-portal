@@ -53,7 +53,7 @@ Fixes #issueId
 
 <!--
 
-If there is no issue for it, (i.e. typos or new article), remove the *issue* section and just provide the description.
+If there is no issue for your PR, (i.e. typos or new article), remove the *issue* section and just provide the description.
 
 -->
 
@@ -69,11 +69,11 @@ We must be able to understand the purpose of your change from this description. 
 
 ## Bugfix
 
-Fixes #<issue_id>
+Fixes #issueId
 
 <!-- 
 
-If you found a 0Day bug and there is no issue for it, please [create one now](https://github.com/cardano-foundation/developer-portal/issues/new)
+If you found a 0Day bug and there is no issue for it, please [create one now](https://github.com/cardano-foundation/developer-portal/issues/new) and reference it.
 
 -->
 
@@ -95,6 +95,6 @@ Leave the ##Quickfix header.
 
 Don't provide any structure to your description or let the title of the PR speak for itself.
 
-Be advised. PRs with no structure have the lowest priority for maintainers to merge and might not make it into the next release of the developer portal.
+Be advised. PRs with no structure have the lowest priority for maintainers to review / merge and might not make it into the next release of the developer portal.
 
 -->
