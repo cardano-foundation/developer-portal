@@ -14,10 +14,12 @@
 
 Provide information for every bullet in the list below. 
 
+Be sure to read the #Showcases section in the CONTRIBUTING.md file. 
+
 -->
 
 * Name: *Project name*
-* Description: *Describe your project (see [Showcase guidelines](CONTRIBUTING/#showcase))*
+* Description: *Describe your project* (See [Showcase guidelines](CONTRIBUTING/#showcase))
 * Link:   <link_to_project>
 * Source: <link_to_source_code>
 * Tags:
@@ -47,7 +49,7 @@ The tags you select must match the tags in your changes to the showcase.js
 
 #### Issue
 
-Fixes #<issue_id>
+Fixes #issueId
 
 <!--
 
@@ -55,19 +57,11 @@ If there is no issue for it, (i.e. typos or new article), remove the *issue* sec
 
 -->
 
-#### Why is this update necessary?
+#### Description of the change
 
 <!--
 
-Describe why you are proposing this change to the content of the developer portal
-
--->
-
-#### Description of the update
-
-<!-- 
-
-Describe what you added or removed to improve the content of the developer portal.
+We must be able to understand the purpose of your change from this description. If we can't get a good idea of the benefits of the change from the description here, the pull request may be closed at the maintainers' discretion.
 
 -->
 
@@ -96,6 +90,8 @@ Describe what you did to fix the issue
 ## Quickfix
 
 <!--
+
+Leave the ##Quickfix header.  
 
 Don't provide any structure to your description or let the title of the PR speak for itself.
 
