@@ -46,3 +46,15 @@ The project showcase should be a place where someone new to the ecosystem can co
 #### A word about project descriptions
 
 Descriptions help users find a project they are interested in and decide whether to visit the links you provided. Use relevant keywords and describe what your project is all about or that it does. Don't include claims in your description like *the **best** wallet*, *the **first** ABC* or *the **only** XYZ*. We will ask you to change the description in your pull request before merging. @TODO rationale?
+
+## Pull Requests
+
+To maintain the quality of content on the developer portal we use pull requests to integrate changes from contributors. 
+
+Please follow these steps to have your contribution considered by the maintainers:
+
+1. Follow all instructions in [the template](PULL_REQUEST_TEMPLATE.md)
+2. Follow the [styleguides](https://developers.cardano.org/docs/portal-style-guide/)
+3. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated. A maintainer will re-run the status check for you. If we conclude that the failure was a false positive, then we will open an issue to track and resolve that problem.</details>
+
+While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
