@@ -109,7 +109,7 @@ Your fees might have been different hence you would have different amounts.
 
 We used `payment1.skey` to sign our transaction and submitted it to the blockchain.
 
-```bash {3}
+```bash {3,10}
 cardano-cli transaction sign \
 --tx-body-file tx.draft \
 --signing-key-file keys/payment1.skey \
@@ -119,9 +119,6 @@ cardano-cli transaction sign \
 cardano-cli transaction submit \
 --tx-file cardano/tx.signed \
 --testnet-magic 1097911063
-```
-
-```bash
 Transaction successfully submitted.
 ```
 
@@ -184,7 +181,7 @@ This scenario is pretty straight forward and looks like this.
 
 ![img](../../static/img/integrate-cardano/multi-witness-transaction.png "Multi witness flow")
 
-As you can see in the diagram above, we will build and submit a **multi-witness transaction**, having *two inputs* and only *one output*.
+As you can see in the diagram above, we will build and submit a **multi-witness transaction**, having *two inputs* and *one output*.
 
 :::note
 
@@ -237,22 +234,22 @@ Check your `keys` directory. It should look something like this:
 
 ```bash
 /home/user/cardano/keys/
-├── store-owner.addr
-├── store-owner.skey
-├── store-owner.vkey
 ├── payment1.addr
 ├── payment1.skey
 ├── payment1.vkey
 ├── payment2.addr
 ├── payment2.skey
-└── payment2.vkey
+├── payment2.vkey
+├── store-owner.addr
+├── store-owner.skey
+└── store-owner.vkey
 
 0 directories, 9 files
 ```
 
 ### Calculate the transaction fee
 
-Lets create a directory and enter it store our transactions:
+Lets create a directory to store our transactions for this guide and enter it:
 
 ```bash
 mkdir -p /home/user/cardano/multi-witness-sample && cd $_;
@@ -262,7 +259,7 @@ We want to send **all our tADA** sitting at the two UTxO we verified [before](#r
 
 What about the outputs? Well, the *devious store-owner* wants us to spend it all, so there will be **one output to the store-owner** and **zero outputs to us**. Remember? *"...no change, buddy!"*
 
-We can calculate the fees for such a transaction like so.
+Lets build that transaction.
 
 ```bash
 cardano-cli transaction build-raw \
@@ -273,9 +270,9 @@ cardano-cli transaction build-raw \
 --out-file tx2.draft
 ```
 
-This will create our transaction in `tx2.draft` from which we can calculate the fee
+The last thing we need to do is to calculate the fees for `tx2.draft`. Notice the `--tx-in-count` and `--witness-count`.
 
-```bash {8}
+```bash {3,4,5,8}
 cardano-cli transaction calculate-min-fee \
 --tx-body-file tx2.draft \
 --tx-in-count 2 \
@@ -286,7 +283,7 @@ cardano-cli transaction calculate-min-fee \
 179581 Lovelace
 ```
 
-Now we can calculate the amount that the store-owner wallet will receive, if both UTxO are spent during the transaction:
+We can calculate the amount the **store-owner** will receive, if both UTxO are spent during the transaction:
 
 ```text
   749825831 (payment1)
@@ -301,9 +298,11 @@ Now we can calculate the amount that the store-owner wallet will receive, if bot
 
 ### Build, sign and submit transaction
 
-Now we can build, sign and submit our tx2.draft transaction to include the output amount and the fee.
+We know the *output amount* as well as the *fee*. We can finally build, sign and submit our `tx2.draft` transaction.
 
-```bash
+We have to use `payment1.skey` and `payment2.skey` to sign our transaction.
+
+```bash {10,11,18}
 cardano-cli transaction build-raw \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#0 \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#1 \
@@ -321,6 +320,7 @@ cardano-cli transaction sign \
 cardano-cli transaction submit \
 --tx-file tx2.signed \
 --testnet-magic 1097911063
+Transaction successfully submitted
 ```
 
 ### Verify multi-witness transactions

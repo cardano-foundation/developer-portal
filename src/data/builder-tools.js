@@ -23,6 +23,12 @@ const tools = [
     gettingstarted: "/docs/get-started/blockfrost",
   },
   {
+    title: "cardano-addresses TypeScript binding",
+    description: "This is a Typescript/Javascript version of the cardano-addresses API. It includes a web demo.",
+    preview: require("./builder-tools/cardano-addresses-typescript-binding.png"),
+    website: "https://www.npmjs.com/package/cardano-addresses",
+  },
+  {
     title: "cardanocli-js",
     description: "A library that wraps the cardano-cli in JavaScript.",
     preview: require("./builder-tools/cardanocli-js.png"),
@@ -44,6 +50,14 @@ const tools = [
     preview: require("./builder-tools/cardano-client-lib.png"),
     website: "https://github.com/bloxbean/cardano-client-lib",
     gettingstarted: null,
+  },
+  {
+    title: "CardanoSharp Wallet",
+    description:
+      "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
+    preview: require("./builder-tools/cardanosharp.png"),
+    website: "https://github.com/CardanoSharp/cardanosharp-wallet",
+    gettingstarted: "/docs/get-started/cardanosharp-wallet",
   },
   {
     title: "Dandelion APIs",

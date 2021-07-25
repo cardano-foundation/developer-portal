@@ -6,7 +6,7 @@ description: "Stake pool course: The classic UTxO model."
 image: ./img/og-developer-portal.png
 ---
 
-In the [classic UTxO model](https://docs.cardano.org/projects/cardano-wallet/en/latest/About-UTxO.html) (Cardano SL in Byron and Shelley), a transaction output locked by a script carries two pieces of information:
+In the classic UTxO model (Cardano SL in Byron and Shelley), a transaction output locked by a script carries two pieces of information:
 
 * its value (the amount)
 * its reference address (the "proof" of ownership telling who is the owner of the output)
