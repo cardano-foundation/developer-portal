@@ -511,7 +511,7 @@ We will be focusing on the [REST API](https://en.wikipedia.org/wiki/Representati
 
 ```bash
 cardano-wallet serve \
---port 1338 \
+--port 1337 \
 --testnet /home/user/cardano/testnet-byron-genesis.json \
 --database /home/user/cardano/wallets/db \
 --node-socket $CARDANO_NODE_SOCKET_PATH
