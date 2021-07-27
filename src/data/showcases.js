@@ -126,7 +126,7 @@ const Showcases = [
   {
     title: "Cardano Kidz",
     description:
-      "Some of the very first, if not the first minted (born) on the Cardano blockchain in lovely design.",
+      "Each of these unique Limited Edition designs is being minted on the Cardano Blockchain as a Non Fungible Token (NFT).",
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
@@ -153,7 +153,7 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "The first full NFT platform on Cardano consisting of 10,000 unique little astronauts.",
+      "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
@@ -216,7 +216,7 @@ const Showcases = [
   {
     title: "Adapools",
     description:
-      "Was one of the first pool tools and was always further developed.",
+      "Well established stake pool explorer in Cardano. Yoroi is using our data to list stake pools in the wallet.",
     preview: require("./showcase/adapools.png"),
     website: "https://adapools.org/",
     source: null,
@@ -317,7 +317,7 @@ const Showcases = [
   },
   {
     title: "Cardano Bits",
-    description: "The first eight bit pixel art on Cardano.",
+    description: "A collection of 10,000 unique pieces, minted with a time-locked policy, before the smart contracts were launched. Each collectible was generated with a mix of art pieces and computer algorithms.",
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
@@ -469,7 +469,7 @@ const Showcases = [
   {
     title: "unsigned_algorithms",
     description:
-      "The first algorithmically generated art living on Cardano.",
+      "Algorithmically generated colorful art living on Cardano.",
     preview: require("./showcase/unsigned-algorithms.png"),
     website: "https://www.unsigs.com",
     source: null,
@@ -568,7 +568,7 @@ const Showcases = [
   {
     title: "DEADPXLZ",
     description:
-      "The first interactive NFT collectibles on the Cardano blockchain.",
+      "Interactive, web-based NFT collectibles.",
     preview: require("./showcase/deadpxlz.png"),
     website: "https://pxlz.org",
     source: null,
@@ -586,7 +586,7 @@ const Showcases = [
   {
     title: "Stellar Hood",
     description:
-      "Explore one of the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
+      "Space, the final frontier: Discover and study the stars and planets in our galaxy, our Stellar Hood, as 3d interactive NFTs which are coded directly onto the Cardano blockchain! Customize your solar systems on the interactive map.",
     preview: require("./showcase/stellarhood.png"),
     website: "https://stellarhood.com",
     source: null,
