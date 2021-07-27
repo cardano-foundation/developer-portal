@@ -116,6 +116,19 @@ const bip32PrivateKey = CardanoWasm.BIP32PrivateKey.from_128_xprv(xprvBytes);
 assert(xprvBytes == CardanoWasm.BIP32PrivateKey.to_128_xprv());
 ```
 96-byte `XPrv` keys are identical to `BIP32PrivateKey`s byte-wise and no conversion is needed.
-For more details see [this document](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/keys_and_addresses.html) regarding legacy keys.
 
 There is also `LegacyDaedalusPrivateKey` which is used for creating witnesses for legacy Daedalus `Dd`-type addresses.
+
+
+## Legacy Key
+
+To generate Byron-era _payment key, the payment key files use the following format:
+```json
+{
+    "type": "PaymentSigningKeyByron_ed25519_bip32",
+    "description": "Payment Signing Key",
+    "cborHex": "hex-here"
+}
+```
+
+Where the hex-here is generated as `0x5880 | xprv | pub | chaincode`
