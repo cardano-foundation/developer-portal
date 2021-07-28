@@ -656,6 +656,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+  {
+    title: "Parat-Gallery",
+    description:
+      "Parat-Gallery.com is a Gallery for curated contemporary art. Our mission is to bridge the gap between analog & digital artworks. We are launching on the Cardano blockchain.",
+    preview: require("./showcase/paratGallery.png"),
+    website: "https://parat-gallery.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
