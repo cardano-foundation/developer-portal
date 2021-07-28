@@ -43,7 +43,7 @@ expr 656260 / 3600
 > 182
 ```
 
-With this we are able to generate an operational certificate for our stake pool \(assuming the same file names as [here](https://github.com/carloslodelar/SPO/tree/baec64ba9efba39d4b60b7824fb4d7b962f2c3e7/stake-pool-operations/060_node_keys.md)\):
+With this we are able to generate an operational certificate for our stake pool (assuming the same file names as [here](../handbook/generate-stake-pool-keys)):
 
 ```
 cardano-cli shelley node issue-op-cert \
