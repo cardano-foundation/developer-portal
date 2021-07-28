@@ -647,6 +647,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+  {
+  title: "NFTdot.io - create.sell.buy.collect",
+    description:
+      "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
+    preview: require("./showcase/nftdot.png"),
+    website: "https://www.nftdot.io",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
