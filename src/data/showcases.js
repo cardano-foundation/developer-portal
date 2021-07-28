@@ -663,7 +663,7 @@ const Showcases = [
     preview: require("./showcase/paratGallery.png"),
     website: "https://parat-gallery.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: [ "nft", "tokens"],
   },
 ];
 
