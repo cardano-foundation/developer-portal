@@ -36,6 +36,12 @@ const tools = [
     gettingstarted: "/docs/get-started/cardanocli-js",
   },
   {
+    title: "Cardano Metadata Oracle",
+    description: "Oracle submitting information using Cardano Metadata",
+    preview: require("./builder-tools/cardano-metadata-oracle.png"),
+    website: "https://github.com/fivebinaries/cardano-metadata-oracle",
+  },
+  {
     title: "Cardano Serialization Library",
     description:
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
