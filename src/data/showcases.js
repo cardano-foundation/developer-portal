@@ -594,6 +594,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "JES-Art",
+    description:
+      "16 year old female fine art NFTs on the Cardano blockchain!",
+    preview: require("./showcase/jesart.png"),
+    website: "https://www.jes-art.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "Stellar Hood",
     description:
       "Space, the final frontier: Discover and study the stars and planets in our galaxy, our Stellar Hood, as 3d interactive NFTs which are coded directly onto the Cardano blockchain! Customize your solar systems on the interactive map.",
