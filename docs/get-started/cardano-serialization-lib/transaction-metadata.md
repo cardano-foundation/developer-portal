@@ -177,7 +177,7 @@ const metadata = CardanoWasm.encode_json_str_to_metadatum(JSON.stringify(obj), C
 const metadataString = CardanoWasm.decode_metadatum_to_json_str(metadata, CardanoWasm.MetadataJsonSchema.NoConversions);
 ```
 
-To support an extended set of metadata we also support 3 additional modes for JSON conversion following IOHK's [cardano-node JSON schemas](https://github.com/input-output-hk/cardano-node/blob/master/cardano-api/src/Cardano/Api/MetaData.hs).
+To support an extended set of metadata we also support 3 additional modes for JSON conversion following IOHK's [cardano-node JSON schemas](https://github.com/input-output-hk/cardano-node/blob/master/cardano-api/src/Cardano/Api/TxMetadata.hs).
 
 The three modes are:
 * `NoConversions` - Faithfully converts between the minimal shared feature set between JSON and Metadata
