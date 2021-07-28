@@ -586,12 +586,12 @@ const Showcases = [
   {
     title: "Pigy Token",
     description:
-      "The Meme Token for Cardano Stake-Pool-Operators and Delegators",
+      "The Community Token for Cardano Stake-Pool-Operators and Delegators",
     preview: require("./showcase/pigytokenproject.png"),
-    website: "https://pigytoken.com/",
+    website: "https://pigytoken.com",
     source: null,
     tags: ["tokens"],
-   },
+  },
   {
     title: "Stellar Hood",
     description:
