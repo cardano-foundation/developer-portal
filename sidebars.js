@@ -20,6 +20,7 @@ module.exports = {
           "get-started/cardanocli-js",
           "get-started/dandelion-apis",
           "get-started/ogmios",
+          "get-started/cardanosharp-wallet",
           {
             type: "category",
             label: "Serialization-Lib",
@@ -41,6 +42,7 @@ module.exports = {
     "Integrate Cardano": [
       "integrate-cardano/overview",
       "integrate-cardano/creating-wallet-faucet",
+      "integrate-cardano/multi-witness-transactions-cli",
       "integrate-cardano/listening-for-payments-cli",
       "integrate-cardano/listening-for-payments-wallet"
     ],

@@ -33,9 +33,16 @@ You will need to create an account first on [Cardano IdeaScale](https://cardano.
 
 You can provide reviews, assessments, and mentor proposers in their delivery and presentation. Check the [community channel](https://t.me/CatalystCommunityAdvisors) on Telegram.
 
-## Participate as a Voter
+## Participate as a voter
 
 Download the Catalyst voting app in the [Apple Store](https://apps.apple.com/kg/app/catalyst-voting/id1517473397) or [Google Play Store](https://play.google.com/store/apps/details?id=io.iohk.vitvoting&gl=US) and vote for your favourite projects. 
+
+## Previous Project Catalyst voting results 
+
+* [Project Catalyst Fund 4 Voting Results](https://drive.google.com/file/d/19VMTYn_sv5Xsp2mC5VUN_-z_aXYHL_Dd/view)
+* [Project Catalyst Fund 3 Voting Results](https://drive.google.com/file/d/1X6BnuFBvNO8yF2DeUgBqA3yyYSvqeKvg/view)
+* [Project Catalyst Fund 2 Voting Results](https://drive.google.com/file/d/1ZEM12Mbc-gkdNrTg03-ORbGg3DUpug8A/view)
+* Fund 1 was the first time the idea was introduced to the Cardano community. This voting cycle did not offer ‘real’ funding.
 
 ## Communication channels
 
@@ -49,7 +56,7 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 * [Cardano Project Catalyst Discord](https://discord.gg/TTZKB9M)
 * [Cardano Catalyst Community Site](https://cardanocataly.st/)
  
-## Instruction Guides
+## Instruction guides
 
 * [Basic community usage guide help articles for new users](https://intercom.help/ideascale/en/collections/2406712-new-user-guide)
 * [Project Catalyst Challenge and Proposal Guide](https://docs.google.com/document/d/1oE_cnP0gksdAanXV4w5DYaDNp_tbYEvyHhTUG4HYZ3Q/edit?usp=sharing)
@@ -58,7 +65,5 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 ## FAQ
 
 Find common FAQ and the FAQ of previous funds on Project Catalyst:
-* [Participation FAQ](https://intercom.help/ideascale/en/articles/682830-participation-faq-s)
 * [General Project Catalyst FAQ](https://cardanocataly.st/faq/)
-* [Catalyst - Fund4 FAQ](https://iohk.zendesk.com/hc/en-us/articles/900006490763-Catalyst-Fund4-FAQ)
-* [Catalyst - Fund3 FAQ](https://iohk.zendesk.com/hc/en-us/articles/900004448046-Catalyst-Fund3-FAQ).
+* [Project Catalyst FAQ + Timelines](https://iohk.zendesk.com/hc/en-us/articles/900006490763-Project-Catalyst-FAQ)

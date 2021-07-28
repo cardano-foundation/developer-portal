@@ -22,7 +22,7 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      additionalLanguages: ['csharp'],
+      additionalLanguages: ['csharp', 'php'],
     },
     
     // Dark / Light Mode
@@ -129,6 +129,10 @@ module.exports = {
               to: "docs/portal-style-guide",
             },
             {
+              label: "Suggest Content",
+              href: "https://github.com/cardano-foundation/developer-portal/discussions/161",
+            },
+            {
               label: "Raise an Issue",
               href: "https://github.com/cardano-foundation/developer-portal/issues",
             },
@@ -181,7 +185,7 @@ module.exports = {
       // You can also use your "G-" Measurement ID here.
       trackingID: 'GTM-5NM3NX4',
       // Optional fields.
-      anonymizeIP: false, // Should IPs be anonymized?
+      anonymizeIP: true, // Should IPs be anonymized?
     },
   },
   plugins: [

@@ -1,17 +1,27 @@
 /*
- * ADD YOUR PROJECT TO THE CARDANO DEVELOPER PORTAL SHOWCASE:
+ * SHOWCASE SECTION INFO
  *
- * Requirements for adding your project to our showcase:
- * - It must be built on Cardano and have a real use case. For example, a forum where people can talk about Cardano is great, but nothing for this showcase section.
- * - It has a stable domain name (a random Netlify/Vercel domain is not allowed)
+ * The project showcase should be a place where someone new to the ecosystem 
+ * can come to see what can be done - it should not be seen as a database where 
+ * every project is promoted.
+ * 
+ * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
+ * - It must be built on Cardano and have a real use case. For example, a forum where 
+ *   people can talk about Cardano is great, but nothing for this showcase section.
+ * - It has to run on Cardano mainnet.
+ * - It has to have a running product. (no presale, no protected pages, no coming soon messages)
+ * - It has to have enough community reputation.
+ * - It has to provide a unique value from existing showcase items. (we can't list 
+ *   thousands of NFT or native tokens with the current UI)
+ * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
+ *   URL shortener, no app store links, or similar)
  * - The GitHub account that adds the project must not be new. 
  * - The GitHub account must have a history/or already be known in the Cardano community.
  *
- * Instructions:
- * - Add your project in the json array below
- * - Add a local image preview (decent screenshot or logo of your project)
- *
- * The image must be added to the GitHub repository, and use `require("image")`
+ * INSTRUCTIONS:
+ * - Add your project in the JSON array below.
+ * - Add a local image preview. (decent screenshot or logo of your project)
+ * - The image must be added to the GitHub repository and use `require("image")`.
  */
 
 import React from "react";
@@ -116,7 +126,7 @@ const Showcases = [
   {
     title: "Cardano Kidz",
     description:
-      "Some of the very first, if not the first minted (born) on the Cardano blockchain in lovely design.",
+      "Each of these unique Limited Edition designs is being minted on the Cardano Blockchain as a Non Fungible Token (NFT).",
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
@@ -132,6 +142,16 @@ const Showcases = [
     tags: ["featured", "metadata"],
   },
   {
+    title: "Crypto Heroez",
+    description:
+      "Cardano NFT pixelart collectibles. Tribute to heroes of the cryptospace. Including interactive NFTs and a game in progress where you use NFTs from your wallet.",
+    preview: require("./showcase/cryptoheroez.png"),
+    website: "https://cryptoheroez.io",
+    source: null,
+    tags: ["nft", "game"],
+  },
+
+  {
     title: "NFT Maker",
     description:
       "Create your own NFT by uploading an image and paying some ada.",
@@ -143,7 +163,7 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "The first full on-chain NFT platform on Cardano consisting of 10,000 unique little astronauts.",
+      "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
@@ -206,7 +226,7 @@ const Showcases = [
   {
     title: "Adapools",
     description:
-      "Was one of the first pool tools and was always further developed.",
+      "Well established stake pool explorer in Cardano. Yoroi is using our data to list stake pools in the wallet.",
     preview: require("./showcase/adapools.png"),
     website: "https://adapools.org/",
     source: null,
@@ -307,7 +327,7 @@ const Showcases = [
   },
   {
     title: "Cardano Bits",
-    description: "The first eight bit pixel art on Cardano.",
+    description: "A collection of 10,000 unique pieces, minted with a time-locked policy, before the smart contracts were launched. Each collectible was generated with a mix of art pieces and computer algorithms.",
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
@@ -432,7 +452,7 @@ const Showcases = [
   {
     title: "Gimbalabs",
     description:
-      "Gimbalabs is a collaborative community and space where dApps and OpenSource tools are develop in the \"Playground\" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!",
+      "Gimbalabs is a collaborative community and space where dApps and OpenSource tools are developed in the \"Playground\" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!",
     preview: require("./showcase/gimbalabs.png"),
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
@@ -459,7 +479,7 @@ const Showcases = [
   {
     title: "unsigned_algorithms",
     description:
-      "The first algorithmically generated art living on Cardano.",
+      "Algorithmically generated colorful art living on Cardano.",
     preview: require("./showcase/unsigned-algorithms.png"),
     website: "https://www.unsigs.com",
     source: null,
@@ -558,7 +578,7 @@ const Showcases = [
   {
     title: "DEADPXLZ",
     description:
-      "The first interactive NFT collectibles on the Cardano blockchain.",
+      "Interactive, web-based NFT collectibles.",
     preview: require("./showcase/deadpxlz.png"),
     website: "https://pxlz.org",
     source: null,
@@ -581,7 +601,61 @@ const Showcases = [
     website: "https://www.jes-art.com",
     source: null,
     tags: ["nft"],
-  },  
+  },
+  {
+    title: "Stellar Hood",
+    description:
+      "Space, the final frontier: Discover and study the stars and planets in our galaxy, our Stellar Hood, as 3d interactive NFTs which are coded directly onto the Cardano blockchain! Customize your solar systems on the interactive map.",
+    preview: require("./showcase/stellarhood.png"),
+    website: "https://stellarhood.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Nami",
+    description:
+      "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
+    preview: require("./showcase/namiwallet.png"),
+    website: "https://namiwallet.io",
+    source: "https://github.com/Berry-Pool/nami-wallet",
+    tags: ["wallet", "opensource", "nft"],
+  },
+  {
+    title: "Cardano Waves",
+    description:
+      "The largest collection of real-time charts for the Cardano network and community.",
+    preview: require("./showcase/cardano-waves.png"),
+    website: "https://cardanowaves.com",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Cardano Alerts",
+    description:
+      "Get wallet notifications or keep tabs on your Cardano stake pool with real time alerts.",
+    preview: require("./showcase/cardano-alerts.png"),
+    website: "https://cardanoalerts.com",
+    source: null,
+    tags: ["pooltool"],
+  },
+  {
+    title: "Metro Mermaids NFT Maker",
+    description:
+      "Mint and Burn NFTs",
+    preview: require("./showcase/metromermaids.png"),
+    website: "https://mint.metromermaids.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Cardano Token and NFT Builder",
+    description:
+      "Create your own native tokens and NFT in a few clicks without any code.",
+    preview: require("./showcase/token-builder.png"),
+    website: "https://cardano-native-token.com/",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
