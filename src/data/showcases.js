@@ -665,6 +665,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "21Club - NFTs on Cardano",
+    description:
+      "We are a launchpad of Non Fungible Tokens (NFTs) for artists and content creators. We also have our own collections",
+    preview: require("./showcase/21Club.png"),
+    website: "https://nft21club.com/",
+    source: null,
+    tags: ["nft"],
+    },
 ];
 
 export const TagList = Object.keys(Tags);
