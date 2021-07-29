@@ -116,12 +116,12 @@ We will be using this technique of setting variables along the way to make it ea
 
 We also want to check if our Node is up to date. To do that, we check the current epoch/block and compare it to the current value displayed in the [Cardano Explorer for the testnet](https://explorer.cardano-testnet.iohkdev.io/de.html).
 
-"`bash
+```bash
 cardano-cli query tip --$testnet
 ```
 
 Should give you an output like this
-"`bash
+```bash
 {
     "epoch": 139,
     "hash": "b0f7fcd97e1f60125ed2f2e145d0239fd031b146fb6fe4b4d40e01c37e3d8211",
@@ -137,7 +137,7 @@ Epoch and slot number should match when being compared to the Cardano Explorer f
 ### Set up your workspace
 
 We will start with a clean slate. So let's make a new directory and navigate into it.
-"`bash
+```bash
 mkdir tokens
 cd tokens/
 ```
@@ -298,7 +298,7 @@ cardano-cli transaction build-raw \
 ```
 #### Syntax breakdown 
 Here's a breakdown of the syntax as to which parameters we define in our minting transaction:
-"`bash
+```bash
 -- fee: $fee
 ```
 The network fee we need to pay for our transaction. Fees will be calculated through the network parameters and depending on the size (in bytes) our transaction will have. The bigger the file size, the higher the fee.
@@ -535,6 +535,7 @@ cardano-cli transaction build-raw \
  --mint="-5000 $policyid.$tokenname2" \
  --out-file burning.raw
  ```
+ 
 
 :::note Since we already have multiple transaction files, we will give this transaction a better name and call it <i>burning.raw</i>.
 We also need to specify the amount of tokens left after destroying.
