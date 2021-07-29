@@ -191,7 +191,9 @@ For further reading, please check [the official docs](https://docs.cardano.org/n
 mkdir policy
 ```
 
-> Note: We don't navigate into this directory, and everything is done from our working directory.
+:::note 
+We don't navigate into this directory, and everything is done from our working directory.
+:::
 
 
 First of all, we — again — need some key pairs:
@@ -217,7 +219,9 @@ echo "  \"type\": \"sig\"" >> policy/policy.script
 echo "}" >> policy/policy.script
 ```
 
-> Note: The second echo uses a sub-shell command to generate the so-called key-hash. But, of course, you could also do that by hand.
+:::note 
+The second echo uses a sub-shell command to generate the so-called key-hash. But, of course, you could also do that by hand.
+:::
 
 We now have a simple script file that defines the policy verification key as a witness to sign the minting transaction. There are no further constraints such as token locking or requiring specific signatures to successfully submit a transaction with this minting policy.
 
@@ -371,7 +375,8 @@ cardano-cli transaction sign  \
 --out-file matx.signed
 ```
 
-> Note: The signed transaction will be saved in a new file called <i>matx.signed</i> instead of <i>matx.raw</i>.
+:::note The signed transaction will be saved in a new file called <i>matx.signed</i> instead of <i>matx.raw</i>.
+:::
 
 Now we are going to submit the transaction, therefore minting our native assets:
 ```bash
@@ -435,9 +440,9 @@ A few things worth pointing out:
 3. Our own address, therefore, needs to receive our funds, subtracted by the transaction fee as well as the minimum of 1 ada we need to send to the other address and
 4. all of the tokens the txhash currently holds, subtracted by the tokens we send.
 
-> Note: Depending on the size and amount of native assets you are going to send it might be possible to send more than the minimum requirement of only 1 ada. For this guide, we will be sending 10 ada to be on the safe side.
+:::note Depending on the size and amount of native assets you are going to send it might be possible to send more than the minimum requirement of only 1 ada. For this guide, we will be sending 10 ada to be on the safe side.
 Check the [Cardano ledger docs for further reading](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo.html#min-ada-value-calculation)
-
+:::
 
 Since we will send 2 of our first tokens to the remote address we are left with 999998 of the `Testtoken` as well as the additional 1000000 `SecondTesttoken`.
 
@@ -505,7 +510,8 @@ Set everything up and check our address:
 cardano-cli query utxo --address $address --$testnet
 ```
 
-> Note: Since we've already sent tokens away, we need to adjust the amount of Testtoken we are going to send.
+:::note Since we've already sent tokens away, we need to adjust the amount of Testtoken we are going to send.
+:::
 
 Let's set our variables accordingly (if not already set). Variables like address and the token names should also be set.
 
@@ -530,11 +536,11 @@ cardano-cli transaction build-raw \
  --out-file burning.raw
  ```
 
-> Note: Since we already have multiple transaction files, we will give this transaction a better name and call it <i>burning.raw</i>.
+:::note Since we already have multiple transaction files, we will give this transaction a better name and call it <i>burning.raw</i>.
 We also need to specify the amount of tokens left after destroying.
 The math is:
 <i>amount of input token</i> — <i>amount of destroyed token</i> = <i>amount of output token</i>
-
+:::
 
 As usual, we need to calculate the fee. 
 To make a better differentiation, we named the variable <i>burnfee</i>:
