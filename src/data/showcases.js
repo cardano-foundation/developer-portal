@@ -665,6 +665,7 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
   title: "CNFT.IO - NFT Marketplace on Cardano",
     description:
       "Mint, Launch, Buy and Sell Cardano NFTS on CNFT.IO. The first automated marketplace on Cardano.",
