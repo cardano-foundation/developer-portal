@@ -668,7 +668,7 @@ const Showcases = [
   {
   title: "CNFT.IO - NFT Marketplace on Cardano",
     description:
-      "Mint, Launch, Buy and Sell Cardano NFTS on CNFT.IO. The first automated marketplace on Cardano.",
+      "Mint, Launch, Buy and Sell Cardano NFTS on CNFT.IO. An automated marketplace on Cardano.",
     preview: require("./showcase/cnft.jpg"),
     website: "https://www.cnft.io",
     source: null,
