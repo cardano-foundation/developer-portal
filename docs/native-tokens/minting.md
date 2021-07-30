@@ -299,7 +299,7 @@ cardano-cli transaction build-raw \
 #### Syntax breakdown 
 Here's a breakdown of the syntax as to which parameters we define in our minting transaction:
 ```bash
--- fee: $fee
+--fee: $fee
 ```
 The network fee we need to pay for our transaction. Fees will be calculated through the network parameters and depending on the size (in bytes) our transaction will have. The bigger the file size, the higher the fee.
 
