@@ -665,6 +665,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+  title: "CNFT.IO Marketplace",
+    description:
+      "Cardano NFT = CNFT, Buy and Sell Assets today! Cardano's first and only NFT marketplace!",
+    preview: require("./showcase/cnft.png"),
+    website: "https://cnft.io",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
