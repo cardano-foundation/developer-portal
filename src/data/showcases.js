@@ -672,7 +672,7 @@ const Showcases = [
     preview: require("./showcase/cnft.jpg"),
     website: "https://www.cnft.io",
     source: null,
-    tags: ["nft", "token"],
+    tags: ["nft", "tokens"],
   },
 ];
 
