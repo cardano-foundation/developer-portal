@@ -46,9 +46,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: "survey_op1", // Any value that will identify this message.
+      id: "support_se2", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Welcome to the new Developer Portal.🎉 Your opinion matters! Please take 2 minutes to <a target="_blank" rel="noopener noreferrer" href="https://cardanocommunity.typeform.com/to/f2lKIRB6">fill out our survey</a>.</strong>`,
+        `<strong>Join the Cardano Stack Exchange and get your questions answered today. ⭐️<a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">Join us!</a></strong>`,
       backgroundColor: "#2AA18A", 
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -129,6 +129,10 @@ module.exports = {
               to: "docs/portal-style-guide",
             },
             {
+              label: "Suggest Content",
+              href: "https://github.com/cardano-foundation/developer-portal/discussions/161",
+            },
+            {
               label: "Raise an Issue",
               href: "https://github.com/cardano-foundation/developer-portal/issues",
             },
@@ -181,7 +185,7 @@ module.exports = {
       // You can also use your "G-" Measurement ID here.
       trackingID: 'GTM-5NM3NX4',
       // Optional fields.
-      anonymizeIP: false, // Should IPs be anonymized?
+      anonymizeIP: true, // Should IPs be anonymized?
     },
   },
   plugins: [
