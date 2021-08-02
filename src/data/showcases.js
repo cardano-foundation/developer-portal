@@ -674,6 +674,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Tokhun.io",
+    description:
+        "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
+    preview: require("./showcase/tokhun.png"),
+    website: "https://tokhun.io",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
