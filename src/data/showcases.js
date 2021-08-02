@@ -594,6 +594,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "Pigy Token",
+    description:
+      "The community token for Cardano stake pool operators and delegators",
+    preview: require("./showcase/pigytokenproject.png"),
+    website: "https://pigytoken.com",
+    source: null,
+    tags: ["tokens"],
+  },
+  {
     title: "JES-Art",
     description:
       "16 year old female fine art NFTs on the Cardano blockchain!",
