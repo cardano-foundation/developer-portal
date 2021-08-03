@@ -81,6 +81,13 @@ const tools = [
     website: "https://github.com/adosia/Heidrun",
     gettingstarted: null,
   },
+  {
+    title: "cardano-wallet-js",
+    description: "A javascript/typescript SDK for Cardano with a several functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
+    preview: require("./builder-tools/cardano-wallet-js.png"),
+    website: "https://github.com/tango-crypto/cardano-wallet-js",
+    gettingstarted: "/docs/get-started/cardano-wallet-js",
+  },
   /*{
     title: "Marlowe Playground",
     description:
