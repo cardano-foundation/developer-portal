@@ -690,7 +690,7 @@ const Showcases = [
     preview: require("./showcase/hypeskulls.png"),
     website: "https://seehype.com/",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["nft"],
   },
 ];
 
