@@ -1,5 +1,5 @@
 /*
- * ADD YOUR TOOL TO THE CARDANO DEVELOPER PORTAL:
+ * BUILDER TOOLS SECTION INFO
  *
  * Requirements for adding your builder tool:
  * - It is an actual builder tool that adds value to Cardano developers.
