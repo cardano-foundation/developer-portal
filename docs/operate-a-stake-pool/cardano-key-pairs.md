@@ -20,7 +20,7 @@ Cardano wallet addresses currently entail only two components - a payment addres
  
  
 `payment.vkey` - payment address public verification key file (not sensitive; may be shared publicly).
-`payment.skey` - payment address secret (private) signing key file for the and is highly sensitive. The private signing key file provides access to funds held within the corresponding payment address and should be guarded at all costs.
+`payment.skey` - payment address secret (private) signing key file and is highly sensitive. The private signing key file provides access to funds held within the corresponding payment address and should be guarded at all costs.
 
 :::danger 
 Never place payment signing keys on a hot node.
@@ -29,7 +29,7 @@ Never place payment signing keys on a hot node.
  
 `stake.vkey` - stake address public verification key file (not sensitive; may be shared publicly).
  
-`stake.skey` - stake address secret (private) signing key file for the and is sensitive. This private signing key file provides access to withdraw any rewards funds held in the stake address and also can be used to delegate the wallet to a pool. The stake.skey should also be guarded.
+`stake.skey` - stake address secret (private) signing key file and is sensitive. This private signing key file provides access to withdraw any rewards funds held in the stake address and also can be used to delegate the wallet to a pool. The stake.skey should also be guarded.
  
 `payment.addr` - This is a Cardano wallet payment address and is typically generated using both a payment.vkey and a stake.vkey file as inputs. A payment address does not require staking key components if the relevant address will only be used to send and receive funds. Furthermore, a single payment.vkey can be combined with multiple unique stake.vkey files to create different payment addresses that can be staked separately
  

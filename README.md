@@ -1,9 +1,14 @@
 # Cardano Developer Portal
 
-we wanted to build an open and inclusive, easy to use developer portal that offers guidance and allows community contribution. To achieve this we have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.  
+Welcome to the Cardano Developer Portal. To make the difference between Cardano mainnet functionality and testnet functionality clearer, we moved the old content of developers.cardano.org to testnets.cardano.org with the launch of this developer portal.
+
+We wanted to build an open and inclusive, easy to use developer portal that offers guidance and allows community contribution. To achieve this we have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+
+Please find a detailed installation guide on [developers.cardano.org/docs/portal-contribute/](https://developers.cardano.org/docs/portal-contribute/). 
 
 
 ## Requirements:  
+
 [Node.js](https://nodejs.org/en/download/) version >= 12.13.0 or above  
 [Yarn](https://yarnpkg.com/en/) version >= 1.5  
 On macOS you also need Xcode and Command Line Tools.
@@ -35,10 +40,6 @@ yarn start
 
 This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
 
-## Build
+## Project structure 
 
-```console
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+Please find the project structure and more detailed information on [developers.cardano.org/docs/portal-contribute/](https://developers.cardano.org/docs/portal-contribute/#project-structure).
