@@ -50,8 +50,8 @@ export const Tags = {
   },
 
   // Stake Pool Operator Tools
-  spo: {
-    label: "SPO Tools",
+  operatortool: {
+    label: "Operator Tools",
     description:
       "Stake pool operator tools.",
     icon: null,
@@ -253,15 +253,30 @@ function ensureShowcaseValid(showcase) {
       );
     } else {
       const hasGetStartedTag = showcase.tags.includes("getstarted");
-      if (showcase.source === null && hasGetStartedTag) {
+      if (showcase.getstarted === null && hasGetStartedTag) {
         throw new Error(
           "You can't add the getstarted tag to a site that does not have a link to a get started page."
         );
-      } else if (showcase.source && !hasGetStartedTag) {
+      } else if (showcase.getstarted && !hasGetStartedTag) {
         throw new Error(
           "For builder tools with started sites, please add the 'getstarted' tag."
         );
       }
+    }
+  }
+
+  function checkOperatorTool() {
+
+    const hasGetStartedTag = showcase.tags.includes("getstarted");
+    const isOperatorTool = showcase.tags.includes("operatortool");
+
+    if ((hasGetStartedTag && isOperatorTool) || (showcase.getstarted instanceof String &&
+        (showcase.getstarted.startsWith("/docs/operate-a-stake-pool/")))
+    ) {
+      throw new Error(
+        // Be more specific as soon as we have an operator tool with a get started page
+        "Get started pages for stake pool operator tools, should go into the operate-a-stake-pool-section."
+      );
     }
   }
 
@@ -273,6 +288,7 @@ function ensureShowcaseValid(showcase) {
     checkPreview();
     checkTags();
     checkGetStarted();
+    checkOperatorTool();
   } catch (e) {
     throw new Error(
       `Showcase site with title=${showcase.title} contains errors:\n${e.message}`
