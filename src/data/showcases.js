@@ -594,6 +594,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "Pigy Token",
+    description:
+      "The community token for Cardano stake pool operators and delegators",
+    preview: require("./showcase/pigytokenproject.png"),
+    website: "https://pigytoken.com",
+    source: null,
+    tags: ["tokens"],
+  },
+  {
     title: "JES-Art",
     description:
       "16 year old female fine art NFTs on the Cardano blockchain!",
@@ -664,6 +673,15 @@ const Showcases = [
     website: "https://www.nftdot.io",
     source: null,
     tags: ["nft"],
+  },
+  {
+    title: "Tokhun.io",
+    description:
+        "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
+    preview: require("./showcase/tokhun.png"),
+    website: "https://tokhun.io",
+    source: null,
+    tags: ["tokens", "nft"],
   },
 ];
 
