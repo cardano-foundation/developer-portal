@@ -8,7 +8,7 @@
  * - The GitHub account must have a history/or already be known in the Cardano community.
  *
  * Instructions:
- * - Add your builder tool in the JSON array below.
+ * - Add your tool in the json array below, in alphabetical order of title
  * - Add a local image preview. (decent screenshot or logo of your builder tool)
  * - The image must be added to the GitHub repository and use `require("image")`.
  *
