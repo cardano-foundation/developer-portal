@@ -96,6 +96,13 @@ const tools = [
     website: "https://ogmios.dev",
     gettingstarted: "/docs/get-started/ogmios",
   },
+  {
+    title: "cardano-wallet-js",
+    description: "a javascript/typescript SDK for Cardano with a several functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
+    preview: require("./builder-tools/cardano-wallet-js.png"),
+    website: "https://github.com/tango-crypto/cardano-wallet-js",
+    gettingstarted: "/docs/get-started/cardano-wallet-js",
+  },
   /*{
     title: "Plutus Playground",
     description:
