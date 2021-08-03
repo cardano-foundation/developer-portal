@@ -30,7 +30,7 @@ export const Tags = {
   // API
   api: {
     label: "APIs",
-    description: "Cardano APIs. FIXME",
+    description: "Cardano APIs.",
     icon: null,
   },
 
@@ -45,7 +45,7 @@ export const Tags = {
   library: {
     label: "Libraries",
     description:
-      "Cardano Libraries. FIXME",
+      "Cardano libraries.",
     icon: null,
   },
 
