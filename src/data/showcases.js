@@ -630,6 +630,14 @@ const Showcases = [
     tags: ["wallet", "opensource", "nft"],
   },
   {
+    title: "Politikoz | NFTs on Cardano!",
+    description: "The Cardano On-Chain Lottery Game.",
+    preview: require("./showcase/politikoz.png"),
+    website: "https://www.politikoz.io",
+    source: null,
+    tags: ["nft", "game"],
+  },
+  {
     title: "Cardano Waves",
     description:
       "The largest collection of real-time charts for the Cardano network and community.",
