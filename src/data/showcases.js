@@ -691,6 +691,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+  {
+    title: "H.Y.P.E. Skulls",
+    description:
+      "A new level of collectible NFT is hitting the Cardano Network! 1,500 unique 3D-animated cards featuring the HYPE Skull. No two are alike. Always handcrafted. Never automated.",
+    preview: require("./showcase/hypeskulls.png"),
+    website: "https://seehype.com/",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
