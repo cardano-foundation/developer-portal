@@ -20,32 +20,25 @@ Make yourself familiar with the [Project Structure](https://developers.cardano.o
 
 We try to keep everything as simple as possible, but not simpler. If you see something that could be improved you are encouraged to raise an issue wherein you propose your changes and explain the rationale.
 
-## Showcase
+## Project Showcase
 
 The project showcase should be a place where someone new to the ecosystem can come to see what can be done - it should not be seen as a database where every project is promoted.
 
-### Requirements for adding your project
+### Adding your own project
 
-* It must be built on Cardano and have a real use case. For example, a forum where people can talk about Cardano is great, but nothing for this showcase section.
-* It has to run on Cardano mainnet.
-* It has to have a running product. (no presale, no protected pages, no coming soon messages)
-* It has to have enough community reputation. @TODO how to measure this?
-* It has to provide a unique value from existing showcase items. (we can't list thousands of NFT or native tokens with the current UI)
-* It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no URL shortener, no app store links, or similar)
-* The GitHub account that adds the project must not be new. 
-* The GitHub account must have a history/or already be known in the Cardano community.
-
-### Instructions to add your project
-
-1. Add your project in the JSON array in the [src/data/showcases.js](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/showcases.js)
-2. Add a description for your project that **describes what your project does**. Read more about descriptions [below](#a-word-about-project-descriptions]
-3. Add a local image preview. (decent screenshot or logo of your project)
-4. The image must be added to the GitHub repository and use `require("image")`. 
-5. [Create a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) for the `staging` branch.
+Read the **requirements** and follow the **instructions** in the header of the [src/data/showcases.js](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/showcases.js) file
 
 #### A word about project descriptions
 
 Descriptions help users find a project they are interested in and decide whether to visit the links you provided. Use relevant keywords and describe what your project is all about or that it does. Don't include claims in your description like *the **best** wallet*, *the **first** ABC* or *the **only** XYZ*. We will ask you to change the description in your pull request before merging. @TODO rationale?
+
+## Builder Tools 
+
+This section features tools that help developers build on Cardano.
+
+### Adding your own tool
+
+Read the **requirements** and follow the **instructions** in the header of the [src/data/builder-tools.js](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/builder-tools.js) file.
 
 ## Pull Requests
 
