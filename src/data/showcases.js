@@ -630,6 +630,14 @@ const Showcases = [
     tags: ["wallet", "opensource", "nft"],
   },
   {
+    title: "Politikoz | NFTs on Cardano!",
+    description: "The Cardano On-Chain Lottery Game.",
+    preview: require("./showcase/politikoz.png"),
+    website: "https://www.politikoz.io",
+    source: null,
+    tags: ["nft", "game"],
+  },
+  {
     title: "Cardano Waves",
     description:
       "The largest collection of real-time charts for the Cardano network and community.",
@@ -682,6 +690,15 @@ const Showcases = [
     website: "https://tokhun.io",
     source: null,
     tags: ["tokens", "nft"],
+  },
+  {
+    title: "H.Y.P.E. Skulls",
+    description:
+      "A new level of collectible NFT is hitting the Cardano Network! 1,500 unique 3D-animated cards featuring the HYPE Skull. No two are alike. Always handcrafted. Never automated.",
+    preview: require("./showcase/hypeskulls.png"),
+    website: "https://seehype.com/",
+    source: null,
+    tags: ["nft"],
   },
 ];
 

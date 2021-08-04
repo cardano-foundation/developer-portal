@@ -16,7 +16,7 @@ import ShowcaseBody from "./components/ShowcaseBody";
 
 
 const ShowcaseCard = memo(function ({ showcase }) {
-  const showFooter = showcase.website || showcase.source
+  const showFooter = showcase.getstarted || showcase.website || showcase.source
   return (
     <div key={showcase.title} className="col col--4 margin-bottom--lg">
       <div className={clsx("card", styles.showcaseCard)}>
