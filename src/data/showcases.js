@@ -683,6 +683,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+   {
+    title: "CardanoWaifus",
+    description:
+        "We create unique Waifus: each of them is a one-only limited and personalized art piece. No procedural generation, just creative artists doing what they love. And guess what you can select the background of your Waifu from others NFTs. ",
+    preview: require("./showcase/cardanowaifus.png"),
+    website: "https://cardanowaifus.digital/",
+    source: null,
+    tags: ["nft"]
+  }
 ];
 
 export const TagList = Object.keys(Tags);
