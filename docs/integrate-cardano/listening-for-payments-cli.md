@@ -784,7 +784,7 @@ You should see the **wallet address** value:
 addr_test1vpfkp665a6wn7nxvjql5vdn5g5a94tc22njf4lf98afk6tgnz5ge4
 ```
 
-Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ADA` funds from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet). Once complete, we can now run the code again and we should see a succesful result this time.
+Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ADA` funds from the [Cardano Testnet Faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet). Once complete, we can now run the code again and we should see a succesful result this time.
 
 <Tabs
   defaultValue="js"

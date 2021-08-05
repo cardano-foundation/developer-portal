@@ -201,9 +201,9 @@ You should see something like this:
 
 Now you might find it odd that there is not much information in the result that was returned the command, but that is totally normal as there are no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
 
-Our next step is to request some `tADA` from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet).
+Our next step is to request some `tADA` from the [Cardano Testnet Faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet).
 
-Once you requested some `tADA` from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet) we can then run the query again and you should see something like this:
+Once you requested some `tADA` from the [Cardano Testnet Faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet) we can then run the query again and you should see something like this:
 
 ```
                            TxHash                                 TxIx        Amount
@@ -278,7 +278,7 @@ cardano-cli query utxo \
 
 Again, this is to be expected as the `payment2.addr` wallet address and keys has just recently been generated. So we expect that no one has sent any `tADA` to this wallet yet.
 
-In this example, we now have two wallets. We can call them `payment1` and `payment2`. Now remember that we requested some `tADA` from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet) for `payment1` wallet, and thats how we have the following:
+In this example, we now have two wallets. We can call them `payment1` and `payment2`. Now remember that we requested some `tADA` from the [Cardano Testnet Faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet) for `payment1` wallet, and thats how we have the following:
 
 `payment1` **wallet**: `1,000,000,000 lovelace`
 
@@ -756,9 +756,9 @@ It is important to note that the parameter of this request is the **wallet id** 
 
 We are basically querying the first wallet address that has not been used just yet, Indicated by `state: "unused"`. As we can see the wallet address value is: `addr_test1qpnjt8umuwr5f2y59avklhu8hd7h2uf4zfanxxr4nmqqsaw679hxgdmrtsjequ8ka27rm8366e6p7au9y89h6slmrjwskfmcef`
 
-Now we can finally request some `tADA` for the wallet address from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet).
+Now we can finally request some `tADA` for the wallet address from the [Cardano Testnet Faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet).
 
-Once you requested some `tADA` from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet), we can then check if it has arrived into our wallet like so:
+Once you requested some `tADA` from the [Cardano Testnet Faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet), we can then check if it has arrived into our wallet like so:
 
 ```bash
 curl --request GET \
@@ -784,7 +784,7 @@ You should see something like this:
 }
 ```
 
-As we can see here we have a total of `1,000,000,000 lovelace` available to spend that we received from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet).
+As we can see here we have a total of `1,000,000,000 lovelace` available to spend that we received from the [Cardano Testnet Faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet).
 
 #### Creating simple transactions
 
