@@ -700,6 +700,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "$THANK Coin",
+    description:
+      "A fun and cool way to say thanks in the Cardano community.",
+    preview: require("./showcase/ThankCoin.png"),
+    website: "https://www.ThankCoin.io",
+    source: null,
+    tags: ["tokens"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
