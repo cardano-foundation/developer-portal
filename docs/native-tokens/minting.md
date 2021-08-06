@@ -123,10 +123,11 @@ cardano-cli query tip --$testnet
 Should give you an output like this
 ```bash
 {
-    "epoch": 139,
-    "hash": "b0f7fcd97e1f60125ed2f2e145d0239fd031b146fb6fe4b4d40e01c37e3d8211",
-    "slot": 29761723,
-    "block": 2686484
+    "epoch": 282,
+    "hash": "82cfbbadaaec1a6204442b91de1535505b6482ae9858f3f0bd9c4bb9c8a2c12b",
+    "slot": 36723570,
+    "block": 6078639,
+    "era": "Mary"
 }
 ```
 
