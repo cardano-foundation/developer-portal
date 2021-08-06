@@ -13,7 +13,7 @@ Minting NFTs will follow the same process, with only a few tweaks. If you want t
 
 ## Prerequisites
 
-1. A running and Cardano node - accessible through the `cardano-cli` command. This guide is written with `cardano-cli` v 1.26.1. Some commands may be subject to change.
+1. A running and synced Cardano node - accessible through the `cardano-cli` command. This guide is written with `cardano-cli` v 1.27.0. Some commands may be subject to change.
 2. You have some knowledge in Linux as to navigation between directories, creating and editing files, and setting and inspecting variables via Linux shell.
 
 
