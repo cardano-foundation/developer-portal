@@ -295,7 +295,7 @@ cardano-cli transaction build-raw \
  --tx-in $txhash#$txix \
  --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
  --mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
- --script-file policy/policy.script \
+ --minting-script-file policy/policy.script \
  --out-file matx.raw
 ```
 #### Syntax breakdown 
@@ -363,7 +363,7 @@ cardano-cli transaction build-raw \
 --tx-in $txhash#$txix  \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
 --mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
---script-file policy/policy.script \
+--minting-script-file policy/policy.script \
 --out-file matx.raw
 ```
 
