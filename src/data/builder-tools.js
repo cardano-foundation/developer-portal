@@ -162,6 +162,14 @@ const Showcases = [
     getstarted: null,
     tags: ["featured", "operatortool"],
   },
+  {
+    title: "Python Module",
+    description: "The module provides tools for developers to accept and send transactions, manage staking and much more.",
+    preview: require("./builder-tools/cardano-python.png"),
+    website: "https://github.com/emesik/cardano-python",
+    getstarted: "https://cardano-python.readthedocs.io/en/latest/",
+    tags: ["featured", "getstarted", "library", "api"],
+  },
 ];
 
 
