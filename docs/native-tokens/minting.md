@@ -413,7 +413,7 @@ txix=""
 funds="Amout of lovelace"
 ```
 
-Again - here ist an example of how it would look like if we use our fictional example:
+Again - here is an example of how it would look if we use our fictional example:
 
 ```bash
 $ fee="0"
@@ -501,7 +501,7 @@ After a few seconds, you, the receiver, should have your tokens. For this exampl
 
 ## Burning token
 
-In the last part of our token lifecycle, we will burn 5000 of our newly made tokens <i>SecondTesttoken</i>and, therefore, destroying them permanently.
+In the last part of our token lifecycle, we will burn 5000 of our newly made tokens <i>SecondTesttoken</i>, thereby destroying them permanently.
 
 You won't be surprised that this — again — will be done with a transaction.
 If you've followed this guide up to this point, you should be familiar with the process, so let's start over.
@@ -535,6 +535,7 @@ cardano-cli transaction build-raw \
  --tx-in $txhash#$txix \
  --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
  --mint="-5000 $policyid.$tokenname2" \
+ --minting-script-file policy/policy.script \
  --out-file burning.raw
  ```
  
@@ -565,6 +566,7 @@ cardano-cli transaction build-raw \
  --tx-in $txhash#$txix \
  --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
  --mint="-5000 $policyid.$tokenname2" \
+ --minting-script-file policy/policy.script \
  --out-file burning.raw
  ```
 
@@ -574,7 +576,6 @@ cardano-cli transaction build-raw \
  cardano-cli transaction sign  \
 --signing-key-file payment.skey  \
 --signing-key-file policy/policy.skey  \
---script-file policy/policy.script  \
 --$testnet  \
 --tx-body-file burning.raw  \
 --out-file burning.signed
