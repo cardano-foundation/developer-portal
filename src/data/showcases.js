@@ -170,6 +170,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "Drunken Dragon: Adventurers",
+    description:
+      "DND Adventurers is a collection of 10,000 unique animated adventurers represented as NFTs on the Cardano blockchain and usable in Drunken Dragon: Inns & Quests game!",
+    preview: require("./showcase/dndadventurers.png"),
+    website: "https://www.drunkendragon.games/adventurers/",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "ADAex",
     description:
       "A classic block explorer that also offers a Cardano rich list.",
@@ -292,6 +301,14 @@ const Showcases = [
     website: "https://www.cardanowarriors.io",
     source: null,
     tags: ["nft", "game"],
+  },
+  {
+    title: "Drunken Dragon: Inns & Quests",
+    description: "A fantasy inn & tavern simulator. You manage a tavern to attract adventurers to send them into epic quests.",
+    preview: require("./showcase/dndinnsnquests.png"),
+    website: "https://www.drunkendragon.games/",
+    source: null,
+    tags: ["game"],
   },
   {
     title: "Native Tokens",
