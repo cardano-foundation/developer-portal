@@ -168,7 +168,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-python.png"),
     website: "https://github.com/emesik/cardano-python",
     getstarted: "https://cardano-python.readthedocs.io/en/latest/",
-    tags: ["featured", "getstarted", "library", "api"],
+    tags: ["library", "api"],
   },
 ];
 
