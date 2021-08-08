@@ -167,7 +167,7 @@ const Showcases = [
     description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
     preview: require("./builder-tools/cardano-python.png"),
     website: "https://github.com/emesik/cardano-python",
-    getstarted: "https://cardano-python.readthedocs.io/en/latest/",
+    getstarted: null,
     tags: ["library", "api"],
   },
 ];
