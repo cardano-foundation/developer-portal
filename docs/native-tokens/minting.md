@@ -13,7 +13,7 @@ Minting NFTs will follow the same process, with only a few tweaks. If you want t
 
 ## Prerequisites
 
-1. A running and Cardano node - accessible through the `cardano-cli` command. This guide is written with `cardano-cli` v 1.26.1. Some commands may be subject to change.
+1. A running and synced Cardano node - accessible through the `cardano-cli` command. This guide is written with `cardano-cli` v 1.27.0. Some commands may be subject to change.
 2. You have some knowledge in Linux as to navigation between directories, creating and editing files, and setting and inspecting variables via Linux shell.
 
 
@@ -43,7 +43,7 @@ We'll be working in a new directory. Here is an overview of every file we will b
 ├── matx.raw                       # Raw transaction to mint token
 ├── matx.signed                    # Signed transaction to mint token
 ├── metadata.json                  # Metadata to specify NFT attributes
-├── payment.addr                   # Address to send / recieve 
+├── payment.addr                   # Address to send / receive 
 ├── payment.skey                   # Payment signing key
 ├── payment.vkey                   # Payment verification key
 ├── policy                         # Folder which holds everything policy-wise
@@ -123,10 +123,11 @@ cardano-cli query tip --$testnet
 Should give you an output like this
 ```bash
 {
-    "epoch": 139,
-    "hash": "b0f7fcd97e1f60125ed2f2e145d0239fd031b146fb6fe4b4d40e01c37e3d8211",
-    "slot": 29761723,
-    "block": 2686484
+    "epoch": 282,
+    "hash": "82cfbbadaaec1a6204442b91de1535505b6482ae9858f3f0bd9c4bb9c8a2c12b",
+    "slot": 36723570,
+    "block": 6078639,
+    "era": "Mary"
 }
 ```
 
@@ -294,6 +295,7 @@ cardano-cli transaction build-raw \
  --tx-in $txhash#$txix \
  --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
  --mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+ --minting-script-file policy/policy.script \
  --out-file matx.raw
 ```
 #### Syntax breakdown 
@@ -361,6 +363,7 @@ cardano-cli transaction build-raw \
 --tx-in $txhash#$txix  \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
 --mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+--minting-script-file policy/policy.script \
 --out-file matx.raw
 ```
 
@@ -370,7 +373,6 @@ Transactions need to be signed to prove the authenticity and ownership of the po
 cardano-cli transaction sign  \
 --signing-key-file payment.skey  \
 --signing-key-file policy/policy.skey  \
---script-file policy/policy.script  \
 --$testnet --tx-body-file matx.raw  \
 --out-file matx.signed
 ```
@@ -404,19 +406,19 @@ We will set up our variables accordingly.
 
 ```bash
 fee="0"
-reciever="Insert wallet address here"
-reciever_output="10000000"
+receiver="Insert wallet address here"
+receiver_output="10000000"
 txhash=""
 txix=""
 funds="Amout of lovelace"
 ```
 
-Again - here ist an example of how it would look like if we use our fictional example:
+Again - here is an example of how it would look if we use our fictional example:
 
 ```bash
 $ fee="0"
-$ reciever="addr_test1qp0al5v8mvwv9mzn77ls0tev3t838yp9ghvgxf9t5qa4sqlua2ywcygl3d356c34576elq5mcacg88gaevceyc5tulwsmk7s8v"
-$ reciever_output="10000000"
+$ receiver="addr_test1qp0al5v8mvwv9mzn77ls0tev3t838yp9ghvgxf9t5qa4sqlua2ywcygl3d356c34576elq5mcacg88gaevceyc5tulwsmk7s8v"
+$ receiver_output="10000000"
 $ txhash="d82e82776b3588c1a2c75245a20a9703f971145d1ca9fba4ad11f50803a43190"
 $ txix="0"
 $ funds="999824071"
@@ -435,7 +437,7 @@ echo Policy ID: $policyid
 We will be sending 2 of our first tokens, `Testtoken`, to the foreign address.  
 A few things worth pointing out:
 
-1. We are forced to send at least a minimum of 1 ada (1000000 Lovelace) to the foreign address. We can not send tokens only. So we need to factor this value into our output. We will reference the output value of the remote address with the variable reciever_output.
+1. We are forced to send at least a minimum of 1 ada (1000000 Lovelace) to the foreign address. We can not send tokens only. So we need to factor this value into our output. We will reference the output value of the remote address with the variable receiver_output.
 2. Apart from the receiving address, we also need to set our own address as an additional output. Since we don't want to send everything we have to the remote address, we're going to use our own address to receive everything else coming from the input.
 3. Our own address, therefore, needs to receive our funds, subtracted by the transaction fee as well as the minimum of 1 ada we need to send to the other address and
 4. all of the tokens the txhash currently holds, subtracted by the tokens we send.
@@ -452,7 +454,7 @@ Here’s what the `raw` transaction looks like:
 cardano-cli transaction build-raw  \
 --fee $fee  \
 --tx-in $txhash#$txix  \
---tx-out $reciever+$reciever_output+"2 $policyid.$tokenname1"  \
+--tx-out $receiver+$receiver_output+"2 $policyid.$tokenname1"  \
 --tx-out $address+$output+"9999998 $policyid.$tokenname1 + 10000000 $policyid.$tokenname2"  \
 --out-file rec_matx.raw
 ```
@@ -477,7 +479,7 @@ Let’s update the transaction:
 cardano-cli transaction build-raw  \
 --fee $fee  \
 --tx-in $txhash#$txix  \
---tx-out $reciever+$reciever_output+"2 $policyid.$tokenname1"  \
+--tx-out $receiver+$receiver_output+"2 $policyid.$tokenname1"  \
 --tx-out $address+$output+"9999998 $policyid.$tokenname1 + 10000000 $policyid.$tokenname2"  \
 --out-file rec_matx.raw
 ```
@@ -499,7 +501,7 @@ After a few seconds, you, the receiver, should have your tokens. For this exampl
 
 ## Burning token
 
-In the last part of our token lifecycle, we will burn 5000 of our newly made tokens <i>SecondTesttoken</i>and, therefore, destroying them permanently.
+In the last part of our token lifecycle, we will burn 5000 of our newly made tokens <i>SecondTesttoken</i>, thereby destroying them permanently.
 
 You won't be surprised that this — again — will be done with a transaction.
 If you've followed this guide up to this point, you should be familiar with the process, so let's start over.
@@ -533,6 +535,7 @@ cardano-cli transaction build-raw \
  --tx-in $txhash#$txix \
  --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
  --mint="-5000 $policyid.$tokenname2" \
+ --minting-script-file policy/policy.script \
  --out-file burning.raw
  ```
  
@@ -563,6 +566,7 @@ cardano-cli transaction build-raw \
  --tx-in $txhash#$txix \
  --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
  --mint="-5000 $policyid.$tokenname2" \
+ --minting-script-file policy/policy.script \
  --out-file burning.raw
  ```
 
@@ -572,7 +576,6 @@ cardano-cli transaction build-raw \
  cardano-cli transaction sign  \
 --signing-key-file payment.skey  \
 --signing-key-file policy/policy.skey  \
---script-file policy/policy.script  \
 --$testnet  \
 --tx-body-file burning.raw  \
 --out-file burning.signed
