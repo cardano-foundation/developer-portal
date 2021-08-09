@@ -1,6 +1,6 @@
 ---
 slug: launch-of-the-developer-portal-2021
-title: "Finally here: the Cardano developer portal! Accepting all builds."
+title: "Finally here: the Cardano developer portal"
 author: Cardano Foundation
 author_title: Developer Spotlight
 author_url: https://github.com/cardano-foundation
