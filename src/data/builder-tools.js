@@ -144,8 +144,8 @@ const Showcases = [
     website: "https://github.com/tango-crypto/cardano-wallet-js",
     gettingstarted: "/docs/get-started/cardano-wallet-js",
   },
-  /*{
-    title: "Marlowe Playground",
+  {
+    title: "CardanoSharp Wallet",
     description:
       "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
     preview: require("./builder-tools/cardanosharp.png"),
