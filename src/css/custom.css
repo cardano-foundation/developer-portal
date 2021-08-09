@@ -85,3 +85,29 @@ html[data-theme='dark'] .header-github-link:before {
 .header-github-link:hover {
   opacity: 0.6;
 }
+
+div#faucetcontainer {
+  width:500px;  /* defines the visible width of the part */
+  height:500px; /* defines the visible height of the part */
+  overflow:hidden;     
+  overflow-x:hidden;   
+
+  /* resize and min-height are optional, allows user to resize viewable area */
+  -webkit-resize:vertical; 
+  -moz-resize:vertical;
+  resize:vertical;
+  min-height:317px;
+}
+
+.faucet {
+  border: 0px none; 
+  width:960px;        /* set to approximate width of the faucet page */
+  height:1750px;      /* determines where the bottom of the page cuts off */
+  margin-left:-300px; /* defines the left clipping of the faucet page */
+  margin-top:-1270px; /* defines the top clipping of the faucet page */
+  overflow:hidden;
+
+  -webkit-resize:none;
+  -moz-resize:none;
+  resize:none;
+}

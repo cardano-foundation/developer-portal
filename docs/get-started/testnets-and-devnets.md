@@ -18,7 +18,10 @@ Because the Cardano testnet is an independent network, separate from the Cardano
 ## Where to get test ada?
 Test ada is worth nothing. With it you can safely perform all tests free of charge - the reason why you want to develop on the testnet. 
 
-To get free test ada, you need to visit the [Cardano testnet faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet/). 
+To get free test ada, you need to visit the [Cardano testnet faucet](../integrate-cardano/testnet-faucet). 
+
+## Where to get a testnet wallet?
+- [Daedalus testnet](https://testnets.cardano.org/en/testnets/cardano/get-started/wallet/) is the testnet version of Daedalus wallet.
 
 ## What kind of monitoring tools are available for the testnet?
 - [Grafana dashboard](https://monitoring.cardano-testnet.iohkdev.io/grafana/d/Oe0reiHef/cardano-application-metrics-v2?orgId=1&refresh=1m&from=now-7d&to=now) provides many health metrics.
