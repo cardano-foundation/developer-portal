@@ -155,12 +155,12 @@ const Showcases = [
     tags: ["oracle"],
   },
   {
-    title: "CNTools",
-    description: "CNTools is like a swiss army knife for pool operators to simplify typical operations regarding their wallet keys and pool management.",
+    title: "Guild Operators Suite",
+    description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./builder-tools/guild-operators.png"),
-    website: "https://github.com/cardano-community/guild-operators/blob/alpha/docs/Scripts/cntools.md",
-    getstarted: null,
-    tags: ["featured", "operatortool"],
+    website: "https://cardano-community.github.io/guild-operators/",
+    getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
+    tags: ["featured", "getstarted", "operatortool"],
   },
 ];
 
@@ -278,7 +278,7 @@ function ensureShowcaseValid(showcase) {
     const hasGetStartedTag = showcase.tags.includes("getstarted");
     const isOperatorTool = showcase.tags.includes("operatortool");
 
-    if ((hasGetStartedTag && isOperatorTool) || (showcase.getstarted instanceof String &&
+    if ((hasGetStartedTag && isOperatorTool) && !(typeof showcase.getstarted === "string" &&
         (showcase.getstarted.startsWith("/docs/operate-a-stake-pool/")))
     ) {
       throw new Error(

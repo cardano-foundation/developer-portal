@@ -110,6 +110,13 @@ module.exports = {
           },
         ],
       },
+      {
+        type: "category",
+        label: "Operator Tools",
+        items: [
+          "operate-a-stake-pool/guild-ops-suite",
+        ],
+      },
       "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Contribute to the Developer Portal": [
