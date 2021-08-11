@@ -161,12 +161,6 @@ const Showcases = [
     website: "https://cardano-community.github.io/guild-operators/",
     getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
     tags: ["featured", "getstarted", "operatortool"],
-    title: "CNTools",
-    description: "CNTools is like a swiss army knife for pool operators to simplify typical operations regarding their wallet keys and pool management.",
-    preview: require("./builder-tools/guild-operators.png"),
-    website: "https://github.com/cardano-community/guild-operators/blob/alpha/docs/Scripts/cntools.md",
-    getstarted: null,
-    tags: ["featured", "operatortool"],
   },
 ];
 
