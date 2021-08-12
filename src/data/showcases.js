@@ -566,6 +566,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "DexoWorlds",
+    description:
+      "DexoWorlds is a collection of pixel art planets created by a student in astrophysics. The concepts behind the NFTs are based on the real cutting-edge field of exoplanet detection and characterization..",
+    preview: require("./showcase/dexoworlds.png"),
+    website: "https://dexoworlds.com/",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "DEADPXLZ",
     description:
       "The first interactive NFT collectibles on the Cardano blockchain.",
