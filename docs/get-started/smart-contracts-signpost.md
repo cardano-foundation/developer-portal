@@ -22,7 +22,7 @@ Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutori
 
 [![Plutus Playground](../../static/img/get-started/smart-contracts/plutus-playground.jpg)](https://playground.plutus.iohkdev.io)
 
-[Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/overview.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program. 
+[Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/plutus_pioneer_program.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program. 
 
 Talk to others about [Plutus on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-plutus/148) or if you prefer Telegram we welcome you to the [Cardano Developers Telegram Group](https://t.me/CardanoDevelopersOfficial).
 
