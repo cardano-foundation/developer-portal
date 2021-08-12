@@ -700,6 +700,16 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CardanoWaifus",
+    description:
+      "The first platform of Waifus on Cardano Blockchain, NFT are capable of combining with other NFTs in order to change background, every waifu is unique and rare",
+    preview: require("./showcase/cardanowaifus.png"),
+    website: "https://cardanowaifus.digital/",
+    source: null,
+    tags: ["nft"],
+  },  
+  
 ];
 
 export const TagList = Object.keys(Tags);
