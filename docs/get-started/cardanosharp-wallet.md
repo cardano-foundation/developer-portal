@@ -7,29 +7,32 @@ image: ./img/og-developer-portal.png
 --- 
 
 # CardanoSharp.Wallet 
-[![Build status](https://ci.appveyor.com/api/projects/status/knh87k86mf7gbxyo?svg=true)](https://ci.appveyor.com/project/nothingalike/cardanosharp-wallet) [![Test status](https://img.shields.io/appveyor/tests/nothingalike/cardanosharp-wallet)](https://ci.appveyor.com/project/nothingalike/cardanosharp-wallet) [![NuGet Version](https://img.shields.io/nuget/v/CardanoSharp.Wallet.svg?style=flat)](https://www.nuget.org/packages/CardanoSharp.Wallet/) ![NuGet Downloads](https://img.shields.io/nuget/dt/CardanoSharp.Wallet.svg)
+[![Build status](https://ci.appveyor.com/api/projects/status/knh87k86mf7gbxyo?svg=true)](https://ci.appveyor.com/project/nothingalike/cardanosharp-wallet/branch/main) [![Test status](https://img.shields.io/appveyor/tests/nothingalike/cardanosharp-wallet)](https://ci.appveyor.com/project/nothingalike/cardanosharp-wallet/branch/main) [![NuGet Version](https://img.shields.io/nuget/v/CardanoSharp.Wallet.svg?style=flat)](https://www.nuget.org/packages/CardanoSharp.Wallet/) ![NuGet Downloads](https://img.shields.io/nuget/dt/CardanoSharp.Wallet.svg)
 
 CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.
 
 ## Features
 
- * Generate Mnemonics
- * Create Private and Public Keys
- * Create Addresses
- * Build Transactions
- * Sign Transactions
+* Generate Mnemonics
+* Create Private and Public Keys
+* Create Addresses
+* Build Transactions
+* Sign Transactions
 
 ## Getting Started
 
-CardanoSharp.Wallet is installed from NuGet. 
+CardanoSharp.Wallet is installed from NuGet.
 
-```
+```sh
 Install-Package CardanoSharp.Wallet
 ```
 
 ## Generate a Mnemonic
+
 ```csharp
 using CardanoSharp.Wallet;
+using CardanoSharp.Wallet.Enums;
+using CardanoSharp.Wallet.Models.Keys;
 
 class Program
 {
@@ -43,41 +46,46 @@ class Program
         int size = 24;
 
         // This will generate a 24 English Mnemonic
-        string mnemonic = keyService.Generate(24, WordLists.English);
+        Mnemonic mnemonic = keyService.Generate(size, WordLists.English);
+        System.Console.WriteLine(mnemonic.Words);
     }
 }
 ```
 
 ## Create Private and Public Keys
-```csharp
-// Here we can get the entropy from our mnemonic
-var entropy = keyService.Restore(mnemonic);
 
-// The masterKey is a Tuple made of up of the 
-//  - Private Key(Item1) 
-//  - Chain Chain(Item2)
-var masterKey = keyService.GetRootKey(entropy);
+Add powerful extensions to create and derive keys.
+
+```csharp
+using CardanoSharp.Wallet.Extensions.Models;
+```
+
+```csharp
+// The masterKey is a PrivateKey made of up of the 
+//  - byte[] Key
+//  - byte[] Chaincode
+PrivateKey masterKey = mnemonic.GetRootKey();
 
 // This path will give us our Payment Key on index 0
-var paymentPath = $"m/1852'/1815'/0'/0/0";
+string paymentPath = $"m/1852'/1815'/0'/0/0";
 // The paymentPrv is another Tuple with the Private Key and Chain Code
-var paymentPrv = keyService.DerivePath(paymentPath, masterKey.Item1, masterKey.Item2);
+PrivateKey paymentPrv = masterKey.Derive(paymentPath);
 // Get the Public Key from the Payment Private Key
-var paymentPub = keyService.GetPublicKey(paymentPrv.Item1, false);
+PublicKey paymentPub = paymentPrv.GetPublicKey(false);
 
 // This path will give us our Stake Key on index 0
-var stakePath = $"m/1852'/1815'/0'/2/0";
+string stakePath = $"m/1852'/1815'/0'/2/0";
 // The stakePrv is another Tuple with the Private Key and Chain Code
-var stakePrv = keyService.DerivePath(stakePath, masterKey.Item1, masterKey.Item2);
+var stakePrv = masterKey.Derive(stakePath);
 // Get the Public Key from the Stake Private Key
-var stakePub = keyService.GetPublicKey(stakePrv.Item1, false);
+var stakePub = stakePrv.GetPublicKey(false);
 ```
 
 ## Create Addresses
 
 ```csharp
 // Creating Addresses require the Public Payment and Stake Keys
-var baseAddr = addressService.GetAddress(
+Address baseAddr = addressService.GetAddress(
     paymentPub, 
     stakePub, 
     NetworkType.Testnet, 
@@ -111,11 +119,20 @@ namespace CardanoSharp.Wallet.Enums
 }
 ```
 
-## Building and Sign Transactions
-This is just an example of how to start. You will need to Calculate Fees, compare with Protocol Parameters and re-serialize. 
+## Build and Sign Transactions
+
+This is just an example of how to start. You will need to Calculate Fees, compare with Protocol Parameters and re-serialize.
+
+```csharp
+using CardanoSharp.Wallet.Models.Transactions;
+```
+
 ```csharp
 // The Transaction Builder allows us to contruct and serialize our Transaction
-var transactionBuilder = new TransactionBuilder();
+using CardanoSharp.Wallet.Models.Transactions;
+using CardanoSharp.Wallet.Extensions.Models.Transactions;
+//For CBOR Utilities
+using PeterO.Cbor2;
 
 // Create the Transaction Body
 //  The Transaction Body:
@@ -137,14 +154,14 @@ var transactionBody = new TransactionBody()
         new TransactionInput()
         {
             TransactionIndex = 0,
-            TransactionId = someTxHash
+            TransactionId = new byte[32]
         }
     },
     TransactionOutputs = new List<TransactionOutput>()
     {
         new TransactionOutput()
         {
-            Address = addressService.GetAddressBytes(baseAddr),
+            Address = baseAddr.GetBytes(),
             Value = new TransactionOutputValue()
             {
                 Coin = 1
@@ -163,8 +180,8 @@ var witnesses = new TransactionWitnessSet()
     {
         new VKeyWitness()
         {
-            VKey = paymentPub,
-            SKey = paymentPrv
+            VKey = paymentPub.Key,
+            SKey = paymentPrv.Key
         }
     }
 };
@@ -178,15 +195,20 @@ var transaction = new Transaction()
 
 // Serialize Transaction with Body and Witnesses
 //  This results in a Signed Transaction
-var signedTx = transactionBuilder.SerializeTransaction(transaction);
+var signedTxSerialized = transaction.Serialize();
 ```
 
 ### Calculate Fees
+
 ```csharp
-var fee = transactionBuilder.CalculateFee(signedTx);
+// From Current Protocol Parameters
+// 44     = txFeePerByte
+// 155381 = txFeeFixed
+var fee = transaction.CalculateFee(44, 155381);
 ```
 
 ### Adding Metadata
+
 ```csharp
 var auxData = new AuxiliaryData()
 {
@@ -205,4 +227,5 @@ var transaction = new Transaction()
 ```
 
 ### More Examples
+
 Please see the [Transaction Tests](https://github.com/CardanoSharp/cardanosharp-wallet/blob/main/CardanoSharp.Wallet.Test/TransactionTests.cs)

@@ -44,7 +44,8 @@ module.exports = {
       "integrate-cardano/creating-wallet-faucet",
       "integrate-cardano/multi-witness-transactions-cli",
       "integrate-cardano/listening-for-payments-cli",
-      "integrate-cardano/listening-for-payments-wallet"
+      "integrate-cardano/listening-for-payments-wallet",
+      "integrate-cardano/testnet-faucet",
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
@@ -107,6 +108,13 @@ module.exports = {
               "stake-pool-course/assignments/kes_period",
             ],
           },
+        ],
+      },
+      {
+        type: "category",
+        label: "Operator Tools",
+        items: [
+          "operate-a-stake-pool/guild-ops-suite",
         ],
       },
       "operate-a-stake-pool/marketing-stake-pool",

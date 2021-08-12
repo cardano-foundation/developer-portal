@@ -1,6 +1,6 @@
 ---
 slug: launch-of-the-developer-portal-2021
-title: "Finally here: the Cardano developer portal! Accepting all builds."
+title: "Finally here: the Cardano developer portal"
 author: Cardano Foundation
 author_title: Developer Spotlight
 author_url: https://github.com/cardano-foundation
@@ -30,11 +30,13 @@ All this, just a few months before the Alonzo hard fork!
 
 **World’s First NFTAs**
 
-To celebrate the launch, we minted the world’s first NFTAs: 10 Non-Fungible Tokens of Appreciation. 
+To celebrate the launch, we minted the world’s first [NFTAs: 10 Non-Fungible Tokens of Appreciation](https://cardanofoundation.org/nfta/). 
 
 Each of the NFTAs consists of a thumbs-up photo of a Cardano community member approving the Portal. These double as campaign visuals the Foundation uses to promote the portal across the web – while ownership of these campaign assets is transferred to the community members. Scanning the QR code on these NFTAs leads one to the Cardano blockchain explorer, where the transferred ownership can be verified by anyone anywhere. 
  
 What sets these apart even further is that each NFTA is accompanied by a token representing a non-transferable, one time opportunity for a receiver of that NFTA to highlight a topic or project of their choosing on the Cardano Developer portal. We call these Bronze tokens of appreciation.
+
+Click [here](https://cardanofoundation.org/nfta/) to view full list of NFTAs.
 
 Dear Community, good things come to those who wait. We know it took a while, but we sincerely hope it will be worth the wait. We’re looking forward to your contributions, constructive criticisms and, hopefully, thumbs-ups as we keep building towards the social and financial infrastructure of the future with you.
 

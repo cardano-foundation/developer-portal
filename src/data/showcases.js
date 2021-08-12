@@ -126,7 +126,7 @@ const Showcases = [
   {
     title: "Cardano Kidz",
     description:
-      "Some of the very first, if not the first minted (born) on the Cardano blockchain in lovely design.",
+      "Each of these unique Limited Edition designs is being minted on the Cardano Blockchain as a Non Fungible Token (NFT).",
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
@@ -142,6 +142,16 @@ const Showcases = [
     tags: ["featured", "metadata"],
   },
   {
+    title: "Crypto Heroez",
+    description:
+      "Cardano NFT pixelart collectibles. Tribute to heroes of the cryptospace. Including interactive NFTs and a game in progress where you use NFTs from your wallet.",
+    preview: require("./showcase/cryptoheroez.png"),
+    website: "https://cryptoheroez.io",
+    source: null,
+    tags: ["nft", "game"],
+  },
+
+  {
     title: "NFT Maker",
     description:
       "Create your own NFT by uploading an image and paying some ada.",
@@ -153,7 +163,7 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "The first full NFT platform on Cardano consisting of 10,000 unique little astronauts.",
+      "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: null,
@@ -216,7 +226,7 @@ const Showcases = [
   {
     title: "Adapools",
     description:
-      "Was one of the first pool tools and was always further developed.",
+      "Well established stake pool explorer in Cardano. Yoroi is using our data to list stake pools in the wallet.",
     preview: require("./showcase/adapools.png"),
     website: "https://adapools.org/",
     source: null,
@@ -317,7 +327,7 @@ const Showcases = [
   },
   {
     title: "Cardano Bits",
-    description: "The first eight bit pixel art on Cardano.",
+    description: "A collection of 10,000 unique pieces, minted with a time-locked policy, before the smart contracts were launched. Each collectible was generated with a mix of art pieces and computer algorithms.",
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
@@ -469,7 +479,7 @@ const Showcases = [
   {
     title: "unsigned_algorithms",
     description:
-      "The first algorithmically generated art living on Cardano.",
+      "Algorithmically generated colorful art living on Cardano.",
     preview: require("./showcase/unsigned-algorithms.png"),
     website: "https://www.unsigs.com",
     source: null,
@@ -577,7 +587,7 @@ const Showcases = [
   {
     title: "DEADPXLZ",
     description:
-      "The first interactive NFT collectibles on the Cardano blockchain.",
+      "Interactive, web-based NFT collectibles.",
     preview: require("./showcase/deadpxlz.png"),
     website: "https://pxlz.org",
     source: null,
@@ -593,9 +603,27 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "Pigy Token",
+    description:
+      "The community token for Cardano stake pool operators and delegators",
+    preview: require("./showcase/pigytokenproject.png"),
+    website: "https://pigytoken.com",
+    source: null,
+    tags: ["tokens"],
+  },
+  {
+    title: "JES-Art",
+    description:
+      "16 year old female fine art NFTs on the Cardano blockchain!",
+    preview: require("./showcase/jesart.png"),
+    website: "https://www.jes-art.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "Stellar Hood",
     description:
-      "Explore one of the first 100% on-chain (no ipfs) NFT on the Cardano blockchain. Next generation technology and interactive user experience.",
+      "Space, the final frontier: Discover and study the stars and planets in our galaxy, our Stellar Hood, as 3d interactive NFTs which are coded directly onto the Cardano blockchain! Customize your solar systems on the interactive map.",
     preview: require("./showcase/stellarhood.png"),
     website: "https://stellarhood.com",
     source: null,
@@ -609,6 +637,14 @@ const Showcases = [
     website: "https://namiwallet.io",
     source: "https://github.com/Berry-Pool/nami-wallet",
     tags: ["wallet", "opensource", "nft"],
+  },
+  {
+    title: "Politikoz | NFTs on Cardano!",
+    description: "The Cardano On-Chain Lottery Game.",
+    preview: require("./showcase/politikoz.png"),
+    website: "https://www.politikoz.io",
+    source: null,
+    tags: ["nft", "game"],
   },
   {
     title: "Cardano Waves",
@@ -645,6 +681,33 @@ const Showcases = [
     website: "https://cardano-native-token.com/",
     source: null,
     tags: ["tokens", "nft"],
+  },
+  {
+  title: "NFTdot.io - create.sell.buy.collect",
+    description:
+      "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
+    preview: require("./showcase/nftdot.png"),
+    website: "https://www.nftdot.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Tokhun.io",
+    description:
+        "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
+    preview: require("./showcase/tokhun.png"),
+    website: "https://tokhun.io",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "H.Y.P.E. Skulls",
+    description:
+      "A new level of collectible NFT is hitting the Cardano Network! 1,500 unique 3D-animated cards featuring the HYPE Skull. No two are alike. Always handcrafted. Never automated.",
+    preview: require("./showcase/hypeskulls.png"),
+    website: "https://seehype.com/",
+    source: null,
+    tags: ["nft"],
   },
 ];
 
