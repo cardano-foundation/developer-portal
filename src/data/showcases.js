@@ -17,6 +17,8 @@
  *   URL shortener, no app store links, or similar)
  * - The GitHub account that adds the project must not be new. 
  * - The GitHub account must have a history/or already be known in the Cardano community.
+ * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
+ *   details like which project was first is tribal attribute known to cause rift and conflicts.
  *
  * INSTRUCTIONS:
  * - Add your project in the JSON array below.
