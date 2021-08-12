@@ -14,11 +14,11 @@ image: https://developers.cardano.org/img/og-developer-portal.png
 
 **Dear Cardano community,**
 
-To celebrate the [Cardano Developer Portal launch](https://developers.cardano.org/), The Cardano Foundation minted the world’s first Non-Fungible Tokens of Appreciation (NFTAs). NFTAs are NFTs showing appreciation to the ten developers that provided feedback and helped build the developer portal. Think of them as “certificates of participation” when you attend a seminar or an event that they give out to attendees. Only they are digital! 
+To celebrate the [Cardano Developer Portal launch](../), The Cardano Foundation minted the world’s first Non-Fungible Tokens of Appreciation (NFTAs). NFTAs are NFTs showing appreciation to the ten developers that provided feedback and helped build the developer portal. Think of them as “certificates of participation” when you attend a seminar or an event that they give out to attendees. Only they are digital! 
 
 <!-- truncate -->
 
-In addition, to show our appreciation, we rewarded the community members with Bronze Tokens of Appreciation. Bronze Tokens are a way to give the NFTAs extra utility over their collectability. Tokens can be redeemed once to highlight a topic or project on the Cardano Developer Portal. For example, it can spotlight a project they are working on or inform the Cardano community of a specific topic. The spotlight articles can be found at the [Cardano Developer Portal Blog](https://developers.cardano.org/blog/). 
+In addition, to show our appreciation, we rewarded the community members with Bronze Tokens of Appreciation. Bronze Tokens are a way to give the NFTAs extra utility over their collectability. Tokens can be redeemed once to highlight a topic or project on the Cardano Developer Portal. For example, it can spotlight a project they are working on or inform the Cardano community of a specific topic. The spotlight articles can be found at the [Cardano Developer Portal Blog](../blog/). 
 
 
 **The minting strategy**
@@ -31,7 +31,7 @@ To read more about CIP 721 and the NFT Metadata Standard, click [here](https://g
 
 **How we minted the NFTAs**
 
-Tokens that are built on Cardano are native. Unlike Ethereum’s ERC-20 tokens, Cardano doesn’t require a smart contract. Instead, the tokens are treated like Cardano’s native token, ADA. Using native tokens, you can create a variety of digital assets like Non-Fungible-Tokens representing art or appreciation. Learn more about this [here](https://developers.cardano.org/docs/native-tokens/).
+Tokens that are built on Cardano are native. Unlike Ethereum’s ERC-20 tokens, Cardano doesn’t require a smart contract. Instead, the tokens are treated like Cardano’s native token, ADA. Using native tokens, you can create a variety of digital assets like Non-Fungible-Tokens representing art or appreciation. Learn more about this [here](../docs/native-tokens/).
 
 To make sure the NFTAs came from the Cardano Foundation, a **policyId** identifies them. You can check out more information about the NFTAs and the **policyId** at the [Cardano Foundation NFTA Official Page](https://cardanofoundation.org/nfta). In addition, they are attached with [metadata](https://pool.pm/2783ee3048c5158646674def386e8610ce2c8824e515451baa4769a6.CFNFTA01) that describes the details of the transaction and ownership address.
 
@@ -39,4 +39,4 @@ To mint the NFT’s, we first used a Cardano Foundation wallet to create a trans
 
 ![title image](/img/devblog/how-to-mint.png)
 
-At the time of writing this article, two NFTs have not been minted. We are waiting on two developers to provide their wallet addresses. Also, the Cardano Explorer is not showing the transactions correctly when you try to scan the QR code on the NFTAs. IOG is working on fixing this issue. We will keep you updated on when resolved. If you are interested in learning more or mint native assets or NFTs, visit the [Cardano Developer Portal](https://developers.cardano.org/docs/native-tokens/). 
+At the time of writing this article, two NFTs have not been minted. We are waiting on two developers to provide their wallet addresses. Also, the Cardano Explorer is not showing the transactions correctly when you try to scan the QR code on the NFTAs. IOG is working on fixing this issue. We will keep you updated on when resolved. Jump to [Discover Native Tokens](../docs/native-tokens/) page if you are interested in learning more or want to mint native assets or NFTs. 
