@@ -700,6 +700,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Space Tokens",
+    description:
+      "Space Tokens - Planetary NFTs on Cardano; dynamically created, totally unique, just like you.",
+    preview: require("./showcase/space-tokens.png"),
+    website: "https://www.spacetokens.io/",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
