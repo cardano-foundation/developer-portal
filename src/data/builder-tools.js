@@ -162,6 +162,14 @@ const Showcases = [
     getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
     tags: ["featured", "getstarted", "operatortool"],
   },
+  {
+    title: "libada-go",
+    description: "A Golang library for Cardano network, it is used and maintained by Bitrue.",
+    preview: require("./builder-tools/libada-go.png"),
+    website: "https://github.com/Bitrue-exchange/libada-go",
+    getstarted: null,
+    tags: ["library"],
+  },
 ];
 
 

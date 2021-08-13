@@ -13,9 +13,9 @@ This guide will show you how to compile and install the `cardano-node` and `card
 :::note
 If you want to avoid compiling the binaries yourself, You can download the latest pre-built binaries of `cardano-node` and `cardano-cli` from the links below. 
 
-- [Linux](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-linux/latest-finished)
-- [MacOS](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-macos/latest-finished)
-- [Windows](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-win64/latest-finished)
+- [Linux](https://hydra.iohk.io/build/6263009)
+- [MacOS](https://hydra.iohk.io/build/6263000)
+- [Windows](https://hydra.iohk.io/build/6263143)
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
