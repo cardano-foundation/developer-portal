@@ -569,6 +569,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "The Galgos",
+    description:
+      "The Galgos is a set of limited edition hand drawn NFT collectibles with functionality. Collect, trade, discover.",
+    preview: require("./showcase/the-galgos.png"),
+    website: "https://thegalgos.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "The Hoskinsons",
     description:
       "The Hoskinsons is an original NFT collection commemorating the founders, developers, and personalities of the Cardano platform.",
