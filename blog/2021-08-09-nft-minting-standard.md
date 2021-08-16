@@ -39,4 +39,4 @@ To mint the NFT’s, we first used a Cardano Foundation wallet to create a trans
 
 ![title image](/img/devblog/how-to-mint.png)
 
-At the time of writing this article, two NFTs have not been minted. We are waiting on two developers to provide their wallet addresses. Also, the Cardano Explorer is not showing the transactions correctly when you try to scan the QR code on the NFTAs. IOG is working on fixing this issue. We will keep you updated on when resolved. If you are interested in learning more or mint native assets or NFTs, visit the [Cardano Developer Portal](https://developers.cardano.org/docs/native-tokens/). 
+At the time of writing this article, two NFTs have not been minted. We are waiting on two developers to provide their wallet addresses. Also, the Cardano Explorer is not showing the transactions correctly when you try to scan the QR code on the NFTAs. If you are interested in learning more or mint native assets or NFTs, visit the [Cardano Developer Portal](https://developers.cardano.org/docs/native-tokens/). 
