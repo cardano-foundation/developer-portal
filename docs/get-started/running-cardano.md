@@ -78,7 +78,7 @@ To run `cardano-node` you enter something like this into the terminal:
    --database-path path/to/db \
    --socket-path path/to/db/node.socket \
    --host-addr x.x.x.x \
-   --port 3001 
+   --port 3001 \
    --config path/to/mainnet-config.json
 ```
 
