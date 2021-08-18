@@ -719,7 +719,7 @@ const Showcases = [
     website: "https://topopool.com/",
     source: null,
     tags: ["nft"],
-  },
+  }
 ];
 
 export const TagList = Object.keys(Tags);
