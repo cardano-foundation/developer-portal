@@ -711,6 +711,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+		title: "SushiBytes",
+		description:
+			"SushiBytes are deliciously cute NFT collectibles inspired by 8-bit video games, nostalgia, and everything sushi! Players can train their characters in a Pokemon style battle game.",
+		preview: require("./showcase/sushibytes.png"),
+		website: "https://www.sushibyte.io/",
+		source: null,
+		tags: ["nft", "game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
