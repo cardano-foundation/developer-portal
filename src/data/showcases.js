@@ -711,6 +711,17 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+
+{
+    title: "Mycelial Gallery",
+    description:
+      "We are a digital gallery that supports scientific mycological research.",
+    preview: require("./showcase/mycelialgallery.jpg"),
+    website: "https://www.mycelialgallery.io",
+    source: null,
+    tags: ["nft"],
+  },
+
 ];
 
 export const TagList = Object.keys(Tags);
