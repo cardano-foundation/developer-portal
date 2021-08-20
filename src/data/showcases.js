@@ -711,6 +711,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CardanoChrome",
+    description:
+      "Interactive 3D Art that you can rotate and zoom. Each piece features original art presented as a 35mm transparency, and is engraved with the policy ID of the NFT.",
+    preview: require("./showcase/cardanochrome.png"),
+    website: "http://cardanochrome.com/",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
