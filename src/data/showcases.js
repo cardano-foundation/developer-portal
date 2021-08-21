@@ -711,6 +711,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Cardano Caricatures",
+    description:
+      "Join an innovative Cardano NFT project where your favorite Crypto YouTubers are immortalized as hilarious limited edition Caricatures",
+    preview: require("./showcase/cardanocaricatures.png"),
+    website: "https://www.cardanocaricatures.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
