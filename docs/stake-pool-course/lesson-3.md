@@ -6,7 +6,7 @@ description: "Stake pool course: Lesson 3."
 image: ./img/og-developer-portal.png
 ---
 
-## Create Stake Pool Keys and Adresses
+## Create Stake Pool Keys and Addresses
 
 In the post-Shelley era of Cardano, every stakeholder can have two sets of keys and addresses:
 
