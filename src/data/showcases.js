@@ -711,6 +711,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "PinkSale",
+    description:
+      "PinkSale is a protocol aiming to provide users with the capabilities to launch their own token and create their own initial token sale. No code is required, simply navigate through our terminal and design your own token and token launch with just a few clicks.",
+    preview: require("./showcase/pinksale.png"),
+    website: "https://www.pinksale.finance/",
+    source: null,
+    tags: ["featured","pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
