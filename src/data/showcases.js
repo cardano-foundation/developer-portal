@@ -718,7 +718,7 @@ const Showcases = [
     preview: require("./showcase/pinksale.png"),
     website: "https://www.pinksale.finance/",
     source: null,
-    tags: ["featured","pooltool"],
+    tags: ["pooltool"],
   },
 ];
 
