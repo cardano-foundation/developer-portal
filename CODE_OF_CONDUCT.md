@@ -22,7 +22,7 @@ community include:
 * Giving and gracefully accepting constructive feedback
 * Accepting responsibility and apologizing to those affected by our mistakes,
   and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the
+* Focusing on what is best, not just for us as individuals, but for the
   overall community
 
 Examples of unacceptable behavior include:

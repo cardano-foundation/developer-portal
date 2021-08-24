@@ -10,7 +10,7 @@ You can write content using [GitHub-flavored Markdown syntax](https://github.git
 
 ## Markdown Examples
 
-This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. Read the [docusaurus markdown features](https://docusaurus.io/docs/next/markdown-features) for more examples.
+This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. Read the [docusaurus Markdown features](https://docusaurus.io/docs/next/markdown-features) for more examples.
 
 Let's start with the basics:
 
@@ -165,7 +165,7 @@ Inline-style: ![alt text](../static/img/logo-plutus-small.png 'This is the Plutu
 Reference-style: ![alt text][logo]
 [logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
 
-Images from any folder can be used by providing path to file. Path should be relative to markdown file:
+Images from any folder can be used by providing path to file. Path should be relative to Markdown file:
 ![alt text](../static/img/logo-plutus.png)
 ```
 
@@ -175,7 +175,7 @@ Inline-style: ![alt text](../static/img/logo-plutus-small.png 'This is the Plutu
 Reference-style: ![alt text][logo]
 [logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
 
-Images from any folder can be used by providing path to file. Path should be relative to markdown file:
+Images from any folder can be used by providing path to file. Path should be relative to Markdown file:
 ![alt text](../static/img/logo-plutus.png)
 
   </TabItem>
@@ -220,7 +220,7 @@ Images from any folder can be used by providing path to file. Path should be rel
 
 ## Code
 
-In the developer portal you will often have to display code. You can display code with different syntax highlighting:
+In the developer portal, you will often have to display code. You can display code with different syntax highlighting:
 <Tabs
   defaultValue="js"
   values={[
@@ -361,7 +361,7 @@ function HelloCodeTitle(props) {
 
 ## Tabs
 
-You can use tabs for example to display code examples in different languages:
+You can use tabs to display code examples in different languages. For example:
 
 ```html
 import Tabs from '@theme/Tabs';
@@ -712,13 +712,13 @@ Please try to avoid other style elements, and always keep in mind that people wi
 
 Last but not least, let's talk about editors, extensions and configurations.
 
-You can use any text editor you like to write markdown. [Visual Studio Code](https://code.visualstudio.com/), [Sublime](https://www.sublimetext.com/), [Atom](https://atom.io/), etc. have plugins that help you adhere to style guides by displaying warnings if you break the rules.
+You can use any text editor you like to write Markdown. [Visual Studio Code](https://code.visualstudio.com/), [Sublime](https://www.sublimetext.com/), [Atom](https://atom.io/), etc. have plugins that help you adhere to style guides by displaying warnings if you break the rules.
 
 Below are some extensions for these editors that help you write clean guides for the developer portal.
 
 ### markdownlint
 
-Adds syntax highligting for markdown files and display configurable warnings for invalid formatting.
+Adds syntax highligting for Markdown files and display configurable warnings for invalid formatting.
 
 <Tabs
   defaultValue="vscode"
