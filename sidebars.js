@@ -1,3 +1,5 @@
+const cip_sidebar = require('./cip-sidebar');
+
 module.exports = {
   someSidebar: {
     "Get Started": [
@@ -59,6 +61,7 @@ module.exports = {
       "native-tokens/minting-nfts",
       "native-tokens/cardano-token-registry"
     ],
+    "Cardano Improvement Proposals": cip_sidebar,
     "Fund your Project": [
       "fund-your-project/overview", 
       "fund-your-project/project-catalyst", 
