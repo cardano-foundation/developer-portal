@@ -711,6 +711,14 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CardanoTales",
+    description: "The first CNFT-hybrid RPG game project powered by Cardano Mainnet. Come and deep dive in the Dark BlockCave Maze.",
+    preview: require("./showcase/cardanotales.png"),
+    website: "https://www.cardanotales.com",
+    source: null,
+    tags: ["nft", "game"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
