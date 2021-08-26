@@ -479,15 +479,6 @@ const Showcases = [
     tags: ["nft"],
   },
   {
-    title: "unsigned_algorithms",
-    description:
-      "Algorithmically generated colorful art living on Cardano.",
-    preview: require("./showcase/unsigned-algorithms.png"),
-    website: "https://www.unsigs.com",
-    source: null,
-    tags: ["nft"],
-  },
-  {
     title: "ADA Dolls",
     description:
       "There are 10,000 unique dolls. These will be randomly generated from a possible outcome of 1,000,000 doll combinations.",
