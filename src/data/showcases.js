@@ -75,7 +75,6 @@ export const Tags = {
     description: "Payment Gateway Providers.",
     icon: null,
   },
-
   // For open-source sites, a link to the source code is required
   opensource: {
     label: "Open-Source",
@@ -484,6 +483,15 @@ const Showcases = [
       "Algorithmically generated colorful art living on Cardano.",
     preview: require("./showcase/unsigned-algorithms.png"),
     website: "https://www.unsigs.com",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Frank Hampus Weslien",
+    description:
+      "Fine art on the Cardano blockchain",
+    preview: require("./showcase/frankhampusweslien.png"),
+    website: "https://www.frankhampusweslien.com/,
     source: null,
     tags: ["nft"],
   },
