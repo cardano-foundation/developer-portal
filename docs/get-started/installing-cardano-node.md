@@ -89,13 +89,6 @@ You can check if `ghcup` has been installed correctly by typing `ghcup --version
 The GHCup Haskell installer, version v0.1.14.1
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
-
-```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
-```
-
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
 Check `ghc` version: 
@@ -103,9 +96,9 @@ Check `ghc` version:
 ghc --version
 ```
 
-You should see something like this: 
+You should see something like this (current versione 8.10.7): 
 ```
-The Glorious Glasgow Haskell Compilation System, version 8.10.4
+The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
 Check `cabal` version: 
@@ -169,19 +162,19 @@ git fetch --all --recurse-submodules --tags
 Switch the repository to the latest tagged commit: 
 
 ```bash
-git checkout tags/1.27.0
+git checkout tags/1.29.0
 ```
 
 :::important
-You can check the latest available version/tag by visiting the `cardano-node` [Github Release](https://github.com/input-output-hk/cardano-node/releases) page. At the time of writing this, the current version is `1.27.0`.
+You can check the latest available version/tag by visiting the `cardano-node` [Github Release](https://github.com/input-output-hk/cardano-node/releases) page. At the time of writing this, the current version is `1.29.0`.
 :::
 
 #### Configuring the build options
 
-We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
+We explicitly use the last `ghc` version that we installed earlier (current version 8.10.7). This avoids defaulting to a system version of `ghc` that might be older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4
+cabal configure --with-compiler=ghc-8.10.7
 ```
 
 Update the local project file to use `libsodium` that you installed earlier.
