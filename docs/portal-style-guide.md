@@ -803,7 +803,7 @@ Helps you work with tables
 
 ### rest-book
 
-When you write guides for `cardano-wallet` or other components with an API, you might want to include the response for a certain request in your guide. It can be useful not to leave the environment of your editor as to not loose focus or get distracted. `rest-book` allows you to execute HTTP requests within your editor.
+When you write guides for `cardano-wallet` or other components with an API, you might want to include the response for a certain request in your guide. It can be useful not to leave the environment of your editor as to not lose focus or get distracted. `rest-book` allows you to execute HTTP requests within your editor.
 
 <Tabs
   defaultValue="vscode"
