@@ -1,6 +1,6 @@
 ---
 id: guild-ops-suite
-title: Get Stared with Guild Operators Tools
+title: Get Started with Guild Operators Tools
 sidebar_label: Guild Operators Suite
 description: Get Started with Guild Operators Tools
 image: ./img/og-developer-portal.png
