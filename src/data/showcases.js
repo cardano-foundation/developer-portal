@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "NFT Public Library",
+    description:
+        "The NFTPL is a repository of Public Domain works that have been minted into NFTs to ensure that they will remain freely available to be enjoyed by future generations.",
+    preview: require("./showcase/NFTPublicLibrary.png"),
+    website: "https://nftpubliclibrary.org/",
+    source: null,
+    tags: ["educational", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
