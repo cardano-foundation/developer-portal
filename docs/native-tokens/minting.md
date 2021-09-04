@@ -114,7 +114,7 @@ We will be using this technique of setting variables along the way to make it ea
 
 ### Check your node status
 
-We also want to check if our Node is up to date. To do that, we check the current epoch/block and compare it to the current value displayed in the [Cardano Explorer for the testnet](https://explorer.cardano-testnet.iohkdev.io/de.html).
+We also want to check if our Node is up to date. To do that, we check the current epoch/block and compare it to the current value displayed in the [Cardano Explorer for the testnet](https://explorer.cardano-testnet.iohkdev.io/en.html).
 
 ```bash
 cardano-cli query tip --$testnet
