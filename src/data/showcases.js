@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CryptoPhages",
+    description:
+      "CryptoPhages are here to infect the Cardano blockchain! This unique pixel art consisting of bacteriophages will brighten your day!",
+    preview: require("./showcase/phages.png"),
+    website: "https://cryptophages.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
