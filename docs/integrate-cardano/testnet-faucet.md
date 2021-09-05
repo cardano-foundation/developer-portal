@@ -16,7 +16,7 @@ The testnet faucet is a service that provides test ada (tAda) to users of the Ca
 1. Click on `Request` and the funds will be in the testnet account you specified within a few minutes. Use the [Cardano testnet explorer](https://explorer.cardano-testnet.iohkdev.io/) in case you want to check any transactions on the Cardano testnet.
 
 <div id="faucetcontainer">
-<iframe name="iframe" height="300" width="100%" scrolling="no" src="https://testnets.cardano.org/en/testnets/cardano/tools/faucet/" class="faucet"></iframe>
+<iframe name="iframe" height="750" width="100%" scrolling="yes" src="https://testnets.cardano.org/en/testnets/cardano/tools/faucet/" class="faucet"></iframe>
 </div>
 
 
