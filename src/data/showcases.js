@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Wizard Crypt",
+    description:
+      "A vision for a browser-based, exploration-focused, party-building RPG that starts with an entirely on-chain collection of 15,555 completely unique CSS animations called Spellz.",
+    preview: require("https://wizardcrypt.com/wp-content/uploads/2021/09/cropped-favicon.png"),
+    website: "https://wizardcrypt.com/",
+    source: null,
+    tags: ["nft"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
