@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CardanoGens",
+    description:
+      "The 1st Generative Art Collection living on the Awesome Cardano Chain",
+    preview: require("./showcase/Cardano-Gens.jpg"),
+    website: "https://cardanogens.com/",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
