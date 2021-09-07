@@ -27,7 +27,7 @@ Take a look at the [Plutus Tutorial](https://playground.plutus.iohkdev.io/tutori
 Talk to others about [Plutus on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-plutus/148) or if you prefer Telegram we welcome you to the [Cardano Developers Telegram Group](https://t.me/CardanoDevelopersOfficial).
 
 ## Get started with Haskell
-Haskell is the the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend you check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 
+Haskell is the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend you check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 
 
 Learning Haskell is made easy with this illustrated guide, one of the most engaging ways to learn this fascinating programming language.
 

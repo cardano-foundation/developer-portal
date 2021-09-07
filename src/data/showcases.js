@@ -137,7 +137,7 @@ const Showcases = [
   {
     title: "Cardano Wall",
     description:
-      "Demonstrates serveral use cases for transaction metdata. You can sign messages and create proof of existence for files.",
+      "Demonstrates serveral use cases for transaction metadata. You can sign messages and create proof of existence for files.",
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
@@ -475,15 +475,6 @@ const Showcases = [
       "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
-    source: null,
-    tags: ["nft"],
-  },
-  {
-    title: "unsigned_algorithms",
-    description:
-      "Algorithmically generated colorful art living on Cardano.",
-    preview: require("./showcase/unsigned-algorithms.png"),
-    website: "https://www.unsigs.com",
     source: null,
     tags: ["nft"],
   },

@@ -10,7 +10,7 @@ We wanted to build an open and inclusive, easy to use developer portal that offe
 
 ## Installation
 
-To contribute to the Cardano developer portal you must first install it locally.
+To contribute to the Cardano developer portal, you must first install it locally.
 
 ### Requirements
 
@@ -20,7 +20,7 @@ To contribute to the Cardano developer portal you must first install it locally.
 
 ### Local development
 
-To get a local development environment clone the repository, navigate into the `developer-portal` folder, install dependencies and start the development server. Most changes are reflected live without having to restart the server. By default, a browser window will open at `http://localhost:3000`.
+To get a local development environment, clone the repository, navigate into the `developer-portal` folder, install dependencies, and start the development server. Most changes are reflected live without having to restart the server. By default, a browser window will open at `http://localhost:3000`.
 
 ```sh
 git clone https://github.com/cardano-foundation/developer-portal.git
@@ -30,7 +30,7 @@ yarn start
 ```
 
 :::info Limitations of the development build
-The development mode will have minor features not working. Like for example, only blurry images in the responsive images on showcase and tools, search limitations, and some data has fake values because of performance reasons.
+The development mode will have minor features not working. For example, only blurry images in the responsive images on showcase and tools, search limitations, and some data has fake values because of performance reasons.
 :::
 
 ### Production build
@@ -39,7 +39,7 @@ The development mode will have minor features not working. Like for example, onl
 yarn build
 ```
 
-Use this command instead of `yarn start` to generate static content into the build directory that can be served using any static contents hosting service.
+Use this command instead of `yarn start` to generate static content into the build directory that can be served using any static content hosting service.
 
 ## Project structure
 
@@ -99,7 +99,7 @@ developer-portal
 - `/blog/` - Contains the blog Markdown files for the developer spotlight.
 - `/docs/` - Contains the Markdown files for the docs. Customize the order of the docs sidebar in `sidebars.js`.
 - `/examples/` - Contains example projects for the Markdown files in the docs. *The structure is not final and will likely change in the future*
-- `/src/` - Non-documentation files like pages or custom React components. You don't have to strictly put your non-documentation files in here but putting them under a centralized directory makes it easier to specify in case you need to do some sort of linting/processing.
+- `/src/` - Non-documentation files like pages or custom React components. You don't have to strictly put your non-documentation files in here, but putting them under a centralized directory makes it easier to specify in case you need to do some sort of linting/processing.
   - `/src/data/builder-tools` - Screenshots for the builder tools section.
   - `/src/data/builder-tools.js` - Definition file for the builder tools section.
   - `/src/data/showcase` - Screenshots for the showcase section.
