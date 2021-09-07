@@ -11,7 +11,7 @@ To make the difference between Cardano mainnet functionality and testnet functio
 Of course, there are still testnets and devnets up and running. If you miss something, please read [where the old content of developers.cardano.org has gone](/docs/get-started/testnets-and-devnets#where-has-the-old-content-of-developerscardanoorg-gone).
 
 ## Cardano testnet
-The Alonzo testnet is what we usually mean when we refer to `Cardano testnet` or `testnet` in the developer portal. It is your playground when testing [Cardano integration](/docs/integrate-cardano/), building with [transaction metadata](/docs/transaction-metadata/), exploring [native tokens](/docs/native-tokens/) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/). It reflects the functionality of the current Cardano mainnet.
+The Alonzo testnet is what we usually mean when we refer to `Cardano testnet` or `testnet` in the developer portal. It is your playground when testing [Cardano integration](/docs/integrate-cardano/), building with [transaction metadata](/docs/transaction-metadata/), exploring [native tokens](/docs/native-tokens/) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/).
 
 Because the Cardano testnet is an independent network, separate from the Cardano mainnet, it requires its own token: test ada (tADA).  
 
@@ -23,10 +23,13 @@ To get free test ada, you need to visit the [Cardano testnet faucet](../integrat
 ## Where to get a testnet wallet?
 - [Daedalus Wallet for Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/get-started/wallet/) is the testnet version of Daedalus wallet.
 
+## Which block explorers can I use for the Cardano testnet?
+- [explorer.cardano-testnet.iohkdev.io](https://explorer.cardano-testnet.iohkdev.io/) is a testnet block explorer by [IOHK](https://iohk.io).
+- [testnet.cardanoscan.io](https://testnet.cardanoscan.io) is a testnet block explorer by [Cardanoscan](https://cardanoscan.io).
+
 ## What kind of monitoring tools are available for the testnet?
 - [Grafana dashboard](https://monitoring.cardano-testnet.iohkdev.io/grafana/d/Oe0reiHef/cardano-application-metrics-v2?orgId=1&refresh=1m&from=now-7d&to=now) provides many health metrics.
 - [tokentool.io](https://tokentool.io) lists all native tokens on mainnet and testnet.
-- [Cardano testnet explorer](https://explorer.cardano-testnet.iohkdev.io/) is the block explorer for the testnet.
 
 ## Where has the old content of developers.cardano.org gone?
 The developer portal covers everything that you can do on Cardano Mainnet today. To illustrate this difference, we moved the old content of [developers.cardano.org](https://developers.cardano.org) to [testnets.cardano.org](https://testnets.cardano.org) with the launch of this developer portal.
