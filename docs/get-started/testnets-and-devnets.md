@@ -8,12 +8,10 @@ image: ./img/og-developer-portal.png
 
 To make the difference between Cardano mainnet functionality and testnet functionality clearer, we moved the old content of [developers.cardano.org](https://developers.cardano.org) to [testnets.cardano.org](https://testnets.cardano.org) with the launch of this developer portal.
 
-Of course, there are still testnets and devnets up and running. If you miss something, please read [where the old content of developers.cardano.org has gone](/docs/get-started/testnets-and-devnets#where-has-the-old-content-of-developerscardanoorg-gone).
-
 ## Cardano testnet
-The `Cardano testnet` is your playground when testing [Cardano integration](/docs/integrate-cardano/), building with [transaction metadata](/docs/transaction-metadata/), exploring [native tokens](/docs/native-tokens/) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/).
+The [Cardano testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) is your playground when testing [Cardano integration](/docs/integrate-cardano/), building with [transaction metadata](/docs/transaction-metadata/), exploring [native tokens](/docs/native-tokens/) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/).
 
-Because the Cardano testnet is an independent network, separate from the Cardano mainnet, it requires its own token: test ada (tADA).  
+Because the [Cardano testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) is an independent network, separate from the Cardano mainnet, it requires its own token: test ada (tADA).  
 
 ### Where to get test ada?
 Test ada is worth nothing. With it you can safely perform all tests free of charge - the reason why you want to develop on the testnet. 
