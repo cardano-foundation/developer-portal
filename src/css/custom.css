@@ -111,7 +111,7 @@ div#faucetcontainer {
   /* determines where the bottom of the page cuts off */
   margin-left: -300px;
   /* defines the left clipping of the faucet page */
-  margin-top: -1270px !important;
+  margin-top: -1010px !important;
   /* defines the top clipping of the faucet page */
   overflow: hidden;
   -webkit-resize: none;
