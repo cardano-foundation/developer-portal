@@ -52,7 +52,7 @@ html[data-theme="dark"] {
 
 .card {
   padding: 0rem;
-  margin-top: 0rem;
+  margin-top: 1rem;
   animation: fadeInUp 400ms backwards;
   animation-delay: 150ms;
   transition-property: all;
