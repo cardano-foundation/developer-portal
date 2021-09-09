@@ -59,6 +59,9 @@ module.exports = {
       "native-tokens/minting-nfts",
       "native-tokens/cardano-token-registry"
     ],
+    "Create Smart Contracts": [
+      "smart-contracts/overview",
+    ],
     "Fund your Project": [
       "fund-your-project/overview", 
       "fund-your-project/project-catalyst", 
