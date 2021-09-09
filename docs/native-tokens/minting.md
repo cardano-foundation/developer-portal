@@ -283,10 +283,10 @@ $ txix="0"
 $ funds="1000000000"
 $ policyid=$(cat policy/policyID)
 ```
-Also, transactions only used to *calculate* fees still must have a fee set, even though this fee parameter is ignored. (The calculated fee will be included the second time the command is run: when the *real* transaction is built.)  So this variable must also be set:
+Also, transactions only used to calculate fees must still have a fee set, though it doesn't have to be exact.  The calculated fee will be included *the second time* this transaction is built (i.e. the transaction to sign and submit).  This first time, only the fee parameter *length* matters, so here we choose a maximum value ([note](https://github.com/cardano-foundation/developer-portal/pull/283#discussion_r705612888)): 
 
 ```bash
-$ fee="0"
+$ fee="300000"
 ```
 
 Now we are ready to build the first transaction to calculate our fee and save it in a file called <i>matx.raw</i>.
