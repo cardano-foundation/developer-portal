@@ -60,6 +60,8 @@ module.exports = {
     ],
     "Create Smart Contracts": [
       "smart-contracts/overview",
+      "smart-contracts/marlowe",
+      "smart-contracts/plutus",
     ],
     "Fund your Project": [
       "fund-your-project/overview", 
