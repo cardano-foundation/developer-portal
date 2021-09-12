@@ -10,7 +10,7 @@ image: ./img/og-developer-portal.png
 
 Welcome to the Cardano Developer Portal. This content is for technical people; if you are looking for a Cardano wallet please head to the [showcase section](../../showcase).
 
-It is noteworthy to mention that the Developer Portal covers everything you can do **today** on the Cardano **mainnet**. If your goal is to learn about Cardano's [smart contracts](smart-contracts-signpost), please visit [this signpost article](smart-contracts-signpost) to point you in the right direction.
+It is noteworthy to mention that the Developer Portal covers everything you can do **today** on the Cardano **mainnet**. 
 
 ## What is Cardano? 
 Cardano is a collection of [open-source](https://en.wikipedia.org/wiki/Open_source), patent-free protocols. It's a platform that enables you to store, transform, and manage value, identity, and governance. Cardano follows research not opinions or bias.
@@ -33,6 +33,7 @@ If you have experience with other smart contract platforms and want to start bui
 - It makes sense to get your head around the [concept of UTxO](technical-concepts#unspent-transaction-output-utxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/).
 - [Tokens on Cardano](../native-tokens/) are not built with smart contracts. Instead, tokens are native and live on the ledger. The protocol treats them as first-class citizens, like ada. It is quite different from our peers that don’t have native tokens and need to use a smart contract to send tokens. 
 - [Native tokens](../native-tokens/) use the core infrastructure, and the network has to do everything else instead of running a smart contract and calling a method called 'transfer'. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
+- [Smart contracts](../smart-contracts/) work different on Cardano because of the [eUTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/). Misconceptions were floating around suggesting [that Cardano only supports one transaction per block](https://sundaeswap-finance.medium.com/concurrency-state-cardano-c160f8c07575).
 
 ## What you can do on Cardano today
 - You can send and receive [native tokens](../native-tokens/), including ada.
@@ -40,6 +41,7 @@ If you have experience with other smart contract platforms and want to start bui
 - You can [vote with your ada](../fund-your-project/project-catalyst#participate-as-a-voter) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on [Project Catalyst](../fund-your-project/project-catalyst).
 - You can earn ada rewards by [voting on proposals](../fund-your-project/project-catalyst#participate-as-a-voter). 
 - You can participate in the [Cardano Improvement Proposals](technical-concepts#cardano-improvement-proposals-cip) (CIP) process.
+- You can interact with [smart contracts](../smart-contracts/).
 
 ## Why build on Cardano?
 - Cardano offers a better infrastructure to build products because it is faster, more secure, and cost-effective.
@@ -55,3 +57,4 @@ If you have experience with other smart contract platforms and want to start bui
 - You can add [metadata to transactions](../transaction-metadata/) to give transactions a story, a background or even an identity. 
 - You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/). You can even use [transaction metadata](../transaction-metadata/) to validate and verify external physical products and genuine articles.
 - You can [setup, manage and maintain a stake pool](../operate-a-stake-pool/) on Cardano.
+- You can [create smart contracts](../smart-contracts/).
