@@ -49,6 +49,22 @@ export const Tags = {
     icon: null,
   },
 
+   // Marlowe
+   marlowe: {
+    label: "Marlowe",
+    description:
+      "Marlowe",
+    icon: null,
+  },
+
+  // Plutus
+  plutus: {
+    label: "Plutus",
+    description:
+      "Plutus",
+    icon: null,
+  },
+
   // Stake Pool Operator Tools
   operatortool: {
     label: "Operator Tools",
@@ -177,6 +193,22 @@ const Showcases = [
     website: "https://github.com/emesik/cardano-python",
     getstarted: null,
     tags: ["library", "api"],
+  },
+  {
+    title: "Plutus Playground",
+    description: "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
+    preview: require("./builder-tools/plutus-playground.png"),
+    website: "https://playground.plutus.iohkdev.io",
+    getstarted: "/docs/smart-contracts/plutus#plutus-playground",
+    tags: ["featured", "getstarted", "plutus"],
+  },
+  {
+    title: "Marlowe Playground",
+    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
+    preview: require("./builder-tools/marlowe-playground.png"),
+    website: "https://alpha.marlowe.iohkdev.io/#/",
+    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
+    tags: ["featured", "getstarted", "marlowe"],
   },
 ];
 
