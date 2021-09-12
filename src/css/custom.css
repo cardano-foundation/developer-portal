@@ -52,13 +52,13 @@ html[data-theme="dark"] {
 
 .card {
   padding: 0rem;
-  margin-top: 0rem;
+  margin-top: 1rem;
   animation: fadeInUp 400ms backwards;
   animation-delay: 150ms;
   transition-property: all;
   transition-duration: 200ms;
   box-shadow: 0 8px 28px 4px rgba(86, 91, 115, 0.15);
-  height: calc(100% - 30px);
+  height: calc(100% - 15px);
 }
 
 .card a {
