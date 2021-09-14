@@ -40,10 +40,10 @@ You can obtain the current **Cardano** blockchain network configuration files he
 **NetworkMagic**: `764824073`
 
 ```
-https://hydra.iohk.io/build/7191656/download/1/mainnet-config.json
-https://hydra.iohk.io/build/7191656/download/1/mainnet-byron-genesis.json
-https://hydra.iohk.io/build/7191656/download/1/mainnet-shelley-genesis.json
-https://hydra.iohk.io/build/7191656/download/1/mainnet-topology.json
+https://hydra.iohk.io/build/7370192/download/1/mainnet-config.json
+https://hydra.iohk.io/build/7370192/download/1/mainnet-byron-genesis.json
+https://hydra.iohk.io/build/7370192/download/1/mainnet-shelley-genesis.json
+https://hydra.iohk.io/build/7370192/download/1/mainnet-topology.json
 ```
 
 #### Testnet / Sandbox
