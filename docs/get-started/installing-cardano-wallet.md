@@ -73,6 +73,10 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 ```bash
 cabal configure --with-compiler=ghc-8.10.4 --constraint="random<1.2"
 ```
+:::important
+Make sure compiler version and random lib version correspond with the versions installed. 
+:::
+
 
 #### Building and installing the node
 
@@ -108,6 +112,9 @@ cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.5.26/x/ca
 
 </Tabs>
 
+:::important
+Make sure compiler version and wallet version correspond with the versions installed. 
+:::
 
 Check the version that has been installed:
 ```
