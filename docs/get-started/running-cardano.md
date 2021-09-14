@@ -24,6 +24,7 @@ The `cardano-node` application requires at least four configuration files to run
 - **Main Config**: It contains general node settings such as **logging** and **versioning**. It also points to the **Byron Genesis** and the **Shelly Genesis** file.
 - **Byron Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Byron Era** of the **Cardano** blockchain.
 - **Shelly Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Shelly Era** of the **Cardano** blockchain.
+- **Alonzo Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Alonzo Era** of the **Cardano** blockchain.
 - **Topology**: It contains the list of network peers (**`IP Address` and `Port` of other nodes running the blockchain network**) that your node will connect to.
 
 :::important
@@ -43,6 +44,7 @@ You can obtain the current **Cardano** blockchain network configuration files he
 https://hydra.iohk.io/build/7191656/download/1/mainnet-config.json
 https://hydra.iohk.io/build/7191656/download/1/mainnet-byron-genesis.json
 https://hydra.iohk.io/build/7191656/download/1/mainnet-shelley-genesis.json
+https://hydra.iohk.io/build/7191656/download/1/mainnet-alonzo-genesis.json
 https://hydra.iohk.io/build/7191656/download/1/mainnet-topology.json
 ```
 
@@ -54,6 +56,7 @@ https://hydra.iohk.io/build/7191656/download/1/mainnet-topology.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-config.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json
+https://hydra.iohk.io/bjob/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-alonzo-genesis.json
 https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-topology.json
 ```
 
