@@ -702,7 +702,14 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
-];
+  {
+    title: "Crypto OGs",
+    description:" Each of these unique individuals have contributed to crypto revolution in their own way. All are now immortalized on the Cardano Blockchain as a Non Fungible Tokens (NFT).",
+    preview: require("./showcase/cryptoogs.png"),
+    website: "https://www.cryptocanuck.online",
+    source: null,
+    tags: ["nft"],
+  },];
 
 export const TagList = Object.keys(Tags);
 function sortShowcases() {
