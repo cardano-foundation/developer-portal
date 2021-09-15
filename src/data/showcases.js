@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "FabulArt",
+    description:
+      "We are the leading luxury NFTs brand on Cardano Blockchain. We offer exclusive events and fine digital art such as our worldwide-known Roleggs collection: 2000 unique and 3D interactive Fabergè-inspired Eggs.",
+    preview: require("./showcase/fabulart.png"),
+    website: "https://fabul.art",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
