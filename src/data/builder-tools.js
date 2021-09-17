@@ -80,7 +80,14 @@ export const Tags = {
       "Oracle tools.",
     icon: null,
   },
-};
+  
+  // Tatum
+  tatum: {
+    label: "Developer Tools",
+    description:
+      "Tatum",
+    icon: null,
+  },
 
 // Add your builder tool to (THE END OF) this list.
 // Please don't add the "featured"-tag yourself.
@@ -209,6 +216,14 @@ const Showcases = [
     website: "https://alpha.marlowe.iohkdev.io/#/",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
     tags: ["featured", "getstarted", "marlowe"],
+  },
+  {
+    title: "Tatum",
+    description: "Tatum provides SDKs, next-gen infrastructure, and a simple, unified REST API with support for over 40 blockchain protocols including Cardano. With Tatum, developers can quickly and easily build blockchain apps, even without any previous blockchain experience.",
+    preview: require("./builder-tools/tatum.png"),
+    website: "https://tatum.io/",
+    getstarted: "https://docs.tatum.io/your-first-app",
+    tags: ["getstarted", "tatum"],
   },
 ];
 
