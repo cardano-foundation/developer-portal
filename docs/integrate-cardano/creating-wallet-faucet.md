@@ -175,14 +175,14 @@ Now that we have a **wallet address**, we can then query the **UTXO** of the add
 
 ```bash
 cardano-cli query utxo \
---mary-era \
+--shelley-mode \
 --testnet-magic 1097911063 \
 --address $(cat /home/user/cardano/keys/payment1.addr)
 ```
 
 - `cardano-cli query utxo` : Queries the wallet address **UTXO**.
 
-- `--mary-era` : Specifies that we want to query using the **Mary Era** rules.
+- `--shelley-mode` : Specifies that we want to query using the **Mary Era** rules.
 
 - `--testnet-magic 1097911063` : Specifies that we want to query the `testnet` **Cardano** network.
 
@@ -265,7 +265,7 @@ Querying the **UTXO** for the second wallet `payment2.addr` should give you a fa
 
 ```bash
 cardano-cli query utxo \
---mary-era \
+--shelley-mode \
 --testnet-magic 1097911063 \
 --address $(cat /home/user/cardano/keys/payment2.addr)
 ```
@@ -304,7 +304,7 @@ We start by storing the current on-chain protocol parameters to a **JSON** file:
 ```bash
 cardano-cli query protocol-parameters \
   --testnet-magic 1097911063 \
-  --mary-era \
+  --shelley-mode \
   --out-file /home/user/cardano/protocol.json
 ```
 This will produce a **JSON** file that looks something like this:
@@ -345,7 +345,7 @@ cardano-cli transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
 --tx-out $(cat /home/user/cardano/keys/payment2.addr)+0 \
 --tx-out $(cat /home/user/cardano/keys/payment1.addr)+0 \
---mary-era \
+--shelley-mode \
 --fee 0 \
 --out-file /home/user/cardano/tx.draft
 ```
@@ -394,7 +394,7 @@ cardano-cli transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
 --tx-out $(cat /home/user/cardano/keys/payment2.addr)+250000000 \
 --tx-out $(cat /home/user/cardano/keys/payment1.addr)+749825831 \
---mary-era \
+--shelley-mode \
 --fee 174169 \
 --out-file /home/user/cardano/tx.draft
 ```
@@ -466,14 +466,14 @@ Checking the balances of both wallets `payment1` and `payment2`:
 
 ```bash
 # payment1 wallet UTXO
-❯ cardano-cli query utxo --mary-era --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment1.addr)
+❯ cardano-cli query utxo --shelley-mode --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment1.addr)
 
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     1        749825303 lovelace
 
 # payment2 wallet UTXO
-❯ cardano-cli query utxo --mary-era --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment2.addr)
+❯ cardano-cli query utxo --shelley-mode --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment2.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     0        250000000 lovelace
