@@ -13,6 +13,7 @@ class HydraBuildList extends React.Component {
         super()
         this.state = {
             isCurrent: false,
+            hasErrors: false,
             latest: latest,
             linux: linux,
             macos: macos,
@@ -33,7 +34,7 @@ class HydraBuildList extends React.Component {
                 this.setState({ ...this.state.latest, latest })
             })
             .catch(err => {
-                this.setState({err,isLoading: false})
+                this.setState({err, hasErrors: true})
             })
     }
     render() {
