@@ -71,7 +71,7 @@ You can check the latest available version / tag by visiting the `cardano-wallet
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4 --constraint="random<1.2"
+cabal configure --with-compiler=ghc-8.10.4 
 ```
 
 #### Building and installing the node
