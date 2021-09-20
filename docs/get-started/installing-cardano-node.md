@@ -15,7 +15,7 @@ This guide will show you how to compile and install the `cardano-node` and `card
 If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
 
 <HydraBuildList
-    latest="740846"
+    latest="7408469"
     linux="7408438"
     macos="7408630"
     win64="7408538"/>

@@ -32,6 +32,9 @@ class HydraBuildList extends React.Component {
                 let latest = link.match(/\d+.*/) + "#tabs-constituents"
                 this.setState({ ...this.state.latest, latest })
             })
+            .catch(err => {
+                this.setState({err,isLoading: false})
+            })
     }
     render() {
         return (
