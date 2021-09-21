@@ -5,17 +5,20 @@ sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
 image: ./img/og-developer-portal.png
 --- 
+import HydraBuildList from '@site/src/components/docs/HydraBuildList';
 
-### Overview 
+### Overview
 
 This guide will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. It will enable you to interact with the **Cardano** blockchain, including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting/burning **native tokens**, creating a **stake pool**, executing **smart contracts**, and so much more!
 
 :::note
-If you want to avoid compiling the binaries yourself, You can download the latest pre-built binaries of `cardano-node` and `cardano-cli` from the links below. 
+If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
 
-- [Linux](https://hydra.iohk.io/build/6263009)
-- [MacOS](https://hydra.iohk.io/build/6263000)
-- [Windows](https://hydra.iohk.io/build/6263143)
+<HydraBuildList
+    latest="7408469"
+    linux="7408438"
+    macos="7408630"
+    win64="7408538"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
