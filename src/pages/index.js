@@ -53,6 +53,16 @@ const features = [
     ),
   },
   {
+    title: "Create Smart Contracts",
+    imageUrl: "img/card-smart-contracts.svg",
+    targetUrl: "docs/smart-contracts/",
+    description: (
+      <>
+        Discover Marlowe and Plutus and learn how to create smart contracts on Cardano.
+      </>
+    ),
+  },
+  {
     title: "Fund your Project",
     imageUrl: "img/card-fund-your-project.svg",
     targetUrl: "docs/fund-your-project/",

@@ -49,6 +49,22 @@ export const Tags = {
     icon: null,
   },
 
+   // Marlowe
+   marlowe: {
+    label: "Marlowe",
+    description:
+      "Marlowe",
+    icon: null,
+  },
+
+  // Plutus
+  plutus: {
+    label: "Plutus",
+    description:
+      "Plutus",
+    icon: null,
+  },
+
   // Stake Pool Operator Tools
   operatortool: {
     label: "Operator Tools",
@@ -162,12 +178,44 @@ const Showcases = [
     tags: ["oracle"],
   },
   {
-    title: "CNTools",
-    description: "CNTools is like a swiss army knife for pool operators to simplify typical operations regarding their wallet keys and pool management.",
+    title: "Guild Operators Suite",
+    description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./builder-tools/guild-operators.png"),
-    website: "https://github.com/cardano-community/guild-operators/blob/alpha/docs/Scripts/cntools.md",
+    website: "https://cardano-community.github.io/guild-operators/",
+    getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
+    tags: ["featured", "getstarted", "operatortool"],
+  },
+  {
+    title: "libada-go",
+    description: "A Golang library for Cardano network, it is used and maintained by Bitrue.",
+    preview: require("./builder-tools/libada-go.png"),
+    website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
-    tags: ["featured", "operatortool"],
+    tags: ["library"],
+  },
+  {
+    title: "Python Module",
+    description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
+    preview: require("./builder-tools/cardano-python.png"),
+    website: "https://github.com/emesik/cardano-python",
+    getstarted: null,
+    tags: ["library", "api"],
+  },
+  {
+    title: "Plutus Playground",
+    description: "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
+    preview: require("./builder-tools/plutus-playground.png"),
+    website: "https://playground.plutus.iohkdev.io",
+    getstarted: "/docs/smart-contracts/plutus#plutus-playground",
+    tags: ["featured", "getstarted", "plutus"],
+  },
+  {
+    title: "Marlowe Playground",
+    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
+    preview: require("./builder-tools/marlowe-playground.png"),
+    website: "https://alpha.marlowe.iohkdev.io/#/",
+    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
+    tags: ["featured", "getstarted", "marlowe"],
   },
 ];
 
@@ -285,7 +333,7 @@ function ensureShowcaseValid(showcase) {
     const hasGetStartedTag = showcase.tags.includes("getstarted");
     const isOperatorTool = showcase.tags.includes("operatortool");
 
-    if ((hasGetStartedTag && isOperatorTool) || (showcase.getstarted instanceof String &&
+    if ((hasGetStartedTag && isOperatorTool) && !(typeof showcase.getstarted === "string" &&
         (showcase.getstarted.startsWith("/docs/operate-a-stake-pool/")))
     ) {
       throw new Error(

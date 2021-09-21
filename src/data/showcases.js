@@ -17,6 +17,8 @@
  *   URL shortener, no app store links, or similar)
  * - The GitHub account that adds the project must not be new. 
  * - The GitHub account must have a history/or already be known in the Cardano community.
+ * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
+ *   details like which project was first is tribal attribute known to cause rift and conflicts.
  *
  * INSTRUCTIONS:
  * - Add your project in the JSON array below.
@@ -135,7 +137,7 @@ const Showcases = [
   {
     title: "Cardano Wall",
     description:
-      "Demonstrates serveral use cases for transaction metdata. You can sign messages and create proof of existence for files.",
+      "Demonstrates serveral use cases for transaction metadata. You can sign messages and create proof of existence for files.",
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
@@ -477,15 +479,6 @@ const Showcases = [
     tags: ["nft"],
   },
   {
-    title: "unsigned_algorithms",
-    description:
-      "Algorithmically generated colorful art living on Cardano.",
-    preview: require("./showcase/unsigned-algorithms.png"),
-    website: "https://www.unsigs.com",
-    source: null,
-    tags: ["nft"],
-  },
-  {
     title: "ADA Dolls",
     description:
       "There are 10,000 unique dolls. These will be randomly generated from a possible outcome of 1,000,000 doll combinations.",
@@ -563,6 +556,15 @@ const Showcases = [
       "Collect, trade, have fun, save real dogs!",
     preview: require("./showcase/crypto-doggies.png"),
     website: "https://cryptodoggies.org",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "The Galgos",
+    description:
+      "The Galgos is a set of limited edition hand drawn NFT collectibles with functionality. Collect, trade, discover.",
+    preview: require("./showcase/the-galgos.png"),
+    website: "https://thegalgos.io",
     source: null,
     tags: ["nft"],
   },

@@ -12,7 +12,7 @@ Built around ‘Active Campaigns’, the Project Catalyst Ideascale contains sev
 
 Within each active campaign, you can find a campaign brief. This is a short explainer of what proposals should include, how to meet the campaign's requirements and some guiding questions for proposals. You will also find a stage flow that guides you through the timeline of each campaign.
 
-If you click on ‘Browse Ideas’, you can see a [list of other proposals](https://cardano.ideascale.com/a/ideas/recent/campaign-filter/byids/campaigns/25873/stage/unspecified) that community members have already created. If you’re thinking of submitting a proposal, this is a great way to see what goes into a successful proposal and how you can position your proposal for maximum traction. For voters and community participants, this is also where you can join discussions or upvote your favourite proposal.
+If you click on ‘Browse Ideas’, you can see a [list of other proposals](https://cardano.ideascale.com/a/ideas/recent/campaign-filter/byids/campaigns/25873/stage/unspecified) that community members have already created. If you’re thinking of submitting a one, this is a great way to see what goes into a successful proposal and how you can position your proposal for maximum traction. For voters and community participants, this is also where you can join discussions or upvote your favourite proposal.
 
 :::tip Catalyst Announcements
 The best way to keep up to date with Project Catalyst is to follow [the announcement channel on Telegram](https://t.me/cardanocatalyst). 

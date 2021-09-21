@@ -33,7 +33,7 @@ library from any common programming language (even C and WebAssembly)!
 Serialization/deserialization code is automatically generated from
 Cardano’s official specification, which guarantees it can easily stay up
 to date! We do this using an EMURGO-written tool called [cddl-codegen](https://github.com/Emurgo/cddl-codegen)
-which can be re-used for other tasks such as automatically generate a
+which can be re-used for other tasks such as automatically generating a
 Rust library for Cardano metadata specifications!
 
 It is also very easy to create scripts in Rust or WASM to share with

@@ -16,7 +16,6 @@ Minting NFTs will follow the same process, with only a few tweaks. If you want t
 1. A running and synced Cardano node - accessible through the `cardano-cli` command. This guide is written with `cardano-cli` v 1.27.0. Some commands may be subject to change.
 2. You have some knowledge in Linux as to navigation between directories, creating and editing files, and setting and inspecting variables via Linux shell.
 
-
 ## Overview
 This tutorial will give you a copy & pastable walk through the complete token lifecycle:
 
@@ -106,7 +105,6 @@ testnet="testnet-magic 1097911063"
 tokenname1="Testtoken"
 tokenname2="SecondTesttoken"
 tokenamount="10000000"
-fee="0"
 output="0"
 ```
 
@@ -114,7 +112,7 @@ We will be using this technique of setting variables along the way to make it ea
 
 ### Check your node status
 
-We also want to check if our Node is up to date. To do that, we check the current epoch/block and compare it to the current value displayed in the [Cardano Explorer for the testnet](https://explorer.cardano-testnet.iohkdev.io/de.html).
+We also want to check if our Node is up to date. To do that, we check the current epoch/block and compare it to the current value displayed in the [Cardano Explorer for the testnet](https://explorer.cardano-testnet.iohkdev.io/en).
 
 ```bash
 cardano-cli query tip --$testnet
@@ -131,7 +129,7 @@ Should give you an output like this
 }
 ```
 
-Epoch and slot number should match when being compared to the Cardano Explorer for testnet.
+Epoch and slot number should match when being compared to the Cardano [Explorer for testnet](https://explorer.cardano-testnet.iohkdev.io/en)
 
 ![img](../../static/img/nfts/cardano_explorer_testnet.png)
 
@@ -285,9 +283,14 @@ $ txix="0"
 $ funds="1000000000"
 $ policyid=$(cat policy/policyID)
 ```
+Also, transactions only used to calculate fees must still have a fee set, though it doesn't have to be exact.  The calculated fee will be included *the second time* this transaction is built (i.e. the transaction to sign and submit).  This first time, only the fee parameter *length* matters, so here we choose a maximum value ([note](https://github.com/cardano-foundation/developer-portal/pull/283#discussion_r705612888)): 
+
+```bash
+$ fee="300000"
+```
 
 Now we are ready to build the first transaction to calculate our fee and save it in a file called <i>matx.raw</i>.
-We will reference the variables in our transaction to improve readability because we saved almost all of the needed values in variables. 
+We will reference the variables in our transaction to improve readability because we saved almost all of the needed values in variables.
 This is what our transaction looks like:
 ```bash
 cardano-cli transaction build-raw \
