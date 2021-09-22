@@ -705,7 +705,7 @@ const Showcases = [
   {
     title: "cardano-tools.io",
     description:
-      "The most advanced CNFT maker. You just pay network fees.",
+      "An advanced CNFT maker. You just pay network fees.",
     preview: require("./showcase/cardano-tools.io.png"),
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
