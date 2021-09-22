@@ -132,23 +132,23 @@ Available options:
 ### cardano-node parameters
 
 :::note
-In this section, we will use the path `/home/user/cardano` to store all the `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
+In this section, we will use the path `/home/$USER/cardano` to store all the `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
 :::
 We will focus on six key command-line parameters for running a node: 
 
 **`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](/docs/get-started/running-cardano#configuration-files).
 
-> For example, If you have downloaded the `topology.json` file to the path `/home/user/cardano/topology.json`, then the argument would be something like this:
+> For example, If you have downloaded the `topology.json` file to the path `/home/$USER/cardano/topology.json`, then the argument would be something like this:
 ```
---topology /home/user/cardano/topology.json
+--topology /home/$USER/cardano/topology.json
 ```
 
 **`--database-path`**: This expects the path to a directory where we will store the actual blockchain data like **blocks**, **transactions**, **metadata**, and other data type that people stored in the **Cardano** blockchain. We explore how we can query those kinds of data in the cardano-db-sync section. ***@TODO: link to the cardano-db-sync section.***
 
-> For example, if we decide that all files required by `cardano-node` will be in the path `/home/user/cardano/`. Then we could create a database directory like this, `mkdir -p /home/user/cardano/db`.
+> For example, if we decide that all files required by `cardano-node` will be in the path `/home/$USER/cardano/`. Then we could create a database directory like this, `mkdir -p /home/$USER/cardano/db`.
 > The directory structure would then be something like this:
 ```
-/home/user/cardano/
+/home/$USER/cardano/
 ├── db
 ├── testnet-alonzo-genesis.json
 ├── testnet-byron-genesis.json
@@ -157,9 +157,9 @@ We will focus on six key command-line parameters for running a node:
 └── testnet-topology.json
 1 directory, 4 files
 ```
-> As you may have noticed, we are planning to run a `testnet` node in this example and have downloaded the configuration files into the `/home/user/cardano/` directory. We also see that we have created the `db` directory inside `/home/user/cardano/` successfully. The argument would look something like this: 
+> As you may have noticed, we are planning to run a `testnet` node in this example and have downloaded the configuration files into the `/home/$USER/cardano/` directory. We also see that we have created the `db` directory inside `/home/$USER/cardano/` successfully. The argument would look something like this: 
 ```
---database-path /home/user/cardano/db
+--database-path /home/$USER/cardano/db
 ```
 > Please download and move the configuration files to your Cardano directory as shown above to continue following this guide.
 
@@ -169,7 +169,7 @@ We will focus on six key command-line parameters for running a node:
 > 
 > Here is an example `--socket-path` argument for **Linux**:
 ```
---socket-path /home/user/cardano/db/node.socket
+--socket-path /home/$USER/cardano/db/node.socket
 ```
 > As you can see, the argument points to a file since **unix sockets** are represented as files (like everything else in **Linux**). In this case, we put the socket file in the `db` directory that we have just created before.
 > 
@@ -197,7 +197,7 @@ We will focus on six key command-line parameters for running a node:
 **`--config`**: This expects the path to the main configuration file that we have downloaded previously.
 > Here is an example `--config` argument:
 ```
---config /home/user/cardano/testnet-config.json
+--config /home/$USER/cardano/testnet-config.json
 ```
 > Please make sure that the `alonzo-genesis.json`, `byron-genesis.json` and `shelley-genesis.json` are in the same directory as the `config.json`.
 
@@ -205,12 +205,12 @@ Here is a realistic example for running `cardano-node`:
 
 ```bash
 cardano-node run \
---config /home/user/cardano/testnet-config.json \
---database-path /home/user/cardano/db/ \
---socket-path /home/user/cardano/db/node.socket \
+--config /home/$USER/cardano/testnet-config.json \
+--database-path /home/$USER/cardano/db/ \
+--socket-path /home/$USER/cardano/db/node.socket \
 --host-addr 127.0.0.1 \
 --port 1337 \
---topology /home/user/cardano/testnet-topology.json
+--topology /home/$USER/cardano/testnet-topology.json
 ```
 
 If you have everything set correctly, you should see something like this:
@@ -252,13 +252,13 @@ Syncing the blockchain from zero can take a while. Please be patient. If you wan
 
 Now that we have `cardano-node` running and syncing, we can test it out by querying the blockchain tip data; which is the current point your local node is synced. To do this, we use the `cardano-cli` command-line application.
 
-But before we can do that, `cardano-cli` and other **Cardano** software components need to know where the node socket file is located. We saved it to the path `/home/user/cardano/db/node.socket` in the previous example. The components read the shell environment variable `CARDANO_NODE_SOCKET_PATH` to find this.
+But before we can do that, `cardano-cli` and other **Cardano** software components need to know where the node socket file is located. We saved it to the path `/home/$USER/cardano/db/node.socket` in the previous example. The components read the shell environment variable `CARDANO_NODE_SOCKET_PATH` to find this.
 
 So we will set that in `~/.bashrc` or `~/.zshrc`, depending on which shell application that you use. In Windows, you can follow this guide: [How to Set Environment Variable in Windows](https://phoenixnap.com/kb/windows-set-environment-variable).
 
 Add this line to the bottom of your shell profile (**MacOS** and **Linux**):
 ```
-export CARDANO_NODE_SOCKET_PATH="/home/user/cardano/db/node.socket"
+export CARDANO_NODE_SOCKET_PATH="/home/$USER/cardano/db/node.socket"
 ```
 
 Once saved, reload your shell/terminal for changes to take effect.
