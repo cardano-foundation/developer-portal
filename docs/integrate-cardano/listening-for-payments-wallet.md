@@ -40,7 +40,7 @@ In the meantime the transaction is then being processed and settled within the *
 
 Now let's get our hands dirty and see how we can implement something like this in actual code.
 
-### Generate wallet and request tADA
+### Generate wallet and request tAda
 
 First, we create our new **wallet** via `cardano-wallet` **REST API**:
 
@@ -197,7 +197,7 @@ var resp = await http.PostAsJsonAsync("wallets", new {
 
 #### Get unused wallet address to receive some payments
 
-We will get a **wallet address** to show to the customers and for them to send payments to the wallet. In this case we can use the address to request some `tADA` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) and simulate a payment:
+We will get a **wallet address** to show to the customers and for them to send payments to the wallet. In this case we can use the address to request some `tAda` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) and simulate a payment:
 
 <Tabs
   defaultValue="js"

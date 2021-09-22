@@ -43,7 +43,7 @@ In this section, We will use the path `/home/user/receive-ada-sample` to store a
 All the code examples in this article assumes that you will save all the source-code-files under the root of this directory.
 :::
 
-### Generate keys and request tADA
+### Generate keys and request tAda
 
 First, lets create a directory to store our sample project:
 

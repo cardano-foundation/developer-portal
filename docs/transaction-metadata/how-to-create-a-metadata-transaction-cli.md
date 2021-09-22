@@ -55,7 +55,7 @@ cardano-cli address build \
 --testnet-magic 1097911063
 ```
 
-Now that you have a **wallet address**, you can now request some `tADA` funds from the [testnet faucet](../integrate-cardano/testnet-faucet). 
+Now that you have a **wallet address**, you can now request some `tAda` funds from the [testnet faucet](../integrate-cardano/testnet-faucet). 
 
 Once you have some funds, we can now create the sample metadata that we want to store into the blockchain.
 
