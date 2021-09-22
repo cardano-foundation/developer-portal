@@ -819,3 +819,13 @@ When you write guides for `cardano-wallet` or other components with an API, you 
 </TabItem>
 
 </Tabs>
+
+## Editorial Style Guide
+To make everything consistent we should agree on spellings here.
+
+|  Term            | Comment                    |
+| ---------------- | -------------------------- |
+| `ada`            | When talking about the cryptocurrency, do not capitalize, unless at the beginning of a sentence. The idea behind this is to treat it like dollars or euros. If you are in doubt, in English, prefer ada over ADA.|
+| `stake pool`     | Two words. |
+| `tAda`           | Test ada is tAda, not tADA or TADA. |
+| `proof of stake` | Lower case. Hyphenate when followed by a noun: proof-of-stake systems. |
