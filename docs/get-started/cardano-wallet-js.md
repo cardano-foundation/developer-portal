@@ -6,7 +6,7 @@ description: Get Started with cardano-wallet-js
 image: ./img/og-developer-portal.png
 ---
 
-# cardano-wallet-js
+## cardano-wallet-js
 `cardano-wallet-js` is a javascript/typescript SDK for Cardano with a several functionalities. You can use it as a client for the official [cardano-wallet](https://github.com/input-output-hk/cardano-wallet) and also to create Native Tokens and NFTs. 
 
 ## Table of Contents
@@ -44,29 +44,21 @@ clients to perform common tasks on the cardano-blockchain, such as:
 
 Our project aims to provide an easy to use Javascript SDK for programmers, instead of
 exposing the raw REST structure to you. 
-
-Finally, it helps you to build desktop wallet clients - like [Daedalus](https://daedaluswallet.io/) - with
-embedded cardano-wallet binaries, so you don't necessarily have to 
-connect to a remote cardano-wallet server.
-
-## Warning
-The `cardano-wallet` backend was not designed to be exposed as a 
-public web service. The use case for it is close to 1 server <-> 1 client 
-(or a few clients). Don't try creating and 
-managing wallets if it's not running locally.
-
-# Requirements
+## Requirements
 Before start using the library you will need a `cardano-wallet` server running. If you have docker available you can just
 download the `docker-composer.yml` they provide and start it using `docker-compose`:
 
-    wget https://raw.githubusercontent.com/input-output-hk/cardano-wallet/master/docker-compose.yml
-    NETWORK=testnet docker-compose up
+```shell
+wget https://raw.githubusercontent.com/input-output-hk/cardano-wallet/master/docker-compose.yml
+NETWORK=testnet docker-compose up
+```
 
-> **NOTE:** You can find more information about different options to start the cardano-wallet server [here](https://github.com/input-output-hk/cardano-wallet)
-
+:::note 
+You can find more information about different options to start the cardano-wallet server [here](https://github.com/input-output-hk/cardano-wallet)
+:::
 ## Installation
 Using npm:
-```
+```shell
 npm i cardano-wallet-js
 ```
 ## Usage
@@ -86,7 +78,7 @@ let information = await walletServer.getNetworkInformation();
 console.log(information);
 ```
 This will print out something like this:
-```js
+```json
 {
     "network_tip": {
         "time": "2021-04-12T21:59:25Z",
@@ -124,7 +116,7 @@ let parameters = await walletServer.getNetworkParameters();
 console.log(parameters);
 ```
 This will print out something like this:
-```js
+```json
 {
     "slot_length": {
         "quantity": 1,
@@ -179,21 +171,19 @@ let clock = await walletServer.getNetworkClock();
 console.log(clock);
 ```
 This will print out something like this:
-```js
+```json
 {
 	"status": "available",
 	"offset": {
-			"quantity": 405623,
-			"unit": "microsecond"
+        "quantity": 405623,
+        "unit": "microsecond"
 	}
 }
 ```
 ## Useful operations
 
 ### Generate Recovery Phrases
-   The recovery phrase generation relies on [cardano-address](https://github.com/input-output-hk/cardano-addresses). The supported platforms for cardano-addresss are:
-   * Linux 64-bit
-   * Windows 64-bit
+   The recovery phrase generation relies on [bip39](https://github.com/bitcoinjs/bip39).
 ```js   
 const { Seed } = require('cardano-wallet-js');
     
@@ -205,7 +195,9 @@ Output:
 > "hip dust material keen buddy fresh thank program stool ill regret honey multiply venture imitate"
 ```
 
-> **IMPORTANT:** The recovery phrase is the only way you can restore you wallet and you **SHOULD KEEP IT SECURE AND PRIVATE**. You'll get a completeley different recovery phrase each time you execute the method. 
+:::important
+The recovery phrase is the only way you can restore you wallet and you **SHOULD KEEP IT SECURE AND PRIVATE**. You'll get a completeley different recovery phrase each time you execute the method. 
+:::
 
 For convenience, you can convert the recovery phrase into an array using this:
 ```js
@@ -245,18 +237,7 @@ Get wallet's utxo statistics:
 let statistics = await wallet.getUtxoStatistics();
 ```    
 Statistics will contain the UTxOs distribution across the whole wallet, in the form of a histogram similar to the one below.
-<pre><code>     │
- <span class="token number">100</span> ─
-     │
-     │                                 ┌───┐
-  <span class="token number">10</span> ─                         ┌───┐   │   │                   ┌───┐
-     │                 ┌───┐   │   │   │   │                   │   │
-     │                 │   │   │   │   │   │   ┌───┐           │   │
-   <span class="token number">1</span> ─ ┌───┐           │   │   │   │   │   │   │   │           │   │
-     │ │   │           │   │   │   │   │   │   │   │           │   │
-     │ │   │ │       │ │   │ │ │   │ ╷ │   │ ╷ │   │ ╷       ╷ │   │
-     └─┘   └─│───────│─┘   └─│─┘   └─│─┘   └─│─┘   └─│───────│─┘   └────
-           <span class="token number">10</span>μ₳    <span class="token number">100</span>μ₳   <span class="token number">1000</span>μ₳   <span class="token number">0.1</span>₳    <span class="token number">1</span>₳      <span class="token number">10</span>₳     <span class="token number">100</span>₳</code></pre>
+![Utxo Histogram](https://www.tangocrypto.com/images/cardano-wallet-js-utxo-histogram.png)
            
 Remove wallet:
 ```js
@@ -273,8 +254,9 @@ let oldPassphrase = 'tangocrypto';
 let newPassphrase = 'new-passphrase';
 wallet = await wallet.updatePassphrase(oldPassphrase, newPassphrase);
 ```
-> **NOTE**: the wallet itself doesn't hold the passphrase, you can check it's correctly updated trying to call a method needing the passphrase e.g: `sendPayment`
-
+:::note 
+The wallet itself doesn't hold the passphrase, you can check it's correctly updated trying to call a method needing the passphrase e.g: `sendPayment`
+:::
 ### Wallet addresses
 Cardano wallets are Multi-Account Hierarchy Deterministic that follow a variation of BIP-44 described [here](https://github.com/input-output-hk/implementation-decisions/blob/e2d1bed5e617f0907bc5e12cf1c3f3302a4a7c42/text/1852-hd-chimeric.md). All the addresses are derived from a root key (is like a key factory) which you can get from the recovery phrase. Also the wallets will always have 20 "consecutive" unused address, so anytime you use one of them new address will be "discovered" to keep the rule.
 ```js
@@ -340,7 +322,9 @@ The delegation meanwhile should look like this:
     }
 }
 ```
-> **NOTE**: Property `changes_at` will indicate the epoch at the delegation will take effect
+:::note 
+Property `changes_at` will indicate the epoch at the delegation will take effect
+:::
 
 If we ask again after/during the epoch 10, we should get the delgation in place:
 ```js
@@ -367,15 +351,19 @@ Get stake pool ranking list by member rewards:
 let stake = 1000000000;
 let pools = await walletServer.getStakePools(stake);
 ```    
-> **NOTE**: You'll get pool ordered by `non_myopic_member_rewards` which basically means from heighest to lower expected rewards. By default the wallet server
-> isn't configured to fecth the pool's metadata (e.g. ticker, name, homepage) but you can specify it through the update settings functionality, see Update Settings section below.
-   
+:::note 
+You'll get pool ordered by `non_myopic_member_rewards` which basically means from heighest to lower expected rewards. By default the wallet server
+isn't configured to fecth the pool's metadata (e.g. ticker, name, homepage) but you can specify it through the update settings functionality, see Update Settings section below.
+:::
+
 Estimate delegation fee:
 ```js
 let fee = await wallet.estimateDelegationFee();
 ```
-> **NOTE**: The very first time you delegate to a pool you'll be charged an extra 2 ADA. This extra fee won't be included on the response.
- 
+:::note 
+The very first time you delegate to a pool you'll be charged an extra 2 ADA. This extra fee won't be included on the response.
+:::
+
 Delegate to stake pool:
 ```js
 let passphrase = 'tangocrypto';
@@ -383,8 +371,10 @@ let passphrase = 'tangocrypto';
 let pool = pools[0]; 
 let transaction = await wallet.delegate(pool.id, passphrase);
 ```   
-> **NOTE**: The transacion status initially is set to `pending`, so you should keep tracking the transaction using the `id` in order to make sure the final status (e.g. `in_ledger`). You can learn more about the transacion's life cycle [here](https://github.com/input-output-hk/cardano-wallet/wiki/About-Transactions-Lifecycle). 
-> For delegate to another stake pool use the same method above specifying a different stake pool.   
+:::note 
+The transacion status initially is set to `pending`, so you should keep tracking the transaction using the `id` in order to make sure the final status (e.g. `in_ledger`). You can learn more about the transacion's life cycle [here](https://github.com/input-output-hk/cardano-wallet/wiki/About-Transactions-Lifecycle). 
+For delegate to another stake pool use the same method above specifying a different stake pool.   
+:::
 
 Withdraw stake pool's rewards:
 ```js
@@ -397,7 +387,9 @@ let rewardBalance = wallet.getRewardBalance();
 
 let transaction = await wallet.withdraw(passphrase, [address], [rewardBalance]);
 ```    
-> **NOTE**: You can send the rewards to multiple addresses splitting up the rewardBalance for each one. Also you can send it to any valid address whether it's in your wallet or not.
+:::note 
+You can send the rewards to multiple addresses splitting up the rewardBalance for each one. Also you can send it to any valid address whether it's in your wallet or not.
+:::
 
 Stop delegating:
 ```js
@@ -413,7 +405,9 @@ Possible values are:
 - restarting -> the Garbage Collection thread is currently restarting, try again in short while
 - has_run -> the Garbage Collection has run successfully
  
-> **NOTE**: Maintenance actions will depend on whether or not the wallet server is using a Stakepool Metadata Aggregation Server (SMASH).
+:::note 
+Maintenance actions will depend on whether or not the wallet server is using a Stakepool Metadata Aggregation Server (SMASH).
+:::
 
 Manually trigger Garbage Collection:
 ```js
@@ -451,8 +445,10 @@ let receiverAddress = [new AddressWallet('addr1q99q78gt2898zgu2dcswf2yuxj6vujcqe
 let amounts = [5000000]; // 5 ADA
 let transaction = await senderWallet.sendPayment(passphrase, receiverAddress, amounts);
 ```
-> **NOTE**: You can pass a list of address and amount. We expect both list have the same length where elemetns on each list is index related to the other. 
-> You can think of it as sending `amounts[i]` to `addresses[i]`.
+:::note 
+You can pass a list of address and amount. We expect both list have the same length where elemetns on each list is index related to the other. 
+You can think of it as sending `amounts[i]` to `addresses[i]`.
+:::
 
 Send payment transfer with metadata:
 
@@ -472,7 +468,9 @@ let amounts = [5000000]; // 5 ADA
 let metadata = ['abc', '2512a00e9653fe49a44a5886202e24d77eeb998f', 123];
 let transaction = await senderWallet.sendPayment(passphrase, receiverAddress, amounts, metadata);
 ``` 
-> **WARNING**: Please note that metadata provided in a transaction will be stored on the blockchain forever. Make sure not to include any sensitive data, in particular personally identifiable information (PII).
+:::warning 
+Please note that metadata provided in a transaction will be stored on the blockchain forever. Make sure not to include any sensitive data, in particular personally identifiable information (PII).
+:::
 
 Send a more complex metadata object:
 ```js
@@ -485,15 +483,18 @@ let amounts = [5000000]; // 5 ADA
 let metadata: any = {0: 'hello', 1: Buffer.from('2512a00e9653fe49a44a5886202e24d77eeb998f', 'hex'), 4: [1, 2, {0: true}], 5: {'key': null, 'l': [3, true, {}]}, 6: undefined};
 let transaction = await senderWallet.sendPayment(passphrase, receiverAddress, amounts, metadata);
 ```
-> **NOTE**: Values like boolean, null and undefined are passed as string (e.g "true", "null", "undefined").
- 
+:::note 
+Values like boolean, null and undefined are passed as string (e.g "true", "null", "undefined").
+:::
+
 Forget transaction:
 If for some reason your transaction hang on status `pending`, for a long period, you can consider to "cancel" it.
 ```js
 wallet.forgetTransaction(transaction.id)
 ```
-> **Importantly**: A transaction, when sent, cannot be cancelled. One can only request forgetting about it in order to try spending (concurrently) the same UTxO in another transaction. But, the transaction may still show up later in a block and therefore, appear in the wallet.
-
+:::important 
+A transaction, when sent, cannot be cancelled. One can only request forgetting about it in order to try spending (concurrently) the same UTxO in another transaction. But, the transaction may still show up later in a block and therefore, appear in the wallet.
+:::
 ### Submit external transaction
 You can pass in a transaction created externally (by other tools) and submit it into the blockchain. You can use this library to create the transaction
 offline as well. Here is an example:
@@ -705,13 +706,16 @@ let tx = Seed.sign(txBody, signingKeys, metadata, scripts);
 let signed = Buffer.from(tx.to_bytes()).toString('hex');
 let txId = await walletServer.submitTx(signed);
 ```
-> **NOTE**: You can check more scripts on `test/assets.ts`, this example is the equivalent to "RequireSignature" you can create with JSON:
-	
+:::note
+You can check more scripts on `test/assets.ts`, this example is the equivalent to "RequireSignature" you can create with JSON:
+:::
+
+```json
 {
   "type": "sig",
   "keyHash": "e09d36c79dec9bd1b3d9e152247701cd0bb860b5ebfd1de8abb6735a"
 } 
-
+```
 
 ### Send Native Tokens
 Here you have two options, either rely on cardano-wallet directly or build the tx by yourself. 
