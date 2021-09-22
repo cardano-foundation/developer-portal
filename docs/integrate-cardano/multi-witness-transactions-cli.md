@@ -189,12 +189,6 @@ We can't do this with `cardano-wallet`, or any other wallet like Daedalus or Yor
 
 :::
 
-:::info
-
-Once available on the mainnet, we will show how to do this using [smart contracts](/docs/get-started/smart-contracts-signpost).
-
-:::
-
 ## Time to code
 
 :::note
