@@ -31,8 +31,8 @@ Head to the the [IOG Discord](https://discord.com/invite/w6TwW9bGA6) if you want
 [**t.me/IOHK_Marlowe**](https://t.me/IOHK_Marlowe)  
 Dedicated channel for Marlowe developers and users. Marlowe is a specialized domain-specific language for financial smart contracts on Cardano. You can ask questions, participate in discussions and meet the team behind Marlowe.
 
-[**Developer Portal Discord**](https://discord.gg/xKBd2tv5qg)  
-If you would like to help develop the Developer Portal further, please join our [Discord](https://discord.gg/xKBd2tv5qg). 
+[**Developer Portal Discord**](https://discord.gg/Exe6XmqKDx)  
+If you would like to help develop the Developer Portal further, please join our [Discord](https://discord.gg/Exe6XmqKDx). 
 
 [**CIPs - biweekly meetings**](https://www.crowdcast.io/cips-biweekly)  
 CIP meetings discuss Cardano Improvement Proposals every other week. Join Editors and community members to keep up with the ongoing technical discussions regarding standards, processes and ongoing Cardano conversations.
