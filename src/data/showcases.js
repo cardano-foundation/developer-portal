@@ -705,7 +705,7 @@ const Showcases = [
   {
     title: "Cardano Monsters",
     description: "10 New Collectible Monster Trading Cards, Every 60 Days. Digital Collectibles. Real Rarity. Real Rewards.",
-    preview: require("./showcase/cardanomonsters.png"),
+    preview: require("./showcase/cardanomonsters.jpg"),
     website: "https://www.cardanomonsters.com/",
     source: null,
     tags:  ["nft"],
