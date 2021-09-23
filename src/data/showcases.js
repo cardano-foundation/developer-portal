@@ -702,6 +702,14 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Cardano Monsters",
+    description: "10 New Collectible Monster Trading Cards, Every 60 Days. Digital Collectibles. Real Rarity. Real Rewards.",
+    preview: require("./showcase/cardanomonsters.png"),
+    website: "https://www.cardanomonsters.com/",
+    source: null,
+    tags:  ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
