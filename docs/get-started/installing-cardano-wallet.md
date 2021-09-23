@@ -59,11 +59,11 @@ git fetch --all --recurse-submodules --tags
 Switch the repository to the latest tagged commit: 
 
 ```bash
-git checkout tags/v2021-05-26
+git checkout tags/v2021-09-09
 ```
 
 :::important
-You can check the latest available version / tag by visiting the `cardano-wallet` [Github Release](https://github.com/input-output-hk/cardano-wallet/releases) page. At the time of writing this, the current version is `v2021-05-26`.
+You can check the latest available version / tag by visiting the `cardano-wallet` [Github Release](https://github.com/input-output-hk/cardano-wallet/releases) page. At the time of writing this, the current version is `v2021-09-09`.
 :::
 
 #### Configuring the build options
@@ -92,7 +92,7 @@ Install the newly built `cardano-wallet` binary to the `~/.local/bin` directory:
 
 ###### MacOS
 ```bash
-cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
+cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.9.9/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
 ```
 
 </TabItem>
@@ -101,7 +101,7 @@ cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.5.26/x/card
 
 ###### Linux
 ```bash
-cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
+cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.9.9/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
 ```
 
 </TabItem>
@@ -117,7 +117,7 @@ cardano-wallet version
 You should see something like this: 
 
 ```
-2021.5.26 (git revision: 7426ccc17ecffcc112abf5e8382bcb89cb24f771)
+v2021-09-09 (git revision: 011a258c1b5ba57ca70f13346109ce3074820032)
 ```
 
 Congratulations, you have successfully installed `cardano-wallet` into your Linux system! 🎉🎉🎉
