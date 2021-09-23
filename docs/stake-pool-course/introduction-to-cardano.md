@@ -98,13 +98,13 @@ Since there is no race to mine a block, there is no waste of energy or computati
 
 To produce a block you have to be online, but asking everyone to be online at every moment is impractical and unrealistic. This is why Ouroboros introduces the figure of _Stake Delegation_. As stakeholder, you can delegate your stake to a third party to act on your behalf whenever you are elected slot leader. Such delegates are known as _staking pools_. They are members of the community that commit to run the protocol on your behalf and to be online close to 100% of the time.
 
-An important thing to notice is that you only delegate your rights to participate in the protocol, not your actual funds. Your ADA are still secure and under your control in your wallet, and funds are not locked, you can still make transactions.
+An important thing to notice is that you only delegate your rights to participate in the protocol, not your actual funds. Your ada are still secure and under your control in your wallet, and funds are not locked, you can still make transactions.
 
 ### What about the incentives?
 
 Stakeholders that issue blocks are incentivized to participate in the protocol by collecting transaction fees. But Ouroboros does not incentivize stakeholders to invest computational resources to issue blocks. Rather, availability and transaction verification are prefered.
 
-Rewards come from two sources: transaction fees and funds drawn from the Ada Reserve.
+Rewards come from two sources: transaction fees and funds drawn from the ada Reserve.
 
 In Ouroboros, incentives are not block-dependant, instead, rewards from an epoch are collected in a pool and distributed among the stakeholders and stake pools that participated during these slots proportional to their stake.
 
@@ -156,7 +156,7 @@ All these functionalities make Ouroboros the best proof of stake ledger protocol
         5. Before broadcasting the block, the slot leader generates a new secret key **\(Key-evolving signature\)**. The public key remains the same, but the secret key is updated in every step and the old key is erased.
         6. It is impossible to forge old signatures with new keys. And it is also impossible to derive previous keys from new ones.
         7. Finally, the slot leader broadcast the new block to the network.
-        8. The **rewards** obtained by the slot leaders are calculated at the end of the epoch. Rewards come from transaction fees and funds from the ADA reserve.
+        8. The **rewards** obtained by the slot leaders are calculated at the end of the epoch. Rewards come from transaction fees and funds from the ada reserve.
 
 **What happens in the case of a fork in the chain?**
 

@@ -154,7 +154,7 @@ Let's see how we can spend it all at once!
 
 ## Use case
 
-There are many possible reasons why you would want to have multiple wallets sending their ADA in a single transaction. One is, you own two wallets (**payment1** and **payment2**) and you want to spend it on something that...
+There are many possible reasons why you would want to have multiple wallets sending their ada in a single transaction. One is, you own two wallets (**payment1** and **payment2**) and you want to spend it on something that...
 
 * costs more than you have in any of your two wallets,
 * but **both amounts combined** would cover the costs.

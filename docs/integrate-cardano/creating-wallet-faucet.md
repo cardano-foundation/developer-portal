@@ -2,13 +2,13 @@
 id: creating-wallet-faucet
 title: Exploring Cardano wallets
 sidebar_label: Exploring Cardano wallets
-description: This article explains how you can create different kinds of Cardano Wallets and how you can recieve some tAda(test ADA) from the faucet.
+description: This article explains how you can create different kinds of Cardano Wallets and how you can recieve some tAda(test ada) from the faucet.
 image: ./img/og-developer-portal.png
 --- 
 
 ### Overview 
 
-In this guide, we will show you how to create a **Cardano** wallet, receive some `tAda` (**test ADA**) in the `testnet` network and send basic example transactions. We will explore tools like `cardano-cli` and `cardano-wallet` on how they can help with these functionalities.
+In this guide, we will show you how to create a **Cardano** wallet, receive some `tAda` (**test ada**) in the `testnet` network and send basic example transactions. We will explore tools like `cardano-cli` and `cardano-wallet` on how they can help with these functionalities.
 
 :::note
 This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
@@ -20,7 +20,7 @@ If you are not sure how to do that, It is recommended to read [Running cardano-n
 
 ### Cardano Wallets 
 
-So you installed your `cardano-node` and got it running, you probably even tried to query some simple blockchain data (If you read [Running cardano-node](/docs/get-started/running-cardano) guide). But how do you actually create a **Cardano** wallet, receive and send some `ADA` or `tAda` tokens?
+So you installed your `cardano-node` and got it running, you probably even tried to query some simple blockchain data (If you read [Running cardano-node](/docs/get-started/running-cardano) guide). But how do you actually create a **Cardano** wallet, receive and send some `ada` or `tAda` tokens?
 
 First we have to look at the applications we can use to create wallets.
 
@@ -103,7 +103,7 @@ You should now have two files in your `keys` directory like so:
 
 Lets try to understand what these keys are used for in a very high-level overview that is relevant to our topic:
 
-- `.vkey` / **Public Verification Key** : Is used to derive a **Cardano** wallet address, a wallet address is basically the hash string value that you share to other users to provide them a way to send `ADA` / `tAda` or other assets in the **Cardano** blockchain into your wallet.
+- `.vkey` / **Public Verification Key** : Is used to derive a **Cardano** wallet address, a wallet address is basically the hash string value that you share to other users to provide them a way to send `ada` / `tAda` or other assets in the **Cardano** blockchain into your wallet.
 
     **The verification key file should look something like this**:
     ```json
@@ -213,9 +213,9 @@ This result tells us that there is one **UTXO** with the amount of 1,000,000,000
 The result also specifies that the **UTXO** **transaction id** (`TxHash` / `TxId`) is `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85` with the **transaction index** of `0`.
 
 :::note
-In the **Cardano** blockchain, the `lovelace` is the unit used to represent `ADA` in **transactions** and **UTXO**. 
+In the **Cardano** blockchain, the `lovelace` is the unit used to represent `ada` in **transactions** and **UTXO**. 
 
-Where `1 ADA` is equal to `1,000,000 lovelace`, so moving forward we will be using `lovelace` instead of `ADA` / `tAda`.
+Where `1 ada` is equal to `1,000,000 lovelace`, so moving forward we will be using `lovelace` instead of `ada` / `tAda`.
 
 You can also use the `TxHash` to view the complete transaction via the **Cardano Blockchain Explorer** for the relevant network. You can check the specific transaction for the example **UTXO** here: [f3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85](https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85)
 
@@ -719,7 +719,7 @@ You should see something like this:
 }
 ```
 
-**Receiving tADA (Test ADA)**
+**Receiving tAda (test ada)**
 
 Now that we have created a wallet, we can now request some tAda from the **Testnet Faucet**. But before we can do that we must first get a cardano address for our wallet.
 
