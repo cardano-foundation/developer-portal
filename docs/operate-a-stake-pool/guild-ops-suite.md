@@ -14,7 +14,7 @@ The Guild-Operators suite is a collection of tools and scripts for easy setup, m
 
 #### CNTools
 
-CNTools is like a swiss army knife for pool operators to simplify typical operations. It is a bash GUI menu-driven tool to create and manage wallets, sending Ada and tokens, and about every pool operation needed. In addition to this, the tool has been extended with additional features and improvements since its first official release together with the Cardano Shelley MainNet launch in July 2020. You can find more information about CNTools [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).  
+CNTools is like a swiss army knife for pool operators to simplify typical operations. It is a bash GUI menu-driven tool to create and manage wallets, sending ada and tokens, and about every pool operation needed. In addition to this, the tool has been extended with additional features and improvements since its first official release together with the Cardano Shelley MainNet launch in July 2020. You can find more information about CNTools [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).  
 ![img](../../static/img/get-started/guild-ops-suite/guild_cntools.png)  
 
 #### gLiveView

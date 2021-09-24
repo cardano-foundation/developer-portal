@@ -2,13 +2,13 @@
 id: creating-wallet-faucet
 title: Exploring Cardano wallets
 sidebar_label: Exploring Cardano wallets
-description: This article explains how you can create different kinds of Cardano Wallets and how you can recieve some tADA(test ADA) from the faucet.
+description: This article explains how you can create different kinds of Cardano Wallets and how you can recieve some tAda(test ada) from the faucet.
 image: ./img/og-developer-portal.png
 --- 
 
 ### Overview 
 
-In this guide, we will show you how to create a **Cardano** wallet, receive some `tADA` (**test ADA**) in the `testnet` network and send basic example transactions. We will explore tools like `cardano-cli` and `cardano-wallet` on how they can help with these functionalities.
+In this guide, we will show you how to create a **Cardano** wallet, receive some `tAda` (**test ada**) in the `testnet` network and send basic example transactions. We will explore tools like `cardano-cli` and `cardano-wallet` on how they can help with these functionalities.
 
 :::note
 This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
@@ -20,7 +20,7 @@ If you are not sure how to do that, It is recommended to read [Running cardano-n
 
 ### Cardano Wallets 
 
-So you installed your `cardano-node` and got it running, you probably even tried to query some simple blockchain data (If you read [Running cardano-node](/docs/get-started/running-cardano) guide). But how do you actually create a **Cardano** wallet, receive and send some `ADA` or `tADA` tokens?
+So you installed your `cardano-node` and got it running, you probably even tried to query some simple blockchain data (If you read [Running cardano-node](/docs/get-started/running-cardano) guide). But how do you actually create a **Cardano** wallet, receive and send some `ada` or `tAda` tokens?
 
 First we have to look at the applications we can use to create wallets.
 
@@ -103,7 +103,7 @@ You should now have two files in your `keys` directory like so:
 
 Lets try to understand what these keys are used for in a very high-level overview that is relevant to our topic:
 
-- `.vkey` / **Public Verification Key** : Is used to derive a **Cardano** wallet address, a wallet address is basically the hash string value that you share to other users to provide them a way to send `ADA` / `tADA` or other assets in the **Cardano** blockchain into your wallet.
+- `.vkey` / **Public Verification Key** : Is used to derive a **Cardano** wallet address, a wallet address is basically the hash string value that you share to other users to provide them a way to send `ada` / `tAda` or other assets in the **Cardano** blockchain into your wallet.
 
     **The verification key file should look something like this**:
     ```json
@@ -198,9 +198,9 @@ You should see something like this:
 
 Now you might find it odd that there is not much information in the result that was returned the command, but that is totally normal as there are no available **UTXO** in the specific **wallet address** that we have queried just yet as it is a new wallet.
 
-Our next step is to request some `tADA` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet).
+Our next step is to request some `tAda` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet).
 
-Once you requested some `tADA` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) we can then run the query again and you should see something like this:
+Once you requested some `tAda` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) we can then run the query again and you should see something like this:
 
 ```
                            TxHash                                 TxIx        Amount
@@ -208,14 +208,14 @@ Once you requested some `tADA` from the [Cardano Testnet Faucet](../integrate-ca
 cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85     0        1000000000 lovelace
 ```
 
-This result tells us that there is one **UTXO** with the amount of 1,000,000,000 `lovelaces` in our specific **wallet address**, that means our wallet has a balance of `1,000 tADA`. 
+This result tells us that there is one **UTXO** with the amount of 1,000,000,000 `lovelaces` in our specific **wallet address**, that means our wallet has a balance of `1,000 tAda`. 
 
 The result also specifies that the **UTXO** **transaction id** (`TxHash` / `TxId`) is `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85` with the **transaction index** of `0`.
 
 :::note
-In the **Cardano** blockchain, the `lovelace` is the unit used to represent `ADA` in **transactions** and **UTXO**. 
+In the **Cardano** blockchain, the `lovelace` is the unit used to represent `ada` in **transactions** and **UTXO**. 
 
-Where `1 ADA` is equal to `1,000,000 lovelace`, so moving forward we will be using `lovelace` instead of `ADA` / `tADA`.
+Where `1 ada` is equal to `1,000,000 lovelace`, so moving forward we will be using `lovelace` instead of `ada` / `tAda`.
 
 You can also use the `TxHash` to view the complete transaction via the **Cardano Blockchain Explorer** for the relevant network. You can check the specific transaction for the example **UTXO** here: [f3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85](https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85)
 
@@ -272,9 +272,9 @@ cardano-cli query utxo \
 --------------------------------------------------------------------------------------
 ```
 
-Again, this is to be expected as the `payment2.addr` wallet address and keys has just recently been generated. So we expect that no one has sent any `tADA` to this wallet yet.
+Again, this is to be expected as the `payment2.addr` wallet address and keys has just recently been generated. So we expect that no one has sent any `tAda` to this wallet yet.
 
-In this example, we now have two wallets. We can call them `payment1` and `payment2`. Now remember that we requested some `tADA` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) for `payment1` wallet, and thats how we have the following:
+In this example, we now have two wallets. We can call them `payment1` and `payment2`. Now remember that we requested some `tAda` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) for `payment1` wallet, and thats how we have the following:
 
 `payment1` **wallet**: `1,000,000,000 lovelace`
 
@@ -719,9 +719,9 @@ You should see something like this:
 }
 ```
 
-**Receiving tADA (Test ADA)**
+**Receiving tAda (test ada)**
 
-Now that we have created a wallet, we can now request some tADA from the **Testnet Faucet**. But before we can do that we must first get a cardano address for our wallet.
+Now that we have created a wallet, we can now request some tAda from the **Testnet Faucet**. But before we can do that we must first get a cardano address for our wallet.
 
 We can do that by executing the command:
 
@@ -749,9 +749,9 @@ It is important to note that the parameter of this request is the **wallet id** 
 
 We are basically querying the first wallet address that has not been used just yet, Indicated by `state: "unused"`. As we can see the wallet address value is: `addr_test1qpnjt8umuwr5f2y59avklhu8hd7h2uf4zfanxxr4nmqqsaw679hxgdmrtsjequ8ka27rm8366e6p7au9y89h6slmrjwskfmcef`
 
-Now we can finally request some `tADA` for the wallet address from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet).
+Now we can finally request some `tAda` for the wallet address from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet).
 
-Once you requested some `tADA` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet), we can then check if it has arrived into our wallet like so:
+Once you requested some `tAda` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet), we can then check if it has arrived into our wallet like so:
 
 ```bash
 curl --request GET \
@@ -889,7 +889,7 @@ and we should see something like this:
 }
 ```
 
-So now that we have `test_cf_2` wallet address `addr_test1qzyfnjk3zmgzmvnnvnpeguv6se2ptjj3w3uuh30llqe5xdtzdduxxvke8rekwukyn0qt9g5pahasrnrdmv7nr86x537qxdgza0`. We can now use it to send some `tADA` to it from `test_cf_1` wallet like so:
+So now that we have `test_cf_2` wallet address `addr_test1qzyfnjk3zmgzmvnnvnpeguv6se2ptjj3w3uuh30llqe5xdtzdduxxvke8rekwukyn0qt9g5pahasrnrdmv7nr86x537qxdgza0`. We can now use it to send some `tAda` to it from `test_cf_1` wallet like so:
 
 ```bash
 curl --request POST \
@@ -920,7 +920,7 @@ curl --request GET \
   --url http://localhost:1337/v2/wallets/4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb | jq '.balance'
 ```
 
-And we should see that indeed the `250,000,000 tADA` has been received (***you might need to wait for a few seconds***).
+And we should see that indeed the `250,000,000 tAda` has been received (***you might need to wait for a few seconds***).
 
 ```json
 {

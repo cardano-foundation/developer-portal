@@ -20,7 +20,7 @@ This guide also assumes that you have `cardano-node` running in the background a
 
 ### Recap
 
-Let's recap what we did so far. Our goal in the [previous guide](/docs/integrate-cardano/creating-wallet-faucet) was to draw `1000 tADA` from the testnet faucet and send `250 tADA` from **payment1** to **payment2**.
+Let's recap what we did so far. Our goal in the [previous guide](/docs/integrate-cardano/creating-wallet-faucet) was to draw `1000 tADA` from the testnet faucet and send `250 tAda` from **payment1** to **payment2**.
 
 Make sure we are in the correct folder.
 
@@ -42,7 +42,7 @@ $ pwd
 
   <TabItem value="query">
 
-We drew `1000 tADA` from the Testnet Faucet into our **payment1** wallet.
+We drew `1000 tAda` from the Testnet Faucet into our **payment1** wallet.
 
 ```bash
 $ cardano-cli query utxo \
@@ -148,24 +148,24 @@ b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251     0        25
   </TabItem>
 </Tabs>
 
-We currently have `749.825831 tADA` in our **payment1** wallet and `250 tADA` in our **payment2** wallet.
+We currently have `749.825831 tAda` in our **payment1** wallet and `250 tAda` in our **payment2** wallet.
 
 Let's see how we can spend it all at once!
 
 ## Use case
 
-There are many possible reasons why you would want to have multiple wallets sending their ADA in a single transaction. One is, you own two wallets (**payment1** and **payment2**) and you want to spend it on something that...
+There are many possible reasons why you would want to have multiple wallets sending their ada in a single transaction. One is, you own two wallets (**payment1** and **payment2**) and you want to spend it on something that...
 
 * costs more than you have in any of your two wallets,
 * but **both amounts combined** would cover the costs.
 
-Let's say you are at the **bike store** and you see a nice bike with a price tag of `1100 tADA` on it. You only have `999 tADA` (plus change) left.
+Let's say you are at the **bike store** and you see a nice bike with a price tag of `1100 tAda` on it. You only have `999 tAda` (plus change) left.
 
 The bike store owner - *a devious blockchain enthusiast* - is willing to give you a 10% discount, if you manage to **pay him in a single transaction**
 
 > *There has to be no change, buddy!*  --Bike Store Owner
 
-So we need to make sure to spend all our `tADA` from our two wallets in a single transaction.
+So we need to make sure to spend all our `tAda` from our two wallets in a single transaction.
 
 :::note
 
@@ -186,12 +186,6 @@ As you can see in the diagram above, we will build and submit a **multi-witness 
 :::note
 
 We can't do this with `cardano-wallet`, or any other wallet like Daedalus or Yoroi because we will need both `signing-keys` from **payment1** and **payment2** to sign the transaction.
-
-:::
-
-:::info
-
-Once available on the mainnet, we will show how to do this using [smart contracts](/docs/get-started/smart-contracts-signpost).
 
 :::
 
@@ -255,7 +249,7 @@ Lets create a directory to store our transactions for this guide and enter it:
 mkdir -p /home/user/cardano/multi-witness-sample && cd $_;
 ```
 
-We want to send **all our tADA** sitting at the two UTxO we verified [before](#recap) and send it to the `store-owner.addr`. That means we will have **two inputs**.
+We want to send **all our tAda** sitting at the two UTxO we verified [before](#recap) and send it to the `store-owner.addr`. That means we will have **two inputs**.
 
 What about the outputs? Well, the *devious store-owner* wants us to spend it all, so there will be **one output to the store-owner** and **zero outputs to us**. Remember? *"...no change, buddy!"*
 
@@ -340,7 +334,7 @@ Verify [258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f](https:
 
 :::tip Success!
 
-He can see that the transaction has one output to his wallet. No other outputs, hence you must have spent all of your `tADA`.
+He can see that the transaction has one output to his wallet. No other outputs, hence you must have spent all of your `tAda`.
 
 :::
 

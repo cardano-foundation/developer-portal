@@ -1,8 +1,8 @@
 ---
 id: listening-for-payments-cli
-title: Listening for ADA payments using cardano-cli
+title: Listening for ada payments using cardano-cli
 sidebar_label: Receiving payments (cardano-cli)
-description: How to listen for ADA Payments with the cardano-cli.
+description: How to listen for ada Payments with the cardano-cli.
 image: ./img/og-developer-portal.png
 --- 
 import Tabs from '@theme/Tabs';
@@ -18,7 +18,7 @@ This guide also assumes that you have `cardano-node` running in the background a
 
 ## Use case
 
-There are many possible reasons why you would want to have the functionality of listening for `ADA` payments, but a very obvious use case would be for something like an **online shop** or a **payment gateway** that uses `ADA` tokens as the currency.
+There are many possible reasons why you would want to have the functionality of listening for `ada` payments, but a very obvious use case would be for something like an **online shop** or a **payment gateway** that uses `ada` tokens as the currency.
 
 ![img](../../static/img/integrate-cardano/ada-online-shop.png)
 
@@ -43,7 +43,7 @@ In this section, We will use the path `/home/user/receive-ada-sample` to store a
 All the code examples in this article assumes that you will save all the source-code-files under the root of this directory.
 :::
 
-### Generate keys and request tADA
+### Generate keys and request tAda
 
 First, lets create a directory to store our sample project:
 
@@ -784,7 +784,7 @@ You should see the **wallet address** value:
 addr_test1vpfkp665a6wn7nxvjql5vdn5g5a94tc22njf4lf98afk6tgnz5ge4
 ```
 
-Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ADA` funds from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet). Once complete, we can now run the code again and we should see a succesful result this time.
+Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ada` funds from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet). Once complete, we can now run the code again and we should see a succesful result this time.
 
 <Tabs
   defaultValue="js"

@@ -64,7 +64,7 @@ curl --request GET \
   --url 'http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce/addresses?state=unused' | jq '.[0]["id"]'
 ```
 
-Now that you have a **wallet address**, you can now request for some `tADA` funds from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet).
+Now that you have a **wallet address**, you can now request for some `tAda` funds from the [Cardano Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet).
 
 Once you have some funds, we can now create the sample metadata that we want to store into the blockchain.
 

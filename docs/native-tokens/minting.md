@@ -470,7 +470,7 @@ fee=$(cardano-cli transaction calculate-min-fee --tx-body-file rec_matx.raw --tx
 
 As stated above, we need to calculate the leftovers that will get sent back to our address.
 The logic being:
-`TxHash Amout` — `fee` — `min Send 10 ADA in Lovelace` = `the output for our own address`
+`TxHash Amout` — `fee` — `min Send 10 ada in Lovelace` = `the output for our own address`
 
 ```bash
 output=$(expr $funds - $fee - 10000000)

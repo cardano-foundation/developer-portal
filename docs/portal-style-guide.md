@@ -819,3 +819,24 @@ When you write guides for `cardano-wallet` or other components with an API, you 
 </TabItem>
 
 </Tabs>
+
+## Editorial Style Guide
+To make everything consistent we should agree on spellings and terms here.
+
+|  Spelling/Term   | Comment                    |
+| ---------------- | -------------------------- |
+| `ada`            | When talking about the cryptocurrency, do not capitalize, unless at the beginning of a sentence. The idea behind this is to treat it like dollars or euros. If you are in doubt, in English, prefer ada over ADA. Capitalised ADA stands for the ticker symbol only. |
+| `tAda`           | Test ada is tAda, not tADA or TADA. See `ada`. |
+| `the Cardano Foundation`           | Always use **the** Cardano Foundation. |
+| `DApps` | Note the capitalization: Decentralized Application. |
+| `dcSpark` | Note the capitalized S. |
+| `EMURGO` | All caps in line with EMURGO’s branding. |
+| `the Foundation` | Interchangeable with `the Cardano Foundation`, the is not capitalized, but Foundation should be. |
+| `GitHub` | Note the capitalized H. |
+| `IOHK` | Use IOHK not IOG. (at least for now) |
+| `sidechains` | One word. |
+| `stake pool` | Two words. |
+| `staking`    | Try to avoid term `staking` without context as it is ambiguous. `staking` refers to the whole process of both delegating and setting up a pool but many people confuse this with the actual process of creating blocks. `delegating` means that people delegate their stake to a stake pool. |
+| `proof of stake` | Lower case. Hyphenate when followed by a noun: proof-of-stake systems. |
+| `proof of work` | Lower case. Hyphenate when followed by a noun: proof-of-work systems. |
+| `white paper` | Two words. |
