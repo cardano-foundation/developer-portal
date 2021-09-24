@@ -1,23 +1,23 @@
 /*
  * SHOWCASE SECTION INFO
  *
- * The project showcase should be a place where someone new to the ecosystem 
- * can come to see what can be done - it should not be seen as a database where 
+ * The project showcase should be a place where someone new to the ecosystem
+ * can come to see what can be done - it should not be seen as a database where
  * every project is promoted.
- * 
+ *
  * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * - It must be built on Cardano and have a real use case. For example, a forum where 
+ * - It must be built on Cardano and have a real use case. For example, a forum where
  *   people can talk about Cardano is great, but nothing for this showcase section.
  * - It has to run on Cardano mainnet.
  * - It has to have a running product. (no presale, no protected pages, no coming soon messages)
  * - It has to have enough community reputation.
- * - It has to provide a unique value from existing showcase items. (we can't list 
+ * - It has to provide a unique value from existing showcase items. (we can't list
  *   thousands of NFT or native tokens with the current UI)
- * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
+ * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no
  *   URL shortener, no app store links, or similar)
- * - The GitHub account that adds the project must not be new. 
+ * - The GitHub account that adds the project must not be new.
  * - The GitHub account must have a history/or already be known in the Cardano community.
- * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
+ * - Describe what makes your project special, avoid phrases like "the first this and that". Granular
  *   details like which project was first is tribal attribute known to cause rift and conflicts.
  *
  * INSTRUCTIONS:
@@ -61,7 +61,7 @@ export const Tags = {
       "Educational projects that will help you onboarding to Cardano.",
     icon: null,
   },
- 
+
   // Games
   game: {
     label: "Games",
@@ -699,6 +699,15 @@ const Showcases = [
       "A new level of collectible NFT is hitting the Cardano Network! 1,500 unique 3D-animated cards featuring the HYPE Skull. No two are alike. Always handcrafted. Never automated.",
     preview: require("./showcase/hypeskulls.png"),
     website: "https://seehype.com/",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "EZMINT",
+    description:
+      "Create/mint your own collection of unique NFTs on the Cardano Blockchain. Users can create collections of 100+ NFTs and mint them all together under a unique Policy ID in one batch.",
+    preview: require("./showcase/ezmint.png"),
+    website: "https://ez-mint.com",
     source: null,
     tags: ["nft"],
   },
