@@ -17,7 +17,7 @@ What is the difference between native assets and NFTs?
 From a technical point of view, NFTs are the same as native assets. But some additional characteristics make a native asset truly an NFT:
 
 1. As the name states - it must be 'non-fungible. This means you need to have unique identifiers or attributes attached to a token to make it distinguishable from others.
-2. Most of the time, NFT's should live on the blockchain forever. Therefore we need some mechanism to ensure an NFT stays unique and can not be duplicated.
+2. Most of the time, NFT's should live on the chain forever. Therefore we need some mechanism to ensure an NFT stays unique and can not be duplicated.
 
 ### The policyID 
 Native assets in Cardano feature the following characteristics:
@@ -83,7 +83,7 @@ You can regulate such factors with  [multi-signature scripts](https://github.com
 For this guide, we will choose the following constraints:
 
 1. There should be only one defined signature allowed to mint (or burn) the NFT.
-2. The signature will expire in **10000 blocks** from now to leave the room if we screw something up.
+2. The signature will expire in **10000 slots** from now to leave the room if we screw something up.
 
 
 ## Prerequisites
@@ -94,7 +94,7 @@ Apart from the same requisites as on the [minting native assets](minting.md) gui
 2. An already populated `metadata.json`  
 3. Know how your minting policy should look like.
 --> Only one signature allowed (which we will create in this guide)  
---> No further minting or burning of the asset allowed after 10000 blocks have passed since the transaction was made
+--> No further minting or burning of the asset allowed after 10000 slots have passed since the transaction was made
 4. Hash if uploaded image to IPFS  
 --> We will use this [image](https://gateway.pinata.cloud/ipfs/QmRhTTbUrPYEw3mJGGhQqQST9k86v1DPBiTTWJGKDJsVFw)
 
@@ -196,7 +196,7 @@ cardano-cli address key-gen \
 Instead of only defining a single signature (as we did in the native asset minting guide), our script file needs to implement the following characteristics (which we defined above):
 
 1. Only one signature allowed
-2. No further minting or burning of the asset allowed after 10000 blocks have passed since the transaction was made
+2. No further minting or burning of the asset allowed after 10000 slots have passed since the transaction was made
 
 For this specific purpose `policy.script` file which will look like this:
 
@@ -246,7 +246,7 @@ To generate the `keyHash`, use the following command:
 cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey
 ```
 
-To calculate the correct slot, query the current block and add 10000 to it:
+To calculate the correct slot, query the current slot and add 10000 to it:
 ```bash
 cardano-cli query tip --mainnet
 ```
