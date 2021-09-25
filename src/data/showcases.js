@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "NFT-MACHINE",
+    description:
+      "Mint you NFT from any device. Lightweight and simple PWA to mint NFTs on the Cardano blockchain.",
+    preview: require("./showcase/nft-machine.png"),
+    website: "https://nft-machine.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
