@@ -395,7 +395,7 @@ cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
 We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`~/.zshrc` or `~/.bashrc` ***depending on the shell application you use***)
 
 ```bash
-export PATH="~/.local/bin/:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
 ```
 
 Once saved, reload your shell profile by typing `source ~/.zshrc` or `source ~/.bashrc` (***depending on the shell application you use***).
