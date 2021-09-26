@@ -121,7 +121,7 @@ const Showcases = [
   },
   {
     title: "Ogmios",
-    description: "Ogmios offers a JSON-WSP interface through WebSockets.",
+    description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
