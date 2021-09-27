@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CATJAM Token",
+    description:
+        "Community-driven meme coin with good vibes migrated to Cardano. Has already donated thousands to cat shelters all around the world.",
+    preview: require("./showcase/catjam.png"),
+    website: "https://catjamtoken.io/",
+    source: null,
+    tags: ["tokens"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
