@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "CryptoPeeps",
+    description:
+      "Pop art NFTs that store the artwork directly on the blockchain.",
+    preview: require("./showcase/cryptopeeps.png"),
+    website: "https://www.cryptopeeps.io",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
