@@ -702,6 +702,14 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Ada Punks",
+    description:"10,000 unique collectible characters with proof of living on the Cardano blockchain. The project that inspired the early cryptopunks & CryptoArt movement.",
+    preview: require("./showcase/adapunks.png"),
+    website: "https://adapunks.live",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
