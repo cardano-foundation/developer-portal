@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Stiks",
+    description:
+      "Stiks are the handcrafted figures to join forces on the Cardano blockchain and form a family that will last forever.",
+    preview: require("./showcase/BabyStiks.png"),
+    website: "https://stiksnft.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
