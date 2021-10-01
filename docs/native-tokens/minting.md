@@ -352,13 +352,13 @@ fee=$(cardano-cli transaction calculate-min-fee --tx-body-file matx.raw --tx-in-
 ```
 
 Remember, the transaction input and the output of ada must be equal, or otherwise, the transaction will fail. There can be no leftovers.
-To calculate the remaining output wee need to subtract the fee from our funds and save the result in our output variable.
+To calculate the remaining output we need to subtract the fee from our funds and save the result in our output variable.
 
 ```bash
 output=$(expr $funds - $fee)
 ```
 
-We now have every value we need to re-build the transaction, ready to be signed. So we reissue the same command to re-buld, the only difference being our variables now holding the correct values.
+We now have every value we need to re-build the transaction, ready to be signed. So we reissue the same command to re-build, the only difference being our variables now holding the correct values.
 
 ```bash
 cardano-cli transaction build-raw \
