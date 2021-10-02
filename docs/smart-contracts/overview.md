@@ -13,7 +13,7 @@ image: ./img/og-developer-portal.png
 Smart contracts are automated digital agreements that are programmed. They are self-executing, incorruptible, and unalterable. They do not require any actions or the presence of third parties. 
 
 ## Two worlds of smart contracts
-We can break smart contracts and financial transactions down into two worlds: 
+We can seperate smart contracts and financial transactions down into two worlds: 
 
 In one world, you want to send some notion of value between one actor (or group of actors) to another actor (or a group of actors). There has to be a representation of that value, the terms and conditions behind it, and an event to trigger it. This is what we call a financial contract and best implemented with a domain-specific language. This world has nothing to do with replacing a big company or this common notion that we might have with dapps.
 
