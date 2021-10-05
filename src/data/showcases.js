@@ -711,6 +711,15 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "adadomains.io",
+    description:
+        "Own a domain on the Cardano blockchain.",
+    preview: require("./showcase/adadomains.png"),
+    website: "https://www.adadomains.io/",
+    source: null,
+    tags: ["gateway"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
