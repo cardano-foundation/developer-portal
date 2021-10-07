@@ -154,6 +154,14 @@ const Showcases = [
     tags: ["api"],
   },
   {
+    title: "cardano-wallet-js",
+    description: "A javascript/typescript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
+    preview: require("./builder-tools/cardano-wallet-js.png"),
+    website: "https://github.com/tango-crypto/cardano-wallet-js",
+    getstarted: "/docs/get-started/cardano-wallet-js",
+    tags: ["getstarted", "library"]
+  },
+  {
     title: "CardanoSharp Wallet",
     description:
       "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
