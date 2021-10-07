@@ -23,10 +23,10 @@ cat shelley_testnet-genesis.json | grep KES
 
 and we see that in this example, the key will evolve after each period of 3600 slots and that it can evolve 120 times before it needs to be renewed.
 
-Before we can create an operational certificate for our node, we need to figure out the start of the KES validity period, i.e. which KES evolution period we are in. We check the current slot \(assuming our relay node socket file is at `~/cardano-node/relay/db/node.socket`\):
+Before we can create an operational certificate for our node, we need to figure out the start of the KES validity period, i.e. which KES evolution period we are in. We check the current slot \(assuming our relay node socket file is at `$HOME/cardano-node/relay/db/node.socket`\):
 
 ```
-export CARDANO_NODE_SOCKET_PATH=~/cardano-node/relay/db/node.socket
+export CARDANO_NODE_SOCKET_PATH=$HOME/cardano-node/relay/db/node.socket
 cardano-cli shelley query tip --testnet-magic 1097911063
 
 {

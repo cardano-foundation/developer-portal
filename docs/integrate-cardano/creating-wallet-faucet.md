@@ -58,7 +58,7 @@ As mentioned before, in this guide we will only be focusing on the `cardano-cli`
 #### Creating a wallet with `cardano-cli`
 
 :::note
-In this section, We will use the path `/home/user/cardano` to store all the `cardano-cli` related files as an example, please replace it with the directory you have choosen to store the files.
+In this section, We will use the path `$HOME/cardano` to store all the `cardano-cli` related files as an example, please replace it with the directory you have choosen to store the files.
 :::
 
 :::important
@@ -72,17 +72,17 @@ In a production environment, it might not be a good idea to store wallets / keys
 First, lets create a directory to store all our `keys` like so:
 
 ```bash
-mkdir -p /home/user/cardano/keys
+mkdir -p $HOME/cardano/keys
 ```
 
-Make sure we are inside the `keys` directory like so: `cd /home/user/cardano/keys`
+Make sure we are inside the `keys` directory like so: `cd $HOME/cardano/keys`
 
 Next, we generate our **payment key-pair** using `cardano-cli`:
 
 ```bash
 cardano-cli address key-gen \
---verification-key-file /home/user/cardano/keys/payment1.vkey \
---signing-key-file /home/user/cardano/keys/payment1.skey
+--verification-key-file $HOME/cardano/keys/payment1.vkey \
+--signing-key-file $HOME/cardano/keys/payment1.skey
 ```
 
 `cardano-cli address key-gen` : generates a **payment key-pair**.
@@ -94,7 +94,7 @@ cardano-cli address key-gen \
 You should now have two files in your `keys` directory like so: 
 
 ```bash
-/home/user/cardano/keys/
+$HOME/cardano/keys/
 ├── payment1.skey
 └── payment1.vkey
 
@@ -129,8 +129,8 @@ Since we now have our **payment key-pair**, the next step would be to generate a
 
 ```bash
 cardano-cli address build \
---payment-verification-key-file /home/user/cardano/keys/payment1.vkey \
---out-file /home/user/cardano/keys/payment1.addr \
+--payment-verification-key-file $HOME/cardano/keys/payment1.vkey \
+--out-file $HOME/cardano/keys/payment1.addr \
 --testnet-magic 1097911063
 ```
 
@@ -145,7 +145,7 @@ cardano-cli address build \
 You should now have `payment1.vkey`, `payment1.skey` and `payment1.addr` in your `keys` directory. It should look something like this:
 
 ```bash
-/home/user/cardano/keys/
+$HOME/cardano/keys/
 ├── payment1.addr
 ├── payment1.skey
 └── payment1.vkey
@@ -176,14 +176,14 @@ Now that we have a **wallet address**, we can then query the **UTXO** of the add
 ```bash
 cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat /home/user/cardano/keys/payment1.addr)
+--address $(cat $HOME/cardano/keys/payment1.addr)
 ```
 
 - `cardano-cli query utxo` : Queries the wallet address **UTXO**.
 
 - `--testnet-magic 1097911063` : Specifies that we want to query the `testnet` **Cardano** network.
 
-- `--address $(cat /home/user/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `/home/user/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
+- `--address $(cat $HOME/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `$HOME/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
 ```
 --address addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
@@ -232,22 +232,22 @@ To have a clearer understanding of how sending transactions work using `cardano-
 **Generate payment key-pair**
 ```bash
 cardano-cli address key-gen \
---verification-key-file /home/user/cardano/keys/payment2.vkey \
---signing-key-file /home/user/cardano/keys/payment2.skey 
+--verification-key-file $HOME/cardano/keys/payment2.vkey \
+--signing-key-file $HOME/cardano/keys/payment2.skey 
 ```
 
 **Generate wallet address**
 ```bash
 cardano-cli address build \
---payment-verification-key-file /home/user/cardano/keys/payment2.vkey \
---out-file /home/user/cardano/keys/payment2.addr \
+--payment-verification-key-file $HOME/cardano/keys/payment2.vkey \
+--out-file $HOME/cardano/keys/payment2.addr \
 --testnet-magic 1097911063
 ```
 
 Once complete you should have the following directory structure:
 
 ```bash
-/home/user/cardano/keys
+$HOME/cardano/keys
 ├── payment1.addr
 ├── payment1.skey
 ├── payment1.vkey
@@ -263,7 +263,7 @@ Querying the **UTXO** for the second wallet `payment2.addr` should give you a fa
 ```bash
 cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat /home/user/cardano/keys/payment2.addr)
+--address $(cat $HOME/cardano/keys/payment2.addr)
 ```
 
 **UTXO Result**
@@ -300,7 +300,7 @@ We start by storing the current on-chain protocol parameters to a **JSON** file:
 ```bash
 cardano-cli query protocol-parameters \
   --testnet-magic 1097911063 \
-  --out-file /home/user/cardano/protocol.json
+  --out-file $HOME/cardano/protocol.json
 ```
 This will produce a **JSON** file that looks something like this:
 ```json
@@ -338,10 +338,10 @@ Next, we create a draft transaction like so:
 ```bash
 cardano-cli transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
---tx-out $(cat /home/user/cardano/keys/payment2.addr)+0 \
---tx-out $(cat /home/user/cardano/keys/payment1.addr)+0 \
+--tx-out $(cat $HOME/cardano/keys/payment2.addr)+0 \
+--tx-out $(cat $HOME/cardano/keys/payment1.addr)+0 \
 --fee 0 \
---out-file /home/user/cardano/tx.draft
+--out-file $HOME/cardano/tx.draft
 ```
 
 `cardano-cli transaction build-raw` : This tells `cardano-cli` to build a raw transaction.
@@ -358,12 +358,12 @@ In this case, we are just building a draft transaction to calculate how much fee
 
 ```bash
 cardano-cli transaction calculate-min-fee \
---tx-body-file /home/user/cardano/tx.draft \
+--tx-body-file $HOME/cardano/tx.draft \
 --tx-in-count 1 \
 --tx-out-count 2 \
 --witness-count 1 \
 --testnet-magic 1097911063 \
---protocol-params-file /home/user/cardano/protocol.json
+--protocol-params-file $HOME/cardano/protocol.json
 ```
 
 You should see something like this for the output: 
@@ -374,7 +374,7 @@ You should see something like this for the output:
 
 You will notice that we use the `protocol.json` we queried awhile ago to calculate the transaction fee:
 ```
---protocol-params-file /home/user/cardano/protocol.json
+--protocol-params-file $HOME/cardano/protocol.json
 ```
 
 That is because the transaction fee calculation results changes depending on the on-chain protocol parameters.
@@ -386,10 +386,10 @@ We can then finally build the real transaction like so:
 ```bash
 cardano-cli transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
---tx-out $(cat /home/user/cardano/keys/payment2.addr)+250000000 \
---tx-out $(cat /home/user/cardano/keys/payment1.addr)+749825831 \
+--tx-out $(cat $HOME/cardano/keys/payment2.addr)+250000000 \
+--tx-out $(cat $HOME/cardano/keys/payment1.addr)+749825831 \
 --fee 174169 \
---out-file /home/user/cardano/tx.draft
+--out-file $HOME/cardano/tx.draft
 ```
 
 To recap, We want to send `250,000,000 lovelace` from `payment1` wallet to `payment2` wallet. Our `payment1` wallet had the following **UTXO**:
@@ -409,13 +409,13 @@ So we will use the `TxHash` `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f9072
 We then tell `cardano-cli` that the destination of the `250,000,000 lovelace` is the **wallet address** of `payment2`.
 
 ```bash
---tx-out $(cat /home/user/cardano/keys/payment2.addr)+250000000
+--tx-out $(cat $HOME/cardano/keys/payment2.addr)+250000000
 ```
 
 Now, we still have `750000000 lovelace` as the change amount, so we will simply send it back to ourselves like so:
 
 ```bash
---tx-out $(cat /home/user/cardano/keys/payment1.addr)+749825831
+--tx-out $(cat $HOME/cardano/keys/payment1.addr)+749825831
 ```
 
 Now an important question you might ask here is that, why is the amount `749825831 lovelace`? Well remember that we calculated the fee to be `174169 lovelace` and someone has to shoulder the transaction fee, so we decide that `payment` should pay for the fee with the change `lovelace` amount. So we calculate that `750000000 - 174169 = 749825831` and so the total change would be `749825831 lovelace`.
@@ -429,26 +429,26 @@ We then specify the transaction fee like so:
 And then we specify where we will save the transaction file:
 
 ```
---out-file /home/user/cardano/tx.draft
+--out-file $HOME/cardano/tx.draft
 ```
 
 Now that we have the transaction file, we must sign the transaction in-order to prove that we are the owner of the input **UTXO** that was used.
 
 ```bash
 cardano-cli transaction sign \
---tx-body-file /home/user/cardano/tx.draft \
---signing-key-file /home/user/cardano/keys/payment1.skey \
+--tx-body-file $HOME/cardano/tx.draft \
+--signing-key-file $HOME/cardano/keys/payment1.skey \
 --testnet-magic 1097911063 \
---out-file /home/user/cardano/tx.signed
+--out-file $HOME/cardano/tx.signed
 ```
 
-`--signing-key-file /home/user/cardano/keys/payment1.skey` : This argument tells the `cardano-cli` that we will use `payment1.skey` to sign the transaction.
+`--signing-key-file $HOME/cardano/keys/payment1.skey` : This argument tells the `cardano-cli` that we will use `payment1.skey` to sign the transaction.
 
 Finally, we submit the transaction to the blockchain!
 
 ```bash
 cardano-cli transaction submit \
---tx-file /home/user/cardano/tx.signed \
+--tx-file $HOME/cardano/tx.signed \
 --testnet-magic 1097911063 
 ```
 :::important
@@ -459,14 +459,14 @@ Checking the balances of both wallets `payment1` and `payment2`:
 
 ```bash
 # payment1 wallet UTXO
-❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment1.addr)
+❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(cat $HOME/cardano/keys/payment1.addr)
 
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     1        749825303 lovelace
 
 # payment2 wallet UTXO
-❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(cat ~/cardano/keys/payment2.addr)
+❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(cat $HOME/cardano/keys/payment2.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     0        250000000 lovelace
@@ -481,7 +481,7 @@ Congratulations, You have created and sent your first **Cardano** transaction us
 :::note
 This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](/docs/get-started/installing-cardano-wallet) guide for instructions on how to do that.
 
-We will use the path `/home/user/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have choosen to store the files.
+We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have choosen to store the files.
 :::
 
 :::important
@@ -495,7 +495,7 @@ In a production environment, it might not be a good idea to store wallets / keys
 First, lets create a directory to store all our `wallets` like so:
 
 ```bash
-mkdir -p /home/user/cardano/wallets
+mkdir -p $HOME/cardano/wallets
 ```
 
 **Starting cardano-wallet as a REST API server**
@@ -505,8 +505,8 @@ We will be focusing on the [REST API](https://en.wikipedia.org/wiki/Representati
 ```bash
 cardano-wallet serve \
 --port 1337 \
---testnet /home/user/cardano/testnet-byron-genesis.json \
---database /home/user/cardano/wallets/db \
+--testnet $HOME/cardano/testnet-byron-genesis.json \
+--database $HOME/cardano/wallets/db \
 --node-socket $CARDANO_NODE_SOCKET_PATH
 ```
 
@@ -530,7 +530,7 @@ cardano-wallet serve \
 > 
 > Here is an example `--socket-path` argument for **Linux**:
 ```
---socket-path /home/user/cardano/db/node.socket
+--socket-path $HOME/cardano/db/node.socket
 ```
 > As you can see the argument points to a file since **unix sockets** are represented as files (like everything else in **Linux**). In this case we put the socket file in the `db` directory that we have just created before.
 > 

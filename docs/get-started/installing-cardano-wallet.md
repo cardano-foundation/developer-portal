@@ -41,11 +41,11 @@ In this section, we will walk you through the process of downloading, compiling 
 
 #### Downloading & Compiling
 
-If you have followed the [Installing cardano-node](/docs/get-started/installing-cardano-node) guide, You should have the `~/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
+If you have followed the [Installing cardano-node](/docs/get-started/installing-cardano-node) guide, You should have the `$HOME/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
 
 ```bash
-mkdir -p ~/cardano-src
-cd ~/cardano-src
+mkdir -p $HOME/cardano-src
+cd $HOME/cardano-src
 ```
 
 Next we download the `cardano-wallet` source-code: 
@@ -81,7 +81,7 @@ We can now build `cardano-wallet` code to produce executable binaries.
 ```bash
 cabal build all
 ```
-Install the newly built `cardano-wallet` binary to the `~/.local/bin` directory:
+Install the newly built `cardano-wallet` binary to the `$HOME/.local/bin` directory:
 <Tabs
   defaultValue="macos"
   values={[
@@ -92,7 +92,7 @@ Install the newly built `cardano-wallet` binary to the `~/.local/bin` directory:
 
 ###### MacOS
 ```bash
-cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.9.9/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
+cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" $HOME/.local/bin/
 ```
 
 </TabItem>
@@ -101,7 +101,7 @@ cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.9.9/x/carda
 
 ###### Linux
 ```bash
-cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.9.9/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
+cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" $HOME/.local/bin/
 ```
 
 </TabItem>

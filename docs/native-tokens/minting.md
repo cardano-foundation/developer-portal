@@ -83,17 +83,17 @@ The variable needs to hold the absolute path to the socket file of your running 
 If you're unsure or do not know where to find your socket path, please check the command on how you start/run your Cardano node.  
 For example - if you start your node with this command
 ```bash
-/home/user/.local/bin/cardano-node run \
+$HOME/.local/bin/cardano-node run \
  --topology config/testnet-topology.json \
  --database-path db \
- --socket-path /home/user/TESTNET_NODE/socket/node.socket \
+ --socket-path $HOME/TESTNET_NODE/socket/node.socket \
  --port 3001 \
  --config config/testnet-config.json
 ```
 You need to set the variable to the corresponding path of the `--socket-path` parameter:
 
 ```bash
-export CARDANO_NODE_SOCKET_PATH="/home/user/TESTNET_NODE/socket/node.socket"
+export CARDANO_NODE_SOCKET_PATH="$HOME/TESTNET_NODE/socket/node.socket"
 ```
 You need to adjust the path on your setup and your socket path accordingly.
 
