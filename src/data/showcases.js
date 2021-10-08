@@ -711,6 +711,17 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "Pergamon Agora",
+    description:
+      "An on-chain CNFT auctionhouse",
+    preview: require("./showcase/pergamon-agora.png"),
+    website: "https://beta.pergamon.app",
+    source: null,
+    tags: ["tokens", "nft", "Metadata"],
+  },
+  
+  
 ];
 
 export const TagList = Object.keys(Tags);
