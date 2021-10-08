@@ -640,15 +640,6 @@ const Showcases = [
     tags: ["pooltool"],
   },
   {
-    title: "Metro Mermaids NFT Maker",
-    description:
-      "Mint and Burn NFTs",
-    preview: require("./showcase/metromermaids.png"),
-    website: "https://mint.metromermaids.com",
-    source: null,
-    tags: ["tokens", "nft"],
-  },
-  {
     title: "Cardano Token and NFT Builder",
     description:
       "Create your own native tokens and NFT in a few clicks without any code.",
