@@ -115,7 +115,7 @@ const Showcases = [
     description:
       "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
     preview: require("./builder-tools/dandelion-apis.png"),
-    website: "https://gimbalabs.com/dandelionapis",
+    website: "https://gimbalabs.com/dandelion",
     getstarted: "/docs/get-started/dandelion-apis",
     tags: ["getstarted", "api"],
   },
