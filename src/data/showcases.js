@@ -390,15 +390,6 @@ const Showcases = [
     tags: ["analytics"],
   },
   {
-    title: "Xhibit",
-    description:
-      "Create your own NFT or look into recently minted NFTs on Cardano.",
-    preview: require("./showcase/xhibit.png"),
-    website: "https://xhibit.io",
-    source: null,
-    tags: ["tokens", "nft"],
-  },
-  {
     title: "Token Tool",
     description: "Keep track of native tokens on testnet and mainnet.",
     preview: require("./showcase/tokentool.png"),
