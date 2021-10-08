@@ -159,6 +159,10 @@ module.exports = {
           title: "More about Cardano",
           items: [
             {
+              label: "Careers on Cardano",
+              to: "docs/careers",
+            },
+            {
               label: "Cardano Enterprise",
               href: "https://cardano.org/enterprise",
             },
