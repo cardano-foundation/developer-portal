@@ -371,15 +371,6 @@ const Showcases = [
     tags: ["pooltool", "analytics", "tokens"],
   },
   {
-    title: "See Ada",
-    description:
-      "This project tracks the controlled stake of the top pool operators and monitors decentralization.",
-    preview: require("./showcase/seeada.png"),
-    website: "https://seeada.org",
-    source: null,
-    tags: ["analytics"],
-  },
-  {
     title: "Cardano Blockchain Insights",
     description:
       "A Google Data Studio dashboard that visualizes many Cardano on-chain metrics.",
