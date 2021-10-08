@@ -622,15 +622,6 @@ const Showcases = [
     tags: ["nft", "game"],
   },
   {
-    title: "Cardano Waves",
-    description:
-      "The largest collection of real-time charts for the Cardano network and community.",
-    preview: require("./showcase/cardano-waves.png"),
-    website: "https://cardanowaves.com",
-    source: null,
-    tags: ["analytics"],
-  },
-  {
     title: "Cardano Alerts",
     description:
       "Get wallet notifications or keep tabs on your Cardano stake pool with real time alerts.",
