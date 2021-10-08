@@ -1,23 +1,23 @@
 /*
  * SHOWCASE SECTION INFO
  *
- * The project showcase should be a place where someone new to the ecosystem 
- * can come to see what can be done - it should not be seen as a database where 
+ * The project showcase should be a place where someone new to the ecosystem
+ * can come to see what can be done - it should not be seen as a database where
  * every project is promoted.
- * 
+ *
  * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * - It must be built on Cardano and have a real use case. For example, a forum where 
+ * - It must be built on Cardano and have a real use case. For example, a forum where
  *   people can talk about Cardano is great, but nothing for this showcase section.
  * - It has to run on Cardano mainnet.
  * - It has to have a running product. (no presale, no protected pages, no coming soon messages)
  * - It has to have enough community reputation.
- * - It has to provide a unique value from existing showcase items. (we can't list 
+ * - It has to provide a unique value from existing showcase items. (we can't list
  *   thousands of NFT or native tokens with the current UI)
- * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
+ * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no
  *   URL shortener, no app store links, or similar)
- * - The GitHub account that adds the project must not be new. 
+ * - The GitHub account that adds the project must not be new.
  * - The GitHub account must have a history/or already be known in the Cardano community.
- * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
+ * - Describe what makes your project special, avoid phrases like "the first this and that". Granular
  *   details like which project was first is tribal attribute known to cause rift and conflicts.
  *
  * INSTRUCTIONS:
@@ -61,7 +61,7 @@ export const Tags = {
       "Educational projects that will help you onboarding to Cardano.",
     icon: null,
   },
- 
+
   // Games
   game: {
     label: "Games",
@@ -710,6 +710,15 @@ const Showcases = [
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
+  },
+    {
+    title: "cardano.blue",
+    description:
+      "NFT Marketplace that provides a fast and easy way for you to mint NFTs and trade the ones you already have - either through auction-based or fixed-price sales.",
+    preview: require("./showcase/cardano.blue.png"),
+    website: "https://cardano.blue",
+    source: null,
+    tags: ["tokens", "nft"],
   },
 ];
 
