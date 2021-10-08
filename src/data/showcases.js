@@ -622,15 +622,6 @@ const Showcases = [
     tags: ["nft", "game"],
   },
   {
-    title: "Cardano Alerts",
-    description:
-      "Get wallet notifications or keep tabs on your Cardano stake pool with real time alerts.",
-    preview: require("./showcase/cardano-alerts.png"),
-    website: "https://cardanoalerts.com",
-    source: null,
-    tags: ["pooltool"],
-  },
-  {
     title: "Cardano Token and NFT Builder",
     description:
       "Create your own native tokens and NFT in a few clicks without any code.",
