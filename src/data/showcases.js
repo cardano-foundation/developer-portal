@@ -711,6 +711,15 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "Puglies",
+    description:
+      "All Puglies are Limited Edition designs that are being minted on the Cardano Blockchain as a Non Fungible Token (NFT). Welcome to the Pugliverse!",
+    preview: require("./showcase/puglies.png"),
+    website: "https://puglies.io",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
