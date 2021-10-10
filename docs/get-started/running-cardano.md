@@ -33,7 +33,7 @@ Currently, the `cardano-node` topology is manually set by the community of netwo
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
 
-You can obtain the current **Cardano** blockchain network configuration files here: 
+You can download the current **Cardano** blockchain network configuration files here: 
 
 
 #### Mainnet / Production
@@ -41,11 +41,11 @@ You can obtain the current **Cardano** blockchain network configuration files he
 **NetworkMagic**: `764824073`
 
 ```
-https://hydra.iohk.io/build/7370192/download/1/mainnet-config.json
-https://hydra.iohk.io/build/7370192/download/1/mainnet-byron-genesis.json
-https://hydra.iohk.io/build/7370192/download/1/mainnet-shelley-genesis.json
-https://hydra.iohk.io/build/7370192/download/1/mainnet-alonzo-genesis.json
-https://hydra.iohk.io/build/7370192/download/1/mainnet-topology.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-config.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-byron-genesis.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-shelley-genesis.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-alonzo-genesis.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-topology.json
 ```
 
 #### Testnet / Sandbox
@@ -53,11 +53,11 @@ https://hydra.iohk.io/build/7370192/download/1/mainnet-topology.json
 **NetworkMagic**: `1097911063`
 
 ```
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-config.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-alonzo-genesis.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-topology.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-topology.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-shelley-genesis.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-config.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-byron-genesis.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-alonzo-genesis.json
 ```
 
 :::note
