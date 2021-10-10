@@ -1,23 +1,23 @@
 /*
  * SHOWCASE SECTION INFO
  *
- * The project showcase should be a place where someone new to the ecosystem 
- * can come to see what can be done - it should not be seen as a database where 
+ * The project showcase should be a place where someone new to the ecosystem
+ * can come to see what can be done - it should not be seen as a database where
  * every project is promoted.
- * 
+ *
  * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * - It must be built on Cardano and have a real use case. For example, a forum where 
+ * - It must be built on Cardano and have a real use case. For example, a forum where
  *   people can talk about Cardano is great, but nothing for this showcase section.
  * - It has to run on Cardano mainnet.
  * - It has to have a running product. (no presale, no protected pages, no coming soon messages)
  * - It has to have enough community reputation.
- * - It has to provide a unique value from existing showcase items. (we can't list 
+ * - It has to provide a unique value from existing showcase items. (we can't list
  *   thousands of NFT or native tokens with the current UI)
- * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
+ * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no
  *   URL shortener, no app store links, or similar)
- * - The GitHub account that adds the project must not be new. 
+ * - The GitHub account that adds the project must not be new.
  * - The GitHub account must have a history/or already be known in the Cardano community.
- * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
+ * - Describe what makes your project special, avoid phrases like "the first this and that". Granular
  *   details like which project was first is tribal attribute known to cause rift and conflicts.
  *
  * INSTRUCTIONS:
@@ -61,7 +61,7 @@ export const Tags = {
       "Educational projects that will help you onboarding to Cardano.",
     icon: null,
   },
- 
+
   // Games
   game: {
     label: "Games",
@@ -281,7 +281,8 @@ const Showcases = [
   },
   {
     title: "Crypto Mage",
-    description: "This game centered around incredible wizards who create magic, increase their skills, find totems, learn craft, complete quests, and much more.",
+    description:
+      "This game centered around incredible wizards who create magic, increase their skills, find totems, learn craft, complete quests, and much more.",
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
@@ -305,7 +306,8 @@ const Showcases = [
   },
   {
     title: "Cardano Cubes & Blockemon",
-    description: "Play Blockemon and have your moves quickly verified by, and forever stored on Cardano.",
+    description:
+      "Play Blockemon and have your moves quickly verified by, and forever stored on Cardano.",
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
@@ -329,7 +331,8 @@ const Showcases = [
   },
   {
     title: "Cardano Bits",
-    description: "A collection of 10,000 unique pieces, minted with a time-locked policy, before the smart contracts were launched. Each collectible was generated with a mix of art pieces and computer algorithms.",
+    description:
+      "A collection of 10,000 unique pieces, minted with a time-locked policy, before the smart contracts were launched. Each collectible was generated with a mix of art pieces and computer algorithms.",
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
@@ -426,8 +429,7 @@ const Showcases = [
   },
   {
     title: "Rewards Calendar",
-    description:
-      "Shows the epochs and rewards in a calendar.",
+    description: "Shows the epochs and rewards in a calendar.",
     preview: require("./showcase/rewardscalendar.png"),
     website: "https://dbooster.io/calendar",
     source: null,
@@ -454,7 +456,7 @@ const Showcases = [
   {
     title: "Gimbalabs",
     description:
-      "Gimbalabs is a collaborative community and space where dApps and OpenSource tools are developed in the \"Playground\" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!",
+      'Gimbalabs is a collaborative community and space where dApps and OpenSource tools are developed in the "Playground" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!',
     preview: require("./showcase/gimbalabs.png"),
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
@@ -489,8 +491,7 @@ const Showcases = [
   },
   {
     title: "ADA Monsterz",
-    description:
-      "Collect. Trade. Share. Have Fun!",
+    description: "Collect. Trade. Share. Have Fun!",
     preview: require("./showcase/ada-monsterz.png"),
     website: "https://adamonsterz.com",
     source: null,
@@ -498,8 +499,7 @@ const Showcases = [
   },
   {
     title: "Canuckz NFTs",
-    description:
-      "Limited Edition Collectibles on the Cardano Blockchain.",
+    description: "Limited Edition Collectibles on the Cardano Blockchain.",
     preview: require("./showcase/canuckz.png"),
     website: "https://canuckz-nft.io",
     source: null,
@@ -507,8 +507,7 @@ const Showcases = [
   },
   {
     title: "Cardacity",
-    description:
-      "Your city is coming to Cardano.",
+    description: "Your city is coming to Cardano.",
     preview: require("./showcase/cardacity.png"),
     website: "https://carda.city",
     source: null,
@@ -525,8 +524,7 @@ const Showcases = [
   },
   {
     title: "Cardano Idols",
-    description:
-      "Tributes to our Cardano idols.",
+    description: "Tributes to our Cardano idols.",
     preview: require("./showcase/cardano-idols.png"),
     website: "https://www.cardanoidols.com",
     source: null,
@@ -552,8 +550,7 @@ const Showcases = [
   },
   {
     title: "Crypto Doggies",
-    description:
-      "Collect, trade, have fun, save real dogs!",
+    description: "Collect, trade, have fun, save real dogs!",
     preview: require("./showcase/crypto-doggies.png"),
     website: "https://cryptodoggies.org",
     source: null,
@@ -579,8 +576,7 @@ const Showcases = [
   },
   {
     title: "DEADPXLZ",
-    description:
-      "Interactive, web-based NFT collectibles.",
+    description: "Interactive, web-based NFT collectibles.",
     preview: require("./showcase/deadpxlz.png"),
     website: "https://pxlz.org",
     source: null,
@@ -588,8 +584,7 @@ const Showcases = [
   },
   {
     title: "Kryptoids",
-    description:
-      "Legendary creatures on the Cardano blockchain!",
+    description: "Legendary creatures on the Cardano blockchain!",
     preview: require("./showcase/kryptoids.png"),
     website: "https://kryptoids.monster",
     source: null,
@@ -606,8 +601,7 @@ const Showcases = [
   },
   {
     title: "JES-Art",
-    description:
-      "16 year old female fine art NFTs on the Cardano blockchain!",
+    description: "16 year old female fine art NFTs on the Cardano blockchain!",
     preview: require("./showcase/jesart.png"),
     website: "https://www.jes-art.com",
     source: null,
@@ -659,8 +653,7 @@ const Showcases = [
   },
   {
     title: "Metro Mermaids NFT Maker",
-    description:
-      "Mint and Burn NFTs",
+    description: "Mint and Burn NFTs",
     preview: require("./showcase/metromermaids.png"),
     website: "https://mint.metromermaids.com",
     source: null,
@@ -676,7 +669,7 @@ const Showcases = [
     tags: ["tokens", "nft"],
   },
   {
-  title: "NFTdot.io - create.sell.buy.collect",
+    title: "NFTdot.io - create.sell.buy.collect",
     description:
       "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
     preview: require("./showcase/nftdot.png"),
@@ -687,7 +680,7 @@ const Showcases = [
   {
     title: "Tokhun.io",
     description:
-        "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
+      "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
@@ -704,8 +697,7 @@ const Showcases = [
   },
   {
     title: "cardano-tools.io",
-    description:
-      "An advanced CNFT maker. You just pay network fees.",
+    description: "An advanced CNFT maker. You just pay network fees.",
     preview: require("./showcase/cardano-tools.io.png"),
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
@@ -714,7 +706,7 @@ const Showcases = [
   {
     title: "Puglies",
     description:
-      "All Puglies are Limited Edition designs that are being minted on the Cardano Blockchain as a Non Fungible Token (NFT). Welcome to the Pugliverse!",
+      "NFT Project Focused on the NFT Gaming Space. Each pugly is unique of course but we are trying to bring NFTs to the forefront of gaming. (Mobile and PC) NFTs are live. This is just the beginning. Welcome to the Pugliverse!",
     preview: require("./showcase/puglies.png"),
     website: "https://puglies.io",
     source: null,
