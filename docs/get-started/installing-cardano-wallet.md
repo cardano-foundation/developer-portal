@@ -51,9 +51,9 @@ cd $HOME/cardano-src
 Next we download the `cardano-wallet` source-code: 
 
 ```bash
-git clone https://github.com/input-output-hk/cardano-wallet.git
+git clone https://github.com/input-output-hk/cardano-wallet.git --depth=1
 cd cardano-wallet
-git fetch --all --recurse-submodules --tags
+git fetch --all --recurse-submodules --tags --depth=1
 ```
 
 Switch the repository to the latest tagged commit: 
