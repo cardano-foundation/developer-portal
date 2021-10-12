@@ -666,6 +666,14 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "Cardano Postal Service",
+    description:
+      "CPS offers limited edition NFT stamps collectibles. Tribute to 180 years of philatelic heritage and a memento of Cardano related people and events ",
+    preview: require("./showcase/cps_logo.png"),
+    website: "https://cardanopostalservice.io",
+    source: null,
+    tags: ["nft"],
 ];
 
 export const TagList = Object.keys(Tags);
