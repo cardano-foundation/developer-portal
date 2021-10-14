@@ -666,6 +666,15 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+{
+    title: "WheelzUPNFT",
+    description:
+      "Mission Driven NFTs for Social Good on Cardano. 100 exclusive hand drawn characters riding EMP proof bikes rebuilding the world, NFT holders vote using a franctionalized NFT to decide which collective real world mission will be carried out.",
+    preview: require("https://github.com/spanglerch/ESCCommunity/blob/main/wheelzupnft.PNG"),
+    website: "https://www.wheelzupnft.com",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -676,7 +685,7 @@ function sortShowcases() {
   // Sort by featured tag, featured first
   result = sortBy(result, (showcase) => !showcase.tags.includes("featured"));
   return result;
-}
+},
 
 export const SortedShowcases = sortShowcases();
 
