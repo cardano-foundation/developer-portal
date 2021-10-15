@@ -58,3 +58,4 @@ You also have to build your pool around a brand that manages to attract enough s
 - [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
 - [Pool Veterinary](http://pool.vet) will help you see if your Cardano stake pool is working and find out why it may not be.
 - [SPOCRA](https://members.spocra.io) includes the Stake Pool installation guide from the registered trade guild - Stake Pool Operator Collective Representation Assembly
+- [SNSKY] (https://sanskys.de/dashboard/) a comprehensive step by step guide on how to setup a Grafana Dashboard including sample dashboards. The guide is being used, in lesser detail, in Coin Cashew as well.
