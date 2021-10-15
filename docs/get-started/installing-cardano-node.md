@@ -103,6 +103,14 @@ ghcup install ghc 8.10.4
 ghcup set ghc 8.10.4
 ```
 
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+
+```bash
+ghcup install cabal 3.4.0.0
+ghcup set cabal 3.4.0.0
+```
+
+
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
 Check `ghc` version: 
@@ -196,7 +204,7 @@ cabal configure --with-compiler=ghc-8.10.4
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
 
 ```bash
-cabal build all
+cabal build cardano-node cardano-cli
 ```
 
 Install the newly built node and CLI commands to the $HOME/.local/bin directory:

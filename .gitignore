@@ -34,3 +34,6 @@ yarn-error.log*
 
 # markdownlint
 .markdownlint.json
+
+# intellij
+.idea
