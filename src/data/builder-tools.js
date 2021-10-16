@@ -195,6 +195,14 @@ const Showcases = [
     tags: ["library"],
   },
   {
+    title: "Pooldata API",
+    description: "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
+    preview: require("./builder-tools/pooldata-api.png"),
+    website: "https://api.pooldata.live",
+    getstarted: null,
+    tags: ["operatortool", "api"],
+  },
+  {
     title: "Python Module",
     description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
     preview: require("./builder-tools/cardano-python.png"),
