@@ -55,6 +55,7 @@ You also have to build your pool around a brand that manages to attract enough s
 - [CNCLI](https://github.com/AndrewWestberg/cncli) is a collection of utilities to enhance and extend cardano-cli. 
 - [Jormanager](https://bitbucket.org/muamw10/jormanager/src/develop/) a Cardano stake pool management software. 
 - [Stake Pool Operator Scripts](https://github.com/gitmachtl/scripts) a collection of scripts to manage your stake pool step-by-step. 
+- [ADApools](https://adapools.org) Cardano pools explorer
 - [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
 - [Pool Veterinary](http://pool.vet) will help you see if your Cardano stake pool is working and find out why it may not be.
 - [SPOCRA](https://members.spocra.io) includes the Stake Pool installation guide from the registered trade guild - Stake Pool Operator Collective Representation Assembly
