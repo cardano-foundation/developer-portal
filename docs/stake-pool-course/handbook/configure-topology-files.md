@@ -50,3 +50,6 @@ Make your __relay node__ `talk` to your __block-producing__ node and __other rel
         }
       ]
     }
+## Optionally you can use `topologyUpdater.sh` on your relay nodes from Guild Operators
+
+Until fully P2P is live we need to put peers manually in `topology.json` file on relays, to automatize this you can run `topologyUpdater.sh` script from Guild Operators. With this script help, you can speed up your relays registrations too, currently registration is done twice per day based on your pool registration. If you run `topologyUpdater.sh` every 60 minutes on your relays using cron then after 3 hours(or 4 runs) your relays will be registered. And most importnat you can generate `topology.json` which will contain remote peers. Find more details [here](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater/). 
