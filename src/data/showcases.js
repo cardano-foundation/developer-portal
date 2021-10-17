@@ -711,6 +711,15 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "TADATek - For Better World",
+    description:
+      "The token for Cardano stake pool operators and delegators",
+    preview: require("./showcase/tadatek.com.png"),
+    website: "https://tadatek.com",
+    source: "https://github.com/tadatek",
+    tags: ["tokens", "nft", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
