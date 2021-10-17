@@ -101,7 +101,7 @@ cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.5.26/x/card
 
 ###### Linux
 ```bash
-cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" $HOME/.local/bin/
+cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.9.9/x/cardano-wallet/build/cardano-wallet/cardano-wallet" $HOME/.local/bin/
 ```
 
 </TabItem>
