@@ -666,7 +666,7 @@ const Showcases = [
     preview: require('./showcase/WottleNFTMinter.png'),
     website: 'https://wottlenft.io',
     source: null,
-    tags: ['nft', 'tokens'],
+    tags: ['nft', 'tokens', 'wallet'],
   },
 ];
 
