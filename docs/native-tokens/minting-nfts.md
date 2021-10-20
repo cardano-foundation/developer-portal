@@ -464,7 +464,7 @@ txix="Insert your txix"
 The transaction looks like this:
 
 ```bash
-cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slot --out-file burning.raw
+cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slotnumber --out-file burning.raw
 ```
 
 :::note
