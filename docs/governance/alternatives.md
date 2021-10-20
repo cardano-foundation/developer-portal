@@ -1,7 +1,7 @@
 ---
 id: alternatives
 title: Alternative funding options
-sidebar_label: Alternatives
+sidebar_label: Alternative funding options
 description: Alternative financing options
 image: ./img/og-developer-portal.png
 ---

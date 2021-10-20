@@ -66,6 +66,7 @@ module.exports = {
     ],
     "Be Part of the Governance": [
       "governance/overview", 
+      "governance/cardano-improvement-proposals",
       "governance/project-catalyst", 
       "governance/alternatives"
     ],
