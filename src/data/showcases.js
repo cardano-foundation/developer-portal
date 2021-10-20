@@ -244,6 +244,15 @@ const Showcases = [
     tags: ["pooltool", "analytics"],
   },
   {
+    title: "CardaStat",
+    description:
+      "Historical rewards data for accurate comparison of pool performances. Delegators are able to see actual potential rewards once fees are taken into account.",
+    preview: require("./showcase/cardastat.png"),
+    website: "https://cardastat.info",
+    source: null,
+    tags: ["pooltool", "analytics"],
+  },
+  {
     title: "AdaLite",
     description:
       "AdaLite was developed by vacuumlabs, they were also responsible for the Cardano Ledger app and won the crypto puzzle at the IOHK Summit 2019.",
