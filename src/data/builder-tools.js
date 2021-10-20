@@ -220,10 +220,10 @@ const Showcases = [
   },
   {
     title: "Ansible cardano-node",
-    description: "A best practice Ansible playbook that helps operators quickly provision and maintain a secure Cardano stake pool.",
+    description: "A best practice Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
     preview: require("./builder-tools/ansible-cardano-node.png"),
     website: "https://github.com/moaipool/ansible-cardano-node",
-    getstarted: "https://moaipool.github.io/ansible-cardano-node/",
+    getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
     tags: ["getstarted", "operatortool"],
   },
 ];
