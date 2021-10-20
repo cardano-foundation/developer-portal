@@ -64,10 +64,10 @@ module.exports = {
       "smart-contracts/marlowe",
       "smart-contracts/plutus",
     ],
-    "Fund your Project": [
-      "fund-your-project/overview", 
-      "fund-your-project/project-catalyst", 
-      "fund-your-project/alternatives"
+    "Be Part of the Governance": [
+      "governance/overview", 
+      "governance/project-catalyst", 
+      "governance/alternatives"
     ],
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",

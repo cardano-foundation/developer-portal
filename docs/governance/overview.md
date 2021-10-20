@@ -1,13 +1,13 @@
 ---
 id: overview
-slug: /fund-your-project/
-title: Fund your Project
+slug: /governance/
+title: Be Part of the Governance 
 sidebar_label: Overview
-description: Find out what opportunities are available to get your project funded.
+description: Governance is an essential topic that includes Cardano Improvement Proposals (CIP), project funding, voting, and network parameters.
 image: ./img/og-developer-portal.png
 ---
 
-![Fund your project](../../static/img/card-fund-your-project-title.svg)
+![Cardano Governance](../../static/img/card-governance-title.svg)
 
 Cardano was already designed with sustainability in mind. The point was to create a system that governs and also finances itself without being dependent on donations.  Cardano has a built-in treasury system that gets a constant stream of funds from transaction fees and treasury taxes. This is explained in detail in [treasuries with Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0). 
 
