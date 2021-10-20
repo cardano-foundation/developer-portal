@@ -120,6 +120,7 @@ module.exports = {
         label: "Operator Tools",
         items: [
           "operate-a-stake-pool/guild-ops-suite",
+          "operate-a-stake-pool/ansible-cardano-node",
         ],
       },
       "operate-a-stake-pool/marketing-stake-pool",
