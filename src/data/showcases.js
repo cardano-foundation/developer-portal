@@ -248,7 +248,7 @@ const Showcases = [
     description:
       "A simple way to look at accurate historical rewards data. Delegators can see actual potential/historical rewards for the pools they are interested in.",
     preview: require("./showcase/cardastat.png"),
-    website: "https://cardastat.info",
+    website: "https://cardstat.info",
     source: null,
     tags: ["pooltool", "analytics"],
   },
