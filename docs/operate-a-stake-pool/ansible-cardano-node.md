@@ -1,13 +1,15 @@
-![ansible-cardano](https://user-images.githubusercontent.com/84546123/137635107-1b183f63-3cac-4ef9-be9e-3f116cb79aef.png)
+---
+id: ansible-cardano-node
+title: Get Started with Ansible for Stake Pools
+sidebar_label: Ansible for Stake Pools
+description: Get Started with Ansible for Stake Pools
+---
 
-# ansible-cardano-node
-Ansible playbook for provisioning a Cardano stake pool 
+![ansible-cardano](https://user-images.githubusercontent.com/84546123/137635107-1b183f63-3cac-4ef9-be9e-3f116cb79aef.png)
 
 ## Overview
 
-This repository contains an [Ansible](https://www.ansible.com/) playbook for provisioning secure, optimized Cardano nodes for Stake Pool Operators (SPOs). It was originally developed for the [MOAI Pool](https://moaipool.com/) (Ticker: **MOAI**) but is now being made available to the greater Cardano community.
-
-If you find this useful for maintaining your own stake pool or for other applications, please consider staking to MOAI. It means a great deal to us!
+The [Ansible cardano-node](https://github.com/moaipool/ansible-cardano-node) repository contains an [Ansible](https://www.ansible.com/) playbook for provisioning secure, optimized Cardano nodes for Stake Pool Operators (SPOs). It was originally developed by the [MOAI Pool](https://moaipool.com/) (Ticker: **MOAI**) operators but is now being made available to the greater Cardano community.
 
 The following is handled out of the box:
 
@@ -40,18 +42,18 @@ To facilitate the above the following minimal software packages are installed:
  - [Using tags](#using-tags)
  - [Running a playbook](#running-a-playbook)
  - [Base configuration](#base-configuration)
- - [Final thoughts](#final-thoughts)
+ - [Pro tips](#pro-tips)
 
-## Why Ansible?
+### Why Ansible?
 Ansible is an automation tool for provisioning, application deployment and configuration management. Gone are the days of SSH'ing into our servers to run a command or hacking together bash scripts. 
 
 Ansible is completely agent-less, meaning no special software is required on the remote hosts. All commands are run through Ansible via SSH.
 
 Commands executed via Ansible are [_idempotent_](https://en.wikipedia.org/wiki/Idempotence), meaning they can be safely run multiple times without anything being changed, unless required. Need to ensure a `cardano-node` configuration is up-to-date on all hosts? Simply run the command and Ansible will ensure only those that need the update will receive it. All other hosts will remain untouched.
 
-Ansible is an incredibly popular [open source project](https://github.com/ansible/ansible) with [hundreds of available modules](https://docs.ansible.com/ansible/2.8/modules/list_of_all_modules.html). For more answers to the 'why?' question, check out Red Hat's announcement of [Ansible's acquisition](https://www.redhat.com/en/blog/why-red-hat-acquired-ansible) and [this post](https://hvops.com/articles/ansible-vs-shell-scripts/) comparing Ansible with other popular configuration management tools. 
+Ansible is an extremely popular [open source project](https://github.com/ansible/ansible) with [hundreds of available modules](https://docs.ansible.com/ansible/2.8/modules/list_of_all_modules.html).
 
-## Installation
+### Installation
 A single control machine can be setup to execute Ansible commands. The example below uses OS X, but any platform with Python installed will work (including [Windows](https://docs.ansible.com/ansible/latest/intro_windows.html)).
 
 >**Note:** Ansible is written in Python, but it isn't necessary to code in Python. You never have to touch Python unless you want to. The Ansible scripts themselves are written in the very simple YAML format. 
@@ -79,8 +81,8 @@ Once the installation has finished you can verify that everything installed corr
 ansible --version
 ```
 
-## Playbooks
-Playbooks are a way of chaining commands together, essentially creating a blueprint or set of procedual instructions. Ansible executes the playbook in sequence and verifies the result of each command before moving onto the next. If you cancel the playbook execution partway through and restart it later, only the commands that haven’t completed previously will execute—the rest will be skipped.
+### Playbooks
+Playbooks are a way of chaining commands together, essentially creating a blueprint or set of procedual instructions. Ansible executes the playbook in sequence and verifies the result of each command before moving onto the next one. If you cancel the playbook execution partway through and restart it later, only the commands that haven’t completed previously will execute—the rest will be skipped.
 
 Some basic playbook terminology is given below.
 
@@ -90,10 +92,10 @@ Some basic playbook terminology is given below.
 
 **Hosts and group variables** are part of Ansible's [inventory setup](https://docs.ansible.com/ansible/latest/intro_inventory.html) to manage individual hosts and logical groups of hosts (detailed below). This negates the need to remember individual IP addresses or domain names. It also provides a simple method of managing host-specific configurations.  
 
-**Handlers** contain logic that should be performed after a module has finished executing. They work very similar to notifications or events. For example, when the `ufw	` configuration has changed the handler restarts the firewall service. It’s important to note that these events are only fired when the module state has changed.
+**Handlers** contain logic that should be performed after a module has finished executing. They work very similar to notifications or events. For example, when the `ufw` configuration has changed the handler restarts the firewall service. It’s important to note that these events are only fired when the module state has changed.
 
-## Organization
-This is the basic directory structure used to organize the playbook:
+### Organization
+The basic directory structure used to organize the playbook is shown below:
 
 ```
 ├── ansible-cardano-node/
@@ -116,7 +118,7 @@ This is the basic directory structure used to organize the playbook:
 All the various Ansible tasks, handlers, configurations and so on are contained above. The specifics are described in the following sections.
 
 
-## Inventory setup
+### Inventory setup
 Before doing anything else, we need to tell Ansible what will run where. Ansible works against multiple managed nodes or hosts in our infrastructure at the same time, using a list or group of lists known as _inventory_. Once our inventory is defined, we can use patterns to select the hosts or groups you want Ansible to run against. The simplest approach is to declare a single `hosts` file that contains all known hosts. This file can be in INI or YAML format. An example hosts INI file is shown below:
 
 ```
@@ -129,7 +131,7 @@ This inventory setup works well for simple configurations, but shows its limitat
 
 - What - An application, stack or microservice (e.g., database servers, web servers, etc.)
 - Where - A datacenter or geographic region, to talk to local DNS, storage, etc. (e.g., east, west, Newark, Paris, Cape Town)
-- When - The development stage, to avoid testing on production resources. (e.g., production, staging, test)
+- When - The development stage, to avoid testing on production resources (e.g., mainnet, testnet)
 
 For our purposes, we have chosen a combination of the "what" and "when" group structures. Let's look at a high-level overview of our inventory group structure:
 
@@ -149,9 +151,11 @@ blockprod.mypool.com ansible_user=deploy
 
 Here the Ansible user `deploy` is used throughout, although a different user with specific rights/capabilities could be defined for each host. You can also see that the functional (or "what") groups are defined here with each of the fully-qualified domain names (FQDN) corresponding to a production backend host.
 
-> **Note**: for security reasons, you may wish to obfuscate, or hide, your block producer(s) public IP addresses. In this case, you may replace the FQDN in the example above with an IP address. The end results are the same.
+:::note 
+For security reasons, you may wish to obfuscate, or hide, your block producer(s) public IP addresses. In this case, you may replace the FQDN in the example above with an IP address. The end results are the same.
+::::
 
-## Group variables
+### Group variables
 Groups are nice for organization, but they are also used to handle variables. For example, the file `/groups_vars/all` has the following definitons:
 
 ```
@@ -166,9 +170,11 @@ cardano_default_port: "6000"
 
 This is a very minimal example. However, you can think about how `group_vars` can be used to store variables or other settings on a [functional or per-group basis](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#defining-variables-in-inventory). 
 
-> **Note:** Ansible provides a [vault](https://www.ansible.com/blog/2014/02/19/ansible-vault) facility to encrypt data such as passwords or keys, rather than as plaintext in playbooks.
+:::note 
+Ansible provides a [vault](https://www.ansible.com/blog/2014/02/19/ansible-vault) facility to encrypt data such as passwords or keys, rather than as plaintext in playbooks.
+::::
 
-## User setup
+### User setup
 We enhance security and ease of use by requiring public key authentication for our user accounts. Thereafter Ansible only interacts via the **deploy** account.
 
 1. Start by creating the **deploy** user:
@@ -227,10 +233,8 @@ You will probably want to change the default shell to bash:
 ```
 sudo chsh -s /bin/bash deploy
 ```
-	
-> **Note:** The above user setup could also be done via a playbook, as root. This is a good candidate for a future enhancement. 
 
-## Using tags
+### Using tags
 Tag are attributes that can be defined in an Ansible structure and used to selectively execute a subset of tasks. Tags are extremely useful because they allow us to run only a specific part of a large playbook, rather than running _everything_ in it. Tags can be applied to many structures in Ansible, but their simplest use is with individual tasks. The example below shows two tasks within the `cardano-node` role that use different tags:
 
 ```
@@ -258,7 +262,7 @@ ansible-playbook provision.yml --tags "install" --list-tasks
 
 Advanced tag usage including inheritance and special tags are covered [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html). 
 
-## Running a playbook
+### Running a playbook
 An example playbook execution is shown below. This playbook targets the `relay-node` inventory using vault credentials. The optional `--tags` specify tasks tagged as "configuration" settings. Finally the `--check` mode is a "dry run" option that does not make any changes on remote systems:
 
 ```
@@ -270,8 +274,8 @@ Assuming the host file is populated and the hosts are accessible, you should see
 
 The process above includes downloading and compiling `cardano-node` from source, along with the latest dependencies, if needed.  
 
-## Base configuration
-A set of known-good base settings are provided in this playbook. Where applicable, under each role you will find a file called `/defaults/main.yml`. These files contain default values for variables and should be modified _prior to provisioning a live node_. For example, the `ssh` role applies several Linux security best practiecs to harden secure shell access to your nodes. The file `ssh/defaults/main.yml` should be modified to match your remote administration IP address (that is, the machine you execute Ansible from):
+### Base configuration
+A set of known-good base settings are provided in this playbook. Where applicable, under each role you will find a file called `/defaults/main.yml`. These files contain default values for variables and should be modified prior to provisioning a live host. For example, the `ssh` role applies several Linux security best practices to harden secure shell access to your nodes. The file `ssh/defaults/main.yml` should be modified to match your remote administration IP address (that is, the machine you execute Ansible from):
 
 ```
 ssh_allowed_users: "AllowUsers deploy@127.0.0.1/32"
@@ -319,9 +323,8 @@ Likewise, assign a public IP address for your block producer. This file exists i
 127.0.0.1 ansible_user=deploy
 ```
 
-## Final thoughts
+### Pro tips
 Use Ansible's `--check` option when executing a playbook for the first time. This will safely execute the playbook and check for  any errors _without_ modifying your hosts.
 
 If you have manually configured your Cardano nodes in the past, it is strongly advised that you start with a fresh install of Ubuntu 20.04 LTS and execute your Ansible playbook against this new host.
 
-Lastly, if you find this playbook and documention useful **please delegate to MOAI pool**. We appreciate it!
