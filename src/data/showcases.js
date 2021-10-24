@@ -711,6 +711,15 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "TheConstruction | Generative GIF NFTs",
+    description:
+      "1st Generative GIF NFT Collection in Cardano NFT ecosystem. 1,111 TheConstruction NFTs are minted and time-locked.",
+    preview: require("./showcase/TheConstruction.png"),
+    website: "https://theconstruction.design",
+    source: "null",
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
