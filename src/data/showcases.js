@@ -666,6 +666,15 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "Happypus NFT",
+    description:
+      "To celebrate the Cardano smart contract success launch and inspired by Charles Hoskinson's own Happy Octopus mascot we decided to bring you this unique collection of Happypus NFTs",
+    preview: require("./showcase/happypus.png"),
+    website: "https://happypus.fun/",
+    source: null,
+    tags: ["nft","happypus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
