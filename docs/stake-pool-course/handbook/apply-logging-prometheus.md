@@ -19,21 +19,22 @@ You can get the best out of prometheus if you have both Prometheus on your local
 ## Setup Prometheus in your local machine or monitoring server
 Prometheus needs to be configured to monitor your Cardano Node. A minimalistic configuration file doing this could look like this:
 
-        global:
-          scrape_interval:     15s
-          external_labels:
-            monitor: 'codelab-monitor'
+```yaml
+global:
+  scrape_interval:     15s
+  external_labels:
+    monitor: 'codelab-monitor'
 
-        scrape_configs:
-          - job_name: 'cardano' # To scrape data from the cardano node
-            scrape_interval: 5s
-            static_configs:
-              - targets: ['a.b.c.d:12798']
-          - job_name: 'node' # To scrape data from a node exporter to monitor your linux host metrics.
-            scrape_interval: 5s
-            static_configs:
-              - targets: ['a.b.c.d:9100']
-
+scrape_configs:
+  - job_name: 'cardano' # To scrape data from the cardano node
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['a.b.c.d:12798']
+  - job_name: 'node' # To scrape data from a node exporter to monitor your linux host metrics.
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['a.b.c.d:9100']
+```
 
 You have to replace `a.b.c.d` with the public IP-address of your Cardano Node server, which you can find on the dashboard under _IPv4 Public IP_.
 

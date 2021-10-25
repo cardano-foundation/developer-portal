@@ -32,7 +32,7 @@ will inform us about the parameters this command takes, so we can for example ge
 
 ```sh
 cardano-cli node key-gen \
---cold-verification-key-file cold.vkey \
---cold-signing-key-file cold.skey \
---operational-certificate-issue-counter-file cold.counter
+	--cold-verification-key-file cold.vkey \
+	--cold-signing-key-file cold.skey \
+	--operational-certificate-issue-counter-file cold.counter
 ```
