@@ -371,15 +371,6 @@ const Showcases = [
     tags: ["pooltool", "analytics", "tokens"],
   },
   {
-    title: "See Ada",
-    description:
-      "This project tracks the controlled stake of the top pool operators and monitors decentralization.",
-    preview: require("./showcase/seeada.png"),
-    website: "https://seeada.org",
-    source: null,
-    tags: ["analytics"],
-  },
-  {
     title: "Cardano Blockchain Insights",
     description:
       "A Google Data Studio dashboard that visualizes many Cardano on-chain metrics.",
@@ -388,15 +379,6 @@ const Showcases = [
       "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
     source: null,
     tags: ["analytics"],
-  },
-  {
-    title: "Xhibit",
-    description:
-      "Create your own NFT or look into recently minted NFTs on Cardano.",
-    preview: require("./showcase/xhibit.png"),
-    website: "https://xhibit.io",
-    source: null,
-    tags: ["tokens", "nft"],
   },
   {
     title: "Token Tool",
@@ -640,33 +622,6 @@ const Showcases = [
     tags: ["nft", "game"],
   },
   {
-    title: "Cardano Waves",
-    description:
-      "The largest collection of real-time charts for the Cardano network and community.",
-    preview: require("./showcase/cardano-waves.png"),
-    website: "https://cardanowaves.com",
-    source: null,
-    tags: ["analytics"],
-  },
-  {
-    title: "Cardano Alerts",
-    description:
-      "Get wallet notifications or keep tabs on your Cardano stake pool with real time alerts.",
-    preview: require("./showcase/cardano-alerts.png"),
-    website: "https://cardanoalerts.com",
-    source: null,
-    tags: ["pooltool"],
-  },
-  {
-    title: "Metro Mermaids NFT Maker",
-    description:
-      "Mint and Burn NFTs",
-    preview: require("./showcase/metromermaids.png"),
-    website: "https://mint.metromermaids.com",
-    source: null,
-    tags: ["tokens", "nft"],
-  },
-  {
     title: "Cardano Token and NFT Builder",
     description:
       "Create your own native tokens and NFT in a few clicks without any code.",
@@ -701,6 +656,15 @@ const Showcases = [
     website: "https://seehype.com/",
     source: null,
     tags: ["nft"],
+  },
+  {
+    title: "cardano-tools.io",
+    description:
+      "An advanced CNFT maker. You just pay network fees.",
+    preview: require("./showcase/cardano-tools.io.png"),
+    website: "https://cardano-tools.io",
+    source: "https://github.com/wutzebaer/cardano-tools",
+    tags: ["tokens", "nft", "opensource"],
   },
 ];
 

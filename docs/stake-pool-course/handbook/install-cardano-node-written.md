@@ -57,8 +57,8 @@ If you are using a different flavor of Linux, you will need to use the package m
 wget https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
 tar -xf cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
 rm cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz cabal.sig
-mkdir -p ~/.local/bin
-mv cabal ~/.local/bin/
+mkdir -p $HOME/.local/bin
+mv cabal $HOME/.local/bin/
 ```
 
 Verify that .local/bin is in your PATH
@@ -84,7 +84,7 @@ nano .bashrc
 Go to the bottom of the file and add the following lines
 
 ```sh
-export PATH="~/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 You need to restart your server or source your .bashrc file
@@ -190,10 +190,10 @@ cd cardano-node
 
 For reproducible builds, we should check out a specific release, a specific "tag". For the Shelley Testnet, we will use tag `1.24.2`, which we can check out as follows:
 
-```sh
+```bash
 git fetch --all --tags
 git tag
-git checkout tags/1.24.2
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 ## Build and install the node
@@ -209,11 +209,11 @@ cabal build all
 Now we can copy the executables files to the .local/bin directory
 
 ```sh
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-1.24.2/x/cardano-node/build/cardano-node/cardano-node ~/.local/bin/
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-1.24.2/x/cardano-node/build/cardano-node/cardano-node $HOME/.local/bin/
 ```
 
 ```sh
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-1.24.2/x/cardano-cli/build/cardano-cli/cardano-cli ~/.local/bin/
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-1.24.2/x/cardano-cli/build/cardano-cli/cardano-cli $HOME/.local/bin/
 ```
 
 ```sh
@@ -234,15 +234,15 @@ cabal build cardano-node cardano-cli
 
 This is a good time to backup your current binaries (in case you have to revert to an earlier version). Something like this will work:
 ```sh
-cd ~/.local/bin
+cd $HOME/.local/bin
 mv cardano-cli cardano-cli-backup
 mv cardano-node cardano-node-backup
 ```
 Now copy your newly built binaries to the appropriate directory, with:
 ```sh
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-<NEW VERSION>/x/cardano-node/build/cardano-node/cardano-node ~/.local/bin/
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-<NEW VERSION>/x/cardano-node/build/cardano-node/cardano-node $HOME/.local/bin/
 
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-<NEW VERSION>/x/cardano-cli/build/cardano-cli/cardano-cli ~/.local/bin/
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-<NEW VERSION>/x/cardano-cli/build/cardano-cli/cardano-cli $HOME/.local/bin/
 ```
 
 :::note

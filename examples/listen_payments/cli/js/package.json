@@ -1,7 +1,7 @@
 {
   "name": "ada-payments-polling",
   "version": "0.0.1",
-  "description": "An example on how to poll ADA wallet for any UTXO changes",
+  "description": "An example on how to poll ada wallet for any UTXO changes",
   "main": "checkPayment.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

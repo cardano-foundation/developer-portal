@@ -159,6 +159,10 @@ module.exports = {
           title: "More about Cardano",
           items: [
             {
+              label: "Careers on Cardano",
+              to: "docs/careers",
+            },
+            {
               label: "Cardano Enterprise",
               href: "https://cardano.org/enterprise",
             },
@@ -197,7 +201,20 @@ module.exports = {
         min: 640, // min resized image's size. if original is lower, use that size.
         steps: 2, // the max number of images generated between min and max (inclusive)
       },
-    ]
+    ],
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            // redirect the old smart contracts signpost to the new smart contract category
+            // please note: "from" can also be an array, will work only in "yarn build"-mode
+            to: '/docs/smart-contracts/', 
+            from: '/docs/get-started/smart-contracts-signpost',
+          },
+        ],
+      },
+    ],
   ],
   presets: [
     [

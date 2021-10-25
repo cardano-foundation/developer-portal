@@ -20,7 +20,7 @@ This guide also assumes that you have `cardano-node` and `cardano-wallet` runnin
 
 ## Use case
 
-There are many possible reasons why you would want to have the functionality of listening for `ADA` payments, but a very obvious use case would be for something like an **online shop** or a **payment gateway** that uses `ADA` tokens as the currency.
+There are many possible reasons why you would want to have the functionality of listening for `ada` payments, but a very obvious use case would be for something like an **online shop** or a **payment gateway** that uses `ada` tokens as the currency.
 
 ![img](../../static/img/integrate-cardano/ada-online-shop.png)
 
@@ -40,7 +40,7 @@ In the meantime the transaction is then being processed and settled within the *
 
 Now let's get our hands dirty and see how we can implement something like this in actual code.
 
-### Generate wallet and request tADA
+### Generate wallet and request tAda
 
 First, we create our new **wallet** via `cardano-wallet` **REST API**:
 
@@ -197,7 +197,7 @@ var resp = await http.PostAsJsonAsync("wallets", new {
 
 #### Get unused wallet address to receive some payments
 
-We will get a **wallet address** to show to the customers and for them to send payments to the wallet. In this case we can use the address to request some `tADA` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) and simulate a payment:
+We will get a **wallet address** to show to the customers and for them to send payments to the wallet. In this case we can use the address to request some `tAda` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet) and simulate a payment:
 
 <Tabs
   defaultValue="js"
@@ -586,7 +586,7 @@ The code is telling us that our current wallet has received a total of `0 lovela
 
 What we can do to simulate a succesful payment is to send atleast `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We show how you can get the **wallet address** via code in the examples above.
 
-Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ADA` funds from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet). Once complete, we can now run the code again and we should see a succesful result this time.
+Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ada` funds from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet). Once complete, we can now run the code again and we should see a succesful result this time.
 
 <Tabs
   defaultValue="js"

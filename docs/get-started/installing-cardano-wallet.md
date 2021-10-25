@@ -41,29 +41,29 @@ In this section, we will walk you through the process of downloading, compiling 
 
 #### Downloading & Compiling
 
-If you have followed the [Installing cardano-node](/docs/get-started/installing-cardano-node) guide, You should have the `~/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
+If you have followed the [Installing cardano-node](/docs/get-started/installing-cardano-node) guide, You should have the `$HOME/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
 
 ```bash
-mkdir -p ~/cardano-src
-cd ~/cardano-src
+mkdir -p $HOME/cardano-src
+cd $HOME/cardano-src
 ```
 
 Next we download the `cardano-wallet` source-code: 
 
 ```bash
-git clone https://github.com/input-output-hk/cardano-wallet.git
+git clone https://github.com/input-output-hk/cardano-wallet.git --depth=1
 cd cardano-wallet
-git fetch --all --recurse-submodules --tags
+git fetch --all --recurse-submodules --tags --depth=1
 ```
 
 Switch the repository to the latest tagged commit: 
 
 ```bash
-git checkout tags/v2021-05-26
+git checkout tags/v2021-09-09
 ```
 
 :::important
-You can check the latest available version / tag by visiting the `cardano-wallet` [Github Release](https://github.com/input-output-hk/cardano-wallet/releases) page. At the time of writing this, the current version is `v2021-05-26`.
+You can check the latest available version / tag by visiting the `cardano-wallet` [Github Release](https://github.com/input-output-hk/cardano-wallet/releases) page. At the time of writing this, the current version is `v2021-09-09`.
 :::
 
 #### Configuring the build options
@@ -71,7 +71,7 @@ You can check the latest available version / tag by visiting the `cardano-wallet
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4 --constraint="random<1.2"
+cabal configure --with-compiler=ghc-8.10.4 
 ```
 
 #### Building and installing the node
@@ -81,7 +81,7 @@ We can now build `cardano-wallet` code to produce executable binaries.
 ```bash
 cabal build all
 ```
-Install the newly built `cardano-wallet` binary to the `~/.local/bin` directory:
+Install the newly built `cardano-wallet` binary to the `$HOME/.local/bin` directory:
 <Tabs
   defaultValue="macos"
   values={[
@@ -92,7 +92,7 @@ Install the newly built `cardano-wallet` binary to the `~/.local/bin` directory:
 
 ###### MacOS
 ```bash
-cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
+cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" $HOME/.local/bin/
 ```
 
 </TabItem>
@@ -101,7 +101,7 @@ cp -p "dist-newstyle/build/x86_64-osx/ghc-8.10.4/cardano-wallet-2021.5.26/x/card
 
 ###### Linux
 ```bash
-cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" ~/.local/bin/
+cp -p "dist-newstyle/build/x86_64-linux/ghc-8.10.4/cardano-wallet-2021.5.26/x/cardano-wallet/build/cardano-wallet/cardano-wallet" $HOME/.local/bin/
 ```
 
 </TabItem>
@@ -117,7 +117,7 @@ cardano-wallet version
 You should see something like this: 
 
 ```
-2021.5.26 (git revision: 7426ccc17ecffcc112abf5e8382bcb89cb24f771)
+v2021-09-09 (git revision: 011a258c1b5ba57ca70f13346109ce3074820032)
 ```
 
 Congratulations, you have successfully installed `cardano-wallet` into your Linux system! 🎉🎉🎉

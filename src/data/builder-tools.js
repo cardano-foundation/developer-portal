@@ -49,6 +49,22 @@ export const Tags = {
     icon: null,
   },
 
+   // Marlowe
+   marlowe: {
+    label: "Marlowe",
+    description:
+      "Marlowe",
+    icon: null,
+  },
+
+  // Plutus
+  plutus: {
+    label: "Plutus",
+    description:
+      "Plutus",
+    icon: null,
+  },
+
   // Stake Pool Operator Tools
   operatortool: {
     label: "Operator Tools",
@@ -99,13 +115,13 @@ const Showcases = [
     description:
       "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
     preview: require("./builder-tools/dandelion-apis.png"),
-    website: "https://gimbalabs.com/dandelionapis",
+    website: "https://gimbalabs.com/dandelion",
     getstarted: "/docs/get-started/dandelion-apis",
     tags: ["getstarted", "api"],
   },
   {
     title: "Ogmios",
-    description: "Ogmios offers a JSON-WSP interface through WebSockets.",
+    description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
@@ -136,6 +152,14 @@ const Showcases = [
     website: "https://github.com/adosia/Heidrun",
     getstarted: null,
     tags: ["api"],
+  },
+  {
+    title: "cardano-wallet-js",
+    description: "A javascript/typescript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
+    preview: require("./builder-tools/cardano-wallet-js.png"),
+    website: "https://github.com/tango-crypto/cardano-wallet-js",
+    getstarted: "/docs/get-started/cardano-wallet-js",
+    tags: ["getstarted", "library"]
   },
   {
     title: "CardanoSharp Wallet",
@@ -177,6 +201,22 @@ const Showcases = [
     website: "https://github.com/emesik/cardano-python",
     getstarted: null,
     tags: ["library", "api"],
+  },
+  {
+    title: "Plutus Playground",
+    description: "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
+    preview: require("./builder-tools/plutus-playground.png"),
+    website: "https://playground.plutus.iohkdev.io",
+    getstarted: "/docs/smart-contracts/plutus#plutus-playground",
+    tags: ["featured", "getstarted", "plutus"],
+  },
+  {
+    title: "Marlowe Playground",
+    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
+    preview: require("./builder-tools/marlowe-playground.png"),
+    website: "https://alpha.marlowe.iohkdev.io/#/",
+    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
+    tags: ["featured", "getstarted", "marlowe"],
   },
 ];
 

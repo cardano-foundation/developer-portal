@@ -1,6 +1,6 @@
 ---
 id: guild-ops-suite
-title: Get Stared with Guild Operators Tools
+title: Get Started with Guild Operators Tools
 sidebar_label: Guild Operators Suite
 description: Get Started with Guild Operators Tools
 image: ./img/og-developer-portal.png
@@ -14,7 +14,7 @@ The Guild-Operators suite is a collection of tools and scripts for easy setup, m
 
 #### CNTools
 
-CNTools is like a swiss army knife for pool operators to simplify typical operations. It is a bash GUI menu-driven tool to create and manage wallets, sending Ada and tokens, and about every pool operation needed. In addition to this, the tool has been extended with additional features and improvements since its first official release together with the Cardano Shelley MainNet launch in July 2020. You can find more information about CNTools [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).  
+CNTools is like a swiss army knife for pool operators to simplify typical operations. It is a bash GUI menu-driven tool to create and manage wallets, sending ada and tokens, and about every pool operation needed. In addition to this, the tool has been extended with additional features and improvements since its first official release together with the Cardano Shelley MainNet launch in July 2020. You can find more information about CNTools [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).  
 ![img](../../static/img/get-started/guild-ops-suite/guild_cntools.png)  
 
 #### gLiveView
@@ -47,12 +47,12 @@ mkdir "$HOME/tmp";cd "$HOME/tmp"
 curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh
 chmod 755 prereqs.sh
 ./prereqs.sh
-. ~/.bashrc
+. "$HOME"/.bashrc
 ```
 
 ### Build of Node/DBSync components
 
-We assume you'd have already seen te guide [here](../../docs/get-started/installing-cardano-node.md). There are similar build scripts/instructions available for building different cardano-node, cardano-db-sync, offline-metadata-tools and setting up postgres+postgREST with dbsync) on guild documentations. You can navigate instructions for each of them [here](https://cardano-community.github.io/guild-operators/build/). The instructions will also deploy these as a systemd service, which is recommended to avoid manually managing services.  
+We assume you'd have already seen the guide [here](../../docs/get-started/installing-cardano-node.md). There are similar build scripts/instructions available for building different cardano-node, cardano-db-sync, offline-metadata-tools and setting up postgres+postgREST with dbsync) on guild documentations. You can navigate instructions for each of them [here](https://cardano-community.github.io/guild-operators/build/). The instructions will also deploy these as a systemd service, which is recommended to avoid manually managing services.  
 
 ### Customise configuration
 

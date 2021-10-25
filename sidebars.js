@@ -18,6 +18,7 @@ module.exports = {
         items: [
           "get-started/blockfrost",
           "get-started/cardanocli-js",
+          "get-started/cardano-wallet-js",
           "get-started/dandelion-apis",
           "get-started/ogmios",
           "get-started/cardanosharp-wallet",
@@ -36,7 +37,6 @@ module.exports = {
       },
       "get-started/technical-concepts",
       "get-started/testnets-and-devnets",
-      "get-started/smart-contracts-signpost",
       "get-started/cardano-developer-community",
     ],
     "Integrate Cardano": [
@@ -58,6 +58,11 @@ module.exports = {
       "native-tokens/minting",
       "native-tokens/minting-nfts",
       "native-tokens/cardano-token-registry"
+    ],
+    "Create Smart Contracts": [
+      "smart-contracts/overview",
+      "smart-contracts/marlowe",
+      "smart-contracts/plutus",
     ],
     "Fund your Project": [
       "fund-your-project/overview", 

@@ -52,13 +52,13 @@ html[data-theme="dark"] {
 
 .card {
   padding: 0rem;
-  margin-top: 0rem;
+  margin-top: 1rem;
   animation: fadeInUp 400ms backwards;
   animation-delay: 150ms;
   transition-property: all;
   transition-duration: 200ms;
   box-shadow: 0 8px 28px 4px rgba(86, 91, 115, 0.15);
-  height: calc(100% - 30px);
+  height: calc(100% - 15px);
 }
 
 .card a {
@@ -90,9 +90,9 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 div#faucetcontainer {
-  width: 500px;
+  width: 650px;
   /* defines the visible width of the part */
-  height: 500px;
+  height: 650px;
   /* defines the visible height of the part */
   overflow: hidden;
   overflow-x: hidden;
@@ -111,7 +111,7 @@ div#faucetcontainer {
   /* determines where the bottom of the page cuts off */
   margin-left: -300px;
   /* defines the left clipping of the faucet page */
-  margin-top: -1270px !important;
+  margin-top: -1010px !important;
   /* defines the top clipping of the faucet page */
   overflow: hidden;
   -webkit-resize: none;
