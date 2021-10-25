@@ -39,10 +39,10 @@ Registering your stake pool requires:
 
 ```json
 {
-	"name": "TestPool",
-	"description": "The pool that tests all the pools",
-	"ticker": "TEST",
-	"homepage": "https://teststakepool.com"
+    "name": "TestPool",
+    "description": "The pool that tests all the pools",
+    "ticker": "TEST",
+    "homepage": "https://teststakepool.com"
 }
 ```
 
