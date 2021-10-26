@@ -33,7 +33,7 @@ CIPs should be written in [Markdown](https://guides.github.com/features/masterin
 | Rationale | The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale should provide evidence of consensus within the community and discuss important objections or concerns raised during discussion.|
 | Backwards compatibility | All CIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The CIP must explain how the author proposes to deal with these incompatibilities.|
 | Reference implementation | The reference implementation must be completed before any CIP is given status "Active", but it need not be completed before the CIP is accepted. It is better to finish the specification and rationale first and reach consensus on it before writing code. The final implementation must include test code and documentation appropriate for the Cardano protocol.|
-| Copyright | The CIP must be explicitly licensed under acceptable copyright terms ([see below](#CIP-licensing)).|
+| Copyright | The CIP must be explicitly licensed under acceptable copyright terms ([see below](#cip-licensing)).|
 
 ## CIP workflow
 
@@ -51,12 +51,12 @@ sources={{
 
 ** 1. Skim through existing discussions and proposals. **
 
-If you have an idea you would like to propose, first search through previously proposed or discussed ideas in this repository and in public forums, and aim to extend an existing conversation if similar enough. If your idea is original or sufficiently distinct, start a new conversation thread to enable a discussion with the community. Favor public forums such as the [Cardano Developer forum](https://forum.cardano.org/c/developers/), [Cardano subreddit](https://reddit.com/r/cardano), or other active Cardano discussion places so that the community can weigh in on the proposition. You should seek feedback and try to build informal consensus, as well as keep track of any critical feedback so that you can address it later. 
+If you have an idea you would like to propose, first search through previously proposed or discussed ideas in this repository and in public forums, and aim to extend an existing conversation if similar enough. If your idea is original or sufficiently distinct, start a new conversation thread to enable a discussion with the community. Favor public forums such as the [Cardano Developer Forum](https://forum.cardano.org/c/developers/), [Cardano Reddit](https://reddit.com/r/cardano), or other active Cardano discussion places so that the community can weigh in on the proposition. You should seek feedback and try to build informal consensus, as well as keep track of any critical feedback so that you can address it later. 
 
 
 ** 2. Post a draft to the forum; engage with the community. ** 
 
-When enough of an engaged conversation has taken place and the idea resonates with some, prepare a draft of your proposal. The draft proposal should be posted to the [Cardano CIPs forum](https://forum.cardano.org/c/developers/cips/122). 
+When enough of an engaged conversation has taken place and the idea resonates with some, prepare a draft of your proposal. The draft proposal should be posted to the [Cardano CIPs Forum](https://forum.cardano.org/c/developers/cips/122). 
 This provides formal visibility beyond the original discussion, and helps the author(s) clarify details of the proposal as it is circulated more widely. 
 Because the author or authors are responsible for collecting and summarizing community feedback in the next phase, long open-ended discussions should be avoided when creating the initial draft. Consider accepting private comments during the early design phases, setting up a wiki page, GitHub repository, or some other method to keep the discussion focused.
 
@@ -109,11 +109,11 @@ A CIP's status should only be changed from draft (or rejected) to proposed when 
 
 A CIP can be rejected by a CIP editor for a few specific reasons. CIPs should be changed from draft or proposed status to rejected status, upon request by any person, if they have not been progressed for more than three years. A rejected CIP can be changed to proposed status if it meets the criteria described in the previous paragraph, and if the author or author(s) provide revisions that meaningfully address the original criticism of the proposal that caused it to be rejected.
 
-A proposed CIP may progress to active only when specific criteria reflecting real-world adoption have been met. These will be different for each CIP, depending on the nature of its proposed changes, which will be expanded on below. Evaluation of this status change should be objectively verifiable, and/or be discussed in the [Cardano CIPs forum](https://forum.cardano.org/c/developers/cips/122).
+A proposed CIP may progress to active only when specific criteria reflecting real-world adoption have been met. These will be different for each CIP, depending on the nature of its proposed changes, which will be expanded on below. Evaluation of this status change should be objectively verifiable, and/or be discussed in the [Cardano CIPs Forum](https://forum.cardano.org/c/developers/cips/122).
 
 When an active CIP is no longer relevant, its status may be changed to obsolete. This change must also be objectively verifiable and/or discussed.
 
-The procedure for a Process CIP to progress from draft to active is slightly different: a Process CIP may change status from draft to active when it achieves rough consensus in the community. Such a proposal is said to have rough consensus if it has been open to discussion on the [Cardano CIPs forum](https://forum.cardano.org/c/developers/cips/122) for at least one month, and no person maintains any unaddressed, substantiated objections to it. Addressed or obstructive objections may be ignored or overruled by general agreement that they have been sufficiently addressed, but clear reasoning must be given in such circumstances.
+The procedure for a Process CIP to progress from draft to active is slightly different: a Process CIP may change status from draft to active when it achieves rough consensus in the community. Such a proposal is said to have rough consensus if it has been open to discussion on the [Cardano CIPs Forum](https://forum.cardano.org/c/developers/cips/122) for at least one month, and no person maintains any unaddressed, substantiated objections to it. Addressed or obstructive objections may be ignored or overruled by general agreement that they have been sufficiently addressed, but clear reasoning must be given in such circumstances.
 
 For a CIP to progress to active status, it requires adoption from the majority of the Cardano economy, including ada holders, stake pools, and exchanges, among others. Adoption must be demonstrated by de facto usage of the CIP in practice.
 
@@ -149,7 +149,7 @@ Each CIP must begin with an [RFC 822](https://www.ietf.org/rfc/rfc822.txt) style
 The Author(s) header lists the names and email addresses of the author or authors of the CIP.
 The format of the Author(s) header value must be:
 
-  Random J. User \<address@dom.ain\>
+  Random J. User <address@example.invalid>
 
 If there are multiple authors, each should be on a separate line following RFC 2822 continuation line conventions.
 
