@@ -38,8 +38,8 @@ If you have experience with other smart contract platforms and want to start bui
 ## What you can do on Cardano today
 - You can send and receive [native tokens](../native-tokens/), including ada.
 - You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
-- You can [vote with your ada](../fund-your-project/project-catalyst#participate-as-a-voter) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on [Project Catalyst](../fund-your-project/project-catalyst).
-- You can earn ada rewards by [voting on proposals](../fund-your-project/project-catalyst#participate-as-a-voter). 
+- You can [vote with your ada](../governance/project-catalyst#participate-as-a-voter) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on [Project Catalyst](../governance/project-catalyst).
+- You can earn ada rewards by [voting on proposals](../governance/project-catalyst#participate-as-a-voter). 
 - You can participate in the [Cardano Improvement Proposals](technical-concepts#cardano-improvement-proposals-cip) (CIP) process.
 - You can interact with [smart contracts](../smart-contracts/).
 
@@ -47,7 +47,7 @@ If you have experience with other smart contract platforms and want to start bui
 - Cardano offers a better infrastructure to build products because it is faster, more secure, and cost-effective.
 - Cardano offers accurate cost predictability when it comes to transactions. There are no auctions for transaction fees.
 - Cardano has an energetic community and more than one million wallets. If you stick to specific standards, we are keen to try out and engage with new products. Participating now makes you a first mover.
-- Cardano brings its venture fund. If you build on Cardano you can get [your project funded](../fund-your-project/). Every 6 to 8 weeks, projects can be proposed, discussed, and voted on by the Cardano community.
+- Cardano brings its venture fund. If you build on Cardano you can get [your project funded](../governance/project-catalyst). Every 6 to 8 weeks, projects can be proposed, discussed, and voted on by the Cardano community.
 - Cardano is a proof-of-stake blockchain. By design, it consumes much less energy and computational power.
 - Cardano is built with the rigor of high-assurance formal development methods. The consensus mechanism [Ouroboros](https://cardano.org/ouroboros/) was delivered with several peer-reviewed papers presented in top-tier conferences and publications in cybersecurity and cryptography. If you build on Cardano, you build on this foundation.
 
