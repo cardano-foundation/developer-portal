@@ -25,15 +25,15 @@ The best way to keep up to date with Project Catalyst is to follow [the announce
 * To get your project funded.
 * To learn and grow.
 
-## Participate as a proposer
+### Participate as a proposer
 
 You will need to create an account first on [Cardano IdeaScale](https://cardano.ideascale.com/) and then submit your proposal there. You can collaborate with the community to develop and refine your proposal on the [proposals channel](https://t.me/catalystproposers) on Telegram.
 
-## Participate as a community advisor
+### Participate as a community advisor
 
 You can provide reviews, assessments, and mentor proposers in their delivery and presentation. Check the [community channel](https://t.me/CatalystCommunityAdvisors) on Telegram.
 
-## Participate as a voter
+### Participate as a voter
 
 Download the Catalyst voting app in the [Apple Store](https://apps.apple.com/kg/app/catalyst-voting/id1517473397) or [Google Play Store](https://play.google.com/store/apps/details?id=io.iohk.vitvoting&gl=US) and vote for your favourite projects. 
 
