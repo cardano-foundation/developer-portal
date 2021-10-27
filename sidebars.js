@@ -68,7 +68,6 @@ module.exports = {
       "governance/overview", 
       "governance/cardano-improvement-proposals",
       "governance/project-catalyst", 
-      "governance/alternatives"
     ],
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",
