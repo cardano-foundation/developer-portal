@@ -208,9 +208,18 @@ module.exports = {
         redirects: [
           {
             // redirect the old smart contracts signpost to the new smart contract category
-            // please note: "from" can also be an array, will work only in "yarn build"-mode
             to: '/docs/smart-contracts/', 
             from: '/docs/get-started/smart-contracts-signpost',
+          },
+          {
+            // redirect the old funding category overview to the new governance category
+            to: '/docs/governance/', 
+            from: '/docs/fund-your-project/',
+          },
+          {
+            // redirect to the new catalyst page
+            to: '/docs/governance/project-catalyst', 
+            from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
         ],
       },

@@ -25,15 +25,15 @@ The best way to keep up to date with Project Catalyst is to follow [the announce
 * To get your project funded.
 * To learn and grow.
 
-## Participate as a proposer
+### Participate as a proposer
 
 You will need to create an account first on [Cardano IdeaScale](https://cardano.ideascale.com/) and then submit your proposal there. You can collaborate with the community to develop and refine your proposal on the [proposals channel](https://t.me/catalystproposers) on Telegram.
 
-## Participate as a community advisor
+### Participate as a community advisor
 
 You can provide reviews, assessments, and mentor proposers in their delivery and presentation. Check the [community channel](https://t.me/CatalystCommunityAdvisors) on Telegram.
 
-## Participate as a voter
+### Participate as a voter
 
 Download the Catalyst voting app in the [Apple Store](https://apps.apple.com/kg/app/catalyst-voting/id1517473397) or [Google Play Store](https://play.google.com/store/apps/details?id=io.iohk.vitvoting&gl=US) and vote for your favourite projects. 
 
@@ -68,3 +68,21 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 Find common FAQ and the FAQ of previous funds on Project Catalyst:
 * [General Project Catalyst FAQ](https://cardanocataly.st/faq/)
 * [Project Catalyst FAQ + Timelines](https://iohk.zendesk.com/hc/en-us/articles/900006490763-Project-Catalyst-FAQ)
+
+
+## Alternative funding options
+
+[Project Catalyst](project-catalyst) should be your tool of choice when it comes to project funding on Cardano. For the sake of completeness, here is a place to list alternative funding options for your project.
+
+### The cFund
+
+The [cFund](https://cfund.vc/) is a venture fund that manages all centralized fund operations secured by [IOHK](https://iohk.io/) and [Wave Financial](https://wavegp.com/) where each of them participated with 10$ million to back ambitious founders globally. 
+
+The [cFund](https://cfund.vc/) is a homage to Apple's iFund that was introduced in 2008 to bootstrap iOS development. Compared to Project Catalyst, the funds available here are relatively small.
+
+The **cFund** started in July 2020 with the goals to achieve:
+* Growing the Cardano ecosystem.
+* Working with governments, especially in developing countries in Africa and South America.
+* Providing access to high-speed, adaptable financing for founders to manage payment flows and invest in the Cardano ecosystem.
+
+The first **cFund** investment took place In April 2021. It provided $500,000 to innovative enterprise-grade fintech technology called [COTI, the currency of the internet](https://coti.io/). **COTI** secured the investment to support stakeholder-driven payment solutions and enables them to pack digitally any currency.
