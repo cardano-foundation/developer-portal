@@ -61,7 +61,7 @@ export const Tags = {
       "Educational projects that will help you onboarding to Cardano.",
     icon: null,
   },
- 
+
   // Games
   game: {
     label: "Games",
@@ -168,6 +168,15 @@ const Showcases = [
       "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
+    title: "Genesis Auction House",
+    description:
+      "The cNFT marketplace that backs creators. Now with smart contracts! ",
+    preview: require("./showcase/genesishouse.png"),
+    website: "https://genesishouse.io",
     source: null,
     tags: ["nft"],
   },
@@ -631,7 +640,7 @@ const Showcases = [
     tags: ["tokens", "nft"],
   },
   {
-  title: "NFTdot.io - create.sell.buy.collect",
+    title: "NFTdot.io - create.sell.buy.collect",
     description:
       "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
     preview: require("./showcase/nftdot.png"),
@@ -642,7 +651,7 @@ const Showcases = [
   {
     title: "Tokhun.io",
     description:
-        "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
+      "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
