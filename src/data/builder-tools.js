@@ -166,7 +166,7 @@ const Showcases = [
     description:
       "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
     preview: require("./builder-tools/cardanosharp.png"),
-    website: "https://github.com/CardanoSharp/cardanosharp-wallet",
+    website: "https://www.cardanosharp.com",
     getstarted: "/docs/get-started/cardanosharp-wallet",
     tags: ["getstarted", "library"],
   },
