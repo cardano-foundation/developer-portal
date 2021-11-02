@@ -605,6 +605,14 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "Medusa",
+    description:
+      "User-friendly smart web based wallet that allows you to manage your funds from any device. Powered by MDS pool.",
+    preview: require("./showcase/medusa_wallet_poster.png"),
+    website: "https://medusawallet.io",
+    tags: ["wallet"]
+  },
+  {
     title: "Nami",
     description:
       "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
