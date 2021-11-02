@@ -610,6 +610,7 @@ const Showcases = [
       "User-friendly smart web based wallet that allows you to manage your funds from any device. Powered by MDS pool.",
     preview: require("./showcase/medusa_wallet_poster.png"),
     website: "https://medusawallet.io",
+    source: null,
     tags: ["wallet"]
   },
   {
