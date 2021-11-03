@@ -702,6 +702,15 @@ const Showcases = [
     source: null,
     tags: ["nft"],
   },
+  {
+    title: "Cardano Laravel",
+    description:
+      "A simple Laravel API project that allows users to connect to Cardano using Blockfrost.",
+    preview: require("./showcase/cardano-laravel.png"),
+    website: "https://cardanoproperty.com/request-docs",
+    source: null,
+    tags: ["opensource", "pooltool", "metadata", "explorer"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
