@@ -465,7 +465,7 @@ funds="Please updated your funds"
 The transaction looks like this:
 
 ```bash
-cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slot --out-file burning.raw
+cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slotnumber --out-file burning.raw
 ```
 
 :::note
@@ -485,7 +485,7 @@ burnoutput=$(expr $funds - $burnfee)
 
 Re-run the transaction build.
 ```bash
-cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slot --out-file burning.raw
+cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slotnumber --out-file burning.raw
 ```
 Sign the transaction.
 ```bash
