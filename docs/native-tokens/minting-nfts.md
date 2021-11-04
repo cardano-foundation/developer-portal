@@ -390,7 +390,7 @@ cardano-cli transaction build \
 --out-file matx.raw
 ```
 
-If the above command generate an output similar to:
+The above command may generate output as per below:
 
 ```bash
 Minimum required UTxO: Lovelace 1448244
