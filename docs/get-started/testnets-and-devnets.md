@@ -36,6 +36,6 @@ The developer portal covers everything that you can do on Cardano Mainnet today.
 If you miss information about virtual machines like [KEVM](https://testnets.cardano.org/en/virtual-machines/kevm/overview/), [IELE](https://testnets.cardano.org/en/virtual-machines/iele/overview/), and [EVM](https://testnets.cardano.org/en/virtual-machines/evm/overview/) or programming languages like [Plutus](https://testnets.cardano.org/en/programming-languages/plutus/overview/), [Marlowe](https://testnets.cardano.org/en/programming-languages/marlowe/overview/) and [Glow](https://testnets.cardano.org/en/programming-languages/glow/overview/), visit [testnets.cardano.org](https://testnets.cardano.org).
 
 ### Smart Contracts
-To get you up to speed with the Smart Contract functionality coming to Cardano, we prepared [get started with smart contracts on Cardano](/docs/smart-contracts/overview).
+To get you up to speed with the Smart Contract functionality coming to Cardano, we prepared [get started with smart contracts on Cardano](/docs/smart-contracts/).
 
 
