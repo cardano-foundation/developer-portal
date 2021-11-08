@@ -709,7 +709,7 @@ const Showcases = [
     preview: require("./showcase/cardano-laravel.png"),
     website: "https://cardanoproperty.com/request-docs",
     source: null,
-    tags: ["opensource", "pooltool", "metadata", "explorer"],
+    tags: ["opensource", "pooltool", "metadata"],
   },
 ];
 
