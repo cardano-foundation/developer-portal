@@ -55,10 +55,7 @@ If you do not have access to a computer running Linux \(or VirtualBox\), you can
 
 ![img](../../../static/img/stake-pool-course/setup-aws-11-connect-2.png)
 
-
 Congratulations! You have now access to a machine running Linux.
-
-
 
 :::tip questions or suggestions?
 
