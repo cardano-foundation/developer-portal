@@ -657,6 +657,15 @@ const Showcases = [
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
   },
+  {
+    title: "Veritree",
+    description:
+      "Veritree leverages blockchain technology to provide planting organizations with an integrated planting management platform.",
+    preview: require("./showcase/veritree.png"),
+    website: "https://veritree.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
