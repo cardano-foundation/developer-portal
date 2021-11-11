@@ -165,11 +165,11 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
+      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
-    source: null,
-    tags: ["nft"],
+    source: "https://github.com/Berry-Pool/spacebudz",
+    tags: ["featured", "nft", "opensource"],
   },
   {
     title: "ADAex",
