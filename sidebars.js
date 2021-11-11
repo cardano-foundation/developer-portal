@@ -64,10 +64,10 @@ module.exports = {
       "smart-contracts/marlowe",
       "smart-contracts/plutus",
     ],
-    "Fund your Project": [
-      "fund-your-project/overview", 
-      "fund-your-project/project-catalyst", 
-      "fund-your-project/alternatives"
+    "Be Part of the Governance": [
+      "governance/overview", 
+      "governance/cardano-improvement-proposals",
+      "governance/project-catalyst", 
     ],
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",
@@ -120,6 +120,7 @@ module.exports = {
         label: "Operator Tools",
         items: [
           "operate-a-stake-pool/guild-ops-suite",
+          "operate-a-stake-pool/ansible-cardano-node",
         ],
       },
       "operate-a-stake-pool/marketing-stake-pool",

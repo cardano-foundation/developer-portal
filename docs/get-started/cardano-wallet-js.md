@@ -196,7 +196,7 @@ Output:
 ```
 
 :::important
-The recovery phrase is the only way you can restore you wallet and you **SHOULD KEEP IT SECURE AND PRIVATE**. You'll get a completeley different recovery phrase each time you execute the method. 
+The recovery phrase is the only way you can restore your wallet and you **SHOULD KEEP IT SECURE AND PRIVATE**. You'll get a completeley different recovery phrase each time you execute the method. 
 :::
 
 For convenience, you can convert the recovery phrase into an array using this:

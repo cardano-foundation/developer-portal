@@ -63,13 +63,13 @@ const features = [
     ),
   },
   {
-    title: "Fund your Project",
-    imageUrl: "img/card-fund-your-project.svg",
-    targetUrl: "docs/fund-your-project/",
+    title: "Be Part of the Governance",
+    imageUrl: "img/card-governance.svg",
+    targetUrl: "docs/governance/",
     description: (
       <>
-        Understand Project Catalyst and how you can use it to fund your projects
-        if you build on Cardano.
+        Governance is an essential topic that includes Cardano Improvement Proposals (CIP), 
+        project funding, voting, and network parameters.
       </>
     ),
   },

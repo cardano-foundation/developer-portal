@@ -60,7 +60,7 @@ Use Instagram and Discord to post Cardano updates and pool updates (epoch summar
 
 ### YouTube
 
-Some successful stake pools create a YoTube channel to get a larger audience.
+Some successful stake pools create a YouTube channel to get a larger audience.
 For example, you can add some articles to your website, create full stake delegation instructions, and at the same time create related videos on YouTube. This approach builds backlinks to your website so people will find your stake pool more often when using Google search. Note that building a Youtube channel is time consuming, especially if you are not an editor, and can be expensive if you do not have necessary professional equipments.
 
 ## Manage and maintain delegators

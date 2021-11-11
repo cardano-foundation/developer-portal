@@ -476,6 +476,7 @@ cardano-cli transaction build --mainnet --alonzo-era --tx-in $txhash#$txix --tx-
 The minting parameter is now called with a negative value, therefore destroying one token.
 :::
 
+
 Sign the transaction.
 ```bash
 cardano-cli transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --mainnet  --tx-body-file burning.raw --out-file burning.signed
