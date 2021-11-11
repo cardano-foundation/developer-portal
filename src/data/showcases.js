@@ -285,7 +285,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["featured", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Cardano Warriors",
