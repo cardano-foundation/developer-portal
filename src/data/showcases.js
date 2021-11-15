@@ -165,11 +165,11 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
+      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
-    source: null,
-    tags: ["nft"],
+    source: "https://github.com/Berry-Pool/spacebudz",
+    tags: ["featured", "nft", "opensource"],
   },
   {
     title: "ADAex",
@@ -285,7 +285,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["featured", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Cardano Warriors",
@@ -578,15 +578,6 @@ const Showcases = [
     tags: ["nft"],
   },
   {
-    title: "Pigy Token",
-    description:
-      "The community token for Cardano stake pool operators and delegators",
-    preview: require("./showcase/pigytokenproject.png"),
-    website: "https://pigytoken.com",
-    source: null,
-    tags: ["tokens"],
-  },
-  {
     title: "JES-Art",
     description:
       "16 year old female fine art NFTs on the Cardano blockchain!",
@@ -665,6 +656,15 @@ const Showcases = [
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
+  },
+  {
+    title: "Veritree",
+    description:
+      "Veritree leverages blockchain technology to provide planting organizations with an integrated planting management platform.",
+    preview: require("./showcase/veritree.png"),
+    website: "https://veritree.com",
+    source: null,
+    tags: ["tokens", "nft"],
   },
 ];
 
