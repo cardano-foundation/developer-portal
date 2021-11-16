@@ -1,11 +1,11 @@
-# Cardano Developer Portal - weekly reports
+## Cardano Developer Portal - weekly reports
 
-## Week ending November 12th
+### Week ending November 12th
 
 [2021-11-11]
- * Showcase housekeeping (#408) (Tommy)
+ * Showcase housekeeping (#408) (Tommy Kammerer)
 
-## Week ending November 5th
+### Week ending November 5th
 
 [2021-11-03]
  * updated with testnet version (#407) (nilaysaha)
@@ -13,7 +13,7 @@
  * Fix typo (#404) (Donovan Dikaio)
  * Standardize code block formatting in Stake Pool Course handhook (#385) (Dan Loewenherz)
 
-## Week ending October 29th
+### Week ending October 29th
 
 [2021-10-28]
  * updated cardanosharp logo and website (#401) (Kyle Johns)
@@ -23,11 +23,11 @@
  * YouTube typo fixed (#391) (Duzij)
  * Update minting-nfts.md (#382) (Nico Krause)
 
-## Week ending October 22th
+### Week ending October 22th
 
 [no updates]
 
-## Week ending October 15th
+### Week ending October 15th
 
 [2021-10-12]
  * Turn "funding" into "governance category + bring CIPs in (#394) (Tommy Kammerer)
@@ -46,7 +46,7 @@
  * Add careers on Cardano page (#350) (Tommy Kammerer)
  * Showcase fixes (#349) (Tommy Kammerer)
 
-## Week ending October 8th
+### Week ending October 8th
 
 [2021-10-06]
  * Fix captcha issue raised in #339 (#346) (Tommy Kammerer)
@@ -55,7 +55,7 @@
  * Change witness count to 2 for minting transactions (#322) (brouwerQ)
  * Update node checkout references, replace home directory references (#341) (Priyank)
 
-## Week ending October 1st
+### Week ending October 1st
 
 [2021-10-01]
  * Minor correction (#344) (Ganesh)
@@ -67,7 +67,7 @@
  * Changed "10000 blocks" to "10000 slots" (#324) (brouwerQ)
  * Fix small typos in minting.md (#334) (Francisco Garmendia)
 
-## Week ending September 24th
+### Week ending September 24th
 
 [2021-09-24]
  * minor documentation tweaks on Ogmios. (#327) (Matthias Benkort)
@@ -82,7 +82,7 @@
 [2021-09-20]
  * Use `HydraBuildList` to provide latest release binaries (with fallback) (#300) (Alexander Klee)
 
-## Week ending September 17th
+### Week ending September 17th
 
 [2021-09-15]
  * Delete duplicate article (#310) (Tommy Kammerer)
@@ -101,7 +101,7 @@
  * Add smart-contract search entry point (#287) (Tommy Kammerer)
  * Fix pioneer link (Tommy Kammerer)
 
-## Week ending September 10th
+### Week ending September 10th
 
 [2021-09-08]
  * Add smart contract category (#284) (Tommy Kammerer)
@@ -113,13 +113,13 @@
  * Correct "Minting" Link  under Setup (#273) (Mike Coleman)
  * chore: fix typo in docs (#270) (Chris)
 
-## Week ending September 3rd
+### Week ending September 3rd
 
 [2021-09-03]
  * Merge PRs #258, #261, #262, #263, #264, #269, and #280 into main (#281) (Tommy Kammerer)
  * Update testnet page (Alonzo) (#280) (Tommy Kammerer)
 
-## Week ending August 27th
+### Week ending August 27th
 
 [2021-08-27]
  * Fix typo in portal style guide (#269) (Ben Bowen)
@@ -132,7 +132,7 @@
  * quickfix typo (#262) (Daniel Koman)
  * Fix spelling of 'metadata' (#261) (Pedro Moreira)
 
-## Week ending August 27th
+### Week ending August 27th
 
 [2021-08-19]
  * Fix Spelling of Address (#258) (Charles Jenkins)
@@ -154,7 +154,7 @@
 [2021-08-14]
  * Added The Galgos NFT project (#163) (thegalgos)
 
-## Week ending August 13th
+### Week ending August 13th
 
 [2021-08-13]
  * Add showcase guideline proposed in #176 (#235) (Tommy Kammerer)
@@ -175,7 +175,7 @@
 [2021-08-09]
  * Add Guild Ops Suite as Operator tool (#228) (Priyank)
 
-## Week ending August 6th
+### Week ending August 6th
 
 [2021-08-04]
  * Merge PR #219, #222 and #226 into main (#227) (Tommy Kammerer)
@@ -193,7 +193,7 @@
 [2021-08-02]
  * Merge PR #128 and #205 into main (#207) (Tommy Kammerer)
 
-## Week ending July 30th
+### Week ending July 30th
 
 [2021-07-30]
  * staging Add tokhun.io project (#205) (Tokhun.io)
@@ -223,7 +223,7 @@
  * Update showcases.js (TurboEgon)
  * Cleanup comments (Alexander Klee)
 
-## Week ending July 23th
+### Week ending July 23th
 
 [2021-07-23]
  * Update PULL_REQUEST_TEMPLATE.md (Alexander Klee)
@@ -277,7 +277,7 @@
  * Add minting NFT video (Tommy Kammerer)
  * Added Crypto Heroez project to the showcase. (Jiri Hysek)
 
-## Week ending July 16th
+### Week ending July 16th
 
 [2021-07-16]
  * fix typos and clarify (tweakch)
@@ -337,10 +337,10 @@
  * Add welcome survey (Tommy Kammerer)
  * Add transaction fee video (Tommy Kammerer)
  * Add showcase projects (Tommy Kammerer)
- * Provide pure NFT projects only the tag `nft (Tommy Kammerer)
+ * Provide pure NFT projects only the tag `nft` (Tommy Kammerer)
  * Replace testnet faucet url (Tommy Kammerer)
 
-## Week ending July 9th
+### Week ending July 9th
 
 [2021-07-09]
  * Update open graph image (Tommy Kammerer)
@@ -406,7 +406,7 @@
  * Add announcement bar guidelines (Tommy Kammerer)
  * Optimize headers (Tommy Kammerer)
 
-## Week ending July 2nd
+### Week ending July 2nd
 
 [2021-07-02]
  * Revise funding category (Tommy Kammerer)
@@ -451,7 +451,7 @@
  * Upgrade Docusaurus to 2.0.0-beta.2 (Tommy Kammerer)
  * Update "operate a stake pool" overview (Tommy Kammerer)
 
-## Week ending June 25th
+### Week ending June 25th
 
 [2021-06-25]
  * fix typos for funding cfund devportal content (Kevin Cislak)
@@ -492,7 +492,7 @@
  * minting.md works with copy and paste as intended (Alex)
  * Finished minting.md next up, test-run (Alex)
 
-## Week ending June 18th
+### Week ending June 18th
 
 [2021-06-18]
  * startet with minting.md (Alex)
@@ -524,7 +524,7 @@
  * Fix spelling mistakes and grammar (Tommy Kammerer)
  * Migrate Alex | @ruttkowa's NFT article (Tommy Kammerer)
 
-## Week ending June 11th 
+### Week ending June 11th 
 
 [2021-06-10]
  * Finalized Structure for the `Listening Payment` article and completed javascript version. (Clark Alesna)
@@ -543,7 +543,7 @@
  * Some adjustments and Cleanup (Clark Alesna)
  * Add new Cardano branded assets (Tommy Kammerer)
 
-## Week ending June 4th 
+### Week ending June 4th 
 
 [2021-06-04]
  * Fix for Ogmios new GitHub organization (Tommy Kammerer)
@@ -557,7 +557,7 @@
  * Some corrections for the running-cardano guide (Clark Alesna)
  * Finalized cardano-wallet Install Guide (Clark Alesna)
 
-## Week ending May 28th 
+### Week ending May 28th 
 
 [2021-05-28]
  * More grammar adjustments (Clark Alesna)
@@ -580,7 +580,7 @@
  * Update Stack Exchange announcement (Tommy Kammerer)
  * Temporary fix for the heroBanner on tools and showcases (Tommy Kammerer)
 
-## Week ending May 21th 
+### Week ending May 21th 
 
 [2021-05-21]
  * Initial Cardano Wallet and Faucet guide (Clark Alesna)
@@ -608,7 +608,7 @@
  * Some fixes (Roberto C. Morano)
  * Initial approach for Gimbalabs' Dandelion APIs view (Roberto C. Morano)
 
-## Week ending May 14th 
+### Week ending May 14th 
 
 [2021-05-14]
  * Minor Adjustments (Clark Alesna)
@@ -646,7 +646,7 @@
  * C# .NET Example for Cardano CLI Payment Address Polling (Clark Alesna)
  * Add showcase projects and categories (Tommy Kammerer)
 
-## Week ending May 7th 
+### Week ending May 7th 
 
 [2021-05-04]
  * Add wallet category and projects (Tommy Kammerer)
@@ -655,7 +655,7 @@
  * Add category/tag feature in showcase, sorting, value checking, check if open source tags have the open source field (Tommy Kammerer)
  * Add components for the category/tag feature (Tommy Kammerer)
 
-## Week ending April 30th 
+### Week ending April 30th 
 [2021-04-30]
  * Update code styling (Tommy Kammerer)
  * Update code styling (Tommy Kammerer)
@@ -669,7 +669,7 @@
 [2021-04-24]
  * New line markdown fix (Ola)
 
-## Week ending April 23th 
+### Week ending April 23th 
 
 [2021-04-23]
  * Fix reference style logo (Tommy Kammerer)
@@ -707,7 +707,7 @@
  * Remove broken image. (Tommy Kammerer)
  * Condense (re)introduction into just one page and simplify texts (Tommy Kammerer)
 
-## Week ending April 16th 
+### Week ending April 16th 
 
 [2021-04-16]
  * Simplify texts (Tommy Kammerer)
@@ -743,7 +743,7 @@
  * Update meta data connector description (Tommy Kammerer)
  * Add NFT maker to showcases (Tommy Kammerer)
 
-## Week ending April 9th 
+### Week ending April 9th 
 
 [2021-04-09]
  * Add contributors page (Tommy Kammerer)
@@ -763,7 +763,7 @@
  * Link to getting started until it is clear what sign-up CTA is (Tommy Kammerer)
  * Update overivew and Add lesson 2, 3 (Nazeim)
 
-## Week ending April 2nd
+### Week ending April 2nd
 
 [2021-03-31]
  * clean and handicap friendly (Markus)
@@ -777,7 +777,7 @@
  * Remove documentation link at the bottom (Tommy Kammerer)
  * Replace blindtext on the start page with real text (Tommy Kammerer)
 
-## Week ending March 26th 
+### Week ending March 26th 
 
 [2021-03-24]
  * Update stake pool course overview (Nazeim)
@@ -791,7 +791,7 @@
  * Update transaction metadata section (Nazeim)
  * Add metadata registry overview and Update how to article (Nazeim)
 
-## Week ending March 19th 
+### Week ending March 19th 
 
 [2021-03-18]
  * Add Cardano Wall to showcase (Tommy Kammerer)
@@ -827,7 +827,7 @@
  * Add how to create metadata transaction (Nazeim)
  * Add how to guide for cardano token registry (Nazeim)
 
-## Week ending March 12th 
+### Week ending March 12th 
 
 [2021-03-12]
  * Move the PortalHero method to its own file (Tommy Kammerer)
@@ -843,7 +843,7 @@
  * Move everything we are not currently focusing on to "unused" (Tommy Kammerer)
  *  Add native tokens overview page (Tommy Kammerer)
 
-## Week ending March 5th 
+### Week ending March 5th 
 
 [2021-03-02]
  * Add payment integration overview page (Tommy Kammerer)
@@ -876,7 +876,7 @@
  * Add card properties for start page boxes. (Tommy Kammerer)
  * Revert "Update the UI Design" (Tommy Kammerer)
 
-## Week ending February 26th 
+### Week ending February 26th 
 
 [2021-02-26]
  * Update the UI Design (Nazeim)
