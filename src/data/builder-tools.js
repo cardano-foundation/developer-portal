@@ -57,6 +57,13 @@ export const Tags = {
     icon: null,
   },
 
+  // NFT Tools
+  nft: {
+    label: "NFT",
+    description: "Non-Fungible Token (NFT)",
+    icon: null,
+  },
+
   // Plutus
   plutus: {
     label: "Plutus",
@@ -80,6 +87,7 @@ export const Tags = {
       "Oracle tools.",
     icon: null,
   },
+
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -233,6 +241,15 @@ const Showcases = [
     website: "https://github.com/moaipool/ansible-cardano-node",
     getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
     tags: ["getstarted", "operatortool"],
+  },
+  {
+    title: "Fracada",
+    description:
+      "Plutus dApp which enables users to fractionalize their NFTs. The contract locks an NFT and mints a number of tokens representing fractions of it. To get the NFT back, the fraction tokens are burned.",
+    preview: require("./builder-tools/fracada.png"),
+    website: "https://github.com/dcSpark/fracada",
+    getstarted: null,
+    tags: ["plutus", "nft"],
   },
 ];
 
