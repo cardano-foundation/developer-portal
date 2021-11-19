@@ -1,16 +1,28 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending November 19th
+
+[2021-11-18]
+ * Simple spelling correction. (#411) (Justin Syme)
+ * Add Fracada to builder tools. (#410) (Tommy Kammerer)
+
+[2021-11-16]
+ * Update minting-nft to use transction build command (#377) (Mehtab Zafar)
+ * Add weekly report (also retroactive) (#409) (Tommy Kammerer)
+
+[2021-11-15]
+ * Showcase housekeeping (#408) (Tommy Kammerer)
+
 ### Week ending November 12th
 
 [2021-11-11]
- * Showcase housekeeping (#408) (Tommy Kammerer)
+ * updated with testnet version (#407) (nilaysaha)
+ * Update testnets-and-devnets.md (#405) (Alexander Fallenstedt)
+ * Fix typo (#404) (Donovan Dikaio)
 
 ### Week ending November 5th
 
 [2021-11-03]
- * updated with testnet version (#407) (nilaysaha)
- * Update testnets-and-devnets.md (#405) (Alexander Fallenstedt)
- * Fix typo (#404) (Donovan Dikaio)
  * Standardize code block formatting in Stake Pool Course handhook (#385) (Dan Loewenherz)
 
 ### Week ending October 29th
