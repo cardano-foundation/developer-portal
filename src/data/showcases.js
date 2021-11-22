@@ -673,7 +673,7 @@ const Showcases = [
     preview: require("./showcase/typhonwallet.png"),
     website: "https://typhonwallet.io",
     source: null,
-    tags: ["wallet", "nft"],
+    tags: ["wallet", "nft", "metadata"],
   },
 ];
 
