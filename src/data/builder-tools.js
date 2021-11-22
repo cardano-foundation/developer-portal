@@ -251,6 +251,15 @@ const Showcases = [
     getstarted: null,
     tags: ["plutus", "nft"],
   },
+    {
+    title: "Automint",
+    description:
+      "A Python library that benefits the token & NFT communities. Scripts allow easy wallet management, automatic creation of unlocked and time-locked policy IDs, as well as the ability to quickly: build, sign, and submit transactions, and much more.",
+    preview: require("./builder-tools/automint.png"),
+    website: "https://github.com/creativequotient/automint",
+    getstarted: null,
+    tags: ["opensource", "nft", "nativetoken"],
+  },
 ];
 
 
