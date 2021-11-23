@@ -125,6 +125,15 @@ export const Tags = {
 // Please don't add the "featured"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
+    {
+    title: "CardanoCity",
+    description:
+      "CardanoCity is an evolving NFT project based on the Cardano blockchain. The vision behind this project is to build an immersive virtual experience where users can build, customize, trade and explore their houses, and eventually dive into various virtual activities within the city.",
+    preview: require("./showcase/cardanocity.png"),
+    website: "https://www.cardanocity.io",
+    source: null,
+    tags: ["nft"],
+  },
   {
     title: "Cardano Kidz",
     description:
