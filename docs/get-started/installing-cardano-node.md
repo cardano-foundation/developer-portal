@@ -15,10 +15,10 @@ This guide will show you how to compile and install the `cardano-node` and `card
 If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
 
 <HydraBuildList
-    latest="7408469"
-    linux="7408438"
-    macos="7408630"
-    win64="7408538"/>
+    latest="8110794"
+    linux="8110920"
+    macos="8111097"
+    win64="8110999"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -70,7 +70,7 @@ sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 
 For Debian/Ubuntu, use the following instead:
 ```bash
-sudo apt-get update -y
+sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 ```
 If you are using a different flavor of Linux, you will need to use the correct package manager for your platform instead of `yum` or `apt-get`, and the names of the packages you need to install might differ.
@@ -83,7 +83,13 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer. Once complete, you should have `ghc` and `cabal` installed to your system.
+Please follow the instructions and provide the necessary input to the installer.\
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)\
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)\
+`Do you want to install stack?` - (N or enter)\
+`Press ENTER to proceed or ctrl-c to abort.` (enter)
+
+Once complete, you should have `ghc` and `cabal` installed to your system.
 
 
 :::note
@@ -93,7 +99,7 @@ Please follow the instructions and provide the necessary input to the installer.
 You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
 
 ```
-The GHCup Haskell installer, version v0.1.14.1
+The GHCup Haskell installer, version v0.1.17.4
 ```
 
 `ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
