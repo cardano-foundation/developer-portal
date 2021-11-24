@@ -666,6 +666,15 @@ const Showcases = [
     source: null,
     tags: ["tokens", "nft"],
   },
+  {
+    title: "Typhon Wallet",
+    description:
+      "Light wallet from the creators of cardanoscan.io. It comes with features like NFT gallery, transaction metadata, vote registration, among other features.",
+    preview: require("./showcase/typhonwallet.png"),
+    website: "https://typhonwallet.io",
+    source: null,
+    tags: ["wallet", "nft", "metadata"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
