@@ -126,6 +126,15 @@ export const Tags = {
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
   {
+    title: "ADATAR",
+    description:
+        "Your self-created Avatar on the Cardano Blockchain as a non fungible token (NFT)",
+    preview: require("./showcase/adatar.png"),
+    website: "https://adatar.io",
+    source: null,
+    tags: ["nft", "game"],
+  },
+  {
     title: "Cardano Kidz",
     description:
       "Each of these unique Limited Edition designs is being minted on the Cardano Blockchain as a Non Fungible Token (NFT).",
