@@ -1,5 +1,22 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending November 26th
+
+[2021-11-24]
+ * Bump algoliasearch-helper from 3.4.4 to 3.6.2 (#421) (dependabot[bot])
+ * Update installing-cardano-wallet.md for Linux (#420) (Jurijs I)
+
+[2021-11-19]
+ * November spotlight interview (#418) (cislakk)
+ * Minor changes for node installation on Linux (#417) (Jurijs I)
+ * Add Typhon wallet (#416) (Tommy Kammerer)
+ * Add py2hs to plutus.md (#413) (cffls)
+
+[2021-11-18]
+ * Update weekly report, week ending November 19th (#412) (Tommy Kammerer)
+ * Simple spelling correction. (#411) (Justin Syme)
+ * Add Fracada to builder tools. (#410) (Tommy Kammerer)
+
 ### Week ending November 19th
 
 [2021-11-18]
