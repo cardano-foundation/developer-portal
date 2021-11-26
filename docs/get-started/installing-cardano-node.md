@@ -83,10 +83,14 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer.\
-`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)\
-`Do you want to install haskell-language-server (HLS)?` - (N or enter)\
-`Do you want to install stack?` - (N or enter)\
+Please follow the instructions and provide the necessary input to the installer.
+
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)
+
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)
+
+`Do you want to install stack?` - (N or enter)
+
 `Press ENTER to proceed or ctrl-c to abort.` (enter)
 
 Once complete, you should have `ghc` and `cabal` installed to your system.
