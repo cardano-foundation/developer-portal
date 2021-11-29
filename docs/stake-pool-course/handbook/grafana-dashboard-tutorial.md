@@ -6,21 +6,21 @@ description: "Stake pool course: Grafana Dashboard Tutorial"
 image: ./img/og-developer-portal.png
 ---
 
-Once you have sucessfully set-up a Cardano pool, then comes the most beautifull part - setting up your Dashboard and Alerts! You surely dont want to gaze the PC whole day, or?
+Once the Cardano pool sucessfully set-up, then comes the most beautifull part - setting up your Dashboard and Alerts! 
 
 
-
-I found it difficult to get all the information at one place so am writing this documentaion and hopeully it helps others as well. This tutorial is for education and learning purpose only.
+This documentation brings some of the available information in greater detail and will hopefully it help the Cardano Community.
+This tutorial is for education and learning purpose only!
 
 
 
 **Prerequisites:**
 
-- Ubuntu Server 20.04 LTS (for Ubuntu 18.04 LTS please follow the alternative steps)
+- Ubuntu Server 20.04 LTS
 
-- Cardano Block Producer Node (PN) up and running
+- Cardano Block Producer Node up and running
 
-- Cardano Relay Nodes (RN) up and running
+- Cardano Relay Nodes up and running
 
 
 
@@ -28,50 +28,14 @@ I found it difficult to get all the information at one place so am writing this 
 
 
 
-for Ubuntu 20.04
 ```shell
 $ sudo apt-get install -y prometheus-node-exporter
 
 $ sudo systemctl enable prometheus-node-exporter.service
 ```
-for Ubuntu 18.04 install node_exporter as prometheus-node-exporter does not expose all metrics
-```shell
-$ cd $HOME/git
-$ wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz (choose your right server version)
-$ tar xvfz node_exporter-1.1.2.linux-amd64.tar.gz
 
-$ sudo cp node_exporter-1.1.2.linux-amd64/node_exporter /usr/local/bin
-
-$ chown node_exporter:node_exporter /usr/local/bin/node_exporter
-
-$ cd /etc/systemd/system
-
-$ sudo nano node_exporter.service
-```
-Then, paste the following configuration for your service.
-```shell
-[Unit]
-Description=Node Exporter
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-User=<your user name>
-ExecStart=/usr/local/bin/node_exporter
-[Install]
-WantedBy=default.target
-
-```
-Exit nano, reload your daemon, and start your service.
-```shell
-$ sudo systemctl daemon-reload
-
-$ sudo systemctl start node_exporter
-
-$ sudo systemctl enable node_exporter.service
-```
 :::note
-for Ubuntu 18.04 use from now on in the tutorial the node_exporter.service instead of prometheus-node-exporter.service
+for Ubuntu 18.04 refer the following tutorial [Ubuntu 18.04 Tutorial](https://sanskys.de/dashboard/)
 :::
 
 
@@ -80,16 +44,17 @@ Update mainnet-config.json config files with new hasEKG and has Prometheus ports
 $ cd $NODE_HOME
 $ sed -i mainnet-config.json -e "s/127.0.0.1/0.0.0.0/g"
 
-On PN you need to open ports 12798 and 9100
+On Producer Node open ports 12798 and 9100
 
-$ sudo ufw allow proto tcp from <RN IP address> to any port 9100
+$ sudo ufw allow proto tcp from <Relay Node IP address> to any port 9100
 
-$ sudo ufw allow proto tcp from <RN IP address> to any port 12798
+$ sudo ufw allow proto tcp from <Relay Node IP address> to any port 12798
 
 $ sudo ufw reload
+```
 
 restart the node
-
+```shell
 $ sudo systemctl restart <your BP node name e.g. cnode>
 ```
 
@@ -99,21 +64,19 @@ $ sudo systemctl restart <your BP node name e.g. cnode>
 
 
 Install Prometheus
+
 ```shell
 $ sudo apt-get install -y prometheus
 ```
 
 
-Install prometheus node exporter on RN (Ubuntu 20.04)
+Install prometheus node exporter on Relay Node
+
 ```shell
 $ sudo apt-get install -y prometheus-node-exporter
 ```
-:::note
-for Ubuntu 18.04 repeat the steps of PN above in the RN as well and install the node_exporter service instead
-:::
 
-
-repeat Step 2 for all your RN
+repeat Step 2 for all your Relay Node
 
 
 
@@ -188,7 +151,7 @@ scrape_configs:
 
 EOF
 ```
-if you have more than two RNs, add all your Relays as new "targets" in the config above
+if you have more than two Relay Nodes, add all your Relays as new "targets" in the config above
 ```shell
 $ sudo mv prometheus.yml /etc/prometheus/prometheus.yml
 ```
@@ -202,17 +165,19 @@ Verify that the services are running properly
 ```shell
 $ sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
-On RN open ports 3000 for Grafana
+On Relay Node open ports 3000 for Grafana
 ```shell
 $ sudo ufw allow from <your local IP address> to any port 3000
 ```
-
+:::note
+Please refer to [Grafana Labs Secuirty](https://grafana.com/docs/grafana/latest/administration/security/) for hardening e.g. by default the communication with the Grafana server is unencrypted.
+:::
 
 ## 4. Setting up Grafana Dashboard
 
 
 
-On RN, open http://localhost:3000 or http://*your relaynode ip address*:3000 in your local browser.
+On Relay Node, open http://localhost:3000 or http://*your Relay Node ip address*:3000 in your local browser.
 Login with admin / admin
 Change password
 
@@ -393,13 +358,13 @@ Click on "Save" to add this channel
 
 
 
-Create an Alert if PN is not reachable
+Create an Alert if Producer Node is not reachable
 
 
 
 Please not that Alerts can only be created for "Graph" panels!
 
-Now we create an Alert to get an emaial if the PN is not reachable
+Now we create an Alert to get an emaial if the Producer Node is not reachable
 
 
 
@@ -433,7 +398,7 @@ Message - type in your alert message that should appear in the email
 
 Press on "test Rule" to ensure that the Alert is correct and has no issues.
 
-Now you are done! Stop you PN and you should get an Alert within 4min.
+Now you are done! Stop you Producer Node and you should get an Alert within 4min.
 
 :::note
 
@@ -451,7 +416,7 @@ SNSKY Pool ID
 
 
 
-We should make Grafana a bit more sucure and to do so lets change two settings
+We should make Grafana a bit more secure and to do so lets change two settings
 ```shell
 $ sudo nano /etc/grafana/grafana.ini
 ```
@@ -488,5 +453,5 @@ $ sudo systemctl restart grafana-server
 
 
 :::note
-I have included a panel on Leader Slots, which can Alert in case your pool is selected as a leader for the next Epoch. It is a bit more complicated, so will leave it out of the tutorial, but in principle there is script running on the PN which updates the leader query result in a prom file which is parsed by the node exporter, exposing this metrics to the RN. In case you wish to use it and need the details, just drop me a message on Telegram.
+A panel on Leader Slots has been included, which can Alert in case the pool is selected as a leader for the next Epoch. It is a bit more complicated, so will leave it out of the tutorial, but in principle there is script running on the Producer Node which updates the leader query result in a prom file which is parsed by the node exporter, exposing this metrics to the Relay Node. For details, just drop a message on Telegram.
 :::
