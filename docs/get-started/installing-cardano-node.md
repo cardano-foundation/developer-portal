@@ -59,7 +59,7 @@ To download the source code and build it, you need the following packages and to
 * developer libraries for `ncurses`,
 * `ncurses` compatibility libraries,
 * the Haskell build tool `cabal`,
-* the GHC Haskell compiler (version `8.10.4` or above).
+* the GHC Haskell compiler (version `8.10.7` or above).
 
 In Redhat, Fedora, and Centos:
 ```bash
@@ -83,10 +83,14 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer.\
-`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)\
-`Do you want to install haskell-language-server (HLS)?` - (N or enter)\
-`Do you want to install stack?` - (N or enter)\
+Please follow the instructions and provide the necessary input to the installer.
+
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)
+
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)
+
+`Do you want to install stack?` - (N or enter)
+
 `Press ENTER to proceed or ctrl-c to abort.` (enter)
 
 Once complete, you should have `ghc` and `cabal` installed to your system.
@@ -102,11 +106,11 @@ You can check if `ghcup` has been installed correctly by typing `ghcup --version
 The GHCup Haskell installer, version v0.1.17.4
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
 
 ```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
+ghcup install ghc 8.10.7
+ghcup set ghc 8.10.7
 ```
 
 `ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
@@ -126,7 +130,7 @@ ghc --version
 
 You should see something like this: 
 ```
-The Glorious Glasgow Haskell Compilation System, version 8.10.4
+The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
 Check `cabal` version: 
@@ -202,7 +206,7 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4
+cabal configure --with-compiler=ghc-8.10.7
 ```
 
 #### Building and installing the node
@@ -287,11 +291,11 @@ You can check if `ghcup` has been installed properly by typing `ghcup --version`
 The GHCup Haskell installer, version v0.1.14.1
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
 
 ```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
+ghcup install ghc 8.10.7
+ghcup set ghc 8.10.7
 ```
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
@@ -303,7 +307,7 @@ ghc --version
 
 You should see something like this: 
 ```
-The Glorious Glasgow Haskell Compilation System, version 8.10.4
+The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
 Check `cabal` version: 
@@ -379,7 +383,7 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4
+cabal configure --with-compiler=ghc-8.10.7
 ```
 
 #### Building and installing the node
