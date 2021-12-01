@@ -251,6 +251,15 @@ const Showcases = [
     getstarted: null,
     tags: ["plutus", "nft"],
   },
+  {
+    title: "Staking Rewards Calculator",
+    description:
+      "A detailed Staking Rewards Calculator thats shows expected return to the operator and delegators of each pool based on the current and alternative network parameters. It also runs a Monte Carlo simulation to show possible variability in the return.",
+    preview: require("./builder-tools/dsio-reward-calculator.png"),
+    website: "https://dynamicstrategies.io/crewardcalculator",
+    getstarted: null,
+    tags: ["operatortool"],
+  },
 ];
 
 
