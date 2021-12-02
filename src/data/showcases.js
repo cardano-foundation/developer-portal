@@ -675,6 +675,15 @@ const Showcases = [
     source: null,
     tags: ["wallet", "nft", "metadata"],
   },
+  {
+    title: "Staking Rewards Calculator",
+    description:
+      "A detailed Staking Rewards Calculator thats shows expected return to the operator and delegators of each pool based on the current and alternative network parameters. It also runs a Monte Carlo simulation to show possible variability in the return.",
+    preview: require("./showcase/dsio-reward-calculator.png"),
+    website: "https://dynamicstrategies.io/crewardcalculator",
+    getstarted: null,
+    tags: ["pooltool","analytics","educational"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
