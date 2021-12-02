@@ -225,7 +225,7 @@ const Showcases = [
     preview: require("./builder-tools/automint.png"),
     website: "https://github.com/creativequotient/automint",
     getstarted: null,
-    tags: ["opensource", "nft", "nativetoken"],
+    tags: ["library"],
   },
 ];
 
