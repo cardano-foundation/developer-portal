@@ -218,6 +218,14 @@ const Showcases = [
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
     tags: ["featured", "getstarted", "marlowe"],
   },
+  {
+    title: "Marlowe Playground",
+    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
+    preview: require("./builder-tools/marlowe-playground.png"),
+    website: "https://alpha.marlowe.iohkdev.io/#/",
+    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
+    tags: ["featured", "getstarted", "marlowe"],
+  },
 ];
 
 
