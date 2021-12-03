@@ -300,6 +300,22 @@ cardano-cli transaction build-raw \
  --minting-script-file policy/policy.script \
  --out-file matx.raw
 ```
+
+:::note 
+In later versions of cardano-cli (at least from >1.31.0) the tokennames must be base16 encoded or you will receive an error
+```bash
+option --tx-out: 
+unexpected 'T'
+expecting alphanumeric asset name, white space, "+" or end of input
+```
+
+You can easily fix this by redefining the tokennames. In this tutorial the equivilant base16 token names are:
+```bash
+tokenname1="54657374746F6B656E"
+tokenname2="5365636F6E6454657374746F6B656E"
+```
+:::
+
 #### Syntax breakdown 
 Here's a breakdown of the syntax as to which parameters we define in our minting transaction:
 ```bash
