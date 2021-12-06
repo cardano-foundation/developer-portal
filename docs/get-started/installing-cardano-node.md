@@ -209,6 +209,16 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
+If you are running non x86/x64 platform (eg. ARM, Apple M1...) please at this moment install and configure LLVM with:
+```bash
+sudo apt install llvm-9
+sudo apt install clang-9 libnuma-dev
+sudo ln -s /usr/bin/llvm-config-9 /usr/bin/llvm-config
+sudo ln -s /usr/bin/opt-9 /usr/bin/opt
+sudo ln -s /usr/bin/llc-9 /usr/bin/llc
+sudo ln -s /usr/bin/clang-9 /usr/bin/clang
+```
+
 #### Building and installing the node
 
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
