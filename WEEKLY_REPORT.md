@@ -1,5 +1,17 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending December 3rd
+
+[2021-11-30]
+ * Adding Staking Rewards Calculator to the Showcases (#432) (dynamicstrategies)
+ * Explain base16 encoding of token names (#428) (Frank Hampus Weslien)
+ * Correcting minor typo (#427) (Brendon Thiede)
+
+[2021-11-25]
+ * Add weekly report (#425) (Tommy Kammerer)
+ * Updated cardano node instalation with 8.10.7 ghc (#424) (Jurijs I)
+ * Grafana Dashboard Tutorial (#422) (sandy4de)
+
 ### Week ending November 26th
 
 [2021-11-24]
