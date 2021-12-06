@@ -209,7 +209,7 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
-If you are running non x86/x64 platform (eg. ARM, Apple M1...) please at this moment install and configure LLVM with:
+If you are running non x86/x64 platform (eg. ARM) please install and configure LLVM with:
 ```bash
 sudo apt install llvm-9
 sudo apt install clang-9 libnuma-dev
