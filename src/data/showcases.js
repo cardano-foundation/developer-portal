@@ -684,6 +684,15 @@ const Showcases = [
     source: null,
     tags: ["pooltool","analytics","educational"],
   },
+  {
+    title: "RetroKydz",
+    description:
+      "An NFT collection of 2,000 3D pixelated generative unique little Kydz represented as NFTs on the Cardano blockchain. Each Kyd is randomly generated from over 225 hand-drawn rarities including: headwear, eyewear, pets, bags and more!",
+    preview: require("./showcase/retrokydz.png"),
+    website: "https://retrokydz.io",
+    source: null,
+    tags: ["tokens", "nft", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
