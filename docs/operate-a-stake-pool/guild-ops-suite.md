@@ -8,7 +8,7 @@ image: ./img/og-developer-portal.png
 
 ## Guild Operators Suite
 
-The Guild-Operators suite is a collection of tools and scripts for easy setup, management, and monitoring of Cardano stake pool(s), alongwith token/keys management. It's the result of a community collaboration effort between long-time active community members to simplify frequent tasks required to be performed by operators. Since detailed documentation for the suite is hosted [here][guild-website] , we will try to provide a quick run-through of tools involved and a high-level overview of stes to get you going.
+The Guild-Operators suite is a collection of tools and scripts for easy setup, management, and monitoring of Cardano stake pool(s), alongwith token/keys management. It's the result of a community collaboration effort between long-time active community members to simplify frequent tasks required to be performed by operators. Since detailed documentation for the suite is hosted [here][guild-website] , we will try to provide a quick run-through of tools involved and a high-level overview of steps to get you going.
 
 ### Tools
 
