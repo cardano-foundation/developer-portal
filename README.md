@@ -9,7 +9,7 @@ Please find a detailed installation guide on [developers.cardano.org/docs/portal
 
 ## Requirements:  
 
-[Node.js](https://nodejs.org/en/download/) version >= 12.13.0 or above  
+[Node.js](https://nodejs.org/en/download/) version >= 14.0  
 [Yarn](https://yarnpkg.com/en/) version >= 1.5  
 On macOS you also need Xcode and Command Line Tools.
 
