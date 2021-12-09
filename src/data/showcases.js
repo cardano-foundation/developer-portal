@@ -684,6 +684,15 @@ const Showcases = [
     source: null,
     tags: ["pooltool","analytics","educational"],
   },
+  {
+    title: "MyHomePlanet",
+    description:
+      "Tokenized Real Estate Investment Eco System for a new Generation of Investors. We make Real Estate affordable for all!",
+    preview: require("./showcase/myhomeplanet.png"),
+    website: "https://myhomeplanet.io",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
