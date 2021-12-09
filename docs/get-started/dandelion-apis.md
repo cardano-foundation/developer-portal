@@ -47,7 +47,7 @@ Useful links:
 - [Link][gimbalabs-graphql-api] to Gimbalabs's endpoints information
 - [Link][graphql-official-doc] to project's official documentation
 - [Link][graphql-example-queries] to the official collection of example queries. You can play with them directly from the [GraphQL playground][graphql-playground-testnet]
-[gimbalabs-graphql-api]: https://gimbalabs.com/dandelion/graphql-api
+[gimbalabs-graphql-api]: https://gimbalabs.com/dandelion/endpoints/graphql-api
 [graphql-example-queries]: https://github.com/input-output-hk/cardano-graphql/tree/master/packages/api-cardano-db-hasura/src/example_queries
 [graphql-official-doc]: https://input-output-hk.github.io/cardano-graphql/
 [graphql-playground-testnet]:  https://graphql-api.testnet.dandelion.link
@@ -86,7 +86,7 @@ Useful links:
 
 - [Link][gimbalabs-explorer-api] to Gimbalabs's endpoints information
 - [Link][explorer-official-doc] to project's official documentation
-[gimbalabs-explorer-api]: https://gimbalabs.com/dandelion/explorer-api
+[gimbalabs-explorer-api]: https://gimbalabs.com/dandelion/endpoints/explorer-api
 [explorer-official-doc]: https://input-output-hk.github.io/cardano-rest/explorer-api
 
 Usage examples:
@@ -139,7 +139,7 @@ Useful links:
 
 - [Link][gimbalabs-submit-api] to Gimbalabs's endpoints information 
 - [Link][submit-official-doc] to project's official documentation
-[gimbalabs-submit-api]: https://gimbalabs.com/dandelion/submit-api
+[gimbalabs-submit-api]: https://gimbalabs.com/dandelion/endpoints/submit-api
 [submit-official-doc]: https://input-output-hk.github.io/cardano-rest/submit-api
 
 Usage examples assuming you have a valid `application/cbor` file containing a signed transaction (in e.g., from `cardano-cli` or any other library) located at `/tmp/cbor-tx`:
@@ -174,7 +174,7 @@ Useful links:
 
 - [Link][gimbalabs-rosetta-api] to Gimbalabs's endpoints information and official documentation
 - [Link][rosetta-official-doc] to project's official documentation
-[gimbalabs-rosetta-api]: https://gimbalabs.com/dandelion/rosetta-api
+[gimbalabs-rosetta-api]: https://gimbalabs.com/dandelion/endpoints/rosetta-api
 [rosetta-official-doc]: https://github.com/input-output-hk/cardano-rosetta#documentation
 
 Usage examples:
@@ -229,7 +229,7 @@ Useful links:
 
 - [Link][gimbalabs-ogmios-api] to Gimbalabs's endpoints information and official documentation
 - [Link][ogmios-official-doc] to project's official documentation
-[gimbalabs-ogmios-api]: https://gimbalabs.com/dandelion/ogmios-api
+[gimbalabs-ogmios-api]: https://gimbalabs.com/dandelion/endpoints/ogmios-api
 [ogmios-official-doc]: https://github.com/cardanosolutions/ogmios
 
 Usage examples:
@@ -278,7 +278,7 @@ Useful links:
 
 - [Link][gimbalabs-postgrest-api] to Gimbalabs's endpoints information and official documentation
 - [Link][cardano-db-sync-official-doc] to `cardano-db-sync` official documentation
-[gimbalabs-postgrest-api]: https://gimbalabs.com/dandelion/postgrest-api
+[gimbalabs-postgrest-api]: https://gimbalabs.com/dandelion/endpoints/postgrest-api
 [cardano-db-sync-official-doc]: https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md
 
 Usage examples:
