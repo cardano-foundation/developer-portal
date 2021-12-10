@@ -16,7 +16,7 @@ const getBufferContentAsync = async(url: string) => {
     return await fetch(url).then(res => res.arrayBuffer());
 }
 
-// Download markdown resources and string manipulations for compatibility
+// Download markdown resources
 const processCIPContentAsync = async (cipName: string, content: string) => {
 
     const cipResources = content.match(cipRegex);
@@ -38,11 +38,35 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
                 fs.mkdirSync(`${cipStaticResourcePath}${cipName}`, { recursive: true });
 
                 fs.writeFileSync(`${cipStaticResourcePath}${cipName}/${fileName}`, new Uint8Array(buffer));
+
+                // Rewrite link to static folder
                 content = content.replace(fileName, `../../static/cip/${cipName}/${fileName}`);
-                console.log(`Downloaded to ${cipStaticResourcePath}${cipName}/${fileName}`);
+                console.log(`Processed CIP content downloaded to ${cipStaticResourcePath}${cipName}/${fileName}`);
             }
         }));
     }
+
+    // Ensure compatibility
+    content = stringManipulation(content, cipName);
+
+    return content;
+}
+
+// String manipulations to ensure compatibility
+const stringManipulation = (content: string, cipName: string) => {
+
+    // We expect markdown files, therefore strip HTML
+    content = content.replace( /(<([^>]+)>)/ig, "");
+
+    // Rewrite relative links like [Byron](./Byron.md) to absolute links. 
+    content = content.replace( /\]\(\.\//gm, "](" + repoRawBaseUrl + cipName + "/");
+
+    // Remove invalid "CIP-YET-TO-COME" links that are empty
+    content = content.replace("]()", "]");
+
+    // Remove unterminated string constant like in CIP 30
+    content = content.replace(/\\/g, '');
+
     return content;
 }
 
