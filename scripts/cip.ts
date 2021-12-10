@@ -18,17 +18,19 @@ const getBufferContentAsync = async(url: string) => {
 
 // Download markdown resources and string manipulations for compatibility
 const processCIPContentAsync = async (cipName: string, content: string) => {
+
     const cipResources = content.match(cipRegex);
     if(cipResources) {
         await Promise.all(cipResources.map(async r => { 
             if(r.indexOf("http://") < 0 && r.indexOf("https://") < 0)
             {
-                // please help me with regex
+                // create filenames to download into static folder
                 const fileName = r
                     .replace("](", "")
                     .replace(".png)",".png")
                     .replace(".jpg)",".jpg")
-                    .replace(".jpeg)",".jpeg");
+                    .replace(".jpeg)",".jpeg")
+                    .replace(".gif)",".gif");
                 
                 const buffer = await getBufferContentAsync(`${repoRawBaseUrl}${cipName}/${fileName}`);
 
@@ -37,7 +39,7 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
 
                 fs.writeFileSync(`${cipStaticResourcePath}${cipName}/${fileName}`, new Uint8Array(buffer));
                 content = content.replace(fileName, `../../static/cip/${cipName}/${fileName}`);
-                console.log(`Downloaded to ${cipStaticResourcePath}${fileName}`);
+                console.log(`Downloaded to ${cipStaticResourcePath}${cipName}/${fileName}`);
             }
         }));
     }
@@ -61,12 +63,12 @@ const main = async () => {
         const cipName: string = cipUrl.substring(2, cipUrl.length-1); // ./CIP-xxx/ --> CIP-xxx
 
         let content = await getStringContentAsync(cipUrl.replace("./", repoRawBaseUrl)+ fileName);
-        content = await processCIPContentAsync(fileName, content);
+        content = await processCIPContentAsync(cipName, content);
 
         fs.mkdirSync(`${cipDocsPath}/${cipName}`, { recursive: true });
 
         fs.writeFileSync(`${cipDocsPath}/${cipName}/${fileName}`, content);
-        console.log(`Downloaded to ${cipDocsPath}/${fileName}`);
+        console.log(`Downloaded to ${cipDocsPath}/${cipName}/${fileName}`);
     }));
 
     console.log("CIP Content Downloaded");
