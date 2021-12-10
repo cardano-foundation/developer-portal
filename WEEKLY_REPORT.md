@@ -1,5 +1,19 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending December 10th
+
+[2021-12-09]
+ * Updated Dandelion references for the new gimbalabs.com website (#441) (Roberto C. Morano)
+
+[2021-12-07]
+ * Prerequisites of build of cardano-node on ARM (#437) (Jan Rajtr)
+ * Update Plutus tutorial link (#438) (Priyank)
+ * Upgrade Docusaurus to 2.0.0-beta.9 (#436) (Tommy Kammerer)
+
+[2021-12-06]
+ * Fix typo (#434) (Harsh Kedia)
+ * Update weekly report, week ending December 3rd (#433) (Tommy Kammerer)
+
 ### Week ending December 3rd
 
 [2021-11-30]
