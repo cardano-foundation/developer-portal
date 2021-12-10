@@ -29,8 +29,7 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
                     .replace("](", "")
                     .replace(".png)",".png")
                     .replace(".jpg)",".jpg")
-                    .replace(".jpeg)",".jpeg")
-                    .replace(".gif)",".gif");
+                    .replace(".jpeg)",".jpeg");
                 
                 const buffer = await getBufferContentAsync(`${repoRawBaseUrl}${cipName}/${fileName}`);
 
@@ -66,6 +65,13 @@ const stringManipulation = (content: string, cipName: string) => {
 
     // Remove unterminated string constant like in CIP 30
     content = content.replace(/\\/g, '');
+
+    // TODO: # abstract
+
+    // TODO: # sidebar label
+
+    // TODO: # title
+
 
     return content;
 }
