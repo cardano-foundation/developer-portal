@@ -251,6 +251,15 @@ const Showcases = [
     getstarted: null,
     tags: ["plutus", "nft"],
   },
+  {
+    title: "Cardano Light Tools",
+    description:
+      "A set of lightweight tools to operate and maintain a Cardano Stake Pool. Focuses on simplicity, low resource utilization (CPU, memory) and portability across platforms.",
+    preview: require("./builder-tools/cardano-light-tools.png"),
+    website: "https://github.com/orpheus-antpool/cardano-light-tools",
+    getstarted: null,
+    tags: ["operatortool"],
+  },
 ];
 
 
