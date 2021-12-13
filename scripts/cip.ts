@@ -69,10 +69,7 @@ const stringManipulation = (content: string, cipName: string) => {
     // Prevent H1 headlines as otherwise Docusaurus takes this as title
     content =  content.includes('# Abstract') && !content.includes('## Abstract') ? content.replace('# Abstract', '## Abstract') : content;
 
-    // TODO: # sidebar label
-
     // TODO: # title
-
 
     return content;
 }
@@ -96,10 +93,8 @@ const main = async () => {
         let content = await getStringContentAsync(cipUrl.replace("./", repoRawBaseUrl)+ fileName);
         content = await processCIPContentAsync(cipName, content);
 
-        fs.mkdirSync(`${cipDocsPath}/${cipName}`, { recursive: true });
-
-        fs.writeFileSync(`${cipDocsPath}/${cipName}/${fileName}`, content);
-        console.log(`Downloaded to ${cipDocsPath}/${cipName}/${fileName}`);
+        fs.writeFileSync(`${cipDocsPath}/${cipName}-${fileName}`, content);
+        console.log(`Downloaded to ${cipDocsPath}/${cipName}-${fileName}`);
     }));
 
     console.log("CIP Content Downloaded");
