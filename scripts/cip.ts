@@ -66,13 +66,22 @@ const stringManipulation = (content: string, cipName: string) => {
     // Remove unterminated string constant like in CIP 30
     content = content.replace(/\\/g, '');
 
-    // Prevent H1 headlines as otherwise Docusaurus takes this as title
-    content =  content.includes('# Abstract') && !content.includes('## Abstract') ? content.replace('# Abstract', '## Abstract') : content;
+    // Prevent H1 headlines 
+    content = preventH1Headline(content, "Abstract");
+    content = preventH1Headline(content, "Motivation");
+    content = preventH1Headline(content, "Specification");
+    content = preventH1Headline(content, "Rationale");
+    content = preventH1Headline(content, "Copyright");
 
     // Inject Docusaurus doc tags for title and a nice sidebar
     content = injectDocusaurusDocTags(content);
 
     return content;
+}
+
+// Prevent H1 headlines
+const preventH1Headline = (content: string, headline: string) => {
+    return content.includes("# "+headline) && !content.includes("## "+headline) ? content.replace("# "+headline, "## "+headline) : content;
 }
 
 // Add Docusaurus doc tags
