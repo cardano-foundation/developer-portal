@@ -60,6 +60,9 @@ const stringManipulation = (content: string, cipName: string) => {
     // Rewrite relative links like [Byron](./Byron.md) to absolute links. 
     content = content.replace( /\]\(\.\//gm, "](" + repoRawBaseUrl + cipName + "/");
 
+    // Fix parent links to CIPs 
+    content =  content.replace(/]\(\..\/CIP-/gm, '](./CIP-') 
+
     // Remove invalid "CIP-YET-TO-COME" links that are empty
     content = content.replace("]()", "]");
 
@@ -124,8 +127,8 @@ const main = async () => {
         let content = await getStringContentAsync(cipUrl.replace("./", repoRawBaseUrl)+ fileName);
         content = await processCIPContentAsync(cipName, content);
 
-        fs.writeFileSync(`${cipDocsPath}/${cipName}-${fileName}`, content);
-        console.log(`Downloaded to ${cipDocsPath}/${cipName}-${fileName}`);
+        fs.writeFileSync(`${cipDocsPath}/${cipName}.md`, content);
+        console.log(`Downloaded to ${cipDocsPath}/${cipName}.md`);
     }));
 
     console.log("CIP Content Downloaded");

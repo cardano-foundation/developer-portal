@@ -223,7 +223,7 @@ module.exports = {
           },
           {
             // redirect the old cardano improvement proposal overview
-            to: '/docs/governance/cardano-improvement-proposals/CIP-0001-README', 
+            to: '/docs/governance/cardano-improvement-proposals/CIP-0001', 
             from: '/docs/governance/cardano-improvement-proposals/',
           },
         ],
