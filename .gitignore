@@ -39,5 +39,5 @@ yarn-error.log*
 .idea
 
 # Auto generated content like CIPs
-/docs/cardano-improvement-proposals/*
+/docs/governance/cardano-improvement-proposals/*
 /static/cip/*

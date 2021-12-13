@@ -5,7 +5,7 @@ const repoRawBaseUrl: string = 'https://raw.githubusercontent.com/cardano-founda
 const readmeUrl: string = '/README.md';
 const readmeRegex = /\.\/CIP.*?\//gm;
 const cipRegex = /\]\(.*?.png\)|\]\(.*?.jpg\)|\]\(.*?.jpeg\)/gm;
-const cipDocsPath = "./docs/cardano-improvement-proposals";
+const cipDocsPath = "./docs/governance/cardano-improvement-proposals";
 const cipStaticResourcePath = "./static/cip/";
 
 const getStringContentAsync = async (url: string) => {
