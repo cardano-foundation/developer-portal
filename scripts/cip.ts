@@ -4,7 +4,7 @@ import * as fs from 'fs';
 const repoRawBaseUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/CIPs/master/';
 const readmeUrl: string = '/README.md';
 const readmeRegex = /\.\/CIP.*?\//gm;
-const cipRegex = /\]\(.*?.png\)|\]\(.*?.jpg\)|\]\(.*?.jpeg\)/gm;
+const cipRegex = /\]\(.*?.png\)|\]\(.*?.jpg\)|\]\(.*?.jpeg\)|\]\(.*?.json\)/gm;
 const cipDocsPath = "./docs/governance/cardano-improvement-proposals";
 const cipStaticResourcePath = "/static/img/cip/";
 
@@ -29,17 +29,27 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
                     .replace("](", "")
                     .replace(".png)",".png")
                     .replace(".jpg)",".jpg")
-                    .replace(".jpeg)",".jpeg");
+                    .replace(".jpeg)",".jpeg")
+                    .replace(".json)",".json");
+
+                // create modified filenames in case we want to store files 
+                // with a different ending, like JSON files
+                const modifiedFileName = r
+                    .replace("](", "")
+                    .replace(".png)",".png")
+                    .replace(".jpg)",".jpg")
+                    .replace(".jpeg)",".jpeg")
+                    .replace(".json)",".txt");
                 
                 const buffer = await getBufferContentAsync(`${repoRawBaseUrl}${cipName}/${fileName}`);
 
                 fs.rmdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
                 fs.mkdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
 
-                fs.writeFileSync(`.${cipStaticResourcePath}${cipName}/${fileName}`, new Uint8Array(buffer));
+                fs.writeFileSync(`.${cipStaticResourcePath}${cipName}/${modifiedFileName}`, new Uint8Array(buffer));
 
                 // Rewrite link to static folder
-                content = content.replace(fileName, `../../..${cipStaticResourcePath}${cipName}/${fileName}`);
+                content = content.replace(fileName, `../../..${cipStaticResourcePath}${cipName}/${modifiedFileName}`);
                 console.log(`Processed CIP content downloaded to .${cipStaticResourcePath}${cipName}/${fileName}`);
             }
         }));
