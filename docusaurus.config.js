@@ -221,6 +221,11 @@ module.exports = {
             to: '/docs/governance/project-catalyst', 
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
+          {
+            // redirect the old cardano improvement proposal overview
+            to: '/docs/governance/cardano-improvement-proposals/CIP-0001-README', 
+            from: '/docs/governance/cardano-improvement-proposals/',
+          },
         ],
       },
     ],

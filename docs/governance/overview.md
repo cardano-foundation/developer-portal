@@ -13,7 +13,7 @@ Cardano was already designed with sustainability in mind. The point was to creat
 
 ## Cardano Improvement Proposal
 
-[Cardano Improvement Proposals (CIPs)](cardano-improvement-proposals) are a way of formally proposing ideas in an agreed-upon fashion. While nothing about them is binding and not a pre-requisite for either treasury on protocol changes, they fulfill an essential aspect of Cardano governance. Before a decision can be made on anything, someone has to propose a setup that others can discuss.
+[Cardano Improvement Proposals (CIPs)](cardano-improvement-proposals/CIP-0001-README) are a way of formally proposing ideas in an agreed-upon fashion. While nothing about them is binding and not a pre-requisite for either treasury on protocol changes, they fulfill an essential aspect of Cardano governance. Before a decision can be made on anything, someone has to propose a setup that others can discuss.
 
 ## Fund your project with Project Catalyst
 
