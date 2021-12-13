@@ -66,7 +66,8 @@ const stringManipulation = (content: string, cipName: string) => {
     // Remove unterminated string constant like in CIP 30
     content = content.replace(/\\/g, '');
 
-    // TODO: # abstract
+    // Prevent H1 headlines as otherwise Docusaurus takes this as title
+    content =  content.includes('# Abstract') && !content.includes('## Abstract') ? content.replace('# Abstract', '## Abstract') : content;
 
     // TODO: # sidebar label
 
