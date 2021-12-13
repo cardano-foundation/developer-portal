@@ -69,9 +69,31 @@ const stringManipulation = (content: string, cipName: string) => {
     // Prevent H1 headlines as otherwise Docusaurus takes this as title
     content =  content.includes('# Abstract') && !content.includes('## Abstract') ? content.replace('# Abstract', '## Abstract') : content;
 
-    // TODO: # title
+    // Inject Docusaurus doc tags for title and a nice sidebar
+    content = injectDocusaurusDocTags(content);
 
     return content;
+}
+
+// Add Docusaurus doc tags
+const injectDocusaurusDocTags = (content: string) => {
+
+    // Parse information from markdown file
+    const title = getDocTag(content, "Title");
+    const cipNumber = getDocTag(content, "CIP");
+
+    // Remove "---" from doc to add it later
+    content = content.substring(0, 3) === "---" ? content.slice(3) : content;
+
+    // Add "---" with doc tags for Docusaurus
+    content = "--- \nsidebar_label: " + "("+cipNumber+") " + title+"\ntitle: "+title+"\n"+content;
+
+    return content;
+}
+
+// Get a specific doc tag
+const getDocTag = (content: string, tagName: string) => {
+    return content.match(new RegExp(`(?<=${tagName}: ).*`, ''));
 }
 
 const main = async () => {
