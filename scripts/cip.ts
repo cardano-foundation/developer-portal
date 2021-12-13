@@ -6,7 +6,7 @@ const readmeUrl: string = '/README.md';
 const readmeRegex = /\.\/CIP.*?\//gm;
 const cipRegex = /\]\(.*?.png\)|\]\(.*?.jpg\)|\]\(.*?.jpeg\)/gm;
 const cipDocsPath = "./docs/governance/cardano-improvement-proposals";
-const cipStaticResourcePath = "./static/cip/";
+const cipStaticResourcePath = "/static/img/cip/";
 
 const getStringContentAsync = async (url: string) => {
     return await fetch(url).then(res => res.text());
@@ -33,14 +33,14 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
                 
                 const buffer = await getBufferContentAsync(`${repoRawBaseUrl}${cipName}/${fileName}`);
 
-                fs.rmdirSync(`${cipStaticResourcePath}${cipName}`, { recursive: true });
-                fs.mkdirSync(`${cipStaticResourcePath}${cipName}`, { recursive: true });
+                fs.rmdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
+                fs.mkdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
 
-                fs.writeFileSync(`${cipStaticResourcePath}${cipName}/${fileName}`, new Uint8Array(buffer));
+                fs.writeFileSync(`.${cipStaticResourcePath}${cipName}/${fileName}`, new Uint8Array(buffer));
 
                 // Rewrite link to static folder
-                content = content.replace(fileName, `../../static/cip/${cipName}/${fileName}`);
-                console.log(`Processed CIP content downloaded to ${cipStaticResourcePath}${cipName}/${fileName}`);
+                content = content.replace(fileName, `../../..${cipStaticResourcePath}${cipName}/${fileName}`);
+                console.log(`Processed CIP content downloaded to .${cipStaticResourcePath}${cipName}/${fileName}`);
             }
         }));
     }
