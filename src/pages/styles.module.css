@@ -53,3 +53,7 @@ html[data-theme=dark] .heroBanner {
   height: 200px;
   width: 200px;
 }
+
+.featurePadding {
+  padding-bottom: 1rem !important;
+}
