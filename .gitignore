@@ -37,3 +37,7 @@ yarn-error.log*
 
 # intellij
 .idea
+
+# Auto generated content like CIPs
+/docs/governance/cardano-improvement-proposals/*
+/static/img/cip/*
