@@ -36,6 +36,13 @@ html[data-theme=dark] .heroBanner {
   }
 }
 
+@media screen and (min-width: 1950px) {
+  .heroBanner {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
 .buttons {
   display: flex;
   align-items: center;
