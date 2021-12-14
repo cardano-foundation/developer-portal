@@ -183,7 +183,7 @@ module.exports = {
       ],
 
       // Let's use the copyright footer for terms and privacy policy for now
-      copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="footer__link-item">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" class="footer__link-item"">Privacy Policy</a>`,
+      copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Privacy Policy</a>`,
     },
     gtag: {
       // You can also use your "G-" Measurement ID here.

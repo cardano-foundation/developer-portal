@@ -90,7 +90,7 @@ function Feature({ imageUrl, title, description, targetUrl }) {
   const imgUrl = useBaseUrl(imageUrl); // not used right now
   const trgUrl = useBaseUrl(targetUrl);
   return (
-    <div className={clsx("col col--4", styles.feature)}>
+    <div className={clsx("col col--4", styles.featurePadding)}>
       {targetUrl && (
         <Link className="navbar__link" to={trgUrl}>
           <div className="card">
