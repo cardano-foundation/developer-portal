@@ -1,12 +1,14 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 
+const repoBaseUrl: string = 'https://github.com/cardano-foundation/CIPs/tree/master/';
 const repoRawBaseUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/CIPs/master/';
 const readmeUrl: string = '/README.md';
 const readmeRegex = /\.\/CIP.*?\//gm;
 const cipRegex = /\]\(.*?.png\)|\]\(.*?.jpg\)|\]\(.*?.jpeg\)|\]\(.*?.json\)/gm;
 const cipDocsPath = "./docs/governance/cardano-improvement-proposals";
 const cipStaticResourcePath = "/static/img/cip/";
+const sourceRepo = "cardano-foundation/CIPs";
 
 const getStringContentAsync = async (url: string) => {
     return await fetch(url).then(res => res.text());
@@ -89,6 +91,9 @@ const stringManipulation = (content: string, cipName: string) => {
     // Inject Docusaurus doc tags for title and a nice sidebar
     content = injectDocusaurusDocTags(content);
 
+    // Inject CIP Info to make clear this is auto generated
+    content = injectCIPInformation(content, cipName);
+
     return content;
 }
 
@@ -111,6 +116,18 @@ const injectDocusaurusDocTags = (content: string) => {
     content = "--- \nsidebar_label: " + "("+cipNumber+") " + title+"\ntitle: "+title+"\n"+content;
 
     return content;
+}
+
+// Add CIP Info
+const injectCIPInformation = (content: string, cipName: string) => {
+
+    // Parse information from markdown file
+    const status = getDocTag(content, "Status");
+    const type = getDocTag(content, "Type");
+    const creationDate = getDocTag(content, "Created");
+
+    // Add to the end
+    return content + "  \n## CIP Information  \nThis ["+type+"](CIP-0001#cip-format-and-structure) "+cipName+" created on **"+creationDate+"** has the status: ["+status+"](CIP-0001#cip-workflow).  \nThis page was generated automatically from: ["+sourceRepo+"]("+repoBaseUrl + cipName + readmeUrl+").";
 }
 
 // Get a specific doc tag
