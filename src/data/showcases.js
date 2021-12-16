@@ -190,6 +190,15 @@ const Showcases = [
     tags: ["explorer"],
   },
   {
+    title: "Native Asset",
+    description:
+      "Create native assets directly from your web wallet.",
+    preview: require("./showcase/nativeasset.png"),
+    website: "https://native-asset.com/",
+    source: null,
+    tags: ["tokens"],
+  },
+  {
     title: "Cardano Explorer",
     description:
       "The Cardano explorer built by IOHK, one of the founding entities of Cardano.",
