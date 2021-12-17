@@ -254,7 +254,7 @@ const Showcases = [
   {
     title: "Cardano Light Tools",
     description:
-      "A set of lightweight tools to operate and maintain a Cardano Stake Pool. Focuses on simplicity, low resource utilization (CPU, memory) and portability across platforms.",
+      "A set of lightweight tools to operate and maintain a Cardano Stake Pool. Currently includes a monitoring script to log relevant metrics directly into a text file in human-readable form, which is a less complex and more resource-efficient alternative to Grafana.",
     preview: require("./builder-tools/cardano-light-tools.png"),
     website: "https://github.com/orpheus-antpool/cardano-light-tools",
     getstarted: null,
