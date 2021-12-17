@@ -193,7 +193,7 @@ const Showcases = [
     title: "Native Asset",
     description:
       "Create native assets directly from your web wallet.",
-    preview: require("./showcase/nativeasset.png"),
+    preview: require("./showcase/Native-Asset.png"),
     website: "https://native-asset.com/",
     source: null,
     tags: ["tokens"],
