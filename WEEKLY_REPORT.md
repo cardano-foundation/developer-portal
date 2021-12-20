@@ -1,6 +1,14 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending December 17th
+
+[no updates]
+
 ### Week ending December 10th
+
+[2021-12-10]
+ * General styling fix on index page  (#445) (Fillips Ickevics)
+ * CIP Integration (Cardano Improvement Proposals) (#444) (Tommy Kammerer)
 
 [2021-12-09]
  * Updated Dandelion references for the new gimbalabs.com website (#441) (Roberto C. Morano)
