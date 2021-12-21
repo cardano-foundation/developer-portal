@@ -269,16 +269,16 @@ const Showcases = [
     website: "https://daedaluswallet.io",
     source: "https://github.com/input-output-hk/daedalus",
     tags: ["wallet", "opensource", "featured"],
-  },
-  {
-    title: "Dracards",
-    description:
-      "Dracards is a TCG (Trading Card Game) with a complex multiverse where anyone can earn tokens through a fun and randomized gameplay sorted through draws and an intuitive mechanic.",
-    preview: require("./showcase/dracards_nft_games.png"),
-    website: "https://dracards.com/",
-    source: null,
-    tags: ["featured", "nft", "game"],
-  },
+    },
+    {
+        title: "Dracards",
+        description:
+            "Dracards is a NFT Card Game with a complex multiverse where anyone can earn tokens through a fun and randomized gameplay sorted through draws and an intuitive mechanic.",
+        preview: require("./showcase/dracards_nft_games.png"),
+        website: "https://dracards.com/",
+        source: null,
+        tags: ["featured", "nft", "game"],
+    },
   {
     title: "Yoroi",
     description:
