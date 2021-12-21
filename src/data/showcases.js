@@ -684,6 +684,15 @@ const Showcases = [
     source: null,
     tags: ["pooltool","analytics","educational"],
   },
+  {
+    title: "Multi-Asset Bulk Sender",
+    description:
+      "A tool for sending ADA and/or native tokens in bulk. Send to multiple recipients in one transaction and save a lot on transaction fees!",
+    preview: require("./showcase/phrck-multi-asset-bulk-sender.jpg"),
+    website: "https://staking.rocks/bulk-ada-sender",
+    source: null,
+    tags: ["tokens","nft", "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
