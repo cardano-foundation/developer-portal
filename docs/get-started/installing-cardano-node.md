@@ -64,7 +64,7 @@ To download the source code and build it, you need the following packages and to
 In Redhat, Fedora, and Centos:
 ```bash
 sudo yum update -y
-sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y
+sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf jq -y
 sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 ```
 
