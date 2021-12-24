@@ -1,8 +1,24 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending December 24th
+[2021-12-23]
+ * Add jq to the list of needed packages for CentOS (#452) (Fabien Boucher)
+
+[2021-12-22]
+ * Upgrade Docusaurus 2.0.0-beta.14 (#451) (Tommy Kammerer)
+
+[2021-12-20]
+ * Update weekly report, week ending December 17th (#448) (Tommy Kammerer)
+ * december spotlight article with adapools (#447) (cislakk)
+
+[2021-12-14]
+ * General styling fix on index page  (#445) (Fillips Ickevics)
+ * CIP Integration (Cardano Improvement Proposals) (#444) (Tommy Kammerer)
+
 ### Week ending December 10th
 
-[2021-12-09]
+[2021-12-10]
+ * Update weekly report, week ending December 10th (#442) (Tommy Kammerer)
  * Updated Dandelion references for the new gimbalabs.com website (#441) (Roberto C. Morano)
 
 [2021-12-07]
