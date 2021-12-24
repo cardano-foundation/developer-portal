@@ -35,7 +35,7 @@ If we are using an AWS instance running Amazon Linux AMI 2 \(see the [AWS walk-t
 
 ```sh
 sudo yum update -y
-sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget -y
+sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget jq -y
 sudo yum install zlib-devel libtool autoconf -y
 sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 ```
