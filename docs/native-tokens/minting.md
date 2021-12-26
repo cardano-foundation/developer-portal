@@ -103,8 +103,8 @@ Since we've already answered all of the questions above, we will set variables o
 We also will be using the testnet. The only difference between minting native assets in the mainnet will be that you need to substitute the network variable <i>testnet</i> with mainnet.
 ```bash
 testnet="testnet-magic 1097911063"
-tokenname1="Testtoken"
-tokenname2="SecondTesttoken"
+tokenname1=$(echo -n "Testtoken" | xxd -b -ps -c 80 | tr -d '\n')
+tokenname2=$(echo -n "SecondTesttoken" | xxd -b -ps -c 80 | tr -d '\n')
 tokenamount="10000000"
 fee="0"
 output="0"
@@ -229,7 +229,7 @@ We now have a simple script file that defines the policy verification key as a w
 To mint the native assets, we need to generate the policy ID from the script file we created.
 
 ```bash
-cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/policyID
+cardano-cli transaction policyid --script-file ./policy/policy.script > policy/policyID
 ```
 
 The output gets saved to the file `policyID` as we need to reference it later on.
