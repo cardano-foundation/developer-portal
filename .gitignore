@@ -41,3 +41,6 @@ yarn-error.log*
 # Auto generated content like CIPs
 /docs/governance/cardano-improvement-proposals/*
 /static/img/cip/*
+
+# Auto generated content like Token Registry
+/docs/native-tokens/token-registry/*
