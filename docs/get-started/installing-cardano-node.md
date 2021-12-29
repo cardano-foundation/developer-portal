@@ -428,9 +428,8 @@ echo "  ghc-options: -Wwarn" >> cabal.project.local
 echo "" >> cabal.project.local
 ```
 
-
 :::note
-This commands might differs based how you installed llvm, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
+First 2 commands might differs based how you installed llvm, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
 :::
 
 ##### Configuring the build options
