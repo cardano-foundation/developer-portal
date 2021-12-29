@@ -408,6 +408,19 @@ git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node
 If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/input-output-hk/cardano-node/releases) for any changes.
 :::
 
+#### You will need to run following commands on M1, so compiler can find llvm
+
+```
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+```
+
+
+:::note
+This commands might differs based how you installed llvm, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
+:::
+
 ##### Configuring the build options
 
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
