@@ -57,7 +57,8 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
 }
 
 const main = async () => {
-    
+  console.log("Token Registry Content Downloading...")  
+
   // Fetch raw wiki content for token registry
   const wikiHomeContent = await getStringContentAsync(`${repoRawWikiHomeUrl}Home.md`);
 
@@ -86,9 +87,11 @@ const main = async () => {
 
       // Create markdown files locally with downloaded content
       fs.writeFileSync(`${tokenRegistryDocsPath}/${markdownFileName}.md`, manipulatedContent);
+      console.log(`Downloaded to ${tokenRegistryDocsPath}/${markdownFileName}.md`);
 
    }));
 
+   console.log("Token Registry Content Downloaded")  
 }
 
 main();
