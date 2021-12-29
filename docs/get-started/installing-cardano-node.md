@@ -383,6 +383,16 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
+If you installed llvm for M1, then you will need to add this too:
+
+```bash
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+```
+
+:::note
+llvm installation path might differs based on your installation, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
+:::
+
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
@@ -411,7 +421,6 @@ If upgrading an existing node, please ensure that you have read the [release not
 #### You will need to run following commands on M1, so compiler can find llvm
 
 ```
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 ```
