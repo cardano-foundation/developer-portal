@@ -418,11 +418,14 @@ git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node
 If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/input-output-hk/cardano-node/releases) for any changes.
 :::
 
-#### You will need to run following commands on M1, so compiler can find llvm
+#### You will need to run following commands on M1, so compiler can find llvm and some additional cabal magic
 
 ```
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+echo "package trace-dispatcher" >> cabal.project.local
+echo "  ghc-options: -Wwarn" >> cabal.project.local
+echo "" >> cabal.project.local
 ```
 
 
