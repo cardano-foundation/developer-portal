@@ -418,6 +418,14 @@ git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node
 If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/input-output-hk/cardano-node/releases) for any changes.
 :::
 
+##### Configuring the build options
+
+We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
+
+```bash
+cabal configure --with-compiler=ghc-8.10.7
+```
+
 #### You will need to run following commands on M1, so compiler can find llvm and some additional cabal magic
 
 ```
@@ -431,14 +439,6 @@ echo "" >> cabal.project.local
 :::note
 First 2 commands might differs based how you installed llvm, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
 :::
-
-##### Configuring the build options
-
-We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
-
-```bash
-cabal configure --with-compiler=ghc-8.10.7
-```
 
 #### Building and installing the node
 ```bash
