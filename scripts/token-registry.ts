@@ -73,7 +73,7 @@ const main = async () => {
   // Save Token Registry markdowns into docs folder
   await Promise.all(tokeRegistryUniqueUrls.map(async (content) => {
       
-      // Get toke registry url
+      // Get token registry url
       const tokenRegistryUrl  = await  tokenRegistryStringManipulation(content);
 
       // Get markdown file names
