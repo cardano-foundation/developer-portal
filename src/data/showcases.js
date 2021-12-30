@@ -178,7 +178,7 @@ const Showcases = [
     preview: require("./showcase/adaex.png"),
     website: "https://adaex.org",
     source: null,
-    tags: ["explorer"],
+    tags: ["explorer","tokens"],
   },
   {
     title: "AdaStat",
@@ -232,7 +232,7 @@ const Showcases = [
     preview: require("./showcase/adapools.png"),
     website: "https://adapools.org/",
     source: null,
-    tags: ["pooltool", "analytics"],
+    tags: ["pooltool","analytics","explorer","tokens"],
   },
   {
     title: "PoolTool",
@@ -317,7 +317,7 @@ const Showcases = [
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
-    tags: ["tokens", "analytics"],
+    tags: ["tokens", "analytics","nft"],
   },
   {
     title: "NFTea",
