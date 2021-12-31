@@ -429,16 +429,10 @@ cabal configure --with-compiler=ghc-8.10.7
 #### You will need to run following commands on M1, so compiler can find llvm and some additional cabal magic
 
 ```
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 echo "package trace-dispatcher" >> cabal.project.local
 echo "  ghc-options: -Wwarn" >> cabal.project.local
 echo "" >> cabal.project.local
 ```
-
-:::note
-First 2 commands might differs based how you installed llvm, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
-:::
 
 #### Building and installing the node
 ```bash
