@@ -426,7 +426,7 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
-#### You will need to run following commands on M1, so compiler can find llvm and some additional cabal magic
+#### You will need to run following commands on M1, those commands will set some cabal related options before building
 
 ```
 echo "package trace-dispatcher" >> cabal.project.local
