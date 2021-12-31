@@ -277,7 +277,7 @@ brew install automake
 brew install pkg-config
 ```
 
-#### You will need to install llvm incase you are using M1
+#### You will need to install llvm in case you are using M1
 
 ```
 brew install llvm
