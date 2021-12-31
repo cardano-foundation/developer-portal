@@ -30,6 +30,11 @@ As a stake pool operator, you need to build a marketing concept including all re
 
 You can decide to pledge some or all amount of your ada when you set up the stake pool, The pledging mechanism can make your stake pool more attractive to delegators. This will show that you have trust and invested interest in Cardano. In addition, ensure the quality and cost with stake pool uptime and fees. If you are planning to charge a higher fee, then you need to provide more functionality within your pool such as being more active on social media or donations.
 
+## Implement extended metadata
+
+With extended-metadata you can add to your pool profile logo, some about info, linking to your social profiles and so. Its free and this feature is implemented in a lot of explorers like [adapools](https://adapools.org), yoroi wallet, etc. [Example and howto is here](https://a.adapools.org/extended-example) 
+After meta.json is changed dont forgot re-register your pool with new metadata-hash (as hash is changed with new row in meta.json file).
+
 ## Create social media accounts
 
 Interact with your community by creating different social media accounts such as Youtube, Twitter, Discord, Meetup Group, Clubhouse, etc. This will keep the community and delegators informed and well educated about recent updates. It is better to add your contact information on all your created accounts for new potential delegators to reach out to you.
