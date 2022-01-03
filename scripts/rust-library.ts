@@ -56,22 +56,22 @@ const main = async () => {
   const rustLibraryUniqueUrls = [...new Set(markDownNames)];
 
   // Save rust library markdowns into docs folder
-  await Promise.all(rustLibraryUniqueUrls.map(async (content) => {
+  await Promise.all(rustLibraryUniqueUrls.map(async (fileName) => {
 
       // Download markdown files
-      const result = await getStringContentAsync(`${repoRawBaseUrl}${content}.md`);
+      const result = await getStringContentAsync(`${repoRawBaseUrl}${fileName}.md`);
 
       // Remove invalid 'BIP-39' links that are empty
       const manipualtedContent = stringManipulation(result)
       
       // Finish manipulation with injecting docosautus doc tags
-      const contentWithDocosaurusDocTags = injectDocusaurusDocTags(manipualtedContent, content);
+      const contentWithDocosaurusDocTags = injectDocusaurusDocTags(manipualtedContent, fileName);
 
-      const manipulatedFileName = fileNameManipulation(content)
+      const manipulatedFileName = fileNameManipulation(fileName)
 
       // Create markdown files locally with downloaded content
       fs.writeFileSync(`${rustLibraryDocsPath}/${manipulatedFileName}.md`, contentWithDocosaurusDocTags);
-      console.log(`Downloaded to ${rustLibraryDocsPath}/${content}.md`);
+      console.log(`Downloaded to ${rustLibraryDocsPath}/${fileName}.md`);
 
    }));
 
