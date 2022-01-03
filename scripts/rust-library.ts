@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import * as fs from 'fs';
 
 const repoRawBaseUrl: string = 'https://raw.githubusercontent.com/Emurgo/cardano-serialization-lib/master/doc/getting-started/';
-const rustLibraryDocsPath: string = './docs/get-started/cardano-serialization-lib/rust-library';
+const rustLibraryDocsPath: string = './docs/get-started/cardano-serialization-lib';
 const namesRawBaseIndexUrl: string = 'https://raw.githubusercontent.com/Emurgo/cardano-serialization-lib/master/doc/index.rst';
 
 const getStringContentAsync = async (url: string) => {
@@ -36,6 +36,15 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
     return content;
 }
 
+// Filename manipulations to ensure compatibility
+const fileNameManipulation = (fileName: string) => {
+
+    // Modify filename for 'metadata' with 'transaction-metadata'
+    fileName = fileName === 'metadata' ? 'transaction-metadata' : fileName
+
+    return fileName;
+}
+
 const main = async () => {
   console.log('Rust Library Content Downloading...')
 
@@ -45,10 +54,6 @@ const main = async () => {
   // Create array of markdown names to fetch raw files 
   const markDownNames = indexWithMarkDownNames.match(/(?<=getting-started\/)(.*?)(?=[\r\n]+)/g);
   const rustLibraryUniqueUrls = [...new Set(markDownNames)];
-
-  // Create rust library folder to store markdown files locally
-  fs.rmdirSync(rustLibraryDocsPath, { recursive: true });
-  fs.mkdirSync(rustLibraryDocsPath, { recursive: true });
 
   // Save rust library markdowns into docs folder
   await Promise.all(rustLibraryUniqueUrls.map(async (content) => {
@@ -62,8 +67,10 @@ const main = async () => {
       // Finish manipulation with injecting docosautus doc tags
       const contentWithDocosaurusDocTags = injectDocusaurusDocTags(manipualtedContent, content);
 
+      const manipulatedFileName = fileNameManipulation(content)
+
       // Create markdown files locally with downloaded content
-      fs.writeFileSync(`${rustLibraryDocsPath}/${content}.md`, contentWithDocosaurusDocTags);
+      fs.writeFileSync(`${rustLibraryDocsPath}/${manipulatedFileName}.md`, contentWithDocosaurusDocTags);
       console.log(`Downloaded to ${rustLibraryDocsPath}/${content}.md`);
 
    }));
