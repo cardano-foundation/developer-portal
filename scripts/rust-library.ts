@@ -14,7 +14,6 @@ const getStringContentAsync = async (url: string) => {
 // String manipulations to ensure compatibility
 const stringManipulation = (content: string, fileName: string) => {
 
-    // Remove invalid 'BIP-39' links that are empty
     content = content.replace(']()', ']');
 
     content = injectRLInformation(content, fileName);
