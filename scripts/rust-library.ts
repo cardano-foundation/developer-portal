@@ -14,8 +14,10 @@ const getStringContentAsync = async (url: string) => {
 // String manipulations to ensure compatibility
 const stringManipulation = (content: string, fileName: string) => {
 
+    // Replace empty links
     content = content.replace(']()', ']');
-
+    
+    // Inject rust library additional info
     content = injectRLInformation(content, fileName);
 
     return content;
@@ -48,7 +50,7 @@ const fileNameManipulation = (fileName: string) => {
     return fileName;
 }
 
-// Add Rust Library Info
+// Add rust library Info
 const injectRLInformation = (content: string, fileName: string) => {
 
     // Add to the end
@@ -71,7 +73,7 @@ const main = async () => {
       // Download markdown files
       const result = await getStringContentAsync(`${repoRawBaseUrl}${fileName}.md`);
 
-      // Remove invalid 'BIP-39' links that are empty
+      // Remove invalid links that are empty
       const manipualtedContent = stringManipulation(result, fileName)
       
       // Finish manipulation with injecting docosautus doc tags
