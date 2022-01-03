@@ -38,10 +38,8 @@ yarn-error.log*
 # intellij
 .idea
 
-# Auto generated content like CIPs
+# Auto generated content like CIPs and Rust Library
 /docs/governance/cardano-improvement-proposals/*
 /static/img/cip/*
-
-# Auto generated content like rust library
 /docs/get-started/cardano-serialization-lib/*
 
