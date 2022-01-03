@@ -53,7 +53,7 @@ const fileNameManipulation = (fileName: string) => {
 const injectRLInformation = (content: string, fileName: string) => {
 
     // Add to the end
-    return content + '  \n## Rust Library Information  \nThis page was generated automatically from: ['+repoBaseUrl+']('+repoBaseUrl + rlStaticResourcePath + '/' + fileName + '.md' + ').';
+    return content + '  \n## Serializattion-Lib Information  \nThis page was generated automatically from: ['+repoBaseUrl+']('+repoBaseUrl + rlStaticResourcePath + '/' + fileName + '.md' + ').';
 }
 
 const main = async () => {
