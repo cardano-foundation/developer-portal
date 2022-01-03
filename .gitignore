@@ -43,5 +43,5 @@ yarn-error.log*
 /static/img/cip/*
 
 # Auto generated content like rust library
-/docs/get-started/cardano-serialization-lib/rust-library/*
+/docs/get-started/cardano-serialization-lib/*
 
