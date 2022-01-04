@@ -15,10 +15,10 @@ This guide will show you how to compile and install the `cardano-node` and `card
 If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
 
 <HydraBuildList
-    latest="8110794"
-    linux="8110920"
-    macos="8111097"
-    win64="8110999"/>
+    latest="9116257"
+    linux="9116140"
+    macos="9116041"
+    win64="9115926"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -257,10 +257,6 @@ Next, we will talk about how to [run cardano-node](running-cardano.md).
 
 In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **MacOS-based** operating system. 
 
-:::note
-Please note that this guide only supports [Intel-based Apple MacOS](https://en.wikipedia.org/wiki/Mac_transition_to_Intel_processors) hardware. [Apple Silicon (M1)](https://en.wikipedia.org/wiki/Apple_M1) hardware guide is still in progress.
-:::
-
 #### Installing Operating System dependencies
 
 To download the source code and build it, you need the following packages and tools on your MacOS system:
@@ -281,6 +277,12 @@ brew install automake
 brew install pkg-config
 ```
 
+#### You will need to install llvm in case you are using M1
+
+```
+brew install llvm
+```
+
 #### Installing GHC and Cabal
 
 The fastest way to install **GHC** (Glassglow Haskell Compiler) and **Cabal** (Common Architecture for Building Applications and Libraries) is to use [ghcup](https://www.haskell.org/ghcup).
@@ -289,7 +291,18 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer. Once complete, you should have `ghc` and `cabal` installed on your system.
+Please follow the instructions and provide the necessary input to the installer.
+
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)
+
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)
+
+`Do you want to install stack?` - (N or enter)
+
+`Press ENTER to proceed or ctrl-c to abort.` (enter)
+
+Once complete, you should have `ghc` and `cabal` installed to your system.
+
 
 :::note
 `ghcup` will try to detect your shell and will ask you to add it to the environment variables. Please restart your shell/terminal after installing `ghcup`
@@ -298,7 +311,7 @@ Please follow the instructions and provide the necessary input to the installer.
 You can check if `ghcup` has been installed properly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
 
 ```
-The GHCup Haskell installer, version v0.1.14.1
+The GHCup Haskell installer, version v0.1.17.4
 ```
 
 `ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
@@ -306,6 +319,13 @@ The GHCup Haskell installer, version v0.1.14.1
 ```bash
 ghcup install ghc 8.10.7
 ghcup set ghc 8.10.7
+```
+
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+
+```bash
+ghcup install cabal 3.4.0.0
+ghcup set cabal 3.4.0.0
 ```
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
@@ -363,6 +383,16 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
+If you installed llvm for M1, then you will need to add this too:
+
+```bash
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+```
+
+:::note
+llvm installation path might differs based on your installation, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
+:::
+
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
@@ -394,6 +424,14 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 
 ```bash
 cabal configure --with-compiler=ghc-8.10.7
+```
+
+#### You will need to run following commands on M1, those commands will set some cabal related options before building
+
+```
+echo "package trace-dispatcher" >> cabal.project.local
+echo "  ghc-options: -Wwarn" >> cabal.project.local
+echo "" >> cabal.project.local
 ```
 
 #### Building and installing the node
