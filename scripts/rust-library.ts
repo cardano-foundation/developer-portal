@@ -24,10 +24,10 @@ const stringManipulation = (content: string, fileName: string) => {
 }
 
 // Inject extra docusarus doc tags
-const injectDocusaurusDocTags = (content: string, url: string) => {
-
+const injectDocusaurusDocTags = (content: string, fileName: string) => {
+    
     // Replace '-' from url in order to create a clean sidebar label
-    const modifiedUrl = url.replace('-', ' ')
+    const modifiedUrl = fileName.replace('-', ' ')
     
     // Capitalize the first letter of each word
     let sidebarLabel = modifiedUrl.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
@@ -36,9 +36,20 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
     content = content.substring(0, 3) === '---' ? content.slice(3) : content;
 
     // Add '---' with doc tags for Docusaurus
-    content = '--- \nsidebar_label: ' + sidebarLabel +'\ntitle: '+url + '\n--- ' +'\n'+content;
+    content = '--- \nsidebar_label: ' + sidebarLabel +'\ntitle: '+fileName + '\n'+sidebar_positionForFilename(fileName)+'--- ' + '\n'+content;
 
     return content;
+}
+
+// In case we want a specific sidebar_position for a certain filename (otherwise alphabetically)
+// In the future it will be better to get this information from the index.rst file
+const sidebar_positionForFilename = (fileName: string) => {
+    // Overview was 1
+    if (fileName === 'prerequisite-knowledge') return 'sidebar_position: 2\n';
+    if (fileName === 'generating-keys') return 'sidebar_position: 3\n';
+    if (fileName === 'generating-transactions') return 'sidebar_position: 4\n';
+    if (fileName === 'transaction-metadata') return 'sidebar_position: 5\n';
+    return ''; // empty string means alphabetically within the sidebar
 }
 
 // Filename manipulations to ensure compatibility
