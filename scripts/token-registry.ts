@@ -40,8 +40,17 @@ const markdownStringManipulation = (content: string) => {
 
     // Replace ')' with ''
     content = content.replace(/\)/g, '');
-
+    
     return content;
+}
+
+/// String manipulations to ensure compatibility
+const stringManipulation = (content: string) => {
+
+    // Remove `(` and `)` from relative links 
+    content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''))
+
+    return content 
 }
 
 // Inject extra docusarus doc tags
@@ -71,22 +80,25 @@ const main = async () => {
   fs.mkdirSync(tokenRegistryDocsPath, { recursive: true });
 
   // Save Token Registry markdowns into docs folder
-  await Promise.all(tokeRegistryUniqueUrls.map(async (content) => {
+  await Promise.all(tokeRegistryUniqueUrls.map(async (trUrl) => {
       
       // Get token registry url
-      const tokenRegistryUrl  = await  tokenRegistryStringManipulation(content);
+      const tokenRegistryUrl  = await  tokenRegistryStringManipulation(trUrl);
 
       // Get markdown file names
-      const markdownFileName = await  markdownStringManipulation(content);
+      const markdownFileName = await  markdownStringManipulation(trUrl);
 
       // Download markdown files
-      const result = await getStringContentAsync(`${repoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
+      const content = await getStringContentAsync(`${repoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
+
+      // Manipulate content to ensure compatibility
+      const manipulatedContent = await stringManipulation(content)
 
       // Finish manipulation with injecting docosautus doc tags
-      const manipulatedContent = injectDocusaurusDocTags(result, content);
+      const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl);
 
       // Create markdown files locally with downloaded content
-      fs.writeFileSync(`${tokenRegistryDocsPath}/${markdownFileName}.md`, manipulatedContent);
+      fs.writeFileSync(`${tokenRegistryDocsPath}/${markdownFileName}.md`, manipulatedContentWithDocTags);
       console.log(`Downloaded to ${tokenRegistryDocsPath}/${markdownFileName}.md`);
 
    }));
