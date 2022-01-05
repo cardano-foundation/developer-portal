@@ -117,7 +117,7 @@ cd nft/
 ### Set variables
 We will set important values in a more readable variable for better readability and debugging of failed transactions.
 ```bash
-tokenname="NFT1"
+tokenname=$(echo -n "NFT1" | xxd -b -ps -c 80 | tr -d '\n')
 tokenamount="1"
 fee="0"
 output="0"
@@ -279,7 +279,7 @@ script="policy/policy.script"
 The last step is to generate the policyID:
 
 ```bash
-cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/policyID
+cardano-cli transaction policyid --script-file ./policy/policy.script > policy/policyID
 ```
 
 ### Metadata
