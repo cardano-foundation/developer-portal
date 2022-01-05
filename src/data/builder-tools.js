@@ -49,6 +49,29 @@ export const Tags = {
     icon: null,
   },
 
+   // Marlowe
+   marlowe: {
+    label: "Marlowe",
+    description:
+      "Marlowe",
+    icon: null,
+  },
+
+  // NFT Tools
+  nft: {
+    label: "NFT",
+    description: "Non-Fungible Token (NFT)",
+    icon: null,
+  },
+
+  // Plutus
+  plutus: {
+    label: "Plutus",
+    description:
+      "Plutus",
+    icon: null,
+  },
+
   // Stake Pool Operator Tools
   operatortool: {
     label: "Operator Tools",
@@ -64,6 +87,7 @@ export const Tags = {
       "Oracle tools.",
     icon: null,
   },
+
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -99,13 +123,13 @@ const Showcases = [
     description:
       "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
     preview: require("./builder-tools/dandelion-apis.png"),
-    website: "https://gimbalabs.com/dandelionapis",
+    website: "https://gimbalabs.com/dandelion",
     getstarted: "/docs/get-started/dandelion-apis",
     tags: ["getstarted", "api"],
   },
   {
     title: "Ogmios",
-    description: "Ogmios offers a JSON-WSP interface through WebSockets.",
+    description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
@@ -138,11 +162,19 @@ const Showcases = [
     tags: ["api"],
   },
   {
+    title: "cardano-wallet-js",
+    description: "A javascript/typescript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
+    preview: require("./builder-tools/cardano-wallet-js.png"),
+    website: "https://github.com/tango-crypto/cardano-wallet-js",
+    getstarted: "/docs/get-started/cardano-wallet-js",
+    tags: ["getstarted", "library"]
+  },
+  {
     title: "CardanoSharp Wallet",
     description:
       "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
     preview: require("./builder-tools/cardanosharp.png"),
-    website: "https://github.com/CardanoSharp/cardanosharp-wallet",
+    website: "https://www.cardanosharp.com",
     getstarted: "/docs/get-started/cardanosharp-wallet",
     tags: ["getstarted", "library"],
   },
@@ -155,12 +187,69 @@ const Showcases = [
     tags: ["oracle"],
   },
   {
-    title: "CNTools",
-    description: "CNTools is like a swiss army knife for pool operators to simplify typical operations regarding their wallet keys and pool management.",
+    title: "Guild Operators Suite",
+    description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./builder-tools/guild-operators.png"),
-    website: "https://github.com/cardano-community/guild-operators/blob/alpha/docs/Scripts/cntools.md",
+    website: "https://cardano-community.github.io/guild-operators/",
+    getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
+    tags: ["featured", "getstarted", "operatortool"],
+  },
+  {
+    title: "libada-go",
+    description: "A Golang library for Cardano network, it is used and maintained by Bitrue.",
+    preview: require("./builder-tools/libada-go.png"),
+    website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
-    tags: ["featured", "operatortool"],
+    tags: ["library"],
+  },
+  {
+    title: "Pooldata API",
+    description: "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
+    preview: require("./builder-tools/pooldata-api.png"),
+    website: "https://api.pooldata.live",
+    getstarted: null,
+    tags: ["operatortool", "api"],
+  },
+  {
+    title: "Python Module",
+    description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
+    preview: require("./builder-tools/cardano-python.png"),
+    website: "https://github.com/emesik/cardano-python",
+    getstarted: null,
+    tags: ["library", "api"],
+  },
+  {
+    title: "Plutus Playground",
+    description: "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
+    preview: require("./builder-tools/plutus-playground.png"),
+    website: "https://playground.plutus.iohkdev.io",
+    getstarted: "/docs/smart-contracts/plutus#plutus-playground",
+    tags: ["featured", "getstarted", "plutus"],
+  },
+  {
+    title: "Marlowe Playground",
+    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
+    preview: require("./builder-tools/marlowe-playground.png"),
+    website: "https://alpha.marlowe.iohkdev.io/#/",
+    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
+    tags: ["featured", "getstarted", "marlowe"],
+  },
+  {
+    title: "Ansible cardano-node",
+    description: "An Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
+    preview: require("./builder-tools/ansible-cardano-node.png"),
+    website: "https://github.com/moaipool/ansible-cardano-node",
+    getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
+    tags: ["getstarted", "operatortool"],
+  },
+  {
+    title: "Fracada",
+    description:
+      "Plutus dApp which enables users to fractionalize their NFTs. The contract locks an NFT and mints a number of tokens representing fractions of it. To get the NFT back, the fraction tokens are burned.",
+    preview: require("./builder-tools/fracada.png"),
+    website: "https://github.com/dcSpark/fracada",
+    getstarted: null,
+    tags: ["plutus", "nft"],
   },
 ];
 
@@ -278,7 +367,7 @@ function ensureShowcaseValid(showcase) {
     const hasGetStartedTag = showcase.tags.includes("getstarted");
     const isOperatorTool = showcase.tags.includes("operatortool");
 
-    if ((hasGetStartedTag && isOperatorTool) || (showcase.getstarted instanceof String &&
+    if ((hasGetStartedTag && isOperatorTool) && !(typeof showcase.getstarted === "string" &&
         (showcase.getstarted.startsWith("/docs/operate-a-stake-pool/")))
     ) {
       throw new Error(

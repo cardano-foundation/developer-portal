@@ -5,17 +5,20 @@ sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
 image: ./img/og-developer-portal.png
 --- 
+import HydraBuildList from '@site/src/components/docs/HydraBuildList';
 
-### Overview 
+### Overview
 
 This guide will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. It will enable you to interact with the **Cardano** blockchain, including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting/burning **native tokens**, creating a **stake pool**, executing **smart contracts**, and so much more!
 
 :::note
-If you want to avoid compiling the binaries yourself, You can download the latest pre-built binaries of `cardano-node` and `cardano-cli` from the links below. 
+If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
 
-- [Linux](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-linux/latest-finished)
-- [MacOS](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-macos/latest-finished)
-- [Windows](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-node-win64/latest-finished)
+<HydraBuildList
+    latest="9116257"
+    linux="9116140"
+    macos="9116041"
+    win64="9115926"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -27,6 +30,10 @@ To set up the components, you will need:
 * **Windows**, **MacOS**, or **Linux** for your operating system
 * A **CPU** with at least **two** cores
 * **8GB** of RAM and at least **10GB** of free disk space
+
+:::note
+If intending to connect to mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
+:::
 
 ### Choose your Platform
 
@@ -52,18 +59,18 @@ To download the source code and build it, you need the following packages and to
 * developer libraries for `ncurses`,
 * `ncurses` compatibility libraries,
 * the Haskell build tool `cabal`,
-* the GHC Haskell compiler (version `8.10.4` or above).
+* the GHC Haskell compiler (version `8.10.7` or above).
 
 In Redhat, Fedora, and Centos:
 ```bash
 sudo yum update -y
-sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y
+sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf jq -y
 sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 ```
 
 For Debian/Ubuntu, use the following instead:
 ```bash
-sudo apt-get update -y
+sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 ```
 If you are using a different flavor of Linux, you will need to use the correct package manager for your platform instead of `yum` or `apt-get`, and the names of the packages you need to install might differ.
@@ -76,7 +83,17 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer. Once complete, you should have `ghc` and `cabal` installed to your system.
+Please follow the instructions and provide the necessary input to the installer.
+
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)
+
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)
+
+`Do you want to install stack?` - (N or enter)
+
+`Press ENTER to proceed or ctrl-c to abort.` (enter)
+
+Once complete, you should have `ghc` and `cabal` installed to your system.
 
 
 :::note
@@ -86,15 +103,23 @@ Please follow the instructions and provide the necessary input to the installer.
 You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
 
 ```
-The GHCup Haskell installer, version v0.1.14.1
+The GHCup Haskell installer, version v0.1.17.4
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
 
 ```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
+ghcup install ghc 8.10.7
+ghcup set ghc 8.10.7
 ```
+
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+
+```bash
+ghcup install cabal 3.4.0.0
+ghcup set cabal 3.4.0.0
+```
+
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
@@ -105,7 +130,7 @@ ghc --version
 
 You should see something like this: 
 ```
-The Glorious Glasgow Haskell Compilation System, version 8.10.4
+The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
 Check `cabal` version: 
@@ -129,8 +154,8 @@ Please confirm that the versions you have installed match the recommended versio
 Let's create a working directory to store the source-code and builds for the components.
 
 ```bash
-mkdir -p ~/cardano-src
-cd ~/cardano-src
+mkdir -p $HOME/cardano-src
+cd $HOME/cardano-src
 ```
 Next, we will download, compile and install `libsodium`.
 
@@ -144,19 +169,19 @@ make
 sudo make install
 ```
 
-Then we will add the following environment variables to your shell profile. E.G `~/.zshrc` or `~/.bashrc` depending on what shell application you are using. Add the following to the bottom of your shell profile/config file so that the compiler can be aware that `libsodium` is installed on your system.
+Then we will add the following environment variables to your shell profile. E.G `$HOME/.zshrc` or `$HOME/.bashrc` depending on what shell application you are using. Add the following to the bottom of your shell profile/config file so that the compiler can be aware that `libsodium` is installed on your system.
 
 ```bash
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
-Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source ~/.bashrc` or `source ~/.zshrc` (***depending on the shell application you use***).
+Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
 
 ```bash
-cd ~/cardano-src
+cd $HOME/cardano-src
 ```
 
 Download the `cardano-node` repository: 
@@ -169,11 +194,11 @@ git fetch --all --recurse-submodules --tags
 Switch the repository to the latest tagged commit: 
 
 ```bash
-git checkout tags/1.27.0
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 :::important
-You can check the latest available version/tag by visiting the `cardano-node` [Github Release](https://github.com/input-output-hk/cardano-node/releases) page. At the time of writing this, the current version is `1.27.0`.
+If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/input-output-hk/cardano-node/releases) for any changes.
 :::
 
 #### Configuring the build options
@@ -181,14 +206,17 @@ You can check the latest available version/tag by visiting the `cardano-node` [G
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4
+cabal configure --with-compiler=ghc-8.10.7
 ```
 
-Update the local project file to use `libsodium` that you installed earlier.
-
+If you are running non x86/x64 platform (eg. ARM) please install and configure LLVM with:
 ```bash
-echo "package cardano-crypto-praos" >>  cabal.project.local
-echo "  flags: -external-libsodium-vrf" >>  cabal.project.local
+sudo apt install llvm-9
+sudo apt install clang-9 libnuma-dev
+sudo ln -s /usr/bin/llvm-config-9 /usr/bin/llvm-config
+sudo ln -s /usr/bin/opt-9 /usr/bin/opt
+sudo ln -s /usr/bin/llc-9 /usr/bin/llc
+sudo ln -s /usr/bin/clang-9 /usr/bin/clang
 ```
 
 #### Building and installing the node
@@ -196,24 +224,24 @@ echo "  flags: -external-libsodium-vrf" >>  cabal.project.local
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
 
 ```bash
-cabal build all
+cabal build cardano-node cardano-cli
 ```
 
-Install the newly built node and CLI commands to the ~/.local/bin directory:
+Install the newly built node and CLI commands to the $HOME/.local/bin directory:
 
 ```bash
-mkdir -p ~/.local/bin
-cp -p "$(./scripts/bin-path.sh cardano-node)" ~/.local/bin/
-cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
+mkdir -p $HOME/.local/bin
+cp -p "$(./scripts/bin-path.sh cardano-node)" $HOME/.local/bin/
+cp -p "$(./scripts/bin-path.sh cardano-cli)" $HOME/.local/bin/
 ```
 
-We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`~/.zshrc` or `~/.bashrc` ***depending on the shell application you use***)
+We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`$HOME/.zshrc` or `$HOME/.bashrc` ***depending on the shell application you use***)
 
 ```bash
-export PATH="~/.local/bin/:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
 ```
 
-Once saved, reload your shell profile by typing `source ~/.zshrc` or `source ~/.bashrc` (***depending on the shell application you use***).
+Once saved, reload your shell profile by typing `source $HOME/.zshrc` or `source $HOME/.bashrc` (***depending on the shell application you use***).
 
 Check the version that has been installed:
 ```
@@ -228,10 +256,6 @@ Next, we will talk about how to [run cardano-node](running-cardano.md).
 ## MacOS
 
 In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **MacOS-based** operating system. 
-
-:::note
-Please note that this guide only supports [Intel-based Apple MacOS](https://en.wikipedia.org/wiki/Mac_transition_to_Intel_processors) hardware. [Apple Silicon (M1)](https://en.wikipedia.org/wiki/Apple_M1) hardware guide is still in progress.
-:::
 
 #### Installing Operating System dependencies
 
@@ -253,6 +277,12 @@ brew install automake
 brew install pkg-config
 ```
 
+#### You will need to install llvm in case you are using M1
+
+```
+brew install llvm
+```
+
 #### Installing GHC and Cabal
 
 The fastest way to install **GHC** (Glassglow Haskell Compiler) and **Cabal** (Common Architecture for Building Applications and Libraries) is to use [ghcup](https://www.haskell.org/ghcup).
@@ -261,7 +291,17 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer. Once complete, you should have `ghc` and `cabal` installed on your system.
+Please follow the instructions and provide the necessary input to the installer.
+
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)
+
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)
+
+`Do you want to install stack?` - (N or enter)
+
+`Press ENTER to proceed or ctrl-c to abort.` (enter)
+
+Once complete, you should have `ghc` and `cabal` installed to your system.
 
 
 :::note
@@ -271,14 +311,21 @@ Please follow the instructions and provide the necessary input to the installer.
 You can check if `ghcup` has been installed properly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
 
 ```
-The GHCup Haskell installer, version v0.1.14.1
+The GHCup Haskell installer, version v0.1.17.4
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
 
 ```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
+ghcup install ghc 8.10.7
+ghcup set ghc 8.10.7
+```
+
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+
+```bash
+ghcup install cabal 3.4.0.0
+ghcup set cabal 3.4.0.0
 ```
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
@@ -290,7 +337,7 @@ ghc --version
 
 You should see something like this: 
 ```
-The Glorious Glasgow Haskell Compilation System, version 8.10.4
+The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
 Check `cabal` version: 
@@ -314,8 +361,8 @@ Please confirm that the versions you have installed matches the recommended vers
 Let's create a working directory to store the source-code and builds for the components.
 
 ```bash
-mkdir -p ~/cardano-src
-cd ~/cardano-src
+mkdir -p $HOME/cardano-src
+cd $HOME/cardano-src
 ```
 Next, we will download, compile and install `libsodium`.
 
@@ -329,19 +376,29 @@ make
 sudo make install
 ```
 
-Then we will add the following environment variables to your shell profile. E.G `~/.zshrc` or `~/.bashrc` depending on what shell application you are using. Add the following to the bottom of your shell profile/config file so the compiler can be aware that `libsodium` is installed on your system.
+Then we will add the following environment variables to your shell profile. E.G `$HOME/.zshrc` or `$HOME/.bashrc` depending on what shell application you are using. Add the following to the bottom of your shell profile/config file so the compiler can be aware that `libsodium` is installed on your system.
 
 ```bash
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
-Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source ~/.bashrc` or `source ~/.zshrc` (***depending on the shell application you use***).
+If you installed llvm for M1, then you will need to add this too:
+
+```bash
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+```
+
+:::note
+llvm installation path might differs based on your installation, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
+:::
+
+Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
 
 ```bash
-cd ~/cardano-src
+cd $HOME/cardano-src
 ```
 
 Download the `cardano-node` repository: 
@@ -354,11 +411,11 @@ git fetch --all --recurse-submodules --tags
 Switch the repository to the latest tagged commit: 
 
 ```bash
-git checkout tags/1.27.0
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 :::important
-You can check the latest available version / tag by visiting the `cardano-node` [Github Release](https://github.com/input-output-hk/cardano-node/releases) page. At the time of writing this, the current version is `1.27.0`.
+If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/input-output-hk/cardano-node/releases) for any changes.
 :::
 
 ##### Configuring the build options
@@ -366,14 +423,15 @@ You can check the latest available version / tag by visiting the `cardano-node` 
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4
+cabal configure --with-compiler=ghc-8.10.7
 ```
 
-Update the local project file to use `libsodium` that you installed earlier.
+#### You will need to run following commands on M1, those commands will set some cabal related options before building
 
-```bash
-echo "package cardano-crypto-praos" >>  cabal.project.local
-echo "  flags: -external-libsodium-vrf" >>  cabal.project.local
+```
+echo "package trace-dispatcher" >> cabal.project.local
+echo "  ghc-options: -Wwarn" >> cabal.project.local
+echo "" >> cabal.project.local
 ```
 
 #### Building and installing the node
@@ -381,21 +439,21 @@ echo "  flags: -external-libsodium-vrf" >>  cabal.project.local
 cabal build all
 ```
 
-Install the newly built node and CLI to the ~/.local/bin directory:
+Install the newly built node and CLI to the $HOME/.local/bin directory:
 
 ```bash
-mkdir -p ~/.local/bin
-cp -p "$(./scripts/bin-path.sh cardano-node)" ~/.local/bin/
-cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
+mkdir -p $HOME/.local/bin
+cp -p "$(./scripts/bin-path.sh cardano-node)" $HOME/.local/bin/
+cp -p "$(./scripts/bin-path.sh cardano-cli)" $HOME/.local/bin/
 ```
 
-We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`~/.zshrc` or `~/.bashrc` ***depending on the shell application you use***)
+We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`$HOME/.zshrc` or `$HOME/.bashrc` ***depending on the shell application you use***)
 
 ```bash
-export PATH="~/.local/bin/:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
 ```
 
-Once saved, reload your shell profile by typing `source ~/.zshrc` or `source ~/.bashrc` (***depending on the shell application you use***).
+Once saved, reload your shell profile by typing `source $HOME/.zshrc` or `source $HOME/.bashrc` (***depending on the shell application you use***).
 
 Check the version that has been installed:
 ```

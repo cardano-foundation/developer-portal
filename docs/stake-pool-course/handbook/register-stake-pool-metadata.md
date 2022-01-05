@@ -36,12 +36,13 @@ Registering your stake pool requires:
 **WARNING:** Generating the **stake pool registration certificate** and the **delegation certificate** requires the **cold keys**. So, when doing this on mainnet you may want to generate these certificates in your local machine taking the proper security measures to avoid exposing your cold keys to the internet.
 
 #### Create a JSON file with your pool's metadata
+
 ```json
 {
-"name": "TestPool",
-"description": "The pool that tests all the pools",
-"ticker": "TEST",
-"homepage": "https://teststakepool.com"
+    "name": "TestPool",
+    "description": "The pool that tests all the pools",
+    "ticker": "TEST",
+    "homepage": "https://teststakepool.com"
 }
 ```
 
@@ -54,31 +55,31 @@ Git.IO-URL https://git.io/JJWdJ
 #### Get the hash of your metadata JSON file:
 
 This validates that the JSON fits the required schema, if it does, you will get the hash of your file.
+
 ```sh
 cardano-cli stake-pool metadata-hash --pool-metadata-file pool_Metadata.json
 
 >6bf124f217d0e5a0a8adb1dbd8540e1334280d49ab861127868339f43b3948af
 ```
 
-
 #### Generate Stake pool registration certificate
+
 ```sh
 cardano-cli stake-pool registration-certificate \
---cold-verification-key-file cold.vkey \
---vrf-verification-key-file vrf.vkey \
---pool-pledge <AMOUNT TO PLEDGE IN LOVELACE> \
---pool-cost <POOL COST PER EPOCH IN LOVELACE> \
---pool-margin <POOL COST PER EPOCH IN PERCENTAGE> \
---pool-reward-account-verification-key-file stake.vkey \
---pool-owner-stake-verification-key-file stake.vkey \
---mainnet \
---pool-relay-ipv4 <RELAY NODE PUBLIC IP> \
---pool-relay-port <RELAY NODE PORT> \
---metadata-url https://git.io/JJWdJ \
---metadata-hash <POOL METADATA HASH> \
---out-file pool-registration.cert
+    --cold-verification-key-file cold.vkey \
+    --vrf-verification-key-file vrf.vkey \
+    --pool-pledge <AMOUNT TO PLEDGE IN LOVELACE> \
+    --pool-cost <POOL COST PER EPOCH IN LOVELACE> \
+    --pool-margin <POOL COST PER EPOCH IN PERCENTAGE> \
+    --pool-reward-account-verification-key-file stake.vkey \
+    --pool-owner-stake-verification-key-file stake.vkey \
+    --mainnet \
+    --pool-relay-ipv4 <RELAY NODE PUBLIC IP> \
+    --pool-relay-port <RELAY NODE PORT> \
+    --metadata-url https://git.io/JJWdJ \
+    --metadata-hash <POOL METADATA HASH> \
+    --out-file pool-registration.cert
 ```
-
 
 | Parameter | Explanation |
 | :--- | :--- |
@@ -98,7 +99,8 @@ cardano-cli stake-pool registration-certificate \
 **You can use a different key for the rewards, and can provide more than one owner key if there were multiple owners who share the pledge.**
 
 The **pool-registration.cert** file should look like this:
-```sh
+
+```
 type: CertificateShelley
 description: Stake Pool Registration Certificate
 cborHex:
@@ -112,11 +114,12 @@ cborHex:
 #### Generate delegation certificate pledge
 
 To honor your pledge, create a _delegation certificate_:
+
 ```sh
 cardano-cli stake-address delegation-certificate \
---stake-verification-key-file stake.vkey \
---cold-verification-key-file cold.vkey \
---out-file delegation.cert
+    --stake-verification-key-file stake.vkey \
+    --cold-verification-key-file cold.vkey \
+    --out-file delegation.cert
 ```
 
 This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `cold.vkey`. If there are many staking keys as pool owners in the first step, we need delegation certificates for all of them.
@@ -126,84 +129,93 @@ This creates a delegation certificate which delegates funds from all stake addre
 To submit the `pool registration certificate` and the `delegation certificates` to the blockchain by including them in one or more transactions. We can use one transaction for multiple certificates, the certificates will be applied in order.
 
 #### Draft the transaction
+
 ```sh
 cardano-cli transaction build-raw \
---tx-in <TxHash>#<TxIx> \
---tx-out $(cat payment.addr)+0 \
---invalid-hereafter 0 \
---fee 0 \
---out-file tx.draft \
---certificate-file pool-registration.cert \
---certificate-file delegation.cert
+    --tx-in <TxHash>#<TxIx> \
+    --tx-out $(cat payment.addr)+0 \
+    --invalid-hereafter 0 \
+    --fee 0 \
+    --out-file tx.draft \
+    --certificate-file pool-registration.cert \
+    --certificate-file delegation.cert
 ```
 
 #### Calculate the fees
+
 ```sh
 cardano-cli transaction calculate-min-fee \
---tx-body-file tx.draft \
---tx-in-count 1 \
---tx-out-count 1 \
---witness-count 3 \
---byron-witness-count 0 \
---mainnet \
---protocol-params-file protocol.json
+    --tx-body-file tx.draft \
+    --tx-in-count 1 \
+    --tx-out-count 1 \
+    --witness-count 3 \
+    --byron-witness-count 0 \
+    --mainnet \
+    --protocol-params-file protocol.json
 ```
 
 For example:
+
 ```sh
 > 184685
 ```
 
 Registering a stake pool requires a deposit. This amount is specified in `protocol.json`. For example, for Shelley Mainnet we have:
+
 ```json
 "poolDeposit": 500000000
 ```
 
 #### Calculate the change for --tx-out
 All amounts in Lovelace
+
 ```sh
 expr <UTxO BALANCE> - <poolDeposit> - <TRANSACTION FEE>
 ```
 
 #### Build the transaction:
+
 ```sh
 cardano-cli transaction build-raw \
---tx-in <TxHash>#<TxIx> \
---tx-out $(cat payment.addr)+<CHANGE IN LOVELACE> \
---invalid-hereafter <TTL> \
---fee <TRANSACTION FEE> \
---out-file tx.raw \
---certificate-file pool-registration.cert \
---certificate-file delegation.cert
+    --tx-in <TxHash>#<TxIx> \
+    --tx-out $(cat payment.addr)+<CHANGE IN LOVELACE> \
+    --invalid-hereafter <TTL> \
+    --fee <TRANSACTION FEE> \
+    --out-file tx.raw \
+    --certificate-file pool-registration.cert \
+    --certificate-file delegation.cert
 ```
 
 #### Sign the transaction:
+
 ```sh
 cardano-cli transaction sign \
---tx-body-file tx.raw \
---signing-key-file payment.skey \
---signing-key-file stake.skey \
---signing-key-file cold.skey \
---mainnet \
---out-file tx.signed
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file stake.skey \
+    --signing-key-file cold.skey \
+    --mainnet \
+    --out-file tx.signed
 ```
 
 #### Submit the transaction:
+
 ```sh
 cardano-cli transaction submit \
---tx-file tx.signed \
---mainnet
+    --tx-file tx.signed \
+    --mainnet
 ```
-
 
 #### Verify that your stake pool registration was successful.
 
 Get Pool ID
+
 ```sh
 cardano-cli stake-pool id --cold-verification-key-file cold.vkey --output-format "hex"
 ```
 
 Check for the presence of your poolID in the network ledger state, with:
+
 ```sh
 cardano-cli query ledger-state --mainnet | grep publicKey | grep <poolId>
 ```

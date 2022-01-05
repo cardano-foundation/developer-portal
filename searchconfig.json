@@ -1,16 +1,5 @@
 {
   "index_name": "developer-portal",
-  "start_urls": [
-    "https://developers.cardano.org/docs/get-started/",
-    "https://developers.cardano.org/docs/integrate-cardano/",
-    "https://developers.cardano.org/docs/transaction-metadata/",
-    "https://developers.cardano.org/docs/native-tokens/",
-    "https://developers.cardano.org/docs/fund-your-project/",
-    "https://developers.cardano.org/docs/operate-a-stake-pool/",
-    "https://developers.cardano.org/tools",
-    "https://developers.cardano.org/showcase",
-    "https://developers.cardano.org/blog/"
-  ],
   "sitemap_urls": [
     "https://developers.cardano.org/sitemap.xml"
   ],

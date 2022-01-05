@@ -21,16 +21,16 @@ Get the protocol parameters and save them to `protocol.json` with:
 
 ```sh
 cardano-cli query protocol-parameters \
-  --mainnet \
-  --out-file protocol.json
+    --mainnet \
+    --out-file protocol.json
 ```
 
 ## Get the transaction hash and index of the **UTXO** to spend:
 
 ```sh
 cardano-cli query utxo \
-  --address $(cat payment.addr) \
-  --mainnet
+    --address $(cat payment.addr) \
+    --mainnet
 ```
 
 ## Draft the transaction
@@ -41,13 +41,15 @@ Create a draft for the transaction and save it in tx.draft
 For `--tx-in` we use the following syntax: `TxHash#TxIx` where `TxHash` is the transaction hash and `TxIx` is the index; for `--tx-out` we use: `TxOut+Lovelace` where `TxOut` is the hex encoded address followed by the amount in `Lovelace`. For the transaction draft --tx-out, --invalid-hereafter and --fee can be set to zero.
 :::note
 
-    cardano-cli transaction build-raw \
+```sh
+cardano-cli transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
     --tx-out $(cat payment2.addr)+0 \
     --tx-out $(cat payment.addr)+0 \
     --invalid-hereafter 0 \
     --fee 0 \
     --out-file tx.draft
+```
 
 ## Calculate the fee
 
@@ -57,8 +59,9 @@ A simple transaction needs one input, a valid UTXO from `payment.addr`, and two 
 * Output2: The address that receives the change of the transaction.
 
 Note that to calculate the fee you need to include the draft transaction
+
 ```sh
-    cardano-cli transaction calculate-min-fee \
+cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.draft \
     --tx-in-count 1 \
     --tx-out-count 2 \
@@ -74,7 +77,8 @@ all amounts must be in Lovelace:
 
     expr <UTXO BALANCE> - <AMOUNT TO SEND> - <TRANSACTION FEE>
 
-For example, if we send 10 ADA from a UTxO containing 20 ADA, the change to send back to `payment.addr` after paying the fee is: 9.832035 ADA
+For example, if we send 10 ada from a UTxO containing 20 ada, the change to send back to `payment.addr` after paying the fee is: 9.832035 ada
+
 ```sh
 expr 20000000 - 10000000 - 167965
 9832035
@@ -86,9 +90,12 @@ To build the transaction we need to specify the **TTL (Time to live)**, this is 
 
 Query the tip of the blockchain:
 
-    cardano-cli query tip --mainnet
+```sh
+cardano-cli query tip --mainnet
+```
 
 Look for the value of `slotNo`
+
 ```json
     {
         "blockNo": 16829,
@@ -96,13 +103,15 @@ Look for the value of `slotNo`
         "slotNo": 369200
     }
 ```
+
 Calculate your TTL, for example:  369200 + 200 slots = 369400
 
 ## Build the transaction
 
 We write the transaction in a file, we will name it `tx.raw`.
+
 ```sh
-    cardano-cli transaction build-raw \
+cardano-cli transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
     --tx-out $(cat payment2.addr)+10000000 \
     --tx-out $(cat payment.addr)+9832035 \
@@ -114,8 +123,9 @@ We write the transaction in a file, we will name it `tx.raw`.
 ## Sign the transaction
 
 Sign the transaction with the signing key **payment.skey** and save the signed transaction in **tx.signed**
+
 ```sh
-    cardano-cli transaction sign \
+cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --mainnet \
@@ -123,8 +133,9 @@ Sign the transaction with the signing key **payment.skey** and save the signed t
 ```
 
 ## Submit the transaction
+
 ```sh
-    cardano-cli transaction submit \
+cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -132,18 +143,21 @@ Sign the transaction with the signing key **payment.skey** and save the signed t
 ## Check the balances
 
 We must give it some time to get incorporated into the blockchain, but eventually, we will see the effect:
+
 ```sh
 cardano-cli query utxo \
---address $(cat payment.addr) \
---mainnet
+    --address $(cat payment.addr) \
+    --mainnet
 
     >                            TxHash                                 TxIx         Amount
     > ----------------------------------------------------------------------------------------
     > b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee     1         9832035 lovelace
+```
 
+```sh
 cardano-cli query utxo \
---address $(cat payment2.addr) \
---mainnet
+    --address $(cat payment2.addr) \
+    --mainnet
 
     >                            TxHash                                 TxIx         Amount
     > ----------------------------------------------------------------------------------------

@@ -24,6 +24,7 @@ The `cardano-node` application requires at least four configuration files to run
 - **Main Config**: It contains general node settings such as **logging** and **versioning**. It also points to the **Byron Genesis** and the **Shelly Genesis** file.
 - **Byron Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Byron Era** of the **Cardano** blockchain.
 - **Shelly Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Shelly Era** of the **Cardano** blockchain.
+- **Alonzo Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Shelly Era** of the **Cardano** blockchain.
 - **Topology**: It contains the list of network peers (**`IP Address` and `Port` of other nodes running the blockchain network**) that your node will connect to.
 
 :::important
@@ -32,7 +33,7 @@ Currently, the `cardano-node` topology is manually set by the community of netwo
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
 
-You can obtain the current **Cardano** blockchain network configuration files here: 
+You can download the current **Cardano** blockchain network configuration files here: 
 
 
 #### Mainnet / Production
@@ -40,10 +41,11 @@ You can obtain the current **Cardano** blockchain network configuration files he
 **NetworkMagic**: `764824073`
 
 ```
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-config.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-byron-genesis.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-shelley-genesis.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/mainnet-topology.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-config.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-byron-genesis.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-shelley-genesis.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-alonzo-genesis.json
+curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-topology.json
 ```
 
 #### Testnet / Sandbox
@@ -51,10 +53,11 @@ https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finishe
 **NetworkMagic**: `1097911063`
 
 ```
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-config.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json
-https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/testnet-topology.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-topology.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-shelley-genesis.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-config.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-byron-genesis.json
+curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-alonzo-genesis.json
 ```
 
 :::note
@@ -66,7 +69,7 @@ This section will be updated when new **Cardano** networks come online with thei
 
 You might be asking what the difference is between `mainnet` and `testnet` and why there are two networks? To put it simply, **Cardano** is an open-source blockchain, and anyone is free to spin up a network based on **Cardano's** software components. The `mainnet` network was the first one established during the start of the **Byron** era in 2017.  And everyone participating in the network agreed that is where all the real value of **Cardano** lives.
 
- Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up a sandbox or testnet version of the network. Instead of using real `ADA` tokens for transactions, you use the `tADA` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
+ Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up a sandbox or testnet version of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
 
 ### Running the node
 
@@ -78,7 +81,7 @@ To run `cardano-node` you enter something like this into the terminal:
    --database-path path/to/db \
    --socket-path path/to/db/node.socket \
    --host-addr x.x.x.x \
-   --port 3001 
+   --port 3001 \
    --config path/to/mainnet-config.json
 ```
 
@@ -129,33 +132,34 @@ Available options:
 ### cardano-node parameters
 
 :::note
-In this section, we will use the path `/home/user/cardano` to store all the `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
+In this section, we will use the path `$HOME/cardano` to store all the `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
 :::
 We will focus on six key command-line parameters for running a node: 
 
 **`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](/docs/get-started/running-cardano#configuration-files).
 
-> For example, If you have downloaded the `topology.json` file to the path `/home/user/cardano/topology.json`, then the argument would be something like this:
+> For example, If you have downloaded the `topology.json` file to the path `$HOME/cardano/topology.json`, then the argument would be something like this:
 ```
---topology /home/user/cardano/topology.json
+--topology $HOME/cardano/topology.json
 ```
 
 **`--database-path`**: This expects the path to a directory where we will store the actual blockchain data like **blocks**, **transactions**, **metadata**, and other data type that people stored in the **Cardano** blockchain. We explore how we can query those kinds of data in the cardano-db-sync section. ***@TODO: link to the cardano-db-sync section.***
 
-> For example, if we decide that all files required by `cardano-node` will be in the path `/home/user/cardano/`. Then we could create a database directory like this, `mkdir -p /home/user/cardano/db`.
+> For example, if we decide that all files required by `cardano-node` will be in the path `$HOME/cardano/`. Then we could create a database directory like this, `mkdir -p $HOME/cardano/db`.
 > The directory structure would then be something like this:
 ```
-/home/user/cardano/
+$HOME/cardano/
 ├── db
+├── testnet-alonzo-genesis.json
 ├── testnet-byron-genesis.json
 ├── testnet-config.json
 ├── testnet-shelley-genesis.json
 └── testnet-topology.json
 1 directory, 4 files
 ```
-> As you may have noticed, we are planning to run a `testnet` node in this example and have downloaded the configuration files into the `/home/user/cardano/` directory. We also see that we have created the `db` directory inside `/home/user/cardano/` successfully. The argument would look something like this: 
+> As you may have noticed, we are planning to run a `testnet` node in this example and have downloaded the configuration files into the `$HOME/cardano/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/` successfully. The argument would look something like this: 
 ```
---database-path /home/user/cardano/db
+--database-path $HOME/cardano/db
 ```
 > Please download and move the configuration files to your Cardano directory as shown above to continue following this guide.
 
@@ -165,7 +169,7 @@ We will focus on six key command-line parameters for running a node:
 > 
 > Here is an example `--socket-path` argument for **Linux**:
 ```
---socket-path /home/user/cardano/db/node.socket
+--socket-path $HOME/cardano/db/node.socket
 ```
 > As you can see, the argument points to a file since **unix sockets** are represented as files (like everything else in **Linux**). In this case, we put the socket file in the `db` directory that we have just created before.
 > 
@@ -193,20 +197,20 @@ We will focus on six key command-line parameters for running a node:
 **`--config`**: This expects the path to the main configuration file that we have downloaded previously.
 > Here is an example `--config` argument:
 ```
---config /home/user/cardano/testnet-config.json
+--config $HOME/cardano/testnet-config.json
 ```
-> Please make sure that the `byron-genesis.json` and `shelley-genesis.json` are in the same directory as the `config.json`.
+> Please make sure that the `alonzo-genesis.json`, `byron-genesis.json` and `shelley-genesis.json` are in the same directory as the `config.json`.
 
 Here is a realistic example for running `cardano-node`:
 
 ```bash
 cardano-node run \
---config /home/user/cardano/testnet-config.json \
---database-path /home/user/cardano/db/ \
---socket-path /home/user/cardano/db/node.socket \
+--config $HOME/cardano/testnet-config.json \
+--database-path $HOME/cardano/db/ \
+--socket-path $HOME/cardano/db/node.socket \
 --host-addr 127.0.0.1 \
 --port 1337 \
---topology /home/user/cardano/testnet-topology.json
+--topology $HOME/cardano/testnet-topology.json
 ```
 
 If you have everything set correctly, you should see something like this:
@@ -215,7 +219,7 @@ If you have everything set correctly, you should see something like this:
 Listening on http://127.0.0.1:12798
 [cardano.node.networkMagic:Notice:5] [2021-05-20 12:17:10.02 UTC] NetworkMagic 1097911063
 [cardano.node.basicInfo.protocol:Notice:5] [2021-05-20 12:17:10.02 UTC] Byron; Shelley
-[cardano.node.basicInfo.version:Notice:5] [2021-05-20 12:17:10.02 UTC] 1.27.0
+[cardano.node.basicInfo.version:Notice:5] [2021-05-20 12:17:10.02 UTC] 1.XX.X
 [cardano.node.basicInfo.commit:Notice:5] [2021-05-20 12:17:10.02 UTC] 9a7331cce5e8bc0ea9c6bfa1c28773f4c5a7000f
 [cardano.node.basicInfo.nodeStartTime:Notice:5] [2021-05-20 12:17:10.02 UTC] 2021-05-20 12:17:10.024924 UTC
 [cardano.node.basicInfo.systemStartTime:Notice:5] [2021-05-20 12:17:10.02 UTC] 2019-07-24 20:20:16 UTC
@@ -248,13 +252,13 @@ Syncing the blockchain from zero can take a while. Please be patient. If you wan
 
 Now that we have `cardano-node` running and syncing, we can test it out by querying the blockchain tip data; which is the current point your local node is synced. To do this, we use the `cardano-cli` command-line application.
 
-But before we can do that, `cardano-cli` and other **Cardano** software components need to know where the node socket file is located. We saved it to the path `/home/user/cardano/db/node.socket` in the previous example. The components read the shell environment variable `CARDANO_NODE_SOCKET_PATH` to find this.
+But before we can do that, `cardano-cli` and other **Cardano** software components need to know where the node socket file is located. We saved it to the path `$HOME/cardano/db/node.socket` in the previous example. The components read the shell environment variable `CARDANO_NODE_SOCKET_PATH` to find this.
 
-So we will set that in `~/.bashrc` or `~/.zshrc`, depending on which shell application that you use. In Windows, you can follow this guide: [How to Set Environment Variable in Windows](https://phoenixnap.com/kb/windows-set-environment-variable).
+So we will set that in `$HOME/.bashrc` or `$HOME/.zshrc`, depending on which shell application that you use. In Windows, you can follow this guide: [How to Set Environment Variable in Windows](https://phoenixnap.com/kb/windows-set-environment-variable).
 
 Add this line to the bottom of your shell profile (**MacOS** and **Linux**):
 ```
-export CARDANO_NODE_SOCKET_PATH="/home/user/cardano/db/node.socket"
+export CARDANO_NODE_SOCKET_PATH="$HOME/cardano/db/node.socket"
 ```
 
 Once saved, reload your shell/terminal for changes to take effect.

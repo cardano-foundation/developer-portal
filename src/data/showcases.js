@@ -17,6 +17,8 @@
  *   URL shortener, no app store links, or similar)
  * - The GitHub account that adds the project must not be new. 
  * - The GitHub account must have a history/or already be known in the Cardano community.
+ * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
+ *   details like which project was first is tribal attribute known to cause rift and conflicts.
  *
  * INSTRUCTIONS:
  * - Add your project in the JSON array below.
@@ -135,7 +137,7 @@ const Showcases = [
   {
     title: "Cardano Wall",
     description:
-      "Demonstrates serveral use cases for transaction metdata. You can sign messages and create proof of existence for files.",
+      "Demonstrates serveral use cases for transaction metadata. You can sign messages and create proof of existence for files.",
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
@@ -163,11 +165,11 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
+      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
-    source: null,
-    tags: ["nft"],
+    source: "https://github.com/Berry-Pool/spacebudz",
+    tags: ["featured", "nft", "opensource"],
   },
   {
     title: "ADAex",
@@ -283,7 +285,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["featured", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Cardano Warriors",
@@ -369,15 +371,6 @@ const Showcases = [
     tags: ["pooltool", "analytics", "tokens"],
   },
   {
-    title: "See Ada",
-    description:
-      "This project tracks the controlled stake of the top pool operators and monitors decentralization.",
-    preview: require("./showcase/seeada.png"),
-    website: "https://seeada.org",
-    source: null,
-    tags: ["analytics"],
-  },
-  {
     title: "Cardano Blockchain Insights",
     description:
       "A Google Data Studio dashboard that visualizes many Cardano on-chain metrics.",
@@ -386,15 +379,6 @@ const Showcases = [
       "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
     source: null,
     tags: ["analytics"],
-  },
-  {
-    title: "Xhibit",
-    description:
-      "Create your own NFT or look into recently minted NFTs on Cardano.",
-    preview: require("./showcase/xhibit.png"),
-    website: "https://xhibit.io",
-    source: null,
-    tags: ["tokens", "nft"],
   },
   {
     title: "Token Tool",
@@ -473,15 +457,6 @@ const Showcases = [
       "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
-    source: null,
-    tags: ["nft"],
-  },
-  {
-    title: "unsigned_algorithms",
-    description:
-      "Algorithmically generated colorful art living on Cardano.",
-    preview: require("./showcase/unsigned-algorithms.png"),
-    website: "https://www.unsigs.com",
     source: null,
     tags: ["nft"],
   },
@@ -567,6 +542,15 @@ const Showcases = [
     tags: ["nft"],
   },
   {
+    title: "The Galgos",
+    description:
+      "The Galgos is a set of limited edition hand drawn NFT collectibles with functionality. Collect, trade, discover.",
+    preview: require("./showcase/the-galgos.png"),
+    website: "https://thegalgos.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "The Hoskinsons",
     description:
       "The Hoskinsons is an original NFT collection commemorating the founders, developers, and personalities of the Cardano platform.",
@@ -592,15 +576,6 @@ const Showcases = [
     website: "https://kryptoids.monster",
     source: null,
     tags: ["nft"],
-  },
-  {
-    title: "Pigy Token",
-    description:
-      "The community token for Cardano stake pool operators and delegators",
-    preview: require("./showcase/pigytokenproject.png"),
-    website: "https://pigytoken.com",
-    source: null,
-    tags: ["tokens"],
   },
   {
     title: "JES-Art",
@@ -638,33 +613,6 @@ const Showcases = [
     tags: ["nft", "game"],
   },
   {
-    title: "Cardano Waves",
-    description:
-      "The largest collection of real-time charts for the Cardano network and community.",
-    preview: require("./showcase/cardano-waves.png"),
-    website: "https://cardanowaves.com",
-    source: null,
-    tags: ["analytics"],
-  },
-  {
-    title: "Cardano Alerts",
-    description:
-      "Get wallet notifications or keep tabs on your Cardano stake pool with real time alerts.",
-    preview: require("./showcase/cardano-alerts.png"),
-    website: "https://cardanoalerts.com",
-    source: null,
-    tags: ["pooltool"],
-  },
-  {
-    title: "Metro Mermaids NFT Maker",
-    description:
-      "Mint and Burn NFTs",
-    preview: require("./showcase/metromermaids.png"),
-    website: "https://mint.metromermaids.com",
-    source: null,
-    tags: ["tokens", "nft"],
-  },
-  {
     title: "Cardano Token and NFT Builder",
     description:
       "Create your own native tokens and NFT in a few clicks without any code.",
@@ -699,6 +647,42 @@ const Showcases = [
     website: "https://seehype.com/",
     source: null,
     tags: ["nft"],
+  },
+  {
+    title: "cardano-tools.io",
+    description:
+      "An advanced CNFT maker. You just pay network fees.",
+    preview: require("./showcase/cardano-tools.io.png"),
+    website: "https://cardano-tools.io",
+    source: "https://github.com/wutzebaer/cardano-tools",
+    tags: ["tokens", "nft", "opensource"],
+  },
+  {
+    title: "Veritree",
+    description:
+      "Veritree leverages blockchain technology to provide planting organizations with an integrated planting management platform.",
+    preview: require("./showcase/veritree.png"),
+    website: "https://veritree.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Typhon Wallet",
+    description:
+      "Light wallet from the creators of cardanoscan.io. It comes with features like NFT gallery, transaction metadata, vote registration, among other features.",
+    preview: require("./showcase/typhonwallet.png"),
+    website: "https://typhonwallet.io",
+    source: null,
+    tags: ["wallet", "nft", "metadata"],
+  },
+  {
+    title: "Staking Rewards Calculator",
+    description:
+      "A detailed Staking Rewards Calculator thats shows expected return to the operator and delegators of each pool based on the current and alternative network parameters. It also runs a Monte Carlo simulation to show possible variability in the return.",
+    preview: require("./showcase/dsio-reward-calculator.png"),
+    website: "https://dynamicstrategies.io/crewardcalculator",
+    source: null,
+    tags: ["pooltool","analytics","educational"],
   },
 ];
 

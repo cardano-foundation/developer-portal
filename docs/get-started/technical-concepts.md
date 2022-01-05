@@ -41,7 +41,7 @@ We answer your questions about how nodes on Cardano talk to each other. Learn ab
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/pyhYtLgn1r0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Cardano Improvement Proposals (CIP)
-The [Cardano Improvement Proposal](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0001/CIP-0001.md) (CIP) process allows the community to interact with the Cardano Foundation to improve the Cardano ecosystem in a formal way.  
+The [Cardano Improvement Proposal](../governance/cardano-improvement-proposals/CIP-0001) (CIP) process allows the community to interact with the Cardano Foundation to improve the Cardano ecosystem in a formal way.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/z9wz_WJGGiQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Slot Lottery
@@ -51,3 +51,12 @@ In this video, we describe exactly how a stake pool on Cardano gets elected to m
 ## Slot Battles
 On Cardano, slot battles happen when two pools try to make a block in the same slot (at the same time). We break down how the blockchain determines which block should win and what is the "correct" source of truth on the blockchain.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Cm5pBM7UYa0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## Catalyst Voting
+What is Catalyst voting, how to register, how to vote and why you should participate.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/OwGdSw1T0aI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## Franken Addresses
+Franken Addresses are a way to register additional pledge to a pool without registering a second owner on the blockchain.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/KULzovfWn-M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+ 

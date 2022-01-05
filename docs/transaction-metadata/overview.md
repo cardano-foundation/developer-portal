@@ -62,7 +62,7 @@ However, according to your requirements, if your application uses floating-point
         "int": 14
     },
     "2": {
-        "bytes": "2512a00e9653fe49a44a5886202e24d77eeb998f"
+        "bytes": "0x2512a00e9653fe49a44a5886202e24d77eeb998f"
     },
     "3": {
         "list": [

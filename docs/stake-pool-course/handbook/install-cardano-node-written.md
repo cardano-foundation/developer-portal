@@ -35,7 +35,7 @@ If we are using an AWS instance running Amazon Linux AMI 2 \(see the [AWS walk-t
 
 ```sh
 sudo yum update -y
-sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget -y
+sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget jq -y
 sudo yum install zlib-devel libtool autoconf -y
 sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 ```
@@ -57,8 +57,8 @@ If you are using a different flavor of Linux, you will need to use the package m
 wget https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
 tar -xf cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
 rm cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz cabal.sig
-mkdir -p ~/.local/bin
-mv cabal ~/.local/bin/
+mkdir -p $HOME/.local/bin
+mv cabal $HOME/.local/bin/
 ```
 
 Verify that .local/bin is in your PATH
@@ -84,7 +84,7 @@ nano .bashrc
 Go to the bottom of the file and add the following lines
 
 ```sh
-export PATH="~/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 You need to restart your server or source your .bashrc file
@@ -139,18 +139,18 @@ ghcup upgrade
 ghcup install <VERSION>
 ghcup set <VERSION>
 ```
+
 `<VERSION>` here could be for example 8.10.2
 
 You can check that your default GHC version has been properly set:
 
 ```sh
-
 ghc --version
 ```
 
 ## Install Libsodium
 
-```
+```sh
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
@@ -165,14 +165,10 @@ sudo make install
 
 ## Download the source code for cardano-node
 
-
 ```sh
-
 cd
 git clone https://github.com/input-output-hk/cardano-node.git
-
 ```
-
 
 This creates the folder `cardano-node` and downloads the latest source code.
 
@@ -193,7 +189,7 @@ For reproducible builds, we should check out a specific release, a specific "tag
 ```sh
 git fetch --all --tags
 git tag
-git checkout tags/1.24.2
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 ## Build and install the node
@@ -209,17 +205,16 @@ cabal build all
 Now we can copy the executables files to the .local/bin directory
 
 ```sh
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-1.24.2/x/cardano-node/build/cardano-node/cardano-node ~/.local/bin/
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-1.24.2/x/cardano-node/build/cardano-node/cardano-node $HOME/.local/bin/
 ```
 
 ```sh
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-1.24.2/x/cardano-cli/build/cardano-cli/cardano-cli ~/.local/bin/
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-1.24.2/x/cardano-cli/build/cardano-cli/cardano-cli $HOME/.local/bin/
 ```
 
 ```sh
 cardano-cli --version
 ```
-
 
 ## If you need to update to a newer version follow the steps below:
 
@@ -233,16 +228,19 @@ cabal build cardano-node cardano-cli
 ```
 
 This is a good time to backup your current binaries (in case you have to revert to an earlier version). Something like this will work:
+
 ```sh
-cd ~/.local/bin
+cd $HOME/.local/bin
 mv cardano-cli cardano-cli-backup
 mv cardano-node cardano-node-backup
 ```
-Now copy your newly built binaries to the appropriate directory, with:
-```sh
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-<NEW VERSION>/x/cardano-node/build/cardano-node/cardano-node ~/.local/bin/
 
-cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-<NEW VERSION>/x/cardano-cli/build/cardano-cli/cardano-cli ~/.local/bin/
+Now copy your newly built binaries to the appropriate directory, with:
+
+```sh
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-<NEW VERSION>/x/cardano-node/build/cardano-node/cardano-node $HOME/.local/bin/
+
+cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-<NEW VERSION>/x/cardano-cli/build/cardano-cli/cardano-cli $HOME/.local/bin/
 ```
 
 :::note
