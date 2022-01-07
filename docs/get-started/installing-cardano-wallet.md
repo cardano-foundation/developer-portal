@@ -90,35 +90,15 @@ We can now build `cardano-wallet` code to produce executable binaries.
 ```bash
 stack build --test --no-run-tests
 ```
+
 Install the newly built `cardano-wallet` binary to the `$HOME/.local/bin` directory:
-<Tabs
-  defaultValue="macos"
-  values={[
-    {label: 'MacOS', value: 'macos' },
-    {label: 'Linux', value: 'linux' }
-  ]}>
-<TabItem value="macos">
 
-###### MacOS
 ```bash
-cp -p ./lib/shelley/.stack-work/dist/x86_64-osx/Cabal-*/build/cardano-wallet/cardano-wallet $HOME/.local/bin/
+stack install
 ```
-
-</TabItem>
-
-<TabItem value="linux">
-
-###### Linux
-```bash
-cp -p ./lib/shelley/.stack-work/dist/x86_64-linux-*/Cabal-*/build/cardano-wallet/cardano-wallet $HOME/.local/bin/
-```
-
-</TabItem>
-
-</Tabs>
-
 
 Check the version that has been installed:
+
 ```bash
 cardano-wallet version
 ```
