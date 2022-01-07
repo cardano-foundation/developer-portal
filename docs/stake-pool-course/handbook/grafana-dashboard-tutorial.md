@@ -9,8 +9,7 @@ image: ./img/og-developer-portal.png
 Once the Cardano pool sucessfully set-up, then comes the most beautifull part - setting up your Dashboard and Alerts! 
 
 
-This documentation brings some of the available information in greater detail and will hopefully it help the Cardano Community.
-This tutorial is for education and learning purpose only!
+This documentation brings some of the available information in greater detail and will hopefully help Stake Pool Operators in managing their pools more efficiently. This tutorial is for education and learning purpose only!
 
 
 
