@@ -251,6 +251,14 @@ const Showcases = [
     getstarted: null,
     tags: ["plutus", "nft"],
   },
+  {
+    title: "cardano-wallet-interface",
+    description: "an npm package that makes it easier to interact with wallets on Cardano",
+    preview: require("https://pbs.twimg.com/card_img/1479112606149345291/Fzs36nT7?format=png&name=small"),
+    website: "https://github.com/HarmonicPool/cardano-wallet-interface",
+    getstarted: null,
+    tags: ["library", "operatortool"],
+  },
 ];
 
 
