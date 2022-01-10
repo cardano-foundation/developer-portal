@@ -2,8 +2,8 @@ import fetch from 'node-fetch';
 import * as fs from 'fs';
 
 const tokenRegistryDocsPath: string = './docs/native-tokens/token-registry';
-const tokenRegistryUrl: string = 'https://github.com/cardano-foundation/cardano-token-registry/blob/master/'
-const tokenRegistryOverviewUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/cardano-token-registry/master/README.md'
+const tokenRegistryUrl: string = 'https://github.com/cardano-foundation/cardano-token-registry/blob/master/';
+const tokenRegistryOverviewUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/cardano-token-registry/master/README.md';
 const repoRawWikiHomeUrl: string = 'https://raw.githubusercontent.com/wiki/cardano-foundation/cardano-token-registry/';
 
 const getStringContentAsync = async (url: string) => {
@@ -114,7 +114,7 @@ const sidebar_positionForFilename = (fileName: string) => {
 }
 
 const main = async () => {
-    console.log('Token Registry Content Downloading...')
+    console.log('Token Registry Content Downloading...');
 
     // Fetch raw wiki content for token registry
     const wikiHomeContent = await getStringContentAsync(`${repoRawWikiHomeUrl}Home.md`);
@@ -157,7 +157,7 @@ const main = async () => {
 
     }));
 
-    console.log('Token Registry Content Downloaded')
+    console.log('Token Registry Content Downloaded');
 }
 
 main();
