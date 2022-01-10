@@ -77,7 +77,7 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
     content = content.substring(0, 3) === '---' ? content.slice(3) : content;
 
     // Remove '\'' from url to avoid issues during project build
-    url = url.includes("\'") ? url.replace("\'", "") : url;
+    url = url.includes("'") ? url.replace("'", "") : url;
 
     // Add '---' with doc tags for Docusaurus
     content = '--- \nsidebar_label: ' + url + '\ntitle: ' + url + '\n' + sidebar_positionForFilename(url) + '\n--- ' + '\n' + content;
