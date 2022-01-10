@@ -4,6 +4,7 @@ import * as fs from 'fs';
 const tokenRegistryDocsPath: string = './docs/native-tokens/token-registry';
 const tokenRegistryUrl: string = 'https://github.com/cardano-foundation/cardano-token-registry/blob/master/';
 const tokenRegistryOverviewUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/cardano-token-registry/master/README.md';
+const tokenRegistryWiki: string = 'https://github.com/cardano-foundation/cardano-token-registry/wiki';
 const repoRawWikiHomeUrl: string = 'https://raw.githubusercontent.com/wiki/cardano-foundation/cardano-token-registry/';
 
 const getStringContentAsync = async (url: string) => {
@@ -62,10 +63,12 @@ const markdownStringManipulation = (content: string) => {
 }
 
 // String manipulations to ensure compatibility
-const stringManipulation = (content: string) => {
+const stringManipulation = (content: string, fileName: string) => {
 
     // Remove `(` and `)` from relative links 
     content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''));
+
+    content = injectTRnformation(content, fileName)
 
     return content;
 }
@@ -102,6 +105,9 @@ const overviewStringManipulation = (content: string) => {
     content = content.replace(/\bAPI_Terms_of_Use.md\b/g, tokenRegistryUrl + 'API_Terms_of_Use.md');
     content = content.replace(/\(\bmappings\b/g, '(' + tokenRegistryUrl + 'mappings');
 
+    // Inject token registry link info
+    content = content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+tokenRegistryUrl+']('+tokenRegistryUrl + '/' + 'README.md' + ').';
+
     return content;
 }
 
@@ -111,6 +117,13 @@ const sidebar_positionForFilename = (fileName: string) => {
     if (fileName === 'How to prepare an entry for the registry (Plutus script)') return 'sidebar_position: 3\n';
     if (fileName === 'gHow to submit an entry to the registry') return 'sidebar_position: 4\n';
     return ''; // empty string means alphabetically within the sidebar
+}
+
+// Add Token Registry Info
+const injectTRnformation = (content: string, fileName: string) => {
+
+    // Add to the end
+    return content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+tokenRegistryWiki+']('+tokenRegistryWiki + '/' + fileName + ').';
 }
 
 const main = async () => {
@@ -146,7 +159,7 @@ const main = async () => {
         const content = await getStringContentAsync(`${repoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
 
         // Manipulate content to ensure compatibility
-        const manipulatedContent = await stringManipulation(content);
+        const manipulatedContent = await stringManipulation(content, tokenRegistryUrl);
 
         // Finish manipulation with injecting docosautus doc tags
         const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl);
