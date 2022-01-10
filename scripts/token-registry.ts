@@ -2,10 +2,24 @@ import fetch from 'node-fetch';
 import * as fs from 'fs';
 
 const tokenRegistryDocsPath: string = './docs/native-tokens/token-registry';
+const tokenRegistryUrl: string = 'https://github.com/cardano-foundation/cardano-token-registry/blob/master/'
+const tokenRegistryOverviewUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/cardano-token-registry/master/README.md'
 const repoRawWikiHomeUrl: string = 'https://raw.githubusercontent.com/wiki/cardano-foundation/cardano-token-registry/';
 
 const getStringContentAsync = async (url: string) => {
     return await fetch(url).then(res => res.text());
+}
+
+// Fetch and manipuate overview markdown file 
+const getOverviewMarkdown = async () => {
+
+    // Fetch raw overview file 
+    const content = await getStringContentAsync(tokenRegistryOverviewUrl)
+
+    // Modify content to ensure compatibility
+    const modifiedContent = overviewStringManipulation(content)
+
+    return modifiedContent
 }
 
 // Manipulate URL string 
@@ -40,7 +54,10 @@ const markdownStringManipulation = (content: string) => {
 
     // Replace ')' with ''
     content = content.replace(/\)/g, '');
-    
+
+    // Remove ' 
+    content = content.replace(/\'/g, '')
+
     return content;
 }
 
@@ -50,7 +67,7 @@ const stringManipulation = (content: string) => {
     // Remove `(` and `)` from relative links 
     content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''))
 
-    return content 
+    return content
 }
 
 // Inject extra docusarus doc tags
@@ -59,51 +76,88 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
     // Remove '---' from doc to add it later
     content = content.substring(0, 3) === '---' ? content.slice(3) : content;
 
+    // Remove "'" from url to avoid issues during project build
+    url = url.includes('\'') ? url.replace('\'', '') : url
+
     // Add '---' with doc tags for Docusaurus
-    content = '--- \nsidebar_label: ' + url +'\ntitle: '+url + '\n--- ' +'\n'+content;
+    content = '--- \nsidebar_label: ' + url + '\ntitle: ' + url + '\n' + sidebar_positionForFilename(url) + '\n--- ' + '\n' + content;
 
     return content;
 }
 
+// Inject extra docusaurus doc tags and manipulate content for overview file
+const overviewStringManipulation = (content: string) => {
+
+    // Extra content 
+    const extraContent = "--- \nid: cardano-token-registry \ntitle: Cardano Token Registry \nsidebar_label: Overview \ndescription: The Cardano Token Registry provides a means to register off-chain token metadata that can map to on-chain identifiers. \nimage: ./img/og-developer-portal.png \nsidebar_position: 1 \n--- \nThe [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).\n\n"
+
+    // Add extra content
+    content = extraContent + content;
+
+    // Remove unused content
+    content = content.replace('# cardano-token-registry', '').split('## Step-by-Step')[0]
+
+    // Replace relative links to absolute links.
+    content = content.replace(/\bRegistry_Terms_of_Use.md\b/g, tokenRegistryUrl + 'Registry_Terms_of_Use.md')
+    content = content.replace(/\bAPI_Terms_of_Use.md\b/g, tokenRegistryUrl + 'API_Terms_of_Use.md')
+    content = content.replace(/\(\bmappings\b/g, '(' + tokenRegistryUrl + 'mappings')
+
+    return content;
+}
+
+// In case we want a specific sidebar_position for a certain filename (otherwise alphabetically)
+const sidebar_positionForFilename = (fileName: string) => {
+    if (fileName === 'How to prepare an entry for the registry (NA policy script)') return 'sidebar_position: 2\n';
+    if (fileName === 'How to prepare an entry for the registry (Plutus script)') return 'sidebar_position: 3\n';
+    if (fileName === 'gHow to submit an entry to the registry') return 'sidebar_position: 4\n';
+    return ''; // empty string means alphabetically within the sidebar
+}
+
 const main = async () => {
-  console.log("Token Registry Content Downloading...")  
+    console.log("Token Registry Content Downloading...")
 
-  // Fetch raw wiki content for token registry
-  const wikiHomeContent = await getStringContentAsync(`${repoRawWikiHomeUrl}Home.md`);
+    // Fetch raw wiki content for token registry
+    const wikiHomeContent = await getStringContentAsync(`${repoRawWikiHomeUrl}Home.md`);
 
-  // Find wiki file names in order to fetch them individually
-  const contentUrls = wikiHomeContent.match(/(?<=\[\[)(.*?)(?=\]\])/g);
-  const tokeRegistryUniqueUrls = [...new Set(contentUrls)];
+    // Fetch raw overview content for token registry
+    const overviewContent = await getOverviewMarkdown()
 
-  // Create token registry folder to store markdown files locally
-  fs.rmdirSync(tokenRegistryDocsPath, { recursive: true });
-  fs.mkdirSync(tokenRegistryDocsPath, { recursive: true });
+    // Find wiki file names in order to fetch them individually
+    const contentUrls = wikiHomeContent.match(/(?<=\[\[)(.*?)(?=\]\])/g);
+    const tokeRegistryUniqueUrls = [...new Set(contentUrls)];
 
-  // Save Token Registry markdowns into docs folder
-  await Promise.all(tokeRegistryUniqueUrls.map(async (trUrl) => {
-      
-      // Get token registry url
-      const tokenRegistryUrl  = await  tokenRegistryStringManipulation(trUrl);
+    // Create token registry folder to store markdown files locally
+    fs.rmdirSync(tokenRegistryDocsPath, { recursive: true });
+    fs.mkdirSync(tokenRegistryDocsPath, { recursive: true });
 
-      // Get markdown file names
-      const markdownFileName = await  markdownStringManipulation(trUrl);
+    // Create markdown overview file locally with downloaded content
+    fs.writeFileSync(`${tokenRegistryDocsPath}/Overview.md`, overviewContent);
 
-      // Download markdown files
-      const content = await getStringContentAsync(`${repoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
+    // Save Token Registry markdowns into docs folder
+    await Promise.all(tokeRegistryUniqueUrls.map(async (trUrl) => {
 
-      // Manipulate content to ensure compatibility
-      const manipulatedContent = await stringManipulation(content)
+        // Get token registry url
+        const tokenRegistryUrl = await tokenRegistryStringManipulation(trUrl);
 
-      // Finish manipulation with injecting docosautus doc tags
-      const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl);
+        // Get markdown file names
+        const markdownFileName = await markdownStringManipulation(trUrl);
 
-      // Create markdown files locally with downloaded content
-      fs.writeFileSync(`${tokenRegistryDocsPath}/${markdownFileName}.md`, manipulatedContentWithDocTags);
-      console.log(`Downloaded to ${tokenRegistryDocsPath}/${markdownFileName}.md`);
+        // Download markdown files
+        const content = await getStringContentAsync(`${repoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
 
-   }));
+        // Manipulate content to ensure compatibility
+        const manipulatedContent = await stringManipulation(content)
 
-   console.log("Token Registry Content Downloaded")  
+        // Finish manipulation with injecting docosautus doc tags
+        const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl);
+
+        // Create markdown files locally with downloaded content
+        fs.writeFileSync(`${tokenRegistryDocsPath}/${markdownFileName}.md`, manipulatedContentWithDocTags);
+        console.log(`Downloaded to ${tokenRegistryDocsPath}/${markdownFileName}.md`);
+
+    }));
+
+    console.log("Token Registry Content Downloaded")
 }
 
 main();
