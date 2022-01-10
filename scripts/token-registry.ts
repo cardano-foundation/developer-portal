@@ -14,12 +14,12 @@ const getStringContentAsync = async (url: string) => {
 const getOverviewMarkdown = async () => {
 
     // Fetch raw overview file 
-    const content = await getStringContentAsync(tokenRegistryOverviewUrl)
+    const content = await getStringContentAsync(tokenRegistryOverviewUrl);
 
     // Modify content to ensure compatibility
-    const modifiedContent = overviewStringManipulation(content)
+    const modifiedContent = overviewStringManipulation(content);
 
-    return modifiedContent
+    return modifiedContent;
 }
 
 // Manipulate URL string 
@@ -56,7 +56,7 @@ const markdownStringManipulation = (content: string) => {
     content = content.replace(/\)/g, '');
 
     // Remove ' 
-    content = content.replace(/\'/g, '')
+    content = content.replace(/\'/g, '');
 
     return content;
 }
@@ -65,9 +65,9 @@ const markdownStringManipulation = (content: string) => {
 const stringManipulation = (content: string) => {
 
     // Remove `(` and `)` from relative links 
-    content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''))
+    content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''));
 
-    return content
+    return content;
 }
 
 // Inject extra docusarus doc tags
@@ -77,7 +77,7 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
     content = content.substring(0, 3) === '---' ? content.slice(3) : content;
 
     // Remove ''' from url to avoid issues during project build
-    url = url.includes('\'') ? url.replace('\'', '') : url
+    url = url.includes('\'') ? url.replace('\'', '') : url;
 
     // Add '---' with doc tags for Docusaurus
     content = '--- \nsidebar_label: ' + url + '\ntitle: ' + url + '\n' + sidebar_positionForFilename(url) + '\n--- ' + '\n' + content;
@@ -89,18 +89,18 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
 const overviewStringManipulation = (content: string) => {
 
     // Extra content 
-    const extraContent = '--- \nid: cardano-token-registry \ntitle: Cardano Token Registry \nsidebar_label: Overview \ndescription: The Cardano Token Registry provides a means to register off-chain token metadata that can map to on-chain identifiers. \nimage: ./img/og-developer-portal.png \nsidebar_position: 1 \n--- \nThe [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).\n\n'
+    const extraContent = '--- \nid: cardano-token-registry \ntitle: Cardano Token Registry \nsidebar_label: Overview \ndescription: The Cardano Token Registry provides a means to register off-chain token metadata that can map to on-chain identifiers. \nimage: ./img/og-developer-portal.png \nsidebar_position: 1 \n--- \nThe [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).\n\n';
 
     // Add extra content
     content = extraContent + content;
 
     // Remove unused content
-    content = content.replace('# cardano-token-registry', '').split('## Step-by-Step')[0]
+    content = content.replace('# cardano-token-registry', '').split('## Step-by-Step')[0];
 
     // Replace relative links to absolute links.
-    content = content.replace(/\bRegistry_Terms_of_Use.md\b/g, tokenRegistryUrl + 'Registry_Terms_of_Use.md')
-    content = content.replace(/\bAPI_Terms_of_Use.md\b/g, tokenRegistryUrl + 'API_Terms_of_Use.md')
-    content = content.replace(/\(\bmappings\b/g, '(' + tokenRegistryUrl + 'mappings')
+    content = content.replace(/\bRegistry_Terms_of_Use.md\b/g, tokenRegistryUrl + 'Registry_Terms_of_Use.md');
+    content = content.replace(/\bAPI_Terms_of_Use.md\b/g, tokenRegistryUrl + 'API_Terms_of_Use.md');
+    content = content.replace(/\(\bmappings\b/g, '(' + tokenRegistryUrl + 'mappings');
 
     return content;
 }
@@ -120,7 +120,7 @@ const main = async () => {
     const wikiHomeContent = await getStringContentAsync(`${repoRawWikiHomeUrl}Home.md`);
 
     // Fetch raw overview content for token registry
-    const overviewContent = await getOverviewMarkdown()
+    const overviewContent = await getOverviewMarkdown();
 
     // Find wiki file names in order to fetch them individually
     const contentUrls = wikiHomeContent.match(/(?<=\[\[)(.*?)(?=\]\])/g);
@@ -146,7 +146,7 @@ const main = async () => {
         const content = await getStringContentAsync(`${repoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
 
         // Manipulate content to ensure compatibility
-        const manipulatedContent = await stringManipulation(content)
+        const manipulatedContent = await stringManipulation(content);
 
         // Finish manipulation with injecting docosautus doc tags
         const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl);
