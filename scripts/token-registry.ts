@@ -10,7 +10,7 @@ const getStringContentAsync = async (url: string) => {
     return await fetch(url).then(res => res.text());
 }
 
-// Fetch and manipuate overview markdown file 
+// Fetch and manipulate overview markdown file 
 const getOverviewMarkdown = async () => {
 
     // Fetch raw overview file 
@@ -61,7 +61,7 @@ const markdownStringManipulation = (content: string) => {
     return content;
 }
 
-/// String manipulations to ensure compatibility
+// String manipulations to ensure compatibility
 const stringManipulation = (content: string) => {
 
     // Remove `(` and `)` from relative links 
@@ -76,7 +76,7 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
     // Remove '---' from doc to add it later
     content = content.substring(0, 3) === '---' ? content.slice(3) : content;
 
-    // Remove ''' from url to avoid issues during project build
+    // Remove '\'' from url to avoid issues during project build
     url = url.includes('\'') ? url.replace('\'', '') : url;
 
     // Add '---' with doc tags for Docusaurus
@@ -85,7 +85,7 @@ const injectDocusaurusDocTags = (content: string, url: string) => {
     return content;
 }
 
-// Inject extra docusaurus doc tags and manipulate content for overview file
+// Inject extra docusaurus doc tags and manipulate overview markdown file content
 const overviewStringManipulation = (content: string) => {
 
     // Extra content 
@@ -133,7 +133,7 @@ const main = async () => {
     // Create markdown overview file locally with downloaded content
     fs.writeFileSync(`${tokenRegistryDocsPath}/Overview.md`, overviewContent);
 
-    // Save Token Registry markdowns into docs folder
+    // Save token registry markdown files into docs folder
     await Promise.all(tokeRegistryUniqueUrls.map(async (trUrl) => {
 
         // Get token registry url
