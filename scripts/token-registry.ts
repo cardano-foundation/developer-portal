@@ -68,10 +68,14 @@ const markdownStringManipulation = (content: string) => {
 // String manipulations to ensure compatibility
 const stringManipulation = (content: string, fileName: string) => {
 
-    // Remove `(` and `)` from relative links 
-    content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''));
-
-    content = injectTRnformation(content, fileName)
+    // Remove `(` and `)` from relative links (temporariy not in use, using hardcoded solution for now)
+    // content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''));
+    
+    // Remove `(` and `)` from relative links (temporariy solution focusing on specific link, in the future needs to be changed to work through all of the links)
+    content = content.replace('How-to-prepare-an-entry-for-the-registry-(NA-policy-script)',
+                                 'How-to-prepare-an-entry-for-the-registry-NA-policy-script');
+    
+    content = injectTRnformation(content, fileName);
 
     return content;
 }
