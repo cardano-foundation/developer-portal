@@ -26,16 +26,16 @@ const getOverviewMarkdown = async () => {
 // Manipulate URL string 
 const tokenRegistryStringManipulation = (content: string) => {
 
-    // Replace empty space with '-' for url purpose
-    content = content.replace(/\s/g, '-');
+    // Encode symbols for url purpose
+    content = encodeURIComponent(content);
 
-    // Replace '?' with '%3F' for url purpose
-    content = content.replace(/\?/g, '%3F');
+    // Replace encoded %20 space with '-' (needs to be replaced in order to fetch data from the correct link)
+    content = content.replace(/\%20/g, '-');
 
-    // Replace '(' with '%28' for url purpose
+    // Replace '(' with '%28' for url purpose (is not included in URIComponent function)
     content = content.replace(/\(/g, '%28');
 
-    // Replace ')' with '%29' for url purpose
+    // Replace ')' with '%29' for url purpose (is not included in URIComponent function)
     content = content.replace(/\)/g, '%29');
 
     return content;
@@ -44,8 +44,11 @@ const tokenRegistryStringManipulation = (content: string) => {
 // Manipulate markdown file name
 const markdownStringManipulation = (content: string) => {
 
-    // Replace empty space with '-'
-    content = content.replace(/\s/g, '-');
+    // Encode symbols for url purpose
+    content = encodeURIComponent(content);
+
+    // Replace encoded %20 space with '-'
+    content = content.replace(/\%20/g, '-');
 
     // Replace '?' with '%3F'
     content = content.replace(/\?/g, '%3F');
