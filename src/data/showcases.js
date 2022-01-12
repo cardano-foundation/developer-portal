@@ -684,6 +684,15 @@ const Showcases = [
     source: null,
     tags: ["pooltool","analytics","educational"],
   },
+  {
+    title: "ADAdice",
+    description:
+      "A fully on-chain, provably fair game of dice on the Cardano blockchain.",
+    preview: require("./showcase/adadice.png"),
+    website: "https://www.adadice.com",
+    source: null,
+    tags: ["game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
