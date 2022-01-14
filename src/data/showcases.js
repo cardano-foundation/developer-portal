@@ -132,16 +132,6 @@ export const Tags = {
 // Please don't add the "featured"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
-
-  {
-    title: "MuesliSwap",
-    description:
-      "MuesliSwap is a new decentralized exchange (DEX) operating on the Smart Bitcoin Cash blockchain and Cardano.",
-    preview: require("./showcase/muesliswap.png"),
-    website: "https://ada.muesliswap.com",
-    source: null,
-    tags: ["dex"],
-  },
   {
     title: "Cardano Kidz",
     description:
@@ -709,6 +699,15 @@ const Showcases = [
     website: "https://www.adadice.com",
     source: null,
     tags: ["game"],
+  },
+  {
+    title: "MuesliSwap",
+    description:
+      "MuesliSwap is a new decentralized exchange (DEX) operating on the Smart Bitcoin Cash blockchain and Cardano.",
+    preview: require("./showcase/muesliswap.png"),
+    website: "https://ada.muesliswap.com",
+    source: null,
+    tags: ["dex"],
   },
 ];
 
