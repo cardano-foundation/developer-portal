@@ -119,6 +119,13 @@ export const Tags = {
       "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
   },
+
+  // DEX
+  dex: {
+    label: "DEX",
+    description: "DEX allows direct peer-to-peer cryptocurrency transactions to take place online securely.",
+    icon: null,
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -692,6 +699,15 @@ const Showcases = [
     website: "https://www.adadice.com",
     source: null,
     tags: ["game"],
+  },
+  {
+    title: "MuesliSwap",
+    description:
+      "MuesliSwap is a new decentralized exchange (DEX) operating on the Smart Bitcoin Cash blockchain and Cardano.",
+    preview: require("./showcase/muesliswap.png"),
+    website: "https://ada.muesliswap.com",
+    source: null,
+    tags: ["dex"],
   },
 ];
 
