@@ -709,6 +709,15 @@ const Showcases = [
     source: null,
     tags: ["dex"],
   },
+  {
+    title: "Cardania",
+    description:
+      "Cardania is a scifi fantasy metaverse gaming ecosystem project that being built on the Cardano blockchain. Welcome to the most rad destination in the metaverse.",
+    preview: require("./showcase/cardania.png"),
+    website: "https://www.cardania.com/",
+    source: null,
+    tags: ["game", "nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
