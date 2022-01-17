@@ -113,11 +113,11 @@ ghcup install ghc 8.10.7
 ghcup set ghc 8.10.7
 ```
 
-`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
-ghcup install cabal 3.4.0.0
-ghcup set cabal 3.4.0.0
+ghcup install cabal 3.6.2.0
+ghcup set cabal 3.6.2.0
 ```
 
 
@@ -141,8 +141,8 @@ cabal --version
 You should see something like this: 
 
 ```
-cabal-install version 3.4.0.0
-compiled using version 3.4.0.0 of the Cabal library
+cabal-install version 3.6.2.0
+compiled using version 3.6.2.0 of the Cabal library
 ```
 
 :::important
@@ -321,11 +321,11 @@ ghcup install ghc 8.10.7
 ghcup set ghc 8.10.7
 ```
 
-`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
-ghcup install cabal 3.4.0.0
-ghcup set cabal 3.4.0.0
+ghcup install cabal 3.6.2.0
+ghcup set cabal 3.6.2.0
 ```
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
@@ -348,8 +348,8 @@ cabal --version
 You should see something like this: 
 
 ```
-cabal-install version 3.4.0.0
-compiled using version 3.4.0.0 of the Cabal library
+cabal-install version 3.6.2.0
+compiled using version 3.6.2.0 of the Cabal library
 ```
 
 :::important
