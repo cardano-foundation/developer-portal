@@ -251,6 +251,23 @@ const Showcases = [
     getstarted: null,
     tags: ["plutus", "nft"],
   },
+  {
+    title: "Cardano Light Tools",
+    description:
+      "A set of lightweight tools to operate and maintain a Cardano Stake Pool. Currently includes a leaderlog script based on BlockFrost (no need for working cardano-cli/cardano-node setup and less CPU/mem utilization) and a monitoring script to log relevant metrics directly into a text file in human-readable form (less complex and more resource-efficient than Grafana).",
+    preview: require("./builder-tools/cardano-light-tools.png"),
+    website: "https://github.com/orpheus-antpool/cardano-light-tools",
+    getstarted: null,
+    tags: ["operatortool"],
+  },
+  {
+    title: "cardano-wallet-interface",
+    description: "A Javascript/Typescript library to easily interact with the dApp connector of various wallets",
+    preview: require("./builder-tools/cardano-wallet-interface.png"),
+    website: "https://github.com/HarmonicPool/cardano-wallet-interface",
+    getstarted: null,
+    tags: ["library"],
+  },
 ];
 
 

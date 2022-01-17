@@ -116,8 +116,11 @@ cd nft/
 
 ### Set variables
 We will set important values in a more readable variable for better readability and debugging of failed transactions.
+
+Since cardano-node version 1.31.0 the token name should be in hex format. We will set the variable $realtokenname (real name in utf-8) and then convert it to $tokenname (name in hex format). 
 ```bash
-tokenname=$(echo -n "NFT1" | xxd -b -ps -c 80 | tr -d '\n')
+realtokenname="NFT1"
+tokenname=$(echo -n $realtokenname | xxd -b -ps -c 80 | tr -d '\n')
 tokenamount="1"
 fee="0"
 output="0"
@@ -314,7 +317,7 @@ If you want to generate it "on the fly," use the following commands:
 echo "{" >> metadata.json
 echo "  \"721\": {" >> metadata.json 
 echo "    \"$(cat policy/policyID)\": {" >> metadata.json 
-echo "      \"$(echo $tokenname)\": {" >> metadata.json
+echo "      \"$(echo $realtokenname)\": {" >> metadata.json
 echo "        \"description\": \"This is my first NFT thanks to the Cardano foundation\"," >> metadata.json
 echo "        \"name\": \"Cardano foundation NFT guide token\"," >> metadata.json
 echo "        \"id\": \"1\"," >> metadata.json

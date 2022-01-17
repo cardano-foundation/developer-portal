@@ -1,7 +1,29 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending January 14th
+[2022-01-14]
+ * cardano-wallet-interface showcase addition (#471) (Harmonic)
+ * Update installing-cardano-node.md (#483) (Priyank)
+ * Bump shelljs from 0.8.4 to 0.8.5 (#482) (dependabot[bot])
+
+[2022-01-12]
+ * Add a new showcase tag (DEX) & new showcase project (MuesliSwap) (#480) (Fillips Ickevics)
+ * Bump follow-redirects from 1.14.5 to 1.14.7 (#479) (dependabot[bot])
+ * Correct era on Alonzo line (#476) (javidigani)
+ * Token Registry Script  (#475) (Fillips Ickevics)
+ * Modify 'replace' functions with regex (#474) (Fillips Ickevics)
+ * Update minting-nfts.md (#473) (CBROS - Cardano Stake Pool)
+ * chore(get-started): updating cardano-node requirements (#462) (Marek Mahut)
+ * Update grafana-dashboard-tutorial.md (#469) (sandy4de)
+ * Exploring cardano-wallet - Some simplifications (#467) (Fabien Boucher)
+
 ### Week ending January 7th
+[2022-01-07]
+ * Add ADAdice to the project showcase (#466) (Flavien Charlon)
+ * Update overview.md (#465) (Giovanni Gargiulo)
+
 [2022-01-05]
+ * Update weekly report, week ending January 7th (#468) (Tommy Kammerer)
  * Finalize serialization-lib docs auto generation (#464) (Tommy Kammerer)
  * Use stack install command to install cardano-wallet (#460) (Fabien Boucher)
 
