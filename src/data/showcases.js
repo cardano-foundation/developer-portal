@@ -714,7 +714,7 @@ const Showcases = [
     description:
       "Cardania is a scifi fantasy metaverse gaming ecosystem project being built on the Cardano blockchain. Welcome to the most rad destination in the metaverse.",
     preview: require("./showcase/cardania.png"),
-    website: "https://www.cardania.com/",
+    website: "https://cardania.com/",
     source: null,
     tags: ["game", "nft"],
   },
