@@ -99,10 +99,10 @@ You need to adjust the path on your setup and your socket path accordingly.
 
 ### Improve readability
 Since we've already answered all of the questions above, we will set variables on our terminal/bash to make readability a bit easier.
-We also will be using the testnet. The only difference between minting native assets in the mainnet will be that you need to substitute the network variable <i>testnet</i> with mainnet.
+We also will be using the testnet. The only difference between minting native assets in the mainnet will be that you need to substitute the network variable <i>testnet</i> with mainnet.  Since cardano-cli version 1.31.0, token names must be base16 encoded.  So here, we use the xxd tool to encode the token names.
 ```bash
-tokenname1="Testtoken"
-tokenname2="SecondTesttoken"
+tokenname1=$(echo -n "Testtoken" | xxd -b -ps -c 80 | tr -d '\n')
+tokenname2=$(echo -n "SecondTesttoken" | xxd -b -ps -c 80 | tr -d '\n')
 tokenamount="10000000"
 output="0"
 ```
@@ -227,7 +227,7 @@ We now have a simple script file that defines the policy verification key as a w
 To mint the native assets, we need to generate the policy ID from the script file we created.
 
 ```bash
-cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/policyID
+cardano-cli transaction policyid --script-file ./policy/policy.script > policy/policyID
 ```
 
 The output gets saved to the file `policyID` as we need to reference it later on.
@@ -309,7 +309,7 @@ unexpected 'T'
 expecting alphanumeric asset name, white space, "+" or end of input
 ```
 
-You can easily fix this by redefining the tokennames. In this tutorial the equivilant base16 token names are:
+You can fix this by redefining the tokennames. In this tutorial the equivalent base16 token names are:
 ```bash
 tokenname1="54657374746F6B656E"
 tokenname2="5365636F6E6454657374746F6B656E"
