@@ -684,6 +684,15 @@ const Showcases = [
     source: null,
     tags: ["pooltool","analytics","educational"],
   },
+  {
+    title: "Cardahub - A services hub on Cardano",
+    description:
+      "One stop shop for everything CNFT. A smart-contract NFT platform on Cardano where user can mint, distribute, list and buy NFT in a few clicks.",
+    preview: require("./showcase/cardahub.png"),
+    website: "https://cardahub.io",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
