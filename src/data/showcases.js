@@ -709,6 +709,15 @@ const Showcases = [
     source: null,
     tags: ["dex"],
   },
+  {
+    title: "Smart Contract Made Easy",
+    description:
+      "SCEZ is a friendly tool to create smart contracts, NFT, native tokens and Cardano blockchain transactions. A complete REST api solution for crypto developers, enthusiasts and entrepreneurs.",
+    preview: require("./showcase/scez.png"),
+    website: "https://smartcontractsez.com",
+    source: null,
+    tags: ["featured","nft","educational"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
