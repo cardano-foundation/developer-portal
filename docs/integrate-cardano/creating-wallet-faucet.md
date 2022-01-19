@@ -569,8 +569,7 @@ Slotting parameters for tip are:
 The first thing we can do to test if the wallet server is working correctly is to query the network information via the API.
 
 ```bash
-curl --request GET \
-  --url http://localhost:1337/v2/network/information | jq
+curl --url http://localhost:1337/v2/network/information | jq
 ```
 
 The result should be something like this: 
@@ -611,13 +610,13 @@ It is important to make sure that the `sync_progress.status` is equal to `ready`
 To create a wallet we must first generate a wallet **recovery phrase** using the `cardano-wallet` in the CLI.
 
 ```bash
-cardano-wallet recovery-phrase generate
+cardano-wallet recovery-phrase generate | jq -c --raw-input 'split(" ")'
 ```
 
 You should get a **24-word mnemonic seed** in return similar to this: 
 
 ```
-kit soup various toe cloud humor clip radio medal ladder casino sock various distance staff analyst success trade deal split leaf away pair camp
+["shift", "badge", "heavy", "action", "tube", "divide", "course", "quality", "capable", "velvet", "cart", "marriage", "vague", "aware", "maximum", "exist", "crime", "file", "analyst", "great", "cabbage", "course", "sad", "apology"]
 ```
 
 We can now create a **Cardano** wallet using the `/v2/wallets` API endpoint:
@@ -633,15 +632,7 @@ curl --request POST \
 }' | jq
 ```
 
-Our requests payload data looks like this:
-
-```json
-{
-	"name": "test2",
-	"mnemonic_sentence": ["kit", "soup", "various", "toe", "cloud", "humor", "clip", "radio", "medal", "ladder", "casino", "sock", "various", "distance", "staff", "analyst", "success", "trade", "deal", "split", "leaf", "away", "pair", "camp"],
-	"passphrase": "test123456"
-}
-```
+Our requests payload data is composed of:
 
 `name` : The name of the wallet.
 
@@ -706,10 +697,10 @@ If succesful, you should see something like this:
 Initially, the newly created/restored wallet will need to be synced before it can be used. You can verify if the wallet is already synced by executing the following request:
 
 ```bash
-curl --request GET   --url http://localhost:1337/v2/wallets/c4d4e240d499cce3fed8fd885491803885fdf323 | jq '.state'
+curl --url http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce | jq '.state'
 ```
 
-***It is important to note that the `c4d4e240d499cce3fed8fd885491803885fdf323` string is actually the `wallet.id` of the previously generated wallet.***
+***It is important to note that the `5076b34c6949dbd150eb9c39039037543946bdce` string is actually the `wallet.id` of the previously generated wallet.***
 
 You should see something like this:
 
@@ -726,8 +717,7 @@ Now that we have created a wallet, we can now request some tAda from the **Testn
 We can do that by executing the command:
 
 ```bash
-curl --request GET \
-  --url 'http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce/addresses?state=unused' | jq '.[0]'
+curl --url 'http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce/addresses?state=unused' | jq '.[0]'
 ```
 
 The result should be something like this:
@@ -747,15 +737,14 @@ The result should be something like this:
 ```
 It is important to note that the parameter of this request is the **wallet id** of the target wallet you want to get the address. In this case it is `5076b34c6949dbd150eb9c39039037543946bdce` our previously generated wallet.
 
-We are basically querying the first wallet address that has not been used just yet, Indicated by `state: "unused"`. As we can see the wallet address value is: `addr_test1qpnjt8umuwr5f2y59avklhu8hd7h2uf4zfanxxr4nmqqsaw679hxgdmrtsjequ8ka27rm8366e6p7au9y89h6slmrjwskfmcef`
+We are basically querying the first wallet address that has not been used just yet, Indicated by `state: "unused"`. As we can see the wallet address value is: `addr_test1qzf9q3qjcaf6kxshwjfw9ge29njtm56r2a08g49l79xgt4je0592agqpwraqajx2dsu2sxj64uese5s4qum293wuc00q7j6vsp"`
 
 Now we can finally request some `tAda` for the wallet address from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet).
 
 Once you requested some `tAda` from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet), we can then check if it has arrived into our wallet like so:
 
 ```bash
-curl --request GET \
-  --url http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce | jq '.balance'
+curl --url http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce | jq '.balance'
 ```
 
 You should see something like this:
@@ -786,13 +775,14 @@ To have a clearer understanding of how sending transactions work using `cardano-
 **Generate recovery-phrase**
 
 ```bash
-cardano-wallet recovery-phrase generate
+cardano-wallet recovery-phrase generate | jq -c --raw-input 'split(" ")'
 ```
 **Recovery-phrase result**
 
 ```
-then tattoo copy glance silk kitchen kingdom pioneer off path connect artwork alley smooth also foil glare trouble erupt move position merge scale echo
+["then", "tattoo", "copy", "glance", "silk", "kitchen", "kingdom", "pioneer", "off", "path", "connect", "artwork", "alley", "smooth", "also", "foil", "glare", "trouble", "erupt", "move", "position", "merge", "scale", "echo"]
 ```
+
 **Create Wallet Request**
 ```bash
 curl --request POST \
@@ -869,8 +859,7 @@ We now have the following wallets:
 Now let's say that we want to send `250,000,000 lovelaces` to `test_cf_2` wallet. Well first we have to get `test_cf_2` wallet address like so:
 
 ```bash
-curl --request GET \
-  --url 'http://localhost:1337/v2/wallets/4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb/addresses?state=unused' | jq '.[0]'
+curl --url 'http://localhost:1337/v2/wallets/4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb/addresses?state=unused' | jq '.[0]'
 ```
 
 and we should see something like this:
@@ -916,8 +905,7 @@ Remember, we use the `test_cf_1` wallet id in the `http://localhost:1337/v2/wall
 Now we can check `test_cf_2` wallet balance like so:
 
 ```bash
-curl --request GET \
-  --url http://localhost:1337/v2/wallets/4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb | jq '.balance'
+curl --url http://localhost:1337/v2/wallets/4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb | jq '.balance'
 ```
 
 And we should see that indeed the `250,000,000 tAda` has been received (***you might need to wait for a few seconds***).

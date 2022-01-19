@@ -15,7 +15,7 @@ const getStringContentAsync = async (url: string) => {
 const stringManipulation = (content: string, fileName: string) => {
 
     // Replace empty links
-    content = content.replace(']()', ']');
+    content = content.replace( /\]\(\)/gm, ']');
     
     // Inject rust library additional info
     content = injectRLInformation(content, fileName);
@@ -27,10 +27,10 @@ const stringManipulation = (content: string, fileName: string) => {
 const injectDocusaurusDocTags = (content: string, fileName: string) => {
     
     // Replace '-' from url in order to create a clean sidebar label
-    const modifiedUrl = fileName.replace('-', ' ')
+    const modifiedFileName = fileName.replace(/[-]/gm, ' ')
     
     // Capitalize the first letter of each word
-    let sidebarLabel = modifiedUrl.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+    let sidebarLabel = modifiedFileName.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
 
     // Remove '---' from doc to add it later
     content = content.substring(0, 3) === '---' ? content.slice(3) : content;

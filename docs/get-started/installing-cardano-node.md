@@ -28,8 +28,8 @@ The components can be built and run on **Windows** and **MacOS**, but we recomme
 To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
-* A **CPU** with at least **two** cores
-* **8GB** of RAM and at least **10GB** of free disk space
+* An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)  
+* **12GB** of RAM and at least **30GB** of free disk space
 
 :::note
 If intending to connect to mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
@@ -113,11 +113,11 @@ ghcup install ghc 8.10.7
 ghcup set ghc 8.10.7
 ```
 
-`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
-ghcup install cabal 3.4.0.0
-ghcup set cabal 3.4.0.0
+ghcup install cabal 3.6.2.0
+ghcup set cabal 3.6.2.0
 ```
 
 
@@ -141,8 +141,8 @@ cabal --version
 You should see something like this: 
 
 ```
-cabal-install version 3.4.0.0
-compiled using version 3.4.0.0 of the Cabal library
+cabal-install version 3.6.2.0
+compiled using version 3.6.2.0 of the Cabal library
 ```
 
 :::important
@@ -321,11 +321,11 @@ ghcup install ghc 8.10.7
 ghcup set ghc 8.10.7
 ```
 
-`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.4.0.0`. So, we will use `ghcup` to install and switch to the required version.
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
-ghcup install cabal 3.4.0.0
-ghcup set cabal 3.4.0.0
+ghcup install cabal 3.6.2.0
+ghcup set cabal 3.6.2.0
 ```
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
@@ -348,8 +348,8 @@ cabal --version
 You should see something like this: 
 
 ```
-cabal-install version 3.4.0.0
-compiled using version 3.4.0.0 of the Cabal library
+cabal-install version 3.6.2.0
+compiled using version 3.6.2.0 of the Cabal library
 ```
 
 :::important
