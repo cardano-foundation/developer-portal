@@ -1,10 +1,19 @@
 ## Cardano Developer Portal - weekly reports
 
-### Week ending January 14th
-[2022-01-14]
+### Week ending January 21th
+
+[2022-01-17]
+ * Update configure-topology-files.md - Readability (#488) (David Azar)
+ * Automint - Python library (#431) (mcvetyty)
+ * Added Builder Tool: Cardano Light Tools (#443) (Orpheus)
+ * Update weekly report, week ending January 14th (#484) (Tommy Kammerer)
  * cardano-wallet-interface showcase addition (#471) (Harmonic)
  * Update installing-cardano-node.md (#483) (Priyank)
- * Bump shelljs from 0.8.4 to 0.8.5 (#482) (dependabot[bot])
+
+### Week ending January 14th
+
+[2022-01-14]
+  * Bump shelljs from 0.8.4 to 0.8.5 (#482) (dependabot[bot])
 
 [2022-01-12]
  * Add a new showcase tag (DEX) & new showcase project (MuesliSwap) (#480) (Fillips Ickevics)
