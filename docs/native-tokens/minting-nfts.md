@@ -19,7 +19,7 @@ From a technical point of view, NFTs are the same as native assets. But some add
 1. As the name states - it must be 'non-fungible. This means you need to have unique identifiers or attributes attached to a token to make it distinguishable from others.
 2. Most of the time, NFT's should live on the chain forever. Therefore we need some mechanism to ensure an NFT stays unique and can not be duplicated.
 
-### The policyID 
+### The policyID
 Native assets in Cardano feature the following characteristics:
 1. An amount/value (how much are there?)
 2. A name 
@@ -116,8 +116,11 @@ cd nft/
 
 ### Set variables
 We will set important values in a more readable variable for better readability and debugging of failed transactions.
+
+Since cardano-node version 1.31.0 the token name should be in hex format. We will set the variable $realtokenname (real name in utf-8) and then convert it to $tokenname (name in hex format). 
 ```bash
-tokenname="NFT1"
+realtokenname="NFT1"
+tokenname=$(echo -n $realtokenname | xxd -b -ps -c 80 | tr -d '\n')
 tokenamount="1"
 fee="0"
 output="0"
@@ -279,7 +282,7 @@ script="policy/policy.script"
 The last step is to generate the policyID:
 
 ```bash
-cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/policyID
+cardano-cli transaction policyid --script-file ./policy/policy.script > policy/policyID
 ```
 
 ### Metadata
@@ -314,7 +317,7 @@ If you want to generate it "on the fly," use the following commands:
 echo "{" >> metadata.json
 echo "  \"721\": {" >> metadata.json 
 echo "    \"$(cat policy/policyID)\": {" >> metadata.json 
-echo "      \"$(echo $tokenname)\": {" >> metadata.json
+echo "      \"$(echo $realtokenname)\": {" >> metadata.json
 echo "        \"description\": \"This is my first NFT thanks to the Cardano foundation\"," >> metadata.json
 echo "        \"name\": \"Cardano foundation NFT guide token\"," >> metadata.json
 echo "        \"id\": \"1\"," >> metadata.json
@@ -355,7 +358,10 @@ txhash="insert your txhash here"
 txix="insert your TxIx here"
 funds="insert Amount in lovelace here"
 policyid=$(cat policy/policyID)
+output=1400000
 ```
+
+Here we are setting the `output` value to `1400000` Lovelace which is equivalent to `1.4` ADA. This amount is used because this is the minimum UTxO requirement.
 
 If you're unsure, check if all of the other needed variables for the transaction are set:
 
@@ -370,45 +376,44 @@ echo $slotnumber
 echo $script
 ```
 
-If everything is set, run this command to generate a raw transaction file.
+If everything is set, run the following command:
 
 ```bash
-cardano-cli transaction build-raw \
---fee $fee  \
---tx-in $txhash#$txix  \
+cardano-cli transaction build \
+--mainnet \
+--alonzo-era \
+--tx-in $txhash#$txix \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname" \
+--change-address $address \
 --mint="$tokenamount $policyid.$tokenname" \
 --minting-script-file $script \
 --metadata-json-file metadata.json  \
 --invalid-hereafter $slotnumber \
+--witness-override 2 \
 --out-file matx.raw
 ```
 
-As with every other transaction, we need to calculate the fee and the output and save them in the corresponding variables (currently set to zero).
-
-Use this command to set the <i>$fee</i> variable.
-```bash
-fee=$(cardano-cli transaction calculate-min-fee --tx-body-file matx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 --mainnet --protocol-params-file protocol.json | cut -d " " -f1)
-```
-
-And this command calculates the correct value for <i>$output</i>.
-```bash
-output=$(expr $funds - $fee)
-```
-
-With the newly set values, re-issue the building of the raw transaction.
+The above command may generate output as per below:
 
 ```bash
-cardano-cli transaction build-raw \
---fee $fee  \
---tx-in $txhash#$txix  \
---tx-out $address+$output+"$tokenamount $policyid.$tokenname" \
---mint="$tokenamount $policyid.$tokenname" \
---minting-script-file $script \
---metadata-json-file metadata.json  \
---invalid-hereafter $slotnumber \
---out-file matx.raw
+Minimum required UTxO: Lovelace 1448244
 ```
+
+This means that we need to change the value of the `$output` variable to the given value.
+
+```
+output=1448244
+```
+
+Remember to use the value that you got in your own output.
+
+If the minimum value was right then this command will generate `matx.raw` and will give output similar to:
+
+```bash
+Estimated transaction fee: Lovelace 176677
+```
+
+__NOTE__: Its possible that the Lovelace value for you is different.
 
 Sign the transaction
 
@@ -459,33 +464,22 @@ burnfee="0"
 burnoutput="0"
 txhash="Insert your utxo holding the NFT"
 txix="Insert your txix"
+burnoutput=1400000
 ```
+
+Here we are setting the `output` value to `1400000` Lovelace which is equivalent to `1.4` ADA. This amount is used because this is the minimum UTxO requirement.
 
 The transaction looks like this:
 
 ```bash
-cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter $slot --out-file burning.raw
+cardano-cli transaction build --mainnet --alonzo-era --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --change-address $address --invalid-hereafter $slot --witness-override 2 --out-file burning.raw
 ```
 
 :::note
 The minting parameter is now called with a negative value, therefore destroying one token.
 :::
 
-Calculate the fee to burn the token.
 
-```bash
-burnfee=$(cardano-cli transaction calculate-min-fee --tx-body-file burning.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 --mainnet --protocol-params-file protocol.json | cut -d " " -f1)
-```
-
-Calculate the leftovers/output.
-```bash
-burnoutput=$(expr $funds - $burnfee)
-```
-
-Re-run the transaction build.
-```bash
-cardano-cli transaction build-raw --fee $burnfee --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --invalid-hereafter 33005389 --out-file burning.raw
-```
 Sign the transaction.
 ```bash
 cardano-cli transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --mainnet  --tx-body-file burning.raw --out-file burning.signed

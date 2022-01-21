@@ -15,10 +15,10 @@ This guide will show you how to compile and install the `cardano-node` and `card
 If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
 
 <HydraBuildList
-    latest="7408469"
-    linux="7408438"
-    macos="7408630"
-    win64="7408538"/>
+    latest="9116257"
+    linux="9116140"
+    macos="9116041"
+    win64="9115926"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -28,8 +28,8 @@ The components can be built and run on **Windows** and **MacOS**, but we recomme
 To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
-* A **CPU** with at least **two** cores
-* **8GB** of RAM and at least **10GB** of free disk space
+* An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)  
+* **12GB** of RAM and at least **30GB** of free disk space
 
 :::note
 If intending to connect to mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
@@ -59,18 +59,18 @@ To download the source code and build it, you need the following packages and to
 * developer libraries for `ncurses`,
 * `ncurses` compatibility libraries,
 * the Haskell build tool `cabal`,
-* the GHC Haskell compiler (version `8.10.4` or above).
+* the GHC Haskell compiler (version `8.10.7` or above).
 
 In Redhat, Fedora, and Centos:
 ```bash
 sudo yum update -y
-sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y
+sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf jq -y
 sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 ```
 
 For Debian/Ubuntu, use the following instead:
 ```bash
-sudo apt-get update -y
+sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 ```
 If you are using a different flavor of Linux, you will need to use the correct package manager for your platform instead of `yum` or `apt-get`, and the names of the packages you need to install might differ.
@@ -83,7 +83,17 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer. Once complete, you should have `ghc` and `cabal` installed to your system.
+Please follow the instructions and provide the necessary input to the installer.
+
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)
+
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)
+
+`Do you want to install stack?` - (N or enter)
+
+`Press ENTER to proceed or ctrl-c to abort.` (enter)
+
+Once complete, you should have `ghc` and `cabal` installed to your system.
 
 
 :::note
@@ -93,15 +103,23 @@ Please follow the instructions and provide the necessary input to the installer.
 You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
 
 ```
-The GHCup Haskell installer, version v0.1.14.1
+The GHCup Haskell installer, version v0.1.17.4
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
 
 ```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
+ghcup install ghc 8.10.7
+ghcup set ghc 8.10.7
 ```
+
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
+
+```bash
+ghcup install cabal 3.6.2.0
+ghcup set cabal 3.6.2.0
+```
+
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
@@ -112,7 +130,7 @@ ghc --version
 
 You should see something like this: 
 ```
-The Glorious Glasgow Haskell Compilation System, version 8.10.4
+The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
 Check `cabal` version: 
@@ -123,8 +141,8 @@ cabal --version
 You should see something like this: 
 
 ```
-cabal-install version 3.4.0.0
-compiled using version 3.4.0.0 of the Cabal library
+cabal-install version 3.6.2.0
+compiled using version 3.6.2.0 of the Cabal library
 ```
 
 :::important
@@ -188,7 +206,17 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4
+cabal configure --with-compiler=ghc-8.10.7
+```
+
+If you are running non x86/x64 platform (eg. ARM) please install and configure LLVM with:
+```bash
+sudo apt install llvm-9
+sudo apt install clang-9 libnuma-dev
+sudo ln -s /usr/bin/llvm-config-9 /usr/bin/llvm-config
+sudo ln -s /usr/bin/opt-9 /usr/bin/opt
+sudo ln -s /usr/bin/llc-9 /usr/bin/llc
+sudo ln -s /usr/bin/clang-9 /usr/bin/clang
 ```
 
 #### Building and installing the node
@@ -196,7 +224,7 @@ cabal configure --with-compiler=ghc-8.10.4
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
 
 ```bash
-cabal build all
+cabal build cardano-node cardano-cli
 ```
 
 Install the newly built node and CLI commands to the $HOME/.local/bin directory:
@@ -229,10 +257,6 @@ Next, we will talk about how to [run cardano-node](running-cardano.md).
 
 In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **MacOS-based** operating system. 
 
-:::note
-Please note that this guide only supports [Intel-based Apple MacOS](https://en.wikipedia.org/wiki/Mac_transition_to_Intel_processors) hardware. [Apple Silicon (M1)](https://en.wikipedia.org/wiki/Apple_M1) hardware guide is still in progress.
-:::
-
 #### Installing Operating System dependencies
 
 To download the source code and build it, you need the following packages and tools on your MacOS system:
@@ -253,6 +277,12 @@ brew install automake
 brew install pkg-config
 ```
 
+#### You will need to install llvm in case you are using M1
+
+```
+brew install llvm
+```
+
 #### Installing GHC and Cabal
 
 The fastest way to install **GHC** (Glassglow Haskell Compiler) and **Cabal** (Common Architecture for Building Applications and Libraries) is to use [ghcup](https://www.haskell.org/ghcup).
@@ -261,7 +291,18 @@ Use the following command to install `ghcup`
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
-Please follow the instructions and provide the necessary input to the installer. Once complete, you should have `ghc` and `cabal` installed on your system.
+Please follow the instructions and provide the necessary input to the installer.
+
+`Do you want ghcup to automatically add the required PATH variable to "/home/ubuntu/.bashrc"?` - (P or enter)
+
+`Do you want to install haskell-language-server (HLS)?` - (N or enter)
+
+`Do you want to install stack?` - (N or enter)
+
+`Press ENTER to proceed or ctrl-c to abort.` (enter)
+
+Once complete, you should have `ghc` and `cabal` installed to your system.
+
 
 :::note
 `ghcup` will try to detect your shell and will ask you to add it to the environment variables. Please restart your shell/terminal after installing `ghcup`
@@ -270,14 +311,21 @@ Please follow the instructions and provide the necessary input to the installer.
 You can check if `ghcup` has been installed properly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
 
 ```
-The GHCup Haskell installer, version v0.1.14.1
+The GHCup Haskell installer, version v0.1.17.4
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.4`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
 
 ```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
+ghcup install ghc 8.10.7
+ghcup set ghc 8.10.7
+```
+
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
+
+```bash
+ghcup install cabal 3.6.2.0
+ghcup set cabal 3.6.2.0
 ```
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
@@ -289,7 +337,7 @@ ghc --version
 
 You should see something like this: 
 ```
-The Glorious Glasgow Haskell Compilation System, version 8.10.4
+The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
 Check `cabal` version: 
@@ -300,8 +348,8 @@ cabal --version
 You should see something like this: 
 
 ```
-cabal-install version 3.4.0.0
-compiled using version 3.4.0.0 of the Cabal library
+cabal-install version 3.6.2.0
+compiled using version 3.6.2.0 of the Cabal library
 ```
 
 :::important
@@ -335,6 +383,16 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
+If you installed llvm for M1, then you will need to add this too:
+
+```bash
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+```
+
+:::note
+llvm installation path might differs based on your installation, if you used default installation, it should be ok. Please check screen after you installed llvm to see this info, if you forgot or lost it, you can just reinstall llvm and then you will see them again.
+:::
+
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
@@ -365,7 +423,15 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.4
+cabal configure --with-compiler=ghc-8.10.7
+```
+
+#### You will need to run following commands on M1, those commands will set some cabal related options before building
+
+```
+echo "package trace-dispatcher" >> cabal.project.local
+echo "  ghc-options: -Wwarn" >> cabal.project.local
+echo "" >> cabal.project.local
 ```
 
 #### Building and installing the node

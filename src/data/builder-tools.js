@@ -57,6 +57,13 @@ export const Tags = {
     icon: null,
   },
 
+  // NFT Tools
+  nft: {
+    label: "NFT",
+    description: "Non-Fungible Token (NFT)",
+    icon: null,
+  },
+
   // Plutus
   plutus: {
     label: "Plutus",
@@ -80,6 +87,7 @@ export const Tags = {
       "Oracle tools.",
     icon: null,
   },
+
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -166,7 +174,7 @@ const Showcases = [
     description:
       "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
     preview: require("./builder-tools/cardanosharp.png"),
-    website: "https://github.com/CardanoSharp/cardanosharp-wallet",
+    website: "https://www.cardanosharp.com",
     getstarted: "/docs/get-started/cardanosharp-wallet",
     tags: ["getstarted", "library"],
   },
@@ -193,6 +201,14 @@ const Showcases = [
     website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
     tags: ["library"],
+  },
+  {
+    title: "Pooldata API",
+    description: "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
+    preview: require("./builder-tools/pooldata-api.png"),
+    website: "https://api.pooldata.live",
+    getstarted: null,
+    tags: ["operatortool", "api"],
   },
   {
     title: "Python Module",
@@ -224,6 +240,40 @@ const Showcases = [
       "A Python library that benefits the token & NFT communities. Scripts allow easy wallet management, automatic creation of unlocked and time-locked policy IDs, as well as the ability to quickly: build, sign, and submit transactions, and much more. Note: This library relies on wrapping cardano-cli.",
     preview: require("./builder-tools/automint.png"),
     website: "https://github.com/creativequotient/automint",
+    getstarted: null,
+    tags: ["library"],
+  },
+  {
+    title: "Ansible cardano-node",
+    description: "An Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
+    preview: require("./builder-tools/ansible-cardano-node.png"),
+    website: "https://github.com/moaipool/ansible-cardano-node",
+    getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
+    tags: ["getstarted", "operatortool"],
+  },
+  {
+    title: "Fracada",
+    description:
+      "Plutus dApp which enables users to fractionalize their NFTs. The contract locks an NFT and mints a number of tokens representing fractions of it. To get the NFT back, the fraction tokens are burned.",
+    preview: require("./builder-tools/fracada.png"),
+    website: "https://github.com/dcSpark/fracada",
+    getstarted: null,
+    tags: ["plutus", "nft"],
+  },
+  {
+    title: "Cardano Light Tools",
+    description:
+      "A set of lightweight tools to operate and maintain a Cardano Stake Pool. Currently includes a leaderlog script based on BlockFrost (no need for working cardano-cli/cardano-node setup and less CPU/mem utilization) and a monitoring script to log relevant metrics directly into a text file in human-readable form (less complex and more resource-efficient than Grafana).",
+    preview: require("./builder-tools/cardano-light-tools.png"),
+    website: "https://github.com/orpheus-antpool/cardano-light-tools",
+    getstarted: null,
+    tags: ["operatortool"],
+  },
+  {
+    title: "cardano-wallet-interface",
+    description: "A Javascript/Typescript library to easily interact with the dApp connector of various wallets",
+    preview: require("./builder-tools/cardano-wallet-interface.png"),
+    website: "https://github.com/HarmonicPool/cardano-wallet-interface",
     getstarted: null,
     tags: ["library"],
   },

@@ -59,7 +59,7 @@ After finishing the fourth lesson, you will learn the following:
 * [How to generate the Keys and operational certificate for the stake pool](../stake-pool-course/lesson-4#generate-stake-pool-keys)
 * [How to prepare your topology files](../stake-pool-course/lesson-4#topology-files) 
 * [How to register your stake pool and its metadata to the blockchain](../stake-pool-course/lesson-4#register-stake-pool-metadata)
-* [How to your secure cryptographic keys](../stake-pool-course/lesson-4#secure-your-cryptographic-keys)
+* [How to secure your cryptographic keys](../stake-pool-course/lesson-4#secure-your-cryptographic-keys)
 
 ### Lesson 5
 

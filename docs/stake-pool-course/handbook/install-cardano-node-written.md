@@ -35,7 +35,7 @@ If we are using an AWS instance running Amazon Linux AMI 2 \(see the [AWS walk-t
 
 ```sh
 sudo yum update -y
-sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget -y
+sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget jq -y
 sudo yum install zlib-devel libtool autoconf -y
 sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 ```
@@ -139,18 +139,18 @@ ghcup upgrade
 ghcup install <VERSION>
 ghcup set <VERSION>
 ```
+
 `<VERSION>` here could be for example 8.10.2
 
 You can check that your default GHC version has been properly set:
 
 ```sh
-
 ghc --version
 ```
 
 ## Install Libsodium
 
-```
+```sh
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
@@ -165,14 +165,10 @@ sudo make install
 
 ## Download the source code for cardano-node
 
-
 ```sh
-
 cd
 git clone https://github.com/input-output-hk/cardano-node.git
-
 ```
-
 
 This creates the folder `cardano-node` and downloads the latest source code.
 
@@ -190,7 +186,7 @@ cd cardano-node
 
 For reproducible builds, we should check out a specific release, a specific "tag". For the Shelley Testnet, we will use tag `1.24.2`, which we can check out as follows:
 
-```bash
+```sh
 git fetch --all --tags
 git tag
 git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
@@ -220,7 +216,6 @@ cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-1.24.2/x/cardano-c
 cardano-cli --version
 ```
 
-
 ## If you need to update to a newer version follow the steps below:
 
 ```sh
@@ -233,12 +228,15 @@ cabal build cardano-node cardano-cli
 ```
 
 This is a good time to backup your current binaries (in case you have to revert to an earlier version). Something like this will work:
+
 ```sh
 cd $HOME/.local/bin
 mv cardano-cli cardano-cli-backup
 mv cardano-node cardano-node-backup
 ```
+
 Now copy your newly built binaries to the appropriate directory, with:
+
 ```sh
 cp -p dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-<NEW VERSION>/x/cardano-node/build/cardano-node/cardano-node $HOME/.local/bin/
 

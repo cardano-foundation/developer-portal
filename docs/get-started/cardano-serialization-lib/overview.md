@@ -1,5 +1,6 @@
 ---
 id: overview
+sidebar_position: 1
 title: Get Started with Cardano Serialization Lib
 sidebar_label: Overview
 description: Get Started with Cardano Serialization Lib

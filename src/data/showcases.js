@@ -119,6 +119,13 @@ export const Tags = {
       "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
   },
+
+  // DEX
+  dex: {
+    label: "DEX",
+    description: "DEX allows direct peer-to-peer cryptocurrency transactions to take place online securely.",
+    icon: null,
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -165,11 +172,11 @@ const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "SpaceBudz is a collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. Trade, collect or share them!",
+      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
-    source: null,
-    tags: ["nft"],
+    source: "https://github.com/Berry-Pool/spacebudz",
+    tags: ["featured", "nft", "opensource"],
   },
   {
     title: "ADAex",
@@ -285,7 +292,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["featured", "nft", "game"],
+    tags: ["nft", "game"],
   },
   {
     title: "Cardano Warriors",
@@ -578,15 +585,6 @@ const Showcases = [
     tags: ["nft"],
   },
   {
-    title: "Pigy Token",
-    description:
-      "The community token for Cardano stake pool operators and delegators",
-    preview: require("./showcase/pigytokenproject.png"),
-    website: "https://pigytoken.com",
-    source: null,
-    tags: ["tokens"],
-  },
-  {
     title: "JES-Art",
     description:
       "16 year old female fine art NFTs on the Cardano blockchain!",
@@ -665,6 +663,51 @@ const Showcases = [
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
     tags: ["tokens", "nft", "opensource"],
+  },
+  {
+    title: "Veritree",
+    description:
+      "Veritree leverages blockchain technology to provide planting organizations with an integrated planting management platform.",
+    preview: require("./showcase/veritree.png"),
+    website: "https://veritree.com",
+    source: null,
+    tags: ["tokens", "nft"],
+  },
+  {
+    title: "Typhon Wallet",
+    description:
+      "Light wallet from the creators of cardanoscan.io. It comes with features like NFT gallery, transaction metadata, vote registration, among other features.",
+    preview: require("./showcase/typhonwallet.png"),
+    website: "https://typhonwallet.io",
+    source: null,
+    tags: ["wallet", "nft", "metadata"],
+  },
+  {
+    title: "Staking Rewards Calculator",
+    description:
+      "A detailed Staking Rewards Calculator thats shows expected return to the operator and delegators of each pool based on the current and alternative network parameters. It also runs a Monte Carlo simulation to show possible variability in the return.",
+    preview: require("./showcase/dsio-reward-calculator.png"),
+    website: "https://dynamicstrategies.io/crewardcalculator",
+    source: null,
+    tags: ["pooltool","analytics","educational"],
+  },
+  {
+    title: "ADAdice",
+    description:
+      "A fully on-chain, provably fair game of dice on the Cardano blockchain.",
+    preview: require("./showcase/adadice.png"),
+    website: "https://www.adadice.com",
+    source: null,
+    tags: ["game"],
+  },
+  {
+    title: "MuesliSwap",
+    description:
+      "MuesliSwap is a new decentralized exchange (DEX) operating on the Smart Bitcoin Cash blockchain and Cardano.",
+    preview: require("./showcase/muesliswap.png"),
+    website: "https://ada.muesliswap.com",
+    source: null,
+    tags: ["dex"],
   },
 ];
 

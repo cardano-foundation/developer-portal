@@ -34,3 +34,12 @@ yarn-error.log*
 
 # markdownlint
 .markdownlint.json
+
+# intellij
+.idea
+
+# Auto generated content like CIPs, Rust Library and Token Registry
+/docs/governance/cardano-improvement-proposals/*
+/static/img/cip/*
+/docs/native-tokens/token-registry/*
+/docs/get-started/cardano-serialization-lib/*
