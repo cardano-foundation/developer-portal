@@ -235,6 +235,15 @@ const Showcases = [
     tags: ["featured", "getstarted", "marlowe"],
   },
   {
+    title: "Automint",
+    description:
+      "A Python library that benefits the token & NFT communities. Scripts allow easy wallet management, automatic creation of unlocked and time-locked policy IDs, as well as the ability to quickly: build, sign, and submit transactions, and much more. Note: This library relies on wrapping cardano-cli.",
+    preview: require("./builder-tools/automint.png"),
+    website: "https://github.com/creativequotient/automint",
+    getstarted: null,
+    tags: ["library"],
+  },
+  {
     title: "Ansible cardano-node",
     description: "An Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
     preview: require("./builder-tools/ansible-cardano-node.png"),
