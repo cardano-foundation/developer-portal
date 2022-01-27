@@ -718,6 +718,15 @@ const Showcases = [
     source: null,
     tags: ["dex"],
   },
+  {
+    title: "SundaeSwap",
+    description:
+      "SundaeSwap is a native, scalable decentralized exchange and automated liquidity provision protocol.",
+    preview: require("./showcase/sundaeswap.png"),
+    website: "https://www.sundaeswap.finance",
+    source: null,
+    tags: ["dex"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
