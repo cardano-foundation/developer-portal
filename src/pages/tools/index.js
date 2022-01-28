@@ -154,8 +154,10 @@ function ShowcaseFilters() {
                     id={id}
                     label={label}
                     icon={
-                      tag === "favorite" ? (
-                        <FavoriteIcon svgClass={styles.svgIconFavoriteXs} />
+                      label === "Featured" ? (
+                        <span style={{
+                          marginLeft: 8,
+                        }}> {icon}</span>
                       ) : (
                         <span
                           style={{
