@@ -1,6 +1,21 @@
 ## Cardano Developer Portal - weekly reports
 
-### Week ending January 21th
+### Week ending January 28th
+
+[2022-01-27]
+ * Bump node-fetch from 2.6.6 to 2.6.7 (#498) (dependabot[bot])
+ * Update number of tokens after burning (#497) (Pavlin Yordanov)
+ * Add SundaeSwap DEX into showcases (#494) (Fillips Ickevics)
+ * Add January 2022 spotlight article (#493) (Fillips Ickevics)
+ * Bump nanoid from 3.1.30 to 3.2.0 (#491) (dependabot[bot])
+ * Added Cardahub (#485) (cardahub-dev)
+
+### Week ending January 21st
+
+[2022-01-21]
+ * Update weekly report, week ending January 21 (#489) (Tommy Kammerer)
+ * Update configure-topology-files.md - Readability (#488) (David Azar)
+ * Automint - Python library (#431) (mcvetyty)
 
 [2022-01-17]
  * Update configure-topology-files.md - Readability (#488) (David Azar)
