@@ -18,6 +18,8 @@
  * Automint - Python library (#431) (mcvetyty)
 
 [2022-01-17]
+ * Update configure-topology-files.md - Readability (#488) (David Azar)
+ * Automint - Python library (#431) (mcvetyty)
  * Added Builder Tool: Cardano Light Tools (#443) (Orpheus)
  * Update weekly report, week ending January 14th (#484) (Tommy Kammerer)
  * cardano-wallet-interface showcase addition (#471) (Harmonic)

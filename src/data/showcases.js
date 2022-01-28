@@ -692,6 +692,15 @@ const Showcases = [
     tags: ["pooltool","analytics","educational"],
   },
   {
+    title: "Cardahub - A services hub on Cardano",
+    description:
+      "One stop shop for everything CNFT. A smart-contract NFT platform on Cardano where user can mint, distribute, list and buy NFT in a few clicks.",
+    preview: require("./showcase/cardahub.png"),
+    website: "https://cardahub.io",
+    source: null,
+    tags: ["nft"],
+  },
+  {
     title: "ADAdice",
     description:
       "A fully on-chain, provably fair game of dice on the Cardano blockchain.",
@@ -706,6 +715,15 @@ const Showcases = [
       "MuesliSwap is a new decentralized exchange (DEX) operating on the Smart Bitcoin Cash blockchain and Cardano.",
     preview: require("./showcase/muesliswap.png"),
     website: "https://ada.muesliswap.com",
+    source: null,
+    tags: ["dex"],
+  },
+  {
+    title: "SundaeSwap",
+    description:
+      "SundaeSwap is a native, scalable decentralized exchange and automated liquidity provision protocol.",
+    preview: require("./showcase/sundaeswap.png"),
+    website: "https://www.sundaeswap.finance",
     source: null,
     tags: ["dex"],
   },
