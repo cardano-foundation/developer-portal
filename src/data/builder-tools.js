@@ -25,6 +25,7 @@ export const Tags = {
     description:
       "Our favorite Cardano builder tools that you must absolutely check-out.",
     icon: <>⭐️</>,
+    color: '#e9669e',
   },
 
   // API
@@ -32,6 +33,7 @@ export const Tags = {
     label: "APIs",
     description: "Cardano APIs.",
     icon: null,
+    color: '#39ca30',
   },
 
   // For builder tools with a get started tag, a link to the get started page is required.
@@ -39,6 +41,7 @@ export const Tags = {
     label: "Get Started",
     description: "This builder tool has a get started page in the developer portal.",
     icon: null,
+    color: '#dfd545',
   },
 
   // Library
@@ -47,6 +50,7 @@ export const Tags = {
     description:
       "Cardano libraries.",
     icon: null,
+    color: '#a44fb7',
   },
 
    // Marlowe
@@ -55,6 +59,7 @@ export const Tags = {
     description:
       "Marlowe",
     icon: null,
+    color: '#127f82'
   },
 
   // NFT Tools
@@ -62,6 +67,7 @@ export const Tags = {
     label: "NFT",
     description: "Non-Fungible Token (NFT)",
     icon: null,
+    color: '#fe6829',
   },
 
   // Plutus
@@ -70,6 +76,7 @@ export const Tags = {
     description:
       "Plutus",
     icon: null,
+    color: '#8c2f00',
   },
 
   // Stake Pool Operator Tools
@@ -78,6 +85,7 @@ export const Tags = {
     description:
       "Stake pool operator tools.",
     icon: null,
+    color: '#4267b2', 
   },
 
   // Oracle Tools
@@ -86,6 +94,7 @@ export const Tags = {
     description:
       "Oracle tools.",
     icon: null,
+    color: '#14cfc3',
   },
 
 };
