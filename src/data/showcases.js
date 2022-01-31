@@ -727,6 +727,15 @@ const Showcases = [
     source: null,
     tags: ["dex"],
   },
+  {
+    title: "Flint Wallet",
+    description:
+      "Flint is a friendly go-to wallet for DeFi and NFTs. As a light wallet, Flint allows you to easily manage multiple assets from different chains in your browser.",
+    preview: require("./showcase/flintwallet.png"),
+    website: "https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj",
+    source: null,
+    tags: ["wallet", "nft", "metadata"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
