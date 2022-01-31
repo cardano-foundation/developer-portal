@@ -285,6 +285,14 @@ const Showcases = [
     getstarted: null,
     tags: ["plutus"],
   },
+  {
+    title: "Plutus Extra",
+    description: "A collection of Plutus-related helper libraries.",
+    preview: require("./builder-tools/plutus-extra.png"),
+    website: "https://github.com/Liqwid-Labs/plutus-extra",
+    getstarted: null,
+    tags: ["library", "plutus"],
+  },
 ];
 
 
