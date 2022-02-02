@@ -736,6 +736,15 @@ const Showcases = [
     source: null,
     tags: ["wallet", "nft", "metadata"],
   },
+  {
+    title: "SCEZ NFT View",
+    description:
+      "Search NFTs by wallet address and asset policy ID, for testnet and mainnet! Vizualize original NFT, not just preview!",
+    preview: require("./showcase/scez.png"),
+    website: "https://view.smartcontractsez.com/",
+    source: null,
+    tags: ["nft"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
