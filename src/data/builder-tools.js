@@ -280,11 +280,27 @@ const Showcases = [
   },
   {
     title: "cardano-wallet-interface",
-    description: "A Javascript/Typescript library to easily interact with the dApp connector of various wallets",
+    description: "A Javascript/Typescript library to easily interact with the dApp connector of various wallets.",
     preview: require("./builder-tools/cardano-wallet-interface.png"),
     website: "https://github.com/HarmonicPool/cardano-wallet-interface",
     getstarted: null,
     tags: ["library"],
+  },
+  {
+    title: "Plutus Fee Estimator",
+    description: "Helps developers to estimate the cost of smart contract scripts for maximum efficiency and minimum cost.",
+    preview: require("./builder-tools/plutus-fee-estimator.png"),
+    website: "https://testnets.cardano.org/en/testnets/cardano/tools/plutus-fee-estimator/",
+    getstarted: null,
+    tags: ["plutus"],
+  },
+  {
+    title: "Plutus Extra",
+    description: "A collection of Plutus-related helper libraries.",
+    preview: require("./builder-tools/plutus-extra.png"),
+    website: "https://github.com/Liqwid-Labs/plutus-extra",
+    getstarted: null,
+    tags: ["library", "plutus"],
   },
 ];
 

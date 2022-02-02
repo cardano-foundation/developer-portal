@@ -8,7 +8,7 @@ image: ./img/og-developer-portal.png
  
 ## Logging and Monitoring with Prometheus
 
-Learn how to perform logging and monitoring of your stake pool with prometheus. To be able to follow the video better you can find the written tutorial [how to perform logging and monitoring with prometheus](handbook/apply-logging-prometheus) in the stake pool operator handbook.
+Learn how to perform logging and monitoring of your stake pool with prometheus. To be able to follow the video better you can find the written tutorial [how to perform logging and monitoring with prometheus](/docs/stake-pool-course/handbook/apply-logging-prometheus) in the stake pool operator handbook.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/VIyDBz7Gd4Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
