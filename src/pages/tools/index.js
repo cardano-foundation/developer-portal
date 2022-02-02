@@ -3,10 +3,9 @@ import React, { useState, useMemo, useCallback, useEffect } from "react";
 import Layout from "@theme/Layout";
 import ShowcaseTooltip from "@site/src/components/showcase/ShowcaseTooltip";
 import ShowcaseTagSelect from "@site/src/components/showcase/ShowcaseTagSelect";
-import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard";
+import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard/";
 import ShowcaseFilterToggle, {
-  Operator,
-  readOperator
+  readOperator,
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
 import clsx from "clsx";
 
@@ -16,8 +15,8 @@ import { SortedShowcases, Tags, TagList } from "../../data/builder-tools";
 import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import Fav from "../../svg/fav.svg"
 
 const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
@@ -35,6 +34,16 @@ export function prepareUserState() {
   return undefined;
 }
 
+function restoreUserState(userState) {
+  const { scrollTopPosition, focusedElementId } = userState ?? {
+    scrollTopPosition: 0,
+    focusedElementId: undefined,
+  };
+  // @ts-expect-error: if focusedElementId is undefined it returns null
+  document.getElementById(focusedElementId)?.focus();
+  window.scrollTo({ top: scrollTopPosition });
+}
+
 const TagQueryStringKey = "tags";
 
 function readSearchTags(search) {
@@ -48,16 +57,10 @@ function replaceSearchTags(search, newTags) {
   return searchParams.toString();
 }
 
-function filterProjects(
-  projects,
-  selectedTags,
-  operator,
-  searchName,
-) {
+function filterProjects(projects, selectedTags, operator, searchName) {
   if (searchName) {
-    // eslint-disable-next-line no-param-reassign
     projects = projects.filter((project) =>
-      project.title.toLowerCase().includes(searchName.toLowerCase()),
+      project.title.toLowerCase().includes(searchName.toLowerCase())
     );
   }
   if (selectedTags.length === 0) {
@@ -67,31 +70,33 @@ function filterProjects(
     if (project.tags.length === 0) {
       return false;
     }
-    if (operator === 'AND') {
+    if (operator === "AND") {
       return selectedTags.every((tag) => project.tags.includes(tag));
     } else {
       return selectedTags.some((tag) => project.tags.includes(tag));
     }
-  })
+  });
 }
 
-
-function useFilteredUsers() {
+function useFilteredProjects() {
   const location = useLocation();
-  const [operator, setOperator] = useState('OR');
+  const [operator, setOperator] = useState("OR");
+
   // On SSR / first mount (hydration) no tag is selected
   const [selectedTags, setSelectedTags] = useState([]);
   const [searchName, setSearchName] = useState(null);
+
   // Sync tags from QS to state (delayed on purpose to avoid SSR/Client hydration mismatch)
   useEffect(() => {
     setSelectedTags(readSearchTags(location.search));
     setOperator(readOperator(location.search));
     setSearchName(readSearchName(location.search));
+    restoreUserState(location.state);
   }, [location]);
 
   return useMemo(
     () => filterProjects(SortedShowcases, selectedTags, operator, searchName),
-    [selectedTags, operator, searchName],
+    [selectedTags, operator, searchName]
   );
 }
 
@@ -102,7 +107,7 @@ function useSelectedTags() {
 
   // On SSR / first mount (hydration) no tag is selected
   const [selectedTags, setSelectedTags] = useState([]);
-  
+
   // Update the QS value
   const toggleTag = useCallback(
     (tag) => {
@@ -131,13 +136,13 @@ function ShowcaseHeader() {
 function ShowcaseFilters() {
   return (
     <div className="margin-top--l margin-bottom--md container">
-       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
-          <div>
-            <h2>Filters</h2>
-          </div>
-          <ShowcaseFilterToggle />
+      <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
+        <div>
+          <h2>Filters</h2>
         </div>
-      <div className="row">
+        <ShowcaseFilterToggle />
+      </div>
+      <div className={styles.checkboxList}>
         {TagList.map((tag) => {
           const { label, description, color, icon } = Tags[tag];
           const id = `showcase_checkbox_id_${tag}`;
@@ -155,9 +160,13 @@ function ShowcaseFilters() {
                     label={label}
                     icon={
                       label === "Featured" ? (
-                        <span style={{
-                          marginLeft: 8,
-                        }}> {icon}</span>
+                        <span
+                          style={{
+                            marginLeft: 8,
+                          }}
+                        >
+                      <Fav svgClass={styles.svgIconFavorite} size="small" style={{display: 'grid'}}/>
+                        </span>
                       ) : (
                         <span
                           style={{
@@ -182,7 +191,19 @@ function ShowcaseFilters() {
 }
 
 function ShowcaseCards() {
-  const filteredProjects = useFilteredUsers();
+  const filteredProjects = useFilteredProjects();
+
+  if (filteredProjects.length === 0) {
+    return (
+      <section className="margin-top--lg margin-bottom--xl">
+        <div className="container padding-vert--md text--center">
+          <h2>No result</h2>
+          <SearchBar />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="container margin-top--lg">
       <h2>
@@ -190,25 +211,24 @@ function ShowcaseCards() {
         {filteredProjects.length > 1 ? "s" : ""}
       </h2>
       <div className="margin-top--lg">
-        {filteredProjects.length > 0 ? (
-          <div className="row">
-            {filteredProjects.map((showcase) => (
-              <ShowcaseCard
-                key={showcase.title} // Title should be unique
-                showcase={showcase}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className={clsx("padding-vert--md text--center")}>
-            <h3>No result</h3>
-          </div>
-        )}
+            <div
+              className={clsx(
+                "margin-bottom--md",
+                styles.showcaseFavoriteHeader
+              )}
+            >
+              <SearchBar />
+            </div>
+            <ul className={styles.showcaseList}>
+              {filteredProjects.map((showcase) => (
+                <ShowcaseCard key={showcase.title} showcase={showcase} />
+              ))}
+            </ul>
       </div>
     </section>
   );
 }
-const SearchNameQueryKey = 'name';
+const SearchNameQueryKey = "name";
 
 function readSearchName(search) {
   return new URLSearchParams(search).get(SearchNameQueryKey);
@@ -218,14 +238,16 @@ function SearchBar() {
   const history = useHistory();
   const location = useLocation();
   const [value, setValue] = useState(null);
+
   useEffect(() => {
     setValue(readSearchName(location.search));
   }, [location]);
+
   return (
     <div className={styles.searchContainer}>
       <input
         id="searchbar"
-        placeholder="Search for site name..."
+        placeholder="Search tool..."
         value={value ?? undefined}
         onInput={(e) => {
           setValue(e.currentTarget.value);
@@ -237,11 +259,11 @@ function SearchBar() {
           history.push({
             ...location,
             search: newSearch.toString(),
-            state: prepareUserState(),
+            // state: prepareUserState(),
           });
           setTimeout(() => {
-            document.getElementById('searchbar')?.focus();
-          }, 0);
+            document.getElementById("searchbar")?.focus();
+          }, 1);
         }}
       />
     </div>
@@ -250,19 +272,13 @@ function SearchBar() {
 
 function Showcase() {
   const { selectedTags, toggleTag } = useSelectedTags();
-  const filteredProjects = useFilteredUsers();
+  const filteredProjects = useFilteredProjects();
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <ShowcaseHeader />
-      <main className="container margin-vert--lg">
-        <ShowcaseFilters
-          selectedTags={selectedTags}
-          toggleTag={toggleTag}
-        />
-        <SearchBar />
-        <ShowcaseCards filteredProjects={filteredProjects} />
-      </main>
+      <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
+      <ShowcaseCards filteredProjects={filteredProjects} />
     </Layout>
   );
 }

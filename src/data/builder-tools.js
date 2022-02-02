@@ -16,6 +16,7 @@
 
 import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
+import { Fav } from '../svg/fav.svg'
 
 // List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
@@ -24,7 +25,6 @@ export const Tags = {
     label: "Featured",
     description:
       "Our favorite Cardano builder tools that you must absolutely check-out.",
-    icon: <>⭐️</>,
     color: '#e9669e',
   },
 

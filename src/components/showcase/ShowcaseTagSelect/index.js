@@ -5,20 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
- import React, {
-  useCallback,
-  useState,
-  useEffect,
-  forwardRef
-} from 'react';
-import {useHistory, useLocation} from '@docusaurus/router';
-import {toggleListItem} from '@site/src/utils/jsUtils';
-// import {prepareUserState} from '../../../pages/showcase/index';
-import Tags from '@site/src/data/showcases';
+import React, { useCallback, useState, useEffect, forwardRef } from "react";
+import { useHistory, useLocation } from "@docusaurus/router";
+import { toggleListItem } from "@site/src/utils/jsUtils";
+import {prepareUserState} from '../../../pages/tools/index';
+import Tags from "@site/src/data/showcases";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
-const TagQueryStringKey = 'tags';
+const TagQueryStringKey = "tags";
 
 export function readSearchTags(search) {
   return new URLSearchParams(search).getAll(TagQueryStringKey);
@@ -32,14 +27,16 @@ function replaceSearchTags(search, newTags) {
 }
 
 const ShowcaseTagSelect = forwardRef(
-  ({id, icon, label, tag, ...rest}, ref) => {
+  ({ id, icon, label, tag, ...rest }, ref) => {
     const location = useLocation();
     const history = useHistory();
     const [selected, setSelected] = useState(false);
+
     useEffect(() => {
       const tags = readSearchTags(location.search);
       setSelected(tags.includes(tag));
     }, [tag, location]);
+
     const toggleTag = useCallback(() => {
       const tags = readSearchTags(location.search);
       const newTags = toggleListItem(tags, tag);
@@ -47,7 +44,7 @@ const ShowcaseTagSelect = forwardRef(
       history.push({
         ...location,
         search: newSearch,
-        // state: prepareUserState(),
+        state: prepareUserState(),
       });
     }, [tag, location, history]);
     return (
@@ -57,20 +54,20 @@ const ShowcaseTagSelect = forwardRef(
           id={id}
           className={styles.screenReader}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               toggleTag();
             }
           }}
           onFocus={(e) => {
             if (e.relatedTarget) {
               e.target.nextElementSibling?.dispatchEvent(
-                new KeyboardEvent('focus'),
+                new KeyboardEvent("focus")
               );
             }
           }}
           onBlur={(e) => {
             e.target.nextElementSibling?.dispatchEvent(
-              new KeyboardEvent('blur'),
+              new KeyboardEvent("blur")
             );
           }}
           onChange={toggleTag}
@@ -83,7 +80,7 @@ const ShowcaseTagSelect = forwardRef(
         </label>
       </>
     );
-  },
+  }
 );
 
 export default ShowcaseTagSelect;

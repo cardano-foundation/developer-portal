@@ -44,6 +44,7 @@
 
 
 .filterCheckbox {
+  margin-top: 20px;
   justify-content: space-between;
 }
 
@@ -89,9 +90,6 @@
 
 .searchContainer {
   margin-left: auto;
-  display: block;
-  text-align: right;
-  padding: 0 var(--ifm-spacing-horizontal);
 }
 
 .searchContainer input {
