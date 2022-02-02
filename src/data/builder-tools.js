@@ -293,6 +293,15 @@ const Showcases = [
     getstarted: null,
     tags: ["library", "plutus"],
   },
+  {
+    title: "PyCardano",
+    description:
+      "A Cardano library written in Python. It allows users to build and sign transactions without depending on other Cardano serialization tools (such as cardano-cli and cardano-serialization-lib), making it a lightweight library that is easy and fast to set up in all kinds of environments.",
+    preview: require("./builder-tools/pycardano.png"),
+    website: "https://github.com/cffls/pycardano",
+    getstarted: null,
+    tags: ["library", "api"],
+  }
 ];
 
 
