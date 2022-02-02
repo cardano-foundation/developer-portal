@@ -36,7 +36,7 @@ export const Tags = {
     label: "Featured",
     description:
       "Our favorite Cardano projects that you must absolutely check-out.",
-    icon: <>⭐️</>,
+      color: '#e9669e',
   },
 
   // Analytics
@@ -44,6 +44,7 @@ export const Tags = {
     label: "Analytics",
     description: "Tools that provide special insights related to Cardano.",
     icon: null,
+    color: '#39ca30',
   },
 
   // Cardano Block Explorers
@@ -52,6 +53,7 @@ export const Tags = {
     description:
       "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
     icon: null,
+    color: '#293133',
   },
 
   // Educational
@@ -60,6 +62,7 @@ export const Tags = {
     description:
       "Educational projects that will help you onboarding to Cardano.",
     icon: null,
+    color: '#a44fb7',
   },
  
   // Games
@@ -67,6 +70,7 @@ export const Tags = {
     label: "Games",
     description: "Games on the Cardano blockchain.",
     icon: null,
+    color: '#127f82'
   },
 
   // Gateways
@@ -74,6 +78,7 @@ export const Tags = {
     label: "Gateways",
     description: "Payment Gateway Providers.",
     icon: null,
+    color: '#fe6829',
   },
 
   // For open-source sites, a link to the source code is required
@@ -81,6 +86,7 @@ export const Tags = {
     label: "Open-Source",
     description: "Open-Source sites can be useful for inspiration.",
     icon: null,
+    color: '#8c2f00',
   },
 
   // Pool Tools
@@ -89,6 +95,7 @@ export const Tags = {
     description:
       "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
+    color: '#4267b2', 
   },
 
   // Meta data projects
@@ -96,6 +103,7 @@ export const Tags = {
     label: "Metadata",
     description: "Transaction metadata",
     icon: null,
+    color: '#14cfc3',
   },
 
   // Native tokens related projects
@@ -103,6 +111,7 @@ export const Tags = {
     label: "Native Tokens",
     description: "Native Tokens",
     icon: null,
+    color: '#E63244'
   },
 
   // NFT projects
@@ -110,6 +119,7 @@ export const Tags = {
     label: "NFT",
     description: "Non-Fungible Token (NFT)",
     icon: null,
+    color: '#F5D033'
   },
 
   // Wallets
@@ -118,6 +128,7 @@ export const Tags = {
     description:
       "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
+    color: '#7BC8A6'
   },
 
   // DEX
@@ -125,6 +136,7 @@ export const Tags = {
     label: "DEX",
     description: "DEX allows direct peer-to-peer cryptocurrency transactions to take place online securely.",
     icon: null,
+    color: '#1B32F0'
   },
 };
 

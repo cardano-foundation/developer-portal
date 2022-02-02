@@ -5,29 +5,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {memo, forwardRef} from 'react';
-import clsx from 'clsx';
-import Image from '@theme/IdealImage';
-import Link from '@docusaurus/Link';
+import React, { memo, forwardRef } from "react";
+import clsx from "clsx";
+import Image from "@theme/IdealImage";
+import Link from "@docusaurus/Link";
+import styles from "./styles.module.css";
+import Tooltip from "../ShowcaseTooltip/index";
+import { Tags as ToolsTags} from "../../../data/builder-tools";
+import { Tags as ShowcaseTags} from "../../../data/showcases";
+import Fav from "../../../svg/fav.svg";
 
-import styles from './styles.module.css';
-import Tooltip from '../ShowcaseTooltip/index';
-import {
-  Tags,
-} from '../../../data/builder-tools';
-import Fav from '../../../svg/fav.svg'
-
-const TagComp = forwardRef(
-  ({label, color, description}, ref) => (
+const TagComp = forwardRef(({ label, color, description }, ref) =>
     <li className={styles.tag} title={description}>
       <span className={styles.textLabel}>{label.toLowerCase()}</span>
-      <span className={styles.colorLabel} style={{backgroundColor: color}} />
+      <span className={styles.colorLabel} style={{ backgroundColor: color }} />
     </li>
-  ),
 );
 
-function ShowcaseCardTag({tags}) {
-  const tagObjects = tags.map((tag) => ({tag, ...Tags[tag]}));
+function ShowcaseCardTag({ tags }) {
+  
+  const selectedTags = window.location.href.includes('tools') ? ToolsTags : ShowcaseTags
+  const tagObjects = tags.map((tag) => ({ tag, ...selectedTags[tag] }));
 
   return (
     <>
@@ -39,7 +37,8 @@ function ShowcaseCardTag({tags}) {
             key={index}
             text={tagObject.description}
             anchorEl="#__docusaurus"
-            id={id}>
+            id={id}
+          >
             <TagComp key={index} {...tagObject} />
           </Tooltip>
         );
@@ -48,37 +47,46 @@ function ShowcaseCardTag({tags}) {
   );
 }
 
-const ShowcaseCard = memo((user) => (
-  <li  className="card shadow--md">
-    <div className={clsx('card__image', styles.showcaseCardImage)}>
-      <Image img={user.showcase.preview} alt={user.showcase.title} />
+const ShowcaseCard = memo((card) => (
+  <li className="card shadow--md">
+    <div className={clsx("card__image", styles.showcaseCardImage)}>
+      <Image img={card.showcase.preview} alt={card.showcase.title} />
     </div>
     <div className="card__body">
       <div className={clsx(styles.showcaseCardHeader)}>
         <h4 className={styles.showcaseCardTitle}>
-          <Link href={user.showcase.website}>
-            {user.showcase.title}
-          </Link>
+          <Link href={card.showcase.website}>{card.showcase.title}</Link>
         </h4>
-        {user.showcase.tags.includes('featured') && (
+        {card.showcase.tags.includes("featured") && (
           <Fav svgClass={styles.svgIconFavorite} size="small" />
         )}
-        {user.showcase.website && (
+        {card.showcase.website && (
           <Link
-            href={user.showcase.website}
+            href={card.showcase.website}
             className={clsx(
-              'button button--secondary button--sm',
-              styles.showcaseCardSrcBtn,
+              "button button--secondary button--sm",
+              styles.showcaseCardSrcBtn
             )}
-            >
+          >
+            Website
+          </Link>
+        )}
+        {card.showcase.source && (
+          <Link
+            href={card.showcase.source}
+            className={clsx(
+              "button button--secondary button--sm",
+              styles.showcaseCardSrcBtn
+            )}
+          >
             Source
           </Link>
         )}
       </div>
-      <p className={styles.showcaseCardBody}>{user.showcase.description}</p>
+      <p className={styles.showcaseCardBody}>{card.showcase.description}</p>
     </div>
-    <ul className={clsx('card__footer', styles.cardFooter)}>
-      <ShowcaseCardTag tags={user.showcase.tags} />
+    <ul className={clsx("card__footer", styles.cardFooter)}>
+      <ShowcaseCardTag tags={card.showcase.tags} />
     </ul>
   </li>
 ));
