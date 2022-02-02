@@ -99,7 +99,7 @@ Apart from the same requisites as on the [minting native assets](minting.md) gui
 --> We will use this [image](https://gateway.pinata.cloud/ipfs/QmRhTTbUrPYEw3mJGGhQqQST9k86v1DPBiTTWJGKDJsVFw)
 
 :::note
-We recommend upload images to IPFS as it is the most common decentralized storage service. There are alternatives, but IFPS has the biggest adoption in terms of how many NFTs got minted.
+We recommend upload images to IPFS as it is the most common decentralized storage service. There are alternatives, but IPFS has the biggest adoption in terms of how many NFTs got minted.
 :::
 
 ## Setup
@@ -127,7 +127,7 @@ output="0"
 ipfs_hash="please insert your ipfs hash here"
 ```
 :::note
-The IFPS hash is a key requirement and can be found once you upload your image to IPFS. Here's an example of how the IPFS looks like when an image is uploaded in [pinata](https://pinata.cloud/)
+The IPFS hash is a key requirement and can be found once you upload your image to IPFS. Here's an example of how the IPFS looks like when an image is uploaded in [pinata](https://pinata.cloud/)
 ![img](../../static/img/nfts/pinata_pin.PNG)
 :::
 
@@ -329,7 +329,7 @@ echo "}" >> metadata.json
 ```
 
 :::note
-Please make sure the image value / IFPS hash is set with the correct protocol pre-fix <i>ipfs://</i>  
+Please make sure the image value / IPFS hash is set with the correct protocol pre-fix <i>ipfs://</i>  
 (for example <i>"ipfs://QmRhTTbUrPYEw3mJGGhQqQST9k86v1DPBiTTWJGKDJsVFw"</i>)
 
 :::

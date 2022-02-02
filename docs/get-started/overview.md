@@ -46,7 +46,7 @@ If you have experience with other smart contract platforms and want to start bui
 ## Why build on Cardano?
 - Cardano offers a better infrastructure to build products because it is faster, more secure, and cost-effective.
 - Cardano offers accurate cost predictability when it comes to transactions. There are no auctions for transaction fees.
-- Cardano has an energetic community and more than one million wallets. If you stick to specific standards, we are keen to try out and engage with new products. Participating now makes you a first mover.
+- Cardano has an energetic community and more than two million wallets. If you stick to specific standards, we are keen to try out and engage with new products. Participating now makes you a first mover.
 - Cardano brings its venture fund. If you build on Cardano you can get [your project funded](../governance/project-catalyst). Every 6 to 8 weeks, projects can be proposed, discussed, and voted on by the Cardano community.
 - Cardano is a proof-of-stake blockchain. By design, it consumes much less energy and computational power.
 - Cardano is built with the rigor of high-assurance formal development methods. The consensus mechanism [Ouroboros](https://cardano.org/ouroboros/) was delivered with several peer-reviewed papers presented in top-tier conferences and publications in cybersecurity and cryptography. If you build on Cardano, you build on this foundation.

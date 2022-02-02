@@ -22,7 +22,7 @@
     "@mdx-js/react": "^1.6.22",
     "@popperjs/core": "^2.11.2",
     "clsx": "^1.1.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-popper": "^2.2.5",

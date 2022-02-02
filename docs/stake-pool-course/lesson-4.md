@@ -22,7 +22,7 @@ Learn how the pledge mechanism works in Cardano:
 
 ## Generate Stake Pool Keys
 
-Learn how to generate the Keys and operational certificate for the stake pool. To be able to follow the video better you can find the written tutorial [how to generate stake pool keys](handbook/generate-stake-pool-keys) in the stake pool operator handbook.
+Learn how to generate the Keys and operational certificate for the stake pool. To be able to follow the video better you can find the written tutorial [how to generate stake pool keys](/docs/stake-pool-course/handbook/generate-stake-pool-keys) in the stake pool operator handbook.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/iZvmTuTiwoI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
@@ -30,7 +30,7 @@ Learn how to generate the Keys and operational certificate for the stake pool. T
 
 ## Topology files
 
-Learn how to prepare your topology files so that the relay node talks to other relays in the network and to the core node and make it to connect **only** with the relay node. To be able to follow the video better you can find the written tutorial [how to configure topology files](handbook/configure-topology-files) in the stake pool operator handbook.
+Learn how to prepare your topology files so that the relay node talks to other relays in the network and to the core node and make it to connect **only** with the relay node. To be able to follow the video better you can find the written tutorial [how to configure topology files](/docs/stake-pool-course/handbook/configure-topology-files) in the stake pool operator handbook.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/x8b5V32mVOU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>
@@ -38,7 +38,7 @@ Learn how to prepare your topology files so that the relay node talks to other r
 
 ## Register Stake Pool Metadata
 
-Learn how to register your stake pool metadata. Things this will allow your pool to be discovered by wallets so that potential delegators can easily delegate their stake to your pool. To be able to follow the video better you can find the written tutorial [how to register your stake pool metadata](handbook/register-stake-pool-metadata) in the stake pool operator handbook.
+Learn how to register your stake pool metadata. Things this will allow your pool to be discovered by wallets so that potential delegators can easily delegate their stake to your pool. To be able to follow the video better you can find the written tutorial [how to register your stake pool metadata](/docs/stake-pool-course/handbook/register-stake-pool-metadata) in the stake pool operator handbook.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/OHj0eJ8p4OY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>

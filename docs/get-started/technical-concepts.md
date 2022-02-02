@@ -59,4 +59,40 @@ What is Catalyst voting, how to register, how to vote and why you should partici
 ## Franken Addresses
 Franken Addresses are a way to register additional pledge to a pool without registering a second owner on the blockchain.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/KULzovfWn-M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## NFT
+Non-Fungible Tokens on cardano are native assets that represent immutable art or physical things.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/P-wQ0VymzKU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## Catalyst Voting Registration
+How does the Catalyst voting registration on the side-chain work?
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/PPuhH1ihoAY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## Epoch Nonce
+The epoch nonce allows you to calculate leaderlogs for your stake pool on Cardano.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/vF82ZalZlcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## Guaranteed Transaction Delivery
+How dropped transactions happen on cardano and how to ensure we always deliver them into blocks.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/gm-phCUGEoY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## SundaeSwap & Merkel Trees
+Learn about the SundaeSwap ISO and who Merkel Trees work.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/hStyO1L1qOE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## DripDropz & Phyrhose
+DripDropz, the token AirDrop vending machine, powered by Phyrhose.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/x2bwK4Svnps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## P2P Networking
+Learn about Byron era network, Shelley era network, unidirectional (Half-Duplex) connections, the Topology Updater, manual P2P vs. automatic P2P.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/ek_DK6Qoqrc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## TPS vs. eUTxO
+Which is better, high transactions per second or eUTxO?  
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/wDmLVMmevNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## Network Congestion
+How does network congestion happen? What are mempool errors?
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/jxHFGPP1uc0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
  
