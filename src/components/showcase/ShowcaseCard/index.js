@@ -12,21 +12,22 @@ import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import Tooltip from "../ShowcaseTooltip/index";
 import { useLocation } from "@docusaurus/router";
-import { Tags as ToolsTags} from "../../../data/builder-tools";
-import { Tags as ShowcaseTags} from "../../../data/showcases";
+import { Tags as ToolsTags } from "../../../data/builder-tools";
+import { Tags as ShowcaseTags } from "../../../data/showcases";
 import Fav from "../../../svg/fav.svg";
 
-const TagComp = forwardRef(({ label, color, description }, ref) =>
-    <li className={styles.tag} title={description}>
-      <span className={styles.textLabel}>{label.toLowerCase()}</span>
-      <span className={styles.colorLabel} style={{ backgroundColor: color }} />
-    </li>
-);
+const TagComp = forwardRef(({ label, color, description }, ref) => (
+  <li className={styles.tag} title={description}>
+    <span className={styles.textLabel}>{label.toLowerCase()}</span>
+    <span className={styles.colorLabel} style={{ backgroundColor: color }} />
+  </li>
+));
 
 function ShowcaseCardTag({ tags }) {
-
-  const location = useLocation()
-  const selectedTags = location.pathname.includes('tools') ? ToolsTags : ShowcaseTags
+  const location = useLocation();
+  const selectedTags = location.pathname.includes("tools")
+    ? ToolsTags
+    : ShowcaseTags;
   const tagObjects = tags.map((tag) => ({ tag, ...selectedTags[tag] }));
 
   return (
@@ -62,15 +63,15 @@ const ShowcaseCard = memo((card) => (
         {card.showcase.tags.includes("featured") && (
           <Fav svgClass={styles.svgIconFavorite} size="small" />
         )}
-        {card.showcase.website && (
+        {card.showcase.getstarted && (
           <Link
-            href={card.showcase.website}
+            href={card.showcase.getstarted}
             className={clsx(
               "button button--secondary button--sm",
               styles.showcaseCardSrcBtn
             )}
           >
-            Website
+            Get Started
           </Link>
         )}
         {card.showcase.source && (
