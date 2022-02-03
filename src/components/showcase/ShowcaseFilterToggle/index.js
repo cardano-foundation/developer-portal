@@ -18,17 +18,17 @@ export const Operator = "OR" | "AND";
 export const OperatorQueryKey = "operator";
 
 export function readOperator(search) {
-  return new URLSearchParams(search).get(OperatorQueryKey) ?? "OR";
+  return new URLSearchParams(search).get(OperatorQueryKey) ?? "AND";
 }
 
 export default function ShowcaseFilterToggle() {
   const id = "showcase_filter_toggle";
   const location = useLocation();
   const history = useHistory();
-  const [operator, setOperator] = useState(false);
+  const [operator, setOperator] = useState(true);
 
   useEffect(() => {
-    setOperator(readOperator(location.search) === "AND");
+    setOperator(readOperator(location.search) === "OR");
   }, [location]);
 
   const toggleOperator = useCallback(() => {
@@ -36,7 +36,7 @@ export default function ShowcaseFilterToggle() {
     const searchParams = new URLSearchParams(location.search);
     searchParams.delete(OperatorQueryKey);
     if (!operator) {
-      searchParams.append(OperatorQueryKey, operator ? "OR" : "AND");
+      searchParams.append(OperatorQueryKey, operator ? "AND" : "OR");
     }
     history.push({
       ...location,
@@ -51,14 +51,13 @@ export default function ShowcaseFilterToggle() {
         type="checkbox"
         id={id}
         className={styles.screenReader}
-        aria-label="Toggle between or and and for the tags you selected"
         onChange={toggleOperator}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             toggleOperator();
           }
         }}
-        checked={operator}
+        checked={!operator}
       />
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor={id} className={clsx(styles.checkboxLabel, "shadow--md")}>
