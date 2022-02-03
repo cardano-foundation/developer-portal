@@ -46,7 +46,7 @@ function restoreUserState(userState) {
     scrollTopPosition: 0,
     focusedElementId: undefined,
   };
-  // @ts-expect-error: if focusedElementId is undefined it returns null
+  
   document.getElementById(focusedElementId)?.focus();
   window.scrollTo({ top: scrollTopPosition });
 }
@@ -57,6 +57,7 @@ function readSearchTags(search) {
   return new URLSearchParams(search).getAll(TagQueryStringKey);
 }
 
+// Replace seach tags in the query
 function replaceSearchTags(search, newTags) {
   const searchParams = new URLSearchParams(search);
   searchParams.delete(TagQueryStringKey);
@@ -64,6 +65,7 @@ function replaceSearchTags(search, newTags) {
   return searchParams.toString();
 }
 
+// Filter projects based on chosen project tags, toggle operator or searchbar value
 function filterProjects(projects, selectedTags, operator, searchName) {
   if (searchName) {
     projects = projects.filter((project) =>
@@ -295,7 +297,6 @@ function SearchBar() {
           history.push({
             ...location,
             search: newSearch.toString(),
-            // state: prepareUserState(),
           });
           setTimeout(() => {
             document.getElementById("searchbar")?.focus();
