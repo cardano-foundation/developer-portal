@@ -20,9 +20,9 @@ import { Fav } from '../svg/fav.svg'
 
 // List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
-  // PLEASE DO NOT USE THIS TAG: we choose the featured tools (process TBD)
-  featured: {
-    label: "Featured",
+  // PLEASE DO NOT USE THIS TAG: we choose the favorite tools (process TBD)
+  favorite: {
+    label: "Favorite",
     description:
       "Our favorite Cardano builder tools that you must absolutely check-out.",
     color: '#e9669e',
@@ -100,7 +100,7 @@ export const Tags = {
 };
 
 // Add your builder tool to (THE END OF) this list.
-// Please don't add the "featured"-tag yourself.
+// Please don't add the "favorite"-tag yourself.
 const Showcases = [
   {
     title: "Blockfrost",
@@ -108,7 +108,7 @@ const Showcases = [
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
     getstarted: "/docs/get-started/blockfrost",
-    tags: ["featured", "getstarted", "api"],
+    tags: ["favorite", "getstarted", "api"],
   },
   {
     title: "Cardano Serialization Library",
@@ -117,7 +117,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
     getstarted: "/docs/get-started/cardano-serialization-lib/overview",
-    tags: ["featured", "getstarted", "library"],
+    tags: ["favorite", "getstarted", "library"],
   },
   {
     title: "cardanocli-js",
@@ -142,7 +142,7 @@ const Showcases = [
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
-    tags: ["featured", "getstarted", "library"],
+    tags: ["favorite", "getstarted", "library"],
   },
   {
     title: "Cardano Client Library",
@@ -201,7 +201,7 @@ const Showcases = [
     preview: require("./builder-tools/guild-operators.png"),
     website: "https://cardano-community.github.io/guild-operators/",
     getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
-    tags: ["featured", "getstarted", "operatortool"],
+    tags: ["favorite", "getstarted", "operatortool"],
   },
   {
     title: "libada-go",
@@ -233,7 +233,7 @@ const Showcases = [
     preview: require("./builder-tools/plutus-playground.png"),
     website: "https://playground.plutus.iohkdev.io",
     getstarted: "/docs/smart-contracts/plutus#plutus-playground",
-    tags: ["featured", "getstarted", "plutus"],
+    tags: ["favorite", "getstarted", "plutus"],
   },
   {
     title: "Marlowe Playground",
@@ -241,7 +241,7 @@ const Showcases = [
     preview: require("./builder-tools/marlowe-playground.png"),
     website: "https://alpha.marlowe.iohkdev.io/#/",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
-    tags: ["featured", "getstarted", "marlowe"],
+    tags: ["favorite", "getstarted", "marlowe"],
   },
   {
     title: "Automint",
@@ -310,8 +310,8 @@ function sortShowcases() {
   let result = Showcases;
   // Sort by site name
   result = sortBy(result, (showcase) => showcase.title.toLowerCase());
-  // Sort by featured tag, featured first
-  result = sortBy(result, (showcase) => !showcase.tags.includes("featured"));
+  // Sort by favorite tag, favorite first
+  result = sortBy(result, (showcase) => !showcase.tags.includes("favorite"));
   return result;
 }
 

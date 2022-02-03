@@ -32,8 +32,8 @@ import { sortBy, difference } from "../utils/jsUtils";
 // List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
   // PLEASE DO NOT USE THIS TAG: we choose the features projects (process TBD)
-  featured: {
-    label: "Featured",
+  favorite: {
+    label: "Favorite",
     description:
       "Our favorite Cardano projects that you must absolutely check-out.",
       color: '#e9669e',
@@ -141,7 +141,7 @@ export const Tags = {
 };
 
 // Add your project to (THE END OF) this list.
-// Please don't add the "featured"-tag yourself.
+// Please don't add the "favorite"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
   {
@@ -160,7 +160,7 @@ const Showcases = [
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
-    tags: ["featured", "metadata"],
+    tags: ["favorite", "metadata"],
   },
   {
     title: "Crypto Heroez",
@@ -179,7 +179,7 @@ const Showcases = [
     preview: require("./showcase/nft-maker.png"),
     website: "https://www.nft-maker.io",
     source: null,
-    tags: ["featured", "tokens", "nft"],
+    tags: ["favorite", "tokens", "nft"],
   },
   {
     title: "SpaceBudz",
@@ -188,7 +188,7 @@ const Showcases = [
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: "https://github.com/Berry-Pool/spacebudz",
-    tags: ["featured", "nft", "opensource"],
+    tags: ["favorite", "nft", "opensource"],
   },
   {
     title: "ADAex",
@@ -287,7 +287,7 @@ const Showcases = [
     preview: require("./showcase/daedalus.png"),
     website: "https://daedaluswallet.io",
     source: "https://github.com/input-output-hk/daedalus",
-    tags: ["wallet", "opensource", "featured"],
+    tags: ["wallet", "opensource", "favorite"],
   },
   {
     title: "Yoroi",
@@ -414,7 +414,7 @@ const Showcases = [
     preview: require("./showcase/transaction-meta-data-browser.png"),
     website: "https://bi.stakepoolcentral.com/transactiondata",
     source: null,
-    tags: ["featured", "metadata"],
+    tags: ["favorite", "metadata"],
   },
   {
     title: "PoolTool Mobile",
@@ -423,7 +423,7 @@ const Showcases = [
     preview: require("./showcase/pooltoolmobile.png"),
     website: "https://pooltool.io/mobile",
     source: null,
-    tags: ["featured", "pooltool", "analytics"],
+    tags: ["favorite", "pooltool", "analytics"],
   },
   {
     title: "Rewards Calendar",
@@ -432,7 +432,7 @@ const Showcases = [
     preview: require("./showcase/rewardscalendar.png"),
     website: "https://dbooster.io/calendar",
     source: null,
-    tags: ["featured", "analytics"],
+    tags: ["favorite", "analytics"],
   },
   {
     title: "NOWPayments",
@@ -441,7 +441,7 @@ const Showcases = [
     preview: require("./showcase/nowpayments.png"),
     website: "https://nowpayments.io",
     source: null,
-    tags: ["featured", "gateway"],
+    tags: ["favorite", "gateway"],
   },
   {
     title: "Coti adaPay",
@@ -459,7 +459,7 @@ const Showcases = [
     preview: require("./showcase/gimbalabs.png"),
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
-    tags: ["featured", "educational", "opensource"],
+    tags: ["favorite", "educational", "opensource"],
   },
   {
     title: "ccwallet.io",
@@ -755,8 +755,8 @@ function sortShowcases() {
   let result = Showcases;
   // Sort by site name
   result = sortBy(result, (showcase) => showcase.title.toLowerCase());
-  // Sort by featured tag, featured first
-  result = sortBy(result, (showcase) => !showcase.tags.includes("featured"));
+  // Sort by favorite tag, favorite first
+  result = sortBy(result, (showcase) => !showcase.tags.includes("favorite"));
   return result;
 }
 
