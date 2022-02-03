@@ -60,7 +60,7 @@ const ShowcaseCard = memo((card) => (
         <h4 className={styles.showcaseCardTitle}>
           <Link href={card.showcase.website}>{card.showcase.title}</Link>
         </h4>
-        {card.showcase.tags.includes("featured") && (
+        {card.showcase.tags.includes("favorite") && (
           <Fav svgClass={styles.svgIconFavorite} size="small" />
         )}
         {card.showcase.getstarted && (

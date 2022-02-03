@@ -16,7 +16,7 @@ import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import Fav from "../../svg/fav.svg"
+import Fav from "../../svg/fav.svg";
 
 const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
@@ -33,6 +33,13 @@ export function prepareUserState() {
 
   return undefined;
 }
+
+const favoriteShowcases = SortedShowcases.filter((showcase) =>
+  showcase.tags.includes("favorite")
+);
+const otherShowcases = SortedShowcases.filter(
+  (showcase) => !showcase.tags.includes("favorite")
+);
 
 function restoreUserState(userState) {
   const { scrollTopPosition, focusedElementId } = userState ?? {
@@ -144,7 +151,7 @@ function ShowcaseFilters() {
       </div>
       <div className={styles.checkboxList}>
         {TagList.map((tag) => {
-          const { label, description, color, icon } = Tags[tag];
+          const { label, description, color } = Tags[tag];
           const id = `showcase_checkbox_id_${tag}`;
           return (
             <>
@@ -159,13 +166,17 @@ function ShowcaseFilters() {
                     id={id}
                     label={label}
                     icon={
-                      label === "Featured" ? (
+                      label === "Favorite" ? (
                         <span
                           style={{
                             marginLeft: 8,
                           }}
                         >
-                      <Fav svgClass={styles.svgIconFavorite} size="small" style={{display: 'grid'}}/>
+                          <Fav
+                            svgClass={styles.svgIconFavorite}
+                            size="small"
+                            style={{ display: "grid" }}
+                          />
                         </span>
                       ) : (
                         <span
@@ -205,26 +216,51 @@ function ShowcaseCards() {
   }
 
   return (
-    <section className="container margin-top--lg">
-      <h2>
-        {filteredProjects.length} project
-        {filteredProjects.length > 1 ? "s" : ""}
-      </h2>
-      <div className="margin-top--lg">
-            <div
-              className={clsx(
-                "margin-bottom--md",
-                styles.showcaseFavoriteHeader
-              )}
-            >
-              <SearchBar />
+    <section className="margin-top--lg margin-bottom--xl">
+      {filteredProjects.length === SortedShowcases.length ? (
+        <>
+          <div className={styles.showcaseFavorite}>
+            <div className="container">
+              <div
+                className={clsx(
+                  "margin-bottom--md",
+                  styles.showcaseFavoriteHeader
+                )}
+              >
+                <h2 className={styles.ourFavorites}>Our favorites</h2>
+                <Fav svgClass={styles.svgIconFavorite} size="small" />
+                <SearchBar />
+              </div>
+              <ul className={clsx("container", styles.showcaseList)}>
+                {favoriteShowcases.map((showcase) => (
+                  <ShowcaseCard key={showcase.title} showcase={showcase} />
+                ))}
+              </ul>
             </div>
+          </div>
+          <div className="container margin-top--lg">
+            <h2 className={styles.showcaseHeader}>All Tools</h2>
             <ul className={styles.showcaseList}>
-              {filteredProjects.map((showcase) => (
+              {otherShowcases.map((showcase) => (
                 <ShowcaseCard key={showcase.title} showcase={showcase} />
               ))}
             </ul>
-      </div>
+          </div>
+        </>
+      ) : (
+        <div className="container">
+          <div
+            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
+          >
+            <SearchBar />
+          </div>
+          <ul className={styles.showcaseList}>
+            {filteredProjects.map((showcase) => (
+              <ShowcaseCard key={showcase.title} showcase={showcase} />
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }
