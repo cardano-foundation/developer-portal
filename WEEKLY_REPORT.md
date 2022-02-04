@@ -1,6 +1,21 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending February 4th
+
+[2022-02-01]
+ * Fix for #496 (but the core problem is trailing slash vs no trailing slash linking) (#505) (Tommy Kammerer)
+ * Update builder tools (#504) (Tommy Kammerer)
+ * Add 9 technical concept videos (Nerd Out) (#503) (Tommy Kammerer)
+ * Add Flint Wallet to showcase (#502) (Tommy Kammerer)
+ * update number of wallets (#477) (Robin Böning)
+
 ### Week ending January 28th
+
+[2022-01-28]
+ * Fixing IFPS typos (#501) (Ryan Plauche)
+ * Bump simple-get from 4.0.0 to 4.0.1 (#500) (dependabot[bot])
+ * Update weekly report, week ending January 28th (#499) (Tommy Kammerer)
+ * Bump node-fetch from 2.6.6 to 2.6.7 (#498) (dependabot[bot])
 
 [2022-01-27]
  * Bump node-fetch from 2.6.6 to 2.6.7 (#498) (dependabot[bot])
