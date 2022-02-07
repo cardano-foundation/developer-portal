@@ -29,9 +29,9 @@
 import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
 
-// List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
+// List of available tags. The tag and the label should be in singular. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
-  // PLEASE DO NOT USE THIS TAG: we choose the features projects (process TBD)
+  // PLEASE DO NOT USE THIS TAG: we add the favorite project tag (process TBD)
   favorite: {
     label: "Favorite",
     description:
@@ -47,9 +47,9 @@ export const Tags = {
     color: '#39ca30',
   },
 
-  // Cardano Block Explorers
+  // Cardano Block Explorer
   explorer: {
-    label: "Block Explorers",
+    label: "Block Explorer",
     description:
       "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
     icon: null,
@@ -65,9 +65,9 @@ export const Tags = {
     color: '#a44fb7',
   },
  
-  // Games
+  // Game
   game: {
-    label: "Games",
+    label: "Game",
     description: "Games on the Cardano blockchain.",
     icon: null,
     color: '#127f82'
@@ -75,7 +75,7 @@ export const Tags = {
 
   // Gateways
   gateway: {
-    label: "Gateways",
+    label: "Gateway",
     description: "Payment Gateway Providers.",
     icon: null,
     color: '#fe6829',
@@ -89,9 +89,9 @@ export const Tags = {
     color: '#8c2f00',
   },
 
-  // Pool Tools
+  // Pool Tool
   pooltool: {
-    label: "Pool Tools",
+    label: "Pool Tool",
     description:
       "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
@@ -106,9 +106,9 @@ export const Tags = {
     color: '#14cfc3',
   },
 
-  // Native tokens related projects
-  tokens: {
-    label: "Native Tokens",
+  // Native token projects
+  token: {
+    label: "Native Token",
     description: "Native Tokens",
     icon: null,
     color: '#E63244'
@@ -124,7 +124,7 @@ export const Tags = {
 
   // Wallets
   wallet: {
-    label: "Wallets",
+    label: "Wallet",
     description:
       "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
@@ -134,7 +134,7 @@ export const Tags = {
   // DEX
   dex: {
     label: "DEX",
-    description: "DEX allows direct peer-to-peer cryptocurrency transactions to take place online securely.",
+    description: "Decentralised exchanges allow direct peer-to-peer cryptocurrency transactions to take place online securely.",
     icon: null,
     color: '#1B32F0'
   },
@@ -179,7 +179,7 @@ const Showcases = [
     preview: require("./showcase/nft-maker.png"),
     website: "https://www.nft-maker.io",
     source: null,
-    tags: ["favorite", "tokens", "nft"],
+    tags: ["favorite", "token", "nft"],
   },
   {
     title: "SpaceBudz",
@@ -320,7 +320,7 @@ const Showcases = [
     preview: require("./showcase/nativetokens.png"),
     website: "https://nativetokens.da.iogservices.io",
     source: null,
-    tags: ["tokens", "analytics"],
+    tags: ["token", "analytics"],
   },
   {
     title: "Cardano Cubes & Blockemon",
@@ -336,7 +336,7 @@ const Showcases = [
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
-    tags: ["tokens", "analytics"],
+    tags: ["token", "analytics"],
   },
   {
     title: "NFTea",
@@ -387,7 +387,7 @@ const Showcases = [
     preview: require("./showcase/adatools.png"),
     website: "https://adatools.io/hologram",
     source: null,
-    tags: ["pooltool", "analytics", "tokens"],
+    tags: ["pooltool", "analytics", "token"],
   },
   {
     title: "Cardano Blockchain Insights",
@@ -401,11 +401,11 @@ const Showcases = [
   },
   {
     title: "Token Tool",
-    description: "Keep track of native tokens on testnet and mainnet.",
+    description: "Keep track of native token on testnet and mainnet.",
     preview: require("./showcase/tokentool.png"),
     website: "https://tokentool.io",
     source: null,
-    tags: ["tokens"],
+    tags: ["token"],
   },
   {
     title: "Transaction Meta Data Browser",
@@ -638,7 +638,7 @@ const Showcases = [
     preview: require("./showcase/token-builder.png"),
     website: "https://cardano-native-token.com/",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["token", "nft"],
   },
   {
   title: "NFTdot.io - create.sell.buy.collect",
@@ -656,7 +656,7 @@ const Showcases = [
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["token", "nft"],
   },
   {
     title: "H.Y.P.E. Skulls",
@@ -674,7 +674,7 @@ const Showcases = [
     preview: require("./showcase/cardano-tools.io.png"),
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
-    tags: ["tokens", "nft", "opensource"],
+    tags: ["token", "nft", "opensource"],
   },
   {
     title: "Veritree",
@@ -683,7 +683,7 @@ const Showcases = [
     preview: require("./showcase/veritree.png"),
     website: "https://veritree.com",
     source: null,
-    tags: ["tokens", "nft"],
+    tags: ["token", "nft"],
   },
   {
     title: "Typhon Wallet",

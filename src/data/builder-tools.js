@@ -30,8 +30,8 @@ export const Tags = {
 
   // API
   api: {
-    label: "APIs",
-    description: "Cardano APIs.",
+    label: "API",
+    description: "Cardano API.",
     icon: null,
     color: '#39ca30',
   },
@@ -46,9 +46,9 @@ export const Tags = {
 
   // Library
   library: {
-    label: "Libraries",
+    label: "Library",
     description:
-      "Cardano libraries.",
+      "Cardano library.",
     icon: null,
     color: '#a44fb7',
   },
@@ -81,7 +81,7 @@ export const Tags = {
 
   // Stake Pool Operator Tools
   operatortool: {
-    label: "Operator Tools",
+    label: "Operator Tool",
     description:
       "Stake pool operator tools.",
     icon: null,
@@ -90,7 +90,7 @@ export const Tags = {
 
   // Oracle Tools
   oracle: {
-    label: "Oracle Tools",
+    label: "Oracle",
     description:
       "Oracle tools.",
     icon: null,
