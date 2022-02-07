@@ -99,6 +99,22 @@ export const Tags = {
     color: '#4267b2', 
   },
 
+  // Marketplace 
+  marketplace: {
+    label: "Marketplace",
+    description: "Marketplace where you can buy or sell nfts.",
+    icon: null,
+    color: '#f44f25',
+  },
+
+  // Minting 
+  minting: {
+    label: "Minting",
+    description: "Minting Tool",
+    icon: null,
+    color: '#23a5da',
+  },
+  
   // Meta data projects
   metadata: {
     label: "Metadata",
@@ -188,7 +204,7 @@ const Showcases = [
     preview: require("./showcase/nft-maker.png"),
     website: "https://www.nft-maker.io",
     source: null,
-    tags: ["favorite", "token", "nftsupport"],
+    tags: ["favorite", "minting", "nftsupport"],
   },
   {
     title: "SpaceBudz",
@@ -345,7 +361,7 @@ const Showcases = [
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
-    tags: ["token", "analytics"],
+    tags: ["analytics"],
   },
   {
     title: "NFTea",
@@ -396,7 +412,7 @@ const Showcases = [
     preview: require("./showcase/adatools.png"),
     website: "https://adatools.io/hologram",
     source: null,
-    tags: ["pooltool", "analytics", "token"],
+    tags: ["pooltool", "analytics"],
   },
   {
     title: "Cardano Blockchain Insights",
@@ -414,7 +430,7 @@ const Showcases = [
     preview: require("./showcase/tokentool.png"),
     website: "https://tokentool.io",
     source: null,
-    tags: ["token"],
+    tags: ["token", "analytics"],
   },
   {
     title: "Transaction Meta Data Browser",
@@ -647,7 +663,7 @@ const Showcases = [
     preview: require("./showcase/token-builder.png"),
     website: "https://cardano-native-token.com/",
     source: null,
-    tags: ["token", "nftsupport"],
+    tags: ["minting", "token", "nftsupport"],
   },
   {
   title: "NFTdot.io - create.sell.buy.collect",
@@ -665,7 +681,7 @@ const Showcases = [
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
-    tags: ["token", "nftsupport"],
+    tags: ["marketplace", "nftsupport"],
   },
   {
     title: "H.Y.P.E. Skulls",
@@ -683,7 +699,7 @@ const Showcases = [
     preview: require("./showcase/cardano-tools.io.png"),
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
-    tags: ["token", "nftsupport", "opensource"],
+    tags: ["minting", "nftsupport", "opensource"],
   },
   {
     title: "Veritree",
@@ -737,7 +753,7 @@ const Showcases = [
     preview: require("./showcase/muesliswap.png"),
     website: "https://ada.muesliswap.com",
     source: null,
-    tags: ["dex"],
+    tags: ["dex", "token"],
   },
   {
     title: "SundaeSwap",
@@ -746,7 +762,7 @@ const Showcases = [
     preview: require("./showcase/sundaeswap.png"),
     website: "https://www.sundaeswap.finance",
     source: null,
-    tags: ["dex"],
+    tags: ["dex", "token"],
   },
   {
     title: "Flint Wallet",
