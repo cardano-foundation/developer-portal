@@ -23,7 +23,6 @@ const DESCRIPTION = "Tools to help you build on Cardano";
 const CTA = "Add your tool";
 const FILENAME = "builder-tools.js";
 
-//Preview
 export function prepareUserState() {
   if (ExecutionEnvironment.canUseDOM) {
     return {
