@@ -18,7 +18,7 @@ If you want to avoid compiling the binaries yourself, You can download the lates
 
 - [Linux](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-linux64/latest)
 - [MacOS](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-macos64/latest)
-- [Windows](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-macos64/latest)
+- [Windows](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-win64/latest)
   
 This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
 
