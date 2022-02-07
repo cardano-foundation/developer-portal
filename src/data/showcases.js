@@ -249,7 +249,7 @@ const Showcases = [
     preview: require("./showcase/cardanoscan.png"),
     website: "https://cardanoscan.io/",
     source: null,
-    tags: ["explorer"],
+    tags: ["favorite", "explorer"],
   },
   {
     title: "Pool PM",
@@ -267,7 +267,7 @@ const Showcases = [
     preview: require("./showcase/adafolio.png"),
     website: "https://adafolio.com",
     source: null,
-    tags: ["pooltool"],
+    tags: ["favorite", "pooltool"],
   },
   {
     title: "Adapools",
@@ -361,7 +361,7 @@ const Showcases = [
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
-    tags: ["analytics"],
+    tags: ["favorite", "analytics"],
   },
   {
     title: "NFTea",
@@ -395,7 +395,7 @@ const Showcases = [
     preview: require("./showcase/cardanoupdates.png"),
     website: "https://cardanoupdates.com",
     source: null,
-    tags: ["analytics"],
+    tags: ["favorite", "analytics"],
   },
   {
     title: "Pool Stats",
@@ -422,7 +422,7 @@ const Showcases = [
     website:
       "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
     source: null,
-    tags: ["analytics"],
+    tags: ["favorite", "analytics"],
   },
   {
     title: "Token Tool",
@@ -681,7 +681,7 @@ const Showcases = [
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
-    tags: ["marketplace", "nftsupport"],
+    tags: ["favorite", "marketplace", "nftsupport"],
   },
   {
     title: "H.Y.P.E. Skulls",
@@ -753,7 +753,7 @@ const Showcases = [
     preview: require("./showcase/muesliswap.png"),
     website: "https://ada.muesliswap.com",
     source: null,
-    tags: ["dex", "token"],
+    tags: ["favorite", "dex", "token"],
   },
   {
     title: "SundaeSwap",
@@ -762,7 +762,7 @@ const Showcases = [
     preview: require("./showcase/sundaeswap.png"),
     website: "https://www.sundaeswap.finance",
     source: null,
-    tags: ["dex", "token"],
+    tags: ["favorite", "dex", "token"],
   },
   {
     title: "Flint Wallet",
