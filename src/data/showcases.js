@@ -32,11 +32,11 @@ import { sortBy, difference } from "../utils/jsUtils";
 // List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
   // PLEASE DO NOT USE THIS TAG: we choose the features projects (process TBD)
-  featured: {
-    label: "Featured",
+  favorite: {
+    label: "Favorite",
     description:
       "Our favorite Cardano projects that you must absolutely check-out.",
-    icon: <>⭐️</>,
+      color: '#e9669e',
   },
 
   // Analytics
@@ -44,6 +44,7 @@ export const Tags = {
     label: "Analytics",
     description: "Tools that provide special insights related to Cardano.",
     icon: null,
+    color: '#39ca30',
   },
 
   // Cardano Block Explorers
@@ -52,6 +53,7 @@ export const Tags = {
     description:
       "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
     icon: null,
+    color: '#293133',
   },
 
   // Educational
@@ -60,6 +62,7 @@ export const Tags = {
     description:
       "Educational projects that will help you onboarding to Cardano.",
     icon: null,
+    color: '#a44fb7',
   },
  
   // Games
@@ -67,6 +70,7 @@ export const Tags = {
     label: "Games",
     description: "Games on the Cardano blockchain.",
     icon: null,
+    color: '#127f82'
   },
 
   // Gateways
@@ -74,6 +78,7 @@ export const Tags = {
     label: "Gateways",
     description: "Payment Gateway Providers.",
     icon: null,
+    color: '#fe6829',
   },
 
   // For open-source sites, a link to the source code is required
@@ -81,6 +86,7 @@ export const Tags = {
     label: "Open-Source",
     description: "Open-Source sites can be useful for inspiration.",
     icon: null,
+    color: '#8c2f00',
   },
 
   // Pool Tools
@@ -89,6 +95,7 @@ export const Tags = {
     description:
       "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
+    color: '#4267b2', 
   },
 
   // Meta data projects
@@ -96,6 +103,7 @@ export const Tags = {
     label: "Metadata",
     description: "Transaction metadata",
     icon: null,
+    color: '#14cfc3',
   },
 
   // Native tokens related projects
@@ -103,6 +111,7 @@ export const Tags = {
     label: "Native Tokens",
     description: "Native Tokens",
     icon: null,
+    color: '#E63244'
   },
 
   // NFT projects
@@ -110,6 +119,7 @@ export const Tags = {
     label: "NFT",
     description: "Non-Fungible Token (NFT)",
     icon: null,
+    color: '#F5D033'
   },
 
   // Wallets
@@ -118,6 +128,7 @@ export const Tags = {
     description:
       "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
+    color: '#7BC8A6'
   },
 
   // DEX
@@ -125,11 +136,12 @@ export const Tags = {
     label: "DEX",
     description: "DEX allows direct peer-to-peer cryptocurrency transactions to take place online securely.",
     icon: null,
+    color: '#1B32F0'
   },
 };
 
 // Add your project to (THE END OF) this list.
-// Please don't add the "featured"-tag yourself.
+// Please don't add the "favorite"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 const Showcases = [
   {
@@ -148,7 +160,7 @@ const Showcases = [
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
-    tags: ["featured", "metadata"],
+    tags: ["favorite", "metadata"],
   },
   {
     title: "Crypto Heroez",
@@ -167,7 +179,7 @@ const Showcases = [
     preview: require("./showcase/nft-maker.png"),
     website: "https://www.nft-maker.io",
     source: null,
-    tags: ["featured", "tokens", "nft"],
+    tags: ["favorite", "tokens", "nft"],
   },
   {
     title: "SpaceBudz",
@@ -176,7 +188,7 @@ const Showcases = [
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: "https://github.com/Berry-Pool/spacebudz",
-    tags: ["featured", "nft", "opensource"],
+    tags: ["favorite", "nft", "opensource"],
   },
   {
     title: "ADAex",
@@ -275,7 +287,7 @@ const Showcases = [
     preview: require("./showcase/daedalus.png"),
     website: "https://daedaluswallet.io",
     source: "https://github.com/input-output-hk/daedalus",
-    tags: ["wallet", "opensource", "featured"],
+    tags: ["wallet", "opensource", "favorite"],
   },
   {
     title: "Yoroi",
@@ -402,7 +414,7 @@ const Showcases = [
     preview: require("./showcase/transaction-meta-data-browser.png"),
     website: "https://bi.stakepoolcentral.com/transactiondata",
     source: null,
-    tags: ["featured", "metadata"],
+    tags: ["favorite", "metadata"],
   },
   {
     title: "PoolTool Mobile",
@@ -411,7 +423,7 @@ const Showcases = [
     preview: require("./showcase/pooltoolmobile.png"),
     website: "https://pooltool.io/mobile",
     source: null,
-    tags: ["featured", "pooltool", "analytics"],
+    tags: ["favorite", "pooltool", "analytics"],
   },
   {
     title: "Rewards Calendar",
@@ -420,7 +432,7 @@ const Showcases = [
     preview: require("./showcase/rewardscalendar.png"),
     website: "https://dbooster.io/calendar",
     source: null,
-    tags: ["featured", "analytics"],
+    tags: ["favorite", "analytics"],
   },
   {
     title: "NOWPayments",
@@ -429,7 +441,7 @@ const Showcases = [
     preview: require("./showcase/nowpayments.png"),
     website: "https://nowpayments.io",
     source: null,
-    tags: ["featured", "gateway"],
+    tags: ["favorite", "gateway"],
   },
   {
     title: "Coti adaPay",
@@ -447,7 +459,7 @@ const Showcases = [
     preview: require("./showcase/gimbalabs.png"),
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
-    tags: ["featured", "educational", "opensource"],
+    tags: ["favorite", "educational", "opensource"],
   },
   {
     title: "ccwallet.io",
@@ -743,8 +755,8 @@ function sortShowcases() {
   let result = Showcases;
   // Sort by site name
   result = sortBy(result, (showcase) => showcase.title.toLowerCase());
-  // Sort by featured tag, featured first
-  result = sortBy(result, (showcase) => !showcase.tags.includes("featured"));
+  // Sort by favorite tag, favorite first
+  result = sortBy(result, (showcase) => !showcase.tags.includes("favorite"));
   return result;
 }
 

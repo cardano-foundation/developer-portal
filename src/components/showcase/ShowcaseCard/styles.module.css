@@ -5,31 +5,91 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-.showcaseCard {
-  height: 100%;
-}
-
 .showcaseCardImage {
-  max-height: 175px;
   overflow: hidden;
+  height: 150px;
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
 }
 
-.titleIconsRow {
+.showcaseCardHeader {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.titleIconsRowTitle {
-  flex: 1;
+.showcaseCardTitle {
+  margin-bottom: 0;
+  flex: 1 1 auto;
 }
 
-.titleIconsRowIcons {
-  flex-grow: 0;
-  flex-shrink: 0;
+.showcaseCardTitle a {
+  text-decoration: none;
+  background: linear-gradient(
+      var(--ifm-color-primary),
+      var(--ifm-color-primary)
+    )
+    0% 100% / 0% 1px no-repeat;
+  transition: background-size ease-out 200ms;
 }
 
-.tagIcon {
-  margin: 0.2rem;
-  user-select: none;
+.showcaseCardTitle a:not(:focus):hover {
+  background-size: 100% 1px;
+}
+
+.showcaseCardTitle,
+.showcaseCardHeader .svgIconFavorite {
+  margin-right: 0.25rem;
+}
+
+.showcaseCardSrcBtn {
+  margin-left: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: none !important;
+}
+
+.showcaseCardSrcBtn:focus-visible {
+  background-color: var(--ifm-color-secondary-dark);
+}
+
+html[data-theme='dark'] .showcaseCardSrcBtn {
+  background-color: var(--ifm-color-emphasis-200) !important;
+  color: inherit;
+}
+
+html[data-theme='dark'] .showcaseCardSrcBtn:hover {
+  background-color: var(--ifm-color-emphasis-300) !important;
+}
+
+.showcaseCardBody {
+  font-size: smaller;
+  line-height: 1.66;
+}
+
+.cardFooter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.675rem;
+  border: 1px solid var(--ifm-color-secondary-darkest);
+  cursor: default;
+  margin-right: 6px;
+  margin-bottom: 6px !important;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tag .textLabel {
+  margin-left: 8px;
+}
+
+.tag .colorLabel {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-left: 6px;
+  margin-right: 6px;
 }
