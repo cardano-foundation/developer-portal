@@ -18,7 +18,6 @@
   --ifm-color-primary-lightest: #325CBD;
   --ifm-code-font-size: 95%;
   --ifm-footer-link-hover-color: #6684CE;
-  --site-color-favorite-background: #f6fdfd;
 }
 
 html[data-theme="dark"] {
@@ -30,7 +29,6 @@ html[data-theme="dark"] {
   --ifm-color-primary-lighter: #6684CE;
   --ifm-color-primary-lightest: #6684CE;
   --ifm-code-font-size: 95%;
-  --site-color-favorite-background: #1d1e1e;
 }
 
 .button {
