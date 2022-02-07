@@ -19,6 +19,7 @@
  * - The GitHub account must have a history/or already be known in the Cardano community.
  * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
  *   details like which project was first is tribal attribute known to cause rift and conflicts.
+ * - IF YOU ADD A PROJECT WHICH MAIN COMPONENT IS NFT, PLEASE SELECT "NFTPROJECT" AS TAG. (NOT "NFTSUPPORT")
  *
  * INSTRUCTIONS:
  * - Add your project in the JSON array below.
@@ -114,13 +115,21 @@ export const Tags = {
     color: '#E63244'
   },
 
-  // NFT projects
-  nft: {
-    label: "NFT",
-    description: "Non-Fungible Token (NFT)",
+  // NFT (example: a wallet or marketplace)
+  nftsupport: {
+    label: "NFT support",
+    description: "A project that supports NFT.",
     icon: null,
-    color: '#F5D033'
+    color: '#D19412'
   },
+
+  // NFT Project (example: Spacebudz, Cardano Kidz)
+  nftproject: {
+      label: "NFT project",
+      description: "A project which main component is NFT.",
+      icon: null,
+      color: '#F5D033'
+    },
 
   // Wallets
   wallet: {
@@ -151,7 +160,7 @@ const Showcases = [
     preview: require("./showcase/cardanokidz.png"),
     website: "https://www.cardanokidz.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Cardano Wall",
@@ -169,7 +178,7 @@ const Showcases = [
     preview: require("./showcase/cryptoheroez.png"),
     website: "https://cryptoheroez.io",
     source: null,
-    tags: ["nft", "game"],
+    tags: ["nftproject", "game"],
   },
 
   {
@@ -179,7 +188,7 @@ const Showcases = [
     preview: require("./showcase/nft-maker.png"),
     website: "https://www.nft-maker.io",
     source: null,
-    tags: ["favorite", "token", "nft"],
+    tags: ["favorite", "token", "nftsupport"],
   },
   {
     title: "SpaceBudz",
@@ -188,7 +197,7 @@ const Showcases = [
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: "https://github.com/Berry-Pool/spacebudz",
-    tags: ["favorite", "nft", "opensource"],
+    tags: ["favorite", "nftproject", "opensource"],
   },
   {
     title: "ADAex",
@@ -304,7 +313,7 @@ const Showcases = [
     preview: require("./showcase/cryptomage.png"),
     website: "https://cryptomage.net",
     source: null,
-    tags: ["nft", "game"],
+    tags: ["nftproject", "game"],
   },
   {
     title: "Cardano Warriors",
@@ -312,7 +321,7 @@ const Showcases = [
     preview: require("./showcase/cardanowarriors.png"),
     website: "https://www.cardanowarriors.io",
     source: null,
-    tags: ["nft", "game"],
+    tags: ["nftproject", "game"],
   },
   {
     title: "Native Tokens",
@@ -328,7 +337,7 @@ const Showcases = [
     preview: require("./showcase/cardanocubes.png"),
     website: "https://cardanocubes.com",
     source: null,
-    tags: ["nft", "game"],
+    tags: ["nftproject", "game"],
   },
   {
     title: "Cardano Assets",
@@ -344,7 +353,7 @@ const Showcases = [
     preview: require("./showcase/nftea.png"),
     website: "https://cardanonftea.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Cardano Bits",
@@ -352,7 +361,7 @@ const Showcases = [
     preview: require("./showcase/cardanobits.png"),
     website: "https://cardanobits.art",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Crypto Knitties",
@@ -361,7 +370,7 @@ const Showcases = [
     preview: require("./showcase/cryptoknitties.png"),
     website: "https://adaknitties.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Cardano Updates",
@@ -477,7 +486,7 @@ const Showcases = [
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "ADA Dolls",
@@ -486,7 +495,7 @@ const Showcases = [
     preview: require("./showcase/ada-dolls.png"),
     website: "https://adadolls.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "ADA Monsterz",
@@ -495,7 +504,7 @@ const Showcases = [
     preview: require("./showcase/ada-monsterz.png"),
     website: "https://adamonsterz.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Canuckz NFTs",
@@ -504,7 +513,7 @@ const Showcases = [
     preview: require("./showcase/canuckz.png"),
     website: "https://canuckz-nft.io",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Cardacity",
@@ -513,7 +522,7 @@ const Showcases = [
     preview: require("./showcase/cardacity.png"),
     website: "https://carda.city",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Cardano Gods",
@@ -522,7 +531,7 @@ const Showcases = [
     preview: require("./showcase/cardano-gods.png"),
     website: "https://cardanogods.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Cardano Idols",
@@ -531,7 +540,7 @@ const Showcases = [
     preview: require("./showcase/cardano-idols.png"),
     website: "https://www.cardanoidols.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Cardinos",
@@ -540,7 +549,7 @@ const Showcases = [
     preview: require("./showcase/cardinos.png"),
     website: "https://cardinos.io",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Clay Mates",
@@ -549,7 +558,7 @@ const Showcases = [
     preview: require("./showcase/clay-mates.png"),
     website: "https://www.claymates.org",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Crypto Doggies",
@@ -558,7 +567,7 @@ const Showcases = [
     preview: require("./showcase/crypto-doggies.png"),
     website: "https://cryptodoggies.org",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "The Galgos",
@@ -567,7 +576,7 @@ const Showcases = [
     preview: require("./showcase/the-galgos.png"),
     website: "https://thegalgos.io",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "The Hoskinsons",
@@ -576,7 +585,7 @@ const Showcases = [
     preview: require("./showcase/the-hoskinsons.png"),
     website: "https://thehoskinsons.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "DEADPXLZ",
@@ -585,7 +594,7 @@ const Showcases = [
     preview: require("./showcase/deadpxlz.png"),
     website: "https://pxlz.org",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Kryptoids",
@@ -594,7 +603,7 @@ const Showcases = [
     preview: require("./showcase/kryptoids.png"),
     website: "https://kryptoids.monster",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "JES-Art",
@@ -603,7 +612,7 @@ const Showcases = [
     preview: require("./showcase/jesart.png"),
     website: "https://www.jes-art.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Stellar Hood",
@@ -612,7 +621,7 @@ const Showcases = [
     preview: require("./showcase/stellarhood.png"),
     website: "https://stellarhood.com",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Nami",
@@ -621,7 +630,7 @@ const Showcases = [
     preview: require("./showcase/namiwallet.png"),
     website: "https://namiwallet.io",
     source: "https://github.com/Berry-Pool/nami-wallet",
-    tags: ["wallet", "opensource", "nft"],
+    tags: ["wallet", "opensource", "nftsupport"],
   },
   {
     title: "Politikoz | NFTs on Cardano!",
@@ -629,7 +638,7 @@ const Showcases = [
     preview: require("./showcase/politikoz.png"),
     website: "https://www.politikoz.io",
     source: null,
-    tags: ["nft", "game"],
+    tags: ["nftproject", "game"],
   },
   {
     title: "Cardano Token and NFT Builder",
@@ -638,7 +647,7 @@ const Showcases = [
     preview: require("./showcase/token-builder.png"),
     website: "https://cardano-native-token.com/",
     source: null,
-    tags: ["token", "nft"],
+    tags: ["token", "nftsupport"],
   },
   {
   title: "NFTdot.io - create.sell.buy.collect",
@@ -647,7 +656,7 @@ const Showcases = [
     preview: require("./showcase/nftdot.png"),
     website: "https://www.nftdot.io",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "Tokhun.io",
@@ -656,7 +665,7 @@ const Showcases = [
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
-    tags: ["token", "nft"],
+    tags: ["token", "nftsupport"],
   },
   {
     title: "H.Y.P.E. Skulls",
@@ -665,7 +674,7 @@ const Showcases = [
     preview: require("./showcase/hypeskulls.png"),
     website: "https://seehype.com/",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "cardano-tools.io",
@@ -674,7 +683,7 @@ const Showcases = [
     preview: require("./showcase/cardano-tools.io.png"),
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
-    tags: ["token", "nft", "opensource"],
+    tags: ["token", "nftsupport", "opensource"],
   },
   {
     title: "Veritree",
@@ -683,7 +692,7 @@ const Showcases = [
     preview: require("./showcase/veritree.png"),
     website: "https://veritree.com",
     source: null,
-    tags: ["token", "nft"],
+    tags: ["token", "nftproject"],
   },
   {
     title: "Typhon Wallet",
@@ -692,7 +701,7 @@ const Showcases = [
     preview: require("./showcase/typhonwallet.png"),
     website: "https://typhonwallet.io",
     source: null,
-    tags: ["wallet", "nft", "metadata"],
+    tags: ["wallet", "nftsupport", "metadata"],
   },
   {
     title: "Staking Rewards Calculator",
@@ -710,7 +719,7 @@ const Showcases = [
     preview: require("./showcase/cardahub.png"),
     website: "https://cardahub.io",
     source: null,
-    tags: ["nft"],
+    tags: ["nftproject"],
   },
   {
     title: "ADAdice",
@@ -746,7 +755,7 @@ const Showcases = [
     preview: require("./showcase/flintwallet.png"),
     website: "https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj",
     source: null,
-    tags: ["wallet", "nft", "metadata"],
+    tags: ["wallet", "nftsupport", "metadata"],
   },
 ];
 
