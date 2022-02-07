@@ -493,7 +493,7 @@ const Showcases = [
     preview: require("./showcase/ccwallet.png"),
     website: "https://ccwallet.io",
     source: null,
-    tags: ["wallet"],
+    tags: ["favorite", "wallet"],
   },
   {
     title: "Jetchicken",
@@ -646,7 +646,7 @@ const Showcases = [
     preview: require("./showcase/namiwallet.png"),
     website: "https://namiwallet.io",
     source: "https://github.com/Berry-Pool/nami-wallet",
-    tags: ["wallet", "opensource", "nftsupport"],
+    tags: ["favorite", "wallet", "opensource", "nftsupport"],
   },
   {
     title: "Politikoz | NFTs on Cardano!",
@@ -717,7 +717,7 @@ const Showcases = [
     preview: require("./showcase/typhonwallet.png"),
     website: "https://typhonwallet.io",
     source: null,
-    tags: ["wallet", "nftsupport", "metadata"],
+    tags: ["favorite", "wallet", "nftsupport", "metadata"],
   },
   {
     title: "Staking Rewards Calculator",
@@ -771,7 +771,7 @@ const Showcases = [
     preview: require("./showcase/flintwallet.png"),
     website: "https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj",
     source: null,
-    tags: ["wallet", "nftsupport", "metadata"],
+    tags: ["favorite", "wallet", "nftsupport", "metadata"],
   },
 ];
 
