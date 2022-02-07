@@ -151,9 +151,7 @@ function ShowcaseFilters() {
       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
         <div>
           <h2>Filters</h2>
-          <span>{`${filteredProjects.length} site${
-            filteredProjects.length > 1 ? 's' : ''
-          }`}</span>
+          <span>{`${filteredProjects.length} builder tools`}</span>
         </div>
         <ShowcaseFilterToggle />
       </div>
