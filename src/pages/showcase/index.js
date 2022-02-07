@@ -281,7 +281,7 @@ function SearchBar() {
     <div className={styles.searchContainer}>
       <input
         id="searchbar"
-        placeholder="Search project..."
+        placeholder="Search projects..."
         value={value ?? undefined}
         onInput={(e) => {
           setValue(e.currentTarget.value);
