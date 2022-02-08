@@ -258,7 +258,7 @@ const Showcases = [
     preview: require("./showcase/poolpm.png"),
     website: "https://pool.pm",
     source: null,
-    tags: ["explorer"],
+    tags: ["favorite", "favorite", "explorer"],
   },
   {
     title: "Adafolio",
@@ -285,7 +285,7 @@ const Showcases = [
     preview: require("./showcase/pooltool.png"),
     website: "https://pooltool.io",
     source: null,
-    tags: ["pooltool", "analytics"],
+    tags: ["favorite", "pooltool", "analytics"],
   },
   {
     title: "AdaLite",
@@ -430,7 +430,7 @@ const Showcases = [
     preview: require("./showcase/tokentool.png"),
     website: "https://tokentool.io",
     source: null,
-    tags: ["token", "analytics"],
+    tags: ["favorite", "token", "analytics"],
   },
   {
     title: "Transaction Meta Data Browser",
