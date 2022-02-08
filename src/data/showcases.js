@@ -726,7 +726,7 @@ const Showcases = [
     preview: require("./showcase/cardahub.png"),
     website: "https://cardahub.io",
     source: null,
-    tags: ["nftproject"],
+    tags: ["marketplace", "minting", "nftsupport"],
   },
   {
     title: "ADAdice",
