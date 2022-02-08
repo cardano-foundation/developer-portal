@@ -666,15 +666,6 @@ const Showcases = [
     tags: ["minting", "token", "nftsupport"],
   },
   {
-  title: "NFTdot.io - create.sell.buy.collect",
-    description:
-      "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
-    preview: require("./showcase/nftdot.png"),
-    website: "https://www.nftdot.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "Tokhun.io",
     description:
         "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
