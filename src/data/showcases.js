@@ -773,6 +773,15 @@ const Showcases = [
     source: null,
     tags: ["minting", "token"],
   },
+  {
+    title: "World Mobile Token",
+    description:
+      "Connecting everyone, everywhere. A mobile network owned by the people and built on blockchain.",
+    preview: require("./showcase/wmt.png"),
+    website: "https://worldmobile.io",
+    source: null,
+    tags: ["token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
