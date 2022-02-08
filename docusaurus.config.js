@@ -80,7 +80,7 @@ module.exports = {
       items: [
         {
           to: "tools",
-          label: "Tools",
+          label: "Builder Tools",
           position: "left",
         },
         {

@@ -44,6 +44,24 @@ export const Tags = {
     color: '#dfd545',
   },
 
+  // Java
+  java: {
+    label: "Java",
+    description:
+      "Java language",
+    icon: null,
+    color: '#d5232d',
+    },
+
+  // JavaScript
+  javascript: {
+    label: "JavaScript",
+    description:
+      "JavaScript language",
+    icon: null,
+    color: '#921f32',
+    },
+
   // Library
   library: {
     label: "Library",
@@ -70,6 +88,14 @@ export const Tags = {
     color: '#fe6829',
   },
 
+  // .NET
+  net: {
+    label: ".NET",
+    description: ".NET language",
+    icon: null,
+    color: '#e46fd9',
+  },
+
   // Plutus
   plutus: {
     label: "Plutus",
@@ -77,6 +103,15 @@ export const Tags = {
       "Plutus",
     icon: null,
     color: '#8c2f00',
+  },
+
+  // Python
+  python: {
+    label: "Python",
+    description:
+      "Python language",
+    icon: null,
+    color: '#5dc942',
   },
 
   // Stake Pool Operator Tools
@@ -151,7 +186,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-client-lib.png"),
     website: "https://github.com/bloxbean/cardano-client-lib",
     getstarted: null,
-    tags: ["library"],
+    tags: ["library", "java"],
   },
   {
     title: "cardano-addresses TypeScript binding",
@@ -159,7 +194,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-addresses-typescript-binding.png"),
     website: "https://www.npmjs.com/package/cardano-addresses",
     getstarted: null,
-    tags: ["api"],
+    tags: ["api", "javascript"],
   },
   {
     title: "Heidrun",
@@ -176,7 +211,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-wallet-js.png"),
     website: "https://github.com/tango-crypto/cardano-wallet-js",
     getstarted: "/docs/get-started/cardano-wallet-js",
-    tags: ["getstarted", "library"]
+    tags: ["getstarted", "library", "javascript"]
   },
   {
     title: "CardanoSharp Wallet",
@@ -185,7 +220,7 @@ const Showcases = [
     preview: require("./builder-tools/cardanosharp.png"),
     website: "https://www.cardanosharp.com",
     getstarted: "/docs/get-started/cardanosharp-wallet",
-    tags: ["getstarted", "library"],
+    tags: ["favorite", "getstarted", "library", "net"],
   },
   {
     title: "Cardano Metadata Oracle",
@@ -209,7 +244,7 @@ const Showcases = [
     preview: require("./builder-tools/libada-go.png"),
     website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
-    tags: ["library"],
+    tags: ["favorite", "library"],
   },
   {
     title: "Pooldata API",
@@ -225,7 +260,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-python.png"),
     website: "https://github.com/emesik/cardano-python",
     getstarted: null,
-    tags: ["library", "api"],
+    tags: ["library", "api", "python"],
   },
   {
     title: "Plutus Playground",
@@ -267,7 +302,7 @@ const Showcases = [
     preview: require("./builder-tools/fracada.png"),
     website: "https://github.com/dcSpark/fracada",
     getstarted: null,
-    tags: ["plutus", "nft"],
+    tags: ["favorite", "plutus", "nft"],
   },
   {
     title: "Cardano Light Tools",
@@ -284,7 +319,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-wallet-interface.png"),
     website: "https://github.com/HarmonicPool/cardano-wallet-interface",
     getstarted: null,
-    tags: ["library"],
+    tags: ["library", "javascript"],
   },
   {
     title: "Plutus Fee Estimator",
@@ -309,7 +344,7 @@ const Showcases = [
     preview: require("./builder-tools/pycardano.png"),
     website: "https://github.com/cffls/pycardano",
     getstarted: null,
-    tags: ["library", "api"],
+    tags: ["library", "api", "python"],
   }
 ];
 
