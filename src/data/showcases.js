@@ -487,13 +487,13 @@ const Showcases = [
     tags: ["favorite", "educational", "opensource"],
   },
   {
-    title: "ccwallet.io",
+    title: "ccvault.io",
     description:
       "The alternative Cardano light wallet in the browser. Aims to add features most requested by the Cardano community.",
-    preview: require("./showcase/ccwallet.png"),
-    website: "https://ccwallet.io",
+    preview: require("./showcase/ccvault.png"),
+    website: "https://ccvault.io",
     source: null,
-    tags: ["favorite", "wallet"],
+    tags: ["favorite", "wallet", "nftsupport"],
   },
   {
     title: "Jetchicken",
