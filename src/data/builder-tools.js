@@ -220,7 +220,7 @@ const Showcases = [
     preview: require("./builder-tools/cardanosharp.png"),
     website: "https://www.cardanosharp.com",
     getstarted: "/docs/get-started/cardanosharp-wallet",
-    tags: ["getstarted", "library", "net"],
+    tags: ["favorite", "getstarted", "library", "net"],
   },
   {
     title: "Cardano Metadata Oracle",
@@ -244,7 +244,7 @@ const Showcases = [
     preview: require("./builder-tools/libada-go.png"),
     website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
-    tags: ["library"],
+    tags: ["favorite", "library"],
   },
   {
     title: "Pooldata API",
@@ -302,7 +302,7 @@ const Showcases = [
     preview: require("./builder-tools/fracada.png"),
     website: "https://github.com/dcSpark/fracada",
     getstarted: null,
-    tags: ["plutus", "nft"],
+    tags: ["favorite", "plutus", "nft"],
   },
   {
     title: "Cardano Light Tools",
