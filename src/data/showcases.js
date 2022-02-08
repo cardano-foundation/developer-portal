@@ -782,6 +782,15 @@ const Showcases = [
     source: null,
     tags: ["token"],
   },
+  {
+    title: "epoch.art",
+    description:
+      "A Cardano NFT marketplace to discover, collect and trade unique exciting digital arts.",
+    preview: require("./showcase/epochart.png"),
+    website: "https://epoch.art",
+    source: null,
+    tags: ["marketplace", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
