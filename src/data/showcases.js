@@ -791,6 +791,15 @@ const Showcases = [
     source: null,
     tags: ["marketplace", "nftsupport"],
   },
+  {
+    title: "Open CNFT",
+    description:
+      "Leaderboards & Analytics of the Cardano NFT ecosystem.",
+    preview: require("./showcase/opencnft.png"),
+    website: "https://opencnft.io",
+    source: null,
+    tags: ["analytics", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
