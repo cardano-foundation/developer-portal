@@ -773,6 +773,15 @@ const Showcases = [
     source: null,
     tags: ["favorite", "wallet", "nftsupport", "metadata"],
   },
+  {
+    title: "DripDropz",
+    description:
+      "We provide token dispensing services to the Cardano community. An intuitive platform that offers projects a comprehensive selection of distribution parameters.",
+    preview: require("./showcase/dripdropz.png"),
+    website: "https://dripdropz.io",
+    source: null,
+    tags: ["minting", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
