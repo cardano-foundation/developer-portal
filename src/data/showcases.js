@@ -258,7 +258,7 @@ const Showcases = [
     preview: require("./showcase/poolpm.png"),
     website: "https://pool.pm",
     source: null,
-    tags: ["explorer"],
+    tags: ["favorite", "favorite", "explorer"],
   },
   {
     title: "Adafolio",
@@ -285,7 +285,7 @@ const Showcases = [
     preview: require("./showcase/pooltool.png"),
     website: "https://pooltool.io",
     source: null,
-    tags: ["pooltool", "analytics"],
+    tags: ["favorite", "pooltool", "analytics"],
   },
   {
     title: "CardaStat",
@@ -439,7 +439,7 @@ const Showcases = [
     preview: require("./showcase/tokentool.png"),
     website: "https://tokentool.io",
     source: null,
-    tags: ["token", "analytics"],
+    tags: ["favorite", "token", "analytics"],
   },
   {
     title: "Transaction Meta Data Browser",
@@ -496,13 +496,13 @@ const Showcases = [
     tags: ["favorite", "educational", "opensource"],
   },
   {
-    title: "ccwallet.io",
+    title: "ccvault.io",
     description:
       "The alternative Cardano light wallet in the browser. Aims to add features most requested by the Cardano community.",
-    preview: require("./showcase/ccwallet.png"),
-    website: "https://ccwallet.io",
+    preview: require("./showcase/ccvault.png"),
+    website: "https://ccvault.io",
     source: null,
-    tags: ["favorite", "wallet"],
+    tags: ["favorite", "wallet", "nftsupport"],
   },
   {
     title: "Jetchicken",
@@ -675,15 +675,6 @@ const Showcases = [
     tags: ["minting", "token", "nftsupport"],
   },
   {
-  title: "NFTdot.io - create.sell.buy.collect",
-    description:
-      "NFTs are to physical art what music streaming is to vinyl. NFTdot enable users to create NFT & tokens, sell, buy or collect without limits",
-    preview: require("./showcase/nftdot.png"),
-    website: "https://www.nftdot.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "Tokhun.io",
     description:
         "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
@@ -744,7 +735,7 @@ const Showcases = [
     preview: require("./showcase/cardahub.png"),
     website: "https://cardahub.io",
     source: null,
-    tags: ["nftproject"],
+    tags: ["marketplace", "minting", "nftsupport"],
   },
   {
     title: "ADAdice",
@@ -781,6 +772,42 @@ const Showcases = [
     website: "https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj",
     source: null,
     tags: ["favorite", "wallet", "nftsupport", "metadata"],
+  },
+  {
+    title: "DripDropz",
+    description:
+      "We provide token dispensing services to the Cardano community. An intuitive platform that offers projects a comprehensive selection of distribution parameters.",
+    preview: require("./showcase/dripdropz.png"),
+    website: "https://dripdropz.io",
+    source: null,
+    tags: ["minting", "token"],
+  },
+  {
+    title: "World Mobile Token",
+    description:
+      "Connecting everyone, everywhere. A mobile network owned by the people and built on blockchain.",
+    preview: require("./showcase/wmt.png"),
+    website: "https://worldmobile.io",
+    source: null,
+    tags: ["token"],
+  },
+  {
+    title: "epoch.art",
+    description:
+      "A Cardano NFT marketplace to discover, collect and trade unique exciting digital arts.",
+    preview: require("./showcase/epochart.png"),
+    website: "https://epoch.art",
+    source: null,
+    tags: ["marketplace", "nftsupport"],
+  },
+  {
+    title: "Open CNFT",
+    description:
+      "Leaderboards & Analytics of the Cardano NFT ecosystem.",
+    preview: require("./showcase/opencnft.png"),
+    website: "https://opencnft.io",
+    source: null,
+    tags: ["analytics", "nftsupport"],
   },
 ];
 
