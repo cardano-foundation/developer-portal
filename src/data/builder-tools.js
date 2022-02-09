@@ -114,6 +114,15 @@ export const Tags = {
     color: '#5dc942',
   },
 
+  // Rust
+  rust: {
+    label: "Rust",
+    description:
+      "Rust language",
+    icon: null,
+    color: '#7e6a4c',
+  },
+
   // Stake Pool Operator Tools
   operatortool: {
     label: "Operator Tool",
@@ -152,7 +161,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
     getstarted: "/docs/get-started/cardano-serialization-lib/overview",
-    tags: ["favorite", "getstarted", "library"],
+    tags: ["favorite", "getstarted", "library", "rust"],
   },
   {
     title: "cardanocli-js",
@@ -345,6 +354,15 @@ const Showcases = [
     website: "https://github.com/cffls/pycardano",
     getstarted: null,
     tags: ["library", "api", "python"],
+  },
+  {
+    title: "Oura - the tail of Cardano",
+    description:
+      "Oura is a rust-native implementation of a pipeline that connects to the tip of a Cardano node through a combination of Ouroboros mini-protocol, filters the events that match a particular pattern and then submits a succint, self-contained payload to pluggable observers called 'sinks'.",
+    preview: require("./builder-tools/oura.png"),
+    website: "https://github.com/txpipe/oura",
+    getstarted: null,
+    tags: ["favorite", "rust"],
   }
 ];
 
