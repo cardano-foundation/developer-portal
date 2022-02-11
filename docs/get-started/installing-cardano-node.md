@@ -77,7 +77,7 @@ If you are using a different flavor of Linux, you will need to use the correct p
 
 #### Installing GHC and Cabal
 
-The fastest way to install **GHC** (Glassglow Haskell Compiler) and **Cabal** (Common Architecture for Building Applications and Libraries) is to use [ghcup](https://www.haskell.org/ghcup).
+The fastest way to install **GHC** (Glasgow Haskell Compiler) and **Cabal** (Common Architecture for Building Applications and Libraries) is to use [ghcup](https://www.haskell.org/ghcup).
 
 Use the following command to install `ghcup`
 ```bash
