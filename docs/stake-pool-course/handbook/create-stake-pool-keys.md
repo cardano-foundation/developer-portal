@@ -23,8 +23,6 @@ cardano-cli address key-gen \
 
 This creates two files `payment.vkey` (the _public verification key_) and `payment.skey` (the _private signing key_).
 
-Where the `hex-here` is generated as `0x5880 | xprv | pub | chaincode`
-
 ## Stake key pair
 To generate a _stake key pair_ :
 
