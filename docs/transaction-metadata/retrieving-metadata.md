@@ -41,6 +41,20 @@ In this example, we query the **Cardano Mainnet** for any metadata under the key
 
 Please visit their official [documentation](https://docs.blockfrost.io) to know more.
 
+## Transaction Metadata Explorer
+[Transaction Metadata Explorer](https://bi.stakepoolcentral.com/transactiondata) provides fast and easy access the **Cardano** blockchain metadata.
+
+<img width="700" alt="Transaction Metadata Explorer" src="https://user-images.githubusercontent.com/57766635/154065552-ee5cedbe-8ab2-4a12-a815-ccde746c83bc.png">
+
+**Main features:**
+- Metadata Search engine: search for all metadata containing a particular search phrase.
+- Browse metadata messages by 
+  - popularity
+  - epoch
+  - type (key)
+
+There is also a testnet version available! [Transaction Metadata Explorer (Testnet)](https://bi-testnet.stakepoolcentral.com/transactiondata)
+
 ## cardano-db-sync
 
 @TODO
