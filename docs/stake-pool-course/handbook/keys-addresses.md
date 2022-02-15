@@ -26,22 +26,6 @@ cardano-cli address key-gen \
 ```
 This creates two files `payment.vkey` (the _public verification key_) and `payment.skey` (the _private signing key_).
 
-## Legacy key
-
-To generate Byron-era _payment key_:
-
-Payment key files use the following format:
-
-```json
-{
-    "type": "PaymentSigningKeyByron_ed25519_bip32",
-    "description": "Payment Signing Key",
-    "cborHex": "hex-here"
-}
-```
-
-Where the `hex-here` is generated as `0x5880 | xprv | pub | chaincode`
-
 ## Stake key pair
 To generate a _stake key pair_ :
 
