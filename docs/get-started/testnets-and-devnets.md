@@ -25,6 +25,9 @@ To get free test ada, you need to visit the [Cardano testnet faucet](/docs/integ
 - [explorer.cardano-testnet.iohkdev.io](https://explorer.cardano-testnet.iohkdev.io/) is a testnet block explorer by [IOHK](https://iohk.io).
 - [testnet.cardanoscan.io](https://testnet.cardanoscan.io) is a testnet block explorer by [Cardanoscan](https://cardanoscan.io).
 
+### Which metadata explorers can I use for the Cardano testnet?
+- [bi-testnet.stakepoolcentral.com](https://bi-testnet.stakepoolcentral.com) is a testnet transaction metadata explorer by [CENT](https://cent.stakepoolcentral.com).
+
 ### What kind of monitoring tools are available for the testnet?
 - [Grafana dashboard](https://monitoring.cardano-testnet.iohkdev.io/grafana/d/Oe0reiHef/cardano-application-metrics-v2?orgId=1&refresh=1m&from=now-7d&to=now) provides many health metrics.
 - [tokentool.io](https://tokentool.io) lists all native tokens on mainnet and testnet.
