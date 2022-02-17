@@ -1,6 +1,33 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending February 18th
+
+[2022-02-15]
+ * Update ansible-cardano-node.md (#525) (Moai Pool [MOAI])
+ * Updated with link to the testnet metadata explorer (#522) (CENT)
+
+### Week ending February 11th
+
+[2022-02-09]
+ * Remove Legacy key from Creating keys and addresses (#521) (Jurijs I)
+ * Bump follow-redirects from 1.14.7 to 1.14.8 (#520) (dependabot[bot])
+ * fix compiler name (#519) (Ofir Geller)
+
+[2022-02-08]
+ * Add Oura tool and Rust category tag (#518) (Tommy Kammerer)
+ * Builder tools updates (#517) (Tommy Kammerer)
+
+[2022-02-07]
+ * Showcase updates (#516) (Tommy Kammerer)
+ * CardaStat pool analytics tool to add to showcases. (#511) ([DEN]Ada Cardano Stakepool)
+ * Add PyCardano to builder tools (#508) (Jerry)
+ * Category updates (#515) (Tommy Kammerer)
+
 ### Week ending February 4th
+
+[2022-02-04]
+ * Modify design of Tools and Showcase page (#514) (Fillips Ickevics)
+ * installing-cardano-wallet.md - fix windows url (#513) (Olof Blomqvist)
 
 [2022-02-01]
  * Fix for #496 (but the core problem is trailing slash vs no trailing slash linking) (#505) (Tommy Kammerer)
