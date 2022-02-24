@@ -809,6 +809,15 @@ const Showcases = [
     source: null,
     tags: ["analytics", "nftsupport"],
   },
+  {
+    title: "PS Max Zaxster",
+    description:
+      "We are painting studio transforming our painters work into NFT,finishing special crypto collection cards of famous painters in 2k collection.",
+    preview: require("./showcase/psmaxzaxster.png"),
+    website: "https://www.maxzaxster.com/",
+    source: null,
+    tags: ["NFT project"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -935,13 +944,5 @@ function ensureShowcaseValid(showcase) {
 }
 
 Showcases.forEach(ensureShowcaseValid);
-  {
-    title: "PS Max Zaxster",
-    description:
-      "We are painting studio transforming our painters work into NFT and special crypto collection cards of famous painters in 2k collection.",
-    preview: require("./showcase/psmaxzaxster.png"),
-    website: "https://www.maxzaxster.com/",
-    source: null,
-    tags: ["NFT project"],
-  },
+  
  
