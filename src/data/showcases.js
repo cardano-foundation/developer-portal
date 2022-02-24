@@ -935,9 +935,6 @@ function ensureShowcaseValid(showcase) {
 }
 
 Showcases.forEach(ensureShowcaseValid);
-
- source: null,
-    tags: ["NFT project"],
   },
   {
     title: "PS Max Zaxster",
@@ -949,4 +946,4 @@ Showcases.forEach(ensureShowcaseValid);
     tags: ["NFT project"],
   },
   {
-   
+  
