@@ -816,7 +816,7 @@ const Showcases = [
     preview: require("./showcase/psmaxzaxster.png"),
     website: "https://www.maxzaxster.com/",
     source: null,
-    tags: ["NFT project"],
+    tags: ["nftproject", "educational"],
   },
 ];
 
