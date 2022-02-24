@@ -938,7 +938,7 @@ Showcases.forEach(ensureShowcaseValid);
   {
     title: "PS Max Zaxster",
     description:
-      "We are painting studio and transforming our painters work into NFT. Finishing our special crypto collection, cards of famous painters in 2k collection.",
+      "We are painting studio transforming our painters work into NFT and special crypto collection cards of famous painters in 2k collection.",
     preview: require("./showcase/psmaxzaxster.png"),
     website: "https://www.maxzaxster.com/",
     source: null,
