@@ -28,7 +28,7 @@ To understand how something like this could work in a technical point of view, l
 
 ![img](../../static/img/integrate-cardano/ada-payment-flow.png)
 
-So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has choosen and added all the items into the **shopping cart**. The next step would then be to checkout and pay for the items, Of course we will be using **Cardano** for that!
+So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has choosen and added all the items into the **shopping cart**, the next step would then be to checkout and pay for the items. Of course we will be using **Cardano** for that!
 
 The **front-end** application would then request for a **wallet address** from the backend service and render a QR code to the **customer** to be scanned via a **Cardano wallet**. The backend service would then know that it has to query the **wallet address** using `cardano-cli` with a certain time interval to confirm and alert the **front-end** application that the payment has completed succesfully.
 
@@ -39,13 +39,13 @@ In the meantime the transaction is then being processed and settled within the *
 Now let's get our hands dirty and see how we can implement something like this in actual code.
 
 :::note
-In this section, We will use the path `$HOME/receive-ada-sample` to store all the related files as an example, please replace it with the directory you have choosen to store the files.
-All the code examples in this article assumes that you will save all the source-code-files under the root of this directory.
+In this section, we will use the path `$HOME/receive-ada-sample` to store all the related files as an example, please replace it with the directory you have choosen to store the files.
+All the code examples in this article assume that you will save all the source-code-files under the root of this directory.
 :::
 
 ### Generate keys and request tAda
 
-First, lets create a directory to store our sample project:
+First, let's create a directory to store our sample project:
 
 ```bash
 mkdir -p $HOME/receive-ada-sample/keys
@@ -360,9 +360,9 @@ foreach(var row in utxoTableRows.Skip(2)){
   </TabItem>
 </Tabs>
 
-### Determine if payment is succesful
+### Determine if payment is successful
 
-Once we have the total lovelace amount, we will then determine using our code if a specific payment is a success, ultimately sending or shipping the item if it is indeed succesful. In our example, we expect that the payment is equal to `1,000,000 lovelace` that we defined in our `TOTAL_EXPECTED_LOVELACE` constant variable.
+Once we have the total lovelace amount, we will then determine using our code if a specific payment is a success, ultimately sending or shipping the item if it is indeed successful. In our example, we expect that the payment is equal to `1,000,000 lovelace` that we defined in our `TOTAL_EXPECTED_LOVELACE` constant variable.
 
 <Tabs
   defaultValue="js"
@@ -772,7 +772,7 @@ The code is telling us that our current wallet has received a total of `0 lovela
 
 ## Complete the payment
 
-What we can do to simulate a succesful payment is to send atleast `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We can get the **wallet address** by reading the contents of the `payment.addr` file like so:
+What we can do to simulate a successful payment is to send atleast `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We can get the **wallet address** by reading the contents of the `payment.addr` file like so:
 
 ```bash
 cat $HOME/receive-ada-sample/receive-ada-sample/keys/payment.addr
@@ -784,7 +784,7 @@ You should see the **wallet address** value:
 addr_test1vpfkp665a6wn7nxvjql5vdn5g5a94tc22njf4lf98afk6tgnz5ge4
 ```
 
-Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ada` funds from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet). Once complete, we can now run the code again and we should see a succesful result this time.
+Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ada` funds from the [Cardano Testnet Faucet](../integrate-cardano/testnet-faucet). Once complete, we can now run the code again and we should see a successful result this time.
 
 <Tabs
   defaultValue="js"
