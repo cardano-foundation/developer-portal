@@ -801,6 +801,15 @@ const Showcases = [
     tags: ["marketplace", "nftsupport"],
   },
   {
+    title: "MermADA Minting",
+    description:
+      "Cardano NFT Minting Service providing white label solutions for your branding needs from our single NFT Mint tool to NFT Vending Machines to Token Faucets.",
+    preview: require("./showcase/mermada.png"),
+    website: "https://mermada.com/",
+    source: null,
+    tags: ["minting", "metadata", "token", "nftsupport", "educational"],
+  },
+  {
     title: "Open CNFT",
     description:
       "Leaderboards & Analytics of the Cardano NFT ecosystem.",
