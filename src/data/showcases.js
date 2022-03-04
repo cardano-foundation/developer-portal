@@ -818,6 +818,15 @@ const Showcases = [
     source: null,
     tags: ["analytics", "nftsupport"],
   },
+  {
+    title: "ADDAX NFT",
+    description:
+      "The Addax NFT collection, is a collection of 11.111 unique NFT collectables. 1 Cardano Donated for every Addax sold. Special category with the 100% of the revenue Donated",
+    preview: require("./showcase/addax.png"),
+    website: "https://addaxnft.com/",
+    source: null,
+    tags: ["nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
