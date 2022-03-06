@@ -46,9 +46,9 @@ To facilitate the above the following minimal software packages are installed:
  - [Pro tips](#pro-tips)
 
 ### Why Ansible?
-Ansible is an automation tool for provisioning, application deployment and configuration management. Gone are the days of SSH'ing into our servers to run a command or hacking together bash scripts. 
+Ansible is a provisioning, application deployment, and configuration management automation tool. Gone are the days of putting together bash scripts or SSH'ing into our servers to conduct a task.
 
-Ansible is completely agent-less, meaning no special software is required on the remote hosts. All commands are run through Ansible via SSH.
+Ansible is agentless, which means it doesn't require any specific software on the remote systems. SSH is used to run all commands through Ansible.
 
 Commands executed via Ansible are [_idempotent_](https://en.wikipedia.org/wiki/Idempotence), meaning they can be safely run multiple times without anything being changed, unless required. Need to ensure a `cardano-node` configuration is up-to-date on all hosts? Simply run the command and Ansible will ensure only those that need the update will receive it. All other hosts will remain untouched.
 
@@ -83,13 +83,13 @@ ansible --version
 ```
 
 ### Playbooks
-Playbooks are a way of chaining commands together, essentially creating a blueprint or set of procedual instructions. Ansible executes the playbook in sequence and verifies the result of each command before moving onto the next one. If you cancel the playbook execution partway through and restart it later, only the commands that haven’t completed previously will execute—the rest will be skipped.
+Playbooks are a method of chaining commands to create a blueprint or collection of procedural instructions. Ansible runs the playbook in order, verifying each command's output before going on to the next. If you stop the playbook execution in the middle and continue it later, only the instructions that haven't finished yet will run; the remainder will be skipped.
 
 Some basic playbook terminology is given below.
 
-**Roles** add organisation to playbooks. They split complex build instructions into smaller reusable chunks. This makes it possible to share roles across different playbooks without duplicating code. 
+**Roles** help playbooks stay organized. They broke down complicated build instructions into manageable parts. This allows roles to be shared between playbooks without having to duplicate code.
 
-**Templates** are files containing some variables and expressions, which we can replace with the corresponding values using the  Ansible template module. This helps to make the file reusable since the same file can be used dynamically for configuring many servers. 
+**Templates** are files that contain variables and expressions that the Ansible template module can replace with the appropriate values. This makes the file more reusable because it can be used dynamically to configure several servers with the same file.
 
 **Hosts and group variables** are part of Ansible's [inventory setup](https://docs.ansible.com/ansible/latest/intro_inventory.html) to manage individual hosts and logical groups of hosts (detailed below). This negates the need to remember individual IP addresses or domain names. It also provides a simple method of managing host-specific configurations.  
 
@@ -120,7 +120,7 @@ All the various Ansible tasks, handlers, configurations and so on are contained 
 
 
 ### Inventory setup
-Before doing anything else, we need to tell Ansible what will run where. Ansible works against multiple managed nodes or hosts in our infrastructure at the same time, using a list or group of lists known as _inventory_. Once our inventory is defined, we can use patterns to select the hosts or groups you want Ansible to run against. The simplest approach is to declare a single `hosts` file that contains all known hosts. This file can be in INI or YAML format. An example hosts INI file is shown below:
+We need to tell Ansible what will run where before we do anything else. Ansible uses a list or group of lists called _inventory_ to work against numerous managed nodes or hosts in our infrastructure at the same time. After we've built our inventory, we can utilize patterns to choose the hosts or groups that Ansible should execute against. The most straightforward solution is to create a single 'hosts' file that contains all known hosts. The format of this file can be INI or YAML. The following is an example of a hosts INI file:
 
 ```
 [node]
@@ -128,7 +128,7 @@ foo.mypool.com
 bar.mypool.com
 ```
 
-This inventory setup works well for simple configurations, but shows its limitations as the complexity of a configuration grows. For our purposes, a better approach is to break a single `hosts` delcaration into functional groups. There are no hard and fast rules about this organization pattern, which is one of Ansible's strong suits. However, this flexibility can also be somewhat daunting when designing an inventory from scratch. We can create groups that track:
+This inventory arrangement works well for simple configurations, but as the complexity of a configuration rises, it reveals its limitations. A preferable technique for our needs is to divide a single `hosts` delcaration into functional groups. This organization style has no hard and fast rules, which is one of Ansible's strong advantages. When creating an inventory from scratch, though, this versatility might be intimidating. We can make groups that keep track of:
 
 - What - An application, stack or microservice (e.g., database servers, web servers, etc.)
 - Where - A datacenter or geographic region, to talk to local DNS, storage, etc. (e.g., east, west, Newark, Paris, Cape Town)
@@ -236,7 +236,7 @@ sudo chsh -s /bin/bash deploy
 ```
 
 ### Using tags
-Tag are attributes that can be defined in an Ansible structure and used to selectively execute a subset of tasks. Tags are extremely useful because they allow us to run only a specific part of a large playbook, rather than running _everything_ in it. Tags can be applied to many structures in Ansible, but their simplest use is with individual tasks. The example below shows two tasks within the `cardano-node` role that use different tags:
+Tags are attributes defined in an Ansible structure that can be used to perform a subset of tasks selectively. Tags are highly valuable since they allow us to run only a portion of a huge playbook instead of the entire thing. In Ansible, tags can be used to a variety of structures, although their most basic application is with individual tasks. Two tasks inside the 'cardano-node' role that employ distinct tags are shown below:
 
 ```
 - name: "Node Install | Building Cardano node"
