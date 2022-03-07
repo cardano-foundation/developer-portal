@@ -8,7 +8,7 @@ image: ./img/og-developer-portal.png
 
 It's critical to understand the numerous cryptographic key pairs connected with Cardano, as well as the purpose of each key pair and best practices for securing those keys, before you start working with it. Every ambitious Cardano developer and stake pool operator should get a complete grasp of these key pairs, as well as the ramifications of a single secret (private) key being hacked. Any Cardano developer or stake pool operator must learn how to manage, safeguard, and store private keys in order to succeed.
  
-Cardano cryptographic keys are made up of 'ed25519' key pairs, which include a 'public verification key file' and a'secret (private) key file.' The public key file is commonly referred to as 'keyname.vkey,' whereas the private key file is referred to as 'keyname.skey.' The private key file, which is used to sign transactions, is extremely sensitive and should be adequately safeguarded. Under all circumstances, this entails limiting third-party access to your private keys. The most effective technique to prevent private key exposure is to guarantee that the necessary private key is never held for any length of time on any internet-connected machine (hot node). Please note that key pair filenames are completely random and can be named whatever you want.
+Cardano cryptographic keys are made up of `ed25519` key pairs, which include a `public verification key file` and a `secret (private) key file`. The public key file is commonly referred to as `keyname.vkey`, whereas the private key file is referred to as `keyname.skey`. The private key file, which is used to sign transactions, is extremely sensitive and should be adequately safeguarded. Under all circumstances, this entails limiting third-party access to your private keys. The most effective technique to prevent private key exposure is to guarantee that the necessary private key is never held for any length of time on any internet-connected machine (hot node). Please note that key pair filenames are completely random and can be named whatever you want.
 
 :::danger 
 Use extreme caution to avoid losing or overwriting secret (private) keys.
@@ -19,7 +19,9 @@ Use extreme caution to avoid losing or overwriting secret (private) keys.
 Currently, Cardano wallet addresses only have two parts: a payment address and a counterpart staking address. A payment address (together with its associated key pairs) is used to store, receive, and send money. A stake address (and related keys) is used to store and withdraw rewards, as well as to define the stake pool owner and rewards accounts, as well as the wallet's target stake pool delegation.
  
  
-`payment.vkey` is the public verification key file for the payment address (not sensitive; may be shared publicly). ` payment.skey` is a highly sensitive payment address secret (private) signing key file. The private signing key file gives you access to monies in your payment address and should be kept safe at all times.
+`payment.vkey` is the public verification key file for the payment address (not sensitive; may be shared publicly).
+
+`payment.skey` is a highly sensitive payment address secret (private) signing key file. The private signing key file gives you access to monies in your payment address and should be kept safe at all times.
 
 :::danger 
 Never place payment signing keys on a hot node.
