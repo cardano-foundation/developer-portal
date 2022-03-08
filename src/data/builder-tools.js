@@ -363,6 +363,24 @@ const Showcases = [
     website: "https://github.com/txpipe/oura",
     getstarted: null,
     tags: ["favorite", "rust"],
+  },
+  {
+    title: "Custom Submission Node",
+    description:
+      "An open source Cardano $ADA Tx Submission Service that provides some stats and customizability. It hooks directly to cardano-submit-tx and cardano-node.",
+    preview: require("./builder-tools/cardano_tx_submit_service.png"),
+    website: "https://submit.adaph.io/",
+    getstarted: null,
+    tags: ["favorite", "api", "nft", "operator tool"],
+  },
+  {
+    title: "Indentity Token",
+    description:
+      "IdentityToken is an idea, the idea of owning your identity and bringing it with you. Eliminating the need for custodians and middlemen for managing your identity. Eliminating passwords and centralized databases for authentication.",
+    preview: require("./builder-tools/IdentityToken.png"),
+    website: "https://identity.adaph.io/",
+    getstarted: null,
+    tags: ["favorite", "api", "nft", "operator tool", ".net"],
   }
 ];
 
