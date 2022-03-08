@@ -365,7 +365,7 @@ const Showcases = [
     tags: ["favorite", "rust"],
   },
   {
-    title: "Custom Submission Node",
+    title: "Cardano Tx Submit Service",
     description:
       "An open source Cardano $ADA Tx Submission Service that provides some stats and customizability. It hooks directly to cardano-submit-tx and cardano-node.",
     preview: require("./builder-tools/cardano_tx_submit_service.png"),
