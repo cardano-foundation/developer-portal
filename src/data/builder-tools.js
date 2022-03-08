@@ -381,7 +381,7 @@ const Showcases = [
     website: "https://identity.adaph.io/",
     getstarted: null,
     tags: ["favorite", "api", "nft", "operator tool", ".net"],
-  }
+  },
 ];
 
 
