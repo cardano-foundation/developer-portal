@@ -377,7 +377,7 @@ const Showcases = [
     title: "Indentity Token",
     description:
       "IdentityToken is an idea, the idea of owning your identity and bringing it with you. Eliminating the need for custodians and middlemen for managing your identity. Eliminating passwords and centralized databases for authentication.",
-    preview: require("./builder-tools/IdentityToken.png"),
+    preview: require("./builder-tools/identitytoken.png"),
     website: "https://identity.adaph.io/",
     getstarted: null,
     tags: ["favorite", "api", "nft", "operator tool", ".net"],
