@@ -380,7 +380,7 @@ const Showcases = [
     preview: require("./builder-tools/identitytoken.png"),
     website: "https://identity.adaph.io/",
     getstarted: null,
-    tags: ["favorite", "api", "nft", "operatortool", ".net"],
+    tags: ["favorite", "api", "nft", "operatortool", "net"],
   },
 ];
 
