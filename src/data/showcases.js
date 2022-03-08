@@ -818,6 +818,15 @@ const Showcases = [
     source: null,
     tags: ["analytics", "nftsupport"],
   },
+  {
+    title: "Hosky-Swap",
+    description:
+      "Hosky-swap is a Cardano feature that allows $ADA holders to buy, sell or swap their $Hosky tokens and connect directly to their wallets.",
+    preview: require("./showcase/HoskySwap.PNG"),
+    website: "https://hosky-swap.io/",
+    source: null,
+    tags: ["opensource", "marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
