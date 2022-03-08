@@ -822,7 +822,7 @@ const Showcases = [
     title: "Hosky-Swap",
     description:
       "Hosky-swap is a Cardano feature that allows $ADA holders to buy, sell or swap their $Hosky tokens and connect directly to their wallets.",
-    preview: require("./showcase/HoskySwap.PNG"),
+    preview: require("./showcase/hoskyswap.png"),
     website: "https://hosky-swap.io/",
     source: null,
     tags: ["opensource", "marketplace"],
