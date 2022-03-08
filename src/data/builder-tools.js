@@ -371,16 +371,16 @@ const Showcases = [
     preview: require("./builder-tools/cardano_tx_submit_service.png"),
     website: "https://submit.adaph.io/",
     getstarted: null,
-    tags: ["favorite", "api", "nft", "operator tool"],
+    tags: ["favorite", "api", "nft", "operatortool"],
   },
   {
-    title: "Indentity Token",
+    title: "IdentityToken",
     description:
       "IdentityToken is an idea, the idea of owning your identity and bringing it with you. Eliminating the need for custodians and middlemen for managing your identity. Eliminating passwords and centralized databases for authentication.",
     preview: require("./builder-tools/identitytoken.png"),
     website: "https://identity.adaph.io/",
     getstarted: null,
-    tags: ["favorite", "api", "nft", "operator tool", ".net"],
+    tags: ["favorite", "api", "nft", "operatortool", ".net"],
   },
 ];
 
