@@ -7,16 +7,16 @@ image: ./img/og-developer-portal.png
 --- 
 
 ## Get started with Marlowe 
-Marlowe is the domain-specific language (DSL) that allows users to build blockchain applications tailored to financial contracts.
+Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.
 
-Take a look at the [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/index.html) if you want to learn Marlowe from the beginning or dive straight into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/): 
+If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/index.html), or jump right into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/): 
 
 [![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://alpha.marlowe.iohkdev.io/)
 
-Talk to others about [Marlowe on the Cardano Forum](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram there is a dedicated [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
+On the Cardano Forum, you can [dicuss Marlowe](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
 ## The Marlowe platform
-With the Marlowe DSL you gain huge efficiencies because you can get much better security, much better certainty, much better [guarantees of termination](https://en.wikipedia.org/wiki/Halting_problem), and correctness of behavior compared to a [Turing-complete](https://en.wikipedia.org/wiki/Turing_completeness) language.
+When compared to a [uring-complete](https://en.wikipedia.org/wiki/Turing_completeness) language, the Marlowe DSL provides significantly greater security, certainty, [guarantees of termination](https://en.wikipedia.org/wiki/Halting_problem), and behavior correctness.
 
 The design guarantees the following:
 - Contracts are finite. No recursion or loops.
@@ -26,7 +26,7 @@ The design guarantees the following:
 - Conservation of value.
 
 ## Marlowe Playground 
-The Marlowe Playground is an easy-to-use, visual, and modular plug-and-play smart contract builder and simulator. Watch this 4 minute long tour of the Marlowe Playground: build, simulate and analyse Marlowe contracts.
+The Marlowe Playground is a plug-and-play smart contract builder and simulator that is simple to use, visual, and modular. Build, simulate, and analyze Marlowe contracts in this 4-minute tour of the Marlowe Playground.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/axP-jYQ_6lo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Presentations
