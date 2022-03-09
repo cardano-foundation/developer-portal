@@ -8,31 +8,31 @@ image: ./img/og-developer-portal.png
 
 ## Guild Operators Suite
 
-The Guild-Operators suite is a collection of tools and scripts for easy setup, management, and monitoring of Cardano stake pool(s), alongwith token/keys management. It's the result of a community collaboration effort between long-time active community members to simplify frequent tasks required to be performed by operators. Since detailed documentation for the suite is hosted [here][guild-website] , we will try to provide a quick run-through of tools involved and a high-level overview of steps to get you going.
+The Guild-Operators suite is a set of tools and scripts for setting up, managing, and monitoring Cardano stake pools, as well as managing tokens and keys. It's the outcome of a community collaborative effort by long-time active community members to make common chores for operators easier. We'll try to provide a fast run-through of the tools involved and a high-level overview of procedures to get you started since complete documentation for the suite is hosted [here][guild-website].
 
 ### Tools
 
 #### CNTools
 
-CNTools is like a swiss army knife for pool operators to simplify typical operations. It is a bash GUI menu-driven tool to create and manage wallets, sending ada and tokens, and about every pool operation needed. In addition to this, the tool has been extended with additional features and improvements since its first official release together with the Cardano Shelley MainNet launch in July 2020. You can find more information about CNTools [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).  
+CNTools is a swiss army knife for pool operators who want to make routine tasks easier. It's a menu-driven bash GUI application for creating and managing wallets, sending ada and tokens, and just about any pool function. In addition, the tool has been enhanced with new features and improvements since its initial release in July 2020, coinciding with the introduction of the Cardano Shelley MainNet. More information regarding CNTools can be found [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).  
 ![img](../../static/img/get-started/guild-ops-suite/guild_cntools.png)  
 
 #### gLiveView
 
-Guild LiveView, or gLiveView, is a local bash CLI monitoring tool that offers an intuitive UI to monitor the node status. It connects to the locally running node using the provided EKG/Prometheus node endpoints to gather and display node metrics, network info, etc in real-time. The tool automatically detects if the node is launched as a relay or block producer and adapts output accordingly. You can find further details about gLiveView [here](https://cardano-community.github.io/guild-operators/Scripts/gliveview/).  
+Guild LiveView, often known as gLiveView, is a local bash CLI monitoring utility with an easy-to-use interface for monitoring node status. It connects to the locally running node via the specified EKG/Prometheus node endpoints to collect and show node metrics, network information, and other information in real time. The program recognizes whether the node is being used as a relay or a block producer and adjusts the output accordingly. More information regarding gLiveView can be found [here](https://cardano-community.github.io/guild-operators/Scripts/gliveview/).  
 ![img](../../static/img/get-started/guild-ops-suite/guild_gliveview.png)  
 
 #### Topology Updater
-Topology Updater was created as a temporary solution to allow stake pool relays to auto-discover peers on network and pair them together. While P2P implementation took backseat due to priorities, this script has become one of the essentials to avoid manually reaching out to friends and request to add individual nodes to topology files. You can check more information about the tool [here](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater/).  
+Topology Updater was built as a workaround to allow stake pool relays to auto-discover and pair with peers on the network. While P2P implementation was put on hold owing to other priorities, this script has become one of the most important tools for avoiding having to manually contact friends and request that individual nodes be included to topology files. More information about the tool may be found [here](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater/).  
 ![img](../../static/img/get-started/guild-ops-suite/guild_topologyupdater.png)  
 
 #### Guild Network and Support for other networks
 
-Guild Network is a short (30-minute epoch) network - similar to testnet, but completely community run. It is useful to testing/playing around with things on sandbox, and also testing out usable-features before being released to other networks. Each of the tool in the repo already has support for this network, alongwith mainnet, testnet and staging.  
+Guild Network is a brief (30-minute epoch) network that functions similarly to testnet but is entirely governed by the community. It's excellent for experimenting with things in the sandbox, as well as testing out viable features before releasing them to other networks. This network is already supported by all of the tools in the repo, including mainnet, testnet, and staging.  
 
 #### Others..
 
-There are other smaller-scale utility scripts that include building of core components from source for individual components, setting up environment pre-requisites, etc. You can read about details as you navigate through homepage starting [here][guild-website].  
+Other utility scripts on a lesser scale include creating core components from source for particular components, setting up environment pre-requisites, and so on. Starting here, you can read about specifics as you go across the homepage [here][guild-website].  
 
 :::note
     Please ensure to read the disclaimers on guild website before continuing
