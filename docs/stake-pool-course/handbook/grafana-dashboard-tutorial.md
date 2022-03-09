@@ -3,6 +3,7 @@ id: grafana-dashboard-tutorial
 title: Grafana Dashboard Tutorial
 sidebar_label: Grafana Dashboard Tutorial
 description: "Stake pool course: Grafana Dashboard Tutorial"
+image: ./img/og-developer-portal.png
 ---
 ![Grafana Tutorial](/img/stake-pool-course/snsky_dashboard.jpg)
 
