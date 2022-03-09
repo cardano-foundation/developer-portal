@@ -3,10 +3,10 @@ id: grafana-dashboard-tutorial
 title: Grafana Dashboard Tutorial
 sidebar_label: Grafana Dashboard Tutorial
 description: "Stake pool course: Grafana Dashboard Tutorial"
-image: ./img/og-developer-portal.png
 ---
+![Grafana Tutorial](/img/snsky_dashboard.jpg)
 
-Once the Cardano pool sucessfully set-up, then comes the most beautifull part - setting up your Dashboard and Alerts! 
+Once the Cardano pool sucessfully set-up, then comes the most beautifull part - setting up your Dashboard and Alerts!
 
 
 This documentation brings some of the available information in greater detail and will hopefully help Stake Pool Operators in managing their pools more efficiently. This tutorial is for education and learning purpose only!
@@ -23,9 +23,9 @@ This documentation brings some of the available information in greater detail an
 
 
 
-## 1. Install prometheus node exporter on Block Producing Node
+## 1. Install prometheus node exporter
 
-
+Firstly install Prometheus node exporter on the Block Producing and all Relay Nodes
 
 ```shell
 $ sudo apt-get install -y prometheus-node-exporter
@@ -34,7 +34,7 @@ $ sudo systemctl enable prometheus-node-exporter.service
 ```
 
 :::note
-for Ubuntu 18.04 refer the following tutorial [Ubuntu 18.04 Tutorial](https://sanskys.de/dashboard/)
+for Ubuntu 18.04 refer the following tutorial [Ubuntu 18.04 Tutorial](https://sanskys.github.io/grafana/)
 :::
 
 
@@ -45,41 +45,32 @@ $ sed -i mainnet-config.json -e "s/127.0.0.1/0.0.0.0/g"
 
 On Producer Node open ports 12798 and 9100
 
-$ sudo ufw allow proto tcp from <Relay Node IP address> to any port 9100
+$ sudo ufw allow proto tcp from <Monitoring Node IP address> to any port 9100
 
-$ sudo ufw allow proto tcp from <Relay Node IP address> to any port 12798
+$ sudo ufw allow proto tcp from <Monitoring Node IP address> to any port 12798
 
 $ sudo ufw reload
 ```
 
-restart the node
+restart the nodes
 ```shell
-$ sudo systemctl restart <your BP node name e.g. cnode>
+$ sudo systemctl restart <your node name e.g. cnode>
 ```
 
 
-## 2. Install Prometheus and prometheus node exporter on Relay Node
+## 2. Install Prometheus on the Monitoring Node
 
 
 
-Install Prometheus
+Install Prometheus on the Monitoring Node - the Node where the Grafana Server will run. This could be on of the Relay nodes or a separate dedicated node for monitoring.
 
 ```shell
 $ sudo apt-get install -y prometheus
 ```
 
 
-Install prometheus node exporter on Relay Node
 
-```shell
-$ sudo apt-get install -y prometheus-node-exporter
-```
-
-repeat Step 2 for all your Relay Node
-
-
-
-## 3. Install Grafana on Relay Node
+## 3. Install Grafana on Monitoring Node
 
 
 ```shell
@@ -164,9 +155,9 @@ Verify that the services are running properly
 ```shell
 $ sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
-On Relay Node open ports 3000 for Grafana
+On the Monitoring Node open ports 3000 for Grafana
 ```shell
-$ sudo ufw allow from <your local IP address> to any port 3000
+$ sudo ufw allow from <your home IP address from where you plan to access Grafana> to any port 3000
 ```
 :::note
 Please refer to [Grafana Labs Secuirty](https://grafana.com/docs/grafana/latest/administration/security/) for hardening e.g. by default the communication with the Grafana server is unencrypted.
@@ -180,7 +171,7 @@ On Relay Node, open http://localhost:3000 or http://*your Relay Node ip address*
 Login with admin / admin
 Change password
 
-
+![Datasource](/img/snsky_prometheus.jpg)
 
 Click the configuration gear icon, then Add data Source
 Select Prometheus
@@ -193,7 +184,7 @@ Click Save & Test
 Download my Dashboard that you see on the top of this page, from the following GitHub link and save the JSON file
 
 
-[SNSKY Dashboard Example](https://raw.githubusercontent.com/sandy4de/SNSKY/main/SNSKY_Dashboard_v2.json)
+[SNSKY Dashboard Example](https://github.com/sanskys/SNSKY/blob/main/SNSKY_Dashboard_v2.json)
 
 
 
@@ -329,6 +320,8 @@ from_name = Grafana
 
 Login to Grafana with username and password.
 
+![Email Alert](/img/snsky_EmailAlert.jpg)
+
 Click on the "Bell" icon on the left sidebar.
 
 Select "Notification channels."
@@ -359,11 +352,11 @@ Click on "Save" to add this channel
 
 Create an Alert if Producer Node is not reachable
 
-
+![Peer Alert](/img/snsky_PeerAlert.jpg)
 
 Please not that Alerts can only be created for "Graph" panels!
 
-Now we create an Alert to get an emaial if the Producer Node is not reachable
+Now we create an Alert to get an email if the Producer Node is not reachable
 
 
 
@@ -411,7 +404,7 @@ SNSKY Pool ID
 :::
 
 
-## Recommended: Disabling Grafana Registrations and Anonymous Access
+## 7. Recommended: Disabling Grafana Registrations and Anonymous Access
 
 
 
@@ -450,7 +443,55 @@ $ sudo systemctl restart grafana-server
 ```
 
 
+## 8. Advanced Users: Slot Leader Panel
+![Leader Panel](/img/snsky_leaderPanel.jpg)
 
-:::note
-A panel on Leader Slots has been included, which can Alert in case the pool is selected as a leader for the next Epoch. It is a bit more complicated, so will leave it out of the tutorial, but in principle there is script running on the Producer Node which updates the leader query result in a prom file which is parsed by the node exporter, exposing this metrics to the Relay Node. For details, just drop a message on Telegram.
-:::
+Once your Pool gets big and is regularly minting blocks, it becomes diffcult to keep track of all Leader Slots and also to identify the available gaps for Pool maintainance. This Slot Leader Panel is quite helpful as it gives a good overview of all scheduled Slots in TimeSeries.
+
+
+
+Use cardano-cli to query the leadership schedule. Since the result has to interpreted by Grafana, we need to format the query output to a CSV readable syntax.
+
+The whole script can be copied from here:
+
+[Slot Leader Script](https://github.com/sanskys/SNSKY/blob/main/SlotLeader/script.sh)
+
+
+
+Copy the slot.csv file to your Grafana Monitoring node manually. This step could be automated but I dont wish to open extra ports for this so I just copy and paste the content of the slot.csv file.
+
+
+
+
+
+Next, we add the CSV Plugin to Grafana. Please follow the instructions under the section "Installing on a local Grafana:"
+
+
+
+[Grafana CSV Plugin](https://grafana.com/grafana/plugins/marcusolsson-csv-datasource/?tab=installation)
+
+
+
+After the installation, in Data Sources now the CSV Plugin should be listed. Configure the CSV Plugin by specifying the location of the slot.csv file. Save & Test and if all steps were followed correctly, you should get the green sucess messsage.
+
+
+
+
+
+The final step is to add the Slot Leader Panel to your dashboard. For that click on the "Add Panel" and "Add New Panel" icons.
+
+Then click on "Query inspector" and and "JSON" buttons.
+
+Delete the existing JSON code and replace it with the following:
+
+
+
+[Slot Leader Panel](https://github.com/sanskys/SNSKY/blob/main/SlotLeader/LeaderPanel.json)
+
+
+
+Now click on "Apply" and thats it! You should be able to see all your Leader Slots from last 6 Hrs to next 18 Hrs and this time window shifts automaically.
+
+
+
+Happy minting!
