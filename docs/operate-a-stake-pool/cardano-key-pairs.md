@@ -6,9 +6,9 @@ description: Learn about Cardano key pairs.
 image: ./img/og-developer-portal.png
 ---
 
-Before working with Cardano, it's essential to understand the various cryptographic key pairs involved, the purpose of each key pair and best practices for securing those keys. Every aspiring Cardano developer and stake pool operator must acquire a thorough understanding of these relevant key pairs - along with the potential implications of any given secret (private) key being compromised. Learning how to manage, protect and store private keys is critical to success for any Cardano developer or stake pool operator.
+It's critical to understand the numerous cryptographic key pairs connected with Cardano, as well as the purpose of each key pair and best practices for securing those keys, before you start working with it. Every ambitious Cardano developer and stake pool operator should get a complete grasp of these key pairs, as well as the ramifications of a single secret (private) key being hacked. Any Cardano developer or stake pool operator must learn how to manage, safeguard, and store private keys in order to succeed.
  
-Cardano cryptographic keys utilize `ed25519` cryptography key pairs, consisting of a `public verification key file` and a `secret (private) key file`. The public key file is typically represented as `keyname.vkey`, whereas the private key file is typically represented as `keyname.skey`. The private key file is used to sign transactions, is considered extremely sensitive and should be properly secured and protected. This means limiting third-party exposure to your private keys under all circumstances. The most effective way to mitigate private key exposure is to ensure the relevant private key is never stored on any internet-connected machine (hot node) for any amount of time. Please note key pair filenames are entirely arbitrary and named as desired.
+Cardano cryptographic keys are made up of `ed25519` key pairs, which include a `public verification key file` and a `secret (private) key file`. The public key file is commonly referred to as `keyname.vkey`, whereas the private key file is referred to as `keyname.skey`. The private key file, which is used to sign transactions, is extremely sensitive and should be adequately safeguarded. Under all circumstances, this entails limiting third-party access to your private keys. The most effective technique to prevent private key exposure is to guarantee that the necessary private key is never held for any length of time on any internet-connected machine (hot node). Please note that key pair filenames are completely random and can be named whatever you want.
 
 :::danger 
 Use extreme caution to avoid losing or overwriting secret (private) keys.
@@ -16,11 +16,12 @@ Use extreme caution to avoid losing or overwriting secret (private) keys.
  
 ## Wallet address key pairs
  
-Cardano wallet addresses currently entail only two components - a payment address and a counterpart staking address. A payment address (and associated key pairs) are used to hold, to receive, and to send funds. A stake address (and associated keys) is used to store and withdraw rewards, to specify stake pool owner and rewards accounts, and to also specify target stake pool delegation for the wallet.
+Currently, Cardano wallet addresses only have two parts: a payment address and a counterpart staking address. A payment address (together with its associated key pairs) is used to store, receive, and send money. A stake address (and related keys) is used to store and withdraw rewards, as well as to define the stake pool owner and rewards accounts, as well as the wallet's target stake pool delegation.
  
  
-`payment.vkey` - payment address public verification key file (not sensitive; may be shared publicly).
-`payment.skey` - payment address secret (private) signing key file and is highly sensitive. The private signing key file provides access to funds held within the corresponding payment address and should be guarded at all costs.
+`payment.vkey` is the public verification key file for the payment address (not sensitive; may be shared publicly).
+
+`payment.skey` is a highly sensitive payment address secret (private) signing key file. The private signing key file gives you access to monies in your payment address and should be kept safe at all times.
 
 :::danger 
 Never place payment signing keys on a hot node.
@@ -29,9 +30,9 @@ Never place payment signing keys on a hot node.
  
 `stake.vkey` - stake address public verification key file (not sensitive; may be shared publicly).
  
-`stake.skey` - stake address secret (private) signing key file and is sensitive. This private signing key file provides access to withdraw any rewards funds held in the stake address and also can be used to delegate the wallet to a pool. The stake.skey should also be guarded.
+`stake.skey` - It is a sensitive stake address secret (private) signing key file. This private signing key file gives you access to any awards cash held in the stake address, as well as the ability to delegate the wallet to a pool. It's also a good idea to keep an eye on the stake.skey.
  
-`payment.addr` - This is a Cardano wallet payment address and is typically generated using both a payment.vkey and a stake.vkey file as inputs. A payment address does not require staking key components if the relevant address will only be used to send and receive funds. Furthermore, a single payment.vkey can be combined with multiple unique stake.vkey files to create different payment addresses that can be staked separately
+`payment.addr` - This is a Cardano wallet payment address that is usually generated with the help of both a payment.vkey and a stake. As inputs, use the vkey file. If a payment address is merely going to be used to send and receive money, no crucial components need to be staked. In addition, there is a single payment. Multiple unique stake.vkey files can be coupled with vkey to establish different payment addresses that can be staked independently.
  
  
 `stake.addr` - stake address for a Cardano wallet and is generated using the stake.vkey file
@@ -60,6 +61,6 @@ Always rotate KES keys using the latest `cold.counter`.
  
  ### KES hot keys
  
-`kes.skey`- secret (private) signing key file for the stake pool's KES key (required to start the stake pool's block producing node; sensitive but must be placed on a hot node in order to start a stake pool and must be rotated regularly). KES keys are used to generate a stake pool's operational certificate, which expires within 90 days of that opcert's specified KES period - thus, new KES keys must be regenerated along with a new opcert every 90 days or sooner in order for a Cardano Stake pool to be able to continue minting blocks.
+`kes.skey`- secret (private) signature key file for the stake pool's KES key (needed to start the stake pool's block producing node; sensitive, but must be placed on a hot node to start a stake pool and rotated on a regular basis). KES keys are needed to establish a stake pool's operating certificate, which expires 90 days after the opcert's defined KES period has passed. As a result, fresh KES keys must be generated along with a new opcert every 90 days or sooner for a Cardano Stake pool to continue minting blocks.
  
 `kes.vkey` - public verification key file for a Cardano stake pool's corresponding `kes.skey` (not sensitive and is not required to a block producer).
