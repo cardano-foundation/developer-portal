@@ -24,7 +24,7 @@ module.exports = {
     prism: {
       additionalLanguages: ['csharp', 'php'],
     },
-    
+
     // Dark / Light Mode
     colorMode: {
       disableSwitch: false,
@@ -49,7 +49,7 @@ module.exports = {
       id: "support_se2", // Any value that will identify this message + increment the number every time to be unique
       content:
         `<strong>Join the Cardano Stack Exchange and get your questions answered today. ⭐️<a target="_blank" rel="noopener noreferrer" href="https://cardano.stackexchange.com">Join us!</a></strong>`,
-      backgroundColor: "#2AA18A", 
+      backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
     },
@@ -185,12 +185,6 @@ module.exports = {
       // Let's use the copyright footer for terms and privacy policy for now
       copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Privacy Policy</a>`,
     },
-    gtag: {
-      // You can also use your "G-" Measurement ID here.
-      trackingID: 'GTM-5NM3NX4',
-      // Optional fields.
-      anonymizeIP: true, // Should IPs be anonymized?
-    },
   },
   plugins: [
     [
@@ -208,22 +202,22 @@ module.exports = {
         redirects: [
           {
             // redirect the old smart contracts signpost to the new smart contract category
-            to: '/docs/smart-contracts/', 
+            to: '/docs/smart-contracts/',
             from: '/docs/get-started/smart-contracts-signpost',
           },
           {
             // redirect the old funding category overview to the new governance category
-            to: '/docs/governance/', 
+            to: '/docs/governance/',
             from: '/docs/fund-your-project/',
           },
           {
             // redirect to the new catalyst page
-            to: '/docs/governance/project-catalyst', 
+            to: '/docs/governance/project-catalyst',
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
             // redirect the old cardano improvement proposal overview
-            to: '/docs/governance/cardano-improvement-proposals/CIP-0001', 
+            to: '/docs/governance/cardano-improvement-proposals/CIP-0001',
             from: '/docs/governance/cardano-improvement-proposals/',
           },
         ],
@@ -247,6 +241,12 @@ module.exports = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        gtag: {
+          // You can also use your "G-" Measurement ID here.
+          trackingID: 'GTM-5NM3NX4',
+          // Optional fields.
+          anonymizeIP: true, // Should IPs be anonymized?
+        }
       },
     ],
   ],
