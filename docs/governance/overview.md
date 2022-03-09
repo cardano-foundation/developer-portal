@@ -9,12 +9,12 @@ image: ./img/og-developer-portal.png
 
 ![Cardano Governance](../../static/img/card-governance-title.svg)
 
-Cardano was already designed with sustainability in mind. The point was to create a system that governs and also finances itself without being dependent on donations. Cardano has a built-in treasury system that gets a constant stream of funds from transaction fees and treasury taxes. This is explained in detail in [treasuries with Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0). 
+Cardano was designed with the intent of long-term sustainability in mind. The goal was to build a system that could govern and fund itself without relying on donations. Cardano includes a built-in treasury system that receives revenue via transaction fees and treasury taxes on a regular basis. This is explained in detail in [treasuries with Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0). 
 
 ## Cardano Improvement Proposal
 
-[Cardano Improvement Proposals (CIPs)](cardano-improvement-proposals/CIP-0001) are a way of formally proposing ideas in an agreed-upon fashion. While nothing about them is binding and not a pre-requisite for either treasury on protocol changes, they fulfill an essential aspect of Cardano governance. Before a decision can be made on anything, someone has to propose a setup that others can discuss.
+[Cardano Improvement Proposals (CIPs)](cardano-improvement-proposals/CIP-0001) are a way of formally proposing ideas in an agreed-upon fashion. While they are not binding and are not a need for either treasury or protocol changes, they are an important component of Cardano governance. Someone must propose a setup for others to discuss before a decision can be made.
 
 ## Fund your project with Project Catalyst
 
-[Project Catalyst](project-catalyst), Cardano's innovation platform is the current way to access the funds of the treasury system. It is seen as a stepping stone to Voltaire and aims to provide a safe and lively environment to explore the highest potential of human collaboration. 
+The present means to access the funds of the treasury system is through [Project Catalyst](project-catalyst), Cardano's innovation platform. It is considered as a stepping stone to Voltaire and strives to give a safe and exciting setting in which to explore human collaboration's highest potential.
