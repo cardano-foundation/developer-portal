@@ -4,7 +4,7 @@ title: Grafana Dashboard Tutorial
 sidebar_label: Grafana Dashboard Tutorial
 description: "Stake pool course: Grafana Dashboard Tutorial"
 ---
-![Grafana Tutorial](/img/snsky_dashboard.jpg)
+![Grafana Tutorial](/img/stake-pool-course/snsky_dashboard.jpg)
 
 Once the Cardano pool sucessfully set-up, then comes the most beautifull part - setting up your Dashboard and Alerts!
 
@@ -171,7 +171,7 @@ On Relay Node, open http://localhost:3000 or http://*your Relay Node ip address*
 Login with admin / admin
 Change password
 
-![Datasource](/img/snsky_prometheus.jpg)
+![Datasource](/img/stake-pool-course/snsky_prometheus.jpg)
 
 Click the configuration gear icon, then Add data Source
 Select Prometheus
@@ -320,7 +320,7 @@ from_name = Grafana
 
 Login to Grafana with username and password.
 
-![Email Alert](/img/snsky_EmailAlert.jpg)
+![Email Alert](/img/stake-pool-course/snsky_EmailAlert.jpg)
 
 Click on the "Bell" icon on the left sidebar.
 
@@ -352,7 +352,7 @@ Click on "Save" to add this channel
 
 Create an Alert if Producer Node is not reachable
 
-![Peer Alert](/img/snsky_PeerAlert.jpg)
+![Peer Alert](/img/stake-pool-course/snsky_PeerAlert.jpg)
 
 Please not that Alerts can only be created for "Graph" panels!
 
@@ -444,7 +444,7 @@ $ sudo systemctl restart grafana-server
 
 
 ## 8. Advanced Users: Slot Leader Panel
-![Leader Panel](/img/snsky_leaderPanel.jpg)
+![Leader Panel](/img/stake-pool-course/snsky_leaderPanel.jpg)
 
 Once your Pool gets big and is regularly minting blocks, it becomes diffcult to keep track of all Leader Slots and also to identify the available gaps for Pool maintainance. This Slot Leader Panel is quite helpful as it gives a good overview of all scheduled Slots in TimeSeries.
 
