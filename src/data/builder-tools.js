@@ -355,6 +355,15 @@ const Showcases = [
     getstarted: null,
     tags: ["library", "api", "python"],
   },
+    {
+    title: "RTTmapper",
+    description:
+      "A Cardano SPO script to provide network information useful to build up a good static topology file, by hands. Pending the launch of P2P, this SH script can be a valuable support for managing and optimizing the network performance of your stake pool.",
+    preview: require("./builder-tools/RTTmapper.gif"),
+    website: "https://github.com/CardenPool/RTTmapper",
+    getstarted: null,
+    tags: ["operator tool"],
+  },
   {
     title: "Oura - the tail of Cardano",
     description:
