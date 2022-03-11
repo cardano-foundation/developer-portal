@@ -818,6 +818,15 @@ const Showcases = [
     source: null,
     tags: ["analytics", "nftsupport"],
   },
+  {
+    title: "Minswap Dex",
+    description:
+      "Minswap is a multi-pool decentralized exchange on Cardano",
+    preview: require("./showcase/minswap.png"),
+    website: "https://app.minswap.org",
+    source: null,
+    tags: [ "dex", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
