@@ -454,7 +454,9 @@ Once your Pool gets big and is regularly minting blocks, it becomes diffcult to 
 Use cardano-cli to query the leadership schedule. Since the result has to interpreted by Grafana, we need to format the query output to a CSV readable syntax.
 
 :::note
+
 The cardano-cli query requires addtional RAM. Please refer to [query leadership-schedule](https://github.com/input-output-hk/cardano-node/issues/3673) for more details. I needed 16GB RAM + 8GB SWAP and it took several minutes to query the leadership schedule.
+
 :::
 
 The whole script can be copied from here:
