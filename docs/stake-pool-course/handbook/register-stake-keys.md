@@ -19,46 +19,7 @@ cardano-cli stake-address registration-certificate \
     --out-file stake.cert
 ```
 
-## Draft transaction
-
-For the transaction draft, --tx.out, --invalid-hereafter and --fee can be set to zero.
-
-```sh
-cardano-cli transaction build-raw \
-    --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
-    --tx-out $(cat payment.addr)+0 \
-    --invalid-hereafter 0 \
-    --fee 0 \
-    --out-file tx.draft \
-    --certificate-file stake.cert
-```
-
-## Calculate fees
-
-```sh
-cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.draft \
-    --tx-in-count 1 \
-    --tx-out-count 1 \
-    --witness-count 2 \
-    --byron-witness-count 0 \
-    --mainnet \
-    --protocol-params-file protocol.json
-```
-
-The output is the transaction fee in lovelace:
-
-    > 171485
-
-Registering the stake address, not only pay transaction fees, but also includes a _deposit_ (which you get back when deregister the key) as stated in the protocol parameters:
-
-The deposit amount can be found in the `protocol.json` under `stakeAddressDeposit`, for example in Shelley Mainnet:
-
-```json
-"stakeAddressDeposit": 2000000,
-```
-
-Query the UTXO of the address that pays for the transaction and deposit:
+## Query the UTXO of the address that pays for the transaction and deposit:
 
 ```sh
 cardano-cli query utxo \
@@ -70,25 +31,59 @@ cardano-cli query utxo \
     > ----------------------------------------------------------------------------------------
     > b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee     1      1000000000 lovelace
 
-## Calculate the change to send back to payment address after including the deposit
+
+## Draft transaction & Calculate fees (this doesn't need to be done in multiple steps anymore)
+
+For the transaction, --tx.out need to be more approx. 1 ADA, --invalid-hereafter need to be set close ahead of the current slot. 
+First: query the current slotnumber again to add it to --invalid-hereafter: 
+```sh
+cardano-cli query tip --mainnet
+```
+
+```sh
+cardano-cli transaction build \
+    --alonzo-era \
+    --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
+    --tx-out $(cat payment.addr)+1000000 \
+    --change-address $(cat payment.addr) \
+    --mainnet  \
+    --out-file tx.raw \
+    --certificate-file stake.cert \
+    --invalid-hereafter 987654 \
+    --witness-override 2
+```
+The output is the transaction fee in lovelace:
+
+    > 171485
+
+Registering the stake address, not only pay transaction fees, but also includes a _deposit_ (which you get back when deregister the key) as stated in the protocol parameters:
+
+The deposit amount can be found in the `protocol.json` under `stakeAddressDeposit`, for example in Shelley Mainnet:
+
+```json
+"stakeAddressDeposit": 2000000,
+```
+## (OPTIONAL): Calculate the change to send back to payment address after including the deposit
+
+It is either possible to simply keep the transaction as prepared above and send the minimum of 1 ADA (1000000 Lovelace) to the payment.addr, which will result in two utxos at payment.addr, or you could calculate the exact amount needed to only have one utxo resulting at your payment.addr (and no change). 
 
     expr 1000000000 - 171485 - 2000000
 
     > 997828515
 
-## Submit the certificate with a transaction:
-
-Build the transaction, this time include  --invalid-hereafter and --fee
-
-```sh
-cardano-cli transaction build-raw \
+Herefore you would need to calculate the expression above and then build the transaction (as stated above) again, but adding the result calculated in the tx-out parameter: 
+cardano-cli transaction build \
+    --alonzo-era \
     --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
     --tx-out $(cat payment.addr)+997828515 \
-    --invalid-hereafter 987654 \
-    --fee 171485 \
+    --change-address $(cat payment.addr) \
+    --mainnet  \
     --out-file tx.raw \
-    --certificate-file stake.cert
-```
+    --certificate-file stake.cert \
+    --invalid-hereafter 987654 \
+    --witness-override 2
+
+## Submit the certificate with a transaction:
 
 Sign it:
 
