@@ -3,7 +3,7 @@ id: grafana-dashboard-tutorial
 title: Grafana Dashboard Tutorial
 sidebar_label: Grafana Dashboard Tutorial
 description: "Stake pool course: Grafana Dashboard Tutorial"
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 Once the Cardano pool sucessfully set-up, then comes the most beautifull part - setting up your Dashboard and Alerts! 
