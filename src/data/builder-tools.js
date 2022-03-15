@@ -363,6 +363,15 @@ const Showcases = [
     website: "https://github.com/txpipe/oura",
     getstarted: null,
     tags: ["favorite", "rust"],
+  },
+   {
+    title: "IdentityToken",
+    description:
+      "IdentityToken is an idea, the idea of owning your identity and bringing it with you. Eliminating the need for custodians and middlemen for managing your identity. Eliminating passwords and centralized databases for authentication.",
+    preview: require("./builder-tools/identitytoken.png"),
+    website: "https://identity.adaph.io",
+    getstarted: null,
+    tags: ["favorite", "api", "nft", "operatortool", "net"],
   }
 ];
 
