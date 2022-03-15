@@ -363,6 +363,15 @@ const Showcases = [
     website: "https://github.com/txpipe/oura",
     getstarted: null,
     tags: ["favorite", "rust"],
+  },
+   {
+    title: "Cardano Tx Submit Service",
+    description:
+      "Cardano Tx Submit Service is an open source Cardano $ADA Tx Submission Service that provides some stats and customizability. It hooks directly to cardano-submit-tx and cardano-node.",
+    preview: require("./builder-tools/customsubmissionnode.png"),
+    website: "https://submit.adaph.io/",
+    getstarted: null,
+    tags: ["favorite", "api", "nft", "operatortool"],
   }
 ];
 
