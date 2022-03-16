@@ -818,6 +818,14 @@ const Showcases = [
     source: null,
     tags: ["analytics", "nftsupport"],
   },
+  {
+    title: "Black Tie Collective",
+    description: "Black Tie Collective (B.T.C.) is our proposed solution to the shared wallet/ DAO. We’ve all seen the benefits of being able to invest in a multitude of projects, however, we are all limited by the resources we possess.",
+    preview: require("./showcase/btc.png"),
+    website: "https://blacktiecollective.club",
+    source: null,
+    tags: ["nftproject", "minting"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
