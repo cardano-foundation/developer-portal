@@ -363,7 +363,16 @@ const Showcases = [
     website: "https://github.com/txpipe/oura",
     getstarted: null,
     tags: ["favorite", "rust"],
-  }
+  },
+  {
+    title: "cardano-wallet-connector",
+    description:
+        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework",
+    preview: require("./builder-tools/cardano-wallet-connector.png"),
+    website: "https://github.com/dynamicstrategies/cardano-wallet-connector",
+    getstarted: null,
+    tags: ["javascript","nft","plutus"],
+  },
 ];
 
 
