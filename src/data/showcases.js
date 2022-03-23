@@ -819,6 +819,15 @@ const Showcases = [
     tags: ["analytics", "nftsupport"],
   },
   {
+    title: "Adax.pro",
+    description:
+      "Adax.pro is a Decentralized Digital Assets Exchange built on the Cardano blockchain.",
+    preview: require("./showcase/adax-pro.png"),
+    website: "https://dex.adax.pro",
+    source: null,
+    tags: ["dex", "token"],
+  },
+  {
     title: "Minswap Dex",
     description:
       "Minswap is a multi-pool decentralized exchange on Cardano",
