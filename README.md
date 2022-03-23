@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8d3fae14-1136-4a30-8224-f5602a5a2360/deploy-status)](https://app.netlify.com/sites/staging-dev-portal/deploys)
+
 # Cardano Developer Portal
 
 Welcome to the Cardano Developer Portal. To make the difference between Cardano mainnet functionality and testnet functionality clearer, we moved the old content of developers.cardano.org to testnets.cardano.org with the launch of this developer portal.
