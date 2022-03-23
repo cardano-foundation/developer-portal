@@ -819,6 +819,14 @@ const Showcases = [
     tags: ["analytics", "nftsupport"],
   },
   {
+    title: "ADAZOO MMORPG and Metaverse",
+    description: "Start exploring ADAZOO, battle and capture CNFT's. Brag to your friends, show off your stats.",
+    preview: require("./showcase/adazoo.png"),
+    website: "https://adazoo.com",
+    source: null,
+    tags: ["nftproject", "game"],
+  },
+  {  
     title: "Adax.pro",
     description:
       "Adax.pro is a Decentralized Digital Assets Exchange built on the Cardano blockchain.",
