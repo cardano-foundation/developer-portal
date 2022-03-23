@@ -1,6 +1,49 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending March 18th
+
+[2022-03-14]
+ * Replace announcement (#564) (Tommy Kammerer)
+ * added cardano-wallet-connector (#562) (dynamicstrategies)
+ * Add Netlify deploy status badge (#563) (Tommy Kammerer)
+ * Adding ADAZOO to the Showcase! (#560) (Godspeed-exe)
+ * Update register-stake-keys.md (#556) (Leon Obendorf)
+ * Add Adax Pro Dex to showcases (#555) (Fillips Ickevics)
+ * Add Minswap Dex to showcases (#554) (Fillips Ickevics)
+
+### Week ending March 11th
+
+[2022-03-09]
+ * Grafana Tutorial: Adding Chapter 8 on Leadership Schedule and including Screenshots (#552) (SNSKY)
+ * Update overview.md (#551) (John)
+ * Update overview.md (#550) (John)
+ * Update overview.md (#549) (John)
+ * Update marlowe.md (#548) (John)
+ * Update overview.md (#547) (John)
+ * cleaned up commands,outputs (#545) (BharatAtEMURGOIO)
+ * Update ansible-cardano-node.md (#541) (John)
+ * Update guild-ops-suite.md (#540) (John)
+ * Update cardano-key-pairs.md (#539) (John)
+ * Update overview.md (#538) (John)
+ * Update marketing-spo.md (#535) (John)
+
+### Week ending March 4th
+[no updates]
+
+### Week ending February 25th
+[no updates]
+
 ### Week ending February 18th
+
+[2022-02-17]
+ * Update retrieving-metadata.md (#532) (Daniel Campos)
+ * Add February Spotlight Article and fix title of January Article (#533) (Fillips Ickevics)
+ * Update listening-for-payments-cli.md (#531) (Jiří Hofman)
+ * Bump prismjs from 1.25.0 to 1.27.0 (#529) (dependabot[bot])
+ * Adding MermADA Minting (#527) (MermADA)
+ * Update weekly report, week ending February 11th and 18th (#526) (Tommy Kammerer)
+ * Update ansible-cardano-node.md (#525) (Moai Pool [MOAI])
+ * Updated with link to the testnet metadata explorer (#522) (CENT)
 
 [2022-02-15]
  * Update ansible-cardano-node.md (#525) (Moai Pool [MOAI])
