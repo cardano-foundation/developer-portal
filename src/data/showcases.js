@@ -818,7 +818,6 @@ const Showcases = [
     source: null,
     tags: ["nftproject", "educational"],
   },
-  {
 ];
 
 export const TagList = Object.keys(Tags);
