@@ -41,22 +41,7 @@ In this section, we will walk you through the process of downloading, compiling 
 
 #### Downloading & Compiling
 
-We need to install stack, if we don't have it: 
-
-```bash
-curl -sSL https://get.haskellstack.org/ | sh
-```
-
-Check the version that has been installed:
-```bash
-stack --version
-```
-
-You should see something like this: 
-
-```bash
-Version 2.7.3, Git revision 7927a3aec32e2b2e5e4fb5be76d0d50eddcc197f x86_64 hpack-0.34.4
-```
+We need to install cabal, if we don't have it. See the following link for instructions: https://www.haskell.org/cabal/
 
 If you have followed the [Installing cardano-node](/docs/get-started/installing-cardano-node) guide, You should have the `$HOME/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
 
@@ -88,13 +73,13 @@ You can check the latest available version / tag by visiting the `cardano-wallet
 We can now build `cardano-wallet` code to produce executable binaries.
 
 ```bash
-stack build --test --no-run-tests
+cabal build all
 ```
 
 Install the newly built `cardano-wallet` binary to the `$HOME/.local/bin` directory:
 
 ```bash
-stack install
+cabal install cardano-wallet
 ```
 
 Check the version that has been installed:
