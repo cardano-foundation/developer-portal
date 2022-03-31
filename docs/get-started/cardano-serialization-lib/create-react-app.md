@@ -1,6 +1,6 @@
 ---
 id: create-react-app
-sidebar_position: 2
+sidebar_position: 6
 title: Create React App for Serialization-Lib
 sidebar_label: Create React App
 description: A Create React App with the necessary code to get started developing front-end DApps on Cardano
