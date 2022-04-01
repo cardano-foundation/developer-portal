@@ -16,7 +16,7 @@ If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](h
 On the Cardano Forum, you can [dicuss Marlowe](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
 ## The Marlowe platform
-When compared to a [uring-complete](https://en.wikipedia.org/wiki/Turing_completeness) language, the Marlowe DSL provides significantly greater security, certainty, [guarantees of termination](https://en.wikipedia.org/wiki/Halting_problem), and behavior correctness.
+When compared to a [Turing-complete](https://en.wikipedia.org/wiki/Turing_completeness) language, the Marlowe DSL provides significantly greater security, certainty, [guarantees of termination](https://en.wikipedia.org/wiki/Halting_problem), and behavior correctness.
 
 The design guarantees the following:
 - Contracts are finite. No recursion or loops.
