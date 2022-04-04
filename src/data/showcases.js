@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "GeroWallet",
+    description:
+      "Start exploring the possibilities of Cardano. Purchase, send, and receive ADA - the cryptocurrency for Cardano. Available as a browser extension.",
+    preview: require("./showcase/gerowallet.png"),
+    website: "https://gerowallet.io",
+    source: null,
+    tags: [ "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
