@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "CWallet",
+    description:
+      "Cross-Chain Non-Custodial Wallet & Liquidity Engine",
+    preview: require("./showcase/cwallet.png"),
+    website: "https://cwallet.finance",
+    source: null,
+    tags: ["wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
