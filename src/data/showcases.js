@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "Exodus Wallet",
+    description:
+      "Send, receive, and exchange Bitcoin and 165+ cryptocurrencies with ease on the world's leading Desktop, Mobile and Hardware crypto wallets",
+    preview: require("./showcase/exodus.png"),
+    website: "https://www.exodus.com",
+    source: null,
+    tags: [ "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
