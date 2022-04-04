@@ -163,6 +163,15 @@ export const Tags = {
     icon: null,
     color: '#1B32F0'
   },
+
+  // Ecosystem
+  ecosystem: {
+    label: "Ecosystem",
+    description:
+      "The Cardano ecosystem projects",
+    icon: null,
+    color: '#800080'
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -843,6 +852,15 @@ const Showcases = [
     website: "https://app.minswap.org",
     source: null,
     tags: [ "dex", "token"],
+  },
+  {
+    title: "Building On Cardano",
+    description:
+      "Minswap is a multi-pool decentralized exchange on Cardano",
+    preview: require("./showcase/buildoncardano.png"),
+    website: "https://buildingoncardano.com/#/",
+    source: null,
+    tags: [ "ecosystem"],
   },
 ];
 
