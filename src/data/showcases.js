@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "Pavia",
+    description:
+      "Create, explore and trade in the first-ever Cardano virtual world owned by its users.",
+    preview: require("./showcase/pavia.png"),
+    website: "https://www.pavia.io",
+    source: null,
+    tags: [ "game", "nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
