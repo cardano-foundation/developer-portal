@@ -185,12 +185,6 @@ module.exports = {
       // Let's use the copyright footer for terms and privacy policy for now
       copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Privacy Policy</a>`,
     },
-    gtag: {
-      // You can also use your "G-" Measurement ID here.
-      trackingID: 'GTM-5NM3NX4',
-      // Optional fields.
-      anonymizeIP: true, // Should IPs be anonymized?
-    },
   },
   plugins: [
     [
@@ -246,6 +240,12 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+        },
+        gtag: {
+          // You can also use your "G-" Measurement ID here.
+          trackingID: 'GTM-5NM3NX4',
+          // Optional fields.
+          anonymizeIP: true, // Should IPs be anonymized?
         },
       },
     ],
