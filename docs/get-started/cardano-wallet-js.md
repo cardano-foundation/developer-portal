@@ -3,7 +3,7 @@ id: cardano-wallet-js
 title: Get Started with cardano-wallet-js
 sidebar_label: cardano-wallet-js
 description: Get Started with cardano-wallet-js
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 ## cardano-wallet-js

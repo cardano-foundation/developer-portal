@@ -3,7 +3,7 @@ id: creating-wallet-faucet
 title: Exploring Cardano wallets
 sidebar_label: Exploring Cardano wallets
 description: This article explains how you can create different kinds of Cardano Wallets and how you can recieve some tAda(test ada) from the faucet.
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 --- 
 
 ### Overview 
