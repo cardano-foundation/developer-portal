@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "Explorer Png",
+    description:
+      "Token Viewer on Cardano Blockchain",
+    preview: require("./showcase/explorerxyz.png"),
+    website: "https://ex.plorer.xyz",
+    source: null,
+    tags: [ "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
