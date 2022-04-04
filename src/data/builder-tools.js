@@ -141,6 +141,14 @@ export const Tags = {
     color: '#14cfc3',
   },
 
+  // Chain Index
+  chainIndex: {
+    label: "Chain-Index",
+    description: 
+      "Index Protocol",
+    icon: null,
+    color: '#000'
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -362,7 +370,7 @@ const Showcases = [
     preview: require("./builder-tools/oura.png"),
     website: "https://github.com/txpipe/oura",
     getstarted: null,
-    tags: ["favorite", "rust"],
+    tags: ["favorite", "rust", "chainIndex"],
   },
   {
     title: "cardano-wallet-connector",
