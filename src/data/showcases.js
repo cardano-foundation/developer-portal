@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "JPG Store",
+    description:
+      "Discover artwork, explore communities, and support artists on Cardano.",
+    preview: require("./showcase/jpg.png"),
+    website: "https://www.jpg.store",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
