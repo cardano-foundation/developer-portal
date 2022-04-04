@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "CNFT Jungle",
+    description:
+      "CNFT Jungle is the biggest automated Cardano NFT rarity database and market analytics platform.",
+    preview: require("./showcase/cnftjungle.png"),
+    website: "https://www.cnftjungle.io",
+    source: null,
+    tags: [ "analytics", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
