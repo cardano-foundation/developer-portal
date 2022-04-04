@@ -844,6 +844,15 @@ const Showcases = [
     source: null,
     tags: [ "dex", "token"],
   },
+  {
+    title: "Atala Scan",
+    description:
+      "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
+    preview: require("./showcase/atalascan.png"),
+    website: "https://atalascan.io",
+    source: null,
+    tags: ["analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
