@@ -24,23 +24,6 @@ module.exports = {
     prism: {
       additionalLanguages: ['csharp', 'php'],
     },
-    
-    // Dark / Light Mode
-    colorMode: {
-      disableSwitch: false,
-      // with true defaultMode is overridden by user system preferences.
-      respectPrefersColorScheme: true,
-      switchConfig: {
-        darkIcon: "🌙",
-        darkIconStyle: {
-          marginLeft: "2px",
-        },
-        lightIcon: "☀️",
-        lightIconStyle: {
-          marginLeft: "1px",
-        },
-      },
-    },
 
     // Announcement Bar
     // id: always change it when changing the announcement
