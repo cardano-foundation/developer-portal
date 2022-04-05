@@ -163,6 +163,14 @@ export const Tags = {
     icon: null,
     color: '#1B32F0'
   },
+
+  // Identity
+  identity: {
+    label: "Identity",
+    description: "Proof of identity",
+    icon: null,
+    color: '#000'
+  },
 };
 
 // Add your project to (THE END OF) this list.
