@@ -851,7 +851,7 @@ const Showcases = [
     preview: require("./showcase/atalascan.png"),
     website: "https://atalascan.io",
     source: null,
-    tags: ["analytics"],
+    tags: ["metadata", "identity"],
   },
 ];
 
