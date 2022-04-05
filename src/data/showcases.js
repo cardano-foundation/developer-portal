@@ -163,6 +163,14 @@ export const Tags = {
     icon: null,
     color: '#1B32F0'
   },
+
+  // Identity
+  identity: {
+    label: "Identity",
+    description: "Decentralized identifiers (DIDs)",
+    icon: null,
+    color: '#000'
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -843,6 +851,15 @@ const Showcases = [
     website: "https://app.minswap.org",
     source: null,
     tags: [ "dex", "token"],
+  },
+  {
+    title: "Atala Scan",
+    description:
+      "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
+    preview: require("./showcase/atalascan.png"),
+    website: "https://atalascan.io",
+    source: null,
+    tags: ["metadata", "identity"],
   },
   {
     title: "Pavia",
