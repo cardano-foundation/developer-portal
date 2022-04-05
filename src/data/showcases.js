@@ -167,7 +167,7 @@ export const Tags = {
   // Identity
   identity: {
     label: "Identity",
-    description: "Proof of identity",
+    description: "Decentralized identifiers (DIDs)",
     icon: null,
     color: '#000'
   },
@@ -860,6 +860,15 @@ const Showcases = [
     website: "https://atalascan.io",
     source: null,
     tags: ["metadata", "identity"],
+  },
+  {
+    title: "Pavia",
+    description:
+      "Create, explore and trade in the Cardano virtual world owned by its users.",
+    preview: require("./showcase/pavia.png"),
+    website: "https://www.pavia.io",
+    source: null,
+    tags: [ "game", "nftproject"],
   },
 ];
 
