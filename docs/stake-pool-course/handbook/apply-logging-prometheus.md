@@ -3,7 +3,7 @@ id: apply-logging-prometheus
 title: Monitoring a Node with Prometheus
 sidebar_label: Monitoring a node with Prometheus
 description: "Stake pool course: Monitoring a node with Prometheus."
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 Open the port 12798, as it is the default port for prometheus, as from the `config.json` file.
