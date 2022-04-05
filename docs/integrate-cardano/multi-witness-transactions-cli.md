@@ -3,7 +3,7 @@ id: multi-witness-transactions-cli
 title: Multi-witness transactions
 sidebar_label: Multi-witness transactions
 description: This article explains how you can create multi witness transactions using the cardano-cli.
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

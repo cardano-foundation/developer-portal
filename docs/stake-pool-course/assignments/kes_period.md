@@ -3,7 +3,7 @@ id: kes_period
 title:  KES Periods
 sidebar_label:  KES periods
 description: "Stake pool course: KES period assignment." 
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 To create an operational certificate for a block-producing node, you need to create a _KES key pair_.
