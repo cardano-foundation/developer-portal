@@ -847,7 +847,7 @@ const Showcases = [
   {
     title: "Pavia",
     description:
-      "Create, explore and trade in the first-ever Cardano virtual world owned by its users.",
+      "Create, explore and trade in the Cardano virtual world owned by its users.",
     preview: require("./showcase/pavia.png"),
     website: "https://www.pavia.io",
     source: null,
