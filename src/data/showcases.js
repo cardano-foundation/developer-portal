@@ -856,9 +856,9 @@ const Showcases = [
   {
     title: "Building On Cardano",
     description:
-      "Minswap is a multi-pool decentralized exchange on Cardano",
+      "Place to view whats happening within the cardano ecosystem.",
     preview: require("./showcase/buildoncardano.png"),
-    website: "https://buildingoncardano.com/#/",
+    website: "https://buildingoncardano.com",
     source: null,
     tags: [ "ecosystem"],
   },
