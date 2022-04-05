@@ -142,8 +142,8 @@ export const Tags = {
   },
 
   // Chain Index
-  chainIndex: {
-    label: "Chain-Index",
+  chainindex: {
+    label: "Chain Index",
     description: 
       "Index Protocol",
     icon: null,
@@ -370,7 +370,7 @@ const Showcases = [
     preview: require("./builder-tools/oura.png"),
     website: "https://github.com/txpipe/oura",
     getstarted: null,
-    tags: ["favorite", "rust", "chainIndex"],
+    tags: ["favorite", "rust", "chainindex"],
   },
   {
     title: "cardano-wallet-connector",
