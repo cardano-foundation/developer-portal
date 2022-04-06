@@ -3,7 +3,7 @@ id: cardano-components
 title: Cardano Components
 sidebar_label: Overview
 description: This article explains all the different Cardano components and their functions.
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 --- 
 
 - [`cardano-node`](https://github.com/input-output-hk/cardano-node#cardano-node-overview) is the core component that is used to participate in a Cardano decentralised blockchain. 

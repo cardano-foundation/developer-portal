@@ -3,7 +3,7 @@ id: introduction-to-cardano
 title: (Re)introduction into Cardano
 sidebar_label: (Re)introduction into Cardano
 description: "Stake pool course: (Re)introduction into Cardano."
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 Developing Cardano is no small feat. There is no other project that has ever been built to these parameters, combining peer reviewed cryptographic research with an implementation in highly secure Haskell code. 

@@ -3,7 +3,7 @@ id: portal-contribute
 title: How to contribute to the developer portal
 sidebar_label: How to contribute
 description: How to contribute to the Cardano developer portal.
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 We wanted to build an open and inclusive, easy to use developer portal that offers guidance and allows community contribution. To achieve this we have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
