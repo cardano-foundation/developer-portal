@@ -163,6 +163,14 @@ export const Tags = {
     icon: null,
     color: '#1B32F0'
   },
+
+  // Identity
+  identity: {
+    label: "Identity",
+    description: "Decentralized identifiers (DIDs)",
+    icon: null,
+    color: '#000'
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -852,6 +860,49 @@ const Showcases = [
     website: "https://www.cnftjungle.io",
     source: null,
     tags: [ "analytics", "nftsupport"],
+  },
+  {
+    title: "Explorer Png",
+    description:
+      "Token Viewer on Cardano Blockchain",
+    preview: require("./showcase/explorerxyz.png"),
+    website: "https://ex.plorer.xyz",
+    source: null,
+    tags: [ "nftsupport"],
+  },
+  {
+    title: "Galaxy Of Art",
+    description:
+      "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
+    preview: require("./showcase/galaxyofart.png"),
+    website: "https://galaxyof.art",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
+   },
+   {
+    title: "JPG Store",
+    description:
+      "Discover artwork, explore communities, and support artists on Cardano.",
+    preview: require("./showcase/jpg.png"),
+    website: "https://www.jpg.store",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
+    title: "Atala Scan",
+    description:
+      "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
+    preview: require("./showcase/atalascan.png"),
+    website: "https://atalascan.io",
+    source: null,
+    tags: ["metadata", "identity"],
+  },
+  {
+    title: "Pavia",
+    description:
+      "Create, explore and trade in the Cardano virtual world owned by its users.",
+    preview: require("./showcase/pavia.png"),
+    website: "https://www.pavia.io",
+    source: null,
+    tags: [ "game", "nftproject"],
   },
 ];
 

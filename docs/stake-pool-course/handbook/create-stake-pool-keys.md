@@ -3,7 +3,7 @@ id: create-stake-pool-keys
 title: Create Stake Pool Keys
 sidebar_label: Create stake pool keys
 description: "Stake pool course: Learn how to create stake pool keys."
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 In the Shelley era of Cardano, every stakeholder can have two sets of keys and addresses:
