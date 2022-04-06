@@ -382,6 +382,15 @@ const Showcases = [
     tags: ["javascript","nft","plutus"],
   },
   {
+    title: "Stricahq Typhonjs Wallet",
+    description:
+        "Pure javascript Cardano wallet library.",
+    preview: require("./builder-tools/typhonjs.png"),
+    website: "https://github.com/StricaHQ/typhonjs",
+    getstarted: null,
+    tags: ["javascript","library","plutus"],
+  },
+  {
     title: "IntelliJ IDE",
     description:
       "An IntelliJ plugin for Cardano blockchain",
