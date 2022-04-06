@@ -3,7 +3,7 @@ id: how-to-create-a-metadata-transaction-wallet
 title: How to create a metadata transaction using cardano-wallet
 sidebar_label: Create a metadata transaction (Wallet)
 description: How to create a metadata transaction using `cardano-wallet`
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
