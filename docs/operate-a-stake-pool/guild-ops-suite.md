@@ -3,7 +3,7 @@ id: guild-ops-suite
 title: Get Started with Guild Operators Tools
 sidebar_label: Guild Operators Suite
 description: Get Started with Guild Operators Tools
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 ## Guild Operators Suite
