@@ -853,6 +853,15 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "CNFT Jungle",
+    description:
+      "CNFT Jungle is the biggest automated Cardano NFT rarity database and market analytics platform.",
+    preview: require("./showcase/cnftjungle.png"),
+    website: "https://www.cnftjungle.io",
+    source: null,
+    tags: [ "analytics", "nftsupport"],
+  },
+  {
     title: "Explorer Png",
     description:
       "Token Viewer on Cardano Blockchain",
@@ -860,8 +869,8 @@ const Showcases = [
     website: "https://ex.plorer.xyz",
     source: null,
     tags: [ "nftsupport"],
-    },
-    {
+  },
+  {
     title: "Galaxy Of Art",
     description:
       "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
