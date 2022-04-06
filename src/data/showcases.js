@@ -853,6 +853,15 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "Explorer Png",
+    description:
+      "Token Viewer on Cardano Blockchain",
+    preview: require("./showcase/explorerxyz.png"),
+    website: "https://ex.plorer.xyz",
+    source: null,
+    tags: [ "nftsupport"],
+    },
+    {
     title: "Galaxy Of Art",
     description:
       "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
