@@ -3,7 +3,7 @@ id: portal-style-guide
 title: Style Guide
 sidebar_label: Style Guide
 description: Style guide for the Cardano developer portal.
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/). [Markdown](https://github.github.com/gfm/) is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
