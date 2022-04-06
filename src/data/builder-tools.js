@@ -141,6 +141,7 @@ export const Tags = {
     color: '#14cfc3',
   },
 
+
   // Chain Index
   chainindex: {
     label: "Chain Index",
@@ -148,6 +149,14 @@ export const Tags = {
       "Index Protocol",
     icon: null,
     color: '#000'
+
+  // Integrated Development Environment
+  IDE: {
+    label: "IDE",
+    description:
+      "Integrated development environment",
+    icon: null,
+    color: '#001eff',
   },
 };
 
@@ -381,6 +390,15 @@ const Showcases = [
     getstarted: null,
     tags: ["javascript","nft","plutus"],
   },
+  {
+    title: "IntelliJ IDE",
+    description:
+      "An IntelliJ plugin for Cardano blockchain",
+    preview: require("./builder-tools/IDE.png"),
+    website: "https://intelliada.bloxbean.com",
+    getstarted: null, 
+    tags: ["java", "IDE"],
+  }
 ];
 
 
