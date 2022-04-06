@@ -141,6 +141,16 @@ export const Tags = {
     color: '#14cfc3',
   },
 
+
+  // Chain Index
+  chainindex: {
+    label: "Chain Index",
+    description: 
+      "Index Protocol",
+    icon: null,
+    color: '#000'
+  },
+  
   // Integrated Development Environment
   IDE: {
     label: "IDE",
@@ -370,7 +380,7 @@ const Showcases = [
     preview: require("./builder-tools/oura.png"),
     website: "https://github.com/txpipe/oura",
     getstarted: null,
-    tags: ["favorite", "rust"],
+    tags: ["favorite", "rust", "chainindex"],
   },
   {
     title: "cardano-wallet-connector",
