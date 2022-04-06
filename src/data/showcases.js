@@ -853,6 +853,13 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "JPG Store",
+    description:
+      "Discover artwork, explore communities, and support artists on Cardano.",
+    preview: require("./showcase/jpg.png"),
+    website: "https://www.jpg.store",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
     title: "Atala Scan",
     description:
       "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
