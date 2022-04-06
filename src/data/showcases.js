@@ -172,7 +172,7 @@ export const Tags = {
     icon: null,
     color: '#800080'
   },
-  
+
   // Identity
   identity: {
     label: "Identity",
@@ -180,6 +180,7 @@ export const Tags = {
     icon: null,
     color: '#000'
   },
+
 };
 
 // Add your project to (THE END OF) this list.
@@ -862,6 +863,15 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "Built on Cardano",
+    description:
+      "Discover projects and dApps building on Cardano along with the developer tools you can use to build on Cardano. Explore similar projects and tools with ease and simply find you way back to where you started.",
+    preview: require("./showcase/buildoncardano.png"),
+    website: "https://builtoncardano.com",
+    source: null,
+    tags: [ "ecosystem"],
+  },
+  {
     title: "CardanoCube",
     description:
       "Explore 650+ Projects Building on Cardano",
@@ -905,6 +915,8 @@ const Showcases = [
     website: "https://www.jpg.store",
     source: null,
     tags: [ "marketplace", "nftsupport"],
+  },
+  {
     title: "Atala Scan",
     description:
       "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
