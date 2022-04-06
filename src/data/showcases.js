@@ -853,6 +853,15 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "Galaxy Of Art",
+    description:
+      "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
+    preview: require("./showcase/galaxyofart.png"),
+    website: "https://galaxyof.art",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
+   },
+   {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
