@@ -149,7 +149,8 @@ export const Tags = {
       "Index Protocol",
     icon: null,
     color: '#000'
-
+  },
+  
   // Integrated Development Environment
   IDE: {
     label: "IDE",
