@@ -141,6 +141,14 @@ export const Tags = {
     color: '#14cfc3',
   },
 
+  // Integrated Development Environment
+  IDE: {
+    label: "IDE",
+    description:
+      "Integrated development environment",
+    icon: null,
+    color: '#001eff',
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -382,6 +390,15 @@ const Showcases = [
     getstarted: null,
     tags: ["javascript","library","plutus"],
   },
+  {
+    title: "IntelliJ IDE",
+    description:
+      "An IntelliJ plugin for Cardano blockchain",
+    preview: require("./builder-tools/IDE.png"),
+    website: "https://intelliada.bloxbean.com",
+    getstarted: null, 
+    tags: ["java", "IDE"],
+  }
 ];
 
 

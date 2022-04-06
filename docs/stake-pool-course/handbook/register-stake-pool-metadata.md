@@ -3,7 +3,7 @@ id: register-stake-pool-metadata
 title: Register a Stake Pool with Metadata
 sidebar_label: Register a stake pool with metadata
 description: "Stake pool course: Register a stake pool with metadata."
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 Make sure you have access to:
