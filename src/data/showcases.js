@@ -934,6 +934,15 @@ const Showcases = [
     source: null,
     tags: [ "game", "nftproject"],
   },
+  {
+    title: "WingRiders",
+    description:
+      "The DEX on Cardano. Native and fast AMM decentralized exchange platform.",
+    preview: require("./showcase/wingriders.png"),
+    website: "https://www.wingriders.com",
+    source: null,
+    tags: [ "dex", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
