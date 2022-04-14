@@ -3,7 +3,7 @@ id: marlowe
 title: Marlowe
 sidebar_label: Marlowe
 description: Marlowe
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 --- 
 
 ## Get started with Marlowe 

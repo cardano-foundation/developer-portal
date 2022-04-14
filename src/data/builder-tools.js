@@ -141,6 +141,24 @@ export const Tags = {
     color: '#14cfc3',
   },
 
+
+  // Chain Index
+  chainindex: {
+    label: "Chain Index",
+    description: 
+      "Index Protocol",
+    icon: null,
+    color: '#000'
+  },
+  
+  // Integrated Development Environment
+  IDE: {
+    label: "IDE",
+    description:
+      "Integrated development environment",
+    icon: null,
+    color: '#001eff',
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -362,7 +380,7 @@ const Showcases = [
     preview: require("./builder-tools/oura.png"),
     website: "https://github.com/txpipe/oura",
     getstarted: null,
-    tags: ["favorite", "rust"],
+    tags: ["favorite", "rust", "chainindex"],
   },
   {
     title: "cardano-wallet-connector",
@@ -373,6 +391,24 @@ const Showcases = [
     getstarted: null,
     tags: ["javascript","nft","plutus"],
   },
+  {
+    title: "Stricahq Typhonjs Wallet",
+    description:
+        "Pure javascript Cardano wallet library.",
+    preview: require("./builder-tools/typhonjs.png"),
+    website: "https://github.com/StricaHQ/typhonjs",
+    getstarted: null,
+    tags: ["javascript","library","plutus"],
+  },
+  {
+    title: "IntelliJ IDE",
+    description:
+      "An IntelliJ plugin for Cardano blockchain",
+    preview: require("./builder-tools/IDE.png"),
+    website: "https://intelliada.bloxbean.com",
+    getstarted: null, 
+    tags: ["java", "IDE"],
+  }
 ];
 
 
