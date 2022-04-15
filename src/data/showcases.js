@@ -971,6 +971,15 @@ const Showcases = [
     tags: [ "game", "nftproject"],
   },
   {
+    title: "WingRiders",
+    description:
+      "The DEX on Cardano. Native and fast AMM decentralized exchange platform.",
+    preview: require("./showcase/wingriders.png"),
+    website: "https://www.wingriders.com",
+    source: null,
+    tags: [ "dex", "token"],
+  },
+  {
     title: "Building On Cardano",
     description:
       "Place to view whats happening within the cardano ecosystem.",
