@@ -988,6 +988,15 @@ const Showcases = [
     source: null,
     tags: [ "ecosystem"],
   },
+  {
+    title: "Mazzanti Team Crypto",
+    description:
+      "We offer various options of tokens pooled together in many DEX's. All tokens are in closed policy's to offer stability and providing a long terme ride.",
+    preview: require("./showcase/MazzantiTeamCrypto.png"),
+    website: "https://twitter.com/GabrielMazzant3",
+    source: null,
+    tags: ["nftproject", "dex", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
