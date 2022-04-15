@@ -863,6 +863,15 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "CWallet",
+    description:
+      "Cross-Chain Non-Custodial Wallet & Liquidity Engine",
+    preview: require("./showcase/cwallet.png"),
+    website: "https://cwallet.finance",
+    source: null,
+    tags: ["wallet"],
+  },
+  {
     title: "GameChanger Wallet",
     description:
       "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications",
