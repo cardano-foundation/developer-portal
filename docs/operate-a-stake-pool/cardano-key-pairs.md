@@ -3,7 +3,7 @@ id: cardano-key-pairs
 title: Cardano Key Pairs
 sidebar_label: Cardano Key Pairs
 description: Learn about Cardano key pairs.
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 It's critical to understand the numerous cryptographic key pairs connected with Cardano, as well as the purpose of each key pair and best practices for securing those keys, before you start working with it. Every ambitious Cardano developer and stake pool operator should get a complete grasp of these key pairs, as well as the ramifications of a single secret (private) key being hacked. Any Cardano developer or stake pool operator must learn how to manage, safeguard, and store private keys in order to succeed.

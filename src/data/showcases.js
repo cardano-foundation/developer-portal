@@ -163,6 +163,24 @@ export const Tags = {
     icon: null,
     color: '#1B32F0'
   },
+
+  // Ecosystem
+  ecosystem: {
+    label: "Ecosystem",
+    description:
+      "The Cardano ecosystem projects",
+    icon: null,
+    color: '#800080'
+  },
+
+  // Identity
+  identity: {
+    label: "Identity",
+    description: "Decentralized identifiers (DIDs)",
+    icon: null,
+    color: '#000'
+  },
+
 };
 
 // Add your project to (THE END OF) this list.
@@ -852,6 +870,96 @@ const Showcases = [
     website: "https://cwallet.finance",
     source: null,
     tags: ["wallet"],
+  },
+  {
+    title: "GameChanger Wallet",
+    description:
+      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications",
+    preview: require("./showcase/gamechanger.png"),
+    website: "https://gamechanger.finance",
+    source: null,
+    tags: [ "wallet"],
+  },
+  {
+    title: "GeroWallet",
+    description:
+      "Start exploring the possibilities of Cardano. Purchase, send, and receive ADA - the cryptocurrency for Cardano. Available as a browser extension.",
+    preview: require("./showcase/gerowallet.png"),
+    website: "https://gerowallet.io",
+    source: null,
+    tags: [ "wallet"],
+  },
+  {
+    title: "Built on Cardano",
+    description:
+      "Discover projects and dApps building on Cardano along with the developer tools you can use to build on Cardano. Explore similar projects and tools with ease and simply find you way back to where you started.",
+    preview: require("./showcase/buildoncardano.png"),
+    website: "https://builtoncardano.com",
+    source: null,
+    tags: [ "ecosystem"],
+  },
+  {
+    title: "CardanoCube",
+    description:
+      "Explore 650+ Projects Building on Cardano",
+    preview: require("./showcase/cardanocube.png"),
+    website: "https://www.cardanocube.io",
+    source: null,
+    tags: ["ecosystem"],
+  },
+  {
+    title: "CNFT Jungle",
+    description:
+      "CNFT Jungle is the biggest automated Cardano NFT rarity database and market analytics platform.",
+    preview: require("./showcase/cnftjungle.png"),
+    website: "https://www.cnftjungle.io",
+    source: null,
+    tags: [ "analytics", "nftsupport"],
+  },
+  {
+    title: "Explorer Png",
+    description:
+      "Token Viewer on Cardano Blockchain",
+    preview: require("./showcase/explorerxyz.png"),
+    website: "https://ex.plorer.xyz",
+    source: null,
+    tags: [ "nftsupport"],
+  },
+  {
+    title: "Galaxy Of Art",
+    description:
+      "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
+    preview: require("./showcase/galaxyofart.png"),
+    website: "https://galaxyof.art",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
+   },
+   {
+    title: "JPG Store",
+    description:
+      "Discover artwork, explore communities, and support artists on Cardano.",
+    preview: require("./showcase/jpg.png"),
+    website: "https://www.jpg.store",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
+  },
+  {
+    title: "Atala Scan",
+    description:
+      "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
+    preview: require("./showcase/atalascan.png"),
+    website: "https://atalascan.io",
+    source: null,
+    tags: ["metadata", "identity"],
+  },
+  {
+    title: "Pavia",
+    description:
+      "Create, explore and trade in the Cardano virtual world owned by its users.",
+    preview: require("./showcase/pavia.png"),
+    website: "https://www.pavia.io",
+    source: null,
+    tags: [ "game", "nftproject"],
   },
 ];
 

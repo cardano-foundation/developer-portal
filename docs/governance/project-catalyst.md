@@ -3,7 +3,7 @@ id: project-catalyst
 title: Fund your Project with Catalyst
 sidebar_label: Project Catalyst
 description: Fund your project with Catalyst
-image: ./img/og-developer-portal.png
+image: ../img/og-developer-portal.png
 ---
 
 The portal on [cardano.ideascale.com](https://cardano.ideascale.com/) is where the Cardano community’s ideas come to life. Here, users can browse active campaigns, participate in discussions, and put forward their ideas for feedback and voting from the community.
