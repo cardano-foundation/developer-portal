@@ -863,6 +863,15 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "GameChanger Wallet",
+    description:
+      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications",
+    preview: require("./showcase/gamechanger.png"),
+    website: "https://gamechanger.finance",
+    source: null,
+    tags: [ "wallet"],
+  },
+  {
     title: "GeroWallet",
     description:
       "Start exploring the possibilities of Cardano. Purchase, send, and receive ADA - the cryptocurrency for Cardano. Available as a browser extension.",
