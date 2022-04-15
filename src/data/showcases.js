@@ -863,6 +863,15 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "GeroWallet",
+    description:
+      "Start exploring the possibilities of Cardano. Purchase, send, and receive ADA - the cryptocurrency for Cardano. Available as a browser extension.",
+    preview: require("./showcase/gerowallet.png"),
+    website: "https://gerowallet.io",
+    source: null,
+    tags: [ "wallet"],
+  },
+  {
     title: "Built on Cardano",
     description:
       "Discover projects and dApps building on Cardano along with the developer tools you can use to build on Cardano. Explore similar projects and tools with ease and simply find you way back to where you started.",
