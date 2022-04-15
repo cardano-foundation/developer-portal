@@ -181,6 +181,15 @@ export const Tags = {
     color: '#000'
   },
 
+   // Ecosystem
+   ecosystem: {
+    label: "Ecosystem",
+    description:
+      "The Cardano ecosystem projects",
+    icon: null,
+    color: '#800080'
+  },
+
 };
 
 // Add your project to (THE END OF) this list.
@@ -960,6 +969,15 @@ const Showcases = [
     website: "https://www.pavia.io",
     source: null,
     tags: [ "game", "nftproject"],
+  },
+  {
+    title: "Building On Cardano",
+    description:
+      "Place to view whats happening within the cardano ecosystem.",
+    preview: require("./showcase/buildingoncardano.png"),
+    website: "https://buildingoncardano.com",
+    source: null,
+    tags: [ "ecosystem"],
   },
 ];
 
