@@ -36,12 +36,30 @@ export const Tags = {
     color: '#39ca30',
   },
 
+  // Chain Index
+  chainindex: {
+    label: "Chain Index",
+    description: 
+      "Index Protocol",
+    icon: null,
+    color: '#000'
+  },
+
   // For builder tools with a get started tag, a link to the get started page is required.
   getstarted: {
     label: "Get Started",
     description: "This builder tool has a get started page in the developer portal.",
     icon: null,
     color: '#dfd545',
+  },
+    
+  // Integrated Development Environment
+  IDE: {
+    label: "IDE",
+    description:
+      "Integrated development environment",
+    icon: null,
+    color: '#001eff',
   },
 
   // Java
@@ -80,14 +98,6 @@ export const Tags = {
     color: '#127f82'
   },
 
-  // NFT Tools
-  nft: {
-    label: "NFT",
-    description: "Non-Fungible Token (NFT)",
-    icon: null,
-    color: '#fe6829',
-  },
-
   // .NET
   net: {
     label: ".NET",
@@ -96,6 +106,31 @@ export const Tags = {
     color: '#e46fd9',
   },
 
+  // NFT Tools
+  nft: {
+    label: "NFT",
+    description: "Non-Fungible Token (NFT)",
+    icon: null,
+    color: '#fe6829',
+  },
+
+  // Stake Pool Operator Tools
+  operatortool: {
+    label: "Operator Tool",
+    description:
+      "Stake pool operator tools.",
+    icon: null,
+    color: '#4267b2', 
+  },
+
+  // Oracle Tools
+  oracle: {
+    label: "Oracle",
+    description:
+      "Oracle tools.",
+    icon: null,
+    color: '#14cfc3',
+  },
   // Plutus
   plutus: {
     label: "Plutus",
@@ -123,42 +158,6 @@ export const Tags = {
     color: '#7e6a4c',
   },
 
-  // Stake Pool Operator Tools
-  operatortool: {
-    label: "Operator Tool",
-    description:
-      "Stake pool operator tools.",
-    icon: null,
-    color: '#4267b2', 
-  },
-
-  // Oracle Tools
-  oracle: {
-    label: "Oracle",
-    description:
-      "Oracle tools.",
-    icon: null,
-    color: '#14cfc3',
-  },
-
-
-  // Chain Index
-  chainindex: {
-    label: "Chain Index",
-    description: 
-      "Index Protocol",
-    icon: null,
-    color: '#000'
-  },
-  
-  // Integrated Development Environment
-  IDE: {
-    label: "IDE",
-    description:
-      "Integrated development environment",
-    icon: null,
-    color: '#001eff',
-  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -408,7 +407,7 @@ const Showcases = [
     website: "https://intelliada.bloxbean.com",
     getstarted: null, 
     tags: ["java", "IDE"],
-  }
+  },
 ];
 
 

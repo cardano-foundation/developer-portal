@@ -48,13 +48,21 @@ export const Tags = {
     color: '#39ca30',
   },
 
-  // Cardano Block Explorer
-  explorer: {
-    label: "Block Explorer",
-    description:
-      "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+  // DEX
+  dex: {
+    label: "DEX",
+    description: "Decentralised exchanges allow direct peer-to-peer cryptocurrency transactions to take place online securely.",
     icon: null,
-    color: '#293133',
+    color: '#1B32F0'
+  },
+
+  // Ecosystem
+  ecosystem: {
+    label: "Ecosystem",
+    description:
+      "The Cardano ecosystem projects",
+    icon: null,
+    color: '#800080'
   },
 
   // Educational
@@ -64,6 +72,15 @@ export const Tags = {
       "Educational projects that will help you onboarding to Cardano.",
     icon: null,
     color: '#a44fb7',
+  },
+
+  // Cardano Block Explorer
+  explorer: {
+    label: "Block Explorer",
+    description:
+      "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+    icon: null,
+    color: '#293133',
   },
  
   // Game
@@ -80,6 +97,54 @@ export const Tags = {
     description: "Payment Gateway Providers.",
     icon: null,
     color: '#fe6829',
+  },
+
+  // Identity
+  identity: {
+    label: "Identity",
+    description: "Decentralized identifiers (DIDs)",
+    icon: null,
+    color: '#000'
+  },
+
+  // Marketplace 
+  marketplace: {
+    label: "Marketplace",
+    description: "Marketplace where you can buy or sell nfts.",
+    icon: null,
+    color: '#f44f25',
+  },
+  
+  // Meta data projects
+  metadata: {
+    label: "Metadata",
+    description: "Transaction metadata",
+    icon: null,
+    color: '#14cfc3',
+  },
+
+  // Minting 
+  minting: {
+    label: "Minting",
+    description: "Minting Tool",
+    icon: null,
+    color: '#23a5da',
+  },
+
+  // NFT Project (example: Spacebudz, Cardano Kidz)
+  nftproject: {
+    label: "NFT project",
+    description: "A project which main component is NFT.",
+    icon: null,
+    color: '#F5D033'
+  },
+
+  // NFT (example: a wallet or marketplace)
+  nftsupport: {
+    label: "NFT support",
+    description: "A project that supports NFT.",
+    icon: null,
+    color: '#D19412'
   },
 
   // For open-source sites, a link to the source code is required
@@ -99,30 +164,6 @@ export const Tags = {
     color: '#4267b2', 
   },
 
-  // Marketplace 
-  marketplace: {
-    label: "Marketplace",
-    description: "Marketplace where you can buy or sell nfts.",
-    icon: null,
-    color: '#f44f25',
-  },
-
-  // Minting 
-  minting: {
-    label: "Minting",
-    description: "Minting Tool",
-    icon: null,
-    color: '#23a5da',
-  },
-  
-  // Meta data projects
-  metadata: {
-    label: "Metadata",
-    description: "Transaction metadata",
-    icon: null,
-    color: '#14cfc3',
-  },
-
   // Native token projects
   token: {
     label: "Native Token",
@@ -130,22 +171,6 @@ export const Tags = {
     icon: null,
     color: '#E63244'
   },
-
-  // NFT (example: a wallet or marketplace)
-  nftsupport: {
-    label: "NFT support",
-    description: "A project that supports NFT.",
-    icon: null,
-    color: '#D19412'
-  },
-
-  // NFT Project (example: Spacebudz, Cardano Kidz)
-  nftproject: {
-      label: "NFT project",
-      description: "A project which main component is NFT.",
-      icon: null,
-      color: '#F5D033'
-    },
 
   // Wallets
   wallet: {
@@ -156,29 +181,13 @@ export const Tags = {
     color: '#7BC8A6'
   },
 
-  // DEX
-  dex: {
-    label: "DEX",
-    description: "Decentralised exchanges allow direct peer-to-peer cryptocurrency transactions to take place online securely.",
-    icon: null,
-    color: '#1B32F0'
-  },
-
-  // Ecosystem
-  ecosystem: {
+   // Ecosystem
+   ecosystem: {
     label: "Ecosystem",
     description:
       "The Cardano ecosystem projects",
     icon: null,
     color: '#800080'
-  },
-
-  // Identity
-  identity: {
-    label: "Identity",
-    description: "Decentralized identifiers (DIDs)",
-    icon: null,
-    color: '#000'
   },
 
 };
@@ -863,6 +872,33 @@ const Showcases = [
     tags: [ "dex", "token"],
   },
   {
+    title: "CWallet",
+    description:
+      "Cross-Chain Non-Custodial Wallet & Liquidity Engine",
+    preview: require("./showcase/cwallet.png"),
+    website: "https://cwallet.finance",
+    source: null,
+    tags: ["wallet"],
+  },
+  {
+    title: "GameChanger Wallet",
+    description:
+      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications",
+    preview: require("./showcase/gamechanger.png"),
+    website: "https://gamechanger.finance",
+    source: null,
+    tags: [ "wallet"],
+  },
+  {
+    title: "GeroWallet",
+    description:
+      "Start exploring the possibilities of Cardano. Purchase, send, and receive ADA - the cryptocurrency for Cardano. Available as a browser extension.",
+    preview: require("./showcase/gerowallet.png"),
+    website: "https://gerowallet.io",
+    source: null,
+    tags: [ "wallet"],
+  },
+  {
     title: "Built on Cardano",
     description:
       "Discover projects and dApps building on Cardano along with the developer tools you can use to build on Cardano. Explore similar projects and tools with ease and simply find you way back to where you started.",
@@ -942,6 +978,15 @@ const Showcases = [
     website: "https://www.wingriders.com",
     source: null,
     tags: [ "dex", "token"],
+  },
+  {
+    title: "Building On Cardano",
+    description:
+      "Place to view whats happening within the cardano ecosystem.",
+    preview: require("./showcase/buildingoncardano.png"),
+    website: "https://buildingoncardano.com",
+    source: null,
+    tags: [ "ecosystem"],
   },
 ];
 
