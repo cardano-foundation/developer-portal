@@ -7,7 +7,7 @@ module.exports = {
   tagline: "let's build better",
   url: "https://developers.cardano.org",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "cardano-foundation",
