@@ -70,11 +70,18 @@ const stringManipulation = (content: string, fileName: string) => {
 
     // Remove `(` and `)` from relative links (temporariy not in use, using hardcoded solution for now)
     // content = content.replace(/(?<=\]\()(.*)(?=\))/g, (x) => x.replace(/[()]/g, ''));
-    
+                                  
+    // Replcae '_' with '-' from relative links to make sure they work correct 
+    content = content.match(/]\([^()]*\)/g) ? content.replace(/_/g, '-') : content;
+       
     // Remove `(` and `)` from relative links (temporariy solution focusing on specific link, in the future needs to be changed to work through all of the links)
     content = content.replace('How-to-prepare-an-entry-for-the-registry-(NA-policy-script)',
                                  'How-to-prepare-an-entry-for-the-registry-NA-policy-script');
-    
+
+    // Add '?' to a speficic relative link case (seems like it's a broken link that has been written badly in Token Registry repo)
+    content = content.replace('How-do-I-update-my-entry-in-the-registry)',
+                                 'How-do-I-update-my-entry-in-the-registry%3F)');
+
     content = injectTRnformation(content, fileName);
 
     return content;
