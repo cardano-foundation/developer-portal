@@ -82,7 +82,7 @@ const stringManipulation = (content: string, fileName: string) => {
     content = content.replace('How-do-I-update-my-entry-in-the-registry)',
                                  'How-do-I-update-my-entry-in-the-registry%3F)');
 
-    content = injectTRnformation(content, fileName);
+    content = injectTRinformation(content, fileName);
 
     return content;
 }
@@ -134,7 +134,7 @@ const sidebar_positionForFilename = (fileName: string) => {
 }
 
 // Add Token Registry Info
-const injectTRnformation = (content: string, fileName: string) => {
+const injectTRinformation = (content: string, fileName: string) => {
 
     // Add to the end
     return content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+tokenRegistryWiki+']('+tokenRegistryWiki + '/' + fileName + ').';
