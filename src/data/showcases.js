@@ -987,6 +987,15 @@ const Showcases = [
     website: "https://buildingoncardano.com",
     source: null,
     tags: [ "ecosystem"],
+  },  
+  {
+    title: "Black Plague NFT’s",
+    description:
+      "100 Black plague NFT’s in form of art to preserve history on cardano blockchain.",
+    preview: require("./showcase/darknfts.jpeg"),
+    website: "https://darknfts.net",
+    source: null,
+    tags: ["nftproject"],
   },
 ];
 
