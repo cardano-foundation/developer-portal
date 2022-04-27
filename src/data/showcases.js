@@ -738,6 +738,15 @@ const Showcases = [
     tags: ["token", "nftproject"],
   },
   {
+    title: "Cicada Tactics",
+    description:
+      "Cicada Tactics is a Multiplayer Tactical RPG. 1) Buy Cicada from smart contract Store. 2) Browser login with Cicada + Wallet. 3) Create multiplayer room to play together.",
+    preview: require("./showcase/cicadatactics.png"),
+    website: "https://cicadatactics.com",
+    source: null,
+    tags: ["game", "nft"],
+  },
+  {
     title: "Typhon Wallet",
     description:
       "Light wallet from the creators of cardanoscan.io. It comes with features like NFT gallery, transaction metadata, vote registration, among other features.",
