@@ -971,6 +971,15 @@ const Showcases = [
     tags: [ "game", "nftproject"],
   },
   {
+    title: "Turf",
+    description:
+      "Turf creates cartographic NFTs / wall art. Each Turf is a gorgeous 1/1 map based artwork of your favorite place on earth, preserved as interactive 3D NFTs.",
+    preview: require("./showcase/turf.png"),
+    website: "https://www.turfnft.com",
+    source: null,
+    tags: ["nftproject"],
+  },
+  {
     title: "WingRiders",
     description:
       "The DEX on Cardano. Native and fast AMM decentralized exchange platform.",
