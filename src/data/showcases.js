@@ -744,7 +744,7 @@ const Showcases = [
     preview: require("./showcase/cicadatactics.png"),
     website: "https://cicadatactics.com",
     source: null,
-    tags: ["game", "nft"],
+    tags: ["game", "nftproject"],
   },
   {
     title: "Typhon Wallet",
