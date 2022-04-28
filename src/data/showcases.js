@@ -1006,6 +1006,15 @@ const Showcases = [
     source: null,
     tags: [ "ecosystem"],
   },
+  {
+    title: "KubeCoin",
+    description:
+      "The digital currency that aims to revolutionize the leisure and travel industries, universally adoptable through multi-brand platforms.",
+    preview: require("./showcase/kubecoin.org"),
+    website: "https://kubecoin.org",
+    source: null,
+    tags: [ "ecosystem", "marketplace", "native token", "wallets"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
