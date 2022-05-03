@@ -1006,6 +1006,15 @@ const Showcases = [
     source: null,
     tags: [ "ecosystem"],
   },
+  {
+    title: "Cardano Blockchain Snapshots",
+    description:
+      "Download the latest Cardano blockchain snapshot.",
+    preview: require("./showcase/cardano-snapshots.png"),
+    website: "https://cSnapshots.io",
+    source: null,
+    tags: [ "pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
