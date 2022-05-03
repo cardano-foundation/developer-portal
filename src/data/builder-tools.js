@@ -408,6 +408,15 @@ const Showcases = [
     getstarted: null, 
     tags: ["java", "IDE"],
   },
+  {
+    title: "Cardano Blockchain Snapshots",
+    description:
+      "Download the latest Cardano blockchain snapshot",
+    preview: require("./builder-tools/cardano-snapshots.png"),
+    website: "https://cSnapshots.io",
+    getstarted: null, 
+    tags: ["operatortool"],
+  },
 ];
 
 
