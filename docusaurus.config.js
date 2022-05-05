@@ -220,6 +220,7 @@ module.exports = {
         blog: {
           showReadingTime: true,
           editUrl: `${vars.repository}/edit/${vars.branch}`,
+          blogSidebarCount: 'ALL',  
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
