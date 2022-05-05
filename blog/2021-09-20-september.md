@@ -1,6 +1,6 @@
 ---
 slug: 2021-09-20-september
-title: "September Spotlight Interview"
+title: "NOWPayments Interview"
 author: Cardano Foundation
 author_title: Developer Spotlight
 author_url: https://github.com/cardano-foundation
@@ -10,7 +10,16 @@ description: "September Spotlight Interview"
 image: https://developers.cardano.org/img/og-developer-portal.png
 ---
 
-![title image](/img/devblog/nowpayments.png)
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+ [<ThemedImage
+alt="title image"
+sources={{
+    light: useBaseUrl('/img/devblog/nowpayments-white.png'),
+    dark: useBaseUrl('/img/devblog/nowpayments-dark.png'),
+  }}
+/>](https://nowpayments.io)
 
 For the September edition of the Developer Spotlight article, we will interview Kate, the senior marketing manager at NOWPayments.
 <br />
