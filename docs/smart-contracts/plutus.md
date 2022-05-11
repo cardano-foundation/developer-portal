@@ -64,3 +64,5 @@ The Plutus pioneer program was created in order to recruit and train developers 
 
 Prior knowledge of Haskell or functional programming is also recommended, as Plutus is heavily based on Haskell and includes advanced features like Template Haskell, type-level programming, and effect systems.
 - [Apply for the Plutus Pioneer Program](https://testnets.cardano.org/en/plutus-pioneer-program/)
+
+You can also check out the book "Plutus - Learning a smart-contract language" that follows the 3rd iteration of the Plutus pioneer programm and contains all code examples from the course. The book is availabe at this repository: https://github.com/LukaKurnjek/plutus-pioneer-program.
