@@ -147,7 +147,9 @@ const main = async () => {
     const tokeRegistryUniqueUrls = [...new Set(contentUrls)];
 
     // Create token registry folder to store markdown files locally
-    fs.rmdirSync(tokenRegistryDocsPath, { recursive: true });
+    if(fs.existsSync(tokenRegistryDocsPath)) {
+        fs.rmdirSync(tokenRegistryDocsPath, { recursive: true });
+    }
     fs.mkdirSync(tokenRegistryDocsPath, { recursive: true });
 
     // Create markdown overview file locally with downloaded content
