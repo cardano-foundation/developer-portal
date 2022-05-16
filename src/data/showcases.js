@@ -420,7 +420,7 @@ const Showcases = [
     description:
       "Adorable, cuddly and unique, CryptoKnitties are collectable knitted NFT companions for your Cardano wallet.",
     preview: require("./showcase/cryptoknitties.png"),
-    website: "https://adaknitties.com",
+    website: "https://knitties.io",
     source: null,
     tags: ["nftproject"],
   },
