@@ -3,9 +3,7 @@ import styles from "./styles.module.css";
 
 export default function openStickyButton() {
   return (
-    <a
-      href="https://developers.cardano.org/docs/portal-contribute/"
-    >
+    <a href="https://developers.cardano.org/docs/portal-contribute/">
       <button className={`${styles.iconBtn} ${styles.addBtn}`}>
         <div className={styles.addIcon}></div>
         <div className={styles.btnText}>
