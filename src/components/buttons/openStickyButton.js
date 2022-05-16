@@ -5,7 +5,6 @@ export default function openStickyButton() {
   return (
     <a
       href="https://developers.cardano.org/docs/portal-contribute/"
-      target="_blank"
     >
       <button className={`${styles.iconBtn} ${styles.addBtn}`}>
         <div className={styles.addIcon}></div>
