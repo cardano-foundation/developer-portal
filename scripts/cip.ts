@@ -45,7 +45,9 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
                 
                 const buffer = await getBufferContentAsync(`${repoRawBaseUrl}${cipName}/${fileName}`);
 
-                fs.rmdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
+                if(fs.existsSync(`.${cipStaticResourcePath}${cipName}`)){
+                    fs.rmdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
+                }
                 fs.mkdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
 
                 fs.writeFileSync(`.${cipStaticResourcePath}${cipName}/${modifiedFileName}`, new Uint8Array(buffer));
@@ -142,7 +144,9 @@ const main = async () => {
     const cipUrls = readmeContent.match(readmeRegex);
     const cipUrlsUnique = [...new Set(cipUrls)];
 
-    fs.rmdirSync(cipDocsPath, { recursive: true });
+    if(fs.existsSync(cipDocsPath)) {
+        fs.rmdirSync(cipDocsPath, { recursive: true });
+    }
     fs.mkdirSync(cipDocsPath, { recursive: true });
 
     // Save CIP Readme into docs

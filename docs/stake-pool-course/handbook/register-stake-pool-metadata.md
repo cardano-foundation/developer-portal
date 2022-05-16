@@ -46,18 +46,14 @@ Registering your stake pool requires:
 }
 ```
 
-Store the file in a url you control. For example [https://teststakepool.com/poolMetadata.json](https://git.io/JJWdJ) You can use a GIST in github to store the definition and git.io to make it short. Ensure that the URL is less than 65 characters long.
+Store the file on your web server. For example [https://teststakepool.com/poolMetadata.json](https://git.io/JJWdJ). You must store your pool metadata on reliable server, in case if metadata files will not be available then your pool might disappear from wallets and potential delegators will not be able to find it.
 
-Example:
-Gist-URL https://gist.githubusercontent.com/carloslodelar/38c7482070627092a427583cae8fa470/raw/7fddda4d258bf685d24ea3510fbde295b3920188/clrpool.json
-Git.IO-URL https://git.io/JJWdJ
+#### Get the hash of your metadata file uploaded to server:
 
-#### Get the hash of your metadata JSON file:
-
-This validates that the JSON fits the required schema, if it does, you will get the hash of your file.
+These command will return hash value of json file, what we just uploaded to our web server. Keep in mind that you need to put your own address instead `https://teststakepool.com/poolMetadata.json`
 
 ```sh
-cardano-cli stake-pool metadata-hash --pool-metadata-file pool_Metadata.json
+cardano-cli stake-pool metadata-hash --pool-metadata-file <(curl -s -L -k https://teststakepool.com/poolMetadata.json)
 
 >6bf124f217d0e5a0a8adb1dbd8540e1334280d49ab861127868339f43b3948af
 ```

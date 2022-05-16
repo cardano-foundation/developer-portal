@@ -826,17 +826,27 @@ To make everything consistent we should agree on spellings and terms here.
 |  Spelling/Term   | Comment                    |
 | ---------------- | -------------------------- |
 | `ada`            | When talking about the cryptocurrency, do not capitalize, unless at the beginning of a sentence. The idea behind this is to treat it like dollars or euros. If you are in doubt, in English, prefer ada over ADA. Capitalised ADA stands for the ticker symbol only. |
+| `ADA`           | The ticker symbol for ada, like EUR or USD. |
 | `tAda`           | Test ada is tAda, not tADA or TADA. See `ada`. |
+| `Basho`           | The fourth era of the Cardano development focused on performance. Named after Matsuo Basho, a Japanese poet and the master of haiku. |
+| `Byron`           | First era in Cardano development. Named after the Romantic poet who was the father of Ada Lovelace. |
 | `the Cardano Foundation`           | Always use **the** Cardano Foundation. |
 | `DApps` | Note the capitalization: Decentralized Application. |
-| `dcSpark` | Note the capitalized S. |
+| `dcSpark` | Creators of Flint Wallet and Milkomeda. Capitalized S, everything else lower case. |
 | `EMURGO` | All caps in line with EMURGO’s branding. |
 | `the Foundation` | Interchangeable with `the Cardano Foundation`, the is not capitalized, but Foundation should be. |
 | `GitHub` | Note the capitalized H. |
-| `IOHK` | Use IOHK not IOG. (at least for now) |
+| `Goguen` | The third era of the Cardano development focused on smart contracts. Named in honour of Joseph Goguen, an US computer scientist. |
+| `IOHK` | IOHK is now IOG. |
+| `IOG` | IOG was IOHK. |
+| `mainnet`    | One word. |
+ `Ouroboros`           | Ouroboros is a family of Cardano's consensus protocols. There are different flavors: Classic, Praos, Genesis, Chronos, Hydra |
 | `sidechains` | One word. |
 | `stake pool` | Two words. |
 | `staking`    | Try to avoid term `staking` without context as it is ambiguous. `staking` refers to the whole process of both delegating and setting up a pool but many people confuse this with the actual process of creating blocks. `delegating` means that people delegate their stake to a stake pool. |
+| `Strica` | Creators of Typhon Wallet, Cardanoscan and Flac Finance. Capitalized S, everything else lower case. |
 | `proof of stake` | Lower case. Hyphenate when followed by a noun: proof-of-stake systems. |
 | `proof of work` | Lower case. Hyphenate when followed by a noun: proof-of-work systems. |
+| `use case` | Not use-case. |
+| `Voltaire` | The fifth era of the Cardano development focused on governance and treasury. Named after the French philosopher who prized criticism and argued for the separation of church and state. |
 | `white paper` | Two words. |

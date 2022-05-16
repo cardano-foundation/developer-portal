@@ -1,0 +1,108 @@
+html[data-theme=light] .iconBtn {
+  border: 1px solid #cdcdcd;
+  background-color: #383fd0;
+}
+
+html[data-theme=dark] .iconBtn {
+  border: 1px solid #000;
+  background-color: #2da48d;
+}
+
+  .iconBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: width 0.2s ease-in-out;
+
+
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+  }
+  .addBtn:hover {
+    width: 180px;
+  }
+  .addBtn::before,
+  .addBtn::after {
+    transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 10px;
+    top: calc(50% - 2px);
+    background: #fff;
+  }
+  .addBtn::after {
+    right: 14px;
+    overflow: hidden;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+  .addBtn::before {
+    left: 14px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+  .iconBtn:focus {
+    outline: none;
+  }
+  .btnText {
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: #ffff;
+    text-decoration: none;
+  }
+  .btnText:hover {
+    color: #ffff;
+    text-decoration: none;
+  }
+  .addBtn:hover::before,
+  .addBtn:hover::after {
+    width: 4px;
+    border-radius: 2px;
+  }
+  .addBtn:hover .btnText {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+  .addIcon::after,
+  .addIcon::before {
+    transition: all 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 2px;
+    top: calc(50% - 10px);
+    background: #fff;
+    overflow: hidden;
+  }
+  .addIcon::before {
+    left: 22px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+  .addIcon::after {
+    right: 22px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+  .addBtn:hover .addIcon::before {
+    left: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
+  }
+  .addBtn:hover .addIcon::after {
+    right: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
+  }
+
+  .btnSpan {
+    font-weight: bold;
+  }
+  
+  
+  
+  

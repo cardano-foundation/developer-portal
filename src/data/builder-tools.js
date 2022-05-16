@@ -409,6 +409,15 @@ const Showcases = [
     tags: ["java", "IDE"],
   },
   {
+    title: "Cardano Blockchain Snapshots",
+    description:
+      "Download the latest Cardano blockchain snapshot",
+    preview: require("./builder-tools/cardano-snapshots.png"),
+    website: "https://cSnapshots.io",
+    getstarted: null, 
+    tags: ["operatortool"],
+  },
+  {
     title: "Koios",
     description: "Elastic light/full-mode API query-layer for Cardano Blockchain.",
     preview: require("./builder-tools/koios.png"),

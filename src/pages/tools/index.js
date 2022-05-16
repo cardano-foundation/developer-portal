@@ -4,6 +4,7 @@ import Layout from "@theme/Layout";
 import ShowcaseTooltip from "@site/src/components/showcase/ShowcaseTooltip";
 import ShowcaseTagSelect from "@site/src/components/showcase/ShowcaseTagSelect";
 import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard/";
+import OpenStickyButton from "../../components/buttons/openStickyButton";
 import ShowcaseFilterToggle, {
   readOperator,
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
@@ -322,6 +323,7 @@ function Showcase() {
       <ShowcaseHeader />
       <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
       <ShowcaseCards filteredProjects={filteredProjects} />
+      <OpenStickyButton/>
     </Layout>
   );
 }

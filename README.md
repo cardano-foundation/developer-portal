@@ -34,6 +34,14 @@ cd developer-portal
 yarn install
 ```
 
+## Production build 
+
+Create at least once a production build (as this pulls missing files)
+
+```console
+yarn build
+```
+
 ## Local development
 
 ```console

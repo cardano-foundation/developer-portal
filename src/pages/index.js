@@ -6,6 +6,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import PortalHero from "./portalhero";
+import OpenStickyButton from "../components/buttons/openStickyButton";
 
 const features = [
   {
@@ -140,6 +141,7 @@ function Home() {
           </section>
         )}
       </main>
+      <OpenStickyButton/>
     </Layout>
   );
 }
