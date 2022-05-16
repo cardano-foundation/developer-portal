@@ -31,9 +31,11 @@ yarn start
 
 :::info Limitations of the development build
 The development mode will have minor features not working. For example, only blurry images in the responsive images on showcase and tools, search limitations, and some data has fake values because of performance reasons.
+
+**Create at least once a production build** (see below) as this pulls missing files.
 :::
 
-### Production build
+### Production build 
 
 ```sh
 yarn build
