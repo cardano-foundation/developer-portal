@@ -408,6 +408,14 @@ const Showcases = [
     getstarted: null, 
     tags: ["java", "IDE"],
   },
+  {
+    title: "Koios",
+    description: "Elastic light/full-mode API query-layer for Cardano Blockchain.",
+    preview: require("./builder-tools/koios.png"),
+    website: "https://koios.rest",
+    getstarted: "/docs/get-started/koios",
+    tags: ["getstarted", "api"],
+  },
 ];
 
 
