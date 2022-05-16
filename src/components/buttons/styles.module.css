@@ -23,6 +23,7 @@ html[data-theme=dark] .iconBtn {
   }
   .addBtn:hover {
     width: 180px;
+    cursor: pointer;
   }
   .addBtn::before,
   .addBtn::after {
