@@ -9,21 +9,21 @@ image: ../img/og-developer-portal.png
 Koios provides an open-source & elastic API layer that allows you to query Cardano blockchain (across mainnet, testnet and guildnet network).
 The key flexibility from a consumer of Koios API is being able to use Koios as a light webservice or being able to run a Koios instance and optionally `extend` the query layer with automatic failover and high availability support across the globe. When running an instance, one is free to add additional endpoints to their individual service if they have a use case that may not need to be added upstream.
 
-Let's start with basics from consumer point of view, and then we can dive to a brief summary about running a Koios Instance as a provider (independently as well as stringing in to existing instances).
+Let's start with basics from consumer point of view, and then we can dive to a brief summary about running a Koios Instance as a provider (independently OR adding to existing members of Koios cluster).
 
 ## Usage
 
 ### API Documentation
 
-You can access API documentation [here](https://api.koios.rest). Koios leverages [PostgREST](https://postgrest.org/) to provide data, which means you can easily filter your data vertically as well as horizontally, and leverage in-built ordering/custom paging benefits as per the guide [here](https://api.koios.rest/#overview--api-usage). There isnt any centralised registry to be able to access the endpoints for most of the usage.
+You can access API documentation [here](https://api.koios.rest). Koios leverages [PostgREST](https://postgrest.org/) to provide data, which means you can easily filter your data vertically as well as horizontally, and leverage in-built ordering/custom paging benefits as per the guide [here](https://api.koios.rest/#overview--api-usage). There isn't any centralised registry to be able to access the endpoints for most of the usage.
 
-Each endpoint on the document provides a sample curl command that can be used to test using an example, which can be executed directly from the browser for testing as well.
+Each endpoint in the document provides a sample curl command that can be used to test using an example, which can be executed directly from the browser for testing as well.
 
 ![img](../../static/img/get-started/koios/1-usage.png)
  
 ### Limits
 
-If you're using Koios service remotely, there are certain measures to protection against spamming or potentially unknowingly cause a Denial-of-Service against instance providers. Be sure to be mindful of the limits mentioned [here](https://api.koios.rest/#overview--limits).
+If you're using Koios service remotely, there are certain measures to protect against spamming or potentially unknowingly causing a Denial-of-Service against instance providers. Be sure to be mindful of the limits mentioned [here](https://api.koios.rest/#overview--limits).
 
 ## Feature Requests/Discussions
 
@@ -31,17 +31,17 @@ If you notice an issue or have a feature request (existing or new endpoint), we 
 
 ## Participating as instance provider
 
-There will always be an audience who might want to run everything locally instead of relying on any external connection. Typically, these would be heavy users of the API (explorers/wallet providers/marketplaces), who'd like to override default API limits, have customisation requirements, remove latency hops OR enthusiasts who'd like to contribute back and add to the stregth of the API layer.
+There will always be an audience who might want to run everything locally instead of relying on any external connection. Typically, these would be heavy users of the API (explorers/wallet providers/marketplaces), who'd like to override default API limits, have customisation requirements, remove latency hops OR enthusiasts who'd like to contribute back and add to the strength of the API layer.
 
-For this audience, we've tried to leverage existing widely adopted `guild-operators` suite to build simpler scripts that'd allow you to create a gRest instance. This independent gRest instance will give you 100% of features and compatibility with the API documentation hosted on api.koios.rest (assuming it's built from latest `koios` tags).
+For this audience, we've tried to leverage the existing widely adopted `guild-operators` suite to build simpler scripts that'd allow you to create a gRest instance. This independent gRest instance will give you 100% of features and compatibility with the API documentation hosted on api.koios.rest (assuming it's built from the latest `koios` tags).
 
 ### Infrastructure Sizing
 
-Most of the infrastructure sizing at the moment is dependent on sizing of `cardano-node`, `cardano-db-sync` and `postgres`, and their consumption is different depending on network you connect to. You can find the official `cardano-db-sync` documentation for system requirements [here](https://github.com/input-output-hk/cardano-db-sync#system-requirements). But as a basic recommendation, if you're running a typical dbsync+node+postgres instance, we would recommend you to go for 64GB RAM for Mainnet, 16GB for Testnet and 8GB for Guildnet.
+Most of the infrastructure sizing at the moment is dependent on sizing of `cardano-node`, `cardano-db-sync` and `postgres`, and their consumption is different depending on the network you connect to. You can find the official `cardano-db-sync` documentation for system requirements [here](https://github.com/input-output-hk/cardano-db-sync#system-requirements). But as a basic recommendation, if you're running a typical dbsync+node+postgres instance, we would recommend you to go for 64GB RAM for Mainnet, 16GB for Testnet and 8GB for Guildnet (this is true as of May 2022, we intend to update this page if/when this is no longer sufficient).
 
 :::note
 
-While we understand that a lot of modern cloud architects would like to split the services and distribute hardware physically, please note that `cardano-db-sync` and `postgres` should *NOT* be split (unless you really understand and heavily tune your infrastructure and setup accordingly), and often results in terrible experience. You're free to split PostgREST and HAProxy into microservices, but you'd need to adapt scripts accordingly. You'd only want to do that once you're fully familiar with the deployment. It is also why we have for now paused the work for docker branch for now.
+While we understand that a lot of modern cloud architects would like to split the services and distribute hardware physically, please note that `cardano-db-sync` and `postgres` should *NOT* be split (unless you really understand and heavily tune your infrastructure and setup accordingly), and doing so often results in a terrible experience. You're free to split PostgREST and HAProxy into microservices, but you'd need to adapt scripts accordingly. You'd only want to do that once you're fully familiar with the deployment. It is also why we have for now paused the work for the docker branch.
 
 :::
 
