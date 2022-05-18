@@ -8,14 +8,14 @@ image: ../img/og-developer-portal.png
 
 # What is Tangocrypto?
 
-We provide a suite of high availability APIs and developer tools for fast and reliable access to the Cardano network that requires only 1 minute to integrate. Every developer starting on Cardano will face the following problems:
+We provide a suite of high availability APIs and developer tools for fast and reliable access to the Cardano network that requires only 1 minute to integrate. As a developer starting on Cardano you will face the following problems:
 - There's no way to access the information on a blockchain without using a node.
 - You will have to start creating the infrastructure instead of focusing on your products and business. 
 - In-house infrastructure doesn’t scale automatically when user demand increases.
 - There is a high learning curve, a broader error surface and increase in cost when building integrations with several API services from multiple providers.
 - There is not a single platform with all the tools most businesses need, leading to multiple platform hiring and cost increase.
 
-We provide an unified platform where developers are able to: 
+We provide an unified platform where you'll be able to: 
 - Ship products faster and validate business ideas.
 - Use one platform to fetch, submit and listen on-chain information, mint tokens, store files and process payments.  
 - Grow their user base by relying on an elastic infrastructure capable of handling spikes in consumption without downtime. 
@@ -30,6 +30,8 @@ Our solution provides the following components:
 
 ## REST API
 The HTTP REST API goal is to make development faster and easier. There is no need for syncing with the blockchain and maintaining complicated setups. No more complex and multiple requests to the blockchain from different entry points, the developers can get all the data they need for transactions, token information and debug, in fewer requests.
+
+![alt text](../../static/img/get-started/tangocrypto/restapidiagram.png)
 
 We provide the most accessible and reliable Cardano infrastructure, freeing companies and developers from the responsibility to maintain complex infrastructures and focus instead on building their business logic and provide value to their customers. 
 
@@ -74,7 +76,7 @@ Once your app is created just copy you app-id and `x-api-key` and start making r
 
 ![alt text](../../static/img/get-started/tangocrypto/tangocrypto_app_details.png)
 
-#### 2. ✉️ Make a Request 
+#### 2. 🏗️ SMake a Request and start building
 With the app-id and the `x-api-key` you can make requests. For example, let's make a request to get the latest block number:
 
 ```shell
@@ -104,14 +106,8 @@ You should get something like this:
     "confirmations": 1
 }
 ```
-Check here our API Reference for a full list of endpoints.
 
-#### 3. 🏗️ Start Building! 
-Don't know where to start? Check out these four tutorials to get more familiar with Tangocrypto and blockchain development:
-Write a simple Node.js app that gets the latest block number
-Learn how to send a transaction using Tangocrypto REST API
-
-#### Pagination
+#### API Pagination
 
 Some API endpoints paginate their responses to make the result set easier to handle. For example, if you request a list of objects that are potentially too large to run efficiently, the endpoint returns the first batch of results along with a cursor to access the next set of results. 
 
@@ -135,24 +131,24 @@ In the response, we see the cursor with a non-empty value (showing only one reco
 {
     "data": [
         {
-            "id": "5f92c5e01c4848e4b6271a9bf48a3bd9",
-            "name": "Tango Collection",
-            "url": "https://www.tangocrypto.com",
-            "description": "Tango collection description",
+            "id": "3d010a77c0e24489923c2a9eda731dde",
+            "name": "THE Collection",
+            "url": "https://www.thecollection.io",
+            "description": "thecollection description",
             "payout_address": "addr_test1qp9mj7vnenx4v99hw7ztfq03n7dmmujpgtlyfjhhel9w67nk72usllcew208n60ym94xcptfrgytuy5apwp565x28jgsg0ztq3",
-            "token_count": 2,
-            "token_for_sale_count": 2,
-            "token_sold_count": 0,
-            "revenue": 0,
-            "service_fee": 0,
-            "nft_fee": 0,
-            "tx_fee": 0,
-            "income": 0,
-            "total_fees": 0,
+            "token_count": 5000,
+            "token_for_sale_count": 1000,
+            "token_sold_count": 2000,
+            "revenue": 123456,
+            "service_fee": 123456,
+            "nft_fee": 123456,
+            "tx_fee": 123456,
+            "income": 123456,
+            "total_fees": 123456,
             "policy": {
                 "lock": true,
-                "lock_time": "2022-01-03T15:35:10.000Z",
-                "policy_id": "1373bf16cdea380e6c9c716d0f56f021b9e9ddea90b248dae6310d95",
+                "lock_time": "2027-01-24T04:18:59.758Z",
+                "policy_id": "90570cb29887860e1cf1af88a106f421d6f22333514dd4ab16e8ff12",
                 "script": {
                     "type": "all",
                     "scripts": [
@@ -176,11 +172,11 @@ In the response, we see the cursor with a non-empty value (showing only one reco
                 "description": "<description>",
                 "attributes": {
                     "face": "<face>",
-                    "twitter": "https://twitter.com/tango_crypto",
-                    "copyright": "Tangocrypto 2021",
+                    "twitter": "https://twitter.com/thecollection_io",
+                    "copyright": "Tent 2021",
                     "color": "<color>",
-                    "artist": "Tangocrypto",
-                    "collection": "Tangocrypto Collection",
+                    "artist": "LOLO",
+                    "collection": "The Collection",
                     "body": "<body>",
                     "eyes": "<eyes>",
                     "accessory": "<accessory>"
@@ -541,6 +537,13 @@ https://docs.tangocrypto.com/notify/notify/using-webhooks
 
 
 ## NFT API
+The NFT API allows you to:
+- Launch an NFT collection in minutes.
+- Let user mint their tokens based on pre-defined conditions.
+- Scale to thousands of users.
+- Payments with CI P30 wallet integration.
+
+![alt text](../../static/img/get-started/tangocrypto/nftstudio.png)
 
 ### 1 - Create an NFT collection
 The first step is to create a collection using the following parameters.
@@ -906,6 +909,6 @@ curl --location --request POST 'https://cardano-testnet.tangocrypto.com/<your-ac
 --data-raw '{
     "type": "random",
     "price": 6000000,
-    "lock_time": 300000
+    "reservation_time": 300
 }'
 ```
