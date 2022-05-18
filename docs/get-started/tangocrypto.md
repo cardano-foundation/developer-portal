@@ -114,10 +114,8 @@ Some API endpoints paginate their responses to make the result set easier to han
 The query results are divided into "pages" of 1 MB in size (or less) data. An application can process the first page of results, then the second page, etc. You include the cursor in subsequent requests to the endpoint as a URL query parameter of your request. 
 
 To determine whether there are more results and to retrieve them one page at a time, applications should do the following:
-<ol>
-<li>Make a request with the desired `size` and check the result, if the cursor is not empty, construct a new request with the same parameters</li> as the previous one. However, this time, take the cursor value from the last query and use it as the cursor parameter in the new request.
-<li>If the `cursor` is empty in the result it means there are no more items to be retrieved.</li>
-</ol>
+1. Make a request with the desired `size` and check the result, if the cursor is not empty, construct a new request with the same parameters as the previous one. However, this time, take the cursor value from the last query and use it as the cursor parameter in the new request.
+2. If the `cursor` is empty in the result it means there are no more items to be retrieved.
 
 #### Example
 Let's make the following query with size=50
