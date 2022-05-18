@@ -8,14 +8,14 @@ image: ../img/og-developer-portal.png
 
 # What is Tangocrypto?
 
-We provide a suite of high availability APIs and developer tools for fast and reliable access to the Cardano network that requires only 1 minute to integrate. Every developer starting on Cardano will face the following problems:
+We provide a suite of high availability APIs and developer tools for fast and reliable access to the Cardano network that requires only 1 minute to integrate. As a developer starting on Cardano you will face the following problems:
 - There's no way to access the information on a blockchain without using a node.
 - You will have to start creating the infrastructure instead of focusing on your products and business. 
 - In-house infrastructure doesn’t scale automatically when user demand increases.
 - There is a high learning curve, a broader error surface and increase in cost when building integrations with several API services from multiple providers.
 - There is not a single platform with all the tools most businesses need, leading to multiple platform hiring and cost increase.
 
-We provide an unified platform where developers are able to: 
+We provide an unified platform where you'll be able to: 
 - Ship products faster and validate business ideas.
 - Use one platform to fetch, submit and listen on-chain information, mint tokens, store files and process payments.  
 - Grow their user base by relying on an elastic infrastructure capable of handling spikes in consumption without downtime. 
