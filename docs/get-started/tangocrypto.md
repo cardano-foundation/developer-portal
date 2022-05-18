@@ -539,7 +539,7 @@ The NFT API allows you to:
 - Launch an NFT collection in minutes.
 - Let user mint their tokens based on pre-defined conditions.
 - Scale to thousands of users.
-- Payments with CI P30 wallet integration.
+- Payments with dApp connector (CIP30 wallet integration).
 
 ![alt text](../../static/img/get-started/tangocrypto/nftstudio.png)
 
