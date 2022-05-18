@@ -31,6 +31,8 @@ Our solution provides the following components:
 ## REST API
 The HTTP REST API goal is to make development faster and easier. There is no need for syncing with the blockchain and maintaining complicated setups. No more complex and multiple requests to the blockchain from different entry points, the developers can get all the data they need for transactions, token information and debug, in fewer requests.
 
+![alt text](../../static/img/get-started/tangocrypto/restapidiagram.png)
+
 We provide the most accessible and reliable Cardano infrastructure, freeing companies and developers from the responsibility to maintain complex infrastructures and focus instead on building their business logic and provide value to their customers. 
 
 - **Enterprise-grade infrastructure**: Harness the processing power of our globally distributed cloud-hosted node network. Our API alleviates the friction of maintaining your own compute and storage resources, lowering the barrier to entry for developers and enterprises.
@@ -74,7 +76,7 @@ Once your app is created just copy you app-id and `x-api-key` and start making r
 
 ![alt text](../../static/img/get-started/tangocrypto/tangocrypto_app_details.png)
 
-#### 2. ✉️ Make a Request 
+#### 2. 🏗️ SMake a Request and start building
 With the app-id and the `x-api-key` you can make requests. For example, let's make a request to get the latest block number:
 
 ```shell
@@ -104,14 +106,8 @@ You should get something like this:
     "confirmations": 1
 }
 ```
-Check here our API Reference for a full list of endpoints.
 
-#### 3. 🏗️ Start Building! 
-Don't know where to start? Check out these four tutorials to get more familiar with Tangocrypto and blockchain development:
-Write a simple Node.js app that gets the latest block number
-Learn how to send a transaction using Tangocrypto REST API
-
-#### Pagination
+#### API Pagination
 
 Some API endpoints paginate their responses to make the result set easier to handle. For example, if you request a list of objects that are potentially too large to run efficiently, the endpoint returns the first batch of results along with a cursor to access the next set of results. 
 
@@ -133,59 +129,65 @@ In the response, we see the cursor with a non-empty value (showing only one reco
 
 ```json
 {
-    "result": {
-        "collections": [
-            {
-                "id": "5f92c5e01c4848e4b6271a9bf48a3bd9",
-                "name": "Tango Collection",
-                "url": "https://www.tangocrypto.com",
-                "description": "Tango collection description",
-                "payout_address": "addr_test1qp9mj7vnenx4v99hw7ztfq03n7dmmujpgtlyfjhhel9w67nk72usllcew208n60ym94xcptfrgytuy5apwp565x28jgsg0ztq3",
-                "policy": {
-                    "lock": true,
-                    "lock_time": "2022-01-03T15:35:10.000Z",
-                    "policy_id": "1373bf16cdea380e6c9c716d0f56f021b9e9ddea90b248dae6310d95",
-                    "script": {
-                        "type": "all",
-                        "scripts": [
-                            {
-                                "type": "sig",
-                                "keyHash": "ac1746df0ba039de81274d472a477fced610f57cebc5c7841074f54c"
-                            },
-                            {
-                                "type": "before",
-                                "slot": "46854826"
-                            }
-                        ]
-                    }
+    "data": [
+        {
+            "id": "3d010a77c0e24489923c2a9eda731dde",
+            "name": "THE Collection",
+            "url": "https://www.thecollection.io",
+            "description": "thecollection description",
+            "payout_address": "addr_test1qp9mj7vnenx4v99hw7ztfq03n7dmmujpgtlyfjhhel9w67nk72usllcew208n60ym94xcptfrgytuy5apwp565x28jgsg0ztq3",
+            "token_count": 5000,
+            "token_for_sale_count": 1000,
+            "token_sold_count": 2000,
+            "revenue": 123456,
+            "service_fee": 123456,
+            "nft_fee": 123456,
+            "tx_fee": 123456,
+            "income": 123456,
+            "total_fees": 123456,
+            "policy": {
+                "lock": true,
+                "lock_time": "2027-01-24T04:18:59.758Z",
+                "policy_id": "90570cb29887860e1cf1af88a106f421d6f22333514dd4ab16e8ff12",
+                "script": {
+                    "type": "all",
+                    "scripts": [
+                        {
+                            "type": "sig",
+                            "keyHash": "ec60ebd23894f9c057d212af1952e322912e47c825bce0558721a224"
+                        },
+                        {
+                            "type": "before",
+                            "slot": "206395112"
+                        }
+                    ]
+                }
+            },
+            "metadata": {
+                "label": "721",
+                "asset_name": "<asset_name>",
+                "name": "<name>",
+                "image": "<image_link>",
+                "media_type": "<mime_type>",
+                "description": "<description>",
+                "attributes": {
+                    "face": "<face>",
+                    "twitter": "https://twitter.com/thecollection_io",
+                    "copyright": "Tent 2021",
+                    "color": "<color>",
+                    "artist": "LOLO",
+                    "collection": "The Collection",
+                    "body": "<body>",
+                    "eyes": "<eyes>",
+                    "accessory": "<accessory>"
                 },
-                "metadata": {
-                    "label": "721",
-                    "asset_name": "<asset_name>",
-                    "name": "<name>",
-                    "image": "<image_link>",
-                    "media_type": "<mime_type>",
-                    "description": "<description>",
-                    "attributes": {
-                        "face": "<face>",
-                        "twitter": "https://twitter.com/tango_crypto",
-                        "copyright": "Tangocrypto 2021",
-                        "color": "<color>",
-                        "artist": "Tangocrypto",
-                        "collection": "Tangocrypto Collection",
-                        "body": "<body>",
-                        "eyes": "<eyes>",
-                        "accessory": "<accessory>"
-                    },
-                    "version": "1.0"
-                },
-                "created_at": "2021-11-30T21:04:09.897Z",
-                "updated_at": "2021-11-30T21:04:09.897Z"
-            }
-        ],
-        "cursor": "a97f98a8c533ee55fc2c6897c9b50506dc8d65b921092e469f62f9d0e2d0dc92902605dba96d30b2e027557d3d6ea8cb3c1597d93e36f9c70771f19485f176607d834f6bc4fd664e0f68d4c28eff52cc298dee1dc17975c043d05903c31dae41ff84c779f1f8d2bcc00447e25d066a4e"
-    },
-    "status_code": 200
+                "version": "1.0"
+            },
+            "created_at": "2022-05-09T17:35:06.478Z",
+            "updated_at": "2022-05-09T17:35:06.478Z"
+        }
+    ],
+    "cursor": "a97f98a8c533ee55fc2c6897c9b50506dc8d65b97f01294e9d60ac82b284d8c190200fdbf23a3bb5ec71097d3861f6c5681691d93e36f9c70771f19485f176607d834f6bc4fd664e0f68d4c28ef950c52adeba4fc62b269149d0555ece46aa40ab87c779f6fa87b3920641e201066a4e"
 }
 ```
 
@@ -535,6 +537,13 @@ https://docs.tangocrypto.com/notify/notify/using-webhooks
 
 
 ## NFT API
+The NFT API allows you to:
+- Launch an NFT collection in minutes.
+- Let user mint their tokens based on pre-defined conditions.
+- Scale to thousands of users.
+- Payments with CI P30 wallet integration.
+
+![alt text](../../static/img/get-started/tangocrypto/nftstudio.png)
 
 ### 1 - Create an NFT collection
 The first step is to create a collection using the following parameters.
