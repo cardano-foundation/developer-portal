@@ -96,9 +96,9 @@ You should get something like this:
     "slot_leader": "pool1rcsezjrma577f06yp40lsz76uvwh7gne35afx3zrq2ktx50f8t8",
     "size": 365,
     "time": "2021-09-25T10:37:20.000Z",
-    "tx_count": "1",
-    "out_sum": "435928446",
-    "fees": "171441",
+    "tx_count": 1,
+    "out_sum": 435928446,
+    "fees": 171441,
     "op_cert": "333e175db9a2f89de5d9396c10b4dd136c3fffebd7f22d2eb0a3e8ef3884199c",
     "vrf_key": "vrf_vk1ltjt3ucuvah43gpeqpw4n6say9u6s0kju8c8q76xctmvgsqawgrq7kj48j",
     "confirmations": 1
@@ -133,59 +133,65 @@ In the response, we see the cursor with a non-empty value (showing only one reco
 
 ```json
 {
-    "result": {
-        "collections": [
-            {
-                "id": "5f92c5e01c4848e4b6271a9bf48a3bd9",
-                "name": "Tango Collection",
-                "url": "https://www.tangocrypto.com",
-                "description": "Tango collection description",
-                "payout_address": "addr_test1qp9mj7vnenx4v99hw7ztfq03n7dmmujpgtlyfjhhel9w67nk72usllcew208n60ym94xcptfrgytuy5apwp565x28jgsg0ztq3",
-                "policy": {
-                    "lock": true,
-                    "lock_time": "2022-01-03T15:35:10.000Z",
-                    "policy_id": "1373bf16cdea380e6c9c716d0f56f021b9e9ddea90b248dae6310d95",
-                    "script": {
-                        "type": "all",
-                        "scripts": [
-                            {
-                                "type": "sig",
-                                "keyHash": "ac1746df0ba039de81274d472a477fced610f57cebc5c7841074f54c"
-                            },
-                            {
-                                "type": "before",
-                                "slot": "46854826"
-                            }
-                        ]
-                    }
+    "data": [
+        {
+            "id": "5f92c5e01c4848e4b6271a9bf48a3bd9",
+            "name": "Tango Collection",
+            "url": "https://www.tangocrypto.com",
+            "description": "Tango collection description",
+            "payout_address": "addr_test1qp9mj7vnenx4v99hw7ztfq03n7dmmujpgtlyfjhhel9w67nk72usllcew208n60ym94xcptfrgytuy5apwp565x28jgsg0ztq3",
+            "token_count": 2,
+            "token_for_sale_count": 2,
+            "token_sold_count": 0,
+            "revenue": 0,
+            "service_fee": 0,
+            "nft_fee": 0,
+            "tx_fee": 0,
+            "income": 0,
+            "total_fees": 0,
+            "policy": {
+                "lock": true,
+                "lock_time": "2022-01-03T15:35:10.000Z",
+                "policy_id": "1373bf16cdea380e6c9c716d0f56f021b9e9ddea90b248dae6310d95",
+                "script": {
+                    "type": "all",
+                    "scripts": [
+                        {
+                            "type": "sig",
+                            "keyHash": "ac1746df0ba039de81274d472a477fced610f57cebc5c7841074f54c"
+                        },
+                        {
+                            "type": "before",
+                            "slot": 46854826
+                        }
+                    ]
+                }
+            },
+            "metadata": {
+                "label": "721",
+                "asset_name": "<asset_name>",
+                "name": "<name>",
+                "image": "<image_link>",
+                "media_type": "<mime_type>",
+                "description": "<description>",
+                "attributes": {
+                    "face": "<face>",
+                    "twitter": "https://twitter.com/tango_crypto",
+                    "copyright": "Tangocrypto 2021",
+                    "color": "<color>",
+                    "artist": "Tangocrypto",
+                    "collection": "Tangocrypto Collection",
+                    "body": "<body>",
+                    "eyes": "<eyes>",
+                    "accessory": "<accessory>"
                 },
-                "metadata": {
-                    "label": "721",
-                    "asset_name": "<asset_name>",
-                    "name": "<name>",
-                    "image": "<image_link>",
-                    "media_type": "<mime_type>",
-                    "description": "<description>",
-                    "attributes": {
-                        "face": "<face>",
-                        "twitter": "https://twitter.com/tango_crypto",
-                        "copyright": "Tangocrypto 2021",
-                        "color": "<color>",
-                        "artist": "Tangocrypto",
-                        "collection": "Tangocrypto Collection",
-                        "body": "<body>",
-                        "eyes": "<eyes>",
-                        "accessory": "<accessory>"
-                    },
-                    "version": "1.0"
-                },
-                "created_at": "2021-11-30T21:04:09.897Z",
-                "updated_at": "2021-11-30T21:04:09.897Z"
-            }
-        ],
-        "cursor": "a97f98a8c533ee55fc2c6897c9b50506dc8d65b921092e469f62f9d0e2d0dc92902605dba96d30b2e027557d3d6ea8cb3c1597d93e36f9c70771f19485f176607d834f6bc4fd664e0f68d4c28eff52cc298dee1dc17975c043d05903c31dae41ff84c779f1f8d2bcc00447e25d066a4e"
-    },
-    "status_code": 200
+                "version": "1.0"
+            },
+            "created_at": "2021-11-30T21:04:09.897Z",
+            "updated_at": "2021-11-30T21:04:09.897Z"
+        }
+    ],
+    "cursor": "a97f98a8c533ee55fc2c6897c9b50506dc8d65b921092e469f62f9d0e2d0dc92902605dba96d30b2e027557d3d6ea8cb3c1597d93e36f9c70771f19485f176607d834f6bc4fd664e0f68d4c28eff52cc298dee1dc17975c043d05903c31dae41ff84c779f1f8d2bcc00447e25d066a4e"
 }
 ```
 
@@ -545,9 +551,10 @@ Parameters
 - **`url`**: (Optional) URL of the website where the collection is going to be sold.
 - **`payout_address`**:(Mandatory) Wallet address that is going to receive the payments of the NFT sale. This should be the wallet address of the seller.
 - **`policy`**: (Mandatory) Policy configuration for every NFT in the collection. When you create a new collection we do several steps in the background; we create a new key pair (public verification key/private signing key), a policy script and the policy id. Then during the sale process, all the tokens are minted with the same policy script and the policy id is attached permanently to the NFT.
-- **`lock`**: (Mandatory) true | false Defines if the policy will be locked or not. If you select falsethen you are not required to choose a date and time to lock the policy, therefore the policy will be open and you can be minting NFTs under this policy forever.  If you set this parameter to true then you have to specify a locktime date. 
-- **`locktime`**: (Optional) Locktime date in ISO 8601 format `yyyy-mm-ddThh:mm:ss[.mmm]`. It defines how long you'll be able to mint NFTs for the collection. The policy will lock after that date, and you won't be able to mint more NFTs using the same policy id (even if you use the same key). Hours and minutes are optional; if you set it to2022-02-24, it will automatically fill it with 0s, for example, 2022-02-24T00:00:00.000Z.
-Take into consideration the desirability and size of your collection before setting this date and leave enough time for selling the NFTs. There is no limited time for the future.
+    - **`lock`**: (Mandatory) true | false Defines if the policy will be locked or not. If you select falsethen you are not required to choose a date and time to lock the policy, therefore the policy will be open and you can be minting NFTs under this policy forever.  If you set this parameter to true then you have to specify a locktime date. 
+    - **`lock_time`**: (Optional) Locktime date in ISO 8601 format `yyyy-mm-ddThh:mm:ss[.mmm]`. It defines how long you'll be able to mint NFTs for the collection. The policy will lock after that date, and you won't be able to mint more NFTs using the same policy id (even if you use the same key). Hours and minutes are optional; if you set it to2022-02-24, it will automatically fill it with 0s, for example, 2022-02-24T00:00:00.000Z.
+    Take into consideration the desirability and size of your collection before setting this date and leave enough time for selling the NFTs. There is no limited time for the future.
+- **`reservation_time`**: (Optional) Reservation time in seconds. This timer defines how long an NFT will be reserved once a potential buyer starts the buying process. During this time interval, the NFT won't be available for sale. No other buyer will be able to create a new reservation. If the payment is not received and this timer expires, then the NFT is ready for sale again, and it can be reserved by another buyer.
 - **`metadata`**: (Mandatory) Metadata tag for the collection. The values between < > mean that they are tags. A tag is simply a variable that we will assign its value when you mint the NFT. You can use the metadata tag to define common attributes shared by all the NFTs in the collection, like the name, copyright, date issued, artist name, social media links, etc. You can override all the attributes while creating the individual NFTs.
 - **`asset_name`**: (Mandatory) Metadata tag for the NFT asset name.
 - **`name`**: (Mandatory) Metadata tag for the NFT name.
@@ -558,8 +565,8 @@ Take into consideration the desirability and size of your collection before sett
 - **`name`**: (Optional) Asset name of the file
 - **`src`**: `<file_link>` (Optional) Tag to reference on token overrides. We expect a base64 string to be hosted on IPFS.
 - **`attributes`**: (Optional) Custom attributes or traits for an NFT. You can create 2 types of attributes, fixed or variables. 
-- **`fixed`**: We include these attributes in the metadata of every NFT minted in the collection with a fixed value. You can add attributes like artist name, Twitter, Discord, copyright etc. You define their value here, and then you don't have to submit them during the NFT creation step.
-- **`variables`**: Here you define a tag, which means that we'll replace this tag with a value you'll have to provide during the NFT creation step. As you can see in the example below, we defined five traits (colour, body, eyes, face, and accessories), but we don't specify the value, just a tag between the angle brackets `<>`.
+    - **`variables`**: Here you define a tag, which means that we'll replace this tag with a value you'll have to provide during the NFT creation step. As you can see in the example below, we defined five traits (colour, body, eyes, face, and accessories), but we don't specify the value, just a tag between the angle brackets `<>`.
+    - **`fixed`**: We include these attributes in the metadata of every NFT minted in the collection with a fixed value. You can add attributes like artist name, Twitter, Discord, copyright etc. You define their value here, and then you don't have to submit them during the NFT creation step.
 
 ![alt text](../../static/img/get-started/tangocrypto/attributes.png)
 
@@ -733,7 +740,7 @@ Response
 ```json
 
 {
-    "result": [{
+    "data": [{
         "id": "59aacd9bab9746f9a2f9f334b2f20c70",
         "collection":{
             "id": "9c024f811654433b97f3b2719f00f604",
@@ -741,9 +748,8 @@ Response
             "description": "Collection description"
         },
         "policy": {
-            "lock_time": "1641224110000",
-            "lock_time_iso_8601": "2021-10-20T21:53:10Z",
             "lock": true,
+            "lock_time": "2021-10-20T21:53:10Z",
             "policy_id": "ebe10abbfc5ff382bf8eb7ed44bb8f3632828659ebba917bb8c3ccb6",
             "script": {
                 "type": "all",
@@ -782,8 +788,7 @@ Response
         },
         "created_at": "2021-10-20T21:53:10Z",
         "updated_at": "2020-06-18T17:45:13Z"
-    }],
-    "status_code": 201
+    }]
 }
 ```
 
@@ -791,19 +796,18 @@ Response
 The next step is to sell NFTs in the collection. Use the following endpoint with the collection-id returned in step 1 as part of the path and the token id from step 2.
 
 ```bash
-POST https://cardano-testnet.tangocrypto.com/<app-id>/v1/nft/collections/<collection-id>/tokens
+POST https://cardano-testnet.tangocrypto.com/<app-id>/v1/nft/collections/<collection-id>/sales
 ```
 
-- **`collection-id`**: (Mandatory) Collection ID returned in step 1
 - **`type`**: fixed | random. (Mandatory) Use fixed for selling a particular token or token list identified by the token-id. Use random for random sales, it will pick random tokens from the collection.
-- **`lock_time`**: (Mandatory) Reservation time in seconds. This timer defines how long an NFT will be reserved once a potential buyer starts the buying process. During this time interval, the NFT won't be available for sale. No other buyer will be able to create a new reservation. If the payment is not received and this timer expires, then the NFT is ready for sale again, and it can be reserved by another buyer.
 - **`price`**: (Mandatory) Individual token price in Lovelaces (1 ADA = 1000000 Lovelaces).
-- **`tokens`**: (Mandatory) Array of token IDs returned in step 2. Used in fixed sell.
+- **`reservation_time`**: (Optional) Reservation time in seconds. This timer defines how long an NFT will be reserved once a potential buyer starts the buying process. During this time interval, the NFT won't be available for sale. No other buyer will be able to create a new reservation. If the payment is not received and this timer expires, then the NFT is ready for sale again, and it can be reserved by another buyer.
+- **`tokens`**: (Options) Array of token IDs returned in step 2. Used in fixed sell.
 
 The sale can have different states:
 - `RESERVED`: The NFT is reserved and we are waiting for payment.  
-- `RESERVATION_EXPIRED`: No payment was received and the reservation time expired. In order to add this token for sale again, you need to create another reservation calling the same endpoint.
-- `NFT_SENT`: Payment is received and the NFT was sent to the buyer. 
+- `EXPIRED`: No payment was received and the reservation time expired. In order to add this token for sale again, you need to create another reservation calling the same endpoint.
+- `COMPLETED`: Payment is received and the NFT was minted and sent to the buyer. 
 
 :::important
 Every time you call this endpoint you'll get a new sale and thus a new payment address.
@@ -818,7 +822,7 @@ curl --location --request POST 'https://cardano-testnet.tangocrypto.com/<app-id>
 --data-raw '{
     "type": "fixed",
     "price": 6000000,
-    "lock_time": 300000,
+    "reservation_time": 300,
     "tokens": ["6189bd6e73c4ab1a0c08eee1"]
 }'
 ```
@@ -827,65 +831,68 @@ The result contains the sale `id` and the `address` for the payment. Every time 
 
 ```bash
 {
-    "result": [{
-        "id": "59aacd9bab9746f9a2f9f334b2f20c70",
+    "data": [{
+        "id": "7b4308a174e942e78ea0f2cbddd4d454",
         "status": "RESERVED",
-        "type": "fixed",
+        "type": "random",
         "price": 6000000,
-        "quantity": 1,
-        "payment_address": "addr_test1qqcju2acmrhrp48qwxwjhxes6gd3ay0976nfp3kmr45sxgzy7le3awh38axpkgmuuuj6qtdgq6fl3js5uaj7t6qj3n4smg8ttp",
+        "supply": 1,
+        "payment_address": "addr_test1vpsxhfduzqr3s0x2v5fwqs229yx5ur7hmnds94jc3p0ru8s30nfyt",
         "reserved_time": 300000,
-        "tangocrypto_fee": "2000000",
-        "collection":{
-            "id": "9c024f811654433b97f3b2719f00f604",
-            "name": "Tango collection description",
-            "description": "Collection description"
-        },
-        "policy": {
-            "lock_time": "1641224110000",
-            "lock_time_iso_8601": "2021-10-20T21:53:10Z",
-            "lock": true,
-            "policy_id": "ebe10abbfc5ff382bf8eb7ed44bb8f3632828659ebba917bb8c3ccb6",
-            "script": {
-                "type": "all",
-                "scripts": [{
-                        "type": "sig",
-                        "keyHash": "a65cef161eef7a3848f07c1a127f501b961194938478e92988813961"
+        "tangocrypto_fee": 2000000,
+        "tokens": [{
+            "id": "a1eadb3e553d41b89a01fccf53919ded",
+            "asset_name": "XRNFT0000002",
+            "metadata": {
+                "721": {
+                    "18ed282beda4bec13226c427d4744d2642ba2cef404470b62ae184d8": {
+                        "XRNFT0000002": {
+                            "image": "ipfs://QmY9gydScXwQA4wzhFo1vqVpDkgi7sP4gH5TFmz8GYPF98",
+                            "copyright": "Tangocrypto 2021",
+                            "color": "Blue",
+                            "artist": "Tangocrypto",
+                            "description": "Description for XR NFT 0000002",
+                            "mediaType": "png",
+                            "collection": "Tangocrypto Collection",
+                            "body": "Rounded",
+                            "eyes": "<eyes>",
+                            "face": "<face>",
+                            "twitter": "https://twitter.com/tango_crypto",
+                            "name": "XR NFT 0000002",
+                            "files": [
+                                {
+                                    "name": "nft-file",
+                                    "src": "ipfs://laksdjklasjdklasjdlaksjdlasdlsad",
+                                    "mediaType": "png"
+                                }
+                            ],
+                            "accessory": "None",
+                            "pepe": "grillo",
+                            "rarity": "1"
+                        }
                     },
-                    {
-                        "type": "before",
-                        "slot": "46854873"
-                    }
-                ]
+                    "version": "1.0"
+                }
             }
+        }],
+        "collection": {
+            "id": "489b4acd87d841b581206991dd295362",
+            "name": "Sale Phase Collection",
+            "url": "https://www.tangocrypto.com",
+            "description": "Sale Phase collection description",
+            "reservation_time": 300,
+            "token_count": 9,
+            "token_for_sale_count": 4,
+            "token_sold_count": 3,
+            "revenue": 32000000,
+            "service_fee": 6000000,
+            "nft_fee": 4137840,
+            "tx_fee": 625995
         },
-        "metadata": {
-            "721": {
-                "ebe10abbfc5ff382bf8eb7ed44bb8f3632828659ebba917bb8c3ccb6": {
-                    "TheTokenName01": {
-                        "name": "The Token Name 01",
-                        "image": "ipfs://QmY9gydScXwQA4wzhFo1vqVpDkgi7sP4gH5TFmz8GYPF98",
-                        "mediaType": "image/png",
-                        "description": "Token description 3",
-                        "face": "long squared",
-                        "twitter": "https://twitter.com/tango_crypto",
-                        "copyright": "Tangocrypto 2021",
-                        "color": "Blue",
-                        "artist": "Tangocrypto",
-                        "collection": "Tangocrypto Collection",
-                        "body": "fat",
-                        "eyes": "green",
-                        "accessory": "Hat"
-                    }
-                },
-                "version": "1.0"
-            }
-        },
-        "created_at": "2021-10-20T21:53:10Z",
-        "updated_at": "2020-06-18T17:45:13Z"
-    }
-],
-    "status_code": 201
+        "confirmations": 0,
+        "created_at": "2022-05-18T04:15:25.076Z",
+        "updated_at": "2022-05-18T04:15:25.076Z"
+    }]
 }
 ```
 
