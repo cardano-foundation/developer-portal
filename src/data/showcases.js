@@ -1006,6 +1006,15 @@ const Showcases = [
     source: null,
     tags: [ "ecosystem"],
   },
+  {
+    title: "Sake Pool",
+    description:
+      "Get rewards with Cardano ADA staking. There are ADA asnd tokens dividends in SAKE!",
+    preview: require("./showcase/sakepool.png"),
+    website: "https://sakepool.com/en/onChainData/",
+    source: null,
+    tags: [ "pooltool", "analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
