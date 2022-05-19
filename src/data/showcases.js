@@ -1009,7 +1009,7 @@ const Showcases = [
   {
     title: "Pool Peek",
     description:
-      "An extensive cardano stake pool explorer",
+      "An extensive Cardano stake pool explorer",
     preview: require("./showcase/poolpeek.png"),
     website: "https://poolpeek.com",
     source: null,
