@@ -502,3 +502,61 @@ Now click on "Apply" and thats it! You should be able to see all your Leader Slo
 
 
 Happy minting!
+
+
+## 9. Adding crypto exchange rates to your Grafana
+
+Yes, I know you should not look into those prices all day long, but I personally find quite useful to have it in one place and no need to open my cryptoexchange account every 2 minutes.
+
+I personally use Kraken as my exchange and it has open API for fetching prices, so that API we will use in these example and I'm pretty sure that other exchanges provides similar APIs and I think you can update these script quite easily with your exchange API endpoints if needed.
+
+Our main script will populate data to Prometheus using same directory from 5th point from these manual, so you must configure your prometheus to read metrics from `< YOUR NODE FULL PATH >/poolStat` directory before moving on. And we must have jq & curl installed on your Linux box, where those scripts will be located.
+
+First we need to create script for quering Kraken API and writing data. Please create it here: <YOUR NODE FULL PATH >/poolStat/prices.sh. Please update your path accordingly instead of `< YOUR NODE FULL PATH >` you must put same path from 5th point:
+
+```
+PRICES=$(curl -s https://api.kraken.com/0/public/Ticker?pair=ADAEUR,ADAUSD,XXBTZUSD,XETHZUSD)
+echo $PRICES | jq .result.ADAEUR.c | jq .[0] | sed 's/"//g'| sed 's/^/adaeur /' > < YOUR NODE FULL PATH >/poolStat/price.prom
+echo $PRICES | jq .result.ADAUSD.c | jq .[0] | sed 's/"//g'| sed 's/^/adausd /' >> < YOUR NODE FULL PATH >/poolStat/price.prom
+echo $PRICES | jq .result.XXBTZUSD.c | jq .[0] | sed 's/"//g'| sed 's/^/btcusd /' >> < YOUR NODE FULL PATH >/poolStat/price.prom
+echo $PRICES | jq .result.XETHZUSD.c | jq .[0] | sed 's/"//g'| sed 's/^/ethusd /' >> < YOUR NODE FULL PATH >/poolStat/price.prom
+```
+
+As you can see it is very simple script with self explanatory code and if you need any other currency to be added first just check out `curl -s https://api.kraken.com/0/public/AssetPairs` as it should return all available asset pairs and add your needed pair in the bottom.
+
+Now we need to make that script executable:
+
+```
+chmod +x <YOUR NODE FULL PATH >/poolStat/prices.sh
+```
+
+Then you can try to run it from console `<YOUR NODE FULL PATH >/poolStat/prices.sh, when everything fine, you should see file `< YOUR NODE FULL PATH >/poolStat/price.prom` with something similar content:
+  
+```
+adaeur 0.502300
+adausd 0.531625
+btcusd 30187.90000
+ethusd 2012.02000
+```
+
+Then you should go to your grafana and check explore menu and you should see your metrics there.
+  
+If metrics are there, then we must configure cron to run that script every minute, so we get fresh data every minute:
+
+```shell
+$ crontab -e
+```
+
+```shell
+##############################
+
+#Get crypto prices every minute
+
+* * * * * <YOUR NODE FULL PATH >/poolStat/prices.sh
+
+##############################
+```
+  
+Now all is left is to create graph with prices to existing dashboard or maybe create new one, I think it is rather trivial task and I will leave it for you.
+  
+Cheers!
