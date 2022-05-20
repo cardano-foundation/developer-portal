@@ -1010,7 +1010,7 @@ const Showcases = [
     title: "Wallet Analytics",
     description:
       "Tool that displays number of wallets that hold specific amount of ada.",
-    preview: require("./showcase/sakepool.png"),
+    preview: require("./showcase/walletanalytics.png"),
     website: "https://sakepool.com/en/onChainData/",
     source: null,
     tags: [ "analytics" ],
