@@ -523,11 +523,11 @@ const Showcases = [
     tags: ["favorite", "educational", "opensource"],
   },
   {
-    title: "ccvault.io",
+    title: "Eternl",
     description:
       "The alternative Cardano light wallet in the browser. Aims to add features most requested by the Cardano community.",
-    preview: require("./showcase/ccvault.png"),
-    website: "https://ccvault.io",
+    preview: require("./showcase/eternl.jpg"),
+    website: "https://eternl.io",
     source: null,
     tags: ["favorite", "wallet", "nftsupport"],
   },
@@ -1005,6 +1005,15 @@ const Showcases = [
     website: "https://buildingoncardano.com",
     source: null,
     tags: [ "ecosystem"],
+  },
+  {
+    title: "Pool Peek",
+    description:
+      "An extensive Cardano stake pool explorer",
+    preview: require("./showcase/poolpeek.png"),
+    website: "https://poolpeek.com",
+    source: null,
+    tags: [ "pooltool", "analytics"],
   },
 ];
 
