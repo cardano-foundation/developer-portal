@@ -1007,13 +1007,13 @@ const Showcases = [
     tags: [ "ecosystem"],
   },
   {
-    title: "Sake Pool",
+    title: "Wallet Analytics",
     description:
-      "Get rewards with Cardano ADA staking. There are ADA asnd tokens dividends in SAKE!",
+      "Helpful tool that displays number of wallets that hold specific amount of ada. The data is displayed in Japanese. ",
     preview: require("./showcase/sakepool.png"),
     website: "https://sakepool.com/en/onChainData/",
     source: null,
-    tags: [ "pooltool", "analytics"],
+    tags: [ "analytics" ],
   },
 ];
 
