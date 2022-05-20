@@ -1009,7 +1009,7 @@ const Showcases = [
   {
     title: "Wallet Analytics",
     description:
-      "Helpful tool that displays number of wallets that hold specific amount of ada. The data is displayed in Japanese. ",
+      "Helpful tool that displays number of wallets that hold specific amount of ada. The data is displayed in Japanese.",
     preview: require("./showcase/sakepool.png"),
     website: "https://sakepool.com/en/onChainData/",
     source: null,
