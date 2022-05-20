@@ -1006,6 +1006,15 @@ const Showcases = [
     source: null,
     tags: [ "ecosystem"],
   },
+  {
+    title: "Pool Peek",
+    description:
+      "An extensive Cardano stake pool explorer",
+    preview: require("./showcase/poolpeek.png"),
+    website: "https://poolpeek.com",
+    source: null,
+    tags: [ "pooltool", "analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
