@@ -506,13 +506,13 @@ Happy minting!
 
 ## 9. Adding crypto exchange rates to your Grafana
 
-Yes, I know you should not look into those prices all day long, but I personally find quite useful to have it in one place and no need to open my cryptoexchange account every 2 minutes.
+Maybe it is not healthy to look into those prices all day long, but author finds quite useful to have it in one place - in Grafana.
 
-I personally use Kraken as my exchange and it has open API for fetching prices, so that API we will use in this example and I'm pretty sure that other exchanges provides similar APIs and I think you can update this script quite easily with different API if needed.
+Author uses Kraken as primary exchange and it happen to have open API for fetching prices, so that API will be used in this example. It is not mandatory to use Kraken, other exchanges should provide similar APIs and if needed you can update this script quite easily with it.
 
-Our main script will populate data to Prometheus using same directory as described in 5th point of this manual, so you must configure your prometheus to read metrics from `< YOUR NODE FULL PATH >/poolStat` directory before moving on. And we must have `jq` & `curl` installed on your Linux machine.
+Below is main script. That script will populate data to Prometheus using same directory as described in 5th point of this manual, so you must configure your prometheus to read metrics from `< YOUR NODE FULL PATH >/poolStat` directory before moving on. And you must have `jq` & `curl` installed on your Linux machine.
 
-First we need to create script for quering Kraken API and writing data. Please create it here: `<YOUR NODE FULL PATH >/poolStat/prices.sh`. Please update your path accordingly instead of `< YOUR NODE FULL PATH >` you must put same path from 5th point:
+First you need to create script for quering Kraken API and writing data. Please create it here: `<YOUR NODE FULL PATH >/poolStat/prices.sh`. Please update your path accordingly instead of `< YOUR NODE FULL PATH >` you must put same path from 5th point:
 
 ```
 PRICES=$(curl -s https://api.kraken.com/0/public/Ticker?pair=ADAEUR,ADAUSD,XXBTZUSD,XETHZUSD)
@@ -524,7 +524,7 @@ echo $PRICES | jq .result.XETHZUSD.c | jq .[0] | sed 's/"//g'| sed 's/^/ethusd /
 
 As you can see it is very simple script with self explanatory code and if you need any other currency to be added first just check out `curl -s https://api.kraken.com/0/public/AssetPairs` as it should return all available asset pairs and add your needed pair in the bottom with respective code(what should be quite easy to do).
 
-Now we need to make this script executable:
+Now you need to make this script executable:
 
 ```
 chmod +x <YOUR NODE FULL PATH >/poolStat/prices.sh
@@ -541,7 +541,7 @@ ethusd 2012.02000
 
 Then you should go to your grafana and check explore and then metrics browser menu and there you should able to see `adaeur`, `adausd` and other metrics what we write to file.
   
-If metrics are there, then we must configure cron to run that script every minute, so we will get fresh data every minute:
+If metrics are there, then you must configure cron to run that script every minute, so you will get fresh data every minute:
 
 ```shell
 $ crontab -e
@@ -560,6 +560,6 @@ $ crontab -e
 ##############################
 ```
   
-Now all is left is to create graph with prices, I think it is rather trivial task and I will leave it for you.
+Now all is left is to create graph with prices, it is rather trivial task and no explanation is necessary.
   
 Cheers!
