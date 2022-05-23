@@ -190,6 +190,14 @@ export const Tags = {
     color: '#800080'
   },
 
+   // Catalyst
+   catalyst: {
+    label: "Catalyst",
+    description:
+      "Series of experiments which seeks to generate the highest levels of community innovation",
+    icon: null,
+    color: '#308446'
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -1014,6 +1022,15 @@ const Showcases = [
     website: "https://poolpeek.com",
     source: null,
     tags: [ "pooltool", "analytics"],
+  },
+  {
+    title: "Lido Nation",
+    description:
+      "Series of experiments which seeks to generate the highest levels of community innovation.",
+    preview: require("./showcase/lidonation.png"),
+    website: "https://www.lidonation.com/en/project-catalyst/projects",
+    source: null,
+    tags: [ "catalyst", "analytics"],
   },
 ];
 
