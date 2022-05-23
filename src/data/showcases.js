@@ -1022,7 +1022,7 @@ const Showcases = [
     preview: require("./showcase/cnftme.png"),
     website: "https://cnft.me",
     source: null,
-    tags: [ "explorer", "ecosystem", "analytics"],
+    tags: [ "explorer", "nftsupport"],
   },
 ];
 
