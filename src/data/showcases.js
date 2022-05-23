@@ -1015,6 +1015,15 @@ const Showcases = [
     source: null,
     tags: [ "pooltool", "analytics"],
   },
+  {
+    title: "Cardano NFT Explorer",
+    description:
+      "Freely accessible web application featuring NFTs minted on the Cardano blockchain.",
+    preview: require("./showcase/cnftme.png"),
+    website: "https://cnft.me",
+    source: null,
+    tags: [ "explorer", "ecosystem", "analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
