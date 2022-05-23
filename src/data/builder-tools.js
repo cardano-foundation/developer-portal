@@ -425,6 +425,14 @@ const Showcases = [
     getstarted: "/docs/get-started/koios",
     tags: ["getstarted", "api"],
   },
+  {
+    title: "Tangocrypto",
+    description: "A suite of high availability APIs and developer tools providing fast and reliable access to the Cardano network so you can focus on building and growing your products.",
+    preview: require("./builder-tools/tangocrypto.png"),
+    website: "https://tangocrypto.com",
+    getstarted: "/docs/get-started/tangocrypto",
+    tags: ["getstarted", "api", "nft", "chainindex"],
+  },
 ];
 
 
