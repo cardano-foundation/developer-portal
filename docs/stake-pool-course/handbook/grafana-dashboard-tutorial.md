@@ -502,3 +502,51 @@ Now click on "Apply" and thats it! You should be able to see all your Leader Slo
 
 
 Happy minting!
+
+
+## 9. Adding crypto exchange rates to your Grafana
+
+It may not be healthy to look into price all day long, but it could be useful to have it in one place on grafana dashboard.
+
+Below is an example using Kraken exchange's API for fetching prices. One may elect any alternate API provider for price and adapt the suggestions easily.
+
+Below is the main snippet that will populate data to Prometheus (keeping in line with the folder structure used on this page). It is essential to ensure that `jq` and `curl` are already present on the system.
+
+Let's start by creating `$NODE_HOME/poolStat/prices.sh` with contents as per below:
+
+``` shell
+PRICES=$(curl -s https://api.kraken.com/0/public/Ticker?pair=ADAEUR,ADAUSD,XXBTZUSD,XETHZUSD)
+echo $PRICES | jq .result.ADAEUR.c | jq .[0] | sed 's/"//g'| sed 's/^/adaeur /' > $NODE_HOME/poolStat/price.prom
+echo $PRICES | jq .result.ADAUSD.c | jq .[0] | sed 's/"//g'| sed 's/^/adausd /' >> $NODE_HOME/poolStat/price.prom
+echo $PRICES | jq .result.XXBTZUSD.c | jq .[0] | sed 's/"//g'| sed 's/^/btcusd /' >> $NODE_HOME/poolStat/price.prom
+echo $PRICES | jq .result.XETHZUSD.c | jq .[0] | sed 's/"//g'| sed 's/^/ethusd /' >> $NODE_HOME/poolStat/price.prom
+```
+
+As you can see it is very simple script with self explanatory code and if you need any other currency to be added first just check out `curl -s https://api.kraken.com/0/public/AssetPairs` as it should return all available asset pairs and add your needed pair in the bottom with respective code(what should be quite easy to do).
+
+Now you need to make this script executable:
+
+```
+chmod +x $NODE_HOME/poolStat/prices.sh
+```
+
+Run `$NODE_HOME/poolStat/prices.sh` at shell and ensure that you see file `$NODE_HOME/poolStat/price.prom` with content similar to below:
+  
+```
+adaeur 0.502300
+adausd 0.531625
+btcusd 30187.90000
+ethusd 2012.02000
+```
+
+Then you should go to your grafana and check explore and then metrics browser menu and there you should able to see `adaeur`, `adausd` and other metrics what we write to file.
+  
+If metrics are there, then you must configure cron to run that script every minute, so you will get fresh data every minute:
+
+```shell
+crontab -l 2>/dev/null; echo "* * * * * $NODE_HOME/poolStat/prices.sh") | crontab -
+```
+  
+Now all is left is to create graph with prices, it is rather trivial task and no explanation is necessary.
+  
+Cheers!
