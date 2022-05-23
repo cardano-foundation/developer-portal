@@ -114,3 +114,7 @@ Learn how to create fungible tokens on Cardano using StakePool Operator Scripts.
  ##  Governance Snapshots
 Learn how to take blockchain snapshots for Governance voting purposes.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/NI3_VeLwyxc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Djed Stablecoin 
+Learn a little bit about the Algorithmic stablecoin Djed coming to Cardano
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/dfsy0fib3tM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
