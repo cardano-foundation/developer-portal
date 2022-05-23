@@ -7,7 +7,6 @@ image: ../img/og-developer-portal.png
 --- 
 
 To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts such as [UTxO](#unspent-transaction-output-utxo), [transactions](#transactions), [addresses](#addresses), [key derivation](#key-derivation), and [networking](#networking).
-
 ## Unspent Transaction Output (UTxO)
 UTxO or Unspent Transaction Outputs are how ada moves around the Cardano network. Learn how they work in the Cardano ledger.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/e4YZkgi4V3U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
@@ -92,7 +91,26 @@ Learn about Byron era network, Shelley era network, unidirectional (Half-Duplex)
 Which is better, high transactions per second or eUTxO?  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/wDmLVMmevNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
+## LocalTxMonitor
+Learn about the new LocalTxMonitor miniprotocol in cardano-node.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/TLJ--GpFjKo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
 ## Network Congestion
 How does network congestion happen? What are mempool errors?
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/jxHFGPP1uc0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
- 
+
+## Multisig
+What is multisig? And how does it work on Cardano?
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/k_ph_V7xkio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+## JorManager 6
+Learn about what's new in the Cardano stakepool management software JorManager 6.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/7dNCcGWnkwY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+##  How to create a FT on Cardano that doesn't completely suck!
+Learn how to create fungible tokens on Cardano using StakePool Operator Scripts.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/pK7xShX9etI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Governance Snapshots
+Learn how to take blockchain snapshots for Governance voting purposes.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/NI3_VeLwyxc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
