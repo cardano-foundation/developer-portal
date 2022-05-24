@@ -194,7 +194,7 @@ export const Tags = {
    catalyst: {
     label: "Catalyst",
     description:
-      "Series of experiments which seeks to generate the highest levels of community innovation",
+Projects that aid to Cardano's interim governance programme (Catalyst)
     icon: null,
     color: '#308446'
   },
