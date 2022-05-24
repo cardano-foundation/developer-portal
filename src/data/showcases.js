@@ -1025,7 +1025,7 @@ const Showcases = [
   {
     title: "Lido Nation",
     description:
-      "Series of experiments which seeks to generate the highest levels of community innovation.",
+      "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
     preview: require("./showcase/lidonation.png"),
     website: "https://www.lidonation.com/en/project-catalyst/projects",
     source: null,
