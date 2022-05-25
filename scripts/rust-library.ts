@@ -1,10 +1,10 @@
-import fetch from 'node-fetch';
 import * as fs from 'fs';
+import * as path from 'path';
+import { getStringContentAsync, injectDocusaurusDocTags } from './reusable'
 import { RLRepoRawBaseUrl, RLRepoBaseUrl, RLStaticResourcePath, RLDocsPath, RLnamesRawBaseIndexUrl } from './constants'
 
-const getStringContentAsync = async (url: string) => {
-    return await fetch(url).then(res => res.text());
-}
+// Current pathname 
+const pathName = path.basename(__filename)
 
 // String manipulations to ensure compatibility
 const stringManipulation = (content: string, fileName: string) => {
@@ -16,35 +16,6 @@ const stringManipulation = (content: string, fileName: string) => {
     content = injectRLInformation(content, fileName);
 
     return content;
-}
-
-// Inject extra docusarus doc tags
-const injectDocusaurusDocTags = (content: string, fileName: string) => {
-    
-    // Replace '-' from url in order to create a clean sidebar label
-    const modifiedFileName = fileName.replace(/[-]/gm, ' ')
-    
-    // Capitalize the first letter of each word
-    let sidebarLabel = modifiedFileName.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-
-    // Remove '---' from doc to add it later
-    content = content.substring(0, 3) === '---' ? content.slice(3) : content;
-
-    // Add '---' with doc tags for Docusaurus
-    content = '--- \nsidebar_label: ' + sidebarLabel +'\ntitle: '+fileName + '\n'+sidebar_positionForFilename(fileName)+'--- ' + '\n'+content;
-
-    return content;
-}
-
-// In case we want a specific sidebar_position for a certain filename (otherwise alphabetically)
-// In the future it will be better to get this information from the index.rst file
-const sidebar_positionForFilename = (fileName: string) => {
-    // Overview was 1
-    if (fileName === 'prerequisite-knowledge') return 'sidebar_position: 2\n';
-    if (fileName === 'generating-keys') return 'sidebar_position: 3\n';
-    if (fileName === 'generating-transactions') return 'sidebar_position: 4\n';
-    if (fileName === 'transaction-metadata') return 'sidebar_position: 5\n';
-    return ''; // empty string means alphabetically within the sidebar
 }
 
 // Filename manipulations to ensure compatibility
@@ -83,7 +54,7 @@ const main = async () => {
       const manipualtedContent = stringManipulation(result, fileName)
       
       // Finish manipulation with injecting docosautus doc tags
-      const contentWithDocosaurusDocTags = injectDocusaurusDocTags(manipualtedContent, fileName);
+      const contentWithDocosaurusDocTags = injectDocusaurusDocTags(manipualtedContent, '', fileName, pathName);
 
       const manipulatedFileName = fileNameManipulation(fileName)
 

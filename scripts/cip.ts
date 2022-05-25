@@ -1,14 +1,6 @@
-import fetch from 'node-fetch';
-import { CIPRepoBaseUrl, CIPRepoRawBaseUrl, CIPReadmeUrl, CIPPReadmeRegex, CIPRegex, CIPDocsPath, CIPStaticResourcePath, CIPSourceRepo } from './constants';
 import * as fs from 'fs';
-
-const getStringContentAsync = async (url: string) => {
-    return await fetch(url).then(res => res.text());
-}
-
-const getBufferContentAsync = async(url: string) => { 
-    return await fetch(url).then(res => res.arrayBuffer());
-}
+import { getStringContentAsync, getBufferContentAsync, preventH1Headline} from './reusable'
+import { CIPRepoBaseUrl, CIPRepoRawBaseUrl, CIPReadmeUrl, CIPPReadmeRegex, CIPRegex, CIPDocsPath, CIPStaticResourcePath, CIPSourceRepo } from './constants';
 
 // Download markdown resources
 const processCIPContentAsync = async (cipName: string, content: string) => {
@@ -89,11 +81,6 @@ const stringManipulation = (content: string, cipName: string) => {
     content = injectCIPInformation(content, cipName);
 
     return content;
-}
-
-// Prevent H1 headlines
-const preventH1Headline = (content: string, headline: string) => {
-    return content.includes("# "+headline) && !content.includes("## "+headline) ? content.replace("# "+headline, "## "+headline) : content;
 }
 
 // Add Docusaurus doc tags

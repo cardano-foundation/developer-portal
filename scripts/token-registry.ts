@@ -1,10 +1,10 @@
-import fetch from 'node-fetch';
 import * as fs from 'fs';
+import * as path from 'path';
+import { getStringContentAsync, injectDocusaurusDocTags } from './reusable'
 import { TRDocsPath, TRUrl, TROverviewUrl, TRWiki, TRrepoRawWikiHomeUrl } from './constants'
 
-const getStringContentAsync = async (url: string) => {
-    return await fetch(url).then(res => res.text());
-}
+// Current pathname 
+const pathName = path.basename(__filename)
 
 // Fetch and manipulate overview markdown file 
 const getOverviewMarkdown = async () => {
@@ -75,21 +75,6 @@ const stringManipulation = (content: string, fileName: string) => {
     return content;
 }
 
-// Inject extra docusarus doc tags
-const injectDocusaurusDocTags = (content: string, url: string) => {
-
-    // Remove '---' from doc to add it later
-    content = content.substring(0, 3) === '---' ? content.slice(3) : content;
-
-    // Remove '\'' from url to avoid issues during project build
-    url = url.match(/\'/g) ? url.replace(/\'/g, "") : url;
-
-    // Add '---' with doc tags for Docusaurus
-    content = '--- \nsidebar_label: ' + url + '\ntitle: ' + url + '\n' + sidebar_positionForFilename(url) + '\n--- ' + '\n' + content;
-
-    return content;
-}
-
 // Inject extra docusaurus doc tags and manipulate overview markdown file content
 const overviewStringManipulation = (content: string) => {
 
@@ -111,14 +96,6 @@ const overviewStringManipulation = (content: string) => {
     content = content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+TRUrl+']('+TRUrl + '/' + 'README.md' + ').';
 
     return content;
-}
-
-// In case we want a specific sidebar_position for a certain filename (otherwise alphabetically)
-const sidebar_positionForFilename = (fileName: string) => {
-    if (fileName === 'How to prepare an entry for the registry (NA policy script)') return 'sidebar_position: 2\n';
-    if (fileName === 'How to prepare an entry for the registry (Plutus script)') return 'sidebar_position: 3\n';
-    if (fileName === 'gHow to submit an entry to the registry') return 'sidebar_position: 4\n';
-    return ''; // empty string means alphabetically within the sidebar
 }
 
 // Add Token Registry Info
@@ -166,7 +143,7 @@ const main = async () => {
         const manipulatedContent = await stringManipulation(content, tokenRegistryUrl);
 
         // Finish manipulation with injecting docosautus doc tags
-        const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl);
+        const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl, '', pathName);
 
         // Create markdown files locally with downloaded content
         fs.writeFileSync(`${TRDocsPath}/${markdownFileName}.md`, manipulatedContentWithDocTags);
