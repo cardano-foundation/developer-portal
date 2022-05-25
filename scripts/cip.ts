@@ -1,14 +1,6 @@
 import fetch from 'node-fetch';
+import { CIPRepoBaseUrl, CIPRepoRawBaseUrl, CIPReadmeUrl, CIPPReadmeRegex, CIPRegex, CIPDocsPath, CIPStaticResourcePath, CIPSourceRepo } from './constants';
 import * as fs from 'fs';
-
-const repoBaseUrl: string = 'https://github.com/cardano-foundation/CIPs/tree/master/';
-const repoRawBaseUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/CIPs/master/';
-const readmeUrl: string = '/README.md';
-const readmeRegex = /\.\/CIP.*?\//gm;
-const cipRegex = /\]\(.*?.png\)|\]\(.*?.jpg\)|\]\(.*?.jpeg\)|\]\(.*?.json\)/gm;
-const cipDocsPath = "./docs/governance/cardano-improvement-proposals";
-const cipStaticResourcePath = "/static/img/cip/";
-const sourceRepo = "cardano-foundation/CIPs";
 
 const getStringContentAsync = async (url: string) => {
     return await fetch(url).then(res => res.text());
@@ -21,7 +13,7 @@ const getBufferContentAsync = async(url: string) => {
 // Download markdown resources
 const processCIPContentAsync = async (cipName: string, content: string) => {
 
-    const cipResources = content.match(cipRegex);
+    const cipResources = content.match(CIPRegex);
     if(cipResources) {
         await Promise.all(cipResources.map(async r => { 
             if(r.indexOf("http://") < 0 && r.indexOf("https://") < 0)
@@ -43,18 +35,18 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
                     .replace(".jpeg)",".jpeg")
                     .replace(".json)",".txt");
                 
-                const buffer = await getBufferContentAsync(`${repoRawBaseUrl}${cipName}/${fileName}`);
+                const buffer = await getBufferContentAsync(`${CIPRepoRawBaseUrl}${cipName}/${fileName}`);
 
-                if(fs.existsSync(`.${cipStaticResourcePath}${cipName}`)){
-                    fs.rmdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
+                if(fs.existsSync(`.${CIPStaticResourcePath}${cipName}`)){
+                    fs.rmdirSync(`.${CIPStaticResourcePath}${cipName}`, { recursive: true });
                 }
-                fs.mkdirSync(`.${cipStaticResourcePath}${cipName}`, { recursive: true });
+                fs.mkdirSync(`.${CIPStaticResourcePath}${cipName}`, { recursive: true });
 
-                fs.writeFileSync(`.${cipStaticResourcePath}${cipName}/${modifiedFileName}`, new Uint8Array(buffer));
+                fs.writeFileSync(`.${CIPStaticResourcePath}${cipName}/${modifiedFileName}`, new Uint8Array(buffer));
 
                 // Rewrite link to static folder
-                content = content.replace(fileName, `../../..${cipStaticResourcePath}${cipName}/${modifiedFileName}`);
-                console.log(`Processed CIP content downloaded to .${cipStaticResourcePath}${cipName}/${fileName}`);
+                content = content.replace(fileName, `../../..${CIPStaticResourcePath}${cipName}/${modifiedFileName}`);
+                console.log(`Processed CIP content downloaded to .${CIPStaticResourcePath}${cipName}/${fileName}`);
             }
         }));
     }
@@ -72,7 +64,7 @@ const stringManipulation = (content: string, cipName: string) => {
     content = content.replace( /(<([^>]+)>)/ig, "");
 
     // Rewrite relative links like [Byron](./Byron.md) to absolute links. 
-    content = content.replace( /\]\(\.\//gm, "](" + repoRawBaseUrl + cipName + "/");
+    content = content.replace( /\]\(\.\//gm, "](" + CIPRepoRawBaseUrl + cipName + "/");
 
     // Fix parent links to CIPs 
     content =  content.replace(/]\(\..\/CIP-/gm, '](./CIP-') 
@@ -129,7 +121,7 @@ const injectCIPInformation = (content: string, cipName: string) => {
     const creationDate = getDocTag(content, "Created");
 
     // Add to the end
-    return content + "  \n## CIP Information  \nThis ["+type+"](CIP-0001#cip-format-and-structure) "+cipName+" created on **"+creationDate+"** has the status: ["+status+"](CIP-0001#cip-workflow).  \nThis page was generated automatically from: ["+sourceRepo+"]("+repoBaseUrl + cipName + readmeUrl+").";
+    return content + "  \n## CIP Information  \nThis ["+type+"](CIP-0001#cip-format-and-structure) "+cipName+" created on **"+creationDate+"** has the status: ["+status+"](CIP-0001#cip-workflow).  \nThis page was generated automatically from: ["+CIPSourceRepo+"]("+CIPRepoBaseUrl + cipName + CIPReadmeUrl+").";
 }
 
 // Get a specific doc tag
@@ -140,14 +132,14 @@ const getDocTag = (content: string, tagName: string) => {
 const main = async () => {
     console.log("CIP Content Downloading...");
     // Use https://raw.githubusercontent.com/cardano-foundation/CIPs/master/README.md as entry point to get URLs
-    const readmeContent = await getStringContentAsync(`${repoRawBaseUrl}${readmeUrl}`);
-    const cipUrls = readmeContent.match(readmeRegex);
+    const readmeContent = await getStringContentAsync(`${CIPRepoRawBaseUrl}${CIPReadmeUrl}`);
+    const cipUrls = readmeContent.match(CIPPReadmeRegex);
     const cipUrlsUnique = [...new Set(cipUrls)];
 
-    if(fs.existsSync(cipDocsPath)) {
-        fs.rmdirSync(cipDocsPath, { recursive: true });
+    if(fs.existsSync(CIPDocsPath)) {
+        fs.rmdirSync(CIPDocsPath, { recursive: true });
     }
-    fs.mkdirSync(cipDocsPath, { recursive: true });
+    fs.mkdirSync(CIPDocsPath, { recursive: true });
 
     // Save CIP Readme into docs
     await Promise.all(cipUrlsUnique.map(async (cipUrl) => {
@@ -155,11 +147,11 @@ const main = async () => {
         const fileName: string = "README.md"; 
         const cipName: string = cipUrl.substring(2, cipUrl.length-1); // ./CIP-xxx/ --> CIP-xxx
 
-        let content = await getStringContentAsync(cipUrl.replace("./", repoRawBaseUrl)+ fileName);
+        let content = await getStringContentAsync(cipUrl.replace("./", CIPRepoRawBaseUrl)+ fileName);
         content = await processCIPContentAsync(cipName, content);
 
-        fs.writeFileSync(`${cipDocsPath}/${cipName}.md`, content);
-        console.log(`Downloaded to ${cipDocsPath}/${cipName}.md`);
+        fs.writeFileSync(`${CIPDocsPath}/${cipName}.md`, content);
+        console.log(`Downloaded to ${CIPDocsPath}/${cipName}.md`);
     }));
 
     console.log("CIP Content Downloaded");

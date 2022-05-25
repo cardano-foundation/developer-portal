@@ -1,11 +1,6 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
-
-const repoRawBaseUrl: string = 'https://raw.githubusercontent.com/Emurgo/cardano-serialization-lib/master/doc/getting-started/';
-const repoBaseUrl: string = 'https://github.com/Emurgo/cardano-serialization-lib'
-const rlStaticResourcePath: string = '/tree/master/doc/getting-started'
-const rustLibraryDocsPath: string = './docs/get-started/cardano-serialization-lib';
-const namesRawBaseIndexUrl: string = 'https://raw.githubusercontent.com/Emurgo/cardano-serialization-lib/master/doc/index.rst';
+import { RLRepoRawBaseUrl, RLRepoBaseUrl, RLStaticResourcePath, RLDocsPath, RLnamesRawBaseIndexUrl } from './constants'
 
 const getStringContentAsync = async (url: string) => {
     return await fetch(url).then(res => res.text());
@@ -65,14 +60,14 @@ const fileNameManipulation = (fileName: string) => {
 const injectRLInformation = (content: string, fileName: string) => {
 
     // Add to the end
-    return content + '  \n## Serialization-Lib Information  \nThis page was generated automatically from: ['+repoBaseUrl+']('+repoBaseUrl + rlStaticResourcePath + '/' + fileName + '.md' + ').';
+    return content + '  \n## Serialization-Lib Information  \nThis page was generated automatically from: ['+RLRepoBaseUrl+']('+RLRepoBaseUrl + RLStaticResourcePath + '/' + fileName + '.md' + ').';
 }
 
 const main = async () => {
   console.log('Rust Library Content Downloading...')
 
   // Fetch markdown file names 
-  const indexWithMarkDownNames = await getStringContentAsync(`${namesRawBaseIndexUrl}`);
+  const indexWithMarkDownNames = await getStringContentAsync(`${RLnamesRawBaseIndexUrl}`);
 
   // Create array of markdown names to fetch raw files 
   const markDownNames = indexWithMarkDownNames.match(/(?<=getting-started\/)(.*?)(?=[\r\n]+)/g);
@@ -82,7 +77,7 @@ const main = async () => {
   await Promise.all(rustLibraryUniqueUrls.map(async (fileName) => {
 
       // Download markdown files
-      const result = await getStringContentAsync(`${repoRawBaseUrl}${fileName}.md`);
+      const result = await getStringContentAsync(`${RLRepoRawBaseUrl}${fileName}.md`);
 
       // Remove invalid links that are empty
       const manipualtedContent = stringManipulation(result, fileName)
@@ -93,8 +88,8 @@ const main = async () => {
       const manipulatedFileName = fileNameManipulation(fileName)
 
       // Create markdown files locally with downloaded content
-      fs.writeFileSync(`${rustLibraryDocsPath}/${manipulatedFileName}.md`, contentWithDocosaurusDocTags);
-      console.log(`Downloaded to ${rustLibraryDocsPath}/${fileName}.md`);
+      fs.writeFileSync(`${RLDocsPath}/${manipulatedFileName}.md`, contentWithDocosaurusDocTags);
+      console.log(`Downloaded to ${RLDocsPath}/${fileName}.md`);
 
    }));
 

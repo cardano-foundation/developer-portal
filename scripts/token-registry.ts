@@ -1,11 +1,6 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
-
-const tokenRegistryDocsPath: string = './docs/native-tokens/token-registry';
-const tokenRegistryUrl: string = 'https://github.com/cardano-foundation/cardano-token-registry/blob/master/';
-const tokenRegistryOverviewUrl: string = 'https://raw.githubusercontent.com/cardano-foundation/cardano-token-registry/master/README.md';
-const tokenRegistryWiki: string = 'https://github.com/cardano-foundation/cardano-token-registry/wiki';
-const repoRawWikiHomeUrl: string = 'https://raw.githubusercontent.com/wiki/cardano-foundation/cardano-token-registry/';
+import { TRDocsPath, TRUrl, TROverviewUrl, TRWiki, TRrepoRawWikiHomeUrl } from './constants'
 
 const getStringContentAsync = async (url: string) => {
     return await fetch(url).then(res => res.text());
@@ -15,7 +10,7 @@ const getStringContentAsync = async (url: string) => {
 const getOverviewMarkdown = async () => {
 
     // Fetch raw overview file 
-    const content = await getStringContentAsync(tokenRegistryOverviewUrl);
+    const content = await getStringContentAsync(TROverviewUrl);
 
     // Modify content to ensure compatibility
     const modifiedContent = overviewStringManipulation(content);
@@ -108,12 +103,12 @@ const overviewStringManipulation = (content: string) => {
     content = content.replace('# cardano-token-registry', '').split('## Step-by-Step')[0];
 
     // Replace relative links to absolute links.
-    content = content.replace(/\bRegistry_Terms_of_Use.md\b/g, tokenRegistryUrl + 'Registry_Terms_of_Use.md');
-    content = content.replace(/\bAPI_Terms_of_Use.md\b/g, tokenRegistryUrl + 'API_Terms_of_Use.md');
-    content = content.replace(/\(\bmappings\b/g, '(' + tokenRegistryUrl + 'mappings');
+    content = content.replace(/\bRegistry_Terms_of_Use.md\b/g, TRUrl + 'Registry_Terms_of_Use.md');
+    content = content.replace(/\bAPI_Terms_of_Use.md\b/g, TRUrl + 'API_Terms_of_Use.md');
+    content = content.replace(/\(\bmappings\b/g, '(' + TRUrl + 'mappings');
 
     // Inject token registry link info
-    content = content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+tokenRegistryUrl+']('+tokenRegistryUrl + '/' + 'README.md' + ').';
+    content = content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+TRUrl+']('+TRUrl + '/' + 'README.md' + ').';
 
     return content;
 }
@@ -130,14 +125,14 @@ const sidebar_positionForFilename = (fileName: string) => {
 const injectTRnformation = (content: string, fileName: string) => {
 
     // Add to the end
-    return content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+tokenRegistryWiki+']('+tokenRegistryWiki + '/' + fileName + ').';
+    return content + '  \n## Token Registry Information  \nThis page was generated automatically from: ['+TRWiki+']('+TRWiki + '/' + fileName + ').';
 }
 
 const main = async () => {
     console.log('Token Registry Content Downloading...');
 
     // Fetch raw wiki content for token registry
-    const wikiHomeContent = await getStringContentAsync(`${repoRawWikiHomeUrl}Home.md`);
+    const wikiHomeContent = await getStringContentAsync(`${TRrepoRawWikiHomeUrl}Home.md`);
 
     // Fetch raw overview content for token registry
     const overviewContent = await getOverviewMarkdown();
@@ -147,13 +142,13 @@ const main = async () => {
     const tokeRegistryUniqueUrls = [...new Set(contentUrls)];
 
     // Create token registry folder to store markdown files locally
-    if(fs.existsSync(tokenRegistryDocsPath)) {
-        fs.rmdirSync(tokenRegistryDocsPath, { recursive: true });
+    if(fs.existsSync(TRDocsPath)) {
+        fs.rmdirSync(TRDocsPath, { recursive: true });
     }
-    fs.mkdirSync(tokenRegistryDocsPath, { recursive: true });
+    fs.mkdirSync(TRDocsPath, { recursive: true });
 
     // Create markdown overview file locally with downloaded content
-    fs.writeFileSync(`${tokenRegistryDocsPath}/Overview.md`, overviewContent);
+    fs.writeFileSync(`${TRDocsPath}/Overview.md`, overviewContent);
 
     // Save token registry markdown files into docs folder
     await Promise.all(tokeRegistryUniqueUrls.map(async (trUrl) => {
@@ -165,7 +160,7 @@ const main = async () => {
         const markdownFileName = await markdownStringManipulation(trUrl);
 
         // Download markdown files
-        const content = await getStringContentAsync(`${repoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
+        const content = await getStringContentAsync(`${TRrepoRawWikiHomeUrl}${tokenRegistryUrl}.md`);
 
         // Manipulate content to ensure compatibility
         const manipulatedContent = await stringManipulation(content, tokenRegistryUrl);
@@ -174,8 +169,8 @@ const main = async () => {
         const manipulatedContentWithDocTags = injectDocusaurusDocTags(manipulatedContent, trUrl);
 
         // Create markdown files locally with downloaded content
-        fs.writeFileSync(`${tokenRegistryDocsPath}/${markdownFileName}.md`, manipulatedContentWithDocTags);
-        console.log(`Downloaded to ${tokenRegistryDocsPath}/${markdownFileName}.md`);
+        fs.writeFileSync(`${TRDocsPath}/${markdownFileName}.md`, manipulatedContentWithDocTags);
+        console.log(`Downloaded to ${TRDocsPath}/${markdownFileName}.md`);
 
     }));
 
