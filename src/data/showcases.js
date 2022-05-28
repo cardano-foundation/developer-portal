@@ -980,15 +980,6 @@ const Showcases = [
     tags: [ "game", "nftproject"],
   },
   {
-    title: "Paradiso",
-    description:
-      "A Shangri-La for Cardano NFTs. Decentralized platform to mint, distribute, buy, and sell digital assets.",
-    preview: require("./showcase/paradiso.png"),
-    website: "https://paradiso.app",
-    source: null,
-    tags: ["marketplace", "minting", "nftsupport"],
-  },
-  {
     title: "Turf",
     description:
       "Turf creates cartographic NFTs / wall art. Each Turf is a gorgeous 1/1 map based artwork of your favorite place on earth, preserved as interactive 3D NFTs.",
@@ -1023,6 +1014,15 @@ const Showcases = [
     website: "https://poolpeek.com",
     source: null,
     tags: [ "pooltool", "analytics"],
+  },
+  {
+    title: "Paradiso",
+    description:
+      "A Shangri-La for Cardano NFTs. Decentralized platform to mint, distribute, buy, and sell digital assets.",
+    preview: require("./showcase/paradiso.png"),
+    website: "https://paradiso.app",
+    source: null,
+    tags: ["marketplace", "minting", "nftsupport"],
   },
 ];
 
