@@ -2,11 +2,11 @@
 
 # Cardano Developer Portal
 
-Welcome to the Cardano Developer Portal. To make the difference between Cardano mainnet functionality and testnet functionality clearer, we moved the old content of developers.cardano.org to testnets.cardano.org with the launch of this developer portal.
+We wanted to build a developer portal as open and inclusive as Cardano. A portal that is in the hands of the Cardano community and can be constantly evolved by it.
 
-We wanted to build an open and inclusive, easy to use developer portal that offers guidance and allows community contribution. To achieve this we have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+For this to be successful, the portal relies on your contributions, and the fact that you are reading this text probably means that you have something to contribute, even if you are not a Developer.
 
-Please find a detailed installation guide on [developers.cardano.org/docs/portal-contribute/](https://developers.cardano.org/docs/portal-contribute/). 
+Please find a detailed installation guide on [developers.cardano.org/docs/portal-contribute/](https://developers.cardano.org/docs/portal-contribute#installation). 
 
 
 ## Requirements:  
