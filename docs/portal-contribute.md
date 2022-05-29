@@ -26,7 +26,7 @@ An "issue" can be anything from a simple suggestion to a fully elaborated plan w
 ### Improve texts
 Fix typos and improve texts, especially if you are a native speaker and have strong writing skills.
 
-Create graphics
+### Create graphics
 If you are a talented graphic designer, you can improve various charts and diagrams. We should always use graphics that work well in both light mode and dark mode for the portal. You can also make one graphic for each.
 
 ### Participate in the discussions
