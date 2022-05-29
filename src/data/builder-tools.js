@@ -272,10 +272,10 @@ const Showcases = [
     getstarted: null,
     tags: ["favorite", "library"],
   },
- 
   {
     title: "go-cardano-serialization",
     description: "A Golang serialisation library for Cardano network.",
+    preview: require("./builder-tools/go-cardano-serialisation.png"),
     website: "https://github.com/fivebinaries/go-cardano-serialization",
     getstarted: null,
     tags: ["favorite", "library"],
