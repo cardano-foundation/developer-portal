@@ -23,6 +23,8 @@ Creating an issue is the first step to improving the portal. You don't even have
 
 An "issue" can be anything from a simple suggestion to a fully elaborated plan with many sub-items and tasks to check off. You can also open an issue to discuss things. Like a public task manager, people can assign tasks to themselves. [Create an issue now](https://github.com/cardano-foundation/developer-portal/issues)
 
+If creating an issue in GitHub is too much for you please consider opening a topic [on the Cardano Forum](https://forum.cardano.org/c/developers/general-developer-talk/152) with a title like "Developer Portal Suggestion: your suggestion".
+
 ### Improve texts
 Fix typos and improve texts, especially if you are a native speaker and have strong writing skills.
 
