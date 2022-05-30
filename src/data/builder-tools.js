@@ -4,7 +4,7 @@
  * Requirements for adding your builder tool:
  * - It is an actual builder tool that adds value to Cardano developers.
  * - It has a stable domain name (a random for example, Netlify/Vercel domain is not allowed)
- * - The GitHub account that adds the builder tool must not be new. 
+ * - The GitHub account that adds the builder tool must not be new.
  * - The GitHub account must have a history/or already be known in the Cardano community.
  *
  * Instructions:
@@ -39,7 +39,7 @@ export const Tags = {
   // Chain Index
   chainindex: {
     label: "Chain Index",
-    description: 
+    description:
       "Index Protocol",
     icon: null,
     color: '#000'
@@ -52,7 +52,7 @@ export const Tags = {
     icon: null,
     color: '#dfd545',
   },
-    
+
   // Integrated Development Environment
   IDE: {
     label: "IDE",
@@ -120,7 +120,7 @@ export const Tags = {
     description:
       "Stake pool operator tools.",
     icon: null,
-    color: '#4267b2', 
+    color: '#4267b2',
   },
 
   // Oracle Tools
@@ -178,7 +178,7 @@ const Showcases = [
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
     getstarted: "/docs/get-started/cardano-serialization-lib/overview",
-    tags: ["favorite", "getstarted", "library", "rust"],
+    tags: ["getstarted", "library", "rust"],
   },
   {
     title: "cardanocli-js",
@@ -405,7 +405,7 @@ const Showcases = [
       "An IntelliJ plugin for Cardano blockchain",
     preview: require("./builder-tools/IDE.png"),
     website: "https://intelliada.bloxbean.com",
-    getstarted: null, 
+    getstarted: null,
     tags: ["java", "IDE"],
   },
   {
@@ -414,7 +414,7 @@ const Showcases = [
       "Download the latest Cardano blockchain snapshot",
     preview: require("./builder-tools/cardano-snapshots.png"),
     website: "https://cSnapshots.io",
-    getstarted: null, 
+    getstarted: null,
     tags: ["operatortool"],
   },
   {
@@ -425,8 +425,95 @@ const Showcases = [
     getstarted: "/docs/get-started/koios",
     tags: ["getstarted", "api"],
   },
+  {
+    title: "Pallas",
+    description: "Rust-native building blocks for the Cardano blockchain ecosystem",
+    preview: require("./builder-tools/pallas.svg"),
+    website: "https://github.com/txpipe/pallas#readme",
+    getstarted: null,
+    tags: ["library", "rust"]
+  },
+  {
+    title: "Scrolls",
+    description: "Read-optimized cache of Cardano on-chain entities",
+    preview: require("./builder-tools/scrolls.png"),
+    website: "https://github.com/txpipe/scrolls#readme",
+    getstarted: null,
+    tags: ["chainindex", "api", "favorite"]
+  },
+  {
+    title: "Kupo",
+    description: "A lightweight & configurable chain-index for Cardano.",
+    preview: require("./builder-tools/kupo.png"),
+    website: "https://github.com/CardanoSolutions/kupo#readme",
+    getstarted: null,
+    tags: ["chainindex", "api", "favorite"]
+  },
+  {
+    title: "cardano-multiplatform-lib",
+    description: "A library of utilities and codecs for serialization/deserialization of core data-stuctures. Replacement for 'cardano-serialization-lib'.",
+    preview: require("./builder-tools/cardano-multiplatform-lib.png"),
+    website: "https://github.com/dcSpark/cardano-multiplatform-lib#cardano-multiplatform-lib",
+    getstarted: null,
+    tags: ["library", "rust", "favorite"]
+  },
+  {
+    title: "cardano-js-sdk",
+    description: "JavaScript SDK for interacting with Cardano, providing various key management options, soon to be including support for popular hardware wallets.",
+    preview: require("./builder-tools/cardano-js-sdk.png"),
+    website: "https://github.com/input-output-hk/cardano-js-sdk/#readme",
+    getstarted: null,
+    tags: ["library", "javascript"]
+  },
+  {
+    title: "Lucid",
+    description: "Lucid is a library, which allows you to create Cardano transactions and off-chain code for your Plutus contracts in JavaScript and Node.js.",
+    preview: require("./builder-tools/lucid.svg"),
+    website: "https://github.com/Berry-Pool/lucid#readme",
+    getstarted: null,
+    tags: ["library", "javascript", "plutus"]
+  },
+  {
+    title: "Pirouette",
+    description: "Pirouette is a semi-automatic code extraction tool for model-checking. It extracts a TLA+ specification from a Plutus Mealy Machine.",
+    preview: require("./builder-tools/pirouette.png"),
+    website: "https://github.com/tweag/pirouette#readme",
+    getstarted: null,
+    tags: ["library", "plutus"]
+  },
+  {
+    title: "Pluto",
+    description: "An untyped Plutus Core assembler.",
+    preview: require("./builder-tools/pluto.png"),
+    website: "https://github.com/Plutonomicon/pluto#pluto",
+    getstarted: null,
+    tags: ["library", "plutus"]
+  },
+  {
+    title: "Plutonomicon",
+    description: "A developer-driven guide to the Plutus smart contract language in practice.",
+    preview: require("./builder-tools/plutonomicon.png"),
+    website: "https://github.com/Plutonomicon/plutonomicon#readme",
+    getstarted: null,
+    tags: ["plutus"]
+  },
+  {
+    title: "Plutarch",
+    description: "Plutarch is a typed eDSL in Haskell for writing efficient Plutus Core validators.",
+    preview: require("./builder-tools/plutarch.png"),
+    website: "https://github.com/Plutonomicon/plutarch#plutarch",
+    getstarted: null,
+    tags: ["plutus"]
+  },
+  {
+    title: "Tangocrypto",
+    description: "A suite of high availability APIs and developer tools providing fast and reliable access to the Cardano network so you can focus on building and growing your products.",
+    preview: require("./builder-tools/tangocrypto.png"),
+    website: "https://tangocrypto.com",
+    getstarted: "/docs/get-started/tangocrypto",
+    tags: ["getstarted", "api", "nft", "chainindex"],
+  },
 ];
-
 
 export const TagList = Object.keys(Tags);
 function sortShowcases() {

@@ -6,7 +6,7 @@ The following is a set of guidelines for contributing to the Developer Portal, w
 
 ## Code of Conduct
 
-@TODO link
+See [CODE_OF_CONDUCT.md](https://github.com/cardano-foundation/developer-portal/blob/staging/CODE_OF_CONDUCT.md#contributor-covenant-code-of-conduct)
 
 ## I don't want to read all of this, I just have question!
 
