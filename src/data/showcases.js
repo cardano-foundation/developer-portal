@@ -292,7 +292,7 @@ const Showcases = [
     preview: require("./showcase/poolpm.png"),
     website: "https://pool.pm",
     source: null,
-    tags: ["favorite", "favorite", "explorer"],
+    tags: ["favorite", "explorer"],
   },
   {
     title: "Adafolio",
