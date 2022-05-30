@@ -1023,6 +1023,15 @@ const Showcases = [
     tags: [ "pooltool", "analytics"],
   },
   {
+    title: "Cardano NFT Explorer",
+    description:
+      "Freely accessible web application featuring NFTs minted on the Cardano blockchain.",
+    preview: require("./showcase/cnftme.png"),
+    website: "https://cnft.me",
+    source: null,
+    tags: [ "explorer", "nftsupport"],
+  },
+  {
     title: "Lido Nation",
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
