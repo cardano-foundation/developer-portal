@@ -190,6 +190,13 @@ export const Tags = {
     color: '#800080'
   },
 
+   // Catalyst
+   catalyst: {
+    label: "Catalyst",
+    description: "Projects that aid to Cardano's interim governance programme (Catalyst)",
+    icon: null,
+    color: '#308446'
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -1014,6 +1021,15 @@ const Showcases = [
     website: "https://poolpeek.com",
     source: null,
     tags: [ "pooltool", "analytics"],
+  },
+  {
+    title: "Lido Nation",
+    description:
+      "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
+    preview: require("./showcase/lidonation.png"),
+    website: "https://www.lidonation.com/en/project-catalyst/projects",
+    source: null,
+    tags: [ "catalyst", "analytics"],
   },
 ];
 
