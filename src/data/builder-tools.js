@@ -273,6 +273,14 @@ const Showcases = [
     tags: ["favorite", "library"],
   },
   {
+    title: "go-cardano-serialization",
+    description: "A Golang serialisation library for Cardano network.",
+    preview: require("./builder-tools/go-cardano-serialisation.png"),
+    website: "https://github.com/fivebinaries/go-cardano-serialization",
+    getstarted: null,
+    tags: ["favorite", "library"],
+  },
+  {
     title: "Pooldata API",
     description: "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
     preview: require("./builder-tools/pooldata-api.png"),
