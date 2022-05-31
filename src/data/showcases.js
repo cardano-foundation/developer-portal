@@ -215,7 +215,7 @@ const Showcases = [
   {
     title: "Cardano Wall",
     description:
-      "Demonstrates serveral use cases for transaction metadata. You can sign messages and create proof of existence for files.",
+      "Demonstrates several use cases for transaction metadata. You can sign messages and create proof of existence for files.",
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
