@@ -521,6 +521,14 @@ const Showcases = [
     getstarted: "/docs/get-started/tangocrypto",
     tags: ["getstarted", "api", "nft", "chainindex"],
   },
+  {
+    title: "Simple Cardano Failover",
+    description: "An approach to run a Hot Standby Block Producer Node with an easy to setup automated failover mechanism.",
+    preview: require("./builder-tools/simplefailover.png"),
+    website: "https://github.com/ResponsibleStaking/Cardano-Simple-Failover",
+    getstarted: null,
+    tags: ["operatortool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
