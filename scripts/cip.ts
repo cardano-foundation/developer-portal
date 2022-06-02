@@ -34,7 +34,7 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
             .replace(".jpeg)", ".jpeg")
             .replace(".json)", ".json");
 
-          // create modified filenames in case we want to store files
+          // Create modified filenames in case we want to store files
           // with a different ending, like JSON files
           const modifiedFileName = r
             .replace("](", "")

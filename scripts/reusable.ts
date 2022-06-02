@@ -43,7 +43,7 @@ export const sidebar_positionForFilename = (fileName: string) => {
   if (fileName === "generating-transactions") return "sidebar_position: 4\n";
   if (fileName === "transaction-metadata") return "sidebar_position: 5\n";
 
-  return ""; // empty string means alphabetically within the sidebar
+  return ""; // Empty string means alphabetically within the sidebar
 };
 
 // Add addition Info
