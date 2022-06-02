@@ -526,7 +526,7 @@ const Showcases = [
     description: "An approach to run a Hot Standby Block Producer Node with an easy to setup automated failover mechanism.",
     preview: require("./builder-tools/simplefailover.png"),
     website: "https://github.com/ResponsibleStaking/Cardano-Simple-Failover",
-    getstarted: null,
+    getstarted: "/docs/operate-a-stake-pool/Automated%20Failover",
     tags: ["operatortool"],
   },
 ];
