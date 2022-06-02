@@ -1,19 +1,23 @@
 import * as fs from "fs";
+import * as path from "path";
 import {
   getStringContentAsync,
   getBufferContentAsync,
   preventH1Headline,
+  injectInformation,
+  injectDocusaurusDocTags,
 } from "./reusable";
 import {
-  CIPRepoBaseUrl,
   CIPRepoRawBaseUrl,
   CIPReadmeUrl,
   CIPPReadmeRegex,
   CIPRegex,
   CIPDocsPath,
   CIPStaticResourcePath,
-  CIPSourceRepo,
 } from "./constants";
+
+// Current pathname
+const pathName = path.basename(__filename);
 
 // Download markdown resources
 const processCIPContentAsync = async (cipName: string, content: string) => {
@@ -104,64 +108,12 @@ const stringManipulation = (content: string, cipName: string) => {
   content = preventH1Headline(content, "Copyright");
 
   // Inject Docusaurus doc tags for title and a nice sidebar
-  content = injectDocusaurusDocTags(content);
+  content = injectDocusaurusDocTags(content, "", "", pathName);
 
   // Inject CIP Info to make clear this is auto generated
-  content = injectCIPInformation(content, cipName);
+  content = injectInformation(content, cipName, pathName);
 
   return content;
-};
-
-// Add Docusaurus doc tags
-const injectDocusaurusDocTags = (content: string) => {
-  // Parse information from markdown file
-  const title = getDocTag(content, "Title");
-  const cipNumber = getDocTag(content, "CIP");
-
-  // Remove "---" from doc to add it later
-  content = content.substring(0, 3) === "---" ? content.slice(3) : content;
-
-  // Add "---" with doc tags for Docusaurus
-  content =
-    "--- \nsidebar_label: " +
-    "(" +
-    cipNumber +
-    ") " +
-    title +
-    "\ntitle: " +
-    title +
-    "\n" +
-    content;
-
-  return content;
-};
-
-// Add CIP Info
-const injectCIPInformation = (content: string, cipName: string) => {
-  // Parse information from markdown file
-  const status = getDocTag(content, "Status");
-  const type = getDocTag(content, "Type");
-  const creationDate = getDocTag(content, "Created");
-
-  // Add to the end
-  return (
-    content +
-    "  \n## CIP Information  \nThis [" +
-    type +
-    "](CIP-0001#cip-format-and-structure) " +
-    cipName +
-    " created on **" +
-    creationDate +
-    "** has the status: [" +
-    status +
-    "](CIP-0001#cip-workflow).  \nThis page was generated automatically from: [" +
-    CIPSourceRepo +
-    "](" +
-    CIPRepoBaseUrl +
-    cipName +
-    CIPReadmeUrl +
-    ")."
-  );
 };
 
 // Get a specific doc tag

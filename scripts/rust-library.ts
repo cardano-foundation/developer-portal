@@ -1,10 +1,12 @@
 import * as fs from "fs";
 import * as path from "path";
-import { getStringContentAsync, injectDocusaurusDocTags } from "./reusable";
+import {
+  getStringContentAsync,
+  injectDocusaurusDocTags,
+  injectInformation,
+} from "./reusable";
 import {
   RLRepoRawBaseUrl,
-  RLRepoBaseUrl,
-  RLStaticResourcePath,
   RLDocsPath,
   RLnamesRawBaseIndexUrl,
 } from "./constants";
@@ -18,7 +20,7 @@ const stringManipulation = (content: string, fileName: string) => {
   content = content.replace(/\]\(\)/gm, "]");
 
   // Inject rust library additional info
-  content = injectRLInformation(content, fileName);
+  content = injectInformation(content, fileName, pathName);
 
   return content;
 };
@@ -29,23 +31,6 @@ const fileNameManipulation = (fileName: string) => {
   fileName = fileName === "metadata" ? "transaction-metadata" : fileName;
 
   return fileName;
-};
-
-// Add rust library Info
-const injectRLInformation = (content: string, fileName: string) => {
-  // Add to the end
-  return (
-    content +
-    "  \n## Serialization-Lib Information  \nThis page was generated automatically from: [" +
-    RLRepoBaseUrl +
-    "](" +
-    RLRepoBaseUrl +
-    RLStaticResourcePath +
-    "/" +
-    fileName +
-    ".md" +
-    ")."
-  );
 };
 
 const main = async () => {

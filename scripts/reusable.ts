@@ -1,4 +1,12 @@
 import fetch from "node-fetch";
+import {
+  RLRepoBaseUrl,
+  RLStaticResourcePath,
+  CIPSourceRepo,
+  CIPRepoBaseUrl,
+  CIPReadmeUrl,
+  TRWiki,
+} from "./constants";
 
 export const getStringContentAsync = async (url: string) => {
   return await fetch(url).then((res) => res.text());
@@ -38,6 +46,72 @@ export const sidebar_positionForFilename = (fileName: string) => {
   return ""; // empty string means alphabetically within the sidebar
 };
 
+// Add addition Info
+export const injectInformation = (
+  content: string,
+  fileName: string,
+  path: string
+) => {
+  // Add to the end
+  if (path === "token-registry.ts") {
+    return (
+      content +
+      "\n" +
+      "## Token Registry Information  \nThis page was generated automatically from: [" +
+      TRWiki +
+      "](" +
+      TRWiki +
+      "/" +
+      fileName +
+      ")."
+    );
+  } else if (path === "rust-library.ts") {
+    return (
+      content +
+      "\n" +
+      "## Serialization-Lib Information  \nThis page was generated automatically from: [" +
+      RLRepoBaseUrl +
+      "](" +
+      RLRepoBaseUrl +
+      RLStaticResourcePath +
+      "/" +
+      fileName +
+      ".md" +
+      ")."
+    );
+  } else if (path === "cip.ts") {
+    // Parse information from markdown file
+    const status = getDocTag(content, "Status");
+    const type = getDocTag(content, "Type");
+    const creationDate = getDocTag(content, "Created");
+
+    return (
+      content +
+      "\n" +
+      "## CIP Information  \nThis [" +
+      type +
+      "](CIP-0001#cip-format-and-structure) " +
+      fileName +
+      " created on **" +
+      creationDate +
+      "** has the status: [" +
+      status +
+      "](CIP-0001#cip-workflow).  \nThis page was generated automatically from: [" +
+      CIPSourceRepo +
+      "](" +
+      CIPRepoBaseUrl +
+      fileName +
+      CIPReadmeUrl +
+      ")."
+    );
+  }
+};
+
+// Get a specific doc tag
+export const getDocTag = (content: string, tagName: string) => {
+  return content.match(new RegExp(`(?<=${tagName}: ).*`, ""));
+};
+
 // Inject extra docusarus doc tags
 export const injectDocusaurusDocTags = (
   content: string,
@@ -45,10 +119,10 @@ export const injectDocusaurusDocTags = (
   fileName: string,
   path: string
 ) => {
-  if (path === "token-registry.ts") {
-    // Remove '---' from doc to add it later
-    content = content.substring(0, 3) === "---" ? content.slice(3) : content;
+  // Remove '---' from doc to add it later
+  content = content.substring(0, 3) === "---" ? content.slice(3) : content;
 
+  if (path === "token-registry.ts") {
     // Remove '\'' from url to avoid issues during project build
     url = url.match(/\'/g) ? url.replace(/\'/g, "") : url;
 
@@ -72,9 +146,6 @@ export const injectDocusaurusDocTags = (
       .toLowerCase()
       .replace(/(^\w{1})|(\s{1}\w{1})/g, (match) => match.toUpperCase());
 
-    // Remove '---' from doc to add it later
-    content = content.substring(0, 3) === "---" ? content.slice(3) : content;
-
     // Add '---' with doc tags for Docusaurus
     content =
       "--- \nsidebar_label: " +
@@ -86,6 +157,14 @@ export const injectDocusaurusDocTags = (
       "--- " +
       "\n" +
       content;
+  } else if (path === "cip.ts") {
+    // Parse information from markdown file
+    const title = getDocTag(content, "Title");
+    const cipNumber = getDocTag(content, "CIP");
+
+    // Add "---" with doc tags for Docusaurus
+    content =
+      "--- \nsidebar_label: " + "(" + cipNumber + ") " + title + content;
   }
 
   return content;

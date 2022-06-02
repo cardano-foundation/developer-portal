@@ -1,11 +1,14 @@
 import * as fs from "fs";
 import * as path from "path";
-import { getStringContentAsync, injectDocusaurusDocTags } from "./reusable";
+import {
+  getStringContentAsync,
+  injectDocusaurusDocTags,
+  injectInformation,
+} from "./reusable";
 import {
   TRDocsPath,
   TRUrl,
   TROverviewUrl,
-  TRWiki,
   TRrepoRawWikiHomeUrl,
 } from "./constants";
 
@@ -74,7 +77,7 @@ const stringManipulation = (content: string, fileName: string) => {
     "How-to-prepare-an-entry-for-the-registry-NA-policy-script"
   );
 
-  content = injectTRnformation(content, fileName);
+  content = injectInformation(content, fileName, pathName);
 
   return content;
 };
@@ -116,21 +119,6 @@ const overviewStringManipulation = (content: string) => {
     ").";
 
   return content;
-};
-
-// Add Token Registry Info
-const injectTRnformation = (content: string, fileName: string) => {
-  // Add to the end
-  return (
-    content +
-    "  \n## Token Registry Information  \nThis page was generated automatically from: [" +
-    TRWiki +
-    "](" +
-    TRWiki +
-    "/" +
-    fileName +
-    ")."
-  );
 };
 
 const main = async () => {
