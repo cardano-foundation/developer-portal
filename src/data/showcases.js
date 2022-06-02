@@ -190,6 +190,13 @@ export const Tags = {
     color: '#800080'
   },
 
+   // Catalyst
+   catalyst: {
+    label: "Catalyst",
+    description: "Projects that aid to Cardano's interim governance programme (Catalyst)",
+    icon: null,
+    color: '#308446'
+  },
 };
 
 // Add your project to (THE END OF) this list.
@@ -208,7 +215,7 @@ const Showcases = [
   {
     title: "Cardano Wall",
     description:
-      "Demonstrates serveral use cases for transaction metadata. You can sign messages and create proof of existence for files.",
+      "Demonstrates several use cases for transaction metadata. You can sign messages and create proof of existence for files.",
     preview: require("./showcase/cardanowall.png"),
     website: "https://cardanowall.com/en/explore/",
     source: null,
@@ -285,7 +292,7 @@ const Showcases = [
     preview: require("./showcase/poolpm.png"),
     website: "https://pool.pm",
     source: null,
-    tags: ["favorite", "favorite", "explorer"],
+    tags: ["favorite", "explorer"],
   },
   {
     title: "Adafolio",
@@ -1014,6 +1021,24 @@ const Showcases = [
     website: "https://poolpeek.com",
     source: null,
     tags: [ "pooltool", "analytics"],
+  },
+  {
+    title: "Cardano NFT Explorer",
+    description:
+      "Freely accessible web application featuring NFTs minted on the Cardano blockchain.",
+    preview: require("./showcase/cnftme.png"),
+    website: "https://cnft.me",
+    source: null,
+    tags: [ "explorer", "nftsupport"],
+  },
+  {
+    title: "Lido Nation",
+    description:
+      "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
+    preview: require("./showcase/lidonation.png"),
+    website: "https://www.lidonation.com/en/project-catalyst/projects",
+    source: null,
+    tags: [ "catalyst", "analytics"],
   },
 ];
 
