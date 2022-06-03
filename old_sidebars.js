@@ -34,6 +34,7 @@ module.exports = {
               },
             ],
           },
+          "get-started/tangocrypto",
         ],
       },
       "get-started/technical-concepts",
@@ -147,14 +148,6 @@ module.exports = {
         ],
       },
       "operate-a-stake-pool/marketing-stake-pool",
-    ],
-    "Stake Pool Guide (in Work)": [
-      "stake-pool-guide/introduction",
-      "stake-pool-guide/pre-requisites",
-      "stake-pool-guide/install-configure-node",
-      "stake-pool-guide/register-pool",
-      "stake-pool-guide/pool-maintainance",
-      "stake-pool-guide/tools-links",
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
