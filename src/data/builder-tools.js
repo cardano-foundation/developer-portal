@@ -270,7 +270,7 @@ const Showcases = [
     preview: require("./builder-tools/libada-go.png"),
     website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
-    tags: ["favorite", "library"],
+    tags: ["favorite", "library", "golang"],
   },
   {
     title: "go-cardano-serialization",
@@ -278,7 +278,7 @@ const Showcases = [
     preview: require("./builder-tools/go-cardano-serialisation.png"),
     website: "https://github.com/fivebinaries/go-cardano-serialization",
     getstarted: null,
-    tags: ["favorite", "library"],
+    tags: ["favorite", "library", "golang"],
   },
   {
     title: "Pooldata API",
@@ -520,6 +520,14 @@ const Showcases = [
     website: "https://tangocrypto.com",
     getstarted: "/docs/get-started/tangocrypto",
     tags: ["getstarted", "api", "nft", "chainindex"],
+  },
+  {
+    title: "go-ouroboros-network",
+    description: "A Golang implementation of the Cardano Ouroboros network protocol",
+    preview: require("./builder-tools/go-ouroboros-network.png"),
+    website: "https://github.com/cloudstruct/go-ouroboros-network",
+    getstarted: null,
+    tags: ["library", "golang"]
   },
 ];
 
