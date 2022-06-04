@@ -53,6 +53,15 @@ export const Tags = {
     color: '#dfd545',
   },
 
+  // Golang
+  golang: {
+    label: "golang",
+    description:
+      "Go language",
+    icon: null,
+    color: '#50b7e0',
+  },
+
   // Integrated Development Environment
   IDE: {
     label: "IDE",
