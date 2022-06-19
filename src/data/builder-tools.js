@@ -45,6 +45,14 @@ export const Tags = {
     color: '#000'
   },
 
+  // Command Line Tools
+  cli: {
+    label: "CLI",
+    description: "Command-line interface tools",
+    icon: null,
+    color: '#fce300',
+  },
+
   // For builder tools with a get started tag, a link to the get started page is required.
   getstarted: {
     label: "Get Started",
@@ -167,14 +175,6 @@ export const Tags = {
     color: '#7e6a4c',
   },
 
-  // Rust
-  cli: {
-    label: "CLI",
-    description:
-      "CLI tool",
-    icon: null,
-    color: '#fce300',
-  },
 };
 
 // Add your builder tool to (THE END OF) this list.

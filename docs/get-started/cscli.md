@@ -78,7 +78,12 @@ Arguments:
 ## Wallet Commands
 
 ### Generate Recovery Phrase
-❗Note: Recovery-phrases and keys should only be generated and stored in airgapped machines when used in real world transactions.
+:::caution
+
+Note: Recovery-phrases and keys should ideally be generated and stored in airgapped machines 
+
+:::
+
 ```console
 $ cscli wallet recovery-phrase generate | tee phrase.en.prv
 more enjoy seminar food bench online render dry essence indoor crazy page eight fragile mango zoo burger exhibit crouch drop rocket property alter uphold
