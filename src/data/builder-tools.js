@@ -167,6 +167,14 @@ export const Tags = {
     color: '#7e6a4c',
   },
 
+  // Rust
+  cli: {
+    label: "CLI",
+    description:
+      "CLI tool",
+    icon: null,
+    color: '#fce300',
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -537,6 +545,14 @@ const Showcases = [
     website: "https://github.com/cloudstruct/go-ouroboros-network",
     getstarted: null,
     tags: ["library", "golang"]
+  },
+  {
+    title: "cscli",
+    description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
+    preview: require("./builder-tools/cscli.png"),
+    website: "https://github.com/CardanoSharp/cscli",
+    getstarted: "/docs/get-started/cscli",
+    tags: ["getstarted", "cli"],
   },
 ];
 
