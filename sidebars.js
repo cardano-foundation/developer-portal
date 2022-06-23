@@ -12,6 +12,8 @@ module.exports = {
           "get-started/installing-cardano-wallet",
         ],
       },
+      "get-started/air-gap",
+      "get-started/secure-workflow",
       {
         type: "category",
         label: "Builder Tools",
