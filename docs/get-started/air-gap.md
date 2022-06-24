@@ -183,7 +183,7 @@ sudo apt remove unattended-upgrades
 
 [Snap](https://snapcraft.io) is questionable for security reasons because (like [AppImage](https://appimage.org) and [Flatpak](https://flatpak.org)) it links application components with libraries that don't have to be compiled from source or security-vetted like the libraries that come with your OS itself.
 
-Removing Snap is optional because default snaps on the Ubuntu installation media have the same security provenance as the default packages on the OS itself... yet snaps will also be upgraded in the latter part of this procedure, and these upgraded snaps may not be subjected to the same security vetting.
+Removing Snap is optional because default snaps on the Ubuntu installation media have the same security provenance as the default packages on that same release... yet snaps will also be upgraded in the next part of this procedure, and these upgraded snaps may not be subjected to the same security vetting.
 
 To proceed with removing Snap, follow these instructions (the proceduce exact procedure changes often & these instructions may be the best maintained to date):
 
