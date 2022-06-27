@@ -1040,6 +1040,15 @@ const Showcases = [
     source: null,
     tags: [ "catalyst", "analytics"],
   },
+  {
+    title: "eUTxO",
+    description:
+      "Visual blockchain explorer for Cardano.",
+    preview: require("./showcase/eutxo.png"),
+    website: "https://eutxo.org",
+    source: null,
+    tags: [ "analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
