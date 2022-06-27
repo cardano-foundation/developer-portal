@@ -259,7 +259,7 @@ const Showcases = [
   },
   {
     title: "Cardano Metadata Oracle",
-    description: "Oracle submitting information using Cardano Metadata",
+    description: "Oracle submitting information using Cardano Metadata.",
     preview: require("./builder-tools/cardano-metadata-oracle.png"),
     website: "https://github.com/fivebinaries/cardano-metadata-oracle",
     getstarted: null,
@@ -401,7 +401,7 @@ const Showcases = [
   {
     title: "cardano-wallet-connector",
     description:
-        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework",
+        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework.",
     preview: require("./builder-tools/cardano-wallet-connector.png"),
     website: "https://github.com/dynamicstrategies/cardano-wallet-connector",
     getstarted: null,
@@ -419,7 +419,7 @@ const Showcases = [
   {
     title: "IntelliJ IDE",
     description:
-      "An IntelliJ plugin for Cardano blockchain",
+      "An IntelliJ plugin for Cardano blockchain.",
     preview: require("./builder-tools/IDE.png"),
     website: "https://intelliada.bloxbean.com",
     getstarted: null,
@@ -428,7 +428,7 @@ const Showcases = [
   {
     title: "Cardano Blockchain Snapshots",
     description:
-      "Download the latest Cardano blockchain snapshot",
+      "Download the latest Cardano blockchain snapshot.",
     preview: require("./builder-tools/cardano-snapshots.png"),
     website: "https://cSnapshots.io",
     getstarted: null,
@@ -444,7 +444,7 @@ const Showcases = [
   },
   {
     title: "Pallas",
-    description: "Rust-native building blocks for the Cardano blockchain ecosystem",
+    description: "Rust-native building blocks for the Cardano blockchain ecosystem.",
     preview: require("./builder-tools/pallas.svg"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
@@ -452,7 +452,7 @@ const Showcases = [
   },
   {
     title: "Scrolls",
-    description: "Read-optimized cache of Cardano on-chain entities",
+    description: "Read-optimized cache of Cardano on-chain entities.",
     preview: require("./builder-tools/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
@@ -532,7 +532,7 @@ const Showcases = [
   },
   {
     title: "go-ouroboros-network",
-    description: "A Golang implementation of the Cardano Ouroboros network protocol",
+    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
     preview: require("./builder-tools/go-ouroboros-network.png"),
     website: "https://github.com/cloudstruct/go-ouroboros-network",
     getstarted: null,
