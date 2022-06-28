@@ -1040,6 +1040,15 @@ const Showcases = [
     source: null,
     tags: [ "catalyst", "analytics"],
   },
+  {
+    title: "Chains of War",
+    description: 
+      "Fantasy saga that carves a new world on the Cardano blockchain by means of storytelling, artworks, 3D assets and gamification.",
+    preview: require("./showcase/chainsofwar.png"),
+    website: "https://chainsofwar.io/",
+    source: null,
+    tags: ["nftproject", "game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
