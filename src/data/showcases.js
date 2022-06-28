@@ -1047,7 +1047,7 @@ const Showcases = [
     preview: require("./showcase/eutxo.png"),
     website: "https://eutxo.org",
     source: null,
-    tags: [ "analytics"],
+    tags: [ "analytics", "explorer"],
   },
 ];
 
