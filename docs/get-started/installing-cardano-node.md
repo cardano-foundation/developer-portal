@@ -29,7 +29,7 @@ To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
 * An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)  
-* **12GB** of RAM and at least **30GB** of free disk space
+* **16GB** of RAM and at least **75GB** of free disk space
 
 :::note
 If intending to connect to mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
