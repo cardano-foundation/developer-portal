@@ -1046,7 +1046,7 @@ const Showcases = [
       "A open source multi-sig DApp for the cardano blockchain.",
     preview: require("./showcase/roundtable.png"),
     website: "https://roundtable.theadao.io/",
-    source: null,
+    source: "https://github.com/ADAOcommunity/round-table",
     tags: [ "open-source", "wallet"],
   },
 ];
