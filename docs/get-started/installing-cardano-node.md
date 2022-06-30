@@ -15,10 +15,10 @@ This guide will show you how to compile and install the `cardano-node` and `card
 If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
 
 <HydraBuildList
-    latest="9116257"
-    linux="9116140"
-    macos="9116041"
-    win64="9115926"/>
+    latest="16159682"
+    linux="16338142"
+    macos="16338141"
+    win64="16338127"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
