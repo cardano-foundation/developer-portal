@@ -103,7 +103,7 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
 
 ```
-The GHCup Haskell installer, version v0.1.17.4
+The GHCup Haskell installer, version v0.1.17.8
 ```
 
 `ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
@@ -177,6 +177,20 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
+
+We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+
+Download and install libsecp256k1:
+```bash
+cd $HOME/cardano-src
+git clone https://github.com/bitcoin-core/secp256k1
+cd secp256k1
+git checkout ac83be33
+./autogen.sh
+./configure --enable-module-schnorrsig --enable-experimental
+make
+sudo make install
+```
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
 
@@ -394,6 +408,20 @@ llvm installation path might differs based on your installation, if you used def
 :::
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
+
+We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+
+Download and install libsecp256k1:
+```bash
+cd $HOME/cardano-src
+git clone https://github.com/bitcoin-core/secp256k1
+cd secp256k1
+git checkout ac83be33
+./autogen.sh
+./configure --enable-module-schnorrsig --enable-experimental
+make
+sudo make install
+```
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
 
