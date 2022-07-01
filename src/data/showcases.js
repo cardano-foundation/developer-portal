@@ -324,7 +324,7 @@ const Showcases = [
   {
     title: "CardaStat",
     description:
-      "A fresh look at pool performances for delegators in the ecosystem. Built as a progressive web application, ideal for mobile and desktop environments",
+      "A fresh look at pool performances for delegators in the ecosystem. Built as a progressive web application, ideal for mobile and desktop environments.",
     preview: require("./showcase/cardastat.png"),
     website: "https://cardastat.info",
     source: null,
@@ -881,7 +881,7 @@ const Showcases = [
   {
     title: "Minswap Dex",
     description:
-      "Minswap is a multi-pool decentralized exchange on Cardano",
+      "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
     website: "https://app.minswap.org",
     source: null,
@@ -890,7 +890,7 @@ const Showcases = [
   {
     title: "CWallet",
     description:
-      "Cross-Chain Non-Custodial Wallet & Liquidity Engine",
+      "Cross-Chain Non-Custodial Wallet & Liquidity Engine.",
     preview: require("./showcase/cwallet.png"),
     website: "https://cwallet.finance",
     source: null,
@@ -899,7 +899,7 @@ const Showcases = [
   {
     title: "GameChanger Wallet",
     description:
-      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications",
+      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications.",
     preview: require("./showcase/gamechanger.png"),
     website: "https://gamechanger.finance",
     source: null,
@@ -926,7 +926,7 @@ const Showcases = [
   {
     title: "CardanoCube",
     description:
-      "Explore 650+ Projects Building on Cardano",
+      "Explore 650+ Projects Building on Cardano.",
     preview: require("./showcase/cardanocube.png"),
     website: "https://www.cardanocube.io",
     source: null,
@@ -944,7 +944,7 @@ const Showcases = [
   {
     title: "Explorer Png",
     description:
-      "Token Viewer on Cardano Blockchain",
+      "Token Viewer on Cardano Blockchain.",
     preview: require("./showcase/explorerxyz.png"),
     website: "https://ex.plorer.xyz",
     source: null,
@@ -1016,7 +1016,7 @@ const Showcases = [
   {
     title: "Pool Peek",
     description:
-      "An extensive Cardano stake pool explorer",
+      "An extensive Cardano stake pool explorer.",
     preview: require("./showcase/poolpeek.png"),
     website: "https://poolpeek.com",
     source: null,
