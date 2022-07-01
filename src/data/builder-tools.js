@@ -45,6 +45,14 @@ export const Tags = {
     color: '#000'
   },
 
+  // Command Line Tools
+  cli: {
+    label: "CLI",
+    description: "Command-line interface tools",
+    icon: null,
+    color: '#fce300',
+  },
+
   // For builder tools with a get started tag, a link to the get started page is required.
   getstarted: {
     label: "Get Started",
@@ -537,6 +545,14 @@ const Showcases = [
     website: "https://github.com/cloudstruct/go-ouroboros-network",
     getstarted: null,
     tags: ["library", "golang"]
+  },
+  {
+    title: "cscli",
+    description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
+    preview: require("./builder-tools/cscli.png"),
+    website: "https://github.com/CardanoSharp/cscli",
+    getstarted: "/docs/get-started/cscli",
+    tags: ["getstarted", "cli"],
   },
 ];
 
