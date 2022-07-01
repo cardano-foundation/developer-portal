@@ -14,6 +14,14 @@ module.exports = {
       },
       {
         type: "category",
+        label: "Security Best Practices",
+        items: [
+          "get-started/air-gap",
+          "get-started/secure-workflow",
+        ],
+      },
+      {
+        type: "category",
         label: "Builder Tools",
         items: [
           "get-started/blockfrost",
