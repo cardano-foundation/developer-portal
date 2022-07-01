@@ -1040,6 +1040,15 @@ const Showcases = [
     source: null,
     tags: [ "catalyst", "analytics"],
   },
+    {
+    title: "RoundTable",
+    description:
+      "A open source multi-sig DApp for the cardano blockchain.",
+    preview: require("./showcase/roundtable.png"),
+    website: "https://roundtable.theadao.io/",
+    source: "https://github.com/ADAOcommunity/round-table",
+    tags: [ "open-source", "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
