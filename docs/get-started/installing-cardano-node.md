@@ -189,6 +189,7 @@ git checkout ac83be33
 ./autogen.sh
 ./configure --enable-module-schnorrsig --enable-experimental
 make
+make check
 sudo make install
 ```
 
