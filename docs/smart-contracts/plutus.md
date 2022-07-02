@@ -9,7 +9,7 @@ image: ../img/og-developer-portal.png
 ## Get started with Plutus 
 Plutus is the smart contract platform of the Cardano blockchain. It allows you to write applications that interact with the Cardano blockchain.
 
-Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/plutus/tutorials/index.html) if you want to learn Plutus from the beginning. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
+Take a look at the [Plutus Tutorials](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/index.html) if you want to learn Plutus from the beginning. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
 
 [Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/plutus_pioneer_program.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program. 
 
@@ -32,21 +32,28 @@ The Plutus Playground is a code editor and simulator in one.
 
 [![Plutus Playground](../../static/img/get-started/smart-contracts/plutus-playground.jpg)](https://playground.plutus.iohkdev.io)
 
-There is a written tutorial on [how to compile and test a Plutus App](https://plutus.readthedocs.io/en/latest/plutus/tutorials/plutus-playground.html) or you can watch this video tutorial:   
+There is a written tutorial on [how to compile and test a Plutus App](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/plutus-playground.html) or you can watch this video tutorial:
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/DhRS-JvoCw8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Further Tutorials
-- [Writing a basic Plutus app in the Plutus Playground](https://plutus.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
-- [Using Plutus Tx](https://plutus.readthedocs.io/en/latest/plutus/tutorials/plutus-tx.html)
-- [Writing basic validator scripts](https://plutus.readthedocs.io/en/latest/plutus/tutorials/basic-validators.html)
-- [Writing basic minting policies](https://plutus.readthedocs.io/en/latest/plutus/tutorials/basic-minting-policies.html)
-- [Property-based testing of Plutus contracts](https://plutus.readthedocs.io/en/latest/plutus/tutorials/contract-testing.html)
+
+See [Plutus Tutorials](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/index.html). Examples:
+
+- [Writing a basic Plutus app in the Plutus Playground](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
+- [Using Plutus Tx](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/plutus-tx.html)
+- [Writing basic validator scripts](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-validators.html)
+- [Writing basic minting policies](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-minting-policies.html)
+
+Note there are older tutorials hosted at the subdomain https://plutus.readthedocs.io but the newer docs are at https://plutus-apps.readthedocs.io
 
 ## How-to guides
-- [How to export scripts, datums and redemmers](https://plutus.readthedocs.io/en/latest/plutus/howtos/exporting-a-script.html)
-- [How to write a scalable Plutus app](https://plutus.readthedocs.io/en/latest/plutus/howtos/writing-a-scalable-app.html)
-- [How to handle blockchain events](https://plutus.readthedocs.io/en/latest/plutus/howtos/handling-blockchain-events.html)
-- [How to analyse the cost and size of Plutus scripts](https://plutus.readthedocs.io/en/latest/plutus/howtos/analysing-scripts.html)
+
+See [How-to guides](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/index.html)
+
+- [How to export scripts, datums and redeemers](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/exporting-a-script.html)
+- [How to write a scalable Plutus app](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/writing-a-scalable-app.html)
+- [How to handle blockchain events](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/handling-blockchain-events.html)
+- [How to analyse the cost and size of Plutus scripts](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/analysing-scripts.html)
 
 ## Get started with Haskell
 Haskell is the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend you check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 
