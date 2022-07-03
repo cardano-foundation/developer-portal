@@ -1056,7 +1056,7 @@ const Showcases = [
     preview: require("./showcase/hazelnet.png"),
     website: "https://www.hazelnet.io",
     source: null,
-    tags: [ "nftsupport", "opensource", "token", "pooltool"],
+    tags: [ "nftsupport", "opensource", "token"],
   },
 ];
 
