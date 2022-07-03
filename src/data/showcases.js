@@ -1049,6 +1049,15 @@ const Showcases = [
     source: null,
     tags: [ "analytics", "explorer"],
   },
+  {
+    title: "HAZELnet",
+    description:
+      "A community integration tool that allows stakepool operators and NFT projects to connect and engage with their audience, verify their delegators and holders, create polls, whitelists and more via Discord, Website, and other social media apps.",
+    preview: require("./showcase/hazelnet.png"),
+    website: "https://www.hazelnet.io",
+    source: null,
+    tags: [ "nftsupport", "opensource", "token", "pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
