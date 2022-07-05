@@ -1049,6 +1049,15 @@ const Showcases = [
     source: null,
     tags: [ "analytics", "explorer"],
   },
+  {
+    title: "CVM",
+    description:
+      "Cardano Version Manager, manage the configuration and versions of your pool.",
+    preview: require("./showcase/cvm.png"),
+    website: "https://github.com/orelvis15/cvm",
+    source: null,
+    tags: ["ecosystem", "pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
