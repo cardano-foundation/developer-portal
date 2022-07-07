@@ -1054,8 +1054,8 @@ const Showcases = [
     description:
       "Cardano Version Manager, manage the configuration and versions of your pool.",
     preview: require("./showcase/cvm.png"),
-    website: "https://github.com/orelvis15/cvm",
-    source: null,
+    website: "https://sites.google.com/view/cvmcli/inicio",
+    source:  "https://github.com/orelvis15/cvm",
     tags: ["ecosystem", "pooltool"],
   },
 ];
