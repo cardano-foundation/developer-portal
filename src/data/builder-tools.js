@@ -232,6 +232,15 @@ const Showcases = [
     tags: ["library", "java"],
   },
   {
+    title: "Imperator - imperative, secure SC programming language",
+    description:
+      "A proof of concept secure, imperative language for writing Smart Contracts on Cardano L1.",
+    preview: require("./builder-tools/imperator.png"),
+    website: "https://github.com/ImperatorLang/imperator",
+    getstarted: null,
+    tags: ["python", "plutus"],
+  },
+  {
     title: "cardano-addresses TypeScript binding",
     description: "This is a Typescript/Javascript version of the cardano-addresses API. It includes a web demo.",
     preview: require("./builder-tools/cardano-addresses-typescript-binding.png"),
