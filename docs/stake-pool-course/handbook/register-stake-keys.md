@@ -71,7 +71,9 @@ It is either possible to simply keep the transaction as prepared above and send 
 
     > 997828515
 
-Herefore you would need to calculate the expression above and then build the transaction (as stated above) again, but adding the result calculated in the tx-out parameter: 
+Herefore you would need to calculate the expression above and then build the transaction (as stated above) again, but adding the result calculated in the tx-out parameter:
+
+```sh
 cardano-cli transaction build \
     --alonzo-era \
     --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
@@ -82,6 +84,7 @@ cardano-cli transaction build \
     --certificate-file stake.cert \
     --invalid-hereafter 987654 \
     --witness-override 2
+```
 
 ## Submit the certificate with a transaction:
 
