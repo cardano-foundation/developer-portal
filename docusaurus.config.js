@@ -62,6 +62,11 @@ module.exports = {
 
       items: [
         {
+          to: "docs/get-started/",
+          label: "Get Started",
+          position: "left",
+        },        
+        {
           to: "tools",
           label: "Builder Tools",
           position: "left",
@@ -69,11 +74,6 @@ module.exports = {
         {
           to: "showcase",
           label: "Showcase",
-          position: "left",
-        },
-        {
-          to: "docs/get-started/testnets-and-devnets",
-          label: "Testnets",
           position: "left",
         },
         {
