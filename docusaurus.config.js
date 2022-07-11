@@ -18,7 +18,11 @@ module.exports = {
   },
   themeConfig: {
     // Docs Sidebar
-    hideableSidebar: true,
+    docs: {
+      sidebar: {
+        hideable: true,
+      }
+    },
 
     // Additional Language Syntax Highlighting
     prism: {
