@@ -9,7 +9,7 @@ image: ../img/og-developer-portal.png
 ## Get started with Plutus 
 Plutus is the smart contract platform of the Cardano blockchain. It allows you to write applications that interact with the Cardano blockchain.
 
-Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/plutus/tutorials/index.html) if you want to learn Plutus from the beginning. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
+Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/tutorials/index.html) if you want to learn Plutus from the beginning. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
 
 [Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/plutus_pioneer_program.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program. 
 
