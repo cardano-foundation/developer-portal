@@ -48,6 +48,14 @@ export const Tags = {
     color: '#39ca30',
   },
 
+  // DAO Tool
+  daotool: {
+    label: "DAO Tool",
+    description: "DAO tools help in the proper control and management of a DAO.",
+    icon: null,
+    color: '#08C491'
+  },
+
   // DEX
   dex: {
     label: "DEX",
@@ -1056,7 +1064,7 @@ const Showcases = [
     preview: require("./showcase/roundtable.png"),
     website: "https://roundtable.theadao.io/",
     source: "https://github.com/ADAOcommunity/round-table",
-    tags: [ "opensource", "wallet"],
+    tags: [ "opensource", "daotool"],
   },
   {
     title: "eUTxO",
