@@ -49,7 +49,7 @@ export const Tags = {
   },
 
   // DAO Tool
-  ddaotool: {
+  daotool: {
     label: "DAO Tool",
     description: "DAO tools help in the proper control and management of a DAO.",
     icon: null,
