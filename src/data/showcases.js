@@ -1064,7 +1064,7 @@ const Showcases = [
     preview: require("./showcase/roundtable.png"),
     website: "https://roundtable.theadao.io/",
     source: "https://github.com/ADAOcommunity/round-table",
-    tags: [ "opensource", "wallet"],
+    tags: [ "opensource", "daotool"],
   },
   {
     title: "eUTxO",
