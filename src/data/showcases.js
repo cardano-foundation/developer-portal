@@ -48,6 +48,14 @@ export const Tags = {
     color: '#39ca30',
   },
 
+  // DAO Tool
+  ddaotool: {
+    label: "DAO Tool",
+    description: "DAO tools help in the proper control and management of a DAO.",
+    icon: null,
+    color: '#08C491'
+  },
+
   // DEX
   dex: {
     label: "DEX",
