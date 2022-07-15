@@ -48,7 +48,7 @@ const processCIPContentAsync = async (cipName: string, content: string) => {
           );
 
           if (fs.existsSync(`.${CIPStaticResourcePath}${cipName}`)) {
-            fs.rmdirSync(`.${CIPStaticResourcePath}${cipName}`, {
+            fs.rmSync(`.${CIPStaticResourcePath}${cipName}`, {
               recursive: true,
             });
           }
@@ -131,7 +131,7 @@ const main = async () => {
   const cipUrlsUnique = [...new Set(cipUrls)];
 
   if (fs.existsSync(CIPDocsPath)) {
-    fs.rmdirSync(CIPDocsPath, { recursive: true });
+    fs.rmSync(CIPDocsPath, { recursive: true });
   }
   fs.mkdirSync(CIPDocsPath, { recursive: true });
 
