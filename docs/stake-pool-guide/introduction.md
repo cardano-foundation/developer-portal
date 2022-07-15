@@ -36,4 +36,4 @@ Best procedures should always be a key consideration when running a stake pool. 
 - [Discuss security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157).
 
 Learn which keys are available, which are hot and sensitive, and which you should never save on a server, no matter how convenient it is. 
-- [Read about Cardano key pairs](cardano-key-pairs).
+- [Read about Cardano key pairs](../operate-a-stake-pool/cardano-key-pairs).
