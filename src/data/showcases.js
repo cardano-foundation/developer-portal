@@ -1056,7 +1056,7 @@ const Showcases = [
     preview: require("./showcase/cvm.png"),
     website: "https://sites.google.com/view/cvmcli/inicio",
     source:  "https://github.com/orelvis15/cvm",
-    tags: ["ecosystem", "pooltool"],
+    tags: ["pooltool"],
   },
 ];
 
