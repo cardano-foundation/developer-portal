@@ -72,9 +72,12 @@ It is either possible to simply keep the transaction as prepared above and send 
     > 997828515
 
 Herefore you would need to calculate the expression above and then build the transaction (as stated above) again, but adding the result calculated in the tx-out parameter:
-Note: In Babbage era the Babbage-era transaction is used by default and doesn't need to be specified on command line.
+
+:::note
+In Babbage era the Babbage-era transaction is used by default and doesn't need to be specified on command line.
 
 The transaction build command works only when transaction era is the same as network era. It cannot build e.g. Mary-era transaction on Babbage-era network. In that sense the --babbage-era, --alonzo-era, etc. options are redundant. The transaction build should figure out what the network era is and build same era transaction.
+:::
 
 ```sh
 cardano-cli transaction build \
