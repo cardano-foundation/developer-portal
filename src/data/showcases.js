@@ -1053,10 +1053,10 @@ const Showcases = [
     title: "CVM",
     description:
       "Cardano Version Manager, manage the configuration and versions of your pool.",
-    preview: require("./showcase/cvm.png"),
+    preview: require("./builder-tools/cvm.png"),
     website: "https://sites.google.com/view/cvmcli/inicio",
     source:  "https://github.com/orelvis15/cvm",
-    tags: ["pooltool"],
+    tags: ["operatortool"],
   },
 ];
 
