@@ -82,7 +82,7 @@ To contribute to the Cardano developer portal, you must first install it locally
 
 ### Requirements
 
-- [Node.js](https://nodejs.org/en/download/) version >= 14.0 (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
+- [Node.js](https://nodejs.org/en/download/) version >= 16.14 (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
 - [Yarn](https://yarnpkg.com/en/) version >= 1.5 (which can be checked by running `yarn --version`). Yarn is a performant package manager for JavaScript and replaces the `npm` client. It is not strictly necessary but highly encouraged.
 - On macOS you also need Xcode and Command Line Tools.
 

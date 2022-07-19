@@ -4,7 +4,7 @@ const vars = require('./variables')
 // Docusaurus Config
 module.exports = {
   title: "Cardano Developer Portal",
-  tagline: "let's build better",
+  tagline: "Let’s build together",
   url: "https://developers.cardano.org",
   baseUrl: "/",
   onBrokenLinks: "warn",
@@ -18,7 +18,11 @@ module.exports = {
   },
   themeConfig: {
     // Docs Sidebar
-    hideableSidebar: true,
+    docs: {
+      sidebar: {
+        hideable: true,
+      }
+    },
 
     // Additional Language Syntax Highlighting
     prism: {

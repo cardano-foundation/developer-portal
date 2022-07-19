@@ -48,6 +48,14 @@ export const Tags = {
     color: '#39ca30',
   },
 
+  // DAO Tool
+  daotool: {
+    label: "DAO Tool",
+    description: "DAO tools help in the proper control and management of a DAO.",
+    icon: null,
+    color: '#08C491'
+  },
+
   // DEX
   dex: {
     label: "DEX",
@@ -1041,6 +1049,24 @@ const Showcases = [
     tags: [ "catalyst", "analytics"],
   },
   {
+    title: "Paradiso",
+    description:
+      "A Shangri-La for Cardano NFTs. Decentralized platform to mint, distribute, buy, and sell digital assets.",
+    preview: require("./showcase/paradiso.png"),
+    website: "https://paradiso.app",
+    source: null,
+    tags: ["marketplace", "minting", "nftsupport"],
+  },
+  {
+    title: "RoundTable",
+    description:
+      "A open source multi-sig DApp for the cardano blockchain.",
+    preview: require("./showcase/roundtable.png"),
+    website: "https://roundtable.theadao.io/",
+    source: "https://github.com/ADAOcommunity/round-table",
+    tags: [ "opensource", "daotool"],
+  },
+  {
     title: "eUTxO",
     description:
       "Visual blockchain explorer for Cardano.",
@@ -1048,6 +1074,15 @@ const Showcases = [
     website: "https://eutxo.org",
     source: null,
     tags: [ "analytics", "explorer"],
+  },
+  {
+    title: "HAZELnet",
+    description:
+      "A community integration tool that allows stakepool operators and NFT projects to connect and engage with their audience, verify their delegators and holders, create polls, whitelists and more via Discord, Website, and other social media apps.",
+    preview: require("./showcase/hazelnet.png"),
+    website: "https://www.hazelnet.io",
+    source: "https://github.com/nilscodes/hazelnet",
+    tags: [ "nftsupport", "opensource", "token"],
   },
   {
     title: "CVM",
