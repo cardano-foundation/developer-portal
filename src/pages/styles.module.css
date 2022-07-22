@@ -14,6 +14,14 @@
   background-position: 59% 50%;
 }
 
+html[data-theme=light] .getStarted {
+  color: #fff;
+}
+
+html[data-theme=dark] .getStarted {
+  color: #000;
+}
+
 html[data-theme=light] .heroBanner {
   background-image: url(/img/dev-portal-hero-light.webp);
   background-color: #383fd0;
