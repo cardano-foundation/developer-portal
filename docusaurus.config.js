@@ -38,7 +38,7 @@ module.exports = {
         `The <strong>Cardano State of the Developer Ecosystem 2022</strong> survey is out! Your voice matter, please take a few minutes to <a target="_blank" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-2022">participate to the survey</a> 💗.`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
-      isCloseable: false,
+      isCloseable: true,
     },
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
