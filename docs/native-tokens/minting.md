@@ -300,7 +300,7 @@ cardano-cli transaction build-raw \
  --fee $fee \
  --tx-in $txhash#$txix \
  --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
- --mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+ --mint "$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
  --minting-script-file policy/policy.script \
  --out-file matx.raw
 ```
@@ -354,7 +354,7 @@ The syntax is very important, so here it is word for word. There are no spaces u
 :::
 
 ```bash
---mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+--mint "$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
 ```
 Again, the same syntax as specified in <i>--tx-out</i> but without the address and output.
 
@@ -384,7 +384,7 @@ cardano-cli transaction build-raw \
 --fee $fee  \
 --tx-in $txhash#$txix  \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
---mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+--mint "$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
 --minting-script-file policy/policy.script \
 --out-file matx.raw
 ```
