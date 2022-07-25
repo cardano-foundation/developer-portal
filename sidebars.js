@@ -14,11 +14,20 @@ module.exports = {
       },
       {
         type: "category",
+        label: "Security Best Practices",
+        items: [
+          "get-started/air-gap",
+          "get-started/secure-workflow",
+        ],
+      },
+      {
+        type: "category",
         label: "Builder Tools",
         items: [
           "get-started/blockfrost",
           "get-started/cardanocli-js",
           "get-started/cardano-wallet-js",
+          "get-started/cscli",
           "get-started/dandelion-apis",
           "get-started/koios",
           "get-started/ogmios",
@@ -148,6 +157,15 @@ module.exports = {
         ],
       },
       "operate-a-stake-pool/marketing-stake-pool",
+    ],
+    "Stake Pool Guide": [
+      "stake-pool-guide/introduction",
+      "stake-pool-guide/pre-requisites",
+      "stake-pool-guide/install-configure-node",
+      "stake-pool-guide/register-pool",
+      "stake-pool-guide/pool-maintainance",
+      "stake-pool-guide/tools-links",
+      "stake-pool-guide/best-practices",
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",

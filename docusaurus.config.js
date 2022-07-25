@@ -4,7 +4,7 @@ const vars = require('./variables')
 // Docusaurus Config
 module.exports = {
   title: "Cardano Developer Portal",
-  tagline: "let's build better",
+  tagline: "Let’s build together",
   url: "https://developers.cardano.org",
   baseUrl: "/",
   onBrokenLinks: "warn",
@@ -18,7 +18,11 @@ module.exports = {
   },
   themeConfig: {
     // Docs Sidebar
-    hideableSidebar: true,
+    docs: {
+      sidebar: {
+        hideable: true,
+      }
+    },
 
     // Additional Language Syntax Highlighting
     prism: {
@@ -29,12 +33,12 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: "announcement_index3", // Any value that will identify this message + increment the number every time to be unique
+      id: 'state-of-the-ecosystem-2022',
       content:
-        `<strong>Build out the Developer Portal together with us, ⭐️<a target="_blank" rel="noopener noreferrer" href="https://discord.gg/Exe6XmqKDx">join Discord.</a></strong>`,
-      backgroundColor: "#2AA18A", 
+        `The <strong>Cardano State of the Developer Ecosystem 2022</strong> survey is out! Your voice matter, please take a few minutes to <a target="_blank" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-2022">participate to the survey</a> 💗.`,
+      backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
-      isCloseable: true, // Use true
+      isCloseable: false,
     },
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
@@ -62,6 +66,11 @@ module.exports = {
 
       items: [
         {
+          to: "docs/get-started/",
+          label: "Get Started",
+          position: "left",
+        },
+        {
           to: "tools",
           label: "Builder Tools",
           position: "left",
@@ -69,11 +78,6 @@ module.exports = {
         {
           to: "showcase",
           label: "Showcase",
-          position: "left",
-        },
-        {
-          to: "docs/get-started/testnets-and-devnets",
-          label: "Testnets",
           position: "left",
         },
         {
@@ -185,22 +189,22 @@ module.exports = {
         redirects: [
           {
             // redirect the old smart contracts signpost to the new smart contract category
-            to: '/docs/smart-contracts/', 
+            to: '/docs/smart-contracts/',
             from: '/docs/get-started/smart-contracts-signpost',
           },
           {
             // redirect the old funding category overview to the new governance category
-            to: '/docs/governance/', 
+            to: '/docs/governance/',
             from: '/docs/fund-your-project/',
           },
           {
             // redirect to the new catalyst page
-            to: '/docs/governance/project-catalyst', 
+            to: '/docs/governance/project-catalyst',
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
             // redirect the old cardano improvement proposal overview
-            to: '/docs/governance/cardano-improvement-proposals/CIP-0001', 
+            to: '/docs/governance/cardano-improvement-proposals/CIP-0001',
             from: '/docs/governance/cardano-improvement-proposals/',
           },
         ],
@@ -220,7 +224,7 @@ module.exports = {
         blog: {
           showReadingTime: true,
           editUrl: `${vars.repository}/edit/${vars.branch}`,
-          blogSidebarCount: 'ALL',  
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

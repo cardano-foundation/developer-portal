@@ -1,9 +1,9 @@
 ---
-id: overview
-slug: /operate-a-stake-pool/
-title: Operate a Stake Pool
-sidebar_label: Overview
-description: Operate a Cardano stake pool.
+id: introduction
+slug: /stake-pool-guide/
+title: Introduction to Stake Pools
+sidebar_label: Introduction
+description: Introduction
 image: ../img/og-developer-portal.png
 ---
 
@@ -36,27 +36,4 @@ Best procedures should always be a key consideration when running a stake pool. 
 - [Discuss security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157).
 
 Learn which keys are available, which are hot and sensitive, and which you should never save on a server, no matter how convenient it is. 
-- [Read about Cardano key pairs](cardano-key-pairs).
-
-
-## Stake pool course
-This tutorial will show you how to set up, manage, and maintain your stake pool for maximum performance and profit.
-- [Start today with the stake pool course](../stake-pool-course/).
-
-## Marketing your stake pool
-If you're a stake pool operator, you've probably noticed that having a technically perfect stake pool functioning isn't enough.
-
-You must also construct your pool around a brand that can draw sufficient delegators from the Cardano community.
-- [Read here for a few ideas on how you can do that](marketing-stake-pool).
-
-## Stake pool operator resources
-- [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content. 
-- [Topology Updater](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater) is intended to be a temporary solution to allow everyone to activate their relay nodes without having to postpone and wait for manual topology completion requests.
-- [CNCLI](https://github.com/AndrewWestberg/cncli) is a collection of utilities to enhance and extend cardano-cli. 
-- [Jormanager](https://bitbucket.org/muamw10/jormanager/src/develop/) a Cardano stake pool management software. 
-- [Stake Pool Operator Scripts](https://github.com/gitmachtl/scripts) a collection of scripts to manage your stake pool step-by-step. 
-- [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
-- [Pool Veterinary](http://pool.vet) will help you see if your Cardano stake pool is working and find out why it may not be.
-- [SPOCRA](https://members.spocra.io) includes the Stake Pool installation guide from the registered trade guild - Stake Pool Operator Collective Representation Assembly
-- [RaspberryPi with Docker](https://github.com/speedwing/cardano-staking-pool-edu) Full guide to build and run both testnet and mainnet Cardano Stake Pool with Docker on Raspberry Pi. [Youtube Playlist](https://www.youtube.com/playlist?list=PLBhbLwOuj0DfTnneuG3vyoDHY7Dv_aiyq)
-- [TOPO Guide](https://es-kb.topopool.com/primeros-pasos). A friendly and complete guide to mount a Stake Pool in Spanish
+- [Read about Cardano key pairs](../operate-a-stake-pool/cardano-key-pairs).

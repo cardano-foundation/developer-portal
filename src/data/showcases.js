@@ -48,6 +48,14 @@ export const Tags = {
     color: '#39ca30',
   },
 
+  // DAO Tool
+  daotool: {
+    label: "DAO Tool",
+    description: "DAO tools help in the proper control and management of a DAO.",
+    icon: null,
+    color: '#08C491'
+  },
+
   // DEX
   dex: {
     label: "DEX",
@@ -324,7 +332,7 @@ const Showcases = [
   {
     title: "CardaStat",
     description:
-      "A fresh look at pool performances for delegators in the ecosystem. Built as a progressive web application, ideal for mobile and desktop environments",
+      "A fresh look at pool performances for delegators in the ecosystem. Built as a progressive web application, ideal for mobile and desktop environments.",
     preview: require("./showcase/cardastat.png"),
     website: "https://cardastat.info",
     source: null,
@@ -881,7 +889,7 @@ const Showcases = [
   {
     title: "Minswap Dex",
     description:
-      "Minswap is a multi-pool decentralized exchange on Cardano",
+      "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
     website: "https://app.minswap.org",
     source: null,
@@ -890,7 +898,7 @@ const Showcases = [
   {
     title: "CWallet",
     description:
-      "Cross-Chain Non-Custodial Wallet & Liquidity Engine",
+      "Cross-Chain Non-Custodial Wallet & Liquidity Engine.",
     preview: require("./showcase/cwallet.png"),
     website: "https://cwallet.finance",
     source: null,
@@ -899,7 +907,7 @@ const Showcases = [
   {
     title: "GameChanger Wallet",
     description:
-      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications",
+      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications.",
     preview: require("./showcase/gamechanger.png"),
     website: "https://gamechanger.finance",
     source: null,
@@ -926,7 +934,7 @@ const Showcases = [
   {
     title: "CardanoCube",
     description:
-      "Explore 650+ Projects Building on Cardano",
+      "Explore 650+ Projects Building on Cardano.",
     preview: require("./showcase/cardanocube.png"),
     website: "https://www.cardanocube.io",
     source: null,
@@ -944,7 +952,7 @@ const Showcases = [
   {
     title: "Explorer Png",
     description:
-      "Token Viewer on Cardano Blockchain",
+      "Token Viewer on Cardano Blockchain.",
     preview: require("./showcase/explorerxyz.png"),
     website: "https://ex.plorer.xyz",
     source: null,
@@ -1016,7 +1024,7 @@ const Showcases = [
   {
     title: "Pool Peek",
     description:
-      "An extensive Cardano stake pool explorer",
+      "An extensive Cardano stake pool explorer.",
     preview: require("./showcase/poolpeek.png"),
     website: "https://poolpeek.com",
     source: null,
@@ -1039,6 +1047,42 @@ const Showcases = [
     website: "https://www.lidonation.com/en/project-catalyst/projects",
     source: null,
     tags: [ "catalyst", "analytics"],
+  },
+  {
+    title: "Paradiso",
+    description:
+      "A Shangri-La for Cardano NFTs. Decentralized platform to mint, distribute, buy, and sell digital assets.",
+    preview: require("./showcase/paradiso.png"),
+    website: "https://paradiso.app",
+    source: null,
+    tags: ["marketplace", "minting", "nftsupport"],
+  },
+  {
+    title: "RoundTable",
+    description:
+      "A open source multi-sig DApp for the cardano blockchain.",
+    preview: require("./showcase/roundtable.png"),
+    website: "https://roundtable.theadao.io/",
+    source: "https://github.com/ADAOcommunity/round-table",
+    tags: [ "opensource", "daotool"],
+  },
+  {
+    title: "eUTxO",
+    description:
+      "Visual blockchain explorer for Cardano.",
+    preview: require("./showcase/eutxo.png"),
+    website: "https://eutxo.org",
+    source: null,
+    tags: [ "analytics", "explorer"],
+  },
+  {
+    title: "HAZELnet",
+    description:
+      "A community integration tool that allows stakepool operators and NFT projects to connect and engage with their audience, verify their delegators and holders, create polls, whitelists and more via Discord, Website, and other social media apps.",
+    preview: require("./showcase/hazelnet.png"),
+    website: "https://www.hazelnet.io",
+    source: "https://github.com/nilscodes/hazelnet",
+    tags: [ "nftsupport", "opensource", "token"],
   },
 ];
 

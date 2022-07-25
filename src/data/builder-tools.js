@@ -45,12 +45,29 @@ export const Tags = {
     color: '#000'
   },
 
+  // Command Line Tools
+  cli: {
+    label: "CLI",
+    description: "Command-line interface tools",
+    icon: null,
+    color: '#fce300',
+  },
+
   // For builder tools with a get started tag, a link to the get started page is required.
   getstarted: {
     label: "Get Started",
     description: "This builder tool has a get started page in the developer portal.",
     icon: null,
     color: '#dfd545',
+  },
+
+  // Golang
+  golang: {
+    label: "golang",
+    description:
+      "Go language",
+    icon: null,
+    color: '#50b7e0',
   },
 
   // Integrated Development Environment
@@ -215,6 +232,15 @@ const Showcases = [
     tags: ["library", "java"],
   },
   {
+    title: "Imperator - imperative, secure SC programming language",
+    description:
+      "A proof of concept secure, imperative language for writing Smart Contracts on Cardano L1.",
+    preview: require("./builder-tools/imperator.png"),
+    website: "https://github.com/ImperatorLang/imperator",
+    getstarted: null,
+    tags: ["python", "plutus"],
+  },
+  {
     title: "cardano-addresses TypeScript binding",
     description: "This is a Typescript/Javascript version of the cardano-addresses API. It includes a web demo.",
     preview: require("./builder-tools/cardano-addresses-typescript-binding.png"),
@@ -250,7 +276,7 @@ const Showcases = [
   },
   {
     title: "Cardano Metadata Oracle",
-    description: "Oracle submitting information using Cardano Metadata",
+    description: "Oracle submitting information using Cardano Metadata.",
     preview: require("./builder-tools/cardano-metadata-oracle.png"),
     website: "https://github.com/fivebinaries/cardano-metadata-oracle",
     getstarted: null,
@@ -270,7 +296,7 @@ const Showcases = [
     preview: require("./builder-tools/libada-go.png"),
     website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
-    tags: ["favorite", "library"],
+    tags: ["favorite", "library", "golang"],
   },
   {
     title: "go-cardano-serialization",
@@ -278,7 +304,7 @@ const Showcases = [
     preview: require("./builder-tools/go-cardano-serialisation.png"),
     website: "https://github.com/fivebinaries/go-cardano-serialization",
     getstarted: null,
-    tags: ["favorite", "library"],
+    tags: ["favorite", "library", "golang"],
   },
   {
     title: "Pooldata API",
@@ -392,7 +418,7 @@ const Showcases = [
   {
     title: "cardano-wallet-connector",
     description:
-        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework",
+        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework.",
     preview: require("./builder-tools/cardano-wallet-connector.png"),
     website: "https://github.com/dynamicstrategies/cardano-wallet-connector",
     getstarted: null,
@@ -410,7 +436,7 @@ const Showcases = [
   {
     title: "IntelliJ IDE",
     description:
-      "An IntelliJ plugin for Cardano blockchain",
+      "An IntelliJ plugin for Cardano blockchain.",
     preview: require("./builder-tools/IDE.png"),
     website: "https://intelliada.bloxbean.com",
     getstarted: null,
@@ -419,7 +445,7 @@ const Showcases = [
   {
     title: "Cardano Blockchain Snapshots",
     description:
-      "Download the latest Cardano blockchain snapshot",
+      "Download the latest Cardano blockchain snapshot.",
     preview: require("./builder-tools/cardano-snapshots.png"),
     website: "https://cSnapshots.io",
     getstarted: null,
@@ -435,7 +461,7 @@ const Showcases = [
   },
   {
     title: "Pallas",
-    description: "Rust-native building blocks for the Cardano blockchain ecosystem",
+    description: "Rust-native building blocks for the Cardano blockchain ecosystem.",
     preview: require("./builder-tools/pallas.svg"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
@@ -443,7 +469,7 @@ const Showcases = [
   },
   {
     title: "Scrolls",
-    description: "Read-optimized cache of Cardano on-chain entities",
+    description: "Read-optimized cache of Cardano on-chain entities.",
     preview: require("./builder-tools/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
@@ -528,6 +554,22 @@ const Showcases = [
     website: "https://github.com/ResponsibleStaking/Cardano-Simple-Failover",
     getstarted: "/docs/operate-a-stake-pool/Automated%20Failover",
     tags: ["operatortool"],
+  },
+  {
+    title: "go-ouroboros-network",
+    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
+    preview: require("./builder-tools/go-ouroboros-network.png"),
+    website: "https://github.com/cloudstruct/go-ouroboros-network",
+    getstarted: null,
+    tags: ["library", "golang"]
+  },
+  {
+    title: "cscli",
+    description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
+    preview: require("./builder-tools/cscli.png"),
+    website: "https://github.com/CardanoSharp/cscli",
+    getstarted: "/docs/get-started/cscli",
+    tags: ["getstarted", "cli"],
   },
 ];
 

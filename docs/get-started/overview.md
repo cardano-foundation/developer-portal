@@ -52,7 +52,7 @@ If you have experience with other smart contract platforms and want to start bui
 - Cardano is built with the rigor of high-assurance formal development methods. The consensus mechanism [Ouroboros](https://cardano.org/ouroboros/) was delivered with several peer-reviewed papers presented in top-tier conferences and publications in cybersecurity and cryptography. If you build on Cardano, you build on this foundation.
 
 ## What you can build on Cardano today
-- You can [integrate Cardano](../integrate-cardano) into existing websites and services.
+- You can [integrate Cardano](../integrate-cardano/) into existing websites and services.
 - You can issue [native tokens](../native-tokens/) and [NFTs](../native-tokens/minting-nfts).
 - You can add [metadata to transactions](../transaction-metadata/) to give transactions a story, a background or even an identity. 
 - You can prove the existence of a file, text or any other data at a specific point in time with [transaction metadata](../transaction-metadata/). You can even use [transaction metadata](../transaction-metadata/) to validate and verify external physical products and genuine articles.
