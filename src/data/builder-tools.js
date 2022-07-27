@@ -462,7 +462,7 @@ const Showcases = [
   {
     title: "Pallas",
     description: "Rust-native building blocks for the Cardano blockchain ecosystem.",
-    preview: require("./builder-tools/pallas.svg"),
+    preview: require("./builder-tools/pallas.png"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
     tags: ["library", "rust"]
@@ -502,7 +502,7 @@ const Showcases = [
   {
     title: "Lucid",
     description: "Lucid is a library, which allows you to create Cardano transactions and off-chain code for your Plutus contracts in JavaScript and Node.js.",
-    preview: require("./builder-tools/lucid.svg"),
+    preview: require("./builder-tools/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
     getstarted: null,
     tags: ["library", "javascript", "plutus"]
