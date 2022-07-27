@@ -1,5 +1,12 @@
 ## Cardano Developer Portal - weekly reports
 
+[2022-07-25]
+ * Modify announcement bar to be closable (#707) (Fill)
+ * rectified --mint syntax to correct form (#706) (BharatAtEMURGOIO)
+
+[2022-07-24]
+ * Update Developer Portal - weekly reports (#705) (Fill)
+
 ### Week ending July 22nd
 
 [2022-07-21]
