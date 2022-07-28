@@ -255,12 +255,10 @@ addr1qy5zuhh9685fup86syuzmu3e6eengzv8t46mfqxg086cvqzupvkzyt42349mnkhgu8ghqzgtsqv
 
 <details>
   <summary>Payment Base Address with Custom Indexes</summary>
-  
 ```console
 $ cscli wallet address payment derive --recovery-phrase "$(cat phrase.en.prv)" --payment-address-type base --network mainnet --account-index 1387 --address-index 12 --stake-account-index 968 --stake-address-index 83106 | tee pay_1387_12_968_83106.en.addr
 addr1qy3y89nnzdqs4fmqv49fmpqw24hjheen3ce7tch082hh6x7nwwgg06dngunf9ea4rd7mu9084sd3km6z56rqd7e04ylslhzn9h
 ```
-
 </details>
 <details>
   <summary>Payment Base Address from Spanish recovery-phrase with custom passphrase</summary>
