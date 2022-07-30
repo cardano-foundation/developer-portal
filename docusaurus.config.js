@@ -33,12 +33,12 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: 'state-of-the-ecosystem-2022',
+      id: "announcement_index3", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `The <strong>Cardano State of the Developer Ecosystem 2022</strong> survey is out! Your voice matter, please take a few minutes to <a target="_blank" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-2022">participate to the survey</a> 💗.`,
+        `<strong>Build out the Developer Portal together with us, ⭐️<a target="_blank" rel="noopener noreferrer" href="https://discord.gg/Exe6XmqKDx">join Discord.</a></strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
-      isCloseable: true,
+      isCloseable: true, // Use true
     },
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
