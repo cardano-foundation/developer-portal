@@ -563,6 +563,15 @@ const Showcases = [
     getstarted: "/docs/get-started/cscli",
     tags: ["getstarted", "cli"],
   },
+  {
+    title: "CVM",
+    description:
+      "Cardano Version Manager, manage the configuration and versions of your pool.",
+    preview: require("./builder-tools/cvm.png"),
+    website: "https://github.com/orelvis15/cvm",
+    getstarted:  null,
+    tags: ["operatortool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
