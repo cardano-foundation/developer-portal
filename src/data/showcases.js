@@ -1091,7 +1091,7 @@ const Showcases = [
     preview: require("./showcase/haltscam.png"),
     website: "https://haltscam.com/",
     source: null,
-    tags: ["ecosystem"],
+    tags: ["analytics"],
   },
 ];
 
