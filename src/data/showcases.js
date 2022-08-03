@@ -1100,7 +1100,7 @@ const Showcases = [
     preview: require("./showcase/book-token.png"),
     website: "https://www.booktoken.io",
     source: null,
-    tags: [ "marketplace", "nftsupport"],
+    tags: [ "marketplace", "nftsupport", "token"],
   },
 ];
 
