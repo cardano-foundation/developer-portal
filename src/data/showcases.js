@@ -399,14 +399,6 @@ const Showcases = [
     tags: ["token", "analytics"],
   },
   {
-    title: "Cardano Cubes & Blockemon",
-    description: "Play Blockemon and have your moves quickly verified by, and forever stored on Cardano.",
-    preview: require("./showcase/cardanocubes.png"),
-    website: "https://cardanocubes.com",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-  {
     title: "Cardano Assets",
     description: "Overview of native tokens on Cardano.",
     preview: require("./showcase/cardanoassets.png"),
@@ -552,15 +544,6 @@ const Showcases = [
       "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "ADA Dolls",
-    description:
-      "There are 10,000 unique dolls. These will be randomly generated from a possible outcome of 1,000,000 doll combinations.",
-    preview: require("./showcase/ada-dolls.png"),
-    website: "https://adadolls.com",
     source: null,
     tags: ["nftproject"],
   },
