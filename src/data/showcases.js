@@ -230,16 +230,6 @@ const Showcases = [
     tags: ["favorite", "metadata"],
   },
   {
-    title: "Crypto Heroez",
-    description:
-      "Cardano NFT pixelart collectibles. Tribute to heroes of the cryptospace. Including interactive NFTs and a game in progress where you use NFTs from your wallet.",
-    preview: require("./showcase/cryptoheroez.png"),
-    website: "https://cryptoheroez.io",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-
-  {
     title: "NFT Maker",
     description:
       "Create your own NFT by uploading an image and paying some ada.",
@@ -405,14 +395,6 @@ const Showcases = [
     website: "https://cardanoassets.com",
     source: null,
     tags: ["favorite", "analytics"],
-  },
-  {
-    title: "NFTea",
-    description: "Sometimes all you need is a good cup of NFTea.",
-    preview: require("./showcase/nftea.png"),
-    website: "https://cardanonftea.com",
-    source: null,
-    tags: ["nftproject"],
   },
   {
     title: "Cardano Bits",
