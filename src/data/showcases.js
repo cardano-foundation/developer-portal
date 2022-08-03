@@ -476,15 +476,6 @@ const Showcases = [
     tags: ["favorite", "pooltool", "analytics"],
   },
   {
-    title: "Rewards Calendar",
-    description:
-      "Shows the epochs and rewards in a calendar.",
-    preview: require("./showcase/rewardscalendar.png"),
-    website: "https://dbooster.io/calendar",
-    source: null,
-    tags: ["favorite", "analytics"],
-  },
-  {
     title: "NOWPayments",
     description:
       "Payment gateway provider to accept ada payments and ada donations.",
