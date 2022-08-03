@@ -1093,6 +1093,15 @@ const Showcases = [
     source: null,
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
+  {
+    title: "M141X (MADAX)",
+    description:
+      "Cardano metaverse for gamers and businesses that provides you with best virtual world to express yourself and be creative.",
+    preview: require("./showcase/madax.png"), 
+    website: "https://www.info.141x.io",
+    source: "https://github.com/ggcaponetto/141x-game-authorizer",
+    tags: [ "opensource", "game", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
