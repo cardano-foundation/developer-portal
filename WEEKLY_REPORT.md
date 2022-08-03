@@ -10,7 +10,7 @@
  * Revert "Move CVM from showcase to builder tools (#716)" (#721) (Tommy Kammerer)
  * Move CVM from showcase to builder tools (#716) (Fill)
 
-### Week ending July 29nd
+### Week ending July 29th
 
 [2022-07-29]
  * Revert "CVM - Cardano Version Manager :) (#682)" (#715) (Tommy Kammerer)
