@@ -205,6 +205,14 @@ export const Tags = {
     icon: null,
     color: '#308446'
   },
+
+  // Loan 
+  loan: {
+    label: "Loan",
+    description: "Projects that provide lending and borrowing of ADA",
+    icon: null,
+    color: '#122412'
+  }
 };
 
 // Add your project to (THE END OF) this list.
@@ -1092,6 +1100,15 @@ const Showcases = [
     website: "https://dappsoncardano.com",
     source: null,
     tags: [ "analytics", "ecosystem", "nftsupport"],
+  },
+  {
+    title: "Lending Pond",
+    description:
+      "Provide or Receive ADA through a smart contract driven P2P lending marketplace using Cardano NFTs as collateral.",
+    preview: require("./showcase/lending-pond.png"),
+    website: "https://lendingpond.app",
+    source: null,
+    tags: [ "marketplace", "nftsupport", "loan"],
   },
 ];
 
