@@ -1,5 +1,29 @@
 ## Cardano Developer Portal - weekly reports
 
+[2022-08-01]
+ * Remove coming soon pages and update the sidebar (revert #658) (#723) (Tommy Kammerer)
+ * Add dapps-on-cardano showcase (#719) (Tommy Kammerer)
+ * Optimized showcase images that were partly several MB in size. (#720) (Tommy Kammerer)
+ * revert pr704 commit a3ce87f but keep white space cleanup (#717) (Robert Phair)
+ * Update Docusaurus to 2.0.1 (#718) (Tommy Kammerer)
+ * Remove broken links and references to projects that have been ditched (#722) (Nicolas)
+ * Revert "Move CVM from showcase to builder tools (#716)" (#721) (Tommy Kammerer)
+ * Move CVM from showcase to builder tools (#716) (Fill)
+
+### Week ending July 29th
+
+[2022-07-29]
+ * Revert "CVM - Cardano Version Manager :) (#682)" (#715) (Tommy Kammerer)
+ * Fix broken consoles (#712) (Fill)
+ * Fix broken links for Jobs at dcSpark and EMURGO (#708) (Nicolas)
+ * Add Robert Phair (#714) (Tommy Kammerer)
+
+[2022-07-28]
+ * Fix broken images for builder tools Lucid and Pallas (#709) (Fill)
+ * CVM - Cardano Version Manager :) (#682) (Orelvis Lago Vasallo)
+ * Fix broken links in getting started section and remove one link from tangocrypto that requires a sign-in (#713) (Nicolas)
+ * Update weekly report (#710) (Fill)
+
 [2022-07-25]
  * Modify announcement bar to be closable (#707) (Fill)
  * rectified --mint syntax to correct form (#706) (BharatAtEMURGOIO)
