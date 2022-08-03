@@ -1093,6 +1093,15 @@ const Showcases = [
     source: null,
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
+  {
+    title: "Book Token",
+    description:
+      "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
+    preview: require("./showcase/book-token.png"),
+    website: "https://www.booktoken.io",
+    source: null,
+    tags: [ "marketplace", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
