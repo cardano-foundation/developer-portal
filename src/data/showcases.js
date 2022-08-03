@@ -1084,6 +1084,15 @@ const Showcases = [
     source: "https://github.com/nilscodes/hazelnet",
     tags: [ "nftsupport", "opensource", "token"],
   },
+  {
+    title: "Dapps on Cardano",
+    description:
+      "Provides insights in decentralized applications on Cardano. See total transactions, total scripts locked and script invocations.",
+    preview: require("./showcase/hazelnet.png"),
+    website: "https://dappsoncardano.com",
+    source: null,
+    tags: [ "analytics", "ecosystem", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
