@@ -206,12 +206,12 @@ export const Tags = {
     color: '#308446'
   },
 
-  // Loan 
-  loan: {
-    label: "Loan",
+  // Lending 
+  lending: {
+    label: "Lending",
     description: "Projects that provide lending and borrowing of ADA",
     icon: null,
-    color: '#122412'
+    color: '#7E0000'
   }
 };
 
@@ -1108,7 +1108,7 @@ const Showcases = [
     preview: require("./showcase/lending-pond.png"),
     website: "https://lendingpond.app",
     source: null,
-    tags: [ "marketplace", "nftsupport", "loan"],
+    tags: [ "marketplace", "nftsupport", "lending"],
   },
 ];
 
