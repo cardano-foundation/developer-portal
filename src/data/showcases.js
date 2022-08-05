@@ -1088,7 +1088,7 @@ const Showcases = [
     title: "Dapps on Cardano",
     description:
       "Provides insights in decentralized applications on Cardano. See total transactions, total scripts locked and script invocations.",
-    preview: require("./showcase/hazelnet.png"),
+    preview: require("./showcase/dapps-on-cardano.png"),
     website: "https://dappsoncardano.com",
     source: null,
     tags: [ "analytics", "ecosystem", "nftsupport"],
