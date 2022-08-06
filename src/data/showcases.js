@@ -230,16 +230,6 @@ const Showcases = [
     tags: ["favorite", "metadata"],
   },
   {
-    title: "Crypto Heroez",
-    description:
-      "Cardano NFT pixelart collectibles. Tribute to heroes of the cryptospace. Including interactive NFTs and a game in progress where you use NFTs from your wallet.",
-    preview: require("./showcase/cryptoheroez.png"),
-    website: "https://cryptoheroez.io",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-
-  {
     title: "NFT Maker",
     description:
       "Create your own NFT by uploading an image and paying some ada.",
@@ -399,28 +389,12 @@ const Showcases = [
     tags: ["token", "analytics"],
   },
   {
-    title: "Cardano Cubes & Blockemon",
-    description: "Play Blockemon and have your moves quickly verified by, and forever stored on Cardano.",
-    preview: require("./showcase/cardanocubes.png"),
-    website: "https://cardanocubes.com",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-  {
     title: "Cardano Assets",
     description: "Overview of native tokens on Cardano.",
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
     tags: ["favorite", "analytics"],
-  },
-  {
-    title: "NFTea",
-    description: "Sometimes all you need is a good cup of NFTea.",
-    preview: require("./showcase/nftea.png"),
-    website: "https://cardanonftea.com",
-    source: null,
-    tags: ["nftproject"],
   },
   {
     title: "Cardano Bits",
@@ -502,15 +476,6 @@ const Showcases = [
     tags: ["favorite", "pooltool", "analytics"],
   },
   {
-    title: "Rewards Calendar",
-    description:
-      "Shows the epochs and rewards in a calendar.",
-    preview: require("./showcase/rewardscalendar.png"),
-    website: "https://dbooster.io/calendar",
-    source: null,
-    tags: ["favorite", "analytics"],
-  },
-  {
     title: "NOWPayments",
     description:
       "Payment gateway provider to accept ada payments and ada donations.",
@@ -552,15 +517,6 @@ const Showcases = [
       "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "ADA Dolls",
-    description:
-      "There are 10,000 unique dolls. These will be randomly generated from a possible outcome of 1,000,000 doll combinations.",
-    preview: require("./showcase/ada-dolls.png"),
-    website: "https://adadolls.com",
     source: null,
     tags: ["nftproject"],
   },
