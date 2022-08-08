@@ -158,6 +158,15 @@ module.exports = {
       },
       "operate-a-stake-pool/marketing-stake-pool",
     ],
+    "Stake Pool Guide": [
+      "stake-pool-guide/introduction",
+      "stake-pool-guide/pre-requisites",
+      "stake-pool-guide/install-configure-node",
+      "stake-pool-guide/register-pool",
+      "stake-pool-guide/pool-maintainance",
+      "stake-pool-guide/tools-links",
+      "stake-pool-guide/best-practices",
+    ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
       "portal-contribute",
