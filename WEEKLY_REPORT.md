@@ -1,5 +1,20 @@
 ## Cardano Developer Portal - weekly reports
 
+[2022-08-06]
+ * Remove outdated projects (#727) (Fill)
+ 
+### Week ending August 5th
+
+[2022-08-05]
+ * Fixed image for dapps-on-cardano (#729) (Nils Codes)
+
+[2022-08-04]
+ * Fix broken links and one typo in the Plutus section (#728) (Nicolas)
+
+[2022-08-03]
+ * Update weekly report 08.03 (#724) (Fill)
+ * Modify broken link (#696) (Fill)
+
 [2022-08-01]
  * Remove coming soon pages and update the sidebar (revert #658) (#723) (Tommy Kammerer)
  * Add dapps-on-cardano showcase (#719) (Tommy Kammerer)
