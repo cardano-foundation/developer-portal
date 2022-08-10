@@ -1,8 +1,9 @@
 ## Cardano Developer Portal - weekly reports
 
+
 [2022-08-06]
  * Remove outdated projects (#727) (Fill)
- 
+
 ### Week ending August 5th
 
 [2022-08-05]
