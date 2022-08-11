@@ -15,6 +15,17 @@ Unfortunately, simply getting your node up and running is insufficient. You must
 
 After you've mastered these fundamentals, you'll need to market your stake pool effectively in order to make it a success.
 
+## The Big Picture
+
+Learn fundamental terms like blockchain, consensus, decentralization delegation and incentives. Understand the big picture of Cardano and why stake pools are so important.
+
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br/><br/>
+
+:::tip questions or suggestions?
+If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible.
+:::
+
 ## What are the prerequisites for persons who wish to learn how to run a stake pool?
 - Knowledge of how to manage a server. You must be familiar with the operating system of your choosing in order to administer, maintain, and secure your server.
 - This includes a thorough understanding of how networks operate, as well as how to backup and restore data.

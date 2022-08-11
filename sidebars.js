@@ -159,6 +159,7 @@ module.exports = {
       "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Stake Pool Guide": [
+      "stake-pool-guide/why-cardano",
       "stake-pool-guide/introduction",
       "stake-pool-guide/pre-requisites",
       "stake-pool-guide/install-configure-node",
