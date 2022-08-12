@@ -159,7 +159,10 @@ module.exports = {
       "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Stake Pool Guide": [
+<<<<<<< HEAD
       "stake-pool-guide/why-cardano",
+=======
+>>>>>>> 90de8d03ce319d959af4f8c6773147a70f7054e6
       "stake-pool-guide/introduction",
       "stake-pool-guide/pre-requisites",
       "stake-pool-guide/install-configure-node",

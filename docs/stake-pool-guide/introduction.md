@@ -15,6 +15,7 @@ Unfortunately, simply getting your node up and running is insufficient. You must
 
 After you've mastered these fundamentals, you'll need to market your stake pool effectively in order to make it a success.
 
+<<<<<<< HEAD
 ## The Big Picture
 
 Learn fundamental terms like blockchain, consensus, decentralization delegation and incentives. Understand the big picture of Cardano and why stake pools are so important.
@@ -26,6 +27,8 @@ Learn fundamental terms like blockchain, consensus, decentralization delegation 
 If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible.
 :::
 
+=======
+>>>>>>> 90de8d03ce319d959af4f8c6773147a70f7054e6
 ## What are the prerequisites for persons who wish to learn how to run a stake pool?
 - Knowledge of how to manage a server. You must be familiar with the operating system of your choosing in order to administer, maintain, and secure your server.
 - This includes a thorough understanding of how networks operate, as well as how to backup and restore data.
@@ -37,12 +40,20 @@ If you don't meet all of the qualifications, you'll need a strong desire to stud
 
 We observed people who had no prior knowledge of Linux, shells, or networking, but who were committed and had enough time to properly deal with it, and who now manage a profitable stake pool. It isn't for everyone, and it isn't going to be simple. Here are a few resources to get you started:
 - [Start playing around with Linux](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview).
+<<<<<<< HEAD
 - [Stake pool operator forum](https://forum.cardano.org/c/staking-delegation/156).
 - [Cardano Stake Pool Best Practice Workgroup](https://t.me/CardanoStakePoolWorkgroup).
+=======
+- [Have a look at nix and NixOS](https://nixos.org).
+- [Choose security over comfort](#choose-security-over-comfort).
+- [Complete the stake pool course](#stake-pool-course).
+- [Stake pool operator forum](https://forum.cardano.org/c/staking-delegation/156).
+>>>>>>> 90de8d03ce319d959af4f8c6773147a70f7054e6
 
 ## Choose security over comfort
 Best procedures should always be a key consideration when running a stake pool. Security isn't something you can turn on or off or change in a configuration file. It is both an attitude and a way of life.
 - [Discuss security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157).
+<<<<<<< HEAD
 - [Security Best Practices](../get-started/air-gap).
 
 ## Cardano Key Pairs
@@ -104,3 +115,8 @@ Always rotate KES keys using the latest `cold.counter`.
 `kes.skey`- secret (private) signature key file for the stake pool's KES key (needed to start the stake pool's block producing node; sensitive, but must be placed on a hot node to start a stake pool and rotated on a regular basis). KES keys are needed to establish a stake pool's operating certificate, which expires 90 days after the opcert's defined KES period has passed. As a result, fresh KES keys must be generated along with a new opcert every 90 days or sooner for a Cardano Stake pool to continue minting blocks.
 
 `kes.vkey` - public verification key file for a Cardano stake pool's corresponding `kes.skey` (not sensitive and is not required to a block producer).
+=======
+
+Learn which keys are available, which are hot and sensitive, and which you should never save on a server, no matter how convenient it is. 
+- [Read about Cardano key pairs](../operate-a-stake-pool/cardano-key-pairs).
+>>>>>>> 90de8d03ce319d959af4f8c6773147a70f7054e6
