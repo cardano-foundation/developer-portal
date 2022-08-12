@@ -1,5 +1,6 @@
 ---
 id: why-cardano
+slug: /stake-pool-guide/
 title: Why Cardano?
 sidebar_label: Why Cardano?
 description: "Why Cardano?"

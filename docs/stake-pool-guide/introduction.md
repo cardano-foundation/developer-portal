@@ -1,6 +1,5 @@
 ---
 id: introduction
-slug: /stake-pool-guide/
 title: Introduction to Stake Pools
 sidebar_label: Introduction
 description: Introduction
