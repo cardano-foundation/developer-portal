@@ -209,7 +209,7 @@ export const Tags = {
   // Lending 
   lending: {
     label: "Lending",
-    description: "Projects that provide lending and borrowing of ADA",
+    description: "Projects that provide lending and borrowing of ada",
     icon: null,
     color: '#7E0000'
   }
@@ -1104,7 +1104,7 @@ const Showcases = [
   {
     title: "Lending Pond",
     description:
-      "Provide or Receive ADA through a smart contract driven P2P lending marketplace using Cardano NFTs as collateral.",
+      "Provide or Receive ada through a smart contract driven P2P lending marketplace using Cardano NFTs as collateral.",
     preview: require("./showcase/lending-pond.png"),
     website: "https://lendingpond.app",
     source: null,
