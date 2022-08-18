@@ -1,7 +1,13 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending August 12th
+
+[2022-08-12]
+ * Remove requirement to order alphabetically (#739) (Tommy Kammerer)
+ * Add August 2022 Developer Interview with Strica.io  (#736) (Nicolas)
 
 [2022-08-06]
+ * Update weekly report 10.03 (#732) (Fill)
  * Remove outdated projects (#727) (Fill)
 
 ### Week ending August 5th
