@@ -432,7 +432,7 @@ receiver="Insert wallet address here"
 receiver_output="10000000"
 txhash=""
 txix=""
-funds="Amout of lovelace"
+funds="Amount of lovelace"
 ```
 
 Again - here is an example of how it would look if we use our fictional example:
