@@ -149,7 +149,7 @@ module.exports = {
         ],
       },
       {
-        type: "category",
+       	type: "category",
         label: "Operator Tools",
         items: [
           "operate-a-stake-pool/guild-ops-suite",
@@ -159,14 +159,15 @@ module.exports = {
       "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Stake Pool Guide": [
-      "stake-pool-guide/introduction",
-      "stake-pool-guide/pre-requisites",
-      "stake-pool-guide/install-configure-node",
-      "stake-pool-guide/register-pool",
-      "stake-pool-guide/pool-maintainance",
-      "stake-pool-guide/tools-links",
-      "stake-pool-guide/best-practices",
-    ],
+	{
+      	type: "category",
+       	label: "Overview",
+       	items: [
+        	"stake-pool-guide/stake-pool-basics",
+		"stake-pool-guide/get-started",
+		],
+	},    
+],
     "Contribute to the Developer Portal": [
       "portal-contributors",
       "portal-contribute",
