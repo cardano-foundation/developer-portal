@@ -1,9 +1,8 @@
 ---
-id: why-cardano
-slug: /stake-pool-guide/
-title: Why Cardano?
-sidebar_label: Why Cardano?
-description: "Why Cardano?"
+id: stake-pool-basics
+title: Why Stake Pools are needed on Cardano & how they work
+sidebar_label: Stake Pool basics
+description: Why Stake Pools are needed on Cardano & how they work
 image: ../img/og-developer-portal.png
 ---
 
