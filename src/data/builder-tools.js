@@ -181,6 +181,62 @@ export const Tags = {
 // Please don't add the "favorite"-tag yourself.
 const Showcases = [
   {
+    title: "cardano-cli",
+    description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
+    preview: require("./builder-tools/cardano-cli.png"),
+    website: "https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli",
+    getstarted: null,
+    tags: ["favorite", "cli"]
+  },
+  {
+    title: "bech32",
+    description: "Convert to and from bech32 strings from the command-line. A simple and easy-to-use unix utility.",
+    preview: require("./builder-tools/bech32.png"),
+    website: "https://github.com/input-output-hk/bech32/#readme",
+    getstarted: null,
+    tags: ["cli"]
+  },
+  {
+    title: "cardano-wallet",
+    description: "An HTTP server and command-line for managing UTxOs and hierarchical deterministic wallets in Cardano.",
+    preview: require("./builder-tools/cardano-wallet.png"),
+    website: "https://github.com/input-output-hk/cardano-wallet/#overview",
+    getstarted: "https://input-output-hk.github.io/cardano-wallet/",
+    tags: ["getstarted", "api"]
+  },
+  {
+    title: "cardano-graphql",
+    description: "A cross-platform, typed, and queryable API for Cardano.",
+    preview: require("./builder-tools/cardano-graphql.png"),
+    website: "https://github.com/input-output-hk/cardano-graphql/#overview",
+    getstarted: "https://github.com/input-output-hk/cardano-graphql#getting-started",
+    tags: ["getstarted", "chainindex", "api"]
+  },
+  {
+    title: "cardano-rosetta",
+    description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
+    preview: require("./builder-tools/cardano-rosetta.png"),
+    website: "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
+    getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
+    tags: ["getstarted", "api"]
+  },
+  {
+    title: "cardano-db-sync",
+    description: "A PostgreSQL database layer which stores all data from the Cardano blockchain in a structured  and normalized way.",
+    preview: require("./builder-tools/cardano-db-sync.png"),
+    website: "https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync",
+    getstarted: null,
+    tags: ["chainindex"]
+  },
+  {
+    title: "cardano-addresses",
+    description: "A command-line utility and library for manipulating addresses, keys and recovery phrases on Cardano.",
+    preview: require("./builder-tools/cardano-addresses.png"),
+    website: "https://github.com/input-output-hk/cardano-addresses#overview",
+    getstarted: "https://github.com/input-output-hk/cardano-addresses#command-line",
+    tags: ["getstarted", "cli", "library"]
+  },
+  {
     title: "Blockfrost",
     description: "Instant and scalable API to the Cardano blockchain.",
     preview: require("./builder-tools/blockfrost.png"),
