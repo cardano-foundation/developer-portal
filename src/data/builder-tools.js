@@ -563,6 +563,20 @@ const Showcases = [
     getstarted: "/docs/get-started/cscli",
     tags: ["getstarted", "cli"],
   },
+  {
+    title: "cardano-node-debian",
+    description: "Build cardano-node, cardano-cli as a deb package for Debian / Ubuntu systems",
+    website: "https://github.com/TerminadaPool/cardano-node-debian",
+    getstarted: null,
+    tags: ["getstarted", "operatortool"],
+  },
+  {
+    title: "cardano-deb-repository",
+    description: "Pre-built binary deb packages of cardano-node, cardano-cli for Debian / Ubuntu systems",
+    website: "https://terminadapool.github.io/deb/",
+    getstarted: null,
+    tags: ["getstarted", "operatortool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
