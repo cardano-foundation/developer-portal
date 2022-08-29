@@ -21,7 +21,7 @@ import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import Fav from "../../svg/fav.svg"
+import Fav from "../../svg/fav.svg";
 
 const TITLE = "Showcase";
 const DESCRIPTION = "See the awesome projects people are building with Cardano";
@@ -40,10 +40,10 @@ export function prepareUserState() {
 }
 
 const favoriteShowcases = SortedShowcases.filter((showcase) =>
-  showcase.tags.includes('favorite'),
+  showcase.tags.includes("favorite")
 );
 const otherShowcases = SortedShowcases.filter(
-  (showcase) => !showcase.tags.includes('favorite'),
+  (showcase) => !showcase.tags.includes("favorite")
 );
 
 function restoreUserState(userState) {
@@ -71,7 +71,6 @@ function replaceSearchTags(search, newTags) {
 
 // Filter projects based on chosen project tags, toggle operator or searchbar value
 function filterProjects(projects, selectedTags, latest, operator, searchName) {
-  
   // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
   if (latest === "LAST") {
     var projects = projects.slice(-10);
@@ -170,7 +169,7 @@ function ShowcaseFilters() {
         <div>
           <h2>Filters</h2>
           <span>{`${filteredProjects.length} project${
-            filteredProjects.length === 1 ? '' : 's'
+            filteredProjects.length === 1 ? "" : "s"
           }`}</span>
         </div>
         <ShowcaseLatestToggle />
@@ -250,14 +249,15 @@ function ShowcaseCards() {
             <div className="container">
               <div
                 className={clsx(
-                  'margin-bottom--md',
-                  styles.showcaseFavoriteHeader,
-                )}>
+                  "margin-bottom--md",
+                  styles.showcaseFavoriteHeader
+                )}
+              >
                 <h2 className={styles.ourFavorites}>Our favorites</h2>
-                <Fav svgClass={styles.svgIconFavorite} size="small"/>
+                <Fav svgClass={styles.svgIconFavorite} size="small" />
                 <SearchBar />
               </div>
-              <ul className={clsx('container', styles.showcaseList)}>
+              <ul className={clsx("container", styles.showcaseList)}>
                 {favoriteShowcases.map((showcase) => (
                   <ShowcaseCard key={showcase.title} showcase={showcase} />
                 ))}
@@ -340,7 +340,7 @@ function Showcase() {
       <ShowcaseHeader />
       <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
       <ShowcaseCards filteredProjects={filteredProjects} />
-      <OpenStickyButton/>
+      <OpenStickyButton />
     </Layout>
   );
 }

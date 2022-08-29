@@ -170,7 +170,7 @@ function ShowcaseFilters() {
         <div>
           <h2>Filters</h2>
           <span>{`${filteredProjects.length} builder tool${
-            filteredProjects.length === 1 ? '' : 's'
+            filteredProjects.length === 1 ? "" : "s"
           }`}</span>
         </div>
         <ShowcaseLatestToggle />
