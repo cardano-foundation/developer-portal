@@ -25,7 +25,7 @@ export default function ShowcaseLatestToggle() {
   const id = "showcase_filter_toggle_latest";
   const location = useLocation();
   const history = useHistory();
-  const [operator, setOperator] = useState(true);
+  const [operator, setOperator] = useState(false);
 
   useEffect(() => {
     setOperator(readLatestOperator(location.search) === "LAST");
