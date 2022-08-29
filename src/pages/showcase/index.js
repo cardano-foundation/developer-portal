@@ -10,6 +10,10 @@ import ShowcaseFilterToggle, {
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
 import clsx from "clsx";
 
+import ShowcaseLatestToggle, {
+  readLatestOperator,
+} from "@site/src/components/showcase/ShowcaseLatestToggle";
+
 import PortalHero from "../portalhero";
 import { toggleListItem } from "../../utils/jsUtils";
 import { SortedShowcases, Tags, TagList } from "../../data/showcases";
@@ -66,7 +70,13 @@ function replaceSearchTags(search, newTags) {
 }
 
 // Filter projects based on chosen project tags, toggle operator or searchbar value
-function filterProjects(projects, selectedTags, operator, searchName) {
+function filterProjects(projects, selectedTags, latest, operator, searchName) {
+  
+  // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
+  if (latest === "LAST") {
+    var projects = projects.slice(-10);
+  }
+
   if (searchName) {
     projects = projects.filter((project) =>
       project.title.toLowerCase().includes(searchName.toLowerCase())
@@ -75,11 +85,11 @@ function filterProjects(projects, selectedTags, operator, searchName) {
   if (selectedTags.length === 0) {
     return projects;
   }
+
   return projects.filter((project) => {
     if (project.tags.length === 0) {
       return false;
-    }
-    if (operator === "AND") {
+    } else if (operator === "AND") {
       return selectedTags.every((tag) => project.tags.includes(tag));
     } else {
       return selectedTags.some((tag) => project.tags.includes(tag));
@@ -90,6 +100,7 @@ function filterProjects(projects, selectedTags, operator, searchName) {
 function useFilteredProjects() {
   const location = useLocation();
   const [operator, setOperator] = useState("OR");
+  const [latest, setLatest] = useState("LAST");
 
   // On SSR / first mount (hydration) no tag is selected
   const [selectedTags, setSelectedTags] = useState([]);
@@ -99,13 +110,21 @@ function useFilteredProjects() {
   useEffect(() => {
     setSelectedTags(readSearchTags(location.search));
     setOperator(readOperator(location.search));
+    setLatest(readLatestOperator(location.search));
     setSearchName(readSearchName(location.search));
     restoreUserState(location.state);
   }, [location]);
 
   return useMemo(
-    () => filterProjects(SortedShowcases, selectedTags, operator, searchName),
-    [selectedTags, operator, searchName]
+    () =>
+      filterProjects(
+        SortedShowcases,
+        selectedTags,
+        latest,
+        operator,
+        searchName
+      ),
+    [selectedTags, latest, operator, searchName]
   );
 }
 
@@ -143,7 +162,6 @@ function ShowcaseHeader() {
 }
 
 function ShowcaseFilters() {
-
   const filteredProjects = useFilteredProjects();
 
   return (
@@ -155,6 +173,7 @@ function ShowcaseFilters() {
             filteredProjects.length === 1 ? '' : 's'
           }`}</span>
         </div>
+        <ShowcaseLatestToggle />
         <ShowcaseFilterToggle />
       </div>
       <div className={styles.checkboxList}>
@@ -180,7 +199,11 @@ function ShowcaseFilters() {
                             marginLeft: 8,
                           }}
                         >
-                      <Fav svgClass={styles.svgIconFavorite} size="small" style={{display: 'grid'}}/>
+                          <Fav
+                            svgClass={styles.svgIconFavorite}
+                            size="small"
+                            style={{ display: "grid" }}
+                          />
                         </span>
                       ) : (
                         <span
@@ -253,10 +276,8 @@ function ShowcaseCards() {
       ) : (
         <div className="container">
           <div
-            className={clsx(
-              'margin-bottom--md',
-              styles.showcaseFavoriteHeader,
-            )}>
+            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
+          >
             <SearchBar />
           </div>
           <ul className={styles.showcaseList}>
