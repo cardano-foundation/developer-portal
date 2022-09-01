@@ -1,5 +1,22 @@
 ## Cardano Developer Portal - weekly reports
 
+[2022-08-30]
+ * Add new filter to check latest showcases and builder tools  (#749) (Fill)
+
+[2022-08-29]
+ * [Typo] [minting.md] "Amout" -> "Amount" (#743) (sourabh.xyz)
+
+### Week ending August 26th
+
+[2022-08-24]
+ * Update kes_period.md (#747) (Carlos LopezDeLara)
+ * Rework 'Get Started: Cardano Components. (#744) (Matthias Benkort)
+
+### Week ending August 19th
+
+[2022-08-18]
+ * Update weekly report 17.08 (#741) (Fill)
+ 
 ### Week ending August 12th
 
 [2022-08-12]
