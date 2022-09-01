@@ -254,6 +254,14 @@ const Showcases = [
     tags: ["getstarted", "library", "rust"],
   },
   {
+    title: "Cardano Transaction Library",
+    description: "A Purescript library for building smart contract transactions on Cardano (NodeJS & the browser)",
+    preview: require("./builder-tools/cardano-transaction-lib.png"),
+    website: "https://github.com/Plutonomicon/cardano-transaction-lib/",
+    getstarted: "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
+    tags: ["purescript", "javascript", "getstarted", "library"]
+  },
+  {
     title: "cardanocli-js",
     description: "A library that wraps the cardano-cli in JavaScript.",
     preview: require("./builder-tools/cardanocli-js.png"),
