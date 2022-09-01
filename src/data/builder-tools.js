@@ -627,6 +627,14 @@ const Showcases = [
     getstarted: "/docs/get-started/cscli",
     tags: ["getstarted", "cli"],
   },
+  {
+    title: "HeliosLang",
+    description: "A DSL for writing Cardano Smart Contracts. Reference compiler is a single Javascript file without dependencies.",
+    preview: require("./builder-tools/helioslang.png"),
+    website: "https://github.com/HyperionBT/Helios",
+    getstarted: "https://hyperion-bt.github.io/Helios-Book",
+    tags: ["javascript", "library", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
