@@ -175,6 +175,14 @@ export const Tags = {
     color: '#7e6a4c',
   },
 
+  // Purescript
+  purescript: {
+    label: "Purescript",
+    description:
+      "PureScript language",
+    icon: null,
+    color: '#0F9D58',
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
