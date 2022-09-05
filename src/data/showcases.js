@@ -1049,6 +1049,15 @@ const Showcases = [
     source: null,
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
+  {
+    title: "Gift Card Creator",
+    description:
+      "Personalise an NFT gift card",
+    preview: require("./showcase/gift-card-creator.png"),
+    website: "https://card-creator.shop",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  }, 
 ];
 
 export const TagList = Object.keys(Tags);
