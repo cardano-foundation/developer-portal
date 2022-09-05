@@ -635,15 +635,6 @@ const Showcases = [
     getstarted: "https://hyperion-bt.github.io/Helios-Book",
     tags: ["javascript", "library", "plutus"],
   },
-  {
-    title: "Gift Card Creator",
-    description:
-      "Personalise an NFT gift card",
-    preview: require("./showcase/gift-card-creator.png"),
-    website: "https://card-creator.shop",
-    source: null,
-    tags: ["minting", "nftsupport"],
-  }, 
 ];
 
 export const TagList = Object.keys(Tags);
