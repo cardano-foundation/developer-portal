@@ -17,7 +17,6 @@ import BlogListPaginator from '@theme/BlogListPaginator';
 import BlogPostItems from '@theme/BlogPostItems';
 import SearchMetadata from '@theme/SearchMetadata';
 import ChangelogItem from '@theme/ChangelogItem';
-import ChangelogListHeader from '@theme/ChangelogList/Header';
 import type {Props} from '@theme/BlogListPage';
 
 function ChangelogListMetadata(props: Props): JSX.Element {
@@ -33,7 +32,6 @@ function ChangelogListMetadata(props: Props): JSX.Element {
 
 function ChangelogListContent(props: Props): JSX.Element {
   const {metadata, items, sidebar} = props;
-  const {blogTitle} = metadata;
 
   return (
     <BlogLayout sidebar={sidebar}>

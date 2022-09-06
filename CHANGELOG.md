@@ -25,7 +25,7 @@ All of the merged PRs in August
   - Remove requirement to order alphabetically by ([@katomm](https://github.com/katomm)) in [#739](https://github.com/cardano-foundation/developer-portal/pull/739)
   - Update weekly report 17.08 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#741](https://github.com/cardano-foundation/developer-portal/pull/741)
   - Rework 'Get Started: Cardano Components' by ([@KtorZ](https://github.com/KtorZ)) in [#744](https://github.com/cardano-foundation/developer-portal/pull/744)
-  - Update kes_period.md by  in [#747](https://github.com/cardano-foundation/developer-portal/pull/747)
+  - Update kes_period.md by ([@CarlosLopezDeLara](https://github.com/CarlosLopezDeLara)) in [#747](https://github.com/cardano-foundation/developer-portal/pull/747)
   - [Typo] [minting.md] "Amout" -> "Amount" by ([@sourabhxyz](https://github.com/sourabhxyz)) in [#743](https://github.com/cardano-foundation/developer-portal/pull/743)
   - Add new filter to check latest showcases and builder tools  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#749](https://github.com/cardano-foundation/developer-portal/pull/749)
   - Add cardano-transaction-lib by ([@klntsky](https://github.com/klntsky)) in [#750](https://github.com/cardano-foundation/developer-portal/pull/750)
@@ -33,12 +33,12 @@ All of the merged PRs in August
 
 #### Committers: 9
 
-- KtorZ ([@KtorZ](https://github.com/KtorZ))
-- nilscodes ([@nilscodes](https://github.com/@nilscodes))
-- rphair ([@rphair](https://github.com/rphair))
-- thenic95 ([@thenic95](https://github.com/thenic95))
-- katomm ([@katomm](https://github.com/katomm))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- rphair ([@rphair](https://github.com/rphair))
+- nilscodes ([@nilscodes](https://github.com/@nilscodes))
 - CarlosLopezDeLara ([@CarlosLopezDeLara](https://github.com/CarlosLopezDeLara))
+- KtorZ ([@KtorZ](https://github.com/KtorZ))
 - sourabhxyz ([@sourabhxyz](https://github.com/sourabhxyz))
-- klntsky ([@klntsky](https://github.com/klntsky)) 
+- klntsky ([@klntsky](https://github.com/klntsky))

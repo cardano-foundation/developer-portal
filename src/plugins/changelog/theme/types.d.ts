@@ -13,7 +13,6 @@ declare module '@theme/ChangelogItem/Header/Author';
 declare module '@theme/ChangelogItem/Header/Authors';
 
 declare module '@theme/ChangelogList';
-declare module '@theme/ChangelogList/Header';
 
 declare module '@theme/Icon/Expand' {
   import type {ComponentProps} from 'react';

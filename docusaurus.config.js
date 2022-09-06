@@ -81,11 +81,6 @@ module.exports = {
           position: "left",
         },
         {
-          to: "changelog",
-          label: "Changelog",
-          position: "left",
-        },
-        {
           to: "blog/",
           label: "Dev Blog",
           position: "left",
@@ -111,6 +106,10 @@ module.exports = {
             {
               label: "Contributors",
               to: "docs/portal-contributors/",
+            },
+            {
+              label: "Changelog",
+              to: "/changelog",
             },
             {
               label: "How to Contribute",

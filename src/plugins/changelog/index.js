@@ -98,7 +98,7 @@ async function ChangelogPlugin(context, options) {
     blogListComponent: '@theme/ChangelogList',
     blogPostComponent: '@theme/ChangelogPage',
   });
-  const changelogPath = path.join(__dirname, '../../../CHANGELOG2.md');
+  const changelogPath = path.join(__dirname, '../../../CHANGELOG.md');
   return {
     ...blogPlugin,
     name: 'changelog-plugin',

@@ -67,9 +67,6 @@ function ChangelogPageContent({
   );
 }
 
-// This page doesn't change anything. It's just swapping BlogPostItem with our
-// own ChangelogItem. We don't want to apply the swizzled item to the actual
-// blog.
 export default function ChangelogPage(props: Props): JSX.Element {
   const ChangelogContent = props.content;
   return (
