@@ -37,7 +37,7 @@ export const Tags = {
     label: "Favorite",
     description:
       "Our favorite Cardano projects that you must absolutely check-out.",
-      color: '#e9669e',
+    color: '#e9669e',
   },
 
   // Analytics
@@ -90,7 +90,7 @@ export const Tags = {
     icon: null,
     color: '#293133',
   },
- 
+
   // Game
   game: {
     label: "Game",
@@ -122,7 +122,7 @@ export const Tags = {
     icon: null,
     color: '#f44f25',
   },
-  
+
   // Meta data projects
   metadata: {
     label: "Metadata",
@@ -169,7 +169,7 @@ export const Tags = {
     description:
       "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
-    color: '#4267b2', 
+    color: '#4267b2',
   },
 
   // Native token projects
@@ -189,8 +189,8 @@ export const Tags = {
     color: '#7BC8A6'
   },
 
-   // Ecosystem
-   ecosystem: {
+  // Ecosystem
+  ecosystem: {
     label: "Ecosystem",
     description:
       "The Cardano ecosystem projects",
@@ -198,8 +198,8 @@ export const Tags = {
     color: '#800080'
   },
 
-   // Catalyst
-   catalyst: {
+  // Catalyst
+  catalyst: {
     label: "Catalyst",
     description: "Projects that aid to Cardano's interim governance programme (Catalyst)",
     icon: null,
@@ -675,7 +675,7 @@ const Showcases = [
   {
     title: "Tokhun.io",
     description:
-        "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
+      "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
@@ -733,7 +733,7 @@ const Showcases = [
     preview: require("./showcase/dsio-reward-calculator.png"),
     website: "https://dynamicstrategies.io/crewardcalculator",
     source: null,
-    tags: ["pooltool","analytics","educational"],
+    tags: ["pooltool", "analytics", "educational"],
   },
   {
     title: "Cardahub - A services hub on Cardano",
@@ -833,7 +833,7 @@ const Showcases = [
     source: null,
     tags: ["nftproject", "game"],
   },
-  {  
+  {
     title: "Adax.pro",
     description:
       "Adax.pro is a Decentralized Digital Assets Exchange built on the Cardano blockchain.",
@@ -849,7 +849,7 @@ const Showcases = [
     preview: require("./showcase/minswap.png"),
     website: "https://app.minswap.org",
     source: null,
-    tags: [ "dex", "token"],
+    tags: ["dex", "token"],
   },
   {
     title: "CWallet",
@@ -867,7 +867,7 @@ const Showcases = [
     preview: require("./showcase/gamechanger.png"),
     website: "https://gamechanger.finance",
     source: null,
-    tags: [ "wallet"],
+    tags: ["wallet"],
   },
   {
     title: "GeroWallet",
@@ -876,7 +876,7 @@ const Showcases = [
     preview: require("./showcase/gerowallet.png"),
     website: "https://gerowallet.io",
     source: null,
-    tags: [ "wallet"],
+    tags: ["wallet"],
   },
   {
     title: "Built on Cardano",
@@ -885,7 +885,7 @@ const Showcases = [
     preview: require("./showcase/buildoncardano.png"),
     website: "https://builtoncardano.com",
     source: null,
-    tags: [ "ecosystem"],
+    tags: ["ecosystem"],
   },
   {
     title: "CardanoCube",
@@ -903,7 +903,7 @@ const Showcases = [
     preview: require("./showcase/cnftjungle.png"),
     website: "https://www.cnftjungle.io",
     source: null,
-    tags: [ "analytics", "nftsupport"],
+    tags: ["analytics", "nftsupport"],
   },
   {
     title: "Explorer Png",
@@ -912,7 +912,7 @@ const Showcases = [
     preview: require("./showcase/explorerxyz.png"),
     website: "https://ex.plorer.xyz",
     source: null,
-    tags: [ "nftsupport"],
+    tags: ["nftsupport"],
   },
   {
     title: "Galaxy Of Art",
@@ -921,16 +921,16 @@ const Showcases = [
     preview: require("./showcase/galaxyofart.png"),
     website: "https://galaxyof.art",
     source: null,
-    tags: [ "marketplace", "nftsupport"],
-   },
-   {
+    tags: ["marketplace", "nftsupport"],
+  },
+  {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
     preview: require("./showcase/jpg.png"),
     website: "https://www.jpg.store",
     source: null,
-    tags: [ "marketplace", "nftsupport"],
+    tags: ["marketplace", "nftsupport"],
   },
   {
     title: "Atala Scan",
@@ -948,7 +948,7 @@ const Showcases = [
     preview: require("./showcase/pavia.png"),
     website: "https://www.pavia.io",
     source: null,
-    tags: [ "game", "nftproject"],
+    tags: ["game", "nftproject"],
   },
   {
     title: "Turf",
@@ -966,7 +966,7 @@ const Showcases = [
     preview: require("./showcase/wingriders.png"),
     website: "https://www.wingriders.com",
     source: null,
-    tags: [ "dex", "token"],
+    tags: ["dex", "token"],
   },
   {
     title: "Building On Cardano",
@@ -975,7 +975,7 @@ const Showcases = [
     preview: require("./showcase/buildingoncardano.png"),
     website: "https://buildingoncardano.com",
     source: null,
-    tags: [ "ecosystem"],
+    tags: ["ecosystem"],
   },
   {
     title: "Pool Peek",
@@ -984,7 +984,7 @@ const Showcases = [
     preview: require("./showcase/poolpeek.png"),
     website: "https://poolpeek.com",
     source: null,
-    tags: [ "pooltool", "analytics"],
+    tags: ["pooltool", "analytics"],
   },
   {
     title: "Cardano NFT Explorer",
@@ -993,7 +993,7 @@ const Showcases = [
     preview: require("./showcase/cnftme.png"),
     website: "https://cnft.me",
     source: null,
-    tags: [ "explorer", "nftsupport"],
+    tags: ["explorer", "nftsupport"],
   },
   {
     title: "Lido Nation",
@@ -1002,7 +1002,7 @@ const Showcases = [
     preview: require("./showcase/lidonation.png"),
     website: "https://www.lidonation.com/en/project-catalyst/projects",
     source: null,
-    tags: [ "catalyst", "analytics"],
+    tags: ["catalyst", "analytics"],
   },
   {
     title: "Paradiso",
@@ -1020,7 +1020,7 @@ const Showcases = [
     preview: require("./showcase/roundtable.png"),
     website: "https://roundtable.theadao.io/",
     source: "https://github.com/ADAOcommunity/round-table",
-    tags: [ "opensource", "daotool"],
+    tags: ["opensource", "daotool"],
   },
   {
     title: "eUTxO",
@@ -1029,7 +1029,7 @@ const Showcases = [
     preview: require("./showcase/eutxo.png"),
     website: "https://eutxo.org",
     source: null,
-    tags: [ "analytics", "explorer"],
+    tags: ["analytics", "explorer"],
   },
   {
     title: "HAZELnet",
@@ -1038,7 +1038,16 @@ const Showcases = [
     preview: require("./showcase/hazelnet.png"),
     website: "https://www.hazelnet.io",
     source: "https://github.com/nilscodes/hazelnet",
-    tags: [ "nftsupport", "opensource", "token"],
+    tags: ["nftsupport", "opensource", "token"],
+  },
+  {
+    title: "Haltscam",
+    description:
+      "Haltscam allows and provides a means of crowd-sourcing risky Cardano addresses, allowing community members to contribute to the database and prevent their fellow adopters from falling victim to scams or solicitation.",
+    preview: require("./showcase/haltscam.png"),
+    website: "https://haltscam.com/",
+    source: null,
+    tags: ["analytics"],
   },
   {
     title: "Dapps on Cardano",
