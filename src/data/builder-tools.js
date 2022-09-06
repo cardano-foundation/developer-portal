@@ -187,7 +187,7 @@ export const Tags = {
 
 // Add your builder tool to (THE END OF) this list.
 // Please don't add the "favorite"-tag yourself.
-const Showcases = [
+export const Showcases = [
   {
     title: "cardano-cli",
     description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
