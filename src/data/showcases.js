@@ -1058,6 +1058,15 @@ const Showcases = [
     source: null,
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
+  {
+    title: "NuFi Wallet",
+    description:
+      "Non-custodial, multi-chain wallet with in-app DEX.",
+    preview: require("./showcase/nufiwallet.png"),
+    website: "https://nu.fi",
+    source: null,
+    tags: [ "wallet", "dex", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
