@@ -632,7 +632,7 @@ const Showcases = [
     description: "A DSL for writing Cardano Smart Contracts. Reference compiler is a single Javascript file without dependencies.",
     preview: require("./builder-tools/helioslang.png"),
     website: "https://github.com/Hyperion-BT/Helios",
-    getstarted: "https://hyperion-bt.github.io/Helios-Book",
+    getstarted: null,
     tags: ["javascript", "library", "plutus"],
   },
 ];
