@@ -1,5 +1,15 @@
 ## Cardano Developer Portal - weekly reports
 
+[2022-09-04]
+ * Revert "Addition of HeliosLang (#755)" (#756) (Tommy Kammerer)
+ * Add a new builder tool tag - PureScript (#753) (Fill)
+ * feat: Add haltscam project (#702) (Crypto Catalyst)
+
+### Week ending September 2nd
+
+[2022-09-01]
+ * Addition of HeliosLang (#755) (christianschmitz)
+
 [2022-08-30]
  * Add new filter to check latest showcases and builder tools  (#749) (Fill)
 

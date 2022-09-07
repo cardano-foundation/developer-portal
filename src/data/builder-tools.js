@@ -175,11 +175,19 @@ export const Tags = {
     color: '#7e6a4c',
   },
 
+  // Purescript
+  purescript: {
+    label: "Purescript",
+    description:
+      "PureScript language",
+    icon: null,
+    color: '#0F9D58',
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
 // Please don't add the "favorite"-tag yourself.
-const Showcases = [
+export const Showcases = [
   {
     title: "cardano-cli",
     description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
@@ -635,6 +643,21 @@ const Showcases = [
     getstarted: null,
     tags: ["javascript", "library", "plutus"],
   },
+    title: "Aiken",
+    description: "A Cardano smart contract language and toolchain",
+    preview: require("./builder-tools/aiken.png"),
+    website: "https://github.com/txpipe/aiken",
+    getstarted: null,
+    tags: ["cli", "rust", "library"],
+  },
+  {
+    title: "Pix",
+    description: "An NFT collection generator that is CIP-25 compliant",
+    preview: require("./builder-tools/pix.png"),
+    website: "https://github.com/txpipe/pix",
+    getstarted: null,
+    tags: ["cli", "rust", "nft"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
