@@ -1061,7 +1061,7 @@ const Showcases = [
   {
     title: "Futurbnk",
     description:
-      "Futurbnk provides token and NFT creators and game developers a very simple to use online tool to mint fungible and non-fungible tokens (NFT).",
+      "Futurbnk provides CNFT creators and game developers a very simple to use online tool to mint fungible and non-fungible tokens.",
     preview: require("./showcase/futurbnk.io.home.png"),
     website: "https://futurbnk.io",
     source: null,
