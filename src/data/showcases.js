@@ -1065,7 +1065,7 @@ const Showcases = [
     preview: require("./showcase/futurbnk.io.png"),
     website: "https://futurbnk.io",
     source: null,
-    tags: [ "wallet", "nftsupport", "minting", "token"],
+    tags: ["wallet", "nftsupport", "minting"],
   },
 ];
 
