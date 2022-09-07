@@ -1061,11 +1061,11 @@ const Showcases = [
   {
     title: "Futurbnk",
     description:
-      "Futurbnk is a light Cardano wallet that allows you to send and receive assets, mint and burn fungible token and NFT, create or import Policy, and more.",
-    preview: require("./showcase/futurbnk.io.png"),
+      "Futurbnk provides token and NFT creators and game developers a very simple to use online tool to mint fungible and non-fungible tokens (NFT).",
+    preview: require("./showcase/futurbnk.io.home.png"),
     website: "https://futurbnk.io",
     source: null,
-    tags: ["wallet", "nftsupport", "minting"],
+    tags: ["minting", "nftsupport"],
   },
 ];
 
