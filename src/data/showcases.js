@@ -210,7 +210,7 @@ export const Tags = {
 // Add your project to (THE END OF) this list.
 // Please don't add the "favorite"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
-const Showcases = [
+export const Showcases = [
   {
     title: "Cardano Kidz",
     description:
@@ -1063,8 +1063,10 @@ const Showcases = [
 export const TagList = Object.keys(Tags);
 function sortShowcases() {
   let result = Showcases;
+
   // Sort by site name
   result = sortBy(result, (showcase) => showcase.title.toLowerCase());
+
   // Sort by favorite tag, favorite first
   result = sortBy(result, (showcase) => !showcase.tags.includes("favorite"));
   return result;
