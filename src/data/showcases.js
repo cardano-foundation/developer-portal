@@ -1058,6 +1058,15 @@ const Showcases = [
     source: null,
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
+  {
+    title: "Futurbnk",
+    description:
+      "Futurbnk is a light Cardano wallet that allows you to send and receive assets, mint and burn fungible token and NFT, create or import Policy, and more.",
+    preview: require("./showcase/futurbnk.io.png"),
+    website: "https://futurbnk.io",
+    source: null,
+    tags: [ "wallet", "nftsupport", "minting", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
