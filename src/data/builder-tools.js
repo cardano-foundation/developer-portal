@@ -640,16 +640,16 @@ const Showcases = [
     description: "A Cardano smart contract language and toolchain",
     preview: require("./builder-tools/aiken.png"),
     website: "https://github.com/txpipe/aiken",
-    getstarted: "/docs/get-started/aiken",
-    tags: ["getstarted", "cli", "rust", "library"],
+    getstarted: null,
+    tags: ["cli", "rust", "library"],
   },
   {
     title: "Pix",
     description: "An NFT collection generator that is CIP-25 compliant",
     preview: require("./builder-tools/pix.png"),
-    website: "https://github.com/txpipe/aiken",
-    getstarted: "/docs/get-started/pix",
-    tags: ["getstarted", "cli", "rust", "nft"],
+    website: "https://github.com/txpipe/pix",
+    getstarted: null,
+    tags: ["cli", "rust", "nft"],
   }
 ];
 
