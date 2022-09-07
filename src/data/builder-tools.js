@@ -635,6 +635,22 @@ export const Showcases = [
     getstarted: "/docs/get-started/cscli",
     tags: ["getstarted", "cli"],
   },
+  {
+    title: "Aiken",
+    description: "A Cardano smart contract language and toolchain",
+    preview: require("./builder-tools/aiken.png"),
+    website: "https://github.com/txpipe/aiken",
+    getstarted: null,
+    tags: ["cli", "rust", "library"],
+  },
+  {
+    title: "Pix",
+    description: "An NFT collection generator that is CIP-25 compliant",
+    preview: require("./builder-tools/pix.png"),
+    website: "https://github.com/txpipe/pix",
+    getstarted: null,
+    tags: ["cli", "rust", "nft"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
