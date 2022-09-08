@@ -643,6 +643,7 @@ export const Showcases = [
     getstarted: null,
     tags: ["javascript", "library", "plutus"],
   },
+  {
     title: "Aiken",
     description: "A Cardano smart contract language and toolchain",
     preview: require("./builder-tools/aiken.png"),
