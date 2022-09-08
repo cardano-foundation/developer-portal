@@ -13,22 +13,22 @@ import {prepareUserState} from '../../../pages/tools/index';
 import styles from "./styles.module.css";
 import clsx from "clsx";
 
-export const Operator = "OR" | "AND";
+export const Operator = "ALL" | "LATEST";
 
-export const OperatorQueryKey = "operator";
+export const OperatorQueryKey = "projects";
 
-export function readOperator(search) {
-  return new URLSearchParams(search).get(OperatorQueryKey) ?? "AND";
+export function readLatestOperator(search) {
+  return new URLSearchParams(search).get(OperatorQueryKey) ?? "ALL";
 }
 
-export default function ShowcaseFilterToggle() {
-  const id = "showcase_filter_toggle";
+export default function ShowcaseLatestToggle() {
+  const id = "showcase_filter_toggle_latest";
   const location = useLocation();
   const history = useHistory();
   const [operator, setOperator] = useState(false);
 
   useEffect(() => {
-    setOperator(readOperator(location.search) === "OR");
+    setOperator(readLatestOperator(location.search) === "LAST");
   }, [location]);
 
   const toggleOperator = useCallback(() => {
@@ -36,7 +36,7 @@ export default function ShowcaseFilterToggle() {
     const searchParams = new URLSearchParams(location.search);
     searchParams.delete(OperatorQueryKey);
     if (!operator) {
-      searchParams.append(OperatorQueryKey, operator ? "AND" : "OR");
+      searchParams.append(OperatorQueryKey, operator ? "ALL" : "LAST");
     }
     history.push({
       ...location,
@@ -61,8 +61,8 @@ export default function ShowcaseFilterToggle() {
       />
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor={id} className={clsx(styles.checkboxLabel, "shadow--md")}>
-        <span className={styles.checkboxLabelOr}>OR</span>
-        <span className={styles.checkboxLabelAnd}>AND</span>
+        <span className={styles.checkboxLabelOr}>LAST</span>
+        <span className={styles.checkboxLabelALL}>ALL</span>
       </label>
     </div>
   );
