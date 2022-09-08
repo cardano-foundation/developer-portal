@@ -636,13 +636,6 @@ export const Showcases = [
     tags: ["getstarted", "cli"],
   },
   {
-    title: "HeliosLang",
-    description: "A DSL for writing Cardano Smart Contracts. Reference compiler is a single Javascript file without dependencies.",
-    preview: require("./builder-tools/helioslang.png"),
-    website: "https://github.com/Hyperion-BT/Helios",
-    getstarted: null,
-    tags: ["javascript", "library", "plutus"],
-  },
     title: "Aiken",
     description: "A Cardano smart contract language and toolchain",
     preview: require("./builder-tools/aiken.png"),
