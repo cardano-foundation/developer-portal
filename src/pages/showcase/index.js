@@ -16,7 +16,7 @@ import ShowcaseLatestToggle, {
 
 import PortalHero from "../portalhero";
 import { toggleListItem } from "../../utils/jsUtils";
-import { SortedShowcases, Tags, TagList } from "../../data/showcases";
+import { SortedShowcases, Tags, TagList, Showcases } from "../../data/showcases";
 import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
@@ -70,10 +70,10 @@ function replaceSearchTags(search, newTags) {
 }
 
 // Filter projects based on chosen project tags, toggle operator or searchbar value
-function filterProjects(projects, selectedTags, latest, operator, searchName) {
+function filterProjects(projects, selectedTags, latest, operator, searchName, unfilteredProjects) {
   // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
   if (latest === "LAST") {
-    var projects = projects.slice(-10);
+    var projects = unfilteredProjects.slice(-10);
   }
 
   if (searchName) {
@@ -121,7 +121,8 @@ function useFilteredProjects() {
         selectedTags,
         latest,
         operator,
-        searchName
+        searchName,
+        Showcases
       ),
     [selectedTags, latest, operator, searchName]
   );
