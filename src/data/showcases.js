@@ -1067,6 +1067,15 @@ export const Showcases = [
     source: null,
     tags: [ "wallet", "dex", "nftsupport"],
   },
+  {
+    title: "NFT Creator",
+    description:
+      "Design your own NFT",
+    preview: require("./showcase/nft-creator.png"),
+    website: "https://nft-creator.pics",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  }, 
 ];
 
 export const TagList = Object.keys(Tags);
