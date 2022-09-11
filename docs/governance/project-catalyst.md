@@ -29,7 +29,7 @@ The best way to keep up to date with Project Catalyst is to follow [the announce
 
 You will need to create an account first on [Cardano IdeaScale](https://cardano.ideascale.com/) and then submit your proposal there. You can collaborate with the community to develop and refine your proposal on the [proposals channel](https://t.me/catalystproposers) on Telegram.
 
-### Participate as a community advisor
+### Participate as a proposal assessor
 
 You can provide reviews, assessments, and mentor proposers in their delivery and presentation. Check the [community channel](https://t.me/CatalystCommunityAdvisors) on Telegram.
 
@@ -64,7 +64,7 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 
 * [Basic community usage guide help articles for new users](https://intercom.help/ideascale/en/collections/2406712-new-user-guide)
 * [Project Catalyst Challenge and Proposal Guide](https://docs.google.com/document/d/1oE_cnP0gksdAanXV4w5DYaDNp_tbYEvyHhTUG4HYZ3Q/edit?usp=sharing)
-* [Community Advisor Guide](https://docs.google.com/document/d/1QkdaFK1tigrSI40iMeV3UP9GyTGsoqVmCUp7OJz0WFs/edit#heading=h.bnxyy561vexh)
+* [Proposal Assessor (formerly Community Advisor) Guide](https://docs.google.com/document/d/1g-iZhDlKhUBZkui1uv8NVNfJC4oVD3JtR-P6Fue7XPU/edit#heading=h.nvn8rjkdb8jh)
 
 ## FAQ
 

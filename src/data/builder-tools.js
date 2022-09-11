@@ -8,7 +8,7 @@
  * - The GitHub account must have a history/or already be known in the Cardano community.
  *
  * Instructions:
- * - Add your tool in the json array below, in alphabetical order of title
+ * - Add your tool in the json array at the end of the array.
  * - Add a local image preview. (decent screenshot or logo of your builder tool)
  * - The image must be added to the GitHub repository and use `require("image")`.
  *
@@ -43,6 +43,14 @@ export const Tags = {
       "Index Protocol",
     icon: null,
     color: '#000'
+  },
+
+  // Command Line Tools
+  cli: {
+    label: "CLI",
+    description: "Command-line interface tools",
+    icon: null,
+    color: '#fce300',
   },
 
   // For builder tools with a get started tag, a link to the get started page is required.
@@ -167,11 +175,75 @@ export const Tags = {
     color: '#7e6a4c',
   },
 
+  // Purescript
+  purescript: {
+    label: "Purescript",
+    description:
+      "PureScript language",
+    icon: null,
+    color: '#0F9D58',
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
 // Please don't add the "favorite"-tag yourself.
-const Showcases = [
+export const Showcases = [
+  {
+    title: "cardano-cli",
+    description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
+    preview: require("./builder-tools/cardano-cli.png"),
+    website: "https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli",
+    getstarted: null,
+    tags: ["favorite", "cli"]
+  },
+  {
+    title: "bech32",
+    description: "Convert to and from bech32 strings from the command-line. A simple and easy-to-use unix utility.",
+    preview: require("./builder-tools/bech32.png"),
+    website: "https://github.com/input-output-hk/bech32/#readme",
+    getstarted: null,
+    tags: ["cli"]
+  },
+  {
+    title: "cardano-wallet",
+    description: "An HTTP server and command-line for managing UTxOs and hierarchical deterministic wallets in Cardano.",
+    preview: require("./builder-tools/cardano-wallet.png"),
+    website: "https://github.com/input-output-hk/cardano-wallet/#overview",
+    getstarted: "https://input-output-hk.github.io/cardano-wallet/",
+    tags: ["getstarted", "api"]
+  },
+  {
+    title: "cardano-graphql",
+    description: "A cross-platform, typed, and queryable API for Cardano.",
+    preview: require("./builder-tools/cardano-graphql.png"),
+    website: "https://github.com/input-output-hk/cardano-graphql/#overview",
+    getstarted: "https://github.com/input-output-hk/cardano-graphql#getting-started",
+    tags: ["getstarted", "chainindex", "api"]
+  },
+  {
+    title: "cardano-rosetta",
+    description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
+    preview: require("./builder-tools/cardano-rosetta.png"),
+    website: "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
+    getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
+    tags: ["getstarted", "api"]
+  },
+  {
+    title: "cardano-db-sync",
+    description: "A PostgreSQL database layer which stores all data from the Cardano blockchain in a structured  and normalized way.",
+    preview: require("./builder-tools/cardano-db-sync.png"),
+    website: "https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync",
+    getstarted: null,
+    tags: ["chainindex"]
+  },
+  {
+    title: "cardano-addresses",
+    description: "A command-line utility and library for manipulating addresses, keys and recovery phrases on Cardano.",
+    preview: require("./builder-tools/cardano-addresses.png"),
+    website: "https://github.com/input-output-hk/cardano-addresses#overview",
+    getstarted: "https://github.com/input-output-hk/cardano-addresses#command-line",
+    tags: ["getstarted", "cli", "library"]
+  },
   {
     title: "Blockfrost",
     description: "Instant and scalable API to the Cardano blockchain.",
@@ -188,6 +260,14 @@ const Showcases = [
     website: "https://github.com/Emurgo/cardano-serialization-lib",
     getstarted: "/docs/get-started/cardano-serialization-lib/overview",
     tags: ["getstarted", "library", "rust"],
+  },
+  {
+    title: "Cardano Transaction Library",
+    description: "A Purescript library for building smart contract transactions on Cardano (NodeJS & the browser)",
+    preview: require("./builder-tools/cardano-transaction-lib.png"),
+    website: "https://github.com/Plutonomicon/cardano-transaction-lib/",
+    getstarted: "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
+    tags: ["purescript", "javascript", "getstarted", "library"]
   },
   {
     title: "cardanocli-js",
@@ -222,6 +302,15 @@ const Showcases = [
     website: "https://github.com/bloxbean/cardano-client-lib",
     getstarted: null,
     tags: ["library", "java"],
+  },
+  {
+    title: "Imperator - imperative, secure SC programming language",
+    description:
+      "A proof of concept secure, imperative language for writing Smart Contracts on Cardano L1.",
+    preview: require("./builder-tools/imperator.png"),
+    website: "https://github.com/ImperatorLang/imperator",
+    getstarted: null,
+    tags: ["python", "plutus"],
   },
   {
     title: "cardano-addresses TypeScript binding",
@@ -259,7 +348,7 @@ const Showcases = [
   },
   {
     title: "Cardano Metadata Oracle",
-    description: "Oracle submitting information using Cardano Metadata",
+    description: "Oracle submitting information using Cardano Metadata.",
     preview: require("./builder-tools/cardano-metadata-oracle.png"),
     website: "https://github.com/fivebinaries/cardano-metadata-oracle",
     getstarted: null,
@@ -401,7 +490,7 @@ const Showcases = [
   {
     title: "cardano-wallet-connector",
     description:
-        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework",
+        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework.",
     preview: require("./builder-tools/cardano-wallet-connector.png"),
     website: "https://github.com/dynamicstrategies/cardano-wallet-connector",
     getstarted: null,
@@ -419,7 +508,7 @@ const Showcases = [
   {
     title: "IntelliJ IDE",
     description:
-      "An IntelliJ plugin for Cardano blockchain",
+      "An IntelliJ plugin for Cardano blockchain.",
     preview: require("./builder-tools/IDE.png"),
     website: "https://intelliada.bloxbean.com",
     getstarted: null,
@@ -428,7 +517,7 @@ const Showcases = [
   {
     title: "Cardano Blockchain Snapshots",
     description:
-      "Download the latest Cardano blockchain snapshot",
+      "Download the latest Cardano blockchain snapshot.",
     preview: require("./builder-tools/cardano-snapshots.png"),
     website: "https://cSnapshots.io",
     getstarted: null,
@@ -444,15 +533,15 @@ const Showcases = [
   },
   {
     title: "Pallas",
-    description: "Rust-native building blocks for the Cardano blockchain ecosystem",
-    preview: require("./builder-tools/pallas.svg"),
+    description: "Rust-native building blocks for the Cardano blockchain ecosystem.",
+    preview: require("./builder-tools/pallas.png"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
     tags: ["library", "rust"]
   },
   {
     title: "Scrolls",
-    description: "Read-optimized cache of Cardano on-chain entities",
+    description: "Read-optimized cache of Cardano on-chain entities.",
     preview: require("./builder-tools/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
@@ -485,7 +574,7 @@ const Showcases = [
   {
     title: "Lucid",
     description: "Lucid is a library, which allows you to create Cardano transactions and off-chain code for your Plutus contracts in JavaScript and Node.js.",
-    preview: require("./builder-tools/lucid.svg"),
+    preview: require("./builder-tools/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
     getstarted: null,
     tags: ["library", "javascript", "plutus"]
@@ -532,12 +621,44 @@ const Showcases = [
   },
   {
     title: "go-ouroboros-network",
-    description: "A Golang implementation of the Cardano Ouroboros network protocol",
+    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
     preview: require("./builder-tools/go-ouroboros-network.png"),
     website: "https://github.com/cloudstruct/go-ouroboros-network",
     getstarted: null,
     tags: ["library", "golang"]
   },
+  {
+    title: "cscli",
+    description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
+    preview: require("./builder-tools/cscli.png"),
+    website: "https://github.com/CardanoSharp/cscli",
+    getstarted: "/docs/get-started/cscli",
+    tags: ["getstarted", "cli"],
+  },
+  {
+    title: "HeliosLang",
+    description: "A DSL for writing Cardano Smart Contracts. Reference compiler is a single Javascript file without dependencies.",
+    preview: require("./builder-tools/helioslang.png"),
+    website: "https://github.com/Hyperion-BT/Helios",
+    getstarted: null,
+    tags: ["javascript", "library", "plutus"],
+  },
+  {
+    title: "Aiken",
+    description: "A Cardano smart contract language and toolchain",
+    preview: require("./builder-tools/aiken.png"),
+    website: "https://github.com/txpipe/aiken",
+    getstarted: null,
+    tags: ["cli", "rust", "library"],
+  },
+  {
+    title: "Pix",
+    description: "An NFT collection generator that is CIP-25 compliant",
+    preview: require("./builder-tools/pix.png"),
+    website: "https://github.com/txpipe/pix",
+    getstarted: null,
+    tags: ["cli", "rust", "nft"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);

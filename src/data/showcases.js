@@ -37,7 +37,7 @@ export const Tags = {
     label: "Favorite",
     description:
       "Our favorite Cardano projects that you must absolutely check-out.",
-      color: '#e9669e',
+    color: '#e9669e',
   },
 
   // Analytics
@@ -46,6 +46,14 @@ export const Tags = {
     description: "Tools that provide special insights related to Cardano.",
     icon: null,
     color: '#39ca30',
+  },
+
+  // DAO Tool
+  daotool: {
+    label: "DAO Tool",
+    description: "DAO tools help in the proper control and management of a DAO.",
+    icon: null,
+    color: '#08C491'
   },
 
   // DEX
@@ -82,7 +90,7 @@ export const Tags = {
     icon: null,
     color: '#293133',
   },
- 
+
   // Game
   game: {
     label: "Game",
@@ -114,7 +122,7 @@ export const Tags = {
     icon: null,
     color: '#f44f25',
   },
-  
+
   // Meta data projects
   metadata: {
     label: "Metadata",
@@ -161,7 +169,7 @@ export const Tags = {
     description:
       "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
-    color: '#4267b2', 
+    color: '#4267b2',
   },
 
   // Native token projects
@@ -181,8 +189,8 @@ export const Tags = {
     color: '#7BC8A6'
   },
 
-   // Ecosystem
-   ecosystem: {
+  // Ecosystem
+  ecosystem: {
     label: "Ecosystem",
     description:
       "The Cardano ecosystem projects",
@@ -190,8 +198,8 @@ export const Tags = {
     color: '#800080'
   },
 
-   // Catalyst
-   catalyst: {
+  // Catalyst
+  catalyst: {
     label: "Catalyst",
     description: "Projects that aid to Cardano's interim governance programme (Catalyst)",
     icon: null,
@@ -202,7 +210,7 @@ export const Tags = {
 // Add your project to (THE END OF) this list.
 // Please don't add the "favorite"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
-const Showcases = [
+export const Showcases = [
   {
     title: "Cardano Kidz",
     description:
@@ -221,16 +229,6 @@ const Showcases = [
     source: null,
     tags: ["favorite", "metadata"],
   },
-  {
-    title: "Crypto Heroez",
-    description:
-      "Cardano NFT pixelart collectibles. Tribute to heroes of the cryptospace. Including interactive NFTs and a game in progress where you use NFTs from your wallet.",
-    preview: require("./showcase/cryptoheroez.png"),
-    website: "https://cryptoheroez.io",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-
   {
     title: "NFT Maker",
     description:
@@ -324,7 +322,7 @@ const Showcases = [
   {
     title: "CardaStat",
     description:
-      "A fresh look at pool performances for delegators in the ecosystem. Built as a progressive web application, ideal for mobile and desktop environments",
+      "A fresh look at pool performances for delegators in the ecosystem. Built as a progressive web application, ideal for mobile and desktop environments.",
     preview: require("./showcase/cardastat.png"),
     website: "https://cardastat.info",
     source: null,
@@ -391,28 +389,12 @@ const Showcases = [
     tags: ["token", "analytics"],
   },
   {
-    title: "Cardano Cubes & Blockemon",
-    description: "Play Blockemon and have your moves quickly verified by, and forever stored on Cardano.",
-    preview: require("./showcase/cardanocubes.png"),
-    website: "https://cardanocubes.com",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-  {
     title: "Cardano Assets",
     description: "Overview of native tokens on Cardano.",
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
     tags: ["favorite", "analytics"],
-  },
-  {
-    title: "NFTea",
-    description: "Sometimes all you need is a good cup of NFTea.",
-    preview: require("./showcase/nftea.png"),
-    website: "https://cardanonftea.com",
-    source: null,
-    tags: ["nftproject"],
   },
   {
     title: "Cardano Bits",
@@ -494,15 +476,6 @@ const Showcases = [
     tags: ["favorite", "pooltool", "analytics"],
   },
   {
-    title: "Rewards Calendar",
-    description:
-      "Shows the epochs and rewards in a calendar.",
-    preview: require("./showcase/rewardscalendar.png"),
-    website: "https://dbooster.io/calendar",
-    source: null,
-    tags: ["favorite", "analytics"],
-  },
-  {
     title: "NOWPayments",
     description:
       "Payment gateway provider to accept ada payments and ada donations.",
@@ -544,15 +517,6 @@ const Showcases = [
       "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
     preview: require("./showcase/jetchicken.png"),
     website: "https://jetchicken.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "ADA Dolls",
-    description:
-      "There are 10,000 unique dolls. These will be randomly generated from a possible outcome of 1,000,000 doll combinations.",
-    preview: require("./showcase/ada-dolls.png"),
-    website: "https://adadolls.com",
     source: null,
     tags: ["nftproject"],
   },
@@ -711,7 +675,7 @@ const Showcases = [
   {
     title: "Tokhun.io",
     description:
-        "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
+      "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
@@ -769,7 +733,7 @@ const Showcases = [
     preview: require("./showcase/dsio-reward-calculator.png"),
     website: "https://dynamicstrategies.io/crewardcalculator",
     source: null,
-    tags: ["pooltool","analytics","educational"],
+    tags: ["pooltool", "analytics", "educational"],
   },
   {
     title: "Cardahub - A services hub on Cardano",
@@ -869,7 +833,7 @@ const Showcases = [
     source: null,
     tags: ["nftproject", "game"],
   },
-  {  
+  {
     title: "Adax.pro",
     description:
       "Adax.pro is a Decentralized Digital Assets Exchange built on the Cardano blockchain.",
@@ -881,16 +845,16 @@ const Showcases = [
   {
     title: "Minswap Dex",
     description:
-      "Minswap is a multi-pool decentralized exchange on Cardano",
+      "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
     website: "https://app.minswap.org",
     source: null,
-    tags: [ "dex", "token"],
+    tags: ["dex", "token"],
   },
   {
     title: "CWallet",
     description:
-      "Cross-Chain Non-Custodial Wallet & Liquidity Engine",
+      "Cross-Chain Non-Custodial Wallet & Liquidity Engine.",
     preview: require("./showcase/cwallet.png"),
     website: "https://cwallet.finance",
     source: null,
@@ -899,11 +863,11 @@ const Showcases = [
   {
     title: "GameChanger Wallet",
     description:
-      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications",
+      "The ultimate wallet experience for the Web, with native NFT and token features, powered by Cardano and third party applications.",
     preview: require("./showcase/gamechanger.png"),
     website: "https://gamechanger.finance",
     source: null,
-    tags: [ "wallet"],
+    tags: ["wallet"],
   },
   {
     title: "GeroWallet",
@@ -912,7 +876,7 @@ const Showcases = [
     preview: require("./showcase/gerowallet.png"),
     website: "https://gerowallet.io",
     source: null,
-    tags: [ "wallet"],
+    tags: ["wallet"],
   },
   {
     title: "Built on Cardano",
@@ -921,12 +885,12 @@ const Showcases = [
     preview: require("./showcase/buildoncardano.png"),
     website: "https://builtoncardano.com",
     source: null,
-    tags: [ "ecosystem"],
+    tags: ["ecosystem"],
   },
   {
     title: "CardanoCube",
     description:
-      "Explore 650+ Projects Building on Cardano",
+      "Explore 650+ Projects Building on Cardano.",
     preview: require("./showcase/cardanocube.png"),
     website: "https://www.cardanocube.io",
     source: null,
@@ -939,16 +903,16 @@ const Showcases = [
     preview: require("./showcase/cnftjungle.png"),
     website: "https://www.cnftjungle.io",
     source: null,
-    tags: [ "analytics", "nftsupport"],
+    tags: ["analytics", "nftsupport"],
   },
   {
     title: "Explorer Png",
     description:
-      "Token Viewer on Cardano Blockchain",
+      "Token Viewer on Cardano Blockchain.",
     preview: require("./showcase/explorerxyz.png"),
     website: "https://ex.plorer.xyz",
     source: null,
-    tags: [ "nftsupport"],
+    tags: ["nftsupport"],
   },
   {
     title: "Galaxy Of Art",
@@ -957,16 +921,16 @@ const Showcases = [
     preview: require("./showcase/galaxyofart.png"),
     website: "https://galaxyof.art",
     source: null,
-    tags: [ "marketplace", "nftsupport"],
-   },
-   {
+    tags: ["marketplace", "nftsupport"],
+  },
+  {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
     preview: require("./showcase/jpg.png"),
     website: "https://www.jpg.store",
     source: null,
-    tags: [ "marketplace", "nftsupport"],
+    tags: ["marketplace", "nftsupport"],
   },
   {
     title: "Atala Scan",
@@ -984,7 +948,7 @@ const Showcases = [
     preview: require("./showcase/pavia.png"),
     website: "https://www.pavia.io",
     source: null,
-    tags: [ "game", "nftproject"],
+    tags: ["game", "nftproject"],
   },
   {
     title: "Turf",
@@ -1002,7 +966,7 @@ const Showcases = [
     preview: require("./showcase/wingriders.png"),
     website: "https://www.wingriders.com",
     source: null,
-    tags: [ "dex", "token"],
+    tags: ["dex", "token"],
   },
   {
     title: "Building On Cardano",
@@ -1011,16 +975,16 @@ const Showcases = [
     preview: require("./showcase/buildingoncardano.png"),
     website: "https://buildingoncardano.com",
     source: null,
-    tags: [ "ecosystem"],
+    tags: ["ecosystem"],
   },
   {
     title: "Pool Peek",
     description:
-      "An extensive Cardano stake pool explorer",
+      "An extensive Cardano stake pool explorer.",
     preview: require("./showcase/poolpeek.png"),
     website: "https://poolpeek.com",
     source: null,
-    tags: [ "pooltool", "analytics"],
+    tags: ["pooltool", "analytics"],
   },
   {
     title: "Cardano NFT Explorer",
@@ -1029,7 +993,7 @@ const Showcases = [
     preview: require("./showcase/cnftme.png"),
     website: "https://cnft.me",
     source: null,
-    tags: [ "explorer", "nftsupport"],
+    tags: ["explorer", "nftsupport"],
   },
   {
     title: "Lido Nation",
@@ -1038,7 +1002,79 @@ const Showcases = [
     preview: require("./showcase/lidonation.png"),
     website: "https://www.lidonation.com/en/project-catalyst/projects",
     source: null,
-    tags: [ "catalyst", "analytics"],
+    tags: ["catalyst", "analytics"],
+  },
+  {
+    title: "Paradiso",
+    description:
+      "A Shangri-La for Cardano NFTs. Decentralized platform to mint, distribute, buy, and sell digital assets.",
+    preview: require("./showcase/paradiso.png"),
+    website: "https://paradiso.app",
+    source: null,
+    tags: ["marketplace", "minting", "nftsupport"],
+  },
+  {
+    title: "RoundTable",
+    description:
+      "A open source multi-sig DApp for the cardano blockchain.",
+    preview: require("./showcase/roundtable.png"),
+    website: "https://roundtable.theadao.io/",
+    source: "https://github.com/ADAOcommunity/round-table",
+    tags: ["opensource", "daotool"],
+  },
+  {
+    title: "eUTxO",
+    description:
+      "Visual blockchain explorer for Cardano.",
+    preview: require("./showcase/eutxo.png"),
+    website: "https://eutxo.org",
+    source: null,
+    tags: ["analytics", "explorer"],
+  },
+  {
+    title: "HAZELnet",
+    description:
+      "A community integration tool that allows stakepool operators and NFT projects to connect and engage with their audience, verify their delegators and holders, create polls, whitelists and more via Discord, Website, and other social media apps.",
+    preview: require("./showcase/hazelnet.png"),
+    website: "https://www.hazelnet.io",
+    source: "https://github.com/nilscodes/hazelnet",
+    tags: ["nftsupport", "opensource", "token"],
+  },
+  {
+    title: "Haltscam",
+    description:
+      "Haltscam allows and provides a means of crowd-sourcing risky Cardano addresses, allowing community members to contribute to the database and prevent their fellow adopters from falling victim to scams or solicitation.",
+    preview: require("./showcase/haltscam.png"),
+    website: "https://haltscam.com/",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Dapps on Cardano",
+    description:
+      "Provides insights in decentralized applications on Cardano. See total transactions, total scripts locked and script invocations.",
+    preview: require("./showcase/dapps-on-cardano.png"),
+    website: "https://dappsoncardano.com",
+    source: null,
+    tags: [ "analytics", "ecosystem", "nftsupport"],
+  },
+  {
+    title: "Gift Card Creator",
+    description:
+      "Personalise an NFT gift card",
+    preview: require("./showcase/gift-card-creator.png"),
+    website: "https://card-creator.shop",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  }, 
+  {
+    title: "NuFi Wallet",
+    description:
+      "Non-custodial, multi-chain wallet with in-app DEX.",
+    preview: require("./showcase/nufiwallet.png"),
+    website: "https://nu.fi",
+    source: null,
+    tags: [ "wallet", "dex", "nftsupport"],
   },
   {
     title: "Chains of War",
@@ -1054,8 +1090,10 @@ const Showcases = [
 export const TagList = Object.keys(Tags);
 function sortShowcases() {
   let result = Showcases;
+
   // Sort by site name
   result = sortBy(result, (showcase) => showcase.title.toLowerCase());
+
   // Sort by favorite tag, favorite first
   result = sortBy(result, (showcase) => !showcase.tags.includes("favorite"));
   return result;

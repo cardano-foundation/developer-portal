@@ -23,6 +23,7 @@ To get free test ada, you need to visit the [Cardano testnet faucet](/docs/integ
 
 ### Which block explorers can I use for the Cardano testnet?
 - [explorer.cardano-testnet.iohkdev.io](https://explorer.cardano-testnet.iohkdev.io/) is a testnet block explorer by [IOHK](https://iohk.io).
+- [testnet.cexplorer.io](https://testnet.cexplorer.io/) is a testnet block explorer by [Cexplorer](https://cexplorer.io).
 - [testnet.cardanoscan.io](https://testnet.cardanoscan.io) is a testnet block explorer by [Cardanoscan](https://cardanoscan.io).
 
 ### Which metadata explorers can I use for the Cardano testnet?
@@ -35,8 +36,8 @@ To get free test ada, you need to visit the [Cardano testnet faucet](/docs/integ
 ## Where has the old content of developers.cardano.org gone?
 The developer portal covers everything that you can do on Cardano Mainnet today. To illustrate this difference, we moved the old content of [developers.cardano.org](https://developers.cardano.org) to [testnets.cardano.org](https://testnets.cardano.org) with the launch of this developer portal.
 
-### Virtual Machines and programming languages
-If you miss information about virtual machines like [KEVM](https://testnets.cardano.org/en/virtual-machines/kevm/overview/), [IELE](https://testnets.cardano.org/en/virtual-machines/iele/overview/), and [EVM](https://testnets.cardano.org/en/virtual-machines/evm/overview/) or programming languages like [Plutus](https://testnets.cardano.org/en/programming-languages/plutus/overview/), [Marlowe](https://testnets.cardano.org/en/programming-languages/marlowe/overview/) and [Glow](https://testnets.cardano.org/en/programming-languages/glow/overview/), visit [testnets.cardano.org](https://testnets.cardano.org).
+### Programming languages
+If you miss information about programming languages like [Plutus](https://testnets.cardano.org/en/programming-languages/plutus/overview/) or [Marlowe](https://testnets.cardano.org/en/programming-languages/marlowe/overview/), visit [testnets.cardano.org](https://testnets.cardano.org).
 
 ### Smart Contracts
 To get you up to speed with the Smart Contract functionality coming to Cardano, we prepared [get started with smart contracts on Cardano](/docs/smart-contracts/).

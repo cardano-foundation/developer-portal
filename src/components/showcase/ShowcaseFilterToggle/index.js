@@ -25,7 +25,7 @@ export default function ShowcaseFilterToggle() {
   const id = "showcase_filter_toggle";
   const location = useLocation();
   const history = useHistory();
-  const [operator, setOperator] = useState(true);
+  const [operator, setOperator] = useState(false);
 
   useEffect(() => {
     setOperator(readOperator(location.search) === "OR");

@@ -65,7 +65,7 @@ Check our API full reference documentation here https://www.tangocrypto.com/api-
 
 To use Tangocrypto's products, you need an API key to authenticate your requests.
 
-You can [create API keys from the dashboard](https://dashboard.tangocrypto.com/home/dashboard), just click on +Create App, name it and hit create:
+You can create API keys from the dashboard, just click on +Create App, name it and hit create:
 
 ![alt text](../../static/img/get-started/tangocrypto/app.png)
 

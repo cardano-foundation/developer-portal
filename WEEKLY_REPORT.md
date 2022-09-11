@@ -1,8 +1,214 @@
 ## Cardano Developer Portal - weekly reports
 
+[2022-09-04]
+ * Revert "Addition of HeliosLang (#755)" (#756) (Tommy Kammerer)
+ * Add a new builder tool tag - PureScript (#753) (Fill)
+ * feat: Add haltscam project (#702) (Crypto Catalyst)
+
+### Week ending September 2nd
+
+[2022-09-01]
+ * Addition of HeliosLang (#755) (christianschmitz)
+
+[2022-08-30]
+ * Add new filter to check latest showcases and builder tools  (#749) (Fill)
+
+[2022-08-29]
+ * [Typo] [minting.md] "Amout" -> "Amount" (#743) (sourabh.xyz)
+
+### Week ending August 26th
+
+[2022-08-24]
+ * Update kes_period.md (#747) (Carlos LopezDeLara)
+ * Rework 'Get Started: Cardano Components. (#744) (Matthias Benkort)
+
+### Week ending August 19th
+
+[2022-08-18]
+ * Update weekly report 17.08 (#741) (Fill)
+ 
+### Week ending August 12th
+
+[2022-08-12]
+ * Remove requirement to order alphabetically (#739) (Tommy Kammerer)
+ * Add August 2022 Developer Interview with Strica.io  (#736) (Nicolas)
+
+[2022-08-06]
+ * Update weekly report 10.03 (#732) (Fill)
+ * Remove outdated projects (#727) (Fill)
+
+### Week ending August 5th
+
+[2022-08-05]
+ * Fixed image for dapps-on-cardano (#729) (Nils Codes)
+
+[2022-08-04]
+ * Fix broken links and one typo in the Plutus section (#728) (Nicolas)
+
+[2022-08-03]
+ * Update weekly report 08.03 (#724) (Fill)
+ * Modify broken link (#696) (Fill)
+
+[2022-08-01]
+ * Remove coming soon pages and update the sidebar (revert #658) (#723) (Tommy Kammerer)
+ * Add dapps-on-cardano showcase (#719) (Tommy Kammerer)
+ * Optimized showcase images that were partly several MB in size. (#720) (Tommy Kammerer)
+ * revert pr704 commit a3ce87f but keep white space cleanup (#717) (Robert Phair)
+ * Update Docusaurus to 2.0.1 (#718) (Tommy Kammerer)
+ * Remove broken links and references to projects that have been ditched (#722) (Nicolas)
+ * Revert "Move CVM from showcase to builder tools (#716)" (#721) (Tommy Kammerer)
+ * Move CVM from showcase to builder tools (#716) (Fill)
+
+### Week ending July 29th
+
+[2022-07-29]
+ * Revert "CVM - Cardano Version Manager :) (#682)" (#715) (Tommy Kammerer)
+ * Fix broken consoles (#712) (Fill)
+ * Fix broken links for Jobs at dcSpark and EMURGO (#708) (Nicolas)
+ * Add Robert Phair (#714) (Tommy Kammerer)
+
+[2022-07-28]
+ * Fix broken images for builder tools Lucid and Pallas (#709) (Fill)
+ * CVM - Cardano Version Manager :) (#682) (Orelvis Lago Vasallo)
+ * Fix broken links in getting started section and remove one link from tangocrypto that requires a sign-in (#713) (Nicolas)
+ * Update weekly report (#710) (Fill)
+
+[2022-07-25]
+ * Modify announcement bar to be closable (#707) (Fill)
+ * rectified --mint syntax to correct form (#706) (BharatAtEMURGOIO)
+
+[2022-07-24]
+ * Update Developer Portal - weekly reports (#705) (Fill)
+
+### Week ending July 22nd
+
+[2022-07-21]
+ * Fix hover effect on buttons & make border thicker (#703) (Fill)
+ * Announce the Cardano State of the Developer EcoSystem 2022 (#704) (Matthias Benkort)
+
+[2022-07-16]
+ * Added HAZELnet for Community Creation (#679) (Nils Codes)
+
+### Week ending July 15th
+
+[2022-07-15]
+ * Fix broken link to key pairs (#687) (Fill)
+
+[2022-07-14]
+ * Replace fs.rmdir (will be removed in future Node.js version) with fs.rm (#692) (Fill)
+ * Fixed broken link on plutus.md (#695) (Varghese Cottagiri)
+ * replace image for RoundTable (#698) (Nicolas)
+ * New tag showcase section “DAO Tool” and remove & replace tag from RoundTable (#697) (Nicolas)
+
+[2022-07-12]
+ * Add showcase Paradiso (#645) (Aaron Dunnington)
+ * Update Node version documentation (#694) (Fill)
+ * Add Koios Interview to Developer Blog section (#690) (Nicolas)
+
+[2022-07-11]
+ * Update Node version for Netlify deployment (#693) (Fill)
+ * Update Docusaurus to 2.0.0-beta.21 (#686) (Fill)
+
+[2022-07-10]
+ * change the link of CIP meetings as they are now being held in discord (#688) (Nicolas)
+
+### Week ending July 8th
+
+[2022-07-08]
+ * marlowe playground links updated (#685) (Rzgar)
+ * Modify tagline on main page (#684) (Fillips Ickevics)
+ * Name change of community advisor role (#677) (Nicolas)
+ * Add ImperatorLang (#672) (Niels Mündler)
+
+### Week ending July 1st
+
+[2022-07-01]
+ * fix: broken link on integrate cardano page (#661) (fodder1997)
+ * Cardano node install - added libsecp256k1 details and more (#675) (Jurijs I)
+ 
+[2022-06-30]
+ * Update MuesliSwap landing page image (#673) (MuesliSwap Team)
+ * Add period at the end of description for all showcases/builder tools (#668) (Fillips Ickevics)
+ * Add eUTxO showcase (#667) (Fillips Ickevics)
+ * new pages: Air Gap Environment, Secure Transaction Workflow (#665) (Robert Phair)
+ * Added cscli to builder tools with new ‘CLI’ tag and corresponding getting started docs (#664) (Keith)
+ * Update docusaurus.config.js (#658) (SNSKY)
+ * add testnet explorer (#671) (Cardanians.io)
+
+### Week ending June 24th
+
+[2022-06-20]
+ * Modify CIP, Token Registry and Rust Library scripts (#654) (Fillips Ickevics)
+ * Bump sharp from 0.30.3 to 0.30.6 (#652) (dependabot[bot])
+### Week ending June 17th
+
+[2022-06-15]
+ * Update register-stake-keys.md (#662) (Alejandro Drabenche)
+
+### Week ending June 10th
+
+[2022-06-08]
+ * Update overview.md (#657) (avilsmeier)
+
+### Week ending June 3rd
+
+[2022-06-02]
+ * Add go-ouroboros-network library, add golang tag (#659) (Chris Gianelloni)
+[2022-05-31]
+ * Update 2022-05-30-may.md (#653) (Tommy Kammerer)
+[2022-05-30]
+ * fix typo in Cardano Wall (#650) (Georg W)
+ * Modify contribute button href to relative path (#649) (Fillips Ickevics)
+ * Add Milkomeda interview into Dev Blog (#648) (Fillips Ickevics)
+ * Fix broken link to Testnet Faucet (#634) (Fillips Ickevics)
+
+### Week ending May 27th
+
+[2022-05-23]
+ * golang cardano serialisation library (#646) (matiwinnetou)
+ * Build out the “how to contribute”-page (#644) (Tommy Kammerer)
+ * Add truncate (shorten version of article) to blogs that don’t have it for preview (#638) (Fillips Ickevics)
+ * Add new technical concept video by Andrew Westberg (#633) (Fillips Ickevics)
+ * Add showcase CNFT.me (#632) (Fillips Ickevics)
+ * Remove doubled favourite tag (#630) (Fillips Ickevics)
+ * Add showcase tag catalyst and showcase Lido Nation (#631) (Fillips Ickevics)
+ * Add few more developer tools (#629) (Matthias Benkort)
+ * Add more technical concepts (#627) (Fillips Ickevics)
+ * Updated Grafana Dashboard Tutorial (#625) (Jurijs I)
+ * Tangocrypto (#619) (Javier Toledo Cordova)
+
+### Week ending May 20th
+
+[2022-05-16]
+ * Add Project Catalyst Fund 8 Voting Results (#626) (Fillips Ickevics)
+ * Add Project Catalyst Fund 7 Voting Results (#624) (Fillips Ickevics)
+ * Add showcase Pool Peek (#622) (Fillips Ickevics)
+ * Modifying CCVault into Eternl (#621) (Fillips Ickevics)
+ * Updating plutus.md (#611) (LukaKurnjek)
+ * Fix sticky button to be clickable anywhere (#618) (Fillips Ickevics)
+ * Add Koios to the Builder-Tools (#617) (RdLrT)
+
+### Week ending May 13th
+[no updates]
+
+### Week ending May 6th
+
+[2022-05-03]
+ * Added check to make sure directories exist. (#615) (Rich Miles)
+ * Add note that at least once you have to create a production build (as this pulls missing files) (#613) (Tommy Kammerer)
+ * Add sticky contribute button to home, showcases and builder tools (#612) (Fillips Ickevics)
+ * Handbook. Minor changes regarding metadata json (#610) (Jurijs I)
+ * Extend the editorial style guide. (#608) (Tommy Kammerer)
+ * Improve Dev Blogs (#607) (Fillips Ickevics)
+ * cSnapshots Developer tool (#605) (StakePool247)
+ * Replace outdated website link on Crypto Knitties showcase (#604) (Fillips Ickevics)
+ * Bump async from 2.6.3 to 2.6.4 (#603) (dependabot[bot])
+
 ### Week ending April 29th
 
 [2022-04-27]
+ * Update weekly report, week ending April 29 (#602) (Tommy Kammerer)
+ * Bump cross-fetch from 3.1.4 to 3.1.5 (#601) (dependabot[bot])
  * cardano-wallet: Stack no longer supported (#567) (Samuel Evans-Powell)
  * Add April Spotlight (#599) (Tommy Kammerer)
  * Fix tag for Cicada Tactics showcase (#598) (Fillips Ickevics)

@@ -14,11 +14,20 @@ module.exports = {
       },
       {
         type: "category",
+        label: "Security Best Practices",
+        items: [
+          "get-started/air-gap",
+          "get-started/secure-workflow",
+        ],
+      },
+      {
+        type: "category",
         label: "Builder Tools",
         items: [
           "get-started/blockfrost",
           "get-started/cardanocli-js",
           "get-started/cardano-wallet-js",
+          "get-started/cscli",
           "get-started/dandelion-apis",
           "get-started/koios",
           "get-started/ogmios",

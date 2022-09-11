@@ -138,7 +138,7 @@ const main = async () => {
 
   // Create token registry folder to store markdown files locally
   if (fs.existsSync(TRDocsPath)) {
-    fs.rmdirSync(TRDocsPath, { recursive: true });
+    fs.rmSync(TRDocsPath, { recursive: true });
   }
   fs.mkdirSync(TRDocsPath, { recursive: true });
 

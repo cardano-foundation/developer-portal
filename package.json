@@ -13,12 +13,12 @@
     "cip:refresh": "ts-node scripts/cip.ts"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.18",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.18",
-    "@docusaurus/plugin-content-docs": "^2.0.0-beta.18",
-    "@docusaurus/plugin-ideal-image": "^2.0.0-beta.18",
-    "@docusaurus/preset-classic": "^2.0.0-beta.18",
-    "@docusaurus/theme-search-algolia": "^2.0.0-beta.18",
+    "@docusaurus/core": "^2.0.1",
+    "@docusaurus/plugin-client-redirects": "^2.0.1",
+    "@docusaurus/plugin-content-docs": "^2.0.1",
+    "@docusaurus/plugin-ideal-image": "^2.0.1",
+    "@docusaurus/preset-classic": "^2.0.1",
+    "@docusaurus/theme-search-algolia": "^2.0.1",
     "@mdx-js/react": "^1.6.22",
     "@popperjs/core": "^2.11.2",
     "clsx": "^1.1.1",

@@ -9,7 +9,7 @@ image: ../img/og-developer-portal.png
 ## Get started with Marlowe 
 Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.
 
-If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://alpha.marlowe.iohkdev.io/doc/marlowe/tutorials/index.html), or jump right into the [Marlowe Playground](https://alpha.marlowe.iohkdev.io/): 
+If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://play.marlowe-finance.io/doc/marlowe/tutorials/index.html), or jump right into the [Marlowe Playground](https://play.marlowe-finance.io): 
 
 [![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://alpha.marlowe.iohkdev.io/)
 
