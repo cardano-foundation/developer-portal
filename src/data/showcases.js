@@ -1066,7 +1066,16 @@ export const Showcases = [
     website: "https://card-creator.shop",
     source: null,
     tags: ["minting", "nftsupport"],
-  }, 
+  },
+  {
+    title: "Book Token",
+    description:
+      "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
+    preview: require("./showcase/book-token.png"),
+    website: "https://www.booktoken.io",
+    source: null,
+    tags: [ "marketplace", "nftsupport", "token"],
+  },
   {
     title: "NuFi Wallet",
     description:
