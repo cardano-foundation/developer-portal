@@ -1088,7 +1088,7 @@ export const Showcases = [
   {
     title: "NFT Creator",
     description:
-      "Unlock your creativity.  Design your own NFT image or animation with this easy to design toolbox.  Text, Shapes, Paint, Layers, Image Seach, Blur, Clone, Desaturate, Fill, Night Vision are just of the tools and effects available.",
+      "Unlock your creativity.  Design your own NFT image or animation with this easy to design toolbox.  Text, Shapes, Paint, Layers, Image Seach, Blur, Clone, Desaturate, Fill, Night Vision are just some of the tools and effects available.",
     preview: require("./showcase/nft-creator.png"),
     website: "https://nft-creator.pics",
     source: null,
