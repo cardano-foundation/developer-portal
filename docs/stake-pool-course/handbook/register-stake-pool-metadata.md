@@ -48,6 +48,8 @@ Registering your stake pool requires:
 
 Store the file on your web server. For example [https://teststakepool.com/poolMetadata.json](https://git.io/JJWdJ). You must store your pool metadata on reliable server, in case if metadata files will not be available then your pool might disappear from wallets and potential delegators will not be able to find it.
 
+**HINT:** Remove preceeding whitespaces from your JSON file. While some tools are more generous when it comes to comparing the metadata hash, others will only accept a correct match. In case of doubt compare your hash with pooltool.io(https://pooltool.io) or with the transaction output on https://cardanoscan.io(https://cardanoscan.io)   
+
 #### Get the hash of your metadata file uploaded to server:
 
 These command will return hash value of json file, what we just uploaded to our web server. Keep in mind that you need to put your own address instead `https://teststakepool.com/poolMetadata.json`
