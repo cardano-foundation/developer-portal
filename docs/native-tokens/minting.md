@@ -101,12 +101,12 @@ You need to adjust the path on your setup and your socket path accordingly.
 Since we've already answered all of the questions above, we will set variables on our terminal/bash to make readability a bit easier.
 We also will be using the testnet. The only difference between minting native assets in the mainnet will be that you need to substitute the network variable <i>testnet</i> with mainnet. 
 
-<b>Since cardano-cli version 1.31.0, token names must be base16 encoded </b>.  So here, we use the xxd tool to encode the token names.
+<b>Since cardano-cli version 1.31.0, token names must be base16 encoded </b>.  So here, we use the basenc tool (since it is included in coreutils) to encode the token names.
 
 ```bash
 testnet="--testnet-magic 1097911063"
-tokenname1=$(echo -n "Testtoken" | xxd -ps | tr -d '\n')
-tokenname2=$(echo -n "SecondTesttoken" | xxd -ps | tr -d '\n')
+tokenname1=$(echo -n "Testtoken" | basenc --base16 | tr '[:upper:]' '[:lower:]')
+tokenname2=$(echo -n "SecondTesttoken" | basenc --base16 | tr '[:upper:]' '[:lower:]')
 tokenamount="10000000"
 output="0"
 ```
