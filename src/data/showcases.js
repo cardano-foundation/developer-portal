@@ -1061,7 +1061,7 @@ export const Showcases = [
   {
     title: "Gift Card Creator",
     description:
-      "Personalise an NFT gift card",
+      "Try the quick and easy NFT Gift Card Creator.  A card for all occasions and celebrations - birthdays, anniversaries, holidays, congratulations or condolences.  Choose from defined templates/customize or create your very own.",
     preview: require("./showcase/gift-card-creator.png"),
     website: "https://card-creator.shop",
     source: null,
@@ -1088,7 +1088,7 @@ export const Showcases = [
   {
     title: "NFT Creator",
     description:
-      "Design your own NFT",
+      "Unlock your creativity.  Design your own NFT image or animation with this easy to design toolbox.  Text, Shapes, Paint, Layers, Image Seach, Blur, Clone, Desaturate, Fill, Night Vision are just of the tools and effects available.",
     preview: require("./showcase/nft-creator.png"),
     website: "https://nft-creator.pics",
     source: null,
