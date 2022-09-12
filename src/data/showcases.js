@@ -1059,6 +1059,15 @@ export const Showcases = [
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
   {
+    title: "Gift Card Creator",
+    description:
+      "Personalise an NFT gift card",
+    preview: require("./showcase/gift-card-creator.png"),
+    website: "https://card-creator.shop",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  {
+  }, 
     title: "Book Token",
     description:
       "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
