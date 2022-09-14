@@ -658,6 +658,14 @@ export const Showcases = [
     website: "https://github.com/txpipe/pix",
     getstarted: null,
     tags: ["cli", "rust", "nft"],
+  },
+  {
+    title: "Cardano Singer",
+    description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
+    preview: require("./builder-tools/cardano-singer.png"),
+    website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
+    getstarted: null,
+    tags: ["operatortool"],
   }
 ];
 
