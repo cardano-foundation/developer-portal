@@ -43,3 +43,4 @@ yarn-error.log*
 /static/img/cip/*
 /docs/native-tokens/token-registry/*
 /docs/get-started/cardano-serialization-lib/*
+**/changelog
