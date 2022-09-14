@@ -660,9 +660,9 @@ export const Showcases = [
     tags: ["cli", "rust", "nft"],
   },
   {
-    title: "Cardano Singer",
+    title: "Cardano Signer",
     description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
-    preview: require("./builder-tools/cardano-singer.png"),
+    preview: require("./builder-tools/cardano-signer.png"),
     website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
     getstarted: null,
     tags: ["operatortool"],
