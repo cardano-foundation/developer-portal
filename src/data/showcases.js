@@ -1085,6 +1085,15 @@ export const Showcases = [
     source: null,
     tags: [ "wallet", "dex", "nftsupport"],
   },
+  {
+    title: "Voteaire",
+    description:
+      "Voteaire allows everyone in the ecosystem to create a poll. All results are weighted. All proposals and votes are stored publicly on-chain.",
+    preview: require("./showcase/voteaire.png"),
+    website: "https://voteaire.io/",
+    source: null,
+    tags: [ "daotool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
