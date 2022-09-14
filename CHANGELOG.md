@@ -1,5 +1,5 @@
 ## What's Changed
-## 2021.8.1 (2022-02-01)
+## 2021.8.1 (2021-02-01)
 
 All of the merged PRs in February
 
@@ -17,7 +17,7 @@ All of the merged PRs in February
 
 - katomm ([@katomm](https://github.com/katomm))
 
-## 2021.12.1 (2022-03-01)
+## 2021.12.1 (2021-03-01)
 
 All of the merged PRs in March
 
@@ -43,7 +43,7 @@ All of the merged PRs in March
 - katomm ([@katomm](https://github.com/katomm))
 - Nazeim ([@Nazeim](https://github.com/Nazeim))
 
-## 2021.16.1 (2022-04-01)
+## 2021.16.1 (2021-04-01)
 
 All of the merged PRs in April
 
@@ -71,7 +71,6 @@ All of the merged PRs in April
 - Add Funding Types by ([@Nazeim](https://github.com/Nazeim)) in [#39](https://github.com/cardano-foundation/developer-portal/pull/39)
 - Style guide revised by ([@katomm](https://github.com/katomm)) in [#40](https://github.com/cardano-foundation/developer-portal/pull/40)
 - New line markdown fix by ([@Scitz0](https://github.com/Scitz0)) in [#44](https://github.com/cardano-foundation/developer-portal/pull/44)
-- Update Project Funding and Cardano Token Registry Sections by ([@Nazeim](https://github.com/Nazeim)) in [#46](https://github.com/cardano-foundation/developer-portal/pull/46)
 
 #### Committers: 4
 
@@ -80,13 +79,14 @@ All of the merged PRs in April
 - alessandrokonrad ([@alessandrokonrad](https://github.com/alessandrokonrad))
 - Scitz0 ([@Scitz0](https://github.com/Scitz0))
 
-## 2021.20.1 (2022-05-01)
+## 2021.20.1 (2021-05-01)
 
 All of the merged PRs in May
 
 #### :bug: PRs
 
 - `Developer Portal`
+- Update Project Funding and Cardano Token Registry Sections by ([@Nazeim](https://github.com/Nazeim)) in [#46](https://github.com/cardano-foundation/developer-portal/pull/46)
 - Code style by ([@katomm](https://github.com/katomm)) in [#47](https://github.com/cardano-foundation/developer-portal/pull/47)
 - Introduce category/tag feature in showcase section by ([@katomm](https://github.com/katomm)) in [#48](https://github.com/cardano-foundation/developer-portal/pull/48)
 - Add showcase projects and categories by ([@katomm](https://github.com/katomm)) in [#50](https://github.com/cardano-foundation/developer-portal/pull/50)
@@ -102,14 +102,15 @@ All of the merged PRs in May
 - Minor fixes by ([@katomm](https://github.com/katomm)) in [#60](https://github.com/cardano-foundation/developer-portal/pull/60)
 - Stake pool course: intro + classic utx0 model by ([@ubinatus](https://github.com/ubinatus)) in [#61](https://github.com/cardano-foundation/developer-portal/pull/61)
 
-#### Committers: 4
+#### Committers: 5
 
+- Nazeim ([@Nazeim](https://github.com/Nazeim))
 - katomm ([@katomm](https://github.com/katomm))
 - rcmorano ([@rcmorano](https://github.com/rcmorano))
 - Mercurial ([@Mercurial](https://github.com/Mercurial))
 - ubinatus ([@ubinatus](https://github.com/ubinatus))
 
-## 2021.24.1 (2022-06-01)
+## 2021.24.1 (2021-06-01)
 
 All of the merged PRs in June
 
@@ -140,7 +141,7 @@ All of the merged PRs in June
 - Rust lib, menu structure, minor fixes by ([@katomm](https://github.com/katomm)) in [#85](https://github.com/cardano-foundation/developer-portal/pull/85)
 - Add .netlify.toml file with redirect example by ([@katomm](https://github.com/katomm)) in [#86](https://github.com/cardano-foundation/developer-portal/pull/86)
 - Simplify the redirects. by ([@katomm](https://github.com/katomm)) in [#87](https://github.com/cardano-foundation/developer-portal/pull/87)
-- Revise Cardano Token Registry by ([@katomm](https://github.com/katomm)) in [#88](https://github.com/cardano-foundation/developer-portal/pull/88)
+
 #### Committers: 4
 
 - Nazeim ([@Nazeim](https://github.com/Nazeim))
@@ -154,6 +155,7 @@ All of the merged PRs in July
 #### :bug: PRs
 
 - `Developer Portal`
+- Revise Cardano Token Registry by ([@katomm](https://github.com/katomm)) in [#88](https://github.com/cardano-foundation/developer-portal/pull/88)
 - Hero Banner Updates and Docusarus Upgrade to Beta 3 by ([@Mercurial](https://github.com/Mercurial)) in [#89](https://github.com/cardano-foundation/developer-portal/pull/89)
 - Reduce the developer community links in the footer with its own page by ([@katomm](https://github.com/katomm)) in [#90](https://github.com/cardano-foundation/developer-portal/pull/90)
 - Revise funding category by ([@katomm](https://github.com/katomm)) in [#91](https://github.com/cardano-foundation/developer-portal/pull/91)
@@ -304,14 +306,8 @@ All of the merged PRs in August
 - quickfix typo by ([@dankoman30](https://github.com/dankoman30)) in [#262](https://github.com/cardano-foundation/developer-portal/pull/262)
 - fix repetition of 'the' by ([@6346563751](https://github.com/6346563751)) in [#263](https://github.com/cardano-foundation/developer-portal/pull/263)
 - removed unsigned_algorithms by ([@alexanderwatanabe](https://github.com/alexanderwatanabe)) in [#264](https://github.com/cardano-foundation/developer-portal/pull/264)
-- Fix typo in portal style guide by ([@bcbowen](https://github.com/bcbowen)) in [#269](https://github.com/cardano-foundation/developer-portal/pull/269)
-- Update testnet page (Alonzo) by ([@katomm](https://github.com/katomm)) in [#280](https://github.com/cardano-foundation/developer-portal/pull/280)
-- Merge PRs #258, #261, #262, #263, #264, #269, and #280 into main by ([@katomm](https://github.com/katomm)) in [#281](https://github.com/cardano-foundation/developer-portal/pull/281)
-- "Get Stared" typo fix by ([@chrisbbreuer](https://github.com/chrisbbreuer)) in [#270](https://github.com/cardano-foundation/developer-portal/pull/270)
-- Correct "Minting" Link  under Setup by ([@mikegcoleman](https://github.com/mikegcoleman)) in [#273](https://github.com/cardano-foundation/developer-portal/pull/273)
-- Add explorer link and made them both English by ([@mikegcoleman](https://github.com/mikegcoleman)) in [#276](https://github.com/cardano-foundation/developer-portal/pull/276)
 
-#### Committers: 24
+#### Committers: 21
 
 - PrinzMonty ([@PrinzMonty](https://github.com/PrinzMonty))
 - Tokhun ([@Tokhun](https://github.com/Tokhun))
@@ -335,9 +331,6 @@ All of the merged PRs in August
 - dankoman30 ([@dankoman30](https://github.com/dankoman30))
 - 6346563751 ([@6346563751](https://github.com/6346563751))
 - alexanderwatanabe ([@alexanderwatanabe](https://github.com/alexanderwatanabe))
-- bcbowen ([@bcbowen](https://github.com/bcbowen))
-- chrisbbreuer ([@chrisbbreuer](https://github.com/chrisbbreuer))
-- mikegcoleman ([@mikegcoleman](https://github.com/mikegcoleman))
 
 ## 2021.34.1 (2021-09-01)
 
@@ -346,6 +339,12 @@ All of the merged PRs in September
 #### :bug: PRs
 
 - `Developer Portal`
+- Fix typo in portal style guide by ([@bcbowen](https://github.com/bcbowen)) in [#269](https://github.com/cardano-foundation/developer-portal/pull/269)
+- Update testnet page (Alonzo) by ([@katomm](https://github.com/katomm)) in [#280](https://github.com/cardano-foundation/developer-portal/pull/280)
+- Merge PRs #258, #261, #262, #263, #264, #269, and #280 into main by ([@katomm](https://github.com/katomm)) in [#281](https://github.com/cardano-foundation/developer-portal/pull/281)
+- "Get Stared" typo fix by ([@chrisbbreuer](https://github.com/chrisbbreuer)) in [#270](https://github.com/cardano-foundation/developer-portal/pull/270)
+- Correct "Minting" Link  under Setup by ([@mikegcoleman](https://github.com/mikegcoleman)) in [#273](https://github.com/cardano-foundation/developer-portal/pull/273)
+- Add explorer link and made them both English by ([@mikegcoleman](https://github.com/mikegcoleman)) in [#276](https://github.com/cardano-foundation/developer-portal/pull/276)
 - Upgrade Docusaurus to v2.0.0 beta.6 by ([@katomm](https://github.com/katomm)) in [#282](https://github.com/cardano-foundation/developer-portal/pull/282)
 - set placeholder fee for fee-calculating transaction by ([@rphair](https://github.com/rphair)) in [#283](https://github.com/cardano-foundation/developer-portal/pull/283)
 - Add smart contract category by ([@katomm](https://github.com/katomm)) in [#284](https://github.com/cardano-foundation/developer-portal/pull/284)
@@ -363,10 +362,17 @@ All of the merged PRs in September
 - Use `HydraBuildList` to provide latest release binaries (with fallback) by ([@tweakch](https://github.com/tweakch)) in [#300](https://github.com/cardano-foundation/developer-portal/pull/300)
 - Bump prismjs from 1.24.1 to 1.25.0 by ([@dependabot](https://github.com/dependabot)) in [#311](https://github.com/cardano-foundation/developer-portal/pull/311)
 - fix broken faucet link by ([@vladanghene](https://github.com/vladanghene)) in [#312](https://github.com/cardano-foundation/developer-portal/pull/312)
+- minor bug by ([@gitmachtl](https://github.com/gitmachtl)) in [#314](https://github.com/cardano-foundation/developer-portal/pull/314)
+- Spotlight fixes by ([@katomm](https://github.com/katomm)) in [#315](https://github.com/cardano-foundation/developer-portal/pull/315)
+- Varia by ([@katomm](https://github.com/katomm)) in [#320](https://github.com/cardano-foundation/developer-portal/pull/320)
+- minor documentation tweaks on Ogmios. by ([@KtorZ](https://github.com/KtorZ)) in [#327](https://github.com/cardano-foundation/developer-portal/pull/327)
 
-#### Committers: 9
+#### Committers: 14
 
+- bcbowen ([@bcbowen](https://github.com/bcbowen))
 - katomm ([@katomm](https://github.com/katomm))
+- chrisbbreuer ([@chrisbbreuer](https://github.com/chrisbbreuer))
+- mikegcoleman ([@mikegcoleman](https://github.com/mikegcoleman))
 - rphair ([@rphair](https://github.com/rphair))
 - dependabot ([@dependabot](https://github.com/dependabot))
 - Rudigus ([@Rudigus](https://github.com/Rudigus))
@@ -375,6 +381,8 @@ All of the merged PRs in September
 - javierlabanca ([@javierlabanca](https://github.com/javierlabanca))
 - tweakch ([@tweakch](https://github.com/tweakch))
 - vladanghene ([@vladanghene](https://github.com/vladanghene))
+- gitmachtl ([@gitmachtl](https://github.com/gitmachtl))
+- KtorZ ([@KtorZ](https://github.com/KtorZ))
 
 ## 2021.38.1 (2021-10-01)
 
@@ -383,10 +391,6 @@ All of the merged PRs in October
 #### :bug: PRs
 
 - `Developer Portal`
-- minor bug by ([@gitmachtl](https://github.com/gitmachtl)) in [#314](https://github.com/cardano-foundation/developer-portal/pull/314)
-- Spotlight fixes by ([@katomm](https://github.com/katomm)) in [#315](https://github.com/cardano-foundation/developer-portal/pull/315)
-- Varia by ([@katomm](https://github.com/katomm)) in [#320](https://github.com/cardano-foundation/developer-portal/pull/320)
-- minor documentation tweaks on Ogmios. by ([@KtorZ](https://github.com/KtorZ)) in [#327](https://github.com/cardano-foundation/developer-portal/pull/327)
 - Fix small typos in minting.md by ([@Luxroy](https://github.com/Luxroy)) in [#334](https://github.com/cardano-foundation/developer-portal/pull/334)
 - Changed "10000 blocks" to "10000 slots" by ([@brouwerQ](https://github.com/brouwerQ)) in [#324](https://github.com/cardano-foundation/developer-portal/pull/324)
 - added cardano-tools.io by ([@wutzebaer](https://github.com/wutzebaer)) in [#277](https://github.com/cardano-foundation/developer-portal/pull/277)
@@ -408,12 +412,13 @@ All of the merged PRs in October
 - Update installing-cardano-wallet.md by ([@simonholmes001](https://github.com/simonholmes001)) in [#372](https://github.com/cardano-foundation/developer-portal/pull/372)
 - Stake Pool Course - Handbook - minor changes by ([@os11k](https://github.com/os11k)) in [#373](https://github.com/cardano-foundation/developer-portal/pull/373)
 - Showcase addition: Ansible cardano-node by ([@moaipool](https://github.com/moaipool)) in [#376](https://github.com/cardano-foundation/developer-portal/pull/376)
+- Update minting-nfts.md by ([@Couder82](https://github.com/Couder82)) in [#379](https://github.com/cardano-foundation/developer-portal/pull/379)
+- october spotlight article by ([@cislakk](https://github.com/cislakk)) in [#393](https://github.com/cardano-foundation/developer-portal/pull/393)
+- Turn "funding" into "governance category + bring CIPs in by ([@katomm](https://github.com/katomm)) in [#394](https://github.com/cardano-foundation/developer-portal/pull/394)
 
 #### Committers: 16
 
-- gitmachtl ([@gitmachtl](https://github.com/gitmachtl))
 - katomm ([@katomm](https://github.com/katomm))
-- KtorZ ([@KtorZ](https://github.com/KtorZ))
 - Luxroy ([@Luxroy](https://github.com/Luxroy))
 - brouwerQ ([@brouwerQ](https://github.com/brouwerQ))
 - wutzebaer ([@wutzebaer](https://github.com/wutzebaer))
@@ -427,6 +432,8 @@ All of the merged PRs in October
 - mik1893 ([@mik1893](https://github.com/mik1893))
 - simonholmes001 ([@simonholmes001](https://github.com/simonholmes001))
 - moaipool ([@moaipool](https://github.com/moaipool))
+- Couder82 ([@Couder82](https://github.com/Couder82))
+- cislakk ([@cislakk](https://github.com/cislakk))
 
 ## 2021.42.1 (2021-11-01)
 
@@ -435,9 +442,6 @@ All of the merged PRs in November
 #### :bug: PRs
 
 - `Developer Portal`
-- Update minting-nfts.md by ([@Couder82](https://github.com/Couder82)) in [#379](https://github.com/cardano-foundation/developer-portal/pull/379)
-- october spotlight article by ([@cislakk](https://github.com/cislakk)) in [#393](https://github.com/cardano-foundation/developer-portal/pull/393)
-- Turn "funding" into "governance category + bring CIPs in by ([@katomm](https://github.com/katomm)) in [#394](https://github.com/cardano-foundation/developer-portal/pull/394)
 - Update minting-nfts.md by ([@inspiraluna](https://github.com/inspiraluna)) in [#382](https://github.com/cardano-foundation/developer-portal/pull/382)
 - YouTube typo fixed by ([@Duzij](https://github.com/Duzij)) in [#391](https://github.com/cardano-foundation/developer-portal/pull/391)
 - Improve search config by ([@katomm](https://github.com/katomm)) in [#397](https://github.com/cardano-foundation/developer-portal/pull/397)
@@ -465,10 +469,8 @@ All of the merged PRs in November
 - Add weekly report by ([@katomm](https://github.com/katomm)) in [#425](https://github.com/cardano-foundation/developer-portal/pull/425)
 - Correcting minor typo by ([@brendonthiede](https://github.com/brendonthiede)) in [#427](https://github.com/cardano-foundation/developer-portal/pull/427)
 
-#### Committers: 18
+#### Committers: 16
 
-- Couder82 ([@Couder82](https://github.com/Couder82))
-- cislakk ([@cislakk](https://github.com/cislakk))
 - katomm ([@katomm](https://github.com/katomm))
 - inspiraluna ([@inspiraluna](https://github.com/inspiraluna))
 - Duzij ([@Duzij](https://github.com/Duzij))
@@ -485,7 +487,7 @@ All of the merged PRs in November
 - dependabot ([@dependabot](https://github.com/dependabot))
 - sanskys ([@sanskys](https://github.com/sanskys))
 - brendonthiede ([@brendonthiede](https://github.com/brendonthiede))
-## 2022.50.1 (2022-01-01)
+## 2021.46.1 (2021-12-01)
 
 All of the merged PRs in December
 
@@ -508,11 +510,8 @@ All of the merged PRs in December
 - Upgrade Docusaurus 2.0.0-beta.14 by ([@katomm](https://github.com/katomm)) in [#451](https://github.com/cardano-foundation/developer-portal/pull/451)
 - Add jq to the list of needed packages for CentOS by ([@morucci](https://github.com/morucci)) in [#452](https://github.com/cardano-foundation/developer-portal/pull/452)
 - Update weekly report, week ending xmas.  by ([@katomm](https://github.com/katomm)) in [#453](https://github.com/cardano-foundation/developer-portal/pull/453)
-- Added Catalyt Fund 6 results by ([@rcmorano](https://github.com/rcmorano)) in [#455](https://github.com/cardano-foundation/developer-portal/pull/455)
-- Updated cardano node installation for Mac/Mac M1 by ([@os11k](https://github.com/os11k)) in [#456](https://github.com/cardano-foundation/developer-portal/pull/456)
-- Add Rust Library autogenerated content script by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#459](https://github.com/cardano-foundation/developer-portal/pull/459)
 
-#### Committers: 11
+#### Committers: 10
 
 - honungsburk ([@honungsburk](https://github.com/honungsburk))
 - dynamicstrategies ([@dynamicstrategies](https://github.com/dynamicstrategies))
@@ -524,15 +523,17 @@ All of the merged PRs in December
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - cislakk ([@cislakk](https://github.com/cislakk))
 - morucci ([@morucci](https://github.com/morucci))
-- os11k ([@os11k](https://github.com/os11k))
 
-## 2022.54.1 (2022-02-01)
+## 2022.50.1 (2022-01-01)
 
 All of the merged PRs in January
 
 #### :bug: PRs
 
 - `Developer Portal`
+- Added Catalyt Fund 6 results by ([@rcmorano](https://github.com/rcmorano)) in [#455](https://github.com/cardano-foundation/developer-portal/pull/455)
+- Updated cardano node installation for Mac/Mac M1 by ([@os11k](https://github.com/os11k)) in [#456](https://github.com/cardano-foundation/developer-portal/pull/456)
+- Add Rust Library autogenerated content script by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#459](https://github.com/cardano-foundation/developer-portal/pull/459)
 - update application link for the third cohort by ([@benleelawrence](https://github.com/benleelawrence)) in [#461](https://github.com/cardano-foundation/developer-portal/pull/461)
 - use hex for asset names by ([@shawnim](https://github.com/shawnim)) in [#454](https://github.com/cardano-foundation/developer-portal/pull/454)
 - Use stack install command to install cardano-wallet by ([@morucci](https://github.com/morucci)) in [#460](https://github.com/cardano-foundation/developer-portal/pull/460)
@@ -564,6 +565,38 @@ All of the merged PRs in January
 - Small update on number of tokens left after burning by ([@pavlinyordanov](https://github.com/pavlinyordanov)) in [#497](https://github.com/cardano-foundation/developer-portal/pull/497)
 - Bump node-fetch from 2.6.6 to 2.6.7 by ([@dependabot](https://github.com/dependabot)) in [#498](https://github.com/cardano-foundation/developer-portal/pull/498)
 - Update weekly report, week ending January 28th by ([@katomm](https://github.com/katomm)) in [#499](https://github.com/cardano-foundation/developer-portal/pull/499)
+
+#### Committers: 21
+
+- rcmorano ([@rcmorano](https://github.com/rcmorano))
+- benleelawrence ([@benleelawrence](https://github.com/benleelawrence))
+- shawnim ([@shawnim](https://github.com/shawnim))
+- morucci ([@morucci](https://github.com/morucci))
+- katomm ([@katomm](https://github.com/katomm))
+- nemo83 ([@nemo83](https://github.com/nemo83))
+- Flavien ([@Flavien](https://github.com/Flavien))
+- sanskys ([@sanskys](https://github.com/sanskys))
+- mmahut ([@mmahut](https://github.com/mmahut))
+- Couder82 ([@Couder82](https://github.com/Couder82))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- javidigani ([@javidigani](https://github.com/javidigani))
+- dependabot ([@dependabot](https://github.com/dependabot))
+- rdlrt ([@rdlrt](https://github.com/rdlrt))
+- HarmonicPool ([@HarmonicPool](https://github.com/HarmonicPool))
+- orpheus ([@orpheus](https://github.com/orpheus))
+- mcvetyty ([@mcvetyty](https://github.com/mcvetyty))
+- deibid ([@deibid](https://github.com/deibid))
+- cardahub ([@cardahub](https://github.com/cardahub))
+- pavlinyordanov ([@pavlinyordanov](https://github.com/pavlinyordanov))
+- os11k ([@os11k](https://github.com/os11k))
+
+## 2022.54.1 (2022-02-01)
+
+All of the merged PRs in February
+
+#### :bug: PRs
+
+- `Developer Portal`
 - Bump simple-get from 4.0.0 to 4.0.1 by ([@dependabot](https://github.com/dependabot)) in [#500](https://github.com/cardano-foundation/developer-portal/pull/500)
 - Fixing IFPS typos by ([@plauche](https://github.com/plauche)) in [#501](https://github.com/cardano-foundation/developer-portal/pull/501)
 - update number of wallets by ([@robinboening](https://github.com/robinboening)) in [#477](https://github.com/cardano-foundation/developer-portal/pull/477)
@@ -587,36 +620,18 @@ All of the merged PRs in January
 - Update ansible-cardano-node.md by ([@moaipool](https://github.com/moaipool)) in [#525](https://github.com/cardano-foundation/developer-portal/pull/525)
 - Update weekly report, week ending February 11th and 18th by ([@katomm](https://github.com/katomm)) in [#526](https://github.com/cardano-foundation/developer-portal/pull/526)
 
-#### Committers: 28
+#### Committers: 10
 
-- benleelawrence ([@benleelawrence](https://github.com/benleelawrence))
-- shawnim ([@shawnim](https://github.com/shawnim))
-- morucci ([@morucci](https://github.com/morucci))
-- katomm ([@katomm](https://github.com/katomm))
-- nemo83 ([@nemo83](https://github.com/nemo83))
-- Flavien ([@Flavien](https://github.com/Flavien))
-- sanskys ([@sanskys](https://github.com/sanskys))
-- mmahut ([@mmahut](https://github.com/mmahut))
-- Couder82 ([@Couder82](https://github.com/Couder82))
-- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
-- javidigani ([@javidigani](https://github.com/javidigani))
 - dependabot ([@dependabot](https://github.com/dependabot))
-- rdlrt ([@rdlrt](https://github.com/rdlrt))
-- HarmonicPool ([@HarmonicPool](https://github.com/HarmonicPool))
-- orpheus ([@orpheus](https://github.com/orpheus))
-- mcvetyty ([@mcvetyty](https://github.com/mcvetyty))
-- deibid ([@deibid](https://github.com/deibid))
-- cardahub ([@cardahub](https://github.com/cardahub))
-- pavlinyordanov ([@pavlinyordanov](https://github.com/pavlinyordanov))
-- plauche ([@plauche](https://github.com/plauche))
-- robinboening ([@robinboening](https://github.com/robinboening))
-- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
-- cffls ([@cffls](https://github.com/cffls))
-- DenDev ([@DenDev](https://github.com/DenDev))
-- ofirgeller ([@ofirgeller](https://github.com/ofirgeller))
-- os11k ([@os11k](https://github.com/os11k))
-- shelley ([@shelley](https://github.com/shelley))
-- moaipool ([@moaipool](https://github.com/moaipool))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- dalvaren ([@dalvaren](https://github.com/dalvaren))
+- D3vJohn ([@D3vJohn](https://github.com/D3vJohn))
+- BharatAtEMURGOIO ([@BharatAtEMURGOIO](https://github.com/BharatAtEMURGOIO))
+- sanskys ([@sanskys](https://github.com/sanskys))
+- Habacef ([@Habacef](https://github.com/Habacef))
+- Godspeed ([@Godspeed](https://github.com/Godspeed))
+- katomm ([@katomm](https://github.com/katomm))
+- dynamicstrategies ([@dynamicstrategies](https://github.com/dynamicstrategies))
 
 ## 2022.58.1 (2022-03-01)
 
@@ -752,8 +767,11 @@ All of the merged PRs in May
 - Build out the "how to contribute"-page by ([@katomm](https://github.com/katomm)) in [#644](https://github.com/cardano-foundation/developer-portal/pull/644)
 - golang cardano serialisation library by ([@matiwinnetou](https://github.com/matiwinnetou)) in [#646](https://github.com/cardano-foundation/developer-portal/pull/646)
 - Fix broken link to Testnet Faucet by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#634](https://github.com/cardano-foundation/developer-portal/pull/634)
+- Add Milkomeda interview into Dev Blog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#648](https://github.com/cardano-foundation/developer-portal/pull/648)
+- Modify contribute button href to relative path by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#649](https://github.com/cardano-foundation/developer-portal/pull/649)
+- fix typo in Cardano Wall by ([@lodl](https://github.com/lodl)) in [#650](https://github.com/cardano-foundation/developer-portal/pull/650)
 
-#### Committers: 11
+#### Committers: 12
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - dependabot ([@dependabot](https://github.com/dependabot))
@@ -766,6 +784,7 @@ All of the merged PRs in May
 - javiertc ([@javiertc](https://github.com/javiertc))
 - KtorZ ([@KtorZ](https://github.com/KtorZ))
 - matiwinnetou ([@matiwinnetou](https://github.com/matiwinnetou))
+- lodl ([@lodl](https://github.com/lodl))
 
 ## 2022.72.1 (2022-06-01)
 
@@ -798,9 +817,6 @@ All of the merged PRs in July
 #### :bug: PRs
 
 - `Developer Portal`
-- Add Milkomeda interview into Dev Blog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#648](https://github.com/cardano-foundation/developer-portal/pull/648)
-- Modify contribute button href to relative path by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#649](https://github.com/cardano-foundation/developer-portal/pull/649)
-- fix typo in Cardano Wall by ([@lodl](https://github.com/lodl)) in [#650](https://github.com/cardano-foundation/developer-portal/pull/650)
 - Update docusaurus.config.js by ([@sanskys](https://github.com/sanskys)) in [#658](https://github.com/cardano-foundation/developer-portal/pull/658)
 - Added cscli to builder tools with new 'CLI' tag and corresponding getting started docs by ([@safestak](https://github.com/safestak))-keith in [#664](https://github.com/cardano-foundation/developer-portal/pull/664)
 - new pages: Air Gap Environment, Secure Transaction Workflow by ([@rphair](https://github.com/rphair)) in [#665](https://github.com/cardano-foundation/developer-portal/pull/665)
@@ -838,19 +854,10 @@ All of the merged PRs in July
 - Fix broken links for Jobs at dcSpark and EMURGO by ([@thenic95](https://github.com/thenic95)) in [#708](https://github.com/cardano-foundation/developer-portal/pull/708)
 - Fix broken code consoles in CSCLI markdown file by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#712](https://github.com/cardano-foundation/developer-portal/pull/712)
 - Revert "CVM - Cardano Version Manager :)" by ([@katomm](https://github.com/katomm)) in [#715](https://github.com/cardano-foundation/developer-portal/pull/715)
-- Move CVM from showcase to builder tools by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#716](https://github.com/cardano-foundation/developer-portal/pull/716)
-- Revert "Move CVM from showcase to builder tools" by ([@katomm](https://github.com/katomm)) in [#721](https://github.com/cardano-foundation/developer-portal/pull/721)
-- Remove broken links and references to projects that have been abandoned (KEVM, IELE, GLOW) by ([@thenic95](https://github.com/thenic95)) in [#722](https://github.com/cardano-foundation/developer-portal/pull/722)
-- Update Docusaurus to 2.0.1 by ([@katomm](https://github.com/katomm)) in [#718](https://github.com/cardano-foundation/developer-portal/pull/718)
-- restore original announcement bar (revert #704) by ([@rphair](https://github.com/rphair)) in [#717](https://github.com/cardano-foundation/developer-portal/pull/717)
-- Optimize showcase images that were partly several MB in size by ([@katomm](https://github.com/katomm)) in [#720](https://github.com/cardano-foundation/developer-portal/pull/720)
-- Add dapps-on-cardano showcase by ([@katomm](https://github.com/katomm)) in [#719](https://github.com/cardano-foundation/developer-portal/pull/719)
-- Remove coming soon pages and update the sidebar (revert #658) by ([@katomm](https://github.com/katomm)) in [#723](https://github.com/cardano-foundation/developer-portal/pull/723)
 
-#### Committers: 18
+#### Committers: 17
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
-- lodl ([@lodl](https://github.com/lodl))
 - Sanskys ([@Sanskys](https://github.com/Sanskys))
 - safestak ([@safestak](https://github.com/safestak))
 - rphair ([@rphair](https://github.com/rphair))
@@ -875,7 +882,14 @@ All of the merged PRs in August
 #### :bug: PRs
 
 - `Developer Portal`
-
+- Move CVM from showcase to builder tools by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#716](https://github.com/cardano-foundation/developer-portal/pull/716)
+- Revert "Move CVM from showcase to builder tools" by ([@katomm](https://github.com/katomm)) in [#721](https://github.com/cardano-foundation/developer-portal/pull/721)
+- Remove broken links and references to projects that have been abandoned (KEVM, IELE, GLOW) by ([@thenic95](https://github.com/thenic95)) in [#722](https://github.com/cardano-foundation/developer-portal/pull/722)
+- Update Docusaurus to 2.0.1 by ([@katomm](https://github.com/katomm)) in [#718](https://github.com/cardano-foundation/developer-portal/pull/718)
+- restore original announcement bar (revert #704) by ([@rphair](https://github.com/rphair)) in [#717](https://github.com/cardano-foundation/developer-portal/pull/717)
+- Optimize showcase images that were partly several MB in size by ([@katomm](https://github.com/katomm)) in [#720](https://github.com/cardano-foundation/developer-portal/pull/720)
+- Add dapps-on-cardano showcase by ([@katomm](https://github.com/katomm)) in [#719](https://github.com/cardano-foundation/developer-portal/pull/719)
+- Remove coming soon pages and update the sidebar (revert #658) by ([@katomm](https://github.com/katomm)) in [#723](https://github.com/cardano-foundation/developer-portal/pull/723)
 - Modify broken link by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#696](https://github.com/cardano-foundation/developer-portal/pull/696)
 - Update weekly report 08.03 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#724](https://github.com/cardano-foundation/developer-portal/pull/724)
 - Fix broken links and one typo in the Plutus section by ([@thenic95](https://github.com/thenic95)) in [#728](https://github.com/cardano-foundation/developer-portal/pull/728)
@@ -889,6 +903,26 @@ All of the merged PRs in August
 - Update kes_period.md by ([@CarlosLopezDeLara](https://github.com/CarlosLopezDeLara)) in [#747](https://github.com/cardano-foundation/developer-portal/pull/747)
 - [Typo] [minting.md] "Amout" -> "Amount" by ([@sourabhxyz](https://github.com/sourabhxyz)) in [#743](https://github.com/cardano-foundation/developer-portal/pull/743)
 - Add new filter to check latest showcases and builder tools  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#749](https://github.com/cardano-foundation/developer-portal/pull/749)
+
+#### Committers: 9
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- rphair ([@rphair](https://github.com/rphair))
+- nilscodes ([@nilscodes](https://github.com/nilscodes))
+- CarlosLopezDeLara ([@CarlosLopezDeLara](https://github.com/CarlosLopezDeLara))
+- KtorZ ([@KtorZ](https://github.com/KtorZ))
+- sourabhxyz ([@sourabhxyz](https://github.com/sourabhxyz))
+- klntsky ([@klntsky](https://github.com/klntsky))
+
+## 2022.84.1 (2022-09-01)
+
+All of the merged PRs in Septemeber
+
+#### :bug: PRs
+
+- `Developer Portal`
 - Add cardano-transaction-lib by ([@klntsky](https://github.com/klntsky)) in [#750](https://github.com/cardano-foundation/developer-portal/pull/750)
 - Update Weekly Report 31.08 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#752](https://github.com/cardano-foundation/developer-portal/pull/752)
 - Addition of HeliosLang by ([@christianschmitz](https://github.com/christianschmitz)) in [#755](https://github.com/cardano-foundation/developer-portal/pull/755)
@@ -905,14 +939,13 @@ All of the merged PRs in August
 - Add Book Token showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#725](https://github.com/cardano-foundation/developer-portal/pull/725)
 - Fix cardano-node build instructions on recent MacOS M1 by ([@KtorZ](https://github.com/KtorZ)) in [#769](https://github.com/cardano-foundation/developer-portal/pull/769)
 
-#### Committers: 9
+#### Committers: 8
 
+- klntsky ([@klntsky](https://github.com/klntsky))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - katomm ([@katomm](https://github.com/katomm))
-- thenic95 ([@thenic95](https://github.com/thenic95))
-- rphair ([@rphair](https://github.com/rphair))
-- nilscodes ([@nilscodes](https://github.com/@nilscodes))
-- CarlosLopezDeLara ([@CarlosLopezDeLara](https://github.com/CarlosLopezDeLara))
+- christianschmitz ([@christianschmitz](https://github.com/christianschmitz))
+- HT ([@HT](https://github.com/HT))
+- rvcas ([@rvcas](https://github.com/rvcas))
+- minolinpwork ([@minolinpwork](https://github.com/minolinpwork))
 - KtorZ ([@KtorZ](https://github.com/KtorZ))
-- sourabhxyz ([@sourabhxyz](https://github.com/sourabhxyz))
-- klntsky ([@klntsky](https://github.com/klntsky))
