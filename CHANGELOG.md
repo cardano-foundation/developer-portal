@@ -3,9 +3,9 @@
 
 All of the merged PRs in February
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Cleaned up. by ([@katomm](https://github.com/katomm)) in [#1](https://github.com/cardano-foundation/developer-portal/pull/1)
 - Design by ([@katomm](https://github.com/katomm)) in [#2](https://github.com/cardano-foundation/developer-portal/pull/2)
 - Varia by ([@katomm](https://github.com/katomm)) in [#3](https://github.com/cardano-foundation/developer-portal/pull/3)
@@ -21,9 +21,9 @@ All of the merged PRs in February
 
 All of the merged PRs in March
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Designpatch by ([@katomm](https://github.com/katomm)) in [#7](https://github.com/cardano-foundation/developer-portal/pull/7)
 - Design by ([@katomm](https://github.com/katomm)) in [#8](https://github.com/cardano-foundation/developer-portal/pull/8)
 - Update design and add few content examples by ([@katomm](https://github.com/katomm)) in [#9](https://github.com/cardano-foundation/developer-portal/pull/9)
@@ -47,9 +47,9 @@ All of the merged PRs in March
 
 All of the merged PRs in April
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Content by ([@katomm](https://github.com/katomm)) in [#20](https://github.com/cardano-foundation/developer-portal/pull/20)
 - Create LICENSE by ([@katomm](https://github.com/katomm)) in [#21](https://github.com/cardano-foundation/developer-portal/pull/21)
 - Update README and "how to contribute"-article by ([@katomm](https://github.com/katomm)) in [#22](https://github.com/cardano-foundation/developer-portal/pull/22)
@@ -83,9 +83,9 @@ All of the merged PRs in April
 
 All of the merged PRs in May
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Update Project Funding and Cardano Token Registry Sections by ([@Nazeim](https://github.com/Nazeim)) in [#46](https://github.com/cardano-foundation/developer-portal/pull/46)
 - Code style by ([@katomm](https://github.com/katomm)) in [#47](https://github.com/cardano-foundation/developer-portal/pull/47)
 - Introduce category/tag feature in showcase section by ([@katomm](https://github.com/katomm)) in [#48](https://github.com/cardano-foundation/developer-portal/pull/48)
@@ -114,9 +114,9 @@ All of the merged PRs in May
 
 All of the merged PRs in June
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Marketing a stake pool by ([@Nazeim](https://github.com/Nazeim)) in [#63](https://github.com/cardano-foundation/developer-portal/pull/63)
 - Fix for Ogmios new GitHub organization by ([@katomm](https://github.com/katomm)) in [#64](https://github.com/cardano-foundation/developer-portal/pull/64)
 - Add new Cardano branded assets by ([@katomm](https://github.com/katomm)) in [#65](https://github.com/cardano-foundation/developer-portal/pull/65)
@@ -152,9 +152,9 @@ All of the merged PRs in June
 
 All of the merged PRs in July
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Revise Cardano Token Registry by ([@katomm](https://github.com/katomm)) in [#88](https://github.com/cardano-foundation/developer-portal/pull/88)
 - Hero Banner Updates and Docusarus Upgrade to Beta 3 by ([@Mercurial](https://github.com/Mercurial)) in [#89](https://github.com/cardano-foundation/developer-portal/pull/89)
 - Reduce the developer community links in the footer with its own page by ([@katomm](https://github.com/katomm)) in [#90](https://github.com/cardano-foundation/developer-portal/pull/90)
@@ -266,9 +266,9 @@ All of the merged PRs in July
 
 All of the merged PRs in August
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Add Pigy Token to the Showcase by ([@PrinzMonty](https://github.com/PrinzMonty)) in [#128](https://github.com/cardano-foundation/developer-portal/pull/128)
 - Add tokhun.io project by ([@Tokhun](https://github.com/Tokhun)) in [#205](https://github.com/cardano-foundation/developer-portal/pull/205)
 - Merge PR #128 and #205 into main by ([@katomm](https://github.com/katomm)) in [#207](https://github.com/cardano-foundation/developer-portal/pull/207)
@@ -336,9 +336,9 @@ All of the merged PRs in August
 
 All of the merged PRs in September
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Fix typo in portal style guide by ([@bcbowen](https://github.com/bcbowen)) in [#269](https://github.com/cardano-foundation/developer-portal/pull/269)
 - Update testnet page (Alonzo) by ([@katomm](https://github.com/katomm)) in [#280](https://github.com/cardano-foundation/developer-portal/pull/280)
 - Merge PRs #258, #261, #262, #263, #264, #269, and #280 into main by ([@katomm](https://github.com/katomm)) in [#281](https://github.com/cardano-foundation/developer-portal/pull/281)
@@ -388,9 +388,9 @@ All of the merged PRs in September
 
 All of the merged PRs in October
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Fix small typos in minting.md by ([@Luxroy](https://github.com/Luxroy)) in [#334](https://github.com/cardano-foundation/developer-portal/pull/334)
 - Changed "10000 blocks" to "10000 slots" by ([@brouwerQ](https://github.com/brouwerQ)) in [#324](https://github.com/cardano-foundation/developer-portal/pull/324)
 - added cardano-tools.io by ([@wutzebaer](https://github.com/wutzebaer)) in [#277](https://github.com/cardano-foundation/developer-portal/pull/277)
@@ -439,9 +439,9 @@ All of the merged PRs in October
 
 All of the merged PRs in November
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Update minting-nfts.md by ([@inspiraluna](https://github.com/inspiraluna)) in [#382](https://github.com/cardano-foundation/developer-portal/pull/382)
 - YouTube typo fixed by ([@Duzij](https://github.com/Duzij)) in [#391](https://github.com/cardano-foundation/developer-portal/pull/391)
 - Improve search config by ([@katomm](https://github.com/katomm)) in [#397](https://github.com/cardano-foundation/developer-portal/pull/397)
@@ -491,9 +491,9 @@ All of the merged PRs in November
 
 All of the merged PRs in December
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Explain base16 encoding of token names by ([@honungsburk](https://github.com/honungsburk)) in [#428](https://github.com/cardano-foundation/developer-portal/pull/428)
 - Adding Staking Rewards Calculator to the Showcases by ([@dynamicstrategies](https://github.com/dynamicstrategies)) in [#432](https://github.com/cardano-foundation/developer-portal/pull/432)
 - Update weekly report, week ending December 3rd by ([@katomm](https://github.com/katomm)) in [#433](https://github.com/cardano-foundation/developer-portal/pull/433)
@@ -528,9 +528,9 @@ All of the merged PRs in December
 
 All of the merged PRs in January
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Added Catalyt Fund 6 results by ([@rcmorano](https://github.com/rcmorano)) in [#455](https://github.com/cardano-foundation/developer-portal/pull/455)
 - Updated cardano node installation for Mac/Mac M1 by ([@os11k](https://github.com/os11k)) in [#456](https://github.com/cardano-foundation/developer-portal/pull/456)
 - Add Rust Library autogenerated content script by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#459](https://github.com/cardano-foundation/developer-portal/pull/459)
@@ -594,9 +594,9 @@ All of the merged PRs in January
 
 All of the merged PRs in February
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Bump simple-get from 4.0.0 to 4.0.1 by ([@dependabot](https://github.com/dependabot)) in [#500](https://github.com/cardano-foundation/developer-portal/pull/500)
 - Fixing IFPS typos by ([@plauche](https://github.com/plauche)) in [#501](https://github.com/cardano-foundation/developer-portal/pull/501)
 - update number of wallets by ([@robinboening](https://github.com/robinboening)) in [#477](https://github.com/cardano-foundation/developer-portal/pull/477)
@@ -637,9 +637,9 @@ All of the merged PRs in February
 
 All of the merged PRs in March
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Adding MermADA Minting by ([@MermADA](https://github.com/MermADA)) in [#527](https://github.com/cardano-foundation/developer-portal/pull/527)
 - Bump prismjs from 1.25.0 to 1.27.0 by ([@dependabot](https://github.com/dependabot)) in [#529](https://github.com/cardano-foundation/developer-portal/pull/529)
 - Update listening-for-payments-cli.md by ([@jirihofman](https://github.com/jirihofman)) in [#531](https://github.com/cardano-foundation/developer-portal/pull/531)
@@ -685,9 +685,9 @@ All of the merged PRs in March
 
 All of the merged PRs in April
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - documented a Create React App example under Serialization-Lib section in Get Started by ([@dynamicstrategies](https://github.com/dynamicstrategies)) in [#566](https://github.com/cardano-foundation/developer-portal/pull/566)
 - Bump minimist from 1.2.5 to 1.2.6 by ([@dependabot](https://github.com/dependabot)) in [#568](https://github.com/cardano-foundation/developer-portal/pull/568)
 - commit march spotlight article by ([@cislakk](https://github.com/cislakk)) in [#569](https://github.com/cardano-foundation/developer-portal/pull/569)
@@ -736,9 +736,9 @@ All of the merged PRs in April
 
 All of the merged PRs in May
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Bump async from 2.6.3 to 2.6.4 by ([@dependabot](https://github.com/dependabot)) in [#603](https://github.com/cardano-foundation/developer-portal/pull/603)
 - Replace outdated website link on Crypto Knitties showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#604](https://github.com/cardano-foundation/developer-portal/pull/604)
 - cSnapshots Developer tool  by ([@stakepool247](https://github.com/stakepool247)) in [#605](https://github.com/cardano-foundation/developer-portal/pull/605)
@@ -790,9 +790,9 @@ All of the merged PRs in May
 
 All of the merged PRs in June
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Add testnet explorer by ([@cardanians](https://github.com/cardanians)) in [#671](https://github.com/cardano-foundation/developer-portal/pull/671)
 - Bump sharp from 0.30.3 to 0.30.6 by ([@dependabot](https://github.com/dependabot)) in [#652](https://github.com/cardano-foundation/developer-portal/pull/652)
 - Update register-stake-keys.md by ([@adrabenche](https://github.com/adrabenche)) in [#662](https://github.com/cardano-foundation/developer-portal/pull/662)
@@ -814,9 +814,9 @@ All of the merged PRs in June
 
 All of the merged PRs in July
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Update docusaurus.config.js by ([@sanskys](https://github.com/sanskys)) in [#658](https://github.com/cardano-foundation/developer-portal/pull/658)
 - Added cscli to builder tools with new 'CLI' tag and corresponding getting started docs by ([@safestak](https://github.com/safestak))-keith in [#664](https://github.com/cardano-foundation/developer-portal/pull/664)
 - new pages: Air Gap Environment, Secure Transaction Workflow by ([@rphair](https://github.com/rphair)) in [#665](https://github.com/cardano-foundation/developer-portal/pull/665)
@@ -879,9 +879,9 @@ All of the merged PRs in July
 
 All of the merged PRs in August
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Move CVM from showcase to builder tools by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#716](https://github.com/cardano-foundation/developer-portal/pull/716)
 - Revert "Move CVM from showcase to builder tools" by ([@katomm](https://github.com/katomm)) in [#721](https://github.com/cardano-foundation/developer-portal/pull/721)
 - Remove broken links and references to projects that have been abandoned (KEVM, IELE, GLOW) by ([@thenic95](https://github.com/thenic95)) in [#722](https://github.com/cardano-foundation/developer-portal/pull/722)
@@ -920,9 +920,9 @@ All of the merged PRs in August
 
 All of the merged PRs in Septemeber
 
-#### :bug: PRs
+#### PRs
 
-- `Developer Portal`
+
 - Add cardano-transaction-lib by ([@klntsky](https://github.com/klntsky)) in [#750](https://github.com/cardano-foundation/developer-portal/pull/750)
 - Update Weekly Report 31.08 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#752](https://github.com/cardano-foundation/developer-portal/pull/752)
 - Addition of HeliosLang by ([@christianschmitz](https://github.com/christianschmitz)) in [#755](https://github.com/cardano-foundation/developer-portal/pull/755)
