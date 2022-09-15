@@ -237,55 +237,6 @@ module.exports = {
         },
       },
     ],
-    // [
-    //   'content-docs',
-    //   /** @type {import('@docusaurus/plugin-content-docs').Options} */
-    //   ({
-    //     id: 'community',
-    //     path: 'community',
-    //     routeBasePath: 'community',
-    //     editUrl: ({locale, versionDocsDirPath, docPath}) => {
-    //       if (locale !== 'en') {
-    //         return `https://crowdin.com/project/docusaurus-v2/${locale}`;
-    //       }
-    //       return `https://github.com/facebook/docusaurus/edit/main/website/${versionDocsDirPath}/${docPath}`;
-    //     },
-    //     remarkPlugins: [npm2yarn],
-    //     editCurrentVersion: true,
-    //     sidebarPath: require.resolve('./sidebarsCommunity.js'),
-    //     showLastUpdateAuthor: true,
-    //     showLastUpdateTime: true,
-    //   }),
-    // ],
-    // [
-    //   'client-redirects',
-    //   /** @type {import('@docusaurus/plugin-client-redirects').Options} */
-    //   ({
-    //     fromExtensions: ['html'],
-    //     createRedirects(routePath) {
-    //       // Redirect to /docs from /docs/introduction, as introduction has been
-    //       // made the home doc
-    //       if (allDocHomesPaths.includes(routePath)) {
-    //         return [`${routePath}/introduction`];
-    //       }
-    //       return [];
-    //     },
-    //     redirects: [
-    //       {
-    //         from: ['/docs/support', '/docs/next/support'],
-    //         to: '/community/support',
-    //       },
-    //       {
-    //         from: ['/docs/team', '/docs/next/team'],
-    //         to: '/community/team',
-    //       },
-    //       {
-    //         from: ['/docs/resources', '/docs/next/resources'],
-    //         to: '/community/resources',
-    //       },
-    //     ],
-    //   }),
-    // ],
   ],
   
   presets: [
