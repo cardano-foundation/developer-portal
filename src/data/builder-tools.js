@@ -28,14 +28,6 @@ export const Tags = {
     color: '#e9669e',
   },
 
-  // API
-  api: {
-    label: "API",
-    description: "Cardano API.",
-    icon: null,
-    color: '#39ca30',
-  },
-
   // Chain Index
   chainindex: {
     label: "Chain Index",
@@ -50,20 +42,12 @@ export const Tags = {
     label: "CLI",
     description: "Command-line interface tools",
     icon: null,
-    color: '#fce300',
-  },
-
-  // For builder tools with a get started tag, a link to the get started page is required.
-  getstarted: {
-    label: "Get Started",
-    description: "This builder tool has a get started page in the developer portal.",
-    icon: null,
-    color: '#dfd545',
+    color: '#921f32',
   },
 
   // Golang
   golang: {
-    label: "golang",
+    label: "Go",
     description:
       "Go language",
     icon: null,
@@ -86,7 +70,7 @@ export const Tags = {
       "Java language",
     icon: null,
     color: '#d5232d',
-    },
+  },
 
   // JavaScript
   javascript: {
@@ -94,16 +78,7 @@ export const Tags = {
     description:
       "JavaScript language",
     icon: null,
-    color: '#921f32',
-    },
-
-  // Library
-  library: {
-    label: "Library",
-    description:
-      "Cardano library.",
-    icon: null,
-    color: '#a44fb7',
+    color: '#fce300',
   },
 
    // Marlowe
@@ -183,6 +158,118 @@ export const Tags = {
     icon: null,
     color: '#0F9D58',
   },
+
+  // WebSocket
+  websocket: {
+    label: "WebSocket",
+    description:
+      "API w/ WebSocket",
+    icon: null,
+    color: "#1DB7ff"
+  },
+
+  // HTTP
+  http: {
+    label: "HTTP",
+    description:
+      "API w/ HTTP",
+    icon: null,
+    color: "#7F8C8D"
+  },
+
+  // JSON
+  json: {
+    label: "JSON",
+    description:
+      "JSON data format",
+    icon: null,
+    color: "#FCE300"
+  },
+
+  // Haskell
+  haskell: {
+    label: "Haskell",
+    description:
+      "Haskell language",
+    icon: null,
+    color: "#5F5287"
+  },
+
+  // TypeScript
+  typescript: {
+    label: "TypeScript",
+    description:
+      "TypeScript language",
+    icon: null,
+    color: "#2D79C7"
+  },
+
+  // Wallet
+  wallet: {
+    label: "Wallet",
+    description:
+      "Wallet integrations or implementations",
+    icon: null,
+    color: "#E1B12c"
+  },
+
+  // Serialization
+  serialization: {
+    label: "Serialization",
+    description:
+      "Binary serialization / deserialization",
+    icon: null,
+    color: "#D6A2E8"
+  },
+
+  // SDK
+  sdk: {
+    label: "SDK",
+    description:
+      "Software Development Kit",
+    icon: null,
+    color: "#B33771"
+  },
+
+  // Redis
+  redis: {
+    label: "Redis",
+    description: "Redis",
+    icon: null,
+    color: "#FD7272"
+  },
+
+  // SQL
+  sql: {
+    label: "SQL",
+    description: "SQL database (MySQL, PostgreSQL, SQLite...)",
+    icon: null,
+    color: "#FD7272"
+  },
+
+  // Low-Level
+  lowlevel: {
+    label: "Low-Level",
+    description: "Low-level utility",
+    icon: null,
+    color: "#2C3A47"
+  },
+
+  // Testing
+  testing: {
+    label: "Testing",
+    description: "Testing / Quality Assurance tool",
+    icon: null,
+    color: "#B8E994"
+  },
+
+  // Hosted
+  hosted: {
+    label: "Hosted Service",
+    description: "Hosted / 3rd-party service",
+    icon: null,
+    color: "#4a69BD"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -194,7 +281,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-cli.png"),
     website: "https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli",
     getstarted: null,
-    tags: ["favorite", "cli"]
+    tags: ["favorite", "cli", "serialization"]
   },
   {
     title: "bech32",
@@ -202,7 +289,7 @@ export const Showcases = [
     preview: require("./builder-tools/bech32.png"),
     website: "https://github.com/input-output-hk/bech32/#readme",
     getstarted: null,
-    tags: ["cli"]
+    tags: ["cli", "serialization"]
   },
   {
     title: "cardano-wallet",
@@ -210,7 +297,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-wallet.png"),
     website: "https://github.com/input-output-hk/cardano-wallet/#overview",
     getstarted: "https://input-output-hk.github.io/cardano-wallet/",
-    tags: ["getstarted", "api"]
+    tags: ["http", "json", "wallet"]
   },
   {
     title: "cardano-graphql",
@@ -218,7 +305,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-graphql.png"),
     website: "https://github.com/input-output-hk/cardano-graphql/#overview",
     getstarted: "https://github.com/input-output-hk/cardano-graphql#getting-started",
-    tags: ["getstarted", "chainindex", "api"]
+    tags: ["chainindex", "http"]
   },
   {
     title: "cardano-rosetta",
@@ -226,7 +313,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-rosetta.png"),
     website: "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
     getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
-    tags: ["getstarted", "api"]
+    tags: ["http", "json"]
   },
   {
     title: "cardano-db-sync",
@@ -234,7 +321,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-db-sync.png"),
     website: "https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync",
     getstarted: null,
-    tags: ["chainindex"]
+    tags: ["chainindex", "sql"]
   },
   {
     title: "cardano-addresses",
@@ -242,7 +329,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-addresses.png"),
     website: "https://github.com/input-output-hk/cardano-addresses#overview",
     getstarted: "https://github.com/input-output-hk/cardano-addresses#command-line",
-    tags: ["getstarted", "cli", "library"]
+    tags: ["cli", "haskell", "serialization"]
   },
   {
     title: "Blockfrost",
@@ -250,7 +337,7 @@ export const Showcases = [
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
     getstarted: "/docs/get-started/blockfrost",
-    tags: ["favorite", "getstarted", "api"],
+    tags: ["favorite", "http", "json", "hosted"],
   },
   {
     title: "Cardano Serialization Library",
@@ -259,7 +346,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
     getstarted: "/docs/get-started/cardano-serialization-lib/overview",
-    tags: ["getstarted", "library", "rust"],
+    tags: ["serialization", "rust"],
   },
   {
     title: "Cardano Transaction Library",
@@ -267,7 +354,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-transaction-lib.png"),
     website: "https://github.com/Plutonomicon/cardano-transaction-lib/",
     getstarted: "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
-    tags: ["purescript", "javascript", "getstarted", "library"]
+    tags: ["purescript", "sdk", "plutus"]
   },
   {
     title: "cardanocli-js",
@@ -275,7 +362,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardanocli-js.png"),
     website: "https://github.com/Berry-Pool/cardanocli-js",
     getstarted: "/docs/get-started/cardanocli-js",
-    tags: ["getstarted", "library"],
+    tags: ["javascript", "sdk"],
   },
   {
     title: "Dandelion APIs",
@@ -284,7 +371,7 @@ export const Showcases = [
     preview: require("./builder-tools/dandelion-apis.png"),
     website: "https://gimbalabs.com/dandelion",
     getstarted: "/docs/get-started/dandelion-apis",
-    tags: ["getstarted", "api"],
+    tags: ["http", "websocket", "json", "hosted"],
   },
   {
     title: "Ogmios",
@@ -292,7 +379,7 @@ export const Showcases = [
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
-    tags: ["favorite", "getstarted", "library"],
+    tags: ["favorite", "websocket", "json", "lowlevel"],
   },
   {
     title: "Cardano Client Library",
@@ -301,7 +388,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-client-lib.png"),
     website: "https://github.com/bloxbean/cardano-client-lib",
     getstarted: null,
-    tags: ["library", "java"],
+    tags: ["java", "sdk"],
   },
   {
     title: "Imperator - imperative, secure SC programming language",
@@ -318,7 +405,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-addresses-typescript-binding.png"),
     website: "https://www.npmjs.com/package/cardano-addresses",
     getstarted: null,
-    tags: ["api", "javascript"],
+    tags: ["typescript", "serialization"],
   },
   {
     title: "Heidrun",
@@ -327,15 +414,15 @@ export const Showcases = [
     preview: require("./builder-tools/heidrun.png"),
     website: "https://github.com/adosia/Heidrun",
     getstarted: null,
-    tags: ["api"],
+    tags: ["http", "json"],
   },
   {
     title: "cardano-wallet-js",
-    description: "A javascript/typescript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
+    description: "A JavaScript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
     preview: require("./builder-tools/cardano-wallet-js.png"),
     website: "https://github.com/tango-crypto/cardano-wallet-js",
     getstarted: "/docs/get-started/cardano-wallet-js",
-    tags: ["getstarted", "library", "javascript"]
+    tags: ["javascript", "sdk", "wallet"]
   },
   {
     title: "CardanoSharp Wallet",
@@ -344,7 +431,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardanosharp.png"),
     website: "https://www.cardanosharp.com",
     getstarted: "/docs/get-started/cardanosharp-wallet",
-    tags: ["favorite", "getstarted", "library", "net"],
+    tags: ["favorite", "sdk", "wallet", "net"],
   },
   {
     title: "Cardano Metadata Oracle",
@@ -352,7 +439,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-metadata-oracle.png"),
     website: "https://github.com/fivebinaries/cardano-metadata-oracle",
     getstarted: null,
-    tags: ["oracle"],
+    tags: ["oracle", "cli"],
   },
   {
     title: "Guild Operators Suite",
@@ -360,7 +447,7 @@ export const Showcases = [
     preview: require("./builder-tools/guild-operators.png"),
     website: "https://cardano-community.github.io/guild-operators/",
     getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
-    tags: ["favorite", "getstarted", "operatortool"],
+    tags: ["favorite", "operatortool"],
   },
   {
     title: "libada-go",
@@ -368,7 +455,7 @@ export const Showcases = [
     preview: require("./builder-tools/libada-go.png"),
     website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
-    tags: ["favorite", "library", "golang"],
+    tags: ["golang", "sdk"],
   },
   {
     title: "go-cardano-serialization",
@@ -376,7 +463,7 @@ export const Showcases = [
     preview: require("./builder-tools/go-cardano-serialisation.png"),
     website: "https://github.com/fivebinaries/go-cardano-serialization",
     getstarted: null,
-    tags: ["favorite", "library", "golang"],
+    tags: ["favorite", "golang", "serialization"],
   },
   {
     title: "Pooldata API",
@@ -384,7 +471,7 @@ export const Showcases = [
     preview: require("./builder-tools/pooldata-api.png"),
     website: "https://api.pooldata.live",
     getstarted: null,
-    tags: ["operatortool", "api"],
+    tags: ["operatortool", "http", "hosted"],
   },
   {
     title: "Python Module",
@@ -392,7 +479,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-python.png"),
     website: "https://github.com/emesik/cardano-python",
     getstarted: null,
-    tags: ["library", "api", "python"],
+    tags: ["sdk", "python"],
   },
   {
     title: "Plutus Playground",
@@ -400,7 +487,7 @@ export const Showcases = [
     preview: require("./builder-tools/plutus-playground.png"),
     website: "https://playground.plutus.iohkdev.io",
     getstarted: "/docs/smart-contracts/plutus#plutus-playground",
-    tags: ["favorite", "getstarted", "plutus"],
+    tags: ["favorite", "plutus", "hosted"],
   },
   {
     title: "Marlowe Playground",
@@ -408,7 +495,7 @@ export const Showcases = [
     preview: require("./builder-tools/marlowe-playground.png"),
     website: "https://alpha.marlowe.iohkdev.io/#/",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
-    tags: ["favorite", "getstarted", "marlowe"],
+    tags: ["favorite", "marlowe", "hosted"],
   },
   {
     title: "Automint",
@@ -417,7 +504,7 @@ export const Showcases = [
     preview: require("./builder-tools/automint.png"),
     website: "https://github.com/creativequotient/automint",
     getstarted: null,
-    tags: ["library"],
+    tags: ["python", "nft"],
   },
   {
     title: "Ansible cardano-node",
@@ -425,7 +512,7 @@ export const Showcases = [
     preview: require("./builder-tools/ansible-cardano-node.png"),
     website: "https://github.com/moaipool/ansible-cardano-node",
     getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
-    tags: ["getstarted", "operatortool"],
+    tags: ["operatortool"],
   },
   {
     title: "Fracada",
@@ -447,11 +534,11 @@ export const Showcases = [
   },
   {
     title: "cardano-wallet-interface",
-    description: "A Javascript/Typescript library to easily interact with the dApp connector of various wallets.",
+    description: "A Javascript library to easily interact with the dApp connector of various wallets.",
     preview: require("./builder-tools/cardano-wallet-interface.png"),
     website: "https://github.com/HarmonicPool/cardano-wallet-interface",
     getstarted: null,
-    tags: ["library", "javascript"],
+    tags: ["javascript", "wallet"],
   },
   {
     title: "Plutus Fee Estimator",
@@ -459,7 +546,7 @@ export const Showcases = [
     preview: require("./builder-tools/plutus-fee-estimator.png"),
     website: "https://testnets.cardano.org/en/testnets/cardano/tools/plutus-fee-estimator/",
     getstarted: null,
-    tags: ["plutus"],
+    tags: ["plutus", "hosted"],
   },
   {
     title: "Plutus Extra",
@@ -467,7 +554,7 @@ export const Showcases = [
     preview: require("./builder-tools/plutus-extra.png"),
     website: "https://github.com/Liqwid-Labs/plutus-extra",
     getstarted: null,
-    tags: ["library", "plutus"],
+    tags: ["plutus", "haskell"],
   },
   {
     title: "PyCardano",
@@ -476,7 +563,7 @@ export const Showcases = [
     preview: require("./builder-tools/pycardano.png"),
     website: "https://github.com/cffls/pycardano",
     getstarted: null,
-    tags: ["library", "api", "python"],
+    tags: ["python", "sdk"],
   },
   {
     title: "Oura - the tail of Cardano",
@@ -494,7 +581,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-wallet-connector.png"),
     website: "https://github.com/dynamicstrategies/cardano-wallet-connector",
     getstarted: null,
-    tags: ["javascript","nft","plutus"],
+    tags: ["javascript", "wallet", "plutus"],
   },
   {
     title: "Stricahq Typhonjs Wallet",
@@ -503,7 +590,7 @@ export const Showcases = [
     preview: require("./builder-tools/typhonjs.png"),
     website: "https://github.com/StricaHQ/typhonjs",
     getstarted: null,
-    tags: ["javascript","library","plutus"],
+    tags: ["javascript", "wallet"],
   },
   {
     title: "IntelliJ IDE",
@@ -521,7 +608,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-snapshots.png"),
     website: "https://cSnapshots.io",
     getstarted: null,
-    tags: ["operatortool"],
+    tags: ["operatortool", "chainindex", "hosted"],
   },
   {
     title: "Koios",
@@ -529,7 +616,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios.png"),
     website: "https://koios.rest",
     getstarted: "/docs/get-started/koios",
-    tags: ["getstarted", "api"],
+    tags: ["http", "json", "hosted"],
   },
   {
     title: "Pallas",
@@ -537,7 +624,7 @@ export const Showcases = [
     preview: require("./builder-tools/pallas.png"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
-    tags: ["library", "rust"]
+    tags: ["rust", "lowlevel"]
   },
   {
     title: "Scrolls",
@@ -545,7 +632,7 @@ export const Showcases = [
     preview: require("./builder-tools/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
-    tags: ["chainindex", "api", "favorite"]
+    tags: ["chainindex", "redis", "favorite"]
   },
   {
     title: "Kupo",
@@ -553,7 +640,7 @@ export const Showcases = [
     preview: require("./builder-tools/kupo.png"),
     website: "https://github.com/CardanoSolutions/kupo#readme",
     getstarted: null,
-    tags: ["chainindex", "api", "favorite"]
+    tags: ["chainindex", "http", "json", "favorite"]
   },
   {
     title: "cardano-multiplatform-lib",
@@ -561,7 +648,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-multiplatform-lib.png"),
     website: "https://github.com/dcSpark/cardano-multiplatform-lib#cardano-multiplatform-lib",
     getstarted: null,
-    tags: ["library", "rust", "favorite"]
+    tags: ["rust", "serialization", "favorite"]
   },
   {
     title: "cardano-js-sdk",
@@ -569,7 +656,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-js-sdk.png"),
     website: "https://github.com/input-output-hk/cardano-js-sdk/#readme",
     getstarted: null,
-    tags: ["library", "javascript"]
+    tags: ["sdk", "javascript"]
   },
   {
     title: "Lucid",
@@ -577,7 +664,7 @@ export const Showcases = [
     preview: require("./builder-tools/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
     getstarted: null,
-    tags: ["library", "javascript", "plutus"]
+    tags: ["javascript", "sdk", "plutus"]
   },
   {
     title: "Pirouette",
@@ -585,7 +672,7 @@ export const Showcases = [
     preview: require("./builder-tools/pirouette.png"),
     website: "https://github.com/tweag/pirouette#readme",
     getstarted: null,
-    tags: ["library", "plutus"]
+    tags: ["haskell", "plutus", "testing"]
   },
   {
     title: "Pluto",
@@ -593,7 +680,7 @@ export const Showcases = [
     preview: require("./builder-tools/pluto.png"),
     website: "https://github.com/Plutonomicon/pluto#pluto",
     getstarted: null,
-    tags: ["library", "plutus"]
+    tags: ["plutus", "lowlevel"]
   },
   {
     title: "Plutonomicon",
@@ -609,7 +696,7 @@ export const Showcases = [
     preview: require("./builder-tools/plutarch.png"),
     website: "https://github.com/Plutonomicon/plutarch#plutarch",
     getstarted: null,
-    tags: ["plutus"]
+    tags: ["plutus", "haskell"]
   },
   {
     title: "Tangocrypto",
@@ -617,7 +704,7 @@ export const Showcases = [
     preview: require("./builder-tools/tangocrypto.png"),
     website: "https://tangocrypto.com",
     getstarted: "/docs/get-started/tangocrypto",
-    tags: ["getstarted", "api", "nft", "chainindex"],
+    tags: ["http", "json", "hosted"],
   },
   {
     title: "go-ouroboros-network",
@@ -625,7 +712,7 @@ export const Showcases = [
     preview: require("./builder-tools/go-ouroboros-network.png"),
     website: "https://github.com/cloudstruct/go-ouroboros-network",
     getstarted: null,
-    tags: ["library", "golang"]
+    tags: ["golang", "lowlevel"]
   },
   {
     title: "cscli",
@@ -633,7 +720,7 @@ export const Showcases = [
     preview: require("./builder-tools/cscli.png"),
     website: "https://github.com/CardanoSharp/cscli",
     getstarted: "/docs/get-started/cscli",
-    tags: ["getstarted", "cli"],
+    tags: ["cli", "serialization", "wallet"],
   },
   {
     title: "HeliosLang",
@@ -641,7 +728,7 @@ export const Showcases = [
     preview: require("./builder-tools/helioslang.png"),
     website: "https://github.com/Hyperion-BT/Helios",
     getstarted: null,
-    tags: ["javascript", "library", "plutus"],
+    tags: ["javascript", "plutus"],
   },
   {
     title: "Aiken",
@@ -649,7 +736,7 @@ export const Showcases = [
     preview: require("./builder-tools/aiken.png"),
     website: "https://github.com/txpipe/aiken",
     getstarted: null,
-    tags: ["cli", "rust", "library"],
+    tags: ["cli", "plutus"],
   },
   {
     title: "Pix",
@@ -657,11 +744,20 @@ export const Showcases = [
     preview: require("./builder-tools/pix.png"),
     website: "https://github.com/txpipe/pix",
     getstarted: null,
-    tags: ["cli", "rust", "nft"],
+    tags: ["cli", "nft"],
+  },
+  {
+    title: "Cardano Signer",
+    description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
+    preview: require("./builder-tools/cardano-signer.png"),
+    website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
+    getstarted: null,
+    tags: ["operatortool"],
   }
 ];
 
 export const TagList = Object.keys(Tags);
+
 function sortShowcases() {
   let result = Showcases;
   // Sort by site name
@@ -670,6 +766,29 @@ function sortShowcases() {
   result = sortBy(result, (showcase) => !showcase.tags.includes("favorite"));
   return result;
 }
+
+export const LanguagesOrTechnologiesTags = [
+  "cli",
+  "golang",
+  "haskell",
+  "http",
+  "java",
+  "javascript",
+  "json",
+  "net",
+  "purescript",
+  "python",
+  "redis",
+  "rust",
+  "sql",
+  "typescript",
+  "websocket",
+];
+
+export const DomainsTags = TagList.filter((tag) => {
+  const others = LanguagesOrTechnologiesTags.concat("favorite");
+  return !others.includes(tag);
+});
 
 export const SortedShowcases = sortShowcases();
 
@@ -755,26 +874,14 @@ function ensureShowcaseValid(showcase) {
       throw new Error(
         "The getstarted attribute is required.\nIf your builder tool has no get started page, please make it explicit with 'getstarted: null'"
       );
-    } else {
-      const hasGetStartedTag = showcase.tags.includes("getstarted");
-      if (showcase.getstarted === null && hasGetStartedTag) {
-        throw new Error(
-          "You can't add the getstarted tag to a site that does not have a link to a get started page."
-        );
-      } else if (showcase.getstarted && !hasGetStartedTag) {
-        throw new Error(
-          "For builder tools with started sites, please add the 'getstarted' tag."
-        );
-      }
     }
   }
 
   function checkOperatorTool() {
-
-    const hasGetStartedTag = showcase.tags.includes("getstarted");
+    const hasGetStarted = showcase.getstarted != null;
     const isOperatorTool = showcase.tags.includes("operatortool");
 
-    if ((hasGetStartedTag && isOperatorTool) && !(typeof showcase.getstarted === "string" &&
+    if ((hasGetStarted && isOperatorTool) && !(typeof showcase.getstarted === "string" &&
         (showcase.getstarted.startsWith("/docs/operate-a-stake-pool/")))
     ) {
       throw new Error(

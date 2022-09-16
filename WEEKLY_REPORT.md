@@ -1,5 +1,28 @@
 ## Cardano Developer Portal - weekly reports
 
+### Week ending September 9th
+
+[2022-09-09]
+ * Fix cardano-node build instructions on recent MacOS M1 (#769) (Matthias Benkort)
+ * Add Book Token showcase (#725) (Fill)
+ * Add NFT Gift Card Creator showcase (#754) (minolinpwork)
+
+[2022-09-08]
+ * Fix bracket issue in builder tools. (#765) (Fill)
+ * Fix bracket issue in builder tools. (fill-the-fill)
+ * Addition of HeliosLang with corrected github link (#760) (christianschmitz)
+
+[2022-09-07]
+ * Update weekly report 07-09 (#763) (Fill)
+ * Add NuFi wallet showcase (#758) (Fill)
+ * Add Aiken and Pix to Builder Tools (#761) (Lucas)
+ * Fix displaying unfiltered 10 last projects in showcases  (#757) (Fill)
+
+[2022-09-06]
+ * Revert "Addition of HeliosLang (#755)" (#756) (Tommy Kammerer)
+ * Add a new builder tool tag - PureScript (#753) (Fill)
+ * feat: Add haltscam project (#702) (Crypto Catalyst)
+
 [2022-09-04]
  * Revert "Addition of HeliosLang (#755)" (#756) (Tommy Kammerer)
  * Add a new builder tool tag - PureScript (#753) (Fill)
