@@ -745,6 +745,14 @@ export const Showcases = [
     website: "https://github.com/txpipe/pix",
     getstarted: null,
     tags: ["cli", "nft"],
+  },
+  {
+    title: "Cardano Signer",
+    description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
+    preview: require("./builder-tools/cardano-signer.png"),
+    website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
+    getstarted: null,
+    tags: ["operatortool"],
   }
 ];
 
