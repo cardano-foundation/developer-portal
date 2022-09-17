@@ -340,6 +340,14 @@ export const Showcases = [
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
+    title: "StakePool Operator Scripts",
+    description: "CLI scripts to manage your stake pool (online or offline), use and migrate to hardware wallets, send transactions with messages, register for Catalyst, mint/burn Tokens, generate the Token Registry, and more.",
+    preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
+    website: "https://github.com/gitmachtl/scripts",
+    getstarted: null,
+    tags: ["operatortool", "cli", "serialization"],
+  },
+  {
     title: "Cardano Serialization Library",
     description:
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
@@ -752,8 +760,8 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-signer.png"),
     website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
     getstarted: null,
-    tags: ["operatortool"],
-  }
+    tags: ["operatortool", "cli"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
