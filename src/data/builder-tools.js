@@ -341,11 +341,11 @@ export const Showcases = [
   },
   {
     title: "StakePool Operator Scripts",
-    description: "Scripts to help manage your stake pool, send transactions, mint/burn tokens, etc. via the CLI.",
+    description: "CLI scripts to manage your stake pool (online or offline), use and migrate to hardware wallets, send transactions with messages, register for Catalyst, mint/burn Tokens, generate the Token Registry, and more.",
     preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
     website: "https://github.com/gitmachtl/scripts",
     getstarted: null,
-    tags: ["operatortool", "cli"],
+    tags: ["operatortool", "cli", "serialization"],
   },
   {
     title: "Cardano Serialization Library",
