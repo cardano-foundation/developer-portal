@@ -345,7 +345,7 @@ export const Showcases = [
     preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
     website: "https://github.com/gitmachtl/scripts",
     getstarted: null,
-    tags: ["operatortool"],
+    tags: ["operatortool", "cli"],
   },
   {
     title: "Cardano Serialization Library",
@@ -760,7 +760,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-signer.png"),
     website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
     getstarted: null,
-    tags: ["operatortool"],
+    tags: ["operatortool", "cli"],
   },
 ];
 
