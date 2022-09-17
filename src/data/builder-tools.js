@@ -344,7 +344,7 @@ export const Showcases = [
     description: "Scripts to help manage your stake pool, send transactions, mint/burn tokens, etc. via the CLI.",
     preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
     website: "https://github.com/gitmachtl/scripts",
-    getstarted: "https://github.com/gitmachtl/scripts/blob/master/cardano/mainnet/README.md",
+    getstarted: null,
     tags: ["operatortool"],
   },
   {
