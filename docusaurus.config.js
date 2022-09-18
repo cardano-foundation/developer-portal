@@ -108,6 +108,10 @@ module.exports = {
               to: "docs/portal-contributors/",
             },
             {
+              label: "Changelog",
+              to: "/changelog",
+            },
+            {
               label: "How to Contribute",
               to: "docs/portal-contribute/",
             },
@@ -210,7 +214,31 @@ module.exports = {
         ],
       },
     ],
+    [
+      require.resolve('./src/plugins/changelog/index.js'),
+      {
+        blogTitle: 'Docusaurus changelog',
+        blogDescription:
+          'Keep yourself up-to-date about new features in every release',
+        blogSidebarCount: 'ALL',
+        blogSidebarTitle: 'Changelog',
+        routeBasePath: '/changelog',
+        showReadingTime: false,
+        postsPerPage: 20,
+        archiveBasePath: null,
+        authorsMapPath: 'authors.json',
+        feedOptions: {
+          type: 'all',
+          title: 'Docusaurus changelog',
+          description:
+            'Keep yourself up-to-date about new features in every release',
+          copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+          language: 'en',
+        },
+      },
+    ],
   ],
+  
   presets: [
     [
       "@docusaurus/preset-classic",
