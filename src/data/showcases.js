@@ -1101,7 +1101,7 @@ export const Showcases = [
     preview: require("./showcase/mesh.jpeg"),
     website: "https://mesh.martify.io/",
     source: "https://github.com/MartifyLabs/mesh",
-    tags: ["educational","minting","nftsupport","opensource"],
+    tags: ["educational","minting","opensource"],
   },
 ];
 
