@@ -1097,7 +1097,7 @@ export const Showcases = [
   {
     title: "TapTools",
     description:
-      "All in one platform that offers free token distribution , comprehensive charts, NFT generation, and mint facilitation.",
+      "All-in-one platform that offers free token distribution, comprehensive charts, NFT generation, and mint facilitation.",
     preview: require("./showcase/taptools.png"),
     website: "https://www.taptools.io",
     source: null,
