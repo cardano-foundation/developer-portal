@@ -1095,7 +1095,7 @@ export const Showcases = [
     tags: [ "daotool"],
   },
   {
-    title: "Taptools",
+    title: "TapTools",
     description:
       "All in one platform that offers free token distribution , comprehensive charts, NFT generation, and mint facilitation.",
     preview: require("./showcase/taptools.png"),
