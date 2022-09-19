@@ -1066,7 +1066,16 @@ export const Showcases = [
     website: "https://card-creator.shop",
     source: null,
     tags: ["minting", "nftsupport"],
-  }, 
+  },
+  {
+    title: "Book Token",
+    description:
+      "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
+    preview: require("./showcase/book-token.png"),
+    website: "https://www.booktoken.io",
+    source: null,
+    tags: [ "marketplace", "nftsupport", "token"],
+  },
   {
     title: "NuFi Wallet",
     description:
@@ -1084,6 +1093,15 @@ export const Showcases = [
     website: "https://chainsofwar.io/",
     source: null,
     tags: ["nftproject", "game"],
+  },
+  {
+    title: "Voteaire",
+    description:
+      "Voteaire allows everyone in the ecosystem to create a poll. All results are weighted. All proposals and votes are stored publicly on-chain.",
+    preview: require("./showcase/voteaire.png"),
+    website: "https://voteaire.io/",
+    source: null,
+    tags: [ "daotool"],
   },
 ];
 

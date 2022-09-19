@@ -38,8 +38,9 @@ yarn-error.log*
 # intellij
 .idea
 
-# Auto generated content like CIPs, Rust Library and Token Registry
+# Auto generated content like CIPs, Rust Library, Token Registry and Changelog
 /docs/governance/cardano-improvement-proposals/*
 /static/img/cip/*
 /docs/native-tokens/token-registry/*
 /docs/get-started/cardano-serialization-lib/*
+**/changelog

@@ -16,7 +16,13 @@ import ShowcaseLatestToggle, {
 
 import PortalHero from "../portalhero";
 import { toggleListItem } from "../../utils/jsUtils";
-import { SortedShowcases, Tags, TagList, Showcases } from "../../data/builder-tools";
+import {
+  DomainsTags,
+  LanguagesOrTechnologiesTags,
+  SortedShowcases,
+  Tags,
+  Showcases
+} from "../../data/builder-tools";
 import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
@@ -177,56 +183,48 @@ function ShowcaseFilters() {
         <ShowcaseLatestToggle />
         <ShowcaseFilterToggle />
       </div>
-      <div className={styles.checkboxList}>
-        {TagList.map((tag) => {
-          const { label, description, color } = Tags[tag];
-          const id = `showcase_checkbox_id_${tag}`;
-          return (
-            <>
-              <div className={styles.checkboxListItem}>
-                <ShowcaseTooltip
-                  id={id}
-                  text={description}
-                  anchorEl="#__docusaurus"
-                >
-                  <ShowcaseTagSelect
-                    tag={tag}
-                    id={id}
-                    label={label}
-                    icon={
-                      label === "Favorite" ? (
-                        <span
-                          style={{
-                            marginLeft: 8,
-                          }}
-                        >
-                          <Fav
-                            svgClass={styles.svgIconFavorite}
-                            size="small"
-                            style={{ display: "grid" }}
-                          />
-                        </span>
-                      ) : (
-                        <span
-                          style={{
-                            backgroundColor: color,
-                            width: 10,
-                            height: 10,
-                            borderRadius: "50%",
-                            marginLeft: 8,
-                          }}
-                        />
-                      )
-                    }
-                  />
-                </ShowcaseTooltip>
-              </div>
-            </>
-          );
-        })}
-      </div>
+        <h3>By language / technology</h3>
+        {filterBy(LanguagesOrTechnologiesTags)}
+        <br/>
+        <h3>By domain</h3>
+        {filterBy(DomainsTags)}
     </div>
   );
+}
+
+function filterBy(tags) {
+  return (<div className={styles.checkboxList}>
+    {tags.map((tag) => {
+      const { label, description, color } = Tags[tag];
+      const id = `showcase_checkbox_id_${tag}`;
+      return (
+        <>
+          <div className={styles.checkboxListItem}>
+            <ShowcaseTooltip
+              id={id}
+              text={description}
+              anchorEl="#__docusaurus"
+            >
+              <ShowcaseTagSelect
+                tag={tag}
+                id={id}
+                label={label}
+                icon={(<span
+                  style={{
+                    backgroundColor: color,
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    marginLeft: 8,
+                  }}/>
+                )}
+              />
+            </ShowcaseTooltip>
+          </div>
+        </>
+      );
+    })}
+  </div>);
 }
 
 function ShowcaseCards() {
