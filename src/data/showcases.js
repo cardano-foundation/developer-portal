@@ -1094,6 +1094,15 @@ export const Showcases = [
     source: null,
     tags: [ "daotool"],
   },
+  {
+    title: "Taptools",
+    description:
+      "All in one platform that offers free token distribution , comprehensive charts, NFT generation, and mint facilitation.",
+    preview: require("./showcase/taptools.png"),
+    website: "https://www.taptools.io",
+    source: null,
+    tags: [ "analytics", "token", "minting"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
