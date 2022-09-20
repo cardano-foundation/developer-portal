@@ -1094,15 +1094,6 @@ export const Showcases = [
     source: null,
     tags: [ "daotool"],
   },
-  {
-    title: "Mesh",
-    description:
-      "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
-    preview: require("./showcase/mesh.png"),
-    website: "https://mesh.martify.io/",
-    source: "https://github.com/MartifyLabs/mesh",
-    tags: ["educational","opensource"],
-  },
 ];
 
 export const TagList = Object.keys(Tags);
