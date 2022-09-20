@@ -767,8 +767,8 @@ export const Showcases = [
     description: "Cardano tool that aims to help dApp developers with integration testing and contracts debugging using disposable private network",
     preview: require("./builder-tools/plutip.png"),
     website: "https://github.com/mlabs-haskell/plutip",
-    getstarted: "https://github.com/mlabs-haskell/plutip/blob/master/README.md#tutorials",
-    tags: ["haskell", "testing", "private network"],
+    getstarted: null,
+    tags: ["haskell", "testing"],
   },
 ];
 
