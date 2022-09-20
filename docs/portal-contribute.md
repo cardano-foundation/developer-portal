@@ -121,6 +121,12 @@ developer-portal
 │   ├── 2021-01-07-january.md
 │   ├── 2021-02-03-february.md
 │   └── *.md
+├── changelog
+│   └── source
+│       ├── 2021.8.0.md
+│       ├── 2021.12.0.md
+│       ├── 2021.16.0.md
+│       └── *.md
 ├── docs
 │   ├── fund-your-project
 │   ├── get-started
@@ -142,6 +148,11 @@ developer-portal
 │       ├── dotnet
 │       ├── js
 |       └── python
+├── scripts
+│   ├── cip.ts
+│   ├── rust-library.ts
+│   ├── token-registry.ts
+│   └── *.md
 ├── src
 │   ├── css
 │   │   └── custom.css
@@ -167,8 +178,10 @@ developer-portal
 ### Project structure rundown
 
 - `/blog/` - Contains the blog Markdown files for the developer spotlight.
+- `/changelog/source/` - Contains the changelog data split by months into Markdown files. 
 - `/docs/` - Contains the Markdown files for the docs. Customize the order of the docs sidebar in `sidebars.js`.
 - `/examples/` - Contains example projects for the Markdown files in the docs. *The structure is not final and will likely change in the future*
+- `/scripts/` - Contains scripts to fetch auto generated content like CIPs, Rust Library, Token Registry.
 - `/src/` - Non-documentation files like pages or custom React components. You don't have to strictly put your non-documentation files in here, but putting them under a centralized directory makes it easier to specify in case you need to do some sort of linting/processing.
   - `/src/data/builder-tools` - Screenshots for the builder tools section.
   - `/src/data/builder-tools.js` - Definition file for the builder tools section.
