@@ -3,7 +3,7 @@ id: installing-cardano-wallet
 title: Installing cardano-wallet
 sidebar_label: Installing cardano-wallet
 description: This guide shows how to build and install the cardano-wallet from the source-code for all major Operating Systems
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 --- 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
