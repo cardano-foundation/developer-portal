@@ -1098,7 +1098,7 @@ export const Showcases = [
     title: "Great Empires",
     description:
       "Building ancient era metaverse on Cardano Blockchain. Phase 01 : Digital Collectible Card Game, Phase 02 : Metaverse, Utility token of the ecosystem GREMP",
-    preview: require("./showcase/great_empires.png"),
+    preview: require("./showcase/gremp.png"),
     website: "https://greatempires.io/",
     source: null,
     tags: [ "game", "nftproject", "token"],
