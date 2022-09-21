@@ -1074,7 +1074,7 @@ export const Showcases = [
     preview: require("./showcase/SecuX.png"),
     website: "https://secuxtech.com/",
     source: null,
-    tags: [ "wallet", "Ecosystem"],
+    tags: [ "wallet" ],
   },
 ];
 
