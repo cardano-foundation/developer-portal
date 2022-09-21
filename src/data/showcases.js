@@ -1101,7 +1101,7 @@ export const Showcases = [
     preview: require("./showcase/great_empires.png"),
     website: "https://greatempires.io/",
     source: null,
-    tags: [ "game", "nft", "nativetoken"],
+    tags: [ "game", "nftproject", "token"],
   }
 ];
 
