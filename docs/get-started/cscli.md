@@ -3,7 +3,7 @@ id: cscli
 title: Get Started with cscli
 sidebar_label: cscli
 description: Get Started with cscli
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 --- 
 
 `cscli` is a lightweight cross-platform CLI tool for Cardano supporting the following features out of the box:

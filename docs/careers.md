@@ -3,7 +3,7 @@ id: careers
 title: Careers on Cardano
 sidebar_label: Careers on Cardano
 description: Are you passionate about Cardano and looking for a job working in the Cardano ecosystem?
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 hide_table_of_contents: false
 ---
 
