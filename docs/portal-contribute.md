@@ -196,3 +196,12 @@ We list here problems you may run into when running the developer portal locally
 **Problem:** `yarn start` throws the errow `[ERROR] Error: Sidebar category Token Registry has neither any subitem nor a link. This makes this item not able to link to anything.`.  
 
 **Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by sidebars.js.
+
+## Other questions
+Various other questions and answers.
+
+### Should I commit the yarn.lock file?
+No, please do not commit your `yarn.lock` file it is an auto-generated file that should be handled only by `yarn`. 
+
+### Shouldn't yarn.lock be in the ignore file then?
+No, as this will have side effects with dependencies used by the project itself. (Even if you prefer npm)
