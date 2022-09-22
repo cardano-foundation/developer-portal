@@ -3,7 +3,7 @@ id: tangocrypto
 title: Getting started with Tangocrypto
 sidebar_label: Tangocrypto
 description: Getting started with Tangocrypto
-image: ../img/og/og-developer-portal.png
+image: ../img/og/og-getstarted-tangocrypto.png
 ---
 
 # What is Tangocrypto?

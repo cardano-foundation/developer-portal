@@ -3,7 +3,7 @@ id: technical-concepts
 title: Get started with the technical concepts
 sidebar_label: Technical Concepts
 description: Get started with the technical concepts behind Cardano.
-image: ../img/og/og-developer-portal.png
+image: ../img/og/og-getstarted-technical-concepts.png
 --- 
 
 To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts such as [UTxO](#unspent-transaction-output-utxo), [transactions](#transactions), [addresses](#addresses), [key derivation](#key-derivation), and [networking](#networking).

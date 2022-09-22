@@ -3,7 +3,7 @@ id: cardanosharp-wallet
 title: Get Started with CardanoSharp Wallet
 sidebar_label: CardanoSharp Wallet
 description: Get Started with CardanoSharp Wallet
-image: ../img/og/og-developer-portal.png
+image: ../img/og/og-getstarted-cardanosharp-wallet.png
 --- 
 
 # CardanoSharp.Wallet 
