@@ -204,7 +204,7 @@ Various other questions and answers.
 No, please do not commit your `yarn.lock` file it is an auto-generated file that should be handled only by `yarn`. 
 
 ### Shouldn't yarn.lock be in the ignore file then?
-No, as this will have side effects with dependencies used by the project itself. (Even if you prefer npm)
+No, as this will have side effects with dependencies used by the project itself. (Even if you prefer `npm`)
 
 ### Anything I can do to make sure my pull request will not break on the staging/production server?
 Yes, please always do a `yarn build` before submitting a pull request. It will find many more issues than `yarn start`.
