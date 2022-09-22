@@ -190,7 +190,7 @@ We list here problems you may run into when running the developer portal locally
 ### Sidebars file at "developer-portal/sidebars.js" failed to be loaded
 **Problem:** `yarn start` throws the error `[ERROR] Sidebars file at "developer-portal/sidebars.js" failed to be loaded.`. 
 
-**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by sidebars.js.
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by `sidebars.js`.
 
 ### Sidebar category Token Registry has neither any subitem nor a link
 **Problem:** `yarn start` throws the errow `[ERROR] Error: Sidebar category Token Registry has neither any subitem nor a link. This makes this item not able to link to anything.`.  
