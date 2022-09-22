@@ -17,3 +17,4 @@ Most of these jobs are 100% remote. You can work from anywhere in the world with
 - [Jobs at dcSpark](https://dcspark.io/#careers)
 - [Jobs at EMURGO](https://emurgo.io/carrer/)
 - [Jobs at IOHK](https://apply.workable.com/io-global/)
+- [Jobs at Loxe Inc.](https://angel.co/company/loxe/jobs)
