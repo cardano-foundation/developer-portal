@@ -208,3 +208,6 @@ No, as this will have side effects with dependencies used by the project itself.
 
 ### Anything I can do to make sure my pull request will not break on the staging/production server?
 Yes, please always do a `yarn build` before submitting a pull request. It will find many more issues than `yarn start`.
+
+### Is there any style guide? Do we have editorial guidelines?
+Yes, both still work in progress but please see [style guide](portal-style-guide.md) and [editorial guidelines](portal-style-guide.md#editorial-style-guide).
