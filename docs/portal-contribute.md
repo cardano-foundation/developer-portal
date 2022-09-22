@@ -179,3 +179,20 @@ developer-portal
 - `/docusaurus.config.js` - A config file containing the site configuration.
 - `/package.json` - A Docusaurus website is a React app. You can install and use any npm packages you like in them.
 - `/sidebar.js` - Used by the documentation to specify the order of documents in the sidebar.
+
+## Known problems that may arise
+We list here problems you may run into when running the developer portal locally.
+
+### Minimum Node.js version not met 
+**Problem:** `yarn start` throws the error `[ERROR] Minimum Node.js version not met :(`.  
+**Solution:** use the node version listed below [requirements](#requirements). If you have different node versions installed for different projects, `nvm` is a neat tool to deal with it. You can switch versions with for example `nvm use 16`.
+
+### Sidebars file at "developer-portal/sidebars.js" failed to be loaded
+**Problem:** `yarn start` throws the error `[ERROR] Sidebars file at "developer-portal/sidebars.js" failed to be loaded.`. 
+
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by sidebars.js.
+
+### Sidebar category Token Registry has neither any subitem nor a link
+**Problem:** `yarn start` throws the errow `[ERROR] Error: Sidebar category Token Registry has neither any subitem nor a link. This makes this item not able to link to anything.`.  
+
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by sidebars.js.
