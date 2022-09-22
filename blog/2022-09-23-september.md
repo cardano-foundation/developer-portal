@@ -14,6 +14,7 @@ import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
  [<ThemedImage
+style={{width: '300px'}}
 alt="ADAO"
 sources={{
     light: useBaseUrl('/img/devblog/adao-light.svg'),
