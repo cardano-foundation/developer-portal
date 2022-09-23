@@ -26,10 +26,12 @@ sources={{
 
 I go by [Allusian](https://twitter.com/allusian1), and I have served as a Core Contributor at [ADAO](https://www.theadao.io/) since October of ‘21, after listening into spaces its earliest founder hosted and frequented in the community in the wake of the Goguen era. My main focus has been on the upkeep and design of the Discord server, onboarding new members, writing and editing documents, articles, and outreach via social media, as well as scheduling and organizing guest speakers for ADAO’s educational “Roundtable” Twitter spaces hosted every Saturday.
 
+[Thomas DiMatteo](https://twitter.com/Welikethetrees) is a community organizer, crypto researcher, entrepreneur, and front-end developer, with a  keen interest in decentralized finance and governance on Cardano and other blockchain ecosystems. He has six years of experience as a small business owner serving customers throughout the state of Florida, several years as an investor in blockchains, and a participant in decentralized finance and autonomous protocols.
+
 
 <br />
 
-**_Hey Allusian, happy to connect today and learn more about [ADAO](https://www.theadao.io/). Can you tell us more about the mission of ADAO and how you are trying to achieve it?_**
+**_Hey guys, happy to connect today and learn more about [ADAO](https://www.theadao.io/). Can you tell us more about the mission of ADAO and how you are trying to achieve it?_**
 
 ADAO’s mission is to build open-source tools, educational and supportive resources to empower robust, decentralized systems of collaboration and governance, starting with Cardano. We are achieving this by attracting talent from various disciplines and walks of life who share our passion for building systems that enable, empower and facilitate new ways of organizing. Some of ADAO’s major contributions to the ecosystem include the RoundTable multi-signature Wallet DApp, the ADAO Staking Portal, and the Agora Protocol, which we have partnered with Liqwid Labs to develop.
 
@@ -88,4 +90,4 @@ The most notable and strategic partnership to date would be the collaboration wi
 
 **_How can someone interested in ADAO find out more about it?_**
 
-The best way to stay up to date on everything ADAO is doing is to follow the [@ADAOcommunity](https://twitter.com/ADAOcommunity) on Twitter. If you would like to get involved or want to get a deeper look at everything going on in ADAO, please join the community [Discord server](https://discord.gg/pYwXkygtBa). Projects looking to leverage or contribute to ADAO’s open-source repositories can visit the [ADAOcommunity GitHub](https://github.com/ADAOcommunity). Projects looking to leverage Summon Platform modules and infrastructure can reach out to us on [Twitter](https://twitter.com/SummonPlatform?s=20&t=1tOSgYAY28_3pKdBCn7S_A), join the Summon DAO [Discord server](https://discord.gg/EkHDSvjggb), or reach out directly to the core team at team@summonplatform.io.
+The best way to stay up to date on everything ADAO is doing is to follow the [@ADAOcommunity](https://twitter.com/ADAOcommunity) on Twitter. If you would like to get involved or want to get a deeper look at everything going on in ADAO, please join the community [Discord server](https://discord.gg/pYwXkygtBa). We hold General Meetings at 1 A.M. UTC every Thursday and 3 P.M. UTC every Saturday. Projects looking to leverage or contribute to ADAO’s open-source repositories can visit the [ADAOcommunity GitHub](https://github.com/ADAOcommunity). Projects looking to leverage Summon Platform modules and infrastructure can reach out to us on [Twitter](https://twitter.com/SummonPlatform?s=20&t=1tOSgYAY28_3pKdBCn7S_A), join the Summon DAO [Discord server](https://discord.gg/EkHDSvjggb), or reach out directly to the core team at team@summonplatform.io.
