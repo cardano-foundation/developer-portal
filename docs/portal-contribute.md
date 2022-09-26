@@ -12,6 +12,15 @@ For this to be successful, the portal relies on your contributions, and the fact
 
 If you want to install the portal on your local machine, you can [jump directly to the installation instructions.](#installation)
 
+## Why should I contribute?
+**Build your reputation:**  Contributions to the developer portal will give your GitHub name and profile higher visibility as more and more people come across your work online. As visibility increases, so too will the reputation of your name and brand. 
+
+**Build your confidence:** Creating tutorials and showing fellow community members how to create will not only elevate your knowledge of your own skills and processes, but will also bestow you with greater confidence in your abilities as you interact with others.
+
+As an added bonus, since everything is public, people typically pay greater attention to how well something is written or programmed. This will also afford you with an invaluable set of eyes on your contributions that will serve as a crucial peer-reviewed tool to catch errors and refine your work.
+
+**Build your resume:** Each contribution you make acts as a precious notch on your belt towards career development or job searches within the Cardano ecosystem. It is also a way for people to find examples of your work and verify your abilities.
+By contributing to open source projects, you will not only gain a lot of valuable experience, but if your profile (or brand) reaches a certain level of attention and recognition, you are also more likely to get professional opportunities further down the line.
 
 ## I got the spirit. What can I do to contribute?
 
