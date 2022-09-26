@@ -195,7 +195,7 @@ We list here problems you may run into when running the developer portal locally
 ### Sidebar category Token Registry has neither any subitem nor a link
 **Problem:** `yarn start` throws the errow `[ERROR] Error: Sidebar category Token Registry has neither any subitem nor a link. This makes this item not able to link to anything.`.  
 
-**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by sidebars.js.
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by `sidebars.js`.
 
 ## Other questions
 Various other questions and answers.
