@@ -3,7 +3,7 @@ id: plutus
 title: Plutus
 sidebar_label: Plutus
 description: Plutus
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 --- 
 
 ## Get started with Plutus 
@@ -32,21 +32,21 @@ The Plutus Playground is a code editor and simulator in one.
 
 [![Plutus Playground](../../static/img/get-started/smart-contracts/plutus-playground.jpg)](https://playground.plutus.iohkdev.io)
 
-There is a written tutorial on [how to compile and test a Plutus App](https://plutus.readthedocs.io/en/latest/plutus/tutorials/plutus-playground.html) or you can watch this video tutorial:   
+There is a written tutorial on [how to compile and test a Plutus App](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/plutus-playground.html) or you can watch this video tutorial:   
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/DhRS-JvoCw8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Further Tutorials
-- [Writing a basic Plutus app in the Plutus Playground](https://plutus.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
-- [Using Plutus Tx](https://plutus.readthedocs.io/en/latest/plutus/tutorials/plutus-tx.html)
-- [Writing basic validator scripts](https://plutus.readthedocs.io/en/latest/plutus/tutorials/basic-validators.html)
-- [Writing basic minting policies](https://plutus.readthedocs.io/en/latest/plutus/tutorials/basic-minting-policies.html)
-- [Property-based testing of Plutus contracts](https://plutus.readthedocs.io/en/latest/plutus/tutorials/contract-testing.html)
+- [Writing a basic Plutus app in the Plutus Playground](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
+- [Using Plutus Tx](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/plutus-tx.html)
+- [Writing basic validator scripts](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-validators.html)
+- [Writing basic minting policies](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-minting-policies.html)
+- [Property-based testing of Plutus contracts](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/contract-testing.html)
 
 ## How-to guides
-- [How to export scripts, datums and redemmers](https://plutus.readthedocs.io/en/latest/plutus/howtos/exporting-a-script.html)
-- [How to write a scalable Plutus app](https://plutus.readthedocs.io/en/latest/plutus/howtos/writing-a-scalable-app.html)
-- [How to handle blockchain events](https://plutus.readthedocs.io/en/latest/plutus/howtos/handling-blockchain-events.html)
-- [How to analyse the cost and size of Plutus scripts](https://plutus.readthedocs.io/en/latest/plutus/howtos/analysing-scripts.html)
+- [How to export scripts, datums and redeemers](https://plutus.readthedocs.io/en/latest/howtos/exporting-a-script.html)
+- [How to write a scalable Plutus app](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/writing-a-scalable-app.html)
+- [How to handle blockchain events](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/handling-blockchain-events.html)
+- [How to analyse the cost and size of Plutus scripts](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/analysing-scripts.html)
 
 ## Get started with Haskell
 Haskell is the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend you check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 

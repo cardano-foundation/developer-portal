@@ -86,7 +86,7 @@ const stringManipulation = (content: string, fileName: string) => {
 const overviewStringManipulation = (content: string) => {
   // Extra content
   const extraContent =
-    "--- \nid: cardano-token-registry \ntitle: Cardano Token Registry \nsidebar_label: Overview \ndescription: The Cardano Token Registry provides a means to register off-chain token metadata that can map to on-chain identifiers. \nimage: ../img/og-developer-portal.png \nsidebar_position: 1 \n--- \nThe [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).\n\n";
+    "--- \nid: cardano-token-registry \ntitle: Cardano Token Registry \nsidebar_label: Overview \ndescription: The Cardano Token Registry provides a means to register off-chain token metadata that can map to on-chain identifiers. \nimage: ../img/og/og-developer-portal.png \nsidebar_position: 1 \n--- \nThe [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).\n\n";
 
   // Add extra content
   content = extraContent + content;

@@ -3,7 +3,7 @@ id: cardano-developer-community
 title: Get Started in the Cardano Developer Community
 sidebar_label: Developer Community
 description: Get Started in the Cardano Developer Community.
-image: ../img/og-developer-portal.png
+image: ../img/og/og-getstarted-developer-community.png
 --- 
 
 Apart from the two leading platforms [Stack Exchange](https://cardano.stackexchange.com) and [Cardano Forum](https://forum.cardano.org/c/developers/29), Cardano developers and stake pool operators spread across different platforms. Each with its niche.

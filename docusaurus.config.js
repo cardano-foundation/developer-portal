@@ -43,7 +43,7 @@ module.exports = {
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "img/og-developer-portal.png",
+    image: "img/og/og-developer-portal.png",
     metadata: [{ name: "twitter:card", content: "summary" }],
 
     // Algolia Search
@@ -106,6 +106,10 @@ module.exports = {
             {
               label: "Contributors",
               to: "docs/portal-contributors/",
+            },
+            {
+              label: "Changelog",
+              to: "/changelog",
             },
             {
               label: "How to Contribute",
@@ -210,7 +214,31 @@ module.exports = {
         ],
       },
     ],
+    [
+      require.resolve('./src/plugins/changelog/index.js'),
+      {
+        blogTitle: 'Docusaurus changelog',
+        blogDescription:
+          'Keep yourself up-to-date about new features in every release',
+        blogSidebarCount: 'ALL',
+        blogSidebarTitle: 'Changelog',
+        routeBasePath: '/changelog',
+        showReadingTime: false,
+        postsPerPage: 20,
+        archiveBasePath: null,
+        authorsMapPath: 'authors.json',
+        feedOptions: {
+          type: 'all',
+          title: 'Docusaurus changelog',
+          description:
+            'Keep yourself up-to-date about new features in every release',
+          copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+          language: 'en',
+        },
+      },
+    ],
   ],
+  
   presets: [
     [
       "@docusaurus/preset-classic",

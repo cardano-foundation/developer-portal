@@ -3,7 +3,7 @@ id: minting
 title: Minting Native Assets
 sidebar_label: Minting Native Assets
 description: How to mint native tokens on Cardano. 
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 
 In this section, we will be minting native assets - **not NFTs**. 
@@ -432,7 +432,7 @@ receiver="Insert wallet address here"
 receiver_output="10000000"
 txhash=""
 txix=""
-funds="Amout of lovelace"
+funds="Amount of lovelace"
 ```
 
 Again - here is an example of how it would look if we use our fictional example:
