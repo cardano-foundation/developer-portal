@@ -565,8 +565,8 @@ const Showcases = [
   },
   {
     title: "Cexplorer",
-    description: "Rich featured blockchain explorer with support of all testnet instances, API.",
-    preview: null,
+    description: "Rich featured blockchain explorer with support of all testnet instances and an API.",
+    preview: require("./builder-tools/cexplorer.png"),
     website: "https://cexplorer.io",
     getstarted: null,
     tags: ["operatortool", "api"],
