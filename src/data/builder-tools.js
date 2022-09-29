@@ -762,14 +762,6 @@ export const Showcases = [
     getstarted: null,
     tags: ["operatortool", "cli"],
   },
-  {
-    title: "Cexplorer",
-    description: "Rich featured blockchain explorer with support of all testnet instances and an API.",
-    preview: require("./builder-tools/cexplorer.png"),
-    website: "https://cexplorer.io",
-    getstarted: null,
-    tags: ["operatortool", "api"],
-  }
 ];
 
 export const TagList = Object.keys(Tags);

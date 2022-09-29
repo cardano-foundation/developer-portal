@@ -1076,6 +1076,14 @@ export const Showcases = [
     source: null,
     tags: [ "daotool"],
   },
+  {
+    title: "Cexplorer",
+    description: "Rich featured blockchain explorer with support of all testnet instances and an API.",
+    preview: require("./showcase/cexplorer.png"),
+    website: "https://cexplorer.io",
+    source: null,
+    tags: ["ecosystem", "explorer", "pooltool"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
