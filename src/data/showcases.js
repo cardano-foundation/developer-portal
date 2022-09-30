@@ -1070,7 +1070,7 @@ export const Showcases = [
   {
     title: "SecuX Hardware Wallet",
     description:
-      "SecuX hardware wallets V20, W20 and W10 natively support the receiving, sending and staking of Cardano ADA on its web application Ada Portal. SecuX wallets are equipped with an Infineon SLE solid Flash CC EAL5+ Secure Element chip to securely store your PIN and Private Key, and authorize transactions without the private key ever leaving the device. Such vault-grade and military level security enables zero transaction leakage, and surpasses those adopted by banking systems as protection from malicious online attacks. The Ada Portal is accessed via the SecuXess web application, and connection verification will be required while switching from one to the other for extra security measures.",
+      "SecuX hardware wallets support the receiving, sending and staking of Cardano on its web application ada Portal. SecuX wallets are equipped with military-grade Secure Element chip to securely store your PIN and Private Key, and authorize transactions without the private key ever leaving the device.",
     preview: require("./showcase/SecuX.png"),
     website: "https://secuxtech.com/",
     source: null,
