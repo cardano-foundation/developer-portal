@@ -916,7 +916,7 @@ All of the merged PRs in August
 - sourabhxyz ([@sourabhxyz](https://github.com/sourabhxyz))
 - klntsky ([@klntsky](https://github.com/klntsky))
 
-## 2022.36.0 (2022-09-12)
+## 2022.38.0 (2022-09-30)
 
 All of the merged PRs in Septemeber
 
@@ -938,8 +938,29 @@ All of the merged PRs in Septemeber
 - Add NFT Gift Card Creator showcase by ([@minolinpwork](https://github.com/minolinpwork)) in [#754](https://github.com/cardano-foundation/developer-portal/pull/754)
 - Add Book Token showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#725](https://github.com/cardano-foundation/developer-portal/pull/725)
 - Fix cardano-node build instructions on recent MacOS M1 by ([@KtorZ](https://github.com/KtorZ)) in [#769](https://github.com/cardano-foundation/developer-portal/pull/769)
+- Update weekly report 09.14 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#773](https://github.com/cardano-foundation/developer-portal/pull/773)
+- Rework labels & filters on builder-tools by ([@KtorZ](https://github.com/KtorZ)) in [#767](https://github.com/cardano-foundation/developer-portal/pull/767)
+- add voteaire to showcase by ([@thenic95](https://github.com/thenic95)) in [#775](https://github.com/cardano-foundation/developer-portal/pull/775)
+- Add Cardano Signer builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#774](https://github.com/cardano-foundation/developer-portal/pull/774)
+- cardano-signer: replace narrative thumbnail with logo by ([@rphair](https://github.com/rphair)) in [#777](https://github.com/cardano-foundation/developer-portal/pull/777)
+- Add StakePool Operator Scripts builder tool by ([@rphair](https://github.com/rphair)) in [#779](https://github.com/cardano-foundation/developer-portal/pull/779)
+- Add Github Changelog  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#776](https://github.com/cardano-foundation/developer-portal/pull/776)
+- Modify maximum Changelog users icons from 10 to 20 before unfold option by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#781](https://github.com/cardano-foundation/developer-portal/pull/781)
+- Various open graph images by ([@katomm](https://github.com/katomm)) in [#788](https://github.com/cardano-foundation/developer-portal/pull/788)
+- Fix dates and weeks in Changelog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#790](https://github.com/cardano-foundation/developer-portal/pull/790)
+- Open graph images patch by ([@katomm](https://github.com/katomm)) in [#795](https://github.com/cardano-foundation/developer-portal/pull/795)
+- Add September 2022 Developer Interview with ADAO by ([@thenic95](https://github.com/thenic95)) in [#794](https://github.com/cardano-foundation/developer-portal/pull/794)
+- Add why contribute section by ([@weqanhet](https://github.com/weqanhet)) in [#793](https://github.com/cardano-foundation/developer-portal/pull/793)
+- Remove weekly report markdown file (Replaced by Changelog) by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#789](https://github.com/cardano-foundation/developer-portal/pull/789)
+- Update project structure documentation by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#785](https://github.com/cardano-foundation/developer-portal/pull/785)
+- Update hydra links for node binaries by ([@zliu41](https://github.com/zliu41)) in [#799](https://github.com/cardano-foundation/developer-portal/pull/799)
+- Updated script for getting pool statistic by ([@os11k](https://github.com/os11k)) in [#798](https://github.com/cardano-foundation/developer-portal/pull/798)
+- added Loxe to careers page by ([@manonthemat](https://github.com/manonthemat)) in [#796](https://github.com/cardano-foundation/developer-portal/pull/796)
+- Add "known problems"-section to "how to contribute?" by ([@katomm](https://github.com/katomm)) in [#792](https://github.com/cardano-foundation/developer-portal/pull/792)
+- remove adaex and adapools from Showcase by ([@rphair](https://github.com/rphair)) in [#800](https://github.com/cardano-foundation/developer-portal/pull/800)
+- Add cexplorer by ([@cexplorer](https://github.com/cexplorer)) in [#745](https://github.com/cardano-foundation/developer-portal/pull/745)
 
-#### Committers: 8
+#### Committers: 15
 
 - klntsky ([@klntsky](https://github.com/klntsky))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
@@ -949,3 +970,10 @@ All of the merged PRs in Septemeber
 - rvcas ([@rvcas](https://github.com/rvcas))
 - minolinpwork ([@minolinpwork](https://github.com/minolinpwork))
 - KtorZ ([@KtorZ](https://github.com/KtorZ))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- rphair ([@rphair](https://github.com/rphair))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- zliu41 ([@zliu41](https://github.com/zliu41))
+- os11k ([@os11k](https://github.com/os11k))
+- manonthemat ([@manonthemat](https://github.com/manonthemat))
+- cexplorer ([@cexplorer](https://github.com/cexplorer))
