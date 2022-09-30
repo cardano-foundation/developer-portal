@@ -1070,7 +1070,7 @@ export const Showcases = [
   {
     title: "SecuX Hardware Wallet",
     description:
-      "SecuX hardware wallets support the receiving, sending and staking of Cardano on its web application ada Portal. SecuX wallets are equipped with military-grade Secure Element chip to securely store your PIN and Private Key, and authorize transactions without the private key ever leaving the device.",
+      "SecuX hardware wallets support the receiving, sending and staking of Cardano on their web application ada Portal: equipped with military-grade Secure Element chip to store your PIN and Private Key and authorize transactions without the private key ever leaving the device.",
     preview: require("./showcase/SecuX.png"),
     website: "https://secuxtech.com/",
     source: null,
