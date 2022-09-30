@@ -141,6 +141,14 @@ module.exports = {
               href: "https://forum.cardano.org/c/developers/29",
             },
             {
+              label: "Developer Portal Discord",
+              href: "https://discord.com/invite/Exe6XmqKDx",
+            },
+            {
+              label: "Developer Ecosystem Survey",
+              href: "https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022",
+            },
+            {
               label: "More",
               to: "docs/get-started/cardano-developer-community",
             },
