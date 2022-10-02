@@ -165,8 +165,9 @@ module.exports = {
        	items: [
         	"stake-pool-guide/stake-pool-basics",
 		"stake-pool-guide/get-started",
+		"stake-pool-guide/stake-pool-networking",
 		],
-	},    
+	},
 ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
