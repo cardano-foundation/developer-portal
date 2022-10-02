@@ -769,6 +769,14 @@ export const Showcases = [
     website: "https://cexplorer.io",
     getstarted: null,
     tags: ["operatortool", "api"],
+  },
+  {
+    title: "Koios Python",
+    description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
+    preview: require("./builder-tools/koios-python.png"),
+    website: "https://github.com/cardano-community/koios-python",
+    getstarted: null,
+    tags: ["python", "api", "sdk"],
   }
 ];
 
