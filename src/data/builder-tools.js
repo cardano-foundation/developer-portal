@@ -769,6 +769,14 @@ export const Showcases = [
     website: "https://cexplorer.io",
     getstarted: null,
     tags: ["operatortool", "api"],
+  },
+  {
+    title: "Cardano Leader Slot",
+    description: "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
+    preview: require("./builder-tools/leader-slot.png"),
+    website: "https://github.com/QuixoteSystems/cardano-leader-slot",
+    getstarted: null,
+    tags: ["python", "operator tool", "cli"],
   }
 ];
 
