@@ -768,8 +768,16 @@ export const Showcases = [
     preview: require("./builder-tools/cexplorer.png"),
     website: "https://cexplorer.io",
     getstarted: null,
-    tags: ["operatortool", "api"],
-  }
+    tags: ["operatortool"],
+  },
+  {
+    title: "Frankenwallet",
+    description: "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
+    preview: require("./builder-tools/frankenwallet.png"),
+    website: "https://cosd.com/frankenwallet",
+    getstarted: "/docs/operate-a-stake-pool/frankenwallet",
+    tags: ["operatortool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
