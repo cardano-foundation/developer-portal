@@ -60,3 +60,4 @@ You must also construct your pool around a brand that can draw sufficient delega
 - [SPOCRA](https://members.spocra.io) includes the Stake Pool installation guide from the registered trade guild - Stake Pool Operator Collective Representation Assembly
 - [RaspberryPi with Docker](https://github.com/speedwing/cardano-staking-pool-edu) Full guide to build and run both testnet and mainnet Cardano Stake Pool with Docker on Raspberry Pi. [Youtube Playlist](https://www.youtube.com/playlist?list=PLBhbLwOuj0DfTnneuG3vyoDHY7Dv_aiyq)
 - [TOPO Guide](https://es-kb.topopool.com/primeros-pasos). A friendly and complete guide to mount a Stake Pool in Spanish
+- [Cardano Leader Slot](https://github.com/QuixoteSystems/cardano-leader-slot) Lightweight and Portable Python Scriipt to check assigned Blocks for Next, Current and Previous Epochs.
