@@ -776,7 +776,7 @@ export const Showcases = [
     preview: require("./builder-tools/leader-slot.png"),
     website: "https://github.com/QuixoteSystems/cardano-leader-slot",
     getstarted: null,
-    tags: ["python", "operator tool", "cli"],
+    tags: ["python", "operatortool", "cli"],
   }
 ];
 
