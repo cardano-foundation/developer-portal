@@ -60,9 +60,9 @@ This is a one-page summary of those external instructions, so you can see if the
 
 ### Some other use cases & limitations of this material
 
-From [Frankenwallet \> Miscellaneous FAQ's](https://cosd.com/frankenwallet/intro/faq):
-
 ➤ You *can* use the Frankenwallet instructions to set up an Air Gap node on a full computer... but since the time of its development, this procedure has been adapted to a more appropriate page on the Dev Portal (the aforementioned [Air Gap Environment](/docs/get-started/air-gap)).
+
+From [Frankenwallet \> Miscellaneous FAQ's](https://cosd.com/frankenwallet/intro/faq):
 
 ➤ Your VirtualBox or other VM software on your host computer *does not* isolate you from the network, even if you have it disabled... nor can it be ever assumed that the screen or keyboard are isolated either... so VMs are generally unsuitable to create an air gap *<span class="underline">or</span>* to implement these instructions.
 
