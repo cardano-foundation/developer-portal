@@ -777,7 +777,7 @@ export const Showcases = [
     website: "https://github.com/QuixoteSystems/cardano-leader-slot",
     getstarted: null,
     tags: ["python", "operatortool", "cli"],
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
