@@ -779,6 +779,14 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
+    title: "Cardano Leader Slot",
+    description: "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
+    preview: require("./builder-tools/leader-slot.png"),
+    website: "https://github.com/QuixoteSystems/cardano-leader-slot",
+    getstarted: null,
+    tags: ["python", "operatortool", "cli"],
+  },
+  {
     title: "Frankenwallet",
     description: "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
     preview: require("./builder-tools/frankenwallet.png"),
