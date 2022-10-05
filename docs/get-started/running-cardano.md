@@ -38,27 +38,29 @@ You can download the current **Cardano** blockchain network configuration files 
 
 #### Mainnet / Production
 
-**NetworkMagic**: `764824073`
-
 ```
-curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-config.json
-curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-byron-genesis.json
-curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-shelley-genesis.json
-curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-alonzo-genesis.json
-curl -O -J https://hydra.iohk.io/build/7370192/download/1/mainnet-topology.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/config.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/db-sync-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/submit-api-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/topology.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/byron-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/shelley-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/alonzo-genesis.json
 ```
 
 #### Testnet / Sandbox
 
-**NetworkMagic**: `1097911063`
+```
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/db-sync-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/submit-api-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
+```
 
-```
-curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-topology.json
-curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-shelley-genesis.json
-curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-config.json
-curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-byron-genesis.json
-curl -O -J https://hydra.iohk.io/build/7654130/download/1/testnet-alonzo-genesis.json
-```
+The latest supported networks can be found at https://book.world.dev.cardano.org/environments.html
 
 :::note
 
@@ -132,34 +134,34 @@ Available options:
 ### cardano-node parameters
 
 :::note
-In this section, we will use the path `$HOME/cardano` to store all the `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
+In this section, we will use the path `$HOME/cardano/testnet` to store all the testnet `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
 :::
 We will focus on six key command-line parameters for running a node: 
 
 **`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](/docs/get-started/running-cardano#configuration-files).
 
-> For example, If you have downloaded the `topology.json` file to the path `$HOME/cardano/topology.json`, then the argument would be something like this:
+> For example, If you have downloaded the `topology.json` file to the path `$HOME/cardano/testnet/topology.json`, then the argument would be something like this:
 ```
---topology $HOME/cardano/topology.json
+--topology $HOME/cardano/testnet/topology.json
 ```
 
 **`--database-path`**: This expects the path to a directory where we will store the actual blockchain data like **blocks**, **transactions**, **metadata**, and other data type that people stored in the **Cardano** blockchain. We explore how we can query those kinds of data in the cardano-db-sync section. ***@TODO: link to the cardano-db-sync section.***
 
-> For example, if we decide that all files required by `cardano-node` will be in the path `$HOME/cardano/`. Then we could create a database directory like this, `mkdir -p $HOME/cardano/db`.
+> For example, if we decide that all files required by `cardano-node` will be in the path `$HOME/cardano/testnet`. Then we could create a database directory like this, `mkdir -p $HOME/cardano/testnet/db`.
 > The directory structure would then be something like this:
 ```
-$HOME/cardano/
+$HOME/cardano/testnet/
 ├── db
-├── testnet-alonzo-genesis.json
-├── testnet-byron-genesis.json
-├── testnet-config.json
-├── testnet-shelley-genesis.json
-└── testnet-topology.json
+├── alonzo-genesis.json
+├── byron-genesis.json
+├── config.json
+├── shelley-genesis.json
+└── topology.json
 1 directory, 4 files
 ```
-> As you may have noticed, we are planning to run a `testnet` node in this example and have downloaded the configuration files into the `$HOME/cardano/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/` successfully. The argument would look something like this: 
+> As you may have noticed, we are planning to run a `testnet` node in this example and have downloaded the configuration files into the `$HOME/cardano/testnet/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/testnet/` successfully. The argument would look something like this: 
 ```
---database-path $HOME/cardano/db
+--database-path $HOME/cardano/testnet/db
 ```
 > Please download and move the configuration files to your Cardano directory as shown above to continue following this guide.
 
@@ -169,7 +171,7 @@ $HOME/cardano/
 > 
 > Here is an example `--socket-path` argument for **Linux**:
 ```
---socket-path $HOME/cardano/db/node.socket
+--socket-path $HOME/cardano/testnet/db/node.socket
 ```
 > As you can see, the argument points to a file since **unix sockets** are represented as files (like everything else in **Linux**). In this case, we put the socket file in the `db` directory that we have just created before.
 > 
@@ -197,7 +199,7 @@ $HOME/cardano/
 **`--config`**: This expects the path to the main configuration file that we have downloaded previously.
 > Here is an example `--config` argument:
 ```
---config $HOME/cardano/testnet-config.json
+--config $HOME/cardano/testnet/config.json
 ```
 > Please make sure that the `alonzo-genesis.json`, `byron-genesis.json` and `shelley-genesis.json` are in the same directory as the `config.json`.
 
@@ -205,12 +207,12 @@ Here is a realistic example for running `cardano-node`:
 
 ```bash
 cardano-node run \
---config $HOME/cardano/testnet-config.json \
---database-path $HOME/cardano/db/ \
---socket-path $HOME/cardano/db/node.socket \
+--config $HOME/cardano/testnet/config.json \
+--database-path $HOME/cardano/testnet/db/ \
+--socket-path $HOME/cardano/testnet/db/node.socket \
 --host-addr 127.0.0.1 \
 --port 1337 \
---topology $HOME/cardano/testnet-topology.json
+--topology $HOME/cardano/testnet/topology.json
 ```
 
 If you have everything set correctly, you should see something like this:
@@ -258,7 +260,7 @@ So we will set that in `$HOME/.bashrc` or `$HOME/.zshrc`, depending on which she
 
 Add this line to the bottom of your shell profile (**MacOS** and **Linux**):
 ```
-export CARDANO_NODE_SOCKET_PATH="$HOME/cardano/db/node.socket"
+export CARDANO_NODE_SOCKET_PATH="$HOME/cardano/testnet/db/node.socket"
 ```
 
 Once saved, reload your shell/terminal for changes to take effect.
@@ -266,20 +268,26 @@ Once saved, reload your shell/terminal for changes to take effect.
 Finally, we can now test querying the blockchain tip of our `cardano-node`:
 
 - First, run `cardano-node` in a separate terminal for it to start syncing (if not already).
-- Open another terminal and run the following command `cardano-cli query tip --testnet-magic 1097911063`.
+- Open another terminal and run the following command `cardano-cli query tip --testnet-magic 1`.
 > You should see something like this:
-> ```json
+```json
 {
-    "blockNo": 2598870,
-    "headerHash": "e5be38153db4dc639134969e6449f37e105e0c5228f828f76a885968b4423aaf",
-    "slotNo": 27149964
+    "block": 2598870,
+    "epoch": 133,
+    "era": "Shelley",
+    "hash": "7b5633590bf8924d8fce5b6515f34fga0c712f64e9b7d273f915656f88fba872",
+    "slot": 27149964,
+    "syncProgress": "57.09"
 }
+```
 
 :::note
 We include `--testnet-magic <NetworkMagic>` in the parameter for `cardano-cli query tip` because we are using a `testnet` node. If you intend to query `mainnet` instead, please use the `--mainnet` parameter  and make sure your node is connected to the `mainnet` network.
 :::
 
-What you see here is the local tip data of your node. This case, means that you are synced up to `blockNo: 2598870` and `slotNo: 27149964`.
+What you see here is the local tip data of your node. This case, means that you are synced up to `block: 2598870` and `slot: 27149964`.
+
+`syncProgress` is the percentage your node that has been synced. `100` meaning it is fully synced.
 
 To know whether you are fully synced or not, you can check the **Cardano Blockchain Explorer** of the relevant network:
 
