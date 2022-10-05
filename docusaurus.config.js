@@ -43,7 +43,7 @@ module.exports = {
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "img/og-developer-portal.png",
+    image: "img/og/og-developer-portal.png",
     metadata: [{ name: "twitter:card", content: "summary" }],
 
     // Algolia Search
@@ -108,6 +108,10 @@ module.exports = {
               to: "docs/portal-contributors/",
             },
             {
+              label: "Changelog",
+              to: "/changelog",
+            },
+            {
               label: "How to Contribute",
               to: "docs/portal-contribute/",
             },
@@ -135,6 +139,14 @@ module.exports = {
             {
               label: "Cardano Forum",
               href: "https://forum.cardano.org/c/developers/29",
+            },
+            {
+              label: "Developer Portal Discord",
+              href: "https://discord.com/invite/Exe6XmqKDx",
+            },
+            {
+              label: "Developer Ecosystem Survey",
+              href: "https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022",
             },
             {
               label: "More",
@@ -210,7 +222,31 @@ module.exports = {
         ],
       },
     ],
+    [
+      require.resolve('./src/plugins/changelog/index.js'),
+      {
+        blogTitle: 'Docusaurus changelog',
+        blogDescription:
+          'Keep yourself up-to-date about new features in every release',
+        blogSidebarCount: 'ALL',
+        blogSidebarTitle: 'Changelog',
+        routeBasePath: '/changelog',
+        showReadingTime: false,
+        postsPerPage: 20,
+        archiveBasePath: null,
+        authorsMapPath: 'authors.json',
+        feedOptions: {
+          type: 'all',
+          title: 'Docusaurus changelog',
+          description:
+            'Keep yourself up-to-date about new features in every release',
+          copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+          language: 'en',
+        },
+      },
+    ],
   ],
+  
   presets: [
     [
       "@docusaurus/preset-classic",
