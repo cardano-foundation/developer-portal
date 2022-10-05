@@ -778,6 +778,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["operatortool"],
   },
+  {
+    title: "Cardano Leader Slot",
+    description: "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
+    preview: require("./builder-tools/leader-slot.png"),
+    website: "https://github.com/QuixoteSystems/cardano-leader-slot",
+    getstarted: null,
+    tags: ["python", "operatortool", "cli"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
