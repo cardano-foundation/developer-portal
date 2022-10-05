@@ -770,6 +770,7 @@ export const Showcases = [
     getstarted: null,
     tags: ["javascript", "typescript", "serialization", "sdk", "plutus"]
   },
+  {
     title: "Cexplorer",
     description: "Rich featured blockchain explorer with support of all testnet instances and an API.",
     preview: require("./builder-tools/cexplorer.png"),
