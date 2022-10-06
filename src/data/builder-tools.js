@@ -340,6 +340,14 @@ export const Showcases = [
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
+    title: "StakePool Operator Scripts",
+    description: "CLI scripts to manage your stake pool (online or offline), use and migrate to hardware wallets, send transactions with messages, register for Catalyst, mint/burn Tokens, generate the Token Registry, and more.",
+    preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
+    website: "https://github.com/gitmachtl/scripts",
+    getstarted: null,
+    tags: ["operatortool", "cli", "serialization"],
+  },
+  {
     title: "Cardano Serialization Library",
     description:
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
@@ -752,8 +760,32 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-signer.png"),
     website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
     getstarted: null,
+    tags: ["operatortool", "cli"],
+  },
+  {
+    title: "Mesh",
+    description: "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
+    preview: require("./builder-tools/mesh.png"),
+    website: "https://mesh.martify.io/",
+    getstarted: null,
+    tags: ["javascript", "typescript", "serialization", "sdk", "plutus"]
+  },
+  {
+    title: "Cexplorer",
+    description: "Rich featured blockchain explorer with support of all testnet instances and an API.",
+    preview: require("./builder-tools/cexplorer.png"),
+    website: "https://cexplorer.io",
+    getstarted: null,
     tags: ["operatortool"],
-  }
+  },
+  {
+    title: "Cardano Leader Slot",
+    description: "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
+    preview: require("./builder-tools/leader-slot.png"),
+    website: "https://github.com/QuixoteSystems/cardano-leader-slot",
+    getstarted: null,
+    tags: ["python", "operatortool", "cli"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
