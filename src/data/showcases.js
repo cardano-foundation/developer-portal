@@ -1043,7 +1043,7 @@ export const Showcases = [
   {
     title: "Gift Card Creator",
     description:
-      "Try the quick and easy NFT Gift Card Creator.  A card for all occasions and celebrations - birthdays, anniversaries, holidays, congratulations or condolences.  Choose from defined templates/customize or create your very own.",
+      "Customize NFT Gift Cards on the Cardano Blockchain",
     preview: require("./showcase/gift-card-creator.png"),
     website: "https://card-creator.shop",
     source: null,
@@ -1070,7 +1070,7 @@ export const Showcases = [
   {
     title: "NFT Creator",
     description:
-      "Unlock your creativity.  Design your own NFT image or animation with this easy to design toolbox.  Text, Shapes, Paint, Layers, Image Seach, Blur, Clone, Desaturate, Fill, Night Vision are just some of the tools and effects available.",
+      "Design Cardano NFTs with this image editor",
     preview: require("./showcase/nft-creator.png"),
     website: "https://nft-creator.pics",
     source: null,
