@@ -808,7 +808,8 @@ export const Showcases = [
     preview: require("./builder-tools/cnft9000.png"), 
     website: "https://github.com/ada9000/cnft#readme", 
     getstarted: null, 
-    tags: ["javascript", "typescript", "nft"] },
+    tags: ["javascript", "typescript", "nft"] 
+  },
 ];
 
 export const TagList = Object.keys(Tags);
