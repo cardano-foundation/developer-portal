@@ -792,7 +792,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-connect-with-wallet.png"),
     website: "https://github.com/cardano-foundation/cardano-connect-with-wallet",
     getstarted: null,
-    tags: ["javascript", "typescript", "wallet"],
+    tags: ["typescript", "wallet"],
   },
 ];
 
