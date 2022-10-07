@@ -786,6 +786,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["python", "operatortool", "cli"],
   },
+  {
+    title: "Cardano connect with wallet",
+    description: "Useful hooks and React components to simplify the Cardano dApp integration e.g. to connect browser wallets, fetch addresses and provide signing.",
+    preview: require("./builder-tools/cardano-connect-with-wallet.png"),
+    website: "https://github.com/cardano-foundation/cardano-connect-with-wallet",
+    getstarted: null,
+    tags: ["javascript", "typescript", "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
