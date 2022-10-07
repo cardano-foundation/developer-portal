@@ -776,7 +776,7 @@ export const Showcases = [
     preview: require("./builder-tools/cexplorer.png"),
     website: "https://cexplorer.io",
     getstarted: null,
-    tags: ["operatortool", "api"],
+    tags: ["operatortool"],
   },
   {
     title: "Koios Python",
