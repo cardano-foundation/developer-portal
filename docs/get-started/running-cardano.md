@@ -17,6 +17,17 @@ This guide assumes you installed `cardano-node` and `cardano-cli` into your syst
 This guide does not cover the topic of running a block-producing `cardano-node` or running a **Cardano Stake Pool**. For more information regarding that topic, please visit the [Stake Pool Operation](/docs/operate-a-stake-pool/) section.
 :::
 
+## Cardano blockchain  nets:
+### Testnet
+There are two types of testnet: `preview` and `pre-prod`.
+
+- **Preview Testnet**: Testing release candidates and mainnet releases. Leads mainnet hard forks by at least 4 weeks. This net is for those who just want to see how it runs, get familiarised and play with cardano-node.
+
+- **Pre-Production Testnet**: Testing release candidates and mainnet releases. Forks at approximately same time as mainnet (within an epoch of each other). This net is ideal for those who are ready to run the mainnet but want to test it before running it.
+
+### Production (Mainnet)
+This is the live Production. Only gets official mainnet releases. Please use this net once you are ready to use the cardano-node.
+
 ### Configuration Files
 
 The `cardano-node` application requires at least four configuration files to run as of writing this article.
@@ -33,8 +44,31 @@ Currently, the `cardano-node` topology is manually set by the community of netwo
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
 
-You can download the current **Cardano** blockchain network configuration files here: 
+You can download the current **Cardano** blockchain network configuration files [here](https://book.world.dev.cardano.org/environments.html#pre-production-testnet): 
 
+Or by typing:
+
+#### Testnet / Preview
+```
+curl -O -J https://book.world.dev.cardano.org/environments/preview/config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/db-sync-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/submit-api-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/topology.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/byron-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/shelley-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/alonzo-genesis.json
+```
+#### Testnet / Prerod
+
+```
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/db-sync-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/submit-api-config.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
+```
 
 #### Mainnet / Production
 
@@ -46,18 +80,6 @@ curl -O -J https://book.world.dev.cardano.org/environments/mainnet/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/alonzo-genesis.json
-```
-
-#### Testnet / Sandbox
-
-```
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/db-sync-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/submit-api-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
 ```
 
 The latest supported networks can be found at https://book.world.dev.cardano.org/environments.html
