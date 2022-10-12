@@ -802,6 +802,14 @@ export const Showcases = [
     getstarted: "/docs/operate-a-stake-pool/frankenwallet",
     tags: ["operatortool"],
   },
+  { 
+    title: "cnft", 
+    description: "A library for validating metadata for the 721 metadatum property. Complies with community standards", 
+    preview: require("./builder-tools/cnft9000.png"), 
+    website: "https://github.com/ada9000/cnft#readme", 
+    getstarted: null, 
+    tags: ["javascript", "typescript", "nft"] 
+  },
   {
     title: "Bakrypt.io",
     description: "Bakrypt offers backend tools and Cloud storage services for brands, companies, and creators to help them build their NFTs.",
