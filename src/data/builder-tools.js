@@ -802,6 +802,14 @@ export const Showcases = [
     getstarted: "/docs/operate-a-stake-pool/frankenwallet",
     tags: ["operatortool"],
   },
+  {
+    title: "CARP (Cardano Postgres Indexer)",
+    description: "A modular indexer for Cardano with an SQL Postgres backend.",
+    preview: require("./builder-tools/carp.png"),
+    website: "https://github.com/dcSpark/carp",
+    getstarted: "https://dcspark.github.io/carp/docs/intro",
+    tags: ["chainindex", "sql", "typescript"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
