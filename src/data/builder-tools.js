@@ -810,6 +810,14 @@ export const Showcases = [
     getstarted: null, 
     tags: ["javascript", "typescript", "nft"] 
   },
+  {
+    title: "Bakrypt.io",
+    description: "Bakrypt offers backend tools and Cloud storage services for brands, companies, and creators to help them build their NFTs.",
+    preview: require("./builder-tools/bakrypt-io.png"),
+    website: "https://bakrypt.io",
+    getstarted: "https://bakrypt.readme.io",
+    tags: ["nft", "http", "hosted"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
