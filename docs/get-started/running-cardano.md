@@ -44,11 +44,14 @@ Currently, the `cardano-node` topology is manually set by the community of netwo
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
 
-You can download the current **Cardano** blockchain network configuration files [here](https://book.world.dev.cardano.org/environments.html#pre-production-testnet): 
+You can download the current **Cardano** blockchain network configuration files [here](https://book.world.dev.cardano.org/environments.html): 
 
 Or by typing:
 
 #### Testnet / Preview
+
+**NetworkMagic**: `2`
+
 ```
 curl -O -J https://book.world.dev.cardano.org/environments/preview/config.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/db-sync-config.json
@@ -59,6 +62,8 @@ curl -O -J https://book.world.dev.cardano.org/environments/preview/shelley-genes
 curl -O -J https://book.world.dev.cardano.org/environments/preview/alonzo-genesis.json
 ```
 #### Testnet / Prerod
+
+**NetworkMagic**: `1`
 
 ```
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/config.json
@@ -71,6 +76,8 @@ curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesi
 ```
 
 #### Mainnet / Production
+
+**NetworkMagic**: `764824073`
 
 ```
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/config.json
