@@ -817,7 +817,7 @@ export const Showcases = [
     website: "https://github.com/dcSpark/carp",
     getstarted: "https://dcspark.github.io/carp/docs/intro",
     tags: ["chainindex", "sql", "typescript"],
-   }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
