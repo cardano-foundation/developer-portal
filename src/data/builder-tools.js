@@ -819,6 +819,14 @@ export const Showcases = [
     tags: ["nft", "http", "hosted"],
   },
   {
+    title: "CARP (Cardano Postgres Indexer)",
+    description: "A modular indexer for Cardano with an SQL Postgres backend.",
+    preview: require("./builder-tools/carp.png"),
+    website: "https://github.com/dcSpark/carp",
+    getstarted: "https://dcspark.github.io/carp/docs/intro",
+    tags: ["chainindex", "sql", "typescript"],
+  },
+  {
     title: "Pooldata.live",
     description:
       "Pooldata.live API provides a public Grafana datasource for pool operators with several operational metrics related to a stake pool.",
