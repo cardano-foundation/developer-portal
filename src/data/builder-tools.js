@@ -811,6 +811,14 @@ export const Showcases = [
     tags: ["javascript", "typescript", "nft"] 
   },
   {
+    title: "Bakrypt.io",
+    description: "Bakrypt offers backend tools and Cloud storage services for brands, companies, and creators to help them build their NFTs.",
+    preview: require("./builder-tools/bakrypt-io.png"),
+    website: "https://bakrypt.io",
+    getstarted: "https://bakrypt.readme.io",
+    tags: ["nft", "http", "hosted"],
+  },
+  {
     title: "CARP (Cardano Postgres Indexer)",
     description: "A modular indexer for Cardano with an SQL Postgres backend.",
     preview: require("./builder-tools/carp.png"),
