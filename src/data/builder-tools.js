@@ -826,6 +826,15 @@ export const Showcases = [
     getstarted: "https://dcspark.github.io/carp/docs/intro",
     tags: ["chainindex", "sql", "typescript"],
   },
+  {
+    title: "Pooldata.live",
+    description:
+      "Pooldata.live API provides a public Grafana datasource for pool operators with several operational metrics related to a stake pool.",
+    preview: require("./builder-tools/pooldata-live.png"),
+    website: "https://api.pooldata.live",
+    getstarted: null,
+    tags: ["operatortool", "http"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
