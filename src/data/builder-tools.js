@@ -818,6 +818,14 @@ export const Showcases = [
     getstarted: "https://bakrypt.readme.io",
     tags: ["nft", "http", "hosted"],
   },
+  {
+    title: "CARP (Cardano Postgres Indexer)",
+    description: "A modular indexer for Cardano with an SQL Postgres backend.",
+    preview: require("./builder-tools/carp.png"),
+    website: "https://github.com/dcSpark/carp",
+    getstarted: "https://dcspark.github.io/carp/docs/intro",
+    tags: ["chainindex", "sql", "typescript"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
