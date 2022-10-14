@@ -25,26 +25,6 @@ Learn fundamental terms like blockchain, consensus, decentralization delegation 
 If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible.
 :::
 
-## What are the prerequisites for persons who wish to learn how to run a stake pool?
-- Knowledge of how to manage a server. You must be familiar with the operating system of your choosing in order to administer, maintain, and secure your server.
-- This includes a thorough understanding of how networks operate, as well as how to backup and restore data.
-- Experienced in interpreting documentation and implementing best practices
-- Understand Cardano, blockchain, wallets, and key pairs on a fundamental level.
-
-## What if I don't meet the requirements?
-If you don't meet all of the qualifications, you'll need a strong desire to study and the understanding that you won't be able to learn everything in a few weeks.
-
-We observed people who had no prior knowledge of Linux, shells, or networking, but who were committed and had enough time to properly deal with it, and who now manage a profitable stake pool. It isn't for everyone, and it isn't going to be simple. Here are a few resources to get you started:
-- [Start playing around with Linux](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview).
-- [Stake pool operator forum](https://forum.cardano.org/c/staking-delegation/156).
-- [Cardano Stake Pool Best Practice Workgroup](https://t.me/CardanoStakePoolWorkgroup).
-
-
-## Choose security over comfort
-Best procedures should always be a key consideration when running a stake pool. Security isn't something you can turn on or off or change in a configuration file. It is both an attitude and a way of life.
-- [Discuss security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157).
-- [Security Best Practices](../get-started/air-gap).
-
 ## Cardano Key Pairs
 It's critical to understand the numerous cryptographic key pairs connected with Cardano, as well as the purpose of each key pair and best practices for securing those keys, before you start working with it. Every ambitious Cardano developer and stake pool operator should get a complete grasp of these key pairs, as well as the ramifications of a single secret (private) key being hacked. Any Cardano developer or stake pool operator must learn how to manage, safeguard, and store private keys in order to succeed.
 
