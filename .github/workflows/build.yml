@@ -15,7 +15,8 @@ jobs:
           git config --global --add safe.directory /github/workspace
 
       - name: Yarn install
-        uses: ./.github/actions/yarn-build
+        #uses: ./.github/actions/yarn-build
+        uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install
 
