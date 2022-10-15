@@ -20,8 +20,8 @@ jobs:
         with:
           cmd: install
 
-      #- name: Yarn build
-      #    uses: borales/actions-yarn@v3.0.0
-      #  with:
-      #    cmd: build
+      - name: Yarn build
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: build
 
