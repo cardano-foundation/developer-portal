@@ -19,4 +19,5 @@ if [ -n "$NPM_AUTH_TOKEN" ]; then
   chmod 0600 "$NPM_CONFIG_USERCONFIG"
 fi
 
+git config --global --add safe.directory /github/workspace
 sh -c "yarn $*"
