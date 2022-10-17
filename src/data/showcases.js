@@ -736,6 +736,14 @@ export const Showcases = [
     tags: ["game"],
   },
   {
+    title: "Spectrum Finance",
+    description: "Spectrum Finance is an open-source cross-chain DEX.",
+    preview: require("./showcase/spectrum-finance.png"),
+    website: "https://app.spectrum.fi",
+    source: null,
+    tags: ["favorite", "dex", "token"],
+  },
+  {
     title: "MuesliSwap",
     description:
       "MuesliSwap is a new decentralized exchange (DEX) operating on the Smart Bitcoin Cash blockchain and Cardano.",
