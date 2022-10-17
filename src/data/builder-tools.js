@@ -835,6 +835,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["operatortool", "http"],
   },
+  {
+    title: "Plutip",
+    description: "Cardano tool that aims to help dApp developers with integration testing and contracts debugging using disposable private network",
+    preview: require("./builder-tools/plutip.png"),
+    website: "https://github.com/mlabs-haskell/plutip",
+    getstarted: null,
+    tags: ["haskell", "testing"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
