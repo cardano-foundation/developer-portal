@@ -3,7 +3,7 @@ id: grafana-dashboard-tutorial
 title: Grafana Dashboard Tutorial
 sidebar_label: Grafana Dashboard Tutorial
 description: "Stake pool course: Grafana Dashboard Tutorial"
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 ![Grafana Tutorial](/img/stake-pool-course/snsky_dashboard.jpg)
 
@@ -207,15 +207,10 @@ To see a list of installed panels, click the Plugins item in the main menu. Both
 
 
 
-## 5. Add Data from Adapools to the Dashboard
+## 5. Add Data from Cexplorer to the Dashboard
 
 
-
-Copy your JSON link or your Pool ID from Share/Promote Tab and JSON data outputs in adapools.org
-
-
-
-Prometheus can work only with numeric data, so we must first trim non numeric strings which is returned from the JSON file. Lets create a shell script getstat.sh for the same
+Cexplorer provides API where we can collect data for our pool. Run following commands to create directory for our pool statistic and script. Metric `adapools_pledged` is missing in cexplorer(a tool what will substitute adapools), so you might see relative data missing on dashboard from SNSKY, mentioned above.
 
 ```shell
 cd /$NODE_HOME
@@ -224,15 +219,17 @@ mkdir -p poolStat
 
 cd poolStat
 
-echo "curl https://js.adapools.org/pools/< YOUR POOL ID >/summary.json 2>/dev/null \
-
-| jq '.data | del(.pool_id_bech32, .hist_bpe, .handles, .hist_roa, .db_ticker, .db_name, .db_url, .ticker_orig, .group_basic, .pool_id, .direct, .db_description, .tax_ratio_old, .tax_fix_old)' \
-
-| tr -d \\\"{},: \
-
-| awk NF \
-
-| sed -e 's/^[ \t]*/adapools_/' > poolStat.prom" > getstats.sh
+echo "curl https://js.cexplorer.io/api-static/pool/< YOUR POOL BECH 32 POOL ID >.json 2>/dev/null \\
+| jq '.data' | jq 'del(.stats, .url , .img, .updated, .handles, .pool_id, .name, .pool_id_hash)' \\
+| tr -d \\\"{},: \\
+| awk NF \\
+| sed -e 's/^[ \t]*/adapools_/' \\
+| sed -e 's/adapools_stake /adapools_total_stake /' \\
+| sed -e 's/adapools_stake_active /adapools_active_stake /' \\
+| sed -e 's/adapools_position /adapools_rank /' \\
+| sed -e 's/adapools_blocks_est_epoch /adapools_blocks_estimated /' \\
+| sed -e 's/adapools_saturation /adapools_saturated /' \\
+| sed -e 's/adapools_roa_short /adapools_roa /' > poolStat.prom" > getstats.sh
 
 chmod +x getstats.sh
 
@@ -266,11 +263,11 @@ $ sudo systemctl restart prometheus.service
 ```
 
 
-Now you should see in the Dashboard all Adapool statistics
+Now you should see in the Dashboard all Cexplorer statistics
 
 
 
-Since the statistics will change, lets set cron job to update data from ADApools everyday
+Since the statistics will change, lets set cron job to update data from Cexplorer everyday
 
 
 ```shell
@@ -280,7 +277,7 @@ $ crontab -e
 ```shell
 ##############################
 
-#Get data from ADApools every day at 06:00
+#Get data from Cexplorer every day at 06:00
 
 0 6 * * * <YOUR NODE FULL PATH >/poolStat/getstats.sh
 

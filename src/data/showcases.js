@@ -248,15 +248,6 @@ export const Showcases = [
     tags: ["favorite", "nftproject", "opensource"],
   },
   {
-    title: "ADAex",
-    description:
-      "A classic block explorer that also offers a Cardano rich list.",
-    preview: require("./showcase/adaex.png"),
-    website: "https://adaex.org",
-    source: null,
-    tags: ["explorer"],
-  },
-  {
     title: "AdaStat",
     description:
       "The browser, inconspicuous at first glance, offers a great many statistics and insights.",
@@ -300,15 +291,6 @@ export const Showcases = [
     website: "https://adafolio.com",
     source: null,
     tags: ["favorite", "pooltool"],
-  },
-  {
-    title: "Adapools",
-    description:
-      "Well established stake pool explorer in Cardano. Yoroi is using our data to list stake pools in the wallet.",
-    preview: require("./showcase/adapools.png"),
-    website: "https://adapools.org/",
-    source: null,
-    tags: ["pooltool", "analytics"],
   },
   {
     title: "PoolTool",

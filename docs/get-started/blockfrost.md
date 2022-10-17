@@ -3,7 +3,7 @@ id: blockfrost
 title: Get Started with Blockfrost
 sidebar_label: Blockfrost
 description: Get Started with Blockfrost
-image: ../img/og-developer-portal.png
+image: ../img/og/og-getstarted-blockfrost.png
 ---
 
 Blockfrost provides API to access and process information stored on the Cardano blockchain. The basic tier is free and allows 50,000 requests per day.

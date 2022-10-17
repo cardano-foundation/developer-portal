@@ -3,13 +3,13 @@ id: plutus
 title: Plutus
 sidebar_label: Plutus
 description: Plutus
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 --- 
 
 ## Get started with Plutus 
 Plutus is the smart contract platform of the Cardano blockchain. It allows you to write applications that interact with the Cardano blockchain.
 
-Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/tutorials/) if you want to learn Plutus from the beginning. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
+Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/tutorials/) if you want to learn Plutus from the beginning or see [Plutus resources](https://docs.cardano.org/plutus/plutus-resources), where you can find references to all Plutus-related repositories, documentation, and training materials. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
 
 [Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/plutus_pioneer_program.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program. 
 
@@ -37,9 +37,9 @@ There is a written tutorial on [how to compile and test a Plutus App](https://pl
 
 ## Further Tutorials
 - [Writing a basic Plutus app in the Plutus Playground](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
-- [Using Plutus Tx](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/plutus-tx.html)
-- [Writing basic validator scripts](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-validators.html)
-- [Writing basic minting policies](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-minting-policies.html)
+- [Using Plutus Tx](https://plutus.readthedocs.io/en/latest/tutorials/plutus-tx.html)
+- [Writing basic validator scripts](https://plutus.readthedocs.io/en/latest/tutorials/basic-validators.html)
+- [Writing basic minting policies](https://plutus.readthedocs.io/en/latest/tutorials/basic-minting-policies.html)
 - [Property-based testing of Plutus contracts](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/contract-testing.html)
 
 ## How-to guides
