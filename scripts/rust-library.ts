@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as path from "path";
 import {
   getStringContentAsync,
-  sidebarPosition,
 } from "./reusable";
 import {
   RLRepoRawBaseUrl,
@@ -48,6 +47,18 @@ const fileNameManipulation = (fileName: string) => {
   fileName = fileName === "metadata" ? "transaction-metadata" : fileName;
 
   return fileName;
+};
+
+// In case we want a specific sidebar_position for a certain filename (otherwise alphabetically)
+// In the future it will be better to get this information from the index.rst file
+export const sidebarPosition = (fileName: string) => {
+
+  if (fileName === "prerequisite-knowledge") return "sidebar_position: 2\n";
+  if (fileName === "generating-keys") return "sidebar_position: 3\n";
+  if (fileName === "generating-transactions") return "sidebar_position: 4\n";
+  if (fileName === "transaction-metadata") return "sidebar_position: 5\n";
+
+  return ""; // Empty string means alphabetically within the sidebar
 };
 
 // Inject Docusaurus doc tags for title and add a nice sidebar

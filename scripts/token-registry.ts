@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as path from "path";
 import {
   getStringContentAsync,
-  sidebarPosition,
 } from "./reusable";
 import {
   TRDocsPath,
@@ -137,6 +136,19 @@ const overviewStringManipulation = (content: string) => {
   return content;
 };
 
+// In case we want a specific sidebar_position for a certain filename (otherwise alphabetically)
+// In the future it will be better to get this information from the index.rst file
+export const sidebarPosition = (fileName: string) => {
+  if (fileName === "How to prepare an entry for the registry (NA policy script)")
+    return "sidebar_position: 2\n";
+  if (fileName === "How to prepare an entry for the registry (Plutus script)")
+    return "sidebar_position: 3\n";
+  if (fileName === "How to submit an entry to the registry")
+    return "sidebar_position: 4\n";
+
+  return ""; // Empty string means alphabetically within the sidebar
+};
+
 // Inject Docusaurus doc tags for title and add a nice sidebar
 const injectDocusaurusDocTags = (content: string, fileName: string) => {
 
@@ -146,15 +158,10 @@ const injectDocusaurusDocTags = (content: string, fileName: string) => {
     // Replace '-' from url in order to create a clean sidebar label
     const modifiedFileName = fileName.replace(/[-]/gm, " ");
 
-    // Capitalize the first letter of each word
-    let sidebarLabel = modifiedFileName
-      .toLowerCase()
-      .replace(/(^\w{1})|(\s{1}\w{1})/g, (match) => match.toUpperCase());
-
     // Add '---' with doc tags for Docusaurus
     content =
       "--- \nsidebar_label: " +
-      sidebarLabel +
+      modifiedFileName +
       "\ntitle: " +
       fileName +
       "\n" +
