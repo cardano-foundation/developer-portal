@@ -784,7 +784,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios-python.png"),
     website: "https://github.com/cardano-community/koios-python",
     getstarted: null,
-    tags: ["python", "operatortool", "sdk"],
+    tags: ["python", "sdk"],
   },
   {
     title: "Cardano Leader Slot",
