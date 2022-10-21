@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-
+import Head from '@docusaurus/Head';
 import Layout from "@theme/Layout";
 import ShowcaseTooltip from "@site/src/components/showcase/ShowcaseTooltip";
 import ShowcaseTagSelect from "@site/src/components/showcase/ShowcaseTagSelect";
@@ -332,12 +332,23 @@ function SearchBar() {
   );
 }
 
+// Add open graph image to showcase page
+function MetaData() {
+  return (
+    <Head>
+      <meta property="og:image" content="https://developers.cardano.org/img/og/og-showcase.png" />
+      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-showcase.png" />
+    </Head>
+  )
+}
+
 function Showcase() {
   const { selectedTags, toggleTag } = useSelectedTags();
   const filteredProjects = useFilteredProjects();
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
+      <MetaData />
       <ShowcaseHeader />
       <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
       <ShowcaseCards filteredProjects={filteredProjects} />
