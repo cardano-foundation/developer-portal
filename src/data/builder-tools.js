@@ -779,6 +779,14 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
+    title: "Koios Python",
+    description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
+    preview: require("./builder-tools/koios-python.png"),
+    website: "https://github.com/cardano-community/koios-python",
+    getstarted: null,
+    tags: ["python", "sdk"],
+  },
+  {
     title: "Cardano Leader Slot",
     description: "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
     preview: require("./builder-tools/leader-slot.png"),
