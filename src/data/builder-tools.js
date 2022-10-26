@@ -758,9 +758,9 @@ export const Showcases = [
     title: "Cardano Signer",
     description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
     preview: require("./builder-tools/cardano-signer.png"),
-    website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
+    website: "https://github.com/gitmachtl/cardano-signer",
     getstarted: null,
-    tags: ["operatortool", "cli"],
+    tags: ["operatortool", "cli", "json"],
   },
   {
     title: "Mesh",
