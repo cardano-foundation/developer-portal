@@ -1085,6 +1085,15 @@ export const Showcases = [
     source: null,
     tags: ["nftproject", "game"],
   },
+  {
+    title: "CNFTLab Party",
+    description: 
+      "Tool for minting CNFTs, manage your policyID, create royalties and start minting in few seconds.",
+    preview: require("./showcase/cnftlab-party.png"),
+    website: "https://www.cnftlab.party/",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
