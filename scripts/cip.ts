@@ -122,6 +122,11 @@ const injectDocusaurusDocTags = (content: string) => {
     content =
       "--- \nsidebar_label: " + "(" + cipNumber + ") " + title + content;
 
+
+    // Temporary solution!
+    // CIP script needs to be rebuild, currently CIP 49 has useless information in header that will be removed in the future
+    content = content.replace('* License: \n* License-Code:\n* Post-History:\n* Requires:\n* Replaces:\n* Superseded-By:\n', '')
+    
     return content;
 }
 
@@ -160,7 +165,7 @@ const stringManipulation = (content: string, cipName: string) => {
 
   // Temporary solution!
   // Replace link to actual file on github. (Fix asap, when taking care of scripts)
-  content = content.replace('cddl/version-1.cddl', 'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0060/cddl/version-1.cddl')
+  content = content.replace('cddl/version-1.cddl', 'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0060/cddl/version-1.cddl');
   
   return content;
 };
