@@ -3,7 +3,7 @@ id: minting
 title: Minting Native Assets
 sidebar_label: Minting Native Assets
 description: How to mint native tokens on Cardano. 
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 
 In this section, we will be minting native assets - **not NFTs**. 
@@ -300,7 +300,7 @@ cardano-cli transaction build-raw \
  --fee $fee \
  --tx-in $txhash#$txix \
  --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
- --mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+ --mint "$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
  --minting-script-file policy/policy.script \
  --out-file matx.raw
 ```
@@ -354,7 +354,7 @@ The syntax is very important, so here it is word for word. There are no spaces u
 :::
 
 ```bash
---mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+--mint "$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
 ```
 Again, the same syntax as specified in <i>--tx-out</i> but without the address and output.
 
@@ -384,7 +384,7 @@ cardano-cli transaction build-raw \
 --fee $fee  \
 --tx-in $txhash#$txix  \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
---mint="$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
+--mint "$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
 --minting-script-file policy/policy.script \
 --out-file matx.raw
 ```
@@ -432,7 +432,7 @@ receiver="Insert wallet address here"
 receiver_output="10000000"
 txhash=""
 txix=""
-funds="Amout of lovelace"
+funds="Amount of lovelace"
 ```
 
 Again - here is an example of how it would look if we use our fictional example:

@@ -3,7 +3,7 @@ id: portal-contributors
 title: Contributors
 sidebar_label: Contributors
 description: Thank you for contributing to the Cardano developer portal.
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -19,6 +19,7 @@ Everyone is welcome to contribute to the Cardano Developer Portal. Below is just
 - [Kyle Solomon](https://github.com/adosiawolf)
 - [Andrew Westberg](https://github.com/AndrewWestberg)
 - [Alexander Klee](https://github.com/tweakch)
+- [Robert Phair](https://github.com/rphair)
 
 ## Organizations
 

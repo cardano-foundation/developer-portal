@@ -3,7 +3,7 @@ id: project-catalyst
 title: Fund your Project with Catalyst
 sidebar_label: Project Catalyst
 description: Fund your project with Catalyst
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 
 The portal on [cardano.ideascale.com](https://cardano.ideascale.com/) is where the Cardano community’s ideas come to life. Here, users can browse active campaigns, participate in discussions, and put forward their ideas for feedback and voting from the community.
@@ -39,6 +39,7 @@ Download the Catalyst voting app in the [Apple Store](https://apps.apple.com/kg/
 
 ## Previous Project Catalyst voting results 
 
+* [Project Catalyst Fund 9 Voting Results](https://drive.google.com/file/d/1HiI0fgiJWbirl2QEGNwiUbKLSQXqdxdv/view)
 * [Project Catalyst Fund 8 Voting Results](https://drive.google.com/file/d/1s3jCE7pmoUujy3ASMia-UhFl2KLi_hnf/view)
 * [Project Catalyst Fund 7 Voting Results](https://drive.google.com/file/d/193GZulHuk0zhpTrMiLhcNC4OeEMoRyIa/view)
 * [Project Catalyst Fund 6 Voting Results](https://drive.google.com/file/d/13h5JFtwqyylMUNMoRGXQZ-FJEM4bznOJ/view)

@@ -3,7 +3,7 @@ id: cardano-token-registry
 title: Cardano Token Registry
 sidebar_label: Token Registry
 description: The Cardano Token Registry provides a means to register off-chain token metadata that can map to on-chain identifiers. 
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 
 The [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).

@@ -13,12 +13,12 @@
     "cip:refresh": "ts-node scripts/cip.ts"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.21",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.21",
-    "@docusaurus/plugin-content-docs": "^2.0.0-beta.21",
-    "@docusaurus/plugin-ideal-image": "^2.0.0-beta.21",
-    "@docusaurus/preset-classic": "^2.0.0-beta.21",
-    "@docusaurus/theme-search-algolia": "^2.0.0-beta.21",
+    "@docusaurus/core": "^2.0.1",
+    "@docusaurus/plugin-client-redirects": "^2.0.1",
+    "@docusaurus/plugin-content-docs": "^2.0.1",
+    "@docusaurus/plugin-ideal-image": "^2.0.1",
+    "@docusaurus/preset-classic": "^2.0.1",
+    "@docusaurus/theme-search-algolia": "^2.0.1",
     "@mdx-js/react": "^1.6.22",
     "@popperjs/core": "^2.11.2",
     "clsx": "^1.1.1",
@@ -43,5 +43,8 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.12"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

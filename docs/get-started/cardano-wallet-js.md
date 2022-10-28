@@ -3,7 +3,7 @@ id: cardano-wallet-js
 title: Get Started with cardano-wallet-js
 sidebar_label: cardano-wallet-js
 description: Get Started with cardano-wallet-js
-image: ../img/og-developer-portal.png
+image: ../img/og/og-getstarted-cardano-wallet-js.png
 ---
 
 ## cardano-wallet-js
@@ -539,7 +539,7 @@ let signed = Buffer.from(txBody.to_bytes()).toString('hex');
 let txId = await walletServer.submitTx(signed);
 ```    
 ### Key handling
-There ara a couple of methods you can use to derive and get private/public key pairs. For more info check [here](https://docs.cardano.org/projects/cardano-wallet/en/latest/About-Address-Derivation.html).
+There ara a couple of methods you can use to derive and get private/public key pairs. For more info check [here](https://github.com/input-output-hk/technical-docs/blob/main/cardano-components/cardano-wallet/doc/About-Address-Derivation.md).
 
 Get root key from recovery phrase
 ```js
@@ -571,7 +571,7 @@ Output:
 > "xprv..."
 ```
 
-All the method mentioned above return a `Bip32PrivateKey` which you can use to keep deriving and generating keys and addresses check [here](https://docs.cardano.org/projects/cardano-serialization-lib/en/latest/) for more info. For example, assuming you have `cardano-serialization-lib` installed, 
+All the method mentioned above return a `Bip32PrivateKey` which you can use to keep deriving and generating keys and addresses check [here](../get-started/cardano-serialization-lib/overview.md) for more info. For example, assuming you have `cardano-serialization-lib` installed, 
 you can get a stake address like this:
 ```js
 let rootKey = Seed.deriveRootKey(phrase);

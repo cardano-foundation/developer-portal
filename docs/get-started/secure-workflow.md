@@ -3,7 +3,7 @@ id: secure-workflow
 title: Secure Transaction Workflow
 sidebar_label: Secure Transaction Workflow
 description: Procedures for using private keys separately from the Internet.
-image: ../img/og-developer-portal.png
+image: ../img/og/og-security-secure-transaction-workflow.png
 --- 
 
 This general guide is written to help Cardano stake pool operators and developers keep to one simple rule:

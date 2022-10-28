@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-
+import Head from '@docusaurus/Head';
 import Layout from "@theme/Layout";
 import ShowcaseTooltip from "@site/src/components/showcase/ShowcaseTooltip";
 import ShowcaseTagSelect from "@site/src/components/showcase/ShowcaseTagSelect";
@@ -10,14 +10,18 @@ import ShowcaseFilterToggle, {
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
 import clsx from "clsx";
 
+import ShowcaseLatestToggle, {
+  readLatestOperator,
+} from "@site/src/components/showcase/ShowcaseLatestToggle";
+
 import PortalHero from "../portalhero";
 import { toggleListItem } from "../../utils/jsUtils";
-import { SortedShowcases, Tags, TagList } from "../../data/showcases";
+import { SortedShowcases, Tags, TagList, Showcases } from "../../data/showcases";
 import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import Fav from "../../svg/fav.svg"
+import Fav from "../../svg/fav.svg";
 
 const TITLE = "Showcase";
 const DESCRIPTION = "See the awesome projects people are building with Cardano";
@@ -36,10 +40,10 @@ export function prepareUserState() {
 }
 
 const favoriteShowcases = SortedShowcases.filter((showcase) =>
-  showcase.tags.includes('favorite'),
+  showcase.tags.includes("favorite")
 );
 const otherShowcases = SortedShowcases.filter(
-  (showcase) => !showcase.tags.includes('favorite'),
+  (showcase) => !showcase.tags.includes("favorite")
 );
 
 function restoreUserState(userState) {
@@ -66,7 +70,12 @@ function replaceSearchTags(search, newTags) {
 }
 
 // Filter projects based on chosen project tags, toggle operator or searchbar value
-function filterProjects(projects, selectedTags, operator, searchName) {
+function filterProjects(projects, selectedTags, latest, operator, searchName, unfilteredProjects) {
+  // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
+  if (latest === "LAST") {
+    var projects = unfilteredProjects.slice(-10);
+  }
+
   if (searchName) {
     projects = projects.filter((project) =>
       project.title.toLowerCase().includes(searchName.toLowerCase())
@@ -75,11 +84,11 @@ function filterProjects(projects, selectedTags, operator, searchName) {
   if (selectedTags.length === 0) {
     return projects;
   }
+
   return projects.filter((project) => {
     if (project.tags.length === 0) {
       return false;
-    }
-    if (operator === "AND") {
+    } else if (operator === "AND") {
       return selectedTags.every((tag) => project.tags.includes(tag));
     } else {
       return selectedTags.some((tag) => project.tags.includes(tag));
@@ -90,6 +99,7 @@ function filterProjects(projects, selectedTags, operator, searchName) {
 function useFilteredProjects() {
   const location = useLocation();
   const [operator, setOperator] = useState("OR");
+  const [latest, setLatest] = useState("LAST");
 
   // On SSR / first mount (hydration) no tag is selected
   const [selectedTags, setSelectedTags] = useState([]);
@@ -99,13 +109,22 @@ function useFilteredProjects() {
   useEffect(() => {
     setSelectedTags(readSearchTags(location.search));
     setOperator(readOperator(location.search));
+    setLatest(readLatestOperator(location.search));
     setSearchName(readSearchName(location.search));
     restoreUserState(location.state);
   }, [location]);
 
   return useMemo(
-    () => filterProjects(SortedShowcases, selectedTags, operator, searchName),
-    [selectedTags, operator, searchName]
+    () =>
+      filterProjects(
+        SortedShowcases,
+        selectedTags,
+        latest,
+        operator,
+        searchName,
+        Showcases
+      ),
+    [selectedTags, latest, operator, searchName]
   );
 }
 
@@ -143,7 +162,6 @@ function ShowcaseHeader() {
 }
 
 function ShowcaseFilters() {
-
   const filteredProjects = useFilteredProjects();
 
   return (
@@ -152,9 +170,10 @@ function ShowcaseFilters() {
         <div>
           <h2>Filters</h2>
           <span>{`${filteredProjects.length} project${
-            filteredProjects.length === 1 ? '' : 's'
+            filteredProjects.length === 1 ? "" : "s"
           }`}</span>
         </div>
+        <ShowcaseLatestToggle />
         <ShowcaseFilterToggle />
       </div>
       <div className={styles.checkboxList}>
@@ -180,7 +199,11 @@ function ShowcaseFilters() {
                             marginLeft: 8,
                           }}
                         >
-                      <Fav svgClass={styles.svgIconFavorite} size="small" style={{display: 'grid'}}/>
+                          <Fav
+                            svgClass={styles.svgIconFavorite}
+                            size="small"
+                            style={{ display: "grid" }}
+                          />
                         </span>
                       ) : (
                         <span
@@ -227,14 +250,15 @@ function ShowcaseCards() {
             <div className="container">
               <div
                 className={clsx(
-                  'margin-bottom--md',
-                  styles.showcaseFavoriteHeader,
-                )}>
+                  "margin-bottom--md",
+                  styles.showcaseFavoriteHeader
+                )}
+              >
                 <h2 className={styles.ourFavorites}>Our favorites</h2>
-                <Fav svgClass={styles.svgIconFavorite} size="small"/>
+                <Fav svgClass={styles.svgIconFavorite} size="small" />
                 <SearchBar />
               </div>
-              <ul className={clsx('container', styles.showcaseList)}>
+              <ul className={clsx("container", styles.showcaseList)}>
                 {favoriteShowcases.map((showcase) => (
                   <ShowcaseCard key={showcase.title} showcase={showcase} />
                 ))}
@@ -253,10 +277,8 @@ function ShowcaseCards() {
       ) : (
         <div className="container">
           <div
-            className={clsx(
-              'margin-bottom--md',
-              styles.showcaseFavoriteHeader,
-            )}>
+            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
+          >
             <SearchBar />
           </div>
           <ul className={styles.showcaseList}>
@@ -310,16 +332,27 @@ function SearchBar() {
   );
 }
 
+// Add open graph image to showcase page
+function MetaData() {
+  return (
+    <Head>
+      <meta property="og:image" content="https://developers.cardano.org/img/og/og-showcase.png" />
+      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-showcase.png" />
+    </Head>
+  )
+}
+
 function Showcase() {
   const { selectedTags, toggleTag } = useSelectedTags();
   const filteredProjects = useFilteredProjects();
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
+      <MetaData />
       <ShowcaseHeader />
       <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
       <ShowcaseCards filteredProjects={filteredProjects} />
-      <OpenStickyButton/>
+      <OpenStickyButton />
     </Layout>
   );
 }
