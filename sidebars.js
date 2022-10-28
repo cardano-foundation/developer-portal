@@ -163,6 +163,11 @@ module.exports = {
       "portal-contributors",
       "portal-contribute",
       "portal-style-guide",
+      {
+        type: 'link',
+        label: 'Changelog',
+        href: '/changelog',
+      },
     ],
   },
 };
