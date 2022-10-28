@@ -44,3 +44,8 @@ Best practice workgroup on Telegram for stake pool operators. This group is hect
 
 [**forum.cardano.org**](https://forum.cardano.org/c/staking-delegation/156)  
 If you care about well structured, long format discussions, visit the stake pool operator categories on [forum.cardano.org](https://forum.cardano.org/c/staking-delegation/156).
+
+## Developer Surveys
+
+[**Developer Ecosystem Survey**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022)  
+For the first time ever, an annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem. 
