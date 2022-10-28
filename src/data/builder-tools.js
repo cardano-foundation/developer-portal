@@ -851,6 +851,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["haskell", "testing"],
   },
+  {
+    title: "Demeter.run",
+    description: "A cloud environment with all the tools for building your dApp.",
+    preview: require("./builder-tools/demeter.png"),
+    website: "https://demeter.run/",
+    getstarted: null,
+    tags: ["favorite", "IDE", "hosted"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
