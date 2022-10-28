@@ -7,7 +7,7 @@ author_url: https://github.com/cardano-foundation
 author_image_url: https://avatars.githubusercontent.com/u/37078161?s=200&v=4
 tags: [DAO, open source, interview]
 description: "We interviewed Allusian, one of the co-founders of ADAO about various projects the ADAO community is building and how they contribute to the Cardano ecosystem."
-image: https://developers.cardano.org/img/og-blog-adao.png
+image: https://developers.cardano.org/img/og/og-blog-adao.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';
