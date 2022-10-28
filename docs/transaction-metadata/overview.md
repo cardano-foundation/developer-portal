@@ -4,7 +4,7 @@ slug: /transaction-metadata/
 title: Build with transaction metadata
 sidebar_label: Overview
 description: The Cardano Transaction Metadata is a feature that allows anyone to embed metadata into transactions and ultimately storing metadata into the blockchain.
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 
 ![Cardano Transaction Metadata](../../static/img/card-transaction-metadata-title.svg)

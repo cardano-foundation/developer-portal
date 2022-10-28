@@ -20,7 +20,7 @@ export default function BlogPostAuthors({
   if (authorsCount === 0) {
     return null;
   }
-  const filteredAuthors = authors.slice(0, expanded ? authors.length : 10);
+  const filteredAuthors = authors.slice(0, expanded ? authors.length : 20);
   return (
     <div
       className={clsx(
@@ -39,7 +39,7 @@ export default function BlogPostAuthors({
           />
         </div>
       ))}
-      {authors.length > 10 && (
+      {authors.length > 20 && (
         <button
           className={clsx('clean-btn', styles.toggleButton)}
           type="button"
