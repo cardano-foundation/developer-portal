@@ -43,7 +43,7 @@ module.exports = {
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "img/og-developer-portal.png",
+    image: "img/og/og-developer-portal.png",
     metadata: [{ name: "twitter:card", content: "summary" }],
 
     // Algolia Search
@@ -139,6 +139,14 @@ module.exports = {
             {
               label: "Cardano Forum",
               href: "https://forum.cardano.org/c/developers/29",
+            },
+            {
+              label: "Developer Portal Discord",
+              href: "https://discord.com/invite/Exe6XmqKDx",
+            },
+            {
+              label: "Developer Ecosystem Survey",
+              href: "https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022",
             },
             {
               label: "More",

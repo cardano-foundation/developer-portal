@@ -3,7 +3,7 @@ id: cardano-components
 title: Cardano Components
 sidebar_label: Overview
 description: This article explains all the different Cardano components and their functions.
-image: ../img/og-developer-portal.png
+image: ../img/og/og-getstarted-cardano-components.png
 --- 
 
 The Cardano blockchain is powered by a flock of inter-connected nodes. The [`cardano-node`](https://github.com/input-output-hk/cardano-node#cardano-node-overview) is the software capable of running as a core block producer, as a relay or as a local entry-point to the network. The node itself is made out of several inter-connected component parts:

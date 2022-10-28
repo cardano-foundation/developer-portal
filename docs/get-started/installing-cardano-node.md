@@ -3,8 +3,8 @@ id: installing-cardano-node
 title: Installing cardano-node and cardano-cli from source
 sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
-image: ../img/og-developer-portal.png
---- 
+image: ../img/og/og-getstarted-installing-cardano-node.png
+---
 import HydraBuildList from '@site/src/components/docs/HydraBuildList';
 
 ### Overview
@@ -16,9 +16,9 @@ If you want to avoid compiling the binaries yourself, you can download the lates
 
 <HydraBuildList
     latest="16159682"
-    linux="16338142"
-    macos="16338141"
-    win64="16338127"/>
+    linux="17428084"
+    macos="17428186"
+    win64="17428205"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -28,7 +28,7 @@ The components can be built and run on **Windows** and **MacOS**, but we recomme
 To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
-* An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)  
+* An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)
 * **16GB** of RAM and at least **75GB** of free disk space
 
 :::note
@@ -44,7 +44,7 @@ If intending to connect to mainnet instance, the requirements for RAM and storag
 
 ## Linux
 
-In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **Linux-based** operating system. 
+In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **Linux-based** operating system.
 
 #### Installing Operating System dependencies
 
@@ -100,13 +100,13 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 `ghcup` will try to detect your shell and ask you to add it to the environment variables. Please restart your shell/terminal after installing `ghcup`
 :::
 
-You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
+You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following:
 
 ```
 The GHCup Haskell installer, version v0.1.17.8
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
 ghcup install ghc 8.10.7
@@ -123,22 +123,22 @@ ghcup set cabal 3.6.2.0
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
-Check `ghc` version: 
+Check `ghc` version:
 ```bash
 ghc --version
 ```
 
-You should see something like this: 
+You should see something like this:
 ```
 The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
-Check `cabal` version: 
+Check `cabal` version:
 ```bash
 cabal --version
 ```
 
-You should see something like this: 
+You should see something like this:
 
 ```
 cabal-install version 3.6.2.0
@@ -199,14 +199,14 @@ Now we are ready to download, compile and install `cardano-node` and `cardano-cl
 cd $HOME/cardano-src
 ```
 
-Download the `cardano-node` repository: 
+Download the `cardano-node` repository:
 
 ```bash
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
-Switch the repository to the latest tagged commit: 
+Switch the repository to the latest tagged commit:
 
 ```bash
 git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
@@ -270,7 +270,7 @@ Next, we will talk about how to [run cardano-node](running-cardano.md).
 
 ## MacOS
 
-In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **MacOS-based** operating system. 
+In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **MacOS-based** operating system.
 
 #### Installing Operating System dependencies
 
@@ -282,7 +282,7 @@ To download the source code and build it, you need the following packages and to
 
 #### Installing Homebrew packages
 
-For the `cardano-node` and `cardano-cli` components to compile properly, we will need to install some libraries via `brew`: 
+For the `cardano-node` and `cardano-cli` components to compile properly, we will need to install some libraries via `brew`:
 
 ```bash
 brew install jq
@@ -290,6 +290,7 @@ brew install libtool
 brew install autoconf
 brew install automake
 brew install pkg-config
+brew install openssl
 ```
 
 #### You will need to install llvm in case you are using M1
@@ -323,13 +324,13 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 `ghcup` will try to detect your shell and will ask you to add it to the environment variables. Please restart your shell/terminal after installing `ghcup`
 :::
 
-You can check if `ghcup` has been installed properly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
+You can check if `ghcup` has been installed properly by typing `ghcup --version` into the terminal. You should see something similar to the following:
 
 ```
 The GHCup Haskell installer, version v0.1.17.4
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
 ghcup install ghc 8.10.7
@@ -345,22 +346,22 @@ ghcup set cabal 3.6.2.0
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
-Check `ghc` version: 
+Check `ghc` version:
 ```bash
 ghc --version
 ```
 
-You should see something like this: 
+You should see something like this:
 ```
 The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
-Check `cabal` version: 
+Check `cabal` version:
 ```bash
 cabal --version
 ```
 
-You should see something like this: 
+You should see something like this:
 
 ```
 cabal-install version 3.6.2.0
@@ -431,14 +432,14 @@ Now we are ready to download, compile and install `cardano-node` and `cardano-cl
 cd $HOME/cardano-src
 ```
 
-Download the `cardano-node` repository: 
+Download the `cardano-node` repository:
 
 ```bash
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
-Switch the repository to the latest tagged commit: 
+Switch the repository to the latest tagged commit:
 
 ```bash
 git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
