@@ -248,15 +248,6 @@ export const Showcases = [
     tags: ["favorite", "nftproject", "opensource"],
   },
   {
-    title: "ADAex",
-    description:
-      "A classic block explorer that also offers a Cardano rich list.",
-    preview: require("./showcase/adaex.png"),
-    website: "https://adaex.org",
-    source: null,
-    tags: ["explorer"],
-  },
-  {
     title: "AdaStat",
     description:
       "The browser, inconspicuous at first glance, offers a great many statistics and insights.",
@@ -300,15 +291,6 @@ export const Showcases = [
     website: "https://adafolio.com",
     source: null,
     tags: ["favorite", "pooltool"],
-  },
-  {
-    title: "Adapools",
-    description:
-      "Well established stake pool explorer in Cardano. Yoroi is using our data to list stake pools in the wallet.",
-    preview: require("./showcase/adapools.png"),
-    website: "https://adapools.org/",
-    source: null,
-    tags: ["pooltool", "analytics"],
   },
   {
     title: "PoolTool",
@@ -1059,6 +1041,24 @@ export const Showcases = [
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
   {
+    title: "Gift Card Creator",
+    description:
+      "Personalise an NFT gift card",
+    preview: require("./showcase/gift-card-creator.png"),
+    website: "https://card-creator.shop",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
+  {
+    title: "Book Token",
+    description:
+      "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
+    preview: require("./showcase/book-token.png"),
+    website: "https://www.booktoken.io",
+    source: null,
+    tags: [ "marketplace", "nftsupport", "token"],
+  },
+  {
     title: "NuFi Wallet",
     description:
       "Non-custodial, multi-chain wallet with in-app DEX.",
@@ -1075,6 +1075,24 @@ export const Showcases = [
     website: "https://secuxtech.com/",
     source: null,
     tags: [ "wallet" ],
+  },
+  {
+    title: "Voteaire",
+    description:
+      "Voteaire allows everyone in the ecosystem to create a poll. All results are weighted. All proposals and votes are stored publicly on-chain.",
+    preview: require("./showcase/voteaire.png"),
+    website: "https://voteaire.io/",
+    source: null,
+    tags: [ "daotool"],
+  },
+  {
+    title: "Carda Station",
+    description: 
+      "Explore this virtual world on the moon with an in game avatar, and interact with other players through hangouts, games or events.",
+    preview: require("./showcase/cardastation.png"),
+    website: "https://cardastation.com/",
+    source: null,
+    tags: ["nftproject", "game"],
   },
 ];
 

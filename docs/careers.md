@@ -3,7 +3,7 @@ id: careers
 title: Careers on Cardano
 sidebar_label: Careers on Cardano
 description: Are you passionate about Cardano and looking for a job working in the Cardano ecosystem?
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 hide_table_of_contents: false
 ---
 
@@ -17,3 +17,4 @@ Most of these jobs are 100% remote. You can work from anywhere in the world with
 - [Jobs at dcSpark](https://dcspark.io/#careers)
 - [Jobs at EMURGO](https://emurgo.io/carrer/)
 - [Jobs at IOHK](https://apply.workable.com/io-global/)
+- [Jobs at Loxe Inc.](https://angel.co/company/loxe/jobs)

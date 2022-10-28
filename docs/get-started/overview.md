@@ -4,7 +4,7 @@ slug: /get-started/
 title: Get Started
 sidebar_label: Overview
 description: Get Started
-image: ../img/og-developer-portal.png
+image: ../img/og/og-getstarted-overview.png
 --- 
 ![Cardano Get Started](../../static/img/card-get-started-title.svg)
 

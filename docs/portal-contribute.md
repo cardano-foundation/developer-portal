@@ -3,7 +3,7 @@ id: portal-contribute
 title: How to contribute to the developer portal
 sidebar_label: How to contribute
 description: How to contribute to the Cardano developer portal.
-image: ../img/og-developer-portal.png
+image: ../img/og/og-developer-portal.png
 ---
 
 We wanted to build a developer portal as open and inclusive as Cardano. A portal that is in the hands of the Cardano community and can be constantly evolved by it.
@@ -12,6 +12,15 @@ For this to be successful, the portal relies on your contributions, and the fact
 
 If you want to install the portal on your local machine, you can [jump directly to the installation instructions.](#installation)
 
+## Why should I contribute?
+**Build your reputation:**  Contributions to the developer portal will give your GitHub name and profile higher visibility as more and more people come across your work online. As visibility increases, so too will the reputation of your name and brand. 
+
+**Build your confidence:** Creating tutorials and showing fellow community members how to create will not only elevate your knowledge of your own skills and processes, but will also bestow you with greater confidence in your abilities as you interact with others.
+
+As an added bonus, since everything is public, people typically pay greater attention to how well something is written or programmed. This will also afford you with an invaluable set of eyes on your contributions that will serve as a crucial peer-reviewed tool to catch errors and refine your work.
+
+**Build your resume:** Each contribution you make acts as a precious notch on your belt towards career development or job searches within the Cardano ecosystem. It is also a way for people to find examples of your work and verify your abilities.
+By contributing to open source projects, you will not only gain a lot of valuable experience, but if your profile (or brand) reaches a certain level of attention and recognition, you are also more likely to get professional opportunities further down the line.
 
 ## I got the spirit. What can I do to contribute?
 
@@ -121,6 +130,12 @@ developer-portal
 │   ├── 2021-01-07-january.md
 │   ├── 2021-02-03-february.md
 │   └── *.md
+├── changelog
+│   └── source
+│       ├── 2021.8.0.md
+│       ├── 2021.12.0.md
+│       ├── 2021.16.0.md
+│       └── *.md
 ├── docs
 │   ├── fund-your-project
 │   ├── get-started
@@ -142,6 +157,11 @@ developer-portal
 │       ├── dotnet
 │       ├── js
 |       └── python
+├── scripts
+│   ├── cip.ts
+│   ├── rust-library.ts
+│   ├── token-registry.ts
+│   └── *.md
 ├── src
 │   ├── css
 │   │   └── custom.css
@@ -167,8 +187,10 @@ developer-portal
 ### Project structure rundown
 
 - `/blog/` - Contains the blog Markdown files for the developer spotlight.
+- `/changelog/source/` - Contains the changelog data split by months into Markdown files. 
 - `/docs/` - Contains the Markdown files for the docs. Customize the order of the docs sidebar in `sidebars.js`.
 - `/examples/` - Contains example projects for the Markdown files in the docs. *The structure is not final and will likely change in the future*
+- `/scripts/` - Contains scripts to fetch auto generated content like CIPs, Rust Library, Token Registry.
 - `/src/` - Non-documentation files like pages or custom React components. You don't have to strictly put your non-documentation files in here, but putting them under a centralized directory makes it easier to specify in case you need to do some sort of linting/processing.
   - `/src/data/builder-tools` - Screenshots for the builder tools section.
   - `/src/data/builder-tools.js` - Definition file for the builder tools section.
@@ -179,3 +201,35 @@ developer-portal
 - `/docusaurus.config.js` - A config file containing the site configuration.
 - `/package.json` - A Docusaurus website is a React app. You can install and use any npm packages you like in them.
 - `/sidebar.js` - Used by the documentation to specify the order of documents in the sidebar.
+
+## Known problems that may arise
+We list here problems you may run into when running the developer portal locally.
+
+### Minimum Node.js version not met 
+**Problem:** `yarn start` throws the error `[ERROR] Minimum Node.js version not met :(`.  
+**Solution:** use the node version listed below [requirements](#requirements). If you have different node versions installed for different projects, `nvm` is a neat tool to deal with it. You can switch versions with for example `nvm use 16`.
+
+### Sidebars file at "developer-portal/sidebars.js" failed to be loaded
+**Problem:** `yarn start` throws the error `[ERROR] Sidebars file at "developer-portal/sidebars.js" failed to be loaded.`. 
+
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by `sidebars.js`.
+
+### Sidebar category Token Registry has neither any subitem nor a link
+**Problem:** `yarn start` throws the errow `[ERROR] Error: Sidebar category Token Registry has neither any subitem nor a link. This makes this item not able to link to anything.`.  
+
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by `sidebars.js`.
+
+## Other questions
+Various other questions and answers.
+
+### Should I commit the yarn.lock file?
+No, please do not commit your `yarn.lock` file it is an auto-generated file that should be handled only by `yarn`. 
+
+### Shouldn't yarn.lock be in the ignore file then?
+No, as this will have side effects with dependencies used by the project itself. (Even if you prefer `npm`)
+
+### Anything I can do to make sure my pull request will not break on the staging/production server?
+Yes, please always do a `yarn build` before submitting a pull request. It will find many more issues than `yarn start`.
+
+### Is there any style guide? Do we have editorial guidelines?
+Yes, both still work in progress but please see [style guide](portal-style-guide.md) and [editorial guidelines](portal-style-guide.md#editorial-style-guide).
