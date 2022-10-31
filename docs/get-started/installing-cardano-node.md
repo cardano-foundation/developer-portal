@@ -290,6 +290,7 @@ brew install libtool
 brew install autoconf
 brew install automake
 brew install pkg-config
+brew install openssl
 ```
 
 #### You will need to install llvm in case you are using M1

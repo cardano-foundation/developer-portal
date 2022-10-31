@@ -758,9 +758,9 @@ export const Showcases = [
     title: "Cardano Signer",
     description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
     preview: require("./builder-tools/cardano-signer.png"),
-    website: "https://github.com/gitmachtl/cardano-related-stuff/tree/master/cardano-signer",
+    website: "https://github.com/gitmachtl/cardano-signer",
     getstarted: null,
-    tags: ["operatortool", "cli"],
+    tags: ["operatortool", "cli", "json"],
   },
   {
     title: "Mesh",
@@ -777,6 +777,14 @@ export const Showcases = [
     website: "https://cexplorer.io",
     getstarted: null,
     tags: ["operatortool"],
+  },
+  {
+    title: "Koios Python",
+    description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
+    preview: require("./builder-tools/koios-python.png"),
+    website: "https://github.com/cardano-community/koios-python",
+    getstarted: null,
+    tags: ["python", "sdk"],
   },
   {
     title: "Cardano Leader Slot",
@@ -801,6 +809,55 @@ export const Showcases = [
     website: "https://cosd.com/frankenwallet",
     getstarted: "/docs/operate-a-stake-pool/frankenwallet",
     tags: ["operatortool"],
+  },
+  { 
+    title: "cnft", 
+    description: "A library for validating metadata for the 721 metadatum property. Complies with community standards", 
+    preview: require("./builder-tools/cnft9000.png"), 
+    website: "https://github.com/ada9000/cnft#readme", 
+    getstarted: null, 
+    tags: ["javascript", "typescript", "nft"] 
+  },
+  {
+    title: "Bakrypt.io",
+    description: "Bakrypt offers backend tools and Cloud storage services for brands, companies, and creators to help them build their NFTs.",
+    preview: require("./builder-tools/bakrypt-io.png"),
+    website: "https://bakrypt.io",
+    getstarted: "https://bakrypt.readme.io",
+    tags: ["nft", "http", "hosted"],
+  },
+  {
+    title: "CARP (Cardano Postgres Indexer)",
+    description: "A modular indexer for Cardano with an SQL Postgres backend.",
+    preview: require("./builder-tools/carp.png"),
+    website: "https://github.com/dcSpark/carp",
+    getstarted: "https://dcspark.github.io/carp/docs/intro",
+    tags: ["chainindex", "sql", "typescript"],
+  },
+  {
+    title: "Pooldata.live",
+    description:
+      "Pooldata.live API provides a public Grafana datasource for pool operators with several operational metrics related to a stake pool.",
+    preview: require("./builder-tools/pooldata-live.png"),
+    website: "https://api.pooldata.live",
+    getstarted: null,
+    tags: ["operatortool", "http"],
+  },
+  {
+    title: "Plutip",
+    description: "Cardano tool that aims to help dApp developers with integration testing and contracts debugging using disposable private network",
+    preview: require("./builder-tools/plutip.png"),
+    website: "https://github.com/mlabs-haskell/plutip",
+    getstarted: null,
+    tags: ["haskell", "testing"],
+  },
+  {
+    title: "Demeter.run",
+    description: "A cloud environment with all the tools for building your dApp.",
+    preview: require("./builder-tools/demeter.png"),
+    website: "https://demeter.run/",
+    getstarted: null,
+    tags: ["favorite", "IDE", "hosted"],
   },
 ];
 

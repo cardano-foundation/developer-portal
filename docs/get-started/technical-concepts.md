@@ -116,5 +116,13 @@ Learn how to take blockchain snapshots for Governance voting purposes.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/NI3_VeLwyxc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
  ##  Djed Stablecoin 
-Learn a little bit about the Algorithmic stablecoin Djed coming to Cardano
+Learn a little bit about the Algorithmic stablecoin Djed coming to Cardano.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/dfsy0fib3tM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Genesis Key Delegation
+Learn about how Genesis Keys work on cardano and how they are delegated.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/DF3dDXHSuv8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Music NFTs
+Learn and dive into CIP-60 which is the Music NFT metadata standard on Cardano.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/EolfBVq9y3A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
