@@ -44,9 +44,9 @@ Currently, the `cardano-node` topology is manually set by the community of netwo
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
 
-You can download the current **Cardano** blockchain network configuration files [here](https://book.world.dev.cardano.org/environments.html): 
+You can download the current **Cardano** blockchain network configuration files here: [The Cardano Operations Book > Environments](https://book.world.dev.cardano.org/environments.html)
 
-Or by typing:
+…or by running:
 
 #### Testnet / Preview
 
