@@ -919,7 +919,7 @@ All of the merged PRs in August
 
 All of the merged PRs in Septemeber
 
-#### PRs: 36
+#### PRs: 37
 
 
 - Add cardano-transaction-lib by ([@klntsky](https://github.com/klntsky)) in [#750](https://github.com/cardano-foundation/developer-portal/pull/750)
@@ -958,6 +958,7 @@ All of the merged PRs in Septemeber
 - Add "known problems"-section to "how to contribute?" by ([@katomm](https://github.com/katomm)) in [#792](https://github.com/cardano-foundation/developer-portal/pull/792)
 - remove adaex and adapools from Showcase by ([@rphair](https://github.com/rphair)) in [#800](https://github.com/cardano-foundation/developer-portal/pull/800)
 - Add cexplorer by ([@cexplorer](https://github.com/cexplorer)) in [#745](https://github.com/cardano-foundation/developer-portal/pull/745)
+- Add Discord and Developer Ecosystem Survey into footer by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#804](https://github.com/cardano-foundation/developer-portal/pull/804)
 
 #### Committers: 15
 
@@ -976,3 +977,54 @@ All of the merged PRs in Septemeber
 - os11k ([@os11k](https://github.com/os11k))
 - manonthemat ([@manonthemat](https://github.com/manonthemat))
 - cexplorer ([@cexplorer](https://github.com/cexplorer))
+
+## 2022.42.0 (2022-10-31)
+
+All of the merged PRs in October
+#### PRs: 27
+
+- Update Changelog (End of September) by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#803](https://github.com/cardano-foundation/developer-portal/pull/803)
+- Current Staging Build is broken, remove API tag from Cexplorer to fix it  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#802](https://github.com/cardano-foundation/developer-portal/pull/802)
+- Add Mesh into builder tools and showcases by ([@jinglescode](https://github.com/jinglescode)) in [#784](https://github.com/cardano-foundation/developer-portal/pull/784)
+- Adding a link to Plutus resources on Cardano Docs by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#809](https://github.com/cardano-foundation/developer-portal/pull/809)
+- Adding Cardano Leader Slot by ([@QuixoteSystems](https://github.com/QuixoteSystems)) in [#807](https://github.com/cardano-foundation/developer-portal/pull/807)
+- Add Frankenwallet builder tool by ([@rphair](https://github.com/rphair)) in [#808](https://github.com/cardano-foundation/developer-portal/pull/808)
+- Add Connect with wallet builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#816](https://github.com/cardano-foundation/developer-portal/pull/816)
+- Add Project Catalyst Fund 9 Voting Results by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#813](https://github.com/cardano-foundation/developer-portal/pull/813)
+- add open graph image for adao blog by ([@thenic95](https://github.com/thenic95)) in [#801](https://github.com/cardano-foundation/developer-portal/pull/801)
+- Fix tutorial links in plutus.md by ([@ch1bo](https://github.com/ch1bo)) in [#819](https://github.com/cardano-foundation/developer-portal/pull/819)
+- Update testnet files + outcome from cli query tip by ([@williamalvarez92](https://github.com/williamalvarez92)) in [#814](https://github.com/cardano-foundation/developer-portal/pull/814)
+- Add cnft (npm lib) builder tool by ([@Jack](https://github.com/Jack))-0 in [#817](https://github.com/cardano-foundation/developer-portal/pull/817)
+- Add Open Graph image for Showcase and Builder Tools section by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#821](https://github.com/cardano-foundation/developer-portal/pull/821)
+- Add Bakrypt.io builder tool by ([@Wolfy18](https://github.com/Wolfy18)) in [#820](https://github.com/cardano-foundation/developer-portal/pull/820)
+- Installing cardano-node: MacOS missing openssl by ([@pgrange](https://github.com/pgrange)) in [#791](https://github.com/cardano-foundation/developer-portal/pull/791)
+- Add CARP builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#822](https://github.com/cardano-foundation/developer-portal/pull/822)
+- Add Pooldata.live builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#824](https://github.com/cardano-foundation/developer-portal/pull/824)
+- Add amount of PRs in Changelog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#823](https://github.com/cardano-foundation/developer-portal/pull/823)
+- Add Plutip builder tool by ([@mikekeke](https://github.com/mikekeke)) in [#783](https://github.com/cardano-foundation/developer-portal/pull/783)
+- Add Carda Station to showcase by ([@cardadev](https://github.com/cardadev)) in [#830](https://github.com/cardano-foundation/developer-portal/pull/830)
+- Discover Native Tokens: correct link to NFT Support showcase by ([@rphair](https://github.com/rphair)) in [#828](https://github.com/cardano-foundation/developer-portal/pull/828)
+- Add yarn build workflow by ([@oversize](https://github.com/oversize)) in [#832](https://github.com/cardano-foundation/developer-portal/pull/832)
+- Add Koios Python builder tool by ([@QuixoteSystems](https://github.com/QuixoteSystems)) in [#806](https://github.com/cardano-foundation/developer-portal/pull/806)
+- Remove un-reusable functions from reusable.ts script file by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#834](https://github.com/cardano-foundation/developer-portal/pull/834)
+- Updating Cardano-Signer website url by ([@gitmachtl](https://github.com/gitmachtl)) in [#840](https://github.com/cardano-foundation/developer-portal/pull/840)
+- Add Demeter.run builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#838](https://github.com/cardano-foundation/developer-portal/pull/838)
+- Add more technical concepts by Andrew Westberg by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#843](https://github.com/cardano-foundation/developer-portal/pull/843)
+
+#### Committers: 15
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- jinglescode ([@jinglescode](https://github.com/jinglescode))
+- olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
+- QuixoteSystems ([@QuixoteSystems](https://github.com/QuixoteSystems))
+- rphair ([@rphair](https://github.com/rphair))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- ch1bo ([@ch1bo](https://github.com/ch1bo))
+- williamalvarez92 ([@williamalvarez92](https://github.com/williamalvarez92))
+- Jack ([@Jack](https://github.com/Jack))
+- Wolfy18 ([@Wolfy18](https://github.com/Wolfy18))
+- pgrange ([@pgrange](https://github.com/pgrange))
+- mikekeke ([@mikekeke](https://github.com/mikekeke))
+- cardadev ([@cardadev](https://github.com/cardadev))
+- oversize ([@oversize](https://github.com/oversize))
+- gitmachtl ([@gitmachtl](https://github.com/gitmachtl))
