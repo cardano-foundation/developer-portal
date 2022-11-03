@@ -1086,6 +1086,15 @@ export const Showcases = [
     tags: ["nftproject", "game"],
   },
   {
+    title: "STAMPD",
+    description: 
+      "Use the public blockchains to timestamp your files with indelible proof and mint with linked NFC physical tags for embedment in physical objects.",
+    preview: require("./showcase/stampd.png"),
+    website: "https://stampd.io/",
+    source: null,
+    tags: ["minting", "metadata"],
+  },
+  {
     title: "Great Empires",
     description:
       "Building ancient era metaverse on Cardano Blockchain. Phase 01 - Digital Collectible Card Game, Phase 02 - Metaverse:Ancient Era, Utility token of the ecosystem : GREMP",
