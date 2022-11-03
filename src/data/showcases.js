@@ -1085,6 +1085,15 @@ export const Showcases = [
     source: null,
     tags: ["nftproject", "game"],
   },
+  {
+    title: "STAMPD",
+    description: 
+      "Use the public blockchains to timestamp your files with indelible proof and mint with linked NFC physical tags for embedment in physical objects.",
+    preview: require("./showcase/stampd.png"),
+    website: "https://stampd.io/",
+    source: null,
+    tags: ["minting", "metadata"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
