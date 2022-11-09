@@ -1,0 +1,25 @@
+name: vercel-pr-deploy-prune
+
+# Controls when the action will run. Triggers the workflow on push
+# events but only for the develop branch
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  vercel-deploy-prune:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Make some more metadata available as variables
+      id: metadata
+      run: |
+        echo "::set-output name=DEPLOY_NAME::PR-${{ github.event.number }}"
+
+    - name: Prune Vercel deploy for closed PR
+      uses: strumwolf/delete-deployment-environment@v2
+      with:
+        # ⚠️ The provided token needs permission for admin write:org
+        token: ${{ secrets.GH_PAT_TO_DELETE_DEPLOYMENTS }}
+        environment: vercel-deploy-${{ steps.metadata.outputs.DEPLOY_NAME }}
