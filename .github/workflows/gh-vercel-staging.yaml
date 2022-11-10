@@ -41,7 +41,7 @@ jobs:
       id: deployment
       with:
         step: start
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT_TO_DELETE_DEPLOYMENTS }}
         env: vercel-deploy-${{ steps.metadata.outputs.DEPLOY_NAME }}
 
     - name: Setup Node
@@ -86,7 +86,7 @@ jobs:
       if: always()
       with:
         step: finish
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT_TO_DELETE_DEPLOYMENTS }}
         status: ${{ job.status }}
         deployment_id: ${{ steps.deployment.outputs.deployment_id }}
         env_url: ${{ steps.vercel-action.outputs.preview-url }}
