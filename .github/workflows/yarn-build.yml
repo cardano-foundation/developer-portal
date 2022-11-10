@@ -1,0 +1,23 @@
+name: "Yarn Build"
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Build documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install
+        uses: ./.github/actions/yarn-build
+        with:
+          cmd: install
+
+      - name: Build
+        uses: ./.github/actions/yarn-build
+        with:
+          cmd: build
