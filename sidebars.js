@@ -170,6 +170,13 @@ module.exports = {
 		"stake-pool-guide/hardware-requirements",
 		],
 	},
+        {
+        type: "category",
+        label: "Installation Guide (Node)",
+        items: [
+                "stake-pool-guide/node-installation-process",
+                ],
+        },	    
 ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
