@@ -865,7 +865,7 @@ export const Showcases = [
     preview: require("./builder-tools/kogmios.png"),
     website: "https://github.com/projectNEWM/kogmios",
     getstarted: null,
-    tags: ["sdk", "java", "kotlin", "lowlevel"],
+    tags: ["sdk", "java", "lowlevel"],
   },
 ];
 
