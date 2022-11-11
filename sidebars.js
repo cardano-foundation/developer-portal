@@ -120,6 +120,7 @@ module.exports = {
             label: "Handbook",
             items: [
               "stake-pool-course/handbook/grafana-dashboard-tutorial",
+              "stake-pool-course/handbook/grafana-loki",
               "stake-pool-course/handbook/setup-virtual-box-written",
               "stake-pool-course/handbook/setup-a-server-on-aws-written",
               "stake-pool-course/handbook/setup-firewall",
