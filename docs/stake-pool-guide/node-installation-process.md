@@ -235,5 +235,6 @@ cardano-node --version
 
 Congratulations, you have successfully installed Cardano components into your Linux system! 🎉🎉🎉
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/zW8gmRzRXP0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
-<br/><br/>
+:::note
+Refer [Get Started](../get-started/installing-cardano-node.md) for further reading
+:::
