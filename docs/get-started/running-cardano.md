@@ -61,7 +61,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/preview/byron-genesis
 curl -O -J https://book.world.dev.cardano.org/environments/preview/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/alonzo-genesis.json
 ```
-#### Testnet / Prerod
+#### Testnet / Preprod
 
 **NetworkMagic**: `1`
 
