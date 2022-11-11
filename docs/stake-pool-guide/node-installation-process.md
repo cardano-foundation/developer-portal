@@ -9,6 +9,10 @@ The Cardano node is the core component that underpins the Cardano network. Ultim
 
 In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **Linux-based** operating system.
 
+:::note
+Note the official document [Installing the node from source](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/install.md) in case of difficulties.
+:::
+
 ## Installing Operating System dependencies
 
 To download the source code and build it, you need the following packages and tools on your Linux system:
@@ -234,7 +238,3 @@ cardano-node --version
 ```
 
 Congratulations, you have successfully installed Cardano components into your Linux system! 🎉🎉🎉
-
-:::note
-Refer [Get Started](../get-started/installing-cardano-node.md) for further reading
-:::
