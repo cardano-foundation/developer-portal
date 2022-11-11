@@ -859,6 +859,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["favorite", "IDE", "hosted"],
   },
+  {
+    title: "Kogmios",
+    description: "A Kotlin API library for interacting with Ogmios.",
+    preview: require("./builder-tools/kogmios.png"),
+    website: "https://github.com/projectNEWM/kogmios",
+    getstarted: null,
+    tags: ["sdk", "java", "kotlin", "lowlevel"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
