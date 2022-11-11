@@ -225,7 +225,7 @@ module.exports = {
     [
       require.resolve('./src/plugins/changelog/index.js'),
       {
-        blogTitle: 'Docusaurus changelog',
+        blogTitle: 'Developer Portal Changelog',
         blogDescription:
           'Keep yourself up-to-date about new features in every release',
         blogSidebarCount: 'ALL',
@@ -237,10 +237,9 @@ module.exports = {
         authorsMapPath: 'authors.json',
         feedOptions: {
           type: 'all',
-          title: 'Docusaurus changelog',
+          title: 'Developer Portal Changelog',
           description:
             'Keep yourself up-to-date about new features in every release',
-          copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
           language: 'en',
         },
       },
