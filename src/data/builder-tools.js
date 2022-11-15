@@ -501,7 +501,7 @@ export const Showcases = [
     title: "Marlowe Playground",
     description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
     preview: require("./builder-tools/marlowe-playground.png"),
-    website: "https://alpha.marlowe.iohkdev.io/#/",
+    website: "https://play.marlowe-finance.io",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
     tags: ["favorite", "marlowe", "hosted"],
   },
