@@ -57,6 +57,7 @@ module.exports = {
       "integrate-cardano/listening-for-payments-cli",
       "integrate-cardano/listening-for-payments-wallet",
       "integrate-cardano/testnet-faucet",
+      "integrate-cardano/user-wallet-authentication",
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
