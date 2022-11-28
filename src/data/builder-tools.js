@@ -16,7 +16,7 @@
 
 import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
-import { Fav } from '../svg/fav.svg'
+import { Fav } from "../svg/fav.svg";
 
 // List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
@@ -25,16 +25,15 @@ export const Tags = {
     label: "Favorite",
     description:
       "Our favorite Cardano builder tools that you must absolutely check-out.",
-    color: '#e9669e',
+    color: "#e9669e",
   },
 
   // Chain Index
   chainindex: {
     label: "Chain Index",
-    description:
-      "Index Protocol",
+    description: "Index Protocol",
     icon: null,
-    color: '#000'
+    color: "#000",
   },
 
   // Command Line Tools
@@ -42,52 +41,47 @@ export const Tags = {
     label: "CLI",
     description: "Command-line interface tools",
     icon: null,
-    color: '#921f32',
+    color: "#921f32",
   },
 
   // Golang
   golang: {
     label: "Go",
-    description:
-      "Go language",
+    description: "Go language",
     icon: null,
-    color: '#50b7e0',
+    color: "#50b7e0",
   },
 
   // Integrated Development Environment
   IDE: {
     label: "IDE",
-    description:
-      "Integrated development environment",
+    description: "Integrated development environment",
     icon: null,
-    color: '#001eff',
+    color: "#001eff",
   },
 
   // Java
   java: {
     label: "Java",
-    description:
-      "Java language",
+    description: "Java language",
     icon: null,
-    color: '#d5232d',
+    color: "#d5232d",
   },
 
   // JavaScript
   javascript: {
     label: "JavaScript",
-    description:
-      "JavaScript language",
+    description: "JavaScript language",
     icon: null,
-    color: '#fce300',
+    color: "#fce300",
   },
 
-   // Marlowe
-   marlowe: {
+  // Marlowe
+  marlowe: {
     label: "Marlowe",
-    description:
-      "Marlowe",
+    description: "Marlowe",
     icon: null,
-    color: '#127f82'
+    color: "#127f82",
   },
 
   // .NET
@@ -95,7 +89,7 @@ export const Tags = {
     label: ".NET",
     description: ".NET language",
     icon: null,
-    color: '#e46fd9',
+    color: "#e46fd9",
   },
 
   // NFT Tools
@@ -103,132 +97,118 @@ export const Tags = {
     label: "NFT",
     description: "Non-Fungible Token (NFT)",
     icon: null,
-    color: '#fe6829',
+    color: "#fe6829",
   },
 
   // Stake Pool Operator Tools
   operatortool: {
     label: "Operator Tool",
-    description:
-      "Stake pool operator tools.",
+    description: "Stake pool operator tools.",
     icon: null,
-    color: '#4267b2',
+    color: "#4267b2",
   },
 
   // Oracle Tools
   oracle: {
     label: "Oracle",
-    description:
-      "Oracle tools.",
+    description: "Oracle tools.",
     icon: null,
-    color: '#14cfc3',
+    color: "#14cfc3",
   },
   // Plutus
   plutus: {
     label: "Plutus",
-    description:
-      "Plutus",
+    description: "Plutus",
     icon: null,
-    color: '#8c2f00',
+    color: "#8c2f00",
   },
 
   // Python
   python: {
     label: "Python",
-    description:
-      "Python language",
+    description: "Python language",
     icon: null,
-    color: '#5dc942',
+    color: "#5dc942",
   },
 
   // Rust
   rust: {
     label: "Rust",
-    description:
-      "Rust language",
+    description: "Rust language",
     icon: null,
-    color: '#7e6a4c',
+    color: "#7e6a4c",
   },
 
   // Purescript
   purescript: {
     label: "Purescript",
-    description:
-      "PureScript language",
+    description: "PureScript language",
     icon: null,
-    color: '#0F9D58',
+    color: "#0F9D58",
   },
 
   // WebSocket
   websocket: {
     label: "WebSocket",
-    description:
-      "API w/ WebSocket",
+    description: "API w/ WebSocket",
     icon: null,
-    color: "#1DB7ff"
+    color: "#1DB7ff",
   },
 
   // HTTP
   http: {
     label: "HTTP",
-    description:
-      "API w/ HTTP",
+    description: "API w/ HTTP",
     icon: null,
-    color: "#7F8C8D"
+    color: "#7F8C8D",
   },
 
   // JSON
   json: {
     label: "JSON",
-    description:
-      "JSON data format",
+    description: "JSON data format",
     icon: null,
-    color: "#FCE300"
+    color: "#FCE300",
   },
 
   // Haskell
   haskell: {
     label: "Haskell",
-    description:
-      "Haskell language",
+    description: "Haskell language",
     icon: null,
-    color: "#5F5287"
+    color: "#5F5287",
   },
 
   // TypeScript
   typescript: {
     label: "TypeScript",
-    description:
-      "TypeScript language",
+    description: "TypeScript language",
     icon: null,
-    color: "#2D79C7"
+    color: "#2D79C7",
   },
 
   // Wallet
   wallet: {
     label: "Wallet",
-    description:
-      "Wallet integrations or implementations",
+    description: "Wallet integrations or implementations",
     icon: null,
-    color: "#E1B12c"
+    color: "#E1B12c",
   },
 
   // Serialization
   serialization: {
     label: "Serialization",
-    description:
-      "Binary serialization / deserialization",
+    description: "Binary serialization / deserialization",
     icon: null,
-    color: "#D6A2E8"
+    color: "#D6A2E8",
   },
 
   // SDK
   sdk: {
     label: "SDK",
-    description:
-      "Software Development Kit",
+    description: "Software Development Kit",
     icon: null,
-    color: "#B33771"
+    color: "#B33771",
   },
 
   // Redis
@@ -236,7 +216,7 @@ export const Tags = {
     label: "Redis",
     description: "Redis",
     icon: null,
-    color: "#FD7272"
+    color: "#FD7272",
   },
 
   // SQL
@@ -244,7 +224,7 @@ export const Tags = {
     label: "SQL",
     description: "SQL database (MySQL, PostgreSQL, SQLite...)",
     icon: null,
-    color: "#FD7272"
+    color: "#FD7272",
   },
 
   // Low-Level
@@ -252,7 +232,7 @@ export const Tags = {
     label: "Low-Level",
     description: "Low-level utility",
     icon: null,
-    color: "#2C3A47"
+    color: "#2C3A47",
   },
 
   // Testing
@@ -260,7 +240,7 @@ export const Tags = {
     label: "Testing",
     description: "Testing / Quality Assurance tool",
     icon: null,
-    color: "#B8E994"
+    color: "#B8E994",
   },
 
   // Hosted
@@ -268,7 +248,7 @@ export const Tags = {
     label: "Hosted Service",
     description: "Hosted / 3rd-party service",
     icon: null,
-    color: "#4a69BD"
+    color: "#4a69BD",
   },
 };
 
@@ -277,59 +257,70 @@ export const Tags = {
 export const Showcases = [
   {
     title: "cardano-cli",
-    description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
+    description:
+      "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
     preview: require("./builder-tools/cardano-cli.png"),
-    website: "https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli",
+    website:
+      "https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli",
     getstarted: null,
-    tags: ["favorite", "cli", "serialization"]
+    tags: ["favorite", "cli", "serialization"],
   },
   {
     title: "bech32",
-    description: "Convert to and from bech32 strings from the command-line. A simple and easy-to-use unix utility.",
+    description:
+      "Convert to and from bech32 strings from the command-line. A simple and easy-to-use unix utility.",
     preview: require("./builder-tools/bech32.png"),
     website: "https://github.com/input-output-hk/bech32/#readme",
     getstarted: null,
-    tags: ["cli", "serialization"]
+    tags: ["cli", "serialization"],
   },
   {
     title: "cardano-wallet",
-    description: "An HTTP server and command-line for managing UTxOs and hierarchical deterministic wallets in Cardano.",
+    description:
+      "An HTTP server and command-line for managing UTxOs and hierarchical deterministic wallets in Cardano.",
     preview: require("./builder-tools/cardano-wallet.png"),
     website: "https://github.com/input-output-hk/cardano-wallet/#overview",
     getstarted: "https://input-output-hk.github.io/cardano-wallet/",
-    tags: ["http", "json", "wallet"]
+    tags: ["http", "json", "wallet"],
   },
   {
     title: "cardano-graphql",
     description: "A cross-platform, typed, and queryable API for Cardano.",
     preview: require("./builder-tools/cardano-graphql.png"),
     website: "https://github.com/input-output-hk/cardano-graphql/#overview",
-    getstarted: "https://github.com/input-output-hk/cardano-graphql#getting-started",
-    tags: ["chainindex", "http"]
+    getstarted:
+      "https://github.com/input-output-hk/cardano-graphql#getting-started",
+    tags: ["chainindex", "http"],
   },
   {
     title: "cardano-rosetta",
-    description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
+    description:
+      "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
     preview: require("./builder-tools/cardano-rosetta.png"),
-    website: "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
+    website:
+      "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
     getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
-    tags: ["http", "json"]
+    tags: ["http", "json"],
   },
   {
     title: "cardano-db-sync",
-    description: "A PostgreSQL database layer which stores all data from the Cardano blockchain in a structured  and normalized way.",
+    description:
+      "A PostgreSQL database layer which stores all data from the Cardano blockchain in a structured  and normalized way.",
     preview: require("./builder-tools/cardano-db-sync.png"),
-    website: "https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync",
+    website:
+      "https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync",
     getstarted: null,
-    tags: ["chainindex", "sql"]
+    tags: ["chainindex", "sql"],
   },
   {
     title: "cardano-addresses",
-    description: "A command-line utility and library for manipulating addresses, keys and recovery phrases on Cardano.",
+    description:
+      "A command-line utility and library for manipulating addresses, keys and recovery phrases on Cardano.",
     preview: require("./builder-tools/cardano-addresses.png"),
     website: "https://github.com/input-output-hk/cardano-addresses#overview",
-    getstarted: "https://github.com/input-output-hk/cardano-addresses#command-line",
-    tags: ["cli", "haskell", "serialization"]
+    getstarted:
+      "https://github.com/input-output-hk/cardano-addresses#command-line",
+    tags: ["cli", "haskell", "serialization"],
   },
   {
     title: "Blockfrost",
@@ -340,8 +331,18 @@ export const Showcases = [
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
+    title: "NMKR Studio",
+    description:
+      "NMKR Studio removes the complexity of building Blockchain products. Making it easy to launch NFT collections",
+    preview: require("./builder-tools/nmkr.png"),
+    website: "https://www.nmkr.io/studio",
+    getstarted: "https://studio.nmkr.io/register/",
+    tags: ["http", "websocket", "hosted"],
+  },
+  {
     title: "StakePool Operator Scripts",
-    description: "CLI scripts to manage your stake pool (online or offline), use and migrate to hardware wallets, send transactions with messages, register for Catalyst, mint/burn Tokens, generate the Token Registry, and more.",
+    description:
+      "CLI scripts to manage your stake pool (online or offline), use and migrate to hardware wallets, send transactions with messages, register for Catalyst, mint/burn Tokens, generate the Token Registry, and more.",
     preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
     website: "https://github.com/gitmachtl/scripts",
     getstarted: null,
@@ -358,11 +359,13 @@ export const Showcases = [
   },
   {
     title: "Cardano Transaction Library",
-    description: "A Purescript library for building smart contract transactions on Cardano (NodeJS & the browser)",
+    description:
+      "A Purescript library for building smart contract transactions on Cardano (NodeJS & the browser)",
     preview: require("./builder-tools/cardano-transaction-lib.png"),
     website: "https://github.com/Plutonomicon/cardano-transaction-lib/",
-    getstarted: "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
-    tags: ["purescript", "sdk", "plutus"]
+    getstarted:
+      "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
+    tags: ["purescript", "sdk", "plutus"],
   },
   {
     title: "cardanocli-js",
@@ -383,7 +386,8 @@ export const Showcases = [
   },
   {
     title: "Ogmios",
-    description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
+    description:
+      "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
@@ -409,7 +413,8 @@ export const Showcases = [
   },
   {
     title: "cardano-addresses TypeScript binding",
-    description: "This is a Typescript/Javascript version of the cardano-addresses API. It includes a web demo.",
+    description:
+      "This is a Typescript/Javascript version of the cardano-addresses API. It includes a web demo.",
     preview: require("./builder-tools/cardano-addresses-typescript-binding.png"),
     website: "https://www.npmjs.com/package/cardano-addresses",
     getstarted: null,
@@ -426,11 +431,12 @@ export const Showcases = [
   },
   {
     title: "cardano-wallet-js",
-    description: "A JavaScript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
+    description:
+      "A JavaScript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
     preview: require("./builder-tools/cardano-wallet-js.png"),
     website: "https://github.com/tango-crypto/cardano-wallet-js",
     getstarted: "/docs/get-started/cardano-wallet-js",
-    tags: ["javascript", "sdk", "wallet"]
+    tags: ["javascript", "sdk", "wallet"],
   },
   {
     title: "CardanoSharp Wallet",
@@ -451,7 +457,8 @@ export const Showcases = [
   },
   {
     title: "Guild Operators Suite",
-    description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
+    description:
+      "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./builder-tools/guild-operators.png"),
     website: "https://cardano-community.github.io/guild-operators/",
     getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
@@ -459,7 +466,8 @@ export const Showcases = [
   },
   {
     title: "libada-go",
-    description: "A Golang library for Cardano network, it is used and maintained by Bitrue.",
+    description:
+      "A Golang library for Cardano network, it is used and maintained by Bitrue.",
     preview: require("./builder-tools/libada-go.png"),
     website: "https://github.com/Bitrue-exchange/libada-go",
     getstarted: null,
@@ -475,7 +483,8 @@ export const Showcases = [
   },
   {
     title: "Pooldata API",
-    description: "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
+    description:
+      "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
     preview: require("./builder-tools/pooldata-api.png"),
     website: "https://api.pooldata.live",
     getstarted: null,
@@ -483,7 +492,8 @@ export const Showcases = [
   },
   {
     title: "Python Module",
-    description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
+    description:
+      "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
     preview: require("./builder-tools/cardano-python.png"),
     website: "https://github.com/emesik/cardano-python",
     getstarted: null,
@@ -491,7 +501,8 @@ export const Showcases = [
   },
   {
     title: "Plutus Playground",
-    description: "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
+    description:
+      "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
     preview: require("./builder-tools/plutus-playground.png"),
     website: "https://playground.plutus.iohkdev.io",
     getstarted: "/docs/smart-contracts/plutus#plutus-playground",
@@ -499,7 +510,8 @@ export const Showcases = [
   },
   {
     title: "Marlowe Playground",
-    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
+    description:
+      "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
     preview: require("./builder-tools/marlowe-playground.png"),
     website: "https://play.marlowe-finance.io",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
@@ -516,7 +528,8 @@ export const Showcases = [
   },
   {
     title: "Ansible cardano-node",
-    description: "An Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
+    description:
+      "An Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
     preview: require("./builder-tools/ansible-cardano-node.png"),
     website: "https://github.com/moaipool/ansible-cardano-node",
     getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
@@ -542,7 +555,8 @@ export const Showcases = [
   },
   {
     title: "cardano-wallet-interface",
-    description: "A Javascript library to easily interact with the dApp connector of various wallets.",
+    description:
+      "A Javascript library to easily interact with the dApp connector of various wallets.",
     preview: require("./builder-tools/cardano-wallet-interface.png"),
     website: "https://github.com/HarmonicPool/cardano-wallet-interface",
     getstarted: null,
@@ -550,9 +564,11 @@ export const Showcases = [
   },
   {
     title: "Plutus Fee Estimator",
-    description: "Helps developers to estimate the cost of smart contract scripts for maximum efficiency and minimum cost.",
+    description:
+      "Helps developers to estimate the cost of smart contract scripts for maximum efficiency and minimum cost.",
     preview: require("./builder-tools/plutus-fee-estimator.png"),
-    website: "https://testnets.cardano.org/en/testnets/cardano/tools/plutus-fee-estimator/",
+    website:
+      "https://testnets.cardano.org/en/testnets/cardano/tools/plutus-fee-estimator/",
     getstarted: null,
     tags: ["plutus", "hosted"],
   },
@@ -585,7 +601,7 @@ export const Showcases = [
   {
     title: "cardano-wallet-connector",
     description:
-        "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework.",
+      "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework.",
     preview: require("./builder-tools/cardano-wallet-connector.png"),
     website: "https://github.com/dynamicstrategies/cardano-wallet-connector",
     getstarted: null,
@@ -593,8 +609,7 @@ export const Showcases = [
   },
   {
     title: "Stricahq Typhonjs Wallet",
-    description:
-        "Pure javascript Cardano wallet library.",
+    description: "Pure javascript Cardano wallet library.",
     preview: require("./builder-tools/typhonjs.png"),
     website: "https://github.com/StricaHQ/typhonjs",
     getstarted: null,
@@ -602,8 +617,7 @@ export const Showcases = [
   },
   {
     title: "IntelliJ IDE",
-    description:
-      "An IntelliJ plugin for Cardano blockchain.",
+    description: "An IntelliJ plugin for Cardano blockchain.",
     preview: require("./builder-tools/IDE.png"),
     website: "https://intelliada.bloxbean.com",
     getstarted: null,
@@ -611,8 +625,7 @@ export const Showcases = [
   },
   {
     title: "Cardano Blockchain Snapshots",
-    description:
-      "Download the latest Cardano blockchain snapshot.",
+    description: "Download the latest Cardano blockchain snapshot.",
     preview: require("./builder-tools/cardano-snapshots.png"),
     website: "https://cSnapshots.io",
     getstarted: null,
@@ -620,7 +633,8 @@ export const Showcases = [
   },
   {
     title: "Koios",
-    description: "Elastic light/full-mode API query-layer for Cardano Blockchain.",
+    description:
+      "Elastic light/full-mode API query-layer for Cardano Blockchain.",
     preview: require("./builder-tools/koios.png"),
     website: "https://koios.rest",
     getstarted: "/docs/get-started/koios",
@@ -628,11 +642,12 @@ export const Showcases = [
   },
   {
     title: "Pallas",
-    description: "Rust-native building blocks for the Cardano blockchain ecosystem.",
+    description:
+      "Rust-native building blocks for the Cardano blockchain ecosystem.",
     preview: require("./builder-tools/pallas.png"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
-    tags: ["rust", "lowlevel"]
+    tags: ["rust", "lowlevel"],
   },
   {
     title: "Scrolls",
@@ -640,7 +655,7 @@ export const Showcases = [
     preview: require("./builder-tools/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
-    tags: ["chainindex", "redis", "favorite"]
+    tags: ["chainindex", "redis", "favorite"],
   },
   {
     title: "Kupo",
@@ -648,39 +663,44 @@ export const Showcases = [
     preview: require("./builder-tools/kupo.png"),
     website: "https://github.com/CardanoSolutions/kupo#readme",
     getstarted: null,
-    tags: ["chainindex", "http", "json", "favorite"]
+    tags: ["chainindex", "http", "json", "favorite"],
   },
   {
     title: "cardano-multiplatform-lib",
-    description: "A library of utilities and codecs for serialization/deserialization of core data-stuctures. Replacement for 'cardano-serialization-lib'.",
+    description:
+      "A library of utilities and codecs for serialization/deserialization of core data-stuctures. Replacement for 'cardano-serialization-lib'.",
     preview: require("./builder-tools/cardano-multiplatform-lib.png"),
-    website: "https://github.com/dcSpark/cardano-multiplatform-lib#cardano-multiplatform-lib",
+    website:
+      "https://github.com/dcSpark/cardano-multiplatform-lib#cardano-multiplatform-lib",
     getstarted: null,
-    tags: ["rust", "serialization", "favorite"]
+    tags: ["rust", "serialization", "favorite"],
   },
   {
     title: "cardano-js-sdk",
-    description: "JavaScript SDK for interacting with Cardano, providing various key management options, soon to be including support for popular hardware wallets.",
+    description:
+      "JavaScript SDK for interacting with Cardano, providing various key management options, soon to be including support for popular hardware wallets.",
     preview: require("./builder-tools/cardano-js-sdk.png"),
     website: "https://github.com/input-output-hk/cardano-js-sdk/#readme",
     getstarted: null,
-    tags: ["sdk", "javascript"]
+    tags: ["sdk", "javascript"],
   },
   {
     title: "Lucid",
-    description: "Lucid is a library, which allows you to create Cardano transactions and off-chain code for your Plutus contracts in JavaScript and Node.js.",
+    description:
+      "Lucid is a library, which allows you to create Cardano transactions and off-chain code for your Plutus contracts in JavaScript and Node.js.",
     preview: require("./builder-tools/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
     getstarted: null,
-    tags: ["javascript", "sdk", "plutus"]
+    tags: ["javascript", "sdk", "plutus"],
   },
   {
     title: "Pirouette",
-    description: "Pirouette is a semi-automatic code extraction tool for model-checking. It extracts a TLA+ specification from a Plutus Mealy Machine.",
+    description:
+      "Pirouette is a semi-automatic code extraction tool for model-checking. It extracts a TLA+ specification from a Plutus Mealy Machine.",
     preview: require("./builder-tools/pirouette.png"),
     website: "https://github.com/tweag/pirouette#readme",
     getstarted: null,
-    tags: ["haskell", "plutus", "testing"]
+    tags: ["haskell", "plutus", "testing"],
   },
   {
     title: "Pluto",
@@ -688,27 +708,30 @@ export const Showcases = [
     preview: require("./builder-tools/pluto.png"),
     website: "https://github.com/Plutonomicon/pluto#pluto",
     getstarted: null,
-    tags: ["plutus", "lowlevel"]
+    tags: ["plutus", "lowlevel"],
   },
   {
     title: "Plutonomicon",
-    description: "A developer-driven guide to the Plutus smart contract language in practice.",
+    description:
+      "A developer-driven guide to the Plutus smart contract language in practice.",
     preview: require("./builder-tools/plutonomicon.png"),
     website: "https://github.com/Plutonomicon/plutonomicon#readme",
     getstarted: null,
-    tags: ["plutus"]
+    tags: ["plutus"],
   },
   {
     title: "Plutarch",
-    description: "Plutarch is a typed eDSL in Haskell for writing efficient Plutus Core validators.",
+    description:
+      "Plutarch is a typed eDSL in Haskell for writing efficient Plutus Core validators.",
     preview: require("./builder-tools/plutarch.png"),
     website: "https://github.com/Plutonomicon/plutarch#plutarch",
     getstarted: null,
-    tags: ["plutus", "haskell"]
+    tags: ["plutus", "haskell"],
   },
   {
     title: "Tangocrypto",
-    description: "A suite of high availability APIs and developer tools providing fast and reliable access to the Cardano network so you can focus on building and growing your products.",
+    description:
+      "A suite of high availability APIs and developer tools providing fast and reliable access to the Cardano network so you can focus on building and growing your products.",
     preview: require("./builder-tools/tangocrypto.png"),
     website: "https://tangocrypto.com",
     getstarted: "/docs/get-started/tangocrypto",
@@ -716,15 +739,17 @@ export const Showcases = [
   },
   {
     title: "go-ouroboros-network",
-    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
+    description:
+      "A Golang implementation of the Cardano Ouroboros network protocol.",
     preview: require("./builder-tools/go-ouroboros-network.png"),
     website: "https://github.com/cloudstruct/go-ouroboros-network",
     getstarted: null,
-    tags: ["golang", "lowlevel"]
+    tags: ["golang", "lowlevel"],
   },
   {
     title: "cscli",
-    description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
+    description:
+      "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
     preview: require("./builder-tools/cscli.png"),
     website: "https://github.com/CardanoSharp/cscli",
     getstarted: "/docs/get-started/cscli",
@@ -732,7 +757,8 @@ export const Showcases = [
   },
   {
     title: "HeliosLang",
-    description: "A DSL for writing Cardano Smart Contracts. Reference compiler is a single Javascript file without dependencies.",
+    description:
+      "A DSL for writing Cardano Smart Contracts. Reference compiler is a single Javascript file without dependencies.",
     preview: require("./builder-tools/helioslang.png"),
     website: "https://github.com/Hyperion-BT/Helios",
     getstarted: null,
@@ -756,7 +782,8 @@ export const Showcases = [
   },
   {
     title: "Cardano Signer",
-    description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
+    description:
+      "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
     preview: require("./builder-tools/cardano-signer.png"),
     website: "https://github.com/gitmachtl/cardano-signer",
     getstarted: null,
@@ -764,15 +791,17 @@ export const Showcases = [
   },
   {
     title: "Mesh",
-    description: "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
+    description:
+      "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
     preview: require("./builder-tools/mesh.png"),
     website: "https://mesh.martify.io/",
     getstarted: null,
-    tags: ["javascript", "typescript", "serialization", "sdk", "plutus"]
+    tags: ["javascript", "typescript", "serialization", "sdk", "plutus"],
   },
   {
     title: "Cexplorer",
-    description: "Rich featured blockchain explorer with support of all testnet instances and an API.",
+    description:
+      "Rich featured blockchain explorer with support of all testnet instances and an API.",
     preview: require("./builder-tools/cexplorer.png"),
     website: "https://cexplorer.io",
     getstarted: null,
@@ -780,7 +809,8 @@ export const Showcases = [
   },
   {
     title: "Koios Python",
-    description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
+    description:
+      "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
     preview: require("./builder-tools/koios-python.png"),
     website: "https://github.com/cardano-community/koios-python",
     getstarted: null,
@@ -788,7 +818,8 @@ export const Showcases = [
   },
   {
     title: "Cardano Leader Slot",
-    description: "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
+    description:
+      "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
     preview: require("./builder-tools/leader-slot.png"),
     website: "https://github.com/QuixoteSystems/cardano-leader-slot",
     getstarted: null,
@@ -796,31 +827,36 @@ export const Showcases = [
   },
   {
     title: "Cardano connect with wallet",
-    description: "Useful hooks and React components to simplify the Cardano dApp integration e.g. to connect browser wallets, fetch addresses and provide signing.",
+    description:
+      "Useful hooks and React components to simplify the Cardano dApp integration e.g. to connect browser wallets, fetch addresses and provide signing.",
     preview: require("./builder-tools/cardano-connect-with-wallet.png"),
-    website: "https://github.com/cardano-foundation/cardano-connect-with-wallet",
+    website:
+      "https://github.com/cardano-foundation/cardano-connect-with-wallet",
     getstarted: null,
     tags: ["typescript", "wallet"],
   },
   {
     title: "Frankenwallet",
-    description: "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
+    description:
+      "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
     preview: require("./builder-tools/frankenwallet.png"),
     website: "https://cosd.com/frankenwallet",
     getstarted: "/docs/operate-a-stake-pool/frankenwallet",
     tags: ["operatortool"],
   },
-  { 
-    title: "cnft", 
-    description: "A library for validating metadata for the 721 metadatum property. Complies with community standards", 
-    preview: require("./builder-tools/cnft9000.png"), 
-    website: "https://github.com/ada9000/cnft#readme", 
-    getstarted: null, 
-    tags: ["javascript", "typescript", "nft"] 
+  {
+    title: "cnft",
+    description:
+      "A library for validating metadata for the 721 metadatum property. Complies with community standards",
+    preview: require("./builder-tools/cnft9000.png"),
+    website: "https://github.com/ada9000/cnft#readme",
+    getstarted: null,
+    tags: ["javascript", "typescript", "nft"],
   },
   {
     title: "Bakrypt.io",
-    description: "Bakrypt offers backend tools and Cloud storage services for brands, companies, and creators to help them build their NFTs.",
+    description:
+      "Bakrypt offers backend tools and Cloud storage services for brands, companies, and creators to help them build their NFTs.",
     preview: require("./builder-tools/bakrypt-io.png"),
     website: "https://bakrypt.io",
     getstarted: "https://bakrypt.readme.io",
@@ -845,7 +881,8 @@ export const Showcases = [
   },
   {
     title: "Plutip",
-    description: "Cardano tool that aims to help dApp developers with integration testing and contracts debugging using disposable private network",
+    description:
+      "Cardano tool that aims to help dApp developers with integration testing and contracts debugging using disposable private network",
     preview: require("./builder-tools/plutip.png"),
     website: "https://github.com/mlabs-haskell/plutip",
     getstarted: null,
@@ -853,7 +890,8 @@ export const Showcases = [
   },
   {
     title: "Demeter.run",
-    description: "A cloud environment with all the tools for building your dApp.",
+    description:
+      "A cloud environment with all the tools for building your dApp.",
     preview: require("./builder-tools/demeter.png"),
     website: "https://demeter.run/",
     getstarted: null,
@@ -994,8 +1032,13 @@ function ensureShowcaseValid(showcase) {
     const hasGetStarted = showcase.getstarted != null;
     const isOperatorTool = showcase.tags.includes("operatortool");
 
-    if ((hasGetStarted && isOperatorTool) && !(typeof showcase.getstarted === "string" &&
-        (showcase.getstarted.startsWith("/docs/operate-a-stake-pool/")))
+    if (
+      hasGetStarted &&
+      isOperatorTool &&
+      !(
+        typeof showcase.getstarted === "string" &&
+        showcase.getstarted.startsWith("/docs/operate-a-stake-pool/")
+      )
     ) {
       throw new Error(
         // Be more specific as soon as we have an operator tool with a get started page
