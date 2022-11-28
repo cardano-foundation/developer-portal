@@ -1110,7 +1110,7 @@ export const Showcases = [
     preview: require("./showcase/shareslake.png"),
     website: "https://www.shareslake.com/",
     source: null,
-    tags: ["ecosystem", "gateway", "token"],
+    tags: ["gateway", "token"],
   },
 ];
 
