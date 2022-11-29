@@ -1103,6 +1103,15 @@ export const Showcases = [
     source: null,
     tags: [ "analytics", "token", "minting"],
   },
+  {
+    title: "Shareslake",
+    description: 
+      "The stable branch of Cardano. A fiat-backed stablecoin for Cardano mainnet and a whole Cardano network running as a sidechain by the fiat-backed stablecoin instead of ADA. Deploy dApps out of the box and use Cardano technology like if you were using US dollars.",
+    preview: require("./showcase/shareslake.png"),
+    website: "https://www.shareslake.com/",
+    source: null,
+    tags: ["gateway", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
