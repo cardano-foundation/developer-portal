@@ -1112,6 +1112,15 @@ export const Showcases = [
     source: null,
     tags: ["gateway", "token"],
   },
+  {
+    title: "Coin Wallet",
+    description:
+      "Coin Wallet is a non-custodial multicurrency wallet for multiple platforms, where you can easily transfer, receive, buy, sell, and exchange ADA.",
+    preview: require("./showcase/coinwallet.png"),
+    website: "https://coin.space",
+    source: "https://github.com/CoinSpace/CoinSpace",
+    tags: ["wallet", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
