@@ -1060,7 +1060,7 @@ export const Showcases = [
   {
     title: "Gift Card Creator",
     description:
-      "Personalise an NFT gift card",
+      "Customize NFT Gift Cards on the Cardano Blockchain",
     preview: require("./showcase/gift-card-creator.png"),
     website: "https://card-creator.shop",
     source: null,
@@ -1084,6 +1084,15 @@ export const Showcases = [
     source: null,
     tags: [ "wallet", "dex", "nftsupport"],
   },
+  {
+    title: "NFT Creator",
+    description:
+      "Design Cardano NFTs with this image editor",
+    preview: require("./showcase/nft-creator.png"),
+    website: "https://nft-creator.pics",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  }, 
   {
     title: "Voteaire",
     description:
