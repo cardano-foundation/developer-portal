@@ -1121,6 +1121,15 @@ export const Showcases = [
     tags: ["minting", "metadata"],
   },
   {
+    title: "CNFTLab Party",
+    description: 
+      "Tool for minting CNFTs, manage your policyID, create royalties and start minting in few seconds.",
+    preview: require("./showcase/cnftlab-party.png"),
+    website: "https://www.cnftlab.party/",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
+  {
     title: "TapTools",
     description:
       "All-in-one platform that offers free token distribution, comprehensive charts, NFT generation, and mint facilitation.",
