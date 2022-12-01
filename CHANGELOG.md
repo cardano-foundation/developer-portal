@@ -1028,3 +1028,39 @@ All of the merged PRs in October
 - cardadev ([@cardadev](https://github.com/cardadev))
 - oversize ([@oversize](https://github.com/oversize))
 - gitmachtl ([@gitmachtl](https://github.com/gitmachtl))
+
+## 2022.46.0 (2022-11-30)
+
+All of the merged PRs in October
+#### PRs: 18
+
+- link transparently to operations book Environments page by ([@rphair](https://github.com/rphair)) in [#846](https://github.com/cardano-foundation/developer-portal/pull/846)
+- Update Changelog (End of October) by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#847](https://github.com/cardano-foundation/developer-portal/pull/847)
+- Add Changelog link into Contribute section by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#844](https://github.com/cardano-foundation/developer-portal/pull/844)
+- Add multiple PR templates by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#845](https://github.com/cardano-foundation/developer-portal/pull/845)
+- Add STAMPD showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#841](https://github.com/cardano-foundation/developer-portal/pull/841)
+- Fix displaying missing CIPs  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#848](https://github.com/cardano-foundation/developer-portal/pull/848)
+- Modify image for 'Cardano connect with wallet' builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#842](https://github.com/cardano-foundation/developer-portal/pull/842)
+- chore: add vercel deploys by ([@cf-web3-team-integrations](https://github.com/cf-web3-team-integrations)) in [#855](https://github.com/cardano-foundation/developer-portal/pull/855)
+- Replace Changelog title and remove copyright by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#851](https://github.com/cardano-foundation/developer-portal/pull/851)
+- fix(gh-actions): revert vercel deployments by ([@cf-web3-team-integrations](https://github.com/cf-web3-team-integrations)) in [#857](https://github.com/cardano-foundation/developer-portal/pull/857)
+- Fix preprod typo by ([@fabianbormann](https://github.com/fabianbormann)) in [#858](https://github.com/cardano-foundation/developer-portal/pull/858)
+- Added Grafana Loki page by ([@os11k](https://github.com/os11k)) in [#859](https://github.com/cardano-foundation/developer-portal/pull/859)
+- Update testnet faucet link by ([@EKivutha](https://github.com/EKivutha)) in [#850](https://github.com/cardano-foundation/developer-portal/pull/850)
+- Add Kogmios builder-tool by ([@AndrewWestberg](https://github.com/AndrewWestberg)) in [#860](https://github.com/cardano-foundation/developer-portal/pull/860)
+- Replace outdated website link for Marlowe Playground  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#854](https://github.com/cardano-foundation/developer-portal/pull/854)
+- Add TapTools showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#782](https://github.com/cardano-foundation/developer-portal/pull/782)
+- Added "User wallet authentication" to documentation by ([@inimrod](https://github.com/inimrod)) in [#863](https://github.com/cardano-foundation/developer-portal/pull/863)
+- Add Shareslake to showcase by ([@miguelaeh](https://github.com/miguelaeh)) in [#867](https://github.com/cardano-foundation/developer-portal/pull/867)
+
+#### Committers: 9
+
+- rphair ([@rphair](https://github.com/rphair))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- cf-web3-team-integrations ([@cf-web3-team-integrations](https://github.com/cf-web3-team-integrations))
+- fabianbormann ([@fabianbormann](https://github.com/fabianbormann))
+- os11k ([@os11k](https://github.com/os11k))
+- EKivutha ([@EKivutha](https://github.com/EKivutha))
+- AndrewWestberg ([@AndrewWestberg](https://github.com/AndrewWestberg))
+- inimrod ([@inimrod](https://github.com/inimrod))
+- miguelaeh ([@miguelaeh](https://github.com/miguelaeh))
