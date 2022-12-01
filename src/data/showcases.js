@@ -205,6 +205,14 @@ export const Tags = {
     icon: null,
     color: '#308446'
   },
+
+  // Lending 
+  lending: {
+    label: "Lending",
+    description: "Projects that provide lending and borrowing of ada",
+    icon: null,
+    color: '#7E0000'
+  }
 };
 
 // Add your project to (THE END OF) this list.
@@ -1041,9 +1049,18 @@ export const Showcases = [
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
   {
+    title: "Lending Pond",
+    description:
+      "Provide or Receive ada through a smart contract driven P2P lending marketplace using Cardano NFTs as collateral.",
+    preview: require("./showcase/lending-pond.png"),
+    website: "https://lendingpond.app",
+    source: null,
+    tags: [ "marketplace", "nftsupport", "lending"],
+  },
+  {
     title: "Gift Card Creator",
     description:
-      "Personalise an NFT gift card",
+      "Customize NFT Gift Cards on the Cardano Blockchain",
     preview: require("./showcase/gift-card-creator.png"),
     website: "https://card-creator.shop",
     source: null,
@@ -1067,6 +1084,15 @@ export const Showcases = [
     source: null,
     tags: [ "wallet", "dex", "nftsupport"],
   },
+  {
+    title: "NFT Creator",
+    description:
+      "Design Cardano NFTs with this image editor",
+    preview: require("./showcase/nft-creator.png"),
+    website: "https://nft-creator.pics",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  }, 
   {
     title: "Voteaire",
     description:
@@ -1102,6 +1128,24 @@ export const Showcases = [
     website: "https://www.cnftlab.party/",
     source: null,
     tags: ["minting", "nftsupport"],
+  },
+  {
+    title: "TapTools",
+    description:
+      "All-in-one platform that offers free token distribution, comprehensive charts, NFT generation, and mint facilitation.",
+    preview: require("./showcase/taptools.png"),
+    website: "https://www.taptools.io",
+    source: null,
+    tags: [ "analytics", "token", "minting"],
+  },
+  {
+    title: "Shareslake",
+    description: 
+      "The stable branch of Cardano. A fiat-backed stablecoin for Cardano mainnet and a whole Cardano network running as a sidechain by the fiat-backed stablecoin instead of ADA. Deploy dApps out of the box and use Cardano technology like if you were using US dollars.",
+    preview: require("./showcase/shareslake.png"),
+    website: "https://www.shareslake.com/",
+    source: null,
+    tags: ["gateway", "token"],
   },
 ];
 
