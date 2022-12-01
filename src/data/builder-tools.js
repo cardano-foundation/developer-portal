@@ -340,15 +340,6 @@ export const Showcases = [
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
-    title: "NMKR Studio",
-    description:
-      "NMKR Studio removes the complexity of building Blockchain products. Making it easy to launch NFT collections",
-    preview: require("./builder-tools/nmkr.png"),
-    website: "https://www.nmkr.io/studio",
-    getstarted: "https://docs.nmkr.io/NMKR-Studio/introduction",
-    tags: ["http", "websocket", "hosted"],
-  },
-  {
     title: "StakePool Operator Scripts",
     description: "CLI scripts to manage your stake pool (online or offline), use and migrate to hardware wallets, send transactions with messages, register for Catalyst, mint/burn Tokens, generate the Token Registry, and more.",
     preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
