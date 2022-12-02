@@ -176,7 +176,8 @@ module.exports = {
         items: [
                 "stake-pool-guide/node-installation-process",
                 ],
-        },	    
+        },
+        "stake-pool-guide/cardano-relay-configuration",
 ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
