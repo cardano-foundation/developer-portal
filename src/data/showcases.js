@@ -238,11 +238,11 @@ export const Showcases = [
     tags: ["favorite", "metadata"],
   },
   {
-    title: "NFT Maker",
+    title: "NMKR",
     description:
-      "Create your own NFT by uploading an image and paying some ada.",
-    preview: require("./showcase/nft-maker.png"),
-    website: "https://www.nft-maker.io",
+      "NFT Minting, FIAT & Crypto Sales, Token Launches, Secondary Markets - all available at the press of a button.",
+    preview: require("./showcase/nmkr.png"),
+    website: "https://www.nmkr.io/",
     source: null,
     tags: ["favorite", "minting", "nftsupport"],
   },
