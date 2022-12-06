@@ -995,15 +995,6 @@ export const Showcases = [
     tags: ["catalyst", "analytics"],
   },
   {
-    title: "Paradiso",
-    description:
-      "A Shangri-La for Cardano NFTs. Decentralized platform to mint, distribute, buy, and sell digital assets.",
-    preview: require("./showcase/paradiso.png"),
-    website: "https://paradiso.app",
-    source: null,
-    tags: ["marketplace", "minting", "nftsupport"],
-  },
-  {
     title: "RoundTable",
     description:
       "A open source multi-sig DApp for the cardano blockchain.",
