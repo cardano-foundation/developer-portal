@@ -1147,6 +1147,15 @@ export const Showcases = [
     source: null,
     tags: ["gateway", "token"],
   },
+  {
+    title: "Chainport",
+    description: 
+      "ChainPort is a next-gen hard-security blockchain bridge that lets you hop across EVM chains to Cardano at a click.",
+    preview: require("./showcase/chainport.png"),
+    website: "https://www.chainport.io/",
+    source: null,
+    tags: [],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
