@@ -18,7 +18,7 @@ The `cardano-node` application requires the following configuration files to run
 - **Topology**: It contains the list of network peers (**`IP Address` and `Port` of other nodes running the blockchain network**) that your node will connect to.
 
 :::important
-Currently, the `cardano-node` topology is manually set by the community of network operators in the **Cardano** blockchain. But an automated p2p (peer-to-peer) system is in the works. For more information visit, [Boosting network decentralization with P2P](https://iohk.io/en/blog/posts/2021/04/06/boosting-network-decentralization-with-p2p/).
+Currently, the `cardano-node` topology is manually set by the community of network operators in the **Cardano** blockchain. But an automated p2p (peer-to-peer) system is in the works. For more information visit [Introducing our new peer-to-peer (P2P) testnet](https://iohk.io/en/blog/posts/2021/12/08/introducing-our-new-peer-to-peer-p2p-testnet/).
 
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
