@@ -82,6 +82,12 @@ nano topology.json
 ```
 Save and close the topology.json file.
 
+* `useLedgerAfterSlot` indicates after which slot peers should be fetched from the ledger. A negative value will disable fetching peers from the ledger, and you will need to manually add peers to the topology file.
+* `valency` is the number of connections that your node should establish towards a specific group. If you have one IP in `localRoots`, then it should be 1; if you have one DNS name with two IPs behind it, then it should be 2; or if you have two IPs/DNS names with single IP behind each, then it should also be 2, and so on.
+* `localRoots` are for peers which the node should always have as hot connections, such as your BP or your other relays.
+* `publicRoots` represent a source of fallback peers, a source of peers to be used if peers from the ledger (`useLedgerAfterSlot`) are disabled or unavailable.
+* You can tell the node that the topology configuration file has changed by sending a SIGHUP signal to the cardano-node process, e.g. `pkill -HUP cardano-node`. After receiving the signal, cardano-node will re-read the file and restart all DNS resolution. Please note that this only applies to the topology configuration file!
+
 ## Creating Startup Scripts and Services
 
 To run an instance of Cardano Node, we create a bash script and configure the options. Additionally, we create a systemd service to start the node which ensures that in case of system reboot or crashes, the Cardano Node starts again automatically.
