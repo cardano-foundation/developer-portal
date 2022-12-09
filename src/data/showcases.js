@@ -68,7 +68,7 @@ export const Tags = {
   ecosystem: {
     label: "Ecosystem",
     description:
-      "The Cardano ecosystem projects",
+      "The Cardano ecosystem projects.",
     icon: null,
     color: '#800080'
   },
@@ -110,7 +110,7 @@ export const Tags = {
   // Identity
   identity: {
     label: "Identity",
-    description: "Decentralized identifiers (DIDs)",
+    description: "Decentralized identifiers (DIDs).",
     icon: null,
     color: '#000'
   },
@@ -126,7 +126,7 @@ export const Tags = {
   // Meta data projects
   metadata: {
     label: "Metadata",
-    description: "Transaction metadata",
+    description: "Transaction metadata.",
     icon: null,
     color: '#14cfc3',
   },
@@ -134,7 +134,7 @@ export const Tags = {
   // Minting 
   minting: {
     label: "Minting",
-    description: "Minting Tool",
+    description: "Minting Tool.",
     icon: null,
     color: '#23a5da',
   },
@@ -193,7 +193,7 @@ export const Tags = {
   ecosystem: {
     label: "Ecosystem",
     description:
-      "The Cardano ecosystem projects",
+      "The Cardano ecosystem projects.",
     icon: null,
     color: '#800080'
   },
@@ -201,7 +201,7 @@ export const Tags = {
   // Catalyst
   catalyst: {
     label: "Catalyst",
-    description: "Projects that aid to Cardano's interim governance programme (Catalyst)",
+    description: "Projects that aid to Cardano's interim governance programme (Catalyst).",
     icon: null,
     color: '#308446'
   },
@@ -209,11 +209,11 @@ export const Tags = {
   // Lending 
   lending: {
     label: "Lending",
-    description: "Projects that provide lending and borrowing of ada",
+    description: "Projects that provide lending and borrowing of ada.",
     icon: null,
     color: '#7E0000'
-  }
-  ,
+  },
+
   // Bridge 
   bridge: {
     label: "Bridge",
