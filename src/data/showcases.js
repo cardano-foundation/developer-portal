@@ -213,6 +213,14 @@ export const Tags = {
     icon: null,
     color: '#7E0000'
   }
+  ,
+  // Bridge 
+  bridge: {
+    label: "Bridge",
+    description: "Project that provide cross-chain bridge support.",
+    icon: null,
+    color: '#EDFF21'
+  }
 };
 
 // Add your project to (THE END OF) this list.
