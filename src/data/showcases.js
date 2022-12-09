@@ -217,7 +217,7 @@ export const Tags = {
   // Bridge 
   bridge: {
     label: "Bridge",
-    description: "Project that provide cross-chain bridge support.",
+    description: "Projects that provide cross-chain bridge support.",
     icon: null,
     color: '#EDFF21'
   }
