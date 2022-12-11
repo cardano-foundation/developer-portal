@@ -168,7 +168,7 @@ address=$(cat payment.addr)
 ```
 ### Fund the address
 
-Submitting transactions always require you to pay a fee. Sending native assets requires also requires sending at least 1 ada.  
+Submitting transactions always require you to pay a fee. Sending native assets also requires sending at least 1 ada.  
 So make sure the address you are going to use as the input for the minting transaction has sufficient funds. 
 
 For the **testnet**, you can request funds through the [testnet faucet](../integrate-cardano/testnet-faucet).
