@@ -1153,7 +1153,7 @@ export const Showcases = [
     preview: require("./showcase/chainport.png"),
     website: "https://www.chainport.io/",
     source: null,
-    tags: [],
+    tags: ["bridge"],
   },
 ];
 
