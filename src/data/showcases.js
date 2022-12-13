@@ -1146,6 +1146,15 @@ export const Showcases = [
     source: null,
     tags: ["gateway", "token"],
   },
+  {
+    title: "Cardano Lotto",
+    description:
+      "Customise and run your own lottery with a return on investment from the very first player.  A direct link is provided to promote your lottery.  Players won't have to wait for a draw and will be informed immediately if they lost / won",
+    preview: require("./showcase/cardano-lotto-create.png"),
+    website: "https://lotto.adahouse.page",
+    source: null,
+    tags: ["game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
