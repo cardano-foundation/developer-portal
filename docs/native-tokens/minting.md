@@ -209,7 +209,7 @@ cardano-cli address key-gen \
 Use the `echo` command to create a `policy.script`:
 
 ```bash
-echo "{" >> policy/policy.script 
+echo "{" > policy/policy.script 
 echo "  \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"," >> policy/policy.script 
 echo "  \"type\": \"sig\"" >> policy/policy.script 
 echo "}" >> policy/policy.script
