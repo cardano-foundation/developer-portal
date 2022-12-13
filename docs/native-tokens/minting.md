@@ -206,7 +206,7 @@ cardano-cli address key-gen \
     --signing-key-file policy/policy.skey
 ```
 
-Use the `echo` command to create a `policy.script`:
+Use the `echo` command to create a `policy.script` (the first line uses `>` instead of `>>`, to create the file if not present and clear any existing contents):
 
 ```bash
 echo "{" > policy/policy.script 
