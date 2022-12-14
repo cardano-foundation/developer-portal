@@ -206,16 +206,10 @@ cardano-cli address key-gen \
     --signing-key-file policy/policy.skey
 ```
 
-Create a `policy.script` file and fill it with an empty string.
+Use the `echo` command to create a `policy.script` (the first line uses `>` instead of `>>`, to create the file if not present and clear any existing contents):
 
 ```bash
-touch policy/policy.script && echo "" > policy/policy.script
-```
-
-Use the `echo` command to populate the file:
-
-```bash
-echo "{" >> policy/policy.script 
+echo "{" > policy/policy.script 
 echo "  \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"," >> policy/policy.script 
 echo "  \"type\": \"sig\"" >> policy/policy.script 
 echo "}" >> policy/policy.script
