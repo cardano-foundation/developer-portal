@@ -1146,6 +1146,15 @@ export const Showcases = [
     source: null,
     tags: ["gateway", "token"],
   },
+  {
+    title: "ADA TheInkWhale",
+    description:
+      "ADA Dapp Merch Store. Large variety of products. Join us, and help introduce Cardano to the World... in Style!.",
+    preview: require("./showcase/adatheinkwhale.png"),
+    website: "https://ada.theinkwhale.com/",
+    source: null,
+    tags: ["favorite", "nftsupport", "ada", "store", "merch", "dapp"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
