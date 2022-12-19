@@ -867,6 +867,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["sdk", "java", "lowlevel"],
   },
+  {
+    title: "Cardano Verify Datasignature",
+    description: "A lightweight typescript library to verify a cip30 datasignature.",
+    preview: require("./builder-tools/cardano-verify-datasignature.png"),
+    website: "https://github.com/cardano-foundation/cardano-verify-datasignature",
+    getstarted: null,
+    tags: ["typescript"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
