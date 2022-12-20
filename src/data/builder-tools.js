@@ -879,7 +879,7 @@ export const Showcases = [
   {
     title: "cf_CardanoWallet",
     description: "An API wrapper of the official Cardano Wallet written in CFML for ColdFusion / Lucee applications, facilitates communication between a ColdFusion server and the Cardano blockchain via the official cardano-wallet",
-    preview: require("./builder-tools/kogmios.png"),
+    preview: require("./builder-tools/cf_cardanowallet.png"),
     website: "https://github.com/fangio10/cf_cardanowallet",
     getstarted: null,
     tags: ["coldfusion", "wallet"],
