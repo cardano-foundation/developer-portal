@@ -270,6 +270,15 @@ export const Tags = {
     icon: null,
     color: "#4a69BD"
   },
+  
+  // Coldfusion
+  coldfusion: {
+    label: "ColdFusion",
+    description:
+      "ColdFusion language",
+    icon: null,
+    color: '#003100',
+  },  
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -866,6 +875,14 @@ export const Showcases = [
     website: "https://github.com/projectNEWM/kogmios",
     getstarted: null,
     tags: ["sdk", "java", "lowlevel"],
+  },
+  {
+    title: "cf_CardanoWallet",
+    description: "An API wrapper of the official Cardano Wallet written in CFML for ColdFusion / Lucee applications, facilitates communication between a ColdFusion server and the Cardano blockchain via the official cardano-wallet",
+    preview: require("./builder-tools/kogmios.png"),
+    website: "https://github.com/fangio10/cf_cardanowallet",
+    getstarted: null,
+    tags: ["coldfusion", "wallet"],
   },
 ];
 
