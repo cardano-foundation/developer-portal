@@ -875,6 +875,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["typescript"],
   },
+  {
+    title: "Cardano Token Registry Python API",
+    description: "A simple Python API for the Cardano Token Registry.",
+    preview: require("./builder-tools/token-registry-api.png"),
+    website: "https://github.com/cardano-apexpool/token-registry-api",
+    getstarted: "https://github.com/cardano-apexpool/token-registry-api/blob/main/README.md",
+    tags: ["python"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
