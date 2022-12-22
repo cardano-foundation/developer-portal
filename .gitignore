@@ -44,8 +44,3 @@ yarn-error.log*
 /docs/native-tokens/token-registry/*
 /docs/get-started/cardano-serialization-lib/*
 **/changelog
-
-# ADDED as TEST of https://github.com/cardano-foundation/developer-portal/discussions/876
-# ... before submitting Koios tag PR
-yarn.lock
-.yarn/install-state.gz
