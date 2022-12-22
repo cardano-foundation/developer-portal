@@ -876,6 +876,14 @@ export const Showcases = [
     tags: ["typescript"],
   },
   {
+    title: "Koios Api Python package",
+    description: "The Koios Api python package allows interrogating the Cardano blockchain using https://api.koios.rest/. It has pagination and retry in case of errors.",
+    preview: require("./builder-tools/koios-api-python.png"),
+    website: "https://github.com/cardano-apexpool/koios-api-python",
+    getstarted: null,
+    tags: ["python", "sdk"],
+  },
+  {
     title: "Cardano Token Registry Python API",
     description: "A simple Python API for the Cardano Token Registry.",
     preview: require("./builder-tools/token-registry-api.png"),
