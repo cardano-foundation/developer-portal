@@ -787,6 +787,14 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
+    title: "DCOne Crypto",
+    description: "DCOne Crypto | Explore projects on the Cardano Blockchain and provide API, SDK,Payment for users to access Cardano blockchain.",
+    preview: require("./builder-tools/dconecrypto.png"),
+    website: "https://dconecrypto.finance",
+    getstarted: null,
+    tags: ["dconecrypto", "bot", "api", "webhook", "project"],
+  },
+  {
     title: "Koios Python",
     description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
     preview: require("./builder-tools/koios-python.png"),
