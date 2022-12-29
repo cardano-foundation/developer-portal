@@ -4,7 +4,119 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+developer-portal
 
+├── blog
+
+│   ├── 2021-01-07-january.md
+
+│   ├── 2021-02-03-february.md
+
+│   └── *.md
+
+├── changelog
+
+│   └── source
+
+│       ├── 2021.8.0.md
+
+│       ├── 2021.12.0.md
+
+│       ├── 2021.16.0.md
+
+│       └── *.md
+
+├── docs
+
+│   ├── fund-your-project
+
+│   ├── get-started
+
+│   ├── integrate-cardano
+
+│   ├── native-tokens
+
+│   ├── operate-a-stake-pool
+
+│   ├── stake-pool-course
+
+│   ├── transaction-metadata
+
+│   └── *.md
+
+├── examples
+
+│   ├── cli
+
+│   |   ├── dotnet
+
+│   │   │   └── *.cs
+
+│   |   ├── js
+
+│   │   │   └── *.js
+
+|   |   └── python
+
+│   │       └── *.py
+
+|   └── wallets
+
+│       ├── dotnet
+
+│       ├── js
+
+|       └── python
+
+├── scripts
+
+│   ├── cip.ts
+
+│   ├── rust-library.ts
+
+│   ├── token-registry.ts
+
+│   └── *.md
+
+├── src
+
+│   ├── css
+
+│   │   └── custom.css
+
+│   ├── data
+
+│   │   ├── builder-tools
+
+│   │   │   └── *.png
+
+│   │   ├── showcase
+
+│   │   │   └── *.png
+
+│   │   ├── builder-tools.js
+
+│   │   └── showcases.js
+
+│   └── pages
+
+│       ├── styles.module.css
+
+│       └── index.js
+
+├── static
+
+│   └── img
+
+├── docusaurus.config.js
+
+├── package.json
+
+├── README.md
+
+├── sidebars.js
+
+└── yarn.lock
  .checkboxListItem {
   user-select: none;
   white-space: nowrap;
