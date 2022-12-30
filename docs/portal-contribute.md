@@ -222,14 +222,38 @@ We list here problems you may run into when running the developer portal locally
 ## Other questions
 Various other questions and answers.
 
-### Should I commit the yarn.lock file?
-No, please do not commit your `yarn.lock` file it is an auto-generated file that should be handled only by `yarn`. 
-
-### Shouldn't yarn.lock be in the ignore file then?
-No, as this will have side effects with dependencies used by the project itself. (Even if you prefer `npm`)
-
 ### Anything I can do to make sure my pull request will not break on the staging/production server?
 Yes, please always do a `yarn build` before submitting a pull request. It will find many more issues than `yarn start`.
 
 ### Is there any style guide? Do we have editorial guidelines?
 Yes, both still work in progress but please see [style guide](portal-style-guide.md) and [editorial guidelines](portal-style-guide.md#editorial-style-guide).
+
+### Should I commit the `yarn.lock` file?
+No, please do not commit your `yarn.lock` file: this represents a software baseline and should be updated only at regular intervals by site maintainers.
+
+### I committed `yarn.lock` to my PR branch: what do I do?
+
+#### To fix from your local working area:
+
+This assumes:
+- you have called your local fork `origin`
+- you have called the  `cardano-foundation` repository `upstream`
+
+First, do _one_ of these things in your project root directory, to restore an unmodified `yarn.lock`:
+- ... from your working fork's `staging` branch (if you've created your PR branch from there):
+  - `git checkout staging -- yarn.lock`
+- ... from the `staging` branch of your fork itself:
+  - `git checkout origin/staging -- yarn.lock`
+- ... from the official repository:
+  - `git checkout upstream/staging -- yarn.lock`
+
+Then commit to reverse the changes you've made.  For example:
+- `git commit -m 'reverting to unmodified yarn.lock'`
+
+For more help, see the popular thread [Remove a modified file from pull request](https://stackoverflow.com/questions/39459467/remove-a-modified-file-from-pull-request).
+
+#### To fix from the GitHub UI:
+
+TEST THE TRASH BUTTON
+
+
