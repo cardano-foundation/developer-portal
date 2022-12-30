@@ -233,13 +233,11 @@ No, please do not commit your `yarn.lock` file: this represents a software basel
 
 ### I committed `yarn.lock` to my PR branch: what do I do?
 
-#### To fix from your local working area:
+Assuming:
+- `origin` refers to your local fork
+- `upstream` refers to the `cardano-foundation` repository
 
-This assumes:
-- you have called your local fork `origin`
-- you have called the  `cardano-foundation` repository `upstream`
-
-First, do _one_ of these things in your project root directory, to restore an unmodified `yarn.lock`:
+First, do _one_ of these in your the working root directory of your fork (to restore an unmodified `yarn.lock`):
 - ... from your working fork's `staging` branch (if you've created your PR branch from there):
   - `git checkout staging -- yarn.lock`
 - ... from the `staging` branch of your fork itself:
@@ -250,10 +248,5 @@ First, do _one_ of these things in your project root directory, to restore an un
 Then commit to reverse the changes you've made.  For example:
 - `git commit -m 'reverting to unmodified yarn.lock'`
 
-For more help, see the popular thread [Remove a modified file from pull request](https://stackoverflow.com/questions/39459467/remove-a-modified-file-from-pull-request).
-
-#### To fix from the GitHub UI:
-
-TEST THE TRASH BUTTON
-
+The same technique can be used to revert modifications to other portal files.  For more help, see the popular thread [Remove a modified file from pull request](https://stackoverflow.com/questions/39459467/remove-a-modified-file-from-pull-request).
 
