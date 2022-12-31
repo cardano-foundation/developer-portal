@@ -1163,6 +1163,15 @@ export const Showcases = [
     website: "https://www.petregistry.io",
     source: null,
     tags: ["metadata", "identity"],
+  }, 
+  {
+    title: "Cardano Studio",
+    description:
+      "Create and mint NFTs on Cardano all in your browser - without trusting a third party for minting.",
+    preview: require("./showcase/cardano-studio.png"),
+    website: "https://cardano-studio.app",
+    source: null,
+    tags: ["minting", "nftsupport"],
   },
 ];
 
