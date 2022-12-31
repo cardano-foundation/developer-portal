@@ -1,23 +1,23 @@
 /*
  * SHOWCASE SECTION INFO
  *
- * The project showcase should be a place where someone new to the ecosystem
- * can come to see what can be done - it should not be seen as a database where
+ * The project showcase should be a place where someone new to the ecosystem 
+ * can come to see what can be done - it should not be seen as a database where 
  * every project is promoted.
- *
+ * 
  * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * - It must be built on Cardano and have a real use case. For example, a forum where
+ * - It must be built on Cardano and have a real use case. For example, a forum where 
  *   people can talk about Cardano is great, but nothing for this showcase section.
  * - It has to run on Cardano mainnet.
  * - It has to have a running product. (no presale, no protected pages, no coming soon messages)
  * - It has to have enough community reputation.
- * - It has to provide a unique value from existing showcase items. (we can't list
+ * - It has to provide a unique value from existing showcase items. (we can't list 
  *   thousands of NFT or native tokens with the current UI)
- * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no
+ * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
  *   URL shortener, no app store links, or similar)
- * - The GitHub account that adds the project must not be new.
+ * - The GitHub account that adds the project must not be new. 
  * - The GitHub account must have a history/or already be known in the Cardano community.
- * - Describe what makes your project special, avoid phrases like "the first this and that". Granular
+ * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
  *   details like which project was first is tribal attribute known to cause rift and conflicts.
  * - IF YOU ADD A PROJECT WHICH MAIN COMPONENT IS NFT, PLEASE SELECT "NFTPROJECT" AS TAG. (NOT "NFTSUPPORT")
  *
@@ -115,7 +115,7 @@ export const Tags = {
     color: '#000'
   },
 
-  // Marketplace
+  // Marketplace 
   marketplace: {
     label: "Marketplace",
     description: "Marketplace where you can buy or sell nfts.",
@@ -131,7 +131,7 @@ export const Tags = {
     color: '#14cfc3',
   },
 
-  // Minting
+  // Minting 
   minting: {
     label: "Minting",
     description: "Minting Tool.",
@@ -206,7 +206,7 @@ export const Tags = {
     color: '#308446'
   },
 
-  // Lending
+  // Lending 
   lending: {
     label: "Lending",
     description: "Projects that provide lending and borrowing of ada.",
@@ -214,7 +214,7 @@ export const Tags = {
     color: '#7E0000'
   },
 
-  // Bridge
+  // Bridge 
   bridge: {
     label: "Bridge",
     description: "Projects that provide cross-chain bridge support.",
@@ -1091,7 +1091,7 @@ export const Showcases = [
     website: "https://nft-creator.pics",
     source: null,
     tags: ["minting", "nftsupport"],
-  },
+  }, 
   {
     title: "Voteaire",
     description:
@@ -1103,7 +1103,7 @@ export const Showcases = [
   },
   {
     title: "Carda Station",
-    description:
+    description: 
       "Explore this virtual world on the moon with an in game avatar, and interact with other players through hangouts, games or events.",
     preview: require("./showcase/cardastation.png"),
     website: "https://cardastation.com/",
@@ -1112,7 +1112,7 @@ export const Showcases = [
   },
   {
     title: "STAMPD",
-    description:
+    description: 
       "Use the public blockchains to timestamp your files with indelible proof and mint with linked NFC physical tags for embedment in physical objects.",
     preview: require("./showcase/stampd.png"),
     website: "https://stampd.io/",
@@ -1121,7 +1121,7 @@ export const Showcases = [
   },
   {
     title: "CNFTLab Party",
-    description:
+    description: 
       "Tool for minting CNFTs, manage your policyID, create royalties and start minting in few seconds.",
     preview: require("./showcase/cnftlab-party.png"),
     website: "https://www.cnftlab.party/",
@@ -1139,7 +1139,7 @@ export const Showcases = [
   },
   {
     title: "Shareslake",
-    description:
+    description: 
       "The stable branch of Cardano. A fiat-backed stablecoin for Cardano mainnet and a whole Cardano network running as a sidechain by the fiat-backed stablecoin instead of ADA. Deploy dApps out of the box and use Cardano technology like if you were using US dollars.",
     preview: require("./showcase/shareslake.png"),
     website: "https://www.shareslake.com/",
@@ -1148,7 +1148,7 @@ export const Showcases = [
   },
   {
     title: "Chainport",
-    description:
+    description: 
       "ChainPort is a next-gen hard-security blockchain bridge that lets you hop across EVM chains to Cardano at a click.",
     preview: require("./showcase/chainport.png"),
     website: "https://www.chainport.io/",
@@ -1157,21 +1157,12 @@ export const Showcases = [
   },
   {
     title: "Cardano Pet Registry",
-    description:
+    description: 
       "A virtually free, non profit, global pet registry system built on the Cardano blockchain, facilitates peer to peer pet rescue and historical proof of pet ownership.",
     preview: require("./showcase/petregistry.png"),
     website: "https://www.petregistry.io",
     source: null,
     tags: ["metadata", "identity"],
-  },
-  {
-    title: "Cardano Studio",
-    description:
-      "Create and mint NFTs on Cardano all in your browser - without trusting a third party for minting.",
-    preview: require("./showcase/cardano-studio.png"),
-    website: "https://cardano-studio.app",
-    source: null,
-    tags: ["minting", "nftsupport"],
   },
 ];
 
