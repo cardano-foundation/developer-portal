@@ -677,7 +677,7 @@ export const Showcases = [
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
-    tags: ["favorite", "marketplace", "nftsupport"],
+    tags: ["favorite", "minting", "marketplace", "nftsupport"],
   },
   {
     title: "H.Y.P.E. Skulls",
