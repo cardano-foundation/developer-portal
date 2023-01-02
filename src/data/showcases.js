@@ -68,7 +68,7 @@ export const Tags = {
   ecosystem: {
     label: "Ecosystem",
     description:
-      "The Cardano ecosystem projects",
+      "The Cardano ecosystem projects.",
     icon: null,
     color: '#800080'
   },
@@ -110,7 +110,7 @@ export const Tags = {
   // Identity
   identity: {
     label: "Identity",
-    description: "Decentralized identifiers (DIDs)",
+    description: "Decentralized identifiers (DIDs).",
     icon: null,
     color: '#000'
   },
@@ -126,7 +126,7 @@ export const Tags = {
   // Meta data projects
   metadata: {
     label: "Metadata",
-    description: "Transaction metadata",
+    description: "Transaction metadata.",
     icon: null,
     color: '#14cfc3',
   },
@@ -134,7 +134,7 @@ export const Tags = {
   // Minting 
   minting: {
     label: "Minting",
-    description: "Minting Tool",
+    description: "Minting Tool.",
     icon: null,
     color: '#23a5da',
   },
@@ -193,7 +193,7 @@ export const Tags = {
   ecosystem: {
     label: "Ecosystem",
     description:
-      "The Cardano ecosystem projects",
+      "The Cardano ecosystem projects.",
     icon: null,
     color: '#800080'
   },
@@ -201,10 +201,26 @@ export const Tags = {
   // Catalyst
   catalyst: {
     label: "Catalyst",
-    description: "Projects that aid to Cardano's interim governance programme (Catalyst)",
+    description: "Projects that aid to Cardano's interim governance programme (Catalyst).",
     icon: null,
     color: '#308446'
   },
+
+  // Lending 
+  lending: {
+    label: "Lending",
+    description: "Projects that provide lending and borrowing of ada.",
+    icon: null,
+    color: '#7E0000'
+  },
+
+  // Bridge 
+  bridge: {
+    label: "Bridge",
+    description: "Projects that provide cross-chain bridge support.",
+    icon: null,
+    color: '#EDFF21'
+  }
 };
 
 // Add your project to (THE END OF) this list.
@@ -230,11 +246,11 @@ export const Showcases = [
     tags: ["favorite", "metadata"],
   },
   {
-    title: "NFT Maker",
+    title: "NMKR",
     description:
-      "Create your own NFT by uploading an image and paying some ada.",
-    preview: require("./showcase/nft-maker.png"),
-    website: "https://www.nft-maker.io",
+      "NFT Minting, FIAT & Crypto Sales, Token Launches, Secondary Markets - all available at the press of a button.",
+    preview: require("./showcase/nmkr.png"),
+    website: "https://www.nmkr.io/",
     source: null,
     tags: ["favorite", "minting", "nftsupport"],
   },
@@ -987,15 +1003,6 @@ export const Showcases = [
     tags: ["catalyst", "analytics"],
   },
   {
-    title: "Paradiso",
-    description:
-      "A Shangri-La for Cardano NFTs. Decentralized platform to mint, distribute, buy, and sell digital assets.",
-    preview: require("./showcase/paradiso.png"),
-    website: "https://paradiso.app",
-    source: null,
-    tags: ["marketplace", "minting", "nftsupport"],
-  },
-  {
     title: "RoundTable",
     description:
       "A open source multi-sig DApp for the cardano blockchain.",
@@ -1041,9 +1048,18 @@ export const Showcases = [
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
   {
+    title: "Lending Pond",
+    description:
+      "Provide or Receive ada through a smart contract driven P2P lending marketplace using Cardano NFTs as collateral.",
+    preview: require("./showcase/lending-pond.png"),
+    website: "https://lendingpond.app",
+    source: null,
+    tags: [ "marketplace", "nftsupport", "lending"],
+  },
+  {
     title: "Gift Card Creator",
     description:
-      "Personalise an NFT gift card",
+      "Customize NFT Gift Cards on the Cardano Blockchain",
     preview: require("./showcase/gift-card-creator.png"),
     website: "https://card-creator.shop",
     source: null,
@@ -1067,6 +1083,15 @@ export const Showcases = [
     source: null,
     tags: [ "wallet", "dex", "nftsupport"],
   },
+  {
+    title: "NFT Creator",
+    description:
+      "Design Cardano NFTs with this image editor",
+    preview: require("./showcase/nft-creator.png"),
+    website: "https://nft-creator.pics",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  }, 
   {
     title: "Voteaire",
     description:
@@ -1095,6 +1120,15 @@ export const Showcases = [
     tags: ["minting", "metadata"],
   },
   {
+    title: "CNFTLab Party",
+    description: 
+      "Tool for minting CNFTs, manage your policyID, create royalties and start minting in few seconds.",
+    preview: require("./showcase/cnftlab-party.png"),
+    website: "https://www.cnftlab.party/",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
+  {
     title: "TapTools",
     description:
       "All-in-one platform that offers free token distribution, comprehensive charts, NFT generation, and mint facilitation.",
@@ -1102,6 +1136,33 @@ export const Showcases = [
     website: "https://www.taptools.io",
     source: null,
     tags: [ "analytics", "token", "minting"],
+  },
+  {
+    title: "Shareslake",
+    description: 
+      "The stable branch of Cardano. A fiat-backed stablecoin for Cardano mainnet and a whole Cardano network running as a sidechain by the fiat-backed stablecoin instead of ADA. Deploy dApps out of the box and use Cardano technology like if you were using US dollars.",
+    preview: require("./showcase/shareslake.png"),
+    website: "https://www.shareslake.com/",
+    source: null,
+    tags: ["gateway", "token"],
+  },
+  {
+    title: "Chainport",
+    description: 
+      "ChainPort is a next-gen hard-security blockchain bridge that lets you hop across EVM chains to Cardano at a click.",
+    preview: require("./showcase/chainport.png"),
+    website: "https://www.chainport.io/",
+    source: null,
+    tags: ["bridge"],
+  },
+  {
+    title: "Cardano Pet Registry",
+    description: 
+      "A virtually free, non profit, global pet registry system built on the Cardano blockchain, facilitates peer to peer pet rescue and historical proof of pet ownership.",
+    preview: require("./showcase/petregistry.png"),
+    website: "https://www.petregistry.io",
+    source: null,
+    tags: ["metadata", "identity"],
   },
 ];
 

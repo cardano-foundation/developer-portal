@@ -270,6 +270,14 @@ export const Tags = {
     icon: null,
     color: "#4a69BD"
   },
+
+  // Koios
+  koios: {
+    label: "Koios",
+    description: "Koios and its integrations",
+    icon: null,
+    color: "#4d21b8"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -624,7 +632,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios.png"),
     website: "https://koios.rest",
     getstarted: "/docs/get-started/koios",
-    tags: ["http", "json", "hosted"],
+    tags: ["koios", "http", "json", "hosted"],
   },
   {
     title: "Pallas",
@@ -784,7 +792,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios-python.png"),
     website: "https://github.com/cardano-community/koios-python",
     getstarted: null,
-    tags: ["python", "sdk"],
+    tags: ["koios", "python", "sdk"],
   },
   {
     title: "Cardano Leader Slot",
@@ -867,6 +875,22 @@ export const Showcases = [
     getstarted: null,
     tags: ["sdk", "java", "lowlevel"],
   },
+  {
+    title: "Cardano Verify Datasignature",
+    description: "A lightweight typescript library to verify a cip30 datasignature.",
+    preview: require("./builder-tools/cardano-verify-datasignature.png"),
+    website: "https://github.com/cardano-foundation/cardano-verify-datasignature",
+    getstarted: null,
+    tags: ["typescript"],
+  },
+  {
+    title: "Koios Api Python package",
+    description: "The Koios Api python package allows interrogating the Cardano blockchain using https://api.koios.rest/. It has pagination and retry in case of errors.",
+    preview: require("./builder-tools/koios-api-python.png"),
+    website: "https://github.com/cardano-apexpool/koios-api-python",
+    getstarted: null,
+    tags: ["koios", "python", "sdk"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -888,6 +912,7 @@ export const LanguagesOrTechnologiesTags = [
   "java",
   "javascript",
   "json",
+  "koios",
   "net",
   "purescript",
   "python",
