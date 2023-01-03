@@ -896,7 +896,7 @@ export const Showcases = [
     description: "A simple Python API for the Cardano Token Registry.",
     preview: require("./builder-tools/token-registry-api.png"),
     website: "https://github.com/cardano-apexpool/token-registry-api",
-    getstarted: "https://github.com/cardano-apexpool/token-registry-api/blob/main/README.md",
+    getstarted: null,
     tags: ["python"],
   },
 ];
