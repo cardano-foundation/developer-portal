@@ -27,16 +27,14 @@ Jann Müller then takes us through the Plutus Application Platform, where assets
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/usMPt8KpBeI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
-## Plutus Playground
-The Plutus Playground is a code editor and simulator in one.
+## Demeter
 
-[![Plutus Playground](../../static/img/get-started/smart-contracts/plutus-playground.jpg)](https://playground.plutus.iohkdev.io)
+Demeter is a web-based development platform providing a full suite of tools for building Cardano dApps end-to-end. It features starter-kits for a range of different project types including Plutus: [Plutus Starter Kit](https://github.com/txpipe/plutus-starter-kit).
 
-There is a written tutorial on [how to compile and test a Plutus App](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/plutus-playground.html) or you can watch this video tutorial:   
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/DhRS-JvoCw8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+Head over to [Demeter.run](https://demeter.run) when you are ready to start building!
 
 ## Further Tutorials
-- [Writing a basic Plutus app in the Plutus Playground](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
+- [Writing a basic Plutus app](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
 - [Using Plutus Tx](https://plutus.readthedocs.io/en/latest/tutorials/plutus-tx.html)
 - [Writing basic validator scripts](https://plutus.readthedocs.io/en/latest/tutorials/basic-validators.html)
 - [Writing basic minting policies](https://plutus.readthedocs.io/en/latest/tutorials/basic-minting-policies.html)
