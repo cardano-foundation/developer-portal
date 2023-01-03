@@ -510,6 +510,14 @@ export const Showcases = [
     tags: ["favorite", "wallet", "nftsupport"],
   },
   {
+    title: "Milkomeda",
+    description: "Cross-blockchain Level 2 solutions including EVM support on Cardano and wrapped native assets.",
+    preview: require("./showcase/milkomeda.png"),
+    website: "https://milkomeda.com",
+    source: null,
+    tags: ["bridge"]
+  },
+  {
     title: "Jetchicken",
     description:
       "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
