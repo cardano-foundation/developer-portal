@@ -891,6 +891,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["koios", "python", "sdk"],
   },
+  {
+    title: "Cardano Token Registry Python API",
+    description: "A simple Python API for the Cardano Token Registry.",
+    preview: require("./builder-tools/token-registry-api.png"),
+    website: "https://github.com/cardano-apexpool/token-registry-api",
+    getstarted: null,
+    tags: ["python"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
