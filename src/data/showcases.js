@@ -354,6 +354,15 @@ export const Showcases = [
     tags: ["wallet", "opensource", "favorite"],
   },
   {
+    title: "LodeWallet",
+    description:
+      "The functional Cardano wallet. LodeWallet exists to provide the simplest possible experience for Cardano deFi users and a familiar experience for deFi users from other ecosystems. We are the first native Haskell light wallet for Cardano, making direct use of existing open-source Cardano Haskell libraries.",
+    preview: require("./showcase/lodewallet.png"),
+    website: "https://lodewallet.io",
+    source: null,
+    tags: ["wallet", "nftsupport", "metadata"],
+  },
+  {
     title: "Yoroi",
     description:
       "Yoroi is a lightweight node and developed by EMURGO, one of the founding entities of Cardano.",
