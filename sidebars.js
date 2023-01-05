@@ -177,8 +177,15 @@ module.exports = {
                 "stake-pool-guide/node-installation-process",
                 ],
         },
-	"stake-pool-guide/cardano-relay-configuration",
-],
+        {
+        type: "category",
+        label: "Cardano Relay Configuration",
+        items: [
+	        "stake-pool-guide/cardano-relay-configuration",
+        	"stake-pool-guide/grafana-dashboard",
+                ],
+        },
+    ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
       "portal-contribute",
