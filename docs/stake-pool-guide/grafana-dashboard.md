@@ -180,7 +180,7 @@ Select Prometheus
 
 Set Name to "Prometheus"
 
-Set URL to http://localhost:9090
+Set URL to `http://localhost:9090`
 
 Click Save & Test
 
