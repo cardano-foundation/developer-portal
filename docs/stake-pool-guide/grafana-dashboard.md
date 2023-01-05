@@ -7,26 +7,24 @@ image: ../img/og/og-developer-portal.png
 ---
 ![Grafana Tutorial](../../static/img/stake-pool-guide/snsky_dashboard.jpg)
 
-Once the Cardano pool successfully set-up, then comes the most beautifully part - setting up your Dashboard and Alerts!
+Once your Cardano pool is successfully set up, then comes the most beautiful part - setting up your Dashboard and Alerts!
 
 
-This documentation brings some of the available information in greater detail and will hopefully help Stake Pool Operators in managing their pools more efficiently. This tutorial is for education and learning purpose only!
+This documentation brings some of the available information in greater detail and will hopefully help Stake Pool Operators manage their pools more efficiently. This tutorial is for education and learning purposes only!
 
 
 
 **Prerequisites:**
 
 - Ubuntu Server 20.04 LTS
-
 - Cardano Block Producer Node up and running
-
 - Cardano Relay Nodes up and running
 
 
 
 ## 1. Install prometheus node exporter
 
-Firstly install Prometheus node exporter on the Block Producing and all Relay Nodes
+First, install Prometheus node exporter on the Block Producing and all Relay Nodes:
 
 ```shell
 $ sudo apt-get install -y prometheus-node-exporter
@@ -35,11 +33,11 @@ $ sudo systemctl enable prometheus-node-exporter.service
 ```
 
 :::note
-for Ubuntu 18.04 refer the following tutorial [Ubuntu 18.04 Tutorial](https://sanskys.github.io/grafana/)
+For Ubuntu 18.04 refer to the following tutorial: [Ubuntu 18.04 Tutorial](https://sanskys.github.io/grafana/)
 :::
 
 
-Update mainnet-config.json config files with new hasEKG and has Prometheus ports.
+Update `mainnet-config.json` config files with new hasEKG and has Prometheus ports:
 ```shell
 $ cd $NODE_HOME
 $ sed -i config.json -e "s/127.0.0.1/0.0.0.0/g"
@@ -53,7 +51,7 @@ $ sudo ufw allow proto tcp from <Monitoring Node IP address> to any port 12798
 $ sudo ufw reload
 ```
 
-restart the nodes
+Restart the nodes:
 ```shell
 $ sudo systemctl restart <your node name e.g. cardano-testnode>
 ```
@@ -82,15 +80,15 @@ $ sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
 
 $ sudo apt-get update && sudo apt-get install -y grafana
 ```
-Enable services so they start automatically
+Enable services so they start automatically:
 ```shell
 $ sudo systemctl enable grafana-server.service
 $ sudo systemctl enable prometheus.service
 $ sudo systemctl enable prometheus-node-exporter.service
 ```
-Update prometheus.yml located in /etc/prometheus/prometheus.yml
+Update `prometheus.yml` located in `/etc/prometheus/prometheus.yml`:
 
-Change the *ip address* in the following command
+Change the *ip address* in the following command:
 ```shell
 $ cat > prometheus.yml << EOF
 global:
@@ -142,42 +140,48 @@ scrape_configs:
 
 EOF
 ```
-if you have more than two Relay Nodes, add all your Relays as new "targets" in the config above
+if you have more than two Relay Nodes, add all your Relays as new "targets" in the config above:
 ```shell
 $ sudo mv prometheus.yml /etc/prometheus/prometheus.yml
 ```
-restart the services
+Restart the services:
 ```shell
 $ sudo systemctl restart grafana-server.service
 $ sudo systemctl restart prometheus.service
 $ sudo systemctl restart prometheus-node-exporter.service
 ```
-Verify that the services are running properly
+Verify that the services are running properly:
 ```shell
 $ sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
-On the Monitoring Node open ports 3000 for Grafana
+On the Monitoring Node, open port 3000 for Grafana:
 ```shell
 $ sudo ufw allow from <your home IP address from where you plan to access Grafana> to any port 3000
 ```
 :::note
-Please refer to [Grafana Labs Security](https://grafana.com/docs/grafana/latest/administration/security/) for hardening e.g. by default the communication with the Grafana server is unencrypted.
+Please refer to [Grafana Labs Security](https://grafana.com/docs/grafana/latest/administration/security/) for hardening: e.g. by default the communication with the Grafana server is unencrypted.
 :::
 
 ## 4. Setting up Grafana Dashboard
 
 
 
-On Relay Node, open http://localhost:3000 or http://*your Relay Node ip address*:3000 in your local browser.
+On Relay Node, open `http://localhost:3000` or `http://`*your Relay Node ip address*`:3000` in your local browser.
+
 Login with admin / admin
+
 Change password
 
 ![Datasource](/img/stake-pool-guide/snsky_prometheus.jpg)
 
 Click the configuration gear icon, then Add data Source
+
 Select Prometheus
+
 Set Name to "Prometheus"
+
 Set URL to http://localhost:9090
+
 Click Save & Test
 
 
@@ -210,7 +214,7 @@ To see a list of installed panels, click the Plugins item in the main menu. Both
 ## 5. Add Data from Cexplorer to the Dashboard
 
 
-Cexplorer provides an API where we can collect data for our pool. Run following commands to create directory for our pool statistic and script.
+Cexplorer provides an API where we can collect data for our pool. Run the following commands to create directory for our pool statistics and script:
 
 ```shell
 cd /$NODE_HOME
@@ -230,24 +234,24 @@ chmod +x getstats.sh
 ./getstats.sh
 
 ```
-check the content of poolStat.prom and it should not contain only numeric values
+check the content of `poolStat.prom` and it should not contain only numeric values:
 ```shell
 $ nano poolStat.prom
 ```
 
 
-Configure promethues-node-exporter.service to grab data from poolStat.prom file
+Configure `prometheus-node-exporter.service` to grab data from the `poolStat.prom` file:
 ```shell
 $ sudo cp /lib/systemd/system/prometheus-node-exporter.service /lib/systemd/system/prometheus-node-exporter.service_backup
 
 $ sudo nano /lib/systemd/system/prometheus-node-exporter.service
 ```
-Change ExecStart line to
+Change `ExecStart` line to:
 ```shell
 ExecStart=/usr/bin/prometheus-node-exporter --collector.textfile.directory=< YOUR NODE FULL PATH >/poolStat --collector.textfile
 ```
 
-Reload daemon and restart services
+Reload daemon and restart services:
 ```shell
 $ sudo systemctl daemon-reload
 
@@ -257,11 +261,11 @@ $ sudo systemctl restart prometheus.service
 ```
 
 
-Now you should see in the Dashboard all Cexplorer statistics
+Now you should see in the Dashboard all Cexplorer statistics:
 
 
 
-Since the statistics will change, lets set cron job to update data from Cexplorer everyday
+Since the statistics will change, let's set a cron job to update data from Cexplorer every day:
 
 
 ```shell
@@ -283,17 +287,15 @@ Done!
 
 
 
-## 6. As last step let's now setup Grafana Alerting and Email Notifications
+## 6. Set up Grafana Alerting and Email Notifications
 
-
-
-Setup SMTP in Grafana
+Set up SMTP in Grafana:
 ```shell
 $ sudo nano /etc/grafana/grafana.ini
 ```
 
 
-Edit the SMTP section
+Edit the SMTP section:
 ```shell
 #############################
 
@@ -310,7 +312,7 @@ from_name = Grafana
 ```
 
 
-Login to Grafana with username and password.
+Log in to Grafana with username and password:
 
 ![Email Alert](/img/stake-pool-guide/snsky_EmailAlert.jpg)
 
@@ -400,13 +402,13 @@ SNSKY Pool ID
 
 
 
-We should make Grafana a bit more secure and to do so lets change two settings
+We should make Grafana a bit more secure.  To do so let's change two settings:
 ```shell
 $ sudo nano /etc/grafana/grafana.ini
 ```
 
 
-Locate the following allow_sign_up directive under the [users] heading and change the line to as follows
+Locate the following `allow_sign_up` directive under the `[users]` heading and change the line as follows:
 ```shell
 ##########
 
@@ -418,7 +420,7 @@ allow_sign_up = false
 ```
 
 
-Next, locate the following enabled directive under the [auth.anonymous] heading and change the line to as follows
+Next, locate the following enabled directive under the `[auth.anonymous]` heading and change the line as follows:
 
 ```shell
 [auth.anonymous]
@@ -427,7 +429,7 @@ enabled = false
 ```
 
 
-Save the file and exit your text editor and to activate the changes, restart Grafana.
+Save the file and exit your text editor. To activate the changes, restart Grafana.
 
 
 ```shell
@@ -438,15 +440,15 @@ $ sudo systemctl restart grafana-server
 ## 8. Advanced Users: Slot Leader Panel
 ![Leader Panel](/img/stake-pool-guide/snsky_leaderPanel.jpg)
 
-Once your Pool gets big and is regularly minting blocks, it becomes difficult to keep track of all Leader Slots and also to identify the available gaps for Pool maintenance. This Slot Leader Panel is quite helpful as it gives a good overview of all scheduled Slots in TimeSeries.
+Once your pool gets big and is regularly minting blocks, it becomes difficult to keep track of all Leader Slots and also to identify the available gaps for pool maintenance. This Slot Leader Panel is quite helpful as it gives a good overview of all scheduled Slots in TimeSeries.
 
 
 
-Use cardano-cli to query the leadership schedule. Since the result has to interpreted by Grafana, we need to format the query output to a CSV readable syntax.
+Use `cardano-cli` to query the leadership schedule. Since the result has to interpreted by Grafana, we need to format the query output to a CSV readable syntax.
 
 :::note
 
-The cardano-cli query requires additional RAM. Please refer to [query leadership-schedule](https://github.com/input-output-hk/cardano-node/issues/3673) for more details. I needed 16GB RAM + 8GB SWAP and it took several minutes to query the leadership schedule.
+The `cardano-cli` query requires additional RAM. Please refer to [query leadership-schedule](https://github.com/input-output-hk/cardano-node/issues/3673) for more details. I needed 16GB RAM + 8GB SWAP and it took several minutes to query the leadership schedule.
 
 :::
 
@@ -497,7 +499,7 @@ Happy minting!
 
 ## 9. Adding crypto exchange rates to your Grafana
 
-It may not be healthy to look into price all day long, but it could be useful to have it in one place on grafana dashboard.
+It may not be healthy to look into price all day long, but it could be useful to have it in one place on the Grafana dashboard.
 
 Below is an example using Kraken exchange's API for fetching prices. One may elect any alternate API provider for price and adapt the suggestions easily.
 
@@ -530,7 +532,7 @@ btcusd 30187.90000
 ethusd 2012.02000
 ```
 
-Then you should go to your grafana and check explore and then metrics browser menu and there you should able to see `adaeur`, `adausd` and other metrics what we write to file.
+Then you should go to your Grafana and check explore and then metrics browser menu and there you should able to see `adaeur`, `adausd` and other metrics what we write to file.
 
 If metrics are there, then you must configure cron to run that script every minute, so you will get fresh data every minute:
 
@@ -538,6 +540,6 @@ If metrics are there, then you must configure cron to run that script every minu
 crontab -l 2>/dev/null; echo "* * * * * $NODE_HOME/poolStat/prices.sh") | crontab -
 ```
 
-Now all is left is to create graph with prices, it is rather trivial task and no explanation is necessary.
+Now all is left is to create a graph with prices: it is a rather trivial task and no explanation is necessary.
 
 Cheers!
