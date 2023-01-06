@@ -899,14 +899,6 @@ export const Showcases = [
     getstarted: null,
     tags: ["python"],
   },
-  {
-    title: "DCOne Crypto",
-    description: "Cardano ecosystem interface map showing all projects and dapps on the Cardano blockchain",
-    preview: require("./builder-tools/dconecrypto.png"),
-    website: "https://dconecrypto.finance/ecosystem-map.html",
-    getstarted: null,
-    tags: ["Ecosystem"],
-  },
 ];
 
 export const TagList = Object.keys(Tags);
