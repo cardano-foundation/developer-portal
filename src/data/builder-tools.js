@@ -892,12 +892,20 @@ export const Showcases = [
     tags: ["koios", "python", "sdk"],
   },
   {
+    title: "Cardano Token Registry Python API",
+    description: "A simple Python API for the Cardano Token Registry.",
+    preview: require("./builder-tools/token-registry-api.png"),
+    website: "https://github.com/cardano-apexpool/token-registry-api",
+    getstarted: null,
+    tags: ["python"],
+  },
+  {
     title: "DCOne Crypto",
     description: "Cardano ecosystem interface map showing all projects and dapps on the Cardano blockchain",
     preview: require("./builder-tools/dconecrypto.png"),
     website: "https://dconecrypto.finance/ecosystem-map.html",
     getstarted: null,
-    tags: ["DCOne Crypto","Ecosystem","Cardano Ecosystem Interface"],
+    tags: ["Ecosystem"],
   },
 ];
 
