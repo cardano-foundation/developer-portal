@@ -119,7 +119,7 @@ module.exports = {
             type: "category",
             label: "Handbook",
             items: [
-              "stake-pool-course/handbook/grafana-dashboard-tutorial",
+              // "stake-pool-course/handbook/grafana-dashboard-tutorial",
               "stake-pool-course/handbook/setup-virtual-box-written",
               "stake-pool-course/handbook/setup-a-server-on-aws-written",
               "stake-pool-course/handbook/setup-firewall",
@@ -177,8 +177,15 @@ module.exports = {
                 "stake-pool-guide/node-installation-process",
                 ],
         },
-	"stake-pool-guide/cardano-relay-configuration",
-],
+        {
+        type: "category",
+        label: "Cardano Relay Configuration",
+        items: [
+	        "stake-pool-guide/cardano-relay-configuration",
+        	"stake-pool-guide/grafana-dashboard",
+                ],
+        },
+    ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
       "portal-contribute",
