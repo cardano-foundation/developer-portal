@@ -130,3 +130,7 @@ Learn and dive into CIP-60 which is the Music NFT metadata standard on Cardano.
  ##  Pointer Addresses
 Learn and dive into CPS-0002 which focuses on Pointer Addresses.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/XKgmP1r_GSA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Kogmios
+Learn about Kogmios, a Kotlin library for communicating with Ogmios.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/Q_LrKUVo6LU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
