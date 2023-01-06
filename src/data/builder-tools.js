@@ -270,6 +270,14 @@ export const Tags = {
     icon: null,
     color: "#4a69BD"
   },
+
+  // Koios
+  koios: {
+    label: "Koios",
+    description: "Koios and its integrations",
+    icon: null,
+    color: "#4d21b8"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -624,7 +632,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios.png"),
     website: "https://koios.rest",
     getstarted: "/docs/get-started/koios",
-    tags: ["http", "json", "hosted"],
+    tags: ["koios", "http", "json", "hosted"],
   },
   {
     title: "Pallas",
@@ -784,7 +792,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios-python.png"),
     website: "https://github.com/cardano-community/koios-python",
     getstarted: null,
-    tags: ["python", "sdk"],
+    tags: ["koios", "python", "sdk"],
   },
   {
     title: "Cardano Leader Slot",
@@ -881,7 +889,15 @@ export const Showcases = [
     preview: require("./builder-tools/koios-api-python.png"),
     website: "https://github.com/cardano-apexpool/koios-api-python",
     getstarted: null,
-    tags: ["python", "sdk"],
+    tags: ["koios", "python", "sdk"],
+  },
+  {
+    title: "Cardano Token Registry Python API",
+    description: "A simple Python API for the Cardano Token Registry.",
+    preview: require("./builder-tools/token-registry-api.png"),
+    website: "https://github.com/cardano-apexpool/token-registry-api",
+    getstarted: null,
+    tags: ["python"],
   },
 ];
 
@@ -904,6 +920,7 @@ export const LanguagesOrTechnologiesTags = [
   "java",
   "javascript",
   "json",
+  "koios",
   "net",
   "purescript",
   "python",
