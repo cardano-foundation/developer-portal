@@ -1,7 +1,7 @@
 ---
 id: get-started
 sidebar_position: 2
-title: Get Starter - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: Get Started - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
 sidebar_label: Get Started
 description: Get Started with Mesh
 image: ../img/og/og-getstarted-mesh.png
