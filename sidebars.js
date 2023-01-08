@@ -183,6 +183,7 @@ module.exports = {
         items: [
 	        "stake-pool-guide/cardano-relay-configuration",
         	"stake-pool-guide/grafana-dashboard",
+		"stake-pool-guide/improve-grafana-security",
                 ],
         },
     ],
