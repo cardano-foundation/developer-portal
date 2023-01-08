@@ -1031,7 +1031,7 @@ All of the merged PRs in October
 
 ## 2022.46.0 (2022-11-30)
 
-All of the merged PRs in October
+All of the merged PRs in November
 #### PRs: 18
 
 - link transparently to operations book Environments page by ([@rphair](https://github.com/rphair)) in [#846](https://github.com/cardano-foundation/developer-portal/pull/846)
@@ -1064,3 +1064,46 @@ All of the merged PRs in October
 - AndrewWestberg ([@AndrewWestberg](https://github.com/AndrewWestberg))
 - inimrod ([@inimrod](https://github.com/inimrod))
 - miguelaeh ([@miguelaeh](https://github.com/miguelaeh))
+
+## 2022.50.0 (2022-12-31)
+
+All of the merged PRs in December
+#### PRs: 21
+
+- Add Lending Pond showcase and a new Lending tag by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#730](https://github.com/cardano-foundation/developer-portal/pull/730)
+- Add NFT Creator showcase by ([@minolinpwork](https://github.com/minolinpwork)) in [#766](https://github.com/cardano-foundation/developer-portal/pull/766)
+- Add CNFTLab party showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#839](https://github.com/cardano-foundation/developer-portal/pull/839)
+- Bump loader-utils from 2.0.3 to 2.0.4 by ([@dependabot](https://github.com/dependabot)) in [#862](https://github.com/cardano-foundation/developer-portal/pull/862)
+- Add changelog data for November 2022 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#869](https://github.com/cardano-foundation/developer-portal/pull/869)
+- Add nmkr studio in builder tools by ([@schaier-io](https://github.com/schaier-io)) in [#865](https://github.com/cardano-foundation/developer-portal/pull/865)
+- Remove showcase Paradiso by ([@aarondunnington](https://github.com/aarondunnington)) in [#874](https://github.com/cardano-foundation/developer-portal/pull/874)
+- replace HydraBuildList with static but currently valid links by ([@rphair](https://github.com/rphair)) in [#873](https://github.com/cardano-foundation/developer-portal/pull/873)
+- Added links for latest Marlowe development documentation. by ([@bwbush](https://github.com/bwbush)) in [#872](https://github.com/cardano-foundation/developer-portal/pull/872)
+- Add more technical concepts by Andrew Westberg by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#878](https://github.com/cardano-foundation/developer-portal/pull/878)
+- Add Bridge filter into showcases by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#880](https://github.com/cardano-foundation/developer-portal/pull/880)
+- Fix some typos in minting.md by ([@AntonEriksson978](https://github.com/AntonEriksson978)) in [#882](https://github.com/cardano-foundation/developer-portal/pull/882)
+- Update Docusaurus to 2.2.0 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#883](https://github.com/cardano-foundation/developer-portal/pull/883)
+- Skip creating an empty policy script by ([@eyeinsky](https://github.com/eyeinsky)) in [#885](https://github.com/cardano-foundation/developer-portal/pull/885)
+- Add Chainport to Showcase by ([@eserilev](https://github.com/eserilev)) in [#875](https://github.com/cardano-foundation/developer-portal/pull/875)
+- Add Cardano Verify Datasignature builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#890](https://github.com/cardano-foundation/developer-portal/pull/890)
+- Added "Pet Registry" project to showcase by ([@fangio10](https://github.com/fangio10)) in [#893](https://github.com/cardano-foundation/developer-portal/pull/893)
+- Add Koios Api Python package project to builder tools by ([@cardano-apexpool](https://github.com/cardano-apexpool)) in [#896](https://github.com/cardano-foundation/developer-portal/pull/896)
+- Minor improvement of the native tokens docs by ([@tomveich](https://github.com/tomveich)) in [#900](https://github.com/cardano-foundation/developer-portal/pull/900)
+- Add Koios tag to Builder Tools by ([@rphair](https://github.com/rphair)) in [#898](https://github.com/cardano-foundation/developer-portal/pull/898)
+- Ignore yarn state, but still track yarn.lock by ([@rphair](https://github.com/rphair)) in [#901](https://github.com/cardano-foundation/developer-portal/pull/901)
+
+#### Committers: 13
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- minolinpwork ([@minolinpwork](https://github.com/minolinpwork))
+- dependabot ([@dependabot](https://github.com/dependabot))
+- schaier-io ([@schaier-io](https://github.com/schaier-io))
+- aarondunnington ([@aarondunnington](https://github.com/aarondunnington))
+- rphair ([@rphair](https://github.com/rphair))
+- bwbush ([@bwbush](https://github.com/bwbush))
+- AntonEriksson978 ([@AntonEriksson978](https://github.com/AntonEriksson978))
+- eyeinsky ([@eyeinsky](https://github.com/eyeinsky))
+- eserilev ([@eserilev](https://github.com/eserilev))
+- fangio10 ([@fangio10](https://github.com/fangio10))
+- cardano-apexpool ([@cardano-apexpool](https://github.com/cardano-apexpool))
+- tomveich ([@tomveich](https://github.com/tomveich))
