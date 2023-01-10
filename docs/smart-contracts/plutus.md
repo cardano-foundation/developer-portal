@@ -27,12 +27,6 @@ Jann Müller then takes us through the Plutus Application Platform, where assets
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/usMPt8KpBeI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
-## Demeter
-
-Demeter is a web-based development platform providing a full suite of tools for building Cardano dApps end-to-end. It features starter-kits for a range of different project types including Plutus: [Plutus Starter Kit](https://github.com/txpipe/plutus-starter-kit).
-
-Head over to [Demeter.run](https://demeter.run) when you are ready to start building!
-
 ## Further Tutorials
 - [Writing a basic Plutus app](https://plutus-apps.readthedocs.io/en/latest/plutus/tutorials/basic-apps.html)
 - [Using Plutus Tx](https://plutus.readthedocs.io/en/latest/tutorials/plutus-tx.html)
@@ -64,3 +58,9 @@ Prior knowledge of Haskell or functional programming is also recommended, as Plu
 - [Apply for the Plutus Pioneer Program](https://testnets.cardano.org/en/plutus-pioneer-program/)
 
 You can also check out the book "Plutus - Learning a smart-contract language" that follows the 3rd iteration of the Plutus pioneer programm and contains all code examples from the course. The book is availabe at this repository: https://github.com/LukaKurnjek/plutus-pioneer-program.
+
+## Demeter
+
+Demeter is a web-based development platform providing a full suite of tools for building Cardano dApps end-to-end. It features starter-kits for a range of different project types including Plutus: [Plutus Starter Kit](https://github.com/txpipe/plutus-starter-kit).
+
+Head over to [Demeter.run](https://demeter.run) when you are ready to start building!
