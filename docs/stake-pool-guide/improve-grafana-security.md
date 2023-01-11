@@ -8,7 +8,7 @@ image: ../img/og/og-developer-portal.png
 
 Once your Grafana Server is installed, up and running, you can drasticaly improve its security and accessibility by installing an SSL Reverse Proxy, and enabling 2-Factor Authentication with Google OAuth.
 
-## PREREQUISITES
+## Prerequisites
 
 NGINX Reverse Proxy :
 - You must have a proper domain name; and FQDN set to your grafana’s public IP address
@@ -18,11 +18,11 @@ NGINX Reverse Proxy :
 - You need to have your own domain mail address (and of course a secure mail server). For example, you could have "grafana@yourdomain.com"
 - You need to create a Google account with this mail address.
 
-## NGINX REVERSE PROXY
+## Nginx Reverse Proxy
 
 The main issue if you want to access your Grafana Dashboard from anywhere, out-of-the-box, is that you have to expose the application port (http:3000 by default) on the public address of your server. To avoid that, a popular solution is to simply create an SSH tunnel with a port forwarding option to your Grafana Server. A more elegant and still secure solution is to configure a reverse proxy, with an SSL certificate.
 
-### NGINX INSTALLATION
+### Nginx installation
 
 **Install nginx**
 ```shell
@@ -80,7 +80,7 @@ Now access your monitoring server http://your-FQDN : you should see the Grafana 
 rm /etc/nginx/sites-enabled/default
 ```
 
-### SSL CERTIFICATE INSTALLATION
+### SSL certificate installation
 
 Now that we have a working Reverse Proxy on our monitoring server, we are going to add SSL layer to encrypt properly access to your Cardano Stakepool Grafana dashboard. To do this, we are going to use a free SSL certificate provider, Let’s Encrypt, with Certbot.
 
@@ -104,7 +104,7 @@ At the end of installation, you should be able to access your Grafana Server wit
 
 https://your-FQDN
 
-### POST INSTALL NGINX HARDENING
+### Post install nginx hardening
 
 **Block any unwanted HTTP method, except POST GET and HEAD**
 ```shell
@@ -154,11 +154,11 @@ Save and close.
 sudo systemctl restart nginx
 ```
 
-## GOOGLE OAUTH SETUP
+## Google OAuth setup
 
 We are going to replace the local login/password access to Grafana server, by a much more robust authentication : Google OAuth. Remember : you must have your mail address on your own domain (see Pre-Requisites), and create a Google acocunt with that address.
 
-### ACTIVATE 2FA ON YOUR GOOGLE ACCOUNT
+### Activate 2FA on your Google Account
 
 Connect to the Google account you created with your own mail address, and activate 2FA Authentication :
 
@@ -168,7 +168,7 @@ Connect to the Google account you created with your own mail address, and activa
 
 3- Follow the on-screen steps.
 
-### CREATE GOOGLE API CREDENTIALS
+### Create Google API credentials
 
 1- Go to  https://console.developers.google.com/apis/credentials and log in with the Google account you created with your own mail address.
 
@@ -186,7 +186,7 @@ important in our case).
 
 5- You’ll get a Client ID and Client Secret. Copy them.
 
-### EDIT GRAFANA.INI CONFIG FILE
+### Edit Grafana config file
 
 **Open grafana.ini**
 ```shell
@@ -221,7 +221,7 @@ Access to your Grafana FQDN : https://your-FQDN-used-to-access-your-grafana-serv
 
 You should now have a “Sign-in with Google” option on the login page. You can now use the account you created with your own domain name to access your Grafana Cardano dashboards. 
 
-### OPTIONAL : ADMIN CONFIGURATION
+### Optional: Admin configuration
 
 We are going to make the Google Account Admin, and then remove the local Admin/password account.
 
