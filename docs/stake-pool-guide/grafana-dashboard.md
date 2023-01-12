@@ -1,7 +1,7 @@
 ---
 id: grafana-dashboard
 title: Grafana Dashboard
-sidebar_label: Grafana Dashboard
+sidebar_label: Monitoring with Grafana
 description: "Monitoring the Node (Prometheus, Grafana)"
 image: ../img/og/og-developer-portal.png
 ---
