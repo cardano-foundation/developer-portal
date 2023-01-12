@@ -181,9 +181,10 @@ module.exports = {
         type: "category",
         label: "Cardano Relay Configuration",
         items: [
-	        "stake-pool-guide/cardano-relay-configuration",
-        	"stake-pool-guide/grafana-dashboard",
-	        ],
+                "stake-pool-guide/cardano-relay-configuration",
+                "stake-pool-guide/monitoring-gLiveView",
+                "stake-pool-guide/grafana-dashboard",
+                ],
         },
 	{
         type: "category",
