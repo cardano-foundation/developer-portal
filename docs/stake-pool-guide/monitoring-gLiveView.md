@@ -10,20 +10,20 @@ Guild LiveView, often known as gLiveView, is a local bash CLI monitoring utility
 To install gLiveView:
 
 
-1. download the latest Guild LiveView script files, type:
+1. Download the latest Guild LiveView script files, type:
 
 ```shell
 curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
 curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
 ```
 
-2. To set file permissions on the gLiveView.sh file that you downloaded in step 1, type:
+2. To set file permissions on the `gLiveView.sh` file that you downloaded in step 1, type:
 
 ```shell
 chmod 755 gLiveView.sh
 ```
 
-For most setups, it's enough to set CNODE_PORT in the env file.
+For most setups, it's enough to set `CNODE_PORT` in the `env` file.
 
 
 
