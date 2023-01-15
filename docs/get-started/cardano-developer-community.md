@@ -34,7 +34,7 @@ Dedicated channel for Marlowe developers and users. Marlowe is a specialized dom
 [**Developer Portal Discord**](https://discord.gg/Exe6XmqKDx)  
 If you would like to help develop the Developer Portal further, please join our [Discord](https://discord.gg/Exe6XmqKDx). 
 
-[**CIPs - biweekly meetings**](https://discord.gg/tDeGHPEWEG)  
+[**CIPs - biweekly meetings**](https://discord.com/invite/Jy9YM69Ezf)  
 CIP meetings discuss Cardano Improvement Proposals every other week. Join Editors and community members in the dedicated discord server to keep up with the ongoing technical discussions regarding standards, processes and ongoing Cardano conversations.
 
 ## Stake pool operator channels
