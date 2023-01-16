@@ -9,14 +9,14 @@ image: ../img/logo-eopsin.png
 ## Introduction
 
 [eopsin](https://github.com/ImperatorLang/eopsin) is a programming language for developing smart contracts on the Cardano blockchain.
-It's syntax is 100% valid Python code and it ensures that contracts evaluate on-chain
+Its syntax is 100% valid Python code and it ensures that contracts evaluate on-chain
 exactly as their Python counterpart.
-This allows unit-tests and verification of the Python code using standard tooling available for Python development.
+This allows unit tests and verification of the Python code using standard tooling available for Python development.
 Existing IDEs, linters and language servers may be re-used as well.
 Note that the type system of eopsin is much stricter than the type system of Python, so that many optimizations can be implemented and an elevated level of security is provided.
 
 The language interacts closely with the python library [pycardano](https://pycardano.readthedocs.io/en/latest/index.html).
-The internal data structures are defined with datatypes compatible to the library and allow a tight combination of off- and on-chain code, all written in Python.
+The internal data structures are defined with data types compatible to the library and allow a tight combination of off- and on-chain code, all written in Python.
 
 :::caution
 
@@ -32,7 +32,7 @@ Additionally, a tutorial demonstrating how to write matching off-chain code for 
 
 ### Example contract
 
-This is a basic validator written in eopsin
+This is a basic validator written in eopsin:
 
 ```python
 from eopsin.prelude import *
