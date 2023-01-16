@@ -12,7 +12,11 @@ image: ../img/aiken-logo.png
 
 The language is exclusively used for creating the on-chain validator-scripts. You will need to write your off-chain code for generating transactions in another language such as Rust, Haskell, Javascript, Python etc.
 
-**Aiken is a still a work in progress and is NOT recommended for use in production.**
+:::caution
+
+Aiken is a still a work in progress and is NOT recommended for use in production.
+
+:::
 
 ## Getting started
 
