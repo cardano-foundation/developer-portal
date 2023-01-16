@@ -755,6 +755,15 @@ export const Showcases = [
     tags: ["cli", "plutus"],
   },
   {
+    title: "eopsin",
+    description:
+      "A simple pythonic programming language for Smart Contracts on Cardano.",
+    preview: require("./builder-tools/eopsin.png"),
+    website: "https://github.com/ImperatorLang/eopsin",
+    getstarted: null,
+    tags: ["python", "cli", "plutus"],
+  },
+  {
     title: "Pix",
     description: "An NFT collection generator that is CIP-25 compliant",
     preview: require("./builder-tools/pix.png"),
