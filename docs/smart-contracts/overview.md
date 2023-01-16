@@ -25,7 +25,7 @@ In another world, you'd like to build programs, possibly even replace a major co
 
 ## Programming languages
 
-There are a variety of smart contract languages exist.
+There are a variety of smart contract languages available for developing dApps on Cardano.
 
 #### Official languages
 
