@@ -24,5 +24,14 @@ In another world, you'd like to build programs, possibly even replace a major co
 - The smart contract is a piece of code that allows a decentralized system to operate.
 
 ## Programming languages
+
+There are a variety of smart contract languages exist.
+
+#### Official languages
+
 - [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
 - [Plutus](plutus) - a platform to write full applications that interact with the Cardano blockchain. 
+
+#### Community projects
+
+You can find an overview over community led smart contract languages [here](https://aiken-lang.org/ecosystem-overview#the-alternatives)
