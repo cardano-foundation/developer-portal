@@ -88,7 +88,7 @@ The underlying problem is that Bitcoin makes a clear distinction between the act
 
 ### Ouroboros, a Proof-of-stake consensus algorithm
 
-In Ouroboros, there is no race between stakeholders to produce a block. Instead, a slot leader is randomly selected, proportionally to the amount of tokens he owns (the stake), to get the opportunity to produce a new block.
+In Ouroboros, there is no race between stakeholders to produce a block. Instead, slot leaders are randomly selected, proportionally to the amount of tokens they own (the stake), to get the opportunity to produce a new block.
 
 So it is not hashing power what gives you the opportunity to produce a new block (and get rewarded for it), it is your stake what increases your chances to be elected.
 
@@ -149,7 +149,7 @@ All these functionalities make Ouroboros the best proof of stake ledger protocol
     1. At the beginning of every epoch, the online stakeholders fetch \(from the blockchain\) the **stake distribution** from the last block of 2 epochs ago. For example, if the current epoch is epoch 100, the stake distribution used is the distribution as it was in the last block of epoch 98.
     2. **Random Oracle**: Is a hashing function that takes the random values “v” \(included in each block by the slot leader for this purpose\) from the first ⅔ slots in previous epoch and hash them together and use it as the random seed to select the slot leaders.
     3. Stakeholders evaluate with their **secret key** the **Verifiable Random Function \(VRF\)** at every slot. If the output value \(v\) is below a certain threshold, the party becomes slot leader for that block.
-        1. **Certificate:** The **VRF** produces two outputs: **a random value \(v\)** and a **proof \(π\)** that the slot leader will include in the block he produces to certify that he is the legitimate slot leader for that particular slot.
+        1. **Certificate:** The **VRF** produces two outputs: **a random value \(v\)** and a **proof \(π\)** that the slot leader will include in the block they produce to certify that they are the legitimate slot leader for that particular slot.
         2. Slot leader performs the following duties
         3. Collects the transactions to be included in his block.
         4. Includes in his block the random value \(v\) and proof \(π\) obtained from the VRF output.
