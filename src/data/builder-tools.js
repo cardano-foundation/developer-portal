@@ -899,6 +899,15 @@ export const Showcases = [
     getstarted: null,
     tags: ["python"],
   },
+  {
+    title: "eopsin",
+    description:
+      "A simple pythonic programming language for Smart Contracts on Cardano.",
+    preview: require("./builder-tools/eopsin.png"),
+    website: "https://github.com/ImperatorLang/eopsin",
+    getstarted: null,
+    tags: ["python", "cli", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
