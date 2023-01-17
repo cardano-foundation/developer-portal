@@ -96,6 +96,7 @@ module.exports = {
       "smart-contracts/overview",
       "smart-contracts/marlowe",
       "smart-contracts/plutus",
+      "smart-contracts/eopsin",
     ],
     "Be Part of the Governance": [
       "governance/overview",

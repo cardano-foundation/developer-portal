@@ -26,3 +26,4 @@ In another world, you'd like to build programs, possibly even replace a major co
 ## Programming languages
 - [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
 - [Plutus](plutus) - a platform to write full applications that interact with the Cardano blockchain. 
+- [eopsin](eopsin) - a programming language for generic Smart Contracts based on Python. 
