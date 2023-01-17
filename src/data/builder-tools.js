@@ -771,12 +771,12 @@ export const Showcases = [
     tags: ["operatortool", "cli", "json"],
   },
   {
-    title: "Mesh",
+    title: "Mesh SDK",
     description: "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
     preview: require("./builder-tools/mesh.png"),
-    website: "https://mesh.martify.io/",
-    getstarted: null,
-    tags: ["javascript", "typescript", "serialization", "sdk", "plutus"]
+    website: "https://meshjs.dev/",
+    getstarted: "/docs/get-started/mesh/overview",
+    tags: ["javascript", "typescript", "serialization", "sdk", "plutus","favorite"]
   },
   {
     title: "Cexplorer",
@@ -898,6 +898,15 @@ export const Showcases = [
     website: "https://github.com/cardano-apexpool/token-registry-api",
     getstarted: null,
     tags: ["python"],
+  },
+  {
+    title: "eopsin",
+    description:
+      "A simple pythonic programming language for Smart Contracts on Cardano.",
+    preview: require("./builder-tools/eopsin.png"),
+    website: "https://github.com/ImperatorLang/eopsin",
+    getstarted: null,
+    tags: ["python", "cli", "plutus"],
   },
 ];
 
