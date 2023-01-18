@@ -900,6 +900,14 @@ export const Showcases = [
     tags: ["python"],
   },
   {
+    title: "Periodic DNS resolver",
+    description: "System service to configure a DDNS address firewall rule on a BP and send a message via Telegram Bot if your relay IP address has changed. Keeps Cardano nodes connected and secure on residential ISPs with rolling public IPs.",
+    preview: require("./builder-tools/pdr_bot.png"),
+    website: "https://github.com/Fuma419/periodic-dns-resolver",
+    getstarted: null,
+    tags: ["operatortool", "cli"],
+  },
+  {
     title: "eopsin",
     description:
       "A simple pythonic programming language for Smart Contracts on Cardano.",
