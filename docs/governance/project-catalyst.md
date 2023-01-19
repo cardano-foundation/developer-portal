@@ -6,7 +6,7 @@ description: Fund your project with Catalyst
 image: ../img/og/og-developer-portal.png
 ---
 
-For a better overview of what Project Catalyst offers, visit their official [website](https://projectcatalyst.io/) for a comprehensive overview of the services and solutions provided by the world's largest decentralized innovation engine for solving real-world challenges.
+Visit the official [Project Catalyst website](https://projectcatalyst.io/) for a comprehensive overview of the services and solutions provided by the world's largest decentralized innovation engine for solving real-world challenges.
 
 The portal on [cardano.ideascale.com](https://cardano.ideascale.com/) is where the Cardano community’s ideas come to life. Here, users can browse active campaigns, participate in discussions, and put forward their ideas for feedback and voting from the community.
 
