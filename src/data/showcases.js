@@ -1181,6 +1181,15 @@ export const Showcases = [
     source: null,
     tags: ["explorer"],
   },
+  {
+    title: "Cardano Relay Map",
+    description: 
+      "Stake Pool relay nodes worldwide map.",
+    preview: require("./showcase/monadpool-relay-map.png"),
+    website: "https://monadpool.com/cardano.html",
+    source: null,
+    tags: ["analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
