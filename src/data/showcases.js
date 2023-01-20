@@ -1184,7 +1184,7 @@ export const Showcases = [
   {
     title: "Cardano Relay Map",
     description: 
-      "Stake Pool relay nodes worldwide map.",
+      "Shows geographical distribution of Cardano stake pool relay nodes with flexible map features.",
     preview: require("./showcase/monadpool-relay-map.png"),
     website: "https://monadpool.com/cardano.html",
     source: null,
