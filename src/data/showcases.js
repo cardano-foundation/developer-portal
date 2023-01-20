@@ -1181,6 +1181,15 @@ export const Showcases = [
     source: null,
     tags: ["explorer"],
   },
+  {
+    title: "NFTada.io",
+    description: 
+      "Simple web interface and sophisticated API for automated printing and distribution.",
+    preview: require("./showcase/nftada.png"),
+    website: "https://nftada.io/",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
