@@ -1172,6 +1172,15 @@ export const Showcases = [
     source: null,
     tags: ["metadata", "identity"],
   },
+  {
+    title: "Raw Cardano Explorer",
+    description: 
+      "Cardano Blockchain Explorer to show data in a simple and fast way.",
+    preview: require("./showcase/raw-cardano.png"),
+    website: "https://www.rawcardano.app",
+    source: null,
+    tags: ["explorer"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
