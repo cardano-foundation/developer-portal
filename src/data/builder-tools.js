@@ -270,6 +270,14 @@ export const Tags = {
     icon: null,
     color: "#4a69BD"
   },
+
+  // Koios
+  koios: {
+    label: "Koios",
+    description: "Koios and its integrations",
+    icon: null,
+    color: "#4d21b8"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -624,7 +632,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios.png"),
     website: "https://koios.rest",
     getstarted: "/docs/get-started/koios",
-    tags: ["http", "json", "hosted"],
+    tags: ["koios", "http", "json", "hosted"],
   },
   {
     title: "Pallas",
@@ -763,12 +771,12 @@ export const Showcases = [
     tags: ["operatortool", "cli", "json"],
   },
   {
-    title: "Mesh",
+    title: "Mesh SDK",
     description: "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
     preview: require("./builder-tools/mesh.png"),
-    website: "https://mesh.martify.io/",
-    getstarted: null,
-    tags: ["javascript", "typescript", "serialization", "sdk", "plutus"]
+    website: "https://meshjs.dev/",
+    getstarted: "/docs/get-started/mesh/overview",
+    tags: ["javascript", "typescript", "serialization", "sdk", "plutus","favorite"]
   },
   {
     title: "Cexplorer",
@@ -784,7 +792,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios-python.png"),
     website: "https://github.com/cardano-community/koios-python",
     getstarted: null,
-    tags: ["python", "sdk"],
+    tags: ["koios", "python", "sdk"],
   },
   {
     title: "Cardano Leader Slot",
@@ -867,6 +875,47 @@ export const Showcases = [
     getstarted: null,
     tags: ["sdk", "java", "lowlevel"],
   },
+  {
+    title: "Cardano Verify Datasignature",
+    description: "A lightweight typescript library to verify a cip30 datasignature.",
+    preview: require("./builder-tools/cardano-verify-datasignature.png"),
+    website: "https://github.com/cardano-foundation/cardano-verify-datasignature",
+    getstarted: null,
+    tags: ["typescript"],
+  },
+  {
+    title: "Koios Api Python package",
+    description: "The Koios Api python package allows interrogating the Cardano blockchain using https://api.koios.rest/. It has pagination and retry in case of errors.",
+    preview: require("./builder-tools/koios-api-python.png"),
+    website: "https://github.com/cardano-apexpool/koios-api-python",
+    getstarted: null,
+    tags: ["koios", "python", "sdk"],
+  },
+  {
+    title: "Cardano Token Registry Python API",
+    description: "A simple Python API for the Cardano Token Registry.",
+    preview: require("./builder-tools/token-registry-api.png"),
+    website: "https://github.com/cardano-apexpool/token-registry-api",
+    getstarted: null,
+    tags: ["python"],
+  },
+  {
+    title: "Periodic DNS resolver",
+    description: "System service to configure a DDNS address firewall rule on a BP and send a message via Telegram Bot if your relay IP address has changed. Keeps Cardano nodes connected and secure on residential ISPs with rolling public IPs.",
+    preview: require("./builder-tools/pdr_bot.png"),
+    website: "https://github.com/Fuma419/periodic-dns-resolver",
+    getstarted: null,
+    tags: ["operatortool", "cli"],
+  },
+  {
+    title: "eopsin",
+    description:
+      "A simple pythonic programming language for Smart Contracts on Cardano.",
+    preview: require("./builder-tools/eopsin.png"),
+    website: "https://github.com/ImperatorLang/eopsin",
+    getstarted: null,
+    tags: ["python", "cli", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -888,6 +937,7 @@ export const LanguagesOrTechnologiesTags = [
   "java",
   "javascript",
   "json",
+  "koios",
   "net",
   "purescript",
   "python",

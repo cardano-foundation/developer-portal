@@ -168,7 +168,7 @@ address=$(cat payment.addr)
 ```
 ### Fund the address
 
-Submitting transactions always require you to pay a fee. Sending native assets requires also requires sending at least 1 ada.  
+Submitting transactions always require you to pay a fee. Sending native assets also requires sending at least 1 ada.  
 So make sure the address you are going to use as the input for the minting transaction has sufficient funds. 
 
 For the **testnet**, you can request funds through the [testnet faucet](../integrate-cardano/testnet-faucet).
@@ -206,16 +206,10 @@ cardano-cli address key-gen \
     --signing-key-file policy/policy.skey
 ```
 
-Create a `policy.script` file and fill it with an empty string.
+Use the `echo` command to create a `policy.script` (the first line uses `>` instead of `>>`, to create the file if not present and clear any existing contents):
 
 ```bash
-touch policy/policy.script && echo "" > policy/policy.script
-```
-
-Use the `echo` command to populate the file:
-
-```bash
-echo "{" >> policy/policy.script 
+echo "{" > policy/policy.script 
 echo "  \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"," >> policy/policy.script 
 echo "  \"type\": \"sig\"" >> policy/policy.script 
 echo "}" >> policy/policy.script
@@ -459,10 +453,9 @@ echo Policy ID: $policyid
 We will be sending 2 of our first tokens, `Testtoken`, to the foreign address.  
 A few things worth pointing out:
 
-1. We are forced to send at least a minimum of 1 ada (1000000 Lovelace) to the foreign address. We can not send tokens only. So we need to factor this value into our output. We will reference the output value of the remote address with the variable receiver_output.
+1. We are forced to send at least a minimum of 1 ada (1000000 Lovelace) to the foreign address. We can not send tokens only. So we need to factor this value into our output. We will reference the output value of the remote address with the variable `receiver_output`.
 2. Apart from the receiving address, we also need to set our own address as an additional output. Since we don't want to send everything we have to the remote address, we're going to use our own address to receive everything else coming from the input.
-3. Our own address, therefore, needs to receive our funds, subtracted by the transaction fee as well as the minimum of 1 ada we need to send to the other address and
-4. all of the tokens the txhash currently holds, subtracted by the tokens we send.
+3. Our own address, therefore, needs to receive our funds, subtracted by the transaction fee as well as the minimum of 1 ada we need to send to the other address and all of the tokens the `txhash` currently holds, subtracted by the tokens we send.
 
 :::note Depending on the size and amount of native assets you are going to send it might be possible to send more than the minimum requirement of only 1 ada. For this guide, we will be sending 10 ada to be on the safe side.
 Check the [Cardano ledger docs for further reading](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo-alonzo.html#example-min-ada-value-calculations-and-current-constants)

@@ -510,6 +510,14 @@ export const Showcases = [
     tags: ["favorite", "wallet", "nftsupport"],
   },
   {
+    title: "Milkomeda",
+    description: "Cross-blockchain Level 2 solutions including EVM support on Cardano and wrapped native assets.",
+    preview: require("./showcase/milkomeda.png"),
+    website: "https://milkomeda.com",
+    source: null,
+    tags: ["bridge"]
+  },
+  {
     title: "Jetchicken",
     description:
       "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
@@ -677,7 +685,7 @@ export const Showcases = [
     preview: require("./showcase/tokhun.png"),
     website: "https://tokhun.io",
     source: null,
-    tags: ["favorite", "marketplace", "nftsupport"],
+    tags: ["favorite", "minting", "marketplace", "nftsupport"],
   },
   {
     title: "H.Y.P.E. Skulls",
@@ -1154,6 +1162,33 @@ export const Showcases = [
     website: "https://lotto.adahouse.page",
     source: null,
     tags: ["game"],
+  },
+  {
+    title: "Chainport",
+    description: 
+      "ChainPort is a next-gen hard-security blockchain bridge that lets you hop across EVM chains to Cardano at a click.",
+    preview: require("./showcase/chainport.png"),
+    website: "https://www.chainport.io/",
+    source: null,
+    tags: ["bridge"],
+  },
+  {
+    title: "Cardano Pet Registry",
+    description: 
+      "A virtually free, non profit, global pet registry system built on the Cardano blockchain, facilitates peer to peer pet rescue and historical proof of pet ownership.",
+    preview: require("./showcase/petregistry.png"),
+    website: "https://www.petregistry.io",
+    source: null,
+    tags: ["metadata", "identity"],
+  },
+  {
+    title: "Raw Cardano Explorer",
+    description: 
+      "Cardano Blockchain Explorer to show data in a simple and fast way.",
+    preview: require("./showcase/raw-cardano.png"),
+    website: "https://www.rawcardano.app",
+    source: null,
+    tags: ["explorer"],
   },
 ];
 

@@ -94,3 +94,9 @@ Every gRest instance is capable to participate into Koios Cluster, by simply ope
 ## Any other Query/Follow-ups
 
 There are bi-weekly open meetings on every 2nd/4th Thursday of the month. Feel free to join the [Koios discussions](https://t.me/+zE4Lce_QUepiY2U1) and follow pinned messages for the same.
+
+:::note
+
+For some interfaces to Koios, see [Builder Tools > Koios](/tools?tags=koios).
+
+:::
