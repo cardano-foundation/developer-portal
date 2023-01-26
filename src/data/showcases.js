@@ -1172,6 +1172,33 @@ export const Showcases = [
     source: null,
     tags: ["metadata", "identity"],
   },
+  {
+    title: "Raw Cardano Explorer",
+    description: 
+      "Cardano Blockchain Explorer to show data in a simple and fast way.",
+    preview: require("./showcase/raw-cardano.png"),
+    website: "https://www.rawcardano.app",
+    source: null,
+    tags: ["explorer"],
+  },
+  {
+    title: "NFTada.io",
+    description: 
+      "Simple web interface and sophisticated API for automated printing and distribution.",
+    preview: require("./showcase/nftada.png"),
+    website: "https://nftada.io/",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
+  {
+    title: "Cardano Relay Map",
+    description: 
+      "Shows geographical distribution of Cardano stake pool relay nodes with flexible map features.",
+    preview: require("./showcase/monadpool-relay-map.png"),
+    website: "https://monadpool.com/cardano.html",
+    source: null,
+    tags: ["analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
