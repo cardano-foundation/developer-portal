@@ -207,7 +207,7 @@ This is recommended because it will give you a means of taking password-encrypte
 
   - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](./secure-workflow)):
       - your Cardano account balances, UTxO addresses & payment addresses
-      - notes from personal files & websites about the work you will be doing within the air gap (since you won't have Internet access there);
+      - notes from personal files & web sites about the work you will be doing within the air gap (since you won't have Internet access there);
   - take notes in the air gap environment (problems, error messages) to copy back to your computer, since you can't upload them through the air gap.
 
 LibreOffice documents saved with a password are entirely AES-encrypted with a key deriving from that password, which produces arguably the best commercially available security for files & data.
@@ -298,7 +298,7 @@ If this appeals to you, and you don't mind following a more complicated and erro
 
 This loosely documented configuration has been called the **Frankenwallet**, with separate instructions at these links which mostly follow the procedure above:
 
-  - **[The Frankenwallet](https://cosd.com/frankenwallet)** - detailed external website, including semantics for using your bootable USB environment in secure & blockchain workflow
+  - **[The Frankenwallet](https://cosd.com/frankenwallet)** - detailed external web site, including semantics for using your bootable USB environment in secure & blockchain workflow
   - [Get Started with the Frankenwallet](/docs/operate-a-stake-pool/frankenwallet) - one-page summary here on the Developer Portal
 
 :::warning
