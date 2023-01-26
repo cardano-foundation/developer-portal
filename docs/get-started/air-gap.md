@@ -6,7 +6,7 @@ description: Secure your private keys on a network-free transaction host.
 image: ../img/og/og-security-air-gap-environment.png
 ---
 
-"Air gap" originally meant a computer or subnetwork was surrounded by "air" and so could have no data cable connections in or out, so it would be isolated from other computers & networks. These days it also means no radio-based network connection either (WiFi, Blueooth, etc.).
+"Air gap" originally meant a computer or subnetwork was surrounded by "air" and so could have no data cable connections in or out, so it would be isolated from other computers & networks. These days it also means no radio-based network connection either (WiFi, Bluetooth, etc.).
 
 Developers & Cardano stake pool operators generally need an air gap environment in which to work with payment keys, stake pool keys and other cryptocurrency resources that offer high-value targets for hackers.
 
@@ -95,7 +95,7 @@ The Internet will be unconfigured and disconnected after the OS is installed & p
 
 ### Follow instructions: [Ubuntu Tutorials > Install Ubuntu desktop](https://ubuntu.com/tutorials/install-ubuntu-desktop)
 
-... paying partcular attention to these steps:
+... paying particular attention to these steps:
 
 #### Wireless (if asked)
 
@@ -186,7 +186,7 @@ sudo apt remove unattended-upgrades
 
 Removing Snap is optional because default snaps on the Ubuntu installation media have the same security provenance as the default packages on that same release... yet snaps will also be upgraded in the next part of this procedure, and these upgraded snaps may not be subjected to the same security vetting.
 
-To proceed with removing Snap, follow these instructions (the proceduce exact procedure changes often & these instructions may be the best maintained to date):
+To proceed with removing Snap, follow these instructions (the exact procedure changes often & these instructions may be the best maintained to date):
 
   - **[How do I turn off snap in Ubuntu?](https://linuxhint.com/turn-off-snap-ubuntu/)**
 
@@ -207,7 +207,7 @@ This is recommended because it will give you a means of taking password-encrypte
 
   - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](./secure-workflow)):
       - your Cardano account balances, UTxO addresses & payment addresses
-      - notes from personal files & web sites about the work you will be doing within the air gap (since you won't have Internet access there);
+      - notes from personal files & websites about the work you will be doing within the air gap (since you won't have Internet access there);
   - take notes in the air gap environment (problems, error messages) to copy back to your computer, since you can't upload them through the air gap.
 
 LibreOffice documents saved with a password are entirely AES-encrypted with a key deriving from that password, which produces arguably the best commercially available security for files & data.
@@ -252,8 +252,8 @@ Note this will build `cardano-node` as well as `cardano-cli`, but don't worry: y
 
 We will leave the definition of "forever" up to your understanding of Internet threats and whether these can come from OS package repositories, etc., with this in mind:
 
-  - Software updates at 6-month intervals (e.g. after the Ubuntu "point releases") will patch security problems idendified during that period: as well as install new software which may introduce *new* security problems.
-  - Any spyware or back-door deliberately placed in the package upgrades on Ubuntu or any other version of Linux could generally just as easily have been placed on the packages used to build your installation media.
+  - Software updates at 6-month intervals (e.g. after the Ubuntu "point releases") will patch security problems identified during that period: as well as install new software which may introduce *new* security problems.
+  - Any spyware or backdoor deliberately placed in the package upgrades on Ubuntu or any other version of Linux could generally just as easily have been placed on the packages used to build your installation media.
 
 ### Precautions to avoid accidental connection to the Internet
 
@@ -290,7 +290,7 @@ Linux veterans only\! (otherwise please [follow option 1](#option-1-install-your
 This option may suit more demanding users, especially those:
 
   - who travel a lot and need to maintain their Cardano operations "on the road";
-  - who need the convenience of booting in a air gap environment which has direct access to all their files on the host computer (as you would when booting off from an installer USB drive);
+  - who need the convenience of booting in an air gap environment which has direct access to all their files on the host computer (as you would when booting off from an installer USB drive);
   - who, instead of using a USB drive to transfer unencrypted files in & out of the air gap, would rather use that same USB drive to store these files with encryption while also providing the Cardano CLI for use on any machine supporting the same boot method;
   - who want to make encrypted backups or their keys, passwords and other records from their air gap environment directly to the host computer.
 
@@ -298,7 +298,7 @@ If this appeals to you, and you don't mind following a more complicated and erro
 
 This loosely documented configuration has been called the **Frankenwallet**, with separate instructions at these links which mostly follow the procedure above:
 
-  - **[The Frankenwallet](https://cosd.com/frankenwallet)** - detailed external web site, including semantics for using your bootable USB environment in secure & blockchain workflow
+  - **[The Frankenwallet](https://cosd.com/frankenwallet)** - detailed external website, including semantics for using your bootable USB environment in secure & blockchain workflow
   - [Get Started with the Frankenwallet](/docs/operate-a-stake-pool/frankenwallet) - one-page summary here on the Developer Portal
 
 :::warning
