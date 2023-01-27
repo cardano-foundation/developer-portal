@@ -7,7 +7,7 @@ image: ../img/og/og-getstarted-cardano-wallet-js.png
 ---
 
 ## cardano-wallet-js
-`cardano-wallet-js` is a javascript/typescript SDK for Cardano with a several functionalities. You can use it as a client for the official [cardano-wallet](https://github.com/input-output-hk/cardano-wallet) and also to create Native Tokens and NFTs. 
+`cardano-wallet-js` is a javascript/typescript SDK for Cardano with several functionalities. You can use it as a client for the official [cardano-wallet](https://github.com/input-output-hk/cardano-wallet) and also to create Native Tokens and NFTs. 
 
 ## Table of Contents
 
@@ -196,7 +196,7 @@ Output:
 ```
 
 :::important
-The recovery phrase is the only way you can restore your wallet and you **SHOULD KEEP IT SECURE AND PRIVATE**. You'll get a completeley different recovery phrase each time you execute the method. 
+The recovery phrase is the only way you can restore your wallet and you **SHOULD KEEP IT SECURE AND PRIVATE**. You'll get a completely different recovery phrase each time you execute the method. 
 :::
 
 For convenience, you can convert the recovery phrase into an array using this:
@@ -258,7 +258,7 @@ wallet = await wallet.updatePassphrase(oldPassphrase, newPassphrase);
 The wallet itself doesn't hold the passphrase, you can check it's correctly updated trying to call a method needing the passphrase e.g: `sendPayment`
 :::
 ### Wallet addresses
-Cardano wallets are Multi-Account Hierarchy Deterministic that follow a variation of BIP-44 described [here](https://github.com/input-output-hk/implementation-decisions/blob/e2d1bed5e617f0907bc5e12cf1c3f3302a4a7c42/text/1852-hd-chimeric.md). All the addresses are derived from a root key (is like a key factory) which you can get from the recovery phrase. Also the wallets will always have 20 "consecutive" unused address, so anytime you use one of them new address will be "discovered" to keep the rule.
+Cardano wallets are Multi-Account Hierarchy Deterministic that follow a variation of BIP-44 described [here](https://github.com/input-output-hk/implementation-decisions/blob/e2d1bed5e617f0907bc5e12cf1c3f3302a4a7c42/text/1852-hd-chimeric.md). All the addresses are derived from a root key (is like a key factory) which you can get from the recovery phrase. Also the wallets will always have 20 "consecutive" unused addresses, so anytime you use one of them new address will be "discovered" to keep the rule.
 ```js
 let addresses = await wallet.getAddresses(); // list will contain at least 20 address
 ```
@@ -291,7 +291,7 @@ let rewardBalance = wallet.getRewardBalance();
 let totalBalance = wallet.getTotalBalance();
 ```
 ### Wallet delegation
-The wallet have information about whether already delegate on a stake pool or not
+The wallet has information about whether already delegate on a stake pool or not
 ```js
 let delegation = wallet.getDelegation();
 console.log(delegation);
@@ -305,7 +305,7 @@ It the wallet is not delegate to any stake pool the output should be something s
     }
 }
 ```
-If you start delegating (see [Stake pool section](#stake-pool-operations-with-the-wallet) the action will not take effect inmediatelly but the `next` property will indicate when the delegation will finally take effect. 
+If you start delegating (see [Stake pool section](#stake-pool-operations-with-the-wallet) the action will not take effect immediately but the `next` property will indicate when the delegation will finally take effect. 
 The delegation meanwhile should look like this:
 ```js
 {
@@ -326,9 +326,9 @@ The delegation meanwhile should look like this:
 Property `changes_at` will indicate the epoch at the delegation will take effect
 :::
 
-If we ask again after/during the epoch 10, we should get the delgation in place:
+If we ask again after/during the epoch 10, we should get the delegation in place:
 ```js
-// refresh the wallet if you are using the same object. This will fecth the info from the blockchain
+// refresh the wallet if you are using the same object. This will fetch the info from the blockchain
 await wallet.refresh();
 
 let delegation = wallet.getDelegation();
@@ -352,8 +352,8 @@ let stake = 1000000000;
 let pools = await walletServer.getStakePools(stake);
 ```    
 :::note 
-You'll get pool ordered by `non_myopic_member_rewards` which basically means from heighest to lower expected rewards. By default the wallet server
-isn't configured to fecth the pool's metadata (e.g. ticker, name, homepage) but you can specify it through the update settings functionality, see Update Settings section below.
+You'll get pool ordered by `non_myopic_member_rewards` which basically means from highest to lower expected rewards. By default the wallet server
+isn't configured to fetch the pool's metadata (e.g. ticker, name, homepage) but you can specify it through the update settings functionality, see Update Settings section below.
 :::
 
 Estimate delegation fee:
@@ -372,7 +372,7 @@ let pool = pools[0];
 let transaction = await wallet.delegate(pool.id, passphrase);
 ```   
 :::note 
-The transacion status initially is set to `pending`, so you should keep tracking the transaction using the `id` in order to make sure the final status (e.g. `in_ledger`). You can learn more about the transacion's life cycle [here](https://github.com/input-output-hk/cardano-wallet/wiki/About-Transactions-Lifecycle). 
+The transaction status initially is set to `pending`, so you should keep tracking the transaction using the `id` in order to make sure the final status (e.g. `in_ledger`). You can learn more about the transaction's life cycle [here](https://github.com/input-output-hk/cardano-wallet/wiki/About-Transactions-Lifecycle). 
 For delegate to another stake pool use the same method above specifying a different stake pool.   
 :::
 
@@ -446,7 +446,7 @@ let amounts = [5000000]; // 5 ADA
 let transaction = await senderWallet.sendPayment(passphrase, receiverAddress, amounts);
 ```
 :::note 
-You can pass a list of address and amount. We expect both list have the same length where elemetns on each list is index related to the other. 
+You can pass a list of address and amount. We expect both list have the same length where elements on each list is index related to the other. 
 You can think of it as sending `amounts[i]` to `addresses[i]`.
 :::
 
@@ -539,7 +539,7 @@ let signed = Buffer.from(txBody.to_bytes()).toString('hex');
 let txId = await walletServer.submitTx(signed);
 ```    
 ### Key handling
-There ara a couple of methods you can use to derive and get private/public key pairs. For more info check [here](https://github.com/input-output-hk/technical-docs/blob/main/cardano-components/cardano-wallet/doc/About-Address-Derivation.md).
+There are a couple of methods you can use to derive and get private/public key pairs. For more info check [here](https://github.com/input-output-hk/technical-docs/blob/main/cardano-components/cardano-wallet/doc/About-Address-Derivation.md).
 
 Get root key from recovery phrase
 ```js
@@ -681,7 +681,7 @@ tokens.filter(t => t.scriptKeyPairs).forEach(t => signingKeys.push(...t.scriptKe
 
 let metadata = Seed.buildTransactionMetadata(data);
 
-// the wallet currently doesn't support including tokens not previuosly minted
+// the wallet currently doesn't support including tokens not previously minted
 // so we need to include it manually.
 coinSelection.outputs = coinSelection.outputs.map(output => {
 	if (output.address === addresses[0].address) {
@@ -697,8 +697,8 @@ coinSelection.outputs = coinSelection.outputs.map(output => {
 	return output;
 });
 
-// we need to sing the tx and calculate the actual fee and the build again 
-// since the coin selection doesnt calculate the fee with the asset tokens included
+// we need to sign the tx and calculate the actual fee and the build again 
+// since the coin selection doesn't calculate the fee with the asset tokens included
 let txBody = Seed.buildTransactionWithToken(coinSelection, ttl, tokens, signingKeys, {data: data, config: config});
 let tx = Seed.sign(txBody, signingKeys, metadata, scripts);
 
