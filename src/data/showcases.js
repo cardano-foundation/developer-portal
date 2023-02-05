@@ -1199,6 +1199,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "BALANCE - Balance Analytics",
+    description:
+      "BALANCE - a Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem",
+    preview: require("./showcase/balance-analytics.png"),
+    website: "https://balanceanalytics.io/",
+    source: null,
+    tags: ["analytics", "pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
