@@ -1202,7 +1202,7 @@ export const Showcases = [
   {
     title: "BALANCE - Balance Analytics",
     description:
-      "BALANCE - a Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem",
+      "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
     preview: require("./showcase/balance-analytics.png"),
     website: "https://balanceanalytics.io/",
     source: null,
