@@ -1190,6 +1190,42 @@ export const Showcases = [
     source: null,
     tags: ["explorer"],
   },
+  {
+    title: "NFTada.io",
+    description: 
+      "Simple web interface and sophisticated API for automated printing and distribution.",
+    preview: require("./showcase/nftada.png"),
+    website: "https://nftada.io/",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
+  {
+    title: "Cardano Relay Map",
+    description: 
+      "Shows geographical distribution of Cardano stake pool relay nodes with flexible map features.",
+    preview: require("./showcase/monadpool-relay-map.png"),
+    website: "https://monadpool.com/cardano.html",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Finitum Bridge",
+    description: 
+      "Move supported tokens cross-chain, from BSC to Cardano and vice versa.",
+    preview: require("./showcase/finitum-bridge.png"),
+    website: "https://finitum.io/bridge",
+    source: null,
+    tags: ["bridge"],
+  },
+  {
+    title: "BALANCE - Balance Analytics",
+    description:
+      "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
+    preview: require("./showcase/balance-analytics.png"),
+    website: "https://balanceanalytics.io/",
+    source: null,
+    tags: ["analytics", "pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);

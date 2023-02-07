@@ -81,6 +81,22 @@ export const Tags = {
     color: '#fce300',
   },
 
+  // Koios
+  koios: {
+    label: "Koios",
+    description: "Koios and its integrations",
+    icon: null,
+    color: "#b84421"
+  },
+
+  // Kotlin
+  kotlin: {
+    label: "Kotlin",
+    description: "Kotlin language",
+    icon: null,
+    color: "#9c21b8"
+  },
+
    // Marlowe
    marlowe: {
     label: "Marlowe",
@@ -104,6 +120,14 @@ export const Tags = {
     description: "Non-Fungible Token (NFT)",
     icon: null,
     color: '#fe6829',
+  },
+
+  // Ogmios
+  ogmios: {
+    label: "Ogmios",
+    description: "Ogmios and its integrations",
+    icon: null,
+    color: "#ff6d01"
   },
 
   // Stake Pool Operator Tools
@@ -270,14 +294,6 @@ export const Tags = {
     icon: null,
     color: "#4a69BD"
   },
-
-  // Koios
-  koios: {
-    label: "Koios",
-    description: "Koios and its integrations",
-    icon: null,
-    color: "#4d21b8"
-  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -395,7 +411,7 @@ export const Showcases = [
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
-    tags: ["favorite", "websocket", "json", "lowlevel"],
+    tags: ["favorite", "ogmios", "websocket", "json", "lowlevel"],
   },
   {
     title: "Cardano Client Library",
@@ -873,7 +889,7 @@ export const Showcases = [
     preview: require("./builder-tools/kogmios.png"),
     website: "https://github.com/projectNEWM/kogmios",
     getstarted: null,
-    tags: ["sdk", "java", "lowlevel"],
+    tags: ["ogmios", "sdk", "kotlin", "lowlevel"],
   },
   {
     title: "Cardano Verify Datasignature",
@@ -916,6 +932,22 @@ export const Showcases = [
     getstarted: null,
     tags: ["python", "cli", "plutus"],
   },
+  {
+    title: "Koios Java Client",
+    description: "A Java API library for interacting with Koios Server instances.",
+    preview: require("./builder-tools/koios-java-client.png"),
+    website: "https://github.com/cardano-community/koios-java-client",
+    getstarted: null,
+    tags: ["koios", "java", "sdk"],
+  },
+  {
+    title: "Ogmios Java Client",
+    description: "A Java API library for interacting with Ogmios.",
+    preview: require("./builder-tools/ogmios-java-client.png"),
+    website: "https://github.com/adabox-aio/ogmios-java-client",
+    getstarted: null,
+    tags: ["ogmios", "websocket", "java", "sdk"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -938,7 +970,9 @@ export const LanguagesOrTechnologiesTags = [
   "javascript",
   "json",
   "koios",
+  "kotlin",
   "net",
+  "ogmios",
   "purescript",
   "python",
   "redis",

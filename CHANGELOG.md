@@ -1107,3 +1107,50 @@ All of the merged PRs in December
 - fangio10 ([@fangio10](https://github.com/fangio10))
 - cardano-apexpool ([@cardano-apexpool](https://github.com/cardano-apexpool))
 - tomveich ([@tomveich](https://github.com/tomveich))
+
+## 2023.4.0 (2023-12-31)
+
+All of the merged PRs in January
+
+#### PRs: 24
+
+- Add gimbalabs developer spotlight interview for January 2023 by ([@thenic95](https://github.com/thenic95)) in [#909](https://github.com/cardano-foundation/developer-portal/pull/909)
+- Update Contributor instructions for yarn.lock by ([@rphair](https://github.com/rphair)) in [#906](https://github.com/cardano-foundation/developer-portal/pull/906)
+- Add Tokhun.io minting tag in Showcase by ([@rphair](https://github.com/rphair)) in [#908](https://github.com/cardano-foundation/developer-portal/pull/908)
+- Add Milkomeda to Showcase by ([@rphair](https://github.com/rphair)) in [#899](https://github.com/cardano-foundation/developer-portal/pull/899)
+- Add Cardano Token Registry Python API to Builder Tools by ([@cardano-apexpool](https://github.com/cardano-apexpool)) in [#897](https://github.com/cardano-foundation/developer-portal/pull/897)
+- Add more technical concepts by Andrew Westberg by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#913](https://github.com/cardano-foundation/developer-portal/pull/913)
+- Update Changelog for Decemeber by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#912](https://github.com/cardano-foundation/developer-portal/pull/912)
+- add Mesh documentation in Get Started by ([@jinglescode](https://github.com/jinglescode)) in [#916](https://github.com/cardano-foundation/developer-portal/pull/916)
+- Bump json5 from 2.2.1 to 2.2.3 by ([@dependabot](https://github.com/dependabot)) in [#919](https://github.com/cardano-foundation/developer-portal/pull/919)
+- Replace plutus-playground with demeter.run by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#910](https://github.com/cardano-foundation/developer-portal/pull/910)
+- Security Best Practices: proofreading & clarification by ([@rphair](https://github.com/rphair)) in [#921](https://github.com/cardano-foundation/developer-portal/pull/921)
+- Dev Community links: fix CIPs server invite by ([@rphair](https://github.com/rphair)) in [#922](https://github.com/cardano-foundation/developer-portal/pull/922)
+- Add eopsin as Smart Contract language by ([@nielstron](https://github.com/nielstron)) in [#929](https://github.com/cardano-foundation/developer-portal/pull/929)
+- Add eopsin to builder tools by ([@nielstron](https://github.com/nielstron)) in [#928](https://github.com/cardano-foundation/developer-portal/pull/928)
+- Add Aiken as smart contract language  by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#926](https://github.com/cardano-foundation/developer-portal/pull/926)
+- Fix typo in stake pool course by ([@dschrempf](https://github.com/dschrempf)) in [#931](https://github.com/cardano-foundation/developer-portal/pull/931)
+- Stake Pool Course introduction: grammar, usage, formatting by ([@dschrempf](https://github.com/dschrempf)) in [#930](https://github.com/cardano-foundation/developer-portal/pull/930)
+- Add Periodic DNS Resolver to builder tools by ([@Fuma419](https://github.com/Fuma419)) in [#925](https://github.com/cardano-foundation/developer-portal/pull/925)
+- Add new Project Catalyst Website and update texts by ([@thenic95](https://github.com/thenic95)) in [#933](https://github.com/cardano-foundation/developer-portal/pull/933)
+- Add Raw Cardano Explorer showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#932](https://github.com/cardano-foundation/developer-portal/pull/932)
+- Add showcase Cardano Relay Map by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#935](https://github.com/cardano-foundation/developer-portal/pull/935)
+- Add showcase NFTada.io by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#934](https://github.com/cardano-foundation/developer-portal/pull/934)
+- Add Koios + Ogmios Java Clients to Builder Tools, plus ogmios + kotlin tags by ([@edridudi](https://github.com/edridudi)) in [#936](https://github.com/cardano-foundation/developer-portal/pull/936)
+- Fix: typos by ([@omahs](https://github.com/omahs)) in [#937](https://github.com/cardano-foundation/developer-portal/pull/937)
+
+
+#### Committers: 12
+
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- rphair ([@rphair](https://github.com/rphair))
+- cardano-apexpool ([@cardano-apexpool](https://github.com/cardano-apexpool))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- jinglescode ([@jinglescode](https://github.com/jinglescode))
+- dependabot ([@dependabot](https://github.com/dependabot))
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- nielstron ([@nielstron](https://github.com/nielstron))
+- dschrempf ([@dschrempf](https://github.com/dschrempf))
+- Fuma419 ([@Fuma419](https://github.com/Fuma419))
+- edridudi ([@edridudi](https://github.com/edridudi))
+- omahs ([@omahs](https://github.com/omahs))
