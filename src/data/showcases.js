@@ -1200,6 +1200,15 @@ export const Showcases = [
     tags: ["analytics"],
   },
   {
+    title: "Finitum Bridge",
+    description: 
+      "Move supported tokens cross-chain, from BSC to Cardano and vice versa.",
+    preview: require("./showcase/finitum-bridge.png"),
+    website: "https://finitum.io/bridge",
+    source: null,
+    tags: ["bridge"],
+  },
+  {
     title: "BALANCE - Balance Analytics",
     description:
       "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
