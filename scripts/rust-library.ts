@@ -8,7 +8,8 @@ import {
   RLDocsPath,
   RLnamesRawBaseIndexUrl,
   RLRepoBaseUrl, 
-  RLStaticResourcePath
+  RLStaticResourcePath,
+  customEditUrl
 } from "./constants";
 
 // Current pathname
@@ -79,6 +80,7 @@ content = content.substring(0, 3) === "---" ? content.slice(3) : content;
   content =
     "--- \nsidebar_label: " +
     sidebarLabel +
+    customEditUrl + 
     "\ntitle: " +
     fileName +
     "\n" +
