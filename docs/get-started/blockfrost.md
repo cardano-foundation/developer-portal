@@ -22,7 +22,7 @@ After clicking on `Save Project` you will immediately get your `API KEY`. Save i
 
 ## Query the latest epoch
 
-Send your first request to get data about the latest epoch. Don't forget to replace `1234567890`with your `API KEY`.
+Send your first request to get data about the latest epoch. Don't forget to replace `1234567890` with your `API KEY`.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

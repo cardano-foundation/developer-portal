@@ -6,7 +6,7 @@ description: Secure your private keys on a network-free transaction host.
 image: ../img/og/og-security-air-gap-environment.png
 ---
 
-"Air gap" originally meant a computer or subnetwork was surrounded by "air" and so could have no data cable connections in or out, so it would be isolated from other computers & networks. These days it also means no radio-based network connection either (WiFi, Blueooth, etc.).
+"Air gap" originally meant a computer or subnetwork was surrounded by "air" and so could have no data cable connections in or out, so it would be isolated from other computers & networks. These days it also means no radio-based network connection either (WiFi, Bluetooth, etc.).
 
 Developers & Cardano stake pool operators generally need an air gap environment in which to work with payment keys, stake pool keys and other cryptocurrency resources that offer high-value targets for hackers.
 
@@ -95,7 +95,7 @@ The Internet will be unconfigured and disconnected after the OS is installed & p
 
 ### Follow instructions: [Ubuntu Tutorials > Install Ubuntu desktop](https://ubuntu.com/tutorials/install-ubuntu-desktop)
 
-... paying partcular attention to these steps:
+... paying particular attention to these steps:
 
 #### Wireless (if asked)
 
@@ -186,7 +186,7 @@ sudo apt remove unattended-upgrades
 
 Removing Snap is optional because default snaps on the Ubuntu installation media have the same security provenance as the default packages on that same release... yet snaps will also be upgraded in the next part of this procedure, and these upgraded snaps may not be subjected to the same security vetting.
 
-To proceed with removing Snap, follow these instructions (the proceduce exact procedure changes often & these instructions may be the best maintained to date):
+To proceed with removing Snap, follow these instructions (the exact procedure changes often & these instructions may be the best maintained to date):
 
   - **[How do I turn off snap in Ubuntu?](https://linuxhint.com/turn-off-snap-ubuntu/)**
 
@@ -252,8 +252,8 @@ Note this will build `cardano-node` as well as `cardano-cli`, but don't worry: y
 
 We will leave the definition of "forever" up to your understanding of Internet threats and whether these can come from OS package repositories, etc., with this in mind:
 
-  - Software updates at 6-month intervals (e.g. after the Ubuntu "point releases") will patch security problems idendified during that period: as well as install new software which may introduce *new* security problems.
-  - Any spyware or back-door deliberately placed in the package upgrades on Ubuntu or any other version of Linux could generally just as easily have been placed on the packages used to build your installation media.
+  - Software updates at 6-month intervals (e.g. after the Ubuntu "point releases") will patch security problems identified during that period: as well as install new software which may introduce *new* security problems.
+  - Any spyware or backdoor deliberately placed in the package upgrades on Ubuntu or any other version of Linux could generally just as easily have been placed on the packages used to build your installation media.
 
 ### Precautions to avoid accidental connection to the Internet
 
@@ -290,7 +290,7 @@ Linux veterans only\! (otherwise please [follow option 1](#option-1-install-your
 This option may suit more demanding users, especially those:
 
   - who travel a lot and need to maintain their Cardano operations "on the road";
-  - who need the convenience of booting in a air gap environment which has direct access to all their files on the host computer (as you would when booting off from an installer USB drive);
+  - who need the convenience of booting in an air gap environment which has direct access to all their files on the host computer (as you would when booting off from an installer USB drive);
   - who, instead of using a USB drive to transfer unencrypted files in & out of the air gap, would rather use that same USB drive to store these files with encryption while also providing the Cardano CLI for use on any machine supporting the same boot method;
   - who want to make encrypted backups or their keys, passwords and other records from their air gap environment directly to the host computer.
 
