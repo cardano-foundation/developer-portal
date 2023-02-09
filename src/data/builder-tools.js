@@ -954,7 +954,7 @@ export const Showcases = [
     preview: require("./builder-tools/dotare-cardano-delegation.png"),
     website: "https://github.com/adabox-aio/ogmios-java-client",
     getstarted: null,
-    tags: ["http", "typescript", "javascript", "cip30", "delegation", "npm", "front-end"],
+    tags: ["http", "typescript", "javascript", "wallet", "serialization", "operatortool"],
   },
 ];
 
