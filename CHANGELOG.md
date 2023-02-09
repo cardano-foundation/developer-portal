@@ -13,7 +13,7 @@ All of the merged PRs in February
 - Content by ([@katomm](https://github.com/katomm)) in [#5](https://github.com/cardano-foundation/developer-portal/pull/5)
 - Content by ([@katomm](https://github.com/katomm)) in [#6](https://github.com/cardano-foundation/developer-portal/pull/6)
 
-#### Committers: 1
+#### Contributors: 1
 
 - katomm ([@katomm](https://github.com/katomm))
 
@@ -38,7 +38,7 @@ All of the merged PRs in March
 - Design by ([@katomm](https://github.com/katomm)) in [#18](https://github.com/cardano-foundation/developer-portal/pull/18)
 - Design by ([@katomm](https://github.com/katomm)) in [#19](https://github.com/cardano-foundation/developer-portal/pull/19)
 
-#### Committers: 2
+#### Contributors: 2
 
 - katomm ([@katomm](https://github.com/katomm))
 - Nazeim ([@Nazeim](https://github.com/Nazeim))
@@ -72,7 +72,7 @@ All of the merged PRs in April
 - Style guide revised by ([@katomm](https://github.com/katomm)) in [#40](https://github.com/cardano-foundation/developer-portal/pull/40)
 - New line markdown fix by ([@Scitz0](https://github.com/Scitz0)) in [#44](https://github.com/cardano-foundation/developer-portal/pull/44)
 
-#### Committers: 4
+#### Contributors: 4
 
 - katomm ([@katomm](https://github.com/katomm))
 - Nazeim ([@Nazeim](https://github.com/Nazeim))
@@ -102,7 +102,7 @@ All of the merged PRs in May
 - Minor fixes by ([@katomm](https://github.com/katomm)) in [#60](https://github.com/cardano-foundation/developer-portal/pull/60)
 - Stake pool course: intro + classic utx0 model by ([@ubinatus](https://github.com/ubinatus)) in [#61](https://github.com/cardano-foundation/developer-portal/pull/61)
 
-#### Committers: 5
+#### Contributors: 5
 
 - Nazeim ([@Nazeim](https://github.com/Nazeim))
 - katomm ([@katomm](https://github.com/katomm))
@@ -142,7 +142,7 @@ All of the merged PRs in June
 - Add .netlify.toml file with redirect example by ([@katomm](https://github.com/katomm)) in [#86](https://github.com/cardano-foundation/developer-portal/pull/86)
 - Simplify the redirects. by ([@katomm](https://github.com/katomm)) in [#87](https://github.com/cardano-foundation/developer-portal/pull/87)    
 
-#### Committers: 4
+#### Contributors: 4
 
 - Nazeim ([@Nazeim](https://github.com/Nazeim))
 - katomm ([@katomm](https://github.com/katomm))
@@ -236,7 +236,7 @@ All of the merged PRs in July
 - Replace announcement with Cardano Stack Exchange notice by ([@katomm](https://github.com/katomm)) in [#200](https://github.com/cardano-foundation/developer-portal/pull/200)
 - Merge PR #199 and #200 into main by ([@katomm](https://github.com/katomm)) in [#202](https://github.com/cardano-foundation/developer-portal/pull/202)
 
-#### Committers: 27
+#### Contributors: 27
 
 - Mercurial ([@Mercurial](https://github.com/Mercurial))
 - katomm ([@katomm](https://github.com/katomm))
@@ -306,7 +306,7 @@ All of the merged PRs in August
 - fix repetition of 'the' by ([@6346563751](https://github.com/6346563751)) in [#263](https://github.com/cardano-foundation/developer-portal/pull/263)
 - removed unsigned_algorithms by ([@alexanderwatanabe](https://github.com/alexanderwatanabe)) in [#264](https://github.com/cardano-foundation/developer-portal/pull/264)
 
-#### Committers: 21
+#### Contributors: 21
 
 - PrinzMonty ([@PrinzMonty](https://github.com/PrinzMonty))
 - Tokhun ([@Tokhun](https://github.com/Tokhun))
@@ -366,7 +366,7 @@ All of the merged PRs in September
 - Varia by ([@katomm](https://github.com/katomm)) in [#320](https://github.com/cardano-foundation/developer-portal/pull/320)
 - minor documentation tweaks on Ogmios. by ([@KtorZ](https://github.com/KtorZ)) in [#327](https://github.com/cardano-foundation/developer-portal/pull/327)
 
-#### Committers: 14
+#### Contributors: 14
 
 - bcbowen ([@bcbowen](https://github.com/bcbowen))
 - katomm ([@katomm](https://github.com/katomm))
@@ -415,7 +415,7 @@ All of the merged PRs in October
 - october spotlight article by ([@cislakk](https://github.com/cislakk)) in [#393](https://github.com/cardano-foundation/developer-portal/pull/393)
 - Turn "funding" into "governance category + bring CIPs in by ([@katomm](https://github.com/katomm)) in [#394](https://github.com/cardano-foundation/developer-portal/pull/394)
 
-#### Committers: 16
+#### Contributors: 16
 
 - katomm ([@katomm](https://github.com/katomm))
 - Luxroy ([@Luxroy](https://github.com/Luxroy))
@@ -468,7 +468,7 @@ All of the merged PRs in November
 - Add weekly report by ([@katomm](https://github.com/katomm)) in [#425](https://github.com/cardano-foundation/developer-portal/pull/425)
 - Correcting minor typo by ([@brendonthiede](https://github.com/brendonthiede)) in [#427](https://github.com/cardano-foundation/developer-portal/pull/427)
 
-#### Committers: 16
+#### Contributors: 16
 
 - katomm ([@katomm](https://github.com/katomm))
 - inspiraluna ([@inspiraluna](https://github.com/inspiraluna))
@@ -510,7 +510,7 @@ All of the merged PRs in December
 - Add jq to the list of needed packages for CentOS by ([@morucci](https://github.com/morucci)) in [#452](https://github.com/cardano-foundation/developer-portal/pull/452)
 - Update weekly report, week ending xmas.  by ([@katomm](https://github.com/katomm)) in [#453](https://github.com/cardano-foundation/developer-portal/pull/453)
 
-#### Committers: 10
+#### Contributors: 10
 
 - honungsburk ([@honungsburk](https://github.com/honungsburk))
 - dynamicstrategies ([@dynamicstrategies](https://github.com/dynamicstrategies))
@@ -565,7 +565,7 @@ All of the merged PRs in January
 - Bump node-fetch from 2.6.6 to 2.6.7 by ([@dependabot](https://github.com/dependabot)) in [#498](https://github.com/cardano-foundation/developer-portal/pull/498)
 - Update weekly report, week ending January 28th by ([@katomm](https://github.com/katomm)) in [#499](https://github.com/cardano-foundation/developer-portal/pull/499)
 
-#### Committers: 21
+#### Contributors: 21
 
 - rcmorano ([@rcmorano](https://github.com/rcmorano))
 - benleelawrence ([@benleelawrence](https://github.com/benleelawrence))
@@ -619,7 +619,7 @@ All of the merged PRs in February
 - Update ansible-cardano-node.md by ([@moaipool](https://github.com/moaipool)) in [#525](https://github.com/cardano-foundation/developer-portal/pull/525)
 - Update weekly report, week ending February 11th and 18th by ([@katomm](https://github.com/katomm)) in [#526](https://github.com/cardano-foundation/developer-portal/pull/526)
 
-#### Committers: 10
+#### Contributors: 10
 
 - dependabot ([@dependabot](https://github.com/dependabot))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
@@ -665,7 +665,7 @@ All of the merged PRs in March
 - Replace announcement by ([@katomm](https://github.com/katomm)) in [#564](https://github.com/cardano-foundation/developer-portal/pull/564)
 - Update weekly report, week ending March 25 by ([@katomm](https://github.com/katomm)) in [#565](https://github.com/cardano-foundation/developer-portal/pull/565)
 
-#### Committers: 12
+#### Contributors: 12
 
 - MermADA ([@MermADA](https://github.com/MermADA))
 - dependabot ([@dependabot](https://github.com/dependabot))
@@ -719,7 +719,7 @@ All of the merged PRs in April
 - Bump cross-fetch from 3.1.4 to 3.1.5 by ([@dependabot](https://github.com/dependabot)) in [#601](https://github.com/cardano-foundation/developer-portal/pull/601)
 - Update weekly report, week ending April 29 by ([@katomm](https://github.com/katomm)) in [#602](https://github.com/cardano-foundation/developer-portal/pull/602)
 
-#### Committers: 9
+#### Contributors: 9
 
 - dynamicstrategies ([@dynamicstrategies](https://github.com/dynamicstrategies))
 - dependabot ([@dependabot](https://github.com/dependabot))
@@ -770,7 +770,7 @@ All of the merged PRs in May
 - Modify contribute button href to relative path by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#649](https://github.com/cardano-foundation/developer-portal/pull/649)
 - fix typo in Cardano Wall by ([@lodl](https://github.com/lodl)) in [#650](https://github.com/cardano-foundation/developer-portal/pull/650)
 
-#### Committers: 12
+#### Contributors: 12
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - dependabot ([@dependabot](https://github.com/dependabot))
@@ -800,7 +800,7 @@ All of the merged PRs in June
 - Modify CIP, Token Registry and Rust Library scripts by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#654](https://github.com/cardano-foundation/developer-portal/pull/654)
 - Fix devblog by ([@katomm](https://github.com/katomm)) in [#653](https://github.com/cardano-foundation/developer-portal/pull/653)
 
-#### Committers: 7
+#### Contributors: 7
 
 - cardanians ([@cardanians](https://github.com/cardanians))
 - dependabot ([@dependabot](https://github.com/dependabot))
@@ -854,7 +854,7 @@ All of the merged PRs in July
 - Fix broken code consoles in CSCLI markdown file by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#712](https://github.com/cardano-foundation/developer-portal/pull/712)
 - Revert "CVM - Cardano Version Manager :)" by ([@katomm](https://github.com/katomm)) in [#715](https://github.com/cardano-foundation/developer-portal/pull/715)
 
-#### Committers: 17
+#### Contributors: 17
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - Sanskys ([@Sanskys](https://github.com/Sanskys))
@@ -903,7 +903,7 @@ All of the merged PRs in August
 - [Typo] [minting.md] "Amout" -> "Amount" by ([@sourabhxyz](https://github.com/sourabhxyz)) in [#743](https://github.com/cardano-foundation/developer-portal/pull/743)
 - Add new filter to check latest showcases and builder tools  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#749](https://github.com/cardano-foundation/developer-portal/pull/749)
 
-#### Committers: 9
+#### Contributors: 9
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - katomm ([@katomm](https://github.com/katomm))
@@ -960,7 +960,7 @@ All of the merged PRs in Septemeber
 - Add cexplorer by ([@cexplorer](https://github.com/cexplorer)) in [#745](https://github.com/cardano-foundation/developer-portal/pull/745)
 - Add Discord and Developer Ecosystem Survey into footer by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#804](https://github.com/cardano-foundation/developer-portal/pull/804)
 
-#### Committers: 15
+#### Contributors: 15
 
 - klntsky ([@klntsky](https://github.com/klntsky))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
@@ -1011,7 +1011,7 @@ All of the merged PRs in October
 - Add Demeter.run builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#838](https://github.com/cardano-foundation/developer-portal/pull/838)
 - Add more technical concepts by Andrew Westberg by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#843](https://github.com/cardano-foundation/developer-portal/pull/843)
 
-#### Committers: 15
+#### Contributors: 15
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - jinglescode ([@jinglescode](https://github.com/jinglescode))
@@ -1053,7 +1053,7 @@ All of the merged PRs in November
 - Added "User wallet authentication" to documentation by ([@inimrod](https://github.com/inimrod)) in [#863](https://github.com/cardano-foundation/developer-portal/pull/863)
 - Add Shareslake to showcase by ([@miguelaeh](https://github.com/miguelaeh)) in [#867](https://github.com/cardano-foundation/developer-portal/pull/867)
 
-#### Committers: 9
+#### Contributors: 9
 
 - rphair ([@rphair](https://github.com/rphair))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
@@ -1092,7 +1092,7 @@ All of the merged PRs in December
 - Add Koios tag to Builder Tools by ([@rphair](https://github.com/rphair)) in [#898](https://github.com/cardano-foundation/developer-portal/pull/898)
 - Ignore yarn state, but still track yarn.lock by ([@rphair](https://github.com/rphair)) in [#901](https://github.com/cardano-foundation/developer-portal/pull/901)
 
-#### Committers: 13
+#### Contributors: 13
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - minolinpwork ([@minolinpwork](https://github.com/minolinpwork))
@@ -1140,7 +1140,7 @@ All of the merged PRs in January
 - Fix: typos by ([@omahs](https://github.com/omahs)) in [#937](https://github.com/cardano-foundation/developer-portal/pull/937)
 
 
-#### Committers: 12
+#### Contributors: 12
 
 - thenic95 ([@thenic95](https://github.com/thenic95))
 - rphair ([@rphair](https://github.com/rphair))
