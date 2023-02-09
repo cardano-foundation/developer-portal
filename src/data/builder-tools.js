@@ -948,6 +948,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["ogmios", "websocket", "java", "sdk"],
   },
+  {
+    title: "@dotare/cardano-delegation",
+    description: "A delegation button that uses cip30 to improve the quality of life for developers and delegators.",
+    preview: require("./builder-tools/dotare-cardano-delegation.png"),
+    website: "https://github.com/adabox-aio/ogmios-java-client",
+    getstarted: null,
+    tags: ["http", "typescript", "javascript", "cip30", "delegation", "npm", "front-end"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
