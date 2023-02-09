@@ -764,11 +764,11 @@ export const Showcases = [
   },
   {
     title: "Aiken",
-    description: "A Cardano smart contract language and toolchain",
+    description: "A modern smart contract platform for Cardano.",
     preview: require("./builder-tools/aiken.png"),
-    website: "https://github.com/txpipe/aiken",
-    getstarted: null,
-    tags: ["cli", "plutus"],
+    website: "https://aiken-lang.org",
+    getstarted: "/docs/get-started/aiken",
+    tags: ["favorite", "cli", "plutus"],
   },
   {
     title: "Pix",
