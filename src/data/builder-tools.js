@@ -952,7 +952,7 @@ export const Showcases = [
     title: "@dotare/cardano-delegation",
     description: "A delegation button that uses cip30 to improve the quality of life for developers and delegators.",
     preview: require("./builder-tools/dotare-cardano-delegation.png"),
-    website: "https://github.com/adabox-aio/ogmios-java-client",
+    website: "https://www.npmjs.com/package/@dotare/cardano-delegation?activeTab=readme",
     getstarted: null,
     tags: ["http", "typescript", "javascript", "wallet", "serialization", "operatortool"],
   },
