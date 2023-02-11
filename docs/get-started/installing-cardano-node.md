@@ -295,7 +295,7 @@ brew install openssl
 #### You will need to install llvm in case you are using M1
 
 ```
-brew install llvm
+brew install llvm@13
 ```
 
 #### Installing GHC and Cabal
@@ -456,7 +456,7 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
-#### You will need to run following commands on M1, those commands will set some cabal related options before building
+#### You will need to run following commands on M1, those commands will set some cabal related options and setting path for llvm, assuming that your exact llvm version is 13.0.1_2
 
 ```
 echo "package trace-dispatcher" >> cabal.project.local
@@ -466,6 +466,8 @@ echo "" >> cabal.project.local
 echo "package HsOpenSSL" >> cabal.project.local
 echo "  flags: -homebrew-openssl" >> cabal.project.local
 echo "" >> cabal.project.local
+
+PATH="/opt/homebrew/Cellar/llvm@13/13.0.1_2/bin:$PATH"
 ```
 
 #### Building and installing the node
