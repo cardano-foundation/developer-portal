@@ -1217,6 +1217,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics", "pooltool"],
   },
+  {
+    title: "Peer Review Money",
+    description: 
+      "Pretty straight forward site about the economics of ada, the native currency of the Cardano blockchain.",
+    preview: require("./showcase/peerreview.money.png"),
+    website: "https://peerreview.money",
+    source: null,
+    tags: ["analytics"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
