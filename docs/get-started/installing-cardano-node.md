@@ -457,7 +457,7 @@ cabal configure --with-compiler=ghc-8.10.7
 ```
 
 :::note
-For some instalations you might encounter following warning: `Warning: The package list for 'cardano-haskell-packages' does not exist. Run'cabal update' to download it.`. Warning is self-explanatory and you will need to run `cabal update` before moving on.
+For some installations you might encounter the following warning: `Warning: The package list for 'cardano-haskell-packages' does not exist. Run 'cabal update' to download it.`. The warning is self-explanatory and you will need to run `cabal update` before moving on.
 :::
 
 #### You will need to run following commands on M1, those commands will set some cabal related options before building
