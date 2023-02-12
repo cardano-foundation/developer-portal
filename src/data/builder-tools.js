@@ -776,7 +776,7 @@ export const Showcases = [
     preview: require("./builder-tools/aiken.png"),
     website: "https://github.com/Cardano-Fans/acca",
     getstarted: null,
-    tags: ["plutus", "library", "aiken"],
+    tags: ["plutus", "library"],
   },
   {
     title: "Pix",
