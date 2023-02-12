@@ -398,10 +398,10 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
-If you installed llvm for M1, then you will need to add this too:
+If you installed llvm for M1, then you will need to add this too, assuming that your exact llvm version is 13.0.1_2:
 
 ```bash
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/llvm@13/13.0.1_2/bin:$PATH"
 ```
 
 :::note
@@ -456,7 +456,7 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
-#### You will need to run following commands on M1, those commands will set some cabal related options and setting path for llvm, assuming that your exact llvm version is 13.0.1_2
+#### You will need to run following commands on M1, those commands will set some cabal related options before building
 
 ```
 echo "package trace-dispatcher" >> cabal.project.local
@@ -466,8 +466,6 @@ echo "" >> cabal.project.local
 echo "package HsOpenSSL" >> cabal.project.local
 echo "  flags: -homebrew-openssl" >> cabal.project.local
 echo "" >> cabal.project.local
-
-PATH="/opt/homebrew/Cellar/llvm@13/13.0.1_2/bin:$PATH"
 ```
 
 #### Building and installing the node
