@@ -456,6 +456,10 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
+:::note
+For some instalations you might encounter following warning: `Warning: The package list for 'cardano-haskell-packages' does not exist. Run'cabal update' to download it.`. In this case you will need to run `cabal update` and then re-run `cabal configure --with-compiler=ghc-8.10.7`
+:::
+
 #### You will need to run following commands on M1, those commands will set some cabal related options before building
 
 ```
