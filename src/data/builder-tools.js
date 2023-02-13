@@ -771,6 +771,14 @@ export const Showcases = [
     tags: ["favorite", "cli", "plutus"],
   },
   {
+    title: "Acca",
+    description: "Library extending Aiken's standard library",
+    preview: require("./builder-tools/aiken.png"),
+    website: "https://github.com/Cardano-Fans/acca",
+    getstarted: null,
+    tags: ["plutus"],
+  },
+  {
     title: "Pix",
     description: "An NFT collection generator that is CIP-25 compliant",
     preview: require("./builder-tools/pix.png"),
