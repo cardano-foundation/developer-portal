@@ -28,6 +28,14 @@ export const Tags = {
     color: '#e9669e',
   },
 
+  // Aiken
+  aiken: {
+    label: "Aiken",
+    description: "Aiken and its development tools & libraries",
+    icon: null,
+    color: '#65d2a1',
+  },
+
   // Chain Index
   chainindex: {
     label: "Chain Index",
@@ -768,7 +776,7 @@ export const Showcases = [
     preview: require("./builder-tools/aiken.png"),
     website: "https://aiken-lang.org",
     getstarted: "/docs/get-started/aiken",
-    tags: ["favorite", "cli", "plutus"],
+    tags: ["favorite", "cli", "plutus", "aiken"],
   },
   {
     title: "Acca",
@@ -776,7 +784,7 @@ export const Showcases = [
     preview: require("./builder-tools/aiken.png"),
     website: "https://github.com/Cardano-Fans/acca",
     getstarted: null,
-    tags: ["plutus"],
+    tags: ["plutus", "aiken"],
   },
   {
     title: "Pix",
