@@ -13,7 +13,8 @@ import {
   CIPDocsPath,
   CIPStaticResourcePath,
   CIPSourceRepo,
-  CIPRepoBaseUrl
+  CIPRepoBaseUrl,
+  customEditUrl
 } from "./constants";
 
 // Current pathname
@@ -120,7 +121,7 @@ const injectDocusaurusDocTags = (content: string) => {
 
     // Add "---" with doc tags for Docusaurus
     content =
-      "--- \nsidebar_label: " + "(" + cipNumber + ") " + title + content;
+      "--- \nsidebar_label: " + "(" + cipNumber + ") " + title + customEditUrl + content;
 
     // Temporary solution!
     // CIP script needs to be rebuild, currently CIP 49 has useless information in header that will be removed in the future

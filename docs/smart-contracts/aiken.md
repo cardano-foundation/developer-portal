@@ -20,6 +20,8 @@ Aiken is a still a work in progress and is NOT recommended for use in production
 
 ## Getting started
 
+Visit the [Get started with Aiken](/docs/get-started/aiken) to install Aiken from Source or Nix Flakes.
+
 A comprehensive guide for getting started with Aiken can be found on the [aiken-lang.org](https://aiken-lang.org) website. For more details about the project you might also want to visit the  [Aiken git repository](https://github.com/aiken-lang/aiken).
 
 
