@@ -28,6 +28,14 @@ export const Tags = {
     color: '#e9669e',
   },
 
+  // Aiken
+  aiken: {
+    label: "Aiken",
+    description: "Aiken and its development tools & libraries",
+    icon: null,
+    color: '#65d2a1',
+  },
+
   // Chain Index
   chainindex: {
     label: "Chain Index",
@@ -768,7 +776,15 @@ export const Showcases = [
     preview: require("./builder-tools/aiken.png"),
     website: "https://aiken-lang.org",
     getstarted: "/docs/get-started/aiken",
-    tags: ["favorite", "cli", "plutus"],
+    tags: ["favorite", "cli", "plutus", "aiken"],
+  },
+  {
+    title: "Acca",
+    description: "Library extending Aiken's standard library",
+    preview: require("./builder-tools/aiken.png"),
+    website: "https://github.com/Cardano-Fans/acca",
+    getstarted: null,
+    tags: ["plutus", "aiken"],
   },
   {
     title: "Pix",
@@ -947,6 +963,14 @@ export const Showcases = [
     website: "https://github.com/adabox-aio/ogmios-java-client",
     getstarted: null,
     tags: ["ogmios", "websocket", "java", "sdk"],
+  },
+  {
+    title: "@dotare/cardano-delegation",
+    description: "A delegation button that uses cip30 to improve the quality of life for developers and delegators.",
+    preview: require("./builder-tools/dotare-cardano-delegation.png"),
+    website: "https://www.npmjs.com/package/@dotare/cardano-delegation",
+    getstarted: null,
+    tags: ["http", "typescript", "javascript", "wallet", "serialization", "operatortool"],
   },
 ];
 
