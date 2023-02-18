@@ -30,7 +30,7 @@ function processSection(section) {
     .trim()
     .replace('running_woman', 'running');
 
-  let authors = content.match(/## Committers: \d.*/s);
+  let authors = content.match(/## Contributors: \d.*/s);
   if (authors) {
     authors = authors[0]
       .match(/- .*/g)

@@ -24,6 +24,7 @@ module.exports = {
         type: "category",
         label: "Builder Tools",
         items: [
+          "get-started/aiken",
           "get-started/blockfrost",
           "get-started/cardanocli-js",
           "get-started/cardano-wallet-js",
