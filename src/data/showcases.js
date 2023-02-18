@@ -1171,6 +1171,15 @@ export const Showcases = [
     website: "https://www.petregistry.io",
     source: null,
     tags: ["metadata", "identity"],
+  }, 
+  {
+    title: "Cardano Studio",
+    description:
+      "Create and mint NFTs on Cardano all in your browser - without trusting a third party for minting.",
+    preview: require("./showcase/cardano-studio.png"),
+    website: "https://cardano-studio.app",
+    source: null,
+    tags: ["minting", "nftsupport"],
   },
   {
     title: "DCOne Crypto",
@@ -1225,6 +1234,15 @@ export const Showcases = [
     website: "https://balanceanalytics.io/",
     source: null,
     tags: ["analytics", "pooltool"],
+  },
+  {
+    title: "Peer Review Money",
+    description: 
+      "Pretty straight forward site about the economics of ada, the native currency of the Cardano blockchain.",
+    preview: require("./showcase/peerreview.money.png"),
+    website: "https://peerreview.money",
+    source: null,
+    tags: ["analytics"],
   },
 ];
 
