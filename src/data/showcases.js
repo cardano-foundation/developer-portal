@@ -1184,7 +1184,7 @@ export const Showcases = [
   {
     title: "DCOne Crypto",
     description:
-      "Cardano ecosystem interface map showing all projects and dapps on the Cardano blockchain",
+      "Cardano ecosystem interface map showing all projects and dapps on the Cardano blockchain.",
     preview: require("./showcase/dconecrypto.png"),
     website: "https://dconecrypto.finance/ecosystem-map.html",
     source: null,
