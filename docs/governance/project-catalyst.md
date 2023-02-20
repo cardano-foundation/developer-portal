@@ -62,10 +62,9 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 * [Improving project Catalyst process on Ideascale](https://cardano.ideascale.com/a/campaign-home/25622)
 * [Cardano Project Catalyst Discord](https://discord.gg/TTZKB9M)
 * [Cardano Catalyst Community Site](https://cardanocataly.st/)
- 
+
 ## Instruction guides
 
-* [Basic community usage guide help articles for new users](https://intercom.help/ideascale/en/collections/2406712-new-user-guide)
 * [Project Catalyst Challenge and Proposal Guide](https://docs.google.com/document/d/1oE_cnP0gksdAanXV4w5DYaDNp_tbYEvyHhTUG4HYZ3Q/edit?usp=sharing)
 * [Proposal Assessor (formerly Community Advisor) Guide](https://docs.google.com/document/d/1g-iZhDlKhUBZkui1uv8NVNfJC4oVD3JtR-P6Fue7XPU/edit#heading=h.nvn8rjkdb8jh)
 
