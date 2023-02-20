@@ -8,7 +8,8 @@ import {
   TRUrl,
   TROverviewUrl,
   TRrepoRawWikiHomeUrl,
-  TRWiki
+  TRWiki,
+  customEditUrl
 } from "./constants";
 
 // Current pathname
@@ -162,6 +163,7 @@ const injectDocusaurusDocTags = (content: string, fileName: string) => {
     content =
       "--- \nsidebar_label: " +
       modifiedFileName +
+      customEditUrl +
       "\ntitle: " +
       fileName +
       "\n" +
