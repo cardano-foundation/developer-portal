@@ -372,6 +372,14 @@ export const Showcases = [
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
+    title: "ADANATOR",
+    description: "Public hosted GraphQL Instance",
+    preview: require("./builder-tools/adanator.png"),
+    website: "https://adanator.com/graphql",
+    getstarted: null,
+    tags: ["favorite", "http", "json", "hosted"],
+  },  
+  {
     title: "StakePool Operator Scripts",
     description: "CLI scripts to manage your stake pool (online or offline), use and migrate to hardware wallets, send transactions with messages, register for Catalyst, mint/burn Tokens, generate the Token Registry, and more.",
     preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
