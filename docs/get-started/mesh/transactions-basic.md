@@ -1,7 +1,7 @@
 ---
 id: transactions-basic
 sidebar_position: 4
-title: Basic Transactions - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: Basic Transactions
 sidebar_label: Basic Transactions
 description: Create transactions for sending assets.
 image: ../img/og/og-getstarted-mesh.png
@@ -81,10 +81,38 @@ import { KoiosProvider, Transaction } from "@meshsdk/core";
 
 const koios = new KoiosProvider("api");
 
-const tx = new Transaction({ initiator: wallet }).sendLovelace(
-  await koios.fetchHandleAddress("jingles"),
-  "1000000"
-);
+const tx = new Transaction({ initiator: wallet })
+  .sendLovelace(
+    await koios.fetchHandleAddress("jingles"),
+    "1000000"
+  );
+
+const unsignedTx = await tx.build();
+const signedTx = await wallet.signTx(unsignedTx);
+const txHash = await wallet.submitTx(signedTx);
+```
+
+## Send tokens and stable coins to addresses
+
+Like `sendLovelace()`, we can chain `sendToken()` along side `tx.sendLovelace()` to send multiple assets to multiple recipients.
+
+For instance, lets send some DJED to ADA to `jingles`:
+
+```javascript
+import { Transaction } from '@meshsdk/core';
+
+const koios = new KoiosProvider("api");
+
+const tx = new Transaction({ initiator: wallet })
+  .sendToken(
+    await koios.fetchHandleAddress("jingles"),
+    'DJED', 
+    '1000000'
+  )
+  .sendLovelace(
+    await koios.fetchHandleAddress("jingles"),
+    "1000000"
+  );
 
 const unsignedTx = await tx.build();
 const signedTx = await wallet.signTx(unsignedTx);
