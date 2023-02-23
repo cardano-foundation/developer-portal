@@ -514,7 +514,7 @@ cardano-wallet serve \
 
 `--port` : Specifies the port that the web server will listen to for any requests.
 
-> You can choose whatever `port` number you like, but it is recommended to use `port` numbers `1024` and above. See [Registered Port](https://www.sciencedirect.com/topics/computer-science/registered-port) for more information.
+> You can choose whatever `port` number you like, but it is recommended to use `port` numbers `1024` and above. See [Registered Port](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) for more information.
 
 `--testnet` : Specifies the **Byron** genesis file path for the `testnet` network.
 
@@ -854,7 +854,7 @@ We now have the following wallets:
 | WalletId                                        | Wallet Name       | Balance(Lovelace)     |
 | --------                                        | ---------         | ----------            |
 | 5076b34c6949dbd150eb9c39039037543946bdce        | test_cf_1         | 1000000000            |
-| 4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb        | test_cf_2         | 0                     | 
+| 4a64b453ad1c1d33bfec4d3ba90bd2456ede35bb        | test_cf_2         | 0                     |
 
 Now let's say that we want to send `250,000,000 lovelaces` to `test_cf_2` wallet. Well first we have to get `test_cf_2` wallet address like so:
 

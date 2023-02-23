@@ -45,8 +45,8 @@ You can choose the mainnet or the testnet for your queries. The API requires a v
 
 | Network          |   Endpoint      
 | ---------------- | :-----------: 
-| Cardano mainnet  | https://cardano-mainnet.tangocrypto.com/{app_id}/v1 
-|Cardano testnet   |   https://cardano-testnet.tangocrypto.com/{app_id}/v1 
+| Cardano mainnet  | [https://cardano-mainnet.tangocrypto.com/{app_id}/v1](https://cardano-mainnet.tangocrypto.com/{app_id}/v1 "Cardano mainnet {rel='nofollow'}") 
+| Cardano testnet  | [https://cardano-testnet.tangocrypto.com/{app_id}/v1](https://cardano-testnet.tangocrypto.com/{app_id}/v1 "Cardano testnet {rel='nofollow'}")   
 
 
 ### API Key header

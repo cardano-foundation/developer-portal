@@ -134,3 +134,7 @@ Learn and dive into CPS-0002 which focuses on Pointer Addresses.
  ##  Kogmios
 Learn about Kogmios, a Kotlin library for communicating with Ogmios.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Q_LrKUVo6LU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Aiken
+Learn about Aiken, a bespoke smart contract language for Cardano.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/9wbQ33uzwsc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>

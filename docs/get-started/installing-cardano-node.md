@@ -295,7 +295,7 @@ brew install openssl
 #### You will need to install llvm in case you are using M1
 
 ```
-brew install llvm
+brew install llvm@13
 ```
 
 #### Installing GHC and Cabal
@@ -398,10 +398,10 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
-If you installed llvm for M1, then you will need to add this too:
+If you installed llvm for M1, then you will need to add this too, assuming that your exact llvm version is 13.0.1_2:
 
 ```bash
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/llvm@13/13.0.1_2/bin:$PATH"
 ```
 
 :::note
@@ -455,6 +455,10 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 ```bash
 cabal configure --with-compiler=ghc-8.10.7
 ```
+
+:::note
+For some installations you might encounter the following warning: `Warning: The package list for 'cardano-haskell-packages' does not exist. Run 'cabal update' to download it.`. The warning is self-explanatory and you will need to run `cabal update` before moving on.
+:::
 
 #### You will need to run following commands on M1, those commands will set some cabal related options before building
 

@@ -1171,6 +1171,69 @@ export const Showcases = [
     website: "https://www.petregistry.io",
     source: null,
     tags: ["metadata", "identity"],
+  }, 
+  {
+    title: "Cardano Studio",
+    description:
+      "Create and mint NFTs on Cardano all in your browser - without trusting a third party for minting.",
+    preview: require("./showcase/cardano-studio.png"),
+    website: "https://cardano-studio.app",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
+  {
+    title: "Raw Cardano Explorer",
+    description: 
+      "Cardano Blockchain Explorer to show data in a simple and fast way.",
+    preview: require("./showcase/raw-cardano.png"),
+    website: "https://www.rawcardano.app",
+    source: null,
+    tags: ["explorer"],
+  },
+  {
+    title: "NFTada.io",
+    description: 
+      "Simple web interface and sophisticated API for automated printing and distribution.",
+    preview: require("./showcase/nftada.png"),
+    website: "https://nftada.io/",
+    source: null,
+    tags: ["minting", "nftsupport"],
+  },
+  {
+    title: "Cardano Relay Map",
+    description: 
+      "Shows geographical distribution of Cardano stake pool relay nodes with flexible map features.",
+    preview: require("./showcase/monadpool-relay-map.png"),
+    website: "https://monadpool.com/cardano.html",
+    source: null,
+    tags: ["analytics"],
+  },
+  {
+    title: "Finitum Bridge",
+    description: 
+      "Move supported tokens cross-chain, from BSC to Cardano and vice versa.",
+    preview: require("./showcase/finitum-bridge.png"),
+    website: "https://finitum.io/bridge",
+    source: null,
+    tags: ["bridge"],
+  },
+  {
+    title: "BALANCE - Balance Analytics",
+    description:
+      "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
+    preview: require("./showcase/balance-analytics.png"),
+    website: "https://balanceanalytics.io/",
+    source: null,
+    tags: ["analytics", "pooltool"],
+  },
+  {
+    title: "Peer Review Money",
+    description: 
+      "Pretty straight forward site about the economics of ada, the native currency of the Cardano blockchain.",
+    preview: require("./showcase/peerreview.money.png"),
+    website: "https://peerreview.money",
+    source: null,
+    tags: ["analytics"],
   },
 ];
 

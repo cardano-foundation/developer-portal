@@ -24,6 +24,7 @@ module.exports = {
         type: "category",
         label: "Builder Tools",
         items: [
+          "get-started/aiken",
           "get-started/blockfrost",
           "get-started/cardanocli-js",
           "get-started/cardano-wallet-js",
@@ -96,6 +97,8 @@ module.exports = {
       "smart-contracts/overview",
       "smart-contracts/marlowe",
       "smart-contracts/plutus",
+      "smart-contracts/aiken",   
+      "smart-contracts/eopsin",
     ],
     "Be Part of the Governance": [
       "governance/overview",

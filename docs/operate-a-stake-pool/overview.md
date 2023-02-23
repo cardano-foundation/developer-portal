@@ -57,6 +57,5 @@ You must also construct your pool around a brand that can draw sufficient delega
 - [Stake Pool Operator Scripts](https://github.com/gitmachtl/scripts) a collection of scripts to manage your stake pool step-by-step. 
 - [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
 - [Pool Veterinary](http://pool.vet) will help you see if your Cardano stake pool is working and find out why it may not be.
-- [SPOCRA](https://members.spocra.io) includes the Stake Pool installation guide from the registered trade guild - Stake Pool Operator Collective Representation Assembly
 - [RaspberryPi with Docker](https://github.com/speedwing/cardano-staking-pool-edu) Full guide to build and run both testnet and mainnet Cardano Stake Pool with Docker on Raspberry Pi. [Youtube Playlist](https://www.youtube.com/playlist?list=PLBhbLwOuj0DfTnneuG3vyoDHY7Dv_aiyq)
 - [TOPO Guide](https://es-kb.topopool.com/primeros-pasos). A friendly and complete guide to mount a Stake Pool in Spanish
