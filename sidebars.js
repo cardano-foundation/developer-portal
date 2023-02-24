@@ -188,6 +188,13 @@ module.exports = {
         },
 	{
         type: "category",
+        label: "Cardano Block Producer Configuration",
+        items: [
+                "stake-pool-guide/generating-wallet-keys",
+                ],
+        },
+	{
+        type: "category",
         label: "Deployment Scenarios",
         items: [
 		"stake-pool-guide/improve-grafana-security",
