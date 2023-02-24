@@ -9,7 +9,7 @@ image: ../img/og/og-developer-portal.png
 ## Get started with Plutus 
 Plutus is the smart contract platform of the Cardano blockchain. It allows you to write applications that interact with the Cardano blockchain.
 
-Take a look at the [Plutus Pioneer Program](https://github.com/input-output-hk/plutus-pioneer-program) if you want to learn Plutus from the beginning. You can read more about it in the section [Get started with the Plutus pioneer program](#get-started-with-the-plutus-pioneer-program) at the end of this page. You can also look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/tutorials/) or see [Plutus resources](https://docs.cardano.org/plutus/plutus-resources), where you can find references to all Plutus-related repositories, documentation, and training materials. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
+Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/tutorials/) if you want to learn Plutus from the beginning or see [Plutus resources](https://docs.cardano.org/plutus/plutus-resources), where you can find references to all Plutus-related repositories, documentation, and training materials. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
 
 [Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/plutus_pioneer_program.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program. 
 
@@ -41,23 +41,23 @@ Jann Müller then takes us through the Plutus Application Platform, where assets
 - [How to analyse the cost and size of Plutus scripts](https://plutus-apps.readthedocs.io/en/latest/plutus/howtos/analysing-scripts.html)
 
 ## Get started with Haskell
-Haskell is the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend to start with **IOGs** official [Haskell Course](https://github.com/input-output-hk/haskell-course). You can also check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 
+Haskell is the programming language for Plutus contracts. If you are looking for the best guide to Haskell and unsure where to start, we recommend you check out the book or website [Learn You a Haskell for Great Good](http://learnyouahaskell.com/introduction) by Miran Lipovača. 
 
-Learning Haskell is made easy with video and written lectures for the Haskell course and an illustrated guide for the book. It's one of the most engaging ways to learn this fascinating programming language. 
+Learning Haskell is made easy with this illustrated guide, one of the most engaging ways to learn this fascinating programming language.
 
-Another great learning resource is the online course [Haskell and Crypto Mongolia 2020](https://www.youtube.com/watch?v=ctfZ6DwFiPg&list=PLJ3w5xyG4JWmBVIigNBytJhvSSfZZzfTm&index=4) lectured by [Andres Löh](https://kosmikus.org/), co-founder of the Well-Typed consultancy and [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at IOG. It covers both Haskell basics and the basic of cryptocurrencies. It's a 10-week, 40 hours/week deep dive into Haskell and Cryptocurrencies. 
+Another great learning resource is the online course [Haskell and Crypto Mongolia 2020](https://www.youtube.com/watch?v=ctfZ6DwFiPg&list=PLJ3w5xyG4JWmBVIigNBytJhvSSfZZzfTm&index=4) lectured by [Andres Löh](https://kosmikus.org/), co-founder of the Well-Typed consultancy and [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at IOHK. The course is the suggested *starting point* for Plutus Pioneers at the beginning of the [Plutus Pioneer Program](#get-started-with-the-plutus-pioneer-program). It's a 10-week, 40 hours/week deep dive into Haskell and Cryptocurrencies.
 
 If you are coming from a Python background, there is an informative project [py2hs](https://github.com/cffls/py2hs) that explains essential Haskell concepts using Python.
 
 ## Get started with the Plutus pioneer program
-The [Plutus Pioneer Program](https://github.com/input-output-hk/plutus-pioneer-program) was created in order to recruit and train developers in Plutus for the Cardano ecosystem. By entering the program, you will become part of a group with early access to a set of courses that teach you the core principles of how to code in both Haskell and Plutus. It will be highly interactive, with weekly videos, exercises, and Q&A sessions and exclusive access to the creators and key experts in the language. 
+The [Plutus Pioneer Program](https://github.com/input-output-hk/plutus-pioneer-program) was created in order to recruit and train developers in Plutus for the Cardano ecosystem. You can complete this programm at your own pace or sign up for an active iteration of the program. By entering the program, you will become part of a group that communicates on Discord and holds live weekly QA sessions. The course teaches you the core principles of how to code in both Haskell and Plutus. It is highly interactive, with weekly videos, exercises, and Q&A sessions and exclusive access to the creators and key experts in the language. 
 
-**This course is not for coding beginners.** You do not need to be an expert in formal methods, but programming experience and a general aptitude for logical and mathematical thinking are highly advisable. We recommend to [get started with Haskell](#get-started-with-haskell) before taking the course.
+Beside the videos you can also read the book based on the Plutus Pioneer Program. The book is written once an iteration of the Pioneer Program comes to an end. It exists from the 3rd iteration on and can be found in the *book/* folder of the Pioneer program github repository. 
+
+**This course is not for coding beginners.** You do not need to be an expert in formal methods, but programming experience and a general aptitude for logical and mathematical thinking are highly advisable. We recommend to [get started with Haskell](#get-started-with-haskell) before taking the course. The IOG education team that created the Priooner program also offers a [Haskell course](https://github.com/input-output-hk/haskell-course) that you can at you own pace.  
 
 Prior knowledge of Haskell or functional programming is also recommended, as Plutus is heavily based on Haskell and includes advanced features like Template Haskell, type-level programming, and effect systems.
 - [Apply for the Plutus Pioneer Program](https://input-output.typeform.com/to/au0XDcBP)
-
-You can also work through the course at your own pace and look at the videos or read the book based on the Plutus Pioneer Program. The book is written once an iteration of the Pioneer Program comes to an end. It exists from the 3rd cohort of the Pioneer program on and can be found in the book folder of the Pioneer program github repository.  
 
 ## Demeter
 
