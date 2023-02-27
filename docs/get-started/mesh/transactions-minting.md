@@ -1,7 +1,7 @@
 ---
 id: transactions-minting
 sidebar_position: 6
-title: Minting Transactions - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: Minting Transactions
 sidebar_label: Minting Transactions
 description: Learn to use ForgeScript to create minting transactions for minting and burning native assets.
 image: ../img/og/og-getstarted-mesh.png
