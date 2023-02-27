@@ -1,7 +1,7 @@
 ---
 id: transactions-staking
 sidebar_position: 7
-title: Staking Transactions - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: Staking Transactions
 sidebar_label: Staking Transactions
 description: APIs for staking ADA and managing stake pools.
 image: ../img/og/og-getstarted-mesh.png
