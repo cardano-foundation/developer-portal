@@ -64,4 +64,3 @@ It's important to note that while all of these wallets support the Cardano testn
 ### What kind of monitoring tools are available for the testnet?
 - [Grafana dashboard](https://monitoring.cardano-testnet.iohkdev.io/grafana/d/Oe0reiHef/cardano-application-metrics-v2?orgId=1&refresh=1m&from=now-7d&to=now) provides many health metrics.
 - [Prometheus](/docs/stake-pool-course/handbook/apply-logging-prometheus/#docusaurus_skipToContent_fallback) is used to track the health and performance of Cardano nodes.
-

@@ -75,7 +75,7 @@ Create a Website that is consistent with the branding of your stake pool. [Get a
 
 You can check previous delegation announcements on the blog posts [Our new delegation strategy – announcing the pools we’re supporting](https://iohk.io/en/blog/posts/2021/01/22/our-new-delegation-strategy-announcing-the-pools-we-are-supporting/) and [Announcing new stake pools chosen for our delegation strategy](https://iohk.io/en/blog/posts/2021/05/14/announcing-new-stake-pools-chosen-for-our-delegation-strategy/). So try to follow the news for the next round of applications. You can check the [previous call for delegation to support small pools](https://forum.cardano.org/t/iohk-new-call-for-delegation-to-support-small-pools/56589).
 
-One of the selection criteria is to validate your stake pool parameters such as [pledge](https://docs.cardano.org/core-concepts/pledging-and-delegation-options), [stake delegated to the pool](https://docs.cardano.org/core-concepts/delegation), and the size of pool [saturation](https://docs.cardano.org/glossary/#saturation). This is to be sure that your stake pool will be effective, generate new blocks, and get enough rewards to the delegators.
+One of the selection criteria is to validate your stake pool parameters such as [pledge](https://docs.cardano.org/learn/pledging-rewards), [stake delegated to the pool](https://docs.cardano.org/core-concepts/delegation), and the size of pool [saturation](https://docs.cardano.org/glossary/#saturation). This is to be sure that your stake pool will be effective, generate new blocks, and get enough rewards to the delegators.
 
 Note that you can watch [The evolution of the Cardano Foundation's delegation methodology video](https://www.youtube.com/watch?v=lq2sXYVDlX8).
 

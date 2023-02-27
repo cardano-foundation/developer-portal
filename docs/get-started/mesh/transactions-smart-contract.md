@@ -1,7 +1,7 @@
 ---
 id: transactions-smart-contract
 sidebar_position: 5
-title: Smart Contracts Transactions - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: Smart Contracts Transactions
 sidebar_label: Smart Contracts Transactions
 description: Create transactions to work with smart contracts.
 image: ../img/og/og-getstarted-mesh.png

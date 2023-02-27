@@ -1,7 +1,7 @@
 ---
 id: overview
 sidebar_position: 1
-title: Overview - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: Overview
 sidebar_label: Overview
 description: Mesh is an open-source library providing everything you need to build on Web3
 image: ../img/og/og-getstarted-mesh.png
