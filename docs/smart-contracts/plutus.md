@@ -50,6 +50,7 @@ Another great learning resource is the online course [Haskell and Crypto Mongoli
 If you are coming from a Python background, there is an informative project [py2hs](https://github.com/cffls/py2hs) that explains essential Haskell concepts using Python.
 
 ## Get started with the Plutus pioneer program
+
 The [Plutus Pioneer Program](https://github.com/input-output-hk/plutus-pioneer-program) was created in order to recruit and train developers in Plutus for the Cardano ecosystem. You can complete this programm at your own pace or sign up for an active iteration of the program. By entering the program, you will become part of a group that communicates on Discord and holds live weekly QA sessions. The course teaches you the core principles of how to code in both Haskell and Plutus. It is highly interactive, with weekly videos, exercises, and Q&A sessions and exclusive access to the creators and key experts in the language. 
 
 Beside the videos you can also read the book based on the Plutus Pioneer Program. The book is written once an iteration of the Pioneer Program comes to an end. It exists from the 3rd iteration on and can be found in the *book/* folder of the Pioneer program github repository. 

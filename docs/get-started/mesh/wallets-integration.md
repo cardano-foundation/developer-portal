@@ -1,7 +1,7 @@
 ---
 id: wallets-integration
 sidebar_position: 3
-title: Wallets Integration - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: Wallets Integration
 sidebar_label: Wallets Integration
 description: Wallet for building transactions in your applications.
 image: ../img/og/og-getstarted-mesh.png
