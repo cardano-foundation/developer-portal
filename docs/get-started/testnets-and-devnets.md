@@ -33,6 +33,14 @@ In depth explanation about Cardano Testnet Faucet can be found [here.](/docs/int
 
 You can download the current Cardano blockchain network configuration files for Preview Testnet here: [The Cardano Operations Book > Preview Testnet.](https://book.world.dev.cardano.org/environments.html#preview-testnet)
 
+#### Guild Network
+
+- Guild Network is a community maintained public testnet network that is primarily useful for 'quick' testing for development/integrations, as it runs short 1-hour epochs.
+- The primary use-case for this network is often short-term scope-specific testing, it has gone through previous forks on cardano chain with minimal data to ensure we do have different data objects across older forks. The faucet distribution for this network is manual and available with members across timezones based on request in [support](https://t.me/guild_operators_official) channel.
+- The timeline for forks lead mainnet but are flexible depending on community needs that could be discussed on [github](https://github.com/cardano-community/guild-operators/) (unless specific conditions require testing beforehand), and is useful for testing data against longer history (over 10K epochs).
+
+You can download the current Cardano blockchain network configuration files for Guild Network [here](https://github.com/cardano-community/guild-operators/tree/alpha/files)
+
 #### Pre-Production Testnet
 
 - The pre-production testnet is a testing environment used to validate major upgrades and releases before deployment to the mainnet.
