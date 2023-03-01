@@ -1,7 +1,7 @@
 ---
 id: react
 sidebar_position: 8
-title: React Web App - Mesh SDK (Open-Source Library for Building Web3 Apps on the Cardano Blockchain)
+title: React Web App
 sidebar_label: React Web App
 description: Start building web3 applications, interact with your contracts using your wallets.
 image: ../img/og/og-getstarted-mesh.png
