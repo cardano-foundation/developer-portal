@@ -974,7 +974,7 @@ export const Showcases = [
   },
    {
     title: "DCOne Crypto Webhook API",
-    description:"DCOne Crypto allows connecting webhook api for developers to receive information on changing stake balance on Cardano blockchain",
+    description:"API for developers to receive information on changing stake balance.",
     preview: require("./builder-tools/dconecrypto-webhook.png"),
     website: "https://github.com/DCOneCrypto/StakeAddress-Tracking-Webhook-API",
     getstarted: null,
