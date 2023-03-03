@@ -978,7 +978,7 @@ export const Showcases = [
     preview: require("./builder-tools/dconecrypto-webhook.png"),
     website: "https://github.com/DCOneCrypto/StakeAddress-Tracking-Webhook-API",
     getstarted: null,
-    tags: ["api"],
+    tags: ["http"],
   }
 ];
 
