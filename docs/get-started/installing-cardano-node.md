@@ -16,7 +16,7 @@ If you want to avoid compiling the binaries yourself, you can download the lates
 [comment]: # (https://github.com/input-output-hk/cardano-node/issues/4688#issuecomment-1336154065)
 
 - [Linux](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.4-linux.tar.gz)
-- [MacOS](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.4-linux.tar.gz)
+- [MacOS](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.4-macos.tar.gz)
 - [Windows](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.4-win64.zip)
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
