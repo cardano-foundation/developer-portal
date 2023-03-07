@@ -441,6 +441,11 @@ cardano-cli query utxo --address $address --mainnet
 ```
 
 and should see something like this:
+```bash
+                         TxHash                                   TxIx        Amount
+--------------------------------------------------------------------------------------
+e86535386ecd803d061a923c0da1fad82f46b0f2e3fdd766fb23e7f1b490a0e8     0        1518558 lovelace + 1 ad79da159614ff55130b3a28189fbe5c429c0dfc1c0aeaf94a1de95e.4b6964646f7330373138 + TxOutDatumNone
+```
 
 ### Displaying your NFT
 
