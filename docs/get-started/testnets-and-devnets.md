@@ -46,7 +46,8 @@ The Pre-Production Testnet is a more comprehensive testing environment used to v
 
 ### Where to get a testnet wallet?
 - [Daedalus Wallet for Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/get-started/wallet/) is the Pre-Production and Preview versions of Daedalus wallet.
-- [Nami Wallet](https://namiwallet.io/) is a lightweight wallet developed by Cryptonomic and supports both Pre-Production and Preview testnets. 
+- [Nami Wallet](https://namiwallet.io/) is a lightweight wallet developed by Cryptonomic and supports both Pre-Production and Preview testnets.
+- [Eternl Wallet](https://eternl.io/) is a another lightweight wallet supporting both testnets with both single- and multiple-address wallets.
 - [Ledger Nano S and Ledger Nano X](https://www.ledger.com/) are hardware wallets that support both Pre-Production and Preview testnets.
 - [Cardano-wallet](/docs/integrate-cardano/listening-for-payments-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
 
