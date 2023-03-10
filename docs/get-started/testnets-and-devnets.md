@@ -16,7 +16,7 @@ The Testnets are an essential part of the development process for Cardano, as th
 
 #### Preview Testnet
 
-- The Preview Testnet is a testing environment used to showcase new features and functionality to the Cardano community before they are deployed on the mainnet.
+- The Preview Testnet is a testing environment used to showcase new features and functionality to the Cardano community before they are deployed on the Mainnet.
 - It allows developers and users to test and provide feedback on new features and changes before they are released to the wider community.
 - The Preview Testnet helps to ensure that new features are user-friendly and meet the needs of the community, ultimately improving the user experience on the mainnet.
 - Leads mainnet hard forks by at least 4 weeks. 
