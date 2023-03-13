@@ -18,8 +18,8 @@ The Testnets are an essential part of the development process for Cardano, as th
 
 - The Preview Testnet is a testing environment used to showcase new features and functionality to the Cardano community before they are deployed on the Mainnet.
 - It allows developers and users to test and provide feedback on new features and changes before they are released to the wider community.
-- The Preview Testnet helps to ensure that new features are user-friendly and meet the needs of the community, ultimately improving the user experience on the mainnet.
-- Leads mainnet hard forks by at least 4 weeks. 
+- The Preview Testnet helps to ensure that new features are user-friendly and meet the needs of the community, ultimately improving the user experience on the Mainnet.
+- Leads Mainnet hard forks by at least 4 weeks. 
 
 You can download the current Cardano blockchain network configuration files for Preview Testnet here: [The Cardano Operations Book > Preview Testnet.](https://book.world.dev.cardano.org/environments.html#preview-testnet)
 
@@ -27,16 +27,16 @@ You can download the current Cardano blockchain network configuration files for 
 
 - Guild Network is a community maintained public testnet network that is primarily useful for 'quick' testing for development/integrations, as it runs short 1-hour epochs.
 - The primary use-case for this network is often short-term scope-specific testing, it has gone through previous forks on cardano chain with minimal data to ensure we do have different data objects across older forks. The faucet distribution for this network is manual and available with members across timezones based on request in [support](https://t.me/guild_operators_official) channel.
-- The timeline for forks lead mainnet but are flexible depending on community needs that could be discussed on [github](https://github.com/cardano-community/guild-operators/) (unless specific conditions require testing beforehand), and is useful for testing data against longer history (over 10K epochs).
+- The timeline for forks lead Mainnet but are flexible depending on community needs that could be discussed on [github](https://github.com/cardano-community/guild-operators/) (unless specific conditions require testing beforehand), and is useful for testing data against longer history (over 10K epochs).
 
 You can download the current Cardano blockchain network configuration files for Guild Network [here](https://github.com/cardano-community/guild-operators/tree/alpha/files)
 
 #### Pre-Production Testnet
 
-- The Pre-Production Testnet is a testing environment used to validate major upgrades and releases before deployment to the mainnet.
+- The Pre-Production Testnet is a testing environment used to validate major upgrades and releases before deployment to the Mainnet.
 - It is a staging area where developers can simulate real-world scenarios and ensure that everything is working as expected before going live.
-- The preprod testnet helps to minimize the risk of bugs, security issues, and other problems that could negatively impact the mainnet.
-- Hard forks at approximately the same time as mainnet (within an epoch of each other)
+- The preprod testnet helps to minimize the risk of bugs, security issues, and other problems that could negatively impact the Mainnet.
+- Hard forks at approximately the same time as Mainnet (within an epoch of each other)
 
 You can download the current Cardano blockchain network configuration files for Pre-Production Testnet here: [The Cardano Operations Book > Pre-Production Testnet.](https://book.world.dev.cardano.org/environments.html#pre-production-testnet)
 
