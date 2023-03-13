@@ -1235,6 +1235,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "Lace",
+    description: 
+      "Lace welcomes you into the new world of Web3, letting you manage your digital assets, access NFTs, and easily stake your ada, all from one easy-to-use interface.",
+    preview: require("./showcase/lace.png"),
+    website: "https://www.lace.io/",
+    source: null,
+    tags: ["nftsupport", "opensource", "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
