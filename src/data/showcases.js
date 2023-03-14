@@ -1242,7 +1242,7 @@ export const Showcases = [
     preview: require("./showcase/lace.png"),
     website: "https://www.lace.io/",
     source: null,
-    tags: ["nftsupport", "opensource", "wallet"],
+    tags: ["nftsupport", "wallet"],
   },
 ];
 
