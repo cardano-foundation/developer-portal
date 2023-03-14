@@ -223,6 +223,13 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
+:::note
+For some installations you might encounter the following warning:<br />
+`Warning: The package list for 'cardano-haskell-packages' does not exist. Run 'cabal update' to download it.`
+
+Running `cabal update` will fix this problem, as well as other problems resulting from changes to the package list... so it is generally recommended for each installation even if you don't get this error.
+:::
+
 If you are running non x86/x64 platform (eg. ARM) please install and configure LLVM with:
 ```bash
 sudo apt install llvm-9

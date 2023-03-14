@@ -982,6 +982,14 @@ export const Showcases = [
     tags: ["http", "typescript", "javascript", "wallet", "serialization", "operatortool"],
   },
   {
+    title: "DCOne Crypto Webhook API",
+    description:"API for developers to receive information on changing stake balance.",
+    preview: require("./builder-tools/dconecrypto-webhook.png"),
+    website: "https://github.com/DCOneCrypto/StakeAddress-Tracking-Webhook-API",
+    getstarted: null,
+    tags: ["http"],
+  },
+  {
     title: "bech32",
     description: "A BIP173/BIP350 compatible Bech32/Bech32m encoding/decoding library for Crystal.",
     preview: require("./builder-tools/bech32-crystal.png"),
