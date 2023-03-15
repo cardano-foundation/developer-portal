@@ -990,23 +990,15 @@ export const Showcases = [
     tags: ["http"],
   },
   {
-    title: "bech32.cr",
-    description: "A BIP173/BIP350 compatible Bech32/Bech32m encoding/decoding library for Crystal.",
-    preview: require("./builder-tools/bech32-crystal.png"),
-    website: "https://github.com/wout/bech32",
-    getstarted: null,
-    tags: ["crystal", "serialization"]
-  },
-  {
     title: "blockfrost-crystal",
     description: "A Crystal SDK for the Blockfrost.io API.",
     preview: require("./builder-tools/blockfrost-crystal.png"),
     website: "https://github.com/blockfrost/blockfrost-crystal",
     getstarted: null,
-    tags: ["crystal", "sdk", "json", "http"],
+    tags: ["crystal", "sdk", "json"],
   },
   {
-    title: "cardano-kit",
+    title: "cardano-kit-crystal",
     description: "At toolkit for Crystal to ease development for the Cardano blockchain.",
     preview: require("./builder-tools/cardano-kit-crystal.png"),
     website: "https://github.com/wout/cardano-kit",
