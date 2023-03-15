@@ -59,7 +59,7 @@ export const Tags = {
     description:
       "Crystal language",
     icon: null,
-    color: '#000',
+    color: '#ddd',
   },
 
   // Golang
