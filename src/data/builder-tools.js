@@ -990,7 +990,7 @@ export const Showcases = [
     tags: ["http"],
   },
   {
-    title: "bech32",
+    title: "bech32.cr",
     description: "A BIP173/BIP350 compatible Bech32/Bech32m encoding/decoding library for Crystal.",
     preview: require("./builder-tools/bech32-crystal.png"),
     website: "https://github.com/wout/bech32",
