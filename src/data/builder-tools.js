@@ -940,11 +940,11 @@ export const Showcases = [
     tags: ["operatortool", "cli"],
   },
   {
-    title: "eopsin",
+    title: "opshin",
     description:
       "A simple pythonic programming language for Smart Contracts on Cardano.",
-    preview: require("./builder-tools/eopsin.png"),
-    website: "https://github.com/ImperatorLang/eopsin",
+    preview: require("./builder-tools/opshin.png"),
+    website: "https://github.com/OpShin/opshin",
     getstarted: null,
     tags: ["python", "cli", "plutus"],
   },
