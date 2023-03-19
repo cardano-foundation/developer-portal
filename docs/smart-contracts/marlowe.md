@@ -82,6 +82,7 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 
 ### Examples
 
+- [Gallery of Marlowe Contracts on Cardano Mainnet (Real World Marlowe)](https://github.com/input-output-hk/real-world-marlowe)
 - [Index of example Marlowe contracts and their on-chain execution](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/example-contracts.md)
 - [Marlowe Cookbook](https://github.com/input-output-hk/marlowe-cardano/tree/main/marlowe-cli/cookbook/ReadMe.md)
 - [Marlowe Runtime Tutorial](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/doc/tutorial.md)
