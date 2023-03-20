@@ -386,7 +386,7 @@ export const Showcases = [
     preview: require("./builder-tools/adanator.png"),
     website: "https://adanator.com/graphql",
     getstarted: null,
-    tags: ["favorite", "http", "json", "hosted"],
+    tags: ["http", "json", "hosted"],
   },  
   {
     title: "StakePool Operator Scripts",
