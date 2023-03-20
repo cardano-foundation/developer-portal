@@ -1,6 +1,6 @@
 //CIP constants 
 const CIPReadmeUrl: string = "/README.md";
-const CIPPReadmeRegex: RegExp = /\.\/CIP.*?\/|\.\/CIP-.*?\)/gm
+const CIPPReadmeRegex: RegExp = /\.\/CIP.?\/|\.\/CIP-.*\)/gm
 const CIPSourceRepo: string = "cardano-foundation/CIPs";
 const CIPStaticResourcePath: string = "/static/img/cip/";
 const CIPDocsPath: string = "./docs/governance/cardano-improvement-proposals";
