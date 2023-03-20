@@ -24,8 +24,8 @@ In another world, you'd like to build programs, possibly even replace a major co
 - The smart contract is a piece of code that allows a decentralized system to operate.
 
 ## Programming languages
-- [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
 - [Aiken](aiken) - for on-chain validator scripts only: a language & toolchain favouring developer experience.
+- [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
+- [opshin](opshin) - a programming language for generic Smart Contracts based on Python. 
 - [Plutus](plutus) - a platform to write full applications that interact with the Cardano blockchain. 
-- [eopsin](eopsin) - a programming language for generic Smart Contracts based on Python. 
 
