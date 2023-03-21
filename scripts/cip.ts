@@ -195,7 +195,7 @@ const main = async () => {
   await Promise.all(
     cipUrlsUnique.map(async (cipUrl) => {
       const fileName: string = "README.md";
-      const cipName: string = cipUrl.slice(0, -1)
+      const cipName: string = cipUrl.slice(-2) === '/)' ? cipUrl.slice(0, -2) : cipUrl.slice(0, -1)
 
       let content = await getStringContentAsync(
         CIPRepoRawBaseUrl + '/' + cipName + '/' + fileName
