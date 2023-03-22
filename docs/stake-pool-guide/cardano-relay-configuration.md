@@ -23,7 +23,7 @@ Currently, the `cardano-node` topology is manually set by the community of netwo
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
 
-The focus of this tutorial is on learning how to setup a stake pool. So we will go through the steps of configuring the relay for the test network and not the mainnet.
+The focus of this tutorial is on learning how to setup a stake pool. So we will go through the steps of configuring the relay on a [testnet network](docs/get-started/testnets-and-devnets.md) and not the Mainnet.
 You can download the current **Cardano** blockchain network configuration files here:
 
 ## Pre-Production Testnet

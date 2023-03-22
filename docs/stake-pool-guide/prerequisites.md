@@ -1,7 +1,7 @@
 ---
-id: pre-requisites
+id: prerequisites
 title: Technical skills and know-how needed to manage a stake pool
-sidebar_label: Pre-requisites
+sidebar_label: Prerequisites
 description: Technical skills and know-how needed to manage a stake pool
 image: ../img/og-developer-portal.png
 ---

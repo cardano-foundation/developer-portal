@@ -165,7 +165,7 @@ module.exports = {
        	items: [
         	"stake-pool-guide/stake-pool-basics",
 		"stake-pool-guide/get-started",
-		"stake-pool-guide/pre-requisites",
+		"stake-pool-guide/prerequisites",
 		"stake-pool-guide/stake-pool-networking",
 		"stake-pool-guide/hardware-requirements",
 		],
