@@ -1040,7 +1040,7 @@ export const Showcases = [
   {
     title: "Profiler",
     description:
-      "Sophisticated Cardano explorer, is tailored to boost security and decision-making for users. With Profiler, users can thoroughly examine their wallets, receiving a detailed overview of their transactions, tokens, and NFTs, complemented by interactive visualizations.",
+      "Cardano explorer tailored to boost security and decision-making for users. Users can thoroughly examine their wallets, receiving a detailed overview of their transactions, tokens, and NFTs, complemented by interactive visualizations.",
     preview: require("./showcase/profiler.png"),
     website: "https://profiler.biz/",
     source: null,
