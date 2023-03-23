@@ -66,7 +66,7 @@ Format a memory stick on a machine you believe to be secure, and then (to be on 
 
 ## Steps of a secure transaction
 
-This is rewritten from page [Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction) (only considered secure to run on testnet) with the following exception:
+This is rewritten from page [Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction) (only considered secure to run on a testnet) with the following exception:
 
   - [Determining the TTL (time to Live)](../stake-pool-course/handbook/create-simple-transaction#determine-the-ttl-time-to-live-for-the-transaction) for the transaction is omitted, along with setting this value in the transaction itself, to simplify the information-gathering step.
   - This poses no security risk since an omitted TTL value allows a Tx file to be used indefinitely *but* submitting that Tx will change the UTxO set so that submitting that transaction again will be impossible.

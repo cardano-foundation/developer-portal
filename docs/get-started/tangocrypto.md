@@ -41,7 +41,7 @@ We provide the most accessible and reliable Cardano infrastructure, freeing comp
 
 ### Network and App ID
 
-You can choose the mainnet or the testnet for your queries. The API requires a valid `app_id` to be included with your request traffic. This identifier should be appended to the request URL.
+You can choose Mainnet or a testnet for your queries. The API requires a valid `app_id` to be included with your request traffic. This identifier should be appended to the request URL.
 
 | Network          |   Endpoint      
 | ---------------- | :-----------: 

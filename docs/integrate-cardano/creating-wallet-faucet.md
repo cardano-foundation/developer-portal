@@ -8,12 +8,12 @@ image: ../img/og/og-developer-portal.png
 
 ### Overview 
 
-In this guide, we will show you how to create a **Cardano** wallet, receive some `tAda` (**test ada**) in the `testnet` network and send basic example transactions. We will explore tools like `cardano-cli` and `cardano-wallet` on how they can help with these functionalities.
+In this guide, we will show you how to create a **Cardano** wallet, receive some `tAda` (**test ada**) on a [testnet network](docs/get-started/testnets-and-devnets.md) and send basic example transactions. We will explore tools like `cardano-cli` and `cardano-wallet` on how they can help with these functionalities.
 
 :::note
 This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
 
-You must also connect your `cardano-node` to the `testnet` network and make sure it is fully synchronized.
+You must also connect your `cardano-node` to a testnet network and make sure it is fully synchronized.
 
 If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/get-started/running-cardano) guide before proceeding.
 :::
@@ -62,7 +62,7 @@ In this section, We will use the path `$HOME/cardano` to store all the `cardano-
 :::
 
 :::important
-Please make sure your `cardano-node` is connected and synchronized to the `testnet` network before proceeding.
+Please make sure your `cardano-node` is connected and synchronized to a testnet network before proceeding.
 :::
 
 :::warning
@@ -125,7 +125,7 @@ Lets try to understand what these keys are used for in a very high-level overvie
     }
     ```
 
-Since we now have our **payment key-pair**, the next step would be to generate a **wallet address** for the `testnet` network like so:
+Since we now have our **payment key-pair**, the next step would be to generate a **wallet address** for a testnet network like so:
 
 ```bash
 cardano-cli address build \
@@ -162,8 +162,8 @@ addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 :::note
  You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use-cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
 
-  - `mainnet` addresses are **prefixed** with the string value `addr1`. 
-  - `testnet` addresses are **prefixed** with the string value `addr_test1`. 
+  - Mainnet addresses are **prefixed** with the string value `addr1`. 
+  - testnet addresses are **prefixed** with the string value `addr_test1`. 
 
 
  If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. You can learn more about the different **Cardano** blockchain networks [here](/docs/get-started/running-cardano#mainnet--production).
@@ -181,7 +181,7 @@ cardano-cli query utxo \
 
 - `cardano-cli query utxo` : Queries the wallet address **UTXO**.
 
-- `--testnet-magic 1097911063` : Specifies that we want to query the `testnet` **Cardano** network.
+- `--testnet-magic 1097911063` : Specifies that we want to query a testnet **Cardano** network.
 
 - `--address $(cat $HOME/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `$HOME/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
 ```
@@ -485,7 +485,7 @@ We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` r
 :::
 
 :::important
-Please make sure your `cardano-node` is connected and synchronized to the `testnet` network before proceeding.
+Please make sure your `cardano-node` is connected and synchronized to a testnet network before proceeding.
 :::
 
 :::warning
@@ -516,7 +516,7 @@ cardano-wallet serve \
 
 > You can choose whatever `port` number you like, but it is recommended to use `port` numbers `1024` and above. See [Registered Port](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) for more information.
 
-`--testnet` : Specifies the **Byron** genesis file path for the `testnet` network.
+`--testnet` : Specifies the **Byron** genesis file path for the testnet network.
 
 > This should match the genesis file that the `cardano-node` you are connected is using as-well. If you meant to connect to `mainnet` then use the `--mainnet` flag and the `mainnet` **Byron** genesis file instead.
 

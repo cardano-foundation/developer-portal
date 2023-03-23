@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 This guide assumes that you have basic understanding of `cardano-wallet`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/get-started/installing-cardano-node), [Running cardano-node](/docs/get-started/running-cardano) and [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guides first.
 
-This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to the `testnet` network.
+This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to a [testnet network](docs/get-started/testnets-and-devnets.md).
 
 :::
 

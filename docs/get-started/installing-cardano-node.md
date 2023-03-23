@@ -31,7 +31,7 @@ To set up the components, you will need:
 * **16GB** of RAM and at least **75GB** of free disk space
 
 :::note
-If intending to connect to mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
+If intending to connect to Mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
 :::
 
 ### Choose your Platform

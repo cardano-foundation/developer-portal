@@ -21,12 +21,12 @@ This guide does not cover the topic of running a block-producing `cardano-node` 
 ### Testnet
 There are two types of testnet: `preview` and `pre-prod`.
 
-- **Preview Testnet**: Testing release candidates and mainnet releases. Leads mainnet hard forks by at least 4 weeks. This net is for those who just want to see how it runs, get familiarised and play with cardano-node.
+- **Preview Testnet**: Testing release candidates and Mainnet releases. Leads Mainnet hard forks by at least 4 weeks. This net is for those who just want to see how it runs, get familiarised and play with cardano-node.
 
-- **Pre-Production Testnet**: Testing release candidates and mainnet releases. Forks at approximately same time as mainnet (within an epoch of each other). This net is ideal for those who are ready to run the mainnet but want to test it before running it.
+- **Pre-Production Testnet**: Testing release candidates and Mainnet releases. Forks at approximately same time as Mainnet (within an epoch of each other). This net is ideal for those who are ready to run the Mainnet but want to test it before running it.
 
 ### Production (Mainnet)
-This is the live Production. Only gets official mainnet releases. Please use this net once you are ready to use the cardano-node.
+This is the live Production. Only gets official Mainnet releases. Please use this net once you are ready to use the cardano-node.
 
 ### Configuration Files
 
@@ -98,9 +98,9 @@ Each network has a `config` file, `genesis` file(s), `topology` file, and unique
 This section will be updated when new **Cardano** networks come online with their respective configuration files and **Network Magic**.
 :::
 
-You might be asking what the difference is between `mainnet` and `testnet` and why there are two networks? To put it simply, **Cardano** is an open-source blockchain, and anyone is free to spin up a network based on **Cardano's** software components. The `mainnet` network was the first one established during the start of the **Byron** era in 2017.  And everyone participating in the network agreed that is where all the real value of **Cardano** lives.
+You might be asking what the difference is between `mainnet` and `testnet` and why there are two official network types? To put it simply, **Cardano** is an open-source blockchain, and anyone is free to spin up a network based on **Cardano's** software components. The `mainnet` network was the first one established during the start of the **Byron** era in 2017.  And everyone participating in the network agreed that is where all the real value of **Cardano** lives.
 
- Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up a sandbox or testnet version of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
+ Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up sandboxes or testnet versions of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
 
 ### Running the node
 
@@ -188,7 +188,7 @@ $HOME/cardano/testnet/
 └── topology.json
 1 directory, 4 files
 ```
-> As you may have noticed, we are planning to run a `testnet` node in this example and have downloaded the configuration files into the `$HOME/cardano/testnet/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/testnet/` successfully. The argument would look something like this: 
+> As you may have noticed, we are planning to run a testnet node in this example and have downloaded the configuration files into the `$HOME/cardano/testnet/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/testnet/` successfully. The argument would look something like this: 
 ```
 --database-path $HOME/cardano/testnet/db
 ```
@@ -311,7 +311,7 @@ Finally, we can now test querying the blockchain tip of our `cardano-node`:
 ```
 
 :::note
-We include `--testnet-magic <NetworkMagic>` in the parameter for `cardano-cli query tip` because we are using a `testnet` node. If you intend to query `mainnet` instead, please use the `--mainnet` parameter  and make sure your node is connected to the `mainnet` network.
+We include `--testnet-magic <NetworkMagic>` in the parameter for `cardano-cli query tip` because we are using a testnet node. If you intend to query `mainnet` instead, please use the `--mainnet` parameter  and make sure your node is connected to the `mainnet` network.
 :::
 
 What you see here is the local tip data of your node. This case, means that you are synced up to `block: 2598870` and `slot: 27149964`.
