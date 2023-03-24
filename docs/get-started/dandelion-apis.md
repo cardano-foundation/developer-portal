@@ -62,7 +62,7 @@ values={[
   <TabItem value="curl">
 
 ```sh
-# testnet
+# testnets
 curl -H 'Content-Type: application/json' \
      -H 'Accept: application/json' \
      --data-binary \
@@ -99,9 +99,9 @@ values={[
   <TabItem value="curl">
 
 ```sh
-# testnet
+# testnets
 curl -s https://explorer-api.testnet.dandelion.link/api/txs/last
-# mainnet
+# Mainnet
 curl -s https://explorer-api.mainnet.dandelion.link/api/txs/last
 ```
   </TabItem>

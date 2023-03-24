@@ -53,6 +53,15 @@ export const Tags = {
     color: '#921f32',
   },
 
+  // Crystal
+  crystal: {
+    label: "Crystal",
+    description:
+      "Crystal language",
+    icon: null,
+    color: '#ddd',
+  },
+
   // Golang
   golang: {
     label: "Go",
@@ -850,13 +859,13 @@ export const Showcases = [
     getstarted: "/docs/operate-a-stake-pool/frankenwallet",
     tags: ["operatortool"],
   },
-  { 
-    title: "cnft", 
-    description: "A library for validating metadata for the 721 metadatum property. Complies with community standards", 
-    preview: require("./builder-tools/cnft9000.png"), 
-    website: "https://github.com/ada9000/cnft#readme", 
-    getstarted: null, 
-    tags: ["javascript", "typescript", "nft"] 
+  {
+    title: "cnft",
+    description: "A library for validating metadata for the 721 metadatum property. Complies with community standards",
+    preview: require("./builder-tools/cnft9000.png"),
+    website: "https://github.com/ada9000/cnft#readme",
+    getstarted: null,
+    tags: ["javascript", "typescript", "nft"]
   },
   {
     title: "Bakrypt.io",
@@ -940,11 +949,11 @@ export const Showcases = [
     tags: ["operatortool", "cli"],
   },
   {
-    title: "eopsin",
+    title: "opshin",
     description:
       "A simple pythonic programming language for Smart Contracts on Cardano.",
-    preview: require("./builder-tools/eopsin.png"),
-    website: "https://github.com/ImperatorLang/eopsin",
+    preview: require("./builder-tools/opshin.png"),
+    website: "https://github.com/OpShin/opshin",
     getstarted: null,
     tags: ["python", "cli", "plutus"],
   },
@@ -972,6 +981,30 @@ export const Showcases = [
     getstarted: null,
     tags: ["http", "typescript", "javascript", "wallet", "serialization", "operatortool"],
   },
+  {
+    title: "DCOne Crypto Webhook API",
+    description:"API for developers to receive information on changing stake balance.",
+    preview: require("./builder-tools/dconecrypto-webhook.png"),
+    website: "https://github.com/DCOneCrypto/StakeAddress-Tracking-Webhook-API",
+    getstarted: null,
+    tags: ["http"],
+  },
+  {
+    title: "blockfrost-crystal",
+    description: "A Crystal SDK for the Blockfrost.io API.",
+    preview: require("./builder-tools/blockfrost-crystal.png"),
+    website: "https://github.com/blockfrost/blockfrost-crystal",
+    getstarted: null,
+    tags: ["crystal", "sdk", "json"],
+  },
+  {
+    title: "cardano-kit-crystal",
+    description: "At toolkit for Crystal to ease development for the Cardano blockchain.",
+    preview: require("./builder-tools/cardano-kit-crystal.png"),
+    website: "https://github.com/wout/cardano-kit",
+    getstarted: null,
+    tags: ["crystal", "serialization"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -987,6 +1020,7 @@ function sortShowcases() {
 
 export const LanguagesOrTechnologiesTags = [
   "cli",
+  "crystal",
   "golang",
   "haskell",
   "http",

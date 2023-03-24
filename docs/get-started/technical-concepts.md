@@ -138,3 +138,8 @@ Learn about Kogmios, a Kotlin library for communicating with Ogmios.
  ##  Aiken
 Learn about Aiken, a bespoke smart contract language for Cardano.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/9wbQ33uzwsc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Voltaire Governance
+Learn about the upcoming CIP-1694 and how voting and governance might work in the Voltaire era.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/KhxPlWh8gFg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
