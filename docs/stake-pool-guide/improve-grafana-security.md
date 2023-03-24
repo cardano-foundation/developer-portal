@@ -106,13 +106,24 @@ https://your-FQDN
 
 ### Post install nginx hardening
 
-**Block any unwanted HTTP method, except POST GET and HEAD**
+**Block any unwanted HTTP method, except PUT POST GET and HEAD and configure websocket**
 ```shell
 sudo nano /etc/nginx/sites-enabled/<your FQDN.conf>
 ```
 Paste this line inside your "location /" block :
 ```shell
-limit_except GET HEAD POST { deny all; }
+limit_except PUT GET HEAD POST { deny all; }
+```
+Paste this sub-block inside the first "server {" block
+```shell
+# Proxy Grafana Live WebSocket connections.
+  location /api/live/ {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_set_header Host $http_host;
+    proxy_pass http://grafana;
+  }
 ```
 Save and close.
 
@@ -223,10 +234,21 @@ You should now have a “Sign-in with Google” option on the login page. You ca
 
 ### Optional: Admin configuration
 
-We are going to make the Google Account Admin, and then remove the local Admin/password account.
+**Give the Google Account the administrator role, and then remove the local Admin/Password account**
 
 1- Access your Grafana UI with your local Admin account
 
 2- Go to "Users", and make your Google Account "Admin" by changing its role
 
 3- Log in with your Google Account, go to "Users", and remove the local Admin account.
+
+**Disable login form to allow only Google OAuth**
+
+```shell
+sudo nano /etc/grafana/grafana.ini
+```
+In the [auth] section  :
+```shell
+disable_login_form = true
+```
+Save and close the file
