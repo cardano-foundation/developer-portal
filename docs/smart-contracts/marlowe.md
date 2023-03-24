@@ -40,10 +40,10 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 5. *If you want to run your contract from the command-line using the Marlowe Runtime backend,* then follow the [tutorial for Marlowe Runtime](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/doc/tutorial.ipynb). A video [Marlowe Runtime Tutorial](https://youtu.be/WlsX9GhpKu8) demonstrates its use.
 6. *If you want to run your contract using Marlowe Lambda,* follow the example for [using Marlowe Lambda from the command line](https://github.com/input-output-hk/marlowe-lambda/blob/main/examples/zcb.ipynb) or study the example [web application for Marlowe Lambda](https://github.com/input-output-hk/marlowe-lambda/tree/main/web). Videos [Marlowe Lambda at the Command Line](https://youtu.be/huXbRyrmW60) and [Marlowe Lambda in the Browser](https://youtu.be/o5m_y5l_i_g) demonstrate the use of Marlowe Lambda.
 
-### Why can't I run my Marlowe contract on `mainnet`?
+### Why can't I run my Marlowe contract on Mainnet?
 
-- Marlowe's audit is not complete, so it is not advisable to run Marlowe contracts on `mainnet`.
-- However, a pull request [enable Marlowe on `mainnet`](https://github.com/input-output-hk/marlowe-cardano/pull/377) modifies Marlowe tools for running on `mainnet`.
+- Marlowe's audit is not complete, so it is not advisable to run Marlowe contracts on Mainnet.
+- However, a pull request [enable Marlowe on `mainnet`](https://github.com/input-output-hk/marlowe-cardano/pull/377) modifies Marlowe tools for running on Mainnet.
 
 ### GitHub repositories
 

@@ -29,7 +29,7 @@ Download the platform-specific binaries from the [latest release](https://github
 ```console
 $ cscli --help
 cscli v0.3.0
-A lightweight cross-platform tool for building and serialising Cardano wallet entities (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks. Please refer to https://github.com/CardanoSharp/cscli for further documentation.
+A lightweight cross-platform tool for building and serialising Cardano wallet entities (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnets or Mainnet. Please refer to https://github.com/CardanoSharp/cscli for further documentation.
 
 USAGE: cscli (OPTION | COMMAND)
 
