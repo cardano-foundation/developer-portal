@@ -1005,6 +1005,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["crystal", "serialization"]
   },
+  {
+    title: "DCOne Crypto Telegram Discord API",
+    description:"Allows users to connect via API to receive information on changes to the Cardano blockchain stake balance about Telegram and Discord",
+    preview: require("./builder-tools/dconecrypto-telegram-discord.png"),
+    website: "https://github.com/DCOneCrypto/StakeAddress-Tracking-Telegram-Discord",
+    getstarted: null,
+    tags: ["http","json"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
