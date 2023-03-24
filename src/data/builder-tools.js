@@ -14,7 +14,7 @@
  *
  */
 
-import React from "react";f
+import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
 import { Fav } from '../svg/fav.svg'
 
