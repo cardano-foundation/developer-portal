@@ -437,7 +437,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-client-lib.png"),
     website: "https://github.com/bloxbean/cardano-client-lib",
     getstarted: null,
-    tags: ["java", "sdk"],
+    tags: ["java", "sdk", "favorite"],
   },
   {
     title: "Imperator - imperative, secure SC programming language",
