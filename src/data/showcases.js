@@ -1235,6 +1235,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "Langarnia",
+    description:
+      ".Langarnia is a 3D fantasy game designed to teach languages",
+    preview: require("./showcase/langarnia.png"),
+    website: "https://www.langarnia.com",
+    source: null,
+    tags: ["educational", "game"],
+   },
 ];
 
 export const TagList = Object.keys(Tags);
