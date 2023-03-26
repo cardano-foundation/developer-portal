@@ -1238,7 +1238,7 @@ export const Showcases = [
   {
     title: "Langarnia",
     description:
-      ".Langarnia is a 3D fantasy game designed to teach languages",
+      "Langarnia is a 3D fantasy game designed to teach languages.",
     preview: require("./showcase/langarnia.png"),
     website: "https://www.langarnia.com",
     source: null,
