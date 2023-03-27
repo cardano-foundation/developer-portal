@@ -1242,7 +1242,7 @@ export const Showcases = [
     preview: require("./showcase/langarnia.png"),
     website: "https://www.langarnia.com",
     source: null,
-    tags: ["educational", "game"],
+    tags: ["game"],
    },
 ];
 
