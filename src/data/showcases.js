@@ -1238,7 +1238,7 @@ export const Showcases = [
   {
     title: "Lace",
     description: 
-      "Lace welcomes you into the new world of Web3, letting you manage your digital assets, access NFTs, and easily stake your ada, all from one easy-to-use interface.",
+      "A new light wallet platform from IOG, the creators of Cardano. Manually verified by an independent auditor, Lace lets you quickly, easily, and securely manage your digital assets and enjoy Web3.",
     preview: require("./showcase/lace.png"),
     website: "https://www.lace.io/",
     source: null,
