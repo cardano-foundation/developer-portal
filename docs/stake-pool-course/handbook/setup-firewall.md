@@ -14,6 +14,6 @@ Resources to help you setting up a basic firewall:
 
 :::danger Stake Pool Security
 
-Before you run your pool on mainnet you should have a good understanding of stake pool security. Make sure to read a lot in the [Stake Pool Security Forum](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157) and learn about best practises. 
+Before you run your pool on Mainnet you should have a good understanding of stake pool security. Make sure to read a lot in the [Stake Pool Security Forum](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157) and learn about best practises. 
 
 :::

@@ -60,7 +60,7 @@ console.log(wallet.paymentAddr);
 console.log(pool.vrf.vkey);
 ```
 
-## For testnet for example this is the working version
+## For testnets for example this is the working version
 
 ```
 const CardanocliJs = require("cardanocli-js");
