@@ -17,6 +17,6 @@ export const preventH1Headline = (content: string, headline: string) => {
 };
 
 // Get a specific doc tag
-export const getDocTag = (content: string, tagName: string) => {
-  return content.match(new RegExp(`(?<=${tagName}: ).*`, ""));
+export const getDocTag = (content: string, tag_name: string) => {
+  return content.match(new RegExp(`(?<=${tag_name}: ).*`, ""));
 };

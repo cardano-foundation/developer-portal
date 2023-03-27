@@ -1038,13 +1038,13 @@ export const Showcases = [
     tags: ["nftsupport", "opensource", "token"],
   },
   {
-    title: "Haltscam",
+    title: "Profiler",
     description:
-      "Haltscam allows and provides a means of crowd-sourcing risky Cardano addresses, allowing community members to contribute to the database and prevent their fellow adopters from falling victim to scams or solicitation.",
-    preview: require("./showcase/haltscam.png"),
-    website: "https://haltscam.com/",
+      "Cardano explorer tailored to boost security and decision-making. Users can thoroughly examine their wallets, receiving a detailed overview of their transactions, tokens, and NFTs, complemented by interactive visualizations.",
+    preview: require("./showcase/profiler.png"),
+    website: "https://profiler.biz/",
     source: null,
-    tags: ["analytics"],
+    tags: ["analytics", "explorer"],
   },
   {
     title: "Dapps on Cardano",

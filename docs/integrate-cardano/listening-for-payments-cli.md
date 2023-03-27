@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 :::note
 This guide assumes that you have basic understanding of `cardano-cli`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/get-started/installing-cardano-node), [Running cardano-node](/docs/get-started/running-cardano) and [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guides first.
 
-This guide also assumes that you have `cardano-node` running in the background and connected to the `testnet` network.
+This guide also assumes that you have `cardano-node` running in the background and connected to a [eestnet network](docs/get-started/testnets-and-devnets.md).
 :::
 
 ## Use case
@@ -59,7 +59,7 @@ cardano-cli address key-gen \
 --signing-key-file $HOME/receive-ada-sample/keys/payment.skey
 ```
 
-Since we now have our **payment key-pair**, the next step would be to generate a **wallet address** for the `testnet` network like so:
+Since we now have our **payment key-pair**, the next step would be to generate a **wallet address** for a testnet network like so:
 
 ```bash
 cardano-cli address build \
@@ -103,7 +103,7 @@ import cmd from 'node-cmd';
 
 // Path to the cardano-cli binary or use the global one
 const CARDANO_CLI_PATH = "cardano-cli";
-// The `testnet` identifier number
+// The testnet identifier number
 const CARDANO_NETWORK_MAGIC = 1097911063;
 // The directory where we store our payment keys
 // assuming our current directory context is $HOME/receive-ada-sample
@@ -122,7 +122,7 @@ const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
 const CARDANO_CLI_PATH: string = "cardano-cli";
-// The `testnet` identifier number
+// The testnet identifier number
 const CARDANO_NETWORK_MAGIC: number = 1097911063;
 // The directory where we store our payment keys
 // assuming our current directory context is $HOME/receive-ada-sample/receive-ada-sample
@@ -140,7 +140,7 @@ import subprocess
 
 # Path to the cardano-cli binary or use the global one
 CARDANO_CLI_PATH = "cardano-cli"
-# The `testnet` identifier number
+# The testnet identifier number
 CARDANO_NETWORK_MAGIC = 1097911063
 # The directory where we store our payment keys
 # assuming our current directory context is $HOME/receive-ada-sample
@@ -158,7 +158,7 @@ using SimpleExec; // `dotnet add package SimpleExec --version 7.0.0`
 
 // Path to the cardano-cli binary or use the global one
 const string CARDANO_CLI_PATH = "cardano-cli";
-// The `testnet` identifier number
+// The testnet identifier number
 const int CARDANO_NETWORK_MAGIC = 1097911063;
 // The directory where we store our payment keys
 // assuming our current directory context is $HOME/user/receive-ada-sample
@@ -498,7 +498,7 @@ const cmd: any = require('node-cmd');
 
 // Path to the cardano-cli binary or use the global one
 const CARDANO_CLI_PATH: string = "cardano-cli";
-// The `testnet` identifier number
+// The testnet identifier number
 const CARDANO_NETWORK_MAGIC: number = 1097911063;
 // The directory where we store our payment keys
 // assuming our current directory context is $HOME/receive-ada-sample/receive-ada-sample
@@ -595,7 +595,7 @@ import subprocess
 
 # Path to the cardano-cli binary or use the global one
 CARDANO_CLI_PATH = "cardano-cli"
-# The `testnet` identifier number
+# The testnet identifier number
 CARDANO_NETWORK_MAGIC = 1097911063
 # The directory where we store our payment keys
 # assuming our current directory context is $HOME/receive-ada-sample
