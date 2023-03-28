@@ -245,6 +245,7 @@ sudo ln -s /usr/bin/clang-9 /usr/bin/clang
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
 
 ```bash
+cabal update
 cabal build cardano-node cardano-cli
 ```
 
@@ -481,6 +482,7 @@ echo "" >> cabal.project.local
 
 #### Building and installing the node
 ```bash
+cabal update
 cabal build all
 ```
 :::caution
