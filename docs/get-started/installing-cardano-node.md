@@ -102,7 +102,7 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following:
 
 ```
-The GHCup Haskell installer, version v0.1.17.8
+The GHCup Haskell installer, version 0.1.19.2
 ```
 
 `ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
