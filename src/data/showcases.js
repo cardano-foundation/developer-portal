@@ -1235,15 +1235,6 @@ export const Showcases = [
     source: null,
     tags: ["analytics"],
   },
-  {
-    title: "Lace",
-    description: 
-      "A new light wallet platform from IOG, the creators of Cardano. Manually verified by an independent auditor, Lace lets you quickly, easily, and securely manage your digital assets and enjoy Web3.",
-    preview: require("./showcase/lace.png"),
-    website: "https://www.lace.io/",
-    source: null,
-    tags: ["nftsupport", "wallet"],
-  },
 ];
 
 export const TagList = Object.keys(Tags);
