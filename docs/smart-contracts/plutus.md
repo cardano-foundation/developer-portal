@@ -62,9 +62,9 @@ Prior knowledge of Haskell or functional programming is also recommended, as Plu
 
 ## Plutus Project-Based Learning (PPBL)
 
-[Plutus Project-Based Learning](https://en.plutuspbl.io/) is a free course from [Gimbalabs](https://www.gimbalabs.com/) that provides a hands-on approach to learning Cardano development. The goal of PPBL is to onboard Contributors to real Projects.
+[Plutus Project-Based Learning](https://en.plutuspbl.io/) is a free course from [Gimbalabs](https://www.gimbalabs.com/) that provides a hands-on approach to learning Cardano development. The goal of PPBL is to onboard contributors to real projects.
 
-PPBL is built to complement the Plutus Pioneer Program. Students can complete both courses in any order they choose. Students can prepare for the Plutus Pioneer Program by working through the PPBL course, or they can apply what they have learned in PPP by joining the PPBL course.
+PPBL is built to complement the [Plutus Pioneer Program](#get-started-with-the-plutus-pioneer-program). Students can complete both courses in any order they choose. Students can prepare for the Plutus Pioneer Program by working through the PPBL course, or they can apply what they have learned in PPP by joining the PPBL course.
 
 PPBL takes a big-picture view of Cardano development so that students can learn to contextualize the role of smart contracts in full-stack Cardano applications. Course embedded projects give students the chance to investigate new design patterns, and to learn about questions at the frontiers of Cardano development.
 
