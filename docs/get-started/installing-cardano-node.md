@@ -28,7 +28,7 @@ To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
 * An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)
-* **16GB** of RAM and at least **75GB** of free disk space
+* **16GB** of RAM and at least **125GB** of free disk space
 
 :::note
 If intending to connect to Mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
@@ -102,7 +102,7 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following:
 
 ```
-The GHCup Haskell installer, version v0.1.17.8
+The GHCup Haskell installer, version 0.1.19.2
 ```
 
 `ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
@@ -177,7 +177,7 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install Secp256k1 which is required from 1.35.0 cardano-node version onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -245,7 +245,8 @@ sudo ln -s /usr/bin/clang-9 /usr/bin/clang
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
 
 ```bash
-cabal build cardano-node cardano-cli
+cabal update
+cabal build all
 ```
 
 Install the newly built node and CLI commands to the $HOME/.local/bin directory:
@@ -417,7 +418,7 @@ llvm installation path might differs based on your installation, if you used def
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install Secp256k1 which is required from 1.35.0 cardano-node version onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -481,6 +482,7 @@ echo "" >> cabal.project.local
 
 #### Building and installing the node
 ```bash
+cabal update
 cabal build all
 ```
 :::caution
