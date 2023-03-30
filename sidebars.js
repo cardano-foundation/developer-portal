@@ -191,6 +191,7 @@ module.exports = {
         label: "Cardano Block Producer Configuration",
         items: [
                 "stake-pool-guide/generating-wallet-keys",
+		"stake-pool-guide/block-producer-keys",
                 ],
         },
 	{
