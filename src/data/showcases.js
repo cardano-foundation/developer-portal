@@ -1238,7 +1238,7 @@ export const Showcases = [
   {
     title: "selfdriven",
     description: 
-      "Self-driven project based learning with on-chain identity & achievememnts tracking.",
+      "Self-driven project based learning with on-chain identity & achievements tracking.",
     preview: require("./showcase/selfdriven.png"),
     website: "https://slfdrvn.io",
     source: null,
