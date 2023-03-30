@@ -789,8 +789,8 @@ export const Showcases = [
   },
   {
     title: "Acca",
-    description: "Library extending Aiken's standard library",
-    preview: require("./builder-tools/acca.jpeg"),
+    description: "Aiken's utility library (extending standard library).",
+    preview: require("./builder-tools/acca.png"),
     website: "https://github.com/Cardano-Fans/acca",
     getstarted: null,
     tags: ["plutus", "aiken"],
