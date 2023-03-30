@@ -14,7 +14,7 @@ To run a stake pool, three kind of keys are needed
 
 and to understand the purpose of these keys, refer to [Getting Started](../get-started#cardano-stake-pool-key-pairs)
 
-First we chnage to the keays folder we created in last chapter -
+First we change to the keys folder we created in last chapter -
 
 
 ```
