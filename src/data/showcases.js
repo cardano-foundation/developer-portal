@@ -1235,6 +1235,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "selfdriven",
+    description: 
+      "Self-driven project based learning with on-chain identity & achievememnts tracking.",
+    preview: require("./showcase/selfdriven.png"),
+    website: "https://slfdrvn.io",
+    source: null,
+    tags: ["educational", "identity"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
