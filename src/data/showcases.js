@@ -1271,6 +1271,15 @@ export const Showcases = [
     source: null,
     tags: ["nftproject"],
   },
+  {
+    title: "Hosky",
+    description: 
+      "Meme coin. Winner of the CNFT Awards 2022 in the category \"most impactful\".",
+    preview: require("./showcase/hosky.png"),
+    website: "https://hosky.io",
+    source: null,
+    tags: ["nftproject", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
