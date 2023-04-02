@@ -257,7 +257,7 @@ export const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades.",
+      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades. CNFT of the year 2021.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: "https://github.com/Berry-Pool/spacebudz",
@@ -583,7 +583,7 @@ export const Showcases = [
   {
     title: "Clay Mates",
     description:
-      "Of clay - duh! Collectibles brought to life and re-homed on the Cardano blockchain.",
+      "Collectibles brought to life and re-homed on the Cardano blockchain. Winner of the CNFT Awards 2022 in the category \"best generative art\".",
     preview: require("./showcase/clay-mates.png"),
     website: "https://www.claymates.org",
     source: null,
