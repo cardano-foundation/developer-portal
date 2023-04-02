@@ -1244,6 +1244,15 @@ export const Showcases = [
     source: null,
     tags: ["nftproject"],
   },
+  {
+    title: "VyFinance",
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"best longterm utility\".",
+    preview: require("./showcase/vyfinance.png"),
+    website: "https://vyfi.io",
+    source: null,
+    tags: ["nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
