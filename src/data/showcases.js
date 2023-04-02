@@ -1235,6 +1235,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "Aeoniumsky",
+    description: 
+      "Aeoniumsky is a visionary NFT creator from the future, renowned for their surreal and dreamlike animated artworks.",
+    preview: require("./showcase/aeoniumsky.png"),
+    website: "https://www.aeoniumsky.io",
+    source: null,
+    tags: ["nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
