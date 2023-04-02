@@ -1238,7 +1238,7 @@ export const Showcases = [
   {
     title: "Aeoniumsky",
     description: 
-      "Aeoniumsky is a visionary NFT creator from the future, renowned for their surreal and dreamlike animated artworks.",
+      "Winner of the CNFT Awards 2022 in the category \"best digital art\".",
     preview: require("./showcase/aeoniumsky.png"),
     website: "https://www.aeoniumsky.io",
     source: null,
