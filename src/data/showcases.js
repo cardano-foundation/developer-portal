@@ -1139,6 +1139,15 @@ export const Showcases = [
     source: null,
     tags: ["nftproject", "token"],
   },
+  {
+    title: "adahandle",
+    description: 
+      "A standardized NFT that developers and users can use to associate an address with a custom and human-readable address.",
+    preview: require("./showcase/adahandle.png"),
+    website: "https://adahandle.com",
+    source: null,
+    tags: ["nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
