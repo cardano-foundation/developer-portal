@@ -1253,6 +1253,15 @@ export const Showcases = [
     source: null,
     tags: ["nftproject"],
   },
+  {
+    title: "Universe 25",
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"Zeitgeist\".",
+    preview: require("./showcase/universe25.png"),
+    website: "https://www.universe25.io",
+    source: null,
+    tags: ["nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
