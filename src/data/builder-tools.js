@@ -789,7 +789,7 @@ export const Showcases = [
   },
   {
     title: "Acca",
-    description: "Aiken's utility library (extending standard library). It takes it's inspiration from libraries like Guava (Java) or Lodash (JavaScript). You can find in this library many missing functions, new data types (e.g. Either<a, b>) also collections (e.g. HashTree<a>, HashList<a>), Stack<a>).",
+    description: "Aiken's utility library (extending standard library). It takes it's inspiration from libraries like Guava (Java) or Lodash (JavaScript). You can find in this library many missing functions, new data types (e.g. Either) also collections (e.g. HashTree, HashList, Stack, Binomial Heap).",
     preview: require("./builder-tools/acca.png"),
     website: "https://github.com/Cardano-Fans/acca",
     getstarted: null,
