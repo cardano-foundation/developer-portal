@@ -1262,6 +1262,15 @@ export const Showcases = [
     source: null,
     tags: ["nftproject"],
   },
+  {
+    title: "Unsigned Algorithms",
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"most innovative\".",
+    preview: require("./showcase/unsigs.png"),
+    website: "https://www.unsigs.com",
+    source: null,
+    tags: ["nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
