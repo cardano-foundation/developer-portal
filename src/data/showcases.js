@@ -1235,6 +1235,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics"],
   },
+  {
+    title: "Mesh SDK",
+    description:
+      "An Open-Source library with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
+    preview: require("./showcase/mesh.png"),
+    website: "https://meshjs.dev/",
+    source: "https://github.com/MeshJS/mesh",
+    tags: ["favorite", "educational", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
