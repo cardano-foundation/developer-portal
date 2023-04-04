@@ -257,7 +257,7 @@ export const Showcases = [
   {
     title: "SpaceBudz",
     description:
-      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades.",
+      "A collection of 10,000 unique little astronauts represented as NFTs on the Cardano blockchain. SpaceBudz offers a market place with contract based trades. CNFT of the year 2021.",
     preview: require("./showcase/spacebudz.png"),
     website: "https://spacebudz.io",
     source: "https://github.com/Berry-Pool/spacebudz",
@@ -363,14 +363,6 @@ export const Showcases = [
     tags: ["wallet", "opensource"],
   },
   {
-    title: "Crypto Mage",
-    description: "This game centered around incredible wizards who create magic, increase their skills, find totems, learn craft, complete quests, and much more.",
-    preview: require("./showcase/cryptomage.png"),
-    website: "https://cryptomage.net",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-  {
     title: "Cardano Warriors",
     description: "The retro RPG NFT Collection minted in Cardano Blockchain.",
     preview: require("./showcase/cardanowarriors.png"),
@@ -393,23 +385,6 @@ export const Showcases = [
     website: "https://cardanoassets.com",
     source: null,
     tags: ["favorite", "analytics"],
-  },
-  {
-    title: "Cardano Bits",
-    description: "A collection of 10,000 unique pieces, minted with a time-locked policy, before the smart contracts were launched. Each collectible was generated with a mix of art pieces and computer algorithms.",
-    preview: require("./showcase/cardanobits.png"),
-    website: "https://cardanobits.art",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "Crypto Knitties",
-    description:
-      "Adorable, cuddly and unique, CryptoKnitties are collectable knitted NFT companions for your Cardano wallet.",
-    preview: require("./showcase/cryptoknitties.png"),
-    website: "https://knitties.io",
-    source: null,
-    tags: ["nftproject"],
   },
   {
     title: "Cardano Updates",
@@ -518,51 +493,6 @@ export const Showcases = [
     tags: ["bridge"]
   },
   {
-    title: "Jetchicken",
-    description:
-      "From the guys who brought you spacecoins, comes jetchickens. A collectible trading card game on the Cardano.",
-    preview: require("./showcase/jetchicken.png"),
-    website: "https://jetchicken.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "ADA Monsterz",
-    description:
-      "Collect. Trade. Share. Have Fun!",
-    preview: require("./showcase/ada-monsterz.png"),
-    website: "https://adamonsterz.com",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "Canuckz NFTs",
-    description:
-      "Limited Edition Collectibles on the Cardano Blockchain.",
-    preview: require("./showcase/canuckz.png"),
-    website: "https://canuckz-nft.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "Cardacity",
-    description:
-      "Your city is coming to Cardano.",
-    preview: require("./showcase/cardacity.png"),
-    website: "https://carda.city",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "Cardano Gods",
-    description:
-      "Behold the mighty Cardano Gods. A full on-chain NFT art project on Cardano network.",
-    preview: require("./showcase/cardano-gods.png"),
-    website: "https://cardanogods.com",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "Cardano Idols",
     description:
       "Tributes to our Cardano idols.",
@@ -572,47 +502,11 @@ export const Showcases = [
     tags: ["nftproject"],
   },
   {
-    title: "Cardinos",
-    description:
-      "Cardinos were born from a late night conversation about how simply awesome Dinosaurs and NFTs are.",
-    preview: require("./showcase/cardinos.png"),
-    website: "https://cardinos.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "Clay Mates",
     description:
-      "Of clay - duh! Collectibles brought to life and re-homed on the Cardano blockchain.",
+      "Collectibles brought to life and re-homed on the Cardano blockchain. Winner of the CNFT Awards 2022 in the category \"best generative art\".",
     preview: require("./showcase/clay-mates.png"),
     website: "https://www.claymates.org",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "Crypto Doggies",
-    description:
-      "Collect, trade, have fun, save real dogs!",
-    preview: require("./showcase/crypto-doggies.png"),
-    website: "https://cryptodoggies.org",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "The Galgos",
-    description:
-      "The Galgos is a set of limited edition hand drawn NFT collectibles with functionality. Collect, trade, discover.",
-    preview: require("./showcase/the-galgos.png"),
-    website: "https://thegalgos.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "The Hoskinsons",
-    description:
-      "The Hoskinsons is an original NFT collection commemorating the founders, developers, and personalities of the Cardano platform.",
-    preview: require("./showcase/the-hoskinsons.png"),
-    website: "https://thehoskinsons.com",
     source: null,
     tags: ["nftproject"],
   },
@@ -622,15 +516,6 @@ export const Showcases = [
       "Interactive, web-based NFT collectibles.",
     preview: require("./showcase/deadpxlz.png"),
     website: "https://pxlz.org",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "Kryptoids",
-    description:
-      "Legendary creatures on the Cardano blockchain!",
-    preview: require("./showcase/kryptoids.png"),
-    website: "https://kryptoids.monster",
     source: null,
     tags: ["nftproject"],
   },
@@ -662,14 +547,6 @@ export const Showcases = [
     tags: ["favorite", "wallet", "opensource", "nftsupport"],
   },
   {
-    title: "Politikoz | NFTs on Cardano!",
-    description: "The Cardano On-Chain Lottery Game.",
-    preview: require("./showcase/politikoz.png"),
-    website: "https://www.politikoz.io",
-    source: null,
-    tags: ["nftproject", "game"],
-  },
-  {
     title: "Cardano Token and NFT Builder",
     description:
       "Create your own native tokens and NFT in a few clicks without any code.",
@@ -688,15 +565,6 @@ export const Showcases = [
     tags: ["favorite", "minting", "marketplace", "nftsupport"],
   },
   {
-    title: "H.Y.P.E. Skulls",
-    description:
-      "A new level of collectible NFT is hitting the Cardano Network! 1,500 unique 3D-animated cards featuring the HYPE Skull. No two are alike. Always handcrafted. Never automated.",
-    preview: require("./showcase/hypeskulls.png"),
-    website: "https://seehype.com/",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "cardano-tools.io",
     description:
       "An advanced CNFT maker. You just pay network fees.",
@@ -713,15 +581,6 @@ export const Showcases = [
     website: "https://veritree.com",
     source: null,
     tags: ["token", "nftproject"],
-  },
-  {
-    title: "Cicada Tactics",
-    description:
-      "Cicada Tactics is a Multiplayer Tactical RPG. 1) Buy Cicada from smart contract Store. 2) Browser login with Cicada + Wallet. 3) Create multiplayer room to play together.",
-    preview: require("./showcase/cicadatactics.png"),
-    website: "https://cicadatactics.com",
-    source: null,
-    tags: ["game", "nftproject"],
   },
   {
     title: "Typhon Wallet",
@@ -1234,6 +1093,60 @@ export const Showcases = [
     website: "https://peerreview.money",
     source: null,
     tags: ["analytics"],
+  },
+  {
+    title: "Aeoniumsky",
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"best digital art\".",
+    preview: require("./showcase/aeoniumsky.png"),
+    website: "https://www.aeoniumsky.io",
+    source: null,
+    tags: ["nftproject"],
+  },
+  {
+    title: "VyFinance",
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"best longterm utility\".",
+    preview: require("./showcase/vyfinance.png"),
+    website: "https://vyfi.io",
+    source: null,
+    tags: ["nftproject"],
+  },
+  {
+    title: "Universe 25",
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"Zeitgeist\".",
+    preview: require("./showcase/universe25.png"),
+    website: "https://www.universe25.io",
+    source: null,
+    tags: ["nftproject"],
+  },
+  {
+    title: "Unsigned Algorithms",
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"most innovative\".",
+    preview: require("./showcase/unsigs.png"),
+    website: "https://www.unsigs.com",
+    source: null,
+    tags: ["nftproject"],
+  },
+  {
+    title: "Hosky",
+    description: 
+      "Meme coin. Winner of the CNFT Awards 2022 in the category \"most impactful\".",
+    preview: require("./showcase/hosky.png"),
+    website: "https://hosky.io",
+    source: null,
+    tags: ["nftproject", "token"],
+  },
+  {
+    title: "adahandle",
+    description: 
+      "A standardized NFT that developers and users can use to associate an address with a custom and human-readable address.",
+    preview: require("./showcase/adahandle.png"),
+    website: "https://adahandle.com",
+    source: null,
+    tags: ["nftproject"],
   },
 ];
 
