@@ -6,7 +6,7 @@ description: Generating Cardano Block producer Keys (StakePool certificate gener
 image: ../img/og-developer-portal.png
 ---
 
-To run a stake pool, three kind of keys are needed:
+To run a stake pool, three key pairs are needed:
 
 * Cold keys
 * KES keys
