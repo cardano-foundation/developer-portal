@@ -6,13 +6,13 @@ description: Generating Cardano Block producer Keys (StakePool certificate gener
 image: ../img/og-developer-portal.png
 ---
 
-To run a stake pool, three kind of keys are needed
+To run a stake pool, three kind of keys are needed:
 
 * Cold keys
 * KES keys
 * VRF keys
 
-and to understand the purpose of these keys, refer to [Getting Started](../get-started#cardano-stake-pool-key-pairs)
+To understand the purpose of these keys, refer to [Cardano Key Pairs](../operate-a-stake-pool/cardano-key-pairs.md).
 
 First we change to the keys folder we created in last chapter -
 
@@ -68,7 +68,7 @@ slotNo=$(cardano-cli query tip --testnet-magic 1 | jq -r '.slot')
 echo slotNo: ${slotNo}
 ```
 
-Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
+Find `kesPeriod` by dividing the slot tip number by `slotsPerKESPeriod`.
 
 ```
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
@@ -100,7 +100,7 @@ cd ..
 ![Relay](/img/stake-pool-guide/snsky_relay.jpg)
 
 
-Lets update the node startup script with the new KES, VRF and Operation Certificate.
+To update the node startup script with the new KES, VRF and Operation Certificate:
 
 ```
 cat > startTestNode.sh<< EOF 
@@ -129,13 +129,13 @@ cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-pa
 EOF
 ```
 
-Now lets restart the node.
+Restart the node:
 ```
 sudo systemctl reload-or-restart cardano-testnode
 ```
 
-after the restart, if we run the gLiveView again we should see that the node has changed from Relay to Core Node
+After the restart, if we run gLiveView again we should see that the node has changed from Relay to Core Node:
 
 ![Block Producer](/img/stake-pool-guide/snsky_producer.jpg)
 
-Now we have converted the relay node to block producing node. Next step will be to register the pool on the network.
+Now we have converted the relay node to block producing node. The next step will be to register the pool on the network.
