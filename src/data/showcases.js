@@ -6,20 +6,7 @@
  * every project is promoted.
  * 
  * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * - It must be built on Cardano and have a real use case. For example, a forum where 
- *   people can talk about Cardano is great, but nothing for this showcase section.
- * - It has to run on Cardano mainnet.
- * - It has to have a running product. (no presale, no protected pages, no coming soon messages)
- * - It has to have enough community reputation.
- * - It has to provide a unique value from existing showcase items. (we can't list 
- *   thousands of NFT or native tokens with the current UI)
- * - It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no 
- *   URL shortener, no app store links, or similar)
- * - The GitHub account that adds the project must not be new. 
- * - The GitHub account must have a history/or already be known in the Cardano community.
- * - Describe what makes your project special, avoid phrases like "the first this and that". Granular 
- *   details like which project was first is tribal attribute known to cause rift and conflicts.
- * - IF YOU ADD A PROJECT WHICH MAIN COMPONENT IS NFT, PLEASE SELECT "NFTPROJECT" AS TAG. (NOT "NFTSUPPORT")
+ * https://developers.cardano.org/docs/portal-contribute#add-a-project-to-showcase
  *
  * INSTRUCTIONS:
  * - Add your project in the JSON array below.
