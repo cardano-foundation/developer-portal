@@ -48,7 +48,7 @@ If you think something is wrong or something fundamental should change, discussi
 
 ### Add a project to showcase 
 Help to add good projects to the [showcase section](http://developers.cardano.org/showcase/). Please note the guidelines for adding new projects:
-* It must be built on Cardano and have a real use case. For example, a forum where people can talk about Cardano is great, but nothing for this showcase section.
+* It must be built on Cardano and have a real use case. For example, a forum where people can talk about Cardano is great, but not for this showcase section.
 * It has to run on Cardano mainnet.
 * It has to have a running product. (no presale, no protected pages, no coming soon messages)
 * It has to have enough community reputation.
