@@ -52,7 +52,7 @@ Help to add good projects to the [showcase section](http://developers.cardano.or
 * It has to run on Cardano mainnet.
 * It has to have a running product. (no presale, no protected pages, no coming soon messages)
 * It has to have enough community reputation.
-* It has to provide a unique value from existing showcase items. 
+* It has to provide a unique value distinct from existing showcase items. 
 * It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no URL shortener, no app store links, or similar)
 * The GitHub account that adds the project must not be new. 
 * The GitHub account must have a history/or already be known in the Cardano community.
