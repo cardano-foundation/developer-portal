@@ -57,7 +57,7 @@ Help to add good projects to the [showcase section](http://developers.cardano.or
 * The GitHub account that adds the project must not be new. 
 * The GitHub account must have a history/or already be known in the Cardano community.
 * Describe what makes your project special, avoid phrases like "the first this and that". Granular details like which project was first is tribal attribute known to cause rift and conflicts.
-* Please refrain from adding NFT projects unless they are immensely different from what is already listed in terms of utility. We can't list hundrets of NFT. For details please follow or take part in the discussion [here](https://github.com/cardano-foundation/developer-portal/discussions/243). (TLDR: we are adding winners of the CNFT awards)
+* Please refrain from adding NFT projects unless they are immensely different from what is already listed in terms of utility. We can't list hundreds of NFT projects. For details please follow or take part in the discussion [here](https://github.com/cardano-foundation/developer-portal/discussions/243). (TL;DR: we are adding winners of the [CNFT Awards](https://www.cnft-awards.io/))
 * If you add a project which main component is NFT, please select "nftproject" as tag. (not "nftsupport")
 
 Mainly the project showcase should be a place where someone new to the ecosystem can come to see what can be done. For example we agreed that projects have to have a running product today on Cardano mainnet, no promises, no pre-sales, no coming soon pages. We also don't [aim to map out a future ecosystem.](https://developers.cardano.org/showcase?tags=ecosystem)
