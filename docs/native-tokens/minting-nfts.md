@@ -41,7 +41,7 @@ Some services even offer to register your `policyID` to detect tokens that featu
 
 In addition to the unique `policyID` we can also attach metadata with various attributes to a transaction.
 
-Here is an example from [saturnnft.io/](https://saturnnft.io/) using the [CardanoSharp Library]()
+Here is an example from [saturnnft.io/](https://saturnnft.io/) using the [CardanoSharp Library](https://github.com/CardanoSharp/cardanosharp-wallet)
 
 ```json
 {
