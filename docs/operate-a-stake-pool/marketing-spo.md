@@ -42,6 +42,7 @@ After analyzing current stake pools, you can expect the average cost from 900$ t
 * 100$ for advertisement tools such as Google SEO, Facebook Ads, Instagram Ads, Coinzilla Ads, etc. This is a good strategy to get people to your website to learn more about Cardano and stake delegation
 * 300$ to 500$ for setting up a stake pool with 2 to 3 relay nodes and a web server
 * 500$ to 1000$ for a Youtube channel with all  necessary professional equipment
+* Pledge should be by far the largest expenditure for a stake pool. The larger the pledge, the more attractive the pool, the more Cardano is decentralized
 
 Note that you can check some budget and costs discussions such as:
 * [Current operators actual cost to operate vs actual returns thoughts](https://forum.cardano.org/t/current-operators-actual-cost-to-operate-vs-actual-returns-thoughts/59158/10)
