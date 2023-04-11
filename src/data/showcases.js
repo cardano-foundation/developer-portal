@@ -1136,6 +1136,16 @@ export const Showcases = [
     tags: ["nftproject"],
   },
 ];
+  {
+    title: "Bored Elizabeth II Palace Club",
+    description: 
+      "Generate passive income by staking NFTs, accessible to everyone at an affordable cost.",
+    preview: require("./showcase/boredelizabeth.png"),
+    website: "https://boredelizabeth.com",
+    source: null,
+    tags: ["nftproject"],
+  },
+];
 
 export const TagList = Object.keys(Tags);
 function sortShowcases() {
