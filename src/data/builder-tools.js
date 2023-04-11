@@ -2,10 +2,7 @@
  * BUILDER TOOLS SECTION INFO
  *
  * Requirements for adding your builder tool:
- * - It is an actual builder tool that adds value to Cardano developers.
- * - It has a stable domain name (a random for example, Netlify/Vercel domain is not allowed)
- * - The GitHub account that adds the builder tool must not be new.
- * - The GitHub account must have a history/or already be known in the Cardano community.
+ * https://developers.cardano.org/docs/portal-contribute#add-tools-to-builder-tools
  *
  * Instructions:
  * - Add your tool in the json array at the end of the array.
@@ -789,8 +786,8 @@ export const Showcases = [
   },
   {
     title: "Acca",
-    description: "Library extending Aiken's standard library",
-    preview: require("./builder-tools/aiken.png"),
+    description: "Aiken's utility library (extending standard library). It takes it's inspiration from libraries like Guava (Java) or Lodash (JavaScript). You can find in this library many missing functions, new data types (e.g. Either) also collections (e.g. HashTree, HashList, Stack, Binomial Heap).",
+    preview: require("./builder-tools/acca.png"),
     website: "https://github.com/Cardano-Fans/acca",
     getstarted: null,
     tags: ["plutus", "aiken"],
