@@ -1002,6 +1002,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["crystal", "serialization"]
   },
+   {
+    title: "GetBlock",
+    description: "GetBlock is a blockchain RPC provider that offers access to full nodes of Cardano, allowing developers to build blockchain applications and services.",
+    preview: require("./builder-tools/getblock.png"),
+    website: "https://getblock.io/",
+    getstarted: null,
+    tags: ["json", "websocket"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
