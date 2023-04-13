@@ -7,7 +7,7 @@ image: ../img/og/og-getstarted-installing-cardano-node.png
 ---
 :::important
 
-This documents current version is relevant for cardano-node release version [1.35.7](https://github.com/input-output-hk/cardano-node/releases/tag/1.35.7) (Apr-2023)
+This document's current version is relevant for `cardano-node` release version [1.35.7](https://github.com/input-output-hk/cardano-node/releases/tag/1.35.7) (Apr-2023)
 
 :::
 ### Overview
