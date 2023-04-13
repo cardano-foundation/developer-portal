@@ -5,6 +5,11 @@ sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
 image: ../img/og/og-getstarted-installing-cardano-node.png
 ---
+:::important
+
+This documents current version is relevant for cardano-node release version [1.35.7](https://github.com/input-output-hk/cardano-node/releases/tag/1.35.7) (Apr-2023)
+
+:::
 ### Overview
 
 This guide will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. It will enable you to interact with the **Cardano** blockchain, including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting/burning **native tokens**, creating a **stake pool**, executing **smart contracts**, and so much more!
@@ -15,9 +20,9 @@ If you want to avoid compiling the binaries yourself, you can download the lates
 [comment]: # (hard version code links, pending answer to...)
 [comment]: # (https://github.com/input-output-hk/cardano-node/issues/4688#issuecomment-1336154065)
 
-- [Linux](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-linux.tar.gz)
-- [MacOS](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-macos.tar.gz)
-- [Windows](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-win64.zip)
+- [Linux](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.7-linux.tar.gz)
+- [MacOS](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.7-macos.tar.gz)
+- [Windows](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.7-win64.zip)
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -28,7 +33,7 @@ To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
 * An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)
-* **16GB** of RAM and at least **125GB** of free disk space
+* **24GB** of RAM and at least **150GB** of free disk space (250GB recommended for future growth)
 
 :::note
 If intending to connect to Mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
