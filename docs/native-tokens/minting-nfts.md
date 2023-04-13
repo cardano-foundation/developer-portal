@@ -77,7 +77,7 @@ The query would look something like this:
 **There are currently 2 standards for Cardano NFT metadata.**
 The first is [CIP-25](https://cips.cardano.org/cips/cip25/) which is the old metadata standard that existed before smart contracts. These are the easiest to create but are very limited in functionality as the metadata cannot be read by smart contracts. As CIP-25 NFTs are easier to create, we will show how to create them in this beginners guide.
 
-The second standard is [CIP-68](https://cips.cardano.org/cips/cip68/) which is a dynamic standard that allows for complex NFT functionality with metadata that can be read by smart contracts. This is the preferred standard now that smart contracts are fully operational on Cardano. These NFTs are more difficult to create however. If you would like to create dynamic NFTs, [Saturn NFT](https://saturnnft.io/) supports minting on the standard with custom functionality.
+The second standard is [CIP-68](https://cips.cardano.org/cips/cip68/) which is a dynamic standard that allows for complex NFT functionality with metadata that can be read by smart contracts. This is the preferred standard now that smart contracts are fully operational on Cardano. These NFTs are more difficult to create however, a tutorial for how to create these NFTs can be found in this [open source repository](https://github.com/NicholasMaselli/CIP-68Showcase). If you don't mind a minting service having the policyId, [Saturn NFT](https://saturnnft.io/) supports minting on the standard with custom functionality.
 :::
 
 ### Time locking
