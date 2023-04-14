@@ -777,6 +777,14 @@ export const Showcases = [
     tags: ["javascript", "plutus"],
   },
   {
+    title: "plu-ts",
+    description: "Typescript-embedded smart contract programming language and transaction creation library",
+    preview: require("./builder-tools/plu-ts.svg"),
+    website: "https://pluts.harmoniclabs.tech/docs/intro",
+    getstarted: "/docs/get-started/plu-ts",
+    tags: ["plutus", "plu-ts", "javascript", "typescript", "serialization"],
+  },
+  {
     title: "Aiken",
     description: "A modern smart contract platform for Cardano.",
     preview: require("./builder-tools/aiken.png"),
