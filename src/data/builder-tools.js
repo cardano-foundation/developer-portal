@@ -782,7 +782,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.svg"),
     website: "https://pluts.harmoniclabs.tech/docs/intro",
     getstarted: "/docs/get-started/plu-ts",
-    tags: ["plutus", "plu-ts", "javascript", "typescript", "serialization"],
+    tags: ["plutus", "javascript", "typescript", "serialization"],
   },
   {
     title: "cardanocli-pluts",
@@ -790,7 +790,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.svg"),
     website: "https://github.com/HarmonicLabs/cardanocli-pluts",
     getstarted: null,
-    tags: ["plu-ts", "javascript", "typescript", "serialization"],
+    tags: ["javascript", "typescript", "serialization"],
   },
   {
     title: "koios-pluts",
@@ -798,7 +798,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.svg"),
     website: "https://github.com/HarmonicLabs/koios-pluts",
     getstarted: null,
-    tags: ["plu-ts", "javascript", "typescript", "serialization", "koios"],
+    tags: ["javascript", "typescript", "serialization", "koios"],
   },
   {
     title: "Aiken",
