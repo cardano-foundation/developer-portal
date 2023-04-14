@@ -11,7 +11,7 @@ In the classic UTxO model (Cardano SL in Byron and Shelley), a transaction outpu
 * its value (the amount)
 * its reference address (the "proof" of ownership telling who is the owner of the output)
 
-Every transaction has at least one input and at least one output. Transactions carries the information about money flow. Inputs inform where the money came from (source address), while outputs inform where the money goes to (destination address). Every new transactions spend outputs of previous transactions and produce new outputs that can be spent by future transactions. The blockchain records the collective history of those transactions. 
+Every transaction has at least one input and at least one output. Transactions carry the information about money flow. Inputs inform where the money came from (source address), while outputs inform where the money goes to (destination address). Every new transactions spend outputs of previous transactions and produce new outputs that can be spent by future transactions. The blockchain records the collective history of those transactions. 
 
 An unspent transaction output is called a UTxO (as in **U**nspent **Tx** **O**utput) and represents an amount of money owned by a participant that can be spent as an input in a new transaction. The key issue here is that a complete UTxO must be used as an input for a new transaction. UTxOs cannot be consumed in part. Rather, the difference is sent back to the source as a "change" during the transaction, which is represented as a new UTxO. 
 
