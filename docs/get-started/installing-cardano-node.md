@@ -15,14 +15,8 @@ This document's current version is relevant for `cardano-node` release version [
 This guide will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. It will enable you to interact with the **Cardano** blockchain, including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting/burning **native tokens**, creating a **stake pool**, executing **smart contracts**, and so much more!
 
 :::note
-If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
+If you want to avoid compiling the binaries yourself, you can [download the latest Linux, Mac, Windows versions](https://github.com/input-output-hk/cardano-node/releases/latest) of `cardano-node` and `cardano-cli` from the official IOHK release page.
 
-[comment]: # (hard version code links, pending answer to...)
-[comment]: # (https://github.com/input-output-hk/cardano-node/issues/4688#issuecomment-1336154065)
-
-- [Linux](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.7-linux.tar.gz)
-- [MacOS](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.7-macos.tar.gz)
-- [Windows](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.7-win64.zip)
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
