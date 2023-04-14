@@ -785,6 +785,22 @@ export const Showcases = [
     tags: ["plutus", "plu-ts", "javascript", "typescript", "serialization"],
   },
   {
+    title: "cardanocli-pluts",
+    description: "Wrapper of the cardano-cli tool based on the plu-ts offchain types",
+    preview: require("./builder-tools/plu-ts.svg"),
+    website: "https://github.com/HarmonicLabs/cardanocli-pluts",
+    getstarted: null,
+    tags: ["plu-ts", "javascript", "typescript", "serialization"],
+  },
+  {
+    title: "koios-pluts",
+    description: "Wrapper of the koios tool based on the plu-ts offchain types",
+    preview: require("./builder-tools/plu-ts.svg"),
+    website: "https://github.com/HarmonicLabs/koios-pluts",
+    getstarted: null,
+    tags: ["plu-ts", "javascript", "typescript", "serialization", "koios"],
+  },
+  {
     title: "Aiken",
     description: "A modern smart contract platform for Cardano.",
     preview: require("./builder-tools/aiken.png"),
