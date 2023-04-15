@@ -779,7 +779,7 @@ export const Showcases = [
   {
     title: "plu-ts",
     description: "Typescript-embedded smart contract programming language and transaction creation library",
-    preview: require("./builder-tools/plu-ts.svg"),
+    preview: require("./builder-tools/plu-ts.png"),
     website: "https://pluts.harmoniclabs.tech/docs/intro",
     getstarted: "/docs/get-started/plu-ts",
     tags: ["plutus", "javascript", "typescript", "serialization"],
@@ -787,7 +787,7 @@ export const Showcases = [
   {
     title: "cardanocli-pluts",
     description: "Wrapper of the cardano-cli tool based on the plu-ts offchain types",
-    preview: require("./builder-tools/plu-ts.svg"),
+    preview: require("./builder-tools/plu-ts.png"),
     website: "https://github.com/HarmonicLabs/cardanocli-pluts",
     getstarted: null,
     tags: ["javascript", "typescript", "serialization"],
@@ -795,7 +795,7 @@ export const Showcases = [
   {
     title: "koios-pluts",
     description: "Wrapper of the koios tool based on the plu-ts offchain types",
-    preview: require("./builder-tools/plu-ts.svg"),
+    preview: require("./builder-tools/plu-ts.png"),
     website: "https://github.com/HarmonicLabs/koios-pluts",
     getstarted: null,
     tags: ["javascript", "typescript", "serialization", "koios"],
