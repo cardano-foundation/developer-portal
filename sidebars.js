@@ -42,6 +42,7 @@ module.exports = {
             ],
           },
           "get-started/ogmios",
+          "get-started/plu-ts",
           "get-started/cardanosharp-wallet",
           {
             type: "category",
@@ -99,6 +100,7 @@ module.exports = {
       "smart-contracts/plutus",
       "smart-contracts/aiken",   
       "smart-contracts/opshin",
+      "smart-contracts/plu-ts",
     ],
     "Be Part of the Governance": [
       "governance/overview",
