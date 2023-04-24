@@ -15,7 +15,7 @@ Welcome to the documentation of a Point of Sale (POS) application built using Ca
 
 ### Getting Started
 
-Welcome to this tutorial on building a Point of Sale application using Cardano! In this tutorial, we will guide you through the process of building a fully functional Point of Sale application on top of the Cardano blockchain. To get started, you will need to fork the [starting point repository](https://github.com/fill-the-fill/cardano-pos-starting-point), which contains all the necessary files and configurations to begin building your own Point of Sale application.
+In this tutorial, we will guide you through the process of building a fully functional Point of Sale application on top of the Cardano blockchain. To get started, you will need to fork the [starting point repository](https://github.com/fill-the-fill/cardano-pos-starting-point), which contains all the necessary files and configurations to begin building your own Point of Sale application.
 
 The [starting point repository](https://github.com/fill-the-fill/cardano-pos-starting-point) already provides simple CSS and logic behind inputs, props passing and other things, so in this guide, we will mostly focus on connecting APIs and retrieving data from them to create a fully functional Point of Sale application using Cardano.
 
