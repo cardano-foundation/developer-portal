@@ -3,7 +3,7 @@ id: user-wallet-authentication
 title: Authenticating users with their Cardano wallet
 sidebar_label: User wallet authentication
 description: Full example on authenticating users on the web with their Cardano wallet.
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

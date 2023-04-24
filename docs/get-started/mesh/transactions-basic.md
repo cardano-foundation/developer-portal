@@ -4,7 +4,7 @@ sidebar_position: 4
 title: Basic Transactions
 sidebar_label: Basic Transactions
 description: Create transactions for sending assets.
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 As of writing, there are 4 main types of transactions:

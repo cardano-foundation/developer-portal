@@ -3,7 +3,7 @@ id: point-of-sale
 title: Receiving payments (Blockfrost API)
 sidebar_label: Receiving payments (Blockfrost API)
 description: Receiving payments (Blockfrost API)
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 --- 
 
 import Tabs from '@theme/Tabs';

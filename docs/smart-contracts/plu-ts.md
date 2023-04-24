@@ -3,7 +3,7 @@ id: plu-ts
 title: plu-ts
 sidebar_label: plu-ts
 description: plu-ts
-image: ../img/plu_ts-logo.svg
+image: /img/plu_ts-logo.svg
 --- 
 
 ## Introduction
