@@ -3,7 +3,7 @@ id: project-catalyst
 title: Fund your Project with Catalyst
 sidebar_label: Project Catalyst
 description: Fund your project with Catalyst
-image: https://developers.cardano.org/img/og/og-developer-portal.png
+image: /og/og-developer-portal.png
 ---
 
 Visit the official [Project Catalyst website](https://projectcatalyst.io/) for a comprehensive overview of the services and solutions provided by the world's largest decentralized innovation engine for solving real-world challenges.
