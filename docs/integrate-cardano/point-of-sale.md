@@ -13,68 +13,11 @@ Welcome to the documentation of a Point of Sale (POS) application built using Ca
 
 ![Point Of Sale](../../static/img/integrate-cardano/point-of-sale-example.png)
 
-<!-- ## Getting Started
-
-To help you get started, we have created a [**project**](https://github.com/fill-the-fill/pos-ada-payment) example repository that you can use as a starting point. You should clone this repository and play around with the code to see how it works.
-
-In this guide, we'll be using **Blockfrost** and **Coinmarketcap** APIs. Blockfrost will provide us with easy access to the Cardano blockchain, while Coinmarketcap will allow us to fetch real-time ada price.
-
-## Requirements 
-
-We'll need to obtain API keys for both services. These API keys will allow us to access the data and functionality we need to build and test our application.
-
-:::note
-
-PLease refer to `.env.example` in the repo and create `.env.local` file. Your keys should be stored there. 
-
-:::
-
-#### Get Blockfrost Key
-
-1. Go to [Blockfrost](https://blockfrost.io/auth/signin) and sign in to your account.
-2. Once you're signed in, navigate to your dashboard.
-3. Click on "Add new Project" to create a new project.
-4. Choose the Cardano network you want to use.
-5. After creating the project, you'll be presented with an API key. Copy this key and store it securely.
-6. In the code, go to environment file `.env.local` and put the key into `BLOCKFROST_API_KEY`.
-
-
-#### Get CoinMarketCap Key
-
-1. Go to [CoinMarketCap](https://pro.coinmarketcap.com/login/) and sign in to your account.
-2. Once you're signed in, navigate to your dashboard.
-3. Copy API Key.
-6. In the code, go to environment file `.env.local` and put the key into `COINMARKETCAP_API_KEY`.
-
-
-## Start your project
-
-Now that you have obtained the API keys for both Blockfrost and Coinmarketcap and stored them in your code, you are ready to start testing. To get started, make sure you have all the necessary dependencies installed, then run `npm run dev` to start your project.
-
-
-### Process
-
-The application allows users to generate a QR code for customers to make payments using ada. The application includes two input fields where the user can enter the amount of ada to be paid and the recipient's address. 
-
-![Point Of Sale](../../static/img/integrate-cardano/pos-inputs.png)
-
-Once the user presses the "Generate QR Code" button, a popup window will appear displaying the QR code and transaction details. It will also indicate, that payment is hasn't been completed yet. 
-
-![Point Of Sale](../../static/img/integrate-cardano/pos-waiting.png)
-
-When the customer completes the payment, the same popup window will display a message indicating that the payment has been successfully transferred. 
-
-![Point Of Sale](../../static/img/integrate-cardano/pos-approved.png)
-
-In the current example, the application compares the balance of the recipient address before and after a transaction is performed. The balance is checked every few seconds to detect any changes. Once there is a change of balance equal to or greater than the specified amount of ada, the application will display a success message in the popup window, indicating that the payment has been successfully transferred.
-
- -->
-
 ### Getting Started
 
-Welcome to this tutorial on building a Point of Sale application using Cardano! In this tutorial, we will guide you through the process of building a fully functional Point of Sale application on top of the Cardano blockchain. To get started, you will need to clone the starting point repository, which contains all the necessary files and configurations to begin building your own Point of Sale application.
+Welcome to this tutorial on building a Point of Sale application using Cardano! In this tutorial, we will guide you through the process of building a fully functional Point of Sale application on top of the Cardano blockchain. To get started, you will need to clone the [starting point repository](https://github.com/fill-the-fill/cardano-pos-starting-point), which contains all the necessary files and configurations to begin building your own Point of Sale application.
 
-The starting point repository already provides simple CSS and logic behind inputs, props passing and other things, so in this guide, we will mostly focus on connecting APIs and retrieving data from them to create a fully functional Point of Sale application using Cardano.
+The [starting point repository](https://github.com/fill-the-fill/cardano-pos-starting-point) already provides simple CSS and logic behind inputs, props passing and other things, so in this guide, we will mostly focus on connecting APIs and retrieving data from them to create a fully functional Point of Sale application using Cardano.
 
 ### Structure of the project
 
