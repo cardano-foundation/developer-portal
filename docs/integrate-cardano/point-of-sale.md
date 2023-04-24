@@ -312,25 +312,4 @@ Locate into `return` section and uncomment the following section:
     </a>
 ```
 
-    
-
 Congratulations! Your Point of Sale application using Cardano is now fully functional and ready to use. You can test it by entering an amount and address into the inputs, scanning the generated QR code, performing a transaction and waiting for confirmation on the popup screen.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
