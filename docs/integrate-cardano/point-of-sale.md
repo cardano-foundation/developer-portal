@@ -176,7 +176,7 @@ export default async function handler(req, res) {
 }
 ```
 
- In this file, we are creating another API request to `CoinMarketCap` to receive price of 1 ada to 1 usd.
+ In this file, we are creating another API request to `CoinMarketCap` to receive price of 1 ada in USD.
 
 ### Connecting APIs
 
@@ -294,7 +294,7 @@ Here it how it looks:
 
 #### Adding CardanoScan Redirect
 
-To add a redirect to CardanoScan in the href attribute of our popup component, we need to add the following code into our application.
+To add a redirect to CardanoScan in the `href` attribute of our popup component, we need to add the following code into our application.
 
 ```js
 import { LINKS } from "../constants/links";
