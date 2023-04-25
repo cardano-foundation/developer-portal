@@ -1144,6 +1144,15 @@ export const Showcases = [
     source: null,
     tags: ["nftsupport", "wallet"],
   },
+  {
+    title: "Aada.finance",
+    description: 
+      "Aada is a peer-to-peer lending and borrowing protocol on the Cardano blockchain.",
+    preview: require("./showcase/aada-finance.png"),
+    website: "https://app.aada.finance",
+    source: null,
+    tags: [ "lending", "marketplace", "nftsupport",],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
