@@ -1144,6 +1144,15 @@ export const Showcases = [
     source: null,
     tags: ["nftsupport", "wallet"],
   },
+  {
+    title: "flipr.io",
+    description: 
+      "flipr.io is a Web3 application that aspires to serve many purposes within the world of Cardano NFTs. ",
+    preview: require("./showcase/flipr.png"),
+    website: "https://www.flipr.io/",
+    source: null,
+    tags: ["marketplace", "nftsupport", "minting"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
