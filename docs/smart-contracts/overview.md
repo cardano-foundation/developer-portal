@@ -4,7 +4,7 @@ slug: /smart-contracts/
 title: Smart Contracts
 sidebar_label: Overview
 description: Learn how to create smart contracts on Cardano.
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 --- 
 
 ![Smart Contracts](../../static/img/card-smart-contracts-title.svg)

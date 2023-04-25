@@ -3,7 +3,7 @@ id: opshin
 title: opshin
 sidebar_label: opshin
 description: opshin
-image: ../img/logo-opshin.png
+image: /img/logo-opshin.png
 --- 
 
 ## Introduction

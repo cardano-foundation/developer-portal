@@ -4,7 +4,7 @@ sidebar_position: 2
 title: Get Started
 sidebar_label: Get Started
 description: Get Started with Mesh
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 There are multiple ways to get started with Mesh:

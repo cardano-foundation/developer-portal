@@ -3,7 +3,7 @@ id: utxo-model
 title: Classic UTxO model
 sidebar_label: Classic UTxO model
 description: "Stake pool course: The classic UTxO model." 
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 In the classic UTxO model (Cardano SL in Byron and Shelley), a transaction output locked by a script carries two pieces of information:
