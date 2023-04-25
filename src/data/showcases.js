@@ -1151,7 +1151,7 @@ export const Showcases = [
     preview: require("./showcase/aada-finance.png"),
     website: "https://app.aada.finance",
     source: null,
-    tags: [ "lending", "marketplace", "nftsupport",],
+    tags: ["lending", "marketplace", "nftsupport"],
   },
 ];
 
