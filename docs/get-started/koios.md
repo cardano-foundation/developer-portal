@@ -3,7 +3,7 @@ id: koios
 title: Get Started with Koios
 sidebar_label: Koios
 description: Get Started with Koios
-image: ../img/og/og-getstarted-koios.png
+image: /img/og/og-getstarted-koios.png
 ---
 
 Koios provides an open-source & elastic API layer that allows you to query Cardano blockchain (across Mainnet, testnets and guildnet network).

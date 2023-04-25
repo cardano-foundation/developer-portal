@@ -3,7 +3,7 @@ id: keys-addresses
 title: Creating keys and addresses
 sidebar_label: Creating keys and addresses
 description: "Stake pool course: Creating keys and addresses."
-image: ../img/og-developer-portal.png
+image: /img/og-developer-portal.png
 ---
 
 In the Shelley era of Cardano, every stakeholder can have two sets of keys and addresses:

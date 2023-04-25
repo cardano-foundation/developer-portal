@@ -3,7 +3,7 @@ id: lesson-3
 title: Lesson 3
 sidebar_label: Lesson 3
 description: "Stake pool course: Lesson 3."
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ## Create Stake Pool Keys and Addresses
