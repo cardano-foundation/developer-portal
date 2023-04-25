@@ -207,6 +207,14 @@ export const Tags = {
     description: "Projects that provide cross-chain bridge support.",
     icon: null,
     color: '#EDFF21'
+  },
+
+  // Funding 
+  funding: {
+    label: "Funding",
+    description: "Projects aimed at providing funding assistance to individuals.",
+    icon: null,
+    color: '#1e40af'
   }
 };
 
@@ -214,15 +222,6 @@ export const Tags = {
 // Please don't add the "favorite"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 export const Showcases = [
-  {
-    title: "Do It With Lovelace",
-    description:
-      "A Cardano-based dApp platform for easy and secure donations with a focus on community impact and transparency.",
-    preview: require("./showcase/do-it-with-lovelace.png"),
-    website: "https://app.doitwithlovelace.io",
-    source: null,
-    tags: ["ecosystem"],
-  },
   {
     title: "Cardano Kidz",
     description:
@@ -1152,6 +1151,15 @@ export const Showcases = [
     website: "https://www.lace.io/",
     source: null,
     tags: ["nftsupport", "wallet"],
+  },
+  {
+    title: "Do it with Lovelace",
+    description:
+      "A Cardano-based dApp platform for easy and secure donations with a focus on community impact and transparency.",
+    preview: require("./showcase/do-it-with-lovelace.png"),
+    website: "https://app.doitwithlovelace.io",
+    source: null,
+    tags: ["funding"],
   },
 ];
 
