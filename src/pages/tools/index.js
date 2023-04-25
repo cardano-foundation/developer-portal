@@ -321,10 +321,11 @@ function SearchBar() {
           history.push({
             ...location,
             search: newSearch.toString(),
+            state: prepareUserState(),
           });
           setTimeout(() => {
             document.getElementById("searchbar")?.focus();
-          }, 1);
+          }, 0);
         }}
       />
     </div>
