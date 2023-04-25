@@ -19,6 +19,14 @@ In this tutorial, we will guide you through the process of building a fully func
 
 The [starting point repository](https://github.com/fill-the-fill/cardano-pos-starting-point) already provides simple CSS and logic behind inputs, props passing and other things, so in this guide, we will mostly focus on connecting APIs and retrieving data from them to create a fully functional Point of Sale application using Cardano.
 
+:::note
+
+Make sure to run the command `npm install` in your terminal to install all the necessary dependencies.
+
+Use the command `npm run dev` and your project will be up and running.
+
+:::
+
 ### Structure of the project
 
 ```sh
