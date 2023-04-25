@@ -215,6 +215,15 @@ export const Tags = {
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 export const Showcases = [
   {
+    title: "Do It With Lovelace",
+    description:
+      "A Cardano-based dApp platform for easy and secure donations with a focus on community impact and transparency.",
+    preview: require("./showcase/do-it-with-lovelace.png"),
+    website: "https://app.doitwithlovelace.io",
+    source: null,
+    tags: ["ecosystem"],
+  },
+  {
     title: "Cardano Kidz",
     description:
       "Each of these unique Limited Edition designs is being minted on the Cardano Blockchain as a Non Fungible Token (NFT).",
