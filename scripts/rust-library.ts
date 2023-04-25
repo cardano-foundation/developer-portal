@@ -83,6 +83,7 @@ content = content.substring(0, 3) === "---" ? content.slice(3) : content;
     custom_edit_url + 
     "\ntitle: " +
     file_name +
+    "\nimage: /img/og/og-getstarted-serialization-lib.png" +
     "\n" +
     sidebarPosition(file_name) +
     "--- " +
