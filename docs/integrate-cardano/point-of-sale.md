@@ -77,7 +77,7 @@ Please refer to `.env.example` in the repo and create `.env.local` file. Your ke
 
 Before creating any API requests, it is important to add constants such as base URLs and  endpoints. These constants will be used throughout the project and will make it easier to make changes or updates in the future. 
 
-Navigate to `constants` folder, create `constants.js` file and insert the following based on network you will be using: 
+Navigate to `constants` folder, create `links.js` file and insert the following based on network you will be using: 
 
 <Tabs
   defaultValue="preview"
@@ -209,7 +209,7 @@ To fetch the `ada-usd` price upon loading the page, we need to add the `fetchAda
 This code will make an API request to retrieve the current price and display it on the page for the user to see. The `fetchAdaPrice` function will perform an API request to CoinMarketCap and set the `adaValue` state with the current value. Later on, in the return statement, the calculated value based on the input amount will be displayed as:
 
 ```js
-{amount} ₳ = ${(adaValue * amount).toFixed(2)}
+{amount} $ = {(amount / adaValue).toFixed(2)} ₳ 
 ```
 
 ## Connecting Blockfrost API to Popup
