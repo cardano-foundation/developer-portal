@@ -33,6 +33,14 @@ export const Tags = {
     color: '#65d2a1',
   },
 
+  // plu-ts
+  "plu-ts": {
+    label: "plu-ts",
+    description: "plu-ts libraries & tools",
+    icon: null,
+    color: '#007acc',
+  },
+
   // Chain Index
   chainindex: {
     label: "Chain Index",
@@ -782,7 +790,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.png"),
     website: "https://pluts.harmoniclabs.tech/docs/intro",
     getstarted: "/docs/get-started/plu-ts",
-    tags: ["plutus", "javascript", "typescript", "serialization"],
+    tags: ["plutus", "javascript", "typescript", "serialization", "plu-ts"],
   },
   {
     title: "cardanocli-pluts",
@@ -790,7 +798,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.png"),
     website: "https://github.com/HarmonicLabs/cardanocli-pluts",
     getstarted: null,
-    tags: ["javascript", "typescript", "serialization"],
+    tags: ["javascript", "typescript", "serialization", "plu-ts"],
   },
   {
     title: "koios-pluts",
@@ -798,7 +806,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.png"),
     website: "https://github.com/HarmonicLabs/koios-pluts",
     getstarted: null,
-    tags: ["javascript", "typescript", "serialization", "koios"],
+    tags: ["javascript", "typescript", "serialization", "koios", "plu-ts"],
   },
   {
     title: "Aiken",
