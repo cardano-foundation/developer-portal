@@ -3,7 +3,7 @@ id: run-cardano-node-handbook
 title: Get configuration files
 sidebar_label: Run cardano-node
 description: "Stake pool course: Learn how to run cardano-node."
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 In this course, we use the **Cardano TESTNET**, so let's get the configuration files for it.

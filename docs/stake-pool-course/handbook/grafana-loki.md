@@ -3,7 +3,7 @@ id: grafana-loki
 title: Grafana Loki Tutorial
 sidebar_label: Grafana Loki Tutorial
 description: "Stake pool course: Grafana Loki Tutorial"
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 As far as some of us here are running several cardano nodes, at some point it might happen that we might need to go through some cardano node logs, maybe it is relay what misbehaves or maybe you missed a block and now you need to find out what happened. I personally used to go through logs with tail, grep and etc. That doesn’t seems very productive way. How you can filter all logs from all nodes for 12:00-12:05 UTC 5th of May for example? You can of course grep it on several machines and then piece them together, but what if you can have a central location were all logs are stored and you can search through all logs from all nodes simultaneously or on particular box only or on several particular boxes and even create alerts based on particular log entry using regexp and etc.
 

@@ -3,7 +3,7 @@ id: retrieving-metadata
 title: Retrieving your metadata
 sidebar_label: Retrieving your metadata
 description: We will discuss the many ways to retrieve your metadata from the Cardano blockchain.
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ## Overview

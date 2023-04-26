@@ -4,7 +4,7 @@ sidebar_position: 3
 title: Wallets Integration
 sidebar_label: Wallets Integration
 description: Wallet for building transactions in your applications.
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 With Mesh, you can initialize a new wallet with:

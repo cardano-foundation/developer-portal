@@ -4,7 +4,7 @@ sidebar_position: 7
 title: Staking Transactions
 sidebar_label: Staking Transactions
 description: APIs for staking ADA and managing stake pools.
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 In this section, we will learn to create to stake ADA in stakepools. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).

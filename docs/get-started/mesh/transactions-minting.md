@@ -4,7 +4,7 @@ sidebar_position: 6
 title: Minting Transactions
 sidebar_label: Minting Transactions
 description: Learn to use ForgeScript to create minting transactions for minting and burning native assets.
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 In this section, we will learn to use ForgeScript to create minting transactions for minting and burning native assets. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).

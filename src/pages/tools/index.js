@@ -194,12 +194,11 @@ function ShowcaseFilters() {
 
 function filterBy(tags) {
   return (<div className={styles.checkboxList}>
-    {tags.map((tag) => {
+    {tags.map((tag, i) => {
       const { label, description, color } = Tags[tag];
       const id = `showcase_checkbox_id_${tag}`;
       return (
-        <>
-          <div className={styles.checkboxListItem}>
+          <div key={i} className={styles.checkboxListItem}>
             <ShowcaseTooltip
               id={id}
               text={description}
@@ -221,7 +220,6 @@ function filterBy(tags) {
               />
             </ShowcaseTooltip>
           </div>
-        </>
       );
     })}
   </div>);
@@ -254,7 +252,7 @@ function ShowcaseCards() {
                 )}
               >
                 <h2 className={styles.ourFavorites}>Our favorites</h2>
-                <Fav svgClass={styles.svgIconFavorite} size="small" />
+                <Fav className={styles.svgIconFavorite} size="small" />
                 <SearchBar />
               </div>
               <ul className={clsx("container", styles.showcaseList)}>
@@ -321,10 +319,11 @@ function SearchBar() {
           history.push({
             ...location,
             search: newSearch.toString(),
+            state: prepareUserState(),
           });
           setTimeout(() => {
             document.getElementById("searchbar")?.focus();
-          }, 1);
+          }, 0);
         }}
       />
     </div>

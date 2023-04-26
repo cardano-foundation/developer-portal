@@ -3,7 +3,7 @@ id: running-cardano
 title: How to run cardano-node
 sidebar_label: Running cardano-node
 description: This guide will explain and show you how to run the cardano-node and components on your system.
-image: ../img/og/og-getstarted-running-cardano-node.png
+image: /img/og/og-getstarted-running-cardano-node.png
 --- 
 ### Overview 
 
