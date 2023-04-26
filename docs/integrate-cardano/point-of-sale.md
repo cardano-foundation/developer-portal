@@ -19,6 +19,14 @@ In this tutorial, we will guide you through the process of building a fully func
 
 The [starting point repository](https://github.com/fill-the-fill/cardano-pos-starting-point) already provides simple CSS and logic behind inputs, props passing and other things, so in this guide, we will mostly focus on connecting APIs and retrieving data from them to create a fully functional Point of Sale application using Cardano.
 
+:::note
+
+Make sure to run the command `npm install` in your terminal to install all the necessary dependencies.
+
+Use the command `npm run dev` and your project will be up and running.
+
+:::
+
 ### Structure of the project
 
 ```sh
@@ -77,7 +85,7 @@ Please refer to `.env.example` in the repo and create `.env.local` file. Your ke
 
 Before creating any API requests, it is important to add constants such as base URLs and  endpoints. These constants will be used throughout the project and will make it easier to make changes or updates in the future. 
 
-Navigate to `constants` folder, create `constants.js` file and insert the following based on network you will be using: 
+Navigate to `constants` folder, create `links.js` file and insert the following based on network you will be using: 
 
 <Tabs
   defaultValue="preview"
@@ -209,7 +217,7 @@ To fetch the `ada-usd` price upon loading the page, we need to add the `fetchAda
 This code will make an API request to retrieve the current price and display it on the page for the user to see. The `fetchAdaPrice` function will perform an API request to CoinMarketCap and set the `adaValue` state with the current value. Later on, in the return statement, the calculated value based on the input amount will be displayed as:
 
 ```js
-{amount} ₳ = ${(adaValue * amount).toFixed(2)}
+{amount} $ = {(amount / adaValue).toFixed(2)} ₳ 
 ```
 
 ## Connecting Blockfrost API to Popup
