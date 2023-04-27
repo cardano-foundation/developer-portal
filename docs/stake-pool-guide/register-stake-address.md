@@ -6,22 +6,22 @@ description: Registering a Stake Address
 image: ../img/og-developer-portal.png
 ---
 
-Registering a new stake pool involves two steps - Registering a stake address and registering the the pool metadata. Stake address needs to be registered on the blockchain to be useful and it requires:
+Registering a new stake pool involves two steps - Registering a stake address and registering the the pool metadata. The stake address needs to be registered on the blockchain to be useful and it requires:
 
-* Create a registration certificate.
-* Submit the certificate to the blockchain with a transaction.
+* Creating a registration certificate.
+* Submitting the certificate to the blockchain with a transaction.
 
 To build the transaction the following information will be collected first:
 
-* tx-in: UTXO of the address that pays for the transaction and deposit
-* tx-out: The transaction output as ADDRESS VALUE
-* invalid-hereafter: Time that transaction is valid until (in slots)
-* certificate: stake address registration certificate
-* fee: The fee amount in Lovelace
+* `tx-in`: UTXO of the address that pays for the transaction and deposit
+* `tx-out`: The transaction output as ADDRESS VALUE
+* `invalid-hereafter`: Time that transaction is valid until (in slots)
+* `certificate-file`: stake address registration certificate
+* `fee`: The fee amount in Lovelace
 
-## {tx-in}: 
+## `tx-in`:
 
-Query the UTXO of the address that pays for the transaction and deposit
+Query the UTXO of the address that pays for the transaction and deposit:
 
 ```
 cd $HOME/cardano-testnet/keys
@@ -31,7 +31,7 @@ cardano-cli query utxo \
     --testnet-magic 1 > fullUtxo.out
 ```
 
-the result should look like the following:
+The result should look like the following:
 
 ```
 cat fullUtxo.out
@@ -40,24 +40,25 @@ cat fullUtxo.out
 > b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee     1      1000000000 lovelace
 ```
 
-so in this case the required UTXO would be - b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1
+so in this case the required UTXO would be `b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1`.
 
-## {tx-out}:
-This would be payment.addr and the amount that has to be payed and since we don't know how much the transaction will cost we put is as 1 ADA for the moment - $(cat payment.addr)+1000000
+## `tx-out`:
 
-## {invalid-hereafter}:
+This would be `payment.addr` and the amount that has to be paid.  Since we don't know how much the transaction will cost we put it as 1 ADA for the moment - `$(cat payment.addr)+1000000`
 
-Find out the current Slot
+## `invalid-hereafter`:
+
+Find out the current slot:
 ```
 currentSlot=$(cardano-cli query tip --testnet-magic 1 | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 
-The invalid-hereafter value must be greater than the current tip. In this example, we use current slot + 1000 -  $currentSlot+1000
+The `invalid-hereafter` value must be greater than the current tip. In this example, we use current slot + 1000 -  `$currentSlot+1000`.
 
-## {certificate}:
+## `certificate`:
 
-Create a stake address registration certificate -
+Create a stake address registration certificate:
 
 ```
 cardano-cli stake-address registration-certificate \
@@ -65,12 +66,13 @@ cardano-cli stake-address registration-certificate \
     --out-file stake.cert
 ```
 
-## {witness-override}:
-When calculating the fee for a transaction, the --witness-count option indicates the number of keys signing the transaction. You must sign a transaction submitting a stake address registration certificate to the blockchain using the secret—private—key for the payment address spending the input, as well as the secret key for the stake address to register.
+## `witness-override`:
 
-## {fee}:
+When calculating the fee for a transaction, the `--witness-count` option indicates the number of keys signing the transaction. You must sign a transaction submitting a stake address registration certificate to the blockchain using the secret key for the payment address spending the input, as well as the secret key for the stake address to register.
 
-Now, we build the transaction which will return the tx.raw transaction file and also the transaction fees.
+## `fee`:
+
+Now, we build the transaction which will return the `tx.raw` transaction file and also the transaction fees:
 
 ```
 cardano-cli transaction build \
@@ -89,29 +91,29 @@ The output is the transaction fee in lovelace:
 Estimated transaction fee: Lovelace 172013
 ```
 
-Registering the stake address, not only pay transaction fees, but also includes a deposit (which you get back when deregister the key) as stated in the protocol parameters:
+Registering the stake address, not only pays transaction fees, but also includes a deposit (which you get back when deregister the key) as indicated in the protocol parameters.
 
-The deposit amount can be found in the protocol.json under stakeAddressDeposit
+The deposit amount can be found in `protocol.json` under `stakeAddressDeposit`:
 
 ```
 cardano-cli query protocol-parameters \
     --testnet-magic 1  \
-    --out-file params.json
+    --out-file protocol.json
 
-stakeAddressDeposit=$(cat params.json | jq -r '.stakeAddressDeposit')
+stakeAddressDeposit=$(cat protocol.json | jq -r '.stakeAddressDeposit')
 echo $stakeAddressDeposit
 ```
 
 ## Build the transaction
 
-Next, the complete transaction output is calculated by subtracting the deposit and transaction fees from the amount we have in our payment address.
+Next, the complete transaction output is calculated by subtracting the deposit and transaction fees from the amount we have in our payment address:
 
 ```
 txOut=$((1000000000-${stakeAddressDeposit}-172013))
 echo ${txOut}
 ```
 
-Now we have all the information in place to build the final transaction file
+Now we have all the information in place to build the final transaction file:
 
 ```
 cardano-cli transaction build-raw \
@@ -125,7 +127,7 @@ cardano-cli transaction build-raw \
 
 ## Sign and Submit the transaction
 
-Sign the transaction with both the payment and stake secret keys.
+Sign the transaction with both the payment and stake secret keys:
 
 ```
 cardano-cli transaction sign \
@@ -136,11 +138,11 @@ cardano-cli transaction sign \
     --out-file tx.signed
 ```
 
-And submit it
+And submit it:
 
 ```
 cardano-cli transaction submit \
     --tx-file tx.signed \
     --testnet-magic 1 
 ```
-In the next section we will Registering the pool metadata.
+In the next section we will register the pool metadata.
