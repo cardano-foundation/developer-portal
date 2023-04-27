@@ -4,7 +4,7 @@ sidebar_position: 1
 title: Overview
 sidebar_label: Overview
 description: Mesh is an open-source library providing everything you need to build on Web3
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 Mesh is an open-source library providing everything you need to build applications on the Cardano blockchain with ease.

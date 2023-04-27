@@ -4,7 +4,7 @@ slug: /governance/
 title: Be Part of the Governance 
 sidebar_label: Overview
 description: Governance is an essential topic that includes Cardano Improvement Proposals (CIP), project funding, voting, and network parameters.
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ![Cardano Governance](../../static/img/card-governance-title.svg)

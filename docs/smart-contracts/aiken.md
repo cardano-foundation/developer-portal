@@ -3,7 +3,7 @@ id: aiken
 title: Aiken
 sidebar_label: Aiken
 description: Aiken
-image: ../img/aiken-logo.png
+image: /img/aiken-logo.png
 --- 
 
 ## Introduction

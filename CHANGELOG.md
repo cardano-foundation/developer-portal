@@ -1204,3 +1204,51 @@ All of the merged PRs in February
 - gufmar ([@gufmar](https://github.com/gufmar))
 - jinglescode ([@jinglescode](https://github.com/jinglescode))
 - LukaKurnjek ([@LukaKurnjek](https://github.com/LukaKurnjek))
+
+## 2023.12.0 (2023-03-31)
+
+All of the merged PRs in March
+
+#### PRs: 24
+
+- Add Changelog for February by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#975](https://github.com/cardano-foundation/developer-portal/pull/975)
+- Installing cardano-node: update links to binaries by ([@WesleyBatista](https://github.com/WesleyBatista)) in [#978](https://github.com/cardano-foundation/developer-portal/pull/978)
+- Minting NFTs: missing command output by ([@36thchambersoftware](https://github.com/36thchambersoftware)) in [#980](https://github.com/cardano-foundation/developer-portal/pull/980)
+- Modify testnet and devnets page by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#963](https://github.com/cardano-foundation/developer-portal/pull/963)
+- Add more technical concepts by Andrew Westberg by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#982](https://github.com/cardano-foundation/developer-portal/pull/982)
+- Remove Loxe Inc. from careers list by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#981](https://github.com/cardano-foundation/developer-portal/pull/981)
+- Add DCOne Webhook API to Builder Tools by ([@DCOneCrypto](https://github.com/DCOneCrypto)) in [#977](https://github.com/cardano-foundation/developer-portal/pull/977)
+- Update installing-cardano-node.md by ([@os11k](https://github.com/os11k)) in [#979](https://github.com/cardano-foundation/developer-portal/pull/979)
+- Modify spelling and add more clear description on testnet page  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#983](https://github.com/cardano-foundation/developer-portal/pull/983)
+- Add Crystal libraries by ([@wout](https://github.com/wout)) in [#984](https://github.com/cardano-foundation/developer-portal/pull/984)
+- Bump webpack from 5.75.0 to 5.76.1 by ([@dependabot](https://github.com/dependabot)) in [#987](https://github.com/cardano-foundation/developer-portal/pull/987)
+- Rename eopsin to opshin by ([@nielstron](https://github.com/nielstron)) in [#989](https://github.com/cardano-foundation/developer-portal/pull/989)
+- [Current Yarn Build fix] Modify regex in CIP script. by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#992](https://github.com/cardano-foundation/developer-portal/pull/992)
+- New Developer Spotlight blog for March 2023. Interview with Jingles, co-founder of Mesh by ([@thenic95](https://github.com/thenic95)) in [#994](https://github.com/cardano-foundation/developer-portal/pull/994)
+- Modify NFT minting course with addition of network selection by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#993](https://github.com/cardano-foundation/developer-portal/pull/993)
+- Modify CIP, Rust Library and Token Registry script constant namings.  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#996](https://github.com/cardano-foundation/developer-portal/pull/996)
+- Correct grammar and spelling for Mainnet and testnets (staging) by ([@rphair](https://github.com/rphair)) in [#991](https://github.com/cardano-foundation/developer-portal/pull/991)
+- Update Showcase item Haltscam, including rename to Profiler by ([@HT-Moh](https://github.com/HT-Moh)) in [#997](https://github.com/cardano-foundation/developer-portal/pull/997)
+- Tag Cardano Client Library as favorite by ([@matiwinnetou](https://github.com/matiwinnetou)) in [#1004](https://github.com/cardano-foundation/developer-portal/pull/1004)
+- Add Real World Marlowe to Marlowe page by ([@rphair](https://github.com/rphair)) in [#990](https://github.com/cardano-foundation/developer-portal/pull/990)
+- Add Lace to showcase by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#985](https://github.com/cardano-foundation/developer-portal/pull/985)
+- Add blurb about Plutus PBL course by ([@workshop-maybe](https://github.com/workshop-maybe)) in [#1009](https://github.com/cardano-foundation/developer-portal/pull/1009)
+- Revert "Add Lace to showcase" by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1007](https://github.com/cardano-foundation/developer-portal/pull/1007)
+- Update installing-cardano-node with minor fixes by ([@os11k](https://github.com/os11k)) in [#1008](https://github.com/cardano-foundation/developer-portal/pull/1008)
+
+#### Contributors: 14
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- WesleyBatista ([@WesleyBatista](https://github.com/WesleyBatista))
+- 36thchambersoftware ([@36thchambersoftware](https://github.com/36thchambersoftware))
+- DCOneCrypto ([@DCOneCrypto](https://github.com/DCOneCrypto))
+- os11k ([@os11k](https://github.com/os11k))
+- wout ([@wout](https://github.com/wout))
+- dependabot ([@dependabot](https://github.com/dependabot))
+- nielstron ([@nielstron](https://github.com/nielstron))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- rphair ([@rphair](https://github.com/rphair))
+- HT-Moh ([@HT-Moh](https://github.com/HT-Moh))
+- matiwinnetou ([@matiwinnetou](https://github.com/matiwinnetou))
+- olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
+- workshop-maybe ([@workshop-maybe](https://github.com/workshop-maybe))

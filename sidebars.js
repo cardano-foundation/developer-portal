@@ -42,6 +42,7 @@ module.exports = {
             ],
           },
           "get-started/ogmios",
+          "get-started/plu-ts",
           "get-started/cardanosharp-wallet",
           {
             type: "category",
@@ -67,6 +68,7 @@ module.exports = {
       "integrate-cardano/multi-witness-transactions-cli",
       "integrate-cardano/listening-for-payments-cli",
       "integrate-cardano/listening-for-payments-wallet",
+      "integrate-cardano/point-of-sale",
       "integrate-cardano/testnet-faucet",
       "integrate-cardano/user-wallet-authentication",
     ],
@@ -99,6 +101,7 @@ module.exports = {
       "smart-contracts/plutus",
       "smart-contracts/aiken",   
       "smart-contracts/opshin",
+      "smart-contracts/plu-ts",
     ],
     "Be Part of the Governance": [
       "governance/overview",

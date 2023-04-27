@@ -3,7 +3,7 @@ id: air-gap
 title: Air Gap Environment
 sidebar_label: Air Gap Environment
 description: Secure your private keys on a network-free transaction host.
-image: ../img/og/og-security-air-gap-environment.png
+image: /img/og/og-security-air-gap-environment.png
 ---
 
 "Air gap" originally meant a computer or subnetwork was surrounded by "air" and so could have no data cable connections in or out, so it would be isolated from other computers & networks. These days it also means no radio-based network connection either (WiFi, Bluetooth, etc.).
