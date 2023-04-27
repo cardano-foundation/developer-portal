@@ -3,7 +3,7 @@ id: testnet-faucet
 title: Testnet Faucet
 sidebar_label: Testnet Faucet
 description: Request some test ada (tAda) from the Cardano Testnet Faucet.
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 --- 
 
 The Testnet Faucet is a service that provides test ada (tAda) to users of the Cardano testnets. These tokens have no value, but they enable users to experiment with Cardano testnet features without spending real ada on the Mainnet. You can use test ada to [mint native tokens](../native-tokens/minting), to [play around with Cardano wallets](creating-wallet-faucet) or to [learn how to operate a stake pool](../operate-a-stake-pool/).

@@ -2,8 +2,8 @@
 id: minting-nfts
 title: Minting NFTs
 sidebar_label: Minting NFTs
-description: How to mint NFTs on Cardano.
-image: ../img/og/og-developer-portal.png
+description: How to mint NFTs on Cardano. 
+image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

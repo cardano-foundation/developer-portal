@@ -4,7 +4,7 @@ slug: /stake-pool-course/
 title: Stake Pool Course
 sidebar_label: Overview
 description: This course is designed to (re)introduce you to Cardano, walk you through how to set up a stake pool, and provide guidance on managing and maintaining your stake pool to ensure optimal performance and profitability.
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 **Welcome**, we are glad that you are interested in setting up a stake pool on Cardano.

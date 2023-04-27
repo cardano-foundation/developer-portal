@@ -3,7 +3,7 @@ id: plutus
 title: Plutus
 sidebar_label: Plutus
 description: Plutus
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ## Get started with Plutus

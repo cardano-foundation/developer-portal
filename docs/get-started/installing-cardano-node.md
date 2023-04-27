@@ -3,7 +3,7 @@ id: installing-cardano-node
 title: Installing cardano-node and cardano-cli from source
 sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
-image: ../img/og/og-getstarted-installing-cardano-node.png
+image: /img/og/og-getstarted-installing-cardano-node.png
 ---
 :::important
 

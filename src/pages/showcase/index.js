@@ -177,12 +177,11 @@ function ShowcaseFilters() {
         <ShowcaseFilterToggle />
       </div>
       <div className={styles.checkboxList}>
-        {TagList.map((tag) => {
+        {TagList.map((tag, i) => {
           const { label, description, color } = Tags[tag];
           const id = `showcase_checkbox_id_${tag}`;
           return (
-            <>
-              <div className={styles.checkboxListItem}>
+              <div key={i} className={styles.checkboxListItem}>
                 <ShowcaseTooltip
                   id={id}
                   text={description}
@@ -200,7 +199,7 @@ function ShowcaseFilters() {
                           }}
                         >
                           <Fav
-                            svgClass={styles.svgIconFavorite}
+                            className={styles.svgIconFavorite}
                             size="small"
                             style={{ display: "grid" }}
                           />
@@ -220,7 +219,6 @@ function ShowcaseFilters() {
                   />
                 </ShowcaseTooltip>
               </div>
-            </>
           );
         })}
       </div>
@@ -255,7 +253,7 @@ function ShowcaseCards() {
                 )}
               >
                 <h2 className={styles.ourFavorites}>Our favorites</h2>
-                <Fav svgClass={styles.svgIconFavorite} size="small" />
+                <Fav className={styles.svgIconFavorite} size="small" />
                 <SearchBar />
               </div>
               <ul className={clsx("container", styles.showcaseList)}>
@@ -322,10 +320,11 @@ function SearchBar() {
           history.push({
             ...location,
             search: newSearch.toString(),
+            state: prepareUserState(),
           });
           setTimeout(() => {
             document.getElementById("searchbar")?.focus();
-          }, 1);
+          }, 0);
         }}
       />
     </div>

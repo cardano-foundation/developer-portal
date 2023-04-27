@@ -3,7 +3,7 @@ id: lesson-5
 title: Lesson 5
 sidebar_label: Lesson 5
 description: "Stake pool course: Lesson 5."
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
  
 ## Logging and Monitoring with Prometheus
