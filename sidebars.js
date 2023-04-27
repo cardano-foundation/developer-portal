@@ -192,6 +192,7 @@ module.exports = {
         items: [
                 "stake-pool-guide/generating-wallet-keys",
 		"stake-pool-guide/block-producer-keys",
+		"stake-pool-guide/register-stake-address.md",
                 ],
         },
 	{
