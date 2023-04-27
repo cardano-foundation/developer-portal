@@ -1031,7 +1031,7 @@ export const Showcases = [
     description: "GetBlock is a blockchain RPC provider that offers access to full Cardano nodes, allowing developers to build blockchain applications and services.",
     preview: require("./builder-tools/getblock.png"),
     website: "https://getblock.io/nodes/ada/",
-    getstarted: https://getblock.io/docs/,
+    getstarted: "https://getblock.io/docs/",
     tags: ["json", "websocket"]
   },
 ];
