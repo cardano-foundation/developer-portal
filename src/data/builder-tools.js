@@ -1026,6 +1026,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["crystal", "serialization"]
   },
+  {
+    title: "Maestro",
+    description: "Fund, build & scale. The developer platform for Cardano.",
+    preview: require("./builder-tools/maestro.png"),
+    website: "https://gomaestro.org/",
+    getstarted: "https://docs.gomaestro.org/",
+    tags: ["http", "hosted"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
