@@ -1032,7 +1032,7 @@ export const Showcases = [
     preview: require("./builder-tools/maestro.png"),
     website: "https://gomaestro.org/",
     getstarted: "https://docs.gomaestro.org/",
-    tags: ["http", "hosted"]
+    tags: ["http", "hosted", "sdk"]
   },
 ];
 
