@@ -515,6 +515,16 @@ cp -p "$(./scripts/bin-path.sh cardano-node)" $HOME/.local/bin/
 cp -p "$(./scripts/bin-path.sh cardano-cli)" $HOME/.local/bin/
 ```
 
+In order to run the cardano-node as a service using systemd you need to run the following command:
+
+```bash
+ldconfig
+```
+If this is not done, you might run into the following error:
+```bash
+error while loading shared libraries: libsecp256k1.so.0: cannot open shared object file: No such file or directory
+```
+
 We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`$HOME/.zshrc` or `$HOME/.bashrc` ***depending on the shell application you use***)
 
 ```bash
