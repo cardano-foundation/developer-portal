@@ -1027,12 +1027,12 @@ export const Showcases = [
     tags: ["crystal", "serialization"]
   },
   {
-    title: "Maestro",
-    description: "Fund, build & scale. The developer platform for Cardano.",
+    title: "Maestro Dapp Platform",
+    description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
     preview: require("./builder-tools/maestro.png"),
-    website: "https://gomaestro.org/",
+    website: "https://www.gomaestro.org/dapp-platform",
     getstarted: "https://docs.gomaestro.org/",
-    tags: ["http", "hosted", "sdk"]
+    tags: ["http", "hosted"]
   },
 ];
 
