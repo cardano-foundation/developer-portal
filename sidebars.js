@@ -141,7 +141,6 @@ module.exports = {
             type: "category",
             label: "Handbook",
             items: [
-              "stake-pool-course/handbook/grafana-dashboard-tutorial",
               "stake-pool-course/handbook/grafana-loki",
               "stake-pool-course/handbook/setup-virtual-box-written",
               "stake-pool-course/handbook/setup-a-server-on-aws-written",
@@ -172,7 +171,7 @@ module.exports = {
         ],
       },
       {
-       	type: "category",
+        type: "category",
         label: "Operator Tools",
         items: [
           "operate-a-stake-pool/guild-ops-suite",
@@ -183,49 +182,45 @@ module.exports = {
       "operate-a-stake-pool/marketing-stake-pool",
     ],
     "Stake Pool Guide": [
-	{
-      	type: "category",
-       	label: "Overview",
-       	items: [
-        	"stake-pool-guide/stake-pool-basics",
-		"stake-pool-guide/get-started",
-		"stake-pool-guide/prerequisites",
-		"stake-pool-guide/stake-pool-networking",
-		"stake-pool-guide/hardware-requirements",
-		],
-	},
-        {
+      {
+        type: "category",
+        label: "Overview",
+        items: [
+          "stake-pool-guide/stake-pool-basics",
+          "stake-pool-guide/get-started",
+          "stake-pool-guide/prerequisites",
+          "stake-pool-guide/stake-pool-networking",
+          "stake-pool-guide/hardware-requirements",
+        ],
+      },
+      {
         type: "category",
         label: "Installation Guide (Node)",
-        items: [
-                "stake-pool-guide/node-installation-process",
-                ],
-        },
-        {
+        items: ["stake-pool-guide/node-installation-process"],
+      },
+      {
         type: "category",
         label: "Cardano Relay Configuration",
         items: [
-                "stake-pool-guide/cardano-relay-configuration",
-                "stake-pool-guide/monitoring-gLiveView",
-                "stake-pool-guide/grafana-dashboard",
-                ],
-        },
-	{
+          "stake-pool-guide/cardano-relay-configuration",
+          "stake-pool-guide/monitoring-gLiveView",
+          "stake-pool-guide/grafana-dashboard-tutorial",
+        ],
+      },
+      {
         type: "category",
         label: "Cardano Block Producer Configuration",
         items: [
-                "stake-pool-guide/generating-wallet-keys",
-		"stake-pool-guide/block-producer-keys",
-		"stake-pool-guide/register-stake-address.md",
-                ],
-        },
-	{
+          "stake-pool-guide/generating-wallet-keys",
+          "stake-pool-guide/block-producer-keys",
+          "stake-pool-guide/register-stake-address",
+        ],
+      },
+      {
         type: "category",
         label: "Deployment Scenarios",
-        items: [
-		"stake-pool-guide/improve-grafana-security",
-                ],
-        },
+        items: ["stake-pool-guide/improve-grafana-security"],
+      },
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
