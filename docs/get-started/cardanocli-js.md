@@ -3,7 +3,7 @@ id: cardanocli-js
 title: Get Started with cardanocli-js
 sidebar_label: cardanocli-js
 description: Get Started with cardanocli-js
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-cardanocli-js.png
 ---
 
 cardanocli-js wraps the cardano-cli in JavaScript and makes it possible to interact with the cli-commands much faster and more efficient.
@@ -60,7 +60,7 @@ console.log(wallet.paymentAddr);
 console.log(pool.vrf.vkey);
 ```
 
-## For testnet for example this is the working version
+## For testnets for example this is the working version
 
 ```
 const CardanocliJs = require("cardanocli-js");

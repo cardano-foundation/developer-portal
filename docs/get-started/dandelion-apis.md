@@ -3,7 +3,7 @@ id: dandelion-apis
 title: Get Started with Dandelion APIs
 sidebar_label: Dandelion APIs
 description: Get Started with Dandelion APIs
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-dandelion-apis.png
 --- 
 
 Dandelion currently offer 2 different paths to get started: 
@@ -62,7 +62,7 @@ values={[
   <TabItem value="curl">
 
 ```sh
-# testnet
+# testnets
 curl -H 'Content-Type: application/json' \
      -H 'Accept: application/json' \
      --data-binary \
@@ -99,9 +99,9 @@ values={[
   <TabItem value="curl">
 
 ```sh
-# testnet
+# testnets
 curl -s https://explorer-api.testnet.dandelion.link/api/txs/last
-# mainnet
+# Mainnet
 curl -s https://explorer-api.mainnet.dandelion.link/api/txs/last
 ```
   </TabItem>

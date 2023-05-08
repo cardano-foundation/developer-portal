@@ -4,7 +4,7 @@ slug: /smart-contracts/
 title: Smart Contracts
 sidebar_label: Overview
 description: Learn how to create smart contracts on Cardano.
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 --- 
 
 ![Smart Contracts](../../static/img/card-smart-contracts-title.svg)
@@ -24,5 +24,9 @@ In another world, you'd like to build programs, possibly even replace a major co
 - The smart contract is a piece of code that allows a decentralized system to operate.
 
 ## Programming languages
+- [Aiken](aiken) - for on-chain validator scripts only: a language & toolchain favouring developer experience.
 - [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
+- [opshin](opshin) - a programming language for generic Smart Contracts based on Python. 
 - [Plutus](plutus) - a platform to write full applications that interact with the Cardano blockchain. 
+- [plu-ts](plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library. 
+

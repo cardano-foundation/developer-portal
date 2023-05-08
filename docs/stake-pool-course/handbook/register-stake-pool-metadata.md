@@ -3,7 +3,7 @@ id: register-stake-pool-metadata
 title: Register a Stake Pool with Metadata
 sidebar_label: Register a stake pool with metadata
 description: "Stake pool course: Register a stake pool with metadata."
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 Make sure you have access to:
@@ -33,7 +33,7 @@ Registering your stake pool requires:
 * Create a delegation certificate pledge
 * Submit the certificates to the blockchain
 
-**WARNING:** Generating the **stake pool registration certificate** and the **delegation certificate** requires the **cold keys**. So, when doing this on mainnet you may want to generate these certificates in your local machine taking the proper security measures to avoid exposing your cold keys to the internet.
+**WARNING:** Generating the **stake pool registration certificate** and the **delegation certificate** requires the **cold keys**. So, when doing this on Mainnet you may want to generate these certificates in your local machine taking the proper security measures to avoid exposing your cold keys to the internet.
 
 #### Create a JSON file with your pool's metadata
 

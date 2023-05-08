@@ -3,18 +3,18 @@ id: secure-workflow
 title: Secure Transaction Workflow
 sidebar_label: Secure Transaction Workflow
 description: Procedures for using private keys separately from the Internet.
-image: ../img/og-developer-portal.png
+image: /img/og/og-security-secure-transaction-workflow.png
 --- 
 
 This general guide is written to help Cardano stake pool operators and developers keep to one simple rule:
 
-:::important
+:::warning
 
 Payment keys can never be stored, even for a moment, on an Internet connected machine.
 
 :::
 
-Therefore we will present a standard workflow for this sequences of `cardano-cli` commands for a simple, single transaction for funds transfer:
+Therefore we present a secure, standard workflow for this sequence of `cardano-cli` commands for a simple, single transaction for funds transfer:
 
   - **[Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction)** (*insecure* version)
 
@@ -31,44 +31,44 @@ All transactions will be done in these 3 steps:
 
 1.  on Internet connected computer:
       - **Assemble** all transaction details (from Cardano node or other query) in a file & save it to a removable device.
-2.  in [Air Gap Environment](./air-gap):
+2.  in [air gap environment](./air-gap):
       - **Build** information from this file into a signed transaction & save the Tx file back on the same device (note `Tx` = "transaction").
 3.  on Internet connected computer:
       - **Upload** the Tx file to your Cardano node and submit it.
 
-Therefore, the payment signing key (the private component of the [Cardano wallet address key pair](../operate-a-stake-pool/cardano-key-pairs#wallet-address-key-pairs)) **never leaves the Air Gap environment**. This is vital because:
+Therefore, the payment signing key (the private component of the [Cardano wallet address key pair](../operate-a-stake-pool/cardano-key-pairs#wallet-address-key-pairs)) **never leaves the air gap environment**. This is vital because:
 
   - A standard assumption in security is that *any* Internet connection on *any* computer creates opportunities for malicious people or programs to copy, view, or modify *anything* unencrypted on that computer.
   - Unlike transactions with cryptocurrenty wallet software, in which the wallet's private payment keys are carefully encrypted and securely managed, the payment key (in this documentation, `payment.skey`) used for the raw transactions of development & stake pool operations is *not encrypted*.
-  - This means that this file stored anywhere on your Internet connected computer or server, even for an instant, creates an opportunity the funds at that address (`payment.addr`) to be ***lost***.
+  - This means that this file stored anywhere on your Internet connected computer or server, even for an instant, creates an opportunity for the funds at that address (`payment.addr`) to be ***lost***.
 
 ## Prerequisites
 
-### Your [Air Gap Environment](./air-gap)
+### Your [air gap environment](./air-gap)
 
-Follow [these instructions](./air-gap) to create the environment (usually a dedicated "air gap machine") if you haven't already.
+Follow [these instructions](./air-gap) to procure the environment (usually a dedicated "air gap machine") if you haven't already.
 
-### Move any existing keys inside the Air Gap
+### Move any existing keys inside the air gap
 
 Second, if you've been running your applications, token/NFT generation, or stake pool with keys stored on any Internet connected machine (whether desktop or server):
 
-  - Move all those keys onto the Air Gap host and [securely delete](../get-started/air-gap#install-secure-deletion-tools) the originals.
+  - Move all those keys onto the air gap host and [securely delete](../get-started/air-gap#install-secure-deletion-tools) the originals.
   - Also, seriously consider whether those resources should be rebuilt due to the exposure of those private keys.
 
 To simplify the commands below, this guide assumes you will store all your keys and addresses *in the same single directory* where you will be building your transactions.
 
 ### Dedicate a memory stick to moving your Tx files
 
-Format a memory stick on a machine you believe to be secure, and then format it again on the Air Gap machine. Some ideas:
+Format a memory stick on a machine you believe to be secure, and then (to be on the safe side) format it again on the air gap machine. Some ideas:
 
-  - The objective here is to avoid bringing malicious software from your host computer into the Air Gap environment, especially via viruses that are designed to propagate by memory sticks.
-  - Use a filesystem that will be compatible with your regular Internet connected machine *and* your Air Gapped Linux environment: the one most likely to be writable by all types of desktop is FAT32.
+  - The objective here is to avoid bringing malicious software from your host computer into the air gap environment, especially via viruses that are designed to propagate by memory sticks.
+  - Use a filesystem that will be compatible with your regular Internet connected machine *and* your air gapped Linux environment: the one most likely to be writable by all types of desktop is FAT32.
 
 ## Steps of a secure transaction
 
-This is rewritten from page [Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction) (only considered secure to run on testnet) with the following exception:
+This is rewritten from page [Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction) (only considered secure to run on a testnet) with the following exception:
 
-  - [Determinng the TTL (time to Live)](../stake-pool-course/handbook/create-simple-transaction#determine-the-ttl-time-to-live-for-the-transaction) for the transaction is omitted, along with setting this value in the transaction itself, to simplify the information-gathering step.
+  - [Determining the TTL (time to Live)](../stake-pool-course/handbook/create-simple-transaction#determine-the-ttl-time-to-live-for-the-transaction) for the transaction is omitted, along with setting this value in the transaction itself, to simplify the information-gathering step.
   - This poses no security risk since an omitted TTL value allows a Tx file to be used indefinitely *but* submitting that Tx will change the UTxO set so that submitting that transaction again will be impossible.
 
 Also note that in general your "Internet connected machine" and your "Cardano node" will be two separate systems, and you will have to transfer files from one to the other with programs like [`rsync`](https://linux.die.net/man/1/rsync).
@@ -105,7 +105,7 @@ Then copy both this file and `protocol.json` to the transfer memory stick.
 
 ### 2\. *Build* Tx details into a signed transaction.
 
-Attach your transfer memory stick to the Air Gap host and copy the files to your working directory:
+Attach your transfer memory stick to the air gap host and copy the files to your working directory:
 
   - `protocol.json`
   - your scratch file
@@ -132,12 +132,12 @@ cardano-cli transaction build-raw \
 
 #### Calculate the fee
 
-A simple transaction needs one input, a valid UTXO from `payment.addr`, and two outputs:
+The generally simplest transaction needs one input (a valid UTXO from `payment.addr`) and two outputs:
 
-  - Output1: The address that receives the transaction.
-  - Output2: The address that receives the change of the transaction.
+1. The address that receives the transaction.
+1. The address that receives the change of the transaction.
 
-Note that to calculate the fee you need to include the draft transaction
+Note that to calculate the fee you need to include the draft transaction:
 
 ``` sh
 cardano-cli transaction calculate-min-fee \
@@ -165,7 +165,7 @@ expr 20000000 - 10000000 - 167965
 
 #### Build the transaction
 
-We write the transaction in a file, we will name it `tx.raw`.
+We write the transaction in a file; we will name it `tx.raw`:
 
 ``` sh
 cardano-cli transaction build-raw \
@@ -188,7 +188,7 @@ cardano-cli transaction sign \
     --out-file tx.signed
 ```
 
-Save the `tx.signed` file back on the transfer memory stick, then [safely remove](https://help.ubuntu.com/stable/ubuntu-help/files-removedrive.html.en) the memory stick from the Air Gap machine.
+Save the `tx.signed` file back on the transfer memory stick, then [safely remove](https://help.ubuntu.com/stable/ubuntu-help/files-removedrive.html.en) the memory stick from the air gap machine.
 
 ### 3\. **Upload** and submit the Tx file.
 
@@ -196,7 +196,7 @@ Reattach your transfer memory stick back to the Internet connected computer, the
 
 #### Submit the transaction
 
-Log into your Cardano node and execute:
+Log into your Cardano node (or prepare Daedalus if using its node) and execute:
 
 ``` sh
 cardano-cli transaction submit \
@@ -219,14 +219,16 @@ Some consider this so much easier to use that ***all*** transactions should be p
 However, this discussion revealed the undocumented condition that `transaction build` can only be done on a **live** Cardano node. The community in general doesn't know the reasons for this (with some speculation in the thread above), so in the meantime:
 
   - Using `transaction build` would require, in addition to accumulating the UTxO and balance information from your live Cardano node or network environment to build your transaction, that you also run the `build` command in the networked environment as well and save the unsigned transaction file on your transfer media.
-  - This transaction file would then need to be copied from the live environment to the Air Gap environment, where it would be signed... but in a security paranoid environment the user could never be sure the transaction was not built or modified maliciously outside the Air Gap.
+  - This transaction file would then need to be copied from the live environment to the air gap environment, where it would be signed... but in a security paranoid environment the user could never be sure the transaction was not built or modified maliciously outside the air gap.
 
-Therefore this guide suggests *only* assembling transaction *details* outside the Air Gap, to be applied to `cardano-cli transaction build-raw` inside the Air Gap, because there is not much convenience overall to using `transaction build` and perhaps some security risk as well.
+Therefore this guide suggests *only* assembling transaction *details* outside the air gap, to be applied to `cardano-cli transaction build-raw` inside the air gap, because there is not much convenience overall to using `transaction build` and perhaps some security risk as well.
 
 ## Other pending topics in secure workflow
 
 These are not directly related to transacations, and will all eventually be addressed in their own pages on the Developer Portal:
 
-  - pool key installation & updates: transferring keys securely from your Air Gap to your stake pool block producer
-  - making encrypted backups of your private keys (offsite / stored outside your Air Gap Environment)
+  - pool key installation & updates: transferring keys (e.g. VRF and KES) securely from within the air gap to your stake pool block producer
+  - making encrypted backups of your private keys (so they can be kept offsite / stored outside your air gap environment)
   - keeping secure (encrypted) records of your stake pool & development resources
+
+For ideas on secure backup & record-keeping, see [Get Started with the Frankenwallet > Making & verifying backups of assets & keys](/docs/operate-a-stake-pool/frankenwallet#making--verifying-backups-of-assets--keys).

@@ -3,7 +3,7 @@ id: use-cli
 title: Command Line Interface
 sidebar_label: Command Line Interface
 description: "Stake pool course: Learn how to use command line interface (cli)."
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 This command line interface provides a collection of tools for key generation, transaction construction, certificate creation and other important tasks.

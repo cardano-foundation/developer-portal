@@ -3,7 +3,7 @@ id: lesson-2
 title: Lesson 2
 sidebar_label: Lesson 2
 description: "Stake pool course: Lesson 2."
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ## Using the cardano-cli
@@ -32,7 +32,7 @@ Learn how to generate your payment keys and addresses. This will allow you to re
 
 ## Request Funds from the Faucet
 
-Learn how to get some test tokens to pay for the stake pool certificates, create transactions and more, as shown in the following video tutorial. Request tokens using the [testnet faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet/)
+Learn how to get some test tokens to pay for the stake pool certificates, create transactions and more, as shown in the following video tutorial. Request tokens using the [Testnet Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet/)
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Phy8cRBdEEw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>

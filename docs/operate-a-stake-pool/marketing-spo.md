@@ -3,7 +3,7 @@ id: marketing-stake-pool
 title: Marketing a Stake pool
 sidebar_label: Marketing a Stake Pool
 description: This article explains how to promote a stake pool.
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 Managing a stake pool is similar to managing a business. It's not enough to have a stake pool that functions flawlessly on the technical side; you also need to attract enough stake. The most fundamental rule of marketing is to develop a marketing strategy that focuses on your customers' needs rather than your primary product. When you operate a stake pool, you allow other users to earn incentives by participating in the Cardano protocol. You'll be able to execute transactions and create new blocks as a result of this. The main way to get people to join your stake pool is to increase its reliability, uptime, and staking reward percentage.
@@ -75,7 +75,7 @@ Create a Website that is consistent with the branding of your stake pool. [Get a
 
 You can check previous delegation announcements on the blog posts [Our new delegation strategy – announcing the pools we’re supporting](https://iohk.io/en/blog/posts/2021/01/22/our-new-delegation-strategy-announcing-the-pools-we-are-supporting/) and [Announcing new stake pools chosen for our delegation strategy](https://iohk.io/en/blog/posts/2021/05/14/announcing-new-stake-pools-chosen-for-our-delegation-strategy/). So try to follow the news for the next round of applications. You can check the [previous call for delegation to support small pools](https://forum.cardano.org/t/iohk-new-call-for-delegation-to-support-small-pools/56589).
 
-One of the selection criteria is to validate your stake pool parameters such as [pledge](https://docs.cardano.org/core-concepts/pledging-and-delegation-options), [stake delegated to the pool](https://docs.cardano.org/core-concepts/delegation), and the size of pool [saturation](https://docs.cardano.org/glossary/#saturation). This is to be sure that your stake pool will be effective, generate new blocks, and get enough rewards to the delegators.
+One of the selection criteria is to validate your stake pool parameters such as [pledge](https://docs.cardano.org/learn/pledging-rewards), [stake delegated to the pool](https://docs.cardano.org/core-concepts/delegation), and the size of pool [saturation](https://docs.cardano.org/glossary/#saturation). This is to be sure that your stake pool will be effective, generate new blocks, and get enough rewards to the delegators.
 
 Note that you can watch [The evolution of the Cardano Foundation's delegation methodology video](https://www.youtube.com/watch?v=lq2sXYVDlX8).
 

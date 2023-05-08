@@ -3,7 +3,7 @@ id: ogmios
 title: Get Started with Ogmios
 sidebar_label: Ogmios
 description: Get Started with Ogmios
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-ogmios.png
 ---
 
 **Ogmios** is a lightweight bridge interface for [cardano-node](https://github.com/input-output-hk/cardano-node/). It offers a WebSockets API that enables local clients to speak [Ouroboros' mini-protocols](https://hydra.iohk.io/build/1070091/download/1/network.pdf#chapter.3) via JSON/RPC.

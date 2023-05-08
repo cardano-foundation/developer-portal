@@ -3,7 +3,7 @@ id: configure-topology-files
 title: Configure Topology Files
 sidebar_label: Configure topology files
 description: "Stake pool course: Learn how to create stake pool keys."
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 Before you start your nodes, you need to prepare the topology files for block-producing and relay nodes.

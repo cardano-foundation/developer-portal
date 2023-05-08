@@ -3,7 +3,7 @@ id: portal-style-guide
 title: Style Guide
 sidebar_label: Style Guide
 description: Style guide for the Cardano developer portal.
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/). [Markdown](https://github.github.com/gfm/) is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
@@ -839,7 +839,7 @@ To make everything consistent we should agree on spellings and terms here.
 | `Goguen` | The third era of the Cardano development focused on smart contracts. Named in honour of Joseph Goguen, an US computer scientist. |
 | `IOHK` | IOHK is now IOG. |
 | `IOG` | IOG was IOHK. |
-| `mainnet`    | One word. |
+| `Mainnet`    | One word.  Capitalise when it's a noun (the _Mainnet_) but not when it's an adjective (_mainnet_ functionality), qualified by another proper name (the Cardano _mainnet_), or used as a symbol (e.g. enable Marlowe on `mainnet`). |
  `Ouroboros`           | Ouroboros is a family of Cardano's consensus protocols. There are different flavors: Classic, Praos, Genesis, Chronos, Hydra |
 | `sidechains` | One word. |
 | `stake pool` | Two words. |
@@ -847,6 +847,7 @@ To make everything consistent we should agree on spellings and terms here.
 | `Strica` | Creators of Typhon Wallet, Cardanoscan and Flac Finance. Capitalized S, everything else lower case. |
 | `proof of stake` | Lower case. Hyphenate when followed by a noun: proof-of-stake systems. |
 | `proof of work` | Lower case. Hyphenate when followed by a noun: proof-of-work systems. |
+| `Testnet`    | One word.  Capitalise when it's a particular testnet (e.g. Preview _testnet_) but not when it's an adjective (e.g. _testnet_ functionality) or referring to more than one (e.g. new iterations of the _testnets_). |
 | `use case` | Not use-case. |
 | `Voltaire` | The fifth era of the Cardano development focused on governance and treasury. Named after the French philosopher who prized criticism and argued for the separation of church and state. |
 | `white paper` | Two words. |

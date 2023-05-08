@@ -3,10 +3,10 @@ id: koios
 title: Get Started with Koios
 sidebar_label: Koios
 description: Get Started with Koios
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-koios.png
 ---
 
-Koios provides an open-source & elastic API layer that allows you to query Cardano blockchain (across mainnet, testnet and guildnet network).
+Koios provides an open-source & elastic API layer that allows you to query Cardano blockchain (across Mainnet, testnets and guildnet network).
 The key flexibility from a consumer of Koios API is being able to use Koios as a light webservice or being able to run a Koios instance and optionally `extend` the query layer with automatic failover and high availability support across the globe. When running an instance, one is free to add additional endpoints to their individual service if they have a use case that may not need to be added upstream.
 
 Let's start with basics from consumer point of view, and then we can dive to a brief summary about running a Koios Instance as a provider (independently OR adding to existing members of Koios cluster).
@@ -57,7 +57,7 @@ Typical steps involved for setting up your gRest instance would be (assuming you
 
 4. Once your node is in sync, set up your dbsync instance (easier to use snapshots instead of synching from scratch) as per instructions [here](https://cardano-community.github.io/guild-operators/Build/dbsync/). Ensure that you're running dbsync as a systemd service (not as a script on terminal).
 
-5. You should now be able to run the `setup-grest.sh` script as per details [here](https://cardano-community.github.io/guild-operators/Build/grest/#setup). Thus, if you'd like to deploy gRest against mainnet version, you may elect to run `./setup-grest.sh -f -i prmcd -q -b <branch/tag>` which will set up all the components, endpoints and deploy them as service on your system.
+5. You should now be able to run the `setup-grest.sh` script as per details [here](https://cardano-community.github.io/guild-operators/Build/grest/#setup). Thus, if you'd like to deploy gRest against Mainnet version, you may elect to run `./setup-grest.sh -f -i prmcd -q -b <branch/tag>` which will set up all the components, endpoints and deploy them as service on your system.
 
 6. [Optional] You can also install [ogmios](https://ogmios.dev) instance to have it enabled on your instance. This is currently not enabled by default, as it would require more advanced session management over WSS, that is more suited for a server-client architecture than a RESTful interface to access directly. There may be middleware leveraging this service in future, but it will not be scoped for v1 of Koios API.
 
@@ -94,3 +94,9 @@ Every gRest instance is capable to participate into Koios Cluster, by simply ope
 ## Any other Query/Follow-ups
 
 There are bi-weekly open meetings on every 2nd/4th Thursday of the month. Feel free to join the [Koios discussions](https://t.me/+zE4Lce_QUepiY2U1) and follow pinned messages for the same.
+
+:::note
+
+For some interfaces to Koios, see [Builder Tools > Koios](/tools?tags=koios).
+
+:::

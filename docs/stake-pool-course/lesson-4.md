@@ -3,7 +3,7 @@ id: lesson-4
 title: Lesson 4
 sidebar_label: Lesson 4
 description: "Stake pool course: Lesson 4."
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ## Key Evolving Signature
@@ -45,7 +45,7 @@ Learn how to register your stake pool metadata. Things this will allow your pool
 
 
 ## Secure your Cryptographic Keys
-Learn how to generate and store your cryptographic keys. If you plan to set up a stake pool on mainnet, it is a good idea having this mindset and process to generate and secure your cold keys and payment keys.
+Learn how to generate and store your cryptographic keys. If you plan to set up a stake pool on Mainnet, it is a good idea having this mindset and process to generate and secure your cold keys and payment keys.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/fqrAzBAi64c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"></iframe>
 <br/><br/>

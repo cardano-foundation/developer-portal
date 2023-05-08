@@ -3,7 +3,7 @@ id: tangocrypto
 title: Getting started with Tangocrypto
 sidebar_label: Tangocrypto
 description: Getting started with Tangocrypto
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-tangocrypto.png
 ---
 
 # What is Tangocrypto?
@@ -41,12 +41,12 @@ We provide the most accessible and reliable Cardano infrastructure, freeing comp
 
 ### Network and App ID
 
-You can choose the mainnet or the testnet for your queries. The API requires a valid `app_id` to be included with your request traffic. This identifier should be appended to the request URL.
+You can choose Mainnet or a testnet for your queries. The API requires a valid `app_id` to be included with your request traffic. This identifier should be appended to the request URL.
 
 | Network          |   Endpoint      
 | ---------------- | :-----------: 
-| Cardano mainnet  | https://cardano-mainnet.tangocrypto.com/{app_id}/v1 
-|Cardano testnet   |   https://cardano-testnet.tangocrypto.com/{app_id}/v1 
+| Cardano mainnet  | [https://cardano-mainnet.tangocrypto.com/{app_id}/v1](https://cardano-mainnet.tangocrypto.com/{app_id}/v1 "Cardano mainnet {rel='nofollow'}") 
+| Cardano testnet  | [https://cardano-testnet.tangocrypto.com/{app_id}/v1](https://cardano-testnet.tangocrypto.com/{app_id}/v1 "Cardano testnet {rel='nofollow'}")   
 
 
 ### API Key header

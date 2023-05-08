@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-
+import Head from '@docusaurus/Head';
 import Layout from "@theme/Layout";
 import ShowcaseTooltip from "@site/src/components/showcase/ShowcaseTooltip";
 import ShowcaseTagSelect from "@site/src/components/showcase/ShowcaseTagSelect";
@@ -10,9 +10,19 @@ import ShowcaseFilterToggle, {
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
 import clsx from "clsx";
 
+import ShowcaseLatestToggle, {
+  readLatestOperator,
+} from "@site/src/components/showcase/ShowcaseLatestToggle";
+
 import PortalHero from "../portalhero";
 import { toggleListItem } from "../../utils/jsUtils";
-import { SortedShowcases, Tags, TagList } from "../../data/builder-tools";
+import {
+  DomainsTags,
+  LanguagesOrTechnologiesTags,
+  SortedShowcases,
+  Tags,
+  Showcases
+} from "../../data/builder-tools";
 import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
@@ -47,7 +57,7 @@ function restoreUserState(userState) {
     scrollTopPosition: 0,
     focusedElementId: undefined,
   };
-  
+
   document.getElementById(focusedElementId)?.focus();
   window.scrollTo({ top: scrollTopPosition });
 }
@@ -67,7 +77,12 @@ function replaceSearchTags(search, newTags) {
 }
 
 // Filter projects based on chosen project tags, toggle operator or searchbar value
-function filterProjects(projects, selectedTags, operator, searchName) {
+function filterProjects(projects, selectedTags, latest, operator, searchName, unfilteredProjects) {
+  // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
+  if (latest === "LAST") {
+    var projects = unfilteredProjects.slice(-10);
+  }
+
   if (searchName) {
     projects = projects.filter((project) =>
       project.title.toLowerCase().includes(searchName.toLowerCase())
@@ -91,6 +106,7 @@ function filterProjects(projects, selectedTags, operator, searchName) {
 function useFilteredProjects() {
   const location = useLocation();
   const [operator, setOperator] = useState("OR");
+  const [latest, setLatest] = useState("LAST");
 
   // On SSR / first mount (hydration) no tag is selected
   const [selectedTags, setSelectedTags] = useState([]);
@@ -100,13 +116,22 @@ function useFilteredProjects() {
   useEffect(() => {
     setSelectedTags(readSearchTags(location.search));
     setOperator(readOperator(location.search));
+    setLatest(readLatestOperator(location.search));
     setSearchName(readSearchName(location.search));
     restoreUserState(location.state);
   }, [location]);
 
   return useMemo(
-    () => filterProjects(SortedShowcases, selectedTags, operator, searchName),
-    [selectedTags, operator, searchName]
+    () =>
+      filterProjects(
+        SortedShowcases,
+        selectedTags,
+        latest,
+        operator,
+        searchName,
+        Showcases
+      ),
+    [selectedTags, latest, operator, searchName]
   );
 }
 
@@ -144,7 +169,6 @@ function ShowcaseHeader() {
 }
 
 function ShowcaseFilters() {
-
   const filteredProjects = useFilteredProjects();
 
   return (
@@ -153,61 +177,52 @@ function ShowcaseFilters() {
         <div>
           <h2>Filters</h2>
           <span>{`${filteredProjects.length} builder tool${
-            filteredProjects.length === 1 ? '' : 's'
+            filteredProjects.length === 1 ? "" : "s"
           }`}</span>
         </div>
+        <ShowcaseLatestToggle />
         <ShowcaseFilterToggle />
       </div>
-      <div className={styles.checkboxList}>
-        {TagList.map((tag) => {
-          const { label, description, color } = Tags[tag];
-          const id = `showcase_checkbox_id_${tag}`;
-          return (
-            <>
-              <div className={styles.checkboxListItem}>
-                <ShowcaseTooltip
-                  id={id}
-                  text={description}
-                  anchorEl="#__docusaurus"
-                >
-                  <ShowcaseTagSelect
-                    tag={tag}
-                    id={id}
-                    label={label}
-                    icon={
-                      label === "Favorite" ? (
-                        <span
-                          style={{
-                            marginLeft: 8,
-                          }}
-                        >
-                          <Fav
-                            svgClass={styles.svgIconFavorite}
-                            size="small"
-                            style={{ display: "grid" }}
-                          />
-                        </span>
-                      ) : (
-                        <span
-                          style={{
-                            backgroundColor: color,
-                            width: 10,
-                            height: 10,
-                            borderRadius: "50%",
-                            marginLeft: 8,
-                          }}
-                        />
-                      )
-                    }
-                  />
-                </ShowcaseTooltip>
-              </div>
-            </>
-          );
-        })}
-      </div>
+        <h3>By language / technology</h3>
+        {filterBy(LanguagesOrTechnologiesTags)}
+        <br/>
+        <h3>By domain</h3>
+        {filterBy(DomainsTags)}
     </div>
   );
+}
+
+function filterBy(tags) {
+  return (<div className={styles.checkboxList}>
+    {tags.map((tag, i) => {
+      const { label, description, color } = Tags[tag];
+      const id = `showcase_checkbox_id_${tag}`;
+      return (
+          <div key={i} className={styles.checkboxListItem}>
+            <ShowcaseTooltip
+              id={id}
+              text={description}
+              anchorEl="#__docusaurus"
+            >
+              <ShowcaseTagSelect
+                tag={tag}
+                id={id}
+                label={label}
+                icon={(<span
+                  style={{
+                    backgroundColor: color,
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    marginLeft: 8,
+                  }}/>
+                )}
+              />
+            </ShowcaseTooltip>
+          </div>
+      );
+    })}
+  </div>);
 }
 
 function ShowcaseCards() {
@@ -237,7 +252,7 @@ function ShowcaseCards() {
                 )}
               >
                 <h2 className={styles.ourFavorites}>Our favorites</h2>
-                <Fav svgClass={styles.svgIconFavorite} size="small" />
+                <Fav className={styles.svgIconFavorite} size="small" />
                 <SearchBar />
               </div>
               <ul className={clsx("container", styles.showcaseList)}>
@@ -304,14 +319,25 @@ function SearchBar() {
           history.push({
             ...location,
             search: newSearch.toString(),
+            state: prepareUserState(),
           });
           setTimeout(() => {
             document.getElementById("searchbar")?.focus();
-          }, 1);
+          }, 0);
         }}
       />
     </div>
   );
+}
+
+// Add open graph image to builder tool page
+function MetaData() {
+  return (
+    <Head>
+      <meta property="og:image" content="https://developers.cardano.org/img/og/og-builder-tools.png" />
+      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-builder-tools.png" />
+    </Head>
+  )
 }
 
 function Showcase() {
@@ -320,10 +346,11 @@ function Showcase() {
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
+      <MetaData/> 
       <ShowcaseHeader />
       <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
       <ShowcaseCards filteredProjects={filteredProjects} />
-      <OpenStickyButton/>
+      <OpenStickyButton />
     </Layout>
   );
 }
