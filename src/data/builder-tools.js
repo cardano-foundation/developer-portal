@@ -374,7 +374,7 @@ export const Showcases = [
     description: "Instant and scalable API to the Cardano blockchain.",
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
-    getstarted: "/docs/get-started/blockfrost",
+    getstarted: "/docs/get-started/blockfrost/get-started/",
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
