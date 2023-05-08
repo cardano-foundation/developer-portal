@@ -1162,6 +1162,14 @@ export const Showcases = [
     source: null,
     tags: ["lending", "marketplace", "nftsupport"],
   },
+  { 
+    title: "Anvil Agency",
+    description: "Anvil provides advanced solutions for Web3 projects through token minting, staking, airdrop, snapshot, and custom / bespoke services.",
+    preview: require("./showcase/anvil.png"),
+    website: "https://ada-anvil.io/",
+    source: null,
+    tags: ["nftsupport", "minting", "marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
