@@ -1026,6 +1026,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["crystal", "serialization"]
   },
+  {
+    title: "Maestro Dapp Platform",
+    description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
+    preview: require("./builder-tools/maestro.png"),
+    website: "https://www.gomaestro.org/dapp-platform",
+    getstarted: "https://docs.gomaestro.org/",
+    tags: ["http", "hosted"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
