@@ -32,7 +32,7 @@ Use a tool like cURL to make requests to the Cardano network. For example, to ge
     "metadata": {}
 }'```
 
-Make sure to replace `YOUR-API-KEY` with the API key you obtained in step 4.
+Make sure to replace `YOUR-API-KEY` with the endpoint you obtained in your account.
 
 The response will contain information about the current block, the genesis block, and peers on the Cardano network.
 
