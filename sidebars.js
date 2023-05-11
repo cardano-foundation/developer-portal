@@ -127,14 +127,13 @@ module.exports = {
       "operate-a-stake-pool/overview",
       {
         type: "category",
-        label: "Overview",
+        label: "Basics",
         items: [
           "stake-pool-guide/introduction-to-cardano",
-          "stake-pool-guide/get-started-with-stake-pools",
-          "stake-pool-guide/prerequisites",
           "stake-pool-guide/stake-pool-networking",
           "stake-pool-guide/hardware-requirements",
           "stake-pool-guide/cardano-key-pairs",
+          "operate-a-stake-pool/marketing-stake-pool",
         ],
       },
       {
@@ -174,8 +173,7 @@ module.exports = {
           "operate-a-stake-pool/frankenwallet",
         ],
       },
-      "operate-a-stake-pool/marketing-stake-pool",
-      {
+      /*{
         type: "category",
         label: "Stake Pool Course (DEPRECATED)",
         items: [
@@ -217,7 +215,7 @@ module.exports = {
             ],
           },
         ],
-      },
+      },*/
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",
