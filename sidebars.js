@@ -131,7 +131,6 @@ module.exports = {
         label: "Stake Pool Course",
         items: [
           "stake-pool-course/overview",
-          "stake-pool-course/introduction-to-cardano",
           "stake-pool-course/lesson-1",
           "stake-pool-course/lesson-2",
           "stake-pool-course/lesson-3",
@@ -186,7 +185,7 @@ module.exports = {
         type: "category",
         label: "Overview",
         items: [
-          "stake-pool-guide/stake-pool-basics",
+          "stake-pool-guide/introduction-to-cardano",
           "stake-pool-guide/get-started",
           "stake-pool-guide/prerequisites",
           "stake-pool-guide/stake-pool-networking",
