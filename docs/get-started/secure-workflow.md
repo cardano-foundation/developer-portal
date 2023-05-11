@@ -16,7 +16,7 @@ Payment keys can never be stored, even for a moment, on an Internet connected ma
 
 Therefore we present a secure, standard workflow for this sequence of `cardano-cli` commands for a simple, single transaction for funds transfer:
 
-  - **[Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction)** (*insecure* version)
+  - **[Create Simple Transaction](/docs/get-started/create-simple-transaction)** (*insecure* version)
 
 Once you feel comfortable doing a simple transaction securely, you'll also be able to use it to securely execute these more complex transactions as well:
 

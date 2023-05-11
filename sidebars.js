@@ -10,6 +10,7 @@ module.exports = {
           "get-started/installing-cardano-node",
           "get-started/running-cardano",
           "get-started/installing-cardano-wallet",
+          "get-started/create-simple-transaction",
         ],
       },
       {
