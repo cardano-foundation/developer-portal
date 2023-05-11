@@ -22,8 +22,8 @@ Once you feel comfortable doing a simple transaction securely, you'll also be ab
 
   - [Minting Native Assets](../native-tokens/minting)
   - [Minting NFTs](../native-tokens/minting-nfts)
-  - [Registering a Stake Address](../stake-pool-course/handbook/register-stake-keys)
-  - [Registering a Stake Pool](../stake-pool-course/handbook/register-stake-pool-metadata)
+  - [Registering a Stake Address](/docs/operate-a-stake-pool/block-producer-keys)
+  - [Registering a Stake Pool](/docs/operate-a-stake-pool/register-stake-pool-metadata)
 
 ### A model for a secure transaction
 

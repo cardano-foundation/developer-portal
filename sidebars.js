@@ -158,6 +158,7 @@ module.exports = {
           "operate-a-stake-pool/generating-wallet-keys",
           "operate-a-stake-pool/block-producer-keys",
           "operate-a-stake-pool/register-stake-address",
+          "operate-a-stake-pool/register-stake-pool-metadata",
         ],
       },
       {
