@@ -166,6 +166,11 @@ module.exports = {
       },
       {
         type: "category",
+        label: "Cardano Governance",
+        items: ["operate-a-stake-pool/on-chain-polls"],
+      },
+      {
+        type: "category",
         label: "Operator Tools",
         items: [
           "operate-a-stake-pool/guild-ops-suite",
