@@ -1,7 +1,7 @@
 ---
-id: get-started
-title: Getting started with Stake Pools
-sidebar_label: Get started
+id: get-started-with-stake-pools
+title: Get Started with Stake Pools
+sidebar_label: Get Started with Stake Pools
 description: Getting started with Stake Pools
 image: ../img/og-developer-portal.png
 ---

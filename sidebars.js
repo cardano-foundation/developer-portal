@@ -125,10 +125,59 @@ module.exports = {
     ],
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",
-      "operate-a-stake-pool/cardano-key-pairs",
       {
         type: "category",
-        label: "Stake Pool Course",
+        label: "Overview",
+        items: [
+          "stake-pool-guide/introduction-to-cardano",
+          "stake-pool-guide/get-started-with-stake-pools",
+          "stake-pool-guide/prerequisites",
+          "stake-pool-guide/stake-pool-networking",
+          "stake-pool-guide/hardware-requirements",
+          "stake-pool-guide/cardano-key-pairs",
+        ],
+      },
+      {
+        type: "category",
+        label: "Installation Guide (Node)",
+        items: ["stake-pool-guide/node-installation-process"],
+      },
+      {
+        type: "category",
+        label: "Cardano Relay Configuration",
+        items: [
+          "stake-pool-guide/cardano-relay-configuration",
+          "stake-pool-guide/monitoring-gLiveView",
+          "stake-pool-guide/grafana-dashboard-tutorial",
+        ],
+      },
+      {
+        type: "category",
+        label: "Cardano Block Producer Configuration",
+        items: [
+          "stake-pool-guide/generating-wallet-keys",
+          "stake-pool-guide/block-producer-keys",
+          "stake-pool-guide/register-stake-address",
+        ],
+      },
+      {
+        type: "category",
+        label: "Deployment Scenarios",
+        items: ["stake-pool-guide/improve-grafana-security"],
+      },
+      {
+        type: "category",
+        label: "Operator Tools",
+        items: [
+          "operate-a-stake-pool/guild-ops-suite",
+          "operate-a-stake-pool/ansible-cardano-node",
+          "operate-a-stake-pool/frankenwallet",
+        ],
+      },
+      "operate-a-stake-pool/marketing-stake-pool",
+      {
+        type: "category",
+        label: "Stake Pool Course (DEPRECATED)",
         items: [
           "stake-pool-course/overview",
           "stake-pool-course/lesson-1",
@@ -168,57 +217,6 @@ module.exports = {
             ],
           },
         ],
-      },
-      {
-        type: "category",
-        label: "Operator Tools",
-        items: [
-          "operate-a-stake-pool/guild-ops-suite",
-          "operate-a-stake-pool/ansible-cardano-node",
-          "operate-a-stake-pool/frankenwallet",
-        ],
-      },
-      "operate-a-stake-pool/marketing-stake-pool",
-    ],
-    "Stake Pool Guide": [
-      {
-        type: "category",
-        label: "Overview",
-        items: [
-          "stake-pool-guide/introduction-to-cardano",
-          "stake-pool-guide/get-started",
-          "stake-pool-guide/prerequisites",
-          "stake-pool-guide/stake-pool-networking",
-          "stake-pool-guide/hardware-requirements",
-        ],
-      },
-      {
-        type: "category",
-        label: "Installation Guide (Node)",
-        items: ["stake-pool-guide/node-installation-process"],
-      },
-      {
-        type: "category",
-        label: "Cardano Relay Configuration",
-        items: [
-          "stake-pool-guide/cardano-relay-configuration",
-          "stake-pool-guide/monitoring-gLiveView",
-          "stake-pool-guide/grafana-dashboard-tutorial",
-        ],
-      },
-      {
-        type: "category",
-        label: "Cardano Block Producer Configuration",
-        items: [
-          "stake-pool-guide/generating-wallet-keys",
-          "stake-pool-guide/block-producer-keys",
-          "stake-pool-guide/register-stake-address",
-        ],
-      },
-      {
-        type: "category",
-        label: "Deployment Scenarios",
-        items: ["stake-pool-guide/improve-grafana-security"],
       },
     ],
     "Contribute to the Developer Portal": [
