@@ -3,6 +3,7 @@ id: frankenwallet
 title: Get Started with the Frankenwallet
 sidebar_label: Frankenwallet (USB air gap)
 description: An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing and airlocked access to & from the outside world
+image: /img/og/og-developer-portal.png
 ---
 
 ## An encrypted, air-gapped Linux bootable USB drive for Cardano (and other) secure operations

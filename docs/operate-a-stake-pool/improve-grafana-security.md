@@ -3,7 +3,7 @@ id: improve-grafana-security
 title: Improve Grafana Security
 sidebar_label: Improve Grafana Security
 description: "Stake pool guide: Learn how to harden Grafana Security with SSL, 2FA"
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 Once your Grafana Server is installed, up and running, you can drasticaly improve its security and accessibility by installing an SSL Reverse Proxy, and enabling 2-Factor Authentication with Google OAuth.

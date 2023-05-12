@@ -3,7 +3,7 @@ id: cardano-relay-configuration
 title: Cardano Relay Configuration (Startup scripts, Systemd)
 sidebar_label: Cardano Relay Configuration
 description: Cardano Relay Configuration (Startup scripts, Systemd)
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 In the last section, we went through the process of downloading, compiling, and installing cardano-node and cardano-cli into your Linux-based operating system. Now in this section we will walk through the process of configuring the installed node as a relay node.
 

@@ -3,7 +3,7 @@ id: register-stake-address
 title: Registering a Stake Address
 sidebar_label: Registering a Stake Address
 description: Registering a Stake Address 
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 Registering a new stake pool involves two steps - Registering a stake address and registering the the pool metadata. The stake address needs to be registered on the blockchain to be useful and it requires:

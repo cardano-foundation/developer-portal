@@ -3,7 +3,7 @@ id: stake-pool-networking
 title: Understanding the Relay and Block Producer topology
 sidebar_label: Stake Pool Networking
 description: Understanding the Relay and Block Producer topology
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 Before we start with the stake pool installation and configuration, it is essential to understand the logical topology of stake pools. Typically every stake pool has one block producer and at least one relay node. To ensure fast propogation of blocks the pool produces, it is recommended to have relays in different geographical locations. To secure the block producer from the internet it should only connect to its own relays, or relays you trust. The relays then connect to the rest of the Cardano network. To minimise the risk of [height battles](https://forum.cardano.org/t/how-to-figure-out-when-pool-wins-slot-battles-or-causes-height-battles/90639), it is recommended to regularly monitor the propogation time of the relays. We will talk more on this topic in our pool monitoring section later.
 
