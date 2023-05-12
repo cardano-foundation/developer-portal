@@ -238,3 +238,8 @@ cardano-node --version
 ```
 
 Congratulations, you have successfully installed Cardano components into your Linux system! 🎉🎉🎉
+
+## References
+- [Building cardano-node from source with cabal](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/install.md)
+- [Building cardano-node from source with Nix](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/building-the-node-using-nix.md)
+
