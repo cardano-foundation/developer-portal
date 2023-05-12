@@ -146,3 +146,6 @@ cardano-cli transaction submit \
     --testnet-magic 1 
 ```
 In the next section we will register the pool metadata.
+
+## References 
+- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)

@@ -36,6 +36,7 @@ The `cardano-node` application requires at least four configuration files to run
 - **Byron Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Byron Era** of the **Cardano** blockchain.
 - **Shelly Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Shelly Era** of the **Cardano** blockchain.
 - **Alonzo Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Alonzo Era** of the **Cardano** blockchain.
+- **Conway Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Conway Era** of the **Cardano** blockchain.
 - **Topology**: It contains the list of network peers (**`IP Address` and `Port` of other nodes running the blockchain network**) that your node will connect to.
 
 :::important
@@ -60,6 +61,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/preview/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/alonzo-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/conway-genesis.json
 ```
 #### Testnet / Preprod
 
@@ -73,6 +75,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/conway-genesis.json
 ```
 
 #### Mainnet / Production
@@ -87,6 +90,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/mainnet/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/alonzo-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json
 ```
 
 The latest supported networks can be found at https://book.world.dev.cardano.org/environments.html
