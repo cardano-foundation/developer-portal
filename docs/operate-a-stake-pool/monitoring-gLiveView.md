@@ -3,7 +3,7 @@ id: monitoring-gLiveView
 title: Monitoring with gLiveView
 sidebar_label: Monitoring with gLiveView
 description: "Monitoring the Node (gLiveView)"
-image: ../img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 Guild LiveView, often known as gLiveView, is a local bash CLI monitoring utility with an easy-to-use interface for monitoring node status. It connects to the locally running node via the specified EKG/Prometheus node endpoints to collect and show node metrics, network information, and other information in real time. The program recognizes whether the node is being used as a relay or a block producer and adjusts the output accordingly. 
 

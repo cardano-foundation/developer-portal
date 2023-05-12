@@ -3,7 +3,7 @@ id: generating-wallet-keys
 title: Generating wallet keys (Faucet for tADA)
 sidebar_label: Generating wallet keys
 description: Generating wallet keys (Faucet for tADA)
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 Once the relay nodes in our last section are in sync with our chosen [testnet network](docs/get-started/testnets-and-devnets.md), it's time to configure one of these relays into a block producing node. In this section we will create wallet keys which are needed to register a pool and run the block producer.
 

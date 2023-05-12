@@ -3,7 +3,7 @@ id: node-installation-process
 title: Cardano Node Installation process (Environment Setup)
 sidebar_label: Cardano Node Installation process
 description: Cardano Node Installation process (Environment Setup)
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 The Cardano node is the core component that underpins the Cardano network. Ultimately, a blockchain network is just a collection of interconnected nodes, all working together to validate transactions and blocks by means of consensus. The definition of consensus for any given network varies, but for the Cardano network it’s defined by the [Ouroboros](introduction-to-cardano#understanding-consensus) protocol.
 

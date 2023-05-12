@@ -3,7 +3,7 @@ id: block-producer-keys
 title: Generating Cardano Block producer Keys
 sidebar_label: Block Producer Keys
 description: Generating Cardano Block producer Keys (StakePool certificate generation)
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 To run a stake pool, three key pairs are needed:

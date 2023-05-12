@@ -3,7 +3,7 @@ id: prerequisites
 title: Technical skills and know-how needed to manage a stake pool
 sidebar_label: Prerequisites
 description: Technical skills and know-how needed to manage a stake pool
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 Stake pool operators play an important role in the Cardano Ecosystem. On one hand they have the responsibility to keep the network running by providing robust nodes that continually verify transactions and on another hand pay best Return on Stake (RoS) to their delegators. Operating a stake pool requires the commitment to monitor the nodes 24/7 and ability to react immediately to fullfil both of these requirements. Some of the technical skill a stake pool operator should have are as follows:
 

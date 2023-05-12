@@ -3,6 +3,7 @@ id: ansible-cardano-node
 title: Get Started with Ansible for Stake Pools
 sidebar_label: Ansible for Stake Pools
 description: Get Started with Ansible for Stake Pools
+image: /img/og/og-developer-portal.png
 ---
 
 ![ansible-cardano](https://user-images.githubusercontent.com/84546123/137635107-1b183f63-3cac-4ef9-be9e-3f116cb79aef.png)

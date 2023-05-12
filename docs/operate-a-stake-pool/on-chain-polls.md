@@ -3,7 +3,7 @@ id: on-chain-polls
 title: On-Chain Polls
 sidebar_label: On-Chain Polls
 description: On-Chain Polls
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 In the 8.0.0 version of Cardano-node, we incorporated a new group of commands to facilitate voting among stake pool operators. An "official" poll is characterized by being endorsed with a genesis delegate key.
