@@ -16,14 +16,14 @@ Payment keys can never be stored, even for a moment, on an Internet connected ma
 
 Therefore we present a secure, standard workflow for this sequence of `cardano-cli` commands for a simple, single transaction for funds transfer:
 
-  - **[Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction)** (*insecure* version)
+  - **[Create Simple Transaction](/docs/get-started/create-simple-transaction)** (*insecure* version)
 
 Once you feel comfortable doing a simple transaction securely, you'll also be able to use it to securely execute these more complex transactions as well:
 
   - [Minting Native Assets](../native-tokens/minting)
   - [Minting NFTs](../native-tokens/minting-nfts)
-  - [Registering a Stake Address](../stake-pool-course/handbook/register-stake-keys)
-  - [Registering a Stake Pool](../stake-pool-course/handbook/register-stake-pool-metadata)
+  - [Registering a Stake Address](/docs/operate-a-stake-pool/block-producer-keys)
+  - [Registering a Stake Pool](/docs/operate-a-stake-pool/register-stake-pool-metadata)
 
 ### A model for a secure transaction
 
@@ -66,9 +66,9 @@ Format a memory stick on a machine you believe to be secure, and then (to be on 
 
 ## Steps of a secure transaction
 
-This is rewritten from page [Create Simple Transaction](../stake-pool-course/handbook/create-simple-transaction) (only considered secure to run on a testnet) with the following exception:
+This is rewritten from page [Create Simple Transaction](/docs/get-started/create-simple-transaction) (only considered secure to run on a testnet) with the following exception:
 
-  - [Determining the TTL (time to Live)](../stake-pool-course/handbook/create-simple-transaction#determine-the-ttl-time-to-live-for-the-transaction) for the transaction is omitted, along with setting this value in the transaction itself, to simplify the information-gathering step.
+  - [Determining the TTL (time to Live)](/docs/get-started/create-simple-transaction#determine-the-ttl-time-to-live-for-the-transaction) for the transaction is omitted, along with setting this value in the transaction itself, to simplify the information-gathering step.
   - This poses no security risk since an omitted TTL value allows a Tx file to be used indefinitely *but* submitting that Tx will change the UTxO set so that submitting that transaction again will be impossible.
 
 Also note that in general your "Internet connected machine" and your "Cardano node" will be two separate systems, and you will have to transfer files from one to the other with programs like [`rsync`](https://linux.die.net/man/1/rsync).
@@ -204,7 +204,7 @@ cardano-cli transaction submit \
     --mainnet
 ```
 
-Then check for a successful transaction by whatever means you prefer, e.g. as illustrated in [Check the balances](../stake-pool-course/handbook/create-simple-transaction#check-the-balances).
+Then check for a successful transaction by whatever means you prefer, e.g. as illustrated in [Check the balances](/docs/get-started/create-simple-transaction#check-the-balances).
 
 ## FAQ
 
