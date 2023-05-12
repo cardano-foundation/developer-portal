@@ -2,17 +2,16 @@
 id: introduction-to-cardano
 title: (Re)introduction into Cardano
 sidebar_label: (Re)introduction into Cardano
-description: "Stake pool course: (Re)introduction into Cardano."
-image: /img/og/og-developer-portal.png
+description: "(Re)introduction into Cardano: why stake pools are needed on Cardano & how they work"
+image: ../img/og-developer-portal.png
 ---
 
-Developing Cardano is no small feat. There is no other project that has ever been built to these parameters, combining peer reviewed cryptographic research with an implementation in highly secure Haskell code. 
+Developing Cardano is no small feat. There is no other project that has ever been built to these parameters, combining peer reviewed cryptographic research with an implementation in highly secure Haskell code.
 
-This is not the copy and paste code seen in so many other blockchains. Instead, Cardano was designed with input from a large global team including leading experts and professors in the fields of computer programming languages, network design and cryptography. 
+This is not the copy and paste code seen in so many other blockchains. Instead, Cardano was designed with input from a large global team including leading experts and professors in the fields of computer programming languages, network design and cryptography.
 
 We are extremely proud of Cardano, which required a months-long meticulous and painstaking development process by our talented engineers.
 
-## Why Cardano?
 If you haven't seen it yet, watch the legendary whiteboard video from 2017. Some details are a bit outdated, but it is still worth seeing to understand what Cardano is and where Cardano came from.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Ja9D0kpksxw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -53,16 +52,6 @@ The Cardano network consists of a number of stake pools that control the aggrega
 
 When validating a transaction, a slot leader needs to ensure that the sender has included enough funds to pay for that transaction and must also ensure that the transaction’s parameters are met. Assuming that the transaction meets all these requirements, the slot leader will record it as a part of a new block, which will then be connected to other blocks in the chain.
 
-## The Big Picture
-
-Learn fundamental terms like blockchain, consensus, decentralization delegation and incentives. Understand the big picture of Cardano and why stake pools are so important. 
-
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-<br/><br/>  
-
-:::tip questions or suggestions?
-If you have any questions and suggestions while taking the lessons please feel free to [ask in the Cardano forum](https://forum.cardano.org/c/staking-delegation/setup-a-stake-pool/158) and we will respond as soon as possible. 
-:::
 
 ## Ouroboros Protocol
 
@@ -88,7 +77,7 @@ The underlying problem is that Bitcoin makes a clear distinction between the act
 
 ### Ouroboros, a Proof-of-stake consensus algorithm
 
-In Ouroboros, there is no race between stakeholders to produce a block. Instead, slot leaders are randomly selected, proportionally to the amount of tokens they own (the stake), to get the opportunity to produce a new block.
+In Ouroboros, there is no race between stakeholders to produce a block. Instead, a slot leader is randomly selected, proportionally to the amount of tokens he owns (the stake), to get the opportunity to produce a new block.
 
 So it is not hashing power what gives you the opportunity to produce a new block (and get rewarded for it), it is your stake what increases your chances to be elected.
 
@@ -112,13 +101,13 @@ In the case of stake pools, those get a fraction of the rewards to cover operati
 
 To participate in the protocol, you can choose a staking pool or choose to act on your own at any moment creating your own stake pool.
 
-### What if for some reason there is a fork? 
+### What if for some reason there is a fork?
 
 Given that stakeholders are not always online, they come and go (a.k.a. dynamic availability), and sometimes they are offline for long periods, it is important for them to be able to resynchronize with the correct chain when they come back online.
 
 The key feature of Ouroboros Genesis is that thanks to a unique chain selection rule, it allows new or re-joining parties to synchronize to the “good chain” with only a trusted copy of the genesis block. This makes the protocol secure against the so-called “long-range attack”.
 
-### Self-produced randomness 
+### Self-produced randomness
 
 Making the slot leader selection fair and secure **(staking procedure)** requires a good source of randomness.
 
@@ -128,17 +117,17 @@ This is achieved by the implementation of a Verifiable Random Function. When eva
 
 This is why the protocol is named Ouroboros, the snake that eats its own tail.
 
-### Promoting decentralization 
+### Promoting decentralization
 
 Finally, the Ouroboros incentives mechanism promotes the decentralization of the system in a better way than Proof-of-work does. Because Ouroboros considers two key scenarios:
 
 In one hand, a staking pool can only act as a delegate if it represents a certain number of stakeholders whose aggregate stake exceeds a given threshold, for example, 0.1% of all the stake in the blockchain. This prevents a fragmentation attack, where someone tries to affect the performance of the protocol by increasing the delegates population.
 
-At the same time, when the aggregate stake of a stake pool grows beyond a certain threshold, rewards become constant. This makes that particular stake pool less attractive since stakeholders would not be maximizing their rewards. For example, if the threshold is set to 1%, a stake pool with a stake of 2% would gain the same rewards as another one that has a stake of only 1%.
+At the same time, when the aggregate stake of a stake pool grows beyond a certain threshold, rewards become constant. This makes that particular stake pool less attractive since stakeholders would not be maximizing their rewards. For example, if the threshold is set to 1%, a stake pool with a stake of 2% would gain the same rewards as other that has a stake of only 1%.
 
 All these functionalities make Ouroboros the best proof of stake ledger protocol to date. And its only implementation is currently in the Cardano blockchain.
 
-## How it works 
+## How it works
 
 1. **Time** is divided into epochs and slots and begins at Genesis. At most one block is produced in every slot. Only the slot leader can sign a block for a particular slot.
 2. **Register:** The first thing a user needs to do to participate in the protocol is registering to:
@@ -149,14 +138,14 @@ All these functionalities make Ouroboros the best proof of stake ledger protocol
     1. At the beginning of every epoch, the online stakeholders fetch \(from the blockchain\) the **stake distribution** from the last block of 2 epochs ago. For example, if the current epoch is epoch 100, the stake distribution used is the distribution as it was in the last block of epoch 98.
     2. **Random Oracle**: Is a hashing function that takes the random values “v” \(included in each block by the slot leader for this purpose\) from the first ⅔ slots in previous epoch and hash them together and use it as the random seed to select the slot leaders.
     3. Stakeholders evaluate with their **secret key** the **Verifiable Random Function \(VRF\)** at every slot. If the output value \(v\) is below a certain threshold, the party becomes slot leader for that block.
-        1. **Certificate:** The **VRF** produces two outputs: **a random value \(v\)** and a **proof \(π\)** that the slot leader will include in the block they produce to certify that they are the legitimate slot leader for that particular slot.
-        1. Slot leader performs the following duties:
-            1. Collects the transactions to be included in the block.
-            1. Includes in the block the random value \(v\) and proof \(π\) obtained from the VRF output.
-            1. Before broadcasting the block, the slot leader generates a new secret key **\(Key-evolving signature\)**. The public key remains the same, but the secret key is updated in every step and the old key is erased.
-        1. It is impossible to forge old signatures with new keys. And it is also impossible to derive previous keys from new ones.
-        1. Finally, the slot leader broadcast the new block to the network.
-        1. The **rewards** obtained by the slot leaders are calculated at the end of the epoch. Rewards come from transaction fees and funds from the ada reserve.
+        1. **Certificate:** The **VRF** produces two outputs: **a random value \(v\)** and a **proof \(π\)** that the slot leader will include in the block he produces to certify that he is the legitimate slot leader for that particular slot.
+        2. Slot leader performs the following duties
+        3. Collects the transactions to be included in his block.
+        4. Includes in his block the random value \(v\) and proof \(π\) obtained from the VRF output.
+        5. Before broadcasting the block, the slot leader generates a new secret key **\(Key-evolving signature\)**. The public key remains the same, but the secret key is updated in every step and the old key is erased.
+        6. It is impossible to forge old signatures with new keys. And it is also impossible to derive previous keys from new ones.
+        7. Finally, the slot leader broadcast the new block to the network.
+        8. The **rewards** obtained by the slot leaders are calculated at the end of the epoch. Rewards come from transaction fees and funds from the ada reserve.
 
 **What happens in the case of a fork in the chain?**
 

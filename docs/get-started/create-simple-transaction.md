@@ -1,8 +1,8 @@
 ---
 id: create-simple-transaction
-title: Create Simple Transaction
-sidebar_label: Create simple transaction
-description: "Stake pool course: Learn how to create simple transaction."
+title: Create Simple Transactions
+sidebar_label: Create Simple Transactions
+description: Learn how to create simple transactions.
 image: /img/og/og-developer-portal.png
 ---
 
