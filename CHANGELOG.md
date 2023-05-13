@@ -1252,3 +1252,41 @@ All of the merged PRs in March
 - matiwinnetou ([@matiwinnetou](https://github.com/matiwinnetou))
 - olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
 - workshop-maybe ([@workshop-maybe](https://github.com/workshop-maybe))
+
+## 2023.16.0 (2023-04-30)
+
+All of the merged PRs in April
+
+#### PRs: 22
+
+- Update acca project image by ([@matiwinnetou](https://github.com/matiwinnetou)) in [#1003](https://github.com/cardano-foundation/developer-portal/pull/1003)
+- NFT Update Proposal by ([@katomm](https://github.com/katomm)) in [#1012](https://github.com/cardano-foundation/developer-portal/pull/1012)
+- Add changelog for March by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1014](https://github.com/cardano-foundation/developer-portal/pull/1014)
+- Update Docusaurus to 2.4.0 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1013](https://github.com/cardano-foundation/developer-portal/pull/1013)
+- Move guidelines for builder tools and showcase into docs by ([@katomm](https://github.com/katomm)) in [#1017](https://github.com/cardano-foundation/developer-portal/pull/1017)
+- Add Lace to showcase by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#1021](https://github.com/cardano-foundation/developer-portal/pull/1021)
+- Update Lace description by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#1024](https://github.com/cardano-foundation/developer-portal/pull/1024)
+- Update installing-cardano-node.md to ver 1.35.7 by ([@gufmar](https://github.com/gufmar)) in [#1025](https://github.com/cardano-foundation/developer-portal/pull/1025)
+- Add plu-ts to Builder Tools + Smart Contract platforms by ([@michele-nuzzi](https://github.com/michele-nuzzi)) in [#1027](https://github.com/cardano-foundation/developer-portal/pull/1027)
+- OpShin: Update and extend the example section by ([@nielstron](https://github.com/nielstron)) in [#1030](https://github.com/cardano-foundation/developer-portal/pull/1030)
+- Add Receiving Payments (POS + Blockfrost API) tutorial by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1031](https://github.com/cardano-foundation/developer-portal/pull/1031)
+- POS tutorial - change 'clone' to 'fork' typo by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1032](https://github.com/cardano-foundation/developer-portal/pull/1032)
+- Fix OG image for catalyst page  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1034](https://github.com/cardano-foundation/developer-portal/pull/1034)
+- Fix OG image path on all markdown files, including fetched data on build by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1035](https://github.com/cardano-foundation/developer-portal/pull/1035)
+- Fix mobile jump bug when using search bar in Showcase/Tool pages by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1039](https://github.com/cardano-foundation/developer-portal/pull/1039)
+- Receiving Payments (Blockfrost API) - Minor Documentation fix by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1036](https://github.com/cardano-foundation/developer-portal/pull/1036)
+- Resolve unique key issue in showcase and builder tools page by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1037](https://github.com/cardano-foundation/developer-portal/pull/1037)
+- Add aada.finance to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1040](https://github.com/cardano-foundation/developer-portal/pull/1040)
+- Add flipr.io to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1042](https://github.com/cardano-foundation/developer-portal/pull/1042)
+- update: blockfrost by ([@mmahut](https://github.com/mmahut)) in [#1048](https://github.com/cardano-foundation/developer-portal/pull/1048)
+
+#### Contributors: 8
+
+- matiwinnetou ([@matiwinnetou](https://github.com/matiwinnetou))
+- katomm ([@katomm](https://github.com/katomm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
+- gufmar ([@gufmar](https://github.com/gufmar))
+- michele-nuzzi ([@michele-nuzzi](https://github.com/michele-nuzzi))
+- nielstron ([@nielstron](https://github.com/nielstron))
+- mmahut ([@mmahut](https://github.com/mmahut))
