@@ -1,8 +1,8 @@
 ---
 id: create-simple-transaction
-title: Create Simple Transaction
-sidebar_label: Create simple transaction
-description: "Stake pool course: Learn how to create simple transaction."
+title: Create Simple Transactions
+sidebar_label: Create Simple Transactions
+description: Learn how to create simple transactions.
 image: /img/og/og-developer-portal.png
 ---
 
@@ -167,3 +167,6 @@ cardano-cli query utxo \
 :::note
 `--mainnet` identifies the Cardano mainnet, for testnets use `--testnet-magic 1097911063` instead.
 :::note
+
+## References
+- [Cardano-node documentation](https://github.com/input-output-hk/cardano-node/blob/master/doc/reference/building-and-signing-tx.md)
