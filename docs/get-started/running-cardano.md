@@ -4,6 +4,7 @@ title: How to run cardano-node
 sidebar_label: Running cardano-node
 description: This guide will explain and show you how to run the cardano-node and components on your system.
 image: /img/og/og-getstarted-running-cardano-node.png
+image: /img/og/og-getstarted-running-cardano-node.png
 --- 
 ### Overview 
 
@@ -16,6 +17,17 @@ This guide assumes you installed `cardano-node` and `cardano-cli` into your syst
 :::important
 This guide does not cover the topic of running a block-producing `cardano-node` or running a **Cardano Stake Pool**. For more information regarding that topic, please visit the [Stake Pool Operation](/docs/operate-a-stake-pool/) section.
 :::
+
+## Cardano blockchain  nets:
+### Testnet
+There are two types of testnet: `preview` and `pre-prod`.
+
+- **Preview Testnet**: Testing release candidates and Mainnet releases. Leads Mainnet hard forks by at least 4 weeks. This net is for those who just want to see how it runs, get familiarised and play with cardano-node.
+
+- **Pre-Production Testnet**: Testing release candidates and Mainnet releases. Forks at approximately same time as Mainnet (within an epoch of each other). This net is ideal for those who are ready to run the Mainnet but want to test it before running it.
+
+### Production (Mainnet)
+This is the live Production. Only gets official Mainnet releases. Please use this net once you are ready to use the cardano-node.
 
 ## Cardano blockchain  nets:
 ### Testnet
@@ -94,6 +106,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/mainnet/conway-genesi
 ```
 
 The latest supported networks can be found at https://book.world.dev.cardano.org/environments.html
+The latest supported networks can be found at https://book.world.dev.cardano.org/environments.html
 
 :::note
 
@@ -103,7 +116,9 @@ This section will be updated when new **Cardano** networks come online with thei
 :::
 
 You might be asking what the difference is between `mainnet` and `testnet` and why there are two official network types? To put it simply, **Cardano** is an open-source blockchain, and anyone is free to spin up a network based on **Cardano's** software components. The `mainnet` network was the first one established during the start of the **Byron** era in 2017.  And everyone participating in the network agreed that is where all the real value of **Cardano** lives.
+You might be asking what the difference is between `mainnet` and `testnet` and why there are two official network types? To put it simply, **Cardano** is an open-source blockchain, and anyone is free to spin up a network based on **Cardano's** software components. The `mainnet` network was the first one established during the start of the **Byron** era in 2017.  And everyone participating in the network agreed that is where all the real value of **Cardano** lives.
 
+ Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up sandboxes or testnet versions of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
  Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up sandboxes or testnet versions of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
 
 ### Running the node
@@ -168,23 +183,33 @@ Available options:
 
 :::note
 In this section, we will use the path `$HOME/cardano/testnet` to store all the testnet `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
+In this section, we will use the path `$HOME/cardano/testnet` to store all the testnet `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
 :::
 We will focus on six key command-line parameters for running a node: 
 
 **`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](/docs/get-started/running-cardano#configuration-files).
 
 > For example, If you have downloaded the `topology.json` file to the path `$HOME/cardano/testnet/topology.json`, then the argument would be something like this:
+> For example, If you have downloaded the `topology.json` file to the path `$HOME/cardano/testnet/topology.json`, then the argument would be something like this:
 ```
+--topology $HOME/cardano/testnet/topology.json
 --topology $HOME/cardano/testnet/topology.json
 ```
 
 **`--database-path`**: This expects the path to a directory where we will store the actual blockchain data like **blocks**, **transactions**, **metadata**, and other data type that people stored in the **Cardano** blockchain. We explore how we can query those kinds of data in the cardano-db-sync section. ***@TODO: link to the cardano-db-sync section.***
 
 > For example, if we decide that all files required by `cardano-node` will be in the path `$HOME/cardano/testnet`. Then we could create a database directory like this, `mkdir -p $HOME/cardano/testnet/db`.
+> For example, if we decide that all files required by `cardano-node` will be in the path `$HOME/cardano/testnet`. Then we could create a database directory like this, `mkdir -p $HOME/cardano/testnet/db`.
 > The directory structure would then be something like this:
 ```
 $HOME/cardano/testnet/
+$HOME/cardano/testnet/
 ├── db
+├── alonzo-genesis.json
+├── byron-genesis.json
+├── config.json
+├── shelley-genesis.json
+└── topology.json
 ├── alonzo-genesis.json
 ├── byron-genesis.json
 ├── config.json
@@ -193,7 +218,9 @@ $HOME/cardano/testnet/
 1 directory, 4 files
 ```
 > As you may have noticed, we are planning to run a testnet node in this example and have downloaded the configuration files into the `$HOME/cardano/testnet/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/testnet/` successfully. The argument would look something like this: 
+> As you may have noticed, we are planning to run a testnet node in this example and have downloaded the configuration files into the `$HOME/cardano/testnet/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/testnet/` successfully. The argument would look something like this: 
 ```
+--database-path $HOME/cardano/testnet/db
 --database-path $HOME/cardano/testnet/db
 ```
 > Please download and move the configuration files to your Cardano directory as shown above to continue following this guide.
@@ -204,6 +231,7 @@ $HOME/cardano/testnet/
 > 
 > Here is an example `--socket-path` argument for **Linux**:
 ```
+--socket-path $HOME/cardano/testnet/db/node.socket
 --socket-path $HOME/cardano/testnet/db/node.socket
 ```
 > As you can see, the argument points to a file since **unix sockets** are represented as files (like everything else in **Linux**). In this case, we put the socket file in the `db` directory that we have just created before.
@@ -233,6 +261,7 @@ $HOME/cardano/testnet/
 > Here is an example `--config` argument:
 ```
 --config $HOME/cardano/testnet/config.json
+--config $HOME/cardano/testnet/config.json
 ```
 > Please make sure that the `alonzo-genesis.json`, `byron-genesis.json` and `shelley-genesis.json` are in the same directory as the `config.json`.
 
@@ -243,8 +272,12 @@ cardano-node run \
 --config $HOME/cardano/testnet/config.json \
 --database-path $HOME/cardano/testnet/db/ \
 --socket-path $HOME/cardano/testnet/db/node.socket \
+--config $HOME/cardano/testnet/config.json \
+--database-path $HOME/cardano/testnet/db/ \
+--socket-path $HOME/cardano/testnet/db/node.socket \
 --host-addr 127.0.0.1 \
 --port 1337 \
+--topology $HOME/cardano/testnet/topology.json
 --topology $HOME/cardano/testnet/topology.json
 ```
 
@@ -294,6 +327,7 @@ So we will set that in `$HOME/.bashrc` or `$HOME/.zshrc`, depending on which she
 Add this line to the bottom of your shell profile (**MacOS** and **Linux**):
 ```
 export CARDANO_NODE_SOCKET_PATH="$HOME/cardano/testnet/db/node.socket"
+export CARDANO_NODE_SOCKET_PATH="$HOME/cardano/testnet/db/node.socket"
 ```
 
 Once saved, reload your shell/terminal for changes to take effect.
@@ -302,7 +336,9 @@ Finally, we can now test querying the blockchain tip of our `cardano-node`:
 
 - First, run `cardano-node` in a separate terminal for it to start syncing (if not already).
 - Open another terminal and run the following command `cardano-cli query tip --testnet-magic 1`.
+- Open another terminal and run the following command `cardano-cli query tip --testnet-magic 1`.
 > You should see something like this:
+```json
 ```json
 {
     "block": 2598870,
@@ -311,14 +347,25 @@ Finally, we can now test querying the blockchain tip of our `cardano-node`:
     "hash": "7b5633590bf8924d8fce5b6515f34fga0c712f64e9b7d273f915656f88fba872",
     "slot": 27149964,
     "syncProgress": "57.09"
+    "block": 2598870,
+    "epoch": 133,
+    "era": "Shelley",
+    "hash": "7b5633590bf8924d8fce5b6515f34fga0c712f64e9b7d273f915656f88fba872",
+    "slot": 27149964,
+    "syncProgress": "57.09"
 }
+```
 ```
 
 :::note
 We include `--testnet-magic <NetworkMagic>` in the parameter for `cardano-cli query tip` because we are using a testnet node. If you intend to query `mainnet` instead, please use the `--mainnet` parameter  and make sure your node is connected to the `mainnet` network.
+We include `--testnet-magic <NetworkMagic>` in the parameter for `cardano-cli query tip` because we are using a testnet node. If you intend to query `mainnet` instead, please use the `--mainnet` parameter  and make sure your node is connected to the `mainnet` network.
 :::
 
 What you see here is the local tip data of your node. This case, means that you are synced up to `block: 2598870` and `slot: 27149964`.
+What you see here is the local tip data of your node. This case, means that you are synced up to `block: 2598870` and `slot: 27149964`.
+
+`syncProgress` is the percentage your node that has been synced. `100` meaning it is fully synced.
 
 `syncProgress` is the percentage your node that has been synced. `100` meaning it is fully synced.
 

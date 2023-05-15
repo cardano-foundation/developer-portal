@@ -5,6 +5,7 @@ title: Operate a Stake Pool
 sidebar_label: Overview
 description: Operate a Cardano stake pool.
 image: /img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ![Cardano Operate a Stake Pool](../../static/img/card-operate-a-stake-pool-title.svg)

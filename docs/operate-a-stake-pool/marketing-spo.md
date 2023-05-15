@@ -4,6 +4,7 @@ title: Marketing a Stake pool
 sidebar_label: Marketing a Stake Pool
 description: This article explains how to promote a stake pool.
 image: /img/og/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 Managing a stake pool is similar to managing a business. It's not enough to have a stake pool that functions flawlessly on the technical side; you also need to attract enough stake. The most fundamental rule of marketing is to develop a marketing strategy that focuses on your customers' needs rather than your primary product. When you operate a stake pool, you allow other users to earn incentives by participating in the Cardano protocol. You'll be able to execute transactions and create new blocks as a result of this. The main way to get people to join your stake pool is to increase its reliability, uptime, and staking reward percentage.
