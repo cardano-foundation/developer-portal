@@ -1162,6 +1162,15 @@ export const Showcases = [
     source: null,
     tags: ["lending", "marketplace", "nftsupport"],
   },
+  {
+    title: "Maestro ISPO Marketplace",
+    description:
+      "Discover top ISPO projects on Cardano.",
+    preview: require("./showcase/maestro.png"),
+    website: "https://www.gomaestro.org/marketplace",
+    source: null,
+    tags: ["pooltool"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
