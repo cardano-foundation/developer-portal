@@ -132,7 +132,7 @@ Assuming you still have the original `poll.json` file, and a signed transaction 
 ```
 $ cardano-cli governance verify-poll \
   --poll-file poll.json \
-  --signed-tx-file answer.signed
+  --tx-file answer.signed
 ```
 ​
 Upon successful execution, this should produce something like:
