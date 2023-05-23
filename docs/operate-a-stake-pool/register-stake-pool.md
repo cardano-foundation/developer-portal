@@ -8,7 +8,7 @@ image: ../img/og-developer-portal.png
 
 Registering your stake pool requires:
 
-* Create JSON file with your metadata and store it in the node and in a url you maintain
+* Create JSON file with your metadata and store it in the node and in a URL you maintain
 * Get the hash of your JSON file
 * Generate the stake pool registration certificate
 * Create a delegation certificate pledge
@@ -39,8 +39,8 @@ Before starting, make sure you have access to:
 
 ## Create JSON file with your metadata
 
-*ticker* must be between 3-9 characters in length. Characters must be A-Z and 0-9 only.
-*description* cannot exceed 255 characters in length.
+`ticker` must be between 3-9 characters in length. Characters must be A-Z and 0-9 only.
+`description` cannot exceed 255 characters in length.
 
 ```
 cat > poolMetaData.json << EOF
@@ -53,7 +53,7 @@ cat > poolMetaData.json << EOF
 EOF
 ```
 
-Calculate the hash of your metadata file. It's saved to poolMetaDataHash.txt
+Calculate the hash of your metadata file. Here it's saved to `poolMetaDataHash.txt`:
 
 ```
 cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
@@ -61,7 +61,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 ## Get the hash of your JSON file
 
-Upload your poolMetaData.json file to a Web site that you administer or a public Web site. For example, you can upload to GitHub.
+Upload your `poolMetaData.json` file to a web site that you administer or a public web site. For example, you can upload to GitHub.
 Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
 
 ```
@@ -74,14 +74,14 @@ Both the hashes must be equal. If the hashes do no match, then the uploaded .jso
 
 ## Generate the stake pool registration certificate
 
-Find the minimum pool cost.
+Find the minimum pool cost:
 
 ```
 minPoolCost=$(cat params.json | jq -r .minPoolCost)
 echo minPoolCost: ${minPoolCost}
 ```
 
-Generate Stake pool registration certificate
+Generate the stake pool registration certificate:
 
 ```
 cardano-cli stake-pool registration-certificate \
@@ -115,13 +115,17 @@ cardano-cli stake-pool registration-certificate \
 | metadata-hash | the hash of pools json metadata file |
 | out-file | output file to write the certificate to |
 
-In case an error similar to the one below appears, then the URL length needs to be reduced and [TinyUrl](https://tinyurl.com/) can used to achieve a shorter URL address.
+In case an error similar to the one below appears, then the URL length needs to be reduced:
 
 ```
 *--metadata-url: The provided string must have at most 64 characters, but it has 70 characters
 ```
 
-Generate the certificate again with the new URL
+and you must generate the certificate again with the new, shorter URL.
+
+:::tip
+[TinyUrl](https://tinyurl.com/) can used to achieve a shorter URL address.
+:::
 
 ## Create a delegation certificate pledge
 
@@ -134,23 +138,25 @@ cardano-cli stake-address delegation-certificate \
     --out-file deleg.cert
 ```
 
-This creates a delegation certificate which delegates funds from all stake addresses associated with key stake.vkey to the pool belonging to cold key cold.vkey. If there are many staking keys as pool owners in the first step, we need delegation certificates for all of them.
-repeat
+This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `cold.vkey`. If there are many staking keys as pool owners in the first step, we need delegation certificates for all of them.
 
 ## Submit the certificates to the blockchain
 
-To understand the basics of Submitting a transaction on the chain refer to [Register Stake Address](./register-stake-address)
+To understand the basics of submitting a transaction on the chain, refer to [Register Stake Address](./register-stake-address).
 
-Registering a stake pool requires a deposit. This amount is specified in the already created params.json
+Registering a stake pool requires a deposit. This amount is specified in the already created `params.json`:
 
 ```
 stakePoolDeposit=$(cat params.json | jq -r '.stakePoolDeposit')
 echo $stakePoolDeposit
 ```
 
-Calculate the change for --tx-out. Since we don't know the exact Transaction fees yet, we take 1 ADA for the calculation.
+Calculate the change for `--tx-out`. Since we don't know the exact transaction fees yet, we take 1 ada for the calculation:
 
-*expr UTxO BALANCE - poolDeposit - TRANSACTION FEE*
+```
+expr UTxO BALANCE - poolDeposit - TRANSACTION FEE
+```
+
 which in our case would be 9497237500 - 500000000 - 1000000 = 8996237500
 
 ```
@@ -172,7 +178,7 @@ would give transaction fees as output like:
 Estimated transaction fee: Lovelace 172189
 ```
 
-So now we replace the 1 ADA to 172189 Lovelace in our calculation
+So now we replace the 1 ada with 172189 Lovelace in our calculation:
 
 ```
 txOut=$((9497237500-${stakePoolDeposit}-172189))
@@ -209,22 +215,22 @@ cardano-cli transaction submit \
     --testnet-magic 1
 ```
 
-In case you took a break, you might have passed the *invalid after* slot and would get an error. In that case you would need to submit the transaction again with it's updated value.
-Another common error message is *FeeTooSmallUTxO*, which means that the Transaction fees we provided before is too less and we need to change the fees to the new value provided with the error message and resubmit.
+In case you took a break, you might have passed the `--invalid-hereafter` slot and would get an error. In that case you would need to submit the transaction again with it's updated value.
+Another common error message is `FeeTooSmallUTxO`, which means that the transaction fee we provided before is not enough and we need to change the fees to the new value provided with the error message and resubmit.
 
 ## Verify that your stake pool registration was successful
 
-Get Pool ID
+Get pool ID:
 ```
 cardano-cli stake-pool id --cold-verification-key-file cold.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 
-Check for the presence of your poolID in the network, with:
+Check for the presence of your pool ID on the network, with:
 ```
 cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --testnet-magic 1
 ```
 
-A non-empty string return means you're registered. Congratulations!
+A non-empty string returned means you're registered. Congratulations!
 
-Additionally you can check your Pool on any of the PreProd explorers like [PreProd Cexplorer](https://preprod.cexplorer.io/)
+Additionally you can check your pool on any of the PreProd explorers like [PreProd Cexplorer](https://preprod.cexplorer.io/)
