@@ -117,8 +117,8 @@ From this point, you can sign `answer.tx` using your stake pool's cold key and a
 
 SPO-Poll Dashboards where your transaction should now be visible:
 
-- Adastats ([PreProd](https://adastat.net/polls/62c6be72bdf0b5b16e37e4f55cf87e46bd1281ee358b25b8006358bf25e71798)) (Mainnet)
-- Cardanoscan ([PreProd](https://preprod.cardanoscan.io/spo-polls/))  (Mainnet)
+- Adastat.net [[PreProd](https://preprod.adastat.net/polls)]   [[Mainnet](https://adastat.net/polls)]
+- Cardanoscan.io  [[PreProd](https://preprod.cardanoscan.io/spo-polls/)]   [[Mainnet](https://cardanoscan.io/spo-polls/)]
 ​
 ## Verifying Answers
 ​
