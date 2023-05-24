@@ -4,7 +4,7 @@ sidebar_position: 5
 title: Smart Contracts Transactions
 sidebar_label: Smart Contracts Transactions
 description: Create transactions to work with smart contracts.
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 In this section, we will look at how to create transactions to work with smart contracts. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).

@@ -3,7 +3,7 @@ id: cardano-wallet-js
 title: Get Started with cardano-wallet-js
 sidebar_label: cardano-wallet-js
 description: Get Started with cardano-wallet-js
-image: ../img/og/og-getstarted-cardano-wallet-js.png
+image: /img/og/og-getstarted-cardano-wallet-js.png
 ---
 
 ## cardano-wallet-js
@@ -807,3 +807,5 @@ execute: `stack install cardano-wallet:exe:local-cluster`
 Set a specific port `export CARDANO_WALLET_PORT=7355` so the wallet always start at the same port.
 run `~/.local/bin/local-cluster`
 
+## References 
+- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)
