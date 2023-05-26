@@ -285,7 +285,7 @@ module.exports = {
         type: "link",
         label: "Changelog",
         href: "/changelog",
-      }
+      },
     ],
   },
 };
