@@ -1162,6 +1162,15 @@ export const Showcases = [
     source: null,
     tags: ["lending", "marketplace", "nftsupport"],
   },
+  {
+        title: "Send Multiple Tokens and NFT Builder, Mint, Burn",
+        description:
+            "Users send multiple ADA addresses, tokens and create your own NFT, Mint, Burn with just a few clicks",
+        preview: require("./showcase/send-multiple-tokens.png"),
+        website: "https://cardano.dconecrypto.finance/",
+        source: null,
+        tags: ["minting", "token", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
