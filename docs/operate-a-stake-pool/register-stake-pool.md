@@ -99,6 +99,31 @@ cardano-cli stake-pool registration-certificate \
     --metadata-hash $(cat poolMetaDataHash.txt) \
     --out-file pool.cert
 ```
+:::important
+In case you have multiple relays, please substitute the `single-host-pool-relay` line from above with the below code accordingly.
+
+DNS based relays, 1 entry per DNS record
+```
+    --single-host-pool-relay <relaynode1.yourpoolname.com> \
+    --pool-relay-port 6000 \
+    --single-host-pool-relay <relaynode2.yourpoolname.com> \
+    --pool-relay-port 6000 \
+```
+
+Round Robin DNS based relays, 1 entry per SRV DNS record
+```
+    --multi-host-pool-relay <relaynodes.yourpoolname.com> \
+    --pool-relay-port 6000 \
+```
+
+IP based relays, 1 entry per IP address
+```
+    --pool-relay-port 6000 \
+    --pool-relay-ipv4 <first relay node public IP> \
+    --pool-relay-port 6000 \
+    --pool-relay-ipv4 <second relay node public IP> \
+```
+:::
 
 | Parameter | Explanation |
 | :--- | :--- |
