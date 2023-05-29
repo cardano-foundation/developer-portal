@@ -100,7 +100,7 @@ cardano-cli stake-pool registration-certificate \
     --out-file pool.cert
 ```
 :::important
-In case you have multiple relays, please substitute the `single-host-pool-relay` line from above with the below code accordingly.
+In case you have multiple relays, please substitute the `single-host-pool-relay` & `pool-relay-port` lines from above with the below code accordingly.
 
 DNS based relays, 1 entry per DNS record
 ```
