@@ -211,7 +211,7 @@ module.exports = {
           "operate-a-stake-pool/generating-wallet-keys",
           "operate-a-stake-pool/block-producer-keys",
           "operate-a-stake-pool/register-stake-address",
-          "operate-a-stake-pool/register-stake-pool-metadata",
+          "operate-a-stake-pool/register-stake-pool",
         ],
       },
       {
@@ -281,11 +281,6 @@ module.exports = {
       "portal-contributors",
       "portal-contribute",
       "portal-style-guide",
-      {
-        type: "link",
-        label: "Changelog",
-        href: "/changelog",
-      },
       {
         type: "link",
         label: "Changelog",
