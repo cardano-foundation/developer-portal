@@ -758,7 +758,7 @@ export const Showcases = [
     preview: require("./builder-tools/gOuroboros.png"),
     website: "https://github.com/blinklabs-io/gouroboros",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
-    tags: ["golang", "lowlevel"]
+    tags: ["golang", "lowlevel"],
   },
   {
     title: "cscli",
