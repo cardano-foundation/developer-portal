@@ -753,11 +753,11 @@ export const Showcases = [
     tags: ["http", "json", "hosted"],
   },
   {
-    title: "go-ouroboros-network",
-    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
-    preview: require("./builder-tools/go-ouroboros-network.png"),
-    website: "https://github.com/cloudstruct/go-ouroboros-network",
-    getstarted: null,
+    title: "gOuroboros",
+    description: "Golang implementation of the Cardano Ouroboros network protocol.",
+    preview: require("./builder-tools/gOuroboros.png"),
+    website: "https://github.com/blinklabs-io/gouroboros",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
     tags: ["golang", "lowlevel"]
   },
   {
