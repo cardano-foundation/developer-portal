@@ -67,9 +67,6 @@ Version hashes as of June 4, 2023:
 | Validator V1         | 2ed2631dbb277c84334453c5c437b86325d371f0835a28b910a91a6e                                 |
 | Audited Validator V1 | 6a9391d6aa51af28dd876ebb5565b69d1e83e5ac7861506bd29b56b0                                 |
 
-- Marlowe's audit is not complete, so it is not advisable to run Marlowe contracts on Mainnet.
-- However, a pull request [enable Marlowe on `mainnet`](https://github.com/input-output-hk/marlowe-cardano/pull/377) modifies Marlowe tools for running on Mainnet.
-
 
 ## More resources
 
