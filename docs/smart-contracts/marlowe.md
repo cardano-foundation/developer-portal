@@ -127,5 +127,6 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 - [Analysis in the playground](https://www.youtube.com/watch?v=VmoUAifui38)
 - [ACTUS labs](https://www.youtube.com/watch?v=6PPWFZEfkks)
 
-## Adoption & Metrics
+## Metrics & Adoption
+- [Marlowe Explorer: Scanners for contracts on Mainnet & testnets](https://marlowescan.com/)
 - [MarloweStat: Statistics for Marlowe contracts on public networks](http://data.marlowestat.org/)
