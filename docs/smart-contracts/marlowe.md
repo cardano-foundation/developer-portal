@@ -62,10 +62,12 @@ The well-known versions of the validator script are specified in the [ScriptRegi
 
 Version hashes as of June 4, 2023:
 
-| Version              | Hash                                                                                   |
-|----------------------|----------------------------------------------------------------------------------------|
-| Validator V1         | 2ed2631dbb277c84334453c5c437b86325d371f0835a28b910a91a6e                                 |
-| Audited Validator V1 | 6a9391d6aa51af28dd876ebb5565b69d1e83e5ac7861506bd29b56b0                                 |
+Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a _role-payout_ validator that allows the holder of a role token to withdraw funds paid by the semantics validator.
+
+| Version              | Hash for Semantics Validator                             | Hash for Role-Payout Validator                           |
+|----------------------|----------------------------------------------------------|----------------------------------------------------------|
+| Validator V1         | 2ed2631dbb277c84334453c5c437b86325d371f0835a28b910a91a6e | e165610232235bbbbeff5b998b233daae42979dec92a6722d9cda989 |
+| Audited Validator V1 | 6a9391d6aa51af28dd876ebb5565b69d1e83e5ac7861506bd29b56b0 | 49076eab20243dc9462511fb98a9cfb719f86e9692288139b7c91df3 |
 
 
 ## More resources
