@@ -1162,6 +1162,16 @@ export const Showcases = [
     source: null,
     tags: ["lending", "marketplace", "nftsupport"],
   },
+  {
+    title: "Continuity Token",
+    description:
+      "$COTO provides secure, global and long-lasting cold storage backups of Cardano NFT media.",
+    preview: require("./showcase/coto.png"),
+    website: "https://continuity.to/",
+    source: null,
+    tags: ["nftsupport", "token"],
+  },
+
 ];
 
 export const TagList = Object.keys(Tags);
