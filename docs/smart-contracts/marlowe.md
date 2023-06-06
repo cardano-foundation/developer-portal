@@ -40,10 +40,37 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 5. *If you want to run your contract from the command-line using the Marlowe Runtime backend,* then follow the [tutorial for Marlowe Runtime](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/doc/tutorial.ipynb). A video [Marlowe Runtime Tutorial](https://youtu.be/WlsX9GhpKu8) demonstrates its use.
 6. *If you want to run your contract using Marlowe Lambda,* follow the example for [using Marlowe Lambda from the command line](https://github.com/input-output-hk/marlowe-lambda/blob/main/examples/zcb.ipynb) or study the example [web application for Marlowe Lambda](https://github.com/input-output-hk/marlowe-lambda/tree/main/web). Videos [Marlowe Lambda at the Command Line](https://youtu.be/huXbRyrmW60) and [Marlowe Lambda in the Browser](https://youtu.be/o5m_y5l_i_g) demonstrate the use of Marlowe Lambda.
 
-### Why can't I run my Marlowe contract on Mainnet?
+## High level technical summary
 
-- Marlowe's audit is not complete, so it is not advisable to run Marlowe contracts on Mainnet.
-- However, a pull request [enable Marlowe on `mainnet`](https://github.com/input-output-hk/marlowe-cardano/pull/377) modifies Marlowe tools for running on Mainnet.
+Marlowe is implemented for the Cardano blockchain as a validator script that uses the Marlowe DSL in transaction datums for describing the contract states.
+
+The script is implemented in Plutus [here](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/src/Language/Marlowe/Scripts.hs) and plays a crucial role in validating state transitions for Marlowe contracts. Its purpose is to ensure that transitions caused by transactions comply with both the general rules defined in the Marlowe specification and the current state of the contract, as described in the datum using the Marlowe DSL.
+
+One important rule enforced by the Marlowe validator is that [a transaction can only consume a single UTXO](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/specification/marlowe-cardano-specification.md#constraint-2-single-marlowe-script-input) and [output at most one from the same Marlowe script address](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/specification/marlowe-cardano-specification.md#constraint-3-single-marlowe-output). Consequently, a Marlowe contract can be envisioned as a chain of transactions that concludes with a transaction consuming an input from the Marlowe address but producing no output to the same address.
+
+When a transaction consumes the final UTXO of a contract chain without outputting a new UTXO to the same validator address, it indicates the closure of the contract. Such a transaction will contain a redeemer but does not require a datum.
+
+A transaction that consumes the final UTXO and outputs a new one to the same validator address, effectively extending the contract's transaction chain, will also include a redeemer describing the action being applied to the previous state. Additionally, a datum is required to describe the new contract state using the Marlowe DSL. The validator script applies the action to the previous state and returns true (allowing the transaction) only if the transition is permitted by the previous state and results in the provided new state.
+
+Marlowe contracts using the same validator version will utilize the same script address by default. However, it is also possible to derive a staked version of the script address. In this case, only the payment part of the address remains constant for a specific script version. To identify a transaction containing a Marlowe contract, one needs to examine the payment part of the address, which would correlate to a well-known script hash for a validator script version.
+
+### Validator versions
+
+Currently, there is only a single known implementation of Marlowe available for Cardano: [input-output-hk/marlowe-cardano](https://github.com/input-output-hk/marlowe-cardano).
+
+The well-known versions of the validator script are specified in the [ScriptRegistry.hs](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/src/Language/Marlowe/Runtime/Core/ScriptRegistry.hs) file.
+
+Version hashes as of June 4, 2023:
+
+Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a _role-payout_ validator that allows the holder of a role token to withdraw funds paid by the semantics validator.
+
+| Version              | Hash for Semantics Validator                             | Hash for Role-Payout Validator                           |
+|----------------------|----------------------------------------------------------|----------------------------------------------------------|
+| Validator V1         | 2ed2631dbb277c84334453c5c437b86325d371f0835a28b910a91a6e | e165610232235bbbbeff5b998b233daae42979dec92a6722d9cda989 |
+| Audited Validator V1 | 6a9391d6aa51af28dd876ebb5565b69d1e83e5ac7861506bd29b56b0 | 49076eab20243dc9462511fb98a9cfb719f86e9692288139b7c91df3 |
+
+
+## More resources
 
 ### GitHub repositories
 
