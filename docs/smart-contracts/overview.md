@@ -79,7 +79,9 @@ The information contained in the context and thus available for your script to r
 
 ### Basic contract workflow
 
-*Note that this is only an example! The validator does not need to rely on hashsums - you can have any logic you want here.*
+:::note
+This is only an example! The validator does not need to rely on hashsums - you can have any logic you want here.
+:::
 
 - You create a validator-script that compares the datum in the utxo being moved from the contract's address to the hash of the redeemer being used in the transaction moving it. This is your on-chain component.
 
@@ -99,7 +101,7 @@ Expanding on the basic workflow, imagine that you want to create a contract that
 
 - Your off-chain component will need to be able to look at the locked uTXO and decode its datum to see which state the contract is currently in, so that it can correctly generate a transaction for either unlocking the utxo or driving the contract forward.
 
-::: note
+:::note
 You can also design contracts that never close, but only ever change state, while still allowing funds to be added and withdrawn from the contract.
 :::
 
@@ -125,7 +127,7 @@ Of course not all contracts are as complex, requiring the same amount of infrast
 
 Cardano introduced smart contracts in 2021 and now supports the development and deployment of smart contracts using multiple different languages.
 
-:::note
+:::tip
 Writing well-designed smart-contracts require you to have a solid understanding how how Cardano works in general, so make sure that everything on this page makes sense to you before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts) page as well.
 :::
 
