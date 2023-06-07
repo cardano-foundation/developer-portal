@@ -29,7 +29,7 @@ Smart contracts consist of on-chain and off-chain components:
 - The on-chain component (validator-script) is a script used to validate that transaction's containing value locked by the script (utxos residing on the script's address) conform to the rules of the contract. Specialized tools and languages are required for creating these scripts.
 - The off-chain component is a script or application that is used to generate transactions that conform to the rules of the contract. These can can be created in almost any language.
 
-Important to note here is that smart contracts heavily rely on the datum attached to a utxo, using it as part of the contract instance 'state' to be used in further transactions. If no datum is attached to a utxo residing on the contract's address, it can end up being locked there forever.
+Important to note here is that smart contracts heavily rely on the datum attached to a utxo, using it as part of the contract instance "state" to be used in further transactions. If no datum is attached to a utxo residing on the contract's address, it can end up being locked there forever.
 
 ### On-Chain (Validator scripts)
 
