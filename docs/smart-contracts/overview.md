@@ -35,7 +35,7 @@ Important to note here is that smart contracts heavily rely on the datum attache
 
 Validator scripts are executed automatically when a utxo residing at the address of the script is attempted to be moved by a transaction. These scripts take a transaction as its input and then outputs either true or false depending on whether the transaction is valid or not according to your rules/logic as defined in the script - thus blocking or allowing a transaction to succeed. If you are moving multiple utxos residing on the same script address, the validator-script will run once for each utxo. This script execution happens on the Cardano node validating your transaction.
 
-This means that in order for the validator-script to execute, a transaction must first move a utxo to the address of the contract; the address is derived from the contract mathematically. You do not need to upload your contract to the chain, altough that is also possible using reference scripts.
+This means that in order for the validator-script to execute, a transaction must first move a utxo to the address of the contract; the address is derived from the contract mathematically. You do not need to upload your contract to the chain, although that is also possible using reference scripts.
 
 You might think of this initial transaction where you move a utxo to the script address to be the initialization of a contract instance. Each utxo residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the utxo's being sent to the script address: anyone can send a utxo containing no datum, or a 'fake' datum.
 
