@@ -18,7 +18,7 @@ Copy the endpoint to use it in the API requests.
 
 Use a tool like cURL to make requests to the Cardano network. For example, to get the status of the Cardano mainnet, run the following command:
 ```
-curl https://ada.getblock.io/mainnet/network/status 
+curl https://ada.getblock.io/mainnet/network/status \ 
 --header 'Content-Type: application/json' \
 --header 'x-api-key: YOUR-API-KEY' \
 --data '{
@@ -38,5 +38,5 @@ That's it! You can now use GetBlock to make requests to the Cardano blockchain n
 
 If you have any additional questions or would like to share your experience, feel free to join our [community of Web3 developers]([https://discord.gg/Jb9UZZUHN7](https://discord.gg/Jb9UZZUHN7)) who are always ready to chat.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3MjU2MzcxNF19
+eyJoaXN0b3J5IjpbMTc3MTc1NzkzMF19
 -->
