@@ -374,7 +374,7 @@ export const Showcases = [
     description: "Instant and scalable API to the Cardano blockchain.",
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
-    getstarted: "/docs/get-started/blockfrost",
+    getstarted: "/docs/get-started/blockfrost/get-started/",
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
@@ -753,12 +753,12 @@ export const Showcases = [
     tags: ["http", "json", "hosted"],
   },
   {
-    title: "go-ouroboros-network",
-    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
-    preview: require("./builder-tools/go-ouroboros-network.png"),
-    website: "https://github.com/cloudstruct/go-ouroboros-network",
-    getstarted: null,
-    tags: ["golang", "lowlevel"]
+    title: "gOuroboros",
+    description: "Golang implementation of the Cardano Ouroboros network protocol.",
+    preview: require("./builder-tools/gOuroboros.png"),
+    website: "https://github.com/blinklabs-io/gouroboros",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
+    tags: ["golang", "lowlevel"],
   },
   {
     title: "cscli",
@@ -1025,6 +1025,14 @@ export const Showcases = [
     website: "https://github.com/wout/cardano-kit",
     getstarted: null,
     tags: ["crystal", "serialization"]
+  },
+  {
+    title: "Maestro Dapp Platform",
+    description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
+    preview: require("./builder-tools/maestro.png"),
+    website: "https://www.gomaestro.org/dapp-platform",
+    getstarted: "https://docs.gomaestro.org/",
+    tags: ["http", "hosted"]
   },
 ];
 
