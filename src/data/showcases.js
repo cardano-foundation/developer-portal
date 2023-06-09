@@ -1171,6 +1171,16 @@ export const Showcases = [
     source: null,
     tags: ["nftsupport", "token"],
   },
+  {
+    title: "NFT Creator tool",
+    description:
+      "A Website that enable non-tech user to create NFT by theirself with a few simple clicks, it also allow creator to customize metadata of NFT, control policy-id of assesst and use their images for each NFT",
+    preview: require("./showcase/ntnft.png"),
+    website: "http://nft.easterntownhall.com:8088/",
+    source: null,
+    tags: ["nftsupport"],
+  },
+  
 
 ];
 
