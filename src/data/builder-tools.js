@@ -1037,6 +1037,7 @@ export const Showcases = [
   {
     title: "potential-robot",
     description: "A JavaScript API for test-driven development with Helios",
+    preview: require("./builder-tools/potential-robot.png"),
     website: "https://github.com/aleeusgr/potential-robot",
     tags: ["javascript", "typescript", "testing"]
   },
