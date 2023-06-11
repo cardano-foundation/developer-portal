@@ -1034,6 +1034,12 @@ export const Showcases = [
     getstarted: "https://docs.gomaestro.org/",
     tags: ["http", "hosted"]
   },
+  {
+    title: "potential-robot",
+    description: "A JavaScript API for test-driven development with Helios",
+    website: "https://github.com/aleeusgr/potential-robot",
+    tags: ["javascript", "typescript", "testing"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
