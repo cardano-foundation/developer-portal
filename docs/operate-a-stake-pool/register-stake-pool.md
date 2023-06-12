@@ -152,6 +152,10 @@ and you must generate the certificate again with the new, shorter URL.
 [TinyUrl](https://tinyurl.com/) can used to achieve a shorter URL address.
 :::
 
+:::tip
+If using github, use the link to the raw source file. Using the link to the github page of your file will not work.
+:::
+
 ## Create a delegation certificate pledge
 
 To honor your pledge, create a delegation certificate:
