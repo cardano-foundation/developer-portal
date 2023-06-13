@@ -154,3 +154,6 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 - [Analysis in the playground](https://www.youtube.com/watch?v=VmoUAifui38)
 - [ACTUS labs](https://www.youtube.com/watch?v=6PPWFZEfkks)
 
+## Metrics & Adoption
+- [Marlowe Explorer: Scanners for contracts on Mainnet & testnets](https://marlowescan.com/)
+- [MarloweStat: Statistics for Marlowe contracts on public networks](http://data.marlowestat.org/)

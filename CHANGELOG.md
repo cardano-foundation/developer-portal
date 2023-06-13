@@ -1290,3 +1290,34 @@ All of the merged PRs in April
 - michele-nuzzi ([@michele-nuzzi](https://github.com/michele-nuzzi))
 - nielstron ([@nielstron](https://github.com/nielstron))
 - mmahut ([@mmahut](https://github.com/mmahut))
+
+## 2023.20.0 (2023-05-31)
+
+All of the merged PRs in May
+
+#### PRs: 12
+
+- fix: blockfrost link - get started by ([@vladimirvolek](https://github.com/vladimirvolek)) in [#1053](https://github.com/cardano-foundation/developer-portal/pull/1053)
+- Add Maestro Dapp Platform builder tool by ([@Vardominator](https://github.com/Vardominator)) in [#1047](https://github.com/cardano-foundation/developer-portal/pull/1047)
+- Add changelog data for April  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1049](https://github.com/cardano-foundation/developer-portal/pull/1049)
+- Update utxo-model.md by ([@4TT1L4](https://github.com/4TT1L4)) in [#1028](https://github.com/cardano-foundation/developer-portal/pull/1028)
+- Bring in the new SPO category from revamp branch by ([@katomm](https://github.com/katomm)) in [#1063](https://github.com/cardano-foundation/developer-portal/pull/1063)
+- Update project-catalyst.md by ([@katomm](https://github.com/katomm)) in [#1064](https://github.com/cardano-foundation/developer-portal/pull/1064)
+- Update installing-cardano-node.md fixed commit for libsodium by ([@os11k](https://github.com/os11k)) in [#1062](https://github.com/cardano-foundation/developer-portal/pull/1062)
+- On-Chain Polls: Fix verify-poll parameter by ([@weebl2000](https://github.com/weebl2000)) in [#1065](https://github.com/cardano-foundation/developer-portal/pull/1065)
+- On-Chain Polls: correct & update explorer links by ([@rphair](https://github.com/rphair)) in [#1068](https://github.com/cardano-foundation/developer-portal/pull/1068)
+- Remove duplicate sidebar link by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1070](https://github.com/cardano-foundation/developer-portal/pull/1070)
+- Add Registering a Pool to stake pool documentation by ([@sanskys](https://github.com/sanskys)) in [#1066](https://github.com/cardano-foundation/developer-portal/pull/1066)
+
+#### Contributors: 10
+
+- vladimirvolek ([@vladimirvolek](https://github.com/vladimirvolek))
+- Vardominator ([@Vardominator](https://github.com/Vardominator))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- 4TT1L4 ([@4TT1L4](https://github.com/4TT1L4))
+- katomm ([@katomm](https://github.com/katomm))
+- os11k ([@os11k](https://github.com/os11k))
+- weebl2000 ([@weebl2000](https://github.com/weebl2000))
+- rphair ([@rphair](https://github.com/rphair))
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- sanskys ([@sanskys](https://github.com/sanskys))
