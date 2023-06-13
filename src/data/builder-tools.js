@@ -1034,6 +1034,14 @@ export const Showcases = [
     getstarted: "https://docs.gomaestro.org/",
     tags: ["http", "hosted"]
   },
+  {
+    title: "Hydra",
+    description: "Hydra is the layer-two scalability solution for Cardano, which aims to increase the speed of transactions (low latency, high throughput) and minimize transaction cost.",
+    preview: require("./builder-tools/hydra.png"),
+    website: "https://hydra.family/head-protocol/",
+    getstarted: "https://hydra.family/head-protocol/docs/getting-started",
+    tags: ["haskell", "cli", "http" ]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
