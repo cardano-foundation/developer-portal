@@ -193,7 +193,10 @@ module.exports = {
       {
         type: "category",
         label: "Installation Guide (Node)",
-        items: ["operate-a-stake-pool/node-installation-process"],
+        items: [
+          "operate-a-stake-pool/hardening-server",
+          "operate-a-stake-pool/node-installation-process",
+        ],
       },
       {
         type: "category",
