@@ -87,7 +87,7 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 
 The next step might be one of the most important things to do, to secure your server. Passwords are not safe to use. Instead, use SSH keys. We are going to create a new SSH key pair on your local machine. I strongly recommend using ED25519 algorithm.
 
-**On your local machine**
+#### On your local machine
 
 - Generate a a new key-pair. You will be asked to enter a filename to save your key
 ```shell
@@ -103,7 +103,12 @@ ssh-copy-id -i $HOME/.ssh/<filename> cardano@server-ip
 ```shell
 ssh cardano@server-ip
 ```
-***Important : your private SSH key is what allow you to connect to your server. It is stored on your local machine. You should backup it to a secured cold storage, and never ever share it.***
+
+:::caution
+
+Your private SSH key is what allow you to connect to your server. It is stored on your local machine. You should backup it to a secured cold storage, and never ever share it
+
+:::
 
 
 ### 6- Hardening SSH configuration
@@ -150,9 +155,9 @@ ssh cardano@server-ip -p <custom port number>
 ```
 
 ### 7- Firewall configuration
-We are going to use UFW firewall to secure network access to your Cardano node. We are only focusing on ports that are used for SSH, and Cardano node. If you want to use Grafana and Prometheus for monitoring, please, refer to this [guide](https://developers.cardano.org/docs/operate-a-stake-pool/grafana-dashboard-tutorial), to add appropriate ports to your UFW configuration.
+We are going to use UFW firewall to secure network access to your Cardano node. We are only focusing on ports that are used for SSH, and Cardano node. If you want to use Grafana and Prometheus for monitoring, please, refer to this [guide](docs/operate-a-stake-pool/grafana-dashboard-tutorial.md), to add appropriate ports to your UFW configuration.
 
-***On your Relay Node :***
+#### On your Relay Node :
 ```shell
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
@@ -161,7 +166,7 @@ sudo ufw allow to any proto tcp port <YOUR CARDANO NODE PORT>
 sudo ufw enable
 ```
 
-***On your Block Producer Node :***
+#### On your Block Producer Node :
 ```shell
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
@@ -238,7 +243,12 @@ Restart fail2ban
 sudo systemctl restart fail2ban
 ```
 
-***Important : Once again, please adjust fail2ban configuration above to your needs. You might want to allow more than 2 failed attempts, or decrease bantime.***
+:::important
+
+Once again, please adjust fail2ban configuration above to your needs. You might want to allow more than 2 failed attempts, or decrease bantime
+
+:::
+
 
 ### 9- /etc/sysctl.conf hardening
 
