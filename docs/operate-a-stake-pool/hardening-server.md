@@ -76,7 +76,15 @@ sudo reboot
 
 ### 4- Activate Unattended-upgrades for automatic security updates
 
-Next step is to enable unattended upgrades to automatically install security updates (this is the default behavior of unattended-upgrades)
+Next step is to enable unattended upgrades to automatically install security updates.
+
+:::important
+
+By default, the unattended-upgrades service **only installs security updates** automatically. These updates **WONT** make your server automatically reboot.
+
+The primary argument against enabling unattended-ugrades is that one day, a less stable package may install and cause stability or dependencies issues. While this argument is technically valid, the fact remains that without this package installed and enabled, it's more likely that a Linux server might host a software with remotely exploitable security vulnerabilities.
+
+:::
 
 ```shell
 sudo apt-get install unattended-upgrades
