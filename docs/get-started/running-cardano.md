@@ -28,6 +28,17 @@ There are two types of testnet: `preview` and `pre-prod`.
 ### Production (Mainnet)
 This is the live Production. Only gets official Mainnet releases. Please use this net once you are ready to use the cardano-node.
 
+## Cardano blockchain  nets:
+### Testnet
+There are two types of testnet: `preview` and `pre-prod`.
+
+- **Preview Testnet**: Testing release candidates and Mainnet releases. Leads Mainnet hard forks by at least 4 weeks. This net is for those who just want to see how it runs, get familiarised and play with cardano-node.
+
+- **Pre-Production Testnet**: Testing release candidates and Mainnet releases. Forks at approximately same time as Mainnet (within an epoch of each other). This net is ideal for those who are ready to run the Mainnet but want to test it before running it.
+
+### Production (Mainnet)
+This is the live Production. Only gets official Mainnet releases. Please use this net once you are ready to use the cardano-node.
+
 ### Configuration Files
 
 The `cardano-node` application requires at least four configuration files to run as of writing this article.
@@ -36,6 +47,7 @@ The `cardano-node` application requires at least four configuration files to run
 - **Byron Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Byron Era** of the **Cardano** blockchain.
 - **Shelly Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Shelly Era** of the **Cardano** blockchain.
 - **Alonzo Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Alonzo Era** of the **Cardano** blockchain.
+- **Conway Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Conway Era** of the **Cardano** blockchain.
 - **Topology**: It contains the list of network peers (**`IP Address` and `Port` of other nodes running the blockchain network**) that your node will connect to.
 
 :::important
@@ -60,6 +72,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/preview/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preview/alonzo-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preview/conway-genesis.json
 ```
 #### Testnet / Preprod
 
@@ -73,6 +86,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/conway-genesis.json
 ```
 
 #### Mainnet / Production
@@ -87,6 +101,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/mainnet/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/mainnet/alonzo-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json
 ```
 
 The latest supported networks can be found at https://book.world.dev.cardano.org/environments.html
@@ -100,7 +115,7 @@ This section will be updated when new **Cardano** networks come online with thei
 
 You might be asking what the difference is between `mainnet` and `testnet` and why there are two official network types? To put it simply, **Cardano** is an open-source blockchain, and anyone is free to spin up a network based on **Cardano's** software components. The `mainnet` network was the first one established during the start of the **Byron** era in 2017.  And everyone participating in the network agreed that is where all the real value of **Cardano** lives.
 
- Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up sandboxes or testnet versions of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
+Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up sandboxes or testnet versions of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
 
 ### Running the node
 
@@ -165,6 +180,7 @@ Available options:
 :::note
 In this section, we will use the path `$HOME/cardano/testnet` to store all the testnet `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
 :::
+
 We will focus on six key command-line parameters for running a node: 
 
 **`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](/docs/get-started/running-cardano#configuration-files).
@@ -181,6 +197,11 @@ We will focus on six key command-line parameters for running a node:
 ```
 $HOME/cardano/testnet/
 ├── db
+├── alonzo-genesis.json
+├── byron-genesis.json
+├── config.json
+├── shelley-genesis.json
+└── topology.json
 ├── alonzo-genesis.json
 ├── byron-genesis.json
 ├── config.json
@@ -298,9 +319,16 @@ Finally, we can now test querying the blockchain tip of our `cardano-node`:
 
 - First, run `cardano-node` in a separate terminal for it to start syncing (if not already).
 - Open another terminal and run the following command `cardano-cli query tip --testnet-magic 1`.
+
 > You should see something like this:
 ```json
 {
+    "block": 2598870,
+    "epoch": 133,
+    "era": "Shelley",
+    "hash": "7b5633590bf8924d8fce5b6515f34fga0c712f64e9b7d273f915656f88fba872",
+    "slot": 27149964,
+    "syncProgress": "57.09"
     "block": 2598870,
     "epoch": 133,
     "era": "Shelley",

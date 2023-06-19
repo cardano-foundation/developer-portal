@@ -70,7 +70,7 @@ Please refer to `.env.example` in the repo and create `.env.local` file. Your ke
 2. Once you're signed in, navigate to your dashboard.
 3. Click on "Add new Project" to create a new project.
 4. Choose the Cardano network you want to use. -->
-1. Please follow [Get Started with Blockfrost](../get-started/blockfrost.md) to obtain Blockfrost API key
+1. Please follow [Get Started with Blockfrost](../get-started/blockfrost/get-started.md) to obtain Blockfrost API key
 2. In the code, go to environment file `.env.local` and put the key into `BLOCKFROST_API_KEY`.
 
 

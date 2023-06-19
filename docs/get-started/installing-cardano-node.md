@@ -7,7 +7,7 @@ image: /img/og/og-getstarted-installing-cardano-node.png
 ---
 :::important
 
-This document's current version is relevant for `cardano-node` release version [1.35.7](https://github.com/input-output-hk/cardano-node/releases/tag/1.35.7) (Apr-2023)
+This document's current version is relevant for `cardano-node` release version [8.0.0](https://github.com/input-output-hk/cardano-node/releases/tag/8.0.0) (May-2023)
 
 :::
 ### Overview
@@ -160,7 +160,7 @@ Next, we will download, compile and install `libsodium`.
 ```bash
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
-git checkout 66f017f1
+git checkout dbb48cc
 ./autogen.sh
 ./configure
 make
@@ -391,7 +391,7 @@ Next, we will download, compile and install `libsodium`.
 ```bash
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
-git checkout 66f017f1
+git checkout dbb48cc
 ./autogen.sh
 ./configure
 make
