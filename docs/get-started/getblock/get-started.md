@@ -36,7 +36,7 @@ The response will contain information about the current block, the genesis block
 
 That's it! You can now use GetBlock to make requests to the Cardano blockchain network.
 
-If you have any additional questions or would like to share your experience, feel free to join our [community of Web3 developers]([https://discord.gg/Jb9UZZUHN7](https://discord.gg/Jb9UZZUHN7)) who are always ready to chat.
+If you have any additional questions or would like to share your experience, feel free to join our [community of Web3 developers](https://discord.gg/Jb9UZZUHN7) who are always ready to chat.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MTE1ODYxOTUsMTY4NDEwMzMxOF19
+eyJoaXN0b3J5IjpbLTk4NDEyNjkxOCwxNjg0MTAzMzE4XX0=
 -->
