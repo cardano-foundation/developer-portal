@@ -186,6 +186,7 @@ module.exports = {
           "operate-a-stake-pool/introduction-to-cardano",
           "operate-a-stake-pool/stake-pool-networking",
           "operate-a-stake-pool/hardware-requirements",
+          "operate-a-stake-pool/hardening-server",
           "operate-a-stake-pool/cardano-key-pairs",
           "operate-a-stake-pool/marketing-stake-pool",
         ],
@@ -193,10 +194,7 @@ module.exports = {
       {
         type: "category",
         label: "Installation Guide (Node)",
-        items: [
-          "operate-a-stake-pool/hardening-server",
-          "operate-a-stake-pool/node-installation-process",
-        ],
+        items: ["operate-a-stake-pool/node-installation-process"],
       },
       {
         type: "category",
