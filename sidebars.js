@@ -134,7 +134,6 @@ module.exports = {
           "operate-a-stake-pool/introduction-to-cardano",
           "operate-a-stake-pool/stake-pool-networking",
           "operate-a-stake-pool/hardware-requirements",
-          "operate-a-stake-pool/hardening-server",
           "operate-a-stake-pool/cardano-key-pairs",
           "operate-a-stake-pool/marketing-stake-pool",
         ],
@@ -166,7 +165,10 @@ module.exports = {
       {
         type: "category",
         label: "Deployment Scenarios",
-        items: ["operate-a-stake-pool/improve-grafana-security"],
+        items: [
+          "operate-a-stake-pool/hardening-server",
+          "operate-a-stake-pool/improve-grafana-security",
+        ],
       },
       {
         type: "category",
