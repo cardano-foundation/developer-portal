@@ -28,17 +28,6 @@ There are two types of testnet: `preview` and `pre-prod`.
 ### Production (Mainnet)
 This is the live Production. Only gets official Mainnet releases. Please use this net once you are ready to use the cardano-node.
 
-## Cardano blockchain  nets:
-### Testnet
-There are two types of testnet: `preview` and `pre-prod`.
-
-- **Preview Testnet**: Testing release candidates and Mainnet releases. Leads Mainnet hard forks by at least 4 weeks. This net is for those who just want to see how it runs, get familiarised and play with cardano-node.
-
-- **Pre-Production Testnet**: Testing release candidates and Mainnet releases. Forks at approximately same time as Mainnet (within an epoch of each other). This net is ideal for those who are ready to run the Mainnet but want to test it before running it.
-
-### Production (Mainnet)
-This is the live Production. Only gets official Mainnet releases. Please use this net once you are ready to use the cardano-node.
-
 ### Configuration Files
 
 The `cardano-node` application requires at least four configuration files to run as of writing this article.
