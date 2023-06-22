@@ -1171,7 +1171,15 @@ export const Showcases = [
     source: null,
     tags: ["nftsupport", "token"],
   },
-
+  {
+    title: "BALANCE",
+    description:
+      "A Cardano Blockchain Research & Analytics Provider.",
+    preview: require("./showcase/balanceanalytics.png"),
+    website: "https://www.balanceanalytics.io/",
+    source: null,
+    tags: ["analytics", "pooltool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
