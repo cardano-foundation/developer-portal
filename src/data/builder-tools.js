@@ -1050,6 +1050,14 @@ export const Showcases = [
     getstarted: "https://hydra.family/head-protocol/docs/getting-started",
     tags: ["haskell", "cli", "http" ]
   },
+  {
+    title: "NFT Vending Machine",
+    description: "A simple CNFT mint-and-vend machine Python library that leverages cardano-cli and Blockfrost.",
+    preview: require("./builder-tools/nft-vending-machine.png"),
+    website: "https://github.com/thaddeusdiamond/cardano-nft-vending-machine",
+    getstarted: null,
+    tags: ["python", "nft" ]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
