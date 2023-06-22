@@ -1050,6 +1050,38 @@ export const Showcases = [
     getstarted: "https://hydra.family/head-protocol/docs/getting-started",
     tags: ["haskell", "cli", "http" ]
   },
+  {
+    title: "ply",
+    description: "A helper library for working with compiled, parameterized Plutus Scripts",
+    preview: require("./builder-tools/mlabs.png"),
+    website: "https://github.com/mlabs-haskell/ply",
+    getstarted: "https://github.com/mlabs-haskell/ply/blob/master/README.md",
+    tags: ["getstarted", "library"],
+  },
+  {
+    title: "ply-ctl",
+    description: "Type-safe PureScript interfaces for ply's typed-script envelope for use with cardano-transaction-lib",
+    preview: require("./builder-tools/mlabs.png"),
+    website: "https://github.com/mlabs-haskell/ply-ctl",
+    getstarted: "https://github.com/mlabs-haskell/ply-ctl/blob/master/README.md",
+    tags: ["getstarted", "library", "purescript"],
+  },
+  {
+    title: "purescript-cip30",
+    description: "PureScript interface to Cardano wallets via CIP-30",
+    preview: require("./builder-tools/mlabs.png"),
+    website: "https://github.com/mlabs-haskell/purescript-cip30",
+    getstarted: "https://github.com/mlabs-haskell/purescript-cip30/blob/main/README.md",
+    tags: ["getstarted", "library", "purescript"],
+  },
+  {
+    title: "purescript-cardano-serialization-lib",
+    description: "Purescript wrapper for cardano-serialization-lib",
+    preview: require("./builder-tools/mlabs.png"),
+    website: "https://github.com/mlabs-haskell/purescript-cardano-serialization-lib",
+    getstarted: "https://github.com/mlabs-haskell/purescript-cardano-serialization-lib/blob/main/README.md",
+    tags: ["getstarted", "library", "purescript"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
