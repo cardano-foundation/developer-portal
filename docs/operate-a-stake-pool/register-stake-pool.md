@@ -192,7 +192,7 @@ tx_in=""
 total_balance=0
 while read -r utxo; do
     type=$(awk '{ print $6 }' <<< "${utxo}")
-    if [[ ${type} == 'TxOutDatumNone'* ]]
+    if [[ ${type} == 'TxOutDatumNone' ]]
     then
         in_addr=$(awk '{ print $1 }' <<< "${utxo}")
         idx=$(awk '{ print $2 }' <<< "${utxo}")
