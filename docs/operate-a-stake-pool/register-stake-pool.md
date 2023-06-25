@@ -208,7 +208,7 @@ echo Total available ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
 ```
 
-You should get output simillar to below:
+You should get output similar to below:
 
 ```
 Total available ADA balance: 9497237500
