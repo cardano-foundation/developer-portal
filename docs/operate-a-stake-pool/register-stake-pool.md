@@ -77,7 +77,7 @@ Both the hashes must be equal. If the hashes do no match, then the uploaded .jso
 Find the minimum pool cost:
 
 ```
-minPoolCost=$(cat params.json | jq -r .minPoolCost)
+minPoolCost=$(cat protocol.json | jq -r .minPoolCost)
 echo minPoolCost: ${minPoolCost}
 ```
 
@@ -169,10 +169,10 @@ This creates a delegation certificate which delegates funds from all stake addre
 
 To understand the basics of submitting a transaction on the chain, refer to [Register Stake Address](./register-stake-address).
 
-Registering a stake pool requires a deposit. This amount is specified in the already created `params.json`:
+Registering a stake pool requires a deposit. This amount is specified in the already created `protocol.json`:
 
 ```
-stakePoolDeposit=$(cat params.json | jq -r '.stakePoolDeposit')
+stakePoolDeposit=$(cat protocol.json | jq -r '.stakePoolDeposit')
 echo $stakePoolDeposit
 ```
 
