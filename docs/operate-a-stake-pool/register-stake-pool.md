@@ -36,7 +36,7 @@ Before starting, make sure you have access to:
 | `kes.skey` | KES signing key |
 | `vrf.vkey` | VRF verification key |
 | `vrf.skey` | VRF signing key |
-| `protocol.json` | protocol-parameters file |
+| `protocol.json` | protocol parameters file |
 
 ## Create JSON file with your metadata
 
