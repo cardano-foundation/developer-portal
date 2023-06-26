@@ -36,6 +36,7 @@ Before starting, make sure you have access to:
 | `kes.skey` | KES signing key |
 | `vrf.vkey` | VRF verification key |
 | `vrf.skey` | VRF signing key |
+| `protocol.json` | protocol parameters file |
 
 ## Create JSON file with your metadata
 
@@ -77,7 +78,7 @@ Both the hashes must be equal. If the hashes do no match, then the uploaded .jso
 Find the minimum pool cost:
 
 ```
-minPoolCost=$(cat params.json | jq -r .minPoolCost)
+minPoolCost=$(cat protocol.json | jq -r .minPoolCost)
 echo minPoolCost: ${minPoolCost}
 ```
 
@@ -169,11 +170,49 @@ This creates a delegation certificate which delegates funds from all stake addre
 
 To understand the basics of submitting a transaction on the chain, refer to [Register Stake Address](./register-stake-address).
 
-Registering a stake pool requires a deposit. This amount is specified in the already created `params.json`:
+Registering a stake pool requires a deposit. This amount is specified in the already created `protocol.json`:
 
 ```
-stakePoolDeposit=$(cat params.json | jq -r '.stakePoolDeposit')
+stakePoolDeposit=$(cat protocol.json | jq -r '.stakePoolDeposit')
 echo $stakePoolDeposit
+```
+
+Let's find out how much balance is in our wallet:
+
+```
+cardano-cli query utxo \
+    --address $(cat payment.addr) \
+    --testnet-magic 1 > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    type=$(awk '{ print $6 }' <<< "${utxo}")
+    if [[ ${type} == 'TxOutDatumNone' ]]
+    then
+        in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+        idx=$(awk '{ print $2 }' <<< "${utxo}")
+        utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+        total_balance=$((${total_balance}+${utxo_balance}))
+        echo TxHash: ${in_addr}#${idx}
+        echo ADA: ${utxo_balance}
+        tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+    fi
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total available ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
+```
+
+You should get output similar to below:
+
+```
+Total available ADA balance: 9497237500
+Number of UTXOs: 1
 ```
 
 Calculate the change for `--tx-out`. Since we don't know the exact transaction fees yet, we take 1 ada for the calculation:
@@ -186,7 +225,7 @@ which in our case would be 9497237500 - 500000000 - 1000000 = 8996237500
 
 ```
 cardano-cli transaction build \
-    --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
+    ${tx_in} \
     --tx-out $(cat payment.addr)+8996237500 \
     --change-address $(cat payment.addr) \
     --testnet-magic 1 \
@@ -213,7 +252,7 @@ echo ${txOut}
 Build the transaction:
 ```
 cardano-cli transaction build-raw \
-    --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
+    ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $((${currentSlot} + 1000)) \
     --fee 172189 \
