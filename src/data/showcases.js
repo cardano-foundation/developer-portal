@@ -1163,13 +1163,31 @@ export const Showcases = [
     tags: ["lending", "marketplace", "nftsupport"],
   },
   {
-        title: "Send Multiple Tokens and NFT Builder, Mint, Burn",
-        description:
-            "Users send multiple ADA addresses, tokens and create your own NFT, Mint, Burn with just a few clicks",
-        preview: require("./showcase/send-multiple-tokens.png"),
-        website: "https://cardano.dconecrypto.finance/",
-        source: null,
-        tags: ["minting", "token", "nftsupport"],
+    title: "Continuity Token",
+    description:
+      "$COTO provides secure, global and long-lasting cold storage backups of Cardano NFT media.",
+    preview: require("./showcase/coto.png"),
+    website: "https://continuity.to/",
+    source: null,
+    tags: ["nftsupport", "token"],
+  },
+  {
+    title: "BALANCE",
+    description:
+      "A Cardano Blockchain Research & Analytics Provider.",
+    preview: require("./showcase/balanceanalytics.png"),
+    website: "https://www.balanceanalytics.io/",
+    source: null,
+    tags: ["analytics", "pooltool"],
+  },
+  {
+    title: "Send Multiple Tokens and NFT Builder, Mint, Burn",
+    description:
+        "Users send multiple ADA addresses, tokens and create your own NFT, Mint, Burn with just a few clicks",
+    preview: require("./showcase/send-multiple-tokens.png"),
+    website: "https://cardano.dconecrypto.finance/",
+    source: null,
+    tags: ["minting", "token", "nftsupport"],
   },
 ];
 

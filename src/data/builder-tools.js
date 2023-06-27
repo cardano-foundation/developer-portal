@@ -753,12 +753,12 @@ export const Showcases = [
     tags: ["http", "json", "hosted"],
   },
   {
-    title: "go-ouroboros-network",
-    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
-    preview: require("./builder-tools/go-ouroboros-network.png"),
-    website: "https://github.com/cloudstruct/go-ouroboros-network",
-    getstarted: null,
-    tags: ["golang", "lowlevel"]
+    title: "gOuroboros",
+    description: "Golang implementation of the Cardano Ouroboros network protocol.",
+    preview: require("./builder-tools/gOuroboros.png"),
+    website: "https://github.com/blinklabs-io/gouroboros",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
+    tags: ["golang", "lowlevel"],
   },
   {
     title: "cscli",
@@ -1033,6 +1033,22 @@ export const Showcases = [
     website: "https://www.gomaestro.org/dapp-platform",
     getstarted: "https://docs.gomaestro.org/",
     tags: ["http", "hosted"]
+  },
+  {
+    title: "potential-robot",
+    description: "A JavaScript API for test-driven development with Helios.",
+    preview: require("./builder-tools/potential-robot.png"),
+    website: "https://github.com/aleeusgr/potential-robot",
+    getstarted: null,
+    tags: ["javascript", "typescript", "testing"]
+  },
+  {
+    title: "Hydra",
+    description: "Hydra is the layer-two scalability solution for Cardano, which aims to increase the speed of transactions (low latency, high throughput) and minimize transaction cost.",
+    preview: require("./builder-tools/hydra.png"),
+    website: "https://hydra.family/head-protocol/",
+    getstarted: "https://hydra.family/head-protocol/docs/getting-started",
+    tags: ["haskell", "cli", "http", "websocket", "lowlevel"]
   },
 ];
 
