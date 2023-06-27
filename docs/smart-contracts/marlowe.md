@@ -72,9 +72,10 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 
 ## More resources
 
-### Documentation
+### Documentation & overview
 
 - Official [Marlowe documentation](https://docs.marlowe.iohk.io)
+- [A comprehensive guide to Marlowe's security: audit outcomes, built-in functional restrictions, and ledger security features](https://iohk.io/en/blog/posts/2023/06/27/a-comprehensive-guide-to-marlowes-security-audit-outcomes-built-in-functional-restrictions-and-ledger-security-features/)
 
 ### GitHub repositories
 
