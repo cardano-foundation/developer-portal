@@ -1321,3 +1321,47 @@ All of the merged PRs in May
 - rphair ([@rphair](https://github.com/rphair))
 - OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
 - sanskys ([@sanskys](https://github.com/sanskys))
+
+## 2023.24.0 (2023-06-30)
+
+All of the merged PRs in June
+
+#### PRs: 20
+
+- Update libsodium hash in node-installation-process.md by ([@rdlrt](https://github.com/rdlrt)) in [#1071](https://github.com/cardano-foundation/developer-portal/pull/1071)
+- Update builder tool: go-ouroboros-network to gOuroboros by ([@wolf31o2](https://github.com/wolf31o2)) in [#1076](https://github.com/cardano-foundation/developer-portal/pull/1076)
+- Add Continuity Token to Showcase by ([@mmahut](https://github.com/mmahut)) in [#1074](https://github.com/cardano-foundation/developer-portal/pull/1074)
+- Marlowe conceptual summary by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1077](https://github.com/cardano-foundation/developer-portal/pull/1077)
+- Smart Contracts: expand overview page by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1080](https://github.com/cardano-foundation/developer-portal/pull/1080)
+- Running Cardano: remove duplicated lines by ([@lloc](https://github.com/lloc)) in [#1083](https://github.com/cardano-foundation/developer-portal/pull/1083)
+- Add MarloweStat to Marlowe page by ([@rphair](https://github.com/rphair)) in [#1078](https://github.com/cardano-foundation/developer-portal/pull/1078)
+- Add changelog for May by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1072](https://github.com/cardano-foundation/developer-portal/pull/1072)
+- Remove any duplicated content by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1090](https://github.com/cardano-foundation/developer-portal/pull/1090)
+- Add potential-robot to Builder Tools by ([@aleeusgr](https://github.com/aleeusgr)) in [#1084](https://github.com/cardano-foundation/developer-portal/pull/1084)
+- Update Docusaurus to 2.4.1 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1087](https://github.com/cardano-foundation/developer-portal/pull/1087)
+- Add Hydra to builder tools by ([@v0d1ch](https://github.com/v0d1ch)) in [#1088](https://github.com/cardano-foundation/developer-portal/pull/1088)
+- Operate a stakepool : Hardening server guide by ([@Kirael12](https://github.com/Kirael12)) in [#1089](https://github.com/cardano-foundation/developer-portal/pull/1089)
+- Add BALANCE showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1086](https://github.com/cardano-foundation/developer-portal/pull/1086)
+- New Dev Spotlight June 2023 Interview with Mandala by ([@weqanhet](https://github.com/weqanhet)) in [#1092](https://github.com/cardano-foundation/developer-portal/pull/1092)
+- Add websocket and low-level tags for Hydra by ([@v0d1ch](https://github.com/v0d1ch)) in [#1093](https://github.com/cardano-foundation/developer-portal/pull/1093)
+- Marlowe page: add documentation site + audit reports by ([@rphair](https://github.com/rphair)) in [#1095](https://github.com/cardano-foundation/developer-portal/pull/1095)
+- Update register-stake-pool.md, lets use protocol.json everywhere by ([@os11k](https://github.com/os11k)) in [#1096](https://github.com/cardano-foundation/developer-portal/pull/1096)
+- Remove MermADA Minting from Showcase by ([@lodl](https://github.com/lodl)) in [#1098](https://github.com/cardano-foundation/developer-portal/pull/1098)
+- Marlowe page: add security review by ([@rphair](https://github.com/rphair)) in [#1097](https://github.com/cardano-foundation/developer-portal/pull/1097)
+
+
+#### Contributors: 13
+
+- rdlrt ([@rdlrt](https://github.com/rdlrt))
+- wolf31o2 ([@wolf31o2](https://github.com/wolf31o2))
+- mmahut ([@mmahut](https://github.com/mmahut))
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- lloc ([@lloc](https://github.com/lloc))
+- rphair ([@rphair](https://github.com/rphair))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- aleeusgr ([@aleeusgr](https://github.com/aleeusgr))
+- v0d1ch ([@v0d1ch](https://github.com/v0d1ch))
+- Kirael12 ([@Kirael12](https://github.com/Kirael12))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- os11k ([@os11k](https://github.com/os11k))
+- lodl ([@lodl](https://github.com/lodl))
