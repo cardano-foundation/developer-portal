@@ -62,7 +62,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 ## Get the hash of your JSON file
 
-Upload your `poolMetaData.json` file to a web site that you administer or a public web site. For example, you can upload to GitHub.
+Upload your `poolMetaData.json` file to a web site that you administer or a public web site.
 Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
 
 ```
@@ -148,10 +148,6 @@ In case an error similar to the one below appears, then the URL length needs to 
 ```
 
 and you must generate the certificate again with the new, shorter URL.
-
-:::tip
-[TinyUrl](https://tinyurl.com/) can used to achieve a shorter URL address.
-:::
 
 ## Create a delegation certificate pledge
 
