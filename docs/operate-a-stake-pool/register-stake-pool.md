@@ -62,7 +62,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 ## Get the hash of your JSON file
 
-Upload your `poolMetaData.json` file to a web site that you administer or a public web site.
+Make your poolMetadata.json available as a web URL accessible on internet, ideally without  redirections. You can do so by uploading it to your website as well.
 Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
 
 ```
