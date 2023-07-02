@@ -72,6 +72,11 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 
 ## More resources
 
+### Documentation & overview
+
+- Official [Marlowe documentation](https://docs.marlowe.iohk.io)
+- [A comprehensive guide to Marlowe's security: audit outcomes, built-in functional restrictions, and ledger security features](https://iohk.io/en/blog/posts/2023/06/27/a-comprehensive-guide-to-marlowes-security-audit-outcomes-built-in-functional-restrictions-and-ledger-security-features/)
+
 ### GitHub repositories
 
 - [Marlowe language and semantics](https://github.com/input-output-hk/marlowe)
@@ -133,6 +138,7 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 - [A Geo-Located Smart Contract Using Cardano Beam and Marlowe](https://youtu.be/DmkYen0eaV0)
 
 ## Presentations
+
 - [Blockchain Essentials](https://www.youtube.com/watch?v=yi8-xaoTQT4)
 - [Domain-specific languages](https://www.youtube.com/watch?v=T4W19TdJHMw)
 - [Financial contracts](https://www.youtube.com/watch?v=1HRaRVyj2BI)
@@ -141,6 +147,7 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 - [Marlowe in full](https://www.youtube.com/watch?v=Ro8iBh7V7oc)
 
 ## Further Tutorials
+
 - [A first contract](https://www.youtube.com/watch?v=es4qpcHxr0I)
 - [Elaborating the contract](https://www.youtube.com/watch?v=DS_ebkGwmXw)
 - [Choices and observations](https://www.youtube.com/watch?v=25fnB7C8mPE)
@@ -154,6 +161,9 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 - [Analysis in the playground](https://www.youtube.com/watch?v=VmoUAifui38)
 - [ACTUS labs](https://www.youtube.com/watch?v=6PPWFZEfkks)
 
-## Metrics & Adoption
+## Metrics, Adoption, Audit
+
 - [Marlowe Explorer: Scanners for contracts on Mainnet & testnets](https://marlowescan.com/)
 - [MarloweStat: Statistics for Marlowe contracts on public networks](http://data.marlowestat.org/)
+- [Technical review of Marlowe: Final report (Tweag, 2023-03-24)](https://github.com/tweag/tweag-audit-reports/blob/main/Marlowe-2023-03.pdf)
+  - [Response to Audit Report for the Marlowe Specification (IOG)](https://github.com/input-output-hk/marlowe/blob/master/response-to-audit-report.md)
