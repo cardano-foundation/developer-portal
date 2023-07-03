@@ -9,7 +9,6 @@ image: /img/og/og-security-secure-transaction-workflow.png
 This general guide is written to help Cardano stake pool operators and developers keep to one simple rule:
 
 :::warning
-:::warning
 
 Payment keys can never be stored, even for a moment, on an Internet connected machine.
 
@@ -45,7 +44,6 @@ Therefore, the payment signing key (the private component of the [Cardano wallet
 
 ## Prerequisites
 
-### Your [air gap environment](./air-gap)
 ### Your [air gap environment](./air-gap)
 
 Follow [these instructions](./air-gap) to procure the environment (usually a dedicated "air gap machine") if you haven't already.
