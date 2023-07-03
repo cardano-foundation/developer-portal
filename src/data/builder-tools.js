@@ -308,11 +308,35 @@ export const Tags = {
     icon: null,
     color: "#4a69BD"
   },
+  // Infrastructure
+  infrastructure: {
+    label: "Infrastructure",
+    description: "Infrastructure / cloud service",
+    icon: null,
+    color: "#4a695D",
+  },
+
+  // Storage
+  storage: {
+    label: "Storage",
+    description: "Storage / decentralised storage",
+    icon: null,
+    color: "#c3ad97",
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
 // Please don't add the "favorite"-tag yourself.
 export const Showcases = [
+  {
+    title: "Spheron",
+    description:
+      "Spheron Network is the ultimate one-stop shop for all your Web3 infrastructure needs.",
+    preview: require("./builder-tools/spheron.png"),
+    website: "https://spheron.network",
+    getstarted: "https://docs.spheron.network",
+    tags: ["cli", "javascript", "typescript", "infrastructure", "storage"],
+  },
   {
     title: "cardano-cli",
     description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
