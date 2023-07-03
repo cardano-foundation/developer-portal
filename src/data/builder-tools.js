@@ -1050,6 +1050,14 @@ export const Showcases = [
     getstarted: "https://hydra.family/head-protocol/docs/getting-started",
     tags: ["haskell", "cli", "http", "websocket", "lowlevel"]
   },
+  {
+    title: "Cardano PostgRESTed",
+    description: "This a postgrest interface backed by a PostgreSQL database, costantly feeded by cardano-db-sync daemon. You can fetch JSON directly into your web app.",
+    preview: require("./builder-tools/cardano-postgrested.png"),
+    website: "https://api.cardano.hwl.blue/docs/",
+    getstarted: null,
+    tags: ["http", "hosted", "operatortool"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
