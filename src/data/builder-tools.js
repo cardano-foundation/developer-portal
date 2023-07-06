@@ -1058,6 +1058,15 @@ export const Showcases = [
     getstarted: null,
     tags: ["nft", "http", "hosted" ]
   },
+  {
+    title: "Atlas",
+    description: 
+      "Atlas is an all-in-one, Haskell-native application backend for writing off-chain code for on-chain Plutus smart contracts.",
+    preview: require("./builder-tools/atlas.png"),
+    website: "https://atlas-app.io/",
+    getstarted: null,
+    tags: ["haskell", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
