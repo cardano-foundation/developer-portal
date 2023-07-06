@@ -1051,6 +1051,23 @@ export const Showcases = [
     tags: ["haskell", "cli", "http", "websocket", "lowlevel"]
   },
   {
+    title: "NFTCDN",
+    description: "Display all Cardano NFTs effortlessly & efficiently on your website/app using the low-code & high-speed NFTCDN service.",
+    preview: require("./builder-tools/nftcdn.png"),
+    website: "https://nftcdn.io",
+    getstarted: null,
+    tags: ["nft", "http", "hosted" ]
+  },
+  {
+    title: "Atlas",
+    description: 
+      "Atlas is an all-in-one, Haskell-native application backend for writing off-chain code for on-chain Plutus smart contracts.",
+    preview: require("./builder-tools/atlas.png"),
+    website: "https://atlas-app.io/",
+    getstarted: null,
+    tags: ["haskell", "plutus"],
+  },
+  {
     title: "NFT Vending Machine",
     description: "A simple CNFT mint-and-vend machine Python library that leverages cardano-cli and Blockfrost.",
     preview: require("./builder-tools/nft-vending-machine.png"),

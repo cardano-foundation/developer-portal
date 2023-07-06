@@ -9,7 +9,6 @@ image: /img/og/og-security-secure-transaction-workflow.png
 This general guide is written to help Cardano stake pool operators and developers keep to one simple rule:
 
 :::warning
-:::warning
 
 Payment keys can never be stored, even for a moment, on an Internet connected machine.
 
@@ -23,8 +22,8 @@ Once you feel comfortable doing a simple transaction securely, you'll also be ab
 
   - [Minting Native Assets](../native-tokens/minting)
   - [Minting NFTs](../native-tokens/minting-nfts)
-  - [Registering a Stake Address](/docs/operate-a-stake-pool/block-producer-keys)
-  - [Registering a Stake Pool](/docs/operate-a-stake-pool/register-stake-pool-metadata)
+  - [Registering a Stake Address](/docs/operate-a-stake-pool/register-stake-address)
+  - [Registering a Stake Pool](/docs/operate-a-stake-pool/register-stake-pool)
 
 ### A model for a secure transaction
 
@@ -45,7 +44,6 @@ Therefore, the payment signing key (the private component of the [Cardano wallet
 
 ## Prerequisites
 
-### Your [air gap environment](./air-gap)
 ### Your [air gap environment](./air-gap)
 
 Follow [these instructions](./air-gap) to procure the environment (usually a dedicated "air gap machine") if you haven't already.
@@ -68,7 +66,7 @@ Format a memory stick on a machine you believe to be secure, and then (to be on 
 
 ## Steps of a secure transaction
 
-This is rewritten from page [Create Simple Transaction](/docs/get-started/create-simple-transaction) (only considered secure to run on a testnet) with the following exception:
+This is rewritten from page [Create Simple Transactions](/docs/get-started/create-simple-transaction) (only considered secure to run on a testnet) with the following exception:
 
   - [Determining the TTL (time to Live)](/docs/get-started/create-simple-transaction#determine-the-ttl-time-to-live-for-the-transaction) for the transaction is omitted, along with setting this value in the transaction itself, to simplify the information-gathering step.
   - This poses no security risk since an omitted TTL value allows a Tx file to be used indefinitely *but* submitting that Tx will change the UTxO set so that submitting that transaction again will be impossible.
@@ -222,7 +220,7 @@ However, this discussion revealed the undocumented condition that `transaction b
   - Using `transaction build` would require, in addition to accumulating the UTxO and balance information from your live Cardano node or network environment to build your transaction, that you also run the `build` command in the networked environment as well and save the unsigned transaction file on your transfer media.
   - This transaction file would then need to be copied from the live environment to the air gap environment, where it would be signed... but in a security paranoid environment the user could never be sure the transaction was not built or modified maliciously outside the air gap.
 
-Therefore this guide suggests *only* assembling transaction *details* outside the air gap, to be applied to `cardano-cli transaction build-raw` inside the air gap, because there is not much convenience overall to using `transaction build` and perhaps some security risk as well.
+Therefore this guide suggests *only* assembling transaction *details* outside the air gap, to be applied to `cardano-cli transaction build-raw` inside the air gap, because there is not much more convenience overall in using `transaction build` while perhaps introducing some security risk.
 
 ## Other pending topics in secure workflow
 
