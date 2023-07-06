@@ -12,7 +12,7 @@ There are many ways to retrieve metadata stored in the **Cardano** blockchain. T
 
 ## Blockfrost
 
-[Blockfrost](/docs/get-started/blockfrost) provides an **API** to access the **Cardano** blockchain fast and easily. 
+[Blockfrost](/docs/get-started/blockfrost/get-started) provides an **API** to access the **Cardano** blockchain fast and easily. 
 
 To retrieve metadata using **Blockfrost**, we call a specific endpoint for **transaction metadata** that they provide.
 
