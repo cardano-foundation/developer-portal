@@ -1252,3 +1252,116 @@ All of the merged PRs in March
 - matiwinnetou ([@matiwinnetou](https://github.com/matiwinnetou))
 - olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
 - workshop-maybe ([@workshop-maybe](https://github.com/workshop-maybe))
+
+## 2023.16.0 (2023-04-30)
+
+All of the merged PRs in April
+
+#### PRs: 22
+
+- Update acca project image by ([@matiwinnetou](https://github.com/matiwinnetou)) in [#1003](https://github.com/cardano-foundation/developer-portal/pull/1003)
+- NFT Update Proposal by ([@katomm](https://github.com/katomm)) in [#1012](https://github.com/cardano-foundation/developer-portal/pull/1012)
+- Add changelog for March by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1014](https://github.com/cardano-foundation/developer-portal/pull/1014)
+- Update Docusaurus to 2.4.0 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1013](https://github.com/cardano-foundation/developer-portal/pull/1013)
+- Move guidelines for builder tools and showcase into docs by ([@katomm](https://github.com/katomm)) in [#1017](https://github.com/cardano-foundation/developer-portal/pull/1017)
+- Add Lace to showcase by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#1021](https://github.com/cardano-foundation/developer-portal/pull/1021)
+- Update Lace description by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#1024](https://github.com/cardano-foundation/developer-portal/pull/1024)
+- Update installing-cardano-node.md to ver 1.35.7 by ([@gufmar](https://github.com/gufmar)) in [#1025](https://github.com/cardano-foundation/developer-portal/pull/1025)
+- Add plu-ts to Builder Tools + Smart Contract platforms by ([@michele-nuzzi](https://github.com/michele-nuzzi)) in [#1027](https://github.com/cardano-foundation/developer-portal/pull/1027)
+- OpShin: Update and extend the example section by ([@nielstron](https://github.com/nielstron)) in [#1030](https://github.com/cardano-foundation/developer-portal/pull/1030)
+- Add Receiving Payments (POS + Blockfrost API) tutorial by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1031](https://github.com/cardano-foundation/developer-portal/pull/1031)
+- POS tutorial - change 'clone' to 'fork' typo by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1032](https://github.com/cardano-foundation/developer-portal/pull/1032)
+- Fix OG image for catalyst page  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1034](https://github.com/cardano-foundation/developer-portal/pull/1034)
+- Fix OG image path on all markdown files, including fetched data on build by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1035](https://github.com/cardano-foundation/developer-portal/pull/1035)
+- Fix mobile jump bug when using search bar in Showcase/Tool pages by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1039](https://github.com/cardano-foundation/developer-portal/pull/1039)
+- Receiving Payments (Blockfrost API) - Minor Documentation fix by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1036](https://github.com/cardano-foundation/developer-portal/pull/1036)
+- Resolve unique key issue in showcase and builder tools page by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1037](https://github.com/cardano-foundation/developer-portal/pull/1037)
+- Add aada.finance to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1040](https://github.com/cardano-foundation/developer-portal/pull/1040)
+- Add flipr.io to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1042](https://github.com/cardano-foundation/developer-portal/pull/1042)
+- update: blockfrost by ([@mmahut](https://github.com/mmahut)) in [#1048](https://github.com/cardano-foundation/developer-portal/pull/1048)
+
+#### Contributors: 8
+
+- matiwinnetou ([@matiwinnetou](https://github.com/matiwinnetou))
+- katomm ([@katomm](https://github.com/katomm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
+- gufmar ([@gufmar](https://github.com/gufmar))
+- michele-nuzzi ([@michele-nuzzi](https://github.com/michele-nuzzi))
+- nielstron ([@nielstron](https://github.com/nielstron))
+- mmahut ([@mmahut](https://github.com/mmahut))
+
+## 2023.20.0 (2023-05-31)
+
+All of the merged PRs in May
+
+#### PRs: 12
+
+- fix: blockfrost link - get started by ([@vladimirvolek](https://github.com/vladimirvolek)) in [#1053](https://github.com/cardano-foundation/developer-portal/pull/1053)
+- Add Maestro Dapp Platform builder tool by ([@Vardominator](https://github.com/Vardominator)) in [#1047](https://github.com/cardano-foundation/developer-portal/pull/1047)
+- Add changelog data for April  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1049](https://github.com/cardano-foundation/developer-portal/pull/1049)
+- Update utxo-model.md by ([@4TT1L4](https://github.com/4TT1L4)) in [#1028](https://github.com/cardano-foundation/developer-portal/pull/1028)
+- Bring in the new SPO category from revamp branch by ([@katomm](https://github.com/katomm)) in [#1063](https://github.com/cardano-foundation/developer-portal/pull/1063)
+- Update project-catalyst.md by ([@katomm](https://github.com/katomm)) in [#1064](https://github.com/cardano-foundation/developer-portal/pull/1064)
+- Update installing-cardano-node.md fixed commit for libsodium by ([@os11k](https://github.com/os11k)) in [#1062](https://github.com/cardano-foundation/developer-portal/pull/1062)
+- On-Chain Polls: Fix verify-poll parameter by ([@weebl2000](https://github.com/weebl2000)) in [#1065](https://github.com/cardano-foundation/developer-portal/pull/1065)
+- On-Chain Polls: correct & update explorer links by ([@rphair](https://github.com/rphair)) in [#1068](https://github.com/cardano-foundation/developer-portal/pull/1068)
+- Remove duplicate sidebar link by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1070](https://github.com/cardano-foundation/developer-portal/pull/1070)
+- Add Registering a Pool to stake pool documentation by ([@sanskys](https://github.com/sanskys)) in [#1066](https://github.com/cardano-foundation/developer-portal/pull/1066)
+
+#### Contributors: 10
+
+- vladimirvolek ([@vladimirvolek](https://github.com/vladimirvolek))
+- Vardominator ([@Vardominator](https://github.com/Vardominator))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- 4TT1L4 ([@4TT1L4](https://github.com/4TT1L4))
+- katomm ([@katomm](https://github.com/katomm))
+- os11k ([@os11k](https://github.com/os11k))
+- weebl2000 ([@weebl2000](https://github.com/weebl2000))
+- rphair ([@rphair](https://github.com/rphair))
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- sanskys ([@sanskys](https://github.com/sanskys))
+
+## 2023.24.0 (2023-06-30)
+
+All of the merged PRs in June
+
+#### PRs: 20
+
+- Update libsodium hash in node-installation-process.md by ([@rdlrt](https://github.com/rdlrt)) in [#1071](https://github.com/cardano-foundation/developer-portal/pull/1071)
+- Update builder tool: go-ouroboros-network to gOuroboros by ([@wolf31o2](https://github.com/wolf31o2)) in [#1076](https://github.com/cardano-foundation/developer-portal/pull/1076)
+- Add Continuity Token to Showcase by ([@mmahut](https://github.com/mmahut)) in [#1074](https://github.com/cardano-foundation/developer-portal/pull/1074)
+- Marlowe conceptual summary by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1077](https://github.com/cardano-foundation/developer-portal/pull/1077)
+- Smart Contracts: expand overview page by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1080](https://github.com/cardano-foundation/developer-portal/pull/1080)
+- Running Cardano: remove duplicated lines by ([@lloc](https://github.com/lloc)) in [#1083](https://github.com/cardano-foundation/developer-portal/pull/1083)
+- Add MarloweStat to Marlowe page by ([@rphair](https://github.com/rphair)) in [#1078](https://github.com/cardano-foundation/developer-portal/pull/1078)
+- Add changelog for May by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1072](https://github.com/cardano-foundation/developer-portal/pull/1072)
+- Remove any duplicated content by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1090](https://github.com/cardano-foundation/developer-portal/pull/1090)
+- Add potential-robot to Builder Tools by ([@aleeusgr](https://github.com/aleeusgr)) in [#1084](https://github.com/cardano-foundation/developer-portal/pull/1084)
+- Update Docusaurus to 2.4.1 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1087](https://github.com/cardano-foundation/developer-portal/pull/1087)
+- Add Hydra to builder tools by ([@v0d1ch](https://github.com/v0d1ch)) in [#1088](https://github.com/cardano-foundation/developer-portal/pull/1088)
+- Operate a stakepool : Hardening server guide by ([@Kirael12](https://github.com/Kirael12)) in [#1089](https://github.com/cardano-foundation/developer-portal/pull/1089)
+- Add BALANCE showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1086](https://github.com/cardano-foundation/developer-portal/pull/1086)
+- New Dev Spotlight June 2023 Interview with Mandala by ([@weqanhet](https://github.com/weqanhet)) in [#1092](https://github.com/cardano-foundation/developer-portal/pull/1092)
+- Add websocket and low-level tags for Hydra by ([@v0d1ch](https://github.com/v0d1ch)) in [#1093](https://github.com/cardano-foundation/developer-portal/pull/1093)
+- Marlowe page: add documentation site + audit reports by ([@rphair](https://github.com/rphair)) in [#1095](https://github.com/cardano-foundation/developer-portal/pull/1095)
+- Update register-stake-pool.md, lets use protocol.json everywhere by ([@os11k](https://github.com/os11k)) in [#1096](https://github.com/cardano-foundation/developer-portal/pull/1096)
+- Remove MermADA Minting from Showcase by ([@lodl](https://github.com/lodl)) in [#1098](https://github.com/cardano-foundation/developer-portal/pull/1098)
+- Marlowe page: add security review by ([@rphair](https://github.com/rphair)) in [#1097](https://github.com/cardano-foundation/developer-portal/pull/1097)
+
+
+#### Contributors: 13
+
+- rdlrt ([@rdlrt](https://github.com/rdlrt))
+- wolf31o2 ([@wolf31o2](https://github.com/wolf31o2))
+- mmahut ([@mmahut](https://github.com/mmahut))
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- lloc ([@lloc](https://github.com/lloc))
+- rphair ([@rphair](https://github.com/rphair))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- aleeusgr ([@aleeusgr](https://github.com/aleeusgr))
+- v0d1ch ([@v0d1ch](https://github.com/v0d1ch))
+- Kirael12 ([@Kirael12](https://github.com/Kirael12))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- os11k ([@os11k](https://github.com/os11k))
+- lodl ([@lodl](https://github.com/lodl))

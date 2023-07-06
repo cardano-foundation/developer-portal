@@ -660,15 +660,6 @@ export const Showcases = [
     tags: ["marketplace", "nftsupport"],
   },
   {
-    title: "MermADA Minting",
-    description:
-      "Cardano NFT Minting Service providing white label solutions for your branding needs from our single NFT Mint tool to NFT Vending Machines to Token Faucets.",
-    preview: require("./showcase/mermada.png"),
-    website: "https://mermada.com/",
-    source: null,
-    tags: ["minting", "metadata", "token", "nftsupport", "educational"],
-  },
-  {
     title: "Open CNFT",
     description:
       "Leaderboards & Analytics of the Cardano NFT ecosystem.",
@@ -1145,6 +1136,15 @@ export const Showcases = [
     tags: ["nftsupport", "wallet"],
   },
   {
+    title: "flipr.io",
+    description: 
+      "flipr.io is a Web3 application that aspires to serve many purposes within the world of Cardano NFTs.",
+    preview: require("./showcase/flipr.png"),
+    website: "https://www.flipr.io/",
+    source: null,
+    tags: ["marketplace", "nftsupport", "minting"],
+  },
+  {
     title: "Aada.finance",
     description: 
       "Aada is a peer-to-peer lending and borrowing protocol on the Cardano blockchain.",
@@ -1152,6 +1152,24 @@ export const Showcases = [
     website: "https://app.aada.finance",
     source: null,
     tags: ["lending", "marketplace", "nftsupport"],
+  },
+  {
+    title: "Continuity Token",
+    description:
+      "$COTO provides secure, global and long-lasting cold storage backups of Cardano NFT media.",
+    preview: require("./showcase/coto.png"),
+    website: "https://continuity.to/",
+    source: null,
+    tags: ["nftsupport", "token"],
+  },
+  {
+    title: "BALANCE",
+    description:
+      "A Cardano Blockchain Research & Analytics Provider.",
+    preview: require("./showcase/balanceanalytics.png"),
+    website: "https://www.balanceanalytics.io/",
+    source: null,
+    tags: ["analytics", "pooltool"],
   },
 ];
 
