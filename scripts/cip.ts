@@ -27,13 +27,6 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
     await Promise.all(
       cip_resource.map(async (r) => {
         if (r.indexOf("http://") < 0 && r.indexOf("https://") < 0) {
-          // create filenames to download into static folder
-          const file_name = r
-            .replace("](", "")
-            .replace(".png)", ".png")
-            .replace(".jpg)", ".jpg")
-            .replace(".jpeg)", ".jpeg")
-            .replace(".json)", ".json");
 
           // Create modified file_names in case we want to store files
           // with a different ending, like JSON files
@@ -42,17 +35,12 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
             .replace(".png)", ".png")
             .replace(".jpg)", ".jpg")
             .replace(".jpeg)", ".jpeg")
-            .replace(".json)", ".txt");
+            .replace(".json)", ".json");
 
           const buffer = await getBufferContentAsync(
-            `${cip_repo_raw_base_url}${cip_name}/${file_name}`
+            `${cip_repo_raw_base_url}${cip_name}/${modified_file_name}`
           );
-
-          if (fs.existsSync(`.${cip_static_resource_path}${cip_name}`)) {
-            fs.rmSync(`.${cip_static_resource_path}${cip_name}`, {
-              recursive: true,
-            });
-          }
+          
           fs.mkdirSync(`.${cip_static_resource_path}${cip_name}`, {
             recursive: true,
           });
@@ -61,14 +49,15 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
             `.${cip_static_resource_path}${cip_name}/${modified_file_name}`,
             new Uint8Array(buffer)
           );
-
+          
           // Rewrite link to static folder
           content = content.replace(
-            file_name,
+            modified_file_name,
             `../../..${cip_static_resource_path}${cip_name}/${modified_file_name}`
           );
+          
           console.log(
-            `Processed CIP content downloaded to .${cip_static_resource_path}${cip_name}/${file_name}`
+            `Processed CIP content downloaded to .${cip_static_resource_path}${cip_name}/${modified_file_name}`
           );
         }
       })
