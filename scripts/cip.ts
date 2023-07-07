@@ -49,13 +49,13 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
             `.${cip_static_resource_path}${cip_name}/${modified_file_name}`,
             new Uint8Array(buffer)
           );
-          
+
           // Rewrite link to static folder
           content = content.replace(
             modified_file_name,
             `../../..${cip_static_resource_path}${cip_name}/${modified_file_name}`
           );
-          
+
           console.log(
             `Processed CIP content downloaded to .${cip_static_resource_path}${cip_name}/${modified_file_name}`
           );
