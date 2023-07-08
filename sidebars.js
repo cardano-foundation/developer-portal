@@ -165,7 +165,10 @@ module.exports = {
       {
         type: "category",
         label: "Deployment Scenarios",
-        items: ["operate-a-stake-pool/improve-grafana-security"],
+        items: [
+          "operate-a-stake-pool/hardening-server",
+          "operate-a-stake-pool/improve-grafana-security",
+        ],
       },
       {
         type: "category",
