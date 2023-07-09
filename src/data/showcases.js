@@ -1171,6 +1171,15 @@ export const Showcases = [
     source: null,
     tags: ["analytics", "pooltool"],
   },
+  {
+    title: "Summon Platform",
+    description:
+      "A DAO creation and governance platform on the Cardano blockchain.",
+    preview: require("./showcase/summonplatform.png"),
+    website: "https://app.summonplatform.io/",
+    source: null,
+    tags: ["daotool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
