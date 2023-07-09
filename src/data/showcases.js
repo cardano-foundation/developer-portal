@@ -1063,7 +1063,7 @@ export const Showcases = [
     tags: ["bridge"],
   },
   {
-    title: "BALANCE - Balance Analytics",
+    title: "BALANCE Analytics",
     description:
       "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
     preview: require("./showcase/balance-analytics.png"),
