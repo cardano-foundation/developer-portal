@@ -17,7 +17,7 @@ All of the merged PRs in February
 
 - katomm ([@katomm](https://github.com/katomm))
 
-## 2021.12.0 (2021-03-31)
+## 2021.13.0 (2021-03-31)
 
 All of the merged PRs in March
 
@@ -43,7 +43,7 @@ All of the merged PRs in March
 - katomm ([@katomm](https://github.com/katomm))
 - Nazeim ([@Nazeim](https://github.com/Nazeim))
 
-## 2021.16.0 (2021-04-30)
+## 2021.17.0 (2021-04-30)
 
 All of the merged PRs in April
 
@@ -79,7 +79,7 @@ All of the merged PRs in April
 - alessandrokonrad ([@alessandrokonrad](https://github.com/alessandrokonrad))
 - Scitz0 ([@Scitz0](https://github.com/Scitz0))
 
-## 2021.21.0 (2021-05-31)
+## 2021.22.0 (2021-05-31)
 
 All of the merged PRs in May
 
@@ -110,7 +110,7 @@ All of the merged PRs in May
 - Mercurial ([@Mercurial](https://github.com/Mercurial))
 - ubinatus ([@ubinatus](https://github.com/ubinatus))
 
-## 2021.25.0 (2021-06-30)
+## 2021.26.0 (2021-06-30)
 
 All of the merged PRs in June
 
@@ -148,7 +148,7 @@ All of the merged PRs in June
 - katomm ([@katomm](https://github.com/katomm))
 - Mercurial ([@Mercurial](https://github.com/Mercurial))
 - ruttkowa ([@ruttkowa](https://github.com/ruttkowa))
-## 2021.29.0 (2021-07-31)
+## 2021.30.0 (2021-07-31)
 
 All of the merged PRs in July
 
@@ -261,7 +261,7 @@ All of the merged PRs in July
 - nftdot ([@nftdot](https://github.com/nftdot))
 - ruttkowa ([@ruttkowa](https://github.com/ruttkowa))
 
-## 2021.34.0 (2021-08-31)
+## 2021.35.0 (2021-08-31)
 
 All of the merged PRs in August
 
@@ -331,7 +331,7 @@ All of the merged PRs in August
 - 6346563751 ([@6346563751](https://github.com/6346563751))
 - alexanderwatanabe ([@alexanderwatanabe](https://github.com/alexanderwatanabe))
 
-## 2021.38.0 (2021-09-30)
+## 2021.39.0 (2021-09-30)
 
 All of the merged PRs in September
 
@@ -434,7 +434,7 @@ All of the merged PRs in October
 - Couder82 ([@Couder82](https://github.com/Couder82))
 - cislakk ([@cislakk](https://github.com/cislakk))
 
-## 2021.47.0 (2021-11-30)
+## 2021.48.0 (2021-11-30)
 
 All of the merged PRs in November
 
@@ -486,7 +486,7 @@ All of the merged PRs in November
 - dependabot ([@dependabot](https://github.com/dependabot))
 - sanskys ([@sanskys](https://github.com/sanskys))
 - brendonthiede ([@brendonthiede](https://github.com/brendonthiede))
-## 2021.51.0 (2021-12-31)
+## 2021.52.0 (2021-12-31)
 
 All of the merged PRs in December
 
@@ -523,7 +523,7 @@ All of the merged PRs in December
 - cislakk ([@cislakk](https://github.com/cislakk))
 - morucci ([@morucci](https://github.com/morucci))
 
-## 2022.4.0 (2022-01-31)
+## 2022.5.0 (2022-01-31)
 
 All of the merged PRs in January
 
@@ -589,7 +589,7 @@ All of the merged PRs in January
 - pavlinyordanov ([@pavlinyordanov](https://github.com/pavlinyordanov))
 - os11k ([@os11k](https://github.com/os11k))
 
-## 2022.8.0 (2022-02-28)
+## 2022.9.0 (2022-02-28)
 
 All of the merged PRs in February
 
@@ -632,7 +632,7 @@ All of the merged PRs in February
 - katomm ([@katomm](https://github.com/katomm))
 - dynamicstrategies ([@dynamicstrategies](https://github.com/dynamicstrategies))
 
-## 2022.12.0 (2022-03-31)
+## 2022.13.0 (2022-03-31)
 
 All of the merged PRs in March
 
@@ -680,7 +680,7 @@ All of the merged PRs in March
 - katomm ([@katomm](https://github.com/katomm))
 - dynamicstrategies ([@dynamicstrategies](https://github.com/dynamicstrategies))
 
-## 2022.16.0 (2022-04-30)
+## 2022.17.0 (2022-04-30)
 
 All of the merged PRs in April
 
@@ -731,7 +731,7 @@ All of the merged PRs in April
 - CicadaNFT ([@CicadaNFT](https://github.com/CicadaNFT))
 - sevanspowell ([@sevanspowell](https://github.com/sevanspowell))
 
-## 2022.21.0 (2022-05-31)
+## 2022.22.0 (2022-05-31)
 
 All of the merged PRs in May
 
@@ -785,7 +785,7 @@ All of the merged PRs in May
 - matiwinnetou ([@matiwinnetou](https://github.com/matiwinnetou))
 - lodl ([@lodl](https://github.com/lodl))
 
-## 2022.25.0 (2022-06-30)
+## 2022.26.0 (2022-06-30)
 
 All of the merged PRs in June
 
@@ -874,7 +874,7 @@ All of the merged PRs in July
 - orelvis15 ([@orelvis15](https://github.com/orelvis15))
 - katomm ([@katomm](https://github.com/katomm))
 
-## 2022.34.0 (2022-08-31)
+## 2022.35.0 (2022-08-31)
 
 All of the merged PRs in August
 
@@ -915,7 +915,7 @@ All of the merged PRs in August
 - sourabhxyz ([@sourabhxyz](https://github.com/sourabhxyz))
 - klntsky ([@klntsky](https://github.com/klntsky))
 
-## 2022.38.0 (2022-09-30)
+## 2022.39.0 (2022-09-30)
 
 All of the merged PRs in Septemeber
 
@@ -978,7 +978,7 @@ All of the merged PRs in Septemeber
 - manonthemat ([@manonthemat](https://github.com/manonthemat))
 - cexplorer ([@cexplorer](https://github.com/cexplorer))
 
-## 2022.42.0 (2022-10-31)
+## 2022.44.0 (2022-10-31)
 
 All of the merged PRs in October
 #### PRs: 27
@@ -1029,7 +1029,7 @@ All of the merged PRs in October
 - oversize ([@oversize](https://github.com/oversize))
 - gitmachtl ([@gitmachtl](https://github.com/gitmachtl))
 
-## 2022.46.0 (2022-11-30)
+## 2022.48.0 (2022-11-30)
 
 All of the merged PRs in November
 #### PRs: 18
@@ -1065,7 +1065,7 @@ All of the merged PRs in November
 - inimrod ([@inimrod](https://github.com/inimrod))
 - miguelaeh ([@miguelaeh](https://github.com/miguelaeh))
 
-## 2022.50.0 (2022-12-31)
+## 2022.52.0 (2022-12-31)
 
 All of the merged PRs in December
 #### PRs: 21
@@ -1108,7 +1108,7 @@ All of the merged PRs in December
 - cardano-apexpool ([@cardano-apexpool](https://github.com/cardano-apexpool))
 - tomveich ([@tomveich](https://github.com/tomveich))
 
-## 2023.4.0 (2023-01-31)
+## 2023.5.0 (2023-01-31)
 
 All of the merged PRs in January
 
@@ -1155,7 +1155,7 @@ All of the merged PRs in January
 - edridudi ([@edridudi](https://github.com/edridudi))
 - omahs ([@omahs](https://github.com/omahs))
 
-## 2023.8.0 (2023-02-28)
+## 2023.9.0 (2023-02-28)
 
 All of the merged PRs in February
 
@@ -1205,7 +1205,7 @@ All of the merged PRs in February
 - jinglescode ([@jinglescode](https://github.com/jinglescode))
 - LukaKurnjek ([@LukaKurnjek](https://github.com/LukaKurnjek))
 
-## 2023.12.0 (2023-03-31)
+## 2023.13.0 (2023-03-31)
 
 All of the merged PRs in March
 
@@ -1253,7 +1253,7 @@ All of the merged PRs in March
 - olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
 - workshop-maybe ([@workshop-maybe](https://github.com/workshop-maybe))
 
-## 2023.16.0 (2023-04-30)
+## 2023.17.0 (2023-04-30)
 
 All of the merged PRs in April
 
@@ -1291,7 +1291,7 @@ All of the merged PRs in April
 - nielstron ([@nielstron](https://github.com/nielstron))
 - mmahut ([@mmahut](https://github.com/mmahut))
 
-## 2023.20.0 (2023-05-31)
+## 2023.22.0 (2023-05-31)
 
 All of the merged PRs in May
 
@@ -1322,7 +1322,7 @@ All of the merged PRs in May
 - OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
 - sanskys ([@sanskys](https://github.com/sanskys))
 
-## 2023.24.0 (2023-06-30)
+## 2023.26.0 (2023-06-30)
 
 All of the merged PRs in June
 
