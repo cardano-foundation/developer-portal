@@ -162,6 +162,7 @@ User              = <$USER>
 Type              = simple
 WorkingDirectory  = <$HOME>/cardano-testnet
 ExecStart         = /bin/bash -c '<$HOME>/cardano-testnet/startTestNode.sh'
+ExecReload        = pkill -HUP cardano-node
 KillSignal        = SIGINT
 RestartKillSignal = SIGINT
 TimeoutStopSec    = 300
@@ -220,3 +221,9 @@ Dec  1 15:31:40 localhost cardano-testnode[162851]: #033[35m[localhos:cardano.no
 ```
 
 Syncing the blockchain from zero can take a while. Please be patient. If you want to stop syncing, you can do so using the command `sudo systemctl stop cardano-node`. Restarting the relay node will resume syncing the blockchain.
+
+## Reloading the Topology configuration
+
+If you have made changes to your topology configuration file (eg. mainnet-topology.json) that controls the relays your node will connect to, you can reload this configuration change without having to perform a full node restart. Type:
+
+    sudo systemctl reload cardano-node
