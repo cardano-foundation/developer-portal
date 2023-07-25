@@ -1080,7 +1080,7 @@ export const Showcases = [
     description: "Generate smart contract code in Plutus using AI",
     preview: require("./builder-tools/mazzumagpt.png"),
     website: "https://mazzumagpt.com",
-    getstarted: null,
+    getstarted: "https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
     tags: ["plutus"]
   },
 ];
