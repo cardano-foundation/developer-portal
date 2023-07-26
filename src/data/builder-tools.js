@@ -1081,7 +1081,7 @@ export const Showcases = [
     preview: require("./builder-tools/mazzumagpt.png"),
     website: "https://mazzumagpt.com",
     getstarted: "https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
-    tags: ["plutus"]
+    tags: ["plutus"] 
   },
 ];
 
