@@ -224,6 +224,6 @@ Syncing the blockchain from zero can take a while. Please be patient. If you wan
 
 ## Reloading the Topology configuration
 
-The topology configuration file controls the relays your node will connect to (eg. mainnet-topology.json). If you have made updates to this configuration you can load these changes without having to perform a full node restart by typing:
+In case you have made an update to `topology.json` file, since this node is assumed to be running in P2P mode - you can can load these changes without having to perform a full node restart using command below:
 
     sudo systemctl reload cardano-node
