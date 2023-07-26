@@ -1075,6 +1075,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["python", "nft" ]
   },
+  {
+    title: "MazzumaGPT",
+    description: "Generate smart contract code in Plutus using AI",
+    preview: require("./builder-tools/mazzumagpt.png"),
+    website: "https://mazzumagpt.com",
+    getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
+    tags: ["plutus"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
