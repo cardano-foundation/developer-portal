@@ -1180,6 +1180,15 @@ export const Showcases = [
     source: null,
     tags: ["daotool"],
   },
+  {
+    title: "VESPR Wallet",
+    description:
+      "VESPR is a non-custodial mobile light wallet for the Cardano network, prioritizing the security and safety of your digital assets while ensuring exceptional ease-of-use. Your private keys and assets always remain under your control.",
+    preview: require("./showcase/vesprwallet.png"),
+    website: "https://www.vespr.xyz/#/",
+    source: null,
+    tags: ["wallet", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
