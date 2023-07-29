@@ -9,11 +9,11 @@ The latest technical specifications and supported platforms can be found on the 
 
 Currently the following specifications are recommended:
 
-- Servers: 1 for block producer node, at least 1 for relay node
+- Servers: 1 for block producer node, at least 1 as relay node
 - CPU: An Intel or AMD x86 processor with two or more cores, at 1.6GHz or faster (2GHz or faster for a stake pool or relay)
-- Memory: 16 GB of RAM
-- Storage: 100GB of free storage (150GB recommended for future growth)
-- Operating system: 64-bit Linux (i.e. Ubuntu Server 20.04 LTS)
+- Memory: 24GB of RAM
+- Storage: 150GB of free storage (250GB recommended for future growth)
+- Operating system: 64-bit Linux (Ubuntu 18.04+, Mint 19.3+, Debian 10.3+), Windows 8.1+, MacOS 10.13+
 - Broadband: a good network connection and about 1 GB of bandwidth per hour a public IP4 address
-- Air-gapped (Cold) environment for key management
+- [Air-gapped environment](/docs/get-started/air-gap.md) for key management
 
