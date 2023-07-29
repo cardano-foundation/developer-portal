@@ -1123,7 +1123,7 @@ export const Showcases = [
       "A standardized NFT that developers and users can use to associate an address with a custom and human-readable address.",
     preview: require("./showcase/adahandle.png"),
     website: "https://adahandle.com",
-    source: null,
+    source: "https://github.com/input-output-hk/lace",
     tags: ["nftproject"],
   },
   {
@@ -1133,7 +1133,7 @@ export const Showcases = [
     preview: require("./showcase/lace.png"),
     website: "https://www.lace.io/",
     source: null,
-    tags: ["nftsupport", "wallet"],
+    tags: ["nftsupport", "wallet", "opensource"],
   },
   {
     title: "flipr.io",
