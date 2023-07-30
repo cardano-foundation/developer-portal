@@ -338,7 +338,7 @@ export const Showcases = [
     preview: require("./showcase/daedalus.png"),
     website: "https://daedaluswallet.io",
     source: "https://github.com/input-output-hk/daedalus",
-    tags: ["wallet", "opensource", "favorite"],
+    tags: ["wallet", "opensource"],
   },
   {
     title: "Yoroi",
