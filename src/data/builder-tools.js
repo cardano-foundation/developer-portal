@@ -341,8 +341,8 @@ export const Showcases = [
     title: "cardano-graphql",
     description: "A cross-platform, typed, and queryable API for Cardano.",
     preview: require("./builder-tools/cardano-graphql.png"),
-    website: "https://github.com/input-output-hk/cardano-graphql/#overview",
-    getstarted: "https://github.com/input-output-hk/cardano-graphql#getting-started",
+    website: "https://github.com/cardano-foundation/cardano-graphql/#overview",
+    getstarted: "https://github.com/cardano-foundation/cardano-graphql#getting-started",
     tags: ["chainindex", "http"]
   },
   {
