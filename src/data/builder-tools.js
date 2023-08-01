@@ -333,8 +333,8 @@ export const Showcases = [
     title: "cardano-wallet",
     description: "An HTTP server and command-line for managing UTxOs and hierarchical deterministic wallets in Cardano.",
     preview: require("./builder-tools/cardano-wallet.png"),
-    website: "https://github.com/input-output-hk/cardano-wallet/#overview",
-    getstarted: "https://input-output-hk.github.io/cardano-wallet/",
+    website: "https://github.com/cardano-foundation/cardano-wallet/#overview",
+    getstarted: "https://cardano-foundation.github.io/cardano-wallet/",
     tags: ["http", "json", "wallet"]
   },
   {
