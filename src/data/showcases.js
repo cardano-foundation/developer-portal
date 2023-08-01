@@ -371,7 +371,7 @@ export const Showcases = [
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
-    tags: ["favorite", "analytics"],
+    tags: ["token", "analytics"],
   },
   {
     title: "Cardano Updates",
@@ -972,7 +972,7 @@ export const Showcases = [
     preview: require("./showcase/taptools.png"),
     website: "https://www.taptools.io",
     source: null,
-    tags: [ "analytics", "token", "minting"],
+    tags: [ "favorite", "analytics", "token", "minting"],
   },
   {
     title: "Shareslake",
