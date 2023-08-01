@@ -10,11 +10,13 @@ module.exports = {
           "get-started/installing-cardano-node",
           "get-started/running-cardano",
           "get-started/installing-cardano-wallet",
+          "get-started/create-simple-transaction",
         ],
       },
       {
         type: "category",
         label: "Security Best Practices",
+        items: ["get-started/air-gap", "get-started/secure-workflow"],
         items: ["get-started/air-gap", "get-started/secure-workflow"],
       },
       {
@@ -125,13 +127,68 @@ module.exports = {
     ],
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",
-      "operate-a-stake-pool/cardano-key-pairs",
       {
         type: "category",
-        label: "Stake Pool Course",
+        label: "Basics",
+        items: [
+          "operate-a-stake-pool/introduction-to-cardano",
+          "operate-a-stake-pool/stake-pool-networking",
+          "operate-a-stake-pool/hardware-requirements",
+          "operate-a-stake-pool/cardano-key-pairs",
+          "operate-a-stake-pool/marketing-stake-pool",
+        ],
+      },
+      {
+        type: "category",
+        label: "Installation Guide (Node)",
+        items: ["operate-a-stake-pool/node-installation-process"],
+      },
+      {
+        type: "category",
+        label: "Cardano Relay Configuration",
+        items: [
+          "operate-a-stake-pool/cardano-relay-configuration",
+          "operate-a-stake-pool/monitoring-gLiveView",
+          "operate-a-stake-pool/grafana-dashboard-tutorial",
+        ],
+      },
+      {
+        type: "category",
+        label: "Cardano Block Producer Configuration",
+        items: [
+          "operate-a-stake-pool/generating-wallet-keys",
+          "operate-a-stake-pool/block-producer-keys",
+          "operate-a-stake-pool/register-stake-address",
+          "operate-a-stake-pool/register-stake-pool",
+        ],
+      },
+      {
+        type: "category",
+        label: "Deployment Scenarios",
+        items: [
+          "operate-a-stake-pool/hardening-server",
+          "operate-a-stake-pool/improve-grafana-security",
+        ],
+      },
+      {
+        type: "category",
+        label: "Cardano Governance",
+        items: ["operate-a-stake-pool/on-chain-polls"],
+      },
+      {
+        type: "category",
+        label: "Operator Tools",
+        items: [
+          "operate-a-stake-pool/guild-ops-suite",
+          "operate-a-stake-pool/ansible-cardano-node",
+          "operate-a-stake-pool/frankenwallet",
+        ],
+      },
+      /*{
+        type: "category",
+        label: "Stake Pool Course (DEPRECATED)",
         items: [
           "stake-pool-course/overview",
-          "stake-pool-course/introduction-to-cardano",
           "stake-pool-course/lesson-1",
           "stake-pool-course/lesson-2",
           "stake-pool-course/lesson-3",
@@ -141,7 +198,6 @@ module.exports = {
             type: "category",
             label: "Handbook",
             items: [
-              "stake-pool-course/handbook/grafana-dashboard-tutorial",
               "stake-pool-course/handbook/grafana-loki",
               "stake-pool-course/handbook/setup-virtual-box-written",
               "stake-pool-course/handbook/setup-a-server-on-aws-written",
@@ -170,17 +226,7 @@ module.exports = {
             ],
           },
         ],
-      },
-      {
-        type: "category",
-        label: "Operator Tools",
-        items: [
-          "operate-a-stake-pool/guild-ops-suite",
-          "operate-a-stake-pool/ansible-cardano-node",
-          "operate-a-stake-pool/frankenwallet",
-        ],
-      },
-      "operate-a-stake-pool/marketing-stake-pool",
+      },*/
     ],
     "Contribute to the Developer Portal": [
       "portal-contributors",

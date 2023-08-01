@@ -7,6 +7,13 @@ image: /img/og/og-getstarted-technical-concepts.png
 --- 
 
 To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts such as [UTxO](#unspent-transaction-output-utxo), [transactions](#transactions), [addresses](#addresses), [key derivation](#key-derivation), and [networking](#networking).
+
+
+##  Introduction to Cardano: the big picture
+Learn fundamental terms like blockchain, consensus, decentralization delegation and incentives. Understand the big picture of Cardano and why stake pools are so important.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br/><br/>
+
 ## Unspent Transaction Output (UTxO)
 UTxO or Unspent Transaction Outputs are how ada moves around the Cardano network. Learn how they work in the Cardano ledger.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/e4YZkgi4V3U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>

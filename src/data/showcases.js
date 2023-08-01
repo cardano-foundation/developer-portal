@@ -338,7 +338,7 @@ export const Showcases = [
     preview: require("./showcase/daedalus.png"),
     website: "https://daedaluswallet.io",
     source: "https://github.com/input-output-hk/daedalus",
-    tags: ["wallet", "opensource", "favorite"],
+    tags: ["wallet", "opensource"],
   },
   {
     title: "Yoroi",
@@ -658,15 +658,6 @@ export const Showcases = [
     website: "https://epoch.art",
     source: null,
     tags: ["marketplace", "nftsupport"],
-  },
-  {
-    title: "MermADA Minting",
-    description:
-      "Cardano NFT Minting Service providing white label solutions for your branding needs from our single NFT Mint tool to NFT Vending Machines to Token Faucets.",
-    preview: require("./showcase/mermada.png"),
-    website: "https://mermada.com/",
-    source: null,
-    tags: ["minting", "metadata", "token", "nftsupport", "educational"],
   },
   {
     title: "Open CNFT",
@@ -1141,8 +1132,8 @@ export const Showcases = [
       "A new light wallet platform from IOG, one of the creators of Cardano. Manually verified by an independent auditor, Lace lets you quickly, easily, and securely manage your digital assets and enjoy Web3.",
     preview: require("./showcase/lace.png"),
     website: "https://www.lace.io/",
-    source: null,
-    tags: ["nftsupport", "wallet"],
+    source: "https://github.com/input-output-hk/lace",
+    tags: ["nftsupport", "wallet", "opensource"],
   },
   {
     title: "flipr.io",
@@ -1161,6 +1152,42 @@ export const Showcases = [
     website: "https://app.aada.finance",
     source: null,
     tags: ["lending", "marketplace", "nftsupport"],
+  },
+  {
+    title: "Continuity Token",
+    description:
+      "$COTO provides secure, global and long-lasting cold storage backups of Cardano NFT media.",
+    preview: require("./showcase/coto.png"),
+    website: "https://continuity.to/",
+    source: null,
+    tags: ["nftsupport", "token"],
+  },
+  {
+    title: "BALANCE",
+    description:
+      "A Cardano Blockchain Research & Analytics Provider.",
+    preview: require("./showcase/balanceanalytics.png"),
+    website: "https://www.balanceanalytics.io/",
+    source: null,
+    tags: ["analytics", "pooltool"],
+  },
+  {
+    title: "Summon Platform",
+    description:
+      "A DAO creation and governance platform on the Cardano blockchain.",
+    preview: require("./showcase/summonplatform.png"),
+    website: "https://summonplatform.io/",
+    source: null,
+    tags: ["daotool"],
+  },
+  {
+    title: "VESPR Wallet",
+    description:
+      "VESPR is a non-custodial mobile light wallet for the Cardano network, prioritizing the security and safety of your digital assets while ensuring exceptional ease-of-use. Your private keys and assets always remain under your control.",
+    preview: require("./showcase/vesprwallet.png"),
+    website: "https://www.vespr.xyz/#/",
+    source: null,
+    tags: ["wallet", "nftsupport"],
   },
 ];
 
