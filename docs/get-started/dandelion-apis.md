@@ -32,7 +32,7 @@ These are the links to github repositories and a brief description for all of th
 [gh-cardano-rest]: https://github.com/input-output-hk/cardano-rest
 [gh-ogmios]: https://github.com/cardanosolutions/ogmios
 [gh-cardano-db-sync]: https://github.com/input-output-hk/cardano-db-sync
-[gh-cardano-rosetta]: https://github.com/input-output-hk/cardano-rosetta
+[gh-cardano-rosetta]: https://github.com/cardano-foundation/cardano-rosetta
 [gh-postgrest]: https://github.com/PostgREST/postgrest
 
 import Tabs from '@theme/Tabs';
@@ -175,7 +175,7 @@ Useful links:
 - [Link][gimbalabs-rosetta-api] to Gimbalabs's endpoints information and official documentation
 - [Link][rosetta-official-doc] to project's official documentation
 [gimbalabs-rosetta-api]: https://gimbalabs.com/dandelion/endpoints/rosetta-api
-[rosetta-official-doc]: https://github.com/input-output-hk/cardano-rosetta#documentation
+[rosetta-official-doc]: https://github.com/cardano-foundation/cardano-rosetta#documentation
 
 Usage examples:
 

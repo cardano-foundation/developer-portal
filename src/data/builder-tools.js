@@ -349,7 +349,7 @@ export const Showcases = [
     title: "cardano-rosetta",
     description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
     preview: require("./builder-tools/cardano-rosetta.png"),
-    website: "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
+    website: "https://github.com/cardano-foundation/cardano-rosetta/#cardano-rosetta",
     getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
     tags: ["http", "json"]
   },
