@@ -410,14 +410,6 @@ export const Showcases = [
     tags: ["favorite", "analytics"],
   },
   {
-    title: "Token Tool",
-    description: "Keep track of native token on testnet and mainnet.",
-    preview: require("./showcase/tokentool.png"),
-    website: "https://tokentool.io",
-    source: null,
-    tags: ["favorite", "token", "analytics"],
-  },
-  {
     title: "Transaction Meta Data Browser",
     description:
       "Browse and search different types of transaction metadata on Cardano.",
