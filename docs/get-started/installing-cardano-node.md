@@ -3,21 +3,20 @@ id: installing-cardano-node
 title: Installing cardano-node and cardano-cli from source
 sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
-image: ../img/og/og-getstarted-installing-cardano-node.png
+image: /img/og/og-getstarted-installing-cardano-node.png
 ---
+:::important
+
+This document's current version is relevant for `cardano-node` release version [8.0.0](https://github.com/input-output-hk/cardano-node/releases/tag/8.0.0) (May-2023)
+
+:::
 ### Overview
 
 This guide will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. It will enable you to interact with the **Cardano** blockchain, including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting/burning **native tokens**, creating a **stake pool**, executing **smart contracts**, and so much more!
 
 :::note
-If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
+If you want to avoid compiling the binaries yourself, you can [download the latest Linux, Mac, Windows versions](https://github.com/input-output-hk/cardano-node/releases/latest) of `cardano-node` and `cardano-cli` from the official IOHK release page.
 
-[comment]: # (hard version code links, pending answer to...)
-[comment]: # (https://github.com/input-output-hk/cardano-node/issues/4688#issuecomment-1336154065)
-
-- [Linux](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-linux.tar.gz)
-- [MacOS](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-macos.tar.gz)
-- [Windows](https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-win64.zip)
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -28,7 +27,7 @@ To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
 * An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)
-* **16GB** of RAM and at least **75GB** of free disk space
+* **24GB** of RAM and at least **150GB** of free disk space (250GB recommended for future growth)
 
 :::note
 If intending to connect to Mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
@@ -102,7 +101,7 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following:
 
 ```
-The GHCup Haskell installer, version v0.1.17.8
+The GHCup Haskell installer, version 0.1.19.2
 ```
 
 `ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
@@ -161,7 +160,7 @@ Next, we will download, compile and install `libsodium`.
 ```bash
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
-git checkout 66f017f1
+git checkout dbb48cc
 ./autogen.sh
 ./configure
 make
@@ -177,7 +176,7 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install Secp256k1 which is required from 1.35.0 cardano-node version onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -245,7 +244,8 @@ sudo ln -s /usr/bin/clang-9 /usr/bin/clang
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
 
 ```bash
-cabal build cardano-node cardano-cli
+cabal update
+cabal build all
 ```
 
 Install the newly built node and CLI commands to the $HOME/.local/bin directory:
@@ -391,7 +391,7 @@ Next, we will download, compile and install `libsodium`.
 ```bash
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
-git checkout 66f017f1
+git checkout dbb48cc
 ./autogen.sh
 ./configure
 make
@@ -417,7 +417,7 @@ llvm installation path might differs based on your installation, if you used def
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install Secp256k1 which is required from 1.35.0 cardano-node version onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -481,6 +481,7 @@ echo "" >> cabal.project.local
 
 #### Building and installing the node
 ```bash
+cabal update
 cabal build all
 ```
 :::caution

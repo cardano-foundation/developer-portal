@@ -2,10 +2,7 @@
  * BUILDER TOOLS SECTION INFO
  *
  * Requirements for adding your builder tool:
- * - It is an actual builder tool that adds value to Cardano developers.
- * - It has a stable domain name (a random for example, Netlify/Vercel domain is not allowed)
- * - The GitHub account that adds the builder tool must not be new.
- * - The GitHub account must have a history/or already be known in the Cardano community.
+ * https://developers.cardano.org/docs/portal-contribute#add-tools-to-builder-tools
  *
  * Instructions:
  * - Add your tool in the json array at the end of the array.
@@ -377,7 +374,7 @@ export const Showcases = [
     description: "Instant and scalable API to the Cardano blockchain.",
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
-    getstarted: "/docs/get-started/blockfrost",
+    getstarted: "/docs/get-started/blockfrost/get-started/",
     tags: ["favorite", "http", "json", "hosted"],
   },
   {
@@ -756,12 +753,12 @@ export const Showcases = [
     tags: ["http", "json", "hosted"],
   },
   {
-    title: "go-ouroboros-network",
-    description: "A Golang implementation of the Cardano Ouroboros network protocol.",
-    preview: require("./builder-tools/go-ouroboros-network.png"),
-    website: "https://github.com/cloudstruct/go-ouroboros-network",
-    getstarted: null,
-    tags: ["golang", "lowlevel"]
+    title: "gOuroboros",
+    description: "Golang implementation of the Cardano Ouroboros network protocol.",
+    preview: require("./builder-tools/gOuroboros.png"),
+    website: "https://github.com/blinklabs-io/gouroboros",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
+    tags: ["golang", "lowlevel"],
   },
   {
     title: "cscli",
@@ -780,6 +777,30 @@ export const Showcases = [
     tags: ["javascript", "plutus"],
   },
   {
+    title: "plu-ts",
+    description: "Typescript-embedded smart contract programming language and transaction creation library",
+    preview: require("./builder-tools/plu-ts.png"),
+    website: "https://pluts.harmoniclabs.tech/docs/intro",
+    getstarted: "/docs/get-started/plu-ts",
+    tags: ["plutus", "javascript", "typescript", "serialization"],
+  },
+  {
+    title: "cardanocli-pluts",
+    description: "Wrapper of the cardano-cli tool based on the plu-ts offchain types",
+    preview: require("./builder-tools/plu-ts.png"),
+    website: "https://github.com/HarmonicLabs/cardanocli-pluts",
+    getstarted: null,
+    tags: ["javascript", "typescript", "serialization"],
+  },
+  {
+    title: "koios-pluts",
+    description: "Wrapper of the koios tool based on the plu-ts offchain types",
+    preview: require("./builder-tools/plu-ts.png"),
+    website: "https://github.com/HarmonicLabs/koios-pluts",
+    getstarted: null,
+    tags: ["javascript", "typescript", "serialization", "koios"],
+  },
+  {
     title: "Aiken",
     description: "A modern smart contract platform for Cardano.",
     preview: require("./builder-tools/aiken.png"),
@@ -789,8 +810,8 @@ export const Showcases = [
   },
   {
     title: "Acca",
-    description: "Library extending Aiken's standard library",
-    preview: require("./builder-tools/aiken.png"),
+    description: "Aiken's utility library (extending standard library). It takes it's inspiration from libraries like Guava (Java) or Lodash (JavaScript). You can find in this library many missing functions, new data types (e.g. Either) also collections (e.g. HashTree, HashList, Stack, Binomial Heap).",
+    preview: require("./builder-tools/acca.png"),
     website: "https://github.com/Cardano-Fans/acca",
     getstarted: null,
     tags: ["plutus", "aiken"],
@@ -1004,6 +1025,55 @@ export const Showcases = [
     website: "https://github.com/wout/cardano-kit",
     getstarted: null,
     tags: ["crystal", "serialization"]
+  },
+  {
+    title: "Maestro Dapp Platform",
+    description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
+    preview: require("./builder-tools/maestro.png"),
+    website: "https://www.gomaestro.org/dapp-platform",
+    getstarted: "https://docs.gomaestro.org/",
+    tags: ["http", "hosted"]
+  },
+  {
+    title: "potential-robot",
+    description: "A JavaScript API for test-driven development with Helios.",
+    preview: require("./builder-tools/potential-robot.png"),
+    website: "https://github.com/aleeusgr/potential-robot",
+    getstarted: null,
+    tags: ["javascript", "typescript", "testing"]
+  },
+  {
+    title: "Hydra",
+    description: "Hydra is the layer-two scalability solution for Cardano, which aims to increase the speed of transactions (low latency, high throughput) and minimize transaction cost.",
+    preview: require("./builder-tools/hydra.png"),
+    website: "https://hydra.family/head-protocol/",
+    getstarted: "https://hydra.family/head-protocol/docs/getting-started",
+    tags: ["haskell", "cli", "http", "websocket", "lowlevel"]
+  },
+  {
+    title: "NFTCDN",
+    description: "Display all Cardano NFTs effortlessly & efficiently on your website/app using the low-code & high-speed NFTCDN service.",
+    preview: require("./builder-tools/nftcdn.png"),
+    website: "https://nftcdn.io",
+    getstarted: null,
+    tags: ["nft", "http", "hosted" ]
+  },
+  {
+    title: "Atlas",
+    description: 
+      "Atlas is an all-in-one, Haskell-native application backend for writing off-chain code for on-chain Plutus smart contracts.",
+    preview: require("./builder-tools/atlas.png"),
+    website: "https://atlas-app.io/",
+    getstarted: null,
+    tags: ["haskell", "plutus"],
+  },
+  {
+    title: "NFT Vending Machine",
+    description: "A simple CNFT mint-and-vend machine Python library that leverages cardano-cli and Blockfrost.",
+    preview: require("./builder-tools/nft-vending-machine.png"),
+    website: "https://github.com/thaddeusdiamond/cardano-nft-vending-machine",
+    getstarted: null,
+    tags: ["python", "nft" ]
   },
 ];
 

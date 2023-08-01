@@ -3,7 +3,7 @@ id: testnets-and-devnets
 title: Get started with testnets
 sidebar_label: Testnets
 description: Get started with testnets and devnets
-image: ../img/og/og-getstarted-testnets.png
+image: /img/og/og-getstarted-testnets.png
 --- 
 
 To make the difference between Cardano mainnet functionality and testnet functionality clearer, we moved the old content of [developers.cardano.org](https://developers.cardano.org) to [testnets.cardano.org](https://testnets.cardano.org) with the launch of this developer portal.

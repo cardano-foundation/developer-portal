@@ -4,7 +4,7 @@ sidebar_position: 8
 title: React Web App
 sidebar_label: React Web App
 description: Start building web3 applications, interact with your contracts using your wallets.
-image: ../img/og/og-getstarted-mesh.png
+image: /img/og/og-getstarted-mesh.png
 ---
 
 Mesh provide a collection of useful UI components, so you can easily include web3 functionality and convenient utilities for your application.
