@@ -338,7 +338,7 @@ export const Showcases = [
     preview: require("./showcase/daedalus.png"),
     website: "https://daedaluswallet.io",
     source: "https://github.com/input-output-hk/daedalus",
-    tags: ["wallet", "opensource", "favorite"],
+    tags: ["wallet", "opensource"],
   },
   {
     title: "Yoroi",
@@ -371,7 +371,7 @@ export const Showcases = [
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
-    tags: ["favorite", "analytics"],
+    tags: ["token", "analytics"],
   },
   {
     title: "Cardano Updates",
@@ -408,14 +408,6 @@ export const Showcases = [
       "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
     source: null,
     tags: ["favorite", "analytics"],
-  },
-  {
-    title: "Token Tool",
-    description: "Keep track of native token on testnet and mainnet.",
-    preview: require("./showcase/tokentool.png"),
-    website: "https://tokentool.io",
-    source: null,
-    tags: ["favorite", "token", "analytics"],
   },
   {
     title: "Transaction Meta Data Browser",
@@ -980,7 +972,7 @@ export const Showcases = [
     preview: require("./showcase/taptools.png"),
     website: "https://www.taptools.io",
     source: null,
-    tags: [ "analytics", "token", "minting"],
+    tags: [ "favorite", "analytics", "token", "minting"],
   },
   {
     title: "Shareslake",
@@ -1132,8 +1124,8 @@ export const Showcases = [
       "A new light wallet platform from IOG, one of the creators of Cardano. Manually verified by an independent auditor, Lace lets you quickly, easily, and securely manage your digital assets and enjoy Web3.",
     preview: require("./showcase/lace.png"),
     website: "https://www.lace.io/",
-    source: null,
-    tags: ["nftsupport", "wallet"],
+    source: "https://github.com/input-output-hk/lace",
+    tags: ["nftsupport", "wallet", "opensource"],
   },
   {
     title: "flipr.io",
@@ -1179,6 +1171,15 @@ export const Showcases = [
     website: "https://summonplatform.io/",
     source: null,
     tags: ["daotool"],
+  },
+  {
+    title: "VESPR Wallet",
+    description:
+      "VESPR is a non-custodial mobile light wallet for the Cardano network, prioritizing the security and safety of your digital assets while ensuring exceptional ease-of-use. Your private keys and assets always remain under your control.",
+    preview: require("./showcase/vesprwallet.png"),
+    website: "https://www.vespr.xyz/#/",
+    source: null,
+    tags: ["wallet", "nftsupport"],
   },
 ];
 
