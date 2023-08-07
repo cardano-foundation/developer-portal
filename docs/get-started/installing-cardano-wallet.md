@@ -53,7 +53,7 @@ cd $HOME/cardano-src
 Next we download the `cardano-wallet` source-code: 
 
 ```bash
-git clone https://github.com/input-output-hk/cardano-wallet.git 
+git clone https://github.com/cardano-foundation/cardano-wallet.git 
 cd ./cardano-wallet/ 
 ```
 
@@ -65,7 +65,7 @@ git checkout $TAG
 ```
 
 :::important
-You can check the latest available version / tag by visiting the `cardano-wallet` [Github Release](https://github.com/input-output-hk/cardano-wallet/releases) page. At the time of writing this, the current version is `v2021-11-11`. You can list all tags also with `git tag -l` command.
+You can check the latest available version / tag by visiting the `cardano-wallet` [Github Release](https://github.com/cardano-foundation/cardano-wallet/releases) page. At the time of writing this, the current version is `v2021-11-11`. You can list all tags also with `git tag -l` command.
 :::
 
 #### Building and installing the node

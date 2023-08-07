@@ -333,23 +333,23 @@ export const Showcases = [
     title: "cardano-wallet",
     description: "An HTTP server and command-line for managing UTxOs and hierarchical deterministic wallets in Cardano.",
     preview: require("./builder-tools/cardano-wallet.png"),
-    website: "https://github.com/input-output-hk/cardano-wallet/#overview",
-    getstarted: "https://input-output-hk.github.io/cardano-wallet/",
+    website: "https://github.com/cardano-foundation/cardano-wallet/#overview",
+    getstarted: "https://cardano-foundation.github.io/cardano-wallet/",
     tags: ["http", "json", "wallet"]
   },
   {
     title: "cardano-graphql",
     description: "A cross-platform, typed, and queryable API for Cardano.",
     preview: require("./builder-tools/cardano-graphql.png"),
-    website: "https://github.com/input-output-hk/cardano-graphql/#overview",
-    getstarted: "https://github.com/input-output-hk/cardano-graphql#getting-started",
+    website: "https://github.com/cardano-foundation/cardano-graphql/#overview",
+    getstarted: "https://github.com/cardano-foundation/cardano-graphql#getting-started",
     tags: ["chainindex", "http"]
   },
   {
     title: "cardano-rosetta",
     description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
     preview: require("./builder-tools/cardano-rosetta.png"),
-    website: "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
+    website: "https://github.com/cardano-foundation/cardano-rosetta/#cardano-rosetta",
     getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
     tags: ["http", "json"]
   },
