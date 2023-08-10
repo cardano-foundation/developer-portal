@@ -207,6 +207,14 @@ export const Tags = {
     description: "Projects that provide cross-chain bridge support.",
     icon: null,
     color: '#EDFF21'
+  },
+
+  // Funding 
+  funding: {
+    label: "Funding",
+    description: "Projects aimed at providing funding assistance to individuals.",
+    icon: null,
+    color: '#1e40af'
   }
 };
 
@@ -1047,7 +1055,7 @@ export const Showcases = [
     tags: ["bridge"],
   },
   {
-    title: "BALANCE - Balance Analytics",
+    title: "BALANCE Analytics",
     description:
       "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
     preview: require("./showcase/balance-analytics.png"),
@@ -1126,6 +1134,15 @@ export const Showcases = [
     website: "https://www.lace.io/",
     source: "https://github.com/input-output-hk/lace",
     tags: ["nftsupport", "wallet", "opensource"],
+  },
+  {
+    title: "Do it with Lovelace",
+    description:
+      "A Cardano-based dApp platform for easy and secure donations with a focus on community impact and transparency.",
+    preview: require("./showcase/do-it-with-lovelace.png"),
+    website: "https://app.doitwithlovelace.io",
+    source: null,
+    tags: ["funding"],
   },
   {
     title: "flipr.io",
