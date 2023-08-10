@@ -28,11 +28,11 @@ These are the links to github repositories and a brief description for all of th
 - [KtorZ/ogmios-api][gh-ogmios]: use this JSON-WSP (websocket) API to gather live blockchain info directly from a cardano-node instance
 - [cardano-db-sync][gh-cardano-db-sync]/[postgrest-api][gh-postgrest]: use this REST API to perform SQL queries to gather info directly from cardano-db-sync's database 
 - [rosetta-api][gh-cardano-rosetta]: use this API to integrate your application with multiple blockchains in a simpler, faster, and more reliable way
-[gh-hasura-graphql]: https://github.com/input-output-hk/cardano-graphql
+[gh-hasura-graphql]: https://github.com/cardano-foundation/cardano-graphql
 [gh-cardano-rest]: https://github.com/input-output-hk/cardano-rest
 [gh-ogmios]: https://github.com/cardanosolutions/ogmios
 [gh-cardano-db-sync]: https://github.com/input-output-hk/cardano-db-sync
-[gh-cardano-rosetta]: https://github.com/input-output-hk/cardano-rosetta
+[gh-cardano-rosetta]: https://github.com/cardano-foundation/cardano-rosetta
 [gh-postgrest]: https://github.com/PostgREST/postgrest
 
 import Tabs from '@theme/Tabs';
@@ -48,8 +48,8 @@ Useful links:
 - [Link][graphql-official-doc] to project's official documentation
 - [Link][graphql-example-queries] to the official collection of example queries. You can play with them directly from the [GraphQL playground][graphql-playground-testnet]
 [gimbalabs-graphql-api]: https://gimbalabs.com/dandelion/endpoints/graphql-api
-[graphql-example-queries]: https://github.com/input-output-hk/cardano-graphql/tree/master/packages/api-cardano-db-hasura/src/example_queries
-[graphql-official-doc]: https://input-output-hk.github.io/cardano-graphql/
+[graphql-example-queries]: https://github.com/cardano-foundation/cardano-graphql/tree/master/packages/api-cardano-db-hasura/src/example_queries
+[graphql-official-doc]: https://cardano-foundation.github.io/cardano-graphql/
 [graphql-playground-testnet]:  https://graphql-api.testnet.dandelion.link
 
 Usage examples:
@@ -175,7 +175,7 @@ Useful links:
 - [Link][gimbalabs-rosetta-api] to Gimbalabs's endpoints information and official documentation
 - [Link][rosetta-official-doc] to project's official documentation
 [gimbalabs-rosetta-api]: https://gimbalabs.com/dandelion/endpoints/rosetta-api
-[rosetta-official-doc]: https://github.com/input-output-hk/cardano-rosetta#documentation
+[rosetta-official-doc]: https://github.com/cardano-foundation/cardano-rosetta#documentation
 
 Usage examples:
 

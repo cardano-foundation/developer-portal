@@ -135,7 +135,6 @@ module.exports = {
           "operate-a-stake-pool/stake-pool-networking",
           "operate-a-stake-pool/hardware-requirements",
           "operate-a-stake-pool/cardano-key-pairs",
-          "operate-a-stake-pool/marketing-stake-pool",
         ],
       },
       {

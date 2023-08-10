@@ -37,27 +37,34 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
             .replace(".jpeg)", ".jpeg")
             .replace(".json)", ".json");
 
-          const buffer = await getBufferContentAsync(
-            `${cip_repo_raw_base_url}${cip_name}/${modified_file_name}`
-          );
-          
-          fs.mkdirSync(`.${cip_static_resource_path}${cip_name}`, {
-            recursive: true,
-          });
+          // Use the path.join method to concatenate paths, which should resolve the issue with  
+          // additional ./ segments in the paths and allow the script to correctly find the file locations
+          let relativePath = modified_file_name.replace("](", "");
 
-          fs.writeFileSync(
-            `.${cip_static_resource_path}${cip_name}/${modified_file_name}`,
-            new Uint8Array(buffer)
-          );
+          const fullPath = path.join(cip_repo_raw_base_url, cip_name, relativePath);
+          const buffer = await getBufferContentAsync(fullPath);
+          
+          const targetDir = path.join('.', cip_static_resource_path, cip_name, path.dirname(relativePath));
+          const targetFile = path.join(targetDir, path.basename(relativePath));
+
+          try {
+            // Create the target directory if it doesn't exist
+            if (!fs.existsSync(targetDir)) {
+              fs.mkdirSync(targetDir, { recursive: true });
+            }
+
+            fs.writeFileSync(targetFile, new Uint8Array(buffer));
+
+            console.log(`Processed CIP content downloaded to ${targetFile}`);
+
+          } catch (error) {
+            console.error(`ERROR: Failed to download and save resource ${modified_file_name} for CIP ${cip_name}: ${error.message}`);
+          }
 
           // Rewrite link to static folder
           content = content.replace(
             modified_file_name,
             `../../..${cip_static_resource_path}${cip_name}/${modified_file_name}`
-          );
-
-          console.log(
-            `Processed CIP content downloaded to .${cip_static_resource_path}${cip_name}/${modified_file_name}`
           );
         }
       })
@@ -65,7 +72,7 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
   }
 
   // Ensure compatibility
-  content = stringManipulation(content, cip_name);
+  content = stringManipulation(content, cip_name); 
 
   return content;
 };
