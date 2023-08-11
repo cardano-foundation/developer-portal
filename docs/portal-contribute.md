@@ -122,7 +122,7 @@ To contribute to the Cardano developer portal, you must first install it locally
 To get a local development environment, clone the repository, navigate into the `developer-portal` folder, install dependencies, and start the development server. Most changes are reflected live without having to restart the server. By default, a browser window will open at `http://localhost:3000`.
 
 ```sh
-git clone https://github.com/cardano-foundation/developer-portal.git
+git clone --depth 1 https://github.com/cardano-foundation/developer-portal.git
 cd developer-portal
 yarn install
 yarn start

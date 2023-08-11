@@ -1365,3 +1365,34 @@ All of the merged PRs in June
 - weqanhet ([@weqanhet](https://github.com/weqanhet))
 - os11k ([@os11k](https://github.com/os11k))
 - lodl ([@lodl](https://github.com/lodl))
+
+## 2023.31.0 (2023-07-31)
+
+All of the merged PRs in July
+
+#### PRs: 15
+
+- Add Changelog for June by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1099](https://github.com/cardano-foundation/developer-portal/pull/1099)
+- Registering a Pool: remove GitHub & TinyURL by ([@os11k](https://github.com/os11k)) in [#1100](https://github.com/cardano-foundation/developer-portal/pull/1100)
+- Add NFTCDN to Builder Tools by ([@SmaugPool](https://github.com/SmaugPool)) in [#1101](https://github.com/cardano-foundation/developer-portal/pull/1101)
+- Secure Workflow: fix duplications, maintenance editing by ([@rphair](https://github.com/rphair)) in [#1103](https://github.com/cardano-foundation/developer-portal/pull/1103)
+- Add Atlas builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1041](https://github.com/cardano-foundation/developer-portal/pull/1041)
+- Add NFT Vending Machine to Builder Tools by ([@rphair](https://github.com/rphair)) in [#1094](https://github.com/cardano-foundation/developer-portal/pull/1094)
+- Modify CIP script to fetch multiple files from CIP repo folders  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1106](https://github.com/cardano-foundation/developer-portal/pull/1106)
+- Update wrong weeks in changelog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1105](https://github.com/cardano-foundation/developer-portal/pull/1105)
+- Add Summon Platform to Showcase by ([@thenic95](https://github.com/thenic95)) in [#1108](https://github.com/cardano-foundation/developer-portal/pull/1108)
+- Hardware Requirements: fix anchor for node releases page by ([@katomm](https://github.com/katomm)) in [#1110](https://github.com/cardano-foundation/developer-portal/pull/1110)
+- Allow SPOs to reload topology configuration changes by ([@jadjei](https://github.com/jadjei)) in [#1112](https://github.com/cardano-foundation/developer-portal/pull/1112)
+- Add VESPR Wallet to showcase section by ([@thenic95](https://github.com/thenic95)) in [#1115](https://github.com/cardano-foundation/developer-portal/pull/1115)
+- Proposal to remove Daedalus as favorite by ([@katomm](https://github.com/katomm)) in [#1113](https://github.com/cardano-foundation/developer-portal/pull/1113)
+- Update creating-wallet-faucet.md by ([@katomm](https://github.com/katomm)) in [#1114](https://github.com/cardano-foundation/developer-portal/pull/1114)
+
+#### Contributors: 8
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- os11k ([@os11k](https://github.com/os11k))
+- SmaugPool ([@SmaugPool](https://github.com/SmaugPool))
+- rphair ([@rphair](https://github.com/rphair))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- katomm ([@katomm](https://github.com/katomm))
+- jadjei ([@jadjei](https://github.com/jadjei))
