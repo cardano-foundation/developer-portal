@@ -1075,6 +1075,22 @@ export const Showcases = [
     getstarted: null,
     tags: ["python", "nft" ]
   },
+  {
+    title: "Yaci DevKit",
+    description: "Create your own local Cardano devnet with ease! It includes an Indexer, minimal Explorer interface, and support for Cardano Client Lib or Lucid JS library's Blockfrost provider.",
+    preview: require("./builder-tools/yaci-devkit.png"),
+    website: "https://github.com/bloxbean/yaci-devkit",
+    getstarted: null,
+    tags: ["cli", "testing"]
+  },
+  {
+    title: "MazzumaGPT",
+    description: "Generate smart contract code in Plutus using AI",
+    preview: require("./builder-tools/mazzumagpt.png"),
+    website: "https://mazzumagpt.com",
+    getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
+    tags: ["plutus"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
