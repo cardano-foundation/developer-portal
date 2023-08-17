@@ -1091,6 +1091,14 @@ export const Showcases = [
     getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
     tags: ["plutus"]
   },
+  {
+    title: "Stakepool Block Counter",
+    description: "A Python script that can be placed on a Cardano Block Producer node to extract block data (scheduled/minted/missed/etc) and writes updates to a file and/or submits them to an API endpoint.",
+    preview: require("./builder-tools/block_count.png"),
+    website: "https://github.com/YeppleInc/pool-block-counter",
+    getstarted:"https://github.com/YeppleInc/pool-block-counter",
+    tags: ["python","operatortool"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
