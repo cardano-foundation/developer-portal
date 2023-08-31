@@ -306,6 +306,8 @@ cardano-cli transaction build-raw \
  --minting-script-file policy/policy.script \
  --out-file matx.raw
 ```
+:::note
+In this case, '#' is not a comment or a 'trim string' as you might expect in a bash script. It is the specific syntax structure expected for the 'tx-in' parameter, ie. --tx-in $txhash<b>#</b>$txix 
 
 :::note 
 In later versions of cardano-cli (at least from >1.31.0) <b>the tokennames must be base16 encoded or you will receive an error</b>
