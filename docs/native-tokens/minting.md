@@ -98,20 +98,28 @@ export CARDANO_NODE_SOCKET_PATH="$HOME/TESTNET_NODE/socket/node.socket"
 You need to adjust the path on your setup and your socket path accordingly.
 
 ### Improve readability
-Since we've already answered all of the questions above, we will set variables on our terminal/bash to make readability a bit easier.
-We also will be using a [testnet](docs/get-started/testnets-and-devnets.md). The only difference between minting native assets in the Mainnet will be that you need to substitute the network variable <i>testnet</i> with Mainnet. 
+Since we've already answered all of the questions above, we will set variables on our terminal/bash to make readability a bit easier. First, we will specify a [testnet](docs/get-started/testnets-and-devnets.md), either Pre-production:
+```bash
+testnet="--testnet-magic 1"
+```
 
-<b>Since cardano-cli version 1.31.0, token names must be base16 encoded </b>.  So here, we use the xxd tool to encode the token names.
+... or Preview:
+```bash
+testnet="--testnet-magic 2"
+```
+
+:::note
+When minting native assets on Mainnet, the only difference will be to use the option `--mainnet` instead of `--testnet-magic <testnetID>`.
+:::
+
+**Since cardano-cli version 1.31.0, token names must be base16 encoded**, so here we use the `xxd` tool to encode the token names:
 
 ```bash
-testnet="--testnet-magic 1097911063"
 tokenname1=$(echo -n "Testtoken" | xxd -ps | tr -d '\n')
 tokenname2=$(echo -n "SecondTesttoken" | xxd -ps | tr -d '\n')
 tokenamount="10000000"
 output="0"
 ```
-
-We will be using this technique of setting variables along the way to make it easier to follow along.
 
 ### Check your node status
 

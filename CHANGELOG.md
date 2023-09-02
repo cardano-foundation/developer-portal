@@ -1370,7 +1370,7 @@ All of the merged PRs in June
 
 All of the merged PRs in July
 
-#### PRs: 15
+#### PRs: 14
 
 - Add Changelog for June by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1099](https://github.com/cardano-foundation/developer-portal/pull/1099)
 - Registering a Pool: remove GitHub & TinyURL by ([@os11k](https://github.com/os11k)) in [#1100](https://github.com/cardano-foundation/developer-portal/pull/1100)
@@ -1387,7 +1387,7 @@ All of the merged PRs in July
 - Proposal to remove Daedalus as favorite by ([@katomm](https://github.com/katomm)) in [#1113](https://github.com/cardano-foundation/developer-portal/pull/1113)
 - Update creating-wallet-faucet.md by ([@katomm](https://github.com/katomm)) in [#1114](https://github.com/cardano-foundation/developer-portal/pull/1114)
 
-#### Contributors: 8
+#### Contributors: 7
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - os11k ([@os11k](https://github.com/os11k))
