@@ -1201,7 +1201,7 @@ export const Showcases = [
   {
     title: "cardano_account_pandas_dumper",
     description:
-      "cardano_account_pandas_dumper bridges Cardano transaction history with the Pandas data analysis framework, letting users create a report spreadsheet for their wallet's transaction history, including all native assets and many DeFI contracts.",
+      "Bridges Cardano transaction history with the Pandas data analysis framework, letting users create a report spreadsheet for their wallet's transaction history, including all native assets and many DeFI contracts.",
     preview: require("./showcase/cardano_account_pandas_dumper.png"),
     website: "https://github.com/pixelsoup42/cardano_account_pandas_dumper",
     source: "https://github.com/pixelsoup42/cardano_account_pandas_dumper",
