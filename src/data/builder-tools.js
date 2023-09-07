@@ -1091,6 +1091,14 @@ export const Showcases = [
     getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
     tags: ["plutus"]
   },
+  {
+    title: "Zeeve",
+    description: "A no-code platform for deploying full, archive, and validator nodes for Cardano testnet & mainnet. Experience enterprise-grade uptime, fastest APIs, 24*7 security, monitoring, and alerts.",
+    preview: require("./builder-tools/zeeve.png"),
+    website: "https://zeeve.io",
+    getstarted: null,
+    tags: ["websocket", "http", "hosted", "operatortool"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
