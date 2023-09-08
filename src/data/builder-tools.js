@@ -1091,6 +1091,14 @@ export const Showcases = [
     getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
     tags: ["plutus"]
   },
+  {
+    title: "CardanoPress",
+    description: "Bridging Web2 and Web3 by combining WordPress and Cardano",
+    preview: require("./builder-tools/cardanopress-dev-portal-banner-355x148.png"),
+    website: "https://cardanopress.io",
+    getstarted:"https://cardanopress.io/docs/",
+    tags: ["PHP", "WordPress", "SDK", "Hosted Service"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
