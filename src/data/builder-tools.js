@@ -1097,7 +1097,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardanopress-dev-portal-banner-355x148.png"),
     website: "https://cardanopress.io",
     getstarted:"https://cardanopress.io/docs/",
-    tags: ["PHP", "WordPress", "SDK", "Hosted Service"]
+    tags: ["hosted", "http", "nft"]
   },
 ];
 
