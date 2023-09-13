@@ -11,7 +11,6 @@ import {
 } from "./constants";
 import { getDocTag } from "./reusable";
 
-
 // Fetch markdown files from Github
 async function fetchReadmeContent(folderUrl: string): Promise<string | null> {
   try {
@@ -32,18 +31,18 @@ async function fetchReadmeContent(folderUrl: string): Promise<string | null> {
   }
 }
 
-// Update/Create CPS locally 
+// Update/Create CPS locally
 async function updateOrCreateReadmeFile(
   folderName: string,
   content: string
 ): Promise<void> {
   const title = getDocTag(content, "Title");
-  const cps = getDocTag(content, "CPS")
+  const cps = getDocTag(content, "CPS");
   const sidebarLabel = `sidebar_label: "(${cps}) ${title}"`;
   const status = getDocTag(content, "Status");
   const creationDate = getDocTag(content, "Created");
 
-  // Sanitize title 
+  // Sanitize title
   const newContent = content.replace(
     /Title: .+/,
     `Title: "${title}"\n${sidebarLabel}${custom_edit_url}`
