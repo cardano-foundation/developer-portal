@@ -1396,3 +1396,46 @@ All of the merged PRs in July
 - thenic95 ([@thenic95](https://github.com/thenic95))
 - katomm ([@katomm](https://github.com/katomm))
 - jadjei ([@jadjei](https://github.com/jadjei))
+
+## 2023.35.0 (2023-08-31)
+
+All of the merged PRs in July
+
+#### PRs: 20
+
+- Lace wallet: tag as Open Source & link to repo by ([@rphair](https://github.com/rphair)) in [#1118](https://github.com/cardano-foundation/developer-portal/pull/1118)
+- Update repo links of Adrestia components   by ([@katomm](https://github.com/katomm)) in [#1119](https://github.com/cardano-foundation/developer-portal/pull/1119)
+- Changes on token tools by ([@katomm](https://github.com/katomm)) in [#1120](https://github.com/cardano-foundation/developer-portal/pull/1120)
+- Hardware Requirements update, drop Marketing by ([@rphair](https://github.com/rphair)) in [#1116](https://github.com/cardano-foundation/developer-portal/pull/1116)
+- Fix CIP downloading script by ([@katomm](https://github.com/katomm)) in [#1122](https://github.com/cardano-foundation/developer-portal/pull/1122)
+- Add Interview with DEMU to Dev Blog by ([@thenic95](https://github.com/thenic95)) in [#1123](https://github.com/cardano-foundation/developer-portal/pull/1123)
+- Minor changes in NFT-MAKER Dev Blog by ([@PatrickTobler](https://github.com/PatrickTobler)) in [#1125](https://github.com/cardano-foundation/developer-portal/pull/1125)
+- Add --depth 1 for git clone by ([@katomm](https://github.com/katomm)) in [#1128](https://github.com/cardano-foundation/developer-portal/pull/1128)
+- Add Do It With Lovelace to Showcase by ([@jmagan](https://github.com/jmagan)) in [#1043](https://github.com/cardano-foundation/developer-portal/pull/1043)
+- Add Changelog for July by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1124](https://github.com/cardano-foundation/developer-portal/pull/1124)
+- Add Catalyst F9 Update technical concept video by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1126](https://github.com/cardano-foundation/developer-portal/pull/1126)
+- Add MazzumaGPT to Builder Tools by ([@StarkOsae](https://github.com/StarkOsae)) in [#1111](https://github.com/cardano-foundation/developer-portal/pull/1111)
+- Add Yaci DevKit into builder tools by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1127](https://github.com/cardano-foundation/developer-portal/pull/1127)
+- Adding CIP-25 and CIP-68 References by ([@NicholasMaselli](https://github.com/NicholasMaselli)) in [#1018](https://github.com/cardano-foundation/developer-portal/pull/1018)
+- Update links to Marlowe playground and tutorial by ([@palas](https://github.com/palas)) in [#1131](https://github.com/cardano-foundation/developer-portal/pull/1131)
+- Update image for ([@dotare/cardano-delegation](https://github.com/dotare/cardano-delegation)) by ([@DorienP](https://github.com/DorienP)) in [#1129](https://github.com/cardano-foundation/developer-portal/pull/1129)
+- Number of contributors and prs fix on latest changelog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1130](https://github.com/cardano-foundation/developer-portal/pull/1130)
+- Add w3ride-blog to dev blog by ([@weqanhet](https://github.com/weqanhet)) in [#1132](https://github.com/cardano-foundation/developer-portal/pull/1132)
+- Expand integration overview page by ([@katomm](https://github.com/katomm)) in [#1134](https://github.com/cardano-foundation/developer-portal/pull/1134)
+- Native Assets: Fix testnet IDs by ([@rphair](https://github.com/rphair)) in [#1137](https://github.com/cardano-foundation/developer-portal/pull/1137)
+
+
+#### Contributors: 12
+
+- rphair ([@rphair](https://github.com/rphair))
+- katomm ([@katomm](https://github.com/katomm))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- PatrickTobler ([@PatrickTobler](https://github.com/PatrickTobler))
+- jmagan ([@jmagan](https://github.com/jmagan))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- StarkOsae ([@StarkOsae](https://github.com/StarkOsae))
+- NicholasMaselli ([@NicholasMaselli](https://github.com/NicholasMaselli))
+- palas ([@palas](https://github.com/palas))
+- dotare/cardano-delegation ([@dotare/cardano-delegation](https://github.com/dotare/cardano-delegation))
+- DorienP ([@DorienP](https://github.com/DorienP))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
