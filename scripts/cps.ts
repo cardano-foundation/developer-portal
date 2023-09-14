@@ -48,7 +48,7 @@ async function updateOrCreateReadmeFile(
     `Title: "${title}"\n${sidebarLabel}${custom_edit_url}`
   );
 
-  // ADd Content Info at the bottom of the page
+  // Add Content Info at the bottom of the page
   const newContentWithInfo = newContent.concat(
     "\n" +
       "## CPS Information  \nThis CPS was created on **" +
