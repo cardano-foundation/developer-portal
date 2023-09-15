@@ -1091,7 +1091,14 @@ export const Showcases = [
     getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
     tags: ["plutus"]
   },
-];
+  {
+    title: "NOWNodes",
+    description: "Get instant access to Cardano RPC nodes, indexer, and WebSocket connection. Start seamless integration on a FREE tariff plan. You can focus on growing your web3 products with us.",
+    preview: require("./builder-tools/nownodes.png"),
+    website: "https://nownodes.io",
+    getstarted: "https://nownodes.io/nodes/cardano-ada",
+    tags: ["json", "websocket", "operatortool", "hosted"],
+  },];
 
 export const TagList = Object.keys(Tags);
 
