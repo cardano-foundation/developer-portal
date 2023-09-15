@@ -1,4 +1,4 @@
-//CIP constants
+// CIP constants 
 const cip_readme_url: string = "/README.md";
 const cip_readme_regex: RegExp = /\.\/CIP.?\/|\.\/CIP-.*\)/gm;
 const cip_source_repo: string = "cardano-foundation/CIPs";
@@ -27,7 +27,7 @@ const rl_raw_base_index_url: string =
 const rl_repo_raw_base_url: string =
   "https://raw.githubusercontent.com/Emurgo/cardano-serialization-lib/master/doc/getting-started/";
 
-//Token Registry constants
+// Token Registry constants
 const tr_docs_path: string = "./docs/native-tokens/token-registry";
 const tr_github_wiki: string =
   "https://github.com/cardano-foundation/cardano-token-registry/wiki";
@@ -38,8 +38,8 @@ const tr_raw_wiki_url: string =
 const tr_overview_url: string =
   "https://raw.githubusercontent.com/cardano-foundation/cardano-token-registry/master/README.md";
 
-//General constants
-const custom_edit_url = "\ncustom_edit_url: null";
+// General constants
+const custom_edit_url = "\ncustom_edit_url: null"
 
 export {
   cip_readme_url,
