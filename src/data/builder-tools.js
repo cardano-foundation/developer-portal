@@ -1097,7 +1097,7 @@ export const Showcases = [
     preview: require("./builder-tools/nownodes.png"),
     website: "https://nownodes.io",
     getstarted: "https://nownodes.io/nodes/cardano-ada",
-    tags: ["json", "websocket", "operatortool", "hosted"],
+    tags: ["json", "websocket", "hosted"],
   },];
 
 export const TagList = Object.keys(Tags);
