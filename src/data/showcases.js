@@ -1205,7 +1205,8 @@ export const Showcases = [
     website: "https://nownodes.io",
     source: null,
     tags: ["daotool", "explorer"],
-  },];
+  },
+];
 
 export const TagList = Object.keys(Tags);
 function sortShowcases() {
