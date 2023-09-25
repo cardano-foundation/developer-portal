@@ -1200,9 +1200,9 @@ export const Showcases = [
   },
   {
     title: "NOWNodes",
-    description: "Get instant access to Cardano RPC nodes, indexer, and WebSocket connection. Start seamless integration on a FREE tariff plan. You can focus on growing your web3 products with us.",
+    description: "NOWNodes is a non-custodial node provider for Cardano RPC nodes, indexer, and WebSocket connection.",
     preview: require("./showcase/nownodes.png"),
-    website: "https://nownodes.io",
+    website: "https://nownodes.io/nodes/cardano-ada",
     source: null,
     tags: ["explorer"],
   },
