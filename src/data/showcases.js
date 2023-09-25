@@ -1204,7 +1204,7 @@ export const Showcases = [
     preview: require("./showcase/nownodes.png"),
     website: "https://nownodes.io",
     source: null,
-    tags: ["daotool", "explorer"],
+    tags: ["explorer"],
   },
 ];
 
