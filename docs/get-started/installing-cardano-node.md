@@ -189,6 +189,7 @@ git checkout ac83be33
 make
 make check
 sudo make install
+sudo ldconfig
 ```
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
