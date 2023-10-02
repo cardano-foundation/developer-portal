@@ -35,7 +35,7 @@ module.exports = {
     announcementBar: {
       id: "state-of-the-ecosystem-2023", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `The <strong>Cardano State of the Developer Ecosystem 2023</strong> survey is out! Your voice matter, please take a few minutes to <a target="_blank" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-survey-2023">participate to the survey</a> 💗.`,
+        `The <strong>Cardano State of the Developer Ecosystem 2023</strong> survey is out! Your voice matters: please take a few minutes to <a target="_blank" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-survey-2023">participate in the survey</a> 💗.`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
