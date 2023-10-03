@@ -33,9 +33,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: "announcement_index3", // Any value that will identify this message + increment the number every time to be unique
+      id: "state-of-the-ecosystem-2023", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Build out the Developer Portal together with us, ⭐️<a target="_blank" rel="noopener noreferrer" href="https://discord.gg/Exe6XmqKDx">join Discord.</a></strong>`,
+        `The <strong>Cardano State of the Developer Ecosystem 2023</strong> survey is out! Your voice matters: please take a few minutes to <a target="_blank" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-survey-2023">participate in the survey</a> 💗.`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
