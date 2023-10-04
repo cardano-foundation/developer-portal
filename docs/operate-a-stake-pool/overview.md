@@ -37,6 +37,7 @@ The basic category starts with an [introduction to Cardano](introduction-to-card
 If you're a stake pool operator, you've probably noticed that having a technically perfect stake pool functioning isn't enough.
 
 You must also construct your pool around a brand that can draw sufficient delegators from the Cardano community.
+- [Read here for a few ideas on how you can do that](marketing-stake-pool).
 
 ## Stake pool operator resources
 - [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content. 
