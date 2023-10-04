@@ -37,7 +37,6 @@ The basic category starts with an [introduction to Cardano](introduction-to-card
 If you're a stake pool operator, you've probably noticed that having a technically perfect stake pool functioning isn't enough.
 
 You must also construct your pool around a brand that can draw sufficient delegators from the Cardano community.
-- [Read here for a few ideas on how you can do that](marketing-stake-pool).
 
 ## Stake pool operator resources
 - [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content. 
@@ -46,7 +45,6 @@ You must also construct your pool around a brand that can draw sufficient delega
 - [Jormanager](https://bitbucket.org/muamw10/jormanager/src/develop/) a Cardano stake pool management software. 
 - [Stake Pool Operator Scripts](https://github.com/gitmachtl/scripts) a collection of scripts to manage your stake pool step-by-step. 
 - [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
-- [Pool Veterinary](http://pool.vet) will help you see if your Cardano stake pool is working and find out why it may not be.
 - [RaspberryPi with Docker](https://github.com/speedwing/cardano-staking-pool-edu) Full guide to build and run both testnet and mainnet Cardano stake pool with Docker on Raspberry Pi. [Youtube Playlist](https://www.youtube.com/playlist?list=PLBhbLwOuj0DfTnneuG3vyoDHY7Dv_aiyq)
 - [TOPO Guide](https://es-kb.topopool.com/primeros-pasos). A friendly and complete guide to create a stake pool in Spanish
 - [Cardano Course](https://cardano-course.gitbook.io/cardano-course/), a cardano-node and cardano-cli course by IOG.
