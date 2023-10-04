@@ -33,12 +33,6 @@ Best practices should always be a key consideration when running a stake pool. S
 ## Learn the basics
 The basic category starts with an [introduction to Cardano](introduction-to-cardano), you will learn the [relay and block producer topology](stake-pool-networking), what the [hardware requirements](hardware-requirements) are, which [keys are available](cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
 
-## Marketing your stake pool
-If you're a stake pool operator, you've probably noticed that having a technically perfect stake pool functioning isn't enough.
-
-You must also construct your pool around a brand that can draw sufficient delegators from the Cardano community.
-- [Read here for a few ideas on how you can do that](marketing-stake-pool).
-
 ## Stake pool operator resources
 - [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content. 
 - [Topology Updater](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater) is intended to be a temporary solution to allow everyone to activate their relay nodes without having to postpone and wait for manual topology completion requests.
