@@ -1201,7 +1201,7 @@ export const Showcases = [
   {
     title: "DROPSPOT",
     description:
-      "Cardano's innovative NFT marketplace is now live with premium NFT-as-a-Service, project advisory & design, minting services, white label  services, claim services, loyalty programs, collectible design & development, activations and artist collaborations.",
+      "Premium NFT-as-a-Service, project advisory & design, minting services, white label services, claim services, loyalty programs, collectible design & development, activations and artist collaborations.",
     preview: require("./showcase/dropspot.png"),
     website: "https://dropspot.io/",
     source: null,
