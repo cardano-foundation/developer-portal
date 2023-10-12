@@ -1207,6 +1207,15 @@ export const Showcases = [
     source: null,
     tags: ["marketplace", "nftsupport", "minting"],
   },
+  {
+    title: "DexHunter",
+    description:
+      "DexHunter is a decentralized exchange aggregator with real-time alerts and an easy to use interface.",
+    preview: require("./showcase/dexhunter.png"),
+    website: "https://www.dexhunter.io/",
+    source: null,
+    tags: ["dex", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
