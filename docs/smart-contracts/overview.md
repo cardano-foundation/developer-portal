@@ -128,7 +128,7 @@ Of course not all contracts are as complex, requiring the same amount of infrast
 Cardano introduced smart contracts in 2021 and now supports the development and deployment of smart contracts using multiple different languages.
 
 :::tip
-Writing well-designed smart contracts require you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts) page as well.
+Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts) page as well.
 :::
 
 - [Aiken](aiken) - for on-chain validator scripts only: a language & toolchain favouring developer experience.
