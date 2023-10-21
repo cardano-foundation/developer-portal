@@ -44,4 +44,4 @@ These editor integrations are currently available for Aiken:
 
 You are ready now to write and execute your first smart contract on Cardano. Have a look at the [hello world example contract](/docs/smart-contracts/aiken).
 
-Visit the Aiken website and explore [other examples](https://aiken-lang.org/example--vesting). 
+Visit the Aiken website and explore [other examples](https://aiken-lang.org/example--hello-world). 
