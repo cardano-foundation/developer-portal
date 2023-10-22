@@ -13,37 +13,37 @@ image: /img/og/og-developer-portal.png
 
 Smart contracts are digital agreements defined in code that automate and enforce the terms of a contract without the need for intermediaries, enabling secure and transparent transactions on a blockchain. By leveraging predetermined conditions defined within the smart contract code, the state of a contract can only be updated in a way that follows the rules defined in that contract.
 
-On the Cardano blockchain, the compiled code of smart contracts is stored on, and distributed across the decentralised network. It is not possible to modify the rules of existing smart contract and it is also not possible to de-compile the stored smart contract code back from it's compiled state back in to the original source code.
+On the Cardano blockchain, the compiled code of smart contracts is stored on, and distributed across the decentralised network. It is not possible to modify the rules of existing smart contract; it is also not possible to decompile the stored smart contract code back from its compiled state back into the original source code.
 
 ## Introduction
 
 As mentioned in the [general overview](/docs/get-started/), smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/#unspent-transaction-output-utxo) model. 
 
-Smart contracts are more or less just a piece of code that you write to validate the movement of utxos locked in your contract's address. You will lock utxo's at the address of your script and then the utxo's can only ever be spent/moved if your script allows the transaction spending it to do so. 
+Smart contracts are more or less just a piece of code that you write to validate the movement of UTXOs locked in your contract's address. You will lock UTXOs at the address of your script and then the UTXOs can only ever be spent/moved if your script allows the transaction spending it to do so. 
 
 
 ## Conceptual overview
 
 Smart contracts consist of on-chain and off-chain components:
 
-- The on-chain component (validator-script) is a script used to validate that transaction's containing value locked by the script (utxos residing on the script's address) conform to the rules of the contract. Specialized tools and languages are required for creating these scripts.
-- The off-chain component is a script or application that is used to generate transactions that conform to the rules of the contract. These can can be created in almost any language.
+- The on-chain component (validator-script) is a script used to validate that transaction's containing value locked by the script (UTXOs residing on the script's address) conform to the rules of the contract. Specialized tools and languages are required for creating these scripts.
+- The off-chain component is a script or application that is used to generate transactions that conform to the rules of the contract. These can be created in almost any language.
 
 Important to note here is that smart contracts heavily rely on the datum attached to a utxo, using it as part of the contract instance "state" to be used in further transactions. If no datum is attached to a utxo residing on the contract's address, it can end up being locked there forever.
 
 ### On-Chain (Validator scripts)
 
-Validator scripts are executed automatically when a utxo residing at the address of the script is attempted to be moved by a transaction. These scripts take a transaction as its input and then outputs either true or false depending on whether the transaction is valid or not according to your rules/logic as defined in the script - thus blocking or allowing a transaction to succeed. If you are moving multiple utxos residing on the same script address, the validator-script will run once for each utxo. This script execution happens on the Cardano node validating your transaction.
+Validator scripts are executed automatically when a utxo residing at the address of the script is attempted to be moved by a transaction. These scripts take a transaction as its input and then outputs either true or false depending on whether the transaction is valid or not according to your rules/logic as defined in the script - thus blocking or allowing a transaction to succeed. If you are moving multiple UTXOs residing on the same script address, the validator-script will run once for each utxo. This script execution happens on the Cardano node validating your transaction.
 
 This means that in order for the validator-script to execute, a transaction must first move a utxo to the address of the contract; the address is derived from the contract mathematically. You do not need to upload your contract to the chain, although that is also possible using reference scripts.
 
-You might think of this initial transaction where you move a utxo to the script address to be the initialization of a contract instance. Each utxo residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the utxo's being sent to the script address: anyone can send a utxo containing no datum, or a 'fake' datum.
+You might think of this initial transaction where you move a utxo to the script address to be the initialization of a contract instance. Each utxo residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the UTXOs being sent to the script address: anyone can send a utxo containing no datum, or a 'fake' datum.
 
 ### Off-Chain
 
-The off-chain part is needed in order to locate utxo's that are locked in your contract and generate transactions that are valid for moving them.
+The off-chain part is needed in order to locate UTXOs that are locked in your contract and generate transactions that are valid for moving them.
 
-For contracts that require multiple steps to complete, it is common to encode the state of a contract inside of a datum using a specific schema of your own design that is then attached to each transaction. You would then create a 'thread' of utxo's by designing a validator such that it only allows moving the utxo to the script address so that the value of the utxo remains locked in the new utxo, but with a new datum/state.
+For contracts that require multiple steps to complete, it is common to encode the state of a contract inside of a datum using a specific schema of your own design that is then attached to each transaction. You would then create a 'thread' of UTXOs by designing a validator such that it only allows moving the utxo to the script address so that the value of the utxo remains locked in the new utxo, but with a new datum/state.
 
 ## Technical overview
 
@@ -109,7 +109,7 @@ You can also design contracts that never close, but only ever change state, whil
 
 When you have contracts designed to run in multiple steps, the utxo that represents the current state of a specific instance/invocation of that script is something you need to be able to keep track of.
 
-There is no standard for how to do this as of now, but one way to acomplish this is to be to create a minting-policy that only allows minting of thread token NFTs to the script's address, and then use the NFTs as thread-tokens by having the validator script enforce such NFTs be moved with each transaction.
+There is no standard for how to do this as of now, but one way to accomplish this is to be to create a minting-policy that only allows minting of thread token NFTs to the script's address, and then use the NFTs as thread-tokens by having the validator script enforce such NFTs be moved with each transaction.
 
 ### Real-world use
 
