@@ -13,7 +13,7 @@ image: /img/og/og-developer-portal.png
 
 Smart contracts are digital agreements defined in code that automate and enforce the terms of a contract without the need for intermediaries, enabling secure and transparent transactions on a blockchain. By leveraging predetermined conditions defined within the smart contract code, the state of a contract can only be updated in a way that follows the rules defined in that contract.
 
-On the Cardano blockchain, the compiled code of smart contracts is stored on, and distributed across the decentralised network. It is not possible to modify the rules of existing smart contract; it is also not possible to decompile the stored smart contract code back from its compiled state back into the original source code.
+On the Cardano blockchain, the compiled code of smart contracts is stored on, and distributed across the decentralised network. It is not possible to modify the rules of an existing smart contract, nor is it possible to decompile the stored smart contract code from its compiled state into the original source code.
 
 ## Introduction
 
