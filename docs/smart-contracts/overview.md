@@ -37,7 +37,7 @@ Validator scripts are executed automatically when a UTXO residing at the address
 
 This means that in order for the validator-script to execute, a transaction must first move a utxo to the address of the contract; the address is derived from the contract mathematically. You do not need to upload your contract to the chain, although that is also possible using reference scripts.
 
-You might think of this initial transaction where you move a utxo to the script address to be the initialization of a contract instance. Each utxo residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the UTXOs being sent to the script address: anyone can send a utxo containing no datum, or a 'fake' datum.
+You might think of this initial transaction where you move a UTXO to the script address to be the initialization of a contract instance. Each UTXO residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the UTXOs being sent to the script address: anyone can send a UTXO containing no datum, or a 'fake' datum.
 
 ### Off-Chain
 
