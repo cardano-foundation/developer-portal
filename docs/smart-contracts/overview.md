@@ -43,7 +43,7 @@ You might think of this initial transaction where you move a UTXO to the script 
 
 The off-chain part is needed in order to locate UTXOs that are locked in your contract and generate transactions that are valid for moving them.
 
-For contracts that require multiple steps to complete, it is common to encode the state of a contract inside of a datum using a specific schema of your own design that is then attached to each transaction. You would then create a 'thread' of UTXOs by designing a validator such that it only allows moving the utxo to the script address so that the value of the utxo remains locked in the new utxo, but with a new datum/state.
+For contracts that require multiple steps to complete, it is common to encode the state of a contract inside of a datum using a specific schema of your own design that is then attached to each transaction. You would then create a 'thread' of UTXOs by designing a validator such that it only allows moving the UTXO to the script address so that the value of the UTXO remains locked in the new UTXO, but with a new datum/state.
 
 ## Technical overview
 
