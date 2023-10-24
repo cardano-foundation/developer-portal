@@ -85,11 +85,11 @@ This is only an example! The validator does not need to rely on hashsums - you c
 
 - You create a validator-script that compares the datum in the UTXO being moved from the contract's address to the hash of the redeemer being used in the transaction moving it. This is your on-chain component.
 
-- You create a script, using your language of choice, that creates a transaction moving some amount of ADA or other assets to the address of the validator-script. When generating the transaction you specify the datum to be ```Hash("secret")``` making sure that only the hashsum of the word "secret" gets stored on-chain. This is your off-chain component.
+- You create a script, using your language of choice, that creates a transaction moving some amount of ada or other assets to the address of the validator-script. When generating the transaction you specify the datum to be ```Hash("secret")``` making sure that only the hashsum of the word "secret" gets stored on-chain. This is your off-chain component.
 
-- You sign and submit the transaction to a Cardano node either directly or via one of many available API's such as Blockfrost or Dandelion. Now the ADA you sent to the contract is locked by your validator.
+- You sign and submit the transaction to a Cardano node either directly or via one of many available API's such as Blockfrost or Dandelion. Now the ada you sent to the contract is locked by your validator.
 
-- The only way for anyone to move this locked ADA now is to generate a transaction with the word 'secret' as a redeemer, as the UTXO is locked in the script which will enforce this rule you created where the hashsum of the redeemer must match ```Hash("secret")```. 
+- The only way for anyone to move this locked ada now is to generate a transaction with the word 'secret' as a redeemer, as the UTXO is locked in the script which will enforce this rule you created where the hashsum of the redeemer must match ```Hash("secret")```. 
 Normally, your datum would be more complicated than this, and the person running the contract might not know how it is supposed to work at all, so they would rely on your off-chain component to create the transaction - often this is something you would provide an API for.
 
 
