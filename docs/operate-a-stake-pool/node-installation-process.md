@@ -216,7 +216,7 @@ We can now build the `Haskell-based` `cardano-node` to produce executable binari
 cabal build cardano-node cardano-cli
 ```
 
-Install the newly built node and CLI commands to the $HOME/local/bin directory:
+Install the newly built node and CLI commands to the $HOME/.local/bin directory:
 
 ```bash
 mkdir -p $HOME/.local/bin
