@@ -220,14 +220,14 @@ Install the newly built node and CLI commands to the $HOME/.local/bin directory:
 
 ```bash
 mkdir -p $HOME/.local/bin
-cp -p "$(./scripts/bin-path.sh cardano-node)" $HOME/local/bin/
-cp -p "$(./scripts/bin-path.sh cardano-cli)" $HOME/local/bin/
+cp -p "$(./scripts/bin-path.sh cardano-node)" $HOME/.local/bin/
+cp -p "$(./scripts/bin-path.sh cardano-cli)" $HOME/.local/bin/
 ```
 
 We have to add this line below our shell profile so that the shell/terminal can recognize that `cardano-node` and `cardano-cli` are global commands. (`$HOME/.zshrc` or `$HOME/.bashrc` ***depending on the shell application you use***)
 
 ```bash
-export PATH="$HOME/local/bin/:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
 ```
 
 Once saved, reload your shell profile by typing `source $HOME/.zshrc` or `source $HOME/.bashrc` (***depending on the shell application you use***).
