@@ -1399,7 +1399,7 @@ All of the merged PRs in July
 
 ## 2023.35.0 (2023-08-31)
 
-All of the merged PRs in July
+All of the merged PRs in August
 
 #### PRs: 20
 
@@ -1439,3 +1439,23 @@ All of the merged PRs in July
 - dotare/cardano-delegation ([@dotare/cardano-delegation](https://github.com/dotare/cardano-delegation))
 - DorienP ([@DorienP](https://github.com/DorienP))
 - weqanhet ([@weqanhet](https://github.com/weqanhet))
+
+## 2023.39.0 (2023-09-30)
+
+All of the merged PRs in September
+
+#### PRs: 6
+
+- Add Changelog for August 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1138](https://github.com/cardano-foundation/developer-portal/pull/1138)
+- Adjust comment spacing in script folder for comment consistency  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1145](https://github.com/cardano-foundation/developer-portal/pull/1145)
+- Add adastat.net blog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1147](https://github.com/cardano-foundation/developer-portal/pull/1147)
+- Add Cardano Problem Statements script by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1144](https://github.com/cardano-foundation/developer-portal/pull/1144)
+- Add Developer Ecosystem 2023 Survey by ([@katomm](https://github.com/katomm)) in [#1151](https://github.com/cardano-foundation/developer-portal/pull/1151)
+- cardano-node install: ldconfig after building libsecp256k by ([@gufmar](https://github.com/gufmar)) in [#1152](https://github.com/cardano-foundation/developer-portal/pull/1152)
+
+
+#### Contributors: 3
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- gufmar ([@gufmar](https://github.com/gufmar))

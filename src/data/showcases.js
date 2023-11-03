@@ -1198,6 +1198,24 @@ export const Showcases = [
     source: null,
     tags: ["wallet", "nftsupport"],
   },
+  {
+    title: "DROPSPOT",
+    description:
+      "Premium NFT-as-a-Service, project advisory & design, minting services, white label services, claim services, loyalty programs, collectible design & development, activations and artist collaborations.",
+    preview: require("./showcase/dropspot.png"),
+    website: "https://dropspot.io/",
+    source: null,
+    tags: ["marketplace", "nftsupport", "minting"],
+  },
+  {
+    title: "DexHunter",
+    description:
+      "DexHunter is a decentralized exchange aggregator with real-time alerts and an easy to use interface.",
+    preview: require("./showcase/dexhunter.png"),
+    website: "https://www.dexhunter.io/",
+    source: null,
+    tags: ["dex", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
