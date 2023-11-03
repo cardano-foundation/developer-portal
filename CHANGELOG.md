@@ -1459,3 +1459,36 @@ All of the merged PRs in September
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - katomm ([@katomm](https://github.com/katomm))
 - gufmar ([@gufmar](https://github.com/gufmar))
+
+## 2023.43.0 (2023-10-31)
+
+All of the merged PRs in October
+
+#### PRs: 14
+
+- SPO Overview: remove defunct marketing page by ([@rphair](https://github.com/rphair)) in [#1155](https://github.com/cardano-foundation/developer-portal/pull/1155)
+- SPO Overview: remove pool.vet link by ([@MladenLm](https://github.com/MladenLm)) in [#1156](https://github.com/cardano-foundation/developer-portal/pull/1156)
+- Add Changelog for September by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1153](https://github.com/cardano-foundation/developer-portal/pull/1153)
+- Update Docusaurus to 2.4.3 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1154](https://github.com/cardano-foundation/developer-portal/pull/1154)
+- Add DexHunter to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1159](https://github.com/cardano-foundation/developer-portal/pull/1159)
+- Add Lenfi Developer Blog  by ([@weqanhet](https://github.com/weqanhet)) in [#1163](https://github.com/cardano-foundation/developer-portal/pull/1163)
+- Smart Contracts overview: bit of language cleanup by ([@mcmoodoo](https://github.com/mcmoodoo)) in [#1164](https://github.com/cardano-foundation/developer-portal/pull/1164)
+- Remove Developer Ecosystem 2023 Survey by ([@katomm](https://github.com/katomm)) in [#1165](https://github.com/cardano-foundation/developer-portal/pull/1165)
+- Update 2023-10-16-october.md by ([@katomm](https://github.com/katomm)) in [#1166](https://github.com/cardano-foundation/developer-portal/pull/1166)
+- Bump postcss from 8.4.23 to 8.4.31 by ([@dependabot](https://github.com/dependabot)) in [#1160](https://github.com/cardano-foundation/developer-portal/pull/1160)
+- Add DROPSPOT to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1158](https://github.com/cardano-foundation/developer-portal/pull/1158)
+- Bump babel/traverse from 7.21.5 to 7.23.2 by ([@dependabot](https://github.com/dependabot)) in [#1167](https://github.com/cardano-foundation/developer-portal/pull/1167)
+- Aiken get started: Fix broken examples link by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1168](https://github.com/cardano-foundation/developer-portal/pull/1168)
+- Cardano Relay Configuration: fix & clarify instructions by ([@sanskys](https://github.com/sanskys)) in [#1162](https://github.com/cardano-foundation/developer-portal/pull/1162)
+
+#### Contributors: 9
+
+- rphair ([@rphair](https://github.com/rphair))
+- MladenLm ([@MladenLm](https://github.com/MladenLm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- mcmoodoo ([@mcmoodoo](https://github.com/mcmoodoo))
+- katomm ([@katomm](https://github.com/katomm))
+- dependabot ([@dependabot](https://github.com/dependabot))
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- sanskys ([@sanskys](https://github.com/sanskys))
