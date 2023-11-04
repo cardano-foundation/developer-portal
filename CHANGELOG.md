@@ -1489,6 +1489,5 @@ All of the merged PRs in October
 - weqanhet ([@weqanhet](https://github.com/weqanhet))
 - mcmoodoo ([@mcmoodoo](https://github.com/mcmoodoo))
 - katomm ([@katomm](https://github.com/katomm))
-- dependabot ([@dependabot](https://github.com/dependabot))
 - OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
 - sanskys ([@sanskys](https://github.com/sanskys))
