@@ -1481,7 +1481,7 @@ All of the merged PRs in October
 - Aiken get started: Fix broken examples link by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1168](https://github.com/cardano-foundation/developer-portal/pull/1168)
 - Cardano Relay Configuration: fix & clarify instructions by ([@sanskys](https://github.com/sanskys)) in [#1162](https://github.com/cardano-foundation/developer-portal/pull/1162)
 
-#### Contributors: 9
+#### Contributors: 8
 
 - rphair ([@rphair](https://github.com/rphair))
 - MladenLm ([@MladenLm](https://github.com/MladenLm))
