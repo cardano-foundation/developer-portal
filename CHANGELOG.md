@@ -1464,7 +1464,7 @@ All of the merged PRs in September
 
 All of the merged PRs in October
 
-#### PRs: 14
+#### PRs: 12
 
 - SPO Overview: remove defunct marketing page by ([@rphair](https://github.com/rphair)) in [#1155](https://github.com/cardano-foundation/developer-portal/pull/1155)
 - SPO Overview: remove pool.vet link by ([@MladenLm](https://github.com/MladenLm)) in [#1156](https://github.com/cardano-foundation/developer-portal/pull/1156)
