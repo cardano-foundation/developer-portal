@@ -1477,7 +1477,6 @@ All of the merged PRs in October
 - Update 2023-10-16-october.md by ([@katomm](https://github.com/katomm)) in [#1166](https://github.com/cardano-foundation/developer-portal/pull/1166)
 - Bump postcss from 8.4.23 to 8.4.31 by ([@dependabot](https://github.com/dependabot)) in [#1160](https://github.com/cardano-foundation/developer-portal/pull/1160)
 - Add DROPSPOT to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1158](https://github.com/cardano-foundation/developer-portal/pull/1158)
-- Bump babel/traverse from 7.21.5 to 7.23.2 by ([@dependabot](https://github.com/dependabot)) in [#1167](https://github.com/cardano-foundation/developer-portal/pull/1167)
 - Aiken get started: Fix broken examples link by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1168](https://github.com/cardano-foundation/developer-portal/pull/1168)
 - Cardano Relay Configuration: fix & clarify instructions by ([@sanskys](https://github.com/sanskys)) in [#1162](https://github.com/cardano-foundation/developer-portal/pull/1162)
 
