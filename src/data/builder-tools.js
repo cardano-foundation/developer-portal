@@ -333,23 +333,23 @@ export const Showcases = [
     title: "cardano-wallet",
     description: "An HTTP server and command-line for managing UTxOs and hierarchical deterministic wallets in Cardano.",
     preview: require("./builder-tools/cardano-wallet.png"),
-    website: "https://github.com/input-output-hk/cardano-wallet/#overview",
-    getstarted: "https://input-output-hk.github.io/cardano-wallet/",
+    website: "https://github.com/cardano-foundation/cardano-wallet/#overview",
+    getstarted: "https://cardano-foundation.github.io/cardano-wallet/",
     tags: ["http", "json", "wallet"]
   },
   {
     title: "cardano-graphql",
     description: "A cross-platform, typed, and queryable API for Cardano.",
     preview: require("./builder-tools/cardano-graphql.png"),
-    website: "https://github.com/input-output-hk/cardano-graphql/#overview",
-    getstarted: "https://github.com/input-output-hk/cardano-graphql#getting-started",
+    website: "https://github.com/cardano-foundation/cardano-graphql/#overview",
+    getstarted: "https://github.com/cardano-foundation/cardano-graphql#getting-started",
     tags: ["chainindex", "http"]
   },
   {
     title: "cardano-rosetta",
     description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
     preview: require("./builder-tools/cardano-rosetta.png"),
-    website: "https://github.com/input-output-hk/cardano-rosetta/#cardano-rosetta",
+    website: "https://github.com/cardano-foundation/cardano-rosetta/#cardano-rosetta",
     getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
     tags: ["http", "json"]
   },
@@ -539,7 +539,7 @@ export const Showcases = [
     title: "Marlowe Playground",
     description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
     preview: require("./builder-tools/marlowe-playground.png"),
-    website: "https://play.marlowe-finance.io",
+    website: "https://play.marlowe.iohk.io",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
     tags: ["favorite", "marlowe", "hosted"],
   },
@@ -1048,7 +1048,48 @@ export const Showcases = [
     preview: require("./builder-tools/hydra.png"),
     website: "https://hydra.family/head-protocol/",
     getstarted: "https://hydra.family/head-protocol/docs/getting-started",
-    tags: ["haskell", "cli", "http" ]
+    tags: ["haskell", "cli", "http", "websocket", "lowlevel"]
+  },
+  {
+    title: "NFTCDN",
+    description: "Display all Cardano NFTs effortlessly & efficiently on your website/app using the low-code & high-speed NFTCDN service.",
+    preview: require("./builder-tools/nftcdn.png"),
+    website: "https://nftcdn.io",
+    getstarted: null,
+    tags: ["nft", "http", "hosted" ]
+  },
+  {
+    title: "Atlas",
+    description: 
+      "Atlas is an all-in-one, Haskell-native application backend for writing off-chain code for on-chain Plutus smart contracts.",
+    preview: require("./builder-tools/atlas.png"),
+    website: "https://atlas-app.io/",
+    getstarted: null,
+    tags: ["haskell", "plutus"],
+  },
+  {
+    title: "NFT Vending Machine",
+    description: "A simple CNFT mint-and-vend machine Python library that leverages cardano-cli and Blockfrost.",
+    preview: require("./builder-tools/nft-vending-machine.png"),
+    website: "https://github.com/thaddeusdiamond/cardano-nft-vending-machine",
+    getstarted: null,
+    tags: ["python", "nft" ]
+  },
+  {
+    title: "Yaci DevKit",
+    description: "Create your own local Cardano devnet with ease! It includes an Indexer, minimal Explorer interface, and support for Cardano Client Lib or Lucid JS library's Blockfrost provider.",
+    preview: require("./builder-tools/yaci-devkit.png"),
+    website: "https://github.com/bloxbean/yaci-devkit",
+    getstarted: null,
+    tags: ["cli", "testing"]
+  },
+  {
+    title: "MazzumaGPT",
+    description: "Generate smart contract code in Plutus using AI",
+    preview: require("./builder-tools/mazzumagpt.png"),
+    website: "https://mazzumagpt.com",
+    getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
+    tags: ["plutus"]
   },
   {
     title: "ply",

@@ -7,7 +7,7 @@ image: /img/og/og-getstarted-cardano-wallet-js.png
 ---
 
 ## cardano-wallet-js
-`cardano-wallet-js` is a javascript/typescript SDK for Cardano with several functionalities. You can use it as a client for the official [cardano-wallet](https://github.com/input-output-hk/cardano-wallet) and also to create Native Tokens and NFTs. 
+`cardano-wallet-js` is a javascript/typescript SDK for Cardano with several functionalities. You can use it as a client for the official [cardano-wallet](https://github.com/cardano-foundation/cardano-wallet) and also to create Native Tokens and NFTs. 
 
 ## Table of Contents
 
@@ -37,7 +37,7 @@ image: /img/og/og-getstarted-cardano-wallet-js.png
 The official cardano-wallet by IOHK exposes a REST api/CLI interface which allows
 clients to perform common tasks on the cardano-blockchain, such as:
  - creating or restoring a wallet
- - submitting a transaction with or without [metadata](https://github.com/input-output-hk/cardano-wallet/wiki/TxMetadata) 
+ - submitting a transaction with or without [metadata](https://github.com/cardano-foundation/cardano-wallet/wiki/TxMetadata) 
  - checking on the status of the node
  - listing transactions
  - listing wallets
@@ -54,7 +54,7 @@ NETWORK=testnet docker-compose up
 ```
 
 :::note 
-You can find more information about different options to start the cardano-wallet server [here](https://github.com/input-output-hk/cardano-wallet)
+You can find more information about different options to start the cardano-wallet server [here](https://github.com/cardano-foundation/cardano-wallet)
 :::
 ## Installation
 Using npm:
@@ -372,7 +372,7 @@ let pool = pools[0];
 let transaction = await wallet.delegate(pool.id, passphrase);
 ```   
 :::note 
-The transaction status initially is set to `pending`, so you should keep tracking the transaction using the `id` in order to make sure the final status (e.g. `in_ledger`). You can learn more about the transaction's life cycle [here](https://github.com/input-output-hk/cardano-wallet/wiki/About-Transactions-Lifecycle). 
+The transaction status initially is set to `pending`, so you should keep tracking the transaction using the `id` in order to make sure the final status (e.g. `in_ledger`). You can learn more about the transaction's life cycle [here](https://github.com/cardano-foundation/cardano-wallet/wiki/About-Transactions-Lifecycle). 
 For delegate to another stake pool use the same method above specifying a different stake pool.   
 :::
 
@@ -458,7 +458,7 @@ Metadata can be expressed as a JSON object with some restrictions:
 - Strings must be at most 64 bytes when UTF-8 encoded.
 - Bytestrings are hex-encoded, with a maximum length of 64 bytes.
  
-For more information check [here](https://github.com/input-output-hk/cardano-wallet/wiki/TxMetadata).
+For more information check [here](https://github.com/cardano-foundation/cardano-wallet/wiki/TxMetadata).
 ```js
 let passphrase = 'tangocrypto';
 

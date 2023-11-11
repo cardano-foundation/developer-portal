@@ -150,3 +150,6 @@ Learn about Aiken, a bespoke smart contract language for Cardano.
 Learn about the upcoming CIP-1694 and how voting and governance might work in the Voltaire era.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/KhxPlWh8gFg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
+ ##  NEWM Catalyst F9 Update
+Learn about projects from Catalyst Fund 9 and where they're at today.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/Wck3NoyeU18" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>

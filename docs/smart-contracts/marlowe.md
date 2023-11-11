@@ -9,9 +9,9 @@ image: /img/og/og-developer-portal.png
 ## Get started with Marlowe 
 Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.
 
-If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://play.marlowe-finance.io/doc/marlowe/tutorials/index.html), or jump right into the [Marlowe Playground](https://play.marlowe-finance.io): 
+If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://docs.marlowe.iohk.io/tutorials), or jump right into the [Marlowe Playground](https://play.marlowe.iohk.io): 
 
-[![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://play.marlowe-finance.io)
+[![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://play.marlowe.iohk.io)
 
 On the Cardano Forum, you can [dicuss Marlowe](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
@@ -33,7 +33,7 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 
 ### How do I run my Marlowe contract on the Cardano blockchain?
 
-1. Design your contract using [Marlowe Playground](https://play.marlowe-finance.io/#/).
+1. Design your contract using [Marlowe Playground](https://play.marlowe.iohk.io).
 2. Press the `Send to Simulator` button and then press `Download as JSON` to download your contract in JSON format.
 3. *If you want to run your contract at the command line using `marlowe-cli`,* install [`marlowe-cli`](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/ReadMe.md#installation) and follow the instructions [Running Contracts with Marlowe CLI](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/lectures/04-marlowe-cli-concrete.md). A video lecture playlist [Marlowe CLI](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw) provides an overview of the `marlowe-cli` tool.
 4. *If you want to run your contract in a Jupyter notebook,* then use git to clone [github.com/input-output-hk/marlowe-cardano](https://github.com/input-output-hk/marlowe-cardano), run `nix develop --command jupyter-lab` from the `marlowe-cli/` folder, open the notebook [Marlowe CLI Lecture 4](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/lectures/04-marlowe-cli-concrete.ipynb), and follow the instructions. A video lecture [Running a Marlowe Contract with Marlowe CLI](https://www.youtube.com/watch?v=DmF7dIKmJMo&list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw&index=4) demonstrates running a contract from within a Jupyter notebook.
@@ -71,6 +71,11 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 
 
 ## More resources
+
+### Documentation & overview
+
+- Official [Marlowe documentation](https://docs.marlowe.iohk.io)
+- [A comprehensive guide to Marlowe's security: audit outcomes, built-in functional restrictions, and ledger security features](https://iohk.io/en/blog/posts/2023/06/27/a-comprehensive-guide-to-marlowes-security-audit-outcomes-built-in-functional-restrictions-and-ledger-security-features/)
 
 ### GitHub repositories
 
@@ -133,6 +138,7 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 - [A Geo-Located Smart Contract Using Cardano Beam and Marlowe](https://youtu.be/DmkYen0eaV0)
 
 ## Presentations
+
 - [Blockchain Essentials](https://www.youtube.com/watch?v=yi8-xaoTQT4)
 - [Domain-specific languages](https://www.youtube.com/watch?v=T4W19TdJHMw)
 - [Financial contracts](https://www.youtube.com/watch?v=1HRaRVyj2BI)
@@ -141,6 +147,7 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 - [Marlowe in full](https://www.youtube.com/watch?v=Ro8iBh7V7oc)
 
 ## Further Tutorials
+
 - [A first contract](https://www.youtube.com/watch?v=es4qpcHxr0I)
 - [Elaborating the contract](https://www.youtube.com/watch?v=DS_ebkGwmXw)
 - [Choices and observations](https://www.youtube.com/watch?v=25fnB7C8mPE)
@@ -154,6 +161,9 @@ Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a
 - [Analysis in the playground](https://www.youtube.com/watch?v=VmoUAifui38)
 - [ACTUS labs](https://www.youtube.com/watch?v=6PPWFZEfkks)
 
-## Metrics & Adoption
+## Metrics, Adoption, Audit
+
 - [Marlowe Explorer: Scanners for contracts on Mainnet & testnets](https://marlowescan.com/)
 - [MarloweStat: Statistics for Marlowe contracts on public networks](http://data.marlowestat.org/)
+- [Technical review of Marlowe: Final report (Tweag, 2023-03-24)](https://github.com/tweag/tweag-audit-reports/blob/main/Marlowe-2023-03.pdf)
+  - [Response to Audit Report for the Marlowe Specification (IOG)](https://github.com/input-output-hk/marlowe/blob/master/response-to-audit-report.md)

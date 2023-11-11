@@ -151,7 +151,7 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install secp256k1 which is required from `cardano-node` version `1.35.0` onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -164,6 +164,7 @@ git checkout ac83be33
 make
 make check
 sudo make install
+sudo ldconfig
 ```
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:

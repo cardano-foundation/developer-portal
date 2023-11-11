@@ -207,6 +207,14 @@ export const Tags = {
     description: "Projects that provide cross-chain bridge support.",
     icon: null,
     color: '#EDFF21'
+  },
+
+  // Funding 
+  funding: {
+    label: "Funding",
+    description: "Projects aimed at providing funding assistance to individuals.",
+    icon: null,
+    color: '#1e40af'
   }
 };
 
@@ -338,7 +346,7 @@ export const Showcases = [
     preview: require("./showcase/daedalus.png"),
     website: "https://daedaluswallet.io",
     source: "https://github.com/input-output-hk/daedalus",
-    tags: ["wallet", "opensource", "favorite"],
+    tags: ["wallet", "opensource"],
   },
   {
     title: "Yoroi",
@@ -371,7 +379,7 @@ export const Showcases = [
     preview: require("./showcase/cardanoassets.png"),
     website: "https://cardanoassets.com",
     source: null,
-    tags: ["favorite", "analytics"],
+    tags: ["token", "analytics"],
   },
   {
     title: "Cardano Updates",
@@ -408,14 +416,6 @@ export const Showcases = [
       "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
     source: null,
     tags: ["favorite", "analytics"],
-  },
-  {
-    title: "Token Tool",
-    description: "Keep track of native token on testnet and mainnet.",
-    preview: require("./showcase/tokentool.png"),
-    website: "https://tokentool.io",
-    source: null,
-    tags: ["favorite", "token", "analytics"],
   },
   {
     title: "Transaction Meta Data Browser",
@@ -658,15 +658,6 @@ export const Showcases = [
     website: "https://epoch.art",
     source: null,
     tags: ["marketplace", "nftsupport"],
-  },
-  {
-    title: "MermADA Minting",
-    description:
-      "Cardano NFT Minting Service providing white label solutions for your branding needs from our single NFT Mint tool to NFT Vending Machines to Token Faucets.",
-    preview: require("./showcase/mermada.png"),
-    website: "https://mermada.com/",
-    source: null,
-    tags: ["minting", "metadata", "token", "nftsupport", "educational"],
   },
   {
     title: "Open CNFT",
@@ -989,7 +980,7 @@ export const Showcases = [
     preview: require("./showcase/taptools.png"),
     website: "https://www.taptools.io",
     source: null,
-    tags: [ "analytics", "token", "minting"],
+    tags: [ "favorite", "analytics", "token", "minting"],
   },
   {
     title: "Shareslake",
@@ -1064,7 +1055,7 @@ export const Showcases = [
     tags: ["bridge"],
   },
   {
-    title: "BALANCE - Balance Analytics",
+    title: "BALANCE Analytics",
     description:
       "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
     preview: require("./showcase/balance-analytics.png"),
@@ -1141,8 +1132,17 @@ export const Showcases = [
       "A new light wallet platform from IOG, one of the creators of Cardano. Manually verified by an independent auditor, Lace lets you quickly, easily, and securely manage your digital assets and enjoy Web3.",
     preview: require("./showcase/lace.png"),
     website: "https://www.lace.io/",
+    source: "https://github.com/input-output-hk/lace",
+    tags: ["nftsupport", "wallet", "opensource"],
+  },
+  {
+    title: "Do it with Lovelace",
+    description:
+      "A Cardano-based dApp platform for easy and secure donations with a focus on community impact and transparency.",
+    preview: require("./showcase/do-it-with-lovelace.png"),
+    website: "https://app.doitwithlovelace.io",
     source: null,
-    tags: ["nftsupport", "wallet"],
+    tags: ["funding"],
   },
   {
     title: "flipr.io",
@@ -1179,6 +1179,42 @@ export const Showcases = [
     website: "https://www.balanceanalytics.io/",
     source: null,
     tags: ["analytics", "pooltool"],
+  },
+  {
+    title: "Summon Platform",
+    description:
+      "A DAO creation and governance platform on the Cardano blockchain.",
+    preview: require("./showcase/summonplatform.png"),
+    website: "https://summonplatform.io/",
+    source: null,
+    tags: ["daotool"],
+  },
+  {
+    title: "VESPR Wallet",
+    description:
+      "VESPR is a non-custodial mobile light wallet for the Cardano network, prioritizing the security and safety of your digital assets while ensuring exceptional ease-of-use. Your private keys and assets always remain under your control.",
+    preview: require("./showcase/vesprwallet.png"),
+    website: "https://www.vespr.xyz/#/",
+    source: null,
+    tags: ["wallet", "nftsupport"],
+  },
+  {
+    title: "DROPSPOT",
+    description:
+      "Premium NFT-as-a-Service, project advisory & design, minting services, white label services, claim services, loyalty programs, collectible design & development, activations and artist collaborations.",
+    preview: require("./showcase/dropspot.png"),
+    website: "https://dropspot.io/",
+    source: null,
+    tags: ["marketplace", "nftsupport", "minting"],
+  },
+  {
+    title: "DexHunter",
+    description:
+      "DexHunter is a decentralized exchange aggregator with real-time alerts and an easy to use interface.",
+    preview: require("./showcase/dexhunter.png"),
+    website: "https://www.dexhunter.io/",
+    source: null,
+    tags: ["dex", "token"],
   },
 ];
 
