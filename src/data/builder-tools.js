@@ -709,7 +709,7 @@ export const Showcases = [
     description: "Lucid is a library, which allows you to create Cardano transactions and off-chain code for your Plutus contracts in JavaScript and Node.js.",
     preview: require("./builder-tools/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
-    getstarted: null,
+    getstarted: "https://lucid.spacebudz.io/docs/getting-started/choose-wallet/",
     tags: ["javascript", "sdk", "plutus"]
   },
   {
