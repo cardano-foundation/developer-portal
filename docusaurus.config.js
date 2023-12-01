@@ -146,7 +146,7 @@ module.exports = {
             },
             {
               label: "Developer Ecosystem Survey",
-              href: "https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022",
+              href: "https://cardano-foundation.github.io/state-of-the-developer-ecosystem",
             },
             {
               label: "More",
