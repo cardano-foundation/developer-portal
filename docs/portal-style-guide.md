@@ -840,7 +840,7 @@ To make everything consistent we should agree on spellings and terms here.
 | `IOHK` | IOHK is now IOG. |
 | `IOG` | IOG was IOHK. |
 | `Mainnet`    | One word.  Capitalise when it's a noun (the _Mainnet_) but not when it's an adjective (_mainnet_ functionality), qualified by another proper name (the Cardano _mainnet_), or used as a symbol (e.g. enable Marlowe on `mainnet`). |
- `Ouroboros`           | Ouroboros is a family of Cardano's consensus protocols. There are different flavors: Classic, Praos, Genesis, Chronos, Hydra |
+ `Ouroboros`           | Ouroboros is a family of Cardano's consensus protocols. There are different flavors: Classic, Praos, Genesis, Chronos |
 | `sidechains` | One word. |
 | `stake pool` | Two words. |
 | `staking`    | Try to avoid term `staking` without context as it is ambiguous. `staking` refers to the whole process of both delegating and setting up a pool but many people confuse this with the actual process of creating blocks. `delegating` means that people delegate their stake to a stake pool. |
