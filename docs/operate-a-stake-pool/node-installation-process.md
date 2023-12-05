@@ -195,6 +195,7 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
+cabal update
 cabal configure --with-compiler=ghc-8.10.7
 ```
 

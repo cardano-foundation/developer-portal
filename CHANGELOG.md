@@ -1489,3 +1489,21 @@ All of the merged PRs in October
 - katomm ([@katomm](https://github.com/katomm))
 - OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
 - sanskys ([@sanskys](https://github.com/sanskys))
+
+## 2023.48.0 (2023-11-30)
+
+All of the merged PRs in November
+
+#### PRs: 4
+
+- Smart contracts overview: spelling, grammar, clarity by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1169](https://github.com/cardano-foundation/developer-portal/pull/1169)
+- Add Changelog for October 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1170](https://github.com/cardano-foundation/developer-portal/pull/1170)
+- Add getting started link to Lucid by ([@katomm](https://github.com/katomm)) in [#1172](https://github.com/cardano-foundation/developer-portal/pull/1172)
+- Add developer blog mainstreet by ([@weqanhet](https://github.com/weqanhet)) in [#1173](https://github.com/cardano-foundation/developer-portal/pull/1173)
+
+#### Contributors: 4
+
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
