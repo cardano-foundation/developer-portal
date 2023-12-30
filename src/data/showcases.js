@@ -1216,6 +1216,15 @@ export const Showcases = [
     source: null,
     tags: ["dex", "token"],
   },
+  {
+    title: "Liqwid",
+    description:
+      "Liqwid is a non-custodial pooled lending protocol with liquid staking built on Cardano.",
+    preview: require("./showcase/liqwid.png"),
+    website: "https://app.liqwid.finance/",
+    source: null,
+    tags: ["lending", "token", "marketplace", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
