@@ -63,7 +63,6 @@ module.exports = {
               },
             ],
           },
-          "get-started/tangocrypto",
         ],
       },
       "get-started/technical-concepts",
