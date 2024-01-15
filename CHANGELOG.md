@@ -1524,7 +1524,7 @@ All of the merged PRs in December
 - CONTRIBUTING.md: Tiny grammar mistake by ([@ubani](https://github.com/ubani)) in [#1180](https://github.com/cardano-foundation/developer-portal/pull/1180)
 - remove inactive showcase projects and update links for others by ([@thenic95](https://github.com/thenic95)) in [#1183](https://github.com/cardano-foundation/developer-portal/pull/1183)
 
-#### Committers: 6
+#### Contributors: 6
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - katomm ([@katomm](https://github.com/katomm))
