@@ -1528,7 +1528,7 @@ All of the merged PRs in December
 - Include on-chain governance section, referencing CIP-1694 on the Governance Overview Page by ([@thenic95](https://github.com/thenic95)) in [#1186](https://github.com/cardano-foundation/developer-portal/pull/1186)
 
 
-#### Committers: 6
+#### Contributors: 6
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - katomm ([@katomm](https://github.com/katomm))
