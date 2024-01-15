@@ -1513,7 +1513,7 @@ All of the merged PRs in November
 All of the merged PRs in December
 
 
-#### PRs: 10
+#### PRs: 7
 
 
 - Add Changelog for November 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1175](https://github.com/cardano-foundation/developer-portal/pull/1175)
@@ -1523,12 +1523,8 @@ All of the merged PRs in December
 - Frankenwallet: Edit for grammar, formatting + correctness by ([@rphair](https://github.com/rphair)) in [#1178](https://github.com/cardano-foundation/developer-portal/pull/1178)
 - CONTRIBUTING.md: Tiny grammar mistake by ([@ubani](https://github.com/ubani)) in [#1180](https://github.com/cardano-foundation/developer-portal/pull/1180)
 - remove inactive showcase projects and update links for others by ([@thenic95](https://github.com/thenic95)) in [#1183](https://github.com/cardano-foundation/developer-portal/pull/1183)
-- SPO node installation: Update links moved to IntersectMBO by ([@ubani](https://github.com/ubani)) in [#1187](https://github.com/cardano-foundation/developer-portal/pull/1187)
-- add liqwid to showcase by ([@thenic95](https://github.com/thenic95)) in [#1184](https://github.com/cardano-foundation/developer-portal/pull/1184)
-- Include on-chain governance section, referencing CIP-1694 on the Governance Overview Page by ([@thenic95](https://github.com/thenic95)) in [#1186](https://github.com/cardano-foundation/developer-portal/pull/1186)
 
-
-#### Contributors: 6
+#### Committers: 6
 
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - katomm ([@katomm](https://github.com/katomm))
