@@ -745,14 +745,6 @@ export const Showcases = [
     tags: ["plutus", "haskell"]
   },
   {
-    title: "Tangocrypto",
-    description: "A suite of high availability APIs and developer tools providing fast and reliable access to the Cardano network so you can focus on building and growing your products.",
-    preview: require("./builder-tools/tangocrypto.png"),
-    website: "https://tangocrypto.com",
-    getstarted: "/docs/get-started/tangocrypto",
-    tags: ["http", "json", "hosted"],
-  },
-  {
     title: "gOuroboros",
     description: "Golang implementation of the Cardano Ouroboros network protocol.",
     preview: require("./builder-tools/gOuroboros.png"),

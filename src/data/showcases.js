@@ -313,15 +313,6 @@ export const Showcases = [
     tags: ["favorite", "pooltool", "analytics"],
   },
   {
-    title: "CardaStat",
-    description:
-      "A fresh look at pool performances for delegators in the ecosystem. Built as a progressive web application, ideal for mobile and desktop environments.",
-    preview: require("./showcase/cardastat.png"),
-    website: "https://cardastat.info",
-    source: null,
-    tags: ["pooltool", "analytics"],
-  },
-  {
     title: "AdaLite",
     description:
       "AdaLite was developed by vacuumlabs, they were also responsible for the Cardano Ledger app and won the crypto puzzle at the IOHK Summit 2019.",
@@ -361,17 +352,9 @@ export const Showcases = [
     title: "Cardano Warriors",
     description: "The retro RPG NFT Collection minted in Cardano Blockchain.",
     preview: require("./showcase/cardanowarriors.png"),
-    website: "https://www.cardanowarriors.io",
+    website: "https://cardanowarriors.io/",
     source: null,
     tags: ["nftproject", "game"],
-  },
-  {
-    title: "Native Tokens",
-    description: "Provides insights into native tokens on Cardano mainnet.",
-    preview: require("./showcase/nativetokens.png"),
-    website: "https://nativetokens.da.iogservices.io",
-    source: null,
-    tags: ["token", "analytics"],
   },
   {
     title: "Cardano Assets",
@@ -394,7 +377,7 @@ export const Showcases = [
     title: "Pool Stats",
     description: "Pool tool and insights visualized by heat maps.",
     preview: require("./showcase/poolstats.png"),
-    website: "https://poolstats.org",
+    website: "https://poolstats.io",
     source: null,
     tags: ["pooltool", "analytics"],
   },
@@ -416,15 +399,6 @@ export const Showcases = [
       "https://datastudio.google.com/u/0/reporting/3136c55b-635e-4f46-8e4b-b8ab54f2d460/page/k5r9B",
     source: null,
     tags: ["favorite", "analytics"],
-  },
-  {
-    title: "Transaction Meta Data Browser",
-    description:
-      "Browse and search different types of transaction metadata on Cardano.",
-    preview: require("./showcase/transaction-meta-data-browser.png"),
-    website: "https://bi.stakepoolcentral.com/transactiondata",
-    source: null,
-    tags: ["favorite", "metadata"],
   },
   {
     title: "PoolTool Mobile",
@@ -449,7 +423,7 @@ export const Showcases = [
     description:
       "Payment gateway provider to accept ada payments and ada donations.",
     preview: require("./showcase/cotiadapay.png"),
-    website: "https://adapay.coti.io",
+    website: "https://adapay.finance/",
     source: null,
     tags: ["gateway"],
   },
@@ -478,15 +452,6 @@ export const Showcases = [
     website: "https://milkomeda.com",
     source: null,
     tags: ["bridge"]
-  },
-  {
-    title: "Cardano Idols",
-    description:
-      "Tributes to our Cardano idols.",
-    preview: require("./showcase/cardano-idols.png"),
-    website: "https://www.cardanoidols.com",
-    source: null,
-    tags: ["nftproject"],
   },
   {
     title: "Clay Mates",
@@ -677,15 +642,6 @@ export const Showcases = [
     tags: ["nftproject", "game"],
   },
   {
-    title: "Adax.pro",
-    description:
-      "Adax.pro is a Decentralized Digital Assets Exchange built on the Cardano blockchain.",
-    preview: require("./showcase/adax-pro.png"),
-    website: "https://dex.adax.pro",
-    source: null,
-    tags: ["dex", "token"],
-  },
-  {
     title: "Minswap Dex",
     description:
       "Minswap is a multi-pool decentralized exchange on Cardano.",
@@ -693,15 +649,6 @@ export const Showcases = [
     website: "https://app.minswap.org",
     source: null,
     tags: ["dex", "token"],
-  },
-  {
-    title: "CWallet",
-    description:
-      "Cross-Chain Non-Custodial Wallet & Liquidity Engine.",
-    preview: require("./showcase/cwallet.png"),
-    website: "https://cwallet.finance",
-    source: null,
-    tags: ["wallet"],
   },
   {
     title: "GameChanger Wallet",
@@ -747,15 +694,6 @@ export const Showcases = [
     website: "https://www.cnftjungle.io",
     source: null,
     tags: ["analytics", "nftsupport"],
-  },
-  {
-    title: "Explorer Png",
-    description:
-      "Token Viewer on Cardano Blockchain.",
-    preview: require("./showcase/explorerxyz.png"),
-    website: "https://ex.plorer.xyz",
-    source: null,
-    tags: ["nftsupport"],
   },
   {
     title: "Galaxy Of Art",
@@ -830,15 +768,6 @@ export const Showcases = [
     tags: ["pooltool", "analytics"],
   },
   {
-    title: "Cardano NFT Explorer",
-    description:
-      "Freely accessible web application featuring NFTs minted on the Cardano blockchain.",
-    preview: require("./showcase/cnftme.png"),
-    website: "https://cnft.me",
-    source: null,
-    tags: ["explorer", "nftsupport"],
-  },
-  {
     title: "Lido Nation",
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
@@ -852,7 +781,7 @@ export const Showcases = [
     description:
       "A open source multi-sig DApp for the cardano blockchain.",
     preview: require("./showcase/roundtable.png"),
-    website: "https://roundtable.theadao.io/",
+    website: "https://roundtable.adaodapp.xyz/",
     source: "https://github.com/ADAOcommunity/round-table",
     tags: ["opensource", "daotool"],
   },
@@ -902,20 +831,11 @@ export const Showcases = [
     tags: [ "marketplace", "nftsupport", "lending"],
   },
   {
-    title: "Gift Card Creator",
-    description:
-      "Customize NFT Gift Cards on the Cardano Blockchain",
-    preview: require("./showcase/gift-card-creator.png"),
-    website: "https://card-creator.shop",
-    source: null,
-    tags: ["minting", "nftsupport"],
-  },
-  {
-    title: "Book Token",
+    title: "Book.io",
     description:
       "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
     preview: require("./showcase/book-token.png"),
-    website: "https://www.booktoken.io",
+    website: "https://www.book.io",
     source: null,
     tags: [ "marketplace", "nftsupport", "token"],
   },
@@ -927,15 +847,6 @@ export const Showcases = [
     website: "https://nu.fi",
     source: null,
     tags: [ "wallet", "dex", "nftsupport"],
-  },
-  {
-    title: "NFT Creator",
-    description:
-      "Design Cardano NFTs with this image editor",
-    preview: require("./showcase/nft-creator.png"),
-    website: "https://nft-creator.pics",
-    source: null,
-    tags: ["minting", "nftsupport"],
   }, 
   {
     title: "Voteaire",
@@ -981,15 +892,6 @@ export const Showcases = [
     website: "https://www.taptools.io",
     source: null,
     tags: [ "favorite", "analytics", "token", "minting"],
-  },
-  {
-    title: "Shareslake",
-    description: 
-      "The stable branch of Cardano. A fiat-backed stablecoin for Cardano mainnet and a whole Cardano network running as a sidechain by the fiat-backed stablecoin instead of ADA. Deploy dApps out of the box and use Cardano technology like if you were using US dollars.",
-    preview: require("./showcase/shareslake.png"),
-    website: "https://www.shareslake.com/",
-    source: null,
-    tags: ["gateway", "token"],
   },
   {
     title: "Chainport",
@@ -1215,6 +1117,15 @@ export const Showcases = [
     website: "https://www.dexhunter.io/",
     source: null,
     tags: ["dex", "token"],
+  },
+  {
+    title: "Liqwid",
+    description:
+      "Liqwid is a non-custodial pooled lending protocol with liquid staking built on Cardano.",
+    preview: require("./showcase/liqwid.png"),
+    website: "https://liqwid.finance/",
+    source: null,
+    tags: ["lending", "token", "marketplace", "nftsupport"],
   },
 ];
 

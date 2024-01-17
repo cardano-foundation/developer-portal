@@ -1489,3 +1489,46 @@ All of the merged PRs in October
 - katomm ([@katomm](https://github.com/katomm))
 - OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
 - sanskys ([@sanskys](https://github.com/sanskys))
+
+## 2023.48.0 (2023-11-30)
+
+All of the merged PRs in November
+
+#### PRs: 4
+
+- Smart contracts overview: spelling, grammar, clarity by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1169](https://github.com/cardano-foundation/developer-portal/pull/1169)
+- Add Changelog for October 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1170](https://github.com/cardano-foundation/developer-portal/pull/1170)
+- Add getting started link to Lucid by ([@katomm](https://github.com/katomm)) in [#1172](https://github.com/cardano-foundation/developer-portal/pull/1172)
+- Add developer blog mainstreet by ([@weqanhet](https://github.com/weqanhet)) in [#1173](https://github.com/cardano-foundation/developer-portal/pull/1173)
+
+#### Contributors: 4
+
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+
+## 2023.52.0 (2023-12-31)
+
+All of the merged PRs in December
+
+
+#### PRs: 7
+
+
+- Add Changelog for November 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1175](https://github.com/cardano-foundation/developer-portal/pull/1175)
+- Add developer survey 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1174](https://github.com/cardano-foundation/developer-portal/pull/1174)
+- Style Guide: remove Hydra from Ouroboros flavors by ([@katomm](https://github.com/katomm)) in [#1176](https://github.com/cardano-foundation/developer-portal/pull/1176)
+- Cardano Node Installation process: add cabal update by ([@schmidko](https://github.com/schmidko)) in [#1150](https://github.com/cardano-foundation/developer-portal/pull/1150)
+- Frankenwallet: Edit for grammar, formatting + correctness by ([@rphair](https://github.com/rphair)) in [#1178](https://github.com/cardano-foundation/developer-portal/pull/1178)
+- CONTRIBUTING.md: Tiny grammar mistake by ([@ubani](https://github.com/ubani)) in [#1180](https://github.com/cardano-foundation/developer-portal/pull/1180)
+- remove inactive showcase projects and update links for others by ([@thenic95](https://github.com/thenic95)) in [#1183](https://github.com/cardano-foundation/developer-portal/pull/1183)
+
+#### Contributors: 6
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- schmidko ([@schmidko](https://github.com/schmidko))
+- rphair ([@rphair](https://github.com/rphair))
+- ubani ([@ubani](https://github.com/ubani))
+- thenic95 ([@thenic95](https://github.com/thenic95))
