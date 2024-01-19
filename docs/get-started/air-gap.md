@@ -6,7 +6,7 @@ description: Secure your private keys on a network-free transaction host.
 image: /img/og/og-security-air-gap-environment.png
 ---
 
-"Air gap" originally meant a computer or subnetwork was surrounded by "air" — as defined by no data cable connections in or out — so it would be isolated from other computers & networks. These days it also means there are no radio-based network connection either (WiFi, Bluetooth, etc.).
+"Air gap" originally meant a computer or subnetwork was surrounded by "air" — as defined by no data cable connections in or out — so it would be isolated from other computers & networks. These days it also means there are no radio-based network connections either (WiFi, Bluetooth, etc.).
 
 Developers & Cardano stake pool operators generally need an air gap environment in which to work with payment keys, stake pool keys and other cryptocurrency resources that offer high-value targets for hackers.
 
