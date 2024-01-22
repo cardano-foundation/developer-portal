@@ -60,7 +60,7 @@ Currently, there is only a single known implementation of Marlowe available for 
 
 The well-known versions of the validator script are specified in the [ScriptRegistry.hs](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/src/Language/Marlowe/Runtime/Core/ScriptRegistry.hs) file.
 
-Version hashes as of January 20, 2025:
+Version hashes as of January 20, 2024:
 
 Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a _role-payout_ validator that allows the holder of a role token to withdraw funds paid by the semantics validator.
 There is also an optional _open-role validator_ which enables just-in-time assignment of roles to a contract.
