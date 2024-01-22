@@ -60,15 +60,18 @@ Currently, there is only a single known implementation of Marlowe available for 
 
 The well-known versions of the validator script are specified in the [ScriptRegistry.hs](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/src/Language/Marlowe/Runtime/Core/ScriptRegistry.hs) file.
 
-Version hashes as of June 4, 2023:
+Version hashes as of January 20, 2024:
 
 Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a _role-payout_ validator that allows the holder of a role token to withdraw funds paid by the semantics validator.
+There is also an optional _open-role validator_ which enables just-in-time assignment of roles to a contract.
 
-| Version              | Hash for Semantics Validator                             | Hash for Role-Payout Validator                           |
-|----------------------|----------------------------------------------------------|----------------------------------------------------------|
-| Validator V1         | 2ed2631dbb277c84334453c5c437b86325d371f0835a28b910a91a6e | e165610232235bbbbeff5b998b233daae42979dec92a6722d9cda989 |
-| Audited Validator V1 | 6a9391d6aa51af28dd876ebb5565b69d1e83e5ac7861506bd29b56b0 | 49076eab20243dc9462511fb98a9cfb719f86e9692288139b7c91df3 |
-
+| Version | Technical Notes                         | Hash for Semantics Validator                               | Hash for Role-Payout Validator                             | Hash for Open-Role Validator                               |
+|---------|-----------------------------------------|------------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| V5      | Optimized using `PlutusTx.asData`       | `377325ad84a55ba0282d844dff2d5f0f18c33fd4a28a0a9d73c6f60d` | `fcb8885eb5e4f9a5cfca3c75e8c7280e482af32dcdf2d13e47d05d27` | `2722e12a53dfb4fe3742b8a2c0534bd16b0b5ae492a3d76554bbe8a5` |
+| v4      | Optimized using PlutusTx 1.15           | `6027a8010c555a4dd6b08882b899f4b3167c6e4524047132202dd984` | `fdade3b86107bc715037b468574dd8d3f884a0da8c9956086b9a1a51` | `36a5c7e49a6b11c7fb65fb61db69ed5ceaa35326af9d952fd30185c0` |
+| v3      | Recompiled with Node 8.1.2 dependencies | `d85fa9bc2bdfd97d5ebdbc5e3fc66f7476213c40c21b73b41257f09d` | `10ec7e02d25f5836b3e1098e0d4d8389e71d7a97a57aa737adc1d1fa` | `b1d61d0c8a3c0f081a7ccebf0050e3f2c9751e82a4f3953a769dddfb` |
+| v2      | Changes in response to audit            | `2ed2631dbb277c84334453c5c437b86325d371f0835a28b910a91a6e` | `e165610232235bbbbeff5b998b233daae42979dec92a6722d9cda989` |                                                            |
+| v1      | Audited                                 | `6a9391d6aa51af28dd876ebb5565b69d1e83e5ac7861506bd29b56b0` | `49076eab20243dc9462511fb98a9cfb719f86e9692288139b7c91df3` |                                                            |
 
 ## More resources
 
