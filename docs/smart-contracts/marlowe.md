@@ -13,7 +13,7 @@ If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](h
 
 [![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://play.marlowe.iohk.io)
 
-On the Cardano Forum, you can [dicuss Marlowe](https://forum.cardano.org/c/developers/cardano-marlowe/149) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
+On the Cardano Forum, you can [dicuss Marlowe](https://forum.cardano.org/tag/marlowe) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
 ## The Marlowe platform
 When compared to a [Turing-complete](https://en.wikipedia.org/wiki/Turing_completeness) language, the Marlowe DSL provides significantly greater security, certainty, [guarantees of termination](https://en.wikipedia.org/wiki/Halting_problem), and behavior correctness.
@@ -27,7 +27,7 @@ The design guarantees the following:
 
 ## Marlowe Playground 
 The Marlowe Playground is a plug-and-play smart contract builder and simulator that is simple to use, visual, and modular. Build, simulate, and analyze Marlowe contracts in this 4-minute tour of the Marlowe Playground.
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/axP-jYQ_6lo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EgCqG0hPmwc?si=doukCRT63l-mUOD6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Resources for Developing and Deploying Marlowe Contracts
 
@@ -35,10 +35,10 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 
 1. Design your contract using [Marlowe Playground](https://play.marlowe.iohk.io).
 2. Press the `Send to Simulator` button and then press `Download as JSON` to download your contract in JSON format.
-3. *If you want to run your contract at the command line using `marlowe-cli`,* install [`marlowe-cli`](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/ReadMe.md#installation) and follow the instructions [Running Contracts with Marlowe CLI](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/lectures/04-marlowe-cli-concrete.md). A video lecture playlist [Marlowe CLI](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw) provides an overview of the `marlowe-cli` tool.
-4. *If you want to run your contract in a Jupyter notebook,* then use git to clone [github.com/input-output-hk/marlowe-cardano](https://github.com/input-output-hk/marlowe-cardano), run `nix develop --command jupyter-lab` from the `marlowe-cli/` folder, open the notebook [Marlowe CLI Lecture 4](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/lectures/04-marlowe-cli-concrete.ipynb), and follow the instructions. A video lecture [Running a Marlowe Contract with Marlowe CLI](https://www.youtube.com/watch?v=DmF7dIKmJMo&list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw&index=4) demonstrates running a contract from within a Jupyter notebook.
-5. *If you want to run your contract from the command-line using the Marlowe Runtime backend,* then follow the [tutorial for Marlowe Runtime](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/doc/tutorial.ipynb). A video [Marlowe Runtime Tutorial](https://youtu.be/WlsX9GhpKu8) demonstrates its use.
-6. *If you want to run your contract using Marlowe Lambda,* follow the example for [using Marlowe Lambda from the command line](https://github.com/input-output-hk/marlowe-lambda/blob/main/examples/zcb.ipynb) or study the example [web application for Marlowe Lambda](https://github.com/input-output-hk/marlowe-lambda/tree/main/web). Videos [Marlowe Lambda at the Command Line](https://youtu.be/huXbRyrmW60) and [Marlowe Lambda in the Browser](https://youtu.be/o5m_y5l_i_g) demonstrate the use of Marlowe Lambda.
+3. *If you want to run your contract at the command line using `marlowe-cli`,* install [`marlowe-cli`](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/ReadMe.md#installation) and follow the instructions [Running Contracts with Marlowe CLI](https://github.com/input-output-hk/real-world-marlowe/blob/main/archives/marlowe-cli/lectures/04-marlowe-cli-concrete.md). A video lecture playlist [Marlowe CLI](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw) provides an overview of the `marlowe-cli` tool.
+4. *If you want to run your contract in a Jupyter notebook,* then use git to clone [github.com/input-output-hk/marlowe-cardano](https://github.com/input-output-hk/marlowe-cardano), run `nix develop --command jupyter-lab` from the `marlowe-cli/` folder, open the notebook [Marlowe CLI Lecture 4](https://github.com/input-output-hk/marlowe-cardano/blob/mpp-cli-lectures/marlowe-cli/lectures/04-marlowe-cli-concrete.ipynb), and follow the instructions. A video lecture [Running a Marlowe Contract with Marlowe CLI](https://www.youtube.com/watch?v=DmF7dIKmJMo&list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw&index=4) demonstrates running a contract from within a Jupyter notebook.
+5. *If you want to run your contract from the command-line using the Marlowe Runtime backend,* then follow the [tutorial for Marlowe Runtime](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/doc/tutorial.ipynb). A video [Marlowe Runtime Tutorial](https://www.youtube.com/playlist?list=PLnPTB0CuBOByd1Y6W9B8Xj_wiiWkobtrY) demonstrates its use.
+6. *If you want to run your contract using Marlowe Lambda,* follow the example for [using Marlowe Lambda from the command line](https://github.com/input-output-hk/marlowe-lambda/blob/main/examples/zcb.ipynb) or study the example [web application for Marlowe Lambda](https://github.com/input-output-hk/marlowe-lambda/tree/main/web). The video [Marlowe Lambda in the Browser](https://www.youtube.com/watch?v=yKhQpIEliBc&t=6s) demonstrate the use of Marlowe Lambda.
 
 ## High level technical summary
 
@@ -92,7 +92,7 @@ There is also an optional _open-role validator_ which enables just-in-time assig
 
 ### Developer Discussions
 
-- [Marlowe on Cardano Forum](https://forum.cardano.org/c/developers/cardano-marlowe/149)
+- [Marlowe on Cardano Forum](https://forum.cardano.org/tag/marlowe)
 - [\#marlowe on Cardano StackExchange](https://cardano.stackexchange.com/questions/tagged/marlowe)
 - [\#ask-marlowe on Discord](https://discord.com/channels/826816523368005654/936295815926927390)
 - [IOG\_Marlowe on Telegram](https://t.me/IOHK_Marlowe)
@@ -119,15 +119,15 @@ There is also an optional _open-role validator_ which enables just-in-time assig
 
 - [Gallery of Marlowe Contracts on Cardano Mainnet (Real World Marlowe)](https://github.com/input-output-hk/real-world-marlowe)
 - [Index of example Marlowe contracts and their on-chain execution](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/example-contracts.md)
-- [Marlowe Cookbook](https://github.com/input-output-hk/marlowe-cardano/tree/main/marlowe-cli/cookbook/ReadMe.md)
+- [Marlowe Debugging Cookbook](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/debugging-cookbook.md)
 - [Marlowe Runtime Tutorial](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-runtime/doc/tutorial.md)
-- [Marlowe Runtime examples](https://github.com/input-output-hk/marlowe-cardano/tree/main/marlowe-runtime/examples/ReadMe.md)
+- [Marlowe Runtime examples](https://www.youtube.com/playlist?list=PLnPTB0CuBOByd1Y6W9B8Xj_wiiWkobtrY)
 - [Haskell examples of Marlowe contracts](https://github.com/input-output-hk/marlowe-cardano/tree/main/marlowe-contracts)
 - [ACTUS contracts in Marlowe](https://github.com/input-output-hk/marlowe-cardano/tree/main/marlowe-actus)
 
 ### Videos
 
-- [Marlowe Pioneers 1st Cohort](https://www.youtube.com/@iogacademy9189/playlists?view=50&sort=dd&shelf_id=2)
+- Marlowe Pioneers 1st Cohort
 	1. [Welcome](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x3xkV0OQ0PjRaCtlbPhL0Eg)
 	2. [Using Marlowe](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x1o4Hv1GC_0kxXnquikXl70)
 	3. [Marlowe in Depth](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0beuXQwbcy58pAIyF4kASc)
@@ -135,10 +135,8 @@ There is also an optional _open-role validator_ which enables just-in-time assig
 	5. [Marlowe and Standardization / ACTUS](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0KLofo1maCkO3AYjQKknz-)
 	6. [Assurance and Convenience](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x3PArP4vcu4WV0Z5xV0OLhy)
 	7. [Marlowe CLI](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw)
-- [Using the Marlowe Runtime backend to execute a Marlowe contract on Cardano's preview network](https://youtu.be/WlsX9GhpKu8)
-- [Marlowe Lambda at the Command Line](https://youtu.be/huXbRyrmW60)
-- [Marlowe Lambda in the Browser](https://youtu.be/o5m_y5l_i_g)
-- [A Geo-Located Smart Contract Using Cardano Beam and Marlowe](https://youtu.be/DmkYen0eaV0)
+- [Using the Marlowe Runtime backend to execute a Marlowe contract on Cardano's preview network](https://www.youtube.com/watch?v=ZmZdgxz2i9A)
+- [Marlowe Lambda in the Browser](https://www.youtube.com/watch?v=yKhQpIEliBc)
 
 ## Presentations
 
