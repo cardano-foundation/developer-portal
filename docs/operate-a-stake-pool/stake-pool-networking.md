@@ -9,7 +9,7 @@ Before we start with the stake pool installation and configuration, it is essent
 
 In the example below, one block producer is connected to three relays and they are connected to other relays of the Cardano network.
 
-![Block producer node is connected with 3 relayers. Those relayers are connected with the cardano network.](../../static/img/stake-pool-guide/stake-pool-network.jpg)
+![Block producer node is connected with 3 relays. Those relays are connected with the cardano network.](../../static/img/stake-pool-guide/stake-pool-network.jpg)
 
 For the operation of a stake pool, some additional nodes in the topology might be useful. For example, a back-up node for block producer is helpful in case the main block producer has an issue e.g. during an upgrade. Depending on the number of stake pools that are being managed, a monitoring node can be used to monitor them and generate alarms. Stake pool operators also need a [air-gapped system](/docs/get-started/air-gap) to store the pool cold keys. Some pool operators use a hardware wallet for storing the pool pledge.
 
