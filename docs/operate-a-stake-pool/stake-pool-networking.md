@@ -15,5 +15,5 @@ For the operation of a stake pool, some additional nodes in the topology might b
 
 A logical topology of all the components, without considering firewalls and other security aspects can be shown as follows.
 
-![3 relayers are connected with 1 block producer, one backup block producer and a monitoring node. The monitoring node is connected with the home pc. Their is a airgap pc, but it is not connected with other computers.](../../static/img/stake-pool-guide/stake-pool-setup.jpg)
+![3 relays are connected with 1 block producer, one backup block producer and a monitoring node. The monitoring node is connected with the home PC. There is a air-gapped pc, but it is not connected with other computers.](../../static/img/stake-pool-guide/stake-pool-setup.jpg)
 
