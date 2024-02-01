@@ -1127,6 +1127,15 @@ export const Showcases = [
     source: null,
     tags: ["lending", "token", "marketplace", "nftsupport"],
   },
+  {
+    title: "NFTify",
+    description:
+      "The leading no-code NFT marketplace solution aims to empower all Web3 businesses to launch and trade their NFT assets without friction, coding skills – at the lowest possible costs.",
+    preview: require("./showcase/nftify.png"),
+    website: "https://nftify.network/",
+    source: null,
+    tags: ["marketplace", "minting", "nftproject", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
