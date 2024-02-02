@@ -1134,7 +1134,7 @@ export const Showcases = [
     preview: require("./showcase/nftify.png"),
     website: "https://nftify.network/",
     source: null,
-    tags: ["marketplace", "minting", "nftproject", "nftsupport"],
+    tags: ["marketplace", "minting", "nftproject"],
     developmentCompany: "Ekotek",
   },
 ];
