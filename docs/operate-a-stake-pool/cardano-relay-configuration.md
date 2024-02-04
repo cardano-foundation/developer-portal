@@ -95,7 +95,7 @@ To run an instance of Cardano Node, we create a bash script and configure the op
 
 First, switch to the directory containing configuration files
 ```
-cd cd $HOME/cardano-testnet
+cd $HOME/cardano-testnet
 ```
 
 Now create the start script startTestNode.sh
