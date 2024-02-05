@@ -1135,7 +1135,6 @@ export const Showcases = [
     website: "https://nftify.network/",
     source: null,
     tags: ["marketplace", "minting", "nftproject"],
-    developmentCompany: "Ekotek",
   },
 ];
 
