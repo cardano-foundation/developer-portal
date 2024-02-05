@@ -1,8 +1,8 @@
 ---
 id: authenticated-products
-title: Authenticated Products on Cardano Merch Store
+title: Authenticated Products on Cardano Store
 sidebar_label: Authenticated Products
-description: Authenticated Products on Cardano Merch Store. 
+description: Authenticated Products on Cardano Store. 
 image: /img/og/og-developer-portal.png
 ---
 
