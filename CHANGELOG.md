@@ -1532,3 +1532,40 @@ All of the merged PRs in December
 - rphair ([@rphair](https://github.com/rphair))
 - ubani ([@ubani](https://github.com/ubani))
 - thenic95 ([@thenic95](https://github.com/thenic95))
+
+## 2024.04.0 (2024-01-31)
+
+All of the merged PRs in January
+
+
+#### PRs: 13
+
+- SPO node installation: Update links moved to IntersectMBO by ([@ubani](https://github.com/ubani)) in [#1187](https://github.com/cardano-foundation/developer-portal/pull/1187)
+- add liqwid to showcase by ([@thenic95](https://github.com/thenic95)) in [#1184](https://github.com/cardano-foundation/developer-portal/pull/1184)
+- Include on-chain governance section, referencing CIP-1694 on the Governance Overview Page by ([@thenic95](https://github.com/thenic95)) in [#1186](https://github.com/cardano-foundation/developer-portal/pull/1186)
+- Bump follow-redirects from 1.15.2 to 1.15.4 by ([@dependabot](https://github.com/dependabot)) in [#1188](https://github.com/cardano-foundation/developer-portal/pull/1188)
+- Tangocrypto: remove from Get Started by ([@mmahut](https://github.com/mmahut)) in [#1190](https://github.com/cardano-foundation/developer-portal/pull/1190)
+- Add changelog for December 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1191](https://github.com/cardano-foundation/developer-portal/pull/1191)
+- Update EMURGO url to careers page by ([@dmpapageo](https://github.com/dmpapageo)) in [#1193](https://github.com/cardano-foundation/developer-portal/pull/1193)
+- Vespr Blog added by ([@weqanhet](https://github.com/weqanhet)) in [#1192](https://github.com/cardano-foundation/developer-portal/pull/1192)
+- Updated list of validator hashes for Marlowe. by ([@bwbush](https://github.com/bwbush)) in [#1195](https://github.com/cardano-foundation/developer-portal/pull/1195)
+- Air gap: Fix grammar problem from last edit by ([@rphair](https://github.com/rphair)) in [#1194](https://github.com/cardano-foundation/developer-portal/pull/1194)
+- Marlowe page: update & curate links by ([@joseph-fajen](https://github.com/joseph-fajen)) in [#1201](https://github.com/cardano-foundation/developer-portal/pull/1201)
+- Add proof of concept hoodies explainer by ([@katomm](https://github.com/katomm)) in [#1202](https://github.com/cardano-foundation/developer-portal/pull/1202)
+- Add image descriptions for the relay and block producer network images by ([@sempruijs](https://github.com/sempruijs)) in [#1200](https://github.com/cardano-foundation/developer-portal/pull/1200)
+
+
+#### Contributors: 12
+
+- ubani ([@ubani](https://github.com/ubani))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- dependabot ([@dependabot](https://github.com/dependabot))
+- mmahut ([@mmahut](https://github.com/mmahut))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- dmpapageo ([@dmpapageo](https://github.com/dmpapageo))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- bwbush ([@bwbush](https://github.com/bwbush))
+- rphair ([@rphair](https://github.com/rphair))
+- joseph-fajen ([@joseph-fajen](https://github.com/joseph-fajen))
+- katomm ([@katomm](https://github.com/katomm))
+- sempruijs ([@sempruijs](https://github.com/sempruijs))
