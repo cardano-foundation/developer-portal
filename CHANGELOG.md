@@ -1558,7 +1558,6 @@ All of the merged PRs in January
 
 - ubani ([@ubani](https://github.com/ubani))
 - thenic95 ([@thenic95](https://github.com/thenic95))
-- dependabot ([@dependabot](https://github.com/dependabot))
 - mmahut ([@mmahut](https://github.com/mmahut))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - dmpapageo ([@dmpapageo](https://github.com/dmpapageo))
