@@ -1543,7 +1543,6 @@ All of the merged PRs in January
 - SPO node installation: Update links moved to IntersectMBO by ([@ubani](https://github.com/ubani)) in [#1187](https://github.com/cardano-foundation/developer-portal/pull/1187)
 - add liqwid to showcase by ([@thenic95](https://github.com/thenic95)) in [#1184](https://github.com/cardano-foundation/developer-portal/pull/1184)
 - Include on-chain governance section, referencing CIP-1694 on the Governance Overview Page by ([@thenic95](https://github.com/thenic95)) in [#1186](https://github.com/cardano-foundation/developer-portal/pull/1186)
-- Bump follow-redirects from 1.15.2 to 1.15.4 by ([@dependabot](https://github.com/dependabot)) in [#1188](https://github.com/cardano-foundation/developer-portal/pull/1188)
 - Tangocrypto: remove from Get Started by ([@mmahut](https://github.com/mmahut)) in [#1190](https://github.com/cardano-foundation/developer-portal/pull/1190)
 - Add changelog for December 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1191](https://github.com/cardano-foundation/developer-portal/pull/1191)
 - Update EMURGO url to careers page by ([@dmpapageo](https://github.com/dmpapageo)) in [#1193](https://github.com/cardano-foundation/developer-portal/pull/1193)
