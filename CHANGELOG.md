@@ -1554,7 +1554,7 @@ All of the merged PRs in January
 - Add image descriptions for the relay and block producer network images by ([@sempruijs](https://github.com/sempruijs)) in [#1200](https://github.com/cardano-foundation/developer-portal/pull/1200)
 
 
-#### Contributors: 12
+#### Contributors: 11
 
 - ubani ([@ubani](https://github.com/ubani))
 - thenic95 ([@thenic95](https://github.com/thenic95))
