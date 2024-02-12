@@ -1538,7 +1538,7 @@ All of the merged PRs in December
 All of the merged PRs in January
 
 
-#### PRs: 13
+#### PRs: 12
 
 - SPO node installation: Update links moved to IntersectMBO by ([@ubani](https://github.com/ubani)) in [#1187](https://github.com/cardano-foundation/developer-portal/pull/1187)
 - add liqwid to showcase by ([@thenic95](https://github.com/thenic95)) in [#1184](https://github.com/cardano-foundation/developer-portal/pull/1184)
