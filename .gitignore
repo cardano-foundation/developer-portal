@@ -42,6 +42,7 @@ yarn-error.log*
 /docs/governance/cardano-improvement-proposals/*
 /docs/governance/cardano-problem-statements/*
 /static/img/cip/*
+/static/img/cps/*
 /docs/native-tokens/token-registry/*
 /docs/get-started/cardano-serialization-lib/*
 **/changelog
