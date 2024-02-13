@@ -12,11 +12,25 @@ import {
 import { getDocTag } from "./reusable";
 
 // Fetch markdown files from Github
-async function fetchReadmeContent(folderUrl: string): Promise<string | null> {
+async function fetchReadmeContent(folderUrl: string, folderName: string): Promise<string | null> {
   try {
     const response = await fetch(folderUrl);
     const data = await response.json();
     const readmeFile = data.find((file: any) => file.name === "README.md");
+    const otherFiles = data.filter((file: any) => file.name !== "README.md");
+
+    // Download and save other files
+    for (const file of otherFiles) {
+      const fileResponse = await fetch(file.download_url);
+      const fileBuffer = await fileResponse.buffer();
+      const filePath = path.join("static", "img", "cps", folderName, file.name);
+      
+      // Ensure the directory exists before writing the file
+      const dir = path.dirname(filePath);
+      await fs.promises.mkdir(dir, { recursive: true });
+
+      await fs.promises.writeFile(filePath, fileBuffer);
+    }
 
     if (readmeFile) {
       const readmeResponse = await fetch(readmeFile.download_url);
@@ -26,7 +40,7 @@ async function fetchReadmeContent(folderUrl: string): Promise<string | null> {
       return null;
     }
   } catch (error) {
-    console.error("Error fetching README:", error.message);
+    console.error("Error fetching README and other files:", error.message);
     return null;
   }
 }
@@ -64,9 +78,16 @@ async function updateOrCreateReadmeFile(
       ")."
   );
 
+  // Replace image paths
+  const newContentWithCorrectImagePaths = newContentWithInfo.replace(
+    /!\[.*?\]\(\.\/(.*?)\)/g,
+    `![same text](../../../static/img/cps/${folderName}/$1)`
+  );
+
   const filePath = path.join(cps_target_folder, `${folderName}.md`);
+
   try {
-    await fs.promises.writeFile(filePath, newContentWithInfo);
+    await fs.promises.writeFile(filePath, newContentWithCorrectImagePaths);
     console.log(`Updated ${filePath}`);
   } catch (error) {
     console.error(`Error updating ${filePath}:`, error.message);
@@ -82,10 +103,9 @@ async function main() {
     );
 
     for (const folder of cpsFolders) {
-      const readmeContent = await fetchReadmeContent(folder.url);
+      const readmeContent = await fetchReadmeContent(folder.url, folder.name);
       if (readmeContent) {
-        const folderName = folder.name;
-        await updateOrCreateReadmeFile(folderName, readmeContent);
+        await updateOrCreateReadmeFile(folder.name, readmeContent);
       }
     }
   } catch (error) {
