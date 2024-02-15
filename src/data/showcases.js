@@ -1130,7 +1130,7 @@ export const Showcases = [
   {
     title: "NFTify",
     description:
-      "The leading no-code NFT marketplace solution aims to empower all Web3 businesses to launch an NFT store and trade their NFT assets",
+      "The no-code NFT marketplace helps Web3 businesses launch an NFT store and trade their NFT assets using multiple selling methods",
     preview: require("./showcase/nftify.png"),
     website: "https://nftify.network/",
     source: null,
