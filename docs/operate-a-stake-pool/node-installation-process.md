@@ -151,7 +151,7 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install secp256k1 which is required from `cardano-node` version `1.35.0` onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -164,6 +164,7 @@ git checkout ac83be33
 make
 make check
 sudo make install
+sudo ldconfig
 ```
 
 Now we are ready to download, compile and install `cardano-node` and `cardano-cli`. But first, we have to make sure we are back at the root of our working directory:
@@ -175,7 +176,7 @@ cd $HOME/cardano-src
 Download the `cardano-node` repository:
 
 ```bash
-git clone https://github.com/input-output-hk/cardano-node.git
+git clone https://github.com/IntersectMBO/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
@@ -186,7 +187,7 @@ git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/re
 ```
 
 :::important
-If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/input-output-hk/cardano-node/releases) for any changes.
+If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/IntersectMBO/cardano-node/releases) for any changes.
 :::
 
 ## Configuring the build options
@@ -194,6 +195,7 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
+cabal update
 cabal configure --with-compiler=ghc-8.10.7
 ```
 

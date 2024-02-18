@@ -539,7 +539,7 @@ export const Showcases = [
     title: "Marlowe Playground",
     description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
     preview: require("./builder-tools/marlowe-playground.png"),
-    website: "https://play.marlowe-finance.io",
+    website: "https://play.marlowe.iohk.io",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
     tags: ["favorite", "marlowe", "hosted"],
   },
@@ -709,7 +709,7 @@ export const Showcases = [
     description: "Lucid is a library, which allows you to create Cardano transactions and off-chain code for your Plutus contracts in JavaScript and Node.js.",
     preview: require("./builder-tools/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
-    getstarted: null,
+    getstarted: "https://lucid.spacebudz.io/docs/getting-started/choose-wallet/",
     tags: ["javascript", "sdk", "plutus"]
   },
   {
@@ -743,14 +743,6 @@ export const Showcases = [
     website: "https://github.com/Plutonomicon/plutarch#plutarch",
     getstarted: null,
     tags: ["plutus", "haskell"]
-  },
-  {
-    title: "Tangocrypto",
-    description: "A suite of high availability APIs and developer tools providing fast and reliable access to the Cardano network so you can focus on building and growing your products.",
-    preview: require("./builder-tools/tangocrypto.png"),
-    website: "https://tangocrypto.com",
-    getstarted: "/docs/get-started/tangocrypto",
-    tags: ["http", "json", "hosted"],
   },
   {
     title: "gOuroboros",
@@ -1074,6 +1066,22 @@ export const Showcases = [
     website: "https://github.com/thaddeusdiamond/cardano-nft-vending-machine",
     getstarted: null,
     tags: ["python", "nft" ]
+  },
+  {
+    title: "Yaci DevKit",
+    description: "Create your own local Cardano devnet with ease! It includes an Indexer, minimal Explorer interface, and support for Cardano Client Lib or Lucid JS library's Blockfrost provider.",
+    preview: require("./builder-tools/yaci-devkit.png"),
+    website: "https://github.com/bloxbean/yaci-devkit",
+    getstarted: null,
+    tags: ["cli", "testing"]
+  },
+  {
+    title: "MazzumaGPT",
+    description: "Generate smart contract code in Plutus using AI",
+    preview: require("./builder-tools/mazzumagpt.png"),
+    website: "https://mazzumagpt.com",
+    getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
+    tags: ["plutus"]
   },
 ];
 

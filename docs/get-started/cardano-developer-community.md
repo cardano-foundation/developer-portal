@@ -47,5 +47,8 @@ If you care about well structured, long format discussions, visit the stake pool
 
 ## Developer Surveys
 
-[**Developer Ecosystem Survey**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022)  
+[**Developer Ecosystem Survey 2022**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022)  
 For the first time ever, an annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem. 
+
+[**Developer Ecosystem Survey 2023**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem)  
+The second edition of the annual survey to assess the state of the Cardano developer ecosystem was conducted.

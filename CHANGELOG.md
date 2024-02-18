@@ -1365,3 +1365,205 @@ All of the merged PRs in June
 - weqanhet ([@weqanhet](https://github.com/weqanhet))
 - os11k ([@os11k](https://github.com/os11k))
 - lodl ([@lodl](https://github.com/lodl))
+
+## 2023.31.0 (2023-07-31)
+
+All of the merged PRs in July
+
+#### PRs: 14
+
+- Add Changelog for June by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1099](https://github.com/cardano-foundation/developer-portal/pull/1099)
+- Registering a Pool: remove GitHub & TinyURL by ([@os11k](https://github.com/os11k)) in [#1100](https://github.com/cardano-foundation/developer-portal/pull/1100)
+- Add NFTCDN to Builder Tools by ([@SmaugPool](https://github.com/SmaugPool)) in [#1101](https://github.com/cardano-foundation/developer-portal/pull/1101)
+- Secure Workflow: fix duplications, maintenance editing by ([@rphair](https://github.com/rphair)) in [#1103](https://github.com/cardano-foundation/developer-portal/pull/1103)
+- Add Atlas builder tool by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1041](https://github.com/cardano-foundation/developer-portal/pull/1041)
+- Add NFT Vending Machine to Builder Tools by ([@rphair](https://github.com/rphair)) in [#1094](https://github.com/cardano-foundation/developer-portal/pull/1094)
+- Modify CIP script to fetch multiple files from CIP repo folders  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1106](https://github.com/cardano-foundation/developer-portal/pull/1106)
+- Update wrong weeks in changelog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1105](https://github.com/cardano-foundation/developer-portal/pull/1105)
+- Add Summon Platform to Showcase by ([@thenic95](https://github.com/thenic95)) in [#1108](https://github.com/cardano-foundation/developer-portal/pull/1108)
+- Hardware Requirements: fix anchor for node releases page by ([@katomm](https://github.com/katomm)) in [#1110](https://github.com/cardano-foundation/developer-portal/pull/1110)
+- Allow SPOs to reload topology configuration changes by ([@jadjei](https://github.com/jadjei)) in [#1112](https://github.com/cardano-foundation/developer-portal/pull/1112)
+- Add VESPR Wallet to showcase section by ([@thenic95](https://github.com/thenic95)) in [#1115](https://github.com/cardano-foundation/developer-portal/pull/1115)
+- Proposal to remove Daedalus as favorite by ([@katomm](https://github.com/katomm)) in [#1113](https://github.com/cardano-foundation/developer-portal/pull/1113)
+- Update creating-wallet-faucet.md by ([@katomm](https://github.com/katomm)) in [#1114](https://github.com/cardano-foundation/developer-portal/pull/1114)
+
+#### Contributors: 7
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- os11k ([@os11k](https://github.com/os11k))
+- SmaugPool ([@SmaugPool](https://github.com/SmaugPool))
+- rphair ([@rphair](https://github.com/rphair))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- katomm ([@katomm](https://github.com/katomm))
+- jadjei ([@jadjei](https://github.com/jadjei))
+
+## 2023.35.0 (2023-08-31)
+
+All of the merged PRs in August
+
+#### PRs: 20
+
+- Lace wallet: tag as Open Source & link to repo by ([@rphair](https://github.com/rphair)) in [#1118](https://github.com/cardano-foundation/developer-portal/pull/1118)
+- Update repo links of Adrestia components   by ([@katomm](https://github.com/katomm)) in [#1119](https://github.com/cardano-foundation/developer-portal/pull/1119)
+- Changes on token tools by ([@katomm](https://github.com/katomm)) in [#1120](https://github.com/cardano-foundation/developer-portal/pull/1120)
+- Hardware Requirements update, drop Marketing by ([@rphair](https://github.com/rphair)) in [#1116](https://github.com/cardano-foundation/developer-portal/pull/1116)
+- Fix CIP downloading script by ([@katomm](https://github.com/katomm)) in [#1122](https://github.com/cardano-foundation/developer-portal/pull/1122)
+- Add Interview with DEMU to Dev Blog by ([@thenic95](https://github.com/thenic95)) in [#1123](https://github.com/cardano-foundation/developer-portal/pull/1123)
+- Minor changes in NFT-MAKER Dev Blog by ([@PatrickTobler](https://github.com/PatrickTobler)) in [#1125](https://github.com/cardano-foundation/developer-portal/pull/1125)
+- Add --depth 1 for git clone by ([@katomm](https://github.com/katomm)) in [#1128](https://github.com/cardano-foundation/developer-portal/pull/1128)
+- Add Do It With Lovelace to Showcase by ([@jmagan](https://github.com/jmagan)) in [#1043](https://github.com/cardano-foundation/developer-portal/pull/1043)
+- Add Changelog for July by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1124](https://github.com/cardano-foundation/developer-portal/pull/1124)
+- Add Catalyst F9 Update technical concept video by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1126](https://github.com/cardano-foundation/developer-portal/pull/1126)
+- Add MazzumaGPT to Builder Tools by ([@StarkOsae](https://github.com/StarkOsae)) in [#1111](https://github.com/cardano-foundation/developer-portal/pull/1111)
+- Add Yaci DevKit into builder tools by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1127](https://github.com/cardano-foundation/developer-portal/pull/1127)
+- Adding CIP-25 and CIP-68 References by ([@NicholasMaselli](https://github.com/NicholasMaselli)) in [#1018](https://github.com/cardano-foundation/developer-portal/pull/1018)
+- Update links to Marlowe playground and tutorial by ([@palas](https://github.com/palas)) in [#1131](https://github.com/cardano-foundation/developer-portal/pull/1131)
+- Update image for ([@dotare/cardano-delegation](https://github.com/dotare/cardano-delegation)) by ([@DorienP](https://github.com/DorienP)) in [#1129](https://github.com/cardano-foundation/developer-portal/pull/1129)
+- Number of contributors and prs fix on latest changelog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1130](https://github.com/cardano-foundation/developer-portal/pull/1130)
+- Add w3ride-blog to dev blog by ([@weqanhet](https://github.com/weqanhet)) in [#1132](https://github.com/cardano-foundation/developer-portal/pull/1132)
+- Expand integration overview page by ([@katomm](https://github.com/katomm)) in [#1134](https://github.com/cardano-foundation/developer-portal/pull/1134)
+- Native Assets: Fix testnet IDs by ([@rphair](https://github.com/rphair)) in [#1137](https://github.com/cardano-foundation/developer-portal/pull/1137)
+
+
+#### Contributors: 12
+
+- rphair ([@rphair](https://github.com/rphair))
+- katomm ([@katomm](https://github.com/katomm))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- PatrickTobler ([@PatrickTobler](https://github.com/PatrickTobler))
+- jmagan ([@jmagan](https://github.com/jmagan))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- StarkOsae ([@StarkOsae](https://github.com/StarkOsae))
+- NicholasMaselli ([@NicholasMaselli](https://github.com/NicholasMaselli))
+- palas ([@palas](https://github.com/palas))
+- dotare/cardano-delegation ([@dotare/cardano-delegation](https://github.com/dotare/cardano-delegation))
+- DorienP ([@DorienP](https://github.com/DorienP))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+
+## 2023.39.0 (2023-09-30)
+
+All of the merged PRs in September
+
+#### PRs: 6
+
+- Add Changelog for August 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1138](https://github.com/cardano-foundation/developer-portal/pull/1138)
+- Adjust comment spacing in script folder for comment consistency  by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1145](https://github.com/cardano-foundation/developer-portal/pull/1145)
+- Add adastat.net blog by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1147](https://github.com/cardano-foundation/developer-portal/pull/1147)
+- Add Cardano Problem Statements script by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1144](https://github.com/cardano-foundation/developer-portal/pull/1144)
+- Add Developer Ecosystem 2023 Survey by ([@katomm](https://github.com/katomm)) in [#1151](https://github.com/cardano-foundation/developer-portal/pull/1151)
+- cardano-node install: ldconfig after building libsecp256k by ([@gufmar](https://github.com/gufmar)) in [#1152](https://github.com/cardano-foundation/developer-portal/pull/1152)
+
+
+#### Contributors: 3
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- gufmar ([@gufmar](https://github.com/gufmar))
+
+## 2023.43.0 (2023-10-31)
+
+All of the merged PRs in October
+
+#### PRs: 12
+
+- SPO Overview: remove defunct marketing page by ([@rphair](https://github.com/rphair)) in [#1155](https://github.com/cardano-foundation/developer-portal/pull/1155)
+- SPO Overview: remove pool.vet link by ([@MladenLm](https://github.com/MladenLm)) in [#1156](https://github.com/cardano-foundation/developer-portal/pull/1156)
+- Add Changelog for September by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1153](https://github.com/cardano-foundation/developer-portal/pull/1153)
+- Update Docusaurus to 2.4.3 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1154](https://github.com/cardano-foundation/developer-portal/pull/1154)
+- Add DexHunter to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1159](https://github.com/cardano-foundation/developer-portal/pull/1159)
+- Add Lenfi Developer Blog  by ([@weqanhet](https://github.com/weqanhet)) in [#1163](https://github.com/cardano-foundation/developer-portal/pull/1163)
+- Smart Contracts overview: bit of language cleanup by ([@mcmoodoo](https://github.com/mcmoodoo)) in [#1164](https://github.com/cardano-foundation/developer-portal/pull/1164)
+- Remove Developer Ecosystem 2023 Survey by ([@katomm](https://github.com/katomm)) in [#1165](https://github.com/cardano-foundation/developer-portal/pull/1165)
+- Update 2023-10-16-october.md by ([@katomm](https://github.com/katomm)) in [#1166](https://github.com/cardano-foundation/developer-portal/pull/1166)
+- Add DROPSPOT to Showcase by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1158](https://github.com/cardano-foundation/developer-portal/pull/1158)
+- Aiken get started: Fix broken examples link by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1168](https://github.com/cardano-foundation/developer-portal/pull/1168)
+- Cardano Relay Configuration: fix & clarify instructions by ([@sanskys](https://github.com/sanskys)) in [#1162](https://github.com/cardano-foundation/developer-portal/pull/1162)
+
+#### Contributors: 8
+
+- rphair ([@rphair](https://github.com/rphair))
+- MladenLm ([@MladenLm](https://github.com/MladenLm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- mcmoodoo ([@mcmoodoo](https://github.com/mcmoodoo))
+- katomm ([@katomm](https://github.com/katomm))
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- sanskys ([@sanskys](https://github.com/sanskys))
+
+## 2023.48.0 (2023-11-30)
+
+All of the merged PRs in November
+
+#### PRs: 4
+
+- Smart contracts overview: spelling, grammar, clarity by ([@OlofBlomqvist](https://github.com/OlofBlomqvist)) in [#1169](https://github.com/cardano-foundation/developer-portal/pull/1169)
+- Add Changelog for October 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1170](https://github.com/cardano-foundation/developer-portal/pull/1170)
+- Add getting started link to Lucid by ([@katomm](https://github.com/katomm)) in [#1172](https://github.com/cardano-foundation/developer-portal/pull/1172)
+- Add developer blog mainstreet by ([@weqanhet](https://github.com/weqanhet)) in [#1173](https://github.com/cardano-foundation/developer-portal/pull/1173)
+
+#### Contributors: 4
+
+- OlofBlomqvist ([@OlofBlomqvist](https://github.com/OlofBlomqvist))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+
+## 2023.52.0 (2023-12-31)
+
+All of the merged PRs in December
+
+
+#### PRs: 7
+
+
+- Add Changelog for November 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1175](https://github.com/cardano-foundation/developer-portal/pull/1175)
+- Add developer survey 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1174](https://github.com/cardano-foundation/developer-portal/pull/1174)
+- Style Guide: remove Hydra from Ouroboros flavors by ([@katomm](https://github.com/katomm)) in [#1176](https://github.com/cardano-foundation/developer-portal/pull/1176)
+- Cardano Node Installation process: add cabal update by ([@schmidko](https://github.com/schmidko)) in [#1150](https://github.com/cardano-foundation/developer-portal/pull/1150)
+- Frankenwallet: Edit for grammar, formatting + correctness by ([@rphair](https://github.com/rphair)) in [#1178](https://github.com/cardano-foundation/developer-portal/pull/1178)
+- CONTRIBUTING.md: Tiny grammar mistake by ([@ubani](https://github.com/ubani)) in [#1180](https://github.com/cardano-foundation/developer-portal/pull/1180)
+- remove inactive showcase projects and update links for others by ([@thenic95](https://github.com/thenic95)) in [#1183](https://github.com/cardano-foundation/developer-portal/pull/1183)
+
+#### Contributors: 6
+
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- schmidko ([@schmidko](https://github.com/schmidko))
+- rphair ([@rphair](https://github.com/rphair))
+- ubani ([@ubani](https://github.com/ubani))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+
+## 2024.04.0 (2024-01-31)
+
+All of the merged PRs in January
+
+
+#### PRs: 12
+
+- SPO node installation: Update links moved to IntersectMBO by ([@ubani](https://github.com/ubani)) in [#1187](https://github.com/cardano-foundation/developer-portal/pull/1187)
+- add liqwid to showcase by ([@thenic95](https://github.com/thenic95)) in [#1184](https://github.com/cardano-foundation/developer-portal/pull/1184)
+- Include on-chain governance section, referencing CIP-1694 on the Governance Overview Page by ([@thenic95](https://github.com/thenic95)) in [#1186](https://github.com/cardano-foundation/developer-portal/pull/1186)
+- Tangocrypto: remove from Get Started by ([@mmahut](https://github.com/mmahut)) in [#1190](https://github.com/cardano-foundation/developer-portal/pull/1190)
+- Add changelog for December 2023 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1191](https://github.com/cardano-foundation/developer-portal/pull/1191)
+- Update EMURGO url to careers page by ([@dmpapageo](https://github.com/dmpapageo)) in [#1193](https://github.com/cardano-foundation/developer-portal/pull/1193)
+- Vespr Blog added by ([@weqanhet](https://github.com/weqanhet)) in [#1192](https://github.com/cardano-foundation/developer-portal/pull/1192)
+- Updated list of validator hashes for Marlowe. by ([@bwbush](https://github.com/bwbush)) in [#1195](https://github.com/cardano-foundation/developer-portal/pull/1195)
+- Air gap: Fix grammar problem from last edit by ([@rphair](https://github.com/rphair)) in [#1194](https://github.com/cardano-foundation/developer-portal/pull/1194)
+- Marlowe page: update & curate links by ([@joseph-fajen](https://github.com/joseph-fajen)) in [#1201](https://github.com/cardano-foundation/developer-portal/pull/1201)
+- Add proof of concept hoodies explainer by ([@katomm](https://github.com/katomm)) in [#1202](https://github.com/cardano-foundation/developer-portal/pull/1202)
+- Add image descriptions for the relay and block producer network images by ([@sempruijs](https://github.com/sempruijs)) in [#1200](https://github.com/cardano-foundation/developer-portal/pull/1200)
+
+
+#### Contributors: 11
+
+- ubani ([@ubani](https://github.com/ubani))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- mmahut ([@mmahut](https://github.com/mmahut))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- dmpapageo ([@dmpapageo](https://github.com/dmpapageo))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- bwbush ([@bwbush](https://github.com/bwbush))
+- rphair ([@rphair](https://github.com/rphair))
+- joseph-fajen ([@joseph-fajen](https://github.com/joseph-fajen))
+- katomm ([@katomm](https://github.com/katomm))
+- sempruijs ([@sempruijs](https://github.com/sempruijs))
