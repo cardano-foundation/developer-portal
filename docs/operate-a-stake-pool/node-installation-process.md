@@ -182,7 +182,7 @@ git fetch --all --recurse-submodules --tags
 Switch the repository to the latest tagged commit:
 
 ```bash
-git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
+git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 :::important
