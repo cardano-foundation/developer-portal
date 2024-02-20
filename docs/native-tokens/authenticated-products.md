@@ -27,7 +27,7 @@ The process is depicted in here:
 
 :::tip
 
-The process of flashing the NFC chips, which model we are using and some tools will be available here soon.
+The process of flashing the NFC chips, which model we are using and some tools are available here: [Cardano Store POC Hoodies](https://github.com/cardano-foundation/cardano-store-poc-hoodies). An NFC reader/writer is required to write information on the chips.
 
 :::
 
