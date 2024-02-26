@@ -26,8 +26,8 @@ Create a new payment key pair: `payment.skey` & `payment.vkey`
 
 ```
 cardano-cli address key-gen \
-    --verification-key-file ./keys/payment.vkey \
-    --signing-key-file ./keys/payment.skey
+    --verification-key-file payment.vkey \
+    --signing-key-file payment.skey
 ```
 
 - `cardano-cli address key-gen`: generates a payment key-pair.
