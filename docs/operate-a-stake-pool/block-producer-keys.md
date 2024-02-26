@@ -73,7 +73,7 @@ Find `kesPeriod` by dividing the slot tip number by `slotsPerKESPeriod`.
 ```
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
-startKesPeriod= ${kesPeriod}
+startKesPeriod=${kesPeriod}
 echo startKesPeriod: ${startKesPeriod}
 ```
 
