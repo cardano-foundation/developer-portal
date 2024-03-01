@@ -224,7 +224,7 @@ transaction.TransactionBody.TransactionOutputs.Last().Value.Coin -= fee;
 
 Building the Body and Witnesses are the same as the Simple Transaction.
 
-> If you would like to read more about Metadata, please read this article on [Tx Metadata](https://github.com/input-output-hk/cardano-node/blob/master/doc/reference/tx-metadata.md)
+> If you would like to read more about Metadata, please read this article on [Tx Metadata](https://github.com/input-output-hk/cardano-node-wiki/wiki/tx-metadata)
 
 ```cs
 // Build Metadata and Add to Transaction
@@ -242,7 +242,7 @@ var transaction = TransactionBuilder.Create
 
 Before we can mint a token, we need to create a policy. 
 
-> If you would like to read more about policy scripts, please read this article on [Simple Scripts](https://github.com/input-output-hk/cardano-node/blob/master/doc/reference/simple-scripts.md).
+> If you would like to read more about policy scripts, please read this article on [Simple Scripts](https://github.com/input-output-hk/cardano-node-wiki/wiki/simple-scripts).
 
 ```cs
 // Generate a Key Pair for your new Policy
