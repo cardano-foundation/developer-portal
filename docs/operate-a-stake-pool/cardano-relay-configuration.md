@@ -37,6 +37,7 @@ curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
+curl -O -J https://book.world.dev.cardano.org/environments/preprod/conway-genesis.json
 ```
 
 :::note
@@ -94,13 +95,17 @@ To run an instance of Cardano Node, we create a bash script and configure the op
 
 First, switch to the directory containing configuration files
 ```
-cd cd $HOME/cardano-testnet
+cd $HOME/cardano-testnet
 ```
 
 Now create the start script startTestNode.sh
 ```
 nano startTestNode.sh
 ```
+
+:::note
+Replace <$HOME> with local values of the `$HOME` environment variable on each mahine. To find those values, run `echo $HOME`.
+:::
 
 copy the following in the file
 ```
@@ -111,13 +116,13 @@ PORT=6000
 # 0.0.0.0 listens on all local IP addresses for the computer
 HOSTADDR=0.0.0.0
 # Set a variable to indicate the file path to your topology file
-TOPOLOGY=$HOME/cardano-testnet/topology.json
+TOPOLOGY=<$HOME>/cardano-testnet/topology.json
 # Set a variable to indicate the folder where Cardano Node stores blockchain data
-DB_PATH=$HOME/cardano-testnet/db
+DB_PATH=<$HOME>/cardano-testnet/db
 # Set a variable to indicate the path to the Cardano Node socket for Inter-process communication (IPC)
-SOCKET_PATH=$HOME/cardano-testnet/db/socket
+SOCKET_PATH=<$HOME>/cardano-testnet/db/socket
 # Set a variable to indicate the file path to your main Cardano Node configuration file
-CONFIG=$HOME/cardano-testnet/config.json
+CONFIG=<$HOME>/cardano-testnet/config.json
 #
 # Run Cardano Node using the options that you set using variables
 #
