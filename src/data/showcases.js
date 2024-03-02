@@ -1133,7 +1133,7 @@ export const Showcases = [
       "decon is a decentralized social forum.",
     preview: require("./showcase/decon.png"),
     website: "https://decon.app/",
-    source: null,
+    source: "https://github.com/alucao/decon",
     tags: ["opensource", "metadata"],
   },
 ];
