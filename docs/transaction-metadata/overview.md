@@ -36,11 +36,11 @@ The Cardano Foundation's integrations team hosted a session on transaction metad
 
 Metadata can be expressed as a `JSON` object with some restrictions:
 
-All top-level keys must be **integers** between 0 and 2^64 - 1. Each metadata value is tagged with its type. **Strings** must be at most 64 bytes when UTF-8 is encoded. **Bytestrings** are hex-encoded, with a maximum length of 64 bytes. Metadata aren't stored as `JSON` on the Cardano blockchain but are instead stored using a compact binary encoding (**CBOR**).
+All top-level keys must be **integers** between 0 and 2^63 - 1. Each metadata value is tagged with its type. **Strings** must be at most 64 bytes when UTF-8 is encoded. **Bytestrings** are hex-encoded, with a maximum length of 64 bytes. Metadata aren't stored as `JSON` on the Cardano blockchain but are instead stored using a compact binary encoding (**CBOR**).
 
 The binary encoding of metadata values supports three simple types:
 
-- Integers in the range `-(2^64 - 1) to 2^64 - 1`
+- Integers in the range `-(2^63) to 2^63 - 1`
 - Strings (`UTF-8` encoded)
 - Bytestrings
 - And two compound types:
