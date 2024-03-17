@@ -1101,6 +1101,15 @@ export const Showcases = [
     tags: ["wallet", "nftsupport"],
   },
   {
+    title: "Cardano Account Pandas Dumper",
+    description:
+      "Bridges Cardano transaction history with the Pandas data analysis framework, letting users create a report spreadsheet for their wallet's transaction history, including all native assets and many DeFi contracts.",
+    preview: require("./showcase/cardano_account_pandas_dumper.png"),
+    website: "https://github.com/pixelsoup42/cardano_account_pandas_dumper",
+    source: "https://github.com/pixelsoup42/cardano_account_pandas_dumper",
+    tags: ["analytics", "metadata", "nftsupport", "opensource"],
+  },
+  {
     title: "DROPSPOT",
     description:
       "Premium NFT-as-a-Service, project advisory & design, minting services, white label services, claim services, loyalty programs, collectible design & development, activations and artist collaborations.",
