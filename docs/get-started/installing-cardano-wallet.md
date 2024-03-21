@@ -14,7 +14,7 @@ In this guide, we will show you how to compile and install `cardano-wallet` into
 
 :::note
 
-If you want to avoid compiling the binaries yourself, You can download the latest pre-built binaries from the [`cardano-wallet`](https://github.com/cardano-foundation/cardano-wallet) github repository.
+If you want to avoid compiling the binaries yourself, you can download the latest pre-built binaries from the GitHub repository:  [`cardano-wallet` Releases](https://github.com/cardano-foundation/cardano-wallet/releases)
 
 - [Linux](https://github.com/cardano-foundation/cardano-wallet/releases)
 - [MacOS](https://github.com/cardano-foundation/cardano-wallet/releases)
