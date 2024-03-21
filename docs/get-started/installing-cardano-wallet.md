@@ -16,9 +16,6 @@ In this guide, we will show you how to compile and install `cardano-wallet` into
 
 If you want to avoid compiling the binaries yourself, you can download the latest pre-built binaries from the GitHub repository:  [`cardano-wallet` Releases](https://github.com/cardano-foundation/cardano-wallet/releases)
 
-- [Linux](https://github.com/cardano-foundation/cardano-wallet/releases)
-- [MacOS](https://github.com/cardano-foundation/cardano-wallet/releases)
-- [Windows](https://github.com/cardano-foundation/cardano-wallet/releases)
   
 This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
 
