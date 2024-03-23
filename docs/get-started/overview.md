@@ -1,5 +1,5 @@
 ---
-id: overview
+
 slug: /get-started/
 title: Get Started
 sidebar_label: Overview
