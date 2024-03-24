@@ -1127,6 +1127,15 @@ export const Showcases = [
     source: null,
     tags: ["lending", "token", "marketplace", "nftsupport"],
   },
+  {
+    title: "decon",
+    description:
+      "decon is a decentralized social forum.",
+    preview: require("./showcase/decon.png"),
+    website: "https://decon.app/",
+    source: "https://github.com/alucao/decon",
+    tags: ["opensource", "metadata"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
