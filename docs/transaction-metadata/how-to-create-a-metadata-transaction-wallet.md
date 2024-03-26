@@ -3,7 +3,7 @@ id: how-to-create-a-metadata-transaction-wallet
 title: How to create a metadata transaction using cardano-wallet
 sidebar_label: Create a metadata transaction (Wallet)
 description: How to create a metadata transaction using `cardano-wallet`
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 :::note
 This guide assumes that you have a basic understanding of `cardano-wallet` and `cardano-cli`, how to use it and that you have installed it into your system. Otherwise, we recommend reading [Installing cardano-node](../get-started/installing-cardano-node), [Running cardano-node](../get-started/running-cardano), and [Exploring Cardano Wallets](../integrate-cardano/creating-wallet-faucet) guides first.
 
-This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to the `testnet` network.
+This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to one of the `testnet` networks.
 :::
 
 ## Overview 

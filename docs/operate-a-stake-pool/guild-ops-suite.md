@@ -3,7 +3,7 @@ id: guild-ops-suite
 title: Get Started with Guild Operators Tools
 sidebar_label: Guild Operators Suite
 description: Get Started with Guild Operators Tools
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 ## Guild Operators Suite
@@ -28,7 +28,7 @@ Topology Updater was built as a workaround to allow stake pool relays to auto-di
 
 #### Guild Network and Support for other networks
 
-Guild Network is a brief (30-minute epoch) network that functions similarly to testnet but is entirely governed by the community. It's excellent for experimenting with things in the sandbox, as well as testing out viable features before releasing them to other networks. This network is already supported by all of the tools in the repo, including mainnet, testnet, and staging.  
+Guild Network is a brief (30-minute epoch) network that functions similarly to the Cardano testnets but is entirely governed by the community. It's excellent for experimenting with things in the sandbox, as well as testing out viable features before releasing them to other networks. This network is already supported by all of the tools in the repo, including Mainnet, testnets, and staging.  
 
 #### Others..
 

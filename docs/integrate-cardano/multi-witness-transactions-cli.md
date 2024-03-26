@@ -3,7 +3,7 @@ id: multi-witness-transactions-cli
 title: Multi-witness transactions
 sidebar_label: Multi-witness transactions
 description: This article explains how you can create multi witness transactions using the cardano-cli.
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -14,13 +14,13 @@ import TabItem from '@theme/TabItem';
 
 This guide assumes that you have completed the [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
 
-This guide also assumes that you have `cardano-node` running in the background and connected to the `testnet` network.
+This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](docs/get-started/testnets-and-devnets.md).
 
 :::
 
 ### Recap
 
-Let's recap what we did so far. Our goal in the [previous guide](/docs/integrate-cardano/creating-wallet-faucet) was to draw `1000 tADA` from the testnet faucet and send `250 tAda` from **payment1** to **payment2**.
+Let's recap what we did so far. Our goal in the [previous guide](/docs/integrate-cardano/creating-wallet-faucet) was to draw `1000 tADA` from the Testnet Faucet and send `250 tAda` from **payment1** to **payment2**.
 
 Make sure we are in the correct folder.
 
@@ -215,7 +215,7 @@ cardano-cli address key-gen \
 --signing-key-file $HOME/cardano/keys/store-owner.skey
 ```
 
-Then generate a **wallet address** for the `testnet` network:
+Then generate a **wallet address** for the testnet network:
 
 ```bash
 cardano-cli address build \
@@ -330,7 +330,7 @@ cardano-cli query utxo \
 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f     0        999646250 lovelace
 ```
 
-Verify [258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f](https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f) on the cardano testnet explorer
+Verify [258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f](https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f) on the Cardano Testnet Explorer.
 
 :::tip Success!
 

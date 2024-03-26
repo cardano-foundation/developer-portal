@@ -3,10 +3,17 @@ id: technical-concepts
 title: Get started with the technical concepts
 sidebar_label: Technical Concepts
 description: Get started with the technical concepts behind Cardano.
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-technical-concepts.png
 --- 
 
 To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts such as [UTxO](#unspent-transaction-output-utxo), [transactions](#transactions), [addresses](#addresses), [key derivation](#key-derivation), and [networking](#networking).
+
+
+##  Introduction to Cardano: the big picture
+Learn fundamental terms like blockchain, consensus, decentralization delegation and incentives. Understand the big picture of Cardano and why stake pools are so important.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br/><br/>
+
 ## Unspent Transaction Output (UTxO)
 UTxO or Unspent Transaction Outputs are how ada moves around the Cardano network. Learn how they work in the Cardano ledger.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/e4YZkgi4V3U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
@@ -40,7 +47,7 @@ We answer your questions about how nodes on Cardano talk to each other. Learn ab
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/pyhYtLgn1r0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Cardano Improvement Proposals (CIP)
-The [Cardano Improvement Proposal](../governance/cardano-improvement-proposals/CIP-0001) (CIP) process allows the community to interact with the Cardano Foundation to improve the Cardano ecosystem in a formal way.  
+The [Cardano Improvement Proposal](/docs/governance/cardano-improvement-proposals/CIP-0001) (CIP) process allows the community to interact with the Cardano Foundation to improve the Cardano ecosystem in a formal way.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/z9wz_WJGGiQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Slot Lottery
@@ -116,5 +123,30 @@ Learn how to take blockchain snapshots for Governance voting purposes.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/NI3_VeLwyxc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
  ##  Djed Stablecoin 
-Learn a little bit about the Algorithmic stablecoin Djed coming to Cardano
+Learn a little bit about the Algorithmic stablecoin Djed coming to Cardano.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/dfsy0fib3tM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Genesis Key Delegation
+Learn about how Genesis Keys work on cardano and how they are delegated.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/DF3dDXHSuv8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Music NFTs
+Learn and dive into CIP-60 which is the Music NFT metadata standard on Cardano.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/EolfBVq9y3A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Pointer Addresses
+Learn and dive into CPS-0002 which focuses on Pointer Addresses.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/XKgmP1r_GSA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Kogmios
+Learn about Kogmios, a Kotlin library for communicating with Ogmios.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/Q_LrKUVo6LU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Aiken
+Learn about Aiken, a bespoke smart contract language for Cardano.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/9wbQ33uzwsc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+ ##  Voltaire Governance
+Learn about the upcoming CIP-1694 and how voting and governance might work in the Voltaire era.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/KhxPlWh8gFg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+

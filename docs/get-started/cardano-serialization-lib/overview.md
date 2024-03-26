@@ -4,7 +4,7 @@ sidebar_position: 1
 title: Get Started with Cardano Serialization Lib
 sidebar_label: Overview
 description: Get Started with Cardano Serialization Lib
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-serialization-lib.png
 --- 
  
 This is a library for serialization & deserialization of data structures

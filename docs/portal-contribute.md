@@ -3,7 +3,7 @@ id: portal-contribute
 title: How to contribute to the developer portal
 sidebar_label: How to contribute
 description: How to contribute to the Cardano developer portal.
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
 
 We wanted to build a developer portal as open and inclusive as Cardano. A portal that is in the hands of the Cardano community and can be constantly evolved by it.
@@ -12,6 +12,15 @@ For this to be successful, the portal relies on your contributions, and the fact
 
 If you want to install the portal on your local machine, you can [jump directly to the installation instructions.](#installation)
 
+## Why should I contribute?
+**Build your reputation:**  Contributions to the developer portal will give your GitHub name and profile higher visibility as more and more people come across your work online. As visibility increases, so too will the reputation of your name and brand. 
+
+**Build your confidence:** Creating tutorials and showing fellow community members how to create will not only elevate your knowledge of your own skills and processes, but will also bestow you with greater confidence in your abilities as you interact with others.
+
+As an added bonus, since everything is public, people typically pay greater attention to how well something is written or programmed. This will also afford you with an invaluable set of eyes on your contributions that will serve as a crucial peer-reviewed tool to catch errors and refine your work.
+
+**Build your resume:** Each contribution you make acts as a precious notch on your belt towards career development or job searches within the Cardano ecosystem. It is also a way for people to find examples of your work and verify your abilities.
+By contributing to open source projects, you will not only gain a lot of valuable experience, but if your profile (or brand) reaches a certain level of attention and recognition, you are also more likely to get professional opportunities further down the line.
 
 ## I got the spirit. What can I do to contribute?
 
@@ -37,12 +46,34 @@ If you think something is wrong or something fundamental should change, discussi
 * [Issues in the GitHub Repo](https://github.com/cardano-foundation/developer-portal/issues) 
 * [Discussions in the GitHub Repo](https://github.com/cardano-foundation/developer-portal/discussions)
 
-### Add projects to showcase or builder tools
-Help to add good projects or builder tools. Please note the different guidelines for [adding showcases](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/showcases.js) or [builder tools](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/builder-tools.js).
+### Add a project to showcase 
+Help to add good projects to the [showcase section](http://developers.cardano.org/showcase/). Please note the guidelines for adding new projects:
+* It must be built on Cardano and have a real use case. For example, a forum where people can talk about Cardano is great, but not for this showcase section.
+* It has to run on Cardano mainnet.
+* It has to have a running product. (no presale, no protected pages, no coming soon messages)
+* It has to have enough community reputation.
+* It has to provide a unique value distinct from existing showcase items. 
+* It has to have a stable domain name. (a random Netlify/Vercel domain is not allowed, no URL shortener, no app store links, or similar)
+* The GitHub account that adds the project must not be new. 
+* The GitHub account must have a history/or already be known in the Cardano community.
+* Describe what makes your project special, avoid phrases like "the first this and that". Granular details like which project was first is tribal attribute known to cause rift and conflicts.
+* Please refrain from adding NFT projects unless they are immensely different from what is already listed in terms of utility. We can't list hundreds of NFT projects. For details please follow or take part in the discussion [here](https://github.com/cardano-foundation/developer-portal/discussions/243). (TL;DR: we are adding winners of the [CNFT Awards](https://www.cnft-awards.io/))
+* If you add a project with a main component of NFTs, please select "nftproject" as tag. (not "nftsupport")
 
 Mainly the project showcase should be a place where someone new to the ecosystem can come to see what can be done. For example we agreed that projects have to have a running product today on Cardano mainnet, no promises, no pre-sales, no coming soon pages. We also don't [aim to map out a future ecosystem.](https://developers.cardano.org/showcase?tags=ecosystem)
 
-Adding projects or builder tools will require [creating a pull request.](#create-pull-requests)
+Adding projects to the [showcase section](http://developers.cardano.org/showcase/) will require [creating a pull request](#create-pull-requests).
+
+### Add tools to builder tools
+Help to add useful tools to the [builder tools section](http://developers.cardano.org/tools/). Please note the guidelines for adding new builder tools:
+* It is an actual builder tool that adds value to Cardano developers.
+* It has a stable domain name (a random for example, Netlify/Vercel domain is not allowed)
+* The GitHub account that adds the builder tool must not be new.
+* The GitHub account must have a history/or already be known in the Cardano community.
+
+A builder tool is a software application or platform that enables users to create, modify, and deploy software applications, or other digital products on Cardano.
+
+Adding tools to the [builder tools section](http://developers.cardano.org/tools/) will require [creating a pull request](#create-pull-requests).
 
 ### Create/improve documentation
 Documentation can constantly be improved, and there are gaps in the developer portal. In particular, the stake pool operator section needs a lot of work. [To create and improve documentation, you should install the portal on your local machine.](#installation)
@@ -121,6 +152,12 @@ developer-portal
 │   ├── 2021-01-07-january.md
 │   ├── 2021-02-03-february.md
 │   └── *.md
+├── changelog
+│   └── source
+│       ├── 2021.8.0.md
+│       ├── 2021.12.0.md
+│       ├── 2021.16.0.md
+│       └── *.md
 ├── docs
 │   ├── fund-your-project
 │   ├── get-started
@@ -142,6 +179,11 @@ developer-portal
 │       ├── dotnet
 │       ├── js
 |       └── python
+├── scripts
+│   ├── cip.ts
+│   ├── rust-library.ts
+│   ├── token-registry.ts
+│   └── *.md
 ├── src
 │   ├── css
 │   │   └── custom.css
@@ -167,8 +209,10 @@ developer-portal
 ### Project structure rundown
 
 - `/blog/` - Contains the blog Markdown files for the developer spotlight.
+- `/changelog/source/` - Contains the changelog data split by months into Markdown files. 
 - `/docs/` - Contains the Markdown files for the docs. Customize the order of the docs sidebar in `sidebars.js`.
 - `/examples/` - Contains example projects for the Markdown files in the docs. *The structure is not final and will likely change in the future*
+- `/scripts/` - Contains scripts to fetch auto generated content like CIPs, Rust Library, Token Registry.
 - `/src/` - Non-documentation files like pages or custom React components. You don't have to strictly put your non-documentation files in here, but putting them under a centralized directory makes it easier to specify in case you need to do some sort of linting/processing.
   - `/src/data/builder-tools` - Screenshots for the builder tools section.
   - `/src/data/builder-tools.js` - Definition file for the builder tools section.
@@ -179,3 +223,52 @@ developer-portal
 - `/docusaurus.config.js` - A config file containing the site configuration.
 - `/package.json` - A Docusaurus website is a React app. You can install and use any npm packages you like in them.
 - `/sidebar.js` - Used by the documentation to specify the order of documents in the sidebar.
+
+## Known problems that may arise
+We list here problems you may run into when running the developer portal locally.
+
+### Minimum Node.js version not met 
+**Problem:** `yarn start` throws the error `[ERROR] Minimum Node.js version not met :(`.  
+**Solution:** use the node version listed below [requirements](#requirements). If you have different node versions installed for different projects, `nvm` is a neat tool to deal with it. You can switch versions with for example `nvm use 16`.
+
+### Sidebars file at "developer-portal/sidebars.js" failed to be loaded
+**Problem:** `yarn start` throws the error `[ERROR] Sidebars file at "developer-portal/sidebars.js" failed to be loaded.`. 
+
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by `sidebars.js`.
+
+### Sidebar category Token Registry has neither any subitem nor a link
+**Problem:** `yarn start` throws the errow `[ERROR] Error: Sidebar category Token Registry has neither any subitem nor a link. This makes this item not able to link to anything.`.  
+
+**Solution:** you need to run at least once `yarn build` as this pulls missing files into your folder, which is then referenced by `sidebars.js`.
+
+## Other questions
+Various other questions and answers.
+
+### Anything I can do to make sure my pull request will not break on the staging/production server?
+Yes, please always do a `yarn build` before submitting a pull request. It will find many more issues than `yarn start`.
+
+### Is there any style guide? Do we have editorial guidelines?
+Yes, both still work in progress but please see [style guide](portal-style-guide.md) and [editorial guidelines](portal-style-guide.md#editorial-style-guide).
+
+### Should I commit the `yarn.lock` file?
+No, please do not commit your `yarn.lock` file: this represents a software baseline and should be updated only at regular intervals by site maintainers.
+
+### I committed `yarn.lock` to my PR branch: what do I do?
+
+Assuming:
+- `origin` refers to your local fork
+- `upstream` refers to the `cardano-foundation` repository
+
+First, do _one_ of these in your the working root directory of your fork (to restore an unmodified `yarn.lock`):
+- ... from your working fork's `staging` branch (if you've created your PR branch from there):
+  - `git checkout staging -- yarn.lock`
+- ... from the `staging` branch of your fork itself:
+  - `git checkout origin/staging -- yarn.lock`
+- ... from the official repository:
+  - `git checkout upstream/staging -- yarn.lock`
+
+Then commit to reverse the changes you've made.  For example:
+- `git commit -m 'reverting to unmodified yarn.lock'`
+
+The same technique can be used to revert modifications to other portal files.  For more help, see the popular thread [Remove a modified file from pull request](https://stackoverflow.com/questions/39459467/remove-a-modified-file-from-pull-request).
+

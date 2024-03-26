@@ -3,22 +3,20 @@ id: installing-cardano-node
 title: Installing cardano-node and cardano-cli from source
 sidebar_label: Installing cardano-node
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
-image: ../img/og-developer-portal.png
---- 
-import HydraBuildList from '@site/src/components/docs/HydraBuildList';
+image: /img/og/og-getstarted-installing-cardano-node.png
+---
+:::important
 
+This document's current version is relevant for `cardano-node` release version [1.35.7](https://github.com/input-output-hk/cardano-node/releases/tag/1.35.7) (Apr-2023)
+
+:::
 ### Overview
 
 This guide will show you how to compile and install the `cardano-node` and `cardano-cli` into your operating system of choice, directly from the source-code. It will enable you to interact with the **Cardano** blockchain, including but not limited to sending/receiving **transactions**, creating **NFTs**, posting transaction **metadata** into the blockchain, minting/burning **native tokens**, creating a **stake pool**, executing **smart contracts**, and so much more!
 
 :::note
-If you want to avoid compiling the binaries yourself, you can download the latest versions of `cardano-node` and `cardano-cli` from the links below.
+If you want to avoid compiling the binaries yourself, you can [download the latest Linux, Mac, Windows versions](https://github.com/input-output-hk/cardano-node/releases/latest) of `cardano-node` and `cardano-cli` from the official IOHK release page.
 
-<HydraBuildList
-    latest="16159682"
-    linux="16338142"
-    macos="16338141"
-    win64="16338127"/>
 
 The components can be built and run on **Windows** and **MacOS**, but we recommend that stake pool operators use **Linux** in production to take advantage of the associated performance advantages.
 :::
@@ -28,11 +26,11 @@ The components can be built and run on **Windows** and **MacOS**, but we recomme
 To set up the components, you will need:
 
 * **Windows**, **MacOS**, or **Linux** for your operating system
-* An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)  
-* **16GB** of RAM and at least **75GB** of free disk space
+* An Intel or AMD x86 processor with **two or more cores, at 1.6GHz or faster** (2GHz or faster for a stake pool or relay)
+* **24GB** of RAM and at least **150GB** of free disk space (250GB recommended for future growth)
 
 :::note
-If intending to connect to mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
+If intending to connect to Mainnet instance, the requirements for RAM and storage would increase beyond baselines above.
 :::
 
 ### Choose your Platform
@@ -44,7 +42,7 @@ If intending to connect to mainnet instance, the requirements for RAM and storag
 
 ## Linux
 
-In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **Linux-based** operating system. 
+In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **Linux-based** operating system.
 
 #### Installing Operating System dependencies
 
@@ -100,13 +98,13 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 `ghcup` will try to detect your shell and ask you to add it to the environment variables. Please restart your shell/terminal after installing `ghcup`
 :::
 
-You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
+You can check if `ghcup` has been installed correctly by typing `ghcup --version` into the terminal. You should see something similar to the following:
 
 ```
-The GHCup Haskell installer, version v0.1.17.8
+The GHCup Haskell installer, version 0.1.19.2
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
 ghcup install ghc 8.10.7
@@ -123,22 +121,22 @@ ghcup set cabal 3.6.2.0
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
-Check `ghc` version: 
+Check `ghc` version:
 ```bash
 ghc --version
 ```
 
-You should see something like this: 
+You should see something like this:
 ```
 The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
-Check `cabal` version: 
+Check `cabal` version:
 ```bash
 cabal --version
 ```
 
-You should see something like this: 
+You should see something like this:
 
 ```
 cabal-install version 3.6.2.0
@@ -178,7 +176,7 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install Secp256k1 which is required from 1.35.0 cardano-node version onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -199,14 +197,14 @@ Now we are ready to download, compile and install `cardano-node` and `cardano-cl
 cd $HOME/cardano-src
 ```
 
-Download the `cardano-node` repository: 
+Download the `cardano-node` repository:
 
 ```bash
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
-Switch the repository to the latest tagged commit: 
+Switch the repository to the latest tagged commit:
 
 ```bash
 git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
@@ -224,6 +222,13 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
+:::note
+For some installations you might encounter the following warning:<br />
+`Warning: The package list for 'cardano-haskell-packages' does not exist. Run 'cabal update' to download it.`
+
+Running `cabal update` will fix this problem, as well as other problems resulting from changes to the package list... so it is generally recommended for each installation even if you don't get this error.
+:::
+
 If you are running non x86/x64 platform (eg. ARM) please install and configure LLVM with:
 ```bash
 sudo apt install llvm-9
@@ -239,7 +244,8 @@ sudo ln -s /usr/bin/clang-9 /usr/bin/clang
 We can now build the `Haskell-based` `cardano-node` to produce executable binaries.
 
 ```bash
-cabal build cardano-node cardano-cli
+cabal update
+cabal build all
 ```
 
 Install the newly built node and CLI commands to the $HOME/.local/bin directory:
@@ -270,7 +276,7 @@ Next, we will talk about how to [run cardano-node](running-cardano.md).
 
 ## MacOS
 
-In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **MacOS-based** operating system. 
+In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **MacOS-based** operating system.
 
 #### Installing Operating System dependencies
 
@@ -282,7 +288,7 @@ To download the source code and build it, you need the following packages and to
 
 #### Installing Homebrew packages
 
-For the `cardano-node` and `cardano-cli` components to compile properly, we will need to install some libraries via `brew`: 
+For the `cardano-node` and `cardano-cli` components to compile properly, we will need to install some libraries via `brew`:
 
 ```bash
 brew install jq
@@ -290,12 +296,13 @@ brew install libtool
 brew install autoconf
 brew install automake
 brew install pkg-config
+brew install openssl
 ```
 
 #### You will need to install llvm in case you are using M1
 
 ```
-brew install llvm
+brew install llvm@13
 ```
 
 #### Installing GHC and Cabal
@@ -323,13 +330,13 @@ Once complete, you should have `ghc` and `cabal` installed to your system.
 `ghcup` will try to detect your shell and will ask you to add it to the environment variables. Please restart your shell/terminal after installing `ghcup`
 :::
 
-You can check if `ghcup` has been installed properly by typing `ghcup --version` into the terminal. You should see something similar to the following: 
+You can check if `ghcup` has been installed properly by typing `ghcup --version` into the terminal. You should see something similar to the following:
 
 ```
 The GHCup Haskell installer, version v0.1.17.4
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version. 
+`ghcup` will install the latest stable version of `ghc`. However, as of the time writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
 ghcup install ghc 8.10.7
@@ -345,22 +352,22 @@ ghcup set cabal 3.6.2.0
 
 Finally, we check if we have the correct `ghc` and `cabal` versions installed.
 
-Check `ghc` version: 
+Check `ghc` version:
 ```bash
 ghc --version
 ```
 
-You should see something like this: 
+You should see something like this:
 ```
 The Glorious Glasgow Haskell Compilation System, version 8.10.7
 ```
 
-Check `cabal` version: 
+Check `cabal` version:
 ```bash
 cabal --version
 ```
 
-You should see something like this: 
+You should see something like this:
 
 ```
 cabal-install version 3.6.2.0
@@ -398,10 +405,10 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
-If you installed llvm for M1, then you will need to add this too:
+If you installed llvm for M1, then you will need to add this too, assuming that your exact llvm version is 13.0.1_2:
 
 ```bash
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/llvm@13/13.0.1_2/bin:$PATH"
 ```
 
 :::note
@@ -410,7 +417,7 @@ llvm installation path might differs based on your installation, if you used def
 
 Once saved, we will then reload your shell profile to use the new variables. We can do that by typing `source $HOME/.bashrc` or `source $HOME/.zshrc` (***depending on the shell application you use***).
 
-We need to install Secp256k1 what is required for 1.35.0 cardano-node version
+We need to install Secp256k1 which is required from 1.35.0 cardano-node version onward:
 
 Download and install libsecp256k1:
 ```bash
@@ -431,14 +438,14 @@ Now we are ready to download, compile and install `cardano-node` and `cardano-cl
 cd $HOME/cardano-src
 ```
 
-Download the `cardano-node` repository: 
+Download the `cardano-node` repository:
 
 ```bash
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
-Switch the repository to the latest tagged commit: 
+Switch the repository to the latest tagged commit:
 
 ```bash
 git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
@@ -456,18 +463,49 @@ We explicitly use the `ghc` version that we installed earlier. This avoids defau
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
+:::note
+For some installations you might encounter the following warning: `Warning: The package list for 'cardano-haskell-packages' does not exist. Run 'cabal update' to download it.`. The warning is self-explanatory and you will need to run `cabal update` before moving on.
+:::
+
 #### You will need to run following commands on M1, those commands will set some cabal related options before building
 
 ```
 echo "package trace-dispatcher" >> cabal.project.local
 echo "  ghc-options: -Wwarn" >> cabal.project.local
 echo "" >> cabal.project.local
+
+echo "package HsOpenSSL" >> cabal.project.local
+echo "  flags: -homebrew-openssl" >> cabal.project.local
+echo "" >> cabal.project.local
 ```
 
 #### Building and installing the node
 ```bash
+cabal update
 cabal build all
 ```
+:::caution
+More recent versions of MacOS seems to install openssl in a different location than expected by default. If you have installed openssl via **homebrew** and encounter the following build error:
+
+```
+Failed to build HsOpenSSL-0.11.7.2. The failure occurred during the configure
+step.
+[1 of 1] Compiling Main (...)
+Linking .../dist-newstyle/tmp/src-75805/HsOpenSSL-0.11.7.2/dist/setup/setup ...
+Configuring HsOpenSSL-0.11.7.2...
+setup: Can’t find OpenSSL library
+```
+
+You'll most likely need to add relevant symlinks as follows:
+
+```
+sudo mkdir -p /usr/local/opt/openssl
+sudo ln -s /opt/homebrew/opt/openssl@3/lib /usr/local/opt/openssl/lib
+sudo ln -s /opt/homebrew/opt/openssl@3/include /usr/local/opt/openssl/include
+```
+
+This is a wart of the `HsOpenSSL` library wrapper, and using classic methods such as setting `LDFLAGS` & `CPPFLAGS`, or using `--extra-include-dirs` and `--extra-lib-dirs` won't work properly.
+:::
 
 Install the newly built node and CLI to the $HOME/.local/bin directory:
 

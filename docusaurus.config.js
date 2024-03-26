@@ -43,7 +43,7 @@ module.exports = {
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "img/og-developer-portal.png",
+    image: "img/og/og-developer-portal.png",
     metadata: [{ name: "twitter:card", content: "summary" }],
 
     // Algolia Search
@@ -108,6 +108,10 @@ module.exports = {
               to: "docs/portal-contributors/",
             },
             {
+              label: "Changelog",
+              to: "/changelog",
+            },
+            {
               label: "How to Contribute",
               to: "docs/portal-contribute/",
             },
@@ -135,6 +139,14 @@ module.exports = {
             {
               label: "Cardano Forum",
               href: "https://forum.cardano.org/c/developers/29",
+            },
+            {
+              label: "Developer Portal Discord",
+              href: "https://discord.com/invite/Exe6XmqKDx",
+            },
+            {
+              label: "Developer Ecosystem Survey",
+              href: "https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022",
             },
             {
               label: "More",
@@ -207,10 +219,67 @@ module.exports = {
             to: '/docs/governance/cardano-improvement-proposals/CIP-0001',
             from: '/docs/governance/cardano-improvement-proposals/',
           },
+          {
+            // redirect everything that went into the old stake pool course to the overview 
+            // of the new stake pool operator category. Not perfect but seems good enough.
+            to: '/docs/operate-a-stake-pool/',
+            from: [ 
+                    '/docs/stake-pool-course/', 
+                    '/docs/stake-pool-course/introduction-to-cardano',
+                    '/docs/stake-pool-course/lesson-1',
+                    '/docs/stake-pool-course/lesson-2',
+                    '/docs/stake-pool-course/lesson-3',
+                    '/docs/stake-pool-course/lesson-4',
+                    '/docs/stake-pool-course/lesson-5',
+                    '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
+                    '/docs/stake-pool-course/handbook/grafana-loki',
+                    '/docs/stake-pool-course/handbook/setup-virtual-box-written',
+                    '/docs/stake-pool-course/handbook/setup-a-server-on-aws-written',
+                    '/docs/stake-pool-course/handbook/setup-firewall',
+                    '/docs/stake-pool-course/handbook/install-cardano-node-written',
+                    '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
+                    '/docs/stake-pool-course/handbook/use-cli',
+                    '/docs/stake-pool-course/handbook/utxo-model',
+                    '/docs/stake-pool-course/handbook/keys-addresses',
+                    '/docs/stake-pool-course/handbook/create-simple-transaction',
+                    '/docs/stake-pool-course/handbook/create-stake-pool-keys',
+                    '/docs/stake-pool-course/handbook/register-stake-keys',
+                    '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
+                    '/docs/stake-pool-course/handbook/configure-topology-files',
+                    '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
+                    '/docs/stake-pool-course/handbook/apply-logging-prometheus',
+                    '/docs/stake-pool-course/assignments/assignment-1',
+                    '/docs/stake-pool-course/assignments/assignment-2',
+                    '/docs/stake-pool-course/assignments/kes_period'
+                  ]
+          },
         ],
       },
     ],
+    [
+      require.resolve('./src/plugins/changelog/index.js'),
+      {
+        blogTitle: 'Developer Portal Changelog',
+        blogDescription:
+          'Keep yourself up-to-date about new features in every release',
+        blogSidebarCount: 'ALL',
+        blogSidebarTitle: 'Changelog',
+        routeBasePath: '/changelog',
+        showReadingTime: false,
+        postsPerPage: 20,
+        archiveBasePath: null,
+        authorsMapPath: 'authors.json',
+        feedOptions: {
+          type: 'all',
+          title: 'Developer Portal Changelog',
+          description:
+            'Keep yourself up-to-date about new features in every release',
+          language: 'en',
+        },
+      },
+    ],
   ],
+  
   presets: [
     [
       "@docusaurus/preset-classic",

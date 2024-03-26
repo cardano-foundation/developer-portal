@@ -3,7 +3,7 @@ id: installing-cardano-wallet
 title: Installing cardano-wallet
 sidebar_label: Installing cardano-wallet
 description: This guide shows how to build and install the cardano-wallet from the source-code for all major Operating Systems
-image: ../img/og-developer-portal.png
+image: /img/og/og-getstarted-installing-cardano-wallet.png
 --- 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -26,7 +26,7 @@ This guide assumes you have installed `cardano-node` and `cardano-cli` into your
 
 :::important
 
-You must connect your `cardano-node` to the `testnet` network and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](running-cardano.md) guide before proceeding.
+You must connect your `cardano-node` to a [testnet network](docs/get-started/testnets-and-devnets.md) and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](running-cardano.md) guide before proceeding.
 
 :::
 

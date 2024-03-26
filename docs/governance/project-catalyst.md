@@ -3,8 +3,10 @@ id: project-catalyst
 title: Fund your Project with Catalyst
 sidebar_label: Project Catalyst
 description: Fund your project with Catalyst
-image: ../img/og-developer-portal.png
+image: /img/og/og-developer-portal.png
 ---
+
+Visit the official [Project Catalyst website](https://projectcatalyst.io/) for a comprehensive overview of the services and solutions provided by the world's largest decentralized innovation engine for solving real-world challenges.
 
 The portal on [cardano.ideascale.com](https://cardano.ideascale.com/) is where the Cardano community’s ideas come to life. Here, users can browse active campaigns, participate in discussions, and put forward their ideas for feedback and voting from the community.
 
@@ -12,7 +14,7 @@ Built around ‘Active Campaigns’, the Project Catalyst Ideascale contains sev
 
 Within each active campaign, you can find a campaign brief. This is a short explainer of what proposals should include, how to meet the campaign's requirements and some guiding questions for proposals. You will also find a stage flow that guides you through the timeline of each campaign.
 
-If you click on ‘Browse Ideas’, you can see a [list of other proposals](https://cardano.ideascale.com/a/ideas/recent/campaign-filter/byids/campaigns/25873/stage/unspecified) that community members have already created. If you’re thinking of submitting a one, this is a great way to see what goes into a successful proposal and how you can position your proposal for maximum traction. For voters and community participants, this is also where you can join discussions or upvote your favourite proposal.
+Discover a wealth of community-generated proposals by visiting one of the [idea explorers](#browse-funded-ideas) listed below. Explore existing proposals to gain valuable insights into what makes a successful proposal and how to position your submission for maximum impact. Whether you're considering submitting an idea or simply looking to engage with the community, this is the place to start.
 
 :::tip Catalyst Announcements
 The best way to keep up to date with Project Catalyst is to follow [the announcement channel on Telegram](https://t.me/cardanocatalyst). 
@@ -39,6 +41,7 @@ Download the Catalyst voting app in the [Apple Store](https://apps.apple.com/kg/
 
 ## Previous Project Catalyst voting results 
 
+* [Project Catalyst Fund 9 Voting Results](https://drive.google.com/file/d/1HiI0fgiJWbirl2QEGNwiUbKLSQXqdxdv/view)
 * [Project Catalyst Fund 8 Voting Results](https://drive.google.com/file/d/1s3jCE7pmoUujy3ASMia-UhFl2KLi_hnf/view)
 * [Project Catalyst Fund 7 Voting Results](https://drive.google.com/file/d/193GZulHuk0zhpTrMiLhcNC4OeEMoRyIa/view)
 * [Project Catalyst Fund 6 Voting Results](https://drive.google.com/file/d/13h5JFtwqyylMUNMoRGXQZ-FJEM4bznOJ/view)
@@ -59,10 +62,9 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 * [Improving project Catalyst process on Ideascale](https://cardano.ideascale.com/a/campaign-home/25622)
 * [Cardano Project Catalyst Discord](https://discord.gg/TTZKB9M)
 * [Cardano Catalyst Community Site](https://cardanocataly.st/)
- 
+
 ## Instruction guides
 
-* [Basic community usage guide help articles for new users](https://intercom.help/ideascale/en/collections/2406712-new-user-guide)
 * [Project Catalyst Challenge and Proposal Guide](https://docs.google.com/document/d/1oE_cnP0gksdAanXV4w5DYaDNp_tbYEvyHhTUG4HYZ3Q/edit?usp=sharing)
 * [Proposal Assessor (formerly Community Advisor) Guide](https://docs.google.com/document/d/1g-iZhDlKhUBZkui1uv8NVNfJC4oVD3JtR-P6Fue7XPU/edit#heading=h.nvn8rjkdb8jh)
 
@@ -72,6 +74,10 @@ Find common FAQ and the FAQ of previous funds on Project Catalyst:
 * [General Project Catalyst FAQ](https://cardanocataly.st/faq/)
 * [Project Catalyst FAQ + Timelines](https://iohk.zendesk.com/hc/en-us/articles/900006490763-Project-Catalyst-FAQ)
 
+## Browse funded ideas
+
+* [Project Catalyst Website](https://projectcatalyst.io/search) 
+* [Catalyst Explorer by LIDO Nation](https://www.lidonation.com/en/project-catalyst/proposals)
 
 ## Alternative funding options
 
