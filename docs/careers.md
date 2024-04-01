@@ -15,5 +15,5 @@ Most of these jobs are 100% remote. You can work from anywhere in the world with
 
 - [Jobs at Cardano Foundation](https://cardanofoundation.org/careers)
 - [Jobs at dcSpark](https://dcspark.io/#careers)
-- [Jobs at EMURGO](https://emurgo.io/carrer/)
+- [Jobs at EMURGO](https://emurgo.io/careers/)
 - [Jobs at IOHK](https://apply.workable.com/io-global/)

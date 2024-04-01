@@ -63,7 +63,6 @@ module.exports = {
               },
             ],
           },
-          "get-started/tangocrypto",
         ],
       },
       "get-started/technical-concepts",
@@ -90,6 +89,7 @@ module.exports = {
       "native-tokens/overview",
       "native-tokens/minting",
       "native-tokens/minting-nfts",
+      "native-tokens/authenticated-products",
       {
         type: "category",
         label: "Token Registry",

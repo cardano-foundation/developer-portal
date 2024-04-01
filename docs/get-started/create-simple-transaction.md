@@ -169,4 +169,4 @@ cardano-cli query utxo \
 :::note
 
 ## References
-- [Cardano-node documentation](https://github.com/input-output-hk/cardano-node/blob/master/doc/reference/building-and-signing-tx.md)
+- [Cardano-node documentation](https://github.com/input-output-hk/cardano-node-wiki/wiki/building-and-signing-tx)

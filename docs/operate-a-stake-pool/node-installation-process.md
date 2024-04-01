@@ -10,7 +10,7 @@ The Cardano node is the core component that underpins the Cardano network. Ultim
 In this section, we will walk you through the process of downloading, compiling, and installing `cardano-node` and `cardano-cli` into your **Linux-based** operating system.
 
 :::note
-Refer to the official document [Installing the node from source](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/install.md) in case of difficulties.
+Refer to the official document [Installing the node from source](https://github.com/input-output-hk/cardano-node-wiki/wiki/install) in case of difficulties.
 :::
 
 ## Installing Operating System dependencies
@@ -176,18 +176,18 @@ cd $HOME/cardano-src
 Download the `cardano-node` repository:
 
 ```bash
-git clone https://github.com/input-output-hk/cardano-node.git
+git clone https://github.com/IntersectMBO/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
 Switch the repository to the latest tagged commit:
 
 ```bash
-git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
+git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 :::important
-If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/input-output-hk/cardano-node/releases) for any changes.
+If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/IntersectMBO/cardano-node/releases) for any changes.
 :::
 
 ## Configuring the build options
@@ -195,6 +195,7 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
+cabal update
 cabal configure --with-compiler=ghc-8.10.7
 ```
 
@@ -241,6 +242,6 @@ cardano-node --version
 Congratulations, you have successfully installed Cardano components into your Linux system! 🎉🎉🎉
 
 ## References
-- [Building cardano-node from source with cabal](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/install.md)
-- [Building cardano-node from source with Nix](https://github.com/input-output-hk/cardano-node/blob/master/doc/getting-started/building-the-node-using-nix.md)
+- [Building cardano-node from source with cabal](https://github.com/input-output-hk/cardano-node-wiki/wiki/install)
+- [Building cardano-node from source with Nix](https://github.com/input-output-hk/cardano-node-wiki/wiki/building-the-node-using-nix)
 
