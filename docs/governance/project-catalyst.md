@@ -41,6 +41,8 @@ Download the Catalyst voting app in the [Apple Store](https://apps.apple.com/kg/
 
 ## Previous Project Catalyst voting results 
 
+* [Project Catalyst Fund 11 Voting Results](https://projectcatalyst.io/funds/11/voting-results)
+* [Project Catalyst Fund 10 Voting Results](https://projectcatalyst.io/fund10-voting-results.pdf)
 * [Project Catalyst Fund 9 Voting Results](https://drive.google.com/file/d/1HiI0fgiJWbirl2QEGNwiUbKLSQXqdxdv/view)
 * [Project Catalyst Fund 8 Voting Results](https://drive.google.com/file/d/1s3jCE7pmoUujy3ASMia-UhFl2KLi_hnf/view)
 * [Project Catalyst Fund 7 Voting Results](https://drive.google.com/file/d/193GZulHuk0zhpTrMiLhcNC4OeEMoRyIa/view)
