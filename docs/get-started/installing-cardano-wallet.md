@@ -14,11 +14,8 @@ In this guide, we will show you how to compile and install `cardano-wallet` into
 
 :::note
 
-If you want to avoid compiling the binaries yourself, You can download the latest pre-built binaries of `cardano-wallet` from the links below. 
+If you want to avoid compiling the binaries yourself, you can download the latest pre-built binaries from the GitHub repository:  [`cardano-wallet` Releases](https://github.com/cardano-foundation/cardano-wallet/releases)
 
-- [Linux](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-linux64/latest)
-- [MacOS](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-macos64/latest)
-- [Windows](https://hydra.iohk.io/job/Cardano/cardano-wallet/cardano-wallet-win64/latest)
   
 This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
 
@@ -100,4 +97,6 @@ Congratulations, you have successfully installed `cardano-wallet` into your Linu
 
 :::important
 Currently, the **Windows** installation guide is still in-progress. In the meantime we recommend using [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/) to get a Linux environment on-top of Windows. Once you have that installed you can use the [Linux](#linux) guide to install and run `cardano-node` within **WSL**.
+
+Optionally, you can download the latest precompiled Windows binary from the GitHub repository:  [`cardano-wallet` Releases](https://github.com/cardano-foundation/cardano-wallet/releases)
 :::

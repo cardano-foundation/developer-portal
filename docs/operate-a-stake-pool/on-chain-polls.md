@@ -149,4 +149,4 @@ Alternatively, the command will identify a problem with the answer and/or poll.
 ## References
 - [Entering Voltaire: on-chain poll for SPOs](https://forum.cardano.org/t/entering-voltaire-on-chain-poll-for-spos/117330?u=adatainment)
 - [Cardano Node 8.0.0 release](https://github.com/input-output-hk/cardano-node/releases/tag/8.0.0)
-- [Cardano Node documentation: Governance](https://github.com/input-output-hk/cardano-node/blob/master/doc/reference/cardano-governance.md)
+- [Cardano Node documentation: Governance](https://github.com/input-output-hk/cardano-node-wiki/wiki/cardano-governance)
