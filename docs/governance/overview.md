@@ -9,7 +9,7 @@ image: /img/og/og-developer-portal.png
 
 ![Cardano Governance](../../static/img/card-governance-title.svg)
 
-Cardano has been meticulously designed to ensure sustainability and longevity. A cornerstone of this vision is its self-sufficient governance and funding model, which eliminates the need for external funding. At the heart of Cardano's innovative approach is an on-chain treasury system, consistently funded through transaction fees and treasury taxes. These mechanisms are pivotal for the platform's ongoing development. They are detailed in discussions with [Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0), providing valuable insights into the treasury's operations.
+Cardano has been meticulously designed to ensure sustainability and longevity. A cornerstone of this vision is its self-sufficient governance and funding model, which eliminates the need for external funding. At the heart of Cardano's innovative approach is an on-chain treasury system, consistently funded each epoch by a fixed percentage of the virtual pot, which encompasses all transaction fees collected within that epoch and the ada allocated from the reserve, with the reserve's ada allocation determined by the monetary expansion rate. These mechanisms are pivotal for the platform's ongoing development. They are detailed in discussions with [Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0), providing valuable insights into the treasury's operations.
 
 ## Cardano Protocol Governance
 
