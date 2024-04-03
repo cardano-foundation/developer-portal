@@ -3,7 +3,7 @@ id: overview
 slug: /governance/
 title: Participate in Governance
 sidebar_label: Overview
-description: Governance is an essential topic that includes the on-chain governance framework, Cardano Improvement Proposals (CIP), Cardano Problem Statements (CPS), Project Catalyst, and Network Parameters.
+description: Governance is an essential topic that includes the on-chain protocol governance, Cardano Improvement Proposals (CIP), Cardano Problem Statements (CPS), Project Catalyst, and Network Parameters.
 image: /img/og/og-developer-portal.png
 ---
 
