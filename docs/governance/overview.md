@@ -1,26 +1,26 @@
 ---
 id: overview
 slug: /governance/
-title: Participate in Governance 
+title: Participate in Governance
 sidebar_label: Overview
-description: Governance is an essential topic that includes Cardano Improvement Proposals (CIP), project funding, voting, and network parameters.
+description: Governance is an essential topic that includes the on-chain protocol governance, Cardano Improvement Proposals (CIP), Cardano Problem Statements (CPS), Project Catalyst, and Network Parameters.
 image: /img/og/og-developer-portal.png
 ---
 
 ![Cardano Governance](../../static/img/card-governance-title.svg)
 
-Cardano was designed with the intent of long-term sustainability in mind. The goal was to build a system that could govern and fund itself without relying on donations. Cardano includes a built-in treasury system that receives revenue via transaction fees and treasury taxes on a regular basis. This is explained in detail in [treasuries with Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0). 
+Cardano has been meticulously designed to ensure sustainability and longevity. A cornerstone of this vision is its self-sufficient governance and funding model, which eliminates the need for external funding. At the heart of Cardano's innovative approach is an on-chain treasury system, consistently funded each epoch by a fixed percentage of the virtual pot, which encompasses all transaction fees collected within that epoch and the ada allocated from the reserve, with the reserve's ada allocation determined by the monetary expansion rate. These mechanisms are pivotal for the platform's ongoing development. They are detailed in discussions with [Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0), providing valuable insights into the treasury's operations.
 
-## Cardano Improvement Proposal
+## Cardano Protocol Governance
 
-[Cardano Improvement Proposals (CIPs)](cardano-improvement-proposals/CIP-0001) are a way of formally proposing ideas in an agreed-upon fashion. While they are not binding and are not a need for either treasury or protocol changes, they are an important component of Cardano governance. Someone must propose a setup for others to discuss before a decision can be made.
+Cardano is embarking on a transformative journey towards decentralized governance with the introduction of [CIP-1694](https://cips.cardano.org/cip/CIP-1694), marking the onset of the [Voltaire era](https://roadmap.cardano.org/en/voltaire/). This proposal establishes a governance framework comprising three roles: the already established group of Stake Pool Operators (SPOs) and two novel roles consisting of a Constitutional Committee (CC) and Delegated Representatives (DReps). Community participation is at the core of this governance model, allowing every ada holder to engage in the decision-making process directly. Through CIP-1694, the governance model evolves to encourage a more inclusive and community-driven approach, reflecting Cardano's commitment to sustainable growth and innovation.
 
-## Fund your project with Project Catalyst
+## Cardano Improvement Proposals and Cardano Problem Statements
 
-The present means to access the funds of the treasury system is through [Project Catalyst](project-catalyst), Cardano's innovation platform. It is considered as a stepping stone to Voltaire and strives to give a safe and exciting setting in which to explore human collaboration's highest potential.
+[Cardano Improvement Proposals (CIPs)](cardano-improvement-proposals/CIP-0001) and [Cardano Problem Statements (CPSs)](cardano-improvement-proposals/CIP-9999) are essential to the ecosystem's evolution, facilitating structured innovation and addressing challenges within the network. CIPs serve as a formal process for proposing enhancements or standards for the Cardano protocol, offering a clear pathway for community engagement and technical refinement. Anybody willing to do the work can introduce ideas, which are then collaboratively refined through community input and with the help of the [CIP editors](cardano-improvement-proposals/CIP-0001#editors), ensuring proposals are robust and beneficial before implementation.
 
-## On-Chain Governance
+The CPS process, outlined in [CIP-9999](cardano-improvement-proposals/CIP-9999), complements this by focusing on identifying and articulating specific issues or areas for improvement within Cardano, allowing for a targeted approach to problem-solving. CIPs and CPSs reflect Cardano's dedication to continuous development and community-driven standards, ensuring adaptability and responsiveness to user needs.
 
-The final stage of Cardano's initial development roadmap is called the [Voltaire era](https://roadmap.cardano.org/en/voltaire/), which is aimed at democratizing decision-making processes within the network. This phase aims to introduce an on-chain decentralized governance system, enabling all ada holders to actively participate in steering the network's future. In this system, ada holders are not just participants but pivotal decision-makers, casting votes on governance proposals. These proposals range from modifying [protocol parameters](https://beta.explorer.cardano.org/en/protocol-parameters/), like transaction fees and block sizes, to strategic decisions about allocating the built-in treasury's funds. This direct voting mechanism allows for a more democratic approach and ensures that the Cardano ecosystem evolves in a way aligned with its community's collective vision and interests.
+## Empowering Innovation with Project Catalyst
 
-The proposed framework and architecture for the on-chain governance model are thoroughly outlined in [CIP-1694](Cardano-improvement-proposals/CIP-1694). This CIP includes detailed explanations of the types of governance proposals that can be voted on, as well as the proposal's overall scope and limitations. It's essential to recognize this proposal as a foundational element for on-chain governance, establishing a robust base upon which future governance models can evolve.
+[Project Catalyst](https://projectcatalyst.io/) is described as "the world's largest decentralized innovation engine," aimed at solving real-world challenges through community-driven proposals within the Cardano ecosystem. Members of the Cardano community propose, evaluate, and vote on projects across technical, business, creative, and community domains. It emphasizes the power of collective action, inviting participation from anyone, regardless of their background or location. The initiative has supported many proposals and engaged a vast community, highlighting its impact and the extensive opportunities for involvement​.
