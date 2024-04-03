@@ -11,7 +11,7 @@ image: /img/og/og-developer-portal.png
 
 Cardano has been meticulously designed to ensure sustainability and longevity. A cornerstone of this vision is its self-sufficient governance and funding model, which eliminates the need for external funding. At the heart of Cardano's innovative approach is an on-chain treasury system, consistently funded through transaction fees and treasury taxes. These mechanisms are pivotal for the platform's ongoing development. They are detailed in discussions with [Bingsheng Zhang](https://www.youtube.com/watch?v=Hyh3h_yX-S0), providing valuable insights into the treasury's operations.
 
-## Cardano Governance
+## Cardano Protocol Governance
 
 Cardano is embarking on a transformative journey towards decentralized governance with the introduction of [CIP-1694](https://cips.cardano.org/cip/CIP-1694), marking the onset of the [Voltaire era](https://roadmap.cardano.org/en/voltaire/). This proposal establishes a governance framework comprising three roles: the already established group of Stake Pool Operators (SPOs) and two novel roles consisting of a Constitutional Committee (CC) and Delegated Representatives (DReps). Community participation is at the core of this governance model, allowing every ada holder to engage in the decision-making process directly. Through CIP-1694, the governance model evolves to encourage a more inclusive and community-driven approach, reflecting Cardano's commitment to sustainable growth and innovation.
 
