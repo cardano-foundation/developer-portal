@@ -16,7 +16,7 @@ The tool is composed by the eDSL that allows you to create smart contracts and c
 
 Visit the [Get started with plu-ts](/docs/get-started/plu-ts) to install plu-ts unsing `npm` and setup your project.
 
-You can find the documentatition for `plu-ts` at [pluts.harmoniclabs.tech](https://pluts.harmoniclabs.tech/docs/intro).
+You can find the documentatition for `plu-ts` at [pluts.harmoniclabs.tech](https://pluts.harmoniclabs.tech/).
 
 If you need help feel free to open issues at the [`plu-ts` git repository](https://github.com/HarmonicLabs/plu-ts).
 
