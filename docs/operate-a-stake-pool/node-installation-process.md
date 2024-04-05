@@ -89,8 +89,8 @@ ghcup set ghc 8.10.7
 `ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
-ghcup install cabal 3.6.2.0
-ghcup set cabal 3.6.2.0
+ghcup install cabal 3.8.1.0
+ghcup set cabal 3.8.1.0
 ```
 
 
