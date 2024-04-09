@@ -1570,7 +1570,7 @@ All of the merged PRs in January
 
 ## 2024.08.0 (2024-02-29)
 
-All of the merged PRs in January
+All of the merged PRs in February
 
 #### PRs: 10
 
@@ -1594,3 +1594,22 @@ All of the merged PRs in January
 - ShawnTseng ([@ShawnTseng](https://github.com/ShawnTseng))
 - thenic95 ([@thenic95](https://github.com/thenic95))
 - sorki ([@sorki](https://github.com/sorki))
+
+## 2024.12.0 (2024-03-31)
+
+All of the merged PRs in March
+
+#### PRs: 4
+
+- Add Mazzumagpt Blog by ([@weqanhet](https://github.com/weqanhet)) in [#1224](https://github.com/cardano-foundation/developer-portal/pull/1224)
+- Revert "Add Mazzumagpt Blog" by ([@katomm](https://github.com/katomm)) in [#1227](https://github.com/cardano-foundation/developer-portal/pull/1227)
+- Add changelog for February 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1220](https://github.com/cardano-foundation/developer-portal/pull/1220)
+- Installing Cardano Wallet: fix + clarify links by ([@syncquick](https://github.com/syncquick)) in [#1230](https://github.com/cardano-foundation/developer-portal/pull/1230)
+
+
+#### Contributors: 4
+
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- katomm ([@katomm](https://github.com/katomm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- syncquick ([@syncquick](https://github.com/syncquick))
