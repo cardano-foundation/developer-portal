@@ -2,6 +2,24 @@
 # client side route redirects are auto
 # generated.
 
+# Header configuration
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevents the site from being framed by other sites, protecting against clickjacking.
+    X-Frame-Options = "DENY"
+    # Activates the browser's built-in cross-site scripting (XSS) filter and blocks responses if an attack is detected.
+    X-XSS-Protection = "1; mode=block"
+    # Ensures that only trusted content is executed and styled.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://cardano.org; img-src 'self' https://cardano.org; style-src 'self' 'unsafe-inline';"
+    # Enforces secure connections via HTTPS, protecting against certain types of man-in-the-middle attacks.
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    # Controls information provided as the HTTP Referer header when navigating from your site, enhancing privacy and security.
+    Referrer-Policy = "no-referrer-when-downgrade"
+    # Allows you to explicitly enable or disable various browser features and APIs for your site, enhancing security.
+    Feature-Policy = "geolocation 'none'; microphone 'none';"
+
 # developers.cardano.org -> testnets.cardano.org redirects:
 
 [[redirects]]
