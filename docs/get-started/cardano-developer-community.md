@@ -29,7 +29,7 @@ Chat style conversations on Telegram in one of the oldest Cardano developer grou
 Head to the [IOG Discord](https://discord.com/invite/w6TwW9bGA6) if you want to join the [Plutus Pioneers](../smart-contracts/plutus#get-started-with-the-plutus-pioneer-program).
 
 [**t.me/IOHK_Marlowe**](https://t.me/IOHK_Marlowe)  
-Dedicated channel for Marlowe developers and users. Marlowe is a specialized domain-specific language for financial smart contracts on Cardano. You can ask questions, participate in discussions and meet the team behind Marlowe.
+Dedicated channel for Marlowe developers and users. Marlowe is a specialised domain-specific language for financial smart contracts on Cardano. You can ask questions, participate in discussions and meet the team behind Marlowe.
 
 [**Developer Portal Discord**](https://discord.gg/Exe6XmqKDx)  
 If you would like to help develop the Developer Portal further, please join our [Discord](https://discord.gg/Exe6XmqKDx). 

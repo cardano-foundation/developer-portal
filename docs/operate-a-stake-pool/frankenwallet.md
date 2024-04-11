@@ -93,7 +93,7 @@ Though regularly used Frankenwallets have been built on cheap & slow USB drives,
   - a memory stick with a high benchmark for reading <span class="underline">and writing</span> speed, or
   - (for best results in author's experience) a SATA SSD drive plus a SATA-to-USB adapter cable.
 
-Users who have built dual-boot configurations before will also know you should **familiarize yourself with the computer's BIOS settings** in anticipation of the same type of setup.
+Users who have built dual-boot configurations before will also know you should **familiarise yourself with the computer's BIOS settings** in anticipation of the same type of setup.
 
 Note there are <span class="underline">limitations about using a Mac</span> as host computer which stem from the different means of booting (see [Frankenwallet \> Hardware Requirements](https://cosd.com/frankenwallet/prepare/hardware) \> What if I have a Mac?).
 
