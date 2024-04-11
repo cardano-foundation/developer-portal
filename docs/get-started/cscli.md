@@ -7,7 +7,7 @@ image: /img/og/og-getstarted-cscli.png
 --- 
 
 `cscli` is a lightweight cross-platform CLI tool for Cardano supporting the following features out of the box:
- - Building and serializing wallet primitives (i.e. recovery-phrases, keys, addresses and transactions) 
+ - Building and serialising wallet primitives (i.e. recovery-phrases, keys, addresses and transactions) 
  - Live querying of accounts, addresses, transactions and native assets across both Testnet and Mainnet networks
  - Submitting transactions to the Testnet or Mainnet network
  - Cryptographic and encoding transformations (blake2b, bech32, etc.)
