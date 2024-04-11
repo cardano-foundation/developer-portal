@@ -52,7 +52,7 @@ Always download the wallets from trusted sources. There are many fake wallets, m
 
 ### Creating a wallet
 
-As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use-cases.
+As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use cases.
 
 
 #### Creating a wallet with `cardano-cli`
@@ -160,7 +160,7 @@ addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
 
 :::note
- You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use-cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
+ You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
 
   - Mainnet addresses are **prefixed** with the string value `addr1`. 
   - testnet addresses are **prefixed** with the string value `addr_test1`. 
