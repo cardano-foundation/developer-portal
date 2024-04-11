@@ -10,7 +10,7 @@ image: /img/og/og-security-air-gap-environment.png
 
 Developers & Cardano stake pool operators generally need an air gap environment in which to work with payment keys, stake pool keys and other cryptocurrency resources that offer high-value targets for hackers.
 
-Some specialised hardware (e.g. hardware wallets) may also perform this function. If you believe you have such a device, please be certain that it offers isolation features for your stake pool or development *and* that you feel secure entrusting your assets to those who have implemented these features.
+Some specialized hardware (e.g. hardware wallets) may also perform this function. If you believe you have such a device, please be certain that it offers isolation features for your stake pool or development *and* that you feel secure entrusting your assets to those who have implemented these features.
 
 Otherwise, generally **you need a second computer** to create this air-gapped environment, and the rest of this guide is to help you do that.
 

@@ -39,7 +39,7 @@ All transactions will be done in these 3 steps:
 Therefore, the payment signing key (the private component of the [Cardano wallet address key pair](../operate-a-stake-pool/cardano-key-pairs#wallet-address-key-pairs)) **never leaves the air gap environment**. This is vital because:
 
   - A standard assumption in security is that *any* Internet connection on *any* computer creates opportunities for malicious people or programs to copy, view, or modify *anything* unencrypted on that computer.
-  - Unlike transactions with cryptocurrenty wallet software, in which the wallet's private payment keys are carefully encrypted and securely managed, the payment key (in this documentation, `payment.skey`) used for the raw transactions of development & stake pool operations is *not encrypted*.
+  - Unlike transactions with cryptocurrency wallet software, in which the wallet's private payment keys are carefully encrypted and securely managed, the payment key (in this documentation, `payment.skey`) used for the raw transactions of development & stake pool operations is *not encrypted*.
   - This means that this file stored anywhere on your Internet connected computer or server, even for an instant, creates an opportunity for the funds at that address (`payment.addr`) to be ***lost***.
 
 ## Prerequisites
@@ -114,7 +114,7 @@ Attach your transfer memory stick to the air gap host and copy the files to your
 
 Create a draft for the transaction and save it in `tx.draft`. Notes:
 
-  - As in the insecure example, `payment2.addr` is the address you're sending a payment *to*, while `payment.addr` (holding the UTxO where the runds are coming *from*), will store the "change" from this transaction.
+  - As in the insecure example, `payment2.addr` is the address you're sending a payment *to*, while `payment.addr` (holding the UTxO where the funds are coming *from*), will store the "change" from this transaction.
   - For `--tx-in` we use the following syntax: `TxHash#TxIx` where `TxHash` is the transaction hash and `TxIx` is the index.
   - For `--tx-out` we use: `TxOut+Lovelace` where `TxOut` is the hex encoded address followed by the amount in `Lovelace`.
   - For the transaction draft, the `--tx-out` amounts and `--fee` can be set to zero.
@@ -224,7 +224,7 @@ Therefore this guide suggests *only* assembling transaction *details* outside th
 
 ## Other pending topics in secure workflow
 
-These are not directly related to transacations, and will all eventually be addressed in their own pages on the Developer Portal:
+These are not directly related to transactions, and will all eventually be addressed in their own pages on the Developer Portal:
 
   - pool key installation & updates: transferring keys (e.g. VRF and KES) securely from within the air gap to your stake pool block producer
   - making encrypted backups of your private keys (so they can be kept offsite / stored outside your air gap environment)

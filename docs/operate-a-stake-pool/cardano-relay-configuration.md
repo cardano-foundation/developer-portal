@@ -104,7 +104,7 @@ nano startTestNode.sh
 ```
 
 :::note
-Replace <$HOME> with local values of the `$HOME` environment variable on each mahine. To find those values, run `echo $HOME`.
+Replace <$HOME> with local values of the `$HOME` environment variable on each machine. To find those values, run `echo $HOME`.
 :::
 
 copy the following in the file

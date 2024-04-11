@@ -91,7 +91,7 @@ An important thing to notice is that you only delegate your rights to participat
 
 ### What about the incentives?
 
-Stakeholders that issue blocks are incentivized to participate in the protocol by collecting transaction fees. But Ouroboros does not incentivize stakeholders to invest computational resources to issue blocks. Rather, availability and transaction verification are prefered.
+Stakeholders that issue blocks are incentivized to participate in the protocol by collecting transaction fees. But Ouroboros does not incentivize stakeholders to invest computational resources to issue blocks. Rather, availability and transaction verification are preferred.
 
 Rewards come from two sources: transaction fees and funds drawn from the ada Reserve.
 

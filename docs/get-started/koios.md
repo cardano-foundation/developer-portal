@@ -15,7 +15,7 @@ Let's start with basics from consumer point of view, and then we can dive to a b
 
 ### API Documentation
 
-You can access API documentation [here](https://api.koios.rest). Koios leverages [PostgREST](https://postgrest.org/) to provide data, which means you can easily filter your data vertically as well as horizontally, and leverage in-built ordering/custom paging benefits as per the guide [here](https://api.koios.rest/#overview--api-usage). There isn't any centralised registry to be able to access the endpoints for most of the usage.
+You can access API documentation [here](https://api.koios.rest). Koios leverages [PostgREST](https://postgrest.org/) to provide data, which means you can easily filter your data vertically as well as horizontally, and leverage in-built ordering/custom paging benefits as per the guide [here](https://api.koios.rest/#overview--api-usage). There isn't any centralized registry to be able to access the endpoints for most of the usage.
 
 Each endpoint in the document provides a sample curl command that can be used to test using an example, which can be executed directly from the browser for testing as well.
 
@@ -31,7 +31,7 @@ If you notice an issue or have a feature request (existing or new endpoint), we 
 
 ## Participating as instance provider
 
-There will always be an audience who might want to run everything locally instead of relying on any external connection. Typically, these would be heavy users of the API (explorers/wallet providers/marketplaces), who'd like to override default API limits, have customisation requirements, remove latency hops OR enthusiasts who'd like to contribute back and add to the strength of the API layer.
+There will always be an audience who might want to run everything locally instead of relying on any external connection. Typically, these would be heavy users of the API (explorers/wallet providers/marketplaces), who'd like to override default API limits, have customization requirements, remove latency hops OR enthusiasts who'd like to contribute back and add to the strength of the API layer.
 
 For this audience, we've tried to leverage the existing widely adopted `guild-operators` suite to build simpler scripts that'd allow you to create a gRest instance. This independent gRest instance will give you 100% of features and compatibility with the API documentation hosted on api.koios.rest (assuming it's built from the latest `koios` tags).
 
@@ -51,7 +51,7 @@ Typical steps involved for setting up your gRest instance would be (assuming you
 
 1. Set up your OS for dependencies and create folder structures using [prereqs script](https://cardano-community.github.io/guild-operators/basics/#pre-requisites).
 
-2. Install PostgreSQL server, followed by a tuning excercise that fits your infrastructure. See sample guide [here](https://cardano-community.github.io/guild-operators/Appendix/postgres/)
+2. Install PostgreSQL server, followed by a tuning exercise that fits your infrastructure. See sample guide [here](https://cardano-community.github.io/guild-operators/Appendix/postgres/)
 
 3. Set up your Cardano Node and wait for node to sync to current epoch. See sample instructions [here](https://cardano-community.github.io/guild-operators/Build/node-cli/). You can optionally also install `cardano-submit-api` on the same server to be able to submit transactions using consistent paths from API documentation.
 

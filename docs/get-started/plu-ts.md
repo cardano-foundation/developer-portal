@@ -9,9 +9,9 @@ description: Get Started with `plu-ts`
 
 ## Installation
 
-### Add `plu-ts` as dependecy
+### Add `plu-ts` as dependency
 
-To install `plu-ts` you can use `npm` (or the node package manager of your coiche) and run the following in you root project.
+To install `plu-ts` you can use `npm` (or the node package manager of your choice) and run the following in you root project.
 
 ```sh
 npm install @harmoniclabs/plu-ts

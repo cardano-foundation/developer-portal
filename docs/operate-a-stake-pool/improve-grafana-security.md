@@ -6,7 +6,7 @@ description: "Stake pool guide: Learn how to harden Grafana Security with SSL, 2
 image: ../img/og/og-developer-portal.png
 ---
 
-Once your Grafana Server is installed, up and running, you can drasticaly improve its security and accessibility by installing an SSL Reverse Proxy, and enabling 2-Factor Authentication with Google OAuth.
+Once your Grafana Server is installed, up and running, you can drastically improve its security and accessibility by installing an SSL Reverse Proxy, and enabling 2-Factor Authentication with Google OAuth.
 
 ## Prerequisites
 
@@ -167,7 +167,7 @@ sudo systemctl restart nginx
 
 ## Google OAuth setup
 
-We are going to replace the local login/password access to Grafana server, by a much more robust authentication : Google OAuth. Remember : you must have your mail address on your own domain (see Pre-Requisites), and create a Google acocunt with that address.
+We are going to replace the local login/password access to Grafana server, by a much more robust authentication : Google OAuth. Remember : you must have your mail address on your own domain (see Pre-Requisites), and create a Google account with that address.
 
 ### Activate 2FA on your Google Account
 
