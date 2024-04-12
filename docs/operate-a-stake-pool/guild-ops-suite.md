@@ -56,7 +56,7 @@ We assume you'd have already seen the guide [here](../../docs/get-started/instal
 
 ### Customise configuration
 
-Now that you've set-up your OS dependencies and built/installed node binaries, it's time for you to customise your configuration, paths, names, etc for your node. You can use [env](https://cardano-community.github.io/guild-operators/Scripts/env/) file to modify these. Each line contains default value, and a simple explaination about what variable means.  
+Now that you've set-up your OS dependencies and built/installed node binaries, it's time for you to customise your configuration, paths, names, etc for your node. You can use [env](https://cardano-community.github.io/guild-operators/Scripts/env/) file to modify these. Each line contains default value, and a simple explanation about what variable means.  
 
 ### Contributions/Feedback..
 

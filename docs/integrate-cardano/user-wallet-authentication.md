@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-This guide is a walthrough on how to implement the *message signing* described in [CIP-08](/docs/governance/cardano-improvement-proposals/CIP-0008) in order to authenticate users on the web with just their [CIP-30](/docs/governance/cardano-improvement-proposals/CIP-0030)-compatible wallet app.
+This guide is a walkthrough on how to implement the *message signing* described in [CIP-08](/docs/governance/cardano-improvement-proposals/CIP-0008) in order to authenticate users on the web with just their [CIP-30](/docs/governance/cardano-improvement-proposals/CIP-0030)-compatible wallet app.
 
 :::note
 
@@ -232,7 +232,7 @@ First, we decoded the serialized signature that was submitted by the user. From 
 
 We then created a `PublicKey` instance of the `key` that came together with the signature sent by the user. We later use this to verify the submitted signature.
 
-We also parsed the `payload` from the decoded signature data. After reconstructing our expected message string, we compare it with the `payload` we actualy received.
+We also parsed the `payload` from the decoded signature data. After reconstructing our expected message string, we compare it with the `payload` we actually received.
 
 Since we already have the signer's stake address, we also checked it against our `registeredUsers` list.
 

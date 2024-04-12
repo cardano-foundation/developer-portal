@@ -26,7 +26,7 @@ Smart contracts are more or less just a piece of code that you write to validate
 
 Smart contracts consist of on-chain and off-chain components:
 
-- The on-chain component (validator-script) is a script used to validate that each transaction containing any value locked by the script (UTXOs residing on the script's address) conforms to the rules of the contract. Specialized tools and languages are required for creating these scripts.
+- The on-chain component (validator-script) is a script used to validate that each transaction containing any value locked by the script (UTXOs residing on the script's address) conforms to the rules of the contract. Specialised tools and languages are required for creating these scripts.
 - The off-chain component is a script or application that is used to generate transactions that conform to the rules of the contract. These can be created in almost any language.
 
 Important to note here is that smart contracts heavily rely on the datum attached to a UTXO, using it as part of the contract instance "state" to be used in further transactions. If no datum is attached to a UTXO residing on the contract's address, it can end up being locked there forever.
@@ -37,7 +37,7 @@ Validator scripts are executed automatically when a UTXO residing at the address
 
 This means that in order for the validator-script to execute, a transaction must first move a UTXO to the address of the contract; the address is derived from the contract mathematically. You do not need to upload your contract to the chain, although that is also possible using reference scripts.
 
-You might think of this initial transaction where you move a UTXO to the script address to be the initialization of a contract instance. Each UTXO residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the UTXOs being sent to the script address: anyone can send a UTXO containing no datum, or a 'fake' datum.
+You might think of this initial transaction where you move a UTXO to the script address to be the initialisation of a contract instance. Each UTXO residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the UTXOs being sent to the script address: anyone can send a UTXO containing no datum, or a 'fake' datum.
 
 ### Off-Chain
 

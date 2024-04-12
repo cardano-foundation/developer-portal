@@ -111,7 +111,7 @@ What is multisig? And how does it work on Cardano?
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/k_ph_V7xkio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## JorManager 6
-Learn about what's new in the Cardano stakepool management software JorManager 6.
+Learn about what's new in the Cardano stake pool management software JorManager 6.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/7dNCcGWnkwY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ##  How to create a FT on Cardano that doesn't completely suck!

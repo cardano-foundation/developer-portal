@@ -803,7 +803,7 @@ cardano-cli transaction submit --tx-file matx.signed --mainnet
 
 </Tabs>
 
-If everything is correcrt you should a message like this:
+If everything is correct you should a message like this:
 
 ```bash
 Transaction successfully submitted
