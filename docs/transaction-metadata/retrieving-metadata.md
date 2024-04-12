@@ -59,7 +59,7 @@ This guide also assumes that you have `cardano-node` and `cardano-wallet` runnin
 
 :::
 
-To retrieve all the Metadata for the transactions of a selected Wallet you just need to query the wallet transections, passing as filter '.[].metadata'
+To retrieve all the Metadata for the transactions of a selected Wallet you just need to query the wallet transactions, passing as filter '.[].metadata'
 
 ```bash
 curl --url 'http://localhost:1337/v2/wallets/41263958f6668e06190be661900f7129be78d583/transactions' | jq '.[].metadata'

@@ -128,7 +128,7 @@ foo.mypool.com
 bar.mypool.com
 ```
 
-This inventory arrangement works well for simple configurations, but as the complexity of a configuration rises, it reveals its limitations. A preferable technique for our needs is to divide a single `hosts` delcaration into functional groups. This organization style has no hard and fast rules, which is one of Ansible's strong advantages. When creating an inventory from scratch, though, this versatility might be intimidating. We can make groups that keep track of:
+This inventory arrangement works well for simple configurations, but as the complexity of a configuration rises, it reveals its limitations. A preferable technique for our needs is to divide a single `hosts` declaration into functional groups. This organization style has no hard and fast rules, which is one of Ansible's strong advantages. When creating an inventory from scratch, though, this versatility might be intimidating. We can make groups that keep track of:
 
 - What - An application, stack or microservice (e.g., database servers, web servers, etc.)
 - Where - A datacenter or geographic region, to talk to local DNS, storage, etc. (e.g., east, west, Newark, Paris, Cape Town)
@@ -157,7 +157,7 @@ For security reasons, you may wish to obfuscate, or hide, your block producer(s)
 ::::
 
 ### Group variables
-Groups are nice for organization, but they are also used to handle variables. For example, the file `/groups_vars/all` has the following definitons:
+Groups are nice for organization, but they are also used to handle variables. For example, the file `/groups_vars/all` has the following definitions:
 
 ```
 ---

@@ -12,7 +12,7 @@ As of writing, there are 4 main types of transactions:
 - [Send lovelace and assets](transactions-basic) (this)
 - [Interacting with smart contracts](transactions-smart-contract)
 - [Minting and burning assets](transactions-minting)
-- [Interacting with stakepools](transactions-staking)
+- [Interacting with stake pools](transactions-staking)
 
 In this section, we will explore the following:
 

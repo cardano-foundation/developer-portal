@@ -51,7 +51,7 @@ Typical steps involved for setting up your gRest instance would be (assuming you
 
 1. Set up your OS for dependencies and create folder structures using [prereqs script](https://cardano-community.github.io/guild-operators/basics/#pre-requisites).
 
-2. Install PostgreSQL server, followed by a tuning excercise that fits your infrastructure. See sample guide [here](https://cardano-community.github.io/guild-operators/Appendix/postgres/)
+2. Install PostgreSQL server, followed by a tuning exercise that fits your infrastructure. See sample guide [here](https://cardano-community.github.io/guild-operators/Appendix/postgres/)
 
 3. Set up your Cardano Node and wait for node to sync to current epoch. See sample instructions [here](https://cardano-community.github.io/guild-operators/Build/node-cli/). You can optionally also install `cardano-submit-api` on the same server to be able to submit transactions using consistent paths from API documentation.
 

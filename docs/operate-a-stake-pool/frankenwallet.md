@@ -103,7 +103,7 @@ Note there are <span class="underline">limitations about using a Mac</span> as h
 
 The [low security password](https://cosd.com/frankenwallet/prepare/password-low) can be one you've already used to encrypt files on the host computer… strong enough you feel comfortable backing up files over the net.
 
-The [high security password](https://cosd.com/frankenwallet/prepare/password-high)… called the Frankenwallet password itself… should also be stictly long & complex, but should never have been used in a network environment, not even on a network connected machine… otherwise you will be defeating the purpose of using the Air Gap for any purposes of file storage or backup of files to the host computer  
+The [high security password](https://cosd.com/frankenwallet/prepare/password-high)… called the Frankenwallet password itself… should also be strictly long & complex, but should never have been used in a network environment, not even on a network connected machine… otherwise you will be defeating the purpose of using the Air Gap for any purposes of file storage or backup of files to the host computer  
 
 See each of these web links to see which of the Cardano asset & stake pool files it would typically be used to encrypt.
 

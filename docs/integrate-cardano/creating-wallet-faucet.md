@@ -2,7 +2,7 @@
 id: creating-wallet-faucet
 title: Exploring Cardano wallets
 sidebar_label: Exploring Cardano wallets
-description: This article explains how you can create different kinds of Cardano Wallets and how you can recieve some tAda(test ada) from the faucet.
+description: This article explains how you can create different kinds of Cardano Wallets and how you can receive some tAda(test ada) from the faucet.
 image: /img/og/og-developer-portal.png
 --- 
 
@@ -52,13 +52,13 @@ Always download the wallets from trusted sources. There are many fake wallets, m
 
 ### Creating a wallet
 
-As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use-cases.
+As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use cases.
 
 
 #### Creating a wallet with `cardano-cli`
 
 :::note
-In this section, We will use the path `$HOME/cardano` to store all the `cardano-cli` related files as an example, please replace it with the directory you have choosen to store the files.
+In this section, We will use the path `$HOME/cardano` to store all the `cardano-cli` related files as an example, please replace it with the directory you have chosen to store the files.
 :::
 
 :::important
@@ -160,7 +160,7 @@ addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
 
 :::note
- You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use-cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
+ You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
 
   - Mainnet addresses are **prefixed** with the string value `addr1`. 
   - testnet addresses are **prefixed** with the string value `addr_test1`. 
@@ -346,7 +346,7 @@ cardano-cli transaction build-raw \
 
 `cardano-cli transaction build-raw` : This tells `cardano-cli` to build a raw transaction.
 
-`--tx-in` : This specifices the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have a unique `TxHash` and `TxIdx` within all your inputs.
+`--tx-in` : This specifies the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have a unique `TxHash` and `TxIdx` within all your inputs.
 
 `--tx-out` : This specifies the target **wallet address**, **assets** and **quantity** to be sent to. You can add as many **UTXO** outputs as you want as long as the total **UTXO** input can satisfy the **assets** and **quantity** specified by the output.
 
@@ -481,7 +481,7 @@ Congratulations, You have created and sent your first **Cardano** transaction us
 :::note
 This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](/docs/get-started/installing-cardano-wallet) guide for instructions on how to do that.
 
-We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have choosen to store the files.
+We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have chosen to store the files.
 :::
 
 :::important
@@ -540,7 +540,7 @@ cardano-wallet serve \
 ```
 > As you notice its almost like a network `URI` or a network `Path` than a file, this is a key difference that you will have to be aware depending on your operating system. You can replace the string `cardano-node-testnet` in the argument to whatever you like, this example path in particular is used in the [Daedalus Testnet Wallet](https://daedaluswallet.io) for **Windows**.
 
-Once the server is running you should see sometihng like this (among other things): 
+Once the server is running you should see something like this (among other things): 
 
 ```
 [cardano-wallet.network:Info:12] [2021-06-03 13:48:24.82 UTC] Protocol parameters for tip are:
@@ -636,11 +636,11 @@ Our requests payload data is composed of:
 
 `name` : The name of the wallet.
 
-`passphrase` : Sets the security phrase to protect the funds inside the wallet. It will be required everytime you need write access to the wallet, more specifically sending assets.
+`passphrase` : Sets the security phrase to protect the funds inside the wallet. It will be required every time you need write access to the wallet, more specifically sending assets.
 
 `mnemonic_sentence` : This is the wallet **recovery phrase** formatted into a `JSON` array.
 
-If succesful, you should see something like this: 
+If successful, you should see something like this: 
 
 ```json
 {

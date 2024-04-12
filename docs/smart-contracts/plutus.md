@@ -17,7 +17,7 @@ Talk to others about [Plutus on the Cardano Forum](https://forum.cardano.org/c/d
 head to the the [IOG Technical Discord](https://discord.com/invite/w6TwW9bGA6).
 
 ## The Plutus platform
-In this Video Michael Peyton-Jones starts by walking us through working with Plutus. Plutus allows all programming to be done from a single Haskell library. This lets users build secure applications, forge new assets, and create smart contracts in a predictable, deterministic environment with the highest level of assurance. Furthemore, developers don’t have to run a full Cardano node to test their work.
+In this Video Michael Peyton-Jones starts by walking us through working with Plutus. Plutus allows all programming to be done from a single Haskell library. This lets users build secure applications, forge new assets, and create smart contracts in a predictable, deterministic environment with the highest level of assurance. Furthermore, developers don’t have to run a full Cardano node to test their work.
 
 Jann Müller then takes us through the Plutus Application Platform, where assets can be built and launched. He also demonstrates how tokens can be transferred using a smart contract. With Plutus you can:
 
@@ -51,11 +51,11 @@ If you are coming from a Python background, there is an informative project [py2
 
 ## Get started with the Plutus pioneer program
 
-The [Plutus Pioneer Program](https://github.com/input-output-hk/plutus-pioneer-program) was created in order to recruit and train developers in Plutus for the Cardano ecosystem. You can complete this programm at your own pace or sign up for an active iteration of the program. By entering the program, you will become part of a group that communicates on Discord and holds live weekly QA sessions. The course teaches you the core principles of how to code in both Haskell and Plutus. It is highly interactive, with weekly videos, exercises, and Q&A sessions and exclusive access to the creators and key experts in the language.
+The [Plutus Pioneer Program](https://github.com/input-output-hk/plutus-pioneer-program) was created in order to recruit and train developers in Plutus for the Cardano ecosystem. You can complete this program at your own pace or sign up for an active iteration of the program. By entering the program, you will become part of a group that communicates on Discord and holds live weekly QA sessions. The course teaches you the core principles of how to code in both Haskell and Plutus. It is highly interactive, with weekly videos, exercises, and Q&A sessions and exclusive access to the creators and key experts in the language.
 
 Beside the videos you can also read the book based on the Plutus Pioneer Program. The book is written once an iteration of the Pioneer Program comes to an end. It exists from the 3rd iteration on and can be found in the *book/* folder of the Pioneer program github repository.
 
-**This course is not for coding beginners.** You do not need to be an expert in formal methods, but programming experience and a general aptitude for logical and mathematical thinking are highly advisable. We recommend to [get started with Haskell](#get-started-with-haskell) before taking the course. The IOG education team that created the Priooner program also offers a [Haskell course](https://github.com/input-output-hk/haskell-course) that you can at you own pace.
+**This course is not for coding beginners.** You do not need to be an expert in formal methods, but programming experience and a general aptitude for logical and mathematical thinking are highly advisable. We recommend to [get started with Haskell](#get-started-with-haskell) before taking the course. The IOG education team that created the Pioneer program also offers a [Haskell course](https://github.com/input-output-hk/haskell-course) that you can at you own pace.
 
 Prior knowledge of Haskell or functional programming is also recommended, as Plutus is heavily based on Haskell and includes advanced features like Template Haskell, type-level programming, and effect systems.
 - [Apply for the Plutus Pioneer Program](https://input-output.typeform.com/to/au0XDcBP)
