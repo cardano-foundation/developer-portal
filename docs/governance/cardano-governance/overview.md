@@ -52,7 +52,7 @@ The Constitutional Committee will oversee and guide the governance process to ad
 
 During the [bootstrapping phase](https://github.com/cardano-foundation/CIPs/tree/master/CIP-1694#bootstrapping-phase), which we will enter right after the Chang hard fork, an Interim Constitutional Committee will be established to:
 
-- **Support initial governance structures**: Ensure the smooth functioning of governance systems post the bootstrap phase.
+- **Support initial governance structures**: Ensure the smooth functioning of governance systems after the bootstrap phase.
 - **Transition to a fully established CC**: Provide guidelines and frameworks for a fully-fledged Constitutional Committee.
 - **Voting power**: Each member has one vote.
 
