@@ -27,7 +27,7 @@ DReps will serve as officials representing Ada holders in the governance system.
 
 - **Proposing and debating changes to the Cardano protocol**: DReps propose and debate changes to the Cardano protocol, but they also play a crucial communication role. They gather feedback from the community and represent constituent interests during governance discussions.
 - **Voting on proposals**: DReps vote on proposals based on the priorities and interests of the Ada holders they represent.
-- **Voting power**: DReps voting power is proportional to the stake delegated to them.
+- **Voting power**: DReps' voting power is proportional to the stake delegated to them.
 
 ### Stake Pool Operators (SPOs)
 
