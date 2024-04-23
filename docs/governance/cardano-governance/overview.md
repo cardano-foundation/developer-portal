@@ -43,7 +43,7 @@ SPOs are fundamental to the network's operational integrity and will also play a
 
 The Constitutional Committee will oversee and guide the governance process to adhere to Cardano’s foundational governance principles as defined in the Cardano Constitution. It will:
 
-- **Interpret the Cardano Constitution**: The CC ensures that governance actions align with the constitution.
+- **Interpret the Cardano Constitution**: The CC ensures that governance actions align with the Constitution.
 - **Provide checks and balances**: The CC offers a system of checks and balances by reviewing the constitutionality of governance actions.
 - **Ensure transparency and fairness**: The CC works to maintain a governance process that is transparent, fair, and in line with the overall objectives of the Cardano ecosystem.
 - **Voting power**: Each CC member has one vote.
