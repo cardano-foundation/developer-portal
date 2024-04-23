@@ -23,7 +23,7 @@ Their active involvement ensures that governance remains decentralized and align
 
 ### Delegated Representatives (DReps)
 
-DReps will serve as officials representing ada holders in the governance system. Every ada holder has the choice to either register themselves as a DRep to represent themselves or others or delegate their voting power to a DRep of their choice. Their primary roles include:
+DReps will serve as officials representing Ada holders in the governance system. Every ada holder has the choice to either register themselves as a DRep to represent themselves or others or delegate their voting power to a DRep of their choice. Their primary roles include:
 
 - **Proposing and debating changes to the Cardano protocol**: DReps propose and debate changes to the Cardano protocol, but they also play a crucial communication role. They gather feedback from the community and represent constituent interests during governance discussions.
 - **Voting on proposals**: DReps vote on proposals based on the priorities and interests of the ada holders they represent.
