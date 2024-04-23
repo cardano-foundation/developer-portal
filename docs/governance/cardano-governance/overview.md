@@ -16,7 +16,7 @@ Ada holders are at the core of Cardano’s governance, wielding critical voting 
 
 - **Delegation of Voting Power**: Ada holders can delegate their voting rights to DReps to aggregate their influence. This delegation process involves creating and issuing a delegation certificate from the Ada holder's stake key to the chosen DRep.
 - **Participation as DReps**: Ada holders can register as DReps, allowing them to directly partake in the governance process, propose changes, and represent community interests.
-- **Submitting Governance Actions**: Any ada holder can propose governance actions on the blockchain network. To initiate such an action, a deposit of `govActionDeposit` Lovelace must be provided. This deposit will be returned once the action reaches its conclusion, either through enactment or expiration.
+- **Submitting Governance Actions**: Any Ada holder can propose governance actions on the blockchain network. To initiate such an action, a deposit of `govActionDeposit` lovelace must be provided. This deposit will be returned once the action reaches its conclusion, either through enactment or expiration.
 - **Influence on Network Operations**: By delegating to specific SPOs, ada holders indirectly influence the operational stability and security of the network and delegate their voting power for SPOs.
 
 Their active involvement ensures that governance remains decentralized and aligned with the interests of the broader community. Each associated stake key can issue two types of delegation certificates, one for a delegation to a stake pool and the other for a delegation to a DRep.
