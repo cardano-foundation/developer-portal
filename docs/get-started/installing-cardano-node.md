@@ -73,7 +73,7 @@ sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev l
 ```
 If you are using a different flavor of Linux, you will need to use the correct package manager for your platform instead of `yum` or `apt-get`, and the names of the packages you need to install might differ.
 
-#### Installing GHC and Cabal
+#### Installing GHC and Caba
 
 The fastest way to install **GHC** (Glasgow Haskell Compiler) and **Cabal** (Common Architecture for Building Applications and Libraries) is to use [ghcup](https://www.haskell.org/ghcup).
 
@@ -104,11 +104,11 @@ You can check if `ghcup` has been installed correctly by typing `ghcup --version
 The GHCup Haskell installer, version 0.1.19.2
 ```
 
-`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 8.10.7`. So, we will use `ghcup` to install and switch to the required version.
+`ghcup` will install the latest stable version of `ghc`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `ghc 9.4.8`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
-ghcup install ghc 8.10.7
-ghcup set ghc 8.10.7
+ghcup install ghc 9.4.8
+ghcup set ghc 9.4.8
 ```
 
 `ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
@@ -220,7 +220,7 @@ If upgrading an existing node, please ensure that you have read the [release not
 We explicitly use the `ghc` version that we installed earlier. This avoids defaulting to a system version of `ghc` that might be newer or older than the one you have installed.
 
 ```bash
-cabal configure --with-compiler=ghc-8.10.7
+cabal configure --with-compiler=ghc-9.4.8
 ```
 
 :::note
