@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 :::note
 This guide assumes that you have basic understanding of `cardano-cli`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/get-started/installing-cardano-node), [Running cardano-node](/docs/get-started/running-cardano) and [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guides first.
 
-This guide also assumes that you have `cardano-node` running in the background and connected to a [eestnet network](docs/get-started/testnets-and-devnets.md).
+This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](docs/get-started/testnets-and-devnets.md).
 :::
 
 ## Use case
@@ -28,9 +28,9 @@ To understand how something like this could work in a technical point of view, l
 
 ![img](../../static/img/integrate-cardano/ada-payment-flow.png)
 
-So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has choosen and added all the items into the **shopping cart**, the next step would then be to checkout and pay for the items. Of course we will be using **Cardano** for that!
+So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has chosen and added all the items into the **shopping cart**, the next step would then be to checkout and pay for the items. Of course we will be using **Cardano** for that!
 
-The **front-end** application would then request for a **wallet address** from the backend service and render a QR code to the **customer** to be scanned via a **Cardano wallet**. The backend service would then know that it has to query the **wallet address** using `cardano-cli` with a certain time interval to confirm and alert the **front-end** application that the payment has completed succesfully.
+The **front-end** application would then request for a **wallet address** from the backend service and render a QR code to the **customer** to be scanned via a **Cardano wallet**. The backend service would then know that it has to query the **wallet address** using `cardano-cli` with a certain time interval to confirm and alert the **front-end** application that the payment has completed successfully.
 
 In the meantime the transaction is then being processed and settled within the **Cardano** network. We can see in the diagram above that both parties are ultimately connected to the network via the `cardano-node` software component.
 
@@ -39,7 +39,7 @@ In the meantime the transaction is then being processed and settled within the *
 Now let's get our hands dirty and see how we can implement something like this in actual code.
 
 :::note
-In this section, we will use the path `$HOME/receive-ada-sample` to store all the related files as an example, please replace it with the directory you have choosen to store the files.
+In this section, we will use the path `$HOME/receive-ada-sample` to store all the related files as an example, please replace it with the directory you have chosen to store the files.
 All the code examples in this article assume that you will save all the source-code-files under the root of this directory.
 :::
 
@@ -221,7 +221,7 @@ var walletAddress = await System.IO.File.ReadAllTextAsync($"{CARDANO_KEYS_DIR}/p
 
 ### Query UTxO
 
-Then we execute `cardano-cli` programatically and telling it to query the **UTxO** for the **wallet address** that we have generated with our keys and save the `stdout` result to our `rawUtxoTable` variable.
+Then we execute `cardano-cli` programmatically and telling it to query the **UTxO** for the **wallet address** that we have generated with our keys and save the `stdout` result to our `rawUtxoTable` variable.
 
 <Tabs
   defaultValue="js"
@@ -772,7 +772,7 @@ The code is telling us that our current wallet has received a total of `0 lovela
 
 ## Complete the payment
 
-What we can do to simulate a successful payment is to send atleast `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We can get the **wallet address** by reading the contents of the `payment.addr` file like so:
+What we can do to simulate a successful payment is to send at least `1,000,000 lovelace` into the **wallet address** that we have just generated for this project. We can get the **wallet address** by reading the contents of the `payment.addr` file like so:
 
 ```bash
 cat $HOME/receive-ada-sample/receive-ada-sample/keys/payment.addr
@@ -784,7 +784,7 @@ You should see the **wallet address** value:
 addr_test1vpfkp665a6wn7nxvjql5vdn5g5a94tc22njf4lf98afk6tgnz5ge4
 ```
 
-Now simply send atleast `1,000,000 lovelace` to this **wallet address** or request some `test ada` funds from the [Cardano Testnet Faucet](https://docs.cardano.org/cardano-testnet/tools/faucet). Once complete, we can now run the code again and we should see a successful result this time.
+Now simply send at least `1,000,000 lovelace` to this **wallet address** or request some `test ada` funds from the [Cardano Testnet Faucet](https://docs.cardano.org/cardano-testnet/tools/faucet). Once complete, we can now run the code again and we should see a successful result this time.
 
 <Tabs
   defaultValue="js"
@@ -843,4 +843,4 @@ It might take 20 seconds or more for the transaction to propagate within the net
 
 :::
 
-Congratulations, you are now able to detect succesful **Cardano** payments programatically. This should help you bring integrations to your existing or new upcoming applications. 🎉🎉🎉
+Congratulations, you are now able to detect successful **Cardano** payments programmatically. This should help you bring integrations to your existing or new upcoming applications. 🎉🎉🎉

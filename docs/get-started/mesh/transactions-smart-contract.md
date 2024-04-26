@@ -51,7 +51,7 @@ const txHash = await wallet.submitTx(signedTx);
 
 ## Unlock Assets from Smart Contract
 
-As we may have locked assets in the contract, you can create transactions to unlock the assets with a redeemer that corresponds to the datum. Define the corresponding code to create the datum, only a transaction with the corrent datum hash is able to unlock the asset. Define the unit of the locked asset to search for the UTXO in the smart contract, which is required for the transaction's input.
+As we may have locked assets in the contract, you can create transactions to unlock the assets with a redeemer that corresponds to the datum. Define the corresponding code to create the datum, only a transaction with the correct datum hash is able to unlock the asset. Define the unit of the locked asset to search for the UTXO in the smart contract, which is required for the transaction's input.
 
 ```javascript
 async function _getAssetUtxo({ scriptAddress, asset, datum }) {

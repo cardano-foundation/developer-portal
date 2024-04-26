@@ -1567,3 +1567,49 @@ All of the merged PRs in January
 - joseph-fajen ([@joseph-fajen](https://github.com/joseph-fajen))
 - katomm ([@katomm](https://github.com/katomm))
 - sempruijs ([@sempruijs](https://github.com/sempruijs))
+
+## 2024.08.0 (2024-02-29)
+
+All of the merged PRs in February
+
+#### PRs: 10
+
+- Cardano Relay Configuration: fix command typo by ([@sempruijs](https://github.com/sempruijs)) in [#1205](https://github.com/cardano-foundation/developer-portal/pull/1205)
+- Fix "Cardano Store" (not "Cardano Merch Store") by ([@katomm](https://github.com/katomm)) in [#1203](https://github.com/cardano-foundation/developer-portal/pull/1203)
+- Add Changelog for January 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1208](https://github.com/cardano-foundation/developer-portal/pull/1208)
+- [Fix Build] Modify CPS script to fetch images by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1211](https://github.com/cardano-foundation/developer-portal/pull/1211)
+- Add rejuve blog by ([@weqanhet](https://github.com/weqanhet)) in [#1212](https://github.com/cardano-foundation/developer-portal/pull/1212)
+- Add repo with the available tooling for the Authenticated Product section by ([@katomm](https://github.com/katomm)) in [#1214](https://github.com/cardano-foundation/developer-portal/pull/1214)
+- fix: correct url for installing cardano node from source code by ([@ShawnTseng](https://github.com/ShawnTseng)) in [#1213](https://github.com/cardano-foundation/developer-portal/pull/1213)
+- Add Project Catalyst Voting Results for F10 & F11 by ([@thenic95](https://github.com/thenic95)) in [#1219](https://github.com/cardano-foundation/developer-portal/pull/1219)
+- Operate stake pool Script bugfixes by ([@sorki](https://github.com/sorki)) in [#1218](https://github.com/cardano-foundation/developer-portal/pull/1218)
+- Point cardano-node docs to cardano-node-wiki by ([@sorki](https://github.com/sorki)) in [#1217](https://github.com/cardano-foundation/developer-portal/pull/1217)
+
+#### Contributors: 7
+
+- sempruijs ([@sempruijs](https://github.com/sempruijs))
+- katomm ([@katomm](https://github.com/katomm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- ShawnTseng ([@ShawnTseng](https://github.com/ShawnTseng))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- sorki ([@sorki](https://github.com/sorki))
+
+## 2024.12.0 (2024-03-31)
+
+All of the merged PRs in March
+
+#### PRs: 4
+
+- Add Mazzumagpt Blog by ([@weqanhet](https://github.com/weqanhet)) in [#1224](https://github.com/cardano-foundation/developer-portal/pull/1224)
+- Revert "Add Mazzumagpt Blog" by ([@katomm](https://github.com/katomm)) in [#1227](https://github.com/cardano-foundation/developer-portal/pull/1227)
+- Add changelog for February 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1220](https://github.com/cardano-foundation/developer-portal/pull/1220)
+- Installing Cardano Wallet: fix + clarify links by ([@syncquick](https://github.com/syncquick)) in [#1230](https://github.com/cardano-foundation/developer-portal/pull/1230)
+
+
+#### Contributors: 4
+
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- katomm ([@katomm](https://github.com/katomm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- syncquick ([@syncquick](https://github.com/syncquick))
