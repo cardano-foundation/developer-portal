@@ -1083,6 +1083,14 @@ export const Showcases = [
     getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
     tags: ["plutus"]
   },
+  {
+    title: "Xogmios",
+    description: "An Elixir client for Ogmios.",
+    preview: require("./builder-tools/xogmios.png"),
+    website: "https://github.com/wowica/xogmios",
+    getstarted: null,
+    tags: ["ogmios", "sdk", "lowlevel"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
