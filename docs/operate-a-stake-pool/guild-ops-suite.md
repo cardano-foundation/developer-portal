@@ -50,7 +50,15 @@ chmod 755 guild-deploy.sh
 . "$HOME"/.bashrc
 ```
 
-Note: `-s pdl`  installs system (p)rerequisites, (d)ownloads the precompiled binaries and also compiles and installs the IOG fork of (l)ibsodium.
+:::note 
+    `-s pdl`  
+      installs (p)rerequisites for the operating system, 
+      (d)ownloads the precompiled binaries 
+      and also compiles and installs the IOG fork of (l)ibsodium.
+
+      consider guild-deploy.sh --help for options when you update the system 
+      or want to install additional modules
+:::
 
 ### Build of Node/DBSync components
 
