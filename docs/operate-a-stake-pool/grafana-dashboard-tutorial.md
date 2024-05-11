@@ -448,7 +448,7 @@ Use `cardano-cli` to query the leadership schedule. Since the result has to inte
 
 :::note
 
-The `cardano-cli` query requires additional RAM. Please refer to [query leadership-schedule](https://github.com/input-output-hk/cardano-node/issues/3673) for more details. I needed 16GB RAM + 8GB SWAP and it took several minutes to query the leadership schedule.
+The `cardano-cli` query requires additional RAM. Please refer to [query leadership-schedule](https://github.com/IntersectMBO/cardano-node/issues/3673) for more details. I needed 16GB RAM + 8GB SWAP and it took several minutes to query the leadership schedule.
 
 :::
 

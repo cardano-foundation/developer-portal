@@ -99,7 +99,7 @@ Building a Sending a transaction can be broken down into 8 steps:
 
 These parameters are set by Cardano and are static for the most part. If in doubt, the parameters can be checked by looking
 in the table called `epoch_param` that is maintained by the `cardano-db-sync` service - how this is done is out of scope, 
-for more info consult [cardano-db-sync](https://github.com/input-output-hk/cardano-db-sync)
+for more info consult [cardano-db-sync](https://github.com/IntersectMBO/cardano-db-sync)
 
 ```javascript
 this.protocolParams = {
