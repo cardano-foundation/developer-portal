@@ -64,7 +64,7 @@ following:
 
 Here are the location of the original [CDDL](http://cbor.io/tools.html) specifications:
 
--  Byron: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/byron)
+-  Byron: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/byron/impl)
 -  Shelley: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/shelley/impl)
 -  Mary: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/mary/impl)
 
