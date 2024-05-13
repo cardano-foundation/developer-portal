@@ -1613,3 +1613,30 @@ All of the merged PRs in March
 - katomm ([@katomm](https://github.com/katomm))
 - fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
 - syncquick ([@syncquick](https://github.com/syncquick))
+
+## 2024.16.0 (2024-04-30)
+
+All of the merged PRs in April
+
+
+#### PRs: 10
+
+- SPO node installation: Update cabal version by ([@mr-14](https://github.com/mr-14)) in [#1241](https://github.com/cardano-foundation/developer-portal/pull/1241)
+- plu-ts: Fix broken main documentation link by ([@DenhamPreen](https://github.com/DenhamPreen)) in [#1240](https://github.com/cardano-foundation/developer-portal/pull/1240)
+- Add changelog for March 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1242](https://github.com/cardano-foundation/developer-portal/pull/1242)
+- Add http security header configuration for Netlify by ([@katomm](https://github.com/katomm)) in [#1244](https://github.com/cardano-foundation/developer-portal/pull/1244)
+- Update links to testnets overview on Cardano Docs by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#1246](https://github.com/cardano-foundation/developer-portal/pull/1246)
+- Fix typos in docs by ([@NotSimple](https://github.com/NotSimple)) in [#1243](https://github.com/cardano-foundation/developer-portal/pull/1243)
+- Update content security policy  by ([@katomm](https://github.com/katomm)) in [#1247](https://github.com/cardano-foundation/developer-portal/pull/1247)
+- Fix headers by ([@katomm](https://github.com/katomm)) in [#1248](https://github.com/cardano-foundation/developer-portal/pull/1248)
+- Update content security policy by ([@katomm](https://github.com/katomm)) in [#1249](https://github.com/cardano-foundation/developer-portal/pull/1249)
+- Update content security policy by ([@katomm](https://github.com/katomm)) in [#1251](https://github.com/cardano-foundation/developer-portal/pull/1251)
+
+#### Contributors: 6
+
+- mr-14 ([@mr-14](https://github.com/mr-14))
+- DenhamPreen ([@DenhamPreen](https://github.com/DenhamPreen))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
+- NotSimple ([@NotSimple](https://github.com/NotSimple))
