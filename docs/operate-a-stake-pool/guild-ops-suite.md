@@ -74,7 +74,7 @@ Issue/PRs are welcome on the [github repository][guild-github].
 
 ### Support Requests
 
-We do have [telegram channel for support requests][koios-general-tg] , but note that we intend to have support channel only for baseline skillset highlighted on [homepage][guild-website].  
+We do have the [Koios Discussions telegram channel for support requests][koios-general-tg] , but note that we intend to have support channel only for baseline skillset highlighted on [homepage][guild-website].  
 
 [guild-github]: https://github.com/cardano-community/guild-operators
 [guild-website]: https://cardano-community.github.io/guild-operators
