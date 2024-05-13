@@ -42,7 +42,7 @@ First we have to look at the applications we can use to create wallets.
 
  You can find `cardano-wallet` **REST API** documentation here: [https://cardano-foundation.github.io/cardano-wallet/api/edge/](https://cardano-foundation.github.io/cardano-wallet/api/edge/)
 
-- [cardano-cli](https://github.com/input-output-hk/cardano-node) : `cardano-cli` is also a [CLI (Command Line Interface)](https://en.wikipedia.org/wiki/Command-line_interface) application that provides **Cardano** wallet functionalities. But `cardano-cli` purpose is geared more towards general **Cardano** functionalities like generating **keys**, building and submitting **transactions**, managing **stake pools** certificates, simple blockchain queries like wallet address **UTXO** and more.
+- [cardano-cli](https://github.com/IntersectMBO/cardano-node) : `cardano-cli` is also a [CLI (Command Line Interface)](https://en.wikipedia.org/wiki/Command-line_interface) application that provides **Cardano** wallet functionalities. But `cardano-cli` purpose is geared more towards general **Cardano** functionalities like generating **keys**, building and submitting **transactions**, managing **stake pools** certificates, simple blockchain queries like wallet address **UTXO** and more.
 
     It is part of the `cardano-node` project repository, so if you [compile and install](/docs/get-started/installing-cardano-node) `cardano-node` you should also have `cardano-cli` as-well. It is one of the many Haskell-based **Cardano** software components being written by [InputOutputGlobal](https://iohk.io/).
 

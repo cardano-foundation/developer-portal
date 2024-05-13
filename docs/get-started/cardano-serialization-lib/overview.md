@@ -64,9 +64,9 @@ following:
 
 Here are the location of the original [CDDL](http://cbor.io/tools.html) specifications:
 
--  Byron: [link](https://github.com/input-output-hk/cardano-ledger/tree/master/eras/byron/cddl-spec)
--  Shelley: [link](https://github.com/input-output-hk/cardano-ledger/tree/master/eras/shelley/test-suite/cddl-files)
--  Mary: [link](https://github.com/input-output-hk/cardano-ledger/tree/master/eras/shelley-ma/test-suite/cddl-files)
+-  Byron: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/byron/impl)
+-  Shelley: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/shelley/impl)
+-  Mary: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/mary/impl)
 
 ## Building
 

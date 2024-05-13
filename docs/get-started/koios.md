@@ -37,7 +37,7 @@ For this audience, we've tried to leverage the existing widely adopted `guild-op
 
 ### Infrastructure Sizing
 
-Most of the infrastructure sizing at the moment is dependent on sizing of `cardano-node`, `cardano-db-sync` and `postgres`, and their consumption is different depending on the network you connect to. You can find the official `cardano-db-sync` documentation for system requirements [here](https://github.com/input-output-hk/cardano-db-sync#system-requirements). But as a basic recommendation, if you're running a typical dbsync+node+postgres instance, we would recommend you to go for 64GB RAM for Mainnet, 16GB for Testnet and 8GB for Guildnet (this is true as of May 2022, we intend to update this page if/when this is no longer sufficient).
+Most of the infrastructure sizing at the moment is dependent on sizing of `cardano-node`, `cardano-db-sync` and `postgres`, and their consumption is different depending on the network you connect to. You can find the official `cardano-db-sync` documentation for system requirements [here](https://github.com/IntersectMBO/cardano-db-sync#system-requirements). But as a basic recommendation, if you're running a typical dbsync+node+postgres instance, we would recommend you to go for 64GB RAM for Mainnet, 16GB for Testnet and 8GB for Guildnet (this is true as of May 2022, we intend to update this page if/when this is no longer sufficient).
 
 :::note
 

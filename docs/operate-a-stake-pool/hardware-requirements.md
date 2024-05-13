@@ -5,7 +5,7 @@ sidebar_label: Hardware requirements
 description: Minimum hardware requirements to run a stake pool
 image: ../img/og-developer-portal.png
 ---
-The latest technical specifications and supported platforms can be found on the [Cardano Node release page](https://github.com/input-output-hk/cardano-node/releases).
+The latest technical specifications and supported platforms can be found on the [Cardano Node release page](https://github.com/IntersectMBO/cardano-node/releases).
 
 Currently the following specifications are recommended on Mainnet:
 
