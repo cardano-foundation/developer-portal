@@ -11,7 +11,7 @@ image: /img/og/og-getstarted-serialization-lib.png
 `cardano-wallet-connector` is a Create React App boilerplate code that includes examples of how to use the Serialization-Lib to connect
 to different Cardano Web wallets and send transactions. This lets developers who are familiar with React JS to get started
 quickly with Cardano. The boilerplate code includes examples of how to execute simple transaction of sending someone ADA
-and also how to interact with Plutus scripts (locking and redeeming assests from scripts). A developer familiar with React JS can clone
+and also how to interact with Plutus scripts (locking and redeeming assets from scripts). A developer familiar with React JS can clone
 the GitHub repo and start building DApps
 
 GitHub: [cardano-wallet-connector](https://github.com/dynamicstrategies/cardano-wallet-connector)
@@ -35,8 +35,8 @@ GitHub: [cardano-wallet-connector](https://github.com/dynamicstrategies/cardano-
 
 ## Introduction
 React JS is by far the most popular front-end framework and continues to grow fast, judging by the number of 
-Stackoverflow questions when compared to other frameworks such as Angular, Vue and Svetle ([source](https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190)). 
-It is also well documented, sothat a beginner with some Javascript knowledge can pick-it-up, 
+Stackoverflow questions when compared to other frameworks such as Angular, Vue and Svelte ([source](https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190)). 
+It is also well documented, so that a beginner with some Javascript knowledge can pick it up, 
 and powerful enough that more sophisticated full stack frameworks such as Next JS incorporate it.
 
 A Create React App is the command that any new application is created with in React JS and anyone who has used this framework before
@@ -99,7 +99,7 @@ Building a Sending a transaction can be broken down into 8 steps:
 
 These parameters are set by Cardano and are static for the most part. If in doubt, the parameters can be checked by looking
 in the table called `epoch_param` that is maintained by the `cardano-db-sync` service - how this is done is out of scope, 
-for more info consult [cardano-db-sync](https://github.com/input-output-hk/cardano-db-sync)
+for more info consult [cardano-db-sync](https://github.com/IntersectMBO/cardano-db-sync)
 
 ```javascript
 this.protocolParams = {

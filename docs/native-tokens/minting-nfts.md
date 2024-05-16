@@ -92,7 +92,7 @@ If using a 3rd party service for minting, the service will have control of the m
 
 Since NFTs are likely to be traded or sold, they should follow a more strict policy. Most of the time, a value is defined by the (artificial) scarcity of an asset.
 
-You can regulate such factors with [multi-signature scripts](https://github.com/input-output-hk/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md).
+You can regulate such factors with [multi-signature scripts](https://github.com/IntersectMBO/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md).
 
 For this guide, we will choose the following constraints:
 
@@ -803,7 +803,7 @@ cardano-cli transaction submit --tx-file matx.signed --mainnet
 
 </Tabs>
 
-If everything is correcrt you should a message like this:
+If everything is correct you should a message like this:
 
 ```bash
 Transaction successfully submitted

@@ -133,7 +133,7 @@ cd $HOME/cardano-src
 Next, we will download, compile and install `libsodium`.
 
 ```bash
-git clone https://github.com/input-output-hk/libsodium
+git clone https://github.com/IntersectMBO/libsodium
 cd libsodium
 git checkout dbb48cc
 ./autogen.sh
