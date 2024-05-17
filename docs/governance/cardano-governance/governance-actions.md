@@ -4,7 +4,7 @@ slug: /governance/cardano-governance/governance-actions
 title: Governance Actions
 sidebar_label: Governance Actions
 sidebar_position: 2
-description: Change me
+description: This page outlines the types, eligibility, voting thresholds, and procedures for governance actions within Cardano's CIP-1694 on-chain governance model.
 ---
 
 ## Governance Action Overview
