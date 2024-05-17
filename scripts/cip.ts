@@ -22,6 +22,27 @@ const path_name = path.basename(__filename);
 
 // Download markdown resources
 const processCIPContentAsync = async (cip_name: string, content: string) => {
+  // Finding any reference links in the content and replacing to relative links where necessary 
+  // to fix broken links in the CIPs
+  const referenceLinks = identifyReferenceLinks(content);
+  if(referenceLinks) {
+    await Promise.all(
+      referenceLinks.map(async (link) => {
+        if(link.url.indexOf("./") == 0 || link.url.indexOf("../") == 0) {
+
+          console.log(`Found reference links in CIP ${cip_name}:`);
+          console.log(`WARNING: Reference link ${link.reference} in CIP ${cip_name} is an relative link: ${link.url}.`);
+                    
+          // Rewrite link to static folder
+          content = content.replace(
+            `[${link.reference}]`,
+            `[${link.reference}](${link.url})`
+          );
+        }
+      })
+    );
+  }
+
   const cip_resource = content.match(cip_regex);
   if (cip_resource) {
     await Promise.all(
@@ -170,6 +191,23 @@ const stringManipulation = (content: string, cip_name: string) => {
 // Get a specific doc tag
 const getDocTag = (content: string, tag_name: string) => {
   return content.match(new RegExp(`(?<=${tag_name}: ).*`, ""));
+};
+
+const identifyReferenceLinks = (content: string) => {
+  // Regular expression to match reference-style links
+  const referenceLinkRegex = /\[([^\]]+)\]:\s*(\S+)/g;
+  const matches = [];
+  let match;
+
+  // Loop through all matches and push them into the matches array
+  while ((match = referenceLinkRegex.exec(content)) !== null) {
+    matches.push({
+      reference: match[1], // The reference name
+      url: match[2]        // The URL
+    });
+  }
+
+  return matches;
 };
 
 const main = async () => {
