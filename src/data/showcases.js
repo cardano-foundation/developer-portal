@@ -1136,6 +1136,15 @@ export const Showcases = [
     source: "https://github.com/alucao/decon",
     tags: ["opensource", "metadata"],
   },
+    {
+    title: "PeriodicTable.io",
+    description: 
+      "A community owned “Periodic Table of the Elements” on the Cardano blockchain.",
+    preview: require("./showcase/periodictable-nft-screen1.png"),
+    website: "https://www.periodictable.io/",
+    source: null,
+    tags: ["nftproject"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
