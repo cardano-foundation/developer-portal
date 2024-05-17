@@ -8,9 +8,13 @@
 
  <-- Please fill the boxes with [x] before submitting a pull request --> 
 
-- [ ] I have read the [How to Contribute](https://developers.cardano.org/docs/portal-contribute/).
-- [ ] I have run `yarn build` after adding my changes **without getting any errors**. 
+- [X] I have read the [How to Contribute](https://developers.cardano.org/docs/portal-contribute/).
+- [X] I have run `yarn build` after adding my changes **without getting any errors**. 
 
 ## Updating documentation or Bugfix
 
 <-- Help us understand your motivation by explaining why you decided to make this change. We must be able to understand the purpose of your change from this description.  Does this fix a bug? Does it close an issue? If so please mention it.  -->
+
+Fixes the issue mentioned in #1229:
+1. Works correctly for the referenced style syntax "[.*?]"
+2. Needed work on referenced style syntax "[][.*?]"
