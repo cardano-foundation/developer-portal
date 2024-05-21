@@ -9,8 +9,6 @@ module.exports = {
           "get-started/cardano-components",
           "get-started/installing-cardano-node",
           "get-started/running-cardano",
-          "get-started/installing-cardano-wallet",
-          "get-started/create-simple-transaction",
           {
             type: "category",
             label: "Cardano CLI",
@@ -22,6 +20,7 @@ module.exports = {
               },
             ],
           },
+          "get-started/installing-cardano-wallet",
         ],
       },
       {
