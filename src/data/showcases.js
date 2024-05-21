@@ -1136,6 +1136,15 @@ export const Showcases = [
     source: "https://github.com/alucao/decon",
     tags: ["opensource", "metadata"],
   },
+  {
+    title: "Emurgo Academy",
+    description:
+      "Blockchain education and training programs designed to equip individuals with the knowledge and skills needed to understand and develop blockchain solutions. The paid courses cover various aspects of blockchain technology, including its fundamentals, development, and applications, with a focus on Cardano.",
+    preview: require("./showcase/emurgo-academy.jpg"),
+    website: "https://education.emurgo.io/cardano-courses/",
+    source: null,
+    tags: ["educational"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
