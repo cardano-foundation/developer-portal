@@ -8,9 +8,9 @@ keywords: [cardano-cli, cli, deregistration, deregister, rewards, withdrawal, st
 ---
 
 :::tip
-In order to accommodate the integration of the Conway era, which significantly differs from all previous eras, cardano-cli has introduced `<era>` as a top-level command, replacing the previous `<era>` flags. For instance, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli babbage transaction build <options>`. 
+To integrate the Conway era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli babbage transaction build <options>`. 
 :::
 
-Deregistering a stake address is achieved by submitting a **Stake Address Deregistration Certificate**. 
+Deregistering a stake address is achieved by submitting a **stake address deregistration certificate**. 
 
 
