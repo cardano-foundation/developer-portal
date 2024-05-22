@@ -1,14 +1,17 @@
 ---
 id: register drep
-sidebar_label: Register a DRep
-title: Registering as Delegate Representative (DRep)
+sidebar_label: Register as a DRep
+title: Registering as delegate representative (DReps)
 sidebar_position: 1
-description: How to register as a DElegate representative
+description: How to register as a delegate representative
 keywords: [Governance, DREP, Delegate representative, CIP1694]
 ---
 
+Delegate representatives (DReps) serve as the community's spokesperson, actively participating in voting on governance actions and advocating for the community's collective interests. DReps hold significant responsibilities in the governance process, voting on important system updates. Approval depends on the governance action type and requires a majority vote from the corresponding governance bodies.
 
-### Generate DRep keys 
+To register as a DRep, follow the steps below.
+
+## Generate DRep keys: 
 
 ```shell
 cardano-cli conway governance drep key-gen \
@@ -31,7 +34,7 @@ cardano-cli conway governance drep key-gen \
 }
 ```
 
-### Generate a DRep ID:
+## Generate a DRep ID:
 
 ```shell
 cardano-cli conway governance drep id \
@@ -42,7 +45,7 @@ cardano-cli conway governance drep id \
 drep124w9k5ml25kcshqet8r3g2pwk6kqdhj79thg2rphf5u5urve0an
 ```
 
-Some workflows may require to use the hex version of the DRep ID, 
+Some workflows may require the use of the hexadecimal version of the DRep ID:
 
 ```shell
 cardano-cli conway governance drep id \
@@ -53,9 +56,9 @@ cardano-cli conway governance drep id \
 687c9849e1792f9b43d2a78153c412406950ee0c6f2b417226da9dcc
 ```
 
-### Generate the registration certificate
+## Generate the registration certificate:
 
-* Using the drep.vkey file:
+* Using the `drep.vkey` file:
 
 ```shell
 cardano-cli conway governance drep registration-certificate \
@@ -92,7 +95,7 @@ Any of the above methods produces `drep-reg.cert `:
 }
 ```
 
-### Submit certificate in a transaction
+## Submit a certificate in a transaction:
 
 Build the transaction:
 
@@ -105,7 +108,7 @@ cardano-cli conway transaction build \
 --out-file tx.raw
 ```
 
-Sign it with payment and drep signing keys:
+Sign it with payment and DRep signing keys:
 
 ```shell
 cardano-cli conway transaction sign \
@@ -122,7 +125,7 @@ cardano-cli conway transaction submit \
 --tx-file tx.signed
 ```
 
-### Query the DRep State to confirm:
+## Query the DRep state to confirm:
 
 ```shell
 cardano-cli conway query drep-state  --all-dreps
