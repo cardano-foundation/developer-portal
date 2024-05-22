@@ -8,12 +8,12 @@ keywords: [cardano-cli, cli, delegation, rewards, withdrawal, stake, stake addre
 ---
 
 :::tip
-In order to accommodate the integration of the Conway era, which significantly differs from all previous eras, cardano-cli has introduced `<era>` as a top-level command, replacing the previous `<era>` flags. For instance, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli babbage transaction build <options>`. 
+To integrate the Conway era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli babbage transaction build <options>`. 
 :::
 
-### Query the stake address balance:
+## Querying the stake address balance
 
-Let's check if we have some rewards to withdraw:
+First, check if you have some rewards to withdraw:
 
 ```shell
 cardano-cli babbage query stake-address-info --address $(cat stake.addr)
@@ -33,10 +33,11 @@ Nice! There are some rewards, let's store the `rewardAccountBalance` in a variab
 rewards="$(cardano-cli conway query stake-address-info --address $(cat stake1.addr) | jq .[].rewardAccountBalance)"
 ```
 
-### Build the transaction:
-To withdraw rewards from the rewards account you must withdraw its entire balance (partial withdrawals are not allowed). Use the flag `--withdrawal` followed by the stake address and its balance using the syntax: `stakeAddress+lovelace`. 
+## Building the transaction
 
-By default, the `build` command considers the transaction to only require 1 witness, however, this type of transaction needs to be signed by `payment.skey`, to pay for the transaction fees, but also by `stake.skey` to prove we control that stake address. So we let the `build` command "know" that the transaciton will carry two signatures using the flag `--witness-override 2`, this has a slight impact on the fee. 
+To withdraw rewards from the rewards account, you must withdraw its entire balance; partial withdrawals are not allowed. Use the `--withdrawal` flag followed by the stake address and its balance using the syntax: `stakeAddress+lovelace`.
+
+By default, the `build` command considers the transaction to only require one witness. However, this type of transaction needs to be signed by `payment.skey` to pay for the transaction fees, and also by `stake.skey` to prove that we control that stake address. Therefore, we inform the `build` command that the transaction will carry two signatures using the `--witness-override 2` flag. This has a slight impact on the fee:
 
 ```shell
 cardano-cli babbage transaction build \
@@ -61,7 +62,7 @@ cardano-cli babbage transaction build \
 > Estimated transaction fee: Coin 180593
 ```
 
-### Signing the transaction
+## Signing the transaction
 
 As before, sign the transaction with the `payment.skey`:
 
@@ -73,7 +74,7 @@ cardano-cli babbage transaction sign \
 --out-file tx.signed
 ```
 
-If you inspect the transaction, you'll notice the "withdrawals" field contains the details of the rewards withdrawal:
+If you inspect the transaction, you'll notice that the 'withdrawals' field contains reward withdrawal details:
 
 ```shell
 cardano-cli conway transaction view --tx-file tx.signed
@@ -136,8 +137,7 @@ cardano-cli conway transaction view --tx-file tx.signed
 }
 ```
 
-
-### Submitting the transaction
+## Submitting the transaction
 
 ```shell
 cardano-cli babbage transaction submit \
@@ -146,7 +146,7 @@ cardano-cli babbage transaction submit \
 Transaction successfully submitted.
 ```
 
-If we query the stake address info again, it has been emptied and the funds sent to the payment address. 
+If you query the stake address details again, you'll notice that it has been emptied, and the funds were sent to the payment address.
 
 ```shell
 cardano-cli babbage query stake-address-info --address $(cat stake1.addr)
