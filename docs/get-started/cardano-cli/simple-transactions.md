@@ -7,18 +7,18 @@ keywords: [cardano-cli, cli, keys, addresses, cardano-node, transactions]
 ---
 
 :::tip
-In order to accommodate the integration of the Conway era, which significantly differs from all previous eras, cardano-cli has introduced `<era>` as a top-level command, replacing the previous `<era>` flags. For instance, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli babbage transaction build`. 
+To integrate the Conway era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users now use `cardano-cli babbage transaction build`. 
 :::
 
-# Simple transactions
+## Simple transactions
 
-Transactions in Cardano involve consuming one or multiple Unspent Transaction Outputs (UTxOs) and generating one or multiple new UTxOs. The most basic transaction type entails transferring ada from one address to another. It's essential to ensure that all transactions are "well-balanced," meaning that the sum of Outputs and Transaction Fees equals the sum of Inputs. This balance ensures the integrity and validity of the transaction. Unbalanced transactions are rejected by the local node. 
+Cardano transactions involve consuming one or more Unspent Transaction Outputs (UTXOs) and generating one or more new UTXOs. The most basic transaction type involves transferring ada from one address to another. It is essential to ensure that all transactions are 'well-balanced', meaning that the sum of outputs and transaction fees equals the sum of inputs. This balance ensures the integrity and validity of the transaction. Unbalanced transactions are rejected by the local node.
 
 Creating a transaction using the CLI follows a three-step process:
 
-- **Build:** Construct the transaction with relevant details.
-- **Sign:** Authenticate the transaction with appropriate signatures.
-- **Submit:** Send the signed transaction to the network for processing.
+- **Build:** construct the transaction with relevant details
+- **Sign:** authenticate the transaction with appropriate signatures
+- **Submit:** send the signed transaction to the network for processing.
 
 You'll find commands for these tasks under `cardano-cli babbage transaction`
 
@@ -39,18 +39,20 @@ Usage: cardano-cli babbage transaction
                                          | view
                                          )
 ```                                         
-`cardano-cli` provides two options for constructing transactions: `transaction build-raw` and `transaction build` commands. The key difference between these methods lies in their offline and online capabilities, as well as the degree of manual or automatic processing involved.
 
-- `build-raw` enables offline transaction building, eliminating the need for connection to a running node. However, this method requires manual calculation of fees and balancing the transaction.
-- `build` command automatically calculates fees and balances the transaction, but it necessitates an established connection to a running node.
+`cardano-cli` provides several options for constructing transactions: `transaction build-raw`, `transaction build`, and `build-estimate`. The key difference between these methods lies in their offline and online capabilities, as well as the degree of manual or automatic processing involved.
+
+- The `build-raw` command enables offline transaction building, eliminating the need for a connection to a running node. However, this method requires manual calculation of fees and balancing the transaction.
+- The `build` command automatically calculates fees and balances the transaction, but it necessitates a connection to a running node
+- The `build-estimate` command is a command that is useful for estimating the size and fee of a transaction when the CLI is not connected to the node. This command automatically balances a transaction related to the script one would like to execute.
 
 When building a transaction, it's essential to specify the following elements:
 
-- **Inputs:** These are one or multiple Unspent Transaction Outputs (UTxOs) being utilized.
-- **Outputs:** This denotes the addresses where the funds will be sent. It includes specifying the amount in lovelace for each recipient, including any change that needs to be returned to ourselves.
-- **Transaction Fee:** This is the fee the transaction will pay to be processed on chain.
+- **Inputs:** one or multiple Unspent Transaction Outputs (UTXOs) being utilized
+- **Outputs:** the addresses where the funds will be sent, including the amount in lovelace for each recipient and any change that needs to be returned to yourself
+- **Transaction fee:** the fee paid for the transaction to be processed on the chain.
 
-## Building transactions with `build-raw` command
+## Building transactions with the `build-raw` command
 
 To create a transaction using `build-raw`, you will need the protocol parameters.  These parameters are necessary for calculating the transaction fee at a later stage. Querying the protocol parameters requires a running node:
 
@@ -58,9 +60,9 @@ To create a transaction using `build-raw`, you will need the protocol parameters
 cardano-cli babbage query protocol-parameters --out-file pparams.json
 ```
 
-You also need to know the Inputs (UTxOs) you will use, a UTxO is identified by  **transaction hash** `TxHash` and **transaction index** `TxIx` with the syntax `TxHash#TxIx`. Obviously, you can only use UTxOs controlled by your `payment.skey`. 
+You also need to know the inputs (UTXOs) you will use. A UTXO is identified by its **transaction hash** (`TxHash`) and **transaction index** (`TxIx`) with the syntax `TxHash#TxIx`. You can only use UTXOs controlled by your `payment.skey`.
 
-To query the UTxOs associated to your `payment.addr`, run:
+To query the UTXOs associated to your `payment.addr`, run:
 
 ```bash
 cardano-cli babbage query utxo --address $(cat payment.addr)
@@ -70,15 +72,15 @@ cardano-cli babbage query utxo --address $(cat payment.addr)
 e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891     0        9994790937 lovelace + TxOutDatumNone
 ```
 
-In this example, the address has one UTxO associated to it. It holds 9,994,790,937 lovelace (9,994.790937 ada). 
+In this example, the address has one UTXO associated with it. It holds 9,994,790,937 lovelace (9,994.790937 ada). 
 
-Assume you want to send 1,000,000 lovelace (1,000 ada) from `payment.addr` to a `payment2.addr`.  This transaction will have 1 input and 2 outputs: 
+Assume you want to send 1,000,000 lovelace (1,000 ada) from `payment.addr` to a `payment2.addr`. This transaction will have one input and two outputs: 
 
-- The single input is the UTxO that the transaction will consume, in this case `e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0`; 
+- The single input is the UTXO that the transaction will consume, in this case `e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0`
 - The first output corresponds to the 1000 ada we are sending to `payment2.addr` 
-- The second output corresponds to the change of the transaction. We are sending the difference (8994790937 lovelace) to `payment.addr`   
+- The second output corresponds to the change of the transaction. We are sending the difference (8994790937 lovelace) to `payment.addr`.   
 
-At this stage you do not need to worry about the transaction fees. Save the transaction body in the `tx.draft` file:
+At this stage, you do not need to worry about the transaction fees. Save the transaction body in the `tx.draft` file:
 
 ```shell
 cardano-cli babbage transaction build-raw \
@@ -90,7 +92,7 @@ cardano-cli babbage transaction build-raw \
   --out-file tx.draft
 ```
 
-`cardano-cli` can handle nesting of commands, for example we can use `cat` within cardano-cli to read the addresses directly from the file.
+`cardano-cli` can handle the nesting of commands. For example, you can use `cat` within `cardano-cli` to read the addresses directly from the file.
 
 
 ```shell
@@ -103,7 +105,7 @@ cardano-cli babbage transaction build-raw \
   --out-file tx.draft
 ```
 
-Let's explore the `tx.draft` file created. It is a text envelope, the "type" field says that it is an **Unwitnessed Babbage era transaction**. Unwitnessed means that it has not been signed yet. The "cborHex" field encodes all the details of transaction:
+Let's explore the created `tx.draft` file. It is a text envelope. The 'type' field says that it is an **Unwitnessed Babbage era transaction**. 'Unwitnessed' means that it has not been signed yet. The "cborHex" field encodes all transaction details:
 
 ```shell
 cat tx.draft
@@ -170,12 +172,14 @@ cardano-cli babbage transaction view --tx-body-file tx.draft
     "witnesses": []
 }
 ```
-### Calculating transaction fees and balancing the transaction
+
+### Calculating transaction fees and balancing a transaction
+
 :::info
-In Cardano, transaction fees are deterministic, meaning that you can know in advance how much a transaction will cost. 
+In Cardano, transaction fees are [deterministic](https://iohk.io/en/blog/posts/2021/09/06/no-surprises-transaction-validation-on-cardano/), meaning that you can know in advance how much a transaction will cost. 
 :::
 
-In order for a transaction to be processed by the network, it must include fees. These fees need to be specified within the transaction body. To determine the exact cost of the transaction, we utilize the `transaction calculate-min-fee` command. This command requires the `tx.draft` and `pparams.json` files as inputs. Within this command, you will need to specify the details of the transaction, such as the total number of inputs, the number of outputs, and the required number of signatures for the transaction. In this particular scenario, only one witness is necessary, the signature of `payment.skey`
+To process a transaction on the network, it must include fees specified within the transaction body. To calculate the exact cost, use the `transaction calculate-min-fee` command, which takes `tx.draft` and `pparams.json` files as inputs. Within this command, specify details like the total number of inputs, outputs, and the required number of signatures. In this case, only one witness, the `payment.skey` signature, is needed:
 
 ```shell
 cardano-cli babbage transaction calculate-min-fee \
@@ -192,13 +196,13 @@ Running the command returns the fee that needs to be paid:
 173993 Lovelace
 ```
 
-With that, you can now recalculate the change that needs to go to `payment.addr`, do that with a simple operation: `Change = originalBalance - amountSent - Fee`
+With this, recalculate the change that needs to go to `payment.addr` with a simple operation: `Change = originalBalance - amountSent - Fee`:
 
 ```shell
 echo $((9994790937 - 1000000000 - 173993))
 8994616944
 ```
-Re-run `transaction build-raw`, include the fee and adjust the change (the second tx-out). This transaction body will be now complete, and by convention it is saved into `tx.raw` file: 
+Re-run `transaction build-raw`, include the fee, and adjust the change (the second tx-out). This completes the transaction body, and conventionally, it is saved into the `tx.raw` file. 
 
 ```shell
 cardano-cli babbage transaction build-raw \
@@ -212,7 +216,7 @@ cardano-cli babbage transaction build-raw \
 
 ### Signing the transaction
 
-Sign the transaction with the `transaction sign` command. You must sign with the `payment.skey` that controls the UTxO you are trying to spend. This time we produce the `tx.signed` file: 
+Sign the transaction with the `transaction sign` command. You must sign with the `payment.skey` that controls the UTXO you are trying to spend. This time, we produce the `tx.signed` file: 
 
 ```shell
 cardano-cli babbage transaction sign \
@@ -222,7 +226,7 @@ cardano-cli babbage transaction sign \
 --out-file tx.signed
 ```
 
-Inspecting `tx.signed` with `transaction view`  shows that the `"witnesses"` field is no longer empty, now it carries the signature.  
+Inspecting `tx.signed` with `transaction view` reveals that the `"witnesses"` field is no longer empty; it now contains the signature. 
 
 ```shell
 cardano-cli babbage transaction view --tx-file tx.signed
@@ -285,7 +289,7 @@ cardano-cli babbage transaction view --tx-file tx.signed
 ```
 ### Submitting the transaction
 
-Submitting the transaction means sending it to the blockchain for processing by the stake pools and eventual inclusion in a block. While building and signing a transaction can be done without a running node, submitting the transaction requires an active connection to a running node. We use the `tx.signed` file:
+Submitting the transaction means sending it to the blockchain for processing by the stake pools and eventual inclusion in a block. While building and signing a transaction can be done without a running node, submitting the transaction requires an active connection to a running node. Use the `tx.signed` file:
 
 ```shell
 cardano-cli babbage transaction submit \
@@ -293,13 +297,13 @@ cardano-cli babbage transaction submit \
 Transaction successfully submitted.
 ```
 
-## Building transactions with `build` command
+## Building transactions with the `build` command
 
-Utilizing the `build` command for transaction construction offers a much simpler process, note that it requires an active connection to the node to obtain the protocol parameters in real time, it uses the parameters to automatically calculate the fee to be paid. `build` also offers the  `--change-address` flag, which helps us to automatically balance the transaction, sending the change to the specified address. 
+Using the `build` command for transaction construction simplifies the process significantly. However, it requires an active connection to the node to obtain the protocol parameters in real time. These parameters are then used to automatically calculate the fee to be paid. Additionally, the `build` command offers the `--change-address` flag, which automatically balances the transaction by sending the change to the specified address.
 
-To illustrate, let's send 500 ADA (500000000 lovelace) to the `payment2.addr`.
+For example, let's send 500 ada (500000000 lovelace) to the `payment2.addr`.
 
-Query the UTxOs of the input address:
+First, query the UTXOs of the input address:
 
 ```shell
 cardano-cli query utxo --address $(cat payment.addr)
@@ -318,11 +322,12 @@ cardano-cli babbage transaction build \
   --out-file tx.raw
 ```
 Running this command returns the cost of the transaction fee:
+
 ```shell
 Estimated transaction fee: Lovelace 167041
 ```
 
-Inspecting `tw.raw` with `transaction view` shows that the transaction body already includes the fee and the transaction is already balanced.
+Inspecting `tx.raw` with `transaction view` reveals that the transaction body already includes the fee, and the transaction is already balanced.
 
 ```shell
 cardano-cli babbage transaction view --tx-file tx.raw
@@ -382,7 +387,7 @@ cardano-cli babbage transaction view --tx-file tx.raw
 
 ### Signing the transaction
 
-As before, sign the transaction with the `payment.skey`:
+As previously, sign the transaction with the `payment.skey`:
 
 ```shell
 cardano-cli transaction sign \
@@ -399,7 +404,7 @@ Transaction successfully submitted.
 ```
 
 :::info
-You can parse `cardano-cli` json outputs with `jq` to have programatic workflows, for example to parse the output of `query utxo` to obtain the first UTXO associated to payment address and use it as input (--tx-in) in `transaction build`: 
+You can parse `cardano-cli` JSON outputs with `jq` to create programmatic workflows. For example, you can parse the output of `query utxo` to obtain the first UTXO associated with the payment address and use it as input (`--tx-in`) in `transaction build`:
 
 ```
 cardano-cli babbage transaction build \
@@ -409,3 +414,183 @@ cardano-cli babbage transaction build \
 --out-file tx.raw
 ```
 :::
+
+## Building a transaction with the `build-estimate` command
+
+You can use the `build-estimate` command to automatically balance transactions even if you don't have access to a live node that has caught up to the tip of the chain. 
+ 
+```bash
+cardano-cli latest transaction build-estimate                                                    
+Usage: cardano-cli latest transaction build-estimate 
+                                                       [ --script-valid
+                                                       | --script-invalid
+                                                       ]
+                                                       --shelley-key-witnesses INT
+                                                       [--byron-key-witnesses Int]
+                                                       --protocol-params-file FILE
+                                                       --total-utxo-value VALUE
+                                                       (--tx-in TX-IN
+                                                         [ --spending-tx-in-reference TX-IN
+                                                           ( --spending-plutus-script-v2
+                                                           | --spending-plutus-script-v3
+                                                           )
+                                                           ( --spending-reference-tx-in-datum-cbor-file CBOR FILE
+                                                           | --spending-reference-tx-in-datum-file JSON FILE
+                                                           | --spending-reference-tx-in-datum-value JSON VALUE
+                                                           | --spending-reference-tx-in-inline-datum-present
+                                                           )
+                                                           ( --spending-reference-tx-in-redeemer-cbor-file CBOR FILE
+                                                           | --spending-reference-tx-in-redeemer-file JSON FILE
+                                                           | --spending-reference-tx-in-redeemer-value JSON VALUE
+                                                           )
+                                                         | --simple-script-tx-in-reference TX-IN
+                                                         | --tx-in-script-file FILE
+                                                           [
+                                                             ( --tx-in-datum-cbor-file CBOR FILE
+                                                             | --tx-in-datum-file JSON FILE
+                                                             | --tx-in-datum-value JSON VALUE
+                                                             | --tx-in-inline-datum-present
+                                                             )
+                                                             ( --tx-in-redeemer-cbor-file CBOR FILE
+                                                             | --tx-in-redeemer-file JSON FILE
+                                                             | --tx-in-redeemer-value JSON VALUE
+                                                             )]
+                                                         ])
+                                                       [--read-only-tx-in-reference TX-IN]
+                                                       [ --required-signer FILE
+                                                       | --required-signer-hash HASH
+                                                       ]
+                                                       [--tx-in-collateral TX-IN]
+                                                       [--tx-out-return-collateral ADDRESS VALUE]
+                                                       [--tx-out ADDRESS VALUE
+                                                         [ --tx-out-datum-hash HASH
+                                                         | --tx-out-datum-hash-cbor-file CBOR FILE
+                                                         | --tx-out-datum-hash-file JSON FILE
+                                                         | --tx-out-datum-hash-value JSON VALUE
+                                                         | --tx-out-datum-embed-cbor-file CBOR FILE
+                                                         | --tx-out-datum-embed-file JSON FILE
+                                                         | --tx-out-datum-embed-value JSON VALUE
+                                                         | --tx-out-inline-datum-cbor-file CBOR FILE
+                                                         | --tx-out-inline-datum-file JSON FILE
+                                                         | --tx-out-inline-datum-value JSON VALUE
+                                                         ]
+                                                         [--tx-out-reference-script-file FILE]]
+                                                       --change-address ADDRESS
+                                                       [--mint VALUE
+                                                         ( --mint-script-file FILE
+                                                           [ --mint-redeemer-cbor-file CBOR FILE
+                                                           | --mint-redeemer-file JSON FILE
+                                                           | --mint-redeemer-value JSON VALUE
+                                                           ]
+                                                         | --simple-minting-script-tx-in-reference TX-IN
+                                                           --policy-id HASH
+                                                         | --mint-tx-in-reference TX-IN
+                                                           ( --mint-plutus-script-v2
+                                                           | --mint-plutus-script-v3
+                                                           )
+                                                           ( --mint-reference-tx-in-redeemer-cbor-file CBOR FILE
+                                                           | --mint-reference-tx-in-redeemer-file JSON FILE
+                                                           | --mint-reference-tx-in-redeemer-value JSON VALUE
+                                                           )
+                                                           --policy-id HASH
+                                                         )]
+                                                       [--invalid-before SLOT]
+                                                       [--invalid-hereafter SLOT]
+                                                       [--certificate-file FILE
+                                                         [ --certificate-script-file FILE
+                                                           [ --certificate-redeemer-cbor-file CBOR FILE
+                                                           | --certificate-redeemer-file JSON FILE
+                                                           | --certificate-redeemer-value JSON VALUE
+                                                           ]
+                                                         | --certificate-tx-in-reference TX-IN
+                                                           ( --certificate-plutus-script-v2
+                                                           | --certificate-plutus-script-v3
+                                                           )
+                                                           ( --certificate-reference-tx-in-redeemer-cbor-file CBOR FILE
+                                                           | --certificate-reference-tx-in-redeemer-file JSON FILE
+                                                           | --certificate-reference-tx-in-redeemer-value JSON VALUE
+                                                           )
+                                                         ]]
+                                                       [--withdrawal WITHDRAWAL
+                                                         [ --withdrawal-script-file FILE
+                                                           [ --withdrawal-redeemer-cbor-file CBOR FILE
+                                                           | --withdrawal-redeemer-file JSON FILE
+                                                           | --withdrawal-redeemer-value JSON VALUE
+                                                           ]
+                                                         | --withdrawal-tx-in-reference TX-IN
+                                                           ( --withdrawal-plutus-script-v2
+                                                           | --withdrawal-plutus-script-v3
+                                                           )
+                                                           ( --withdrawal-reference-tx-in-redeemer-cbor-file CBOR FILE
+                                                           | --withdrawal-reference-tx-in-redeemer-file JSON FILE
+                                                           | --withdrawal-reference-tx-in-redeemer-value JSON VALUE
+                                                           )
+                                                         ]]
+                                                       [--tx-total-collateral INTEGER]
+                                                       [ --json-metadata-no-schema
+                                                       | --json-metadata-detailed-schema
+                                                       ]
+                                                       [--auxiliary-script-file FILE]
+                                                       [ --metadata-json-file FILE
+                                                       | --metadata-cbor-file FILE
+                                                       ]
+                                                       [--update-proposal-file FILE]
+                                                       --out-file FILE
+```
+ 
+Follow the process below to create a transaction: 
+ 
+* Get the protocol parameters
+* Get the value of the UTXOs you are spending
+* Build a transaction
+* Sign the transaction
+* Submit the transaction.
+ 
+### Get the protocol parameters
+ 
+To retrieve the protocol parameters, obtain the JSON file from the shell script `cardano-cli/scripts/fetch-protocol-parameters.sh`. It is important to note that the JSON file must adhere to the format expected by `cardano-cli`, but you are free to retrieve it from any source you prefer.
+ 
+### Get the value of the UTXOs being spent
+ 
+It is important to enter the value of the UTXOs you are spending along with multi-assets.  
+The total balance of the inputs in the transaction is required to calculate the change.
+ 
+You can find this information on any explorer and enter the corresponding value. Refer to the overview of [multi-asset values syntax](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/reference/native-tokens/02-getting-started.md#syntax-of-multi-asset-values)
+to see some examples.
+ 
+### Create the unsigned transaction
+ 
+To create a transaction, run:
+ 
+```bash
+cardano-cli latest transaction build-estimate \
+  --tx-in <TxHash>#<TxIx> \
+  --tx-out <Address>+<Lovelace> \
+  --total-utxo-value <Value>
+  --change-address <Bech32Address>
+  --out-file tx.draft
+```
+### Sign a transaction
+ 
+To be valid, a transaction must be signed by the relevant signing keys associated with the payment addresses of the inputs it references. If the transaction contains certificates, it must also be signed by the authorized party who can issue those certificates. For instance, a stake address registration certificate must be signed by the signing key linked to the corresponding stake key pair.
+
+To sign a transaction, run:
+ 
+```bash
+cardano-cli transaction sign \
+  --tx-body-file tx.raw \
+  --signing-key-file payment.skey \
+  --mainnet \
+  --out-file tx.signed
+```
+ 
+### Submit a transaction
+
+To submit a transaction, run:
+ 
+```bash
+cardano-cli transaction submit \
+  --tx-file tx.signed \
+  --mainnet
+```
+
