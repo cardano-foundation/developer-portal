@@ -9,7 +9,8 @@ keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 ## Setting up environment variables 
 
 ### CARDANO_NODE_SOCKET_PATH
-Cardano CLI uses the _node-to-client_ protocol to communicate with the node, this requires setting up an environment variable for the node socket path. Make sure to use the path declared when starting the node.
+
+Cardano CLI uses the *node-to-client* protocol to communicate with the node. This requires setting an environment variable for the node socket path. Ensure you use the path declared when starting the node.
 
 ```bash 
 export CARDANO_NODE_SOCKET_PATH=~/node.socket
@@ -17,8 +18,7 @@ export CARDANO_NODE_SOCKET_PATH=~/node.socket
 
 ### CARDANO_NODE_NETWORK_ID
 
-Each network has a unique identifier (--mainnet or --testnet-magic NATURAL), this is used by the node-to-client protocol to make sure we are talking to a node on the desired network. It is very useful to 
-setup an environment variable for the network id, the alternative is to provide the flag `--testnet-magic <network-id>` on each command that interact with the node.    
+Each network has a unique identifier (--mainnet or --testnet-magic NATURAL). This is used by the node-to-client protocol to ensure communication with a node on the desired network. It is useful to set up an environment variable for the network ID. Alternatively, you can provide the flag `--testnet-magic <network-id>` with each command that interacts with the node.  
 
 - **Mainnet**
 ```bash 
@@ -32,18 +32,18 @@ export CARDANO_NODE_NETWORK_ID=1
 ```bash
 export CARDANO_NODE_NETWORK_ID=2
 ```
-- **Sanchonet** 
+- **SanchoNet** 
 ```bash
 export CARDANO_NODE_NETWORK_ID=4
 ```
 
-# Generate keys and addresses
+## Generating keys and addresses
 
 :::info
-For a complete view about types of addresses in Cardano, please read https://cips.cardano.org/cips/cip19/
+For a complete overview of Cardano address types, read [CIP-19](https://cips.cardano.org/cips/cip19/).
 :::
 
-## Generating a payment key pair and an address
+### Generate a payment key pair and an address
 
 To generate a key pair, run:
 
@@ -53,10 +53,9 @@ cardano-cli address key-gen \
 --signing-key-file payment.skey
 ```
 
-## Building an address
+### Build an address
 
-This address will not have staking rights. It cannot delegate or receive rewards because it does not have a
-stake part associated to it. Only has a payment part (see https://cips.cardano.org/cips/cip19/)
+This address will not have staking rights. It cannot delegate or receive rewards because it does not have a stake part associated with it, only a payment part (see [CIP-19](https://cips.cardano.org/cips/cip19/)).
 
 ```bash
 cardano-cli address build \
@@ -69,10 +68,10 @@ cat paymentNoStake.addr
 addr_test1vzdtyyt48yrn2fa3wvh939rat0gyv6ly0ljt449sw8tppzq84xstz
 ```
 :::info
-Testnet addresses start with "addr_test" and mainnet addresses with "addr"
+Testnet addresses start with 'addr_test' and mainnet addresses with 'addr'.
 :::
 
-## Generating a stake key pair 
+### Generate a stake key pair 
 
 ```bash
 cardano-cli stake-address key-gen \
@@ -80,9 +79,9 @@ cardano-cli stake-address key-gen \
 --signing-key-file stake.skey
 ```
 
-## Build and address with payment and stake parts:
+### Build the address with payment and stake parts
 
-The resulting address will be associated to the **payment** and the **stake** credentials:
+The resulting address will be associated with the **payment** and **stake** credentials:
 
 ```bash
 cardano-cli address build \
@@ -96,7 +95,7 @@ cat payment.addr
 addr_test1qzdtyyt48yrn2fa3wvh939rat0gyv6ly0ljt449sw8tppzrcc3g0zu63cp6rnjumfcadft63x3w8ds4u28z6zlvra4fqy2sm8n
 ```
 
-## Query the balance of an address 
+### Query the balance of an address 
 
 ```bash
 cardano-cli query utxo --address $(cat paymentNoStake.addr)
@@ -105,8 +104,8 @@ cardano-cli query utxo --address $(cat paymentNoStake.addr)
 262c7891f932cde390bcc04c25805f3f422c1a5687d5d47f6681e68bb384fe6d     0        10000000000 lovelace + TxOutDatumNone
 ```
 :::tip
-- You can get test tokens for **pre-production** and **preview** testnets via https://docs.cardano.org/cardano-testnet/tools/faucet/
-- For Sanchonet tokens, go to https://sancho.network/faucet
+- You can get test tokens for **pre-production** and **preview** testnets [using this faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)
+- For SanchoNet tokens, go to the [SanchoNet faucet](https://sancho.network/faucet).
 :::
 
 
