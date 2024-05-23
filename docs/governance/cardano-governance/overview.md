@@ -10,7 +10,7 @@ description: Cardano is implementing a decentralized governance model that empow
 ## Cardano's Future Governance Model and Roles
 Cardano is advancing towards a decentralized governance model designed to empower community participation and ensure robust decision-making processes. This model is detailed in [CIP-1694](https://github.com/cardano-foundation/CIPs/blob/master/CIP-1694/README.md), which outlines a framework for governance through a tricameral model and a structured decision-making process via seven different types of [governance actions](governance-actions.md). A governance action is a transaction-triggered on-chain event with a time-limited window for execution.
 
-### Ada Holders
+### Ada Holders {#ada-holders}
 
 Ada holders are at the core of Cardano’s governance, wielding critical voting power and the ability to shape the blockchain's future:
 
@@ -21,7 +21,7 @@ Ada holders are at the core of Cardano’s governance, wielding critical voting 
 
 Their active involvement ensures that governance remains decentralized and aligned with the interests of the broader community. Each associated stake key can issue two types of delegation certificates, one for a delegation to a stake pool and the other for a delegation to a DRep.
 
-### Delegated Representatives (DReps)
+### Delegated Representatives (DReps) {#dreps}
 
 DReps will serve as officials representing Ada holders in the governance system. Every ada holder has the choice to either register themselves as a DRep to represent themselves or others or delegate their voting power to a DRep of their choice. Their primary roles include:
 
@@ -29,7 +29,7 @@ DReps will serve as officials representing Ada holders in the governance system.
 - **Voting on proposals**: DReps vote on proposals based on the priorities and interests of the Ada holders they represent.
 - **Voting power**: DReps' voting power is proportional to the stake delegated to them.
 
-### Stake Pool Operators (SPOs)
+### Stake Pool Operators (SPOs) {#spos}
 
 SPOs are fundamental to the network's operational integrity and will also play a crucial role in governance by:
 
@@ -39,7 +39,7 @@ SPOs are fundamental to the network's operational integrity and will also play a
 - **Implementing approved changes**: SPOs are responsible for upgrading their infrastructure to comply with changes approved through the governance process.
 - **Voting power**: SPOs' voting power is based on their active stake.
 
-### Constitutional Committee (CC)
+### Constitutional Committee (CC) {#cc}
 
 The Constitutional Committee will oversee and guide the governance process to adhere to Cardano’s foundational governance principles as defined in the Cardano Constitution. It will:
 
