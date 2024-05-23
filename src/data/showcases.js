@@ -1145,6 +1145,15 @@ export const Showcases = [
     source: null,
     tags: ["educational"],
   },
+  {
+    title: "Cardano Academy",
+    description:
+      "Learn blockchain fundamentals, consensus algorithms, and encryption methods. You’ll explore transaction models, risk mitigation, and scaling solutions. Additionally, you’ll delve into the Cardano blockchain, its governance, and practical uses of ada, including staking and decentralized applications.​",
+    preview: require("./showcase/cardano-academy.jpg"),
+    website: "https://academy.cardanofoundation.org",
+    source: null,
+    tags: ["favorite", "educational"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
