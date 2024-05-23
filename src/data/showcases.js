@@ -215,7 +215,15 @@ export const Tags = {
     description: "Projects aimed at providing funding assistance to individuals.",
     icon: null,
     color: '#1e40af'
-  }
+  },
+
+    // Oracle 
+    oracle: {
+      label: "Oracle",
+      description: "Oracles provides smart contracts with external data.",
+      icon: null,
+      color: '#5d9ce6'
+    }
 };
 
 // Add your project to (THE END OF) this list.
@@ -1135,6 +1143,15 @@ export const Showcases = [
     website: "https://decon.app/",
     source: "https://github.com/alucao/decon",
     tags: ["opensource", "metadata"],
+  },
+  {
+    title: "Charli3",
+    description:
+      "Charli3 is a decentralized Oracle solution on Cardano, built natively for the chain, producing fully auditable data records on Cardano ledger.",
+    preview: require("./showcase/charli3.jpg"),
+    website: "https://charli3.io",
+    source: null,
+    tags: ["oracle", "metadata"],
   },
 ];
 
