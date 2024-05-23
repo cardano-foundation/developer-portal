@@ -8,8 +8,8 @@
 
  <-- Please fill the boxes with [x] before submitting a pull request --> 
 
-- [] I have read the [How to Contribute](https://developers.cardano.org/docs/portal-contribute/).
-- [] I have run `yarn build` after adding my changes **without getting any errors**. 
+- [ ] I have read the [How to Contribute](https://developers.cardano.org/docs/portal-contribute/).
+- [ ] I have run `yarn build` after adding my changes **without getting any errors**. 
 
 ## Updating documentation or Bugfix
 
