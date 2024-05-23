@@ -35,6 +35,31 @@ export const Tags = {
     color: '#39ca30',
   },
 
+   // Bridge 
+   bridge: {
+    label: "Bridge",
+    description: "Projects that provide cross-chain bridge support.",
+    icon: null,
+    color: '#EDFF21'
+  },
+
+  // Block Explorer
+  explorer: {
+    label: "Block Explorer",
+    description:
+      "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+    icon: null,
+    color: '#293133',
+  },
+
+  // Catalyst
+  catalyst: {
+    label: "Catalyst",
+    description: "Projects that aid to Cardano's interim governance programme (Catalyst).",
+    icon: null,
+    color: '#308446'
+  },
+
   // DAO Tool
   daotool: {
     label: "DAO Tool",
@@ -69,15 +94,15 @@ export const Tags = {
     color: '#a44fb7',
   },
 
-  // Cardano Block Explorer
-  explorer: {
-    label: "Block Explorer",
-    description:
-      "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+  // Funding 
+  funding: {
+    label: "Funding",
+    description: "Projects aimed at providing funding assistance to individuals.",
     icon: null,
-    color: '#293133',
+    color: '#1e40af'
   },
 
+  
   // Game
   game: {
     label: "Game",
@@ -100,6 +125,14 @@ export const Tags = {
     description: "Decentralized identifiers (DIDs).",
     icon: null,
     color: '#000'
+  },
+
+  // Lending 
+  lending: {
+    label: "Lending",
+    description: "Projects that provide lending and borrowing of ada.",
+    icon: null,
+    color: '#7E0000'
   },
 
   // Marketplace 
@@ -150,6 +183,14 @@ export const Tags = {
     color: '#8c2f00',
   },
 
+  // Oracle 
+  oracle: {
+    label: "Oracle",
+    description: "Oracles provides smart contracts with external data.",
+    icon: null,
+    color: '#5d9ce6'
+  },
+
   // Pool Tool
   pooltool: {
     label: "Pool Tool",
@@ -175,55 +216,6 @@ export const Tags = {
     icon: null,
     color: '#7BC8A6'
   },
-
-  // Ecosystem
-  ecosystem: {
-    label: "Ecosystem",
-    description:
-      "The Cardano ecosystem projects.",
-    icon: null,
-    color: '#800080'
-  },
-
-  // Catalyst
-  catalyst: {
-    label: "Catalyst",
-    description: "Projects that aid to Cardano's interim governance programme (Catalyst).",
-    icon: null,
-    color: '#308446'
-  },
-
-  // Lending 
-  lending: {
-    label: "Lending",
-    description: "Projects that provide lending and borrowing of ada.",
-    icon: null,
-    color: '#7E0000'
-  },
-
-  // Bridge 
-  bridge: {
-    label: "Bridge",
-    description: "Projects that provide cross-chain bridge support.",
-    icon: null,
-    color: '#EDFF21'
-  },
-
-  // Funding 
-  funding: {
-    label: "Funding",
-    description: "Projects aimed at providing funding assistance to individuals.",
-    icon: null,
-    color: '#1e40af'
-  },
-
-    // Oracle 
-    oracle: {
-      label: "Oracle",
-      description: "Oracles provides smart contracts with external data.",
-      icon: null,
-      color: '#5d9ce6'
-    }
 };
 
 // Add your project to (THE END OF) this list.
