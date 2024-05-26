@@ -25,7 +25,7 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
   // Finding any reference links in the content and replacing to relative links where necessary 
   // to fix broken links in the CIPs
   const referenceLinks = identifyReferenceLinks(content);
-  if(referenceLinks) {
+  if(referenceLinks.length > 0) {
     await Promise.all(
       referenceLinks.map(async (link) => {
         if(link.url.indexOf("./") == 0 || link.url.indexOf("../") == 0) {
@@ -43,6 +43,22 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
     );
   }
 
+  // Handle mixed reference links
+  const mixedReferenceLinks = identifyMixedReferenceLinks(content);
+  if (mixedReferenceLinks.length > 0) {
+    mixedReferenceLinks.forEach(mixedLink => {
+      const matchedReference = referenceLinks.find(link => link.reference === mixedLink.reference && (link.url.indexOf("./") == 0 || link.url.indexOf("../") == 0));
+      if (matchedReference) {
+
+        console.log(`Found mixed reference links in CIP ${cip_name}:`);
+        console.log(`WARNING: Mixed reference link [${mixedLink.text}][${mixedLink.reference}] is an relative mixed link: ${matchedReference.url}.`);
+
+        content = content.replace(`[${mixedLink.text}][${mixedLink.reference}]`, `[${mixedLink.text}](${cip_repo_raw_base_url}${cip_name}/${matchedReference.url})`);
+      }
+    });
+  }
+
+  // Handle inline links
   const cip_resource = content.match(cip_regex);
   if (cip_resource) {
     await Promise.all(
@@ -204,6 +220,22 @@ const identifyReferenceLinks = (content: string) => {
     matches.push({
       reference: match[1], // The reference name
       url: match[2]        // The URL
+    });
+  }
+
+  return matches;
+};
+
+// Identify mixed reference links in Markdown content
+const identifyMixedReferenceLinks = (content: string) => {
+  const mixedReferenceLinkRegex = /\[([^\]]+)\]\[([^\]]+)\]/g;
+  const matches = [];
+  let match;
+
+  while ((match = mixedReferenceLinkRegex.exec(content)) !== null) {
+    matches.push({
+      text: match[1],
+      reference: match[2],
     });
   }
 
