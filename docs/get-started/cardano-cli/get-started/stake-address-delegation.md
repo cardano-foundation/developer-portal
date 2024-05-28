@@ -35,7 +35,7 @@ Usage: cardano-cli babbage stake-address
                                            )
 ```
 
-To produce the delegation certificate, your stake address must already be registered on the chain, as outlined in the documentation on [registering the stake address](./stakeAddressRegistration). Additionally, you need to know the pool ID to which you will delegate.
+To produce the delegation certificate, your stake address must already be registered on the chain, as outlined in the documentation on [registering the stake address](./stake-address-registration). Additionally, you need to know the pool ID to which you will delegate.
 
 ```bash
 cardano-cli babbage stake-address stake-delegation-certificate \
@@ -57,7 +57,7 @@ cat delegation.cert
 
 ### Build, sign, and submit the transaction with the certificate
 
-After generating the delegation certificate, you need to submit it to the chain in a transaction. To familiarize yourself with transactions, refer to the [simple transactions](./simpleTransactions) documentation. You can use either `build` or `build-raw`; the example below uses `build`.
+After generating the delegation certificate, you need to submit it to the chain in a transaction. To familiarize yourself with transactions, refer to the [simple transactions](./simple-transactions) documentation. You can use either `build` or `build-raw`; the example below uses `build`.
 
 This type of transaction requires signatures from both `payment.skey` and `stake.skey`, making the transaction slightly larger due to the two signatures. Consequently, it incurs a slightly higher fee. To help the build command accurately calculate transaction fees, you must use the `--witness-override 2` flag:
 
@@ -83,5 +83,7 @@ cardano-cli transaction submit \
 --tx-file tx.signed 
 ```
 
-:::tip
-For a quick overview of how stake delegation and rewards distribution work at the protocol level, see [delegation cycle](../cardano-node/delegationCycle).
+For a quick overview of how stake delegation and rewards distribution work at the protocol level, see :
+
+
+![delegation cycle](/img/cli/delegationcycle.gif).

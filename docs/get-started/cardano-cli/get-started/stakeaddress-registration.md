@@ -1,5 +1,5 @@
 ---
-id: stake-address0-registration
+id: stake-address-registration
 sidebar_position: 3
 title: Stake address registration
 sidebar_label: Stake address registration
