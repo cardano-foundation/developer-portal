@@ -74,5 +74,4 @@ In depth explanation about Cardano Testnet Faucet can be found [here.](/docs/int
 - [pool.pm/test/metadata](https://pool.pm/test/metadata) is a testnet metadata explorer by [Pool.pm](https://pool.pm/)
 
 ### What kind of monitoring tools are available for the testnets?
-- [Grafana dashboard](https://monitoring.cardano-testnet.iohkdev.io/grafana/d/Oe0reiHef/cardano-application-metrics-v2?orgId=1&refresh=1m&from=now-7d&to=now) provides many health metrics.
 - Set up your own node's [Grafana/Promtheus monitoring](/docs/operate-a-stake-pool/grafana-dashboard-tutorial/#4-setting-up-grafana-dashboard) system
