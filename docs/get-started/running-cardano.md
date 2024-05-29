@@ -341,7 +341,8 @@ To know whether you are fully synced or not, you can check the **Cardano Blockch
 [https://explorer.cardano.org](https://explorer.cardano.org)
 
 #### Testnet Explorer
-[https://explorer.cardano-testnet.iohkdev.io](https://explorer.cardano-testnet.iohkdev.io)
+- [testnet.cardanoscan.io](https://testnet.cardanoscan.io) is a Pre-Production and Preview block explorer by [Cardanoscan](https://cardanoscan.io).
+- [testnet.cexplorer.io](https://testnet.cexplorer.io/) is a Pre-Production and Preview block explorer by [Cexplorer](https://cexplorer.io).
 
 Scroll down to the **Latest Blocks** section, and you can find the latest network tip.
 
