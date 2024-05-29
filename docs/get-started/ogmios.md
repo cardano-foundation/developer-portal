@@ -6,7 +6,6 @@ description: Get Started with Ogmios
 image: /img/og/og-getstarted-ogmios.png
 ---
 
-
 **Ogmios** is a lightweight bridge interface for [cardano-node](https://github.com/IntersectMBO/cardano-node). It offers a WebSockets API that enables local clients to speak [Ouroboros' mini-protocols](https://github.com/IntersectMBO/ouroboros-network/tree/master/docs/network-spec) via JSON/RPC.
 
 Ogmios doesn’t do much more than what the node itself does. It’s pretty much as low-level as things can get with the Cardano network. For many applications, this is too low in the abstraction layer and they would be better off using higher-level services like [cardano-graphql](https://github.com/cardano-foundation/cardano-graphql), [Rosetta](https://www.rosetta-api.org), or [Blockfrost](https://blockfrost.io).
