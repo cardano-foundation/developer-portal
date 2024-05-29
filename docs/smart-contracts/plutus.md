@@ -9,7 +9,7 @@ image: /img/og/og-developer-portal.png
 ## Get started with Plutus
 Plutus is the smart contract platform of the Cardano blockchain. It allows you to write applications that interact with the Cardano blockchain.
 
-Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/tutorials/) if you want to learn Plutus from the beginning or see [Plutus resources](https://docs.cardano.org/plutus/plutus-resources), where you can find references to all Plutus-related repositories, documentation, and training materials. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
+Take a look at the [Plutus Tutorial](https://plutus.readthedocs.io/en/latest/tutorials/) if you want to learn Plutus from the beginning or see [Plutus resources](https://docs.cardano.org/developer-resources/smart-contracts/plutus/#plutus-developer-resources), where you can find references to all Plutus-related repositories, documentation, and training materials. If you don't know Haskell yet, consider [starting with Haskell](#get-started-with-haskell).
 
 [Follow Chris Moreton's content updates](https://plutus-pioneer-program.readthedocs.io/en/latest/plutus_pioneer_program.html). With a high effort he transcribes the lectures of the Plutus Pioneer Program.
 
@@ -62,18 +62,17 @@ Prior knowledge of Haskell or functional programming is also recommended, as Plu
 
 ## Plutus Project-Based Learning (PPBL)
 
-[Plutus Project-Based Learning](https://en.plutuspbl.io/) is a free course from [Gimbalabs](https://www.gimbalabs.com/) that provides a hands-on approach to learning Cardano development. The goal of PPBL is to onboard contributors to real projects.
+[Plutus Project-Based Learning](https://plutuspbl.io/) is a free course from [Gimbalabs](https://www.gimbalabs.com/) that provides a hands-on approach to learning Cardano development. The goal of PPBL is to onboard contributors to real projects.
 
 PPBL is built to complement the [Plutus Pioneer Program](#get-started-with-the-plutus-pioneer-program). Students can complete both courses in any order they choose. Students can prepare for the Plutus Pioneer Program by working through the PPBL course, or they can apply what they have learned in PPP by joining the PPBL course.
 
 PPBL takes a big-picture view of Cardano development so that students can learn to contextualize the role of smart contracts in full-stack Cardano applications. Course embedded projects give students the chance to investigate new design patterns, and to learn about questions at the frontiers of Cardano development.
 
-At weekly [Live Coding sessions](https://en.plutuspbl.io/live-coding), students gather to share questions and to build projects together.
+At weekly [Live Coding sessions](https://plutuspbl.io/calendar), students gather to share questions and to build projects together.
 
-The PPBL 2023 Course is currently going live in English, French, Indonesian, Japanese, Spanish, and Vietnamese.
+The PPBL 2024 Course is currently going live in English, French, Indonesian, Japanese, Spanish, and Vietnamese.
 
-- [Get started with the free PPBL 2023 course](https://en.plutuspbl.io/live-coding)
-- [Review the PPBL 2023 Course Outline](https://en.plutuspbl.io/get-started/modules)
+- [Get started with the free PPBL 2024 course](https://www.andamio.io/course/ppbl2024)
 
 ## Demeter
 

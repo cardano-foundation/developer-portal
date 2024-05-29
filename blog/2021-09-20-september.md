@@ -71,7 +71,7 @@ We have many ambitions and plans to make crypto even easier to use and as widesp
 
 **Mass payments:** We plan on making our [mass payments](https://nowpayments.io/mass-payments) feature even more user-friendly so that it won’t be even a question of whether to use it, but when to use it. People will be able to create mass payments requests right in their NOWPayments account so that the whole process is swift and there are no additional steps.
 
-**Donations:** We have created a way to make a customized [donation link](https://nowpayments.io/donation-tools) right in your account. We are going to perfect that. We are also working on a charity project - featuring charity projects with a donation button underneath them to make it easy to donate. A recent charity project we have partnered with is [Elongate](https://www.elongate.cc/). We also have partnered with [CoinSocialStory](https://coinsocialstory.com/charity) to create a page that would feature charities and an easy way to donate to them. There you can find a way to donate to the Rainforest Foundation.
+**Donations:** We have created a way to make a customized [donation link](https://nowpayments.io/donation-tools) right in your account. We are going to perfect that. We are also working on a charity project - featuring charity projects with a donation button underneath them to make it easy to donate. 
 
 **More coins:** We are adding new and exciting cryptocurrencies every month. Stay tuned and accept any crypto you like!
 
