@@ -753,6 +753,14 @@ export const Showcases = [
     tags: ["golang", "lowlevel"],
   },
   {
+    title: "Adder",
+    description: "A tool for tailing the Cardano blockchain and emitting events for each block and transaction seen, based on user configurable filters.",
+    preview: require("./builder-tools/adder.png"),
+    website: "https://github.com/blinklabs-io/adder",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/adder",
+    tags: ["cli", "golang", "chainindex"],
+  },
+  {
     title: "cscli",
     description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
     preview: require("./builder-tools/cscli.png"),
