@@ -4,6 +4,9 @@ import {
   getStringContentAsync,
   getBufferContentAsync,
   preventH1Headline,
+  getDocTag,
+  identifyReferenceLinks,
+  identifyMixedReferenceLinks,
 } from "./reusable";
 import {
   cip_repo_raw_base_url,
@@ -202,44 +205,6 @@ const stringManipulation = (content: string, cip_name: string) => {
   content = content.replace('cddl/version-1.cddl', 'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0060/cddl/version-1.cddl');
   
   return content;
-};
-
-// Get a specific doc tag
-const getDocTag = (content: string, tag_name: string) => {
-  return content.match(new RegExp(`(?<=${tag_name}: ).*`, ""));
-};
-
-const identifyReferenceLinks = (content: string) => {
-  // Regular expression to match reference-style links
-  const referenceLinkRegex = /\[([^\]]+)\]:\s*(\S+)/g;
-  const matches = [];
-  let match;
-
-  // Loop through all matches and push them into the matches array
-  while ((match = referenceLinkRegex.exec(content)) !== null) {
-    matches.push({
-      reference: match[1], // The reference name
-      url: match[2]        // The URL
-    });
-  }
-
-  return matches;
-};
-
-// Identify mixed reference links in Markdown content
-const identifyMixedReferenceLinks = (content: string) => {
-  const mixedReferenceLinkRegex = /\[([^\]]+)\]\[([^\]]+)\]/g;
-  const matches = [];
-  let match;
-
-  while ((match = mixedReferenceLinkRegex.exec(content)) !== null) {
-    matches.push({
-      text: match[1],
-      reference: match[2],
-    });
-  }
-
-  return matches;
 };
 
 const main = async () => {
