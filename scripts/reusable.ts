@@ -53,3 +53,16 @@ export const identifyMixedReferenceLinks = (content: string) => {
 
   return matches;
 };
+
+// Identify nested extended CIP links in Markdown content
+export const identifyNestedExtendedCIPLinks = (content: string) => {
+  const nestedExtendedCIPRegex = /\(\.\/CIPs\/\d{4}\)/gm;
+  const matches = [];
+  let match;
+
+  while ((match = nestedExtendedCIPRegex.exec(content)) !== null) {
+    matches.push(match[0]);
+  }
+
+  return matches;
+};

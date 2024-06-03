@@ -7,6 +7,7 @@ import {
   getDocTag,
   identifyReferenceLinks,
   identifyMixedReferenceLinks,
+  identifyNestedExtendedCIPLinks,
 } from "./reusable";
 import {
   cip_repo_raw_base_url,
@@ -59,6 +60,20 @@ const processCIPContentAsync = async (cip_name: string, content: string) => {
         content = content.replace(`[${mixedLink.text}][${mixedLink.reference}]`, `[${mixedLink.text}](${cip_repo_raw_base_url}${cip_name}/${matchedReference.url})`);
       }
     });
+  }
+
+  // Handle nested extended CIP links
+  const nestedExtendedCIPs = identifyNestedExtendedCIPLinks(content);
+  if (nestedExtendedCIPs.length > 0) {
+    nestedExtendedCIPs.forEach(nestedCIP => {
+      console.log(`Found nested extended CIP links in CIP ${cip_name}:`);
+      console.log(`WARNING: Nested extended CIP link ${nestedCIP} in CIP ${cip_name} is a relative link.`);
+      
+      const modifiedNestedCIP = nestedCIP.replace("(", "").replace(")", "");
+
+      content = content.replace(nestedCIP, `(${cip_repo_base_url}${cip_name}/${modifiedNestedCIP})`);
+    }
+    );
   }
 
   // Handle inline links
