@@ -104,4 +104,4 @@ console.log(pool.vrf.vkey);
 ```
 
 
-Visit [cardanocli-js](https://github.com/Berry-Pool/cardanocli-js/blob/main/API.md) to see the complete API documentation.
+Visit [cardanocli-js](https://github.com/miguelaeh/cardanocli-js/tree/main) to see the complete API documentation.

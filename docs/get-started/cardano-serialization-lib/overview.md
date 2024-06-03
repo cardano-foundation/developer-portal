@@ -62,11 +62,15 @@ following:
 
 ## Original binary specifications
 
-Here are the location of the original [CDDL](http://cbor.io/tools.html) specifications:
+Here are the location of the original [CDDL](http://cbor.io/tools.html) specifications for all Cardano eras:
 
--  Byron: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/byron/impl)
+-  Byron: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/byron/cddl-spec)
 -  Shelley: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/shelley/impl)
+-  Allegra: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/allegra/impl)
 -  Mary: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/mary/impl)
+-  Alonzo: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/alonzo/impl)
+-  Babbage: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/babbage/impl)
+-  Conway: [link](https://github.com/IntersectMBO/cardano-ledger/tree/master/eras/conway/impl)
 
 ## Building
 

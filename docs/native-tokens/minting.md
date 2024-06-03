@@ -123,7 +123,7 @@ output="0"
 
 ### Check your node status
 
-We also want to check if our Node is up to date. To do that, we check the current epoch/block and compare it to the current value displayed in the [Cardano Explorer for the testnet](https://explorer.cardano-testnet.iohkdev.io/en).
+We also want to check if our Node is up to date. To do that, we check the current epoch/block and compare it to the current value displayed in the one of the Cardano Explorers for the testnet:
 
 ```bash
 cardano-cli query tip $testnet
