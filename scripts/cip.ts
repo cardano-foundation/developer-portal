@@ -4,6 +4,10 @@ import {
   getStringContentAsync,
   getBufferContentAsync,
   preventH1Headline,
+  getDocTag,
+  identifyReferenceLinks,
+  identifyMixedReferenceLinks,
+  identifyNestedExtendedCIPLinks,
 } from "./reusable";
 import {
   cip_repo_raw_base_url,
@@ -22,6 +26,57 @@ const path_name = path.basename(__filename);
 
 // Download markdown resources
 const processCIPContentAsync = async (cip_name: string, content: string) => {
+  // Finding any reference links in the content and replacing to relative links where necessary 
+  // to fix broken links in the CIPs
+  const referenceLinks = identifyReferenceLinks(content);
+  if(referenceLinks.length > 0) {
+    await Promise.all(
+      referenceLinks.map(async (link) => {
+        if(link.url.indexOf("./") == 0 || link.url.indexOf("../") == 0) {
+
+          console.log(`Found reference links in CIP ${cip_name}:`);
+          console.log(`WARNING: Reference link ${link.reference} in CIP ${cip_name} is an relative link: ${link.url}.`);
+                    
+          // Rewrite link to static folder
+          content = content.replace(
+            `[${link.reference}]`,
+            `[${link.reference}](${link.url})`
+          );
+        }
+      })
+    );
+  }
+
+  // Handle mixed reference links
+  const mixedReferenceLinks = identifyMixedReferenceLinks(content);
+  if (mixedReferenceLinks.length > 0) {
+    mixedReferenceLinks.forEach(mixedLink => {
+      const matchedReference = referenceLinks.find(link => link.reference === mixedLink.reference && (link.url.indexOf("./") == 0 || link.url.indexOf("../") == 0));
+      if (matchedReference) {
+
+        console.log(`Found mixed reference links in CIP ${cip_name}:`);
+        console.log(`WARNING: Mixed reference link [${mixedLink.text}][${mixedLink.reference}] is an relative mixed link: ${matchedReference.url}.`);
+
+        content = content.replace(`[${mixedLink.text}][${mixedLink.reference}]`, `[${mixedLink.text}](${cip_repo_raw_base_url}${cip_name}/${matchedReference.url})`);
+      }
+    });
+  }
+
+  // Handle nested extended CIP links
+  const nestedExtendedCIPs = identifyNestedExtendedCIPLinks(content);
+  if (nestedExtendedCIPs.length > 0) {
+    nestedExtendedCIPs.forEach(nestedCIP => {
+      console.log(`Found nested extended CIP links in CIP ${cip_name}:`);
+      console.log(`WARNING: Nested extended CIP link ${nestedCIP} in CIP ${cip_name} is a relative link.`);
+      
+      const modifiedNestedCIP = nestedCIP.replace("(", "").replace(")", "");
+
+      content = content.replace(nestedCIP, `(${cip_repo_base_url}${cip_name}/${modifiedNestedCIP})`);
+    }
+    );
+  }
+
+  // Handle inline links
   const cip_resource = content.match(cip_regex);
   if (cip_resource) {
     await Promise.all(
@@ -165,11 +220,6 @@ const stringManipulation = (content: string, cip_name: string) => {
   content = content.replace('cddl/version-1.cddl', 'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0060/cddl/version-1.cddl');
   
   return content;
-};
-
-// Get a specific doc tag
-const getDocTag = (content: string, tag_name: string) => {
-  return content.match(new RegExp(`(?<=${tag_name}: ).*`, ""));
 };
 
 const main = async () => {
