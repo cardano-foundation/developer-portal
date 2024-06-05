@@ -1640,3 +1640,32 @@ All of the merged PRs in April
 - katomm ([@katomm](https://github.com/katomm))
 - olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
 - NotSimple ([@NotSimple](https://github.com/NotSimple))
+
+## 2024.20.0 (2024-05-31)
+
+All of the merged PRs in May
+
+#### PRs: 11
+
+- Add Xogmios to Builder Tools by ([@caike](https://github.com/caike)) in [#1256](https://github.com/cardano-foundation/developer-portal/pull/1256)
+- Add Genius Yield blog by ([@weqanhet](https://github.com/weqanhet)) in [#1257](https://github.com/cardano-foundation/developer-portal/pull/1257)
+- Add changelog for April 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1255](https://github.com/cardano-foundation/developer-portal/pull/1255)
+- Guild Operators Tools: official update by ([@gufmar](https://github.com/gufmar)) in [#1259](https://github.com/cardano-foundation/developer-portal/pull/1259)
+- Update links to GitHub repos moved to IntersectMBO by ([@rphair](https://github.com/rphair)) in [#1260](https://github.com/cardano-foundation/developer-portal/pull/1260)
+- Add decon to Showcase by ([@alucao](https://github.com/alucao)) in [#1222](https://github.com/cardano-foundation/developer-portal/pull/1222)
+- add Cardano Academy to Showcase by ([@katomm](https://github.com/katomm)) in [#1265](https://github.com/cardano-foundation/developer-portal/pull/1265)
+- add Emurgo Academy to Showcase by ([@katomm](https://github.com/katomm)) in [#1266](https://github.com/cardano-foundation/developer-portal/pull/1266)
+- Add Charli3 oracle to Showcase + category cleanup by ([@katomm](https://github.com/katomm)) in [#1267](https://github.com/cardano-foundation/developer-portal/pull/1267)
+- fix external broken links by ([@gufmar](https://github.com/gufmar)) in [#1270](https://github.com/cardano-foundation/developer-portal/pull/1270)
+- add Adder to Builder Tools by ([@wolf31o2](https://github.com/wolf31o2)) in [#1271](https://github.com/cardano-foundation/developer-portal/pull/1271)
+
+#### Contributors: 8
+
+- caike ([@caike](https://github.com/caike))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- gufmar ([@gufmar](https://github.com/gufmar))
+- rphair ([@rphair](https://github.com/rphair))
+- alucao ([@alucao](https://github.com/alucao))
+- katomm ([@katomm](https://github.com/katomm))
+- wolf31o2 ([@wolf31o2](https://github.com/wolf31o2))
