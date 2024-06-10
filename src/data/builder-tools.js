@@ -761,6 +761,14 @@ export const Showcases = [
     tags: ["cli", "golang", "chainindex"],
   },
   {
+    title: "Cardano Node API",
+    description: "An HTTP API for interfacing with a local Cardano Node and providing the node internal data for HTTP clients.",
+    preview: require("./builder-tools/cardano-node-api.png"),
+    website: "https://github.com/blinklabs-io/cardano-node-api",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/cardano-node-api",
+    tags: ["http", "golang", "json", "websocket"],
+  },
+  {
     title: "cscli",
     description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
     preview: require("./builder-tools/cscli.png"),
