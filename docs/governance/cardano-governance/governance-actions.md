@@ -102,6 +102,7 @@ Actions ratified during the current epoch are prioritized for enactment as follo
 7. Info
 
 > Note: Enactment for Info actions is a null action since they do not have any effect on the protocol.
+
 ### Order of Enactment
 
 Governance actions are enacted in the order of their acceptance to the chain.

@@ -8,6 +8,7 @@ description: Cardano is implementing a decentralized governance model that empow
 ---
 
 ## Cardano's Future Governance Model and Roles
+
 Cardano is advancing towards a decentralized governance model designed to empower community participation and ensure robust decision-making processes. This model is detailed in [CIP-1694](https://github.com/cardano-foundation/CIPs/blob/master/CIP-1694/README.md), which outlines a framework for governance through a tricameral model and a structured decision-making process via seven different types of [governance actions](governance-actions.md). A governance action is a transaction-triggered on-chain event with a time-limited window for execution.
 
 ### Ada Holders {#ada-holders}
@@ -58,7 +59,7 @@ During the [bootstrapping phase](https://github.com/cardano-foundation/CIPs/tree
 
 The interim Constitutional Committee will have the power to change protocol parameters and, together with SPOs, initiate hard forks.
 
- ## Decision Making Process
+## Decision Making Process
 
 The governance process will involve:
 
@@ -66,3 +67,7 @@ The governance process will involve:
 2. **Governance Action Submission**: Any Ada holder can submit a governance action as long as a sufficient ada deposit is provided.
 3. **Voting**: Decisions on governance actions will be made through a democratic voting process involving DReps, SPOs, and the CC. The required thresholds that have to be met to ratify a governance action are specified in the governance protocol parameters. A detailed overview of the governance parameters can be found [here](https://github.com/thenic95/cardano-governance/blob/main/Reports/Cardano%20Governance%20Parameter/cardano-governance-parameter-overview.md).
 4. **Enactment**: Governance actions are checked for ratification only at the epoch boundary. Once ratified, actions will be enacted at the next epoch boundary. The governance action deposit will be returned once a governance action has been enacted or expired.
+
+## Cardano's Public Testnet for Governance Features
+
+In July 2023, a public Cardano testnet named SanchoNet was announced to test all the governance features described in CIP-1694. Since then, the teams at IOG have introduced new governance features, enabling the Cardano community to gradually familiarize themselves with the novel system. SanchoNet is accessible to everyone, allowing anyone to join and test the new governance features. Additional documentation about SanchoNet is available at https://sancho.network/
