@@ -1107,6 +1107,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["ogmios", "sdk", "lowlevel"],
   },
+  {
+    title: "whisky",
+    description: "This is a library for building off-chain code on Cardano. It is a cardano-cli like wrapper on cardano-serialization-lib (equivalent on MeshJS’s lower level APIs), supporting serious DApps’ backend on rust codebase.",
+    preview: require("./builder-tools/whisky.png"),
+    website: "https://github.com/sidan-lab/whisky",
+    getstarted: "https://whisky.sidan.io/",
+    tags: ["rust", "typescript", "serialization", "sdk", "plutus"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
