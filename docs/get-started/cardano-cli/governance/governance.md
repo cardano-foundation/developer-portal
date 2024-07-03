@@ -1,14 +1,15 @@
 ---
+id: cardano-governance
 title: Cardano governance
+sidebar_label: Cardano governance
 sidebar_position: 8
+description: Overiew ov cardano governance across ledger eras. 
 keywords: [governance, update proposals, cardano, cardano-node]
 ---
 
-## Cardano governance
-
 ## Update proposals
 
-Currently, and until the Conway era ushers in participatory governance, Cardano operates under a **federated governance** mechanism. This framework enables the updating of protocol parameters, including the addition of new features, through an update proposal process. Only the holders of the genesis delegate keys have the authority to submit and vote on proposals.
+Currently (Babbage era), and until the Conway era ushers in participatory governance, Cardano operates under a **federated governance** mechanism. This framework enables the updating of protocol parameters, including the addition of new features, through an update proposal process. Only the holders of the genesis delegate keys have the authority to submit and vote on proposals.
 
 ## Cardano ledger eras
 
@@ -52,7 +53,7 @@ The update mechanism in Shelley is simpler than in Byron. There is no distinctio
 The procedure is as follows:
 
 1. **Register the proposal.** During each epoch, a genesis key can submit (via its delegates) zero, one, or many proposals; each submission overrides the previous one. Proposals can be explicitly marked for future epochs; in that case, they are simply not considered until that epoch is reached.
-2. **Voting.** The window for submitting proposals ends 6k/f slots before the end of the epoch, where *k* is the security parameter and *f* is the _active slot coefficient_.
+2. **Voting.** There is no explicit voting, to vote for a proposal, other delegate key holders must submit the exact same proposal to the chain. The window for submitting proposals ends 6k/f slots before the end of the epoch, where *k* is the security parameter and *f* is the _active slot coefficient_.
 3. **Quorum.** At the end of the epoch, if the majority of nodes, determined by the **Quorum** specification constant (which must exceed half the total number of nodes), have most recently submitted the identical proposal, it becomes adopted.
 4. **Update.** The update is applied at the epoch boundary.
 
@@ -104,4 +105,4 @@ cardano-cli conway transaction submit --tx-file updateNOpt.tx.signed
 
 ## Conway era update proposals
 
-Todo:
+TODO: Brief intro, diagram and link to the subseciton.

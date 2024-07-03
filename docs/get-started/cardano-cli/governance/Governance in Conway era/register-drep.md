@@ -7,7 +7,7 @@ description: How to register as a delegate representative
 keywords: [Governance, DREP, Delegate representative, CIP1694]
 ---
 
-Delegate representatives (DReps) serve as the community's spokesperson, actively participating in voting on governance actions and advocating for the community's collective interests. DReps hold significant responsibilities in the governance process, voting on important system updates. Approval depends on the governance action type and requires a majority vote from the corresponding governance bodies.
+Delegated representatives (DReps) serve as the community's spokesperson, actively participating in voting on governance actions and advocating for the community's collective interests. DReps hold significant responsibilities in the governance process, voting on important system updates. Approval depends on the governance action type and requires a majority vote from the corresponding governance bodies.
 
 To register as a DRep, follow the steps below.
 
