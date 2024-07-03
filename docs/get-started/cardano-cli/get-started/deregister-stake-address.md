@@ -12,7 +12,6 @@ To integrate the Conway era, which differs significantly from previous eras, `ca
 :::
 
 :::caution
-
 The process outlined below involves transferring funds from the payment address associated with the stake address we plan to deregister. This is followed by withdrawing rewards over several consecutive epochs until the rewards are negligible. Only then do we deregister the stake address. This ensures that all earned rewards are collected.
 :::
 
