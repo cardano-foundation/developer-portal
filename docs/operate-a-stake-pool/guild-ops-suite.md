@@ -28,7 +28,7 @@ Topology Updater was built as a workaround to allow stake pool relays to auto-di
 
 #### Guild Network and Support for other networks
 
-Guild Network is a brief (30-minute epoch) network that functions similarly to the Cardano testnets but is entirely governed by the community. It's excellent for experimenting with things in the sandbox, as well as testing out viable features before releasing them to other networks. This network is already supported by all of the tools in the repo, including Mainnet, testnets, and staging.  
+Guild Network is a brief (60-minute epoch) network that functions similarly to the Cardano testnets but is entirely governed by the community. It's excellent for experimenting with things in the sandbox, as well as testing out viable features before releasing them to other networks. This network is already supported by all of the tools in the repo, including Mainnet, testnets, and staging.  
 
 #### Others..
 
@@ -44,11 +44,21 @@ For installing OS Packages, dependencies, setting up a [sample directory structu
 
 ``` bash
 mkdir "$HOME/tmp";cd "$HOME/tmp"
-curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh
-chmod 755 prereqs.sh
-./prereqs.sh
+curl -sS -o guild-deploy.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/guild-deploy.sh
+chmod 755 guild-deploy.sh
+./guild-deploy.sh -b master -n mainnet -s pdl
 . "$HOME"/.bashrc
 ```
+
+:::note 
+    `-s pdl`  
+      installs (p)rerequisites for the operating system, 
+      (d)ownloads the precompiled binaries 
+      and also compiles and installs the IOG fork of (l)ibsodium.
+
+      consider guild-deploy.sh --help for options when you update the system 
+      or want to install additional modules
+:::
 
 ### Build of Node/DBSync components
 
@@ -56,7 +66,7 @@ We assume you'd have already seen the guide [here](../../docs/get-started/instal
 
 ### Customise configuration
 
-Now that you've set-up your OS dependencies and built/installed node binaries, it's time for you to customise your configuration, paths, names, etc for your node. You can use [env](https://cardano-community.github.io/guild-operators/Scripts/env/) file to modify these. Each line contains default value, and a simple explaination about what variable means.  
+Now that you've set-up your OS dependencies and built/installed node binaries, it's time for you to customise your configuration, paths, names, etc for your node. You can use [env](https://cardano-community.github.io/guild-operators/Scripts/env/) file to modify these. Each line contains default value, and a simple explanation about what variable means.  
 
 ### Contributions/Feedback..
 
@@ -64,8 +74,8 @@ Issue/PRs are welcome on the [github repository][guild-github].
 
 ### Support Requests
 
-We do have [telegram channel for support requests][guild-tg] , but note that we intend to have support channel only for baseline skillset highlighted on [homepage][guild-website].  
+We do have the [Koios Discussions telegram channel for support requests][koios-general-tg] , but note that we intend to have support channel only for baseline skillset highlighted on [homepage][guild-website].  
 
 [guild-github]: https://github.com/cardano-community/guild-operators
 [guild-website]: https://cardano-community.github.io/guild-operators
-[guild-tg]: https://t.me/guild_operators_official
+[koios-general-tg]: https://t.me/CardanoKoios/1

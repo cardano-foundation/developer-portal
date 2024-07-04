@@ -82,7 +82,7 @@ Next step is to enable unattended upgrades to automatically install security upd
 
 By default, the unattended-upgrades service **only installs security updates** automatically. These updates **WONT** make your server automatically reboot.
 
-The primary argument against enabling unattended-ugrades is that one day, a less stable package may install and cause stability or dependencies issues. While this argument is technically valid, the fact remains that without this package installed and enabled, it's more likely that a Linux server might host a software with remotely exploitable security vulnerabilities.
+The primary argument against enabling unattended-upgrades is that one day, a less stable package may install and cause stability or dependencies issues. While this argument is technically valid, the fact remains that without this package installed and enabled, it's more likely that a Linux server might host a software with remotely exploitable security vulnerabilities.
 
 :::
 
@@ -212,7 +212,7 @@ sudo nano /etc/fail2ban/jail.local
 ```
 
 Locate the [DEFAULT] block and adjust to your needs. 
-Here is a configuration exemple that allows 2 logins attempts within 10minutes, and ban for 1hour any IP that fails. After 1h, if the IP tries again and fails, the bantime will be incremented by factor *2. The maximum bantime is set to 5 weeks.
+Here is a configuration example that allows 2 logins attempts within 10minutes, and ban for 1hour any IP that fails. After 1h, if the IP tries again and fails, the bantime will be incremented by factor *2. The maximum bantime is set to 5 weeks.
 
 ```shell
 bantime  = 1h
@@ -316,7 +316,7 @@ Shared memory can be used in an attack against a running service. To secure it, 
 ```shell
 sudo nano /etc/fstab
 ```
-Add the following lline at the end of the file
+Add the following line at the end of the file
 
 ```shell
 tmpfs	/run/shm	tmpfs	ro,noexec,nosuid	0 0

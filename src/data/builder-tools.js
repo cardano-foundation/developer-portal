@@ -317,7 +317,7 @@ export const Showcases = [
     title: "cardano-cli",
     description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
     preview: require("./builder-tools/cardano-cli.png"),
-    website: "https://github.com/input-output-hk/cardano-node/tree/master/cardano-cli#cardano-cli",
+    website: "https://github.com/IntersectMBO/cardano-node/tree/master/cardano-cli#cardano-cli",
     getstarted: null,
     tags: ["favorite", "cli", "serialization"]
   },
@@ -325,7 +325,7 @@ export const Showcases = [
     title: "bech32",
     description: "Convert to and from bech32 strings from the command-line. A simple and easy-to-use unix utility.",
     preview: require("./builder-tools/bech32.png"),
-    website: "https://github.com/input-output-hk/bech32/#readme",
+    website: "https://github.com/IntersectMBO/bech32/#readme",
     getstarted: null,
     tags: ["cli", "serialization"]
   },
@@ -357,7 +357,7 @@ export const Showcases = [
     title: "cardano-db-sync",
     description: "A PostgreSQL database layer which stores all data from the Cardano blockchain in a structured  and normalized way.",
     preview: require("./builder-tools/cardano-db-sync.png"),
-    website: "https://github.com/input-output-hk/cardano-db-sync#cardano-db-sync",
+    website: "https://github.com/IntersectMBO/cardano-db-sync#cardano-db-sync",
     getstarted: null,
     tags: ["chainindex", "sql"]
   },
@@ -365,8 +365,8 @@ export const Showcases = [
     title: "cardano-addresses",
     description: "A command-line utility and library for manipulating addresses, keys and recovery phrases on Cardano.",
     preview: require("./builder-tools/cardano-addresses.png"),
-    website: "https://github.com/input-output-hk/cardano-addresses#overview",
-    getstarted: "https://github.com/input-output-hk/cardano-addresses#command-line",
+    website: "https://github.com/IntersectMBO/cardano-addresses#overview",
+    getstarted: "https://github.com/IntersectMBO/cardano-addresses#command-line",
     tags: ["cli", "haskell", "serialization"]
   },
   {
@@ -753,6 +753,22 @@ export const Showcases = [
     tags: ["golang", "lowlevel"],
   },
   {
+    title: "Adder",
+    description: "A tool for tailing the Cardano blockchain and emitting events for each block and transaction seen, based on user configurable filters.",
+    preview: require("./builder-tools/adder.png"),
+    website: "https://github.com/blinklabs-io/adder",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/adder",
+    tags: ["cli", "golang", "chainindex"],
+  },
+  {
+    title: "Cardano Node API",
+    description: "An HTTP API for interfacing with a local Cardano Node and providing the node internal data for HTTP clients.",
+    preview: require("./builder-tools/cardano-node-api.png"),
+    website: "https://github.com/blinklabs-io/cardano-node-api",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/cardano-node-api",
+    tags: ["http", "golang", "json", "websocket"],
+  },
+  {
     title: "cscli",
     description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
     preview: require("./builder-tools/cscli.png"),
@@ -1082,6 +1098,14 @@ export const Showcases = [
     website: "https://mazzumagpt.com",
     getstarted:"https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
     tags: ["plutus"]
+  },
+  {
+    title: "Xogmios",
+    description: "An Elixir client for Ogmios.",
+    preview: require("./builder-tools/xogmios.png"),
+    website: "https://github.com/wowica/xogmios",
+    getstarted: null,
+    tags: ["ogmios", "sdk", "lowlevel"],
   },
 ];
 

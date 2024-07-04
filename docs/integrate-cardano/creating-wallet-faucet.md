@@ -2,7 +2,7 @@
 id: creating-wallet-faucet
 title: Exploring Cardano wallets
 sidebar_label: Exploring Cardano wallets
-description: This article explains how you can create different kinds of Cardano Wallets and how you can recieve some tAda(test ada) from the faucet.
+description: This article explains how you can create different kinds of Cardano Wallets and how you can receive some tAda(test ada) from the faucet.
 image: /img/og/og-developer-portal.png
 --- 
 
@@ -42,7 +42,7 @@ First we have to look at the applications we can use to create wallets.
 
  You can find `cardano-wallet` **REST API** documentation here: [https://cardano-foundation.github.io/cardano-wallet/api/edge/](https://cardano-foundation.github.io/cardano-wallet/api/edge/)
 
-- [cardano-cli](https://github.com/input-output-hk/cardano-node) : `cardano-cli` is also a [CLI (Command Line Interface)](https://en.wikipedia.org/wiki/Command-line_interface) application that provides **Cardano** wallet functionalities. But `cardano-cli` purpose is geared more towards general **Cardano** functionalities like generating **keys**, building and submitting **transactions**, managing **stake pools** certificates, simple blockchain queries like wallet address **UTXO** and more.
+- [cardano-cli](https://github.com/IntersectMBO/cardano-node) : `cardano-cli` is also a [CLI (Command Line Interface)](https://en.wikipedia.org/wiki/Command-line_interface) application that provides **Cardano** wallet functionalities. But `cardano-cli` purpose is geared more towards general **Cardano** functionalities like generating **keys**, building and submitting **transactions**, managing **stake pools** certificates, simple blockchain queries like wallet address **UTXO** and more.
 
     It is part of the `cardano-node` project repository, so if you [compile and install](/docs/get-started/installing-cardano-node) `cardano-node` you should also have `cardano-cli` as-well. It is one of the many Haskell-based **Cardano** software components being written by [InputOutputGlobal](https://iohk.io/).
 
@@ -52,13 +52,13 @@ Always download the wallets from trusted sources. There are many fake wallets, m
 
 ### Creating a wallet
 
-As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use-cases.
+As mentioned before, in this guide we will only be focusing on the `cardano-cli` and `cardano-wallet` since they provide some level of programmability which is important when we are talking about **Cardano** integrations for different kinds of use cases.
 
 
 #### Creating a wallet with `cardano-cli`
 
 :::note
-In this section, We will use the path `$HOME/cardano` to store all the `cardano-cli` related files as an example, please replace it with the directory you have choosen to store the files.
+In this section, We will use the path `$HOME/cardano` to store all the `cardano-cli` related files as an example, please replace it with the directory you have chosen to store the files.
 :::
 
 :::important
@@ -160,7 +160,7 @@ addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
 
 :::note
- You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use-cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
+ You can derive more than one **wallet address** from a **Public Verification Key** for more advanced use cases using `cardano-addresses` component. Which we discuss in more details here: ***@TODO: link to article***
 
   - Mainnet addresses are **prefixed** with the string value `addr1`. 
   - testnet addresses are **prefixed** with the string value `addr_test1`. 
@@ -217,7 +217,10 @@ In the **Cardano** blockchain, the `lovelace` is the unit used to represent `ada
 
 Where `1 ada` is equal to `1,000,000 lovelace`, so moving forward we will be using `lovelace` instead of `ada` / `tAda`.
 
-You can also use the `TxHash` to view the complete transaction via the **Cardano Blockchain Explorer** for the relevant network. You can check the specific transaction for the example **UTXO** here: [f3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85](https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85)
+You can also use the `TxHash` to view the complete transaction via the **Cardano Blockchain Explorer** for the relevant network. You can check the specific transaction for the example **UTXO** here: 
+- [testnet.cardanoscan.io](https://testnet.cardanoscan.io) is a Pre-Production and Preview block explorer by [Cardanoscan](https://cardanoscan.io).
+- [testnet.cexplorer.io](https://testnet.cexplorer.io/) is a Pre-Production and Preview block explorer by [Cexplorer](https://cexplorer.io).
+
 
 To learn more about **UTXO (unspent transaction output)** and how transactions work for the **UTXO Model**, we recommend watching this lecture by [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at [InputOutputGlobal](https://iohk.io).
 
@@ -346,7 +349,7 @@ cardano-cli transaction build-raw \
 
 `cardano-cli transaction build-raw` : This tells `cardano-cli` to build a raw transaction.
 
-`--tx-in` : This specifices the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have a unique `TxHash` and `TxIdx` within all your inputs.
+`--tx-in` : This specifies the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have a unique `TxHash` and `TxIdx` within all your inputs.
 
 `--tx-out` : This specifies the target **wallet address**, **assets** and **quantity** to be sent to. You can add as many **UTXO** outputs as you want as long as the total **UTXO** input can satisfy the **assets** and **quantity** specified by the output.
 
@@ -481,7 +484,7 @@ Congratulations, You have created and sent your first **Cardano** transaction us
 :::note
 This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](/docs/get-started/installing-cardano-wallet) guide for instructions on how to do that.
 
-We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have choosen to store the files.
+We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have chosen to store the files.
 :::
 
 :::important
@@ -540,7 +543,7 @@ cardano-wallet serve \
 ```
 > As you notice its almost like a network `URI` or a network `Path` than a file, this is a key difference that you will have to be aware depending on your operating system. You can replace the string `cardano-node-testnet` in the argument to whatever you like, this example path in particular is used in the [Daedalus Testnet Wallet](https://daedaluswallet.io) for **Windows**.
 
-Once the server is running you should see sometihng like this (among other things): 
+Once the server is running you should see something like this (among other things): 
 
 ```
 [cardano-wallet.network:Info:12] [2021-06-03 13:48:24.82 UTC] Protocol parameters for tip are:
@@ -636,11 +639,11 @@ Our requests payload data is composed of:
 
 `name` : The name of the wallet.
 
-`passphrase` : Sets the security phrase to protect the funds inside the wallet. It will be required everytime you need write access to the wallet, more specifically sending assets.
+`passphrase` : Sets the security phrase to protect the funds inside the wallet. It will be required every time you need write access to the wallet, more specifically sending assets.
 
 `mnemonic_sentence` : This is the wallet **recovery phrase** formatted into a `JSON` array.
 
-If succesful, you should see something like this: 
+If successful, you should see something like this: 
 
 ```json
 {

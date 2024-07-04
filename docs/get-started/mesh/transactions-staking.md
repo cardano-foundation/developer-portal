@@ -7,16 +7,16 @@ description: APIs for staking ADA and managing stake pools.
 image: /img/og/og-getstarted-mesh.png
 ---
 
-In this section, we will learn to create to stake ADA in stakepools. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
+In this section, we will learn to create to stake ADA in stake pools. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
 
 In this section, we will explore the following:
 
 - [Register Stake Address](#register-stake-address)
-- [Delegate ADA to Stakepool](#delegate-ada-to-stakepool)
+- [Delegate ADA to Stake Pool](#delegate-ada-to-stake-pool)
 
 ## Register Stake Address
 
-New address must "register" before they can delegate to stakepools.
+New address must "register" before they can delegate to stake pools.
 
 ```javascript
 import { Transaction } from "@meshsdk/core";
@@ -33,7 +33,7 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-## Delegate ADA to Stakepool
+## Delegate ADA to Stake pool
 
 Delegation is the process by which ADA holders delegate the stake associated with their ADA to a stake pool. Doing so, this allows ADA holders to participate in the network and be rewarded in proportion to the amount of stake delegated.
 

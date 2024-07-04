@@ -1567,3 +1567,105 @@ All of the merged PRs in January
 - joseph-fajen ([@joseph-fajen](https://github.com/joseph-fajen))
 - katomm ([@katomm](https://github.com/katomm))
 - sempruijs ([@sempruijs](https://github.com/sempruijs))
+
+## 2024.08.0 (2024-02-29)
+
+All of the merged PRs in February
+
+#### PRs: 10
+
+- Cardano Relay Configuration: fix command typo by ([@sempruijs](https://github.com/sempruijs)) in [#1205](https://github.com/cardano-foundation/developer-portal/pull/1205)
+- Fix "Cardano Store" (not "Cardano Merch Store") by ([@katomm](https://github.com/katomm)) in [#1203](https://github.com/cardano-foundation/developer-portal/pull/1203)
+- Add Changelog for January 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1208](https://github.com/cardano-foundation/developer-portal/pull/1208)
+- [Fix Build] Modify CPS script to fetch images by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1211](https://github.com/cardano-foundation/developer-portal/pull/1211)
+- Add rejuve blog by ([@weqanhet](https://github.com/weqanhet)) in [#1212](https://github.com/cardano-foundation/developer-portal/pull/1212)
+- Add repo with the available tooling for the Authenticated Product section by ([@katomm](https://github.com/katomm)) in [#1214](https://github.com/cardano-foundation/developer-portal/pull/1214)
+- fix: correct url for installing cardano node from source code by ([@ShawnTseng](https://github.com/ShawnTseng)) in [#1213](https://github.com/cardano-foundation/developer-portal/pull/1213)
+- Add Project Catalyst Voting Results for F10 & F11 by ([@thenic95](https://github.com/thenic95)) in [#1219](https://github.com/cardano-foundation/developer-portal/pull/1219)
+- Operate stake pool Script bugfixes by ([@sorki](https://github.com/sorki)) in [#1218](https://github.com/cardano-foundation/developer-portal/pull/1218)
+- Point cardano-node docs to cardano-node-wiki by ([@sorki](https://github.com/sorki)) in [#1217](https://github.com/cardano-foundation/developer-portal/pull/1217)
+
+#### Contributors: 7
+
+- sempruijs ([@sempruijs](https://github.com/sempruijs))
+- katomm ([@katomm](https://github.com/katomm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- ShawnTseng ([@ShawnTseng](https://github.com/ShawnTseng))
+- thenic95 ([@thenic95](https://github.com/thenic95))
+- sorki ([@sorki](https://github.com/sorki))
+
+## 2024.12.0 (2024-03-31)
+
+All of the merged PRs in March
+
+#### PRs: 4
+
+- Add Mazzumagpt Blog by ([@weqanhet](https://github.com/weqanhet)) in [#1224](https://github.com/cardano-foundation/developer-portal/pull/1224)
+- Revert "Add Mazzumagpt Blog" by ([@katomm](https://github.com/katomm)) in [#1227](https://github.com/cardano-foundation/developer-portal/pull/1227)
+- Add changelog for February 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1220](https://github.com/cardano-foundation/developer-portal/pull/1220)
+- Installing Cardano Wallet: fix + clarify links by ([@syncquick](https://github.com/syncquick)) in [#1230](https://github.com/cardano-foundation/developer-portal/pull/1230)
+
+
+#### Contributors: 4
+
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- katomm ([@katomm](https://github.com/katomm))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- syncquick ([@syncquick](https://github.com/syncquick))
+
+## 2024.16.0 (2024-04-30)
+
+All of the merged PRs in April
+
+
+#### PRs: 10
+
+- SPO node installation: Update cabal version by ([@mr-14](https://github.com/mr-14)) in [#1241](https://github.com/cardano-foundation/developer-portal/pull/1241)
+- plu-ts: Fix broken main documentation link by ([@DenhamPreen](https://github.com/DenhamPreen)) in [#1240](https://github.com/cardano-foundation/developer-portal/pull/1240)
+- Add changelog for March 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1242](https://github.com/cardano-foundation/developer-portal/pull/1242)
+- Add http security header configuration for Netlify by ([@katomm](https://github.com/katomm)) in [#1244](https://github.com/cardano-foundation/developer-portal/pull/1244)
+- Update links to testnets overview on Cardano Docs by ([@olgahryniuk](https://github.com/olgahryniuk)) in [#1246](https://github.com/cardano-foundation/developer-portal/pull/1246)
+- Fix typos in docs by ([@NotSimple](https://github.com/NotSimple)) in [#1243](https://github.com/cardano-foundation/developer-portal/pull/1243)
+- Update content security policy  by ([@katomm](https://github.com/katomm)) in [#1247](https://github.com/cardano-foundation/developer-portal/pull/1247)
+- Fix headers by ([@katomm](https://github.com/katomm)) in [#1248](https://github.com/cardano-foundation/developer-portal/pull/1248)
+- Update content security policy by ([@katomm](https://github.com/katomm)) in [#1249](https://github.com/cardano-foundation/developer-portal/pull/1249)
+- Update content security policy by ([@katomm](https://github.com/katomm)) in [#1251](https://github.com/cardano-foundation/developer-portal/pull/1251)
+
+#### Contributors: 6
+
+- mr-14 ([@mr-14](https://github.com/mr-14))
+- DenhamPreen ([@DenhamPreen](https://github.com/DenhamPreen))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- katomm ([@katomm](https://github.com/katomm))
+- olgahryniuk ([@olgahryniuk](https://github.com/olgahryniuk))
+- NotSimple ([@NotSimple](https://github.com/NotSimple))
+
+## 2024.20.0 (2024-05-31)
+
+All of the merged PRs in May
+
+#### PRs: 11
+
+- Add Xogmios to Builder Tools by ([@caike](https://github.com/caike)) in [#1256](https://github.com/cardano-foundation/developer-portal/pull/1256)
+- Add Genius Yield blog by ([@weqanhet](https://github.com/weqanhet)) in [#1257](https://github.com/cardano-foundation/developer-portal/pull/1257)
+- Add changelog for April 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1255](https://github.com/cardano-foundation/developer-portal/pull/1255)
+- Guild Operators Tools: official update by ([@gufmar](https://github.com/gufmar)) in [#1259](https://github.com/cardano-foundation/developer-portal/pull/1259)
+- Update links to GitHub repos moved to IntersectMBO by ([@rphair](https://github.com/rphair)) in [#1260](https://github.com/cardano-foundation/developer-portal/pull/1260)
+- Add decon to Showcase by ([@alucao](https://github.com/alucao)) in [#1222](https://github.com/cardano-foundation/developer-portal/pull/1222)
+- add Cardano Academy to Showcase by ([@katomm](https://github.com/katomm)) in [#1265](https://github.com/cardano-foundation/developer-portal/pull/1265)
+- add Emurgo Academy to Showcase by ([@katomm](https://github.com/katomm)) in [#1266](https://github.com/cardano-foundation/developer-portal/pull/1266)
+- Add Charli3 oracle to Showcase + category cleanup by ([@katomm](https://github.com/katomm)) in [#1267](https://github.com/cardano-foundation/developer-portal/pull/1267)
+- fix external broken links by ([@gufmar](https://github.com/gufmar)) in [#1270](https://github.com/cardano-foundation/developer-portal/pull/1270)
+- add Adder to Builder Tools by ([@wolf31o2](https://github.com/wolf31o2)) in [#1271](https://github.com/cardano-foundation/developer-portal/pull/1271)
+
+#### Contributors: 8
+
+- caike ([@caike](https://github.com/caike))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- gufmar ([@gufmar](https://github.com/gufmar))
+- rphair ([@rphair](https://github.com/rphair))
+- alucao ([@alucao](https://github.com/alucao))
+- katomm ([@katomm](https://github.com/katomm))
+- wolf31o2 ([@wolf31o2](https://github.com/wolf31o2))

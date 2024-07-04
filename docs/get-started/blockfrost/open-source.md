@@ -12,7 +12,7 @@ Blockfrost [backend](https://github.com/blockfrost/blockfrost-backend-ryo), SDKs
 
 Source code of the Blockfrost backend is hosted on Github, in the [blockfrost-ryo-backend](https://github.com/blockfrost/blockfrost-backend-ryo) repository.
 
-To build it, you need to follow the instructuion specified in the [README](https://github.com/blockfrost/blockfrost-backend-ryo#blockfrostio-backend-service) of the repository or you can even use pre-built Docker images:
+To build it, you need to follow the instructions specified in the [README](https://github.com/blockfrost/blockfrost-backend-ryo#blockfrostio-backend-service) of the repository or you can even use pre-built Docker images:
 
 ```bash
 docker run --rm \
@@ -25,7 +25,7 @@ docker run --rm \
 
 # OpenAPI Specification
 
-The OpenAPI specification is open-source and is itended to serve as a good practice for API built on Cardano. The [source code](https://github.com/blockfrost/openapi) is hosted on Github too. Current version is rendered and available at [docs.blockfrost.io](https://docs.blockfrost.io/).
+The OpenAPI specification is open-source and is intended to serve as a good practice for API built on Cardano. The [source code](https://github.com/blockfrost/openapi) is hosted on Github too. Current version is rendered and available at [docs.blockfrost.io](https://docs.blockfrost.io/).
 
 # SDKs and other tooling
 

@@ -35,6 +35,31 @@ export const Tags = {
     color: '#39ca30',
   },
 
+   // Bridge 
+   bridge: {
+    label: "Bridge",
+    description: "Projects that provide cross-chain bridge support.",
+    icon: null,
+    color: '#EDFF21'
+  },
+
+  // Block Explorer
+  explorer: {
+    label: "Block Explorer",
+    description:
+      "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+    icon: null,
+    color: '#293133',
+  },
+
+  // Catalyst
+  catalyst: {
+    label: "Catalyst",
+    description: "Projects that aid to Cardano's interim governance programme (Catalyst).",
+    icon: null,
+    color: '#308446'
+  },
+
   // DAO Tool
   daotool: {
     label: "DAO Tool",
@@ -69,15 +94,15 @@ export const Tags = {
     color: '#a44fb7',
   },
 
-  // Cardano Block Explorer
-  explorer: {
-    label: "Block Explorer",
-    description:
-      "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
+  // Funding 
+  funding: {
+    label: "Funding",
+    description: "Projects aimed at providing funding assistance to individuals.",
     icon: null,
-    color: '#293133',
+    color: '#1e40af'
   },
 
+  
   // Game
   game: {
     label: "Game",
@@ -100,6 +125,14 @@ export const Tags = {
     description: "Decentralized identifiers (DIDs).",
     icon: null,
     color: '#000'
+  },
+
+  // Lending 
+  lending: {
+    label: "Lending",
+    description: "Projects that provide lending and borrowing of ada.",
+    icon: null,
+    color: '#7E0000'
   },
 
   // Marketplace 
@@ -150,6 +183,14 @@ export const Tags = {
     color: '#8c2f00',
   },
 
+  // Oracle 
+  oracle: {
+    label: "Oracle",
+    description: "Oracles provides smart contracts with external data.",
+    icon: null,
+    color: '#5d9ce6'
+  },
+
   // Pool Tool
   pooltool: {
     label: "Pool Tool",
@@ -175,47 +216,6 @@ export const Tags = {
     icon: null,
     color: '#7BC8A6'
   },
-
-  // Ecosystem
-  ecosystem: {
-    label: "Ecosystem",
-    description:
-      "The Cardano ecosystem projects.",
-    icon: null,
-    color: '#800080'
-  },
-
-  // Catalyst
-  catalyst: {
-    label: "Catalyst",
-    description: "Projects that aid to Cardano's interim governance programme (Catalyst).",
-    icon: null,
-    color: '#308446'
-  },
-
-  // Lending 
-  lending: {
-    label: "Lending",
-    description: "Projects that provide lending and borrowing of ada.",
-    icon: null,
-    color: '#7E0000'
-  },
-
-  // Bridge 
-  bridge: {
-    label: "Bridge",
-    description: "Projects that provide cross-chain bridge support.",
-    icon: null,
-    color: '#EDFF21'
-  },
-
-  // Funding 
-  funding: {
-    label: "Funding",
-    description: "Projects aimed at providing funding assistance to individuals.",
-    icon: null,
-    color: '#1e40af'
-  }
 };
 
 // Add your project to (THE END OF) this list.
@@ -1126,6 +1126,42 @@ export const Showcases = [
     website: "https://liqwid.finance/",
     source: null,
     tags: ["lending", "token", "marketplace", "nftsupport"],
+  },
+  {
+    title: "decon",
+    description:
+      "decon is a decentralized social forum.",
+    preview: require("./showcase/decon.png"),
+    website: "https://decon.app/",
+    source: "https://github.com/alucao/decon",
+    tags: ["opensource", "metadata"],
+  },
+  {
+    title: "Charli3",
+    description:
+      "Charli3 is a decentralized Oracle solution on Cardano, built natively for the chain, producing fully auditable data records on Cardano ledger.",
+    preview: require("./showcase/charli3.jpg"),
+    website: "https://charli3.io",
+    source: null,
+    tags: ["oracle", "metadata"],
+  },
+  {
+    title: "Emurgo Academy",
+    description:
+      "Blockchain education and training programs designed to equip individuals with the knowledge and skills needed to understand and develop blockchain solutions. The paid courses cover various aspects of blockchain technology, including its fundamentals, development, and applications, with a focus on Cardano.",
+    preview: require("./showcase/emurgo-academy.jpg"),
+    website: "https://education.emurgo.io/cardano-courses/",
+    source: null,
+    tags: ["educational"],
+  },
+  {
+    title: "Cardano Academy",
+    description:
+      "Learn blockchain fundamentals, consensus algorithms, and encryption methods. You’ll explore transaction models, risk mitigation, and scaling solutions. Additionally, you’ll delve into the Cardano blockchain, its governance, and practical uses of ada, including staking and decentralized applications.​",
+    preview: require("./showcase/cardano-academy.jpg"),
+    website: "https://academy.cardanofoundation.org",
+    source: null,
+    tags: ["favorite", "educational"],
   },
 ];
 

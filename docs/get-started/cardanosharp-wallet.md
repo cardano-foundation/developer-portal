@@ -168,7 +168,7 @@ Lets assume the following...
 ### Build Transaction Body
 
 ```cs
-// Generate the Recieving Address
+// Generate the Receiving Address
 Address paymentAddr = addressService.GetAddress(
     paymentNode.Derive(1).PublicKey, 
     stakingNode.PublicKey, 

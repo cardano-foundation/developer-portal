@@ -10,13 +10,13 @@ image: /img/plu_ts-logo.svg
 
 [`plu-ts`](https://github.com/HarmonicLabs/plu-ts) is a Typescript-embedded programming language and library for developing smart contracts on the Cardano blockchain. It is designed for smart contract efficiency while staying as close as possible to the Typescript syntax. 
 
-The tool is composed by the eDSL that allows you to create smart contracts and compile them; and an off-chain library that introuduces all the types required to interact with the Cardano ledger and create transactions.
+The tool is composed by the eDSL that allows you to create smart contracts and compile them; and an off-chain library that introduces all the types required to interact with the Cardano ledger and create transactions.
 
 ## Getting started
 
-Visit the [Get started with plu-ts](/docs/get-started/plu-ts) to install plu-ts unsing `npm` and setup your project.
+Visit the [Get started with plu-ts](/docs/get-started/plu-ts) to install `plu-ts` using `npm` and set up your project.
 
-You can find the documentatition for `plu-ts` at [pluts.harmoniclabs.tech](https://pluts.harmoniclabs.tech/docs/intro).
+You can find the documentation for `plu-ts` at [pluts.harmoniclabs.tech](https://pluts.harmoniclabs.tech/).
 
 If you need help feel free to open issues at the [`plu-ts` git repository](https://github.com/HarmonicLabs/plu-ts).
 
@@ -58,6 +58,6 @@ export const script = new Script(
 ```
 
 ## Links
-- [`plu-ts` documentation](https://pluts.harmoniclabs.tech/docs/intro)
+- [`plu-ts` documentation](https://pluts.harmoniclabs.tech/#introduction)
 - [`plu-ts` Github Repository](https://github.com/HarmonicLabs/plu-ts).
 

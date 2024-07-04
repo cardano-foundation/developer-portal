@@ -9,9 +9,9 @@ description: Get Started with `plu-ts`
 
 ## Installation
 
-### Add `plu-ts` as dependecy
+### Add `plu-ts` as dependency
 
-To install `plu-ts` you can use `npm` (or the node package manager of your coiche) and run the following in you root project.
+To install `plu-ts` you can use `npm` (or the node package manager of your choice) and run the following in you root project.
 
 ```sh
 npm install @harmoniclabs/plu-ts
@@ -39,6 +39,6 @@ the output can be found in the `dist` directory under the project root.
 
 ## Hello World
 
-You now have all you need to start your adventure with Typescript smart contracts. Have a look at the [hello world example contract](https://pluts.harmoniclabs.tech/docs/examples/Hello%20World).
+You now have all you need to start your adventure with Typescript smart contracts. Have a look at the [hello world example contract](https://pluts.harmoniclabs.tech/examples/Hello%20World).
 
-Visit the `plu-ts` website and explore [other examples](https://pluts.harmoniclabs.tech/docs/category/examples).
+Visit the `plu-ts` website and explore [other examples](https://pluts.harmoniclabs.tech/category/examples).

@@ -31,7 +31,7 @@ These are the links to github repositories and a brief description for all of th
 [gh-hasura-graphql]: https://github.com/cardano-foundation/cardano-graphql
 [gh-cardano-rest]: https://github.com/input-output-hk/cardano-rest
 [gh-ogmios]: https://github.com/cardanosolutions/ogmios
-[gh-cardano-db-sync]: https://github.com/input-output-hk/cardano-db-sync
+[gh-cardano-db-sync]: https://github.com/IntersectMBO/cardano-db-sync
 [gh-cardano-rosetta]: https://github.com/cardano-foundation/cardano-rosetta
 [gh-postgrest]: https://github.com/PostgREST/postgrest
 
@@ -46,11 +46,10 @@ Useful links:
 
 - [Link][gimbalabs-graphql-api] to Gimbalabs's endpoints information
 - [Link][graphql-official-doc] to project's official documentation
-- [Link][graphql-example-queries] to the official collection of example queries. You can play with them directly from the [GraphQL playground][graphql-playground-testnet]
+- [Link][graphql-example-queries] to the official collection of example queries.
 [gimbalabs-graphql-api]: https://gimbalabs.com/dandelion/endpoints/graphql-api
 [graphql-example-queries]: https://github.com/cardano-foundation/cardano-graphql/tree/master/packages/api-cardano-db-hasura/src/example_queries
 [graphql-official-doc]: https://cardano-foundation.github.io/cardano-graphql/
-[graphql-playground-testnet]:  https://graphql-api.testnet.dandelion.link
 
 Usage examples:
 
@@ -279,7 +278,7 @@ Useful links:
 - [Link][gimbalabs-postgrest-api] to Gimbalabs's endpoints information and official documentation
 - [Link][cardano-db-sync-official-doc] to `cardano-db-sync` official documentation
 [gimbalabs-postgrest-api]: https://gimbalabs.com/dandelion/endpoints/postgrest-api
-[cardano-db-sync-official-doc]: https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md
+[cardano-db-sync-official-doc]: https://github.com/IntersectMBO/cardano-db-sync/blob/master/doc/interesting-queries.md
 
 Usage examples:
 

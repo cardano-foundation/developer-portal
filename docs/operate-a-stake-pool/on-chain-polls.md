@@ -11,12 +11,12 @@ In the 8.0.0 version of Cardano-node, we incorporated a new group of commands to
 :::important
 This tutorial requires cardano-node 8.0.0 
 
-https://github.com/input-output-hk/cardano-node/releases/tag/8.0.0
+https://github.com/IntersectMBO/cardano-node/releases/tag/8.0.0
 :::
 
 ## CIP-0094 - Poll participation
 ### Pre-requisites
-​For this guide, you require a Cardano-cli that has the `governance poll` subcommands. You can use anything from the Cardano-node [release v8.0.0](https://github.com/input-output-hk/cardano-node/releases) or a specially [backported 1.35.7 version](https://github.com/CardanoSolutions/cardano-node/releases/tag/1.35.7%2Bcip-0094). Once a Genesis Delegate Key holder has signed and posted a new poll question on the chain, it will appear in this Cardano Foundation [CIP-0094-polls repository](https://github.com/cardano-foundation/CIP-0094-polls).
+​For this guide, you require a Cardano-cli that has the `governance poll` subcommands. You can use anything from the Cardano-node [release v8.0.0](https://github.com/IntersectMBO/cardano-node/releases) or a specially [backported 1.35.7 version](https://github.com/CardanoSolutions/cardano-node/releases/tag/1.35.7%2Bcip-0094). Once a Genesis Delegate Key holder has signed and posted a new poll question on the chain, it will appear in this Cardano Foundation [CIP-0094-polls repository](https://github.com/cardano-foundation/CIP-0094-polls).
 
 You can find the JSON file containing the poll question in CBOR format by navigating into the specific subfolder.
 
@@ -117,7 +117,6 @@ From this point, you can sign `answer.tx` using your stake pool's cold key and a
 
 SPO-Poll Dashboards where your transaction should now be visible:
 
-- Adastat.net [[PreProd](https://preprod.adastat.net/polls)]   [[Mainnet](https://adastat.net/polls)]
 - Cardanoscan.io  [[PreProd](https://preprod.cardanoscan.io/spo-polls/)]   [[Mainnet](https://cardanoscan.io/spo-polls/)]
 ​
 ## Verifying Answers
@@ -148,5 +147,5 @@ Alternatively, the command will identify a problem with the answer and/or poll.
 
 ## References
 - [Entering Voltaire: on-chain poll for SPOs](https://forum.cardano.org/t/entering-voltaire-on-chain-poll-for-spos/117330?u=adatainment)
-- [Cardano Node 8.0.0 release](https://github.com/input-output-hk/cardano-node/releases/tag/8.0.0)
+- [Cardano Node 8.0.0 release](https://github.com/IntersectMBO/cardano-node/releases/tag/8.0.0)
 - [Cardano Node documentation: Governance](https://github.com/input-output-hk/cardano-node-wiki/wiki/cardano-governance)
