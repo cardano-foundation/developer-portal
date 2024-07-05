@@ -1166,7 +1166,7 @@ export const Showcases = [
   {
   title: "Tokeo",
   description:
-    "Tokeo is a next-generation smart mobile wallet designed for Cardano and beyond, featuring secure, intuitive trading, native token swaps, NFT interactions, and cross-chain support with enhanced personalization and security standards.",
+    "Tokeo is a mobile wallet designed for Cardano and beyond, featuring secure, intuitive trading, native token swaps, NFT interactions, and cross-chain support with enhanced personalization and security standards.",
   preview: require("./showcase/tokeo.png"),
   website: "https://tokeopay.io/",
   source: null,
