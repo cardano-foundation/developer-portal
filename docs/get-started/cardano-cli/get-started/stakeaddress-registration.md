@@ -67,7 +67,7 @@ It's important to note that when using `build`, the deposit is automatically inc
 
 ### Using the `build` command
 
-```bash
+```shell
 cardano-cli babbage transaction build \
   --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
   --change-address $(cat payment.addr) \

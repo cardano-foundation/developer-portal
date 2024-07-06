@@ -23,7 +23,7 @@ In Cardano, delegating to a stake pool doesn't necessitate locking your funds or
 
 To delegate your stake to a stake pool, you need to create a **stake delegation certificate**. `cardano-cli` offers a simple way to create one, you'll find the corresponding command under `cardano-cli babbage stake-address`:
 
-```bash
+```shell
 cardano-cli babbage stake-address
 Usage: cardano-cli babbage stake-address
                                            ( key-gen
@@ -37,7 +37,7 @@ Usage: cardano-cli babbage stake-address
 
 To produce the delegation certificate, your stake address must already be registered on the chain, as outlined in the documentation on [registering the stake address](./stake-address-registration). Additionally, you need to know the pool ID to which you will delegate.
 
-```bash
+```shell
 cardano-cli babbage stake-address stake-delegation-certificate \
 --stake-verification-key-file stake.vkey \
 --stake-pool-id pool17navl486tuwjg4t95vwtlqslx9225x5lguwuy6ahc58x5dnm9ma \
@@ -46,7 +46,7 @@ cardano-cli babbage stake-address stake-delegation-certificate \
 
 This is how it looks like, the 'cborHex' field encodes your stake address and the target stake pool:
 
-```bash
+```shell
 cat delegation.cert
 {
     "type": "CertificateShelley",

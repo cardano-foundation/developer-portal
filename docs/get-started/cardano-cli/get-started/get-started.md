@@ -2,7 +2,7 @@
 id: get-started
 title: Get started with Cardano CLI
 sidebar_position: 1
-sidebar_label: Get started with CLI
+sidebar_label: CLI - Get started
 keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 ---
 
@@ -12,7 +12,7 @@ keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 
 Cardano CLI uses the *node-to-client* protocol to communicate with the node. This requires setting an environment variable for the node socket path. Ensure you use the path declared when starting the node.
 
-```bash 
+```shell 
 export CARDANO_NODE_SOCKET_PATH=~/node.socket
 ```
 
@@ -21,19 +21,19 @@ export CARDANO_NODE_SOCKET_PATH=~/node.socket
 Each network has a unique identifier (--mainnet or --testnet-magic NATURAL). This is used by the node-to-client protocol to ensure communication with a node on the desired network. It is useful to set up an environment variable for the network ID. Alternatively, you can provide the flag `--testnet-magic <network-id>` with each command that interacts with the node.  
 
 - **Mainnet**
-```bash 
+```shell 
 export CARDANO_NODE_NETWORK_ID=mainnet 
 ```
-- **Pre-production**
-```bash
+- **Pre-production testnet**
+```shell
 export CARDANO_NODE_NETWORK_ID=1
 ```
-- **Preview**
-```bash
+- **Preview testnet**
+```shell
 export CARDANO_NODE_NETWORK_ID=2
 ```
-- **SanchoNet** 
-```bash
+- **SanchoNet testnet** 
+```shell
 export CARDANO_NODE_NETWORK_ID=4
 ```
 
@@ -47,7 +47,7 @@ For a complete overview of Cardano address types, read [CIP-19](https://cips.car
 
 To generate a key pair, run:
 
-```bash
+```shell
 cardano-cli address key-gen \
 --verification-key-file payment.vkey \
 --signing-key-file payment.skey
@@ -57,13 +57,13 @@ cardano-cli address key-gen \
 
 This address will not have staking rights. It cannot delegate or receive rewards because it does not have a stake part associated with it, only a payment part (see [CIP-19](https://cips.cardano.org/cips/cip19/)).
 
-```bash
+```shell
 cardano-cli address build \
 --payment-verification-key-file payment.vkey \
 --out-file paymentNoStake.addr
 ```
 
-```bash
+```shell
 cat paymentNoStake.addr
 addr_test1vzdtyyt48yrn2fa3wvh939rat0gyv6ly0ljt449sw8tppzq84xstz
 ```
@@ -73,7 +73,7 @@ Testnet addresses start with 'addr_test' and mainnet addresses with 'addr'.
 
 ### Generate a stake key pair 
 
-```bash
+```shell
 cardano-cli stake-address key-gen \
 --verification-key-file stake.vkey \
 --signing-key-file stake.skey
@@ -83,21 +83,21 @@ cardano-cli stake-address key-gen \
 
 The resulting address will be associated with the **payment** and **stake** credentials:
 
-```bash
+```shell
 cardano-cli address build \
 --payment-verification-key-file payment.vkey \
 --stake-verification-key-file stake.vkey \
 --out-file payment.addr
 ```
 
-```bash
+```shell
 cat payment.addr
 addr_test1qzdtyyt48yrn2fa3wvh939rat0gyv6ly0ljt449sw8tppzrcc3g0zu63cp6rnjumfcadft63x3w8ds4u28z6zlvra4fqy2sm8n
 ```
 
 ### Query the balance of an address 
 
-```bash
+```shell
 cardano-cli query utxo --address $(cat paymentNoStake.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------

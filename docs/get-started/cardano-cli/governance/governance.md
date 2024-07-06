@@ -1,8 +1,8 @@
 ---
 id: cardano-governance
 title: Cardano governance
-sidebar_label: Cardano governance
-sidebar_position: 8
+sidebar_label: CLI - Governance workflows
+sidebar_position: 5
 description: Overiew ov cardano governance across ledger eras. 
 keywords: [governance, update proposals, cardano, cardano-node]
 ---
@@ -73,7 +73,7 @@ This applies to mainnet and testnets running in any pre-Conway era.
 If you are running a private testnet, you can use this feature to update your testnet parameters.
 :::
 
-```bash
+```shell
 cardano-cli babbage governance action create-protocol-parameters-update \
 --genesis-verification-key-file genesis-keys/non.extended.shelley.delegate.vkey \
 --number-of-pools 1000 \
@@ -82,7 +82,7 @@ cardano-cli babbage governance action create-protocol-parameters-update \
 
 Build, sign, and submit the transaction: 
 
-```bash
+```shell
 balance=$(cardano-cli query utxo --address $(cat payment.addr) --out-file /dev/stdout | jq '. | .[keys[0]].value.lovelace')
 fee=1000000
 change=$(($balance - $fee))
@@ -105,4 +105,4 @@ cardano-cli conway transaction submit --tx-file updateNOpt.tx.signed
 
 ## Conway era update proposals
 
-TODO: Brief intro, diagram and link to the subseciton.
+TODO: Brief intro and diagram similar to the ones above. 

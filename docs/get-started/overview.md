@@ -3,6 +3,7 @@ id: overview
 slug: /get-started/
 title: Get Started
 sidebar_label: Overview
+sidebar_position: 1
 description: Get Started
 image: /img/og/og-getstarted-overview.png
 --- 

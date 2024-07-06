@@ -2,6 +2,7 @@
 id: running-cardano
 title: How to run cardano-node
 sidebar_label: Running cardano-node
+sidebar_position: 3
 description: This guide will explain and show you how to run the cardano-node and components on your system.
 image: /img/og/og-getstarted-running-cardano-node.png
 --- 
@@ -345,7 +346,7 @@ To know whether you are fully synced or not, you can check the **Cardano Blockch
 
 Scroll down to the **Latest Blocks** section, and you can find the latest network tip.
 
-![img](../../static/img/integrate-cardano/latest-block.png)
+![img](../../../static/img/integrate-cardano/latest-block.png)
 
 :::important
 Before making any transactions, make sure you are fully synced to the blockchain network.

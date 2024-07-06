@@ -1,7 +1,8 @@
 ---
 id: rts-options-node
 title: Runtime system options for Cardano Node
-sidebar_label: Cardano Node RTS options 
+sidebar_label: Cardano Node RTS options
+sidebar_position: 4
 description: This guide explains hot to use Runtime system options for Cardano Node
 keywords: [RTS Runtime System, cardano-node, cardano node]
 --- 
