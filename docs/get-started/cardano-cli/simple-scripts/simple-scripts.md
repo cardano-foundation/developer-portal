@@ -1,10 +1,10 @@
 ---
-id: native-scripts
-title: Native scripts
-sidebar_label: CLI - Native scripts
-sidebar_position: 3
-description: Writing Cardano Native scripts. 
-keywords: [scripts, native scripts, cardano, cardano-node, cardano-cli]
+id: simple-scripts
+title: Simple scripts
+sidebar_label: CLI - Simpple scripts
+sidebar_position: 2
+description: Writing Cardano Simple scripts. 
+keywords: [scripts, native scripts, simple scripts, cardano, cardano-node, cardano-cli]
 ---
 
 From the Shelley era onwards, Cardano has supported scripts and script

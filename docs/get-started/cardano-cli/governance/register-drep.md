@@ -1,10 +1,10 @@
 ---
 id: register drep
 sidebar_label: Register as a DRep
-title: Registering as delegate representative (DReps)
+title: Registering as Delegated Representative (DReps)
 sidebar_position: 1
-description: How to register as a delegate representative
-keywords: [Governance, DREP, Delegate representative, CIP1694]
+description: How to register as a delegated representative
+keywords: [Governance, DREP, Delegated representative, CIP1694]
 ---
 
 Delegated representatives (DReps) serve as the community's spokesperson, actively participating in voting on governance actions and advocating for the community's collective interests. DReps hold significant responsibilities in the governance process, voting on important system updates. Approval depends on the governance action type and requires a majority vote from the corresponding governance bodies. 
@@ -38,14 +38,14 @@ This returns the keys wrapped on text envelopes:
 ```json
 {
     "type": "DRepSigningKey_ed25519",
-    "description": "Delegate Representative Signing Key",
+    "description": "Delegated Representative Signing Key",
     "cborHex": "5820eba7053fdc9cb3b8aacf142d3d4ad575bb48fb92f4082d81605ac8e2ccfead5d"
 }
 ```
 ```json
 {
     "type": "DRepVerificationKey_ed25519",
-    "description": "Delegate Representative Verification Key",
+    "description": "Delegated Representative Verification Key",
     "cborHex": "5820c19e0e939609531cfd04dcfa5bf1a5f3e245aa88e163759341aba296af34cc7e"
 }
 ```

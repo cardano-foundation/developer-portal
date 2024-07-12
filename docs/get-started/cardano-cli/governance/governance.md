@@ -1,7 +1,7 @@
 ---
 id: cardano-governance
 title: Cardano governance
-sidebar_label: CLI - Governance workflows
+sidebar_label: CLI - Governance 
 sidebar_position: 5
 description: Overiew ov cardano governance across ledger eras. 
 keywords: [governance, update proposals, cardano, cardano-node]
