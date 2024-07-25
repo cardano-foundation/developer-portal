@@ -9,7 +9,7 @@ keywords: [Governance, DREP, Delegated representative, CIP1694]
 
 Delegated representatives (DReps) serve as the community's spokesperson, actively participating in voting on governance actions and advocating for the community's collective interests. DReps hold significant responsibilities in the governance process, voting on important system updates. Approval depends on the governance action type and requires a majority vote from the corresponding governance bodies. 
 
-DReps can register on chain using Ed25519 keys, Native scripts or Plutus scripts. 
+DReps can register on chain using Ed25519 keys, Simple scripts or Plutus scripts. 
 
 
 import Tabs from '@theme/Tabs';
@@ -19,14 +19,14 @@ import TabItem from '@theme/TabItem';
   defaultValue="key-based"
   values={[
     {label: 'Key-based DRep', value: 'key-based'},
-    {label: 'Native script DRep', value: 'native-script'},
+    {label: 'Simple script DRep', value: 'simple-script'},
     {label: 'Plutus script DRep', value: 'plutus-script'},
   ]}>
   <TabItem value="key-based">
 
 ## Register a Key-based DRep
 
-1. Generate DRep keys: 
+### Generate DRep keys: 
 
 ```shell
 cardano-cli conway governance drep key-gen \
@@ -50,7 +50,8 @@ This returns the keys wrapped on text envelopes:
 }
 ```
 
-2. The hash of the verification key is the DRep ID, get it with:
+### Generate the DRep Id:
+The hash of the verification key is the DRep ID, get it with:
 
 ```shell
 cardano-cli conway governance drep id \
@@ -72,13 +73,15 @@ cardano-cli conway governance drep id \
 drep124w9k5ml25kcshqet8r3g2pwk6kqdhj79thg2rphf5u5urve0an
 ```
 
-3. Prepare the DRep metadata file:
+### Prepare the DRep metadata file:
 
-Optionally, DReps can include metadata in their registration certificate to convey their motivations and positions regarding the current and future state of the Cardano blockchain. Stakeholders looking to delegate their voting power can review this metadata to make informed decisions about whom to delegate their vote to. [CIP-119](https://cips.cardano.org/cip/CIP-0119) provides a specification for off-chain DReps metadata. 
+DReps have the option to include metadata in their registration certificate to convey their motivations and positions regarding the current and future state of the Cardano blockchain. Stakeholders looking to delegate their voting power can review this metadata to make informed decisions about whom to delegate their vote to. [CIP-119](https://cips.cardano.org/cip/CIP-0119) provides a specification for off-chain DReps metadata. 
 
 To add metadata to the registration certificate, you need to provide an anchor, which is a URL pointing to the metadata payload, along with a hash of the metadata content.
 
 In this example we use the [test vector of CIP119](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0119/test-vector.md). 
+
+### Get the metadata hash:
 
 Download the metadata from its URL:
 
@@ -97,10 +100,10 @@ a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de
 
 ```shell 
 b2sum -l 256 drep.jsonld 
-a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.json
+a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 ```
 
-6. Generate the DRep registration certificate:
+### Generate the DRep registration certificate:
 
 Registering a DRep requires a deposit, query the protocol parameters to find the amount:
 
@@ -152,7 +155,7 @@ Any of the above methods produces `drep-reg.cert ` in a text envelope:
 }
 ```
 
-7. Submit the Registration certificate in a transaction:
+### Submit the Registration certificate in a transaction:
 
 Build the transaction. Note that we use `--witness-override 2` because this tranaction will contain 2 signatures, with the `payment.skey` and with the `drep.skey`. 
 
@@ -182,7 +185,7 @@ cardano-cli conway transaction submit \
 --tx-file tx.signed
 ```
 
-8. Query the DRep state to confirm:
+### Query the DRep state to confirm:
 
 ```shell
 cardano-cli conway query drep-state  --all-dreps
@@ -204,13 +207,13 @@ cardano-cli conway query drep-state --drep-key-hash 687c9849e1792f9b43d2a78153c4
 ```
 
   </TabItem>
-  <TabItem value="native-script">
+  <TabItem value="simple-script">
 
-## Register a Native script based DRep
+## Register a Simple script based DRep
 
 A basic example of a DRep using a native script is a DRep that consists of various memebers where, to issue votes, a minimum number of members must sign the transaction. 
 
-1. Generate a DRep key pair for each member
+### Generate a DRep key pair for each member
 
 ```shell
 cardano-cli conway governance drep key-gen \
@@ -231,8 +234,9 @@ cardano-cli conway governance drep key-gen \
     "cborHex": "5820c19e0e939609531cfd04dcfa5bf1a5f3e245aa88e163759341aba296af34cc7e"
 }
 ```
+### Get verification key hashes:
 
-2. Each member generates the hash of the verification key (This is exactly what the `governance drep id` command do)
+Each member generates the hash of the verification key (This is exactly what the `governance drep id` command do)
 
 ```shell
 cardano-cli conway governance drep id \
@@ -245,7 +249,7 @@ cat drep1.id
 e6d27c194fd18f39e080073e5ea02aa78abe4b6c84d78a498302461c
 ```
 
-4. Build the Native script:
+### Build the Simple script:
 
 Multi-signature scripts can be written using JSON syntax, which is the format accepted by the cardano-cli tool.
 
@@ -317,13 +321,15 @@ Or for a more strict setup we can use type "all", where all the signatures are r
   ]
 }
 ```
-5. Prepare the DRep metadata file:
+### Prepare the DRep metadata file:
 
 Optionally, DReps can include metadata in their registration certificate to convey their motivations and positions regarding the current and future state of the Cardano blockchain. Stakeholders looking to delegate their voting power can review this metadata to make informed decisions about whom to delegate their vote to. [CIP-119](https://cips.cardano.org/cip/CIP-0119) provides a specification for off-chain DReps metadata. 
 
 To add metadata to the registration certificate, you need to provide an anchor, which is a URL pointing to the metadata payload, along with a hash of the metadata content.
 
 In this example we use the [test vector of CIP119](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0119/test-vector.md). 
+
+### Get the metadata hash:
 
 Download the metadata from its URL:
 
@@ -342,11 +348,11 @@ a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de
 
 ```shell 
 b2sum -l 256 drep.jsonld 
-a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.json
+a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 ```
-6. Generate the DRep registration certificate:
+### Generate the DRep ID:
 
-Since this DRep will be registered on-chain as a script, the hash of the native script will serve as the DRep ID. Calculate it with:
+This DRep will be registered on-chain as a script, therefore, the hash of the script will serve as the DRep ID. Calculate it with:
 
 ```shell
 cardano-cli hash script \
@@ -358,14 +364,18 @@ cat drep-multisig.id
 d862ee2eb3ce246b23ff7e1f62ae0705013e793787485cb6e1845356
 ```
 
-7. Registering a DRep requires a deposit, query the protocol parameters to find the amount:
+### Generate the DRep registration certificate:
+
+Registering a DRep requires a deposit, query the protocol parameters to find the amount:
 
 ```shell
-cardano-cli query protocol-parameters | jq .dRepDeposit
+drepDeposit=$(cardano-cli query protocol-parameters | jq .dRepDeposit)
+
+echo $drepDeposit
 500000000
 ```
 
-Generate the DRep registration certificate:
+Generate the registration certificate:
 
 ```shell
 cardano-cli conway governance drep registration-certificate \
@@ -374,7 +384,7 @@ cardano-cli conway governance drep registration-certificate \
   --out-file drep-multisig-reg.cert
 ```
 
-8. Submit the Registration certificate in a transaction
+### Submit the Registration certificate in a transaction
 
 Build the transaction. Note that we use `--witness-override 4` because this tranaction will contain up to 4 signatures, 1 from the payment key and up to 3 members of the DRep.
 
@@ -445,7 +455,7 @@ cardano-cli conway transaction submit \
   --tx-file tx.signed
 ```
 
-9. Query the DRep state to confirm:
+### Query the DRep state to confirm:
 
 ```shell
 cardano-cli conway query drep-state \
@@ -470,10 +480,102 @@ cardano-cli conway query drep-state \
   </TabItem>
   <TabItem value="plutus-script">
 
-    ```py
-    def hello_world():
-      print 'Hello, world!'
-    ```
+## Register a Plutus script based DRep 
+
+Writing the Plutus script is out of the scope of this tutorial. As an example of what can be done, Tomas Vellekop (@perturbing) wrote this [Plutus Script DRep
+that can only vote 'YES'](https://github.com/perturbing/always-yes-drep) 
+
+Once you have compiled the Plutus script, the process to register is very similar to Simple scripts.
+
+### Prepare the DRep metadata file:
+
+DReps have the option to include metadata in their registration certificate to convey their motivations and positions regarding the current and future state of the Cardano blockchain. Stakeholders looking to delegate their voting power can review this metadata to make informed decisions about whom to delegate their vote to. [CIP-119](https://cips.cardano.org/cip/CIP-0119) provides a specification for off-chain DReps metadata. 
+
+To add metadata to the registration certificate, you need to provide an anchor, which is a URL pointing to the metadata payload, along with a hash of the metadata content.
+
+In this example we use the [test vector of CIP119](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0119/test-vector.md). 
+
+### Get the metadata hash:
+
+Download the metadata from its URL:
+
+```shell
+wget https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0119/examples/drep.jsonld
+```
+
+Use cardano-cli or b2sum to get its hash:
+
+```shell
+cardano-cli conway governance drep metadata-hash \
+  --drep-metadata-file drep.jsonld 
+
+a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de
+```
+
+```shell 
+b2sum -l 256 drep.jsonld 
+a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
+```
+
+### Generate the DRep ID:
+
+This DRep will be registered on-chain as a script, therefore, the hash of the script will serve as the DRep ID. Calculate it with:
+
+```shell
+ cardano-cli hash script \
+   --script-file alwaysVoteYesDrep.plutus \
+   --out-file alwaysVoteYesDrep.id
+
+```
+```shell 
+cat alwaysVoteYesDrep.id 
+3b943c3e9598ef0e8d6bf504e7ddeee73232b1825380765c04e25055
+```
+### Generate the DRep registration certificate:
+
+Registering a DRep requires a deposit, query the protocol parameters to find the amount:
+
+```shell
+drepDeposit=$(cardano-cli query protocol-parameters | jq .dRepDeposit)
+
+echo $drepDeposit
+500000000
+```
+
+Generate the registration certificate:
+
+```shell
+cardano-cli conway governance drep registration-certificate \
+  --drep-script-hash "$(cat alwaysVoteYesDrep.id)" \
+  --key-reg-deposit-amt "$drepDeposit" \
+  --out-file alwaysVoteYesDrep.cert
+```
+### Submit the Registration certificate in a transaction
+
+Build the transaction, we need to provide a collateral and a redeemer value:
+
+```shell
+cardano-cli conway transaction build \
+  --tx-in $(cardano-cli conway query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in-collateral $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
+  --certificate-file alwaysVoteYesDrep.cert \
+  --certificate-script-file alwaysVoteYesDrep.plutus \
+  --certificate-redeemer-value {} \
+  --change-address $(cat payment.addr) \
+  --out-file tx.raw
+```
+
+```shell
+cardano-cli transaction sign \
+  --signing-key-file payment.skey \
+  --tx-body-file tx.raw \
+  --out-file tx.signed
+```
+```shell
+cardano-cli transaction submit --tx-file tx.signed
+```
+
+
 
   </TabItem>
 </Tabs>

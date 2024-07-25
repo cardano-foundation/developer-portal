@@ -1,37 +1,30 @@
 ---
 id: simple-scripts
 title: Simple scripts
-sidebar_label: CLI - Simpple scripts
-sidebar_position: 2
+sidebar_label: CLI - Simple scripts
+sidebar_position: 1
 description: Writing Cardano Simple scripts. 
 keywords: [scripts, native scripts, simple scripts, cardano, cardano-node, cardano-cli]
 ---
 
-From the Shelley era onwards, Cardano has supported scripts and script
-addresses.
+Cardano is designed to support multiple script languages, and most features
+that are related to scripts work the same irrespective of the script language
+(or version of a script language).
 
-Cardano is designed to support multiple script languages, and most features that are
-related to scripts work the same irrespective of the script language (or
-version of a script language).
+Since Shelley era, Cardano supports the **Simple script** language, which can be used for
+multi-signature addresses. 
 
-The Shelley era supports a single, simple script language, which can be
-used for multi-signature addresses. The Allegra era (token locking) extends the simple script
-language with a feature to make scripts conditional on time. This can be used
-to make address with so-called "time locks", where the funds cannot be
-withdrawn until after a certain point in time.
+The Allegra era extends the simple script language with a feature to make scripts
+conditional on time (token locking). This can be used to make address with "time locks",
+where the funds cannot be withdrawn from a script address until after a certain point in time.
 
-The Alonzo era will add support for a whole new script language:
-Plutus core.
-
-Please note that this reference covers only the existing simple script language.
+The Alonzo era brought support for **Plutus scripts**, these are out of the scope of this section. 
 
 ## Script addresses
 
-In general, addresses (both payment addresses and stake addresses) specify the
-_authorisation conditions_ that must be met for the address to be used. For
-payment addresses, this means the authorisation conditions for funds to be
-withdrawn. For stake addresses, this means the authorisation conditions for
-setting a delegation choice or rewards withdrawal.
+In general, addresses (both payment addresses and stake addresses) specify the _authorisation conditions_ that must be
+met for the address to be used. For payment addresses, this means the authorisation conditions for funds to be
+withdrawn. For stake addresses, this means the authorisation conditions for setting a delegation choice or rewards withdrawal.
 
 Both payment and stake addresses come in two flavours: *single-key based* or
 *script based*. The key-based addresses use a single cryptographic key per
@@ -135,7 +128,7 @@ In more detail, the four multisig constructors are:
 
 ## Time locking
 
-In the Allegra and later eras, the simple multisig script language above is
+In the Allegra and later eras, the **simple script** language above is
 extended with two additional terms for expressing conditions on the time.
 
 This extension can be used to make script addresses where it is not possible
@@ -199,6 +192,7 @@ script language, but it is better if all the languages behave the same in this
 regard. Even for the simple script language it does still have the advantage
 that the script itself can be evaluated without needing to know the current slot
 number.
+
 
 
 ## JSON script syntax
@@ -337,7 +331,7 @@ how to do this using the `cardano-cli`.
 
 ### Type "before"
 
-This corresponds to the "RequireTimeAfter" expression above. It specifies the
+This corresponds to the "RequireTimeBefore" expression above. It specifies the
 type "before" and the slot number.
 
 This example allows a signature from one key at any time, or before slot 3000
