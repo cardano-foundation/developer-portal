@@ -105,4 +105,4 @@ cardano-cli conway transaction submit --tx-file updateNOpt.tx.signed
 
 ## Conway era update proposals
 
-TODO: Brief intro and diagram similar to the ones above. 
+TODO: Intro and diagram similar to the ones above. 

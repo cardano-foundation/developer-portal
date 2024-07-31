@@ -191,7 +191,7 @@ cardano-cli conway transaction submit \
 cardano-cli conway query drep-state  --all-dreps
 
 
-cardano-cli conway query drep-state --drep-key-hash 687c9849e1792f9b43d2a78153c412406950ee0c6f2b417226da9dcc --testnet-magic 4
+cardano-cli conway query drep-state --drep-key-hash 687c9849e1792f9b43d2a78153c412406950ee0c6f2b417226da9dcc 
 [
     [
         {
@@ -404,7 +404,7 @@ Witnessing the transaction with the payment key:
 
 ```shell
 cardano-cli conway transaction witness \
-  --testnet-magic 4 \
+   \
   --tx-body-file tx.raw \
   --signing-key-file payment.skey \
   --out-file payment.witness
@@ -414,7 +414,6 @@ Witnessing the transaction with the DRep keys from each memeber:
 
 ```shell
 cardano-cli conway transaction witness \
-  --testnet-magic 4 \
   --tx-body-file tx.raw \
   --signing-key-file drep1.skey \
   --out-file drep1.witness
@@ -422,14 +421,12 @@ cardano-cli conway transaction witness \
 
 ```shell
 cardano-cli conway transaction witness \
-  --testnet-magic 4 \
   --tx-body-file tx.raw \
   --signing-key-file drep2.skey \
   --out-file drep2.witness
 ```
 ```shell
 cardano-cli conway transaction witness \
-  --testnet-magic 4 \
   --tx-body-file tx.raw \
   --signing-key-file drep3.skey \
   --out-file drep3.witness
@@ -451,7 +448,6 @@ Submit the transaction
 
 ```shell
 cardano-cli conway transaction submit \
-  --testnet-magic 4 \
   --tx-file tx.signed
 ```
 
@@ -459,7 +455,6 @@ cardano-cli conway transaction submit \
 
 ```shell
 cardano-cli conway query drep-state \
-  --testnet-magic 4 \
   --drep-script-hash $(cat drep-multisig.id)
 ```
 ```json
