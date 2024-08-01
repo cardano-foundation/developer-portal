@@ -1,10 +1,10 @@
 ---
-id: submit votes
+id: submit-votes
 sidebar_label: Voting 
 title: Submitting votes as DRep, Stake pool or Constitutional Committee member
 sidebar_position: 5
 description: How to vote on governance actions 
-keywords: [Governance, constitutional committee, committee, credentials, CIP1694]
+keywords: [Governance, voting , drep, spo, CIP1694]
 ---
 
 
