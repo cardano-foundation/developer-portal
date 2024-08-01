@@ -10,10 +10,15 @@ keywords: [scripts, plutus scripts, cardano, cardano-node, cardano-cli]
 This tutorial covers the basics of using the Cardano CLI to create transactions that involve executing Plutus scripts. Please checkout [Plutus user guide](https://plutus.cardano.intersectmbo.org/docs/) to learn how to write Plutus scrtipts.
 
 
+## Basic validator plutus script
+
 For this tutorial we borrowed a simple validator script from the [Plutus Pioneer Program](https://iog-academy.gitbook.io/plutus-pioneers-program-fourth-cohort). We will use the [FortyTwoTyped.hs](https://github.com/input-output-hk/plutus-pioneer-program/blob/fourth-iteration/code/Week02/lecture/FortyTwoTyped.hs) script. You can download the serialized script form [this link](https://github.com/input-output-hk/plutus-pioneer-program/blob/fourth-iteration/code/Week02/assets/fortytwotyped.plutus).  
 
 
-:::note The relevant part of this Plutus script is:
+:::note FortyTwoTyped.hs
+
+The relevant part of this Plutus script is:
+
 ```
 -- This validator succeeds only if the redeemer is 42
 --              Datum  Redeemer        ScriptContext
@@ -21,21 +26,31 @@ mk42Validator :: () -> Integer -> PlutusV2.ScriptContext -> Bool
 mk42Validator _ r _ = traceIfFalse "expected 42" $ r == 42
 ```
 
-The function **mk42Validator** type signature tells us that it takes three arguments: **() -> Integer -> PlutusV2.ScriptContext**. As hinted by the comment line, these correspond to **Datum, Redeemer and Script Context**. 
+The type signature of **mk42Validator**  tells us that it takes three arguments and returns a Bool: 
 
-On the function definition **mk42Validator \_ r \_ = traceIfFalse "expected 42" $ r == 42** we see that it does not care about the Datum and the Script Context and only cares about the redeemer. The underscores ( _ ) on the datum and script context positions mean that it will accept anything for these values, but then igonre them as it will not do anything with those values, the function only depends on the redeemer value *r*.
+```
+mk42Validator :: () -> Integer -> PlutusV2.ScriptContext -> Bool
+```
 
-So this scipt ignores the datum and script context and succeeds when the correct redeemer is provided *r == 42*, and fails with any other redeemer value. 
+As hinted by the comment line, these three arguments correspond to **Datum, Redeemer and Script Context**. 
+
+On the function definition we see that it does not care about the Datum and the Script Context and only cares about the redeemer.
+
+```
+mk42Validator _ r _ = traceIfFalse "expected 42" $ r == 42
+```
+
+The underscores (`_`) in the datum and script context positions mean that the function will accept anything for these values and completely ignore them in the function body. The function does not use these values. In the end, the result only depends on the redeemer value `r`. The script succeeds when the correct redeemer is provided (`r == 42`) and fails with any other redeemer value.
 :::
 
-The general plan for using this script is:
+So, the general plan for using this script is:
 
 1. Lock some funds in the script address. 
 2. Attempt to spend the locked funds. The script will only permit the spending if the correct redeemer is provided.
 
 ### Get the compiled script.
 
-Compiling th script is out of the scope of this tutorial, we can get the compiled version with:
+Compiling the script is out of the scope of this tutorial, we can get the compiled version with:
 
 ```
 wget https://raw.githubusercontent.com/input-output-hk/plutus-pioneer-program/fourth-iteration/code/Week02/assets/fortytwotyped.plutus
