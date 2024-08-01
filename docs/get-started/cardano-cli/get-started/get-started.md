@@ -98,7 +98,7 @@ addr_test1qzdtyyt48yrn2fa3wvh939rat0gyv6ly0ljt449sw8tppzrcc3g0zu63cp6rnjumfcadft
 ### Query the balance of an address 
 
 ```shell
-cardano-cli query utxo --address $(cat paymentNoStake.addr)
+cardano-cli query utxo --address $(< paymentNoStake.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 262c7891f932cde390bcc04c25805f3f422c1a5687d5d47f6681e68bb384fe6d     0        10000000000 lovelace + TxOutDatumNone

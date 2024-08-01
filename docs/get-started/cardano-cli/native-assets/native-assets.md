@@ -199,7 +199,7 @@ Use the [testnet faucet]( https://docs.cardano.org/cardano-testnets/tools/faucet
 and check again:
 
 ```bash
-cardano-cli query utxo --address $(cat payment.addr)
+cardano-cli query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 503c699e81d4abc3f8a1d2681425aee1e2ac5770a5be5b9314339591a7158f34     0        10000000000 lovelace + TxOutDatumNone
@@ -274,10 +274,10 @@ we will send 10 ada on the minting transaction.
 ```bash
 cardano-cli transaction build \
 --tx-in 503c699e81d4abc3f8a1d2681425aee1e2ac5770a5be5b9314339591a7158f34#0 \
---tx-out $(cat payment.addr)+10000000+"1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
+--tx-out $(< payment.addr)+10000000+"1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
 --mint="1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
 --mint-script-file policy.script \
---change-address $(cat payment.addr) \
+--change-address $(< payment.addr) \
 --out-file mint-tx.raw
 
 Estimated transaction fee: Coin 175621
@@ -302,7 +302,7 @@ Transaction successfully submitted.
 ```
 
 ```bash
-cardano-cli query utxo --address $(cat payment.addr)
+cardano-cli query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 d4b158e58cb58da28b25837300f6ef8f9f7d67fd5a5ce07648d17a6fae31b88a     0        10000000 lovelace + 1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e + TxOutDatumNone
@@ -333,8 +333,8 @@ cardano-cli transaction build \
 --tx-in d4b158e58cb58da28b25837300f6ef8f9f7d67fd5a5ce07648d17a6fae31b88a#0 \
 --tx-in d4b158e58cb58da28b25837300f6ef8f9f7d67fd5a5ce07648d17a6fae31b88a#1 \
 --tx-out addr_test1vp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeuegh55grh+1043020+"1 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
---tx-out $(cat payment.addr)+8956980+"999 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
---change-address $(cat payment.addr) \
+--tx-out $(< payment.addr)+8956980+"999 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
+--change-address $(< payment.addr) \
 --out-file tx.raw
 ```
 ```

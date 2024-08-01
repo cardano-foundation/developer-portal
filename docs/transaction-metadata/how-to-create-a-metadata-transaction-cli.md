@@ -83,7 +83,7 @@ Now that we have our `JSON` data, we can create a transaction and embed the meta
 The next step is to query the available **UTXO** from our **wallet address**:
 
 ```bash
-cardano-cli query utxo --testnet-magic 1097911063 --address $(cat payment.addr)
+cardano-cli query utxo --testnet-magic 1097911063 --address $(< payment.addr)
 ```
 
 You should see something like this:
@@ -103,7 +103,7 @@ Next, we create a draft transaction with the metadata embedded into it using the
 ```bash {2}
 cardano-cli transaction build-raw \
 --tx-in dfb99f8f103e56a856e04e087255dbaf402f3801acb71a6baf423a1054d3ccd5#0 \
---tx-out $(cat payment.addr)+0 \
+--tx-out $(< payment.addr)+0 \
 --metadata-json-file metadata.json \
 --fee 0 \
 --out-file tx.draft
@@ -133,7 +133,7 @@ With that, We build the final transaction with the total amount of our wallet mi
 ```bash {3}
 cardano-cli transaction build-raw \
 --tx-in dfb99f8f103e56a856e04e087255dbaf402f3801acb71a6baf423a1054d3ccd5#0 \
---tx-out $(cat payment.addr)+1749480133 \
+--tx-out $(< payment.addr)+1749480133 \
 --metadata-json-file metadata.json \
 --fee 171793 \
 --out-file tx.draft

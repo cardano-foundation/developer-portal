@@ -61,7 +61,7 @@ chmod 400 vrf.skey
 Determine the number of slots per KES period from the genesis file.
 
 ```
-slotsPerKESPeriod=$(cat ../shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(< ../shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 
 slotNo=$(cardano-cli query tip --testnet-magic 1 | jq -r '.slot')

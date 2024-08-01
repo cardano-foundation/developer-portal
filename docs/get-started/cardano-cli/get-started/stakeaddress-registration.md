@@ -69,8 +69,8 @@ It's important to note that when using `build`, the deposit is automatically inc
 
 ```shell
 cardano-cli babbage transaction build \
-  --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
-  --change-address $(cat payment.addr) \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
   --certificate-file registration.cert \
   --out-file tx.raw
 ```
@@ -137,7 +137,7 @@ Using the `build-raw` command involves a slightly more intricate process. Simila
 Query the balance of the `payment.addr`:
 
 ```shell
-cardano-cli babbage query utxo --address $(cat paymentstake.addr)
+cardano-cli babbage query utxo --address $(< paymentstake.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 0690c70f117281627fc128ede51b1fe762c2bbc15c2e3d4eff2101c9d2613cd8     0        9999834851 lovelace + TxOutDatumNone
@@ -147,7 +147,7 @@ cardano-cli babbage query utxo --address $(cat paymentstake.addr)
 You can leverage `jq` by having `cardano-cli` return the output in JSON:
 
 ```shell
-cardano-cli babbage query utxo --address $(cat paymentstake.addr) --output-json
+cardano-cli babbage query utxo --address $(< paymentstake.addr) --output-json
 {
   "0690c70f117281627fc128ede51b1fe762c2bbc15c2e3d4eff2101c9d2613cd8#0": {
     "address": "addr_test1qp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeue2jrk54ttv0yj7llrfuhr66z4wynpcqxuqeln0jp9y70e0qvjewan",
@@ -163,7 +163,7 @@ cardano-cli babbage query utxo --address $(cat paymentstake.addr) --output-json
 ```
 Using `jq` to parse that JSON  
 ```shell
-cardano-cli babbage query utxo --address $(cat payment.addr) --output-json | jq -r .[].value.lovelace
+cardano-cli babbage query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
 9999834851
 ```
 :::
@@ -178,8 +178,8 @@ Draft the transaction to calculate its transaction fee:
 
 ```shell
 cardano-cli babbage transaction build-raw \
-  --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
-  --tx-out $(cat payment.addr)+"$(cardano-cli babbage query utxo --address $(cat payment.addr) --out-file /dev/stdout | jq -r .[].value.lovelace)" \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-out $(< payment.addr)+"$(cardano-cli babbage query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r .[].value.lovelace)" \
   --fee 0 \
   --certificate-file registration.cert \
   --out-file tx.draft
@@ -210,7 +210,7 @@ Query the current balance of `payment.addr`:
 
 
 ```shell
-cardano-cli babbage query utxo --address $(cat payment.addr) --output-json | jq -r .[].value.lovelace
+cardano-cli babbage query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
 9999834851
 ```
 
@@ -222,8 +222,8 @@ Build the transaction:
 
 ```shell
 cardano-cli babbage transaction build-raw \
-  --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
-  --tx-out $(cat payment.addr)+$change \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-out $(< payment.addr)+$change \
   --fee 171089 \
   --certificate-file registration.cert \
   --out-file tx.raw

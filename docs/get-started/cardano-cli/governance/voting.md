@@ -125,8 +125,8 @@ Build the transaction:
 
 ```
 cardano-cli conway transaction build \
-    --tx-in "$(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]')" \
-    --change-address $(cat payment.addr) \
+    --tx-in "$(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')" \
+    --change-address $(< payment.addr) \
     --vote-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote \
     --witness-override 2 \
     --out-file vote-tx.raw

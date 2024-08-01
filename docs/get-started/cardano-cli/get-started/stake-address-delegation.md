@@ -63,8 +63,8 @@ This type of transaction requires signatures from both `payment.skey` and `stake
 
 ```
 cardano-cli babbage transaction build \
---tx-in $(cardano-cli query utxo --address $(cat payment.addr) --out-file  /dev/stdout | jq -r 'keys[0]') \
---change-address $(cat payment.addr) \
+--tx-in $(cardano-cli query utxo --address $(< payment.addr) --out-file  /dev/stdout | jq -r 'keys[0]') \
+--change-address $(< payment.addr) \
 --certificate-file delegation.cert \
 --witness-override 2 \
 --out-file tx.raw

@@ -16,7 +16,7 @@ To integrate the Conway era, which differs significantly from previous eras, `ca
 First, check if you have some rewards to withdraw:
 
 ```shell
-cardano-cli babbage query stake-address-info --address $(cat stake.addr)
+cardano-cli babbage query stake-address-info --address $(< stake.addr)
 [
     {
         "address": "stake_test1ur453z5nxrgvvu9wfyuxut8ss0mrvca4n8ly44tcu8camlqaz98mh",
@@ -30,7 +30,7 @@ cardano-cli babbage query stake-address-info --address $(cat stake.addr)
 Nice! There are some rewards, let's store the `rewardAccountBalance` in a variable for future use:
 
 ```shell
-rewards="$(cardano-cli conway query stake-address-info --address $(cat stake1.addr) | jq .[].rewardAccountBalance)"
+rewards="$(cardano-cli conway query stake-address-info --address $(< stake1.addr) | jq .[].rewardAccountBalance)"
 ```
 
 ## Building the transaction
@@ -41,9 +41,9 @@ By default, the `build` command considers the transaction to only require one wi
 
 ```shell
 cardano-cli babbage transaction build \
-  --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --withdrawal stake_test1ur453z5nxrgvvu9wfyuxut8ss0mrvca4n8ly44tcu8camlqaz98mh+10534638802 \
-  --change-address $(cat payment1.addr) \
+  --change-address $(< payment1.addr) \
   --witness-override 2 \
   --out-file tx.raw
 
@@ -53,9 +53,9 @@ or using `cat` and the `$rewards` variable from above:
 
 ```shell
 cardano-cli babbage transaction build \
-  --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
-  --withdrawal "$(cat stake.addr)+$rewards" \
-  --change-address $(cat payment.addr) \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --withdrawal "$(< stake.addr)+$rewards" \
+  --change-address $(< payment.addr) \
   --witness-override 2 \
   --out-file tx.raw
 
@@ -149,7 +149,7 @@ Transaction successfully submitted.
 If you query the stake address details again, you'll notice that it has been emptied, and the funds were sent to the payment address.
 
 ```shell
-cardano-cli babbage query stake-address-info --address $(cat stake1.addr)
+cardano-cli babbage query stake-address-info --address $(< stake1.addr)
 [
     {
         "address": "stake_test1ur453z5nxrgvvu9wfyuxut8ss0mrvca4n8ly44tcu8camlqaz98mh",

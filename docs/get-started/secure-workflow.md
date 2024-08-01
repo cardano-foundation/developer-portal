@@ -95,7 +95,7 @@ Here `payment.addr` is the Cardano address you will be paying from, which may be
 
 ``` sh
 cardano-cli query utxo \
-    --address $(cat payment.addr) \
+    --address $(< payment.addr) \
     --mainnet
 ```
 
@@ -123,8 +123,8 @@ Create a draft for the transaction and save it in `tx.draft`. Notes:
 ``` sh
 cardano-cli transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
-    --tx-out $(cat payment2.addr)+0 \
-    --tx-out $(cat payment.addr)+0 \
+    --tx-out $(< payment2.addr)+0 \
+    --tx-out $(< payment.addr)+0 \
     --invalid-hereafter 0 \
     --fee 0 \
     --out-file tx.draft
@@ -170,8 +170,8 @@ We write the transaction in a file; we will name it `tx.raw`:
 ``` sh
 cardano-cli transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
-    --tx-out $(cat payment2.addr)+10000000 \
-    --tx-out $(cat payment.addr)+9832035 \
+    --tx-out $(< payment2.addr)+10000000 \
+    --tx-out $(< payment.addr)+9832035 \
     --fee 167965 \
     --out-file tx.raw
 ```

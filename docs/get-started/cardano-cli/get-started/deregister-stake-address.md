@@ -68,7 +68,7 @@ We will submit the deregistration certificate, withdraw the last rewards from th
 This is required for withdrawing the rewards still available on `stake.addr`
 
 ```
-cardano-cli babbage query stake-address-info --address $(cat stake.addr)
+cardano-cli babbage query stake-address-info --address $(< stake.addr)
 ```
 ```json
 [
@@ -89,7 +89,7 @@ and use the syntax `stake_address+balance` with the `--withdrawal` option when b
 Steps 1 and 2 suggest creating a new payment address and transfer funds to it. On the transaction below, we'll use `new_payment.addr` to pay for the transaction fees.
 
 ```
-cardano-cli babbage query utxo --address $(cat payment.addr)
+cardano-cli babbage query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 77b95d3c0031f918d2dcd796352d123dd3fec9f8599377ef96f1ee0e488f5ec1     0        9997495621 lovelace + TxOutDatumNone
@@ -121,9 +121,9 @@ Of course, we could use command substitution and run all the queries within `bui
 
 ```
 cardano-cli babbage transaction build \
---tx-in "$(cardano-cli babbage query utxo --address "$(cat new-payment.addr)" --output-json | jq -r 'keys[0]')" \
---change-address "$(cat new-payment.addr)" \
---withdrawal "$(cat stake.addr)+$(cardano-cli babbage query stake-address-info --address "$(cat stake.addr)" | jq -r .[].rewardAccountBalance)" \
+--tx-in "$(cardano-cli babbage query utxo --address "$(< new-payment.addr)" --output-json | jq -r 'keys[0]')" \
+--change-address "$(< new-payment.addr)" \
+--withdrawal "$(< stake.addr)+$(cardano-cli babbage query stake-address-info --address "$(< stake.addr)" | jq -r .[].rewardAccountBalance)" \
 --certificate-file dereg.cert \
 --witness-override 2 \
 --out-file tx.raw
@@ -214,7 +214,7 @@ Transaction successfully submitted.
 To confirm, we query the balance of `new-payment.addr`, rewards are withdrawn and deposit has been returned:
 
 ```
-cardano-cli babbage query utxo --address $(cat new-payment.addr)
+cardano-cli babbage query utxo --address $(< new-payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 c09bf08fdf6ae655d8ba7c5e9f44b5cbe11b6bb9621eabb9b1b08c1b27b987eb     0        10290700645 lovelace + TxOutDatumNone
@@ -223,6 +223,6 @@ c09bf08fdf6ae655d8ba7c5e9f44b5cbe11b6bb9621eabb9b1b08c1b27b987eb     0        10
 If we query the stake address info, we get `[]`, meaning that the deregistration has been sucessful:
 
 ```
-cardano-cli babbage query stake-address-info --address $(cat stake.addr)
+cardano-cli babbage query stake-address-info --address $(< stake.addr)
 []
 ```

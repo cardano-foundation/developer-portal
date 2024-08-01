@@ -47,7 +47,7 @@ We drew `1000 tAda` from the Testnet Faucet into our **payment1** wallet.
 ```bash
 $ cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat keys/payment1.addr)
+--address $(< keys/payment1.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 264c0aa805652e3607c5ea2b1e8a9f3bf9c3bc8d4d938e1a9035f352083ba703     0        1000000000 lovelace
@@ -67,8 +67,8 @@ $ cardano-cli query protocol-parameters \
 ```bash
 $ cardano-cli transaction build-raw \
 --tx-in 264c0aa805652e3607c5ea2b1e8a9f3bf9c3bc8d4d938e1a9035f352083ba703#0 \
---tx-out $(cat keys/payment2.addr)+0 \
---tx-out $(cat keys/payment1.addr)+0 \
+--tx-out $(< keys/payment2.addr)+0 \
+--tx-out $(< keys/payment1.addr)+0 \
 --fee 0 \
 --out-file tx.draft
 ```
@@ -92,8 +92,8 @@ From the expected fee of `174169 Lovelace`, we were able to calculate the output
 ```bash {3,4,5}
 cardano-cli transaction build-raw \
 --tx-in 264c0aa805652e3607c5ea2b1e8a9f3bf9c3bc8d4d938e1a9035f352083ba703#0 \
---tx-out $(cat keys/payment2.addr)+250000000 \
---tx-out $(cat keys/payment1.addr)+749825831 \
+--tx-out $(< keys/payment2.addr)+250000000 \
+--tx-out $(< keys/payment1.addr)+749825831 \
 --fee 174169 \
 --out-file tx.draft
 ```
@@ -130,7 +130,7 @@ Finally we verified the transaction by querying the **payment1** and **payment2*
 ```bash
 $ cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat keys/payment1.addr)
+--address $(< keys/payment1.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251     1        749825831 lovelace
@@ -139,7 +139,7 @@ b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251     1        74
 ```bash
 $ cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat payment2.addr)
+--address $(< payment2.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251     0        250000000 lovelace
@@ -259,7 +259,7 @@ Lets build that transaction.
 cardano-cli transaction build-raw \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#0 \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#1 \
---tx-out $(cat ../keys/store-owner.addr)+0 \
+--tx-out $(< ../keys/store-owner.addr)+0 \
 --fee 0 \
 --out-file tx2.draft
 ```
@@ -300,7 +300,7 @@ We have to use `payment1.skey` and `payment2.skey` to sign our transaction.
 cardano-cli transaction build-raw \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#0 \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#1 \
---tx-out $(cat ../keys/store-owner.addr)+999646250 \
+--tx-out $(< ../keys/store-owner.addr)+999646250 \
 --fee 179581 \
 --out-file tx2.draft 
 
@@ -324,7 +324,7 @@ The devious store-owner will now verify that everything went according to his pl
 ```bash
 cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat $HOME/cardano/keys/store-owner.addr)
+--address $(< $HOME/cardano/keys/store-owner.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f     0        999646250 lovelace
@@ -349,13 +349,13 @@ For that we draft two transactions
 ```sh
 cardano-cli transaction build-raw \
 --tx-in 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f#0 \
---tx-out $(cat $HOME/cardano/keys/payment1.addr)+0 \
+--tx-out $(< $HOME/cardano/keys/payment1.addr)+0 \
 --fee 0 \
 --out-file $HOME/cardano/multi-witness-sample/tx-single1.draft
 
 cardano-cli transaction build-raw \
 --tx-in 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f#0 \
---tx-out $(cat $HOME/cardano/keys/payment2.addr)+0 \
+--tx-out $(< $HOME/cardano/keys/payment2.addr)+0 \
 --fee 0 \
 --out-file $HOME/cardano/multi-witness-sample/tx-single2.draft
 ```

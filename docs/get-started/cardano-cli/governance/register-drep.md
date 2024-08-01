@@ -138,7 +138,7 @@ Or using the DRep ID:
 
 ```shell
 cardano-cli conway governance drep registration-certificate \
-  --drep-key-hash "$(cat drep.id)" \
+  --drep-key-hash "$(< drep.id)" \
   --key-reg-deposit-amt 500000000 \
   --drep-metadata-url https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0119/examples/drep.jsonld \
   --drep-metadata-hash a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de \
@@ -161,8 +161,8 @@ Build the transaction. Note that we use `--witness-override 2` because this tran
 
 ```shell
 cardano-cli conway transaction build \
-  --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
-  --change-address $(cat payment.addr) \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
   --certificate-file drep-reg.cert  \
   --witness-override 2 \
   --out-file tx.raw
@@ -379,7 +379,7 @@ Generate the registration certificate:
 
 ```shell
 cardano-cli conway governance drep registration-certificate \
-  --drep-script-hash "$(cat drep-multisig.id)" \
+  --drep-script-hash "$(< drep-multisig.id)" \
   --key-reg-deposit-amt "$drepDeposit" \
   --out-file drep-multisig-reg.cert
 ```
@@ -390,8 +390,8 @@ Build the transaction. Note that we use `--witness-override 4` because this tran
 
 ```shell
 cardano-cli conway transaction build \
-  --tx-in $(cardano-cli conway query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
-  --change-address $(cat payment.addr) \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
   --certificate-file drep-multisig-reg.cert \
   --certificate-script-file drep-multisig.json \
   --witness-override 4 \
@@ -455,7 +455,7 @@ cardano-cli conway transaction submit \
 
 ```shell
 cardano-cli conway query drep-state \
-  --drep-script-hash $(cat drep-multisig.id)
+  --drep-script-hash $(< drep-multisig.id)
 ```
 ```json
 [
@@ -541,7 +541,7 @@ Generate the registration certificate:
 
 ```shell
 cardano-cli conway governance drep registration-certificate \
-  --drep-script-hash "$(cat alwaysVoteYesDrep.id)" \
+  --drep-script-hash "$(< alwaysVoteYesDrep.id)" \
   --key-reg-deposit-amt "$drepDeposit" \
   --out-file alwaysVoteYesDrep.cert
 ```
@@ -551,12 +551,12 @@ Build the transaction, we need to provide a collateral and a redeemer value:
 
 ```shell
 cardano-cli conway transaction build \
-  --tx-in $(cardano-cli conway query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
-  --tx-in-collateral $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in-collateral $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --certificate-file alwaysVoteYesDrep.cert \
   --certificate-script-file alwaysVoteYesDrep.plutus \
   --certificate-redeemer-value {} \
-  --change-address $(cat payment.addr) \
+  --change-address $(< payment.addr) \
   --out-file tx.raw
 ```
 

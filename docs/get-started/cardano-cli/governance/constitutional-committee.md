@@ -2,7 +2,7 @@
 id: constitutional committee
 sidebar_label: Constitutional committee
 title: Constitutional committee
-sidebar_position: 4
+sidebar_position: 3
 description: How to generate credentials as Constiutional Committee Member
 keywords: [Governance, constitutional committee, committee, credentials, CIP1694]
 ---
@@ -123,7 +123,7 @@ cat cc-authorization.cert
 
 ```
 cardano-cli conway transaction build \
-  --tx-in "$(cardano-cli query utxo --address "$(cat payment.addr)" --output-json | jq -r 'keys[0]')" \
+  --tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
   --change-address payment.addr \
   --certificate-file cc-authorization.cert \
   --witness-override 2 \
@@ -318,8 +318,8 @@ cardano-cli conway governance committee create-hot-key-authorization-certificate
 Build the transaction:
 ```
 cardano-cli conway transaction build \
-  --tx-in "$(cardano-cli query utxo --address "$(cat payment.addr)" --output-json | jq -r 'keys[0]')" \
-  --change-address "$(cat payment.addr)" \
+  --tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
+  --change-address "$(< payment.addr)" \
   --certificate-file cc-authorization.cert \
   --certificate-script-file cold.script \
   --witness-override 4 \

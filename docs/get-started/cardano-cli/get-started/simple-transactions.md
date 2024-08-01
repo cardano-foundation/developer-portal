@@ -65,7 +65,7 @@ You also need to know the inputs (UTXOs) you will use. A UTXO is identified by i
 To query the UTXOs associated to your `payment.addr`, run:
 
 ```bash
-cardano-cli babbage query utxo --address $(cat payment.addr)
+cardano-cli babbage query utxo --address $(< payment.addr)
 
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
@@ -98,8 +98,8 @@ cardano-cli babbage transaction build-raw \
 ```shell
 cardano-cli babbage transaction build-raw \
   --tx-in e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0 \
-  --tx-out "$(cat payment2.addr)+1000000000" \
-  --tx-out "$(cat payment.addr)+8994790937" \
+  --tx-out "$(< payment2.addr)+1000000000" \
+  --tx-out "$(< payment.addr)+8994790937" \
   --fee 0 \
   --protocol-params-file pparams.json \
   --out-file tx.draft
@@ -205,8 +205,8 @@ Re-run `transaction build-raw`, include the fee, and adjust the change (the seco
 ```shell
 cardano-cli babbage transaction build-raw \
   --tx-in e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0 \
-  --tx-out $(cat payment2.addr)+1000000000 \
-  --tx-out $(cat payment.addr)+8994616944 \ 
+  --tx-out $(< payment2.addr)+1000000000 \
+  --tx-out $(< payment.addr)+8994616944 \ 
   --fee 173993 \
   --protocol-params-file pparams.json \
   --out-file tx.raw
@@ -304,7 +304,7 @@ For example, let's send 500 ada (500000000 lovelace) to the `payment2.addr`.
 First, query the UTXOs of the input address:
 
 ```shell
-cardano-cli query utxo --address $(cat payment.addr)
+cardano-cli query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 c57f25ebf9cf1487b13deeb8449215c499f3d61c2836d84ab92a73b0bbaadd38     1        8994616944 lovelace + TxOutDatumNone
@@ -315,8 +315,8 @@ Build the transaction:
 ```shell
 cardano-cli babbage transaction build \
   --tx-in c57f25ebf9cf1487b13deeb8449215c499f3d61c2836d84ab92a73b0bbaadd38#1 \
-  --tx-out $(cat payment2.addr)+500000000 \
-  --change-address $(cat payment.addr) \
+  --tx-out $(< payment2.addr)+500000000 \
+  --change-address $(< payment.addr) \
   --out-file tx.raw
 ```
 Running this command returns the cost of the transaction fee:
@@ -406,9 +406,9 @@ You can parse `cardano-cli` JSON outputs with `jq` to create programmatic workfl
 
 ```
 cardano-cli babbage transaction build \
---tx-in $(cardano-cli query utxo --address $(cat payment.addr) --output-json | jq -r 'keys[0]') \
---tx-out $(cat payment.addr)+500000000 \
---change-address $(cat payment.addr) \
+--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+--tx-out $(< payment.addr)+500000000 \
+--change-address $(< payment.addr) \
 --out-file tx.raw
 ```
 :::

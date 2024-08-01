@@ -48,7 +48,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
 ```shell
 cardano-cli conway stake-address vote-delegation-certificate \
   --stake-verification-key-file stake.vkey \
-  --drep-key-hash $(cat drep.id) \
+  --drep-key-hash $(< drep.id) \
   --out-file vote-deleg.cert
 ```
 * Delegating to a **script-based** (i.e. multisignature) registered DRep:
@@ -56,7 +56,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
 ```shell
 cardano-cli conway stake-address vote-delegation-certificate \
 --stake-verification-key-file stake.vkey \
---drep-script-hash $(cat drep-multisig.id) \
+--drep-script-hash $(< drep-multisig.id) \
 --out-file vote-deleg.cert
 ```
 
@@ -66,8 +66,8 @@ cardano-cli conway stake-address vote-delegation-certificate \
 
 ```
 cardano-cli conway transaction build \
---tx-in $(cardano-cli query utxo --address $(cat payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
---change-address $(cat payment.addr) \
+--tx-in $(cardano-cli query utxo --address $(< payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
+--change-address $(< payment.addr) \
 --certificate-file vote-deleg.cert \
 --witness-override 2 \
 --out-file tx.raw

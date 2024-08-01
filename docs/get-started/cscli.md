@@ -100,13 +100,13 @@ solución aborto víspera puma molino ático ética feroz hacer orador saler
 
 ### Derive Root Key
 ```console
-$ cscli wallet key root derive --recovery-phrase "$(cat phrase.en.prv)" | tee root.en.xsk
+$ cscli wallet key root derive --recovery-phrase "$(< phrase.en.prv)" | tee root.en.xsk
 root_xsk12qpr53a6r7dpjpu2mr6zh96vp4whx2td4zccmplq3am6ph6z4dga6td8nph4qpcnlkdcjkd96p83t23mplvh2w42n6yc3urav8qgph3d9az6lc0px7xq7sau4r4dsfp9h0syfkhge8e6muhd69vz9j6fggdhgd4e
 ```
 
 ### Derive Account Key
 ```console
-$ cscli wallet key account derive --recovery-phrase "$(cat phrase.en.prv)" | tee acct_0.en.xsk
+$ cscli wallet key account derive --recovery-phrase "$(< phrase.en.prv)" | tee acct_0.en.xsk
 acct_xsk13pfkzdyzuagmsquy0xjvszdxdjt84x49yrmvt2f3z8ndp6zz4dgka03j3ctm4gne9s5gullvjd7kynxxkny4qwyuuup2mcjfztctswdu3zp4s3ps5dskaq929vrp6cw8z3u77x7mymgntjw46f4l9kh3mcvg78y9
 ```
 
@@ -114,21 +114,21 @@ acct_xsk13pfkzdyzuagmsquy0xjvszdxdjt84x49yrmvt2f3z8ndp6zz4dgka03j3ctm4gne9s5gull
   <summary>Account Key with Specific Index</summary>
 
 ```console
-$ cscli wallet key account derive --recovery-phrase "$(cat phrase.en.prv)" --account-index 96884067 | tee acct_96884067.en.xsk
+$ cscli wallet key account derive --recovery-phrase "$(< phrase.en.prv)" --account-index 96884067 | tee acct_96884067.en.xsk
 acct_xsk1vzcpqwahy0asxuua4gswzjagmt5awjepy9clhmvtr8tgpejz4dglkfl7zhunx0dcrvljtmgcx59yzv728wlxllp646qudhgkuaj3xycu4pkysaaau0lm4z2s8t2yum7nyfn99e3xxrwgaz5yt367r8638uetazlu
 ```
 </details>
 
 ### Derive Payment Key
 ```console
-$ cscli wallet key payment derive --recovery-phrase "$(cat phrase.en.prv)" | tee pay_0_0.en.xsk
+$ cscli wallet key payment derive --recovery-phrase "$(< phrase.en.prv)" | tee pay_0_0.en.xsk
 addr_xsk1fzw9r482t0ekua7rcqewg3k8ju5d9run4juuehm2p24jtuzz4dg4wpeulnqhualvtx9lyy7u0h9pdjvmyhxdhzsyy49szs6y8c9zwfp0eqyrqyl290e6dr0q3fvngmsjn4aask9jjr6q34juh25hczw3euust0dw
 ```
 <details>
   <summary>Payment Key with Custom Indexes</summary>
 
 ```console
-$ cscli wallet key payment derive --recovery-phrase "$(cat phrase.en.prv)" --account-index 569 --address-index 6949 | tee pay_569_6949.en.xsk
+$ cscli wallet key payment derive --recovery-phrase "$(< phrase.en.prv)" --account-index 569 --address-index 6949 | tee pay_569_6949.en.xsk
 addr_xsk1kzjky39hv28q30qecg46f3cag3nwsjnnvn5uf0jtkrsxau2z4dgssyrv8jfwdh6frfkd0hskhszcf98xskje0c6ttcnz7k2cwdmc62uv7k6w7nwdcngkwn0semehjsdaajlv2nr5c0rg077dnsyjwxm05vhkuqet
 ```
 </details>
@@ -136,7 +136,7 @@ addr_xsk1kzjky39hv28q30qecg46f3cag3nwsjnnvn5uf0jtkrsxau2z4dgssyrv8jfwdh6frfkd0hs
   <summary>Payment Key with cardano-cli Output Key Files</summary>
 
 ```console
-$ cscli wallet key payment derive --recovery-phrase "$(cat phrase.en.prv)" --signing-key-file pay_0_0.en.skey --verification-key-file pay_0_0.en.vkey | tee pay_0_0.en.xsk
+$ cscli wallet key payment derive --recovery-phrase "$(< phrase.en.prv)" --signing-key-file pay_0_0.en.skey --verification-key-file pay_0_0.en.vkey | tee pay_0_0.en.xsk
 addr_xsk1kzjky39hv28q30qecg46f3cag3nwsjnnvn5uf0jtkrsxau2z4dgssyrv8jfwdh6frfkd0hskhszcf98xskje0c6ttcnz7k2cwdmc62uv7k6w7nwdcngkwn0semehjsdaajlv2nr5c0rg077dnsyjwxm05vhkuqet
 $ cat pay_0_0.en.skey
 {
@@ -156,7 +156,7 @@ $ cat pay_0_0.en.vkey
   <summary>Payment Key from Spanish recovery-phrase with custom passphrase</summary>
 
 ```console
-$ cscli wallet key payment derive --language spanish --recovery-phrase "$(cat phrase.es.prv)" --passphrase "/\\/\\`/ |\\|4/\\/\\3 !5 02`//\\/\\4|\\||)!45, |<!|\\|9 0|= |<!|\\|95" --signing-key-file pay_0_0.es.skey --verification-key-file pay_0_0.es.vkey | tee pay_0_0.es.xsk
+$ cscli wallet key payment derive --language spanish --recovery-phrase "$(< phrase.es.prv)" --passphrase "/\\/\\`/ |\\|4/\\/\\3 !5 02`//\\/\\4|\\||)!45, |<!|\\|9 0|= |<!|\\|95" --signing-key-file pay_0_0.es.skey --verification-key-file pay_0_0.es.vkey | tee pay_0_0.es.xsk
 addr_xsk15pt6dccwyy2jjgmv9gxszjyzc6kchhas2dr9q6ky0xpwz4679e2t5qu0yehpmg7xr3sc3wkcyagujlk2euwl0007w68wcfdm7ajl2tzkqve7vmqds5sf38syns3u2wey05yeh70p9m5n05kftku30uqjlqy0gjh2
 $ cat pay_0_0.es.skey
 {
@@ -175,7 +175,7 @@ $ cat pay_0_0.es.vkey
 
 ### Derive Stake Key
 ```console
-$ cscli wallet key stake derive --recovery-phrase "$(cat phrase.en.prv)" | tee stake_0_0.en.xsk
+$ cscli wallet key stake derive --recovery-phrase "$(< phrase.en.prv)" | tee stake_0_0.en.xsk
 stake_xsk1xr5c8423vymrfvrqz58wqqtpekg8cl2s7zvuedeass77emzz4dgs32nfp944ljxw86h7wkxcrut8gr8qmql8gvc9slc8nj9x47a6jtaqqxf9ywd4wfhrzv4c54vcjp827fytdzrxs3gdh5f0a0s7hcf8a5e4ay8g
 ```
 
@@ -183,7 +183,7 @@ stake_xsk1xr5c8423vymrfvrqz58wqqtpekg8cl2s7zvuedeass77emzz4dgs32nfp944ljxw86h7wk
   <summary>Stake Key with Custom Indexes</summary>
 
 ```console
-$ cscli wallet key stake derive --recovery-phrase "$(cat phrase.en.prv)" --account-index 968 --address-index 83106 | tee stake_968_83106.en.xsk
+$ cscli wallet key stake derive --recovery-phrase "$(< phrase.en.prv)" --account-index 968 --address-index 83106 | tee stake_968_83106.en.xsk
 stake_xsk14p0lhj3txvfcj8j08dk3ur954hmcfz6u6t00q0a3vnrsd7zz4dgcy9dwcxgf67v4rdp4mk9tkeqw70y4m7va73thnel7jwyx0achc5tyyx8r2au5x3pw37zhznj03v2cajc96paltxlh8hpefssucyecus24q26n
 ```
 </details>
@@ -191,7 +191,7 @@ stake_xsk14p0lhj3txvfcj8j08dk3ur954hmcfz6u6t00q0a3vnrsd7zz4dgcy9dwcxgf67v4rdp4mk
   <summary>Stake Key with cardano-cli Output Key Files</summary>
 
 ```console
-$ cscli wallet key stake derive --recovery-phrase "$(cat phrase.en.prv)" --signing-key-file stake_0_0.en.skey --verification-key-file stake_0_0.en.vkey | tee stake_0_0.en.xsk
+$ cscli wallet key stake derive --recovery-phrase "$(< phrase.en.prv)" --signing-key-file stake_0_0.en.skey --verification-key-file stake_0_0.en.vkey | tee stake_0_0.en.xsk
 stake_xsk14p0lhj3txvfcj8j08dk3ur954hmcfz6u6t00q0a3vnrsd7zz4dgcy9dwcxgf67v4rdp4mk9tkeqw70y4m7va73thnel7jwyx0achc5tyyx8r2au5x3pw37zhznj03v2cajc96paltxlh8hpefssucyecus24q26n
 $ cat stake_0_0.en.skey
 {
@@ -210,7 +210,7 @@ $ cat stake_0_0.en.vkey
 
 ### Derive Stake/Reward Address
 ```console
-$ cscli wallet address stake derive --recovery-phrase "$(cat phrase.en.prv)" --network mainnet | tee stake_0_0.en.addr
+$ cscli wallet address stake derive --recovery-phrase "$(< phrase.en.prv)" --network mainnet | tee stake_0_0.en.addr
 stake1u9wqktpz964g6jaemt5wr5tspy9cqxpdkw98d022d85kxxc2n2yxj
 ```
 
@@ -218,7 +218,7 @@ stake1u9wqktpz964g6jaemt5wr5tspy9cqxpdkw98d022d85kxxc2n2yxj
   <summary>Stake Address with Custom Indexes</summary>
 
 ```console
-$ cscli wallet address stake derive --recovery-phrase "$(cat phrase.en.prv)" --network mainnet --account-index 1 --address-index 7 | tee stake_1_7.en.addr
+$ cscli wallet address stake derive --recovery-phrase "$(< phrase.en.prv)" --network mainnet --account-index 1 --address-index 7 | tee stake_1_7.en.addr
 stake1u87phtdn9shvp39c44elyfdduuqg7wz072vs0vjvc20hvaqym7xan
 ```
 </details>
@@ -226,14 +226,14 @@ stake1u87phtdn9shvp39c44elyfdduuqg7wz072vs0vjvc20hvaqym7xan
   <summary>Stake Address from Spanish recovery-phrase with custom passphrase</summary>
 
 ```console
-$ cscli wallet address stake derive --language spanish --recovery-phrase "$(cat phrase.es.prv)" --passphrase "/\\/\\`/ |\\|4/\\/\\3 !5 02`//\\/\\4|\\||)!45, |<!|\\|9 0|= |<!|\\|95" --network testnet | tee stake_0_0.es.addr
+$ cscli wallet address stake derive --language spanish --recovery-phrase "$(< phrase.es.prv)" --passphrase "/\\/\\`/ |\\|4/\\/\\3 !5 02`//\\/\\4|\\||)!45, |<!|\\|9 0|= |<!|\\|95" --network testnet | tee stake_0_0.es.addr
 stake_test1uztkvps54v3yrwvxhvfz9uph8g6e2zd8jcg2cyss45g7xqclj4scq
 ```
 </details>
 
 ### Derive Payment Enterprise Address
 ```console
-$ cscli wallet address payment derive --recovery-phrase "$(cat phrase.en.prv)" --payment-address-type enterprise --network mainnet | tee pay_0_0.en.addr
+$ cscli wallet address payment derive --recovery-phrase "$(< phrase.en.prv)" --payment-address-type enterprise --network mainnet | tee pay_0_0.en.addr
 addr1vy5zuhh9685fup86syuzmu3e6eengzv8t46mfqxg086cvqqrukl6w
 ```
 
@@ -241,14 +241,14 @@ addr1vy5zuhh9685fup86syuzmu3e6eengzv8t46mfqxg086cvqqrukl6w
   <summary>Payment Enterprise Address with Custom Indexes</summary>
 
 ```console
-$ cscli wallet address payment derive --recovery-phrase "$(cat phrase.en.prv)" --payment-address-type enterprise --network mainnet --account-index 1387 --address-index 12 | tee pay_1387_12.en.addr
+$ cscli wallet address payment derive --recovery-phrase "$(< phrase.en.prv)" --payment-address-type enterprise --network mainnet --account-index 1387 --address-index 12 | tee pay_1387_12.en.addr
 addr1vy3y89nnzdqs4fmqv49fmpqw24hjheen3ce7tch082hh6xcc8pzd9
 ```
 </details>
 
 ### Derive Payment Base Address
 ```console
-$ cscli wallet address payment derive --recovery-phrase "$(cat phrase.en.prv)" --payment-address-type base --network mainnet | tee pay_0_0_0_0.en.addr
+$ cscli wallet address payment derive --recovery-phrase "$(< phrase.en.prv)" --payment-address-type base --network mainnet | tee pay_0_0_0_0.en.addr
 addr1qy5zuhh9685fup86syuzmu3e6eengzv8t46mfqxg086cvqzupvkzyt42349mnkhgu8ghqzgtsqvzmvu2w675560fvvdspma4ht
 ```
 
@@ -256,7 +256,7 @@ addr1qy5zuhh9685fup86syuzmu3e6eengzv8t46mfqxg086cvqzupvkzyt42349mnkhgu8ghqzgtsqv
   <summary>Payment Base Address with Custom Indexes</summary>
 
 ```console
-$ cscli wallet address payment derive --recovery-phrase "$(cat phrase.en.prv)" --payment-address-type base --network mainnet --account-index 1387 --address-index 12 --stake-account-index 968 --stake-address-index 83106 | tee pay_1387_12_968_83106.en.addr
+$ cscli wallet address payment derive --recovery-phrase "$(< phrase.en.prv)" --payment-address-type base --network mainnet --account-index 1387 --address-index 12 --stake-account-index 968 --stake-address-index 83106 | tee pay_1387_12_968_83106.en.addr
 addr1qy3y89nnzdqs4fmqv49fmpqw24hjheen3ce7tch082hh6x7nwwgg06dngunf9ea4rd7mu9084sd3km6z56rqd7e04ylslhzn9h
 ```
 </details>
@@ -264,21 +264,21 @@ addr1qy3y89nnzdqs4fmqv49fmpqw24hjheen3ce7tch082hh6x7nwwgg06dngunf9ea4rd7mu9084sd
   <summary>Payment Base Address from Spanish recovery-phrase with custom passphrase</summary>
 
 ```console
-$ cscli wallet address payment derive --language spanish --recovery-phrase "$(cat phrase.es.prv)" --passphrase "/\\/\\`/ |\\|4/\\/\\3 !5 02`//\\/\\4|\\||)!45, |<!|\\|9 0|= |<!|\\|95" --network testnet --payment-address-type base | tee pay_0_0_0_0.es.addr
+$ cscli wallet address payment derive --language spanish --recovery-phrase "$(< phrase.es.prv)" --passphrase "/\\/\\`/ |\\|4/\\/\\3 !5 02`//\\/\\4|\\||)!45, |<!|\\|9 0|= |<!|\\|95" --network testnet --payment-address-type base | tee pay_0_0_0_0.es.addr
 addr_test1qpvttg5263dnutj749k5dcr35yk5mr94fxx0q2zs2xeuxq5hvcrpf2ezgxucdwcjytcrww34j5y609ss4sfpptg3uvpsxmcdtf
 ```
 </details>
 
 ### Derive Policy Key
 ```console
-$ cscli wallet key policy derive --recovery-phrase "$(cat phrase.en.prv)" | tee policy_0.en.sk
+$ cscli wallet key policy derive --recovery-phrase "$(< phrase.en.prv)" | tee policy_0.en.sk
 policy_sk1trt3shjrd4gy70q4m2ejgjgsdzwej4whc4r2trrcwedlpm6z4dglxl4nycrd8fptxrkye3tl3q29euxlqj7zndk9cfg4tskqlnp90uqwjqz02
 ```
 <details>
   <summary>Policy Key with Custom Indexes</summary>
 
 ```console
-$ cscli wallet key policy derive --recovery-phrase "$(cat phrase.en.prv)" --policy-index 88 | tee policy_88.en.xsk
+$ cscli wallet key policy derive --recovery-phrase "$(< phrase.en.prv)" --policy-index 88 | tee policy_88.en.xsk
 policy_sk1tz5k03lravcx7ecjveg6j0ndyydma2a89ny4zkmvzvpz4u6z4dgkxctdpcvhjvjl3j4peywe4l25zu4672eg5qsluz36z5mgm4n2ftg3nhmyd
 ```
 </details>
@@ -286,7 +286,7 @@ policy_sk1tz5k03lravcx7ecjveg6j0ndyydma2a89ny4zkmvzvpz4u6z4dgkxctdpcvhjvjl3j4pey
   <summary>Policy Key with cardano-cli Output Key Files</summary>
 
 ```console
-$ cscli wallet key policy derive --recovery-phrase "$(cat phrase.en.prv)" --signing-key-file policy_0.skey --verification-key-file policy_0.vkey | tee policy_0.xsk
+$ cscli wallet key policy derive --recovery-phrase "$(< phrase.en.prv)" --signing-key-file policy_0.skey --verification-key-file policy_0.vkey | tee policy_0.xsk
 policy_sk1trt3shjrd4gy70q4m2ejgjgsdzwej4whc4r2trrcwedlpm6z4dglxl4nycrd8fptxrkye3tl3q29euxlqj7zndk9cfg4tskqlnp90uqwjqz02
 $ cat policy_0.skey
 {
@@ -305,7 +305,7 @@ $ cat policy_0.vkey
 
 ### Convert Signing to Verification Key 
 ```console
-$ cscli wallet key verification convert --signing-key $(cat pay_0_0.en.xsk) | tee pay_0_0.en.xvk
+$ cscli wallet key verification convert --signing-key $(< pay_0_0.en.xsk) | tee pay_0_0.en.xvk
 addr_xvk1m62sxsn8t8apscjx2l6mejfj7wpzpmy7e6ex9yru4uk3nzmwp74zljqgxqf752ln56x7pzjex3hp98tmmpvt9y85prt9ew4f0syarncveq5jl
 ```
 
@@ -313,7 +313,7 @@ addr_xvk1m62sxsn8t8apscjx2l6mejfj7wpzpmy7e6ex9yru4uk3nzmwp74zljqgxqf752ln56x7pzj
   <summary>Verification Key with cardano-cli Output Key Files</summary>
 
 ```console
-$ cscli wallet key verification convert --signing-key $(cat stake_0_0.en.xsk) --verification-key-file stake_0_0.en.vkey | tee stake_0_0.en.xvk
+$ cscli wallet key verification convert --signing-key $(< stake_0_0.en.xsk) --verification-key-file stake_0_0.en.vkey | tee stake_0_0.en.xvk
 stake_xvk1r0v9a3ca9kxwqxqp8qcsnqa2llaytp2gdkc4w67rskc2udg9vtn2qqvj2gum2unwxyet3f2e3yzw4ujgk6yxdpzsm0gjl6lpa0sj0mg4tq9sj
 $ cat stake_0_0.en.vkey
 {
@@ -391,7 +391,7 @@ $ cscli query info account --network mainnet --address addr1q9r4307pqxq93fh554yv
 
 ### Query Account Asset 
 ```console
-$ cscli query asset account --network testnet --stake-address $(cat stake_0_0.es.addr)
+$ cscli query asset account --network testnet --stake-address $(< stake_0_0.es.addr)
 [
   {
     "asset_policy": "540f107c7a3df20d2111a41c3bc407cce3e63c10c8dd673d51a02c22",
@@ -404,7 +404,7 @@ $ cscli query asset account --network testnet --stake-address $(cat stake_0_0.es
   <summary>Query Account Asset of Payment Address (requires base address)</summary>
 
 ```console
-$ cscli query asset account --network testnet --address $(cat pay_0_0_0_0.es.addr)
+$ cscli query asset account --network testnet --address $(< pay_0_0_0_0.es.addr)
 [
   {
     "asset_policy": "540f107c7a3df20d2111a41c3bc407cce3e63c10c8dd673d51a02c22",
@@ -417,7 +417,7 @@ $ cscli query asset account --network testnet --address $(cat pay_0_0_0_0.es.add
 
 ### Query Address Info 
 ```console
-$ cscli query info address --network testnet --address $(cat pay_0_0_0_0.es.addr)
+$ cscli query info address --network testnet --address $(< pay_0_0_0_0.es.addr)
 {
   "balance": "1001344798",
   "stake_address": "stake_test1uztkvps54v3yrwvxhvfz9uph8g6e2zd8jcg2cyss45g7xqclj4scq",
@@ -452,7 +452,7 @@ $ cscli transaction submit --network testnet --cbor-hex 84a600818258207f1d24706e
 
 ### Bech32 Decode
 ```console
-$ cscli bech32 decode --value "$(cat pay_0_0.en.addr)"
+$ cscli bech32 decode --value "$(< pay_0_0.en.addr)"
 61282e5ee5d1e89e04fa81382df239d6733409875d75b480c879f58600
 ```
 

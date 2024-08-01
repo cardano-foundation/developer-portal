@@ -83,14 +83,14 @@ cardano-cli babbage governance action create-protocol-parameters-update \
 Build, sign, and submit the transaction: 
 
 ```shell
-balance=$(cardano-cli query utxo --address $(cat payment.addr) --out-file /dev/stdout | jq '. | .[keys[0]].value.lovelace')
+balance=$(cardano-cli query utxo --address $(< payment.addr) --out-file /dev/stdout | jq '. | .[keys[0]].value.lovelace')
 fee=1000000
 change=$(($balance - $fee))
 
 cardano-cli babbage transaction build-raw \
 --fee $fee \
---tx-in $(cardano-cli query utxo --address $(cat payment.addr) --out-file /dev/stdout | jq -r 'keys[0]' \
---tx-out $(cat payment.addr)+$change \
+--tx-in $(cardano-cli query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r 'keys[0]' \
+--tx-out $(< payment.addr)+$change \
 --update-proposal-file updateNOpt.proposal \
 --out-file updateNOpt.tx.raw
 

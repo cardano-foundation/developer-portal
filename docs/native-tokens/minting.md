@@ -172,7 +172,7 @@ cardano-cli address build --payment-verification-key-file payment.vkey --out-fil
 We will save our address hash in a variable called `address`.
 
 ```bash
-address=$(cat payment.addr)
+address=$(< payment.addr)
 ```
 ### Fund the address
 
@@ -277,7 +277,7 @@ Since we need each of those values in our transaction, we will store them indivi
 txhash="insert your txhash here"
 txix="insert your TxIx here"
 funds="insert Amount here"
-policyid=$(cat policy/policyID)
+policyid=$(< policy/policyID)
 ```
 
 For our fictional example, this would result in the following output - <b>please adjust your values accordingly</b>:
@@ -286,7 +286,7 @@ For our fictional example, this would result in the following output - <b>please
 $ txhash="b35a4ba9ef3ce21adcd6879d08553642224304704d206c74d3ffb3e6eed3ca28"
 $ txix="0"
 $ funds="1000000000"
-$ policyid=$(cat policy/policyID)
+$ policyid=$(< policy/policyID)
 ```
 Also, transactions only used to calculate fees must still have a fee set, though it doesn't have to be exact.  The calculated fee will be included *the second time* this transaction is built (i.e. the transaction to sign and submit).  This first time, only the fee parameter *length* matters, so here we choose a maximum value ([note](https://github.com/cardano-foundation/developer-portal/pull/283#discussion_r705612888)): 
 
@@ -545,7 +545,7 @@ txhash="insert your txhash here"
 txix="insert your TxIx here"
 funds="insert Amount only in here"
 burnfee="0"
-policyid=$(cat policy/policyID)
+policyid=$(< policy/policyID)
 burnoutput="0"
 ```
 

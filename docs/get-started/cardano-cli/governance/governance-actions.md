@@ -2,7 +2,7 @@
 id: create governance actions
 sidebar_label: Submitting governance actions
 title: Submitting governance actions
-sidebar_position: 3
+sidebar_position: 4
 description: How to submit a governance action
 keywords: [Governance, governance action, submit proposal, CIP1694]
 ---
@@ -352,8 +352,8 @@ while also allowing members of the governance bodies to review, discuss, and ult
 ```bash
 cardano-cli conway transaction build \
   \
-  --tx-in "$(cardano-cli query utxo --address "$(cat payment.addr)" --output-json | jq -r 'keys[0]')" \
-  --change-address $(cat payment.addr) \
+  --tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
+  --change-address $(< payment.addr) \
   --proposal-file info.action \
   --out-file tx.raw
 ```
@@ -384,10 +384,10 @@ When building the transaction, we include the `*.action` file and supply the gua
 ```shell
 cardano-cli conway transaction build \
 --proposal-script-file guardrails-script.plutus \
---tx-in-collateral "$(cardano-cli query utxo --address "$(cat payment.addr)" --output-json | jq -r 'keys[0]')" \
+--tx-in-collateral "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
 --proposal-redeemer-value {} \
---tx-in "$(cardano-cli query utxo --address "$(cat payment.addr)" --output-json | jq -r 'keys[0]')" \
---change-address "$(cat payment.addr)" \
+--tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
+--change-address "$(< payment.addr)" \
 --proposal-file pp-update.action \
 --out-file pparams-tx.raw
 

@@ -176,14 +176,14 @@ Now that we have a **wallet address**, we can then query the **UTXO** of the add
 ```bash
 cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat $HOME/cardano/keys/payment1.addr)
+--address $(< $HOME/cardano/keys/payment1.addr)
 ```
 
 - `cardano-cli query utxo` : Queries the wallet address **UTXO**.
 
 - `--testnet-magic 1097911063` : Specifies that we want to query a testnet **Cardano** network.
 
-- `--address $(cat $HOME/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `$HOME/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
+- `--address $(< $HOME/cardano/keys/payment1.addr)` : The **wallet address** string value that we want to query, In this case we read the contents of `$HOME/cardano/keys/payment1.addr` using the `cat` command and we pass that value to the `--address` flag. That means you could also directly paste the **wallet address** value like so: 
 ```
 --address addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
 ```
@@ -263,7 +263,7 @@ Querying the **UTXO** for the second wallet `payment2.addr` should give you a fa
 ```bash
 cardano-cli query utxo \
 --testnet-magic 1097911063 \
---address $(cat $HOME/cardano/keys/payment2.addr)
+--address $(< $HOME/cardano/keys/payment2.addr)
 ```
 
 **UTXO Result**
@@ -338,8 +338,8 @@ Next, we create a draft transaction like so:
 ```bash
 cardano-cli transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
---tx-out $(cat $HOME/cardano/keys/payment2.addr)+0 \
---tx-out $(cat $HOME/cardano/keys/payment1.addr)+0 \
+--tx-out $(< $HOME/cardano/keys/payment2.addr)+0 \
+--tx-out $(< $HOME/cardano/keys/payment1.addr)+0 \
 --fee 0 \
 --out-file $HOME/cardano/tx.draft
 ```
@@ -386,8 +386,8 @@ We can then finally build the real transaction like so:
 ```bash
 cardano-cli transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
---tx-out $(cat $HOME/cardano/keys/payment2.addr)+250000000 \
---tx-out $(cat $HOME/cardano/keys/payment1.addr)+749825831 \
+--tx-out $(< $HOME/cardano/keys/payment2.addr)+250000000 \
+--tx-out $(< $HOME/cardano/keys/payment1.addr)+749825831 \
 --fee 174169 \
 --out-file $HOME/cardano/tx.draft
 ```
@@ -409,13 +409,13 @@ So we will use the `TxHash` `cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f9072
 We then tell `cardano-cli` that the destination of the `250,000,000 lovelace` is the **wallet address** of `payment2`.
 
 ```bash
---tx-out $(cat $HOME/cardano/keys/payment2.addr)+250000000
+--tx-out $(< $HOME/cardano/keys/payment2.addr)+250000000
 ```
 
 Now, we still have `750000000 lovelace` as the change amount, so we will simply send it back to ourselves like so:
 
 ```bash
---tx-out $(cat $HOME/cardano/keys/payment1.addr)+749825831
+--tx-out $(< $HOME/cardano/keys/payment1.addr)+749825831
 ```
 
 Now an important question you might ask here is that, why is the amount `749825831 lovelace`? Well remember that we calculated the fee to be `174169 lovelace` and someone has to shoulder the transaction fee, so we decide that `payment` should pay for the fee with the change `lovelace` amount. So we calculate that `750000000 - 174169 = 749825831` and so the total change would be `749825831 lovelace`.
@@ -459,14 +459,14 @@ Checking the balances of both wallets `payment1` and `payment2`:
 
 ```bash
 # payment1 wallet UTXO
-❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(cat $HOME/cardano/keys/payment1.addr)
+❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(< $HOME/cardano/keys/payment1.addr)
 
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     1        749825303 lovelace
 
 # payment2 wallet UTXO
-❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(cat $HOME/cardano/keys/payment2.addr)
+❯ cardano-cli query utxo --testnet-magic 1097911063 --address $(< $HOME/cardano/keys/payment2.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 63eeeb7e43171aeea0b3d53c5a36236cf9af92d5ee39e99bfadfe0237c46bd91     0        250000000 lovelace
