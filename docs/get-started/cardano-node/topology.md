@@ -1,7 +1,7 @@
 ---
 id: p2p
-title: Peer-to-Peer (P2P) networking
-sidebar_label: Peer-to-Peer
+title: Topology
+sidebar_label: Topology
 sidebar_position: 5
 description: OVerview and configiuration of P2P topology.
 keywords: [Get-started, run the node, installation, networking, p2p, peer to peer, cardano-node, cardano node]
