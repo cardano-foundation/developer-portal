@@ -35,7 +35,7 @@ cardano-cli conway query gov-state
 ```shell
 cardano-cli conway query constitution
 {
-    "anchor": {exit
+    "anchor": {
         "dataHash": "ca41a91f399259bcefe57f9858e91f6d00e1a38d6d9c63d4052914ea7bd70cb2",
         "url": "ipfs://bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm"
     },
