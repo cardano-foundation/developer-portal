@@ -29,7 +29,7 @@ cardano-cli query protocol-parameters \
 
 ```sh
 cardano-cli query utxo \
-    --address $(< payment.addr) \
+    --address $(cat payment.addr) \
     --mainnet
 ```
 
@@ -44,8 +44,8 @@ For `--tx-in` we use the following syntax: `TxHash#TxIx` where `TxHash` is the t
 ```sh
 cardano-cli transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
-    --tx-out $(< payment2.addr)+0 \
-    --tx-out $(< payment.addr)+0 \
+    --tx-out $(cat payment2.addr)+0 \
+    --tx-out $(cat payment.addr)+0 \
     --invalid-hereafter 0 \
     --fee 0 \
     --out-file tx.draft
@@ -113,8 +113,8 @@ We write the transaction in a file, we will name it `tx.raw`.
 ```sh
 cardano-cli transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
-    --tx-out $(< payment2.addr)+10000000 \
-    --tx-out $(< payment.addr)+9832035 \
+    --tx-out $(cat payment2.addr)+10000000 \
+    --tx-out $(cat payment.addr)+9832035 \
     --invalid-hereafter 369400 \
     --fee 167965 \
     --out-file tx.raw
@@ -146,7 +146,7 @@ We must give it some time to get incorporated into the blockchain, but eventuall
 
 ```sh
 cardano-cli query utxo \
-    --address $(< payment.addr) \
+    --address $(cat payment.addr) \
     --mainnet
 
     >                            TxHash                                 TxIx         Amount
@@ -156,7 +156,7 @@ cardano-cli query utxo \
 
 ```sh
 cardano-cli query utxo \
-    --address $(< payment2.addr) \
+    --address $(cat payment2.addr) \
     --mainnet
 
     >                            TxHash                                 TxIx         Amount
