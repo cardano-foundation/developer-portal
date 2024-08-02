@@ -46,10 +46,11 @@ Useful links:
 
 - [Link][gimbalabs-graphql-api] to Gimbalabs's endpoints information
 - [Link][graphql-official-doc] to project's official documentation
-- [Link][graphql-example-queries] to the official collection of example queries.
+- [Link][graphql-example-queries] to the official collection of example queries. You can play with them directly from the [GraphQL playground][graphql-playground-testnet]
 [gimbalabs-graphql-api]: https://gimbalabs.com/dandelion/endpoints/graphql-api
 [graphql-example-queries]: https://github.com/cardano-foundation/cardano-graphql/tree/master/packages/api-cardano-db-hasura/src/example_queries
 [graphql-official-doc]: https://cardano-foundation.github.io/cardano-graphql/
+[graphql-playground-testnet]:  https://graphql-api.testnet.dandelion.link
 
 Usage examples:
 

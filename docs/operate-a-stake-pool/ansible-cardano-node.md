@@ -172,7 +172,7 @@ cardano_default_port: "6000"
 This is a very minimal example. However, you can think about how `group_vars` can be used to store variables or other settings on a [functional or per-group basis](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#defining-variables-in-inventory). 
 
 :::note 
-Ansible provides a [vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html) facility to encrypt data such as passwords or keys, rather than as plaintext in playbooks.
+Ansible provides a [vault](https://www.ansible.com/blog/2014/02/19/ansible-vault) facility to encrypt data such as passwords or keys, rather than as plaintext in playbooks.
 ::::
 
 ### User setup

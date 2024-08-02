@@ -279,7 +279,7 @@ let address = await wallet.getNextAddress();
 let address = await wallet.getAddressAt(45);  
 ``` 
 ### Wallet balances
-When you create a wallet the initial balance is 0. If you are in the Mainnet you can transfer Ada to this address. If you are on a testnet you can request test tokens from the [Faucet](https://testnets.cardano.org/cardano-testnets/tools/faucet/), just input one of the addresses of your wallet and request funds. 
+When you create a wallet the initial balance is 0. If you are in the Mainnet you can transfer Ada to this address. If you are on a testnet you can request test tokens from the [Faucet](https://developers.cardano.org/en/testnets/cardano/tools/faucet/), just input one of the addresses of your wallet and request funds. 
 ```js
 // get available balance. The balance you can expend
 let availableBalance = wallet.getAvailableBalance();

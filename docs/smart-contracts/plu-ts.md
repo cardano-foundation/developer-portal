@@ -58,6 +58,6 @@ export const script = new Script(
 ```
 
 ## Links
-- [`plu-ts` documentation](https://pluts.harmoniclabs.tech/#introduction)
+- [`plu-ts` documentation](https://pluts.harmoniclabs.tech/docs/intro)
 - [`plu-ts` Github Repository](https://github.com/HarmonicLabs/plu-ts).
 

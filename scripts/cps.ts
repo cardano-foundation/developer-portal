@@ -8,10 +8,8 @@ import {
   cip_source_repo,
   cip_repo_base_url,
   cip_readme_url,
-  cip_repo_raw_base_url,
-  cip_regex,
 } from "./constants";
-import { getDocTag, identifyReferenceLinks, identifyMixedReferenceLinks } from "./reusable";
+import { getDocTag } from "./reusable";
 
 // Fetch markdown files from Github
 async function fetchReadmeContent(folderUrl: string, folderName: string): Promise<string | null> {
@@ -59,13 +57,13 @@ async function updateOrCreateReadmeFile(
   const creationDate = getDocTag(content, "Created");
 
   // Sanitize title
-  content = content.replace(
+  const newContent = content.replace(
     /Title: .+/,
     `Title: "${title}"\n${sidebarLabel}${custom_edit_url}`
   );
 
   // Add Content Info at the bottom of the page
-  content = content.concat(
+  const newContentWithInfo = newContent.concat(
     "\n" +
       "## CPS Information  \nThis CPS was created on **" +
       creationDate +
@@ -80,68 +78,16 @@ async function updateOrCreateReadmeFile(
       ")."
   );
 
-  const referenceLinks = identifyReferenceLinks(content);
-  if(referenceLinks.length > 0) {
-    await Promise.all(
-      referenceLinks.map(async (link) => {
-        if(link.url.indexOf("./") == 0 || link.url.indexOf("../") == 0) {
-
-          console.log(`Found reference links in CPS ${folderName}:`);
-          console.log(`WARNING: Reference link ${link.reference} in CPS ${folderName} is an relative link: ${link.url}.`);
-                    
-          // Rewrite link to static folder
-          content = content.replace(
-            `[${link.reference}]`,
-            `[${link.reference}](${link.url})`
-          );
-        }
-      })
-    );
-  }
-
-  const mixedReferenceLinks = identifyMixedReferenceLinks(content);
-  if (mixedReferenceLinks.length > 0) {
-    mixedReferenceLinks.forEach(mixedLink => {
-      const matchedReference = referenceLinks.find(link => link.reference === mixedLink.reference && (link.url.indexOf("./") == 0 || link.url.indexOf("../") == 0));
-      if (matchedReference) {
-
-        console.log(`Found mixed reference links in CPS ${folderName}:`);
-        console.log(`WARNING: Mixed reference link [${mixedLink.text}][${mixedLink.reference}] is an relative mixed link: ${matchedReference.url}.`);
-
-        content = content.replace(`[${mixedLink.text}][${mixedLink.reference}]`, `[${mixedLink.text}](${cip_repo_raw_base_url}${folderName}/${matchedReference.url})`);
-      }
-    });
-  }
-
-  const cip_resource = content.match(cip_regex);
-  if (cip_resource) {
-    await Promise.all(
-      cip_resource.map(async (r) => {
-        if (r.indexOf("http://") < 0 && r.indexOf("https://") < 0) {
-
-          // Create modified file_names in case we want to store files
-          // with a different ending, like JSON files
-          const modified_file_name = r
-            .replace("](", "")
-            .replace(".png)", ".png")
-            .replace(".jpg)", ".jpg")
-            .replace(".jpeg)", ".jpeg")
-            .replace(".json)", ".json");
-            
-          // Rewrite link to static folder
-          content = content.replace(
-              modified_file_name,
-              `../../../static/img/cps/${folderName}/${modified_file_name}`
-          );
-        }
-      })
-    );
-  }
+  // Replace image paths
+  const newContentWithCorrectImagePaths = newContentWithInfo.replace(
+    /!\[.*?\]\(\.\/(.*?)\)/g,
+    `![same text](../../../static/img/cps/${folderName}/$1)`
+  );
 
   const filePath = path.join(cps_target_folder, `${folderName}.md`);
 
   try {
-    await fs.promises.writeFile(filePath, content);
+    await fs.promises.writeFile(filePath, newContentWithCorrectImagePaths);
     console.log(`Updated ${filePath}`);
   } catch (error) {
     console.error(`Error updating ${filePath}:`, error.message);

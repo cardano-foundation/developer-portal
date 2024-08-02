@@ -7,7 +7,7 @@ image: /img/og/og-getstarted-testnets.png
 --- 
 
 ## Cardano testnets
-The [Cardano testnets](https://docs.cardano.org/cardano-testnets/environments) are your playgrounds when testing [Cardano integration](/docs/integrate-cardano/), building with [transaction metadata](/docs/transaction-metadata/), exploring [native tokens](/docs/native-tokens/) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/).
+The [Cardano testnets](https://docs.cardano.org/cardano-testnets/) are your playgrounds when testing [Cardano integration](/docs/integrate-cardano/), building with [transaction metadata](/docs/transaction-metadata/), exploring [native tokens](/docs/native-tokens/) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/).
 
 The testnets are an essential part of the development process for Cardano, as they allow developers to test and refine their code before deploying it on the live network, ultimately improving reliability and security.
 
@@ -44,17 +44,13 @@ You can download the current Cardano blockchain network configuration files for 
 The Pre-Production Testnet is a more comprehensive testing environment used to validate major upgrades, while the Preview Testnet is a more targeted testing environment used to showcase new features and gather feedback from the community.
 
 ### Where to get a testnet wallet?
-- [Lace Wallet](https://www.lace.io/) is a lightweight wallet developed by IOG and supports both PreProd, Preview and Sancho testnets.
-- [Eternl Wallet](https://eternl.io/) is a another lightweight wallet supporting both  with PreProd, Preview and Sancho testnets.
-- [Yoroi Nightly Wallet](https://chromewebstore.google.com/detail/yoroi-nightly/poonlenmfdfbjfeeballhiibknlknepo?hl=en&authuser=0) is a lightweight wallet developed by Emurgo and supports PreProd, PreView and Sancho testnet.
-- [Typhon Wallet](https://testnet.typhonwallet.io/#/wallet/access) is a lightweight wallet developed by StricaHQ and supports PreProd testnet.
-- [Flint Wallet](https://flint-wallet.com/) is a lightweight wallet developed by dcSpark and supports PreProd testnet.
-- [Ledger Nano S and Ledger Nano X](https://www.ledger.com/) are hardware wallets that support both PreProd and Preview testnets.
+- [Daedalus Wallet for Cardano Testnet](https://docs.cardano.org/cardano-testnets/daedalus-testnet) is the Pre-Production and Preview versions of Daedalus wallet.
+- [Nami Wallet](https://namiwallet.io/) is a lightweight wallet developed by Cryptonomic and supports both Pre-Production and Preview testnets.
+- [Eternl Wallet](https://eternl.io/) is a another lightweight wallet supporting both testnets with both single- and multiple-address wallets.
+- [Ledger Nano S and Ledger Nano X](https://www.ledger.com/) are hardware wallets that support both Pre-Production and Preview testnets.
 - [Cardano-wallet](/docs/integrate-cardano/listening-for-payments-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
 
-It's important to note that while all of these wallets support Cardano testnets, you will need to choose the testnet network option within the wallet when setting it up or switching to testnet, or choose the right version before you install a specific testnet wallet.
-
-In preparation for the Chang Hardfork in the second half of 2024, the so-called Sancho Testnet has been in place since the end of 2023 in which all governance actions, functions and tools are tested. Here is a [list of wallets that support Sanchonet](https://docs.sanchogov.tools/how-to-use-the-govtool/getting-started/get-a-compatible-wallet). 
+It's important to note that while all of these wallets support Cardano testnets, you will need to choose the testnet network option within the wallet when setting it up or switching to testnet.
 
 ### Where to get test ada?
 
@@ -72,6 +68,8 @@ In depth explanation about Cardano Testnet Faucet can be found [here.](/docs/int
 
 ### Which metadata explorers can I use for the Cardano testnets?
 - [pool.pm/test/metadata](https://pool.pm/test/metadata) is a testnet metadata explorer by [Pool.pm](https://pool.pm/)
+- [bi-testnet.stakepoolcentral.com](https://bi-testnet.stakepoolcentral.com) is a testnet transaction metadata explorer by [CENT](https://cent.stakepoolcentral.com).
 
 ### What kind of monitoring tools are available for the testnets?
-- Set up your own node's [Grafana/Promtheus monitoring](/docs/operate-a-stake-pool/grafana-dashboard-tutorial/#4-setting-up-grafana-dashboard) system
+- [Grafana dashboard](https://monitoring.cardano-testnet.iohkdev.io/grafana/d/Oe0reiHef/cardano-application-metrics-v2?orgId=1&refresh=1m&from=now-7d&to=now) provides many health metrics.
+- [Prometheus](/docs/stake-pool-course/handbook/apply-logging-prometheus/#docusaurus_skipToContent_fallback) is used to track the health and performance of Cardano nodes.

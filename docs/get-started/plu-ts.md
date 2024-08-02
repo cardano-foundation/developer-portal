@@ -39,6 +39,6 @@ the output can be found in the `dist` directory under the project root.
 
 ## Hello World
 
-You now have all you need to start your adventure with Typescript smart contracts. Have a look at the [hello world example contract](https://pluts.harmoniclabs.tech/examples/Hello%20World).
+You now have all you need to start your adventure with Typescript smart contracts. Have a look at the [hello world example contract](https://pluts.harmoniclabs.tech/docs/examples/Hello%20World).
 
-Visit the `plu-ts` website and explore [other examples](https://pluts.harmoniclabs.tech/category/examples).
+Visit the `plu-ts` website and explore [other examples](https://pluts.harmoniclabs.tech/docs/category/examples).

@@ -140,10 +140,7 @@ Should give you an output like this
 }
 ```
 
-Epoch and slot number should match when being compared to the data shown by Cardano Testnet explorers like
-- [testnet.cardanoscan.io](https://testnet.cardanoscan.io) is a Pre-Production and Preview block explorer by [Cardanoscan](https://cardanoscan.io).
-- [testnet.cexplorer.io](https://testnet.cexplorer.io/) is a Pre-Production and Preview block explorer by [Cexplorer](https://cexplorer.io).
-
+Epoch and slot number should match when being compared to the Cardano [Explorer for testnet](https://explorer.cardano-testnet.iohkdev.io/en)
 
 ![img](../../static/img/nfts/cardano_explorer_testnet.png)
 

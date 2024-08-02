@@ -753,22 +753,6 @@ export const Showcases = [
     tags: ["golang", "lowlevel"],
   },
   {
-    title: "Adder",
-    description: "A tool for tailing the Cardano blockchain and emitting events for each block and transaction seen, based on user configurable filters.",
-    preview: require("./builder-tools/adder.png"),
-    website: "https://github.com/blinklabs-io/adder",
-    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/adder",
-    tags: ["cli", "golang", "chainindex"],
-  },
-  {
-    title: "Cardano Node API",
-    description: "An HTTP API for interfacing with a local Cardano Node and providing the node internal data for HTTP clients.",
-    preview: require("./builder-tools/cardano-node-api.png"),
-    website: "https://github.com/blinklabs-io/cardano-node-api",
-    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/cardano-node-api",
-    tags: ["http", "golang", "json", "websocket"],
-  },
-  {
     title: "cscli",
     description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
     preview: require("./builder-tools/cscli.png"),
@@ -1106,14 +1090,6 @@ export const Showcases = [
     website: "https://github.com/wowica/xogmios",
     getstarted: null,
     tags: ["ogmios", "sdk", "lowlevel"],
-  },
-  {
-    title: "whisky",
-    description: "This is a library for building off-chain code on Cardano. It is a cardano-cli like wrapper on cardano-serialization-lib (equivalent on MeshJS’s lower level APIs), supporting serious DApps’ backend on rust codebase.",
-    preview: require("./builder-tools/whisky.png"),
-    website: "https://github.com/sidan-lab/whisky",
-    getstarted: "https://whisky.sidan.io/",
-    tags: ["rust", "typescript", "serialization", "sdk", "plutus"]
   },
 ];
 

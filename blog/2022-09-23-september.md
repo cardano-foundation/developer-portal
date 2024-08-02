@@ -24,7 +24,7 @@ sources={{
 
 **_Can you introduce yourself_**
 
-I go by [Allusian](https://twitter.com/allusian1), and I have served as a Core Contributor at ADAO since October of ‘21, after listening into spaces its earliest founder hosted and frequented in the community in the wake of the Goguen era. My main focus has been on the upkeep and design of the Discord server, onboarding new members, writing and editing documents, articles, and outreach via social media, as well as scheduling and organizing guest speakers for ADAO’s educational “Roundtable” Twitter spaces hosted every Saturday.
+I go by [Allusian](https://twitter.com/allusian1), and I have served as a Core Contributor at [ADAO](https://www.theadao.io/) since October of ‘21, after listening into spaces its earliest founder hosted and frequented in the community in the wake of the Goguen era. My main focus has been on the upkeep and design of the Discord server, onboarding new members, writing and editing documents, articles, and outreach via social media, as well as scheduling and organizing guest speakers for ADAO’s educational “Roundtable” Twitter spaces hosted every Saturday.
 
 [Thomas DiMatteo](https://twitter.com/Welikethetrees) is a community organizer, crypto researcher, entrepreneur, and front-end developer, with a  keen interest in decentralized finance and governance on Cardano and other blockchain ecosystems. He has six years of experience as a small business owner serving customers throughout the state of Florida, several years as an investor in blockchains, and a participant in decentralized finance and autonomous protocols.
 
@@ -61,7 +61,7 @@ We hope that, through catalyzing the proliferation of DAOs, ADAO will play a lea
 
 **_Now, what are your accomplishments so far, and what are you most proud of?_**
 
-There are too many accomplishments, large and small, to list, but we are especially proud of the [RoundTable DApp](https://roundtable.adaodapp.xyz/), which has seen wide adoption in the community, from advanced protocol DAOs to small groups of friends pooling ada to bid on art. One community group even uses RoundTable to donate to animal shelters!
+There are too many accomplishments, large and small, to list, but we are especially proud of the [RoundTable DApp](https://roundtable.theadao.io/), which has seen wide adoption in the community, from advanced protocol DAOs to small groups of friends pooling ada to bid on art. One community group even uses RoundTable to donate to animal shelters!
 
 We’ve also built a [Staking Portal DApp](https://staking.adaodapp.xyz/) that enables organizations to incentivize their tokenholders and saw [two proposals](https://www.lidonation.com/en/project-catalyst/group/adao) approved by Catalyst voters. The first helped us to compensate our RoundTable Developers, and the second funded further open-source development, as well as the establishment of the ADAO Foundation in Liechtenstein (currently underway).
 

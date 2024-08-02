@@ -67,14 +67,14 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 
 ## Instruction guides
 
-* [Project Catalyst (Fund12) Challenge and Proposal Guide](https://docs.projectcatalyst.io/fund-documentation/fund12-docs/how-to-submit-a-proposal)
+* [Project Catalyst Challenge and Proposal Guide](https://docs.google.com/document/d/1oE_cnP0gksdAanXV4w5DYaDNp_tbYEvyHhTUG4HYZ3Q/edit?usp=sharing)
 * [Proposal Assessor (formerly Community Advisor) Guide](https://docs.google.com/document/d/1g-iZhDlKhUBZkui1uv8NVNfJC4oVD3JtR-P6Fue7XPU/edit#heading=h.nvn8rjkdb8jh)
 
 ## FAQ
 
 Find common FAQ and the FAQ of previous funds on Project Catalyst:
-* [General Project Catalyst FAQ](https://cardanocataly.st/en/faq/)
-* [Project Catalyst Knowledge base](https://docs.projectcatalyst.io/)
+* [General Project Catalyst FAQ](https://cardanocataly.st/faq/)
+* [Project Catalyst FAQ + Timelines](https://iohk.zendesk.com/hc/en-us/articles/900006490763-Project-Catalyst-FAQ)
 
 ## Browse funded ideas
 

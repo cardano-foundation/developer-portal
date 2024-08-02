@@ -164,6 +164,7 @@ developer-portal
 │   ├── integrate-cardano
 │   ├── native-tokens
 │   ├── operate-a-stake-pool
+│   ├── stake-pool-course
 │   ├── transaction-metadata
 │   └── *.md
 ├── examples

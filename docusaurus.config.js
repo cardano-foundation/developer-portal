@@ -220,81 +220,38 @@ module.exports = {
             from: '/docs/governance/cardano-improvement-proposals/',
           },
           {
-            // redirect as many pages as possible from old SPO course to new SPO course
-            // (any old page not existing on new course, include in redirection to top level)
+            // redirect everything that went into the old stake pool course to the overview 
+            // of the new stake pool operator category. Not perfect but seems good enough.
             to: '/docs/operate-a-stake-pool/',
             from: [ 
-                    '/docs/stake-pool-course/',
+                    '/docs/stake-pool-course/', 
+                    '/docs/stake-pool-course/introduction-to-cardano',
                     '/docs/stake-pool-course/lesson-1',
                     '/docs/stake-pool-course/lesson-2',
                     '/docs/stake-pool-course/lesson-3',
                     '/docs/stake-pool-course/lesson-4',
                     '/docs/stake-pool-course/lesson-5',
+                    '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
+                    '/docs/stake-pool-course/handbook/grafana-loki',
                     '/docs/stake-pool-course/handbook/setup-virtual-box-written',
                     '/docs/stake-pool-course/handbook/setup-a-server-on-aws-written',
+                    '/docs/stake-pool-course/handbook/setup-firewall',
+                    '/docs/stake-pool-course/handbook/install-cardano-node-written',
+                    '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
+                    '/docs/stake-pool-course/handbook/use-cli',
+                    '/docs/stake-pool-course/handbook/utxo-model',
+                    '/docs/stake-pool-course/handbook/keys-addresses',
+                    '/docs/stake-pool-course/handbook/create-simple-transaction',
+                    '/docs/stake-pool-course/handbook/create-stake-pool-keys',
+                    '/docs/stake-pool-course/handbook/register-stake-keys',
+                    '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
+                    '/docs/stake-pool-course/handbook/configure-topology-files',
+                    '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
+                    '/docs/stake-pool-course/handbook/apply-logging-prometheus',
                     '/docs/stake-pool-course/assignments/assignment-1',
                     '/docs/stake-pool-course/assignments/assignment-2',
                     '/docs/stake-pool-course/assignments/kes_period'
                   ]
-          },
-          {
-            to: '/docs/operate-a-stake-pool/introduction-to-cardano/',
-            from: '/docs/stake-pool-course/introduction-to-cardano',
-          },
-          {
-
-            to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
-                    '/docs/stake-pool-course/handbook/grafana-loki',
-                    '/docs/stake-pool-course/handbook/apply-logging-prometheus',
-                  ]
-          },
-          {
-            to: '/docs/operate-a-stake-pool/hardening-server/',
-            from: '/docs/stake-pool-course/handbook/setup-firewall',
-          },
-          {
-            to: '/docs/operate-a-stake-pool/node-installation-process/',
-            from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
-          },
-          {
-            to: '/docs/get-started/running-cardano/',
-            from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
-          },
-          {
-            to: '/docs/get-started/create-simple-transaction/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/use-cli',
-                    '/docs/stake-pool-course/handbook/create-simple-transaction',
-                  ]
-          },
-          {
-            to: '/docs/get-started/technical-concepts/',
-            from: '/docs/stake-pool-course/handbook/utxo-model',
-          },
-          {
-            to: '/docs/operate-a-stake-pool/cardano-key-pairs/',
-            from: '/docs/stake-pool-course/handbook/keys-addresses',
-          },
-          {
-            to: '/docs/operate-a-stake-pool/generating-wallet-keys/',
-            from: '/docs/stake-pool-course/handbook/create-stake-pool-keys',
-          },
-          {
-            to: '/docs/operate-a-stake-pool/register-stake-address/',
-            from: '/docs/stake-pool-course/handbook/register-stake-keys',
-          },
-          {
-            to: '/docs/operate-a-stake-pool/register-stake-pool/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
-                    '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
-                  ]
-          },
-          {
-            to: '/docs/operate-a-stake-pool/cardano-relay-configuration/',
-            from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
         ],
       },

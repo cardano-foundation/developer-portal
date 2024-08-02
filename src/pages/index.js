@@ -64,7 +64,7 @@ const features = [
     ),
   },
   {
-    title: "Participate in Governance",
+    title: "Be Part of the Governance",
     imageUrl: "img/card-governance.svg",
     targetUrl: "docs/governance/",
     description: (
