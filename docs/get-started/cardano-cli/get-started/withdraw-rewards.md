@@ -49,7 +49,7 @@ cardano-cli babbage transaction build \
 
 > Estimated transaction fee: Coin 180593
 ```
-or using `cat` and the `$rewards` variable from above:
+or using `<` and the `$rewards` variable from above:
 
 ```shell
 cardano-cli babbage transaction build \
