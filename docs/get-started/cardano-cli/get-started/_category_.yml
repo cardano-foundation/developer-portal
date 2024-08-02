@@ -1,0 +1,4 @@
+position: 1 # float position is supported
+label: 'CLI - Get started'
+collapsible: true # make the category collapsible
+collapsed: true # keep the category open by default

@@ -14,7 +14,7 @@ image: /img/og/og-developer-portal.png
 Here we show you how to integrate Cardano into existing websites and services. 
 
 ## Integration Components
-- [Overview](/docs/get-started/cardano-components.md) of the different Cardano components.
+- [Overview](docs/get-started/cardano-node/cardano-components.md) of the different Cardano components.
 - [cardano-node](https://github.com/IntersectMBO/cardano-node) is the top level for the node and aggregates the other components from other packages: consensus, ledger and networking, with configuration, CLI, logging and monitoring.
 - [cardano-wallet](https://github.com/cardano-foundation/cardano-wallet) helps you manage ada. You can use it to send and receive payments on the Cardano blockchain via a http and cli interface.
 - [cardano-db-sync](https://github.com/IntersectMBO/cardano-db-sync) follows the Cardano chain and takes information from the chain and an internally maintained copy of ledger state. Data is then extracted from the chain and inserted into a PostgreSQL database. 
