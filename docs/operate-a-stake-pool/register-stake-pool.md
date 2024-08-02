@@ -78,7 +78,7 @@ Both the hashes must be equal. If the hashes do no match, then the uploaded .jso
 Find the minimum pool cost:
 
 ```
-minPoolCost=$(< protocol.json | jq -r .minPoolCost)
+minPoolCost=$(cat protocol.json | jq -r .minPoolCost)
 echo minPoolCost: ${minPoolCost}
 ```
 
@@ -97,7 +97,7 @@ cardano-cli stake-pool registration-certificate \
     --single-host-pool-relay <dns based relay, example ~ relaynode1.yourpoolname.com>  \
     --pool-relay-port 6000 \
     --metadata-url <url where you uploaded poolMetaData.json> \
-    --metadata-hash $(< poolMetaDataHash.txt) \
+    --metadata-hash $(cat poolMetaDataHash.txt) \
     --out-file pool.cert
 ```
 :::important
@@ -169,7 +169,7 @@ To understand the basics of submitting a transaction on the chain, refer to [Reg
 Registering a stake pool requires a deposit. This amount is specified in the already created `protocol.json`:
 
 ```
-stakePoolDeposit=$(< protocol.json | jq -r '.stakePoolDeposit')
+stakePoolDeposit=$(cat protocol.json | jq -r '.stakePoolDeposit')
 echo $stakePoolDeposit
 ```
 
@@ -177,7 +177,7 @@ Let's find out how much balance is in our wallet:
 
 ```
 cardano-cli query utxo \
-    --address $(< payment.addr) \
+    --address $(cat payment.addr) \
     --testnet-magic 1 > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -199,7 +199,7 @@ while read -r utxo; do
         tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
     fi
 done < balance.out
-txcnt=$(< balance.out | wc -l)
+txcnt=$(cat balance.out | wc -l)
 echo Total available ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
 ```
@@ -222,8 +222,8 @@ which in our case would be 9497237500 - 500000000 - 1000000 = 8996237500
 ```
 cardano-cli transaction build \
     ${tx_in} \
-    --tx-out $(< payment.addr)+8996237500 \
-    --change-address $(< payment.addr) \
+    --tx-out $(cat payment.addr)+8996237500 \
+    --change-address $(cat payment.addr) \
     --testnet-magic 1 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
@@ -249,7 +249,7 @@ Build the transaction:
 ```
 cardano-cli transaction build-raw \
     ${tx_in} \
-    --tx-out $(< payment.addr)+${txOut} \
+    --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $((${currentSlot} + 1000)) \
     --fee 172189 \
     --certificate-file pool.cert \
@@ -288,7 +288,7 @@ cat stakepoolid.txt
 
 Check for the presence of your pool ID on the network, with:
 ```
-cardano-cli query stake-snapshot --stake-pool-id $(< stakepoolid.txt) --testnet-magic 1
+cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --testnet-magic 1
 ```
 
 A non-empty string returned means you're registered. Congratulations!

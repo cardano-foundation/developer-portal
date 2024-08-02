@@ -27,7 +27,7 @@ Query the UTXO of the address that pays for the transaction and deposit:
 cd $HOME/cardano-testnet/keys
 
 cardano-cli query utxo \
-    --address $(< payment.addr) \
+    --address $(cat payment.addr) \
     --testnet-magic 1 > fullUtxo.out
 ```
 
@@ -44,7 +44,7 @@ so in this case the required UTXO would be `b64ae44e1195b04663ab863b62337e626c65
 
 ## `tx-out`:
 
-This would be `payment.addr` and the amount that has to be paid.  Since we don't know how much the transaction will cost we put it as 1 ADA for the moment - `$(< payment.addr)+1000000`
+This would be `payment.addr` and the amount that has to be paid.  Since we don't know how much the transaction will cost we put it as 1 ADA for the moment - `$(cat payment.addr)+1000000`
 
 ## `invalid-hereafter`:
 
@@ -77,8 +77,8 @@ Now, we build the transaction which will return the `tx.raw` transaction file an
 ```
 cardano-cli transaction build \
     --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
-    --tx-out $(< payment.addr)+1000000 \
-    --change-address $(< payment.addr) \
+    --tx-out $(cat payment.addr)+1000000 \
+    --change-address $(cat payment.addr) \
     --testnet-magic 1 \
     --certificate-file stake.cert \
     --invalid-hereafter $(( ${currentSlot} + 1000)) \
@@ -100,7 +100,7 @@ cardano-cli query protocol-parameters \
     --testnet-magic 1  \
     --out-file protocol.json
 
-stakeAddressDeposit=$(< protocol.json | jq -r '.stakeAddressDeposit')
+stakeAddressDeposit=$(cat protocol.json | jq -r '.stakeAddressDeposit')
 echo $stakeAddressDeposit
 ```
 
@@ -118,7 +118,7 @@ Now we have all the information in place to build the final transaction file:
 ```
 cardano-cli transaction build-raw \
     --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
-    --tx-out $(< payment.addr)+${txOut} \
+    --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $((${currentSlot} + 1000)) \
     --fee 172013 \
     --certificate-file stake.cert \

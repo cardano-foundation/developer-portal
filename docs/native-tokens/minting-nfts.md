@@ -220,7 +220,7 @@ cardano-cli address build --payment-verification-key-file payment.vkey --out-fil
 We will save our address hash in a variable called address:
 
 ```bash
-address=$(< payment.addr)
+address=$(cat payment.addr)
 ```
 
 ### Fund the address
@@ -566,7 +566,7 @@ To save this file as `metadata.json` use the following command:
 ```bash
 echo "{" >> metadata.json
 echo "  \"721\": {" >> metadata.json
-echo "    \"$(< policy/policyID)\": {" >> metadata.json
+echo "    \"$(cat policy/policyID)\": {" >> metadata.json
 echo "      \"$(echo $realtokenname)\": {" >> metadata.json
 echo "        \"description\": \"This is my first NFT thanks to the Cardano foundation\"," >> metadata.json
 echo "        \"name\": \"Cardano foundation NFT guide token\"," >> metadata.json
@@ -639,7 +639,7 @@ Since we need each of those values in our transaction, we will store them indivi
 txhash="insert your txhash here"
 txix="insert your TxIx here"
 funds="insert Amount in lovelace here"
-policyid=$(< policy/policyID)
+policyid=$(cat policy/policyID)
 output=1400000
 ```
 

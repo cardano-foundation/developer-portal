@@ -81,7 +81,7 @@ The wallet is currently empty, so if we check its balance now:
 
 ```
 cardano-cli query utxo \
-    --address $(< payment.addr)\
+    --address $(cat payment.addr)\
     --testnet-magic 1
 ```
 
