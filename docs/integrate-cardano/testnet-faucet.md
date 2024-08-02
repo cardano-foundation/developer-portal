@@ -22,7 +22,7 @@ Send your test tokens to this address: `addr_test1qqr585tvlc7ylnqvz8pyqwauzrdu0m
 3. Enter the address of the account where you want to top up funds.
 4. If you have been issued with an API key, please enter this to access any additional funds you may have been allocated.
 5. Confirm the `I'm not a robot` box and solve the captcha if needed.
-6. Click on `Request` and the funds will be in the testnet account you specified within a few minutes. Use the [Cardano Testnet Explorer](https://explorer.cardano-testnet.iohkdev.io/) in case you want to check any transactions on a Cardano testnet.
+6. Click on `Request` and the funds will be in the testnet account you specified within a few minutes. Use the [Cardano PreProd Testnet Explorer](https://preprod.cardanoscan.io/) and [Cardano PreView Testnet Explorer](https://preview.cardanoscan.io/) provided by Cardanoscan.io in case you want to check any transactions on a Cardano testnet.
 
 <!-- Commented iframe, but please feel free to test the w x h to fit it to the browser -->
 <!-- <div id="faucetcontainer">

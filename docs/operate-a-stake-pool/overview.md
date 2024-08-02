@@ -36,7 +36,7 @@ The basic category starts with an [introduction to Cardano](introduction-to-card
 ## Stake pool operator resources
 - [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content. 
 - [Topology Updater](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater) is intended to be a temporary solution to allow everyone to activate their relay nodes without having to postpone and wait for manual topology completion requests.
-- [CNCLI](https://github.com/AndrewWestberg/cncli) is a collection of utilities to enhance and extend cardano-cli. 
+- [CNCLI](https://github.com/cardano-community/cncli) is a collection of utilities to enhance and extend cardano-cli. 
 - [Jormanager](https://bitbucket.org/muamw10/jormanager/src/develop/) a Cardano stake pool management software. 
 - [Stake Pool Operator Scripts](https://github.com/gitmachtl/scripts) a collection of scripts to manage your stake pool step-by-step. 
 - [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
