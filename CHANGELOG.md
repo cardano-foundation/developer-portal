@@ -1669,3 +1669,24 @@ All of the merged PRs in May
 - alucao ([@alucao](https://github.com/alucao))
 - katomm ([@katomm](https://github.com/katomm))
 - wolf31o2 ([@wolf31o2](https://github.com/wolf31o2))
+
+
+## 2024.24.0 (2024-06-30)
+
+All of the merged PRs in June
+
+#### PRs: 5
+
+- Fixed Referenced Style Broken Link by ([@Shivam-1M](https://github.com/Shivam-1M)) in [#1262](https://github.com/cardano-foundation/developer-portal/pull/1262)
+- Add changelog for May 2024 by ([@fill-the-fill](https://github.com/fill-the-fill)) in [#1273](https://github.com/cardano-foundation/developer-portal/pull/1273)
+- Add cardano-node-api to Builder Tools by ([@wolf31o2](https://github.com/wolf31o2)) in [#1274](https://github.com/cardano-foundation/developer-portal/pull/1274)
+- update content security policy by ([@katomm](https://github.com/katomm)) in [#1275](https://github.com/cardano-foundation/developer-portal/pull/1275)
+- Add zenGate blog by ([@weqanhet](https://github.com/weqanhet)) in [#1279](https://github.com/cardano-foundation/developer-portal/pull/1279)
+
+#### Contributors: 5
+
+- Shivam-1M ([@Shivam-1M](https://github.com/Shivam-1M))
+- fill-the-fill ([@fill-the-fill](https://github.com/fill-the-fill))
+- wolf31o2 ([@wolf31o2](https://github.com/wolf31o2))
+- katomm ([@katomm](https://github.com/katomm))
+- weqanhet ([@weqanhet](https://github.com/weqanhet))
