@@ -188,7 +188,7 @@ cardano-cli babbage transaction view --tx-file tx.raw
     ],
     "witnesses": []
 }
-
+```
 Confirm that the keyHash for the stake address deregistration is correct with: 
 
 ```
