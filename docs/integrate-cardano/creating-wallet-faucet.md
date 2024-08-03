@@ -11,16 +11,16 @@ image: /img/og/og-developer-portal.png
 In this guide, we will show you how to create a **Cardano** wallet, receive some `tAda` (**test ada**) on a [testnet network](docs/get-started/testnets-and-devnets.md) and send basic example transactions. We will explore tools like `cardano-cli` and `cardano-wallet` on how they can help with these functionalities.
 
 :::note
-This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
+This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](docs/get-started/cardano-node/installing-cardano-node.md) guide for instructions on how to do that.
 
 You must also connect your `cardano-node` to a testnet network and make sure it is fully synchronized.
 
-If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/get-started/running-cardano) guide before proceeding.
+If you are not sure how to do that, It is recommended to read [Running cardano-node](docs/get-started/cardano-node/running-cardano.md) guide before proceeding.
 :::
 
 ### Cardano Wallets 
 
-So you installed your `cardano-node` and got it running, you probably even tried to query some simple blockchain data (If you read [Running cardano-node](/docs/get-started/running-cardano) guide). But how do you actually create a **Cardano** wallet, receive and send some `ada` or `tAda` tokens?
+So you installed your `cardano-node` and got it running, you probably even tried to query some simple blockchain data (If you read [Running cardano-node](/docs/get-started/cardano-node/running-cardano.md) guide). But how do you actually create a **Cardano** wallet, receive and send some `ada` or `tAda` tokens?
 
 First we have to look at the applications we can use to create wallets.
 
@@ -44,7 +44,7 @@ First we have to look at the applications we can use to create wallets.
 
 - [cardano-cli](https://github.com/IntersectMBO/cardano-node) : `cardano-cli` is also a [CLI (Command Line Interface)](https://en.wikipedia.org/wiki/Command-line_interface) application that provides **Cardano** wallet functionalities. But `cardano-cli` purpose is geared more towards general **Cardano** functionalities like generating **keys**, building and submitting **transactions**, managing **stake pools** certificates, simple blockchain queries like wallet address **UTXO** and more.
 
-    It is part of the `cardano-node` project repository, so if you [compile and install](/docs/get-started/installing-cardano-node) `cardano-node` you should also have `cardano-cli` as-well. It is one of the many Haskell-based **Cardano** software components being written by [InputOutputGlobal](https://iohk.io/).
+    It is part of the `cardano-node` project repository, so if you [compile and install](docs/get-started/cardano-node/installing-cardano-node.md) `cardano-node` you should also have `cardano-cli` as-well. It is one of the many Haskell-based **Cardano** software components being written by [InputOutputGlobal](https://iohk.io/).
 
 :::warning
 Always download the wallets from trusted sources. There are many fake wallets, malicious software pretending to be **Cardano** wallets that could potentially steal your tokens / assets.
@@ -166,7 +166,7 @@ addr_test1vz95zjvtwm9u9mc83uzsfj55tzwf99fgeyt3gmwm9gdw2xgwrvsa5
   - testnet addresses are **prefixed** with the string value `addr_test1`. 
 
 
- If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. You can learn more about the different **Cardano** blockchain networks [here](/docs/get-started/running-cardano#mainnet--production).
+ If you want to create a wallet address to be used on `mainnet`, please use the `--mainnet` flag instead of `--testnet-magic 1097911063`. You can learn more about the different **Cardano** blockchain networks [here](docs/get-started/cardano-node/running-cardano.md#mainnet--production).
 :::
 
 #### Querying the wallet **UTXO (Unspent Transaction Output)** with `cardano-cli`
@@ -482,7 +482,7 @@ Congratulations, You have created and sent your first **Cardano** transaction us
 #### Creating a wallet with `cardano-wallet`
 
 :::note
-This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](/docs/get-started/installing-cardano-wallet) guide for instructions on how to do that.
+This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](docs/get-started/cardano-wallet/installing-cardano-wallet.md) guide for instructions on how to do that.
 
 We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have chosen to store the files.
 :::

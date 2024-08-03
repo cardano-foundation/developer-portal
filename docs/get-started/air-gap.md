@@ -244,7 +244,7 @@ This confirms that your system will start properly after having updated your sys
 
 Use the standard instructions here at the Developer Portal:
 
-  - **[Installing cardano-node and cardano-cli from source](../get-started/installing-cardano-node)**
+  - **[Installing cardano-node and cardano-cli from source](../get-started/cardano-node/installing-cardano-node)**
 
 Note this will build `cardano-node` as well as `cardano-cli`, but don't worry: you won't be running a node inside the air gap. 😜
 

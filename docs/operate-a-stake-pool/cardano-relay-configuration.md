@@ -131,7 +131,7 @@ CONFIG=<$HOME>/cardano-testnet/config.json
 
 :::note
 
-For a detailed understanding of all the configuration parameters, please refer to [Running cardano-node](../get-started/running-cardano#cardano-node-parameters)
+For a detailed understanding of all the configuration parameters, please refer to [Running cardano-node](docs/get-started/cardano-node/running-cardano.md#cardano-node-parameters)
 
 :::
 

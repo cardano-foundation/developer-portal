@@ -17,7 +17,7 @@ There are currently two ways to make your NFTs:
 
 Minting requires a certain amount of skill in navigating and working with Linux through the terminal and a running Cardano node.
 
-We will not go into how to spin up a Cardano node, but this is covered in the [integrate Cardano category](../get-started/installing-cardano-node).
+We will not go into how to spin up a Cardano node, but this is covered in the [integrate Cardano category](docs/get-started/cardano-node/installing-cardano-node.md).
 :::
 
 ## What are native tokens/assets?

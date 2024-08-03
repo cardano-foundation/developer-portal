@@ -259,7 +259,7 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
           },
           {
-            to: '/docs/get-started/running-cardano/',
+            to: '/docs/get-started/cardano-node/running-cardano/',
             from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
           },
           {

@@ -2,6 +2,7 @@
 id: running-cardano
 title: How to run cardano-node
 sidebar_label: Running cardano-node
+sidebar_position: 3
 description: This guide will explain and show you how to run the cardano-node and components on your system.
 image: /img/og/og-getstarted-running-cardano-node.png
 --- 
@@ -10,7 +11,7 @@ image: /img/og/og-getstarted-running-cardano-node.png
 This guide will show you how to run `cardano-node` and `cardano-cli` on your system and some simple examples of how you can interact with the **Cardano** blockchain.
 
 :::note
-This guide assumes you installed `cardano-node` and `cardano-cli` into your system. If not, you can refer to [Installing cardano-node](/docs/get-started/installing-cardano-node) guide for instructions on how to do that.
+This guide assumes you installed `cardano-node` and `cardano-cli` into your system. If not, you can refer to [Installing cardano-node](docs/get-started/cardano-node/installing-cardano-node.md) guide for instructions on how to do that.
 :::
 
 :::important
@@ -172,7 +173,7 @@ In this section, we will use the path `$HOME/cardano/testnet` to store all the t
 
 We will focus on six key command-line parameters for running a node: 
 
-**`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](/docs/get-started/running-cardano#configuration-files).
+**`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](docs/get-started/cardano-node/running-cardano.md#configuration-files).
 
 > For example, If you have downloaded the `topology.json` file to the path `$HOME/cardano/testnet/topology.json`, then the argument would be something like this:
 ```
@@ -341,12 +342,11 @@ To know whether you are fully synced or not, you can check the **Cardano Blockch
 [https://explorer.cardano.org](https://explorer.cardano.org)
 
 #### Testnet Explorer
-- [testnet.cardanoscan.io](https://testnet.cardanoscan.io) is a Pre-Production and Preview block explorer by [Cardanoscan](https://cardanoscan.io).
-- [testnet.cexplorer.io](https://testnet.cexplorer.io/) is a Pre-Production and Preview block explorer by [Cexplorer](https://cexplorer.io).
+[https://explorer.cardano-testnet.iohkdev.io](https://explorer.cardano-testnet.iohkdev.io)
 
 Scroll down to the **Latest Blocks** section, and you can find the latest network tip.
 
-![img](../../static/img/integrate-cardano/latest-block.png)
+![img](../../../static/img/integrate-cardano/latest-block.png)
 
 :::important
 Before making any transactions, make sure you are fully synced to the blockchain network.

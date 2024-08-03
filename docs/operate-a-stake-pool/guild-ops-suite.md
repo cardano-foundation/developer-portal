@@ -62,7 +62,7 @@ chmod 755 guild-deploy.sh
 
 ### Build of Node/DBSync components
 
-We assume you'd have already seen the guide [here](../../docs/get-started/installing-cardano-node.md). There are similar build scripts/instructions available for building different cardano-node, cardano-db-sync, offline-metadata-tools and setting up postgres+postgREST with dbsync) on guild documentations. You can navigate instructions for each of them [here](https://cardano-community.github.io/guild-operators/build/). The instructions will also deploy these as a systemd service, which is recommended to avoid manually managing services.  
+We assume you'd have already seen the guide [here](docs/get-started/cardano-node/installing-cardano-node.md). There are similar build scripts/instructions available for building different cardano-node, cardano-db-sync, offline-metadata-tools and setting up postgres+postgREST with dbsync) on guild documentations. You can navigate instructions for each of them [here](https://cardano-community.github.io/guild-operators/build/). The instructions will also deploy these as a systemd service, which is recommended to avoid manually managing services.  
 
 ### Customise configuration
 

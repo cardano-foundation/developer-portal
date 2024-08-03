@@ -1,7 +1,8 @@
 ---
 id: cardano-components
 title: Cardano Components
-sidebar_label: Overview
+sidebar_label: Cardano components
+sidebar_position: 1
 description: This article explains all the different Cardano components and their functions.
 image: /img/og/og-getstarted-cardano-components.png
 --- 

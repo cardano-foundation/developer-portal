@@ -1,0 +1,4 @@
+position: 6 # float position is supported
+label: 'New tracing system'
+collapsible: true # make the category collapsible
+collapsed: true # keep the category open by default
