@@ -11,6 +11,7 @@
 - [ ] I have read the [How to Contribute](https://developers.cardano.org/docs/portal-contribute/).
 - [ ] I have read the [Showcase Requirements](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/showcases.js)
 - [ ] I have run `yarn build` after adding my changes **without getting any errors**. 
+- [ ] I have not committed any changes to `yarn.lock` (or have [removed these changes](https://developers.cardano.org/docs/portal-contribute/#i-committed-yarnlock-to-my-pr-branch-what-do-i-do)).
 
 ## Showcase addition
 
