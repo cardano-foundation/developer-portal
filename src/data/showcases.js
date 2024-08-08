@@ -1163,6 +1163,14 @@ export const Showcases = [
     source: null,
     tags: ["favorite", "educational"],
   },
+  {
+    title: "Chainspect",
+    description: "Chainspect is an independent blockchain analytics platform focused on tracking technical metrics for the most widely used blockchains, including Cardano. We track Real-Time TPS, Max Recorded TPS, Max Theoretical TPS, Block Time, TTF, Governance Model, and Launch Date for 40+ chains, including Cardano.",
+    preview: require("./showcase/chainspect.png"),
+    website: "https://chainspect.app",
+    source: null,
+    tags: ["analytics"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
