@@ -132,8 +132,16 @@ module.exports = {
       "smart-contracts/opshin",
       "smart-contracts/plu-ts",
     ],
-    "Be Part of the Governance": [
+    "Participate in Governance": [
       "governance/overview",
+      {
+        type: "category",
+        label: "Cardano Governance",
+        items: [
+          "governance/cardano-governance/overview",
+          "governance/cardano-governance/governance-actions",
+        ],
+      },
       {
         type: "category",
         label: "Cardano Improvement Proposals (CIPs)",
