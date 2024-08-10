@@ -1115,6 +1115,14 @@ export const Showcases = [
     getstarted: "https://whisky.sidan.io/",
     tags: ["rust", "typescript", "serialization", "sdk", "plutus"]
   },
+  {
+    title: "Mumak",
+    description: "A custom PostgreSQL extension to interact with Cardano CBOR data directly.",
+    preview: require("./builder-tools/mumak.png"),
+    website: "https://github.com/txpipe/mumak",
+    getstarted: "https://github.com/txpipe/mumak/blob/main/docs/INSTALL.md",
+    tags: ["rust", "chainindex", "sql", "lowlevel"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
