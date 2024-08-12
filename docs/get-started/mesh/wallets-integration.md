@@ -8,10 +8,11 @@ image: /img/og/og-getstarted-mesh.png
 ---
 
 With Mesh, you can initialize a new wallet with:
-- CIP-30 wallets ([Browser Wallet](#browser-wallet))
-- Cardano CLI generated keys ([App Wallet](#app-wallet))
-- Mnemonic phrases ([App Wallet](#app-wallet))
-- Private key ([App Wallet](#app-wallet))
+- CIP-30 & CIP-95 wallets ([Browser Wallet](#browser-wallet))
+- Cardano CLI generated keys ([Mesh Wallet](#mesh-wallet))
+- Mnemonic phrases ([Mesh Wallet](#mesh-wallet))
+- Private key ([Mesh Wallet](#mesh-wallet))
+- Read only ([Mesh Wallet](#mesh-wallet))
 
 ## Browser Wallet
 
@@ -32,47 +33,51 @@ const assets = await wallet.getAssets();
 
 | APIs | |
 |--|--|
-| [Get installed wallets](https://meshjs.dev/apis/browserwallet#getInstallWallets) | ```BrowserWallet.getInstalledWallets();``` |
-| [Connect wallet](https://meshjs.dev/apis/browserwallet#connectWallet) | ```const wallet = await BrowserWallet.enable('eternl');``` |
-| [Get balance](https://meshjs.dev/apis/browserwallet#getBalance) | ```const balance = await wallet.getBalance();``` |
-| [Get change address](https://meshjs.dev/apis/browserwallet#getChangeAddress) | ```const changeAddress = await wallet.getChangeAddress();``` |
-| [Get network ID](https://meshjs.dev/apis/browserwallet#getNetworkId) | ```const networkId = await wallet.getNetworkId();``` |
-| [Get reward addresses](https://meshjs.dev/apis/browserwallet#getRewardAddresses) | ```const rewardAddresses = await wallet.getRewardAddresses();``` |
-| [Get used addresses](https://meshjs.dev/apis/browserwallet#getUsedAddresses) | ```const usedAddresses = await wallet.getUsedAddresses();``` |
-| [Get unused addresses](https://meshjs.dev/apis/browserwallet#getUnusedAddresses) | ```const unusedAddresses = await wallet.getUnusedAddresses();``` |
-| [Get UTXOs](https://meshjs.dev/apis/browserwallet#getUtxos) | ```const utxos = await wallet.getUtxos();``` |
-| [Sign data](https://meshjs.dev/apis/browserwallet#signData) | ```const addresses = await wallet.getUsedAddresses(); const signature = await wallet.signData(addresses[0], 'mesh');``` |
-| [Sign transaction](https://meshjs.dev/apis/browserwallet#signTx) | ```const signedTx = await wallet.signTx(tx, partialSign?);``` |
-| [Submit transaction](https://meshjs.dev/apis/browserwallet#submitTx) | ```const txHash = await wallet.submitTx(signedTx);``` |
-| [Get lovelace](https://meshjs.dev/apis/browserwallet#getLovelace) | ```const lovelace = await wallet.getLovelace();``` |
-| [Get assets](https://meshjs.dev/apis/browserwallet#getAssets) | ```const assets = await wallet.getAssets();``` |
-| [Get policy IDs](https://meshjs.dev/apis/browserwallet#getPolicyIds) | ```const policyIds = await wallet.getPolicyIds();``` |
-| [Get collection of assets](https://meshjs.dev/apis/browserwallet#getPolicyIdAssets) | ```const assets = await wallet.getPolicyIdAssets('64af2...42');``` |
+| [Get installed wallets](https://meshjs.dev/apis/wallets/browserwallet#getInstallWallets) | ```BrowserWallet.getInstalledWallets();``` |
+| [Connect wallet](https://meshjs.dev/apis/wallets/browserwallet#connectWallet) | ```const wallet = await BrowserWallet.enable('eternl');``` |
+| [Get balance](https://meshjs.dev/apis/wallets/browserwallet#getBalance) | ```const balance = await wallet.getBalance();``` |
+| [Get change address](https://meshjs.dev/apis/wallets/browserwallet#getChangeAddress) | ```const changeAddress = await wallet.getChangeAddress();``` |
+| [Get network ID](https://meshjs.dev/apis/wallets/browserwallet#getNetworkId) | ```const networkId = await wallet.getNetworkId();``` |
+| [Get reward addresses](https://meshjs.dev/apis/wallets/browserwallet#getRewardAddresses) | ```const rewardAddresses = await wallet.getRewardAddresses();``` |
+| [Get used addresses](https://meshjs.dev/apis/wallets/browserwallet#getUsedAddresses) | ```const usedAddresses = await wallet.getUsedAddresses();``` |
+| [Get unused addresses](https://meshjs.dev/apis/wallets/browserwallet#getUnusedAddresses) | ```const unusedAddresses = await wallet.getUnusedAddresses();``` |
+| [Get UTXOs](https://meshjs.dev/apis/wallets/browserwallet#getUtxos) | ```const utxos = await wallet.getUtxos();``` |
+| [Sign data](https://meshjs.dev/apis/wallets/browserwallet#signData) | ```const addresses = await wallet.getUsedAddresses(); const signature = await wallet.signData(addresses[0], 'mesh');``` |
+| [Sign transaction](https://meshjs.dev/apis/wallets/browserwallet#signTx) | ```const signedTx = await wallet.signTx(tx, partialSign?);``` |
+| [Submit transaction](https://meshjs.dev/apis/wallets/browserwallet#submitTx) | ```const txHash = await wallet.submitTx(signedTx);``` |
+| [Get lovelace](https://meshjs.dev/apis/wallets/browserwallet#getLovelace) | ```const lovelace = await wallet.getLovelace();``` |
+| [Get assets](https://meshjs.dev/apis/wallets/browserwallet#getAssets) | ```const assets = await wallet.getAssets();``` |
+| [Get policy IDs](https://meshjs.dev/apis/wallets/browserwallet#getPolicyIds) | ```const policyIds = await wallet.getPolicyIds();``` |
+| [Get collection of assets](https://meshjs.dev/apis/wallets/browserwallet#getPolicyIdAssets) | ```const assets = await wallet.getPolicyIdAssets('64af2...42');``` |
+| [Get Supported Extensions](https://meshjs.dev/apis/wallets/browserwallet#getSupportedExtensions) | ```await wallet.getSupportedExtensions('eternl');``` |
+| [Get Extensions](https://meshjs.dev/apis/wallets/browserwallet#getExtensions) | ```await wallet.getExtensions();``` |
+| [Get DRep ID Key](https://meshjs.dev/apis/wallets/browserwallet#getSupportedExtensions) | ```await wallet.getPubDRepKey();``` |
+| [Get Registered Pub Stake Keys](https://meshjs.dev/apis/wallets/browserwallet#getRegisteredpubstakekeys) | ```await wallet.getRegisteredPubStakeKeys();``` |
 
-Definitely do check out the [Mesh Playground](https://meshjs.dev/apis/browserwallet) for live demo and full explanation.
+Definitely do check out the [Mesh Playground](https://meshjs.dev/apis/wallets/browserwallet) for live demo and full explanation.
 
-## App Wallet
+## Mesh Wallet
 
-[App Wallet](https://meshjs.dev/apis/appwallet) is use for building transactions in your applications. You can import App Wallet with:
+[App Wallet](https://meshjs.dev/apis/wallets/meshwallet) is use for building transactions in your applications. You can import App Wallet with:
 
 ```javascript
-import { AppWallet } from '@meshsdk/core';
+import { MeshWallet } from '@meshsdk/core';
 ```
 
 ### Generate a new wallet
 
 ```javascript
-import { AppWallet } from '@meshsdk/core';
+import { MeshWallet } from '@meshsdk/core';
 
-const mnemonic = AppWallet.brew();
+const mnemonic = MeshWallet.brew();
 ```
 
 ### Load with Cardano CLI generated keys
 
 ```javascript
-import { AppWallet } from '@meshsdk/core';
+import { MeshWallet } from '@meshsdk/core';
 
-const wallet = new AppWallet({
+const wallet = new MeshWallet({
   networkId: 0,
   fetcher: blockchainProvider,
   submitter: blockchainProvider,
@@ -87,9 +92,9 @@ const wallet = new AppWallet({
 ### Load with mnemonic phrases
 
 ```javascript
-import { AppWallet } from '@meshsdk/core';
+import { MeshWallet } from '@meshsdk/core';
 
-const wallet = new AppWallet({
+const wallet = new MeshWallet({
   networkId: 0,
   fetcher: blockchainProvider,
   submitter: blockchainProvider,
@@ -103,9 +108,9 @@ const wallet = new AppWallet({
 ### Load with private keys
 
 ```javascript
-import { AppWallet } from '@meshsdk/core';
+import { MeshWallet } from '@meshsdk/core';
 
-const wallet = new AppWallet({
+const wallet = new MeshWallet({
   networkId: 0,
   fetcher: blockchainProvider,
   submitter: blockchainProvider,
@@ -116,4 +121,20 @@ const wallet = new AppWallet({
 });
 ```
 
-Check out the [Mesh Playground](https://meshjs.dev/apis/appwallet) for live demo and full explanation.
+### Read only wallet
+
+```javascript
+import { MeshWallet } from '@meshsdk/core';
+
+const wallet = new MeshWallet({
+  networkId: 0,
+  fetcher: blockchainProvider,
+  submitter: blockchainProvider,
+  key: {
+    type: 'address',
+    address: 'addr_test1qpvx0sacufuypa2k4sngk7q40zc5c4npl337uusdh64kv0uafhxhu32dys6pvn6wlw8dav6cmp4pmtv7cc3yel9uu0nq93swx9',
+  },
+});
+```
+
+Check out the [Mesh Playground](https://meshjs.dev/apis/wallets/meshwallet) for live demo and full explanation.

@@ -9,6 +9,8 @@ image: /img/og/og-getstarted-mesh.png
 
 In this section, we will look at how to create transactions to work with smart contracts. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
 
+We have also released a collection of Aiken smart contracts and its corresponding transactions. You can check out the [Aiken Playground](https://meshjs.dev/smart-contracts) for live demo and full explanation.
+
 In this section, we will explore the following:
 
 - [Lock Assets in Smart Contract](#lock-assets-in-smart-contract)
