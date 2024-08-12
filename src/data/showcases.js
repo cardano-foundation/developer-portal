@@ -723,15 +723,6 @@ export const Showcases = [
     tags: ["metadata", "identity"],
   },
   {
-    title: "Pavia",
-    description:
-      "Create, explore and trade in the Cardano virtual world owned by its users.",
-    preview: require("./showcase/pavia.png"),
-    website: "https://www.pavia.io",
-    source: null,
-    tags: ["game", "nftproject"],
-  },
-  {
     title: "Turf",
     description:
       "Turf creates cartographic NFTs / wall art. Each Turf is a gorgeous 1/1 map based artwork of your favorite place on earth, preserved as interactive 3D NFTs.",
