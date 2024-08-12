@@ -56,22 +56,21 @@ actions against this single stored value.
 When proposing a governance action, the proposer may employ an *anchor*, which comprises a *URL* hosting a document that outlines the rationale
 for the proposed changes, along with the document's *hash*.
 
-The document at the URL can be of a free form. It's important that it should communicate to ada holders the *what* and the *why* of the proposal. This tutorial mostly uses 'https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld' as an example, see [here](https://github.com/Ryun1/CIPs/blob/governance-metadata-actions/CIP-0108/test-vector.md) for more details.
+The document at the URL can be of a free form. It's important that it should communicate to ada holders the *what* and the *why* of the proposal. This tutorial mostly uses 'https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld' as an example, see [here](https://github.com/cardano-foundation/CIPs/blob/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/test-vector.md) for more details.
 
-See [CIP-100 | Governance Metadata](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0100) and [CIP-0108? | Governance Metadata - Governance Actions](https://github.com/cardano-foundation/CIPs/pull/632) for standard.
-Following CIP-100, we canonize the metadata anchor first, via [JSON-LD playground](https://json-ld.org/playground/), which we then hash.
+See [CIP-100 | Governance Metadata](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0100) and [CIP-0108 | Governance Metadata - Governance Actions](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108) for standard.
 
 You can use `cardano-cli` to get the hash:
 
 ```bash
-cardano-cli hash anchor-data --file-text treasury-withdrawal.canonical
-931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5
+cardano-cli hash anchor-data --file-text treasury-withdrawal.jsonld
+311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4
 ```
 Alternatively, utilize b2sum to hash the document:
 
 ```bash
-b2sum -l 256 treasury-withdrawal.canonical
-931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5  treasury-withdrawal.canonical
+b2sum -l 256 treasury-withdrawal.jsonld
+311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4  treasury-withdrawal.jsonld
 ```
 You will need to supply the hash of the document when creating a governance action.
 
@@ -92,9 +91,9 @@ You can create a proposal to add them as new CC members with an expiration epoch
 cardano-cli conway governance action update-committee \
   --testnet \
   --governance-action-deposit $(cardano-cli query protocol-parameters | jq -r '.govActionDeposit') \
-  --deposit-return-stake-verification-key-file stake.vkey \
-  --anchor-url https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --deposit-return-stake-verification-key-file stake.vkey \931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5
+  --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --add-cc-cold-verification-key-hash 89181f26b47c3d3b6b127df163b15b74b45bba7c3b7a1d185c05c2de \
   --epoch 100 \
   --add-cc-cold-verification-key-hash ea8738081fca0726f4e781f5e55fda05f8745432a5f8a8d09eb0b34b \
@@ -116,8 +115,8 @@ cardano-cli conway governance action update-committee \
   --testnet \
   --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
-  --anchor-url https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --remove-cc-cold-verification-key-hash 89181f26b47c3d3b6b127df163b15b74b45bba7c3b7a1d185c05c2de \
   --threshold 1/2 \
   --prev-governance-action-tx-id fe2c99fe6bc75a9666427163d51ae7dbf5a60df40135361b7bfd53ac6c7912ec \
@@ -132,8 +131,8 @@ cardano-cli conway governance action update-committee \
   --testnet \
   --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
-  --anchor-url https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --threshold 60/100 \
   --prev-governance-action-tx-id fe2c99fe6bc75a9666427163d51ae7dbf5a60df40135361b7bfd53ac6c7912ec \
   --prev-governance-action-index 0 \
@@ -142,7 +141,7 @@ cardano-cli conway governance action update-committee \
 
 ## Updating the constitution
 
-This section describes how to propose a new constitution. Lets's use as an axample the interim constitution that is to be used 
+This section describes how to propose a new constitution. Lets's use as an example the interim constitution that is to be used 
 on Mainnet. It is available in https://ipfs.io/ipfs/Qmdo2J5vkGKVu2ur43PuTrM7FdaeyfeFav8fhovT6C2tto
 
 ### Find the last enacted Constitution governance action 
@@ -193,7 +192,7 @@ a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d
 While the constitution is an informal, off-chain document, there will also be an optional script that can enforce some guidelines. This script acts 
 to supplement the constitutional committee by restricting some proposal types.
 
-At the Chang hardfork, the interim constitution will be suplemented with a Guardrails script. It is soon to be open sourced, you will find it here: https://github.com/IntersectMBO/constitution-priv 
+At the Chang hardfork, the interim constitution will be supplemented with a Guardrails script. It is soon to be open sourced, you will find it here: https://github.com/XXXX
 
 The guardrails script applies only to protocol parameter update and treasury withdrawal proposals.
 
@@ -240,8 +239,8 @@ cardano-cli conway governance action create-constitution \
   --testnet \
   --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
-  --anchor-url https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --constitution-url https://ipfs.io/ipfs/Qmdo2J5vkGKVu2ur43PuTrM7FdaeyfeFav8fhovT6C2tto \
   --constitution-hash "a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d" \
   --constitution-script-hash "edcd84c10e36ae810dc50847477083069db796219b39ccde790484e0" \
@@ -272,8 +271,8 @@ cardano-cli conway governance action create-no-confidence \
   --testnet \
   --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
-  --anchor-url https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --prev-governance-action-tx-id fe2c99fe6bc75a9666427163d51ae7dbf5a60df40135361b7bfd53ac6c7912ec \
   --prev-governance-action-index 0 \
   --out-file no-confidence.action
@@ -293,8 +292,8 @@ cardano-cli conway governance action create-treasury-withdrawal \
   --testnet \
   --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
-  --anchor-url https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --funds-receiving-stake-verification-key-file stake.vkey \
   --constitution-script-hash "edcd84c10e36ae810dc50847477083069db796219b39ccde790484e0" \
   --transfer 50000000000 \
@@ -314,7 +313,7 @@ cardano-cli conway governance action create-info --testnet \
   --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url  https://tinyurl.com/yc74fxx4 \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --out-file info.action
 ```
 From here, you just need to [submit the proposal in a transaction](#submitting-the-action-file-in-a-transaction) 
@@ -330,8 +329,8 @@ cardano-cli conway governance action create-protocol-parameters-update \
   --testnet \
   --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
-  --anchor-url https://raw.githubusercontent.com/Ryun1/metadata/main/cip108/treasury-withdrawal.jsonld \
-  --anchor-data-hash 931f1d8cdfdc82050bd2baadfe384df8bf99b00e36cb12bfb8795beab3ac7fe5 \
+  --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/examples/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --constitution-script-hash "edcd84c10e36ae810dc50847477083069db796219b39ccde790484e0" \
   --key-reg-deposit-amt 1000000 \
   --out-file pp-update.action
