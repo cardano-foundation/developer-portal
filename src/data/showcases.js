@@ -274,7 +274,7 @@ export const Showcases = [
     preview: require("./showcase/cf-explorer.png"),
     website: "https://beta.explorer.cardano.org",
     source: "https://github.com/cardano-foundation/cf-explorer",
-    tags: ["explorer"],
+    tags: ["explorer", "opensource"],
   },
   {
     title: "CExplorer",
