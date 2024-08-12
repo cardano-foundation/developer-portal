@@ -23,9 +23,9 @@ If you need help feel free to open issues at the [`plu-ts` git repository](https
 
 ### Example contract
 
-some example projects can be found [in the `plu-ts` documentation](https://pluts.harmoniclabs.tech/docs/category/examples);
+some example projects can be found [in the `plu-ts` documentation](https://pluts.harmoniclabs.tech/category/examples);
 
-here we report the `Hello plu-ts` contract; to see how it works you can follow [the example project](https://pluts.harmoniclabs.tech/docs/examples/Hello%20World#run-the-template).
+here we report the `Hello plu-ts` contract; to see how it works you can follow [the example project](https://pluts.harmoniclabs.tech/examples/Hello_world_v0).
 
 ```ts
 import { bool, compile, makeValidator, PaymentCredentials, pBool, pfn, Script, ScriptType, PScriptContext, bs, PPubKeyHash } from "@harmoniclabs/plu-ts";
