@@ -1115,6 +1115,14 @@ export const Showcases = [
     getstarted: "https://whisky.sidan.io/",
     tags: ["rust", "typescript", "serialization", "sdk", "plutus"]
   },
+  {
+    title: "Pallas.Dotnet",
+    description: "Pallas.DotNet is a .NET wrapper around the Pallas Rust library, which provides building blocks for the Cardano blockchain ecosystem. This library allows .NET developers to access the functionality of Pallas in a seamless and straightforward manner.",
+    preview: require("./builder-tools/pallas-dotnet.png"),
+    website: "https://github.com/SAIB-Inc/Pallas.Dotnet",
+    getstarted: null,
+    tags: ["rust", "net", "serialization", "sdk"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
