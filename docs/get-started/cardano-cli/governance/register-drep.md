@@ -182,7 +182,7 @@ Submit it to the chain:
 
 ```shell
 cardano-cli conway transaction submit \
---tx-file tx.signed
+  --tx-file tx.signed
 ```
 
 ### Query the DRep state to confirm:

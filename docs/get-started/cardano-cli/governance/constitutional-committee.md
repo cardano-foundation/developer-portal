@@ -31,8 +31,8 @@ The most basic setup for a Constitutional Committee member is using Ed25519 keys
 
 ```shell
 cardano-cli conway governance committee key-gen-cold \
-    --cold-verification-key-file cc-cold.vkey \
-    --cold-signing-key-file cc-cold.skey
+  --cold-verification-key-file cc-cold.vkey \
+  --cold-signing-key-file cc-cold.skey
 ```
 As usual, the ed25519 keys are wrapped on a text envelope:
 
@@ -55,7 +55,7 @@ As usual, the ed25519 keys are wrapped on a text envelope:
 
 ```shell
 cardano-cli conway governance committee key-hash \
-    --verification-key-file cc-cold.vkey > cc-key.hash
+  --verification-key-file cc-cold.vkey > cc-key.hash
 ```
 
 ```shell
@@ -77,8 +77,8 @@ To generate a hot key-pair run the following command:
 
 ```shell
 cardano-cli conway governance committee key-gen-hot \
-    --verification-key-file cc-hot.vkey \
-    --signing-key-file cc-hot.skey
+  --verification-key-file cc-hot.vkey \
+  --signing-key-file cc-hot.skey
 ```
 
 Hot keys are also ed25519 keys wrapped on a text envelope:
@@ -107,9 +107,9 @@ The _Authorization Certificate_ allows the hot credential to act on behalf of th
 
 ```shell
 cardano-cli conway governance committee create-hot-key-authorization-certificate \
-    --cold-verification-key-file cc-cold.vkey \
-    --hot-verification-key-file cc-hot.vkey \
-    --out-file cc-authorization.cert
+  --cold-verification-key-file cc-cold.vkey \
+  --hot-verification-key-file cc-hot.vkey \
+  --out-file cc-authorization.cert
 ```
 
 ```shell
@@ -163,23 +163,23 @@ Alice:
 
 ```shell
 cardano-cli conway governance committee key-gen-cold \
-    --cold-verification-key-file alice-cold.vkey \
-    --cold-signing-key-file alice-cold.skey
+  --cold-verification-key-file alice-cold.vkey \
+  --cold-signing-key-file alice-cold.skey
 ```
 
 Bob:
 
 ```shell
 cardano-cli conway governance committee key-gen-cold \
-    --cold-verification-key-file bob-cold.vkey \
-    --cold-signing-key-file bob-cold.skey
+  --cold-verification-key-file bob-cold.vkey \
+  --cold-signing-key-file bob-cold.skey
 ```
 Carol:
 
 ```shell
 cardano-cli conway governance committee key-gen-cold \
-    --cold-verification-key-file carol-cold.vkey \
-    --cold-signing-key-file carol-cold.skey
+  --cold-verification-key-file carol-cold.vkey \
+  --cold-signing-key-file carol-cold.skey
 ```
 
 ### Get verification key hashes:
@@ -311,11 +311,11 @@ f5d42214cb2625cfc34e5c0cfb1daceee44a4a3c2e6807ab67cd6adb
 The _Authorization Certificate_ allows the hot credential to act on behalf of the cold credential by signing transactions where votes are cast. If the 
 *hot* credential is compromised at any point, the committee member must generate a new one and issue a new Authorization Certificate. A new Authorization Certificate registered on-chain overrides the previous one, effectively invalidating any votes signed by the old hot credential. This applies only to actions that have not yet been ratified. Actions that have been already ratified or enacted by the old hot credential are not affected.
 
-```
+```shell
 cardano-cli conway governance committee create-hot-key-authorization-certificate \
---cold-script-hash ad31d247bb2549db98020c5a6331732ebe559ad85b5768abbda3eb0d \
---hot-script-hash f5d42214cb2625cfc34e5c0cfb1daceee44a4a3c2e6807ab67cd6adb \
---out-file cc-authorization.cert
+  --cold-script-hash ad31d247bb2549db98020c5a6331732ebe559ad85b5768abbda3eb0d \
+  --hot-script-hash f5d42214cb2625cfc34e5c0cfb1daceee44a4a3c2e6807ab67cd6adb \
+  --out-file cc-authorization.cert
 ```
 
 ### Submit the authorization certificate in a transaction
