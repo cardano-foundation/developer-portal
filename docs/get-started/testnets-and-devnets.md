@@ -58,7 +58,7 @@ In preparation for the Chang Hardfork in the second half of 2024, the so-called 
 
 ### Where to get test ada?
 
-Because the [Cardano testnets](https://docs.cardano.org/cardano-testnets/) are independent networks, separate from the Cardano mainnet, they require their own token: test ada (tAda).
+Because the [Cardano testnets](https://docs.cardano.org/cardano-testnets/environments/) are independent networks, separate from the Cardano mainnet, they require their own token: test ada (tAda).
 
 Test ada is worth nothing. With it you can safely perform all tests free of charge - the reason why you want to develop on the testnets. 
 

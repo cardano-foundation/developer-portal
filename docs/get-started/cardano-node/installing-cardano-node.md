@@ -141,12 +141,11 @@ echo "iohk-nix version: $IOHKNIX_VERSION"
 ```
 The variable `IOHKNIX_VERSION` is used to retrieve the correct versions of `sodium`, `secp256k1` and `blst`.
 
->[!CAUTION]
->
->Make sure that `secp256k1`, `sodium` and `blst` versions match flake input version in [`iohkNix`](https://github.com/input-output-hk/iohk-nix/blob/master/flake.nix#L14) for a particular node version used.
->
+:::caution
+Make sure that `secp256k1`, `sodium` and `blst` versions match flake input version in [`iohkNix`](https://github.com/input-output-hk/iohk-nix/blob/master/flake.nix#L14) for a particular node version used.
+:::
 
-### Installing `sodium`
+### Installing "sodium"
 
 Cardano uses a custom fork of `sodium` which exposes some internal functions
 and adds some other new functions. This fork lives in
@@ -191,9 +190,10 @@ You can check this by running `pldd`. If the `pldd` shows that the running execu
 is using the wrong library, run `ldconfig`.
 
 #### Using the ported `c` code for development
->[!WARNING]
->The ported `c` code should not be used to run the node, and should only be
+:::caution
+The ported `c` code should not be used to run the node, and should only be
 used for development purposes.
+:::
 
 In order to avoid having to install the custom version of libsodium for development
 purposes, `cardano-crypto-praos` defines a `cabal` flag that makes use of C code located
