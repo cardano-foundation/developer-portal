@@ -9,7 +9,7 @@ description: Get Started with Ansible for Stake Pools
 
 ## Overview
 
-The [Ansible cardano-node](https://github.com/moaipool/ansible-cardano-node) repository contains an [Ansible](https://www.ansible.com/) playbook for provisioning secure, optimized Cardano nodes for Stake Pool Operators (SPOs). It was originally developed by the [MOAI Pool](https://moaipool.com/) (Ticker: **MOAI**) operators but is now being made available to the greater Cardano community.
+The [Ansible cardano-node](https://github.com/moaipool/ansible-cardano-node) repository contains an [Ansible](https://www.ansible.com/) playbook for provisioning secure, optimized Cardano nodes for Stake Pool Operators (SPOs). It was originally developed by the **[**MOAI Pool** operators but is now being made available to the greater Cardano community.
 
 The following is handled out of the box:
 

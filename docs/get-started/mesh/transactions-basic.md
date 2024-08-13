@@ -40,7 +40,7 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-[Try demo](https://meshjs.dev/apis/transaction#sendAda)
+[Try demo](https://meshjs.dev/apis/transaction/basics#sendAda)
 
 ## Send Multiple Assets to Addresses
 
@@ -70,7 +70,7 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-[Try demo](https://meshjs.dev/apis/transaction#sendAssets)
+[Try demo](https://meshjs.dev/apis/transaction/basics#sendAssets)
 
 ## Send Assets to Handler
 
@@ -122,4 +122,4 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-Check out the [Mesh Playground](https://meshjs.dev/apis/transaction) for live demo and full explanation.
+Check out the [Mesh Playground](https://meshjs.dev/apis/transaction/basics) for live demo and full explanation.
