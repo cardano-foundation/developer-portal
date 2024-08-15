@@ -633,7 +633,7 @@ export const Showcases = [
     title: "Stricahq Typhonjs Wallet",
     description:
         "Pure javascript Cardano wallet library.",
-    preview: require("./builder-tools/typhonjs.png"),
+    preview: require("./builder-tools/typhonjs.jpg"),
     website: "https://github.com/StricaHQ/typhonjs",
     getstarted: null,
     tags: ["javascript", "wallet"],
@@ -1070,7 +1070,7 @@ export const Showcases = [
     title: "Atlas",
     description: 
       "Atlas is an all-in-one, Haskell-native application backend for writing off-chain code for on-chain Plutus smart contracts.",
-    preview: require("./builder-tools/atlas.png"),
+    preview: require("./builder-tools/atlas.jpg"),
     website: "https://atlas-app.io/",
     getstarted: null,
     tags: ["haskell", "plutus"],
