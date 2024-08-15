@@ -268,11 +268,20 @@ export const Showcases = [
     tags: ["explorer"],
   },
   {
-    title: "Cardano Explorer",
+    title: "Cardano Foundation Explorer",
     description:
-      "The Cardano explorer built by IOHK, one of the founding entities of Cardano.",
-    preview: require("./showcase/cardanoexplorer.png"),
-    website: "https://explorer.cardano.org",
+      "A Cardano explorer focused on the needs of a non technical target audience like regulators and policy makers built by Cardano Foundation, currently under development",
+    preview: require("./showcase/cf-explorer.png"),
+    website: "https://beta.explorer.cardano.org",
+    source: "https://github.com/cardano-foundation/cf-explorer",
+    tags: ["explorer", "opensource"],
+  },
+  {
+    title: "CExplorer",
+    description:
+        "An independent Cardano Explorer that provides useful all-in-one dashboards additionally.",
+    preview: require("./showcase/cexplorer.png"),
+    website: "https://cexplorer.io/",
     source: null,
     tags: ["explorer"],
   },
@@ -310,7 +319,7 @@ export const Showcases = [
     preview: require("./showcase/pooltool.png"),
     website: "https://pooltool.io",
     source: null,
-    tags: ["favorite", "pooltool", "analytics"],
+    tags: ["favorite", "pooltool", "analytics", "explorer"],
   },
   {
     title: "AdaLite",
