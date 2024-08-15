@@ -849,14 +849,6 @@ export const Showcases = [
     tags: ["javascript", "typescript", "serialization", "sdk", "plutus","favorite"]
   },
   {
-    title: "Cexplorer",
-    description: "Rich featured blockchain explorer with support of all testnet instances and an API.",
-    preview: require("./builder-tools/cexplorer.png"),
-    website: "https://cexplorer.io",
-    getstarted: null,
-    tags: ["operatortool"],
-  },
-  {
     title: "Koios Python",
     description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
     preview: require("./builder-tools/koios-python.png"),
