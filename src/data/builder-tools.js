@@ -1123,6 +1123,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["rust", "net", "serialization", "sdk"]
   },
+  {
+    title: "Argus | Cardano.Sync",
+    description: "Argus | Cardano.Sync is a .NET library that simplifies interactions with the Cardano blockchain by providing an efficient indexing framework. ",
+    preview: require("./builder-tools/argus.png"),
+    website: "https://github.com/SAIB-Inc/Cardano.Sync",
+    getstarted: null,
+    tags: ["net", "sdk", "chainindex"]
+  }
 ];
 
 export const TagList = Object.keys(Tags);
