@@ -1179,7 +1179,7 @@ export const Showcases = [
     preview: require("./showcase/cardano-filtered-info.png"),
     website: "https://cardano.filtered.info",
     source: null,
-    tags: ["favorite", "analytics", "ecosystem"],
+    tags: ["analytics", "ecosystem"],
   },
 ];
 
