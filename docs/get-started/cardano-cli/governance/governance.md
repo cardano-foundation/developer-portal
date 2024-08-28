@@ -3,7 +3,7 @@ id: cardano-governance
 title: Cardano governance
 sidebar_label: CLI - Governance 
 sidebar_position: 5
-description: Overiew ov cardano governance across ledger eras. 
+description: Overview ov cardano governance across ledger eras. 
 keywords: [governance, update proposals, cardano, cardano-node]
 ---
 
@@ -34,7 +34,7 @@ Transitioning from one era to the next is triggered by an **update proposal** th
 The general mechanism for updating protocol parameters in Byron is as follows:
 
 1. **Update proposal is registered.** An update proposal starts with a transaction that proposes new values for some protocol parameters or a new protocol version. This kind of transaction can only be initiated by a genesis key via its delegate.
-2. **Accumulating votes.** Genesis key delegates **vote** for or against the proposal. The proposal must accumulate a sufficient number of votes before it can be confirmed. The threshold is determined by the **minThd** field of the [softforkRule protocol parameter](https://github.com/input-output-hk/cardano-ledger/blob/2a0abd500b9e01efe6dc47146fa8b805ef9ef307/eras/byron/ledger/impl/src/Cardano/Chain/Update/SoftforkRule.hs#L24).
+2. **Accumulating votes.** Genesis key delegates **vote** for or against the proposal. The proposal must accumulate a sufficient number of votes before it can be confirmed. The threshold is determined by the **minThd** field of the [softfork Rule protocol parameter](https://github.com/input-output-hk/cardano-ledger/blob/2a0abd500b9e01efe6dc47146fa8b805ef9ef307/eras/byron/ledger/impl/src/Cardano/Chain/Update/SoftforkRule.hs#L24).
 3. **Confirmed (enough votes).** The system records the 'SlotNo' of the slot in which the required threshold of votes was met. At this point, 2k slots (two times the security parameter k) need to pass before the update is stably confirmed and can be _endorsed_. Endorsements for proposals that are not yet stably confirmed are not invalid but rather silently ignored.
 4. **Stably-confirmed.** The last required vote is 2k slots deep. Ready to accumulate endorsements. A block whose header's protocol version number is that of the proposal is interpreted as an **endorsement**. In other words, the nodes are ready for the upgrade. Once the number of endorsers satisfies a threshold (same as for voting), the confirmed proposal becomes a **candidate proposal**.
 5. **Candidate.** Enough nodes have endorsed the proposal. At this point, further 2k slots need to pass before the update becomes a stable candidate and can be adopted.
@@ -75,9 +75,9 @@ If you are running a private testnet, you can use this feature to update your te
 
 ```shell
 cardano-cli babbage governance action create-protocol-parameters-update \
---genesis-verification-key-file genesis-keys/non.extended.shelley.delegate.vkey \
---number-of-pools 1000 \
---out-file updateNOpt.proposal
+  --genesis-verification-key-file genesis-keys/non.extended.shelley.delegate.vkey \
+  --number-of-pools 1000 \
+  --out-file updateNOpt.proposal
 ```
 
 Build, sign, and submit the transaction: 
@@ -88,17 +88,17 @@ fee=1000000
 change=$(($balance - $fee))
 
 cardano-cli babbage transaction build-raw \
---fee $fee \
---tx-in $(cardano-cli query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r 'keys[0]' \
---tx-out $(< payment.addr)+$change \
---update-proposal-file updateNOpt.proposal \
---out-file updateNOpt.tx.raw
+  --fee $fee \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r 'keys[0]' \
+  --tx-out $(< payment.addr)+$change \
+  --update-proposal-file updateNOpt.proposal \
+  --out-file updateNOpt.tx.raw
 
 cardano-cli conway transaction sign \
---tx-body-file updateNOpt.tx.raw \
---signing-key-file payment.skey \
---signing-key-file genesis-keys/non.extended.shelley.delegate.skey \ 
---out-file updateNOpt.tx.signed
+  --tx-body-file updateNOpt.tx.raw \
+  --signing-key-file payment.skey \
+  --signing-key-file genesis-keys/non.extended.shelley.delegate.skey \ 
+  --out-file updateNOpt.tx.signed
 
 cardano-cli conway transaction submit --tx-file updateNOpt.tx.signed
 ```
