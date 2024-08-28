@@ -196,7 +196,7 @@ At the Chang hardfork, the interim constitution will be supplemented with a Guar
 
 The guardrails script applies only to protocol parameter update and treasury withdrawal proposals.
 
-Follow the instructions in the README.md file to compile the PlutusV3 script. A successful compilation creates the follwoing:
+Follow the instructions in the README.md file to compile the PlutusV3 script. A successful compilation creates the following:
 
 ```shell
 cat guardrails-script.plutus 
