@@ -9,9 +9,9 @@ image: /img/og/og-developer-portal.png
 ## Get started with Marlowe 
 Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.
 
-If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://docs.marlowe.iohk.io/tutorials), or jump right into the [Marlowe Playground](https://play.marlowe.iohk.io): 
+If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://docs.marlowe.iohk.io/tutorials), or jump right into the [Marlowe Playground](https://docs.marlowe.iohk.io/docs/developer-tools/playground): 
 
-[![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://play.marlowe.iohk.io)
+[![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)](https://docs.marlowe.iohk.io/docs/developer-tools/playground)
 
 On the Cardano Forum, you can [discuss Marlowe](https://forum.cardano.org/tag/marlowe) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
@@ -33,7 +33,7 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 
 ### How do I run my Marlowe contract on the Cardano blockchain?
 
-1. Design your contract using [Marlowe Playground](https://play.marlowe.iohk.io).
+1. Design your contract using [Marlowe Playground](https://docs.marlowe.iohk.io/docs/developer-tools/playground).
 2. Press the `Send to Simulator` button and then press `Download as JSON` to download your contract in JSON format.
 3. *If you want to run your contract at the command line using `marlowe-cli`,* install [`marlowe-cli`](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe-cli/ReadMe.md#installation) and follow the instructions [Running Contracts with Marlowe CLI](https://github.com/input-output-hk/real-world-marlowe/blob/main/archives/marlowe-cli/lectures/04-marlowe-cli-concrete.md). A video lecture playlist [Marlowe CLI](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw) provides an overview of the `marlowe-cli` tool.
 4. *If you want to run your contract in a Jupyter notebook,* then use git to clone [github.com/input-output-hk/marlowe-cardano](https://github.com/input-output-hk/marlowe-cardano), run `nix develop --command jupyter-lab` from the `marlowe-cli/` folder, open the notebook [Marlowe CLI Lecture 4](https://github.com/input-output-hk/marlowe-cardano/blob/mpp-cli-lectures/marlowe-cli/lectures/04-marlowe-cli-concrete.ipynb), and follow the instructions. A video lecture [Running a Marlowe Contract with Marlowe CLI](https://www.youtube.com/watch?v=DmF7dIKmJMo&list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw&index=4) demonstrates running a contract from within a Jupyter notebook.

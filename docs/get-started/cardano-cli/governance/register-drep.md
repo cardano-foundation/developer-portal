@@ -30,8 +30,8 @@ import TabItem from '@theme/TabItem';
 
 ```shell
 cardano-cli conway governance drep key-gen \
---verification-key-file drep.vkey \
---signing-key-file drep.skey
+  --verification-key-file drep.vkey \
+  --signing-key-file drep.skey
 ```
 This returns the keys wrapped on text envelopes:  
 
@@ -182,7 +182,7 @@ Submit it to the chain:
 
 ```shell
 cardano-cli conway transaction submit \
---tx-file tx.signed
+  --tx-file tx.signed
 ```
 
 ### Query the DRep state to confirm:
@@ -410,7 +410,7 @@ cardano-cli conway transaction witness \
   --out-file payment.witness
 ```
 
-Witnessing the transaction with the DRep keys from each memeber:
+Witnessing the transaction with the DRep keys from each member:
 
 ```shell
 cardano-cli conway transaction witness \
