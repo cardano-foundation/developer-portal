@@ -25,11 +25,11 @@ Assume we need to submit a vote on the governance action with ID `df58f714c0765f
 
 1. Obtain the URL and hash of the new constitution proposal from the governance state:
 
-```
+```shell
 cardano-cli conway query gov-state | \
-jq -r --arg govActionId "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" '.proposals | to_entries[] | select(.value.actionId.txId | contains($govActionId)) | .value'
+  jq -r --arg govActionId "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" '.proposals | to_entries[] | select(.value.actionId.txId | contains($govActionId)) | .value'
 ```
-```
+```json
 {
   "action": {
     "contents": [
@@ -70,13 +70,13 @@ jq -r --arg govActionId "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf
 ```
 2. Download the file from the URL registered on the proposal:
 
-````
+````shell
 wget https://tinyurl.com/mr3ferf9 -O constitution.txt
 ````
 
 3. Verify that the hash of the file matches the `dataHash` registered on the proposal:
 
-````
+````shell
 b2sum -l 256 constitution.txt
 5d372dca1a4cc90d7d16d966c48270e33e3aa0abcb0e78f0d5ca7ff330d2245d  constitution.txt
 ````
@@ -89,70 +89,70 @@ In the future, voting apps, explorers, wallets, and other tools could perform th
 
 Voting with DRep keys:
 
-```
+```shell
 cardano-cli conway governance vote create \
-    --yes \
-    --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
-    --governance-action-index "0" \
-    --drep-verification-key-file drep.vkey \
-    --out-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote
+  --yes \
+  --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
+  --governance-action-index "0" \
+  --drep-verification-key-file drep.vkey \
+  --out-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote
 ```
 
 Voting with CC hot keys:
 
-```
+```shell
 cardano-cli conway governance vote create \
-    --yes \
-    --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
-    --governance-action-index "0" \
-    --cc-hot-verification-key-file cc-hot.vkey \
-    --out-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote
+  --yes \
+  --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
+  --governance-action-index "0" \
+  --cc-hot-verification-key-file cc-hot.vkey \
+  --out-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote
 ```
 Voting with SPO keys:
 
-```
+```shell
 cardano-cli conway governance vote create \
-    --yes \
-    --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
-    --governance-action-index "0" \
-    --cold-verification-key-file cold.vkey \
-    --out-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote
+  --yes \
+  --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
+  --governance-action-index "0" \
+  --cold-verification-key-file cold.vkey \
+  --out-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote
 ```
 
 ### Include the vote in a transaction
 
 Build the transaction:
 
-```
+```shell
 cardano-cli conway transaction build \
-    --tx-in "$(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')" \
-    --change-address $(< payment.addr) \
-    --vote-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote \
-    --witness-override 2 \
-    --out-file vote-tx.raw
+  --tx-in "$(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')" \
+  --change-address $(< payment.addr) \
+  --vote-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote \
+  --witness-override 2 \
+  --out-file vote-tx.raw
 ```
 Sign it with the DRep key:
-```
+```shell
 cardano-cli transaction sign --tx-body-file vote-tx.raw \
-    --signing-key-file drep.skey \
-    --signing-key-file payment.skey \
-    --out-file vote-tx.signed
+  --signing-key-file drep.skey \
+  --signing-key-file payment.skey \
+  --out-file vote-tx.signed
 ```
 OR sign it with the CC hot key:
-```
+```shell
 cardano-cli transaction sign --tx-body-file vote-tx.raw \
-    --signing-key-file cc-hot.skey \
-    --signing-key-file payment.skey \
-    --out-file vote-tx.signed
+  --signing-key-file cc-hot.skey \
+  --signing-key-file payment.skey \
+  --out-file vote-tx.signed
 ```
 OR sign it with the SPO cold key:
-```
+```shell
 cardano-cli transaction sign --tx-body-file vote-tx.raw \
-    --signing-key-file cold.skey \
-    --signing-key-file payment.skey \
-    --out-file vote-tx.signed
+  --signing-key-file cold.skey \
+  --signing-key-file payment.skey \
+  --out-file vote-tx.signed
 ```
 Submit the transaction:
-```
+```shell
 cardano-cli transaction submit --tx-file vote-tx.signed
 ```

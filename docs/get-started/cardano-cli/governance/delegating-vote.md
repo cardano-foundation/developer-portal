@@ -55,37 +55,37 @@ cardano-cli conway stake-address vote-delegation-certificate \
 
 ```shell
 cardano-cli conway stake-address vote-delegation-certificate \
---stake-verification-key-file stake.vkey \
---drep-script-hash $(< drep-multisig.id) \
---out-file vote-deleg.cert
+  --stake-verification-key-file stake.vkey \
+  --drep-script-hash $(< drep-multisig.id) \
+  --out-file vote-deleg.cert
 ```
 
 ### Submitting the certificate in a transaction
 
 * Build:
 
-```
+```shell
 cardano-cli conway transaction build \
---tx-in $(cardano-cli query utxo --address $(< payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
---change-address $(< payment.addr) \
---certificate-file vote-deleg.cert \
---witness-override 2 \
---out-file tx.raw
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
+  --certificate-file vote-deleg.cert \
+  --witness-override 2 \
+  --out-file tx.raw
 ```
 
 * Sign with payment and stake keys:
 
-```
+```shell
 cardano-cli conway transaction sign \
---tx-body-file tx.raw \
---signing-key-file payment.skey \
---signing-key-file stake.skey \
---out-file tx.signed
+  --tx-body-file tx.raw \
+  --signing-key-file payment.skey \
+  --signing-key-file stake.skey \
+  --out-file tx.signed
 ```
 
 * Submit:
 
-```
+```shell
 cardano-cli conway transaction submit \
---tx-file tx.signed
+  --tx-file tx.signed
 ```

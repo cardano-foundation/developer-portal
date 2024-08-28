@@ -7,12 +7,13 @@ description: Query the node to obtain information about the governance state
 keywords: [Governance, queries, CIP1694]
 ---
 
-There are various queries you can do to yoour local node to find relevant information about different aspects of teh governance state. 
+There are various queries you can do to your local node to find relevant information about different aspects of teh governance state. 
 
 ### Query the gov-state
 
 We are showing only the top level keys of the governance state, the dump is to large to show on this tutorial. 
-```
+
+```shell
 cardano-cli conway query gov-state
 
 {
