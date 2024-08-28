@@ -633,7 +633,7 @@ export const Showcases = [
     title: "Stricahq Typhonjs Wallet",
     description:
         "Pure javascript Cardano wallet library.",
-    preview: require("./builder-tools/typhonjs.png"),
+    preview: require("./builder-tools/typhonjs.jpg"),
     website: "https://github.com/StricaHQ/typhonjs",
     getstarted: null,
     tags: ["javascript", "wallet"],
@@ -1070,7 +1070,7 @@ export const Showcases = [
     title: "Atlas",
     description: 
       "Atlas is an all-in-one, Haskell-native application backend for writing off-chain code for on-chain Plutus smart contracts.",
-    preview: require("./builder-tools/atlas.png"),
+    preview: require("./builder-tools/atlas.jpg"),
     website: "https://atlas-app.io/",
     getstarted: null,
     tags: ["haskell", "plutus"],
@@ -1123,6 +1123,14 @@ export const Showcases = [
     getstarted: null,
     tags: ["rust", "net", "serialization", "sdk"]
   },
+  {
+    title: "Argus | Cardano.Sync",
+    description: "Argus | Cardano.Sync is a .NET library that simplifies interactions with the Cardano blockchain by providing an efficient indexing framework. ",
+    preview: require("./builder-tools/argus.png"),
+    website: "https://github.com/SAIB-Inc/Cardano.Sync",
+    getstarted: null,
+    tags: ["net", "sdk", "chainindex"]
+  }
 ];
 
 export const TagList = Object.keys(Tags);
