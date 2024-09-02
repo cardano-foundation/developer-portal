@@ -1138,6 +1138,22 @@ export const Showcases = [
     website: "https://github.com/SAIB-Inc/Cardano.Sync",
     getstarted: null,
     tags: ["net", "sdk", "chainindex"]
+  },
+  {
+    title: "Cardano Looking Glass",
+    description: "A visual blockchain explorer which supports CIP54 and CIP68 Smart NFTs.",
+    preview: require("./builder-tools/clg.png"),
+    website: "https://clg.wtf/",
+    getstarted: null,
+    tags: ["nft", "hosted"]
+  },
+  {
+    title: "NFT Playground",
+    description: "An integrated development environment for building CIP54-compliant Smart NFTs.",
+    preview: require("./builder-tools/nft-playground.png"),
+    website: "https://nft-playground.dev/",
+    getstarted: "https://nft-playground.dev/help",
+    tags: ["ide", "sdk", "hosted", "nft", "javascript"]
   }
 ];
 
