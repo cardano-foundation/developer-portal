@@ -22,7 +22,9 @@ Cardano is embarking on a transformative journey towards decentralized governanc
 The CPS process, outlined in [CIP-9999](cardano-improvement-proposals/CIP-9999), complements this by focusing on identifying and articulating specific issues or areas for improvement within Cardano, allowing for a targeted approach to problem-solving. CIPs and CPSs reflect Cardano's dedication to continuous development and community-driven standards, ensuring adaptability and responsiveness to user needs.
 
 :::tip
+
 For fuller details about the CIP & CPS processes for authorship, review and editing — including history, ethos, and the roles played by different participants — see the **[Cardano Improvement Proposals (CIPs) Wiki](https://github.com/cardano-foundation/CIPs/wiki)**.
+
 :::
 
 ## Empowering Innovation with Project Catalyst
