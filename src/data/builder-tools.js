@@ -1153,7 +1153,7 @@ export const Showcases = [
     preview: require("./builder-tools/nft-playground.png"),
     website: "https://nft-playground.dev/",
     getstarted: "https://nft-playground.dev/help",
-    tags: ["ide", "sdk", "hosted", "nft", "javascript"]
+    tags: ["IDE", "sdk", "hosted", "nft", "javascript"]
   }
 ];
 
