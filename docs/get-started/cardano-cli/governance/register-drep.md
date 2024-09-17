@@ -477,7 +477,7 @@ cardano-cli conway query drep-state \
 
 ## Register a Plutus script based DRep 
 
-Writing the Plutus script is out of the scope of this tutorial. As an example of what can be done, Thomas Vellekop (@perturbing) wrote this [Plutus Script DRep
+Writing the Plutus script is out of the scope of this tutorial. As an example of what can be done, Thomas Vellekoop (@perturbing) wrote this [Plutus Script DRep
 that can only vote 'YES'](https://github.com/perturbing/always-yes-drep) 
 
 Once you have compiled the Plutus script, the process to register is very similar to Simple scripts.
