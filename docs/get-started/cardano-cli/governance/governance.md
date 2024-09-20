@@ -119,7 +119,7 @@ In the Conway ledger era, any ada holder can submit a Governance action, which i
 | UpdateCommittee   | Changes to the members of the constitutional committee and/or to its signature threshold and/or terms |
 | NewConstitution   | A modification to the off-chain Constitution and/or the proposal policy script |
 | TriggerHF         | Triggers a non-backwards compatible upgrade of the network; requires a prior software upgrade |
-| ChangePParams     | A change to one or more updatable protocol parameters, excluding changes to major protocol versions ("hard forks") |
+| ChangePParams     | A change to one or more updatable protocol parameters, excluding changes to major or minor protocol versions ("hard forks") |
 | TreasuryWdrl      | Movements from the treasury |
 | Info              | An action that has no effect on-chain, other than an on-chain record |
 
