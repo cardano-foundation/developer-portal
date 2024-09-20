@@ -46,7 +46,7 @@ Currently, the `cardano-node` topology is manually set by the community of netwo
 For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
 :::
 
-You can download the current **Cardano** blockchain network configuration files here: [The Cardano Operations Book > Environments](https://book.world.dev.cardano.org/environments.html)
+You can download the current **Cardano** blockchain network configuration files here: [The Cardano Operations Book > Environments](https://book.play.dev.cardano.org/environments.html)
 
 …or by running:
 
@@ -55,28 +55,28 @@ You can download the current **Cardano** blockchain network configuration files 
 **NetworkMagic**: `2`
 
 ```
-curl -O -J https://book.world.dev.cardano.org/environments/preview/config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preview/db-sync-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preview/submit-api-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preview/topology.json
-curl -O -J https://book.world.dev.cardano.org/environments/preview/byron-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preview/shelley-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preview/alonzo-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preview/conway-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/config.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/db-sync-config.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/submit-api-config.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/topology.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/byron-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/shelley-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/alonzo-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/conway-genesis.json
 ```
 #### Testnet / Preprod
 
 **NetworkMagic**: `1`
 
 ```
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/db-sync-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/submit-api-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/preprod/conway-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/config.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/db-sync-config.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/submit-api-config.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/topology.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/byron-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/shelley-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/alonzo-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/conway-genesis.json
 ```
 
 #### Mainnet / Production
@@ -84,17 +84,17 @@ curl -O -J https://book.world.dev.cardano.org/environments/preprod/conway-genesi
 **NetworkMagic**: `764824073`
 
 ```
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/config.json
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/db-sync-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/submit-api-config.json
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/topology.json
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/byron-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/shelley-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/alonzo-genesis.json
-curl -O -J https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/config.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/db-sync-config.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/submit-api-config.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/topology.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/byron-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/shelley-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/alonzo-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/conway-genesis.json
 ```
 
-The latest supported networks can be found at https://book.world.dev.cardano.org/environments.html
+The latest supported networks can be found at https://book.play.dev.cardano.org/environments.html
 
 :::note
 
