@@ -118,7 +118,7 @@ In the Conway ledger era, any ada holder can submit a Governance action, which i
 | NoConfidence      | A motion to create a state of no-confidence in the current constitutional committee |
 | UpdateCommittee   | Changes to the members of the constitutional committee and/or to its signature threshold and/or terms |
 | NewConstitution   | A modification to the off-chain Constitution and the proposal policy script |
-| TriggerHF3        | Triggers a non-backwards compatible upgrade of the network; requires a prior software upgrade |
+| TriggerHF         | Triggers a non-backwards compatible upgrade of the network; requires a prior software upgrade |
 | ChangePParams     | A change to one or more updatable protocol parameters, excluding changes to major protocol versions ("hard forks") |
 | TreasuryWdrl      | Movements from the treasury |
 | Info              | An action that has no effect on-chain, other than an on-chain record |
