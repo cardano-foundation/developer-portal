@@ -23,7 +23,7 @@ Cardano has undergone various ledger era upgrades – Byron, Shelley, Allegra, M
 | Mary    | Native tokens | TPraos| 4.0 | Mary HF    |  |
 | Alonzo  | Plutus smart contracts| TPraos| 5.0<br/>6.0 | Alonzo HF<br/>Alonzo intra-era |  | 
 | Babbage | PlutusV2<br/>Reference inputs<br/>Inline datums<br/>Reference scripts<br/>Removal of the "d" parameter | Praos | 7.0<br/>8.0 | Vasil<br/>Valentine intra-era (SECP) |  |
-| Conway  | Decentralized governance | Praos | 9.0<br/>10.0 | Chang HF Bootstrap<br/>Full governance | Planned |
+| Conway  | Decentralized governance | Praos | 9.0<br/>10.0 | Chang HF Bootstrap<br/>Full governance |  |
 
 Transitioning from one era to the next is triggered by an **update proposal** that updates the protocol version.
 
@@ -105,4 +105,98 @@ cardano-cli conway transaction submit --tx-file updateNOpt.tx.signed
 
 ## Conway era update proposals
 
-TODO: Intro and diagram similar to the ones above. 
+The Conway ledger era introduces a new governance framework to Cardano, marking a significant evolution in how decisions about the protocol are made. Building on the foundations laid in previous eras, Conway empowers Cardano with a decentralized governance model where decision-making is accessible to stakeholders. Key features include the introduction of *Delegated Representatives (DReps)*, the *Constitutional Committee*, and an decision making role for *Stake Pool Operators* (SPOs). These entities collaborate through a formalized voting system to vote on governance actions that can be proposed by any ada holder. These governance bodies are in charge of treasury funds, adding or removing members from the constitutional committee, making updates to the Cardano Constitution and changes to protocol parameters. Conway era makes Cardano more resilient and 100% community-driven.
+
+The process for submitting and voting protocol update proposals undergoes significant changes in the Conway era. First, Genesis delegations and MIR certificates are eliminated. In `DState`, the fields associated with these features are no longer included, and `DelegEnv` no longer contains the fields it had in the Shelley era, effectively rendering the genesis keys obsolete. 
+
+### Governance actions
+
+In the Conway ledger era, any ada holder can submit a Governance action, which is the on-chain method to put a proposal to the consideration of the three governance bodies. There are 7 types of governance actions:
+
+| Governance Action | Description |
+| ----------------- | ----------- |
+| NoConfidence      | A motion to create a state of no-confidence in the current constitutional committee |
+| UpdateCommittee   | Changes to the members of the constitutional committee and/or to its signature threshold and/or terms |
+| NewConstitution   | A modification to the off-chain Constitution and/or the proposal policy script |
+| TriggerHF         | Triggers a non-backwards compatible upgrade of the network; requires a prior software upgrade |
+| ChangePParams     | A change to one or more updatable protocol parameters, excluding changes to major or minor protocol versions ("hard forks") |
+| TreasuryWdrl      | Movements from the treasury |
+| Info              | An action that has no effect on-chain, other than an on-chain record |
+
+### Ratification thresholds
+
+Each type of governance action requires meeting a different mix of voting thresholds to be ratified. The table below depicts the thresholds as set on the [Conway genesis file](https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json):
+
+| Governance action type                                               | CC   | DReps    | SPOs     |
+|:---------------------------------------------------------------------|:-----|:---------|:---------|
+| 1. Motion of no-confidence                                           | \-   | 0.67     | 0.51     |
+| 2<sub>a</sub>. Update committee/threshold (_normal state_)           | \-   | 0.67     | 0.51     |
+| 2<sub>b</sub>. Update committee/threshold (_state of no-confidence_) | \-   | 0.60     | 0.51     |
+| 3. New Constitution or Guardrails Script                             | 2/3  | 0.75     | \-       |
+| 4. Hard-fork initiation                                              | 2/3  | 0.60     | 0.51     |
+| 5<sub>a</sub>. Protocol parameter changes, network group             | 2/3  | 0.67     | \-       |
+| 5<sub>b</sub>. Protocol parameter changes, economic group            | 2/3  | 0.67     | \-       |
+| 5<sub>c</sub>. Protocol parameter changes, technical group           | 2/3  | 0.67     | \-       |
+| 5<sub>d</sub>. Protocol parameter changes, governance group          | 2/3  | 0.75     | \-       |
+| 6. Treasury withdrawal                                               | 2/3  | 0.67     | \-       |
+| 7. Info                                                              | 2/3  | 1        | 1        |
+
+Some parameters (from different groups) are relevant to security properties of the system. Any proposal attempting to change such a parameter requires an additional
+vote of the SPOs, with the threshold 0.51
+
+* `maxBlockBodySize`
+* `maxTxSize`
+* `maxBlockHeaderSize`
+* `maxValueSize`
+* `maxBlockExecutionUnits`
+* `txFeePerByte`
+* `txFeeFixed`
+* `utxoCostPerByte`
+* `govActionDeposit`
+* `minFeeRefScriptCostPerByte`
+
+### Hash Protection
+
+`NoConfidence`, `UpdateCommittee`, `NewConstitution`, `TriggerHF`, and `ChangePParams` actions all require a reference to the last enacted governance action that modified the same state in order to be enacted. Among these, `NoConfidence` and `UpdateCommittee` modify the same state, while the others—`NewConstitution`, `TriggerHF`, and `ChangePParams`—each modify their own independent states. In contrast, `TreasuryWdrl` and `Info` do not require such a reference, as they do not affect the state in conflicting or non-commutative ways. This ensures that the final state after enactment matches the intended state at the time the proposal was submitted, and a proposal's eligibility for enactment may change based on other proposals being enacted.
+
+### Votes and Proposals
+
+#### Proposals
+
+To propose a governance action, a `Proposal` needs to be submitted in a transaction. Beside the proposed governance action, it requires:
+
+- potentially a **pointer** to the previous action [See Hash Protection](#hash-protection),
+- potentially a **pointer** to the proposal policy (the guardrial script for `ChangePParams` and `TreasuryWdrl`),
+- a **deposit**, which will be returned to **returnAddr**, and
+- an **anchor**, providing further information about the proposal.
+
+
+#### Votes
+A vote is **Yes**, **No** or **Abstain**,  to be cast, a vote must include additional details such as the voter's role (e.g., CC, DRep, or SPO) and their `credential`, along with the specific governance action ID being voted on. Optionally, an anchor may be provided to give context or explain the reasoning behind the vote.
+
+
+### Governance Action lifecycle
+
+1. A proposed governance action has a lifespan of 6 epochs, as defined by the protocol parameter "govActionLifetime": 6 in the [Conway genesis file](https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json).
+2. During this period, governance bodies can vote on the proposal. If the action reaches the end of its lifespan without being ratified, it automatically expires.
+
+![](/img/cli/conwayup.png)
+
+3. At every epoch boundary within the Governance action lifetime, proposals and votes are snapshotted. The _DRepPulserState_ snapshot includes: 
+  - SPOs, DReps, CC members, 
+  - their votes (yes, no, abstain), 
+  - stake distribution 'Mark' 
+  - delegation map. 
+4. The system will use the _DRepPulserState_ snapshot to calculate the DReps and SPOs _votingStakeDistribution_. This computation is expensive to run, therefore it is not executed at the epoch boundary, intead, the **DRep Pulser** performs this computation gradually with every `TICK` during the first **4k/f** slots. 
+5. The **Hardfork-combinator** requires to "know" about a potential hardfork 6k/f slots before the epoch change. To meet this requiterement, if the _votingStakeDistribution_ is not finished by the time we reach that point, the computation is forced to complete.
+6. On the first `TICK` that occures within the **last 6k/f** slots of the epoch (2 stability windows), the system _solidifies_ the next epoch protocol parameters, see [_solidifyNextEpochPParams_](https://github.com/IntersectMBO/cardano-ledger/blob/a00b723cd93658e67d21f40c771fad80c463d9c4/eras/shelley/impl/src/Cardano/Ledger/Shelley/Rules/Tick.hs#L180C1-L195C6). The RATIFY and ENACT rules are executed at this point to deterimne the _enactState_. If a governance action has enough votes (meets the thresholds for its type), it is said to be **Ratified** and it is added to the _enactState_.
+7. At the next epoch boundary, the system **applies** the _enactState_.
+8. A governance action **Expires** if it does not accumulate enough votes during it's lifetime. Its last chance to be ratified is when the _DRepPulser_ talies the votes on the epoch following its expiration. 
+
+
+
+
+
+
+
+ 
