@@ -107,7 +107,7 @@ cardano-cli conway transaction submit --tx-file updateNOpt.tx.signed
 
 The Conway ledger era introduces a new governance framework to Cardano, marking a significant evolution in how decisions about the protocol are made. Building on the foundations laid in previous eras, Conway empowers Cardano with a decentralized governance model where decision-making is accessible to stakeholders. Key features include the introduction of *Delegated Representatives (DReps)*, the *Constitutional Committee*, and an decision making role for *Stake Pool Operators* (SPOs). These entities collaborate through a formalized voting system to vote on governance actions that can be proposed by any ada holder. These governance bodies are in charge of treasury funds, adding or removing members from the constitutional committee, making updates to the Cardano Constitution and changes to protocol parameters. Conway era makes Cardano more resilient and 100% community-driven.
 
-The process for submitting and voting update proposals undergoes significant changes in the Conway Era. First, Genesis delegations and MIR certificates are eliminated. In `DState`, the fields associated with these features are no longer included, and `DelegEnv` no longer contains the fields it had in the Shelley era, effectively rendering the genesis keys obsolete. 
+The process for submitting and voting protocol update proposals undergoes significant changes in the Conway era. First, Genesis delegations and MIR certificates are eliminated. In `DState`, the fields associated with these features are no longer included, and `DelegEnv` no longer contains the fields it had in the Shelley era, effectively rendering the genesis keys obsolete. 
 
 ### Governance actions
 
