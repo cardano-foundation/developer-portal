@@ -111,7 +111,7 @@ The process for submitting and voting protocol update proposals undergoes signif
 
 ### Governance actions
 
-In Conway era, any ada holder can submit a Governance action, which is the on-chain method to put a proposal to the consideration of the three governance bodies. There are 7 types of governance actions:
+In the Conway ledger era, any ada holder can submit a Governance action, which is the on-chain method to put a proposal to the consideration of the three governance bodies. There are 7 types of governance actions:
 
 | Governance Action | Description |
 | ----------------- | ----------- |
