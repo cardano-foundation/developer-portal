@@ -1154,6 +1154,14 @@ export const Showcases = [
     website: "https://nft-playground.dev/",
     getstarted: "https://nft-playground.dev/help",
     tags: ["IDE", "sdk", "hosted", "nft", "javascript"]
+  },
+  {
+    title: "Cardano Audit Script for SPOs",
+    description: "A security and compliance audit script for Cardano stakepool nodes, to help SPOs check their node and security configuration.",
+    preview: require("./builder-tools/cardano-node-audit.png"),
+    website: "https://github.com/Kirael12/cardano-node-audit",
+    getstarted: null,
+    tags: ["operatortool", "cli"]
   }
 ];
 
