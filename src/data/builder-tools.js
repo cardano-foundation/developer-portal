@@ -1160,7 +1160,7 @@ export const Showcases = [
     description: "A security and compliance audit script for Cardano stakepool nodes, to help SPOs check their node and security configuration.",
     preview: require("./builder-tools/cardano-node-audit.png"),
     website: "https://github.com/Kirael12/cardano-node-audit",
-    getstarted: null,
+    getstarted: "/docs/operate-a-stake-pool/audit-your-node",
     tags: ["operatortool", "cli"]
   }
 ];
