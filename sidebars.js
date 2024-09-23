@@ -208,6 +208,7 @@ module.exports = {
         items: [
           "operate-a-stake-pool/hardening-server",
           "operate-a-stake-pool/improve-grafana-security",
+          "operate-a-stake-pool/audit-your-node",
         ],
       },
       {
