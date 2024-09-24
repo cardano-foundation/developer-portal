@@ -838,6 +838,7 @@ To make everything consistent we should agree on spellings and terms here.
 | `the Foundation` | Interchangeable with `the Cardano Foundation`, the is not capitalized, but Foundation should be. |
 | `GitHub` | Note the capitalized H. |
 | `Goguen` | The third era of the Cardano development focused on smart contracts. Named in honour of Joseph Goguen, an US computer scientist. |
+| `hard fork` | Two words. |
 | `IOHK` | IOHK is now IOG. |
 | `IOG` | IOG was IOHK. |
 | `Mainnet`    | One word.  Capitalise when it's a noun (the _Mainnet_) but not when it's an adjective (_mainnet_ functionality), qualified by another proper name (the Cardano _mainnet_), or used as a symbol (e.g. enable Marlowe on `mainnet`). |
