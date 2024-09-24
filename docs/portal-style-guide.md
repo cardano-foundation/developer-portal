@@ -833,7 +833,7 @@ To make everything consistent we should agree on spellings and terms here.
 | `the Cardano Foundation`           | Always use **the** Cardano Foundation. |
 | `DApp` | Note the capitalization: Decentralized Application. |
 | `dcSpark` | Creators of Flint Wallet and Milkomeda. Capitalized S, everything else lower case. |
-| `DRep` | Note the capitalization: Delegated Representative. `DRep` as an abbreviation for Delegated Representative follows standard practices for abbreviations in English: taking the first letter of each word. This makes it intuitive and clear in most contexts It is also in line with the `DApp` abbreviation. In crypto, the lowercase “d“ is often used to signify “decentralized,” as in dApp (decentralized application) or dGov (decentralized governance). Using “dRep” might imply “decentralized representative”.|
+| `DRep` | Note the capitalization: Delegated Representative. `DRep` as an abbreviation for Delegated Representative follows standard practices for abbreviations in English: taking the first letter of each word. This makes it intuitive and clear in most contexts. It is also in line with the `DApp` abbreviation. In crypto, the lowercase “d“ is often used to signify “decentralized,” as in dApp (decentralized application) or dGov (decentralized governance). Using “dRep” might imply “decentralized representative”.|
 | `EMURGO` | All caps in line with EMURGO’s branding. |
 | `the Foundation` | Interchangeable with `the Cardano Foundation`, the is not capitalized, but Foundation should be. |
 | `GitHub` | Note the capitalized H. |
