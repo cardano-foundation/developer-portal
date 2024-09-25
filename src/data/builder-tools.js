@@ -308,6 +308,22 @@ export const Tags = {
     icon: null,
     color: "#4a69BD"
   },
+
+  // Governance
+  governance: {
+    label: "Governance",
+    description: "Governance tools.",
+    icon: null,
+    color: '#673AB7',  // Deep Purple
+  },
+
+  // Reward
+  reward: {
+    label: "Reward Calculation",
+    description: "Reward Calculation",
+    icon: null,
+    color: "#3D5AFE"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -1154,6 +1170,30 @@ export const Showcases = [
     website: "https://nft-playground.dev/",
     getstarted: "https://nft-playground.dev/help",
     tags: ["IDE", "sdk", "hosted", "nft", "javascript"]
+  },
+  {
+    title: "ZhuLi",
+    description: "A validator & companion command-line tool to provide hot/cold account management to delegate representatives (a.k.a DReps) on Cardano. The on-chain validator provides an authentication mechanism for an administrator multisig script (m-of-n type), itself granting powers to multisig-like delegate to manage voting stake rights.",
+    preview: require("./builder-tools/zhuli.jpg"),
+    website: "https://github.com/CardanoSolutions/zhuli",
+    getstarted: null,
+    tags: ["rust", "governance"]
+  },
+  {
+    title: "cf-java-rewards-calculation",
+    description: "This project aims to achieve multiple goals: re-implement Cardano ledger rules for calculating ada pots and rewards, validate Cardano's rewards calculation through an alternative implementation of the ledger specification, provide a library for use in other projects (like yaci-store) independent of DB Sync, and offer insights into protocol parameters and ada flow through interactive reports.",
+    preview: require("./builder-tools/rewardcalc.jpg"),
+    website: "https://github.com/cardano-foundation/cf-java-rewards-calculation",
+    getstarted: null,
+    tags: ["java", "reward"]
+  },
+  {
+    title: "cf-ledger-sync",
+    description: "This repository provides applications for indexing Cardano blockchain data into a PostgreSQL database, scheduling jobs, and streaming blockchain events to messaging systems like Kafka or RabbitMQ, offering flexible data management and customization options.",
+    preview: require("./builder-tools/ledgersync.jpg"),
+    website: "https://github.com/cardano-foundation/cf-ledger-sync",
+    getstarted: null,
+    tags: ["java", "chainindex"]
   }
 ];
 
