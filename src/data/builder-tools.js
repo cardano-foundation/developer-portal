@@ -317,7 +317,7 @@ export const Showcases = [
     title: "cardano-cli",
     description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
     preview: require("./builder-tools/cardano-cli.png"),
-    website: "https://github.com/IntersectMBO/cardano-node/tree/master/cardano-cli#cardano-cli",
+    website: "https://github.com/IntersectMBO/cardano-cli#overview-of-the-cardano-cli-repository",
     getstarted: null,
     tags: ["favorite", "cli", "serialization"]
   },
