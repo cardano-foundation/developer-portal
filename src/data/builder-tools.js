@@ -528,14 +528,6 @@ export const Showcases = [
     tags: ["sdk", "python"],
   },
   {
-    title: "Plutus Playground",
-    description: "The Plutus Playground is a lightweight, web-based environment for exploratory Plutus development.",
-    preview: require("./builder-tools/plutus-playground.png"),
-    website: "https://playground.plutus.iohkdev.io",
-    getstarted: "/docs/smart-contracts/plutus#plutus-playground",
-    tags: ["favorite", "plutus", "hosted"],
-  },
-  {
     title: "Marlowe Playground",
     description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
     preview: require("./builder-tools/marlowe-playground.png"),
