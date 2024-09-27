@@ -24,7 +24,7 @@ export const Tags = {
     label: "Favorite",
     description:
       "Our favorite Cardano projects that you must absolutely check-out.",
-    color: '#e9669e',
+    color: '#e9669e',  // Vibrant Pink
   },
 
   // Analytics
@@ -32,15 +32,15 @@ export const Tags = {
     label: "Analytics",
     description: "Tools that provide special insights related to Cardano.",
     icon: null,
-    color: '#39ca30',
+    color: '#6A8EAE',  // Cool Steel Blue
   },
 
-   // Bridge 
-   bridge: {
+  // Bridge 
+  bridge: {
     label: "Bridge",
     description: "Projects that provide cross-chain bridge support.",
     icon: null,
-    color: '#EDFF21'
+    color: '#FFC107',  // Golden Yellow
   },
 
   // Block Explorer
@@ -49,15 +49,15 @@ export const Tags = {
     description:
       "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
     icon: null,
-    color: '#293133',
+    color: '#2E3B4E',  // Deep Navy Blue
   },
 
   // Catalyst
   catalyst: {
     label: "Catalyst",
-    description: "Projects that aid to Cardano's interim governance programme (Catalyst).",
+    description: "Projects that aid to Cardano's innovation fund. (Project Catalyst)",
     icon: null,
-    color: '#308446'
+    color: '#3AA655',  // Vibrant Green
   },
 
   // DAO Tool
@@ -65,7 +65,7 @@ export const Tags = {
     label: "DAO Tool",
     description: "DAO tools help in the proper control and management of a DAO.",
     icon: null,
-    color: '#08C491'
+    color: '#37BEB0',  // Bright Cyan
   },
 
   // DEX
@@ -73,25 +73,23 @@ export const Tags = {
     label: "DEX",
     description: "Decentralised exchanges allow direct peer-to-peer cryptocurrency transactions to take place online securely.",
     icon: null,
-    color: '#1B32F0'
+    color: '#3D5AFE',  // Bright Blue
   },
 
   // Ecosystem
   ecosystem: {
     label: "Ecosystem",
-    description:
-      "The Cardano ecosystem projects.",
+    description: "The Cardano ecosystem projects.",
     icon: null,
-    color: '#800080'
+    color: '#9C27B0',  // Purple
   },
 
   // Educational
   educational: {
     label: "Educational",
-    description:
-      "Educational projects that will help you onboarding to Cardano.",
+    description: "Educational projects that will help you onboarding to Cardano.",
     icon: null,
-    color: '#a44fb7',
+    color: '#D81B60',  // Hot Pink
   },
 
   // Funding 
@@ -99,16 +97,15 @@ export const Tags = {
     label: "Funding",
     description: "Projects aimed at providing funding assistance to individuals.",
     icon: null,
-    color: '#1e40af'
+    color: '#004BA0',  // Rich Blue
   },
 
-  
   // Game
   game: {
     label: "Game",
     description: "Games on the Cardano blockchain.",
     icon: null,
-    color: '#127f82'
+    color: '#008080',  // Teal
   },
 
   // Gateways
@@ -116,7 +113,15 @@ export const Tags = {
     label: "Gateway",
     description: "Payment Gateway Providers.",
     icon: null,
-    color: '#fe6829',
+    color: '#FF5722',  // Bright Orange
+  },
+
+  // Governance
+  governance: {
+    label: "Governance",
+    description: "Governance tools.",
+    icon: null,
+    color: '#673AB7',  // Deep Purple
   },
 
   // Identity
@@ -124,7 +129,7 @@ export const Tags = {
     label: "Identity",
     description: "Decentralized identifiers (DIDs).",
     icon: null,
-    color: '#000'
+    color: '#212121',  // Solid Black
   },
 
   // Lending 
@@ -132,15 +137,15 @@ export const Tags = {
     label: "Lending",
     description: "Projects that provide lending and borrowing of ada.",
     icon: null,
-    color: '#7E0000'
+    color: '#9E1C1C',  // Deep Red
   },
 
   // Marketplace 
   marketplace: {
     label: "Marketplace",
-    description: "Marketplace where you can buy or sell nfts.",
+    description: "Marketplace where you can buy or sell NFTs.",
     icon: null,
-    color: '#f44f25',
+    color: '#E53935',  // Bright Red
   },
 
   // Meta data projects
@@ -148,7 +153,7 @@ export const Tags = {
     label: "Metadata",
     description: "Transaction metadata.",
     icon: null,
-    color: '#14cfc3',
+    color: '#00ACC1',  // Bright Teal
   },
 
   // Minting 
@@ -156,65 +161,63 @@ export const Tags = {
     label: "Minting",
     description: "Minting Tool.",
     icon: null,
-    color: '#23a5da',
+    color: '#42A5F5',  // Light Blue
   },
 
   // NFT Project (example: Spacebudz, Cardano Kidz)
   nftproject: {
-    label: "NFT project",
+    label: "NFT Project",
     description: "A project which main component is NFT.",
     icon: null,
-    color: '#F5D033'
+    color: '#FFD700',  // Gold
   },
 
-  // NFT (example: a wallet or marketplace)
+  // NFT Support (example: a wallet or marketplace)
   nftsupport: {
-    label: "NFT support",
+    label: "NFT Support",
     description: "A project that supports NFT.",
     icon: null,
-    color: '#D19412'
+    color: '#B8860B',  // Dark Gold
   },
 
-  // For open-source sites, a link to the source code is required
+  // Open-Source 
   opensource: {
     label: "Open-Source",
     description: "Open-Source sites can be useful for inspiration.",
     icon: null,
-    color: '#8c2f00',
+    color: '#8C2F00',  // Dark Orange-Red
   },
 
-  // Oracle 
+  // Oracle
   oracle: {
     label: "Oracle",
-    description: "Oracles provides smart contracts with external data.",
+    description: "Oracles provide smart contracts with external data.",
     icon: null,
-    color: '#5d9ce6'
+    color: '#1E88E5',  // Medium Blue
   },
 
   // Pool Tool
   pooltool: {
     label: "Pool Tool",
-    description:
-      "Pool tools provide delegates with the necessary tools to find a good pool.",
+    description: "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
-    color: '#4267b2',
+    color: '#6C6FFF',  // Soft Blue
   },
 
   // Native token projects
   token: {
     label: "Native Token",
-    description: "Native Tokens",
+    description: "Native Tokens.",
     icon: null,
-    color: '#E63244'
+    color: '#FF1744',  // Bright Red
   },
 
   // Wallets
   wallet: {
     label: "Wallet",
-    description:
-      "Cardano wallets store the public and/or private keys to access and manage your funds.",
+    description: "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
-    color: '#7BC8A6'
+    color: '#7BC8A6',  // Soft Green
   },
 };
 
@@ -1171,6 +1174,33 @@ export const Showcases = [
     website: "https://academy.cardanofoundation.org",
     source: null,
     tags: ["favorite", "educational"],
+  },
+  {
+    title: "Cardano Governance Tool",
+    description:
+      "A collection of tools to delegate voting power, become a DRep, become a direct voter, browse or proposa a governance actions on Cardano blockchain.",
+    preview: require("./showcase/govtools.jpg"),
+    website: "https://gov.tools",
+    source: null,
+    tags: ["favorite", "governance"],
+  },
+  {
+    title: "Constitutional Committee Portal",
+    description:
+      "The Constitutional Committee Portal is your hub to read the Cardano Constitution, learn about the Committee, view member votes, and explore their rationales.",
+    preview: require("./showcase/ccportal.jpg"),
+    website: "https://constitution.gov.tools",
+    source: null,
+    tags: ["governance"],
+  },
+  {
+    title: "Chang Watch",
+    description:
+      "Chang Watch provides various donut charts with insights on vote distribution and DReps.",
+    preview: require("./showcase/changwatch.jpg"),
+    website: "https://www.changwatch.com",
+    source: null,
+    tags: ["governance", "analytics"],
   },
 ];
 
