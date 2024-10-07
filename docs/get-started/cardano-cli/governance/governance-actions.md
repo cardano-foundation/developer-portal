@@ -142,7 +142,7 @@ cardano-cli conway governance action update-committee \
 ## Updating the constitution
 
 This section describes how to propose a new constitution. Lets's use as an example the interim constitution that is to be used 
-on Mainnet. It is available in https://ipfs.io/ipfs/Qmdo2J5vkGKVu2ur43PuTrM7FdaeyfeFav8fhovT6C2tto
+on Mainnet. It is available in https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm
 
 ### Find the last enacted Constitution governance action 
 
@@ -166,12 +166,12 @@ cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prev
 ### Prepare the constitution anchor.
 
 When proposing a new constitution, you are required to put it on a URL that is publicly accessible and, ideally, in some sort of persistent form. For example 
-put it on IPFS, like the [interim constitution](https://ipfs.io/ipfs/Qmdo2J5vkGKVu2ur43PuTrM7FdaeyfeFav8fhovT6C2tto)
+put it on IPFS, like the [interim constitution](https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm)
 
 * Download the file from its url:
 
 ```shell
-wget https://ipfs.io/ipfs/Qmdo2J5vkGKVu2ur43PuTrM7FdaeyfeFav8fhovT6C2tto -O constitution.txt
+wget https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm -O constitution.txt
 ```
 
 * Get its hash, you can do it with blake2 or with cardano-cli:
@@ -228,7 +228,7 @@ cardano-cli conway governance action create-constitution \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0100/cip-0100.common.schema.json \
   --anchor-data-hash "9d99fbca260b2d77e6d3012204e1a8658f872637ae94cdb1d8a53f4369400aa9" \
-  --constitution-url https://ipfs.io/ipfs/Qmdo2J5vkGKVu2ur43PuTrM7FdaeyfeFav8fhovT6C2tto \
+  --constitution-url https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm \
   --constitution-hash "a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d" \
   --constitution-script-hash "fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64"
   --out-file 
@@ -242,7 +242,7 @@ cardano-cli conway governance action create-constitution \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
-  --constitution-url https://ipfs.io/ipfs/Qmdo2J5vkGKVu2ur43PuTrM7FdaeyfeFav8fhovT6C2tto \
+  --constitution-url https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm \
   --constitution-hash "a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d" \
   --constitution-script-hash "fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64" \
   --prev-governance-action-tx-id "bf4832f443fe34f26f929ce2fbb26cc35ef4fda31150b2da45969a9bac4f7a8c" \
