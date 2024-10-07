@@ -3,11 +3,14 @@ import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
 import Link from '@docusaurus/Link';
 import {HtmlClassNameProvider, ThemeClassNames} from '@docusaurus/theme-common';
-import {BlogPostProvider, useBlogPost} from '@docusaurus/theme-common/internal';
+import {
+    BlogPostProvider,
+    useBlogPost,
+  } from '@docusaurus/plugin-content-blog/client';
 import BlogPostPageMetadata from '@theme/BlogPostPage/Metadata';
 import BlogLayout from '@theme/BlogLayout';
-import ChangelogItem from '@theme/ChangelogItem';
-import ChangelogPaginator from '@theme/ChangelogPaginator';
+import ChangelogItem from '../ChangelogItem';
+import ChangelogPaginator from '../ChangelogPaginator';
 import TOC from '@theme/TOC';
 import type {Props} from '@theme/BlogPostPage';
 import type {BlogSidebar} from '@docusaurus/plugin-content-blog';

@@ -9,7 +9,7 @@ import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import BlogPostItems from '@theme/BlogPostItems';
 import SearchMetadata from '@theme/SearchMetadata';
-import ChangelogItem from '@theme/ChangelogItem';
+import ChangelogItem from '../ChangelogItem';
 import type {Props} from '@theme/BlogListPage';
 
 function ChangelogListMetadata(props: Props): JSX.Element {

@@ -1,0 +1,122 @@
+---
+slug: 2022-07-11-july
+title: "Koios Interview"
+author: Cardano Foundation
+author_title: Developer Spotlight
+author_url: https://github.com/cardano-foundation
+author_image_url: https://avatars.githubusercontent.com/u/37078161?s=200&v=4
+tags: [education, interview]
+description: "We interviewed the Koios team about their consistent query layer for Cardano's developers to build upon, with multiple, redundant endpoints that allow for easy scalability."
+image: https://developers.cardano.org/img/og/og-blog-koios.png
+---
+
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+ [<ThemedImage
+alt="Koios"
+sources={{
+    light: useBaseUrl('/img/devblog/koios-light.png'),
+    dark: useBaseUrl('/img/devblog/koios-dark.png'),
+  }}
+/>](https://www.koios.rest)
+
+**_Can you introduce yourselves?_**
+
+We’re a group of long-term Cardano enthusiasts with a mix of different backgrounds that has been contributing via [Guild-operators](https://github.com/cardano-community/guild-operators/graphs/contributors) 
+(widely known in Dev - and especially SPO community - you may have heard of CNTools, gLiveView, the short 1-epoch community-owned Guild Network, topology Updater, etc) - we have been making immense contributions to the ecosystem without any additional marketing or financial cost requests. I’d say each one of us, while having different opinions/expertise, are firm believers in Open Source frameworks (which often get mixed with hosting code publicly) and decentralisation.
+
+While we do not believe to be restricted to a small group (and hope it extends further via community engagement), to list out the initial core members:
+
+- [Damjan](https://github.com/dostrelith678)
+- [Homer](https://github.com/hodlonaut)
+- [Markus](https://github.com/gufmar)
+- [Michael](https://github.com/redoracle)
+- [Ola](https://github.com/Scitz0)
+- [RdLrT](https://github.com/rdlrt)
+
+
+
+<br />
+
+**_Hey guys, happy to connect today and learn more about Koios! Can you tell us more about the project and the problem you were addressing?_**
+
+Koios is best described as a decentralized and elastic RESTful query layer for exploring data on the Cardano blockchain to consume within wallets, explorers, and other applications. 
+As the size of the Cardano blockchain rapidly grows, maintenance of Cardano components becomes increasingly expensive for builders leading to a few centralised API providers. That’s why we started Koios, to create an open-source and decentralised query layer that every builder in the community can use and improve instead of relying on centralised entities. 
+The primary differentiator for Koios is it can be run in light mode (as a remote consumer) or you can run an exact replica of the network locally while stringing it into a cluster.
+
+Besides, we are planning to reward each of the nodes contributing in the growth and development of Koios network throughout the deployment of a L1 Cardano side-chain which will bring more value points in the ecosystem.
+In particular we will be able to:
+
+- Reward nodes and contributors
+- Develop a blockchain bridged with the Cardano blockchain natively
+- Offer a brand new playground for developers who believes in Koios and Cardano
+- Deploy a self-sustainable ecosystem which will support Cardano API services in a decentralised way indefinitely
+
+It is a network of connected Koios nodes that are each able to serve requests with automatic failover to healthy nodes in case of any errors which increases the security and scalability of the network itself.
+
+<br />
+
+**_What are the most important things about Koios?_**
+
+The main things about Koios are its robustness, flexibility and openness. The robustness comes from having no single point of failure - when you query data from Koios, you are not querying a single server but a network of servers which talk to each other and are maintained by separate entities/contributors which defines our decentralisation characteristic.
+
+Koios is also very flexible, both in terms of existing API functionalities, which can be made very specific to particular use-cases, and in terms of further feature extensions. As the entire project is open-sourced, it becomes stronger with growing community participation and more and more ideas are realised thanks to our API infrastructure.
+
+<br />
+
+**_Now, what are your accomplishments so far, and what are you most proud of?_**
+
+Our most important accomplishment so far was the release of the initial Koios API v1 in March 2022, with complete information for Cardano blockchain as per feedback from existing products. Since then, the usage of the public Koios API has skyrocketed and now Koios nodes have been serving more than three billion requests monthly from **> 2500** unique IPs (excluding crawlers). More importantly, individuals have come forward to not only participate as instance providers but also build Open-Source libraries and Tools helping out with adoption. We are very proud of that as it shows that other community members share our vision and that helps us move forward together.
+
+<br />
+
+**_Why should people choose to use Koios? What are the advantages over other existing API providers?_**
+
+We believe different solutions will have their specific use-cases that will definitely fit a subsection of the developer community better. The differentiators for Koios are:
+
+- The entire project has been built with transparency and community engagement.
+
+- The decentralised cluster of instances currently provides a good balance of providing independent data, while still going through health checks from monitoring layers. These monitoring layers are easily replaceable as well, with the flexibility to split and create separate smaller/larger clusters with relevant features. This is already being done by some of the NFT projects currently.
+
+- The elasticity ensures that we’re not reliant on a single entity to manage infrastructure, and anyone can run the instance individually or join the cluster, with the failover support built-in from the template - it already reduces individual clustering costs.
+
+- There is enough flexibility in the design to use partial components in light-mode, and also keep services extensible. For instance, if/when there are enough advantages, we could easily integrate Ogmios/Scrolls or any other tools that help out in providing data. if something isn't easily available.
+
+- One of the focus areas that we still aim to magnify in coming months is standardisation and object representation - as a developer one should not have to invent what an object representation means, or have to ask why different explorers represent an object differently. We hope to fill this gap further soon.
+
+<br />
+
+**_What is the future of Koios? For example, what new things are to come, and what will it mean for the overall project?_**
+
+At the moment, we have a couple of things going on. We recently submitted two Project Catalyst proposals which are being assessed. One of the proposals introduces an [incentive mechanism for Koios node operators along with the first Koios DApp based on chain analysis](https://cardano.ideascale.com/c/idea/419448). The other project will extend the existing Koios API with a [utilities microservice](https://cardano.ideascale.com/c/idea/416830) for handling data post-consumption, as well as introduce Koios bots that will serve community needs in social channels.
+
+<br />
+
+**_Which partnerships have you engaged in so far, and which ones are the most impactful?_**
+
+We do not have specific partnerships per se, but we have already good collaboration with different community members/teams, and [many projects are already live now using Koios](https://api.koios.rest/#overview--community-projects).
+
+Nevertheless, we are optimistic about future potential partnerships that could come into play while keeping in touch with basic goals as Koios keeps growing, improving and serving the Cardano community.
+
+<br />
+
+**_Where can we learn more and keep up with the project?_**
+
+**Information:**
+
+Basic introduction about Koios can be found on Koios website: https://koios.rest, while the API specs can be found at https://api.koios.rest.
+
+**Releases/Code:**
+
+The various artifacts pertaining Koios Cluster can be found [here](https://github.com/cardano-community/koios-artifacts) including the [SQL queries for the Cardano Blockchain](https://github.com/cardano-community/koios-artifacts/tree/main/files/grest/rpc).
+
+**Participation as Instance Provider:**
+
+Instructions for easy to set-up instance of koios can be found [here](https://cardano-community.github.io/guild-operators/Build/grest/).
+
+**Support/Discussions/Updates:**
+
+You can join Koios [discussion groups on telegram](https://t.me/CardanoKoios), we also hold bi-weekly public meetings where anyone is free to join and discuss potential future changes that Koios should drive towards. There are also announcements / polls shared in this group to capture feedback regarding specifics of the API, or interim pre-release instructions.
+
+Lastly, if you’d only like to follow important information, you can find us on twitter via [@CardanoKoios](https://twitter.com/CardanoKoios).

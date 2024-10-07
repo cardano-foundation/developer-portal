@@ -6,6 +6,7 @@ description: How to mint NFTs on Cardano.
 image: /img/og/og-developer-portal.png
 ---
 
+```jsx 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -70,7 +71,7 @@ The query would look something like this:
 1. Get asset name and `policyID`.
 2. Look up the latest minting transaction of this asset.
 3. Check the metadata for label `721`.
-4. Match the asset name and (in this case) the {policy_name}-entry.
+4. Match the asset name and (in this case) the `{policy_name}-entry`.
 5. Query the IPFS hash and all other attributes to the corresponding entry.
 
 :::important

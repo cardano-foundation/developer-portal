@@ -26,7 +26,7 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      additionalLanguages: ['csharp', 'php'],
+      additionalLanguages: ['csharp', 'ruby', 'rust', 'swift', 'typescript', 'yaml', 'js'],
     },
 
     // Announcement Bar
@@ -350,4 +350,7 @@ module.exports = {
       },
     ],
   ],
+  markdown: {
+    format: "detect"
+  },
 };
