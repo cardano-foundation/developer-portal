@@ -247,7 +247,7 @@ Various other questions and answers.
 Yes, please always do a `yarn build` before submitting a pull request. It will find many more issues than `yarn start`.
 
 ### Is there any style guide? Do we have editorial guidelines?
-Yes, both still work in progress but please see [style guide](portal-style-guide.md) and [editorial guidelines](portal-style-guide.md#editorial-style-guide).
+Yes, both still work in progress but please see [style guide](./portal-style-guide.mdx) and [editorial guidelines](./portal-style-guide.mdx#editorial-style-guide).
 
 ### Should I commit the `yarn.lock` file?
 No, please do not commit your `yarn.lock` file: this represents a software baseline and should be updated only at regular intervals by site maintainers.

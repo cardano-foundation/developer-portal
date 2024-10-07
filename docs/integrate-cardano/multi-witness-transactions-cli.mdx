@@ -12,15 +12,15 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-This guide assumes that you have completed the [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
+This guide assumes that you have completed the [Exploring Cardano Wallets](../integrate-cardano/creating-wallet-faucet.md) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
 
-This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](docs/get-started/testnets-and-devnets.md).
+This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](../get-started/testnets-and-devnets.md).
 
 :::
 
 ### Recap
 
-Let's recap what we did so far. Our goal in the [previous guide](/docs/integrate-cardano/creating-wallet-faucet) was to draw `1000 tADA` from the Testnet Faucet and send `250 tAda` from **payment1** to **payment2**.
+Let's recap what we did so far. Our goal in the [previous guide](../integrate-cardano/creating-wallet-faucet.md) was to draw `1000 tADA` from the Testnet Faucet and send `250 tAda` from **payment1** to **payment2**.
 
 Make sure we are in the correct folder.
 
@@ -193,7 +193,7 @@ We can't do this with `cardano-wallet`, or any other wallet like Daedalus or Yor
 
 :::note
 
-As mentioned above, this guide assumes you completed the [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guide.<br />
+As mentioned above, this guide assumes you completed the [Exploring Cardano Wallets](../integrate-cardano/creating-wallet-faucet.md) guide.<br />
 We also assume you paid `174169 Lovelace` in transaction fees and that your current balances are:
 
 * **payment1**: `749825831 Lovelace`
@@ -339,7 +339,7 @@ He can see that the transaction has one output to his wallet. No other outputs, 
 
 Congratulations, you are now able to submit **multi-witness transactions on Cardano**. This should help you bring integrations to your existing or new upcoming applications. 🎉🎉🎉
 
-<!-- ## Compare fees
+## Compare fees
 
 We had to pay `179581 Lovelace` to get all of our funds from A+B to C. Let's compare with the fees we would have payed had we used two transactions.
 

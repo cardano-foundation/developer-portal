@@ -562,7 +562,7 @@ transaction is expired in slot 500.
 
 Once you have generated your time lock script you need to follow all the same
 steps as above in the multi-signature script example but with a slight
-modification of [step 1](#Step-1---construct-the-tx-body) which needs to be
+modification of [step 1](#step-1---construct-the-tx-body) which needs to be
 amended as follows:
 
 Example time locking script file:

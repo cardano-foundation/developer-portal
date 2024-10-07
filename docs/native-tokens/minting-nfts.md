@@ -102,7 +102,7 @@ For this guide, we will choose the following constraints:
 
 ## Prerequisites
 
-Apart from the same requisites as on the [minting native assets](minting.md) guide, we will additionally need:
+Apart from the same requisites as on the [minting native assets](./minting.md) guide, we will additionally need:
 
 1. Obviously, what / how many NFTs you want to make.
    --> We are going to make only one NFT
@@ -119,7 +119,7 @@ We recommend upload images to IPFS as it is the most common decentralized storag
 
 ## Lets get started
 
-Since the creation of native assets is documented extensively in the [minting](minting.md) chapter, we won't go into much detail here.
+Since the creation of native assets is documented extensively in the [minting](./minting.md) chapter, we won't go into much detail here.
 Here's a little recap and needed setup
 
 ### Working directory

@@ -249,7 +249,10 @@ cardano-cli conway governance action create-constitution \
   --prev-governance-action-index 0 \
   --out-file constitution.action
 ```
-From here, you just need to [submit the proposal in a transaction](#submitting-the-action-file-in-a-transaction) 
+
+## Submitting the Action File in a Transaction
+
+From here, you just need to [submit the proposal in a transaction](#submitting-a-treasury-withdrawal-and-protocol-parameter-update-governance-action)  
 
 ## Motion of no confidence
 
@@ -369,7 +372,7 @@ cardano-cli conway transaction submit \
   --tx-file tx.signed
 ```
 
-## Submitting a Treasury-withdrawal or Protocol-parameter-update governance action
+## Submitting a Treasury Withdrawal and Protocol Parameter Update Governance Action
 
 :::info
 These types of proposals must reference the guardrails script, therefore must supply a collateral and the guardrails script either directly or as 
