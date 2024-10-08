@@ -104,11 +104,11 @@ nano startTestNode.sh
 ```
 
 :::note
-Replace <$HOME> with local values of the `$HOME` environment variable on each machine. To find those values, run `echo $HOME`.
+Replace `<$HOME>` with local values of the `$HOME` environment variable on each machine. To find those values, run `echo $HOME`.
 :::
 
 copy the following in the file
-```
+```bash
 #!/bin/bash
 # Set a variable to indicate the port where the Cardano Node listens
 PORT=6000
@@ -116,13 +116,13 @@ PORT=6000
 # 0.0.0.0 listens on all local IP addresses for the computer
 HOSTADDR=0.0.0.0
 # Set a variable to indicate the file path to your topology file
-TOPOLOGY=<$HOME>/cardano-testnet/topology.json
+TOPOLOGY=${HOME}/cardano-testnet/topology.json
 # Set a variable to indicate the folder where Cardano Node stores blockchain data
-DB_PATH=<$HOME>/cardano-testnet/db
+DB_PATH=${HOME}/cardano-testnet/db
 # Set a variable to indicate the path to the Cardano Node socket for Inter-process communication (IPC)
-SOCKET_PATH=<$HOME>/cardano-testnet/db/socket
+SOCKET_PATH=${HOME}/cardano-testnet/db/socket
 # Set a variable to indicate the file path to your main Cardano Node configuration file
-CONFIG=<$HOME>/cardano-testnet/config.json
+CONFIG=${HOME}/cardano-testnet/config.json
 #
 # Run Cardano Node using the options that you set using variables
 #
@@ -149,24 +149,24 @@ To run Cardano Node as a service, use nano to create a file named cardano-testno
 
 :::note
 
-Replace <$USER> and  <$HOME> with their values of the environment variable. To find the values use following commands:
+Replace `<$USER>` and `<$HOME>` with their values of the environment variable. To find the values use the following commands:
 
     echo $USER
     echo $HOME
 
 :::
 
-```
+```ini
 [Unit]
 Description       = Cardano TestNode Service
 Wants             = network-online.target
 After             = network-online.target
 
 [Service]
-User              = <$USER>
+User              = ${USER}
 Type              = simple
-WorkingDirectory  = <$HOME>/cardano-testnet
-ExecStart         = /bin/bash -c '<$HOME>/cardano-testnet/startTestNode.sh'
+WorkingDirectory  = ${HOME}/cardano-testnet
+ExecStart         = /bin/bash -c '${HOME}/cardano-testnet/startTestNode.sh'
 ExecReload        = pkill -HUP cardano-node
 KillSignal        = SIGINT
 RestartKillSignal = SIGINT

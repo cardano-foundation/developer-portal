@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
-import { useBlogPost } from '@docusaurus/theme-common/internal';
-import ChangelogItemHeaderAuthor from '@theme/ChangelogItem/Header/Author';
+import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
+import ChangelogItemHeaderAuthor from '../Author';
 import IconExpand from '@theme/Icon/Expand';
-import type { Props } from '@theme/BlogPostItem/Header/Authors';
+import type {Props} from '@theme/BlogPostItem/Header/Authors';
 
 import styles from './styles.module.css';
 
@@ -12,7 +12,7 @@ export default function BlogPostAuthors({
   className,
 }: Props): JSX.Element | null {
   const {
-    metadata: { authors },
+    metadata: {authors},
     assets,
   } = useBlogPost();
   const [expanded, setExpanded] = useState(false);
@@ -20,7 +20,7 @@ export default function BlogPostAuthors({
   if (authorsCount === 0) {
     return null;
   }
-  const filteredAuthors = authors.slice(0, expanded ? authors.length : 20);
+  const filteredAuthors = authors.slice(0, expanded ? authors.length : 10);
   return (
     <div
       className={clsx(
@@ -39,7 +39,7 @@ export default function BlogPostAuthors({
           />
         </div>
       ))}
-      {authors.length > 20 && (
+      {authors.length > 10 && (
         <button
           className={clsx('clean-btn', styles.toggleButton)}
           type="button"

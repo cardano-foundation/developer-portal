@@ -6,6 +6,7 @@ description: How to mint NFTs on Cardano.
 image: /img/og/og-developer-portal.png
 ---
 
+```jsx 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -70,7 +71,7 @@ The query would look something like this:
 1. Get asset name and `policyID`.
 2. Look up the latest minting transaction of this asset.
 3. Check the metadata for label `721`.
-4. Match the asset name and (in this case) the {policy_name}-entry.
+4. Match the asset name and (in this case) the `{policy_name}-entry`.
 5. Query the IPFS hash and all other attributes to the corresponding entry.
 
 :::important
@@ -101,7 +102,7 @@ For this guide, we will choose the following constraints:
 
 ## Prerequisites
 
-Apart from the same requisites as on the [minting native assets](minting.md) guide, we will additionally need:
+Apart from the same requisites as on the [minting native assets](./minting.md) guide, we will additionally need:
 
 1. Obviously, what / how many NFTs you want to make.
    --> We are going to make only one NFT
@@ -118,7 +119,7 @@ We recommend upload images to IPFS as it is the most common decentralized storag
 
 ## Lets get started
 
-Since the creation of native assets is documented extensively in the [minting](minting.md) chapter, we won't go into much detail here.
+Since the creation of native assets is documented extensively in the [minting](./minting.md) chapter, we won't go into much detail here.
 Here's a little recap and needed setup
 
 ### Working directory

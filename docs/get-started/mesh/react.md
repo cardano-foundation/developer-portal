@@ -9,9 +9,11 @@ image: /img/og/og-getstarted-mesh.png
 
 Mesh provide a collection of useful UI components, so you can easily include web3 functionality and convenient utilities for your application.
 
-- [MeshProvider](#meshprovider) - Subscribe to wallet changes
+- [MeshProvider](#mesh-provider) - Subscribe to wallet changes
 - [UI Components](#ui-components) - React frontend components to speed up your app development.
 - [Wallet Hooks](#wallet-hooks) - React hooks for interacting with connected wallet
+
+## Mesh Provider
 
 To start, install `mesh-react`:
 
