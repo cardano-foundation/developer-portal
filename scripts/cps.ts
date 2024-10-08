@@ -71,7 +71,7 @@ async function updateOrCreateReadmeFile(
       creationDate +
       "** and has the status: [" +
       status +
-      "](../cardano-improvement-proposals/CIP-0001#cip-workflow).  \nThis page was generated automatically from: [" +
+      "](../cardano-improvement-proposals/CIP-0001.md#cip-workflow).  \nThis page was generated automatically from: [" +
       cip_source_repo +
       "](" +
       cip_repo_base_url +
