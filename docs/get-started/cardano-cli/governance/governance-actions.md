@@ -342,7 +342,7 @@ cardano-cli conway governance action create-protocol-parameters-update \
 
 * Note: If there is a **previously enacted** governance action to update the protocol parameters, the proposal must also include `--prev-governance-action-tx-id` and `--prev-governance-action-index`.
 
-Continue with [build, sign and submit the transactions](#submitting-a-treasuy-withdrawal-and-protocol-parameter-update-governance-action) 
+Continue with [build, sign and submit the transactions](#submitting-a-treasury-withdrawal-and-protocol-parameter-update-governance-action)
 
 ## Submitting Motion of no-confidence, Update committee, New Constitution, Hardfork initiation or Info proposals in a transaction
 
