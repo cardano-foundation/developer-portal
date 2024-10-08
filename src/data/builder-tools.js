@@ -1164,6 +1164,14 @@ export const Showcases = [
     tags: ["IDE", "sdk", "hosted", "nft", "javascript"]
   },
   {
+    title: "Cardano Audit Script for SPOs",
+    description: "A security and compliance audit script for Cardano stakepool nodes, to help SPOs check their node and security configuration.",
+    preview: require("./builder-tools/cardano-node-audit.png"),
+    website: "https://github.com/Kirael12/cardano-node-audit",
+    getstarted: "/docs/operate-a-stake-pool/audit-your-node",
+    tags: ["operatortool", "cli"]
+  },
+  {
     title: "ZhuLi",
     description: "A validator & companion command-line tool to provide hot/cold account management to delegate representatives (a.k.a DReps) on Cardano. The on-chain validator provides an authentication mechanism for an administrator multisig script (m-of-n type), itself granting powers to multisig-like delegate to manage voting stake rights.",
     preview: require("./builder-tools/zhuli.jpg"),
