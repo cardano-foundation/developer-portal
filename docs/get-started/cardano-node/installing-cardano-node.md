@@ -135,7 +135,7 @@ Decide which version of Cardano Node you will be installing.
 A list of available tags is available at: https://github.com/IntersectMBO/cardano-node/tags.
 Set the environment variable to the tag you selected (or use `master` for the latest unstable version):
 ```bash
-CARDANO_NODE_VERSION='8.7.3'
+CARDANO_NODE_VERSION='9.2.1'
 IOHKNIX_VERSION=$(curl https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')
 echo "iohk-nix version: $IOHKNIX_VERSION"
 ```
