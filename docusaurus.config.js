@@ -26,7 +26,7 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      additionalLanguages: ['csharp', 'php'],
+      additionalLanguages: ['csharp', 'ruby', 'rust', 'swift', 'typescript', 'yaml', 'js'],
     },
 
     // Announcement Bar
@@ -337,6 +337,7 @@ module.exports = {
           showReadingTime: true,
           editUrl: `${vars.repository}/edit/${vars.branch}`,
           blogSidebarCount: 'ALL',
+          onInlineAuthors: 'ignore',
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -350,4 +351,7 @@ module.exports = {
       },
     ],
   ],
+  markdown: {
+    format: "detect"
+  },
 };

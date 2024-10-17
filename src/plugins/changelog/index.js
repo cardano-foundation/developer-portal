@@ -61,6 +61,8 @@ function processSection(section) {
   return {
     title: title.replace(/ \(.*\)/, ''),
     content: `---
+mdx:
+ format: md    
 date: ${`${date}T${hour}:00`}${
       authors
         ? `
@@ -82,7 +84,7 @@ ${content.replace(/####/g, '##')}`,
  * @param {import('@docusaurus/types').LoadContext} context
  * @returns {import('@docusaurus/types').Plugin}
  */
-async function ChangelogPlugin(context, options) {
+export default  async function ChangelogPlugin(context, options) {
   const generateDir = path.join(context.siteDir, 'changelog/source');
   const blogPlugin = await pluginContentBlog.default(context, {
     ...options,
@@ -130,7 +132,8 @@ async function ChangelogPlugin(context, options) {
         'default',
       );
       // Redirect the metadata path to our folder
-      config.module.rules[0].use[1].options.metadataPath = (mdxPath) => {
+      const mdxLoader = config.module.rules[0].use[0];
+      mdxLoader.options.metadataPath = (mdxPath) => {
         // Note that metadataPath must be the same/in-sync as
         // the path from createData for each MDX.
         const aliasedPath = aliasedSitePath(mdxPath, context.siteDir);
