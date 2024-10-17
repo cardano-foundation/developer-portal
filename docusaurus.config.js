@@ -33,9 +33,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: {
-      id: "announcement_index4", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index5", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Join the Cardano Summit 2024 in Dubai on 23-24 October. ⭐️<a target="_blank" rel="noopener noreferrer" href="https://summit.cardano.org?ref=devportal">Get Tickets!</a></strong>`,
+        `<strong>Calling all Cardano developers! Your experience matters, take the annual <a target="_blank" rel="noopener noreferrer" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-survey-2024">Developer Ecosystem Survey</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
