@@ -1202,6 +1202,15 @@ export const Showcases = [
     source: null,
     tags: ["governance", "analytics"],
   },
+  {
+    title: "Medusa Wallet",
+    description:
+        "A lightweight Cardano wallet focused on maximum privacy and user protection, enabling easy and secure access to funds even in untrusted or compromised environments.",
+    preview: require("./showcase/medusa_wallet_poster.png"),
+    website: "https://adawallet.io",
+    source: null,
+    tags: ["wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
