@@ -1194,6 +1194,22 @@ export const Showcases = [
     website: "https://github.com/cardano-foundation/cf-ledger-sync",
     getstarted: null,
     tags: ["java", "chainindex"]
+  },
+  {
+    title: "CFD: Cardano Fast Deployment tool",
+    description: "CFD simplifies and accelerates Cardano software deployment, stake pool management, software updates, and secure key handling, including GPG keychain integration and automated encryption, all with minimal user effort.",
+    preview: require("./builder-tools/cfd.png"),
+    website: "https://github.com/cardano-community/cfd",
+    getstarted: null,
+    tags: ["cli", "operatortool"]
+  },
+  {
+    title: "pg_cardano",
+    description: "A fast, Rust-based PostgreSQL extension for Cardano cryptographic operations, including Base58, Bech32, CBOR, Blake2b, and Ed25519 with some useful high-level tools.",
+    preview: require("./builder-tools/pg_cardano.png"),
+    website: "https://github.com/cardano-community/pg_cardano",
+    getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
+    tags: ["rust", "serialization", "sql", "lowlevel"]
   }
 ];
 
