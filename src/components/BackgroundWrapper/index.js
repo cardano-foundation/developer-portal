@@ -12,10 +12,11 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 // while it is usually fine to have a <BoundaryBox as a child of a <BackgroundWrapper>
 
 export default function BackgroundWrapper({ children, backgroundType }) {
-  
+
+
   // this version of the BackgroundWrapper only uses the ada background
   // see https://cardano.org/docs/components/background-wrapper for details
   let wrapperClassName = styles.backgroundAda;
-
+ 
   return <div className={wrapperClassName}>{children}</div>;
 }
