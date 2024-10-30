@@ -1,0 +1,108 @@
+/** backgroundNone */
+
+.backgroundNone {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/** backgroundSolidGrey */
+
+.backgroundSolidGrey {
+  background-color: #f5f5f5;
+  /*padding: 20px;*/
+}
+
+[data-theme="dark"] {
+  .backgroundSolidGrey {
+    background-color: #242526;
+  }
+}
+
+/** backgroundSolidBlue */
+
+.backgroundSolidBlue {
+  background-color: #5281f7;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+[data-theme="dark"] {
+  .backgroundSolidBlue {
+    background-color: #5281f7; /* fixme: darker */
+  }
+}
+
+/** backgroundZoom */
+
+.backgroundZoom {
+  /*background-image: url("/img/hero-header-dots.webp");*/
+  background-size: 500px;
+  background-repeat: no-repeat;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+[data-theme="dark"] {
+  .backgroundZoom {
+    /*background-image: url("/img/hero-header-dots-dark.webp");*/
+  }
+}
+
+/** backgroundZoomMini */
+
+.backgroundGradientDark {
+  background-image: linear-gradient(315deg, #0133ae, #335cbe);
+}
+
+[data-theme="dark"] {
+  .backgroundGradientDark {
+    background-image: linear-gradient(315deg, #0133ae, #0b1f4f);
+  }
+}
+
+/** backgroundGradientLight */
+
+.backgroundGradientLight {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-image: linear-gradient(
+    315deg,
+    rgb(91, 123, 202),
+    rgb(10, 56, 166)
+  );
+}
+
+[data-theme="dark"] {
+  .backgroundGradientLight {
+    background-image: linear-gradient(315deg, rgb(43, 89, 205), rgb(0, 24, 80));
+  }
+}
+
+/** backgroundAda */
+
+.backgroundAda {
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 20px;
+  z-index: 0;
+  /*overflow: hidden;*/  /* no overflow to let it bleed */
+}
+
+.backgroundAda:before {
+  content: "₳";
+  z-index: -1;
+  position: absolute;
+  top: -25rem;
+  right: 15vw;
+  opacity: 0.07;
+  font-size: 43rem; /* adjust size of the A */
+  padding-top: 0px;
+  margin-top: 0px;
+  transform: rotate(7deg);
+  color: #1f5cf8;
+}
+
+[data-theme="dark"] .backgroundAda:before {
+  color: #98b7f2; /* dark mode color for the A */
+}
