@@ -25,7 +25,7 @@ import Fav from "../../svg/fav.svg";
 
 const TITLE = "Showcase";
 const DESCRIPTION = "See the awesome projects people are building with Cardano";
-const CTA = "Add your project";
+const CTA = "₳dd your project";
 const FILENAME = "showcases.js";
 
 export function prepareUserState() {
