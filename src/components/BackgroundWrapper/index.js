@@ -12,31 +12,10 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 // while it is usually fine to have a <BoundaryBox as a child of a <BackgroundWrapper>
 
 export default function BackgroundWrapper({ children, backgroundType }) {
-  // Use backgroundType to dynamically change the class for the background
-  let wrapperClassName;
-
-  switch (backgroundType) {
-    case "solidGrey":
-      wrapperClassName = styles.backgroundSolidGrey;
-      break;
-    case "solidBlue":
-      wrapperClassName = styles.backgroundSolidBlue;
-      break;
-    case "zoom":
-      wrapperClassName = styles.backgroundZoom;
-      break;
-    case "gradientDark":
-      wrapperClassName = styles.backgroundGradientDark;
-      break;
-    case "gradientLight":
-      wrapperClassName = styles.backgroundGradientLight;
-      break;
-    case "ada":
-      wrapperClassName = styles.backgroundAda;
-      break;
-    default:
-      wrapperClassName = styles.backgroundNone;
-  }
+  
+  // this version of the BackgroundWrapper only uses the ada background
+  // see https://cardano.org/docs/components/background-wrapper for details
+  let wrapperClassName = styles.backgroundAda;
 
   return <div className={wrapperClassName}>{children}</div>;
 }
