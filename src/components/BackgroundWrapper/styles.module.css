@@ -1,0 +1,27 @@
+
+.backgroundAda {
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 20px;
+  z-index: 0;
+  /*overflow: hidden;*/  /* no overflow to let it bleed */
+}
+
+.backgroundAda:before {
+  content: "₳";
+  z-index: -1;
+  position: absolute;
+  top: -15rem;
+  right: 15vw;
+  opacity: 0.07;
+  font-size: 31rem; /* adjust size of the A */
+  padding-top: 0px;
+  margin-top: 0px;
+  transform: rotate(7deg);
+  color: #1f5cf8;
+}
+
+[data-theme="dark"] .backgroundAda:before {
+  color: #98b7f2; /* dark mode color for the A */
+}

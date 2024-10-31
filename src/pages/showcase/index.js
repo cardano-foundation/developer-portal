@@ -22,10 +22,11 @@ import styles from "./styles.module.css";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import Fav from "../../svg/fav.svg";
+import BackgroundWrapper from "@site/src/components/BackgroundWrapper";
 
 const TITLE = "Showcase";
 const DESCRIPTION = "See the awesome projects people are building with Cardano";
-const CTA = "Add your project";
+const CTA = "₳dd your project";
 const FILENAME = "showcases.js";
 
 export function prepareUserState() {
@@ -165,6 +166,7 @@ function ShowcaseFilters() {
   const filteredProjects = useFilteredProjects();
 
   return (
+    <BackgroundWrapper backgroundType="ada">
     <div className="margin-top--l margin-bottom--md container">
       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
         <div>
@@ -223,6 +225,7 @@ function ShowcaseFilters() {
         })}
       </div>
     </div>
+    </BackgroundWrapper>
   );
 }
 
