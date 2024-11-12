@@ -1202,6 +1202,15 @@ export const Showcases = [
     source: null,
     tags: ["governance", "analytics"],
   },
+  {
+    title: "Danogo",
+    description:
+      "Danogo is the best place to Borrow and Supply on Cardano.",
+    preview: require("./showcase/danogo.png"),
+    website: "https://danogo.io/",
+    source: null,
+    tags: ["lending", "marketplace", "dex", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
