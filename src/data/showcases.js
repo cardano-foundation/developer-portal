@@ -520,15 +520,6 @@ export const Showcases = [
     tags: ["minting", "token", "nftsupport"],
   },
   {
-    title: "Tokhun.io",
-    description:
-      "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
-    preview: require("./showcase/tokhun.png"),
-    website: "https://tokhun.io",
-    source: null,
-    tags: ["favorite", "minting", "marketplace", "nftsupport"],
-  },
-  {
     title: "cardano-tools.io",
     description:
       "An advanced CNFT maker. You just pay network fees.",
@@ -599,15 +590,6 @@ export const Showcases = [
     website: "https://www.sundaeswap.finance",
     source: null,
     tags: ["favorite", "dex", "token"],
-  },
-  {
-    title: "Flint Wallet",
-    description:
-      "Flint is a friendly go-to wallet for DeFi and NFTs. As a light wallet, Flint allows you to easily manage multiple assets from different chains in your browser.",
-    preview: require("./showcase/flintwallet.png"),
-    website: "https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj",
-    source: null,
-    tags: ["favorite", "wallet", "nftsupport", "metadata"],
   },
   {
     title: "DripDropz",
