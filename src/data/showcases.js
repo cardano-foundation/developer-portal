@@ -1205,7 +1205,7 @@ export const Showcases = [
   {
     title: "Danogo",
     description:
-      "Danogo is the best place to Borrow and Supply on Cardano.",
+      "Danogo is a yield aggregator that provides the best place to borrow and supply on Cardano.",
     preview: require("./showcase/danogo.png"),
     website: "https://danogo.io/",
     source: null,
