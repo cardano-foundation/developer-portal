@@ -1,6 +1,10 @@
 // GitHub Settings
 const vars = require('./variables')
 
+// enable or disable the announcement header bar (see 'announcementBar' section below)
+const isAnnouncementActive = false;
+
+
 // Docusaurus Config
 module.exports = {
   title: "Cardano Developer Portal",
@@ -32,14 +36,14 @@ module.exports = {
     // Announcement Bar
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
-    announcementBar: {
+    announcementBar: isAnnouncementActive ?{
       id: "announcement_index5", // Any value that will identify this message + increment the number every time to be unique
       content:
         `<strong>Calling all Cardano developers! Your experience matters, take the annual <a target="_blank" rel="noopener noreferrer" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-survey-2024">Developer Ecosystem Survey</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
-    },
+    }: undefined,
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
