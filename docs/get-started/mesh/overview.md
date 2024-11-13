@@ -26,7 +26,7 @@ Whether you're a new developer, a startup, or a large enterprise, Mesh makes Web
 | [Minting assets](https://meshjs.dev/apis/transaction/minting) | Minting with Native Script, Plutus Script, CIP68 and royalty tokens. |
 | [Interact with smart contracts](https://meshjs.dev/apis/transaction/smart-contract) | Locking and unlocking, minting and burning assets, designing datum and redeemer. Mesh provides everything you need to work with smart contracts. | 
 | [Interact with Stakepool](https://meshjs.dev/apis/transaction/staking) | Delegate and undelegate to stakepool as a user, and register and retire a stakepool as an operator. |
-| [Governance transactions](https://meshjs.dev/apis/txbuilder/governance) | Transactions for creating DRep and participating in Cardano's on-chain governance. |
+| [Governance transactions](https://meshjs.dev/apis/txbuilder/governance) | Transactions for creating DReps and participating in Cardano's on-chain governance. |
 | [React Components and Hooks](https://meshjs.dev/react/) | Mesh offers UI components you need to build your dApp, so you can jumpstart your next project and bring the user interface to life. |
 | [Guides](https://meshjs.dev/guides) | Whether you are new to web development or a seasoned blockchain full-stack developer, these guides will help you get started. |
 | [Useful Utilities](https://meshjs.dev/apis/utilities) | Many blockchains operations are computed locally without the need to fetch data from services. |
