@@ -9,7 +9,7 @@ image: /img/og/og-getstarted-mesh.png
 
 Mesh provide a collection of useful UI components, so you can easily include web3 functionality and convenient utilities for your application.
 
-- [MeshProvider](#meshprovider) - Subscribe to wallet changes
+- [Mesh Provider](#mesh-provider) - Subscribe to wallet changes
 - [UI Components](#ui-components) - React frontend components to speed up your app development.
 - [Wallet Hooks](#wallet-hooks) - React hooks for interacting with connected wallet
 
@@ -18,6 +18,8 @@ To start, install `mesh-react`:
 ```bash
 npm install @meshsdk/react
 ```
+
+## Mesh Provider
 
 Next, let's add `MeshProvider` to the root of the application. [React Context](https://reactjs.org/docs/context.html) allows apps to share data across the app, and MeshProvider allows your app to subscribe to context changes.
 
