@@ -850,7 +850,7 @@ export const Showcases = [
   },
   {
     title: "Mesh SDK",
-    description: "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
+    description: "A feature-complete, open-source TypeScript SDK and off-chain framework that includes wallet integration, transaction building, a smart contract library, third-party API integration, UI components, and more. It's thoroughly documented, with live demos, great for both learners and experienced developers.",
     preview: require("./builder-tools/mesh.png"),
     website: "https://meshjs.dev/",
     getstarted: "/docs/get-started/mesh/overview",

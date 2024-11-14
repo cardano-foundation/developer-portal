@@ -1202,6 +1202,15 @@ export const Showcases = [
     source: null,
     tags: ["governance", "analytics"],
   },
+  {
+    title: "Multisig Platform",
+    description:
+      "Secure your treasury and participant in governance, as a team with multi-signature.",
+    preview: require("./showcase/mesh-multisig-platform.jpg"),
+    website: "https://multisig.meshjs.dev/",
+    source: null,
+    tags: ["governance", "wallet", "daotool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
