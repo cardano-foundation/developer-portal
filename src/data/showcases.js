@@ -1202,6 +1202,15 @@ export const Showcases = [
     source: null,
     tags: ["governance", "analytics"],
   },
+  {
+    title: "Tempo",
+    description:
+      "Tempo is a governance tool designed to streamline and enhance Cardano’s decision-making processes. We make it easier for DReps to register, gain delegations, and engage with their delegators. Additionally, Tempo supports DAOs and SPOs by providing essential tools for governance and transparency.",
+    preview: require("./showcase/tempo.png"),
+    website: "https://tempo.vote",
+    source: null,
+    tags: ["daotool", "ecosystem", "governance"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
