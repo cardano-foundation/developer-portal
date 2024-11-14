@@ -16,7 +16,7 @@ With Mesh, you can initialize a new wallet with:
 
 ## Browser Wallet
 
-[Browser Wallet](https://meshjs.dev/apis/browserwallet) is use for connecting, queries and performs wallet functions in accordance to [CIP-30](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0030), which defines the API for dApps to communicate with the user's wallet.
+[Browser Wallet](https://meshjs.dev/apis/wallets/browserwallet) is use for connecting, queries and performs wallet functions in accordance to [CIP-30](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0030), which defines the API for dApps to communicate with the user's wallet.
 
 To use Browser Wallet is simple, just import `BrowserWallet` execute the APIs, for example:
 

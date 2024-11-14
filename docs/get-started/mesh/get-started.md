@@ -30,3 +30,4 @@ Whether you are new to web development or a seasoned blockchain full-stack devel
 | [Multi-Signatures Transaction (Minting)](https://meshjs.dev/guides/multisig-minting) | Create a multi-sig transaction and mint NFTs|
 | [Get started with Aiken](https://meshjs.dev/guides/aiken) | A step-by-step guide to build contracts with Aiken and build transactions to interact with the blockchain. |
 | [Cryptographically Prove Wallet Ownership](https://meshjs.dev/guides/prove-wallet-ownership) | Cryptographically prove the ownership of a wallet by signing a piece of data using data sign. |
+| [Vesting example](https://meshjs.dev/guides/vesting) | Vesting contract is a smart contract that locks up funds and allows the beneficiary to withdraw the funds after the lockup period. |
