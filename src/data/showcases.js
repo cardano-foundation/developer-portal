@@ -1209,7 +1209,7 @@ export const Showcases = [
     preview: require("./showcase/tempo.png"),
     website: "https://tempo.vote",
     source: null,
-    tags: ["daotool", "ecosystem", "governance"],
+    tags: ["daotool", "governance"],
   },
 ];
 
