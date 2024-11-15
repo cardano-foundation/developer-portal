@@ -850,7 +850,7 @@ export const Showcases = [
   },
   {
     title: "Mesh SDK",
-    description: "A feature-complete, open-source TypeScript SDK and off-chain framework including wallet integration, transaction building, a smart contract library, third-party API integration, and UI components: with thorough documentation and live demos for all skill levels.
+    description: "A feature-complete, open-source TypeScript SDK and off-chain framework including wallet integration, transaction building, a smart contract library, third-party API integration, and UI components: with thorough documentation and live demos for all skill levels.",
     preview: require("./builder-tools/mesh.png"),
     website: "https://meshjs.dev/",
     getstarted: "/docs/get-started/mesh/overview",
