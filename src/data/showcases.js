@@ -1185,6 +1185,15 @@ export const Showcases = [
     tags: ["governance", "analytics"],
   },
   {
+    title: "Multisig Platform",
+    description:
+      "Secure your treasury and participant in governance, as a team with multi-signature.",
+    preview: require("./showcase/mesh-multisig-platform.jpg"),
+    website: "https://multisig.meshjs.dev/features",
+    source: null,
+    tags: ["governance", "wallet", "daotool"],
+  },
+  {
     title: "Tempo",
     description:
       "Tempo is a governance tool designed to streamline and enhance Cardano’s decision-making processes. We make it easier for DReps to register, gain delegations, and engage with their delegators. Additionally, Tempo supports DAOs and SPOs by providing essential tools for governance and transparency.",
