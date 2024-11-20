@@ -31,7 +31,7 @@ I go by [Allusian](https://twitter.com/allusian1), and I have served as a Core C
 
 <br />
 
-**_Hey guys, happy to connect today and learn more about [ADAO](https://www.theadao.io/). Can you tell us more about the mission of ADAO and how you are trying to achieve it?_**
+**_Hey guys, happy to connect today and learn more about ADAO. Can you tell us more about the mission of ADAO and how you are trying to achieve it?_**
 
 ADAO’s mission is to build open-source tools, educational and supportive resources to empower robust, decentralized systems of collaboration and governance, starting with Cardano. We are achieving this by attracting talent from various disciplines and walks of life who share our passion for building systems that enable, empower and facilitate new ways of organizing. Some of ADAO’s major contributions to the ecosystem include the RoundTable multi-signature Wallet DApp, the ADAO Staking Portal, and the Agora Protocol, which we have partnered with Liqwid Labs to develop.
 
