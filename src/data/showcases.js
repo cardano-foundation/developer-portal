@@ -1205,7 +1205,7 @@ export const Showcases = [
   {
     title: "1694.io",
     description:
-        "1694.io is an open source zero click place to read CIP 1694. 1694.io is also place to see DRep timeline (pool.pm for drep), and for DRep to claim their profiles and engage with their delegators.",
+        "1694.io is an open source zero click place to read CIP 1694. 1694.io is also place to see DRep timeline (pool.pm for DReps), and for DRep to claim their profiles and engage with their delegators.",
     preview: require("./showcase/1694.jpg"),
     website: "https://www.1694.io",
     source: "https://github.com/IntersectMBO/drep-campaign-platform",
