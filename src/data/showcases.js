@@ -1210,7 +1210,7 @@ export const Showcases = [
     website: "https://www.1694.io",
     source: "https://github.com/IntersectMBO/drep-campaign-platform",
     tags: ["analytics", "educational", "governance", "opensource"],
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
