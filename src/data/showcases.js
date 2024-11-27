@@ -1209,7 +1209,7 @@ export const Showcases = [
     preview: require("./showcase/1694.jpg"),
     website: "https://www.1694.io",
     source: "https://github.com/IntersectMBO/drep-campaign-platform",
-    tags: ["analytics", "educational", "governance", "opensource"],
+    tags: ["educational", "governance", "opensource"],
   },
 ];
 
