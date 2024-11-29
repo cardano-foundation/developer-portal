@@ -38,11 +38,14 @@ yarn-error.log*
 # intellij
 .idea
 
-# Auto generated content like CIPs, Rust Library, Token Registry and Changelog
+# TODO: Since we removed CIP and CPS these are technically no longer needed, will still keep 
+# these entries for now to prevent people from committing downloaded files
 /docs/governance/cardano-improvement-proposals/*
 /docs/governance/cardano-problem-statements/*
 /static/img/cip/*
 /static/img/cps/*
+
+# Auto generated content like Rust Library, Token Registry and Changelog
 /docs/native-tokens/token-registry/*
 /docs/get-started/cardano-serialization-lib/*
 **/changelog

@@ -47,7 +47,7 @@ We answer your questions about how nodes on Cardano talk to each other. Learn ab
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/pyhYtLgn1r0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Cardano Improvement Proposals (CIP)
-The [Cardano Improvement Proposal](/docs/governance/cardano-improvement-proposals/CIP-0001) (CIP) process allows the community to interact with the Cardano Foundation to improve the Cardano ecosystem in a formal way.  
+The [Cardano Improvement Proposal](https://cips.cardano.org/) (CIP) process allows the community to interact with the Cardano Foundation to improve the Cardano ecosystem in a formal way.  
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/z9wz_WJGGiQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Slot Lottery

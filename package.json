@@ -5,12 +5,11 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "ts-node scripts/cip.ts && ts-node scripts/cps.ts  && ts-node scripts/token-registry.ts && ts-node scripts/rust-library.ts && docusaurus build",
+    "build": "ts-node scripts/token-registry.ts && ts-node scripts/rust-library.ts && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear",
-    "cip:refresh": "ts-node scripts/cip.ts"
+    "clear": "docusaurus clear"
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.3",

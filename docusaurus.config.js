@@ -219,11 +219,6 @@ module.exports = {
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
-            // redirect the old cardano improvement proposal overview
-            to: '/docs/governance/cardano-improvement-proposals/CIP-0001',
-            from: '/docs/governance/cardano-improvement-proposals/',
-          },
-          {
             // redirect as many pages as possible from old SPO course to new SPO course
             // (any old page not existing on new course, include in redirection to top level)
             to: '/docs/operate-a-stake-pool/',

@@ -808,4 +808,4 @@ Set a specific port `export CARDANO_WALLET_PORT=7355` so the wallet always start
 run `~/.local/bin/local-cluster`
 
 ## References 
-- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)
+- [CIP 19 Cardano Addresses](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0019/README.md)
