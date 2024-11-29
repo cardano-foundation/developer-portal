@@ -270,8 +270,12 @@ module.exports = {
       },*/
     ],
     "Contribute to the Developer Portal": [
-      "portal-contributors",
       "portal-contribute",
+      {
+        type: "link",
+        label: "Contributors",
+        href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
+      },
       "portal-style-guide",
       {
         type: "link",

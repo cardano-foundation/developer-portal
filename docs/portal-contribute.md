@@ -98,9 +98,6 @@ Later, the changes are pushed from staging to the main branch. This requires ano
 ### How to become a reviewer?
 You should have an excellent technical understanding, great ethics and have already contributed to the developer portal. Your GitHub account should have some reputation. [If you are unsure, just participate in the discussions.](#participate-in-the-discussions)
 
-### How to get added to the contributor list?
-We don't currently have a specific metric that determines who gets included on the [contributor list](/docs/portal-contributors/). You should at least have made a strong mark on a category or have contributed consistently over a long period. [Participate in the discussions to determine this.](#participate-in-the-discussions)
-
 ### How to connect with the developer community?
 Cardano developers and stake pool operators spread across many different platforms. [We aim to provide a complete overview.](/docs/get-started/cardano-developer-community) 
 
