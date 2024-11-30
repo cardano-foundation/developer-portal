@@ -108,16 +108,16 @@ module.exports = {
           title: "Developer Portal",
           items: [
             {
+              label: "How to Contribute",
+              to: "docs/portal-contribute/",
+            },
+            {
               label: "Contributors",
-              to: "docs/portal-contributors/",
+              href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
             },
             {
               label: "Changelog",
               to: "/changelog",
-            },
-            {
-              label: "How to Contribute",
-              to: "docs/portal-contribute/",
             },
             {
               label: "Style Guide",
