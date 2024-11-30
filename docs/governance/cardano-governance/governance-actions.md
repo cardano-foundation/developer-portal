@@ -26,8 +26,8 @@ CIP-1694 introduces a comprehensive [on-chain governance model](overview.md) for
 The governance model described in CIP-1694 involves three primary roles:
 
 1. **Stake Pool Operators (SPOs)**: Responsible for maintaining the network. They have a say in governance actions, particularly those related to the constitutional committee and hard forks. Read more about them [here](overview.md#spos).
-2. **Delegated Representatives (DReps)**: Representatives of Ada holders in the governance system, capable of voting on all governance action types. Read more about them [here](overview.md#delegated-representatives-dreps-dreps).
-3. **Constitutional Committee (CC)**: Oversees adherence to the Cardano Constitution and ensures the constitutionality of governance actions. Read more about them [here](overview.md#constitutional-committee-cc-cc).
+2. **Delegated Representatives (DReps)**: Representatives of Ada holders in the governance system, capable of voting on all governance action types. Read more about them [here](overview.md#dreps).
+3. **Constitutional Committee (CC)**: Oversees adherence to the Cardano Constitution and ensures the constitutionality of governance actions. Read more about them [here](overview.md#interim-constitutional-committee.
 
 ## Voting Thresholds and Participants
 
