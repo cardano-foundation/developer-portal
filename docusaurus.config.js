@@ -4,6 +4,11 @@ const vars = require('./variables')
 // enable or disable the announcement header bar (see 'announcementBar' section below)
 const isAnnouncementActive = false;
 
+// There are various equivalent ways to declare the Docusaurus config.
+// See: https://docusaurus.io/docs/api/docusaurus-config
+import {themes as prismThemes} from 'prism-react-renderer';
+
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 // Docusaurus Config
 module.exports = {
@@ -30,7 +35,9 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      additionalLanguages: ['csharp', 'php'],
+      //theme: prismThemes.github, // uncomment for light mode in code boxes
+      darkTheme: prismThemes.dracula,
+      additionalLanguages: ['csharp', 'php', 'bash', 'sh', 'json', 'js', 'typescript', 'yaml', 'diff'],
     },
 
     // Announcement Bar
@@ -116,8 +123,8 @@ module.exports = {
               href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
             },
             {
-              label: "Changelog",
-              to: "/changelog",
+              label: "Releases",
+              to: "https://github.com/cardano-foundation/developer-portal/releases",
             },
             {
               label: "Style Guide",
@@ -296,28 +303,6 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
         ],
-      },
-    ],
-    [
-      require.resolve('./src/plugins/changelog/index.js'),
-      {
-        blogTitle: 'Developer Portal Changelog',
-        blogDescription:
-          'Keep yourself up-to-date about new features in every release',
-        blogSidebarCount: 'ALL',
-        blogSidebarTitle: 'Changelog',
-        routeBasePath: '/changelog',
-        showReadingTime: false,
-        postsPerPage: 20,
-        archiveBasePath: null,
-        authorsMapPath: 'authors.json',
-        feedOptions: {
-          type: 'all',
-          title: 'Developer Portal Changelog',
-          description:
-            'Keep yourself up-to-date about new features in every release',
-          language: 'en',
-        },
       },
     ],
   ],

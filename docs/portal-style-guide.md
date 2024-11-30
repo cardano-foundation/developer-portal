@@ -131,7 +131,7 @@ Some text to show that the reference links can follow later.
 
 Or leave it empty and use the [link text itself].
 
-URLs and URLs in angle brackets will automatically get turned into links. http://www.cardano.org or <http://www.cardano.org>.
+URLs will automatically get turned into links. Example: https://www.cardano.org
 
 Some text to show that the reference links can follow later.
 
@@ -363,7 +363,7 @@ function HelloCodeTitle(props) {
 
 You can use tabs to display code examples in different languages. For example:
 
-```html
+ html
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -399,7 +399,7 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
 </Tabs>
-```
+ 
 
 <Tabs
   defaultValue="js"

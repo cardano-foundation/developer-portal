@@ -214,8 +214,8 @@ module.exports = {
       "portal-style-guide",
       {
         type: "link",
-        label: "Changelog",
-        href: "/changelog",
+        label: "Releases",
+        href: "https://github.com/cardano-foundation/developer-portal/releases",
       },
     ],
   },

@@ -619,7 +619,7 @@ using this script after time slot 3000 will be locked there permanently!
 
 For before scripts we must provide a `--invalid-hereafter` slot that is less
 than or equal to the specified slot number in our simple script. In the example
-above this means <= 3000:
+above this means `<= 3000`:
 
 ```bash
 cardano-cli transaction build-raw \
