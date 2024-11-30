@@ -1,0 +1,15 @@
+# TODO: This file needs a lot of work, once done re-tagging of the developer blog is needed
+# please refrain from using tags that are not defined here. 
+# (because of this we are getting a lot of build warnings)
+# 
+# General advice when it comes to tagging: if only one blog post is using this tag, dont create it.
+
+interview:
+  label: Interview
+  permalink: /interview
+  description: Interview tag description
+
+hello:
+  label: Wallet
+  permalink: /wallet
+  description: Wallet tag description

@@ -1,10 +1,7 @@
 ---
 slug: nft-minting-standard
 title: "How we minted the NFTAs, and why we went for this standard"
-author: Cardano Foundation
-author_title: Developer Spotlight
-author_url: https://github.com/cardano-foundation
-author_image_url: https://avatars.githubusercontent.com/u/37078161?s=200&v=4
+authors: [cf]
 tags: [developer-portal, nft, nfta]
 description: "How we minted the NFTAs, and why we went for this standard."
 image: https://developers.cardano.org/img/og/og-blog-nftas.png
