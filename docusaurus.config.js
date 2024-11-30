@@ -124,7 +124,7 @@ module.exports = {
             },
             {
               label: "Releases",
-              to: "https://github.com/cardano-foundation/developer-portal/releases",
+              href: "https://github.com/cardano-foundation/developer-portal/releases",
             },
             {
               label: "Style Guide",
