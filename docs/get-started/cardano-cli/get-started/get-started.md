@@ -12,7 +12,7 @@ keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 
 Cardano CLI uses the *node-to-client* protocol to communicate with the node. This requires setting an environment variable for the node socket path. Ensure you use the path declared when starting the node.
 
-```shell 
+```bash
 export CARDANO_NODE_SOCKET_PATH=~/node.socket
 ```
 
@@ -21,19 +21,19 @@ export CARDANO_NODE_SOCKET_PATH=~/node.socket
 Each network has a unique identifier (--mainnet or --testnet-magic NATURAL). This is used by the node-to-client protocol to ensure communication with a node on the desired network. It is useful to set up an environment variable for the network ID. Alternatively, you can provide the flag `--testnet-magic <network-id>` with each command that interacts with the node.  
 
 - **Mainnet**
-```shell 
+```bash 
 export CARDANO_NODE_NETWORK_ID=mainnet 
 ```
 - **Pre-production testnet**
-```shell
+```bash
 export CARDANO_NODE_NETWORK_ID=1
 ```
 - **Preview testnet**
-```shell
+```bash
 export CARDANO_NODE_NETWORK_ID=2
 ```
 - **SanchoNet testnet** 
-```shell
+```bash
 export CARDANO_NODE_NETWORK_ID=4
 ```
 

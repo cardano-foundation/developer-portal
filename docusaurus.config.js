@@ -37,7 +37,7 @@ module.exports = {
     prism: {
       //theme: prismThemes.github, // uncomment for light mode in code boxes
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['csharp', 'php', 'bash', 'sh', 'json', 'js', 'typescript', 'yaml', 'diff'],
+      additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff'],
     },
 
     // Announcement Bar
