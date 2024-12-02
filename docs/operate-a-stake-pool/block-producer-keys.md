@@ -77,7 +77,7 @@ startKesPeriod=${kesPeriod}
 echo startKesPeriod: ${startKesPeriod}
 ```
 
-With this calculation, we can generate an operational certificate for the pool. Change the {startKesPeriod} in script from the value above accordingly.
+With this calculation, we can generate an operational certificate for the pool. Change the `{startKesPeriod}` in script from the value above accordingly.
 
 ```
 cardano-cli node issue-op-cert \

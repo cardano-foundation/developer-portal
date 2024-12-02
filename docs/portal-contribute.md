@@ -106,12 +106,12 @@ If you are interested in connecting with people from the Developer Portal, eithe
 
 ## Installation
 
-To contribute to the Cardano developer portal, you must first install it locally. We have chosen [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator, as the underlying software.
+To contribute to the Cardano developer portal, you must first install it locally. We have chosen [Docusaurus](https://docusaurus.io/), a modern static website generator, as the underlying software.
 
 ### Requirements
 
-- [Node.js](https://nodejs.org/en/download/) version >= 16.14 (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
-- [Yarn](https://yarnpkg.com/en/) version >= 1.5 (which can be checked by running `yarn --version`). Yarn is a performant package manager for JavaScript and replaces the `npm` client. It is not strictly necessary but highly encouraged.
+- [Node.js](https://nodejs.org/en/download/) version >= 18.0 (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
+- [Yarn](https://yarnpkg.com/en/) version >= 1.20 (which can be checked by running `yarn --version`). Yarn is a performant package manager for JavaScript and replaces the `npm` client. It is not strictly necessary but highly encouraged.
 - On macOS you also need Xcode and Command Line Tools.
 
 ### Local development
@@ -149,12 +149,6 @@ developer-portal
 │   ├── 2021-01-07-january.md
 │   ├── 2021-02-03-february.md
 │   └── *.md
-├── changelog
-│   └── source
-│       ├── 2021.8.0.md
-│       ├── 2021.12.0.md
-│       ├── 2021.16.0.md
-│       └── *.md
 ├── docs
 │   ├── fund-your-project
 │   ├── get-started
@@ -205,7 +199,6 @@ developer-portal
 ### Project structure rundown
 
 - `/blog/` - Contains the blog Markdown files for the developer spotlight.
-- `/changelog/source/` - Contains the changelog data split by months into Markdown files. 
 - `/docs/` - Contains the Markdown files for the docs. Customize the order of the docs sidebar in `sidebars.js`.
 - `/examples/` - Contains example projects for the Markdown files in the docs. *The structure is not final and will likely change in the future*
 - `/scripts/` - Contains scripts to fetch auto generated content like CIPs, Rust Library, Token Registry.
@@ -225,7 +218,7 @@ We list here problems you may run into when running the developer portal locally
 
 ### Minimum Node.js version not met 
 **Problem:** `yarn start` throws the error `[ERROR] Minimum Node.js version not met :(`.  
-**Solution:** use the node version listed below [requirements](#requirements). If you have different node versions installed for different projects, `nvm` is a neat tool to deal with it. You can switch versions with for example `nvm use 16`.
+**Solution:** use the node version listed below [requirements](#requirements). If you have different node versions installed for different projects, `nvm` is a neat tool to deal with it. You can switch versions with for example `nvm use 18`.
 
 ### Sidebars file at "developer-portal/sidebars.js" failed to be loaded
 **Problem:** `yarn start` throws the error `[ERROR] Sidebars file at "developer-portal/sidebars.js" failed to be loaded.`. 

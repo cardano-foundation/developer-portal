@@ -1,0 +1,23 @@
+cf:
+  name: Cardano Foundation
+  title: Not-for-profit organization
+  url: https://cardanofoundation.org
+  image_url: /img/authors/cardano-foundation.png
+
+builderfest:
+  name: Buidler Fest
+  title: Home of the Buidler Fest
+  url: https://buidl.2024.cardano.org
+  image_url: /img/authors/builderfest.png
+
+denicio:
+  name: Denicio Bute
+  title: Community Content Lead - CF
+  url: https://github.com/weqanhet
+  image_url: /img/authors/cardano-foundation.png
+
+nico:
+  name: Nicolas Cerny
+  title: Governance Lead - CF
+  url: https://github.com/thenic95
+  image_url: /img/authors/cardano-foundation.png

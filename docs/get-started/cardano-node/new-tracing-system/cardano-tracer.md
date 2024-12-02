@@ -13,21 +13,21 @@ keywords: [Tracing, cardano-tracer, trace-dispatch, new tracing system, monitori
 
 ## Contents
 
-1. [Introduction](#Introduction)
-   1. [Motivation](#Motivation)
-   1. [Overview](#Overview)
-1. [Build and run](#Build-and-run)
-1. [Configuration](#Configuration)
+1. [Introduction](#introduction)
+   1. [Motivation](#motivation)
+   1. [Overview](#overview)
+1. [Build and run](#build-and-run)
+1. [Configuration](#configuration)
    1. [Settings in Cardano Node configuration file](#settings-in-cardano-node-configjson-file)
-   1. [Distributed Scenario](#Distributed-scenario)
-   1. [Local Scenario](#Local-scenario)
-   1. [Network Magic](#Network-magic)
-   1. [Requests](#Requests)
-   1. [Logging](#Logging)
-   1. [Logs Rotation](#Logs-rotation)
-   1. [Prometheus](#Prometheus)
-   1. [EKG Monitoring](#EKG-monitoring)
-   1. [Verbosity](#Verbosity)
+   1. [Distributed Scenario](#distributed-scenario)
+   1. [Local Scenario](#local-scenario)
+   1. [Network Magic](#network-magic)
+   1. [Requests](#requests)
+   1. [Logging](#logging)
+   1. [Logs Rotation](#logs-rotation)
+   1. [Prometheus](#prometheus)
+   1. [EKG Monitoring](#ekg-monitoring)
+   1. [Verbosity](#verbosity)
 
 ## Introduction
 
