@@ -1210,7 +1210,16 @@ export const Showcases = [
     website: "https://github.com/cardano-community/pg_cardano",
     getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
     tags: ["rust", "serialization", "sql", "lowlevel"]
-  }
+  },
+  {
+    title: "Orcfax",
+    description:
+      "Orcfax is a decentralized oracle service designed to publish data about real world events to the Cardano blockchain. Orcfax data is made available to on-chain smart contracts in Cardano's eUTXO native format using the Orcfax Protocol.",
+    preview: require("./showcase/orcfax.png"),
+    website: "https://orcfax.io",
+    getstarted: "https://docs.orcfax.io/consume",
+    tags: ["oracle"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
