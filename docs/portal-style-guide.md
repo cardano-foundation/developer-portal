@@ -706,6 +706,57 @@ This is a tip admonition with a custom title
   </TabItem>
 </Tabs>
 
+## Mermaid
+
+To use Mermaid diagram, add a code block with language `mermaid`. See the [Mermaid syntax documentation](https://mermaid-js.github.io/mermaid/#/./n00b-syntaxReference) for more information on the Mermaid syntax and the different diagrams. Some examples:
+
+```mermaid
+mindmap
+  root((Cardano))
+    Technology
+      Blockchain
+      Proof of Stake
+        Ouroboros
+      Smart Contracts
+        Aiken
+        Marlowe
+    Community
+      Developers
+      Stake Pool Operators
+      Ambassadors
+    Use Cases
+      Decentralized Finance
+      Identity Management
+        KERI
+      Supply Chain
+    Research
+      Peer-Reviewed Papers
+      Academic Collaboration
+      Formal Methods
+    Ecosystem
+      Native Tokens
+      dApps
+      Catalyst
+```
+
+```mermaid
+flowchart LR
+  A[Start] --> B{Decision}
+  B -->|Yes| C[Continue]
+  B -->|No| D[Stop]
+```
+
+```mermaid
+pie 
+    "Metadata" : 81
+    "Smart Contracts" : 62
+    "Simple transactions" : 231
+```
+
+
+
+
+## Other style elements
 Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
 
 ## Editor extensions and configurations
