@@ -25,6 +25,10 @@ module.exports = {
     repository: `${vars.repository}`,
     branch: `${vars.branch}`,
   },
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
     // Docs Sidebar
     docs: {

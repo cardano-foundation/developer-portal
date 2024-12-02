@@ -12,12 +12,12 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-
     "@docusaurus/core": "3.6.3",
     "@docusaurus/plugin-client-redirects": "^3.6.3",
     "@docusaurus/plugin-content-docs": "^3.6.3",
     "@docusaurus/plugin-ideal-image": "^3.6.3",
     "@docusaurus/preset-classic": "3.6.3",
+    "@docusaurus/theme-mermaid": "^3.6.3",
     "@docusaurus/theme-search-algolia": "3.6.3",
     "@mdx-js/react": "^3.1.0",
     "@popperjs/core": "^2.11.2",
