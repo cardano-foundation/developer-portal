@@ -12,6 +12,7 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
+
     "@docusaurus/core": "3.6.3",
     "@docusaurus/plugin-client-redirects": "^3.6.3",
     "@docusaurus/plugin-content-docs": "^3.6.3",
