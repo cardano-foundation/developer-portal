@@ -1214,11 +1214,11 @@ export const Showcases = [
   {
     title: "Nio",
     description:
-      "Track all assets in wallets and locked in Cardano DeFi smart contracts. Effortlessly monitor your assets and whale wallets",
+      "Track and monitor all assets in any wallet or locked in Cardano DeFi smart contracts.",
     preview: require("./showcase/Nio_app.png"),
     website: "https://nioapp.io",
     source: null,
-    tags: ["analytics", "defi"],
+    tags: ["defi"],
   },
 ];
 
