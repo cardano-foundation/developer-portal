@@ -1211,6 +1211,15 @@ export const Showcases = [
     source: null,
     tags: ["daotool", "governance"],
   },
+  {
+    title: "Nio",
+    description:
+      "Track and monitor all assets in any wallet or locked in Cardano DeFi smart contracts.",
+    preview: require("./showcase/Nio_app.png"),
+    website: "https://nioapp.io",
+    source: null,
+    tags: ["defi"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
