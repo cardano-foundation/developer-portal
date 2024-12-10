@@ -1218,7 +1218,7 @@ export const Showcases = [
     preview: require("./showcase/Nio_app.png"),
     website: "https://nioapp.io",
     source: null,
-    tags: ["defi"],
+    tags: ["explorer"],
   },
 ];
 
