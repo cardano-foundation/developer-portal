@@ -1210,6 +1210,14 @@ export const Showcases = [
     website: "https://github.com/cardano-community/pg_cardano",
     getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
     tags: ["rust", "serialization", "sql", "lowlevel"]
+  },
+  {
+    title: "Cardano-C",
+    description: "A pure C library for interacting with the Cardano blockchain. Compliant with MISRA standards and binding-friendly architecture.",
+    preview: require("./builder-tools/cardano-c.png"),
+    website: "https://github.com/Biglup/cardano-c",
+    getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
+    tags: ["serialization", "sdk", "lowlevel"]
   }
 ];
 
