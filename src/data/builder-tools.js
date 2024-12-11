@@ -1218,7 +1218,7 @@ export const Showcases = [
     website: "https://github.com/Biglup/cardano-c",
     getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
     tags: ["serialization", "sdk", "lowlevel"]
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
