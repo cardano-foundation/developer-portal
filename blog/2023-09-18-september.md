@@ -1,11 +1,7 @@
 ---
 slug: 2023-09-18-august
 title: "Adastat.net"
-authors:
-  name: Denicio Bute
-  title: Community Manager - Cardano Foundation
-  url: https://github.com/weqanhet
-  image_url: https://avatars.githubusercontent.com/u/61522394?v=4  
+authors: [denicio]
 tags: [adastat, explorer, rewards, staking, charts]
 description: "Meet AdaStat, a cutting-edge Cardano (ADA) Blockchain Explorer, crafted by active members of the Russian-speaking Cardano community. It's your independent alternative to standard network-developed explorers. With AdaStat, you can effortlessly explore blocks, transactions, pools, addresses, accounts, epochs, and slots, including active epochs, created blocks, staking rewards, and more.
 Some of AdaStat's unique features include a versatile Chart Maker for custom graphics and a robust pool filter for refining pool searches based on parameters like pledge, delegators, and stake size. For deeper insights into this fascinating explorer, we highly recommend reading through interview with the project's co-founder and Lead Developer, Dmitry Stashenko."

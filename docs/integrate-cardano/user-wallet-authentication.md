@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-This guide is a walkthrough on how to implement the *message signing* described in [CIP-08](/docs/governance/cardano-improvement-proposals/CIP-0008) in order to authenticate users on the web with just their [CIP-30](/docs/governance/cardano-improvement-proposals/CIP-0030)-compatible wallet app.
+This guide is a walkthrough on how to implement the *message signing* described in [CIP-08](https://cips.cardano.org/cip/CIP-0008) in order to authenticate users on the web with just their [CIP-30](https://cips.cardano.org/cip/CIP-0030)-compatible wallet app.
 
 :::note
 
@@ -36,7 +36,7 @@ In this example, we will be asking the user to sign a simple text message contai
 
 Our purpose in this case is for the user to prove their ownership of the given stake address.
 
-Also for simplicity, we will be interacting with [Typhon Wallet](https://typhonwallet.io) only, in this example. But the concepts shown here should work with any other [CIP-30](/docs/governance/cardano-improvement-proposals/CIP-0030)-compliant wallet app.
+Also for simplicity, we will be interacting with [Typhon Wallet](https://typhonwallet.io) only, in this example. But the concepts shown here should work with any other [CIP-30](https://cips.cardano.org/cip/CIP-0030)-compliant wallet app.
 
 ### Front-end
 

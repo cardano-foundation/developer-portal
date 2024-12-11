@@ -115,4 +115,4 @@ Once the test ADA are transferred and you run the above query utxo again, you sh
 Now the pool wallet and stake keys are ready and we can go to the next step of creating the pool keys.
 
 ## References 
-- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)
+- [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)

@@ -148,4 +148,4 @@ cardano-cli transaction submit \
 In the next section we will register the pool metadata.
 
 ## References 
-- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)
+- [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)

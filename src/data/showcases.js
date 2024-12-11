@@ -1185,6 +1185,15 @@ export const Showcases = [
     tags: ["governance", "analytics"],
   },
   {
+    title: "Danogo",
+    description:
+      "Danogo is a yield aggregator that provides lending and borrowing, obtaining optimized rates by combining data from multiple Cardano protocols.",
+    preview: require("./showcase/danogo.png"),
+    website: "https://danogo.io/",
+    source: null,
+    tags: ["lending", "marketplace", "dex", "token"],
+  },
+  {
     title: "Multisig Platform",
     description:
       "Secure your treasury and participant in governance, as a team with multi-signature.",

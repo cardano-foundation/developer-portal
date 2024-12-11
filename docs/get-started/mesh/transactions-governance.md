@@ -7,20 +7,6 @@ description: Transactions for registering DRep and participating in Cardano's on
 image: /img/og/og-getstarted-mesh.png
 ---
 
-As of writing, there are 4 main types of transactions:
-
-- [Send lovelace and assets](transactions-basic) (this)
-- [Interacting with smart contracts](transactions-smart-contract)
-- [Minting and burning assets](transactions-minting)
-- [Interacting with stake pools](transactions-staking)
-
-In this section, we will explore the following:
-
-- [Send ADA to Addresses](#send-ada-to-addresses)
-- [Send Multiple Assets to Addresses](#send-multiple-assets-to-addresses)
-- [Send Assets to Handler](#send-assets-to-handler)
-- [Send tokens and stable coins to addresses](#send-tokens-and-stable-coins-to-addresses)
-
 ## DRep Registration
 
 In Voltaire, stake credentials can delegate their stake to Decentralized Representatives (DReps) for voting, in addition to the current delegation to stake pools for block production. This DRep delegation will work similarly to the current stake delegation process, using on-chain certificates. Registering as a DRep will also follow the same process as stake registration.

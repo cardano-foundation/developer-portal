@@ -40,6 +40,7 @@ To download the source code and build it, you need the following packages and to
 
 In Redhat, Fedora, and Centos:
 
+
 ```bash
 sudo yum update -y
 sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y
@@ -335,6 +336,7 @@ This is a wart of the `HsOpenSSL` library wrapper, and using classic methods suc
 ### Building and installing the node
 
 Build the node and CLI with `cabal`:
+
 
 ```bash
 cabal update

@@ -154,7 +154,7 @@ cardano-cli transaction calculate-min-fee \
 
 All amounts must be in Lovelace:
 
-    expr <UTXO BALANCE> - <AMOUNT TO SEND> - <TRANSACTION FEE>
+    expr `UTXO BALANCE` - `AMOUNT TO SEND` - `TRANSACTION FEE`
 
 For example, if we send 10 ada from a UTxO containing 20 ada, the change to send back to `payment.addr` after paying the fee is: 9.832035 ada:
 
