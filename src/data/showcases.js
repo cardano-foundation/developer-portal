@@ -640,7 +640,7 @@ export const Showcases = [
     description:
       "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
-    website: "https://app.minswap.org",
+    website: "https://minswap.org",
     source: null,
     tags: ["dex", "token"],
   },
