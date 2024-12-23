@@ -1210,7 +1210,17 @@ export const Showcases = [
     website: "https://github.com/cardano-community/pg_cardano",
     getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
     tags: ["rust", "serialization", "sql", "lowlevel"]
-  }
+  },
+  {
+    title: "Lucid Evolution",
+    description:
+      "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
+    preview: require("./builder-tools/lucid-evolution.png"),
+    website: "https://anastasia-labs.github.io/lucid-evolution/",
+    getstarted:
+      "https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution",
+    tags: ["typescript", "javascript", "sdk", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
