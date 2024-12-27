@@ -1,5 +1,5 @@
 ---
-id: create governance actions
+id: create-governance-actions
 sidebar_label: Submitting governance actions
 title: Submitting governance actions
 sidebar_position: 4
@@ -249,7 +249,7 @@ cardano-cli conway governance action create-constitution \
   --prev-governance-action-index 0 \
   --out-file constitution.action
 ```
-From here, you just need to [submit the proposal in a transaction](#submitting-the-action-file-in-a-transaction) 
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
 
 ## Motion of no confidence
 
@@ -278,7 +278,7 @@ cardano-cli conway governance action create-no-confidence \
   --prev-governance-action-index 0 \
   --out-file no-confidence.action
 ```
-From here, you just need to [submit the proposal in a transaction](#submitting-the-action-file-in-a-transaction) 
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
 
 ## Treasury withdrawal
 
@@ -303,7 +303,7 @@ cardano-cli conway governance action create-treasury-withdrawal \
 
 * Note that you do not need to provide any previous governance action ID on treasury withdrawals.
 
-From here, you just need to [submit the proposal in a transaction](#submitting-the-action-file-in-a-transaction) 
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
 
 ## Info
 
@@ -317,7 +317,7 @@ cardano-cli conway governance action create-info --testnet \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --out-file info.action
 ```
-From here, you just need to [submit the proposal in a transaction](#submitting-the-action-file-in-a-transaction) 
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
 
 ## Update protocol parameters
 
@@ -339,7 +339,7 @@ cardano-cli conway governance action create-protocol-parameters-update \
 
 * Note: If there is a **previously enacted** governance action to update the protocol parameters, the proposal must also include `--prev-governance-action-tx-id` and `--prev-governance-action-index`.
 
-Continue with [build, sign and submit the transactions](#submitting-a-treasuy-withdrawal-and-protocol-parameter-update-governance-action) 
+Continue with [build, sign and submit the transactions](#build-sign-and-submit-the-transaction) 
 
 ## Submitting Motion of no-confidence, Update committee, New Constitution, Hardfork initiation or Info proposals in a transaction
 

@@ -562,7 +562,7 @@ transaction is expired in slot 500.
 
 Once you have generated your time lock script you need to follow all the same
 steps as above in the multi-signature script example but with a slight
-modification of [step 1](#Step-1---construct-the-tx-body) which needs to be
+modification of [step 1](#step-1---construct-the-tx-body) which needs to be
 amended as follows:
 
 Example time locking script file:
@@ -619,7 +619,7 @@ using this script after time slot 3000 will be locked there permanently!
 
 For before scripts we must provide a `--invalid-hereafter` slot that is less
 than or equal to the specified slot number in our simple script. In the example
-above this means <= 3000:
+above this means `<= 3000`:
 
 ```bash
 cardano-cli transaction build-raw \

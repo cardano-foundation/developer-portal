@@ -1220,6 +1220,16 @@ export const Showcases = [
     getstarted: "https://docs.orcfax.io/consume",
     tags: ["oracle"],
   },
+  {
+    title: "Lucid Evolution",
+    description:
+      "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
+    preview: require("./builder-tools/lucid-evolution.png"),
+    website: "https://anastasia-labs.github.io/lucid-evolution/",
+    getstarted:
+      "https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution",
+    tags: ["typescript", "javascript", "sdk", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);

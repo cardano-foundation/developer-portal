@@ -85,20 +85,20 @@ In this example we use the [test vector of CIP119](https://github.com/cardano-fo
 
 Download the metadata from its URL:
 
-```shell
+```bash
 wget https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0119/examples/drep.jsonld
 ```
 
 Use cardano-cli or b2sum to get its hash
 
-```shell
+```bash
 cardano-cli conway governance drep metadata-hash \
   --drep-metadata-file drep.jsonld 
 
 a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de
 ```
 
-```shell 
+```bash 
 b2sum -l 256 drep.jsonld 
 a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 ```
@@ -107,14 +107,14 @@ a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 
 Registering a DRep requires a deposit, query the protocol parameters to find the amount:
 
-```shell
+```bash
 cardano-cli query protocol-parameters | jq .dRepDeposit
 500000000
 ```
 
 Generate the certificate Using the `drep.vkey` file:
 
-```shell
+```bash
 cardano-cli conway governance drep registration-certificate \
   --drep-verification-key-file drep.vkey \
   --key-reg-deposit-amt 500000000 \
@@ -125,7 +125,7 @@ cardano-cli conway governance drep registration-certificate \
 
 Or using the DRep verification key:
 
-```shell
+```bash
 cardano-cli conway governance drep registration-certificate \
   --drep-verification-key c19e0e939609531cfd04dcfa5bf1a5f3e245aa88e163759341aba296af34cc7e \
   --key-reg-deposit-amt 500000000 \
@@ -136,7 +136,7 @@ cardano-cli conway governance drep registration-certificate \
 
 Or using the DRep ID:
 
-```shell
+```bash
 cardano-cli conway governance drep registration-certificate \
   --drep-key-hash "$(< drep.id)" \
   --key-reg-deposit-amt 500000000 \
@@ -159,7 +159,7 @@ Any of the above methods produces `drep-reg.cert ` in a text envelope:
 
 Build the transaction. Note that we use `--witness-override 2` because this tranaction will contain 2 signatures, with the `payment.skey` and with the `drep.skey`. 
 
-```shell
+```bash
 cardano-cli conway transaction build \
   --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --change-address $(< payment.addr) \
@@ -170,7 +170,7 @@ cardano-cli conway transaction build \
 
 Sign it with payment and DRep signing keys:
 
-```shell
+```bash
 cardano-cli conway transaction sign \
   --tx-body-file tx.raw \
   --signing-key-file payment.skey \
@@ -180,14 +180,14 @@ cardano-cli conway transaction sign \
 
 Submit it to the chain:
 
-```shell
+```bash
 cardano-cli conway transaction submit \
   --tx-file tx.signed
 ```
 
 ### Query the DRep state to confirm:
 
-```shell
+```bash
 cardano-cli conway query drep-state  --all-dreps
 
 
@@ -215,7 +215,7 @@ A basic example of a DRep using a native script is a DRep that consists of vario
 
 ### Generate a DRep key pair for each member
 
-```shell
+```bash
 cardano-cli conway governance drep key-gen \
   --verification-key-file drep1.vkey \
   --signing-key-file drep1.skey
@@ -238,13 +238,13 @@ cardano-cli conway governance drep key-gen \
 
 Each member generates the hash of the verification key (This is exactly what the `governance drep id` command do)
 
-```shell
+```bash
 cardano-cli conway governance drep id \
   --drep-verification-key-file drep1.vkey \
   --output-format hex \
   --out-file drep1.id
 ```
-```shell
+```bash
 cat drep1.id
 e6d27c194fd18f39e080073e5ea02aa78abe4b6c84d78a498302461c
 ```
@@ -333,20 +333,20 @@ In this example we use the [test vector of CIP119](https://github.com/cardano-fo
 
 Download the metadata from its URL:
 
-```shell
+```bash
 wget https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0119/examples/drep.jsonld
 ```
 
 Use cardano-cli or b2sum to get its hash:
 
-```shell
+```bash
 cardano-cli conway governance drep metadata-hash \
   --drep-metadata-file drep.jsonld 
 
 a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de
 ```
 
-```shell 
+```bash 
 b2sum -l 256 drep.jsonld 
 a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 ```
@@ -354,12 +354,12 @@ a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 
 This DRep will be registered on-chain as a script, therefore, the hash of the script will serve as the DRep ID. Calculate it with:
 
-```shell
+```bash
 cardano-cli hash script \
   --script-file drep-multisig.json \
   --out-file drep-multisig.id
 ```
-```shell 
+```bash 
 cat drep-multisig.id
 d862ee2eb3ce246b23ff7e1f62ae0705013e793787485cb6e1845356
 ```
@@ -368,7 +368,7 @@ d862ee2eb3ce246b23ff7e1f62ae0705013e793787485cb6e1845356
 
 Registering a DRep requires a deposit, query the protocol parameters to find the amount:
 
-```shell
+```bash
 drepDeposit=$(cardano-cli query protocol-parameters | jq .dRepDeposit)
 
 echo $drepDeposit
@@ -377,7 +377,7 @@ echo $drepDeposit
 
 Generate the registration certificate:
 
-```shell
+```bash
 cardano-cli conway governance drep registration-certificate \
   --drep-script-hash "$(< drep-multisig.id)" \
   --key-reg-deposit-amt "$drepDeposit" \
@@ -388,7 +388,7 @@ cardano-cli conway governance drep registration-certificate \
 
 Build the transaction. Note that we use `--witness-override 4` because this tranaction will contain up to 4 signatures, 1 from the payment key and up to 3 members of the DRep.
 
-```shell
+```bash
 cardano-cli conway transaction build \
   --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --change-address $(< payment.addr) \
@@ -402,7 +402,7 @@ Each member of the DRep will witness the transaction with its individual keys fr
 
 Witnessing the transaction with the payment key:
 
-```shell
+```bash
 cardano-cli conway transaction witness \
    \
   --tx-body-file tx.raw \
@@ -412,20 +412,20 @@ cardano-cli conway transaction witness \
 
 Witnessing the transaction with the DRep keys from each member:
 
-```shell
+```bash
 cardano-cli conway transaction witness \
   --tx-body-file tx.raw \
   --signing-key-file drep1.skey \
   --out-file drep1.witness
 ```
 
-```shell
+```bash
 cardano-cli conway transaction witness \
   --tx-body-file tx.raw \
   --signing-key-file drep2.skey \
   --out-file drep2.witness
 ```
-```shell
+```bash
 cardano-cli conway transaction witness \
   --tx-body-file tx.raw \
   --signing-key-file drep3.skey \
@@ -434,7 +434,7 @@ cardano-cli conway transaction witness \
 
 Assemble the tranaction with all the witnesses from previous step:
 
-```shell
+```bash
 cardano-cli transaction assemble \
   --tx-body-file tx.raw \
   --witness-file  payment.witness \
@@ -446,14 +446,14 @@ cardano-cli transaction assemble \
 
 Submit the transaction
 
-```shell
+```bash
 cardano-cli conway transaction submit \
   --tx-file tx.signed
 ```
 
 ### Query the DRep state to confirm:
 
-```shell
+```bash
 cardano-cli conway query drep-state \
   --drep-script-hash $(< drep-multisig.id)
 ```
@@ -494,20 +494,20 @@ In this example we use the [test vector of CIP119](https://github.com/cardano-fo
 
 Download the metadata from its URL:
 
-```shell
+```bash
 wget https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0119/examples/drep.jsonld
 ```
 
 Use cardano-cli or b2sum to get its hash:
 
-```shell
+```bash
 cardano-cli conway governance drep metadata-hash \
   --drep-metadata-file drep.jsonld 
 
 a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de
 ```
 
-```shell 
+```bash 
 b2sum -l 256 drep.jsonld 
 a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 ```
@@ -516,13 +516,13 @@ a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de  drep.jsonld
 
 This DRep will be registered on-chain as a script, therefore, the hash of the script will serve as the DRep ID. Calculate it with:
 
-```shell
+```bash
  cardano-cli hash script \
    --script-file alwaysVoteYesDrep.plutus \
    --out-file alwaysVoteYesDrep.id
 
 ```
-```shell 
+```bash 
 cat alwaysVoteYesDrep.id 
 3b943c3e9598ef0e8d6bf504e7ddeee73232b1825380765c04e25055
 ```
@@ -530,7 +530,7 @@ cat alwaysVoteYesDrep.id
 
 Registering a DRep requires a deposit, query the protocol parameters to find the amount:
 
-```shell
+```bash
 drepDeposit=$(cardano-cli query protocol-parameters | jq .dRepDeposit)
 
 echo $drepDeposit
@@ -539,7 +539,7 @@ echo $drepDeposit
 
 Generate the registration certificate:
 
-```shell
+```bash
 cardano-cli conway governance drep registration-certificate \
   --drep-script-hash "$(< alwaysVoteYesDrep.id)" \
   --key-reg-deposit-amt "$drepDeposit" \
@@ -549,7 +549,7 @@ cardano-cli conway governance drep registration-certificate \
 
 Build the transaction, we need to provide a collateral and a redeemer value:
 
-```shell
+```bash
 cardano-cli conway transaction build \
   --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --tx-in-collateral $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
@@ -560,13 +560,13 @@ cardano-cli conway transaction build \
   --out-file tx.raw
 ```
 
-```shell
+```bash
 cardano-cli transaction sign \
   --signing-key-file payment.skey \
   --tx-body-file tx.raw \
   --out-file tx.signed
 ```
-```shell
+```bash
 cardano-cli transaction submit --tx-file tx.signed
 ```
 

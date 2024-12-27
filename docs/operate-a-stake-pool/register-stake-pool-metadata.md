@@ -80,7 +80,7 @@ cardano-cli stake-pool registration-certificate \
 | Parameter | Explanation |
 | :--- | :--- |
 | cold-verification-key-file | verification _cold_ key |
-| vrf-verification-key-file | verification _VRS_ key |
+| vrf-verification-key-file | verification _VRF_ key |
 | pool-pledge | pledge lovelace |
 | pool-cost | operational costs per epoch lovelace |
 | pool-margin | operator margin |

@@ -640,7 +640,7 @@ export const Showcases = [
     description:
       "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
-    website: "https://app.minswap.org",
+    website: "https://minswap.org",
     source: null,
     tags: ["dex", "token"],
   },
@@ -1183,6 +1183,15 @@ export const Showcases = [
     website: "https://www.changwatch.com",
     source: null,
     tags: ["governance", "analytics"],
+  },
+  {
+    title: "Danogo",
+    description:
+      "Danogo is a yield aggregator that provides lending and borrowing, obtaining optimized rates by combining data from multiple Cardano protocols.",
+    preview: require("./showcase/danogo.png"),
+    website: "https://danogo.io/",
+    source: null,
+    tags: ["lending", "marketplace", "dex", "token"],
   },
   {
     title: "Multisig Platform",
