@@ -1212,7 +1212,7 @@ export const Showcases = [
     tags: ["daotool", "governance"],
   },
   {
-    title: "Begin",
+    title: "Begin Wallet",
     description:
       "Begin Wallet is a light Cardano Wallet, with one of the best user experiences.",
     preview: require("./showcase/begin.png"),
