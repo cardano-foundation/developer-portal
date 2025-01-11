@@ -83,7 +83,7 @@ How dropped transactions happen on cardano and how to ensure we always deliver t
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/gm-phCUGEoY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## SundaeSwap & Merkel Trees
-Learn about the SundaeSwap ISO and who Merkel Trees work.
+Learn about the SundaeSwap ISO and how Merkel Trees work.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/hStyO1L1qOE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## DripDropz & Phyrhose
