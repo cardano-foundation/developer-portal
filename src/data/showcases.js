@@ -1211,6 +1211,15 @@ export const Showcases = [
     source: null,
     tags: ["daotool", "governance"],
   },
+  {
+    title: "Begin",
+    description:
+      "Begin Wallet is a light Cardano Wallet, with one of the best user experiences.",
+    preview: require("./showcase/begin.png"),
+    website: "https://begin.is",
+    source: "https://github.com/BeginWallet/begin-core",
+    tags: ["wallet", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
