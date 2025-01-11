@@ -1214,7 +1214,7 @@ export const Showcases = [
   {
     title: "Begin Wallet",
     description:
-      "Begin Wallet is a light Cardano Wallet, with one of the best user experiences.",
+      "Begin Wallet a non-custodial light Cardano Wallet, available as an Extension and Mobile. We offer payment link compatibility with deep link support, Begin ID user name based on ENS protocol for Wallet Address. Hardware wallet support Ledger and Keystone. All of it with safety and security in mind.",
     preview: require("./showcase/begin.png"),
     website: "https://begin.is",
     source: "https://github.com/BeginWallet/begin-core",
