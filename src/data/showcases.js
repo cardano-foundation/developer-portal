@@ -1218,7 +1218,7 @@ export const Showcases = [
     preview: require("./showcase/begin.png"),
     website: "https://begin.is",
     source: "https://github.com/BeginWallet/begin-core",
-    tags: ["wallet", "opensource"],
+    tags: ["wallet", "opensource", "nftsupport"],
   },
 ];
 
