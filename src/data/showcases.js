@@ -1211,6 +1211,15 @@ export const Showcases = [
     source: null,
     tags: ["daotool", "governance"],
   },
+  {
+    title: "Begin Wallet",
+    description:
+      "Begin Wallet a non-custodial light Cardano Wallet, available as an Extension and Mobile. We offer payment link compatibility with deep link support, Begin ID user name based on ENS protocol for Wallet Address. Hardware wallet support Ledger and Keystone. Based on our own open source cryptographic core.",
+    preview: require("./showcase/begin.png"),
+    website: "https://begin.is",
+    source: null,
+    tags: ["wallet", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
