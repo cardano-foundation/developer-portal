@@ -95,7 +95,7 @@ cardano-cli conway transaction sign \
 --out-file treasury.tx.signed
 ```
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
 --tx-file treasury.tx.signed
 ```
 
@@ -132,7 +132,7 @@ cardano-cli conway transaction sign \
 ### Submit the transaction:
 
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
 --tx-file treasury.tx.signed
 ```
 
@@ -148,7 +148,7 @@ cardano-cli conway query treasury
 The transaction body carries the fields `"currentTreasuryValue":` and `"treasuryDonation":`, these are `null` in other transactions, this time the fields have a value. 
 
 ```
-cardano-cli conway transaction view --tx-file example/transactions/treasury.tx.signed
+cardano-cli debug transaction view --tx-file example/transactions/treasury.tx.signed
 {
     "auxiliary scripts": null,
     "certificates": null,

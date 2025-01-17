@@ -7,10 +7,6 @@ description: How to delegate stake to a stake pool.
 keywords: [cardano-cli, cli, delegation, delegate, stake, stake addresses, cardano-node, transactions]
 ---
 
-:::tip
-To accommodate the integration of the Conway era, which significantly differs from all previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the previous `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now use the syntax `cardano-cli babbage transaction build <options>`.
-:::
-
 ## Delegating stake to a stake pool
 
 Delegating your stake to a stake pool is the simplest method to engage with the protocol. By delegating your stake, you empower the stake pool to generate blocks on your behalf, which, in turn, accrues rewards for you. Rewards are automatically paid by the protocol at the start of every epoch to all pool members who contributed to block production.  
@@ -21,24 +17,32 @@ In Cardano, delegating to a stake pool doesn't necessitate locking your funds or
 
 ### Create a delegation certificate
 
-To delegate your stake to a stake pool, you need to create a **stake delegation certificate**. `cardano-cli` offers a simple way to create one, you'll find the corresponding command under `cardano-cli babbage stake-address`:
+To delegate your stake to a stake pool, you need to create a **stake delegation certificate**. `cardano-cli` offers a simple way to create one, you'll find the corresponding command under `cardano-cli conway stake-address`:
 
 ```shell
-cardano-cli babbage stake-address
-Usage: cardano-cli babbage stake-address
-                                           ( key-gen
-                                           | key-hash
-                                           | build
-                                           | registration-certificate
-                                           | deregistration-certificate
-                                           | stake-delegation-certificate
-                                           )
+cardano-cli conway stake-address
+Usage: cardano-cli conway stake-address 
+                                          ( key-gen
+                                          | key-hash
+                                          | build
+                                          | registration-certificate
+                                          | deregistration-certificate
+                                          | stake-delegation-certificate
+                                          | stake-and-vote-delegation-certificate
+                                          | vote-delegation-certificate
+                                          | registration-and-delegation-certificate
+                                          | registration-and-vote-delegation-certificate
+                                          | registration-stake-and-vote-delegation-certificate
+                                          )
+
+  Stake address commands.
+
 ```
 
-To produce the delegation certificate, your stake address must already be registered on the chain, as outlined in the documentation on [registering the stake address](./stake-address-registration). Additionally, you need to know the pool ID to which you will delegate.
+To produce a delegation certificate, your stake address must already be registered on the chain, as outlined in the documentation on [registering the stake address](./stake-address-registration). Additionally, you need to know the pool ID to which you will delegate.
 
 ```shell
-cardano-cli babbage stake-address stake-delegation-certificate \
+cardano-cli conway stake-address stake-delegation-certificate \
 --stake-verification-key-file stake.vkey \
 --stake-pool-id pool17navl486tuwjg4t95vwtlqslx9225x5lguwuy6ahc58x5dnm9ma \
 --out-file delegation.cert
@@ -62,7 +66,7 @@ After generating the delegation certificate, you need to submit it to the chain 
 This type of transaction requires signatures from both `payment.skey` and `stake.skey`, making the transaction slightly larger due to the two signatures. Consequently, it incurs a slightly higher fee. To help the build command accurately calculate transaction fees, you must use the `--witness-override 2` flag:
 
 ```
-cardano-cli babbage transaction build \
+cardano-cli conway transaction build \
 --tx-in $(cardano-cli query utxo --address $(< payment.addr) --out-file  /dev/stdout | jq -r 'keys[0]') \
 --change-address $(< payment.addr) \
 --certificate-file delegation.cert \
@@ -71,7 +75,7 @@ cardano-cli babbage transaction build \
 ```
 
 ```
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
 --tx-body-file tx.raw \
 --signing-key-file payment.skey \
 --signing-key-file stake.skey \
@@ -79,7 +83,7 @@ cardano-cli transaction sign \
 ```
 
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
 --tx-file tx.signed 
 ```
 

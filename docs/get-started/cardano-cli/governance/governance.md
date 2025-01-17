@@ -7,10 +7,6 @@ description: Overview ov cardano governance across ledger eras.
 keywords: [governance, update proposals, cardano, cardano-node]
 ---
 
-## Update proposals
-
-Currently (Babbage era), and until the Conway era ushers in participatory governance, Cardano operates under a **federated governance** mechanism. This framework enables the updating of protocol parameters, including the addition of new features, through an update proposal process. Only the holders of the genesis delegate keys have the authority to submit and vote on proposals.
-
 ## Cardano ledger eras
 
 Cardano has undergone various ledger era upgrades – Byron, Shelley, Allegra, Mary, Alonzo, and the current Babbage era. Each era has introduced new functionalities to the network. The upcoming era, Conway, is planned to introduce decentralized governance, implementing [CIP-1694](https://cips.cardano.org/cip/CIP-1694) functionality.
@@ -57,51 +53,13 @@ The procedure is as follows:
 3. **Quorum.** At the end of the epoch, if the majority of nodes, determined by the **Quorum** specification constant (which must exceed half the total number of nodes), have most recently submitted the identical proposal, it becomes adopted.
 4. **Update.** The update is applied at the epoch boundary.
 
-Changing the values of the protocol parameters and global constants can be done via an update proposal.
+Changing the values of the protocol parameters and global constants was done via an update proposal.
 
 Changing the values of the global constants always requires a software update, including an increase in the protocol version. An increase in the major version indicates a hard fork, while the minor version indicates a soft fork (meaning old software can validate but not produce new blocks).
 
 On the other hand, updating protocol parameters can be done without a software update.
 
-Until the Conway era is released, only **genesis delegate key** holders can submit and vote on proposals. From time to time, you will find it useful to deploy a local or private testnet. In that case, you will need to use the governance commands to upgrade your network to the desired era.
-
-Example of a protocol parameter update proposal updating `nOpt` (the desired number of pools):
-
-:::note
-Only **genesis delegate key** holders can create this type of update proposals. 
-This applies to mainnet and testnets running in any pre-Conway era.  
-If you are running a private testnet, you can use this feature to update your testnet parameters.
-:::
-
-```shell
-cardano-cli babbage governance action create-protocol-parameters-update \
-  --genesis-verification-key-file genesis-keys/non.extended.shelley.delegate.vkey \
-  --number-of-pools 1000 \
-  --out-file updateNOpt.proposal
-```
-
-Build, sign, and submit the transaction: 
-
-```shell
-balance=$(cardano-cli query utxo --address $(< payment.addr) --out-file /dev/stdout | jq '. | .[keys[0]].value.lovelace')
-fee=1000000
-change=$(($balance - $fee))
-
-cardano-cli babbage transaction build-raw \
-  --fee $fee \
-  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r 'keys[0]' \
-  --tx-out $(< payment.addr)+$change \
-  --update-proposal-file updateNOpt.proposal \
-  --out-file updateNOpt.tx.raw
-
-cardano-cli conway transaction sign \
-  --tx-body-file updateNOpt.tx.raw \
-  --signing-key-file payment.skey \
-  --signing-key-file genesis-keys/non.extended.shelley.delegate.skey \ 
-  --out-file updateNOpt.tx.signed
-
-cardano-cli conway transaction submit --tx-file updateNOpt.tx.signed
-```
+Before the Chang hardfork that brought Cardano to the Conway era, only **genesis delegate key** holders were able to submit and vote on proposals. 
 
 ## Conway era update proposals
 
@@ -191,12 +149,4 @@ A vote is **Yes**, **No** or **Abstain**,  to be cast, a vote must include addit
 5. The **Hardfork-combinator** requires to "know" about a potential hardfork 6k/f slots before the epoch change. To meet this requiterement, if the _votingStakeDistribution_ is not finished by the time we reach that point, the computation is forced to complete.
 6. On the first `TICK` that occures within the **last 6k/f** slots of the epoch (2 stability windows), the system _solidifies_ the next epoch protocol parameters, see [_solidifyNextEpochPParams_](https://github.com/IntersectMBO/cardano-ledger/blob/a00b723cd93658e67d21f40c771fad80c463d9c4/eras/shelley/impl/src/Cardano/Ledger/Shelley/Rules/Tick.hs#L180C1-L195C6). The RATIFY and ENACT rules are executed at this point to deterimne the _enactState_. If a governance action has enough votes (meets the thresholds for its type), it is said to be **Ratified** and it is added to the _enactState_.
 7. At the next epoch boundary, the system **applies** the _enactState_.
-8. A governance action **Expires** if it does not accumulate enough votes during it's lifetime. Its last chance to be ratified is when the _DRepPulser_ talies the votes on the epoch following its expiration. 
-
-
-
-
-
-
-
- 
+8. A governance action **Expires** if it does not accumulate enough votes during it's lifetime. Its last chance to be ratified is when the _DRepPulser_ talies the votes on the epoch following its expiration.  
