@@ -1,5 +1,5 @@
 ---
-id: cardano-tracer
+id: new-tracing-system
 title: Quick start
 sidebar_label: Quick start
 sidebar_position: 1
@@ -267,7 +267,7 @@ Configurations can be written in both **JSON** and **YAML**. The examples in thi
 
 A full example of a mainnet node config file utilizing various settings for the new tracing system can be found here: [mainnet-config-new-tracing.json]
 
-There's a sensible **fallback** configuration hard-coded inside a Haskell module of the Node: [Cardano.Node.Tracing.DefaultTraceConfig]. It is important to state the `TraceOptions` from this fallback will be used if and only if there is no `TraceOptions` object at all in your Node configuration.
+There's a sensible **fallback** configuration hard-coded inside a Haskell module of the Node: [Cardano.Node.Tracing.DefaultTraceConfig]. It is important to state the `TraceOptions` from this fallback will be used if and only if the `TraceOptions` object in your Node configuration is empty.
 
 ---
 
