@@ -56,7 +56,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
 ```shell
 cardano-cli conway stake-address vote-delegation-certificate \
   --stake-verification-key-file stake.vkey \
-  --drep-script-hash $(< drep-multisig.id) \
+  --drep-script-hash $(< script.hash) \
   --out-file vote-deleg.cert
 ```
 

@@ -435,7 +435,7 @@ cardano-cli conway transaction witness \
 Assemble the tranaction with all the witnesses from previous step:
 
 ```bash
-cardano-cli transaction assemble \
+cardano-cli conway transaction assemble \
   --tx-body-file tx.raw \
   --witness-file  payment.witness \
   --witness-file  drep1.witness \
@@ -561,13 +561,13 @@ cardano-cli conway transaction build \
 ```
 
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
   --signing-key-file payment.skey \
   --tx-body-file tx.raw \
   --out-file tx.signed
 ```
 ```bash
-cardano-cli transaction submit --tx-file tx.signed
+cardano-cli conway transaction submit --tx-file tx.signed
 ```
 
 
