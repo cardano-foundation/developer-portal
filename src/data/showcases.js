@@ -953,9 +953,9 @@ export const Showcases = [
   {
     title: "BALANCE Analytics",
     description:
-      "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
+      "Graphical, configurable analytics specialising in Cardano PoS decentralisation metrics.",
     preview: require("./showcase/balance-analytics.png"),
-    website: "https://balanceanalytics.io/",
+    website: "https://www.balanceanalytics.io/",
     source: null,
     tags: ["analytics", "pooltool"],
   },
@@ -1066,15 +1066,6 @@ export const Showcases = [
     website: "https://continuity.to/",
     source: null,
     tags: ["nftsupport", "token"],
-  },
-  {
-    title: "BALANCE",
-    description:
-      "A Cardano Blockchain Research & Analytics Provider.",
-    preview: require("./showcase/balanceanalytics.png"),
-    website: "https://www.balanceanalytics.io/",
-    source: null,
-    tags: ["analytics", "pooltool"],
   },
   {
     title: "Summon Platform",
