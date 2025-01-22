@@ -1,5 +1,5 @@
 ---
-id: new-tracing-system
+id: cardano-tracer
 title: Cardano Tracer
 sidebar_label: Cardano tracer
 sidebar_position: 2
