@@ -41,7 +41,8 @@ A minimal version of this file looks like this:
         "advertise": false,
         "valency": 1,
         "warmValency": 2,
-        "trustable": true
+        "trustable": true,
+        "diffusionMode": "InitiatorAndResponder"
       }
   ],
   "useLedgerAfterSlot": 128908821,
@@ -90,6 +91,15 @@ A minimal version of this file looks like this:
   If a value is specified for `warmValency`, it should be greater than or equal to the one defined in `hotValency`; otherwise, `hotValency` will be adjusted to match this value.
   We recommend that users set the `warmValency` value to `hotValency + 1` to ensure that at least one backup peer can be promoted to a hot connection in case of unexpected events.
   Check [this issue](https://github.com/intersectmbo/ouroboros-network/issues/4565) for more context on this `WarmValency` option.
+
+
+* The `diffusionMode` is an optional field available since `cardano-node-10.2`.
+  It can either be `"InitiatorAndResponder"` (the default value) or `"InitiatorOnly"` (similar to `DiffusionMode` in the configuration file).
+  If `"InitiatorOnly"` is set, then all local roots in this group will negotiate initiator-only diffusion mode, e.g. the TCP connection will be used as a unidirectional connection.
+
+  The topology setting overwrites `DiffusionMode` from the configuration file for given local root peers.
+  It is meant to overwrite the diffusion mode when a node is running in `InitiatorAndResponder` mode (the default).
+  The other way is also possible, but note that when the option in the configuration file is set to `InitiatorOnly`, the node will not run the accept loop.
 
 
 * The `advertise` parameter instructs a node about the acceptability of sharing addresses through *peer sharing* (which we'll explain in more detail in a subsequent section).
