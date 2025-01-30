@@ -44,6 +44,7 @@ A minimal version of this file looks like this:
         "trustable": true
       }
   ],
+  "useLedgerAfterSlot": 128908821,
   "bootstrapPeers": [
     {
       "address": "backbone.cardano.iog.io",
@@ -67,18 +68,15 @@ A minimal version of this file looks like this:
         ],
       "advertise": false
     }
-  ],
-  "useLedgerAfterSlot": 128908821,
+  ]
 }
 ```
 
+### Local Roots
+
 * `LocalRoots` are designed for peers that the node **should always keep as hot or warm**, such as its own block producer or fullfill aranged agreements with other SPOs.
-  `PublicRoots` serve as a source of fallback peers, which can be used if we are before the configured `useLedgerAfterSlot` slot (please consider using `bootstrapPeers` instead or Genesis).
-  The main syntactic difference in the toplogy file between `LocalRoots` and `PublicRoots` is the ability to specify various groups with varying valencies in the former.
-  This can be valuable for informing your node about different targets within a group to achieve.
 
-
-* This means that your node will initiate contact with the node at IP `x.x.x.x` on `port 3001` and resolve the DNS domain `y.y.y.y` (provided it exists).
+  This means that your node will initiate contact with the node at IP `x.x.x.x` on `port 3001` and resolve the DNS domain `y.y.y.y` (provided it exists).
   It will then try to connect with at least one of the resolved IPs.
 
 
@@ -123,7 +121,19 @@ Additionally, the SIGHUP signal will prompt the system to re-read the block forg
 If this process fails, block forging will be disabled.
 To re-enable block forging, ensure that the necessary files are present.
 
-You can disable ledger peers by setting the `useLedgerAfterSlot` to a negative value.
+
+
+### Ledger Peers / Public Roots & Big Ledger Peers
+
+The option `useLedgerAfterSlot` configures from which slot the node should start to use peers registered on the ledger.  Before the given slot, the node will use `PublicRoots`, unless `bootstrapPeers` are given (see below).
+If a negative value is specified a node will not use ledger peers.
+Ledger peers should be disabled for your block producing node.
+
+Ledger peers are drawn from the ledger based on stake distribution.
+Big ledger peers is a similar notion.
+It is a subset of ledger peers which contains 90% of them with the largest stake.
+
+`PublicRoots` serve as a source of fallback peers, which are used if we are before the configured `useLedgerAfterSlot` slot (please consider using `bootstrapPeers` instead or Genesis).
 
 ### Genesis lite a.k.a Bootstrap Peers
 
@@ -155,16 +165,50 @@ With bootstrap peers enabled, the node will trace the following:
 
 ### Configuring the node to use P2P
 
-You can enable P2P from the configuration file; the field `EnableP2P` can be set to either `false` or `true`. When setting it to `true`, you will also need to configure the target number of _active_, _established_ and _known_ peers, together with the target number of _root_ peers, for example:
+You can enable P2P from the configuration file; the field `EnableP2P` can be set to either `false` or `true`. When setting it to `true`, you will also need to configure the target number of _active_, _established_ and _known_ peers, together with the target number of _root_ peers.  The default configuration values are:
 
 ```json
 {
   ...
   "EnableP2P": true,
-  "TargetNumberOfActivePeers": 20,
+
+  "TargetNumberOfRootPeers": 60,
+
+  "TargetNumberOfActivePeers": 15,
   "TargetNumberOfEstablishedPeers": 40,
-  "TargetNumberOfKnownPeers": 100,
-  "TargetNumberOfRootPeers": 10,
+  "TargetNumberOfKnownPeers": 85,
+
+  "TargetNumberOfActiveBigLedgerPeers": 5,
+  "TargetNumberOfEstablishedBigLedgerPeers": 10,
+  "TargetNumberOfKnownBigLedgerPeers": 15,
 }
 ```
 
+* `TargetNumberOfActivePeers` - the target for active ledger peers (aka hot peers); includes: local roots, ledger peers / public roots, peers from peer-sharing; excludes: big ledger peers.
+* `TargetNumberOfEstablishedPeers` - the target for established connections (the sum of warm & hot peers); includes: local roots roots, ledger peers / public roots, peers from peer-sharing; excludes big ledger peers.
+* `TargetNumberOfKnownPeers` - the target for known peers (the sum of cold, warm & hot); includes: local roots, ledger peers / public roots, peers from peer-sharing; excludes big ledger peers.
+
+* `TargetNumberOfActiveBigLedgerPeers` - the target for active big ledger peers (aka hot big ledger peers).
+* `TargetNumberOfEstablishedBigLedgerPeers` - the target for established connections with big ledger peers (the sum of warm & hot big ledger peers).
+* `TargetNumberOfKnownBigLedgerPeers` - the target for known big ledger peers (the sum of cold, warm & hot big ledger peers).
+
+* `TargetNumberOfRootPeers` - a lower limit for known local roots, ledger peers / public root peers.  Anything beyoned this target will be filled by peers from peer sharing, ledger / public root peers.
+
+Note, when using bootstrap-peers, feature the targets have to be large enough to accomodate all bootstrap peers. 
+
+#### Genesis network specific configuration
+
+How to enable Genesis mode is beyond this document, here we only document relevant networking options.
+These options are available since `cardano-node-10.2`.
+
+```json
+{
+  "SyncTargetNumberOfActivePeers": 0,
+  "SyncTargetNumberOfActiveBigLedgerPeers": 30,
+  "SyncTargetNumberOfEstablishedBigLedgerPeers": 50,
+  "SyncTargetNumberOfKnownBigLedgerPeers": 100,
+}
+```
+
+These targets overwrite the above target values.
+Other targets values in sync mode, like number of established or known peers are not configurable at the moment, we use the default values listed in the previous section.
