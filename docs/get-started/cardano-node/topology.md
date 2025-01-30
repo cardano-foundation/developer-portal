@@ -16,6 +16,10 @@ The P2P topology file specifies how to obtain the _root peers_.
   These connections are typically kept private.
 
 
+* _bootstrap peers_: trusted set of peers, only used for syncing.  With
+  `cardano-node-10.2` one can use _Genesis_ instead.
+
+
 * _public roots_: publicly known nodes (e.g. IOG relays or ledger nodes).
   They are either read from the configuration file directly or from the chain.
   The configured ones will be used to pass a recent snapshot of peers needed before the node caches up with the recent enough chain to construct root peers by itself.
@@ -27,6 +31,19 @@ A minimal version of this file looks like this:
 
 ```json
 {
+  "localRoots": [
+      { "accessPoints": [
+            {
+              "address": "x.x.x.x",
+              "port": 3001
+            }
+          ],
+        "advertise": false,
+        "valency": 1,
+        "warmValency": 2,
+        "trustable": true
+      }
+  ],
   "bootstrapPeers": [
     {
       "address": "backbone.cardano.iog.io",
@@ -40,19 +57,6 @@ A minimal version of this file looks like this:
       "address": "backbone.mainnet.cardanofoundation.org",
       "port": 3001
     }
-  ],
-  "localRoots": [
-      { "accessPoints": [
-            {
-              "address": "x.x.x.x",
-              "port": 3001
-            }
-          ],
-        "advertise": false,
-        "valency": 1,
-        "warmValency": 2,
-        "trustable": true
-      }
   ],
   "publicRoots": [
     { "accessPoints": [
@@ -68,30 +72,29 @@ A minimal version of this file looks like this:
 }
 ```
 
-* The main difference between `LocalRoots` and `PublicRoots` is the ability to specify various groups with varying valencies in the former.
+* `LocalRoots` are designed for peers that the node **should always keep as hot or warm**, such as its own block producer or fullfill aranged agreements with other SPOs.
+  `PublicRoots` serve as a source of fallback peers, which can be used if we are before the configured `useLedgerAfterSlot` slot (please consider using `bootstrapPeers` instead or Genesis).
+  The main syntactic difference in the toplogy file between `LocalRoots` and `PublicRoots` is the ability to specify various groups with varying valencies in the former.
   This can be valuable for informing your node about different targets within a group to achieve.
-  `LocalRoots` is designed for peers that the node should always keep as hot or warm, such as its own block producer.
-  On the other hand, `PublicRoots` serves as a source of fallback peers, which can be used if we are before the configured `useLedgerAfterSlot` slot.
 
 
 * This means that your node will initiate contact with the node at IP `x.x.x.x` on `port 3001` and resolve the DNS domain `y.y.y.y` (provided it exists).
   It will then try to connect with at least one of the resolved IPs.
+
 
 * `hotValency` tells the node the number of connections it should attempt to select from the specified group.
   When a DNS address is provided, valency determines the count of resolved IP addresses for which the node should maintain an active (hot) connection.
   Note: one can also use the deprecated now `valency` field for `hotValency`.
 
 
-- `warmValency` is an optional field, similar to `hotValency`, that informs the node about the number of peers it should maintain as warm.
+* `warmValency` is an optional field, similar to `hotValency`, that informs the node about the number of peers it should maintain as warm.
   This field is optional and defaults to the value set in the `valency` or `hotValency` field.
   If a value is specified for `warmValency`, it should be greater than or equal to the one defined in `hotValency`; otherwise, `hotValency` will be adjusted to match this value.
   We recommend that users set the `warmValency` value to `hotValency + 1` to ensure that at least one backup peer can be promoted to a hot connection in case of unexpected events.
   Check [this issue](https://github.com/intersectmbo/ouroboros-network/issues/4565) for more context on this `WarmValency` option.
 
 
-* Local root groups shall be non-overlapping.
-
-* The advertise parameter instructs a node about the acceptability of sharing its address through *peer sharing* (which we'll explain in more detail in a subsequent section).
+* The `advertise` parameter instructs a node about the acceptability of sharing addresses through *peer sharing* (which we'll explain in more detail in a subsequent section).
   If a node has activated peer sharing, it can receive requests from other nodes seeking peers.
   However, it will only disclose those peers for which it has both local and remote permissions.
 
@@ -99,10 +102,15 @@ A minimal version of this file looks like this:
   On the other hand, 'remote permission' is tied to the `PeerSharing` value associated with the remote address, which is ascertained after the initial handshake between nodes.
 
 
+* Local root groups shall be non-overlapping.
+
+
 * Local roots should not be greater than the `TargetNumberOfKnownPeers`.
   If they are, they will get clamped to the limit.
 
-- Read the next section for `trustablePeers` and `bootstrapPeers`.
+
+* Read the next section for `trustablePeers` and `bootstrapPeers`.
+
 
 Your __block-producing__ node must __ONLY__ talk to your __relay nodes__, and the relay node should talk to other relay nodes in the network.
 
