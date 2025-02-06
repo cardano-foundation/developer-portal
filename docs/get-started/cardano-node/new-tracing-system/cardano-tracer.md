@@ -291,7 +291,7 @@ The value from the example above, `764824073`, is taken from the Shelley genesis
 
 ### Requests
 
-The optional field `loRequestNum` specifies the number of log items that will be requested from the node. For example, if `loRequestNum` is `10`, `cardano-tracer` will periodically ask 10 log items in one request. This value is useful for fine-tuning network traffic: it is possible to ask 50 log items in one request, or ask them in 50 requests one at a time. `loRequestNum` is the *maximum* number of log items. For example, if `cardano-tracer` asks 50 log items but the node has only 40 log items _in this moment of time_, these 40 items will be returned, the request won't block to wait for additional 10 items.
+The optional field `loRequestNum` specifies the number of log items that will be requested from the node. For example, if `loRequestNum` is `10`, `cardano-tracer` will periodically ask 10 log items in one request. This value is useful for fine-tuning network traffic: it is possible to ask 50 log items in one request, or ask them in 50 requests one at a time. `loRequestNum` is the *maximum* number of log items. For example, if `cardano-tracer` requests 50 log items but the node has only 40 at that moment, these 40 items will be returned, the request won't block to wait for additional 10 items.
 
 The optional field `ekgRequestFreq` specifies the period of how often EKG metrics will be requested, in seconds. For example, if `ekgRequestFreq` is `10`, `cardano-tracer` will ask for new EKG metrics every ten seconds. There is no limit as `loRequestNum`, so every request returns _all_ the metrics the node has _in this moment of time_.
 
