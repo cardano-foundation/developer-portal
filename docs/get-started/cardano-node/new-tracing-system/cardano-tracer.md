@@ -44,7 +44,7 @@ You can think of Cardano node as a **producer** of logging and monitoring inform
 There are 3 such kinds of information:
 
 1. **Trace object**, contains logging data. `cardano-tracer` periodically queries for new trace objects, receives them and stores them in the log files and/or in Linux `systemd`'s journal.
-2. **EKG metric**, contains system metrics. [Consult the EKG documentation](https://hackage.haskell.org/package/ekg-core) for more info. `cardano-tracer` periodically queries for new EKG metrics, receives them and displays them using monitoring tools.
+2. **EKG metric**, contains system metrics. [Consult the EKG documentation](https://hackage.haskell.org/package/ekg-core) for more info. `cardano-tracer` periodically queries for new EKG metrics, receives and displays them using monitoring tools.
 3. **Data point**, contains arbitrary information about the node. `cardano-tracer` does not poll periodically for new data points, only by _explicit_ request when it needs it.
 
 `cardano-tracer` can work as an aggregator as well: _one_ `cardano-tracer` process can receive the information from _multiple_ nodes.
