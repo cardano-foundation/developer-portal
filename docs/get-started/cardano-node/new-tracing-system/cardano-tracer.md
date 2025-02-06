@@ -35,7 +35,7 @@ keywords: [Tracing, cardano-tracer, trace-dispatch, new tracing system, monitori
 
 Previously, the node handled all the logging by itself. It provides two web-servers for application monitoring: Prometheus and EKG.
 
-`cardano-tracer` is a result of _moving_ all the logging/monitoring-related stuff from the node to a separate service. As a result, the node becomes smaller, faster, and simpler (once the current system is deprecated).
+`cardano-tracer` is the result of _moving_ all the logging and monitoring-related components from the node to a separate service. As a result, the node becomes smaller, faster, and simpler once the current system is deprecated.
 
 ### Overview
 
