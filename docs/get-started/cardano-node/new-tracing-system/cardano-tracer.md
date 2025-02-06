@@ -60,7 +60,7 @@ The way how to configure `cardano-tracer` depends on your requirements. There ar
 1. **Distributed** (real-life) scenario, when `cardano-tracer` is working on one machine, and your nodes are working on another machine(s).
 2. **Local** (testing) scenario, when `cardano-tracer` and your nodes are working on the same machine.
 
-Distributed scenario is for real-life case. You may have `N` nodes working on `N` different AWS-instances and you want to collect all the logging/monitoring information from these nodes using one `cardano-tracer` process working on your machine.
+Distributed scenario is for real-life case. You may have `N` nodes working on `N` different AWS-instances and you want to collect all the logging and monitoring information from these nodes using one `cardano-tracer` process working on your machine.
 
 Local scenario is for testing case. For example, you want to try your new infrastructure from scratch so you run `N` nodes and one `cardano-tracer` process on your machine.
 
