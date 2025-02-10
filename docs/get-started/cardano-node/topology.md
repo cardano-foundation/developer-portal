@@ -163,7 +163,7 @@ Failing to configure the node with trustable peer sources will cause the node to
 
 With bootstrap peers enabled, the node will trace the following:
 
-- `TraceLedgerStateJudgmentChanged {TooOld,YoungEnoug}`: If it has changed to any of these states.
+- `TraceLedgerStateJudgmentChanged {TooOld,YoungEnough}`: If it has changed to any of these states.
 
   - `TooOld` state means that the information the node is getting from its peers is outdated and behind at least 20 min.
     This means there's something wrong, and the node should only connect to trusted peers (trusted peers are bootstrap peers and trustable local root peers) to sync.
