@@ -5,7 +5,7 @@ sidebar_label: Topology
 sidebar_position: 5
 description: OVerview and configiuration of P2P topology.
 keywords: [Get-started, run the node, installation, networking, p2p, peer to peer, cardano-node, cardano node]
---- 
+---
 
 The P2P topology file specifies how to obtain the _root peers_.
 
@@ -70,6 +70,7 @@ A minimal version of this file looks like this:
       "advertise": false
     }
   ]
+  "peerSnapshotFile": "path/to/big-ledger-peer-snapshot.json"
 }
 ```
 
@@ -173,9 +174,17 @@ With bootstrap peers enabled, the node will trace the following:
 - `TraceOnlyBootstrap`: Once the node transitions to `TooOld,` the node will disconnect from all non-trusted peers and reconnect only to trusted ones in order to sync from trusted sources.
   This tracing message means that the node has successfully purged all non-trusted connections and is only going to connect to trusted peers.
 
+### [Ouroboros Genesis](https://iohk.io/en/blog/posts/2024/05/08/ouroboros-genesis-design-update/)
+
+Ouroboros Genesis is the upcoming mechanism of trustless syncing in P2P environment which is expected to supercede bootstrap peers described in the previous section. This feature is included starting with `cardano-node 10.2`, and at the time of this writing it is disabled by default - refer to config.json file section below on instructions how to enable this by toggling a feature flag. Once enabled, this mode is incompatibile with bootstrap peers, and will disable the latter by overriding the configuration, and emit a trace of such occurence to inform the operator to update topology file. From the perspective of the topology file a new entry must be added:
+
+`"peerSnapshotFile": "path/to/snapshot.json"`
+
+The file contains a snapshot of so-called big ledger peers which are the largest peers registered on the ledger which cumulatively hold 90% of stake at some arbitrary slot number. By virtue of the size of their stake in the system, they are postulated to be a proxy for honest ledger state. When syncing in this mode, these peers are sampled and connected with to bootstrap the process. Such a snapshot file can be created manually apriori with cardano-cli from a synced node, and may be distributed with a node release in the future. For reference,
+
 ### Configuring the node to use P2P
 
-You can enable P2P from the configuration file; the field `EnableP2P` can be set to either `false` or `true`. When setting it to `true`, you will also need to configure the target number of _active_, _established_ and _known_ peers, together with the target number of _root_ peers.  The default configuration values are:
+You can enable P2P from the configuration file; the field `EnableP2P` can be set to either `false` or `true`. When setting it to `true`, you will also need to configure the target number of _active_, _established_ and _known_ peers, together with the target number of _root_ peers.  These values control the number of outbound connections the node will try to maintain in the appropriate mode. This is important for the node as blocks are downloadeded strictly from these upstream peers. Importantly, blocks that the node is itself serving on demand or the transactions it is requesting are determined by its downstream clients on which these values have no bearing on. The default configuration values are:
 
 ```json
 {
@@ -194,8 +203,11 @@ You can enable P2P from the configuration file; the field `EnableP2P` can be set
 }
 ```
 
-* `TargetNumberOfActivePeers` - the target for active ledger peers (aka hot peers); includes: local roots, ledger peers / public roots, peers from peer-sharing; excludes: big ledger peers.
-* `TargetNumberOfEstablishedPeers` - the target for established connections (the sum of warm & hot peers); includes: local roots roots, ledger peers / public roots, peers from peer-sharing; excludes big ledger peers.
+Collectively, these are known as the deadline targets. Prior to Ouroboros Genesis, this was the only set of static targets available to the node. When Genesis is enabled, these deadline targets
+are in effect when the node deems itself caught up to its peers.
+
+* `TargetNumberOfActivePeers` - the target for active ledger peers (aka hot peers); includes: local roots, ledger peers / public roots, peers from peer-sharing; excludes: big ledger peers. This ordinarily should be least the number of local root peers that are specified as hot in the topology file, otherwise the number of these connections will be clamped below the expected number. However, it is not strictly a misconfiguration and the node will run in such configuration.
+* `TargetNumberOfEstablishedPeers` - the target for established connections (the sum of warm & hot peers); includes: local roots roots, ledger peers / public roots, peers from peer-sharing; excludes big ledger peers. Same note as for active peers above applied here as well.
 * `TargetNumberOfKnownPeers` - the target for known peers (the sum of cold, warm & hot); includes: local roots, ledger peers / public roots, peers from peer-sharing; excludes big ledger peers.
 
 * `TargetNumberOfActiveBigLedgerPeers` - the target for active big ledger peers (aka hot big ledger peers).
@@ -204,12 +216,18 @@ You can enable P2P from the configuration file; the field `EnableP2P` can be set
 
 * `TargetNumberOfRootPeers` - a lower limit for known local roots, ledger peers / public root peers.  Anything beyoned this target will be filled by peers from peer sharing, ledger / public root peers.
 
-Note, when using bootstrap-peers, feature the targets have to be large enough to accomodate all bootstrap peers. 
+Note, when using bootstrap-peers, feature the targets have to be large enough to accomodate all bootstrap peers.
+
+**Custom targets must satisfy the property that # of known >= # of established >= # of active >= 0 otherwise the node will fail to start as it is a serious misconfiguration.**
 
 #### Genesis network specific configuration
 
-How to enable Genesis mode is beyond this document, here we only document relevant networking options.
-These options are available since `cardano-node-10.2`.
+Ouroboros Genesis is disabled by default at the time of this writing. To enable it, the node configuration file must contain
+* `"ConsensusMode": "GenesisMode"`
+or the option `--ConsensusMode GenesisMode` must be given when starting up the node process.
+
+Detailed configuration settings for Genesis are beyond the scope of this article; however, below we document relevant networking options.
+These options are available since `cardano-node-10.2` and by default their values are as shown below:
 
 ```json
 {
@@ -217,8 +235,13 @@ These options are available since `cardano-node-10.2`.
   "SyncTargetNumberOfActiveBigLedgerPeers": 30,
   "SyncTargetNumberOfEstablishedBigLedgerPeers": 50,
   "SyncTargetNumberOfKnownBigLedgerPeers": 100,
+  "MinBigLedgerPeersForTrustedState": 5
 }
 ```
 
-These targets overwrite the above target values.
-Other targets values in sync mode, like number of established or known peers are not configurable at the moment, we use the default values listed in the previous section.
+Collectively, these are known as the sync targets and they are in effect automatically when the consensus layer detects that the node is sufficiently behind its upstream peers. The node then proceeds
+to download blocks from some of the active big ledger peers. Optionally, the `SyncTargetNumberOfActivePeers` can be set such that outbound connections are also
+opened up to local root peers, if defined, as well as other public relays or nodes we learn about via peer sharing, if enabled. Care must be taken to ensure
+that the targets specified satisfy the conditions given in the prior section, or the node will fail to start with an appropriate error message. Once sufficiently many blocks have been adopted and the node deems itself
+caught up again, the number of connections will revert to the default ones as described in the previous section. If at any time during the syncing process the number of hot connections to big ledger peers drops below
+`MinBigLedgerPeersForTrustedState` value, the node will pause and await until sufficiently many active outbound connections are online.
