@@ -5,13 +5,14 @@ sidebar_label: Lucid Evolution
 description: Get Started with Lucid Evolution
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Lucid Evolution is a highly scalable, production-ready transaction builder & off-chain framework for users and DApps. It provides a TypeScript library for building transactions and designing off-chain code.
 
 ## Quick Start
 
 To install `lucid-evolution` you can use `pnpm` (or another package manager):
-
-
 
 <Tabs
 defaultValue="pnpm"
@@ -62,9 +63,6 @@ Installing the lucid package will automatically export all other Lucid Evolution
 Lucid Evolution can be used with or without a blockchain provider, which allows you to query data and submit transactions. Evolution library supports the `Mainnet`, `Preprod`, `Preview` and `Custom` networks.
 
 ### Provider Selection
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs
 defaultValue="blockfrost"
@@ -173,7 +171,7 @@ values={[
 ]}>
 <TabItem value="utxos">
 
-UTxOs (Unspent Transaction Outputs) are the fundamental building blocks in Cardano’s eUTxO model. One of its differentiators from account-based models is that your wallet balance is the sum of all UTxOs at your address.
+UTxOs (Unspent Transaction Outputs) are the fundamental building blocks in Cardano's eUTxO model. One of its differentiators from account-based models is that your wallet balance is the sum of all UTxOs at your address.
 
 **Using provider**
 
@@ -196,7 +194,7 @@ This convenience method internally uses `lucid.provider.getUtxos()`.
 </TabItem>
 <TabItem value="datums">
 
-In Cardano, datums are pieces of data attached to UTxOs. Let’s get some terminology out of the way.
+In Cardano, datums are pieces of data attached to UTxOs. Let's get some terminology out of the way.
 
 - _Inline datums_: When the complete datum is stored directly in the UTxO
 - _Datum hashes_: When only a hash of the datum is stored on-chain
@@ -346,11 +344,11 @@ Transactions built with an address-only wallet will need to be signed by a walle
 
 ## Your first transaction
 
-A couple of fundamentals to remember are that in Cardano’s eUTxO model, a transaction can consume one or more UTxOs as inputs, create one or more UTxOs as outputs, and must be balanced (sum of inputs = sum of outputs + fees).
+A couple of fundamentals to remember are that in Cardano's eUTxO model, a transaction can consume one or more UTxOs as inputs, create one or more UTxOs as outputs, and must be balanced (sum of inputs = sum of outputs + fees).
 
 ### 1. Build
 
-Let’s create a simple transaction where we send `5 ada` to two recipients each:
+Let's create a simple transaction where we send `5 ada` to two recipients each:
 
 ```typescript
 const tx = await lucid
@@ -425,6 +423,5 @@ console.log(txHash);
 Check out our [docs](https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution) for more examples.
 
 You now have all you need to start playing with Lucid Evolution. Take a look at [under the hood](https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/under-the-hood) to understand how Evolution library works, follow the [deep dive](https://anastasia-labs.github.io/lucid-evolution/documentation/deep-dives/make-payments) series to start building your own off-chain code and take a look at example open-source repositories to use the library in different use cases.
-
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/aCV7XzyMUNw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
