@@ -424,4 +424,4 @@ Check out our [docs](https://anastasia-labs.github.io/lucid-evolution/documentat
 
 You now have all you need to start playing with Lucid Evolution. Take a look at [under the hood](https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/under-the-hood) to understand how Evolution library works, follow the [deep dive](https://anastasia-labs.github.io/lucid-evolution/documentation/deep-dives/make-payments) series to start building your own off-chain code and take a look at example open-source repositories to use the library in different use cases.
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/aCV7XzyMUNw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="600" src="https://www.youtube.com/embed/aCV7XzyMUNw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
