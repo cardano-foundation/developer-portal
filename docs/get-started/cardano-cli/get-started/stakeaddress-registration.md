@@ -77,7 +77,7 @@ It's important to note that when using `build`, the deposit is automatically inc
 
 ```shell
 cardano-cli conway transaction build \
-  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --change-address $(< payment.addr) \
   --certificate-file registration.cert \
   --out-file tx.raw
@@ -186,7 +186,7 @@ Draft the transaction to calculate its transaction fee:
 
 ```shell
 cardano-cli conway transaction build-raw \
-  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --tx-out $(< payment.addr)+"$(cardano-cli conway query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r .[].value.lovelace)" \
   --fee 0 \
   --certificate-file registration.cert \
@@ -230,7 +230,7 @@ Build the transaction:
 
 ```shell
 cardano-cli conway transaction build-raw \
-  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --tx-out $(< payment.addr)+$change \
   --fee 171089 \
   --certificate-file registration.cert \
