@@ -21,13 +21,13 @@ The treasury donation is created on epoch 0 so that when querying the treasury v
 ### Query the protocol-parameters:
 
 ```
-cardano-cli conway query protocol-parameters --out-file pparams.json
+cardano-cli latest query protocol-parameters --out-file pparams.json
 ```
 
 ### Query the utxos of your address:
 
 ```
-cardano-cli conway query utxo --address $(< example/utxo-keys/payment1.addr)
+cardano-cli latest query utxo --address $(< example/utxo-keys/payment1.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 6b3cac1a1b63498452ef36ff114ad4f51e5be00c6fbf7ff7b8dbf380483642aa     0        589993592922 lovelace + TxOutDatumNone
@@ -36,7 +36,7 @@ cardano-cli conway query utxo --address $(< example/utxo-keys/payment1.addr)
 ### Query the current treasury value:
 
 ```
-cardano-cli conway query treasury
+cardano-cli latest query treasury
 0
 ```
 
@@ -45,7 +45,7 @@ cardano-cli conway query treasury
 When building the transaction we need to pass the current value of the treasury. Also, we use a fee that is close to the minimum possible fee, We will calculate the acrtual fee in the next step.
 
 ```
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
 --tx-in 6b3cac1a1b63498452ef36ff114ad4f51e5be00c6fbf7ff7b8dbf380483642aa#0 \
 --current-treasury-value 0 \
 --treasury-donation  987654321 \
@@ -58,7 +58,7 @@ cardano-cli conway transaction build-raw \
 ### Calculate the fee:
 
 ```
-cardano-cli conway transaction calculate-min-fee \
+cardano-cli latest transaction calculate-min-fee \
 --tx-body-file example/transactions/treasury.tx.raw \
 --protocol-params-file pparams.json \
 --witness-count 1 \
@@ -77,7 +77,7 @@ echo $((589993592922 - 166117 - 987654321))
 ### Re-build the transaction with the updated values:
 
 ```
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
 --tx-in 6b3cac1a1b63498452ef36ff114ad4f51e5be00c6fbf7ff7b8dbf380483642aa#0 \
 --current-treasury-value 0 \
 --treasury-donation  987654321 \
@@ -87,20 +87,20 @@ cardano-cli conway transaction build-raw \
 --out-file example/transactions/treasury.tx.raw
 ```
 ```
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-file treasury.tx.raw \
 --signing-key-file payment.skey \
 --out-file treasury.tx.signed
 ```
 ```
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
 --tx-file treasury.tx.signed
 ```
 
 At the epoch transition following our transaction, the treasury will be updated.  
 
 ```
-cardano-cli conway query treasury 
+cardano-cli latest query treasury 
 987654321
 ```
 
@@ -111,7 +111,7 @@ cardano-cli conway query treasury
 The `build` command automatically queries the `currentTreasuryValue` so there is no need to pass it in a flag. As usual. `--change-address` helps us to automatically balance the transaction.
 
 ```
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
 --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --treasury-donation  987654321 \
 --change-address $(< payment.addr) \
@@ -121,7 +121,7 @@ cardano-cli conway transaction build \
 ### Sign the transaction:
 
 ```
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-file treasury.tx.raw \
 --signing-key-file payment.skey \
 --out-file treasury.tx.signed
@@ -130,14 +130,14 @@ cardano-cli conway transaction sign \
 ### Submit the transaction:
 
 ```
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
 --tx-file treasury.tx.signed
 ```
 
 At the epoch transition following our transaction, the treasury will be updated.  
 
 ```
-cardano-cli conway query treasury 
+cardano-cli latest query treasury 
 987654321
 ```
 

@@ -127,7 +127,7 @@ To submit the `pool registration certificate` and the `delegation certificates` 
 #### Draft the transaction
 
 ```sh
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
     --tx-in <TxHash>#<TxIx> \
     --tx-out $(cat payment.addr)+0 \
     --invalid-hereafter 0 \
@@ -140,7 +140,7 @@ cardano-cli conway transaction build-raw \
 #### Calculate the fees
 
 ```sh
-cardano-cli conway transaction calculate-min-fee \
+cardano-cli latest transaction calculate-min-fee \
     --tx-body-file tx.draft \
     --tx-in-count 1 \
     --tx-out-count 1 \
@@ -172,7 +172,7 @@ expr <UTxO BALANCE> - <poolDeposit> - <TRANSACTION FEE>
 #### Build the transaction:
 
 ```sh
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
     --tx-in <TxHash>#<TxIx> \
     --tx-out $(cat payment.addr)+<CHANGE IN LOVELACE> \
     --invalid-hereafter <TTL> \
@@ -185,7 +185,7 @@ cardano-cli conway transaction build-raw \
 #### Sign the transaction:
 
 ```sh
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -197,7 +197,7 @@ cardano-cli conway transaction sign \
 #### Submit the transaction:
 
 ```sh
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
