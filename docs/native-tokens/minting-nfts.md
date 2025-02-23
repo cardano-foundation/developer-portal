@@ -533,7 +533,7 @@ script="policy/policy.script"
 The last step is to generate the policyID:
 
 ```bash
-cardano-cli latest transaction policyid --script-file ./policy/policy.script > policy/policyID
+cardano-cli conway transaction policyid --script-file ./policy/policy.script > policy/policyID
 ```
 
 ### Metadata
@@ -672,7 +672,7 @@ values={[
   <TabItem value="preview">
 
 ```bash
-cardano-cli latest transaction build \
+cardano-cli conway transaction build \
 --testnet-magic 2 \
 --alonzo-era \
 --tx-in $txhash#$txix \
@@ -691,7 +691,7 @@ cardano-cli latest transaction build \
   <TabItem value="pre-production">
 
 ```bash
-cardano-cli latest transaction build \
+cardano-cli conway transaction build \
 --testnet-magic 1 \
 --alonzo-era \
 --tx-in $txhash#$txix \
@@ -710,7 +710,7 @@ cardano-cli latest transaction build \
   <TabItem value="mainnet">
 
 ```bash
-cardano-cli latest transaction build \
+cardano-cli conway transaction build \
 --mainnet \
 --alonzo-era \
 --tx-in $txhash#$txix \
@@ -753,7 +753,7 @@ Estimated transaction fee: Lovelace 176677
 Sign the transaction:
 
 ```bash
-cardano-cli latest transaction sign  \
+cardano-cli conway transaction sign  \
 --signing-key-file payment.skey  \
 --signing-key-file policy/policy.skey  \
 --mainnet --tx-body-file matx.raw  \
@@ -780,7 +780,7 @@ values={[
   <TabItem value="preview">
 
 ```bash
-cardano-cli latest transaction submit --tx-file matx.signed --testnet-magic 2
+cardano-cli conway transaction submit --tx-file matx.signed --testnet-magic 2
 ```
 
   </TabItem>
@@ -788,7 +788,7 @@ cardano-cli latest transaction submit --tx-file matx.signed --testnet-magic 2
   <TabItem value="pre-production">
 
 ```bash
-cardano-cli latest transaction submit --tx-file matx.signed --testnet-magic 1
+cardano-cli conway transaction submit --tx-file matx.signed --testnet-magic 1
 ```
 
   </TabItem>
@@ -796,7 +796,7 @@ cardano-cli latest transaction submit --tx-file matx.signed --testnet-magic 1
   <TabItem value="mainnet">
 
 ```bash
-cardano-cli latest transaction submit --tx-file matx.signed --mainnet
+cardano-cli conway transaction submit --tx-file matx.signed --mainnet
 ```
 
   </TabItem>
@@ -928,7 +928,7 @@ values={[
   <TabItem value="preview">
 
 ```bash
-cardano-cli latest transaction build --testnet-magic 2 --alonzo-era --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --change-address $address --invalid-hereafter $slot --witness-override 2 --out-file burning.raw
+cardano-cli conway transaction build --testnet-magic 2 --alonzo-era --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --change-address $address --invalid-hereafter $slot --witness-override 2 --out-file burning.raw
 ```
 
   </TabItem>
@@ -936,7 +936,7 @@ cardano-cli latest transaction build --testnet-magic 2 --alonzo-era --tx-in $txh
   <TabItem value="pre-production">
 
 ```bash
-cardano-cli latest transaction build --testnet-magic 1 --alonzo-era --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --change-address $address --invalid-hereafter $slot --witness-override 2 --out-file burning.raw
+cardano-cli conway transaction build --testnet-magic 1 --alonzo-era --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --change-address $address --invalid-hereafter $slot --witness-override 2 --out-file burning.raw
 ```
 
   </TabItem>
@@ -944,7 +944,7 @@ cardano-cli latest transaction build --testnet-magic 1 --alonzo-era --tx-in $txh
   <TabItem value="mainnet">
 
 ```bash
-cardano-cli latest transaction build --mainnet --alonzo-era --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --change-address $address --invalid-hereafter $slot --witness-override 2 --out-file burning.raw
+cardano-cli conway transaction build --mainnet --alonzo-era --tx-in $txhash#$txix --tx-out $address+$burnoutput --mint="-1 $policyid.$tokenname" --minting-script-file $script --change-address $address --invalid-hereafter $slot --witness-override 2 --out-file burning.raw
 ```
 
   </TabItem>
@@ -969,7 +969,7 @@ values={[
   <TabItem value="preview">
 
 ```bash
-cardano-cli latest transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --testnet-magic 2  --tx-body-file burning.raw --out-file burning.signed
+cardano-cli conway transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --testnet-magic 2  --tx-body-file burning.raw --out-file burning.signed
 ```
 
   </TabItem>
@@ -977,7 +977,7 @@ cardano-cli latest transaction sign  --signing-key-file payment.skey  --signing-
   <TabItem value="pre-production">
 
 ```bash
-cardano-cli latest transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --testnet-magic 1  --tx-body-file burning.raw --out-file burning.signed
+cardano-cli conway transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --testnet-magic 1  --tx-body-file burning.raw --out-file burning.signed
 ```
 
   </TabItem>
@@ -985,7 +985,7 @@ cardano-cli latest transaction sign  --signing-key-file payment.skey  --signing-
   <TabItem value="mainnet">
 
 ```bash
-cardano-cli latest transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --mainnet  --tx-body-file burning.raw --out-file burning.signed
+cardano-cli conway transaction sign  --signing-key-file payment.skey  --signing-key-file policy/policy.skey --mainnet  --tx-body-file burning.raw --out-file burning.signed
 ```
 
   </TabItem>
@@ -1006,7 +1006,7 @@ values={[
   <TabItem value="preview">
 
 ```bash
-cardano-cli latest transaction submit --tx-file burning.signed --testnet-magic 2
+cardano-cli conway transaction submit --tx-file burning.signed --testnet-magic 2
 ```
 
   </TabItem>
@@ -1014,7 +1014,7 @@ cardano-cli latest transaction submit --tx-file burning.signed --testnet-magic 2
   <TabItem value="pre-production">
 
 ```bash
-cardano-cli latest transaction submit --tx-file burning.signed --testnet-magic 1
+cardano-cli conway transaction submit --tx-file burning.signed --testnet-magic 1
 ```
 
   </TabItem>
@@ -1022,7 +1022,7 @@ cardano-cli latest transaction submit --tx-file burning.signed --testnet-magic 1
   <TabItem value="mainnet">
 
 ```bash
-cardano-cli latest transaction submit --tx-file burning.signed --mainnet
+cardano-cli conway transaction submit --tx-file burning.signed --mainnet
 ```
 
   </TabItem>

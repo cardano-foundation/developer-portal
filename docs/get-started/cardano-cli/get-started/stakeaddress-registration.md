@@ -8,20 +8,20 @@ keywords: [cardano-cli, cli, keys, stake addresses, register, cardano-node, tran
 ---
 
 :::tip
-To integrate the latest (Conway) era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli <era> transaction build <options>`. 
+To integrate the Conway era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli conway transaction build --babbage-era`, users must now utilize the syntax `cardano-cli conway transaction build <options>`. 
 :::
 
 ## Registering a stake address
 
-To participate in the protocol, such as delegating stake to a stake pool to earn rewards or, in the Conway era, delegating stake to a delegate representative, you must first register your stake credentials on the chain. This registration is accomplished by submitting a **stake address registration certificate** within a transaction. The process includes paying a deposit, the amount of which is determined by the `stakeAddressDeposit` protocol parameter. You can get the deposit back when you submit a **stake address deregistration certificate**.
+To participate in the protocol, such as delegating stake to a stake pool to earn rewards or, in the upcoming Conway era, delegating stake to a delegate representative, you must first register your stake credentials on the chain. This registration is accomplished by submitting a **stake address registration certificate** within a transaction. The process includes paying a deposit, the amount of which is determined by the `stakeAddressDeposit` protocol parameter. You can get the deposit back when you submit a **stake address deregistration certificate**.
 
 Delegating to a stake pool also involves submitting a certificate to the chain, in this case, a **stake address delegation certificate**.
 
-You can easily generate such certificates with `cardano-cli`. The corresponding commands can be found under `cardano-cli latest stake-address`:
+You can easily generate such certificates with `cardano-cli`. The corresponding commands can be found under `cardano-cli conway stake-address`:
 
 ```shell
-cardano-cli latest stake-address
-Usage: cardano-cli latest stake-address 
+cardano-cli conway stake-address
+Usage: cardano-cli conway stake-address 
                                           ( key-gen
                                           | key-hash
                                           | build
@@ -43,14 +43,14 @@ Usage: cardano-cli latest stake-address
 Query the protocol parameters to find out the amount of lovelace required as a deposit for registering a stake address, in this case, it is 2000000 lovelace (two ada):
 
 ```shell
-cardano-cli latest query protocol-parameters | jq .stakeAddressDeposit
+cardano-cli conway query protocol-parameters | jq .stakeAddressDeposit
 2000000
 ```
 
 To generate the registration certificate, run:
 
 ```shell
-cardano-cli latest stake-address registration-certificate \
+cardano-cli conway stake-address registration-certificate \
   --stake-verification-key-file stake.vkey \
   --key-reg-deposit-amt 2000000 \
   --out-file registration.cert
@@ -76,8 +76,8 @@ It's important to note that when using `build`, the deposit is automatically inc
 ### Using the `build` command
 
 ```shell
-cardano-cli latest transaction build \
-  --tx-in $(cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+cardano-cli conway transaction build \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --change-address $(< payment.addr) \
   --certificate-file registration.cert \
   --out-file tx.raw
@@ -145,7 +145,7 @@ Using the `build-raw` command involves a slightly more intricate process. Simila
 Query the balance of the `payment.addr`:
 
 ```shell
-cardano-cli latest query utxo --address $(< paymentstake.addr)
+cardano-cli conway query utxo --address $(< paymentstake.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 0690c70f117281627fc128ede51b1fe762c2bbc15c2e3d4eff2101c9d2613cd8     0        9999834851 lovelace + TxOutDatumNone
@@ -155,7 +155,7 @@ cardano-cli latest query utxo --address $(< paymentstake.addr)
 You can leverage `jq` by having `cardano-cli` return the output in JSON:
 
 ```shell
-cardano-cli latest query utxo --address $(< paymentstake.addr) --output-json
+cardano-cli conway query utxo --address $(< paymentstake.addr) --output-json
 {
   "0690c70f117281627fc128ede51b1fe762c2bbc15c2e3d4eff2101c9d2613cd8#0": {
     "address": "addr_test1qp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeue2jrk54ttv0yj7llrfuhr66z4wynpcqxuqeln0jp9y70e0qvjewan",
@@ -171,7 +171,7 @@ cardano-cli latest query utxo --address $(< paymentstake.addr) --output-json
 ```
 Using `jq` to parse that JSON  
 ```shell
-cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
+cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
 9999834851
 ```
 :::
@@ -179,15 +179,15 @@ cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 
 Query the protocol parameters: 
 
 ```shell
-cardano-cli latest query protocol parameters --out-file pparams.json
+cardano-cli conway query protocol parameters --out-file pparams.json
 ```
 
 Draft the transaction to calculate its transaction fee: 
 
 ```shell
-cardano-cli latest transaction build-raw \
-  --tx-in $(cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
-  --tx-out $(< payment.addr)+"$(cardano-cli latest query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r .[].value.lovelace)" \
+cardano-cli conway transaction build-raw \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-out $(< payment.addr)+"$(cardano-cli conway query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r .[].value.lovelace)" \
   --fee 0 \
   --certificate-file registration.cert \
   --out-file tx.draft
@@ -196,7 +196,7 @@ cardano-cli latest transaction build-raw \
 Calculate the transaction fee, it is useful to assign the output to a variable (`fee`):
 
 ```shell
-cardano-cli latest transaction calculate-min-fee \
+cardano-cli conway transaction calculate-min-fee \
   --tx-body-file tx.draft \
   --protocol-params-file pparams.json \
   --tx-in-count 1 \
@@ -211,14 +211,14 @@ Calculate the change of the transaction. Note that the deposit is not explicitly
 Query the protocol parameters to get the deposit amount: 
 
 ```shell
-cardano-cli latest query protocol-parameters | jq .stakeAddressDeposit
+cardano-cli conway query protocol-parameters | jq .stakeAddressDeposit
 2000000
 ```
 Query the current balance of `payment.addr`:
 
 
 ```shell
-cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
+cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
 9999834851
 ```
 
@@ -229,8 +229,8 @@ change=$((9999834851 - 171089 - 2000000))
 Build the transaction: 
 
 ```shell
-cardano-cli latest transaction build-raw \
-  --tx-in $(cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+cardano-cli conway transaction build-raw \
+  --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --tx-out $(< payment.addr)+$change \
   --fee 171089 \
   --certificate-file registration.cert \
@@ -239,13 +239,13 @@ cardano-cli latest transaction build-raw \
 ## Sign and submit the transaction
 
 ```shell
-cardano-cli latest transaction sign \
+cardano-cli conway transaction sign \
   --tx-body-file tx.raw \
   --signing-key-file payment.skey \
   --out-file tx.signed
 ```
 ```shell
-cardano-cli latest transaction submit \
+cardano-cli conway transaction submit \
   --tx-file tx.signed 
 ```
 

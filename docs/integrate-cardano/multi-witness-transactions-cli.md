@@ -65,7 +65,7 @@ $ cardano-cli query protocol-parameters \
 ```
 
 ```bash
-$ cardano-cli latest transaction build-raw \
+$ cardano-cli conway transaction build-raw \
 --tx-in 264c0aa805652e3607c5ea2b1e8a9f3bf9c3bc8d4d938e1a9035f352083ba703#0 \
 --tx-out $(cat keys/payment2.addr)+0 \
 --tx-out $(cat keys/payment1.addr)+0 \
@@ -74,7 +74,7 @@ $ cardano-cli latest transaction build-raw \
 ```
 
 ```bash {8}
-$ cardano-cli latest transaction calculate-min-fee \
+$ cardano-cli conway transaction calculate-min-fee \
 --tx-body-file tx.draft \
 --tx-in-count 1 \
 --tx-out-count 2 \
@@ -90,7 +90,7 @@ $ cardano-cli latest transaction calculate-min-fee \
 From the expected fee of `174169 Lovelace`, we were able to calculate the outputs and build our transaction.
 
 ```bash {3,4,5}
-cardano-cli latest transaction build-raw \
+cardano-cli conway transaction build-raw \
 --tx-in 264c0aa805652e3607c5ea2b1e8a9f3bf9c3bc8d4d938e1a9035f352083ba703#0 \
 --tx-out $(cat keys/payment2.addr)+250000000 \
 --tx-out $(cat keys/payment1.addr)+749825831 \
@@ -110,13 +110,13 @@ Your fees might have been different hence you would have different amounts.
 We used `payment1.skey` to sign our transaction and submitted it to the blockchain.
 
 ```bash {3,10}
-cardano-cli latest transaction sign \
+cardano-cli conway transaction sign \
 --tx-body-file tx.draft \
 --signing-key-file keys/payment1.skey \
 --testnet-magic 1097911063 \
 --out-file tx.signed
 
-cardano-cli latest transaction submit \
+cardano-cli conway transaction submit \
 --tx-file cardano/tx.signed \
 --testnet-magic 1097911063
 Transaction successfully submitted.
@@ -256,7 +256,7 @@ What about the outputs? Well, the *devious store-owner* wants us to spend it all
 Lets build that transaction.
 
 ```bash
-cardano-cli latest transaction build-raw \
+cardano-cli conway transaction build-raw \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#0 \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#1 \
 --tx-out $(cat ../keys/store-owner.addr)+0 \
@@ -267,7 +267,7 @@ cardano-cli latest transaction build-raw \
 The last thing we need to do is to calculate the fees for `tx2.draft`. Notice the `--tx-in-count` and `--witness-count`.
 
 ```bash {3,4,5,8}
-cardano-cli latest transaction calculate-min-fee \
+cardano-cli conway transaction calculate-min-fee \
 --tx-body-file tx2.draft \
 --tx-in-count 2 \
 --tx-out-count 1 \
@@ -297,21 +297,21 @@ We know the *output amount* as well as the *fee*. We can finally build, sign and
 We have to use `payment1.skey` and `payment2.skey` to sign our transaction.
 
 ```bash {10,11,18}
-cardano-cli latest transaction build-raw \
+cardano-cli conway transaction build-raw \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#0 \
 --tx-in b73b7503576412219241731230b5b7dd3b64eed62ccfc3ce69eb86822f1db251#1 \
 --tx-out $(cat ../keys/store-owner.addr)+999646250 \
 --fee 179581 \
 --out-file tx2.draft 
 
-cardano-cli latest transaction sign \
+cardano-cli conway transaction sign \
 --tx-body-file tx2.draft \
 --signing-key-file ../keys/payment1.skey \
 --signing-key-file ../keys/payment2.skey \
 --testnet-magic 1097911063 \
 --out-file tx2.signed
 
-cardano-cli latest transaction submit \
+cardano-cli conway transaction submit \
 --tx-file tx2.signed \
 --testnet-magic 1097911063
 Transaction successfully submitted
@@ -346,13 +346,13 @@ We had to pay `179581 Lovelace` to get all of our funds from A+B to C. Let's com
 For that we draft two transactions
 
 ```sh
-cardano-cli latest transaction build-raw \
+cardano-cli conway transaction build-raw \
 --tx-in 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f#0 \
 --tx-out $(cat $HOME/cardano/keys/payment1.addr)+0 \
 --fee 0 \
 --out-file $HOME/cardano/multi-witness-sample/tx-single1.draft
 
-cardano-cli latest transaction build-raw \
+cardano-cli conway transaction build-raw \
 --tx-in 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f#0 \
 --tx-out $(cat $HOME/cardano/keys/payment2.addr)+0 \
 --fee 0 \
@@ -362,7 +362,7 @@ cardano-cli latest transaction build-raw \
 And invoke the calculate-min-fees endpoint on `cardano-cli` for both of them:
 
 ```bash {8,17}
-cardano-cli latest transaction calculate-min-fee \
+cardano-cli conway transaction calculate-min-fee \
 --tx-body-file $HOME/cardano/multi-witness-sample/tx-single1.draft \
 --tx-in-count 1 \
 --tx-out-count 1 \
@@ -371,7 +371,7 @@ cardano-cli latest transaction calculate-min-fee \
 --protocol-params-file $HOME/cardano/protocol.json 
 169857 Lovelace
 
-cardano-cli latest transaction calculate-min-fee \
+cardano-cli conway transaction calculate-min-fee \
 --tx-body-file $HOME/cardano/multi-witness-sample/tx-single2.draft \
 --tx-in-count 1 \
 --tx-out-count 1 \

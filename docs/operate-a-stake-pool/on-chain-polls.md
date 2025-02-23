@@ -87,7 +87,7 @@ From this point, you can utilize the `transaction build` command to generate a t
 Assuming you have stored the metadata generated from the previous step in a file named `answer.json`, the command to construct the transaction would appear as follows:
 
 ```
-$ cardano-cli latest transaction build \
+$ cardano-cli conway transaction build \
     --babbage-era \
     --cardano-mode \
     --mainnet \
