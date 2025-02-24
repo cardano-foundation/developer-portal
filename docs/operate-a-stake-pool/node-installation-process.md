@@ -86,7 +86,7 @@ ghcup install ghc 8.10.7
 ghcup set ghc 8.10.7
 ```
 
-`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.6.2.0`. So, we will use `ghcup` to install and switch to the required version.
+`ghcup` will install the latest stable version of `cabal`. However, as of the time of writing this, [Input-Output](https://iohk.io) recommends using `cabal 3.8.1.0`. So, we will use `ghcup` to install and switch to the required version.
 
 ```bash
 ghcup install cabal 3.8.1.0
@@ -114,8 +114,8 @@ cabal --version
 You should see something like this:
 
 ```
-cabal-install version 3.6.2.0
-compiled using version 3.6.2.0 of the Cabal library
+cabal-install version 3.8.1.0
+compiled using version 3.8.1.0 of the Cabal library
 ```
 
 :::important
@@ -189,6 +189,39 @@ git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/re
 :::important
 If upgrading an existing node, please ensure that you have read the [release notes on GitHub](https://github.com/IntersectMBO/cardano-node/releases) for any changes.
 :::
+
+## Installing `blst`
+
+Find out the correct `blst` version:
+```bash
+BLST_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/master/flake.lock | jq -r '.nodes.blst.original.ref')
+echo "Using blst version: ${BLST_VERSION}"
+```
+
+Download and install `blst` so that `cardano-base` can pick it up (assuming that `pkg-config` is installed):
+```bash
+: ${BLST_VERSION:='v0.3.11'}
+git clone --depth 1 --branch ${BLST_VERSION} https://github.com/supranational/blst
+cd blst
+./build.sh
+cat > libblst.pc << EOF
+prefix=/usr/local
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+includedir=\${prefix}/include
+
+Name: libblst
+Description: Multilingual BLS12-381 signature library
+URL: https://github.com/supranational/blst
+Version: ${BLST_VERSION#v}
+Cflags: -I\${includedir}
+Libs: -L\${libdir} -lblst
+EOF
+sudo cp libblst.pc /usr/local/lib/pkgconfig/
+sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp  /usr/local/include/
+sudo cp libblst.a /usr/local/lib
+sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{blst.{h,hpp},blst_aux.h}}
+```
 
 ## Configuring the build options
 
