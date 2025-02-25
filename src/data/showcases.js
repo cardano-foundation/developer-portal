@@ -1211,6 +1211,15 @@ export const Showcases = [
     source: null,
     tags: ["wallet", "nftsupport"],
   },
+  {
+    title: "Guarda Wallet",
+    description:
+      "One secure multi crypto wallet, all assets in. Swap and store crypto across 70+ networks.",
+    preview: require("./showcase/guarda-wallet.png"),
+    website: "https://guarda.com/",
+    source: null,
+    tags: ["wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
