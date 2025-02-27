@@ -114,7 +114,7 @@ Paste this line inside your "location /" block :
 ```shell
 limit_except PUT GET HEAD POST { deny all; }
 ```
-Paste this sub-block inside the first "server {" block
+Paste this sub-block inside the first `server {` block
 ```shell
 # Proxy Grafana Live WebSocket connections.
   location /api/live/ {

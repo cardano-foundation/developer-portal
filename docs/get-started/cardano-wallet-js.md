@@ -30,7 +30,6 @@ image: /img/og/og-getstarted-cardano-wallet-js.png
     + [Native Tokens](#native-tokens)
 		+ [Send Native Tokens](#send-native-tokens)
 - [Test](#test)
-- [Support our project](#support-our-project)
 
 
 ## Introduction
@@ -792,7 +791,7 @@ let txBody = Seed.sign(txBuild, signingKeys, metadata);
 let signed = Buffer.from(txBody.to_bytes()).toString('hex');
 let txId = await walletServer.submitTx(signed);
 ```
-# Test
+## Test
 
 ### Stack
 you'll need to install stak >= 1.9.3
@@ -808,4 +807,4 @@ Set a specific port `export CARDANO_WALLET_PORT=7355` so the wallet always start
 run `~/.local/bin/local-cluster`
 
 ## References 
-- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)
+- [CIP 19 Cardano Addresses](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0019/README.md)

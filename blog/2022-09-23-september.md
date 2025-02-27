@@ -1,10 +1,7 @@
 ---
 slug: 2022-09-23-september
 title: "ADAO Interview"
-author: Cardano Foundation
-author_title: Developer Spotlight
-author_url: https://github.com/cardano-foundation
-author_image_url: https://avatars.githubusercontent.com/u/37078161?s=200&v=4
+authors: [cf]
 tags: [DAO, open source, interview]
 description: "We interviewed Allusian, one of the co-founders of ADAO about various projects the ADAO community is building and how they contribute to the Cardano ecosystem."
 image: https://developers.cardano.org/img/og/og-blog-adao.png

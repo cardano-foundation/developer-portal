@@ -133,26 +133,26 @@ cardano-cli conway transaction build \
 ```
 Sign it with the DRep key:
 ```shell
-cardano-cli transaction sign --tx-body-file vote-tx.raw \
+cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
   --signing-key-file drep.skey \
   --signing-key-file payment.skey \
   --out-file vote-tx.signed
 ```
 OR sign it with the CC hot key:
 ```shell
-cardano-cli transaction sign --tx-body-file vote-tx.raw \
+cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
   --signing-key-file cc-hot.skey \
   --signing-key-file payment.skey \
   --out-file vote-tx.signed
 ```
 OR sign it with the SPO cold key:
 ```shell
-cardano-cli transaction sign --tx-body-file vote-tx.raw \
+cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
   --signing-key-file cold.skey \
   --signing-key-file payment.skey \
   --out-file vote-tx.signed
 ```
 Submit the transaction:
 ```shell
-cardano-cli transaction submit --tx-file vote-tx.signed
+cardano-cli conway transaction submit --tx-file vote-tx.signed
 ```

@@ -131,7 +131,7 @@ Some text to show that the reference links can follow later.
 
 Or leave it empty and use the [link text itself].
 
-URLs and URLs in angle brackets will automatically get turned into links. http://www.cardano.org or <http://www.cardano.org>.
+URLs will automatically get turned into links. Example: https://www.cardano.org
 
 Some text to show that the reference links can follow later.
 
@@ -363,7 +363,7 @@ function HelloCodeTitle(props) {
 
 You can use tabs to display code examples in different languages. For example:
 
-```html
+ html
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -399,7 +399,7 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
 </Tabs>
-```
+ 
 
 <Tabs
   defaultValue="js"
@@ -706,6 +706,57 @@ This is a tip admonition with a custom title
   </TabItem>
 </Tabs>
 
+## Mermaid
+
+To use Mermaid diagram, add a code block with language `mermaid`. See the [Mermaid syntax documentation](https://mermaid-js.github.io/mermaid/#/./n00b-syntaxReference) for more information on the Mermaid syntax and the different diagrams. Some examples:
+
+```mermaid
+mindmap
+  root((Cardano))
+    Technology
+      Blockchain
+      Proof of Stake
+        Ouroboros
+      Smart Contracts
+        Aiken
+        Marlowe
+    Community
+      Developers
+      Stake Pool Operators
+      Ambassadors
+    Use Cases
+      Decentralized Finance
+      Identity Management
+        KERI
+      Supply Chain
+    Research
+      Peer-Reviewed Papers
+      Academic Collaboration
+      Formal Methods
+    Ecosystem
+      Native Tokens
+      dApps
+      Catalyst
+```
+
+```mermaid
+flowchart LR
+  A[Start] --> B{Decision}
+  B -->|Yes| C[Continue]
+  B -->|No| D[Stop]
+```
+
+```mermaid
+pie 
+    "Metadata" : 81
+    "Smart Contracts" : 62
+    "Simple transactions" : 231
+```
+
+
+
+
+## Other style elements
 Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
 
 ## Editor extensions and configurations

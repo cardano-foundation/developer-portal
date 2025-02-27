@@ -1210,7 +1210,34 @@ export const Showcases = [
     website: "https://github.com/cardano-community/pg_cardano",
     getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
     tags: ["rust", "serialization", "sql", "lowlevel"]
-  }
+  },
+  {
+    title: "Cardano-C",
+    description: "A pure C library for interacting with the Cardano blockchain. Compliant with MISRA standards and binding-friendly architecture.",
+    preview: require("./builder-tools/cardano-c.png"),
+    website: "https://github.com/Biglup/cardano-c",
+    getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
+    tags: ["serialization", "sdk", "lowlevel"]
+  },
+  {
+    title: "Orcfax",
+    description:
+      "Orcfax is a decentralized oracle service designed to publish data about real world events to the Cardano blockchain. Orcfax data is made available to on-chain smart contracts in Cardano's eUTXO native format using the Orcfax Protocol.",
+    preview: require("./showcase/orcfax.png"),
+    website: "https://orcfax.io",
+    getstarted: "https://docs.orcfax.io/consume",
+    tags: ["oracle"],
+  },
+  {
+    title: "Lucid Evolution",
+    description:
+      "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
+    preview: require("./builder-tools/lucid-evolution.png"),
+    website: "https://anastasia-labs.github.io/lucid-evolution/",
+    getstarted:
+      "https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution",
+    tags: ["typescript", "javascript", "sdk", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);

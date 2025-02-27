@@ -224,7 +224,7 @@ This code will make an API request to retrieve the current price and display it 
 
 Next, we will add some Blockfrost API requests to the popup to compare the inserted address balance and see if the transaction went through successfully.
 
-Navigate to `components` folder into `popup.js`. The current popup generates a QR code for users to scan, which redirects with a [CIP-13](../governance/cardano-improvement-proposals/CIP-0013.md) URI guidelines and automatically fills in the details for the transaction, such as the address and the amount to be sent. For now, the application does not connect to the API, so we need to add a few functions to ensure application able to retrieve the necessary data from the API.
+Navigate to `components` folder into `popup.js`. The current popup generates a QR code for users to scan, which redirects with a [CIP-13](https://cips.cardano.org/cip/CIP-0013) URI guidelines and automatically fills in the details for the transaction, such as the address and the amount to be sent. For now, the application does not connect to the API, so we need to add a few functions to ensure application able to retrieve the necessary data from the API.
 
 First, lets add `fetchAddressQuantityOnOpen` function to fetch balance of the address: 
 

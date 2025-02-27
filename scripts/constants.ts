@@ -1,22 +1,3 @@
-// CIP constants 
-const cip_readme_url: string = "/README.md";
-const cip_readme_regex: RegExp = /\.\/CIP.?\/|\.\/CIP-.*\)/gm;
-const cip_source_repo: string = "cardano-foundation/CIPs";
-const cip_static_resource_path: string = "/static/img/cip/";
-const cip_docs_path: string = "./docs/governance/cardano-improvement-proposals";
-const cip_regex: RegExp =
-  /\]\(.*?.png\)|\]\(.*?.jpg\)|\]\(.*?.jpeg\)|\]\(.*?.json\)/gm;
-const cip_repo_base_url: string =
-  "https://github.com/cardano-foundation/CIPs/tree/master/";
-const cip_repo_raw_base_url: string =
-  "https://raw.githubusercontent.com/cardano-foundation/CIPs/master/";
-
-// CPS constants
-const cps_repository_url: string =
-  "https://api.github.com/repos/cardano-foundation/CIPs/contents";
-const cps_target_folder: string =
-  "./docs/governance/cardano-problem-statements";
-
 // Rust Library constants
 const rl_static_resource_path: string = "/tree/master/doc/getting-started";
 const rl_docs_path: string = "./docs/get-started/cardano-serialization-lib";
@@ -42,16 +23,6 @@ const tr_overview_url: string =
 const custom_edit_url = "\ncustom_edit_url: null"
 
 export {
-  cip_readme_url,
-  cip_readme_regex,
-  cip_source_repo,
-  cip_static_resource_path,
-  cip_docs_path,
-  cip_regex,
-  cip_repo_base_url,
-  cip_repo_raw_base_url,
-  cps_repository_url,
-  cps_target_folder,
   rl_static_resource_path,
   rl_docs_path,
   rl_repo_base_url,

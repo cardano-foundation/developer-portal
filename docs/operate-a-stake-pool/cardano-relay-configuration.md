@@ -104,7 +104,7 @@ nano startTestNode.sh
 ```
 
 :::note
-Replace <$HOME> with local values of the `$HOME` environment variable on each machine. To find those values, run `echo $HOME`.
+Replace `<$HOME>` with local values of the `$HOME` environment variable on each machine. To find those values, run `echo $HOME`.
 :::
 
 copy the following in the file
@@ -149,7 +149,7 @@ To run Cardano Node as a service, use nano to create a file named cardano-testno
 
 :::note
 
-Replace <$USER> and  <$HOME> with their values of the environment variable. To find the values use following commands:
+Replace `<$USER>` and `<$HOME>` with their values of the environment variable. To find the values use following commands:
 
     echo $USER
     echo $HOME

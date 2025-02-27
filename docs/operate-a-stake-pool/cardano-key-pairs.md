@@ -66,4 +66,4 @@ Always rotate KES keys using the latest `cold.counter`.
 `kes.vkey` - public verification key file for a Cardano stake pool's corresponding `kes.skey` (not sensitive and is not required to a block producer).
 
 ## References 
-- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)
+- [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)

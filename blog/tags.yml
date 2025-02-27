@@ -1,0 +1,100 @@
+# TODO: This file needs a lot of work, once done re-tagging of the developer blog is needed
+# please refrain from using tags that are not defined here. 
+# (because of this we are getting a lot of build warnings)
+# 
+# General advice when it comes to tagging: if only one blog post is using this tag, dont create it.
+
+interview:
+  label: Interview
+  permalink: /interview
+  description: Legacy Interview tag
+
+wallet:
+  label: Wallet
+  permalink: /wallet
+  description: Content for all Cardano-supporting wallets
+
+AI:
+  label: ai
+  permalink: /AI
+  description: Leveraging machine intelligence in applications (Artificial intelligence)
+
+DAO:
+  label: DAO
+  permalink: /DAO
+  description: All blockchain-based self-governing organizations (Decentralised Autonomous Organization)
+
+developer office hours:
+  label: Developer Office Hours
+  permalink: /developer-office-hours
+  description: Developer Office Hours are dynamic and interactive sessions where the Cardano developer community connects with experts to explore new and evolving developments. These sessions focus on exploring new and updated developments, featuring expert presentations, live demos, and interactive Q&A segments that break down complex topics.
+
+developer-portal:
+  label: developer-portal
+  permalink: /developer-portal
+  description: legacy Interview tag
+
+DEX:
+  label: DEX
+  permalink: /DEX
+  description: Decentralized peer-to-peer crypto trading platforms (Decentralized Exchanges)
+
+defi:
+  label: DeFi
+  permalink: /defi
+  description: Blockchain-powered financial services (Decentralized Finance)
+
+educational:
+  label: educational
+  permalink: /educational
+  description: Content designed to teach and inform users about blockchain concepts, tools, and best practices.
+
+explorer:
+  label: explorer
+  permalink: /explorer
+  description: A comprehensive platform offering pool information, educational content, governance insights, transaction analysis, and more, empowering users to engage with and understand the blockchain ecosystem
+
+intellectual-property:
+  label: intellectual-property
+  permalink: /intellectual-property
+  description: Legal rights protecting creations of the mind, such as inventions, designs, and artistic works, granting creators control over their use. Intellectual Property (IP) rights
+
+metaverse:
+  label: metaverse
+  permalink: /metaverse
+  description: A virtual space where users interact with digital environments, assets, and each other
+
+music:
+  label: music
+  permalink: /music
+  description: All content related to blockchain based music platforms
+
+nft:
+  label: nft
+  permalink: /nft
+  description: All content related to non-fungible tokens
+
+nfta:
+  label: NFTA
+  permalink: /nfta
+  description: First Non-Fungible Tokens of Appreciation
+
+open source:
+  label: Open source
+  permalink: /open-source
+  description: All open-source oriented content
+
+oracle:
+  label: Oracle
+  permalink: /oracle
+  description: All content related to public, decentralized data feeds for smart contracts
+
+payment:
+  label: Payments
+  permalink: /payments
+  description: Blockchain-based systems including support for eCommerce payments
+
+real-world-assets:
+  label: real-world-assets
+  permalink: /real-world-assets
+  description: All content related to real-world-assets includes tangible and intangible physical-world assets, such as real estate, commodities, financial instruments, and intellectual property, often digitized or tokenized for blockchain or DeFi.
