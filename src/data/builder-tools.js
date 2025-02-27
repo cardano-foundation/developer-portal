@@ -33,6 +33,14 @@ export const Tags = {
     color: '#65d2a1',
   },
 
+  // C
+  c: {
+    label: "C",
+    description: "C language",
+    icon: null,
+    color: '#eca882',
+  },
+
   // Chain Index
   chainindex: {
     label: "Chain Index",
@@ -1217,7 +1225,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-c.png"),
     website: "https://github.com/Biglup/cardano-c",
     getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
-    tags: ["serialization", "sdk", "lowlevel"]
+    tags: ["c", "serialization", "sdk", "lowlevel"]
   },
   {
     title: "Orcfax",
@@ -1252,6 +1260,7 @@ function sortShowcases() {
 }
 
 export const LanguagesOrTechnologiesTags = [
+  "c",
   "cli",
   "crystal",
   "golang",
