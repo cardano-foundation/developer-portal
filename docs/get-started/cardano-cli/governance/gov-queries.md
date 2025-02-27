@@ -7,7 +7,56 @@ description: Query the node to obtain information about the governance state
 keywords: [Governance, queries, CIP1694]
 ---
 
-There are various queries you can do to your local node to find relevant information about different aspects of teh governance state. 
+There are various queries you can do to your local node to find relevant information about different aspects of thenpm governance state. 
+
+### Query proposals
+
+#### Query all proposals
+This query returns all the proposals that can be ratified in the current epoch. This means that it excludes proposals that were submitted on the current epoch, as these cannot be ratified on the current epoch. 
+
+```shell
+cardano-cli conway query proposals --all-proposals
+```
+#### Query proposal by ID
+To query an individual proposal by its governance action id: 
+
+```shell
+cardano-cli conway query proposals \
+--governance-action-tx-id d098afe0db98605c243c13c8a537a3eb51e6ded5e3a48acca83e7082a0086428 \ --governance-action-index 0 
+
+
+[
+    {
+        "actionId": {
+            "govActionIx": 0,
+            "txId": "d098afe0db98605c243c13c8a537a3eb51e6ded5e3a48acca83e7082a0086428"
+        },
+        "committeeVotes": {},
+        "dRepVotes": {
+            "keyHash-68a5f1348300ada6dcec67f9421bdac62ba621006408ece8c8e551d6": "VoteNo"
+        },
+        "expiresAfter": 842,
+        "proposalProcedure": {
+            "anchor": {
+                "dataHash": "42af10d2f864ace50d41ff7c9c93aa51c6ab0ca57d956653fb67353d97b57400",
+                "url": "https://bafybeigzrnrb3njfuomjsma7zdrcjoz3a4ku2kqafeqerbuquytdl6nxjy.ipfs.dweb.link/?filename=data%20(5).jsonld"
+            },
+            "deposit": 100000000000,
+            "govAction": {
+                "tag": "InfoAction"
+            },
+            "returnAddr": {
+                "credential": {
+                    "keyHash": "79bb181ab55772b961a883a2a24e73a5416e163375817c898993f120"
+                },
+                "network": "Testnet"
+            }
+        },
+        "proposedIn": 812,
+        "stakePoolVotes": {}
+    }
+]
+```
 
 ### Query the gov-state
 

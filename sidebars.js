@@ -61,6 +61,7 @@ module.exports = {
           "get-started/cscli",
           "get-started/dandelion-apis",
           "get-started/koios",
+          "get-started/lucid-evolution",
           {
             type: "category",
             label: "Mesh (Web3 SDK)",

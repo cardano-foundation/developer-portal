@@ -239,7 +239,7 @@ We now have a simple script file that defines the policy verification key as a w
 To mint the native assets, we need to generate the policy ID from the script file we created.
 
 ```bash
-cardano-cli transaction policyid --script-file ./policy/policy.script > policy/policyID
+cardano-cli conway transaction policyid --script-file ./policy/policy.script > policy/policyID
 ```
 
 The output gets saved to the file `policyID` as we need to reference it later on.
@@ -304,7 +304,7 @@ Now we are ready to build the first transaction to calculate our fee and save it
 We will reference the variables in our transaction to improve readability because we saved almost all of the needed values in variables.
 This is what our transaction looks like:
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
  --fee $fee \
  --tx-in $txhash#$txix \
  --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
@@ -375,7 +375,7 @@ Just be sure to reference the correct filename in upcoming commands. I chose to 
 Based on this raw transaction we can calculate the minimal transaction fee and store it in the variable <i>$fee</i>. We get a bit fancy here and only store the value so we can use the variable for terminal based calculations:
 
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee --tx-body-file matx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 $testnet --protocol-params-file protocol.json | cut -d " " -f1)
+fee=$(cardano-cli conway transaction calculate-min-fee --tx-body-file matx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 $testnet --protocol-params-file protocol.json | cut -d " " -f1)
 ```
 
 Remember, the transaction input and the output of ada must be equal, or otherwise, the transaction will fail. There can be no leftovers.
@@ -388,7 +388,7 @@ output=$(expr $funds - $fee)
 We now have every value we need to re-build the transaction, ready to be signed. So we reissue the same command to re-build, the only difference being our variables now holding the correct values.
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
 --fee $fee  \
 --tx-in $txhash#$txix  \
 --tx-out $address+$output+"$tokenamount $policyid.$tokenname1 + $tokenamount $policyid.$tokenname2" \
@@ -400,7 +400,7 @@ cardano-cli transaction build-raw \
 Transactions need to be signed to prove the authenticity and ownership of the policy key.
 
 ```bash
-cardano-cli transaction sign  \
+cardano-cli conway transaction sign  \
 --signing-key-file payment.skey  \
 --signing-key-file policy/policy.skey  \
 $testnet --tx-body-file matx.raw  \
@@ -412,7 +412,7 @@ $testnet --tx-body-file matx.raw  \
 
 Now we are going to submit the transaction, therefore minting our native assets:
 ```bash
-cardano-cli transaction submit --tx-file matx.signed $testnet
+cardano-cli conway transaction submit --tx-file matx.signed $testnet
 ```
 
 Congratulations, we have now successfully minted our own token.
@@ -480,7 +480,7 @@ Since we will send 2 of our first tokens to the remote address we are left with 
 Here’s what the `raw` transaction looks like:
 
 ```bash
-cardano-cli transaction build-raw  \
+cardano-cli conway transaction build-raw  \
 --fee $fee  \
 --tx-in $txhash#$txix  \
 --tx-out $receiver+$receiver_output+"2 $policyid.$tokenname1"  \
@@ -491,7 +491,7 @@ cardano-cli transaction build-raw  \
 Again we are going to calculate the fee and save it in a variable.
 
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee --tx-body-file rec_matx.raw --tx-in-count 1 --tx-out-count 2 --witness-count 1 $testnet --protocol-params-file protocol.json | cut -d " " -f1)
+fee=$(cardano-cli conway transaction calculate-min-fee --tx-body-file rec_matx.raw --tx-in-count 1 --tx-out-count 2 --witness-count 1 $testnet --protocol-params-file protocol.json | cut -d " " -f1)
 ```
 
 As stated above, we need to calculate the leftovers that will get sent back to our address.
@@ -505,7 +505,7 @@ output=$(expr $funds - $fee - 10000000)
 Let’s update the transaction:
 
 ```bash
-cardano-cli transaction build-raw  \
+cardano-cli conway transaction build-raw  \
 --fee $fee  \
 --tx-in $txhash#$txix  \
 --tx-out $receiver+$receiver_output+"2 $policyid.$tokenname1"  \
@@ -515,12 +515,12 @@ cardano-cli transaction build-raw  \
 
 Sign it:
 ```bash
-cardano-cli transaction sign --signing-key-file payment.skey $testnet --tx-body-file rec_matx.raw --out-file rec_matx.signed
+cardano-cli conway transaction sign --signing-key-file payment.skey $testnet --tx-body-file rec_matx.raw --out-file rec_matx.signed
 ```
 
 Send it:
 ```bash
-cardano-cli transaction submit --tx-file rec_matx.signed $testnet
+cardano-cli conway transaction submit --tx-file rec_matx.signed $testnet
 ```
 
 After a few seconds, you, the receiver, should have your tokens. For this example, a Daedalus testnet wallet is used.
@@ -559,7 +559,7 @@ Burning tokens is fairly straightforward.
 You will issue a new minting action, but this time with a <b>negative</b> input. This will essentially subtract the amount of token.
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
  --fee $burnfee \
  --tx-in $txhash#$txix \
  --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
@@ -579,7 +579,7 @@ As usual, we need to calculate the fee.
 To make a better differentiation, we named the variable <i>burnfee</i>:
 
 ```bash
-burnfee=$(cardano-cli transaction calculate-min-fee --tx-body-file burning.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 $testnet --protocol-params-file protocol.json | cut -d " " -f1)
+burnfee=$(cardano-cli conway transaction calculate-min-fee --tx-body-file burning.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 $testnet --protocol-params-file protocol.json | cut -d " " -f1)
 ```
 
 Calculate the correct output value
@@ -590,7 +590,7 @@ burnoutput=$(expr $funds - $burnfee)
 Re-build the transaction with the correct amounts
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
  --fee $burnfee \
  --tx-in $txhash#$txix \
  --tx-out $address+$burnoutput+"9999998 $policyid.$tokenname1 + 9995000 $policyid.$tokenname2"  \
@@ -602,7 +602,7 @@ cardano-cli transaction build-raw \
  Sign the transaction:
 
  ```bash
- cardano-cli transaction sign  \
+ cardano-cli conway transaction sign  \
 --signing-key-file payment.skey  \
 --signing-key-file policy/policy.skey  \
 $testnet  \
@@ -613,7 +613,7 @@ $testnet  \
 Send it:
 
 ```bash
-cardano-cli transaction submit --tx-file burning.signed $testnet
+cardano-cli conway transaction submit --tx-file burning.signed $testnet
 ```
 
 Check your address: 

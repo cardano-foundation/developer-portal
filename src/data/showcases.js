@@ -640,7 +640,7 @@ export const Showcases = [
     description:
       "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
-    website: "https://app.minswap.org",
+    website: "https://minswap.org",
     source: null,
     tags: ["dex", "token"],
   },
@@ -953,9 +953,9 @@ export const Showcases = [
   {
     title: "BALANCE Analytics",
     description:
-      "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
+      "Graphical, configurable analytics specialising in Cardano PoS decentralisation metrics.",
     preview: require("./showcase/balance-analytics.png"),
-    website: "https://balanceanalytics.io/",
+    website: "https://www.balanceanalytics.io/",
     source: null,
     tags: ["analytics", "pooltool"],
   },
@@ -1066,15 +1066,6 @@ export const Showcases = [
     website: "https://continuity.to/",
     source: null,
     tags: ["nftsupport", "token"],
-  },
-  {
-    title: "BALANCE",
-    description:
-      "A Cardano Blockchain Research & Analytics Provider.",
-    preview: require("./showcase/balanceanalytics.png"),
-    website: "https://www.balanceanalytics.io/",
-    source: null,
-    tags: ["analytics", "pooltool"],
   },
   {
     title: "Summon Platform",
@@ -1210,6 +1201,15 @@ export const Showcases = [
     website: "https://tempo.vote",
     source: null,
     tags: ["daotool", "governance"],
+  },
+  {
+    title: "Begin Wallet",
+    description:
+      "Begin Wallet a non-custodial light Cardano Wallet, available as an Extension and Mobile. We offer payment link compatibility with deep link support, Begin ID user name based on ENS protocol for Wallet Address. Hardware wallet support Ledger and Keystone. Based on our own open source cryptographic core.",
+    preview: require("./showcase/begin.png"),
+    website: "https://begin.is",
+    source: null,
+    tags: ["wallet", "nftsupport"],
   },
 ];
 

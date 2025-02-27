@@ -7,10 +7,6 @@ description: How to deregister a stake address.
 keywords: [cardano-cli, cli, deregistration, deregister, rewards, withdrawal, stake, stake addresses, cardano-node, transactions]
 ---
 
-:::tip
-To integrate the Conway era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli babbage transaction build <options>`. 
-:::
-
 :::caution
 The process outlined below involves transferring funds from the payment address associated with the stake address we plan to deregister. This is followed by withdrawing rewards over several consecutive epochs until the rewards are negligible. Only then do we deregister the stake address. This ensures that all earned rewards are collected.
 :::
@@ -42,7 +38,7 @@ Final step:
 Here we only show step 7, previous steps can be performed following the corrsponding tutorial for that particular workflow. To generate the **stake address deregistration certificate** we run:
 
 ```
-cardano-cli babbage stake-address deregistration-certificate \
+cardano-cli conway stake-address deregistration-certificate \
 --stake-verification-key-file stake.vkey \
 --out-file dereg.cert
 ```
@@ -68,18 +64,21 @@ We will submit the deregistration certificate, withdraw the last rewards from th
 This is required for withdrawing the rewards still available on `stake.addr`
 
 ```
-cardano-cli babbage query stake-address-info --address $(< stake.addr)
+cardano-cli conway query stake-address-info --address $(< stake.addr)
 ```
 ```json
 [
     {
         "address": "stake_test1upfpm2244k8jf00l357t3adp2hzfsuqrwqvleheqjj08uhswme5cn",
-        "delegation": "pool17navl486tuwjg4t95vwtlqslx9225x5lguwuy6ahc58x5dnm9ma",
         "delegationDeposit": 2000000,
-        "rewardAccountBalance": 291385529
+        "rewardAccountBalance": 291385529,
+        "stakeDelegation": "pool1l9u9ss9xtww8qkt4zqda84z945f6tgq4753jqhtdr4r8yaw7d6g",
+        "voteDelegation": "scriptHash-59aa3f091b3bcef254abfb89aea64973a61b78fdb2ac44839c7ccba8"
     }
 ]
+
 ```
+
 and use the syntax `stake_address+balance` with the `--withdrawal` option when building the transaction, for example: 
 `--withdrawal  stake_test1upfpm2244k8jf00l357t3adp2hzfsuqrwqvleheqjj08uhswme5cn+291385529`
 
@@ -89,7 +88,7 @@ and use the syntax `stake_address+balance` with the `--withdrawal` option when b
 Steps 1 and 2 suggest creating a new payment address and transfer funds to it. On the transaction below, we'll use `new_payment.addr` to pay for the transaction fees.
 
 ```
-cardano-cli babbage query utxo --address $(< payment.addr)
+cardano-cli conway query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 77b95d3c0031f918d2dcd796352d123dd3fec9f8599377ef96f1ee0e488f5ec1     0        9997495621 lovelace + TxOutDatumNone
@@ -97,7 +96,7 @@ cardano-cli babbage query utxo --address $(< payment.addr)
 #### Get the stake address deposit amount
 
 ```
-cardano-cli babbage query protocol-parameters | jq .stakeAddressDeposit
+cardano-cli conway query protocol-parameters | jq .stakeAddressDeposit
 
 > 2000000
 ```
@@ -108,7 +107,7 @@ cardano-cli babbage query protocol-parameters | jq .stakeAddressDeposit
 Here we use the information from the above queries to build the transaction: 
 
 ```
-cardano-cli babbage transaction build \
+cardano-cli conway transaction build \
 --tx-in 77b95d3c0031f918d2dcd796352d123dd3fec9f8599377ef96f1ee0e488f5ec1#0 \
 --change-address addr_test1vp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeuegh55grh \
 --withdrawal stake_test1upfpm2244k8jf00l357t3adp2hzfsuqrwqvleheqjj08uhswme5cn+291385529 \
@@ -120,10 +119,10 @@ cardano-cli babbage transaction build \
 Of course, we could use command substitution and run all the queries within `build`, so this is equivalent:
 
 ```
-cardano-cli babbage transaction build \
---tx-in "$(cardano-cli babbage query utxo --address "$(< new-payment.addr)" --output-json | jq -r 'keys[0]')" \
+cardano-cli conway transaction build \
+--tx-in "$(cardano-cli conway query utxo --address "$(< new-payment.addr)" --output-json | jq -r 'keys[0]')" \
 --change-address "$(< new-payment.addr)" \
---withdrawal "$(< stake.addr)+$(cardano-cli babbage query stake-address-info --address "$(< stake.addr)" | jq -r .[].rewardAccountBalance)" \
+--withdrawal "$(< stake.addr)+$(cardano-cli conway query stake-address-info --address "$(< stake.addr)" | jq -r .[].rewardAccountBalance)" \
 --certificate-file dereg.cert \
 --witness-override 2 \
 --out-file tx.raw
@@ -135,7 +134,7 @@ Estimated transaction fee: Coin 180505
 Inspect the transaction before signing:
 
 ```
-cardano-cli babbage transaction view --tx-file tx.raw
+cardano-cli debug transaction view --tx-file tx.raw
 ```
 ```json
 {
@@ -192,13 +191,13 @@ cardano-cli babbage transaction view --tx-file tx.raw
 Confirm that the keyHash for the stake address deregistration is correct with: 
 
 ```
-cardano-cli babbage stake-address key-hash --stake-verification-key-file stake.vkey 
+cardano-cli conway stake-address key-hash --stake-verification-key-file stake.vkey 
 521da955ad8f24bdff8d3cb8f5a155c49870037019fcdf20949e7e5e
 ```
 All good! Ready to sign the transaction: 
 
 ```
-cardano-cli babbage transaction sign \
+cardano-cli conway transaction sign \
   --tx-file tx.raw \
   --signing-key-file new-payment.skey \
   --signing-key-file stake.skey \
@@ -208,13 +207,13 @@ cardano-cli babbage transaction sign \
 And submit it to the chain:
 
 ```
-cardano-cli babbage transaction submit --tx-file tx.signed 
+cardano-cli conway transaction submit --tx-file tx.signed 
 Transaction successfully submitted.
 ```
 To confirm, we query the balance of `new-payment.addr`, rewards are withdrawn and deposit has been returned:
 
 ```
-cardano-cli babbage query utxo --address $(< new-payment.addr)
+cardano-cli conway query utxo --address $(< new-payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 c09bf08fdf6ae655d8ba7c5e9f44b5cbe11b6bb9621eabb9b1b08c1b27b987eb     0        10290700645 lovelace + TxOutDatumNone
@@ -223,6 +222,6 @@ c09bf08fdf6ae655d8ba7c5e9f44b5cbe11b6bb9621eabb9b1b08c1b27b987eb     0        10
 If we query the stake address info, we get `[]`, meaning that the deregistration has been sucessful:
 
 ```
-cardano-cli babbage query stake-address-info --address $(< stake.addr)
+cardano-cli conway query stake-address-info --address $(< stake.addr)
 []
 ```

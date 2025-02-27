@@ -25,3 +25,7 @@
 [data-theme="dark"] .backgroundAda:before {
   color: #98b7f2; /* dark mode color for the A */
 }
+
+.backgroundAda:before {
+  pointer-events: none;
+}

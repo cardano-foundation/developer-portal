@@ -99,7 +99,7 @@ We can create the file `datum.json` with the following content:
 When building the transaction, it is important to use the `--tx-out-inline-datum-file` flag immediately after the `--tx-out` option to which the datum should be attached. The order of these options matters.
 
 ```
-cardano-cli transaction build \
+cardano-cli conway transaction build \
 --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-out $(< script.addr)+10000000 \
 --tx-out-inline-datum-file datum.json \
@@ -112,7 +112,7 @@ cardano-cli transaction build \
 Sign the transaction with the payment.skey
 
 ```
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
 --tx-file lock.tx `\
 -signing-key-file payment.skey \
 --out-file lock.tx.signed
@@ -121,7 +121,7 @@ cardano-cli transaction sign \
 Submit the transaction
 
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
 --tx-file lock.tx.signed 
 
 >Transaction successfully submitted.
@@ -155,7 +155,7 @@ Perfect, we have locked 10 ada on the script address, the only way to spend it i
 We could say that failing is the primarily duty of a Plutus script. Let's check that our script fails if we pass the wrong redeemer. 
 
 ```
-cardano-cli transaction build \
+cardano-cli conway transaction build \
 --tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-script-file fortytwotyped.plutus \
@@ -185,7 +185,7 @@ If we really wanted, we could use `build-raw` to construct the same transaction 
 Let's re-use the `build` command from above, this time we pass the correct redeemer value `--tx-in-redeemer-value 42`. 
 
 ```
-cardano-cli transaction build \
+cardano-cli conway transaction build \
 --tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-script-file fortytwotyped.plutus \
@@ -236,13 +236,13 @@ This time, the node validated the transaction and successfully ran the script. T
 
 
 ```
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
 --tx-file unlock.tx \
 --signing-key-file payment.skey \
 --out-file unlock.tx.signed 
 ```
 ```
-cardano-cli transaction submit -\
+cardano-cli conway transaction submit -\
 -tx-file unlock.tx.signed
 
 > Transaction successfully submitted.
@@ -251,7 +251,7 @@ cardano-cli transaction submit -\
 For tracking purposes, lets find our transaction id
 
 ```
-cardano-cli transaction txid --tx-file unlock.tx.signed 
+cardano-cli conway transaction txid --tx-file unlock.tx.signed 
 74c856f90276315a14bd2bd35b3a2f803b763a1bdfa2648ec30a85a129048131
 ```
 
