@@ -273,7 +273,7 @@ export const Showcases = [
   {
     title: "Cardano Foundation Explorer",
     description:
-      "A Cardano explorer focused on the needs of a non technical target audience like regulators and policy makers built by Cardano Foundation, currently under development",
+      "List of Cardano Explorers built by the community for the community.",
     preview: require("./showcase/cf-explorer.png"),
     website: "https://beta.explorer.cardano.org",
     source: "https://github.com/cardano-foundation/cf-explorer",
