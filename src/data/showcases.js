@@ -307,15 +307,6 @@ export const Showcases = [
     tags: ["favorite", "explorer"],
   },
   {
-    title: "Adafolio",
-    description:
-      "Adafolio provides a place to create and share multi-delegation portfolios.",
-    preview: require("./showcase/adafolio.png"),
-    website: "https://adafolio.com",
-    source: null,
-    tags: ["favorite", "pooltool"],
-  },
-  {
     title: "PoolTool",
     description:
       "One of the most feature-rich, unbiased pool tools. Also offers a native app.",
@@ -550,8 +541,8 @@ export const Showcases = [
     title: "Staking Rewards Calculator",
     description:
       "A detailed Staking Rewards Calculator thats shows expected return to the operator and delegators of each pool based on the current and alternative network parameters. It also runs a Monte Carlo simulation to show possible variability in the return.",
-    preview: require("./showcase/dsio-reward-calculator.png"),
-    website: "https://dynamicstrategies.io/crewardcalculator",
+    preview: require("./showcase/staking-rewards-calculator.png"),
+    website: "https://cardano.org/calculator/",
     source: null,
     tags: ["pooltool", "analytics", "educational"],
   },
@@ -608,15 +599,6 @@ export const Showcases = [
     website: "https://worldmobile.io",
     source: null,
     tags: ["token"],
-  },
-  {
-    title: "epoch.art",
-    description:
-      "A Cardano NFT marketplace to discover, collect and trade unique exciting digital arts.",
-    preview: require("./showcase/epochart.png"),
-    website: "https://epoch.art",
-    source: null,
-    tags: ["marketplace", "nftsupport"],
   },
   {
     title: "Open CNFT",
@@ -690,15 +672,6 @@ export const Showcases = [
     tags: ["analytics", "nftsupport"],
   },
   {
-    title: "Galaxy Of Art",
-    description:
-      "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
-    preview: require("./showcase/galaxyofart.png"),
-    website: "https://galaxyof.art",
-    source: null,
-    tags: ["marketplace", "nftsupport"],
-  },
-  {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
@@ -706,15 +679,6 @@ export const Showcases = [
     website: "https://www.jpg.store",
     source: null,
     tags: ["marketplace", "nftsupport"],
-  },
-  {
-    title: "Atala Scan",
-    description:
-      "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
-    preview: require("./showcase/atalascan.png"),
-    website: "https://atalascan.io",
-    source: null,
-    tags: ["metadata", "identity"],
   },
   {
     title: "Pavia",
@@ -753,15 +717,6 @@ export const Showcases = [
     tags: ["ecosystem"],
   },
   {
-    title: "Pool Peek",
-    description:
-      "An extensive Cardano stake pool explorer.",
-    preview: require("./showcase/poolpeek.png"),
-    website: "https://poolpeek.com",
-    source: null,
-    tags: ["pooltool", "analytics"],
-  },
-  {
     title: "Lido Nation",
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
@@ -796,15 +751,6 @@ export const Showcases = [
     website: "https://www.hazelnet.io",
     source: "https://github.com/nilscodes/hazelnet",
     tags: ["nftsupport", "opensource", "token"],
-  },
-  {
-    title: "Profiler",
-    description:
-      "Cardano explorer tailored to boost security and decision-making. Users can thoroughly examine their wallets, receiving a detailed overview of their transactions, tokens, and NFTs, complemented by interactive visualizations.",
-    preview: require("./showcase/profiler.png"),
-    website: "https://profiler.biz/",
-    source: null,
-    tags: ["analytics", "explorer"],
   },
   {
     title: "Dapps on Cardano",
@@ -958,15 +904,6 @@ export const Showcases = [
     website: "https://www.balanceanalytics.io/",
     source: null,
     tags: ["analytics", "pooltool"],
-  },
-  {
-    title: "Peer Review Money",
-    description: 
-      "Pretty straight forward site about the economics of ada, the native currency of the Cardano blockchain.",
-    preview: require("./showcase/peerreview.money.png"),
-    website: "https://peerreview.money",
-    source: null,
-    tags: ["analytics"],
   },
   {
     title: "Aeoniumsky",
