@@ -339,7 +339,7 @@ This will produce a **JSON** file that looks something like this:
 Next, we create a draft transaction like so:
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
 --tx-out $(cat $HOME/cardano/keys/payment2.addr)+0 \
 --tx-out $(cat $HOME/cardano/keys/payment1.addr)+0 \
@@ -347,7 +347,7 @@ cardano-cli transaction build-raw \
 --out-file $HOME/cardano/tx.draft
 ```
 
-`cardano-cli transaction build-raw` : This tells `cardano-cli` to build a raw transaction.
+`cardano-cli conway transaction build-raw` : This tells `cardano-cli` to build a raw transaction.
 
 `--tx-in` : This specifies the **UTXO** input that the transaction will use, you can add as many **UTXO** input as you want by adding multiple `--tx-in` in the `cardano-cli` arguments as long as they have a unique `TxHash` and `TxIdx` within all your inputs.
 
@@ -360,7 +360,7 @@ cardano-cli transaction build-raw \
 In this case, we are just building a draft transaction to calculate how much fee would the transaction need. We can do that by executing the following command: 
 
 ```bash
-cardano-cli transaction calculate-min-fee \
+cardano-cli conway transaction calculate-min-fee \
 --tx-body-file $HOME/cardano/tx.draft \
 --tx-in-count 1 \
 --tx-out-count 2 \
@@ -387,7 +387,7 @@ The `--witness-count 1` basically tells `cardano-cli` that there will be only `1
 We can then finally build the real transaction like so:
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
 --tx-in cf3cf4850c8862f2d698b2ece926578b3815795c9e38d2f907280f02f577cf85#0 \
 --tx-out $(cat $HOME/cardano/keys/payment2.addr)+250000000 \
 --tx-out $(cat $HOME/cardano/keys/payment1.addr)+749825831 \
@@ -438,7 +438,7 @@ And then we specify where we will save the transaction file:
 Now that we have the transaction file, we must sign the transaction in-order to prove that we are the owner of the input **UTXO** that was used.
 
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
 --tx-body-file $HOME/cardano/tx.draft \
 --signing-key-file $HOME/cardano/keys/payment1.skey \
 --testnet-magic 1097911063 \
@@ -450,7 +450,7 @@ cardano-cli transaction sign \
 Finally, we submit the transaction to the blockchain!
 
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
 --tx-file $HOME/cardano/tx.signed \
 --testnet-magic 1097911063 
 ```

@@ -71,7 +71,9 @@ In depth explanation about Cardano Testnet Faucet can be found [here.](/docs/int
 - [testnet.cexplorer.io](https://testnet.cexplorer.io/) is a Pre-Production and Preview block explorer by [Cexplorer](https://cexplorer.io).
 
 ### Which metadata explorers can I use for the Cardano testnets?
-- [pool.pm/test/metadata](https://pool.pm/test/metadata) is a testnet metadata explorer by [Pool.pm](https://pool.pm/)
+- [cardanoscan.io/metadata](https://preprod.cardanoscan.io/metadata) is a preprod metadata explorer by [CardanoScan.io](https://cardanoscan.io/)
+- [cexplorer.io/metadata](https://preprod.cexplorer.io/metadata) is a preprod metadata explorer by [cExplorer.io](https://cexplorer.io/)
+
 
 ### What kind of monitoring tools are available for the testnets?
 - Set up your own node's [Grafana/Promtheus monitoring](/docs/operate-a-stake-pool/grafana-dashboard-tutorial/#4-setting-up-grafana-dashboard) system

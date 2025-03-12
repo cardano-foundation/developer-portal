@@ -1,11 +1,11 @@
 ---
-id: new-tracing-system
+id: cardano-tracer
 title: Cardano Tracer
 sidebar_label: Cardano tracer
 sidebar_position: 2
 description: Using cardano tracer.
 keywords: [Tracing, cardano-tracer, trace-dispatch, new tracing system, monitoring, cardano node]
---- 
+---
 
 ## Cardano Tracer
 
@@ -33,59 +33,39 @@ keywords: [Tracing, cardano-tracer, trace-dispatch, new tracing system, monitori
 
 ### Motivation
 
-Previously, the node handled all the logging by itself. Moreover, it provided monitoring tools as well: two web-servers, for Prometheus and for EKG monitoring page. `cardano-tracer` is a result of _moving_ all the logging/monitoring-related stuff from the node to a separate service. As a result, the node became smaller, faster, and simpler.
+Previously, the node handled all the logging by itself. It provides two web-servers for application monitoring: Prometheus and EKG.
+
+`cardano-tracer` is the result of _moving_ all the logging and monitoring-related components from the node to a separate service. As a result, the node becomes smaller, faster, and simpler once the current system is deprecated.
 
 ### Overview
 
-You can think of Cardano node as a **producer** of logging/monitoring information, and `cardano-tracer` as a **consumer** of this information. After the network connection between them is established, `cardano-tracer` periodically asks for such an information, and the node replies with it.
+You can think of Cardano node as a **producer** of logging and monitoring information, and `cardano-tracer` as a **consumer** of this information. After a network connection between them is established, `cardano-tracer` periodically asks for such information, and the node replies with it.
 
-There are 3 kinds of such an information:
+There are 3 such kinds of information:
 
-1. Trace object, which contains different logging data. `cardano-tracer` constantly asks for new trace objects each `N` seconds, receives them and stores them in the log files and/or in Linux `systemd`'s journal.
-2. EKG metric, which contains some system metric. Please [read EKG documentation](https://hackage.haskell.org/package/ekg-core) for more info. `cardano-tracer` constantly asks for new EKG metrics each `N` seconds, receives them and displays them using monitoring tools.
-3. Data points, which contains arbitrary information about the node. Please note that `cardano-tracer` asks for new data points only by _explicit_ request when it needs it, there is no constant asking.
+1. **Trace object**, contains logging data. `cardano-tracer` periodically queries for new trace objects, receives them and stores them in the log files and/or in Linux `systemd`'s journal.
+2. **EKG metric**, contains system metrics. [Consult the EKG documentation](https://hackage.haskell.org/package/ekg-core) for more info. `cardano-tracer` periodically queries for new EKG metrics, receives and displays them using monitoring tools.
+3. **Data point**, contains arbitrary information about the node. `cardano-tracer` does not poll periodically for new data points, only by _explicit_ request when it needs it.
 
-Please note that `cardano-tracer` can work as an aggregator as well: _one_ `cardano-tracer` process can receive the information from _multiple_ nodes.
+`cardano-tracer` can work as an aggregator as well: _one_ `cardano-tracer` process can receive the information from _multiple_ nodes.
 
 ## Build and run
 
-Please make sure you have [Nix installed](https://nixos.org/download.html#download-nix).
-
-First of all, go to Nix shell using the following command (from the root of `cardano-node` repository):
-
-```
-nix develop
-```
-
-Now build and install `cardano-tracer` using the following command:
-
-```
-cabal build cardano-tracer && cabal install cardano-tracer --installdir=PATH_TO_DIR --overwrite-policy=always
-```
-
-where `PATH_TO_DIR` is a path to a directory where `cardano-tracer` will be copied after building.
-
-Then you can go to `PATH_TO_DIR` and run `cardano-tracer` using the following command:
-
-```
-./cardano-tracer --config PATH_TO_CONFIG
-```
-
-where `PATH_TO_CONFIG` is a path to your configuration file, please see below an explanation about it. You can find an example of the configuration file in `configuration` subdirectory.
+For how to build `cardano-tracer`, refer to the [New Tracing Quickstart](docs/get-started/cardano-node/new-tracing-system/quick-start.md).
 
 ## Configuration
 
 The way how to configure `cardano-tracer` depends on your requirements. There are two basic scenarios:
 
-1. **Distributed** scenario, when `cardano-tracer` is working on one machine, and your nodes are working on another machine(s).
-2. **Local** scenario, when `cardano-tracer` and your nodes are working on the same machine.
+1. **Distributed** (real-life) scenario, when `cardano-tracer` is working on one machine, and your nodes are working on another machine(s).
+2. **Local** (testing) scenario, when `cardano-tracer` and your nodes are working on the same machine.
 
-Distributed scenario is for real-life case: for example, you have `N` nodes working on `N` different AWS-instances, and you want to collect all the logging/monitoring information from these nodes using one `cardano-tracer` process working on your machine.
+Distributed scenario is for real-life case. You may have `N` nodes, running on `N` different hosts, and you want to collect all the logging and monitoring information from these nodes using one `cardano-tracer` process working on your machine.
 
-Local scenario is for testing case: for example, you want to try your new infrastructure from scratch, so you run `N` nodes and one `cardano-tracer` process on your machine.
+Local scenario is for testing case. For example, you want to try your new infrastructure from scratch so you run `N` nodes and one `cardano-tracer` process on your machine.
 
 :::tip Important
-Please note that `cardano-tracer` **does not** support connection via IP-address and port to prevent unauthorized connections. The **only** way to establish connection with the node is the local socket (Unix sockets or Windows named pipes).
+`cardano-tracer` **does not** support connection via IP-address and port to prevent unauthorized connections. The **only** way to establish connection with the node is the local socket (Unix sockets or Windows named pipes).
 :::
 
 ### Settings in Cardano Node config.json file
@@ -93,7 +73,7 @@ Please note that `cardano-tracer` **does not** support connection via IP-address
 To use cardano tracer, we must add the field `UseTraceDispatcher` to the Node's configuration file, wich can be in JSON or YAML format. Tracing options
 can be given based on a namespace: `severity`, `detail`, `backends` and `limiter`.
 
-Backends can be a combination of `Forwarder`, `EKGBackend`, and one of `Stdout MachineFormat`, `tdout HumanFormatColoured` and `Stdout HumanFormatUncoloured`.
+Backends can be a combination of `Forwarder`, `EKGBackend`, and one of `Stdout MachineFormat`, `Stdout HumanFormatColoured` and `Stdout HumanFormatUncoloured`.
 
 ```json
 {
@@ -126,46 +106,11 @@ Backends can be a combination of `Forwarder`, `EKGBackend`, and one of `Stdout M
 }
 ```
 
-The same in YAML looks like this:
+The `TraceOptionForwarder` values can be given on the node's CLI instead, as is the case in the Quickstart example. For further node-side configuration explanations, refer to:
 
-```yaml
-# Use new tracing
-UseTraceDispatcher: True
+[New Tracing Quickstart](docs/get-started/cardano-node/new-tracing-system/quick-start.md)
 
-TraceOptions:
-  "": # Options for all tracers, if not overwritten:
-    severity: Notice
-    detail: DNormal
-    backends:
-      - Stdout MachineFormat
-      - EKGBackend
-      - Forwarder
-
-  ChainDB: # Show as well messages with severity Info for all ChainDB traces.
-    severity: Info
-    detail: DDetailed
-
-  ChainDB.AddBlockEvent.AddedBlockToQueue: # Limit the AddedBlockToQueue events to a maximum of two per second.
-    maxFrequency: 2.0
-
-TraceOptionForwarder: # Configure the forwarder
-    address:
-      filePath: /tmp/forwarder.sock
-    mode: Initiator
-
-# Frequency of Peer messages set to two seconds
-TraceOptionPeerFrequency: 2000
-```
-
-For explanations of the trace forwarder option refer to the following document:
-
-[New Tracing Quickstart](docs/get-started/cardano-node/new-tracing-system/cardano-tracer.md)
-
-When `TraceOptions` is empty, or other entries are missing in the configuration file, default entries are taken from
-[Cardano.Node.Tracing.DefaultTraceConfig](https://github.com/intersectmbo/cardano-node/blob/master/cardano-node/src/Cardano/Node/Tracing/DefaultTraceConfig.hs) module.
-
-
-### Distributed Scenario
+### Distributed Scenario (real-life)
 
 This is an example with 3 nodes and one `cardano-tracer`:
 
@@ -251,7 +196,7 @@ machine A                 machine B                 machine C
                           machine D
 ```
 
-The idea of SSH forwarding is simple: we do connect not the processes directly, but their network endpoints instead. You can think of it as a network channel from the local socket on one machine to the local socket on another machine:
+The idea of SSH forwarding is simple: we do not connect directly to the process but to their network endpoints instead. You can think of it as a network channel from the local socket on one machine to the local socket on another machine:
 
 ```
 machine A                                            machine D
@@ -260,11 +205,11 @@ machine A                                            machine D
 +----------------------------------+                 +------------------------------------------+
 ```
 
-So neither your nodes nor `cardano-tracer` know anything about SSH, they only know about their local sockets. But because of SSH forwarding mechanism they work together from different machines. And since you already have your SSH credentials, the connection between your nodes and `cardano-tracer` will be secure.
+Neither your nodes nor `cardano-tracer` know anything SSH, they only know about their local sockets. Using SSH forwarding mechanism they work together between machines. Since you already have your SSH credentials the connection between your nodes and `cardano-tracer` will be secure.
 
-Please note that the path `/tmp/forwarder.sock` is just an example. You can use any other name in any other directory where you have read/write permissions.
+Path `/tmp/forwarder.sock` is just an example. You can use any other name in any other directory where you have read/write permissions.
 
-So, to connect `cardano-node` working on machine `A` with `cardano-tracer` working on machine `D`, run this command on machine `A`:
+To connect `cardano-node` working on machine `A` with `cardano-tracer` working on machine `D`, run this command on machine `A`:
 
 ```
 ssh -nNT -L /tmp/forwarder.sock:/tmp/forwarder.sock -o "ExitOnForwardFailure yes" john@109.75.33.121
@@ -276,16 +221,17 @@ where:
 - `john` is a user name you use to login on machine `D`,
 - `109.75.33.121` is an IP-adress of machine `D`.
 
+:::tip Important
+Make sure you run `ssh`-command **before** you start your node. Since `ssh` creates the channel and `cardano-node` uses that channel, you should _create_ it before _using_ it.
+:::
+
 Now run the same command on machines `B` and `C` to connect corresponding nodes with the same `cardano-tracer` working on machine `D`.
 
-Please note that your nodes working on machines `A`, `B` and `C` should specify paths `/tmp/forwarder.sock` using node's CLI-parameter `--tracer-socket-path-connect` or `--tracer-socket-path-accept` (see explanation below). There is another CLI-parameter `--socket-path` as well, but it's **not** related to `cardano-tracer`.
+Nodes working on machines `A`, `B` and `C` should specify paths `/tmp/forwarder.sock` using node's CLI-parameter `--tracer-socket-path-connect` or `--tracer-socket-path-accept` (see explanation below). There is another CLI-parameter `--socket-path` as well, but it's **not** related to `cardano-tracer`.
 
-:::tip Important
-Please make sure you run `ssh`-command **before** you start your node. Since `ssh` creates the channel and `cardano-node` uses that channel, you should _create_ it before _using_ it.
-:::
-### Local Scenario
+### Local Scenario (testing)
 
-As was mentioned above, local scenario is for testing, when your nodes and `cardano-tracer` are working on the same machine. In this case all these processes can see the same local sockets directly, so we don't need `ssh`. The configuration file for 3 local nodes would look like this:
+As was mentioned above, local scenario is for testing, when your nodes and `cardano-tracer` reside on the same machine. In this case all processes can see the same local sockets so we don't need `ssh`. The configuration file for 3 local nodes would look like this (same as before):
 
 ```
 {
@@ -304,7 +250,7 @@ As was mentioned above, local scenario is for testing, when your nodes and `card
 }
 ```
 
-As you see, it is the same configuration file: the `cardano-tracer` works as a server: it _accepts_ network connections by listening the local socket `/tmp/forwarder.sock`. Your local nodes work as clients: they _initiate_ network connections using the _same_ local socket `/tmp/forwarder.sock`.
+`cardano-tracer` works as a server: it _accepts_ network connections by listening the local socket `/tmp/forwarder.sock`. Your local nodes work as clients: they _initiate_ network connections using the _same_ local socket `/tmp/forwarder.sock`.
 
 There is another way to connect `cardano-tracer` to your nodes: the `cardano-tracer` can work as _initiator_, this is an example of configuration file:
 
@@ -331,21 +277,25 @@ There is another way to connect `cardano-tracer` to your nodes: the `cardano-tra
 
 As you see, the tag in `network` field is `ConnectTo` now, which means that `cardano-tracer` works as a client: it _establishes_ network connections with your local nodes via the local sockets `/tmp/cardano-node-*.sock`. In this case each socket is used by a particular node.
 
-Please use `ConnectTo`-based scenario only if you really need it. Otherwise, it is **highly recommended** to use `AcceptAt`-based scenario. The reason is easier maintainance. Suppose you have 3 working nodes, and they are connected to the same `cardano-tracer`. And then you want to connect 4-th node to it. If `cardano-tracer` is configured using `AcceptAt`, you shouldn't change its configuration - you just connect your 4-th node to it. But if `cardano-tracer` is configured using `ConnectTo`, you should add path to 4-th socket in its configuration file and then restart `cardano-tracer` process.
+It is **highly recommended** to use `AcceptAt` for easier maintainance. Use `ConnectTo` only if you really need it.
+
+`AcceptTo` and `ConnectTo` are mirrored by the reciprocal option on the node `--tracer-socket-path-connect` / `--tracer-socket-path-accept`. If you choose one on the node, you choose the opposite on the tracer. This only makes a difference to which entity initiates the handshake; after the handshake the configuration is identical.
+
+Suppose you have 3 working nodes, and they are connected to the same `cardano-tracer`. And then you want to connect a 4th node to it. If `cardano-tracer` is configured using `AcceptAt`, you don't need to change its configuration - you just connect the additional node to it. But if `cardano-tracer` is configured using `ConnectTo`, you'll need to add a 4th socket path to its configuration file and restart the `cardano-tracer` process.
 
 ### Network Magic
 
 The field `networkMagic` specifies the value of network magic. It is an integer constant from the genesis file, the node uses this value for the network handshake with peers. Since `cardano-tracer` should be connected to the node, it needs that network magic.
 
-The value from the example above, `764824073`, is taken from the Shelley genesis file for [Mainnet](https://book.world.dev.cardano.org/environments.html). Please take this value from the genesis file your nodes are launched with.
+The value from the example above, `764824073`, is taken from the Shelley genesis file for [Mainnet](https://book.world.dev.cardano.org/environments.html). Take this value from the genesis file your nodes are launched with.
 
 ### Requests
 
-The optional field `loRequestNum` specifies the number of log items that will be requested from the node. For example, if `loRequestNum` is `10`, `cardano-tracer` will constantly ask 10 log items in one request. This value is useful for reducing the network traffic: it is possible to ask 50 log items in one request or ask them in 50 requests one at a time. Please note that if `loRequestNum` is bigger than the real number of log items in the node, all these items will be returned immediately. For example, if `cardano-tracer` asks 50 log items but the node has only 40 log items _in this moment of time_, these 40 items will be returned, there is no waiting for additional 10 items.
+The optional field `loRequestNum` specifies the number of log items that will be requested from the node. For example, if `loRequestNum` is `10`, `cardano-tracer` will periodically ask 10 log items in one request. This value is useful for fine-tuning network traffic: it is possible to ask 50 log items in one request, or ask them in 50 requests one at a time. `loRequestNum` is the *maximum* number of log items. For example, if `cardano-tracer` requests 50 log items but the node has only 40 at that moment, these 40 items will be returned, the request won't block to wait for additional 10 items.
 
-The optional field `ekgRequestFreq` specifies the period of how often EKG metrics will be requested, in seconds. For example, if `ekgRequestFreq` is `1`, `cardano-tracer` will ask for new EKG metrics every second. Please note that there is no limit as `loRequestNum`, so every request returns _all_ the metrics the node has _in this moment of time_.
+The optional field `ekgRequestFreq` specifies the period of how often EKG metrics will be requested, in seconds. For example, if `ekgRequestFreq` is `10`, `cardano-tracer` will ask for new EKG metrics every ten seconds. There is no limit as `loRequestNum`, so every request returns _all_ the metrics the node has _in this moment of time_.
 
-There are default values for `loRequestNum` and `ekgRequestFreq`, so if you are not sure - please remove these fields from your configuration file to use default values.
+The reliable default values are `loRequestNum: 100` and `ekgRequestFreq: 1`, which will be used when these fields are left out of your configuration file.
 
 ### Logging
 
@@ -361,7 +311,7 @@ Logging is one of the most important features of `cardano-tracer`. The field `lo
 ]
 ```
 
-The field `logRoot` specifies the path to the root directory. This directory will contain all the subdirectories with the log files inside. Please remember that each subdirectory corresponds to the particular node. If the root directory does not exist, it will be created.
+The field `logRoot` specifies the path to the root directory. This directory will contain all the subdirectories with the log files inside. Remember that each subdirectory corresponds to the particular node. If the root directory does not exist, it will be created.
 
 This is an example of log structure:
 
@@ -372,13 +322,13 @@ This is an example of log structure:
       node.json -> /rootDir/subdirForNode0/node-2021-11-25T10-06-52.json
 ```
 
-In this example, `subdirForNode0` is a subdirectory containing log files with items received from the node `0`. And `node-2021-11-25T10-06-52.json` is the _current_ log: it means that currently `cardano-tracer` is writing items in this log file, via symbolic link `node.json`.
+In this example, `subdirForNode0` is a subdirectory containing log files with items received from the node `0`. And `node-2021-11-25T10-06-52.json` is the _current_ log: it means that currently `cardano-tracer` is writing items in this log file.
 
-The field `logMode` specifies logging mode. There are two possible modes: `FileMode` and `JournalMode`. `FileMode` is for storing logs to the files, `JournalMode` is for storing them in `systemd`'s journal. Please note that if you choose `JournalMode`, the field `logRoot` will be ignored.
+The field `logMode` specifies logging mode. There are two possible modes: `FileMode` and `JournalMode`. `FileMode` is for storing logs to the files, `JournalMode` is for storing them in `systemd`'s journal. If you choose `JournalMode`, the field `logRoot` will be ignored.
 
 The field `logFormat` specifies the format of logs. There are two possible modes: `ForMachine` and `ForHuman`. `ForMachine` is for JSON format, `ForHuman` is for human-friendly text format.
 
-Please note that `logging` field accepts the list, so you can specify more than one logging section. For example, for both log formats:
+`logging` field accepts the list, so you can specify more than one logging section. For example, for both log formats:
 
 ```
 "logging": [
@@ -399,7 +349,7 @@ In this case log items will be written in JSON format (in `.json`-files) as well
 
 ### Logs Rotation
 
-An optional field `rotation` describes parameters for log rotation. Please note that if you skip this field, all the log items will be stored in one single file, and usually it's not what you want. These are rotation parameters:
+An optional field `rotation` describes parameters for log rotation. If you skip this field, all the log items will be stored in one single file, and usually it's not what you want. These are rotation parameters:
 
 ```
 "rotation": {
@@ -412,11 +362,12 @@ An optional field `rotation` describes parameters for log rotation. Please note 
 
 The field `rpFrequencySecs` specifies rotation period, in seconds. In this example, `rpFrequencySecs` is `30`, which means that rotation check will be performed every 30 seconds.
 
-The field `rpLogLimitBytes` specifies the maximum size of the log file, in bytes. In this example, `rpLogLimitBytes` is `50000`, which means that once the size of the current log file is 50 KB, the new log file will be created.
+The field `rpLogLimitBytes` specifies the maximum size of the log file, in bytes. In this example, `rpLogLimitBytes` is `50000`, which means that once the size of the current log file is 50 KB, a new log file will be created.
 
-The field `rpKeepFilesNum` specifies the number of the log files that will be kept. In this example, `rpKeepFilesNum` is `3`, which means that 3 _last_ log files will always be kept.
+The field `rpKeepFilesNum` specifies the number of log files that will be kept. In this example, `rpKeepFilesNum` is `3`, which means that 3 _last_ log files will always be kept.
 
-The fields `rpMaxAgeMinutes`, `rpMaxAgeHours` specify the lifetime of the log file, in minutes, or hours. In this example, `rpMaxAgeHours` is `1`, which means that each log file will be kept for 1 hour only. After that, the log file is treated as outdated and will be deleted. Please note that N _last_ log files (specified by `rpKeepFilesNum`) will be kept even if they are outdated. If both fields are specified, `rpMaxAgeMinutes` takes precedence.
+The fields `rpMaxAgeMinutes`, `rpMaxAgeHours` specify the lifetime of the log file, in minutes, or hours. If both fields are specified, `rpMaxAgeMinutes` takes precedence. In this example, `rpMaxAgeHours` is `1`, which means that each log file will be kept for 1 hour only. After that, the log file is considered outdated. N _last_ log files (specified by `rpKeepFilesNum`) will be kept even if they are outdated. All other outdated files will be deleted by `cardano-tracer`.
+
 
 ### Prometheus
 
@@ -429,70 +380,115 @@ The optional field `hasPrometheus` specifies the host and port of the web page w
 }
 ```
 
-Here the web page is available at `http://127.0.0.1:3000`. Please note that if you skip this field, the web page will not be available.
+Here the web page is available at `http://127.0.0.1:3000`. If you skip this field, no Prometheus endpoint will be started.
 
 After you open `http://127.0.0.1:3000` in your browser, you will see the list of identifiers of connected nodes (or the warning message, if there are no connected nodes yet), for example:
 
 ```
-* tmp-forwarder.sock@0
-* tmp-forwarder.sock@1
-* tmp-forwarder.sock@2
+* KindStar_3001
 ```
+
+This identifier corresponds to the `TraceOptionNodeName` in the node config, or the fallback `<hostname>_<node port>` if no such value is provided.
 
 Each identifier is a hyperlink to the page where you will see the **current** list of metrics received from the corresponding node, in such a format:
 
 ```
-rts_gc_par_tot_bytes_copied 0
-rts_gc_num_gcs 2
-rts_gc_max_bytes_slop 15880
-rts_gc_num_bytes_usage_samples 1
-rts_gc_wall_ms 4005
-...
-rts_gc_par_max_bytes_copied 0
-rts_gc_mutator_cpu_ms 57
-rts_gc_mutator_wall_ms 4004
-rts_gc_gc_cpu_ms 1
-rts_gc_cumulative_bytes_used 184824
+# TYPE Mem_resident_int gauge
+# HELP Mem_resident_int Kernel-reported RSS (resident set size)
+Mem_resident_int 103792640
+# TYPE rts_gc_max_bytes_used gauge
+rts_gc_max_bytes_used 5811512
+# TYPE rts_gc_gc_cpu_ms counter
+rts_gc_gc_cpu_ms 50
+# TYPE RTS_gcMajorNum_int gauge
+# HELP RTS_gcMajorNum_int Major GCs
+RTS_gcMajorNum_int 4
+# TYPE rts_gc_num_bytes_usage_samples counter
+rts_gc_num_bytes_usage_samples 4
+# TYPE remainingKESPeriods_int gauge
+remainingKESPeriods_int 62
+# TYPE rts_gc_bytes_copied counter
+rts_gc_bytes_copied 17114384
 ```
+
+That page from the example can of course be directly accessed by `http://127.0.0.1:3000/kindstar-3001`.
 
 ### EKG Monitoring
 
-The optional field `hasEKG` specifies the hosts and ports of two web pages:
-
-1. the list of identifiers of connected nodes,
-2. EKG monitoring page.
-
-For example, if you use JSON configuration file:
+The optional field `hasEKG` specifies the host and port of the web
+page with EKG metrics. For example:
 
 ```
-"hasEKG": [
-  {
+"hasEKG": {
     "epHost": "127.0.0.1",
     "epPort": 3100
+}
+```
+
+Just as with Prometheus, the root path `/` on EKG shows a list of connected nodes. The response is either human-readable names (HTML) with clickable
+links, or JSON mapping from connected node names to relative URLs,
+depending on desired content type (`Accept:` header of the request).
+
+The URL routes dynamically depend on the connected nodes _in this moment of time_; the node names
+are [sluggified](https://hackage.haskell.org/package/slugify).
+
+For a node with a specified name in its configuration:
+
+```
+{ 
+  TraceOptionNodeName: "foo-node"
+}
+```
+and another connection that does not specify a node name, the list of clickable identifiers of connected
+nodes will be available at `http://127.0.0.1:3100` as:
+
+```
+* foo-node
+* KindStar_3001
+```
+Just as with Prometheus, the fallback for `TraceOptionNodeName` is `<hostname>_<node port>`.
+
+Clicking an identifier will take you to its monitoring page. Clicking
+on `foo-node` (`http://localhost:3100/foo-node`) and `KindStar_3001` (`127.0.0.1:3100/kindstar-3001`) takes you to the
+respective metrics monitoring.
+
+Sending a HTTP GET request with a JSON Accept header gives the metrics
+of an identifier as JSON. `jq '.'` pretty-prints the JSON object.
+
+```
+$ curl --silent -H 'Accept: application/json' '127.0.0.1:3100/kindstar-3001' | jq '.'
+{
+  "Mem": {
+    "resident_int": {
+      "type": "g",
+      "val": 790822912
+    }
   },
-  {
-    "epHost": "127.0.0.1",
-    "epPort": 3101
-  }
-]
+  "RTS": {
+    "alloc_int": {
+      "type": "g",
+      "val": 159054205680
+    },
+    "gcHeapBytes_int": {
+      "type": "g",
+      "val": 750780416
+[...]
 ```
-
-The page with the list of identifiers of connected nodes will be available at `http://127.0.0.1:3100`, for example:
-
-```
-* tmp-forwarder.sock@0
-* tmp-forwarder.sock@1
-* tmp-forwarder.sock@2
-```
-
-Each identifier is a hyperlink, after clicking to it you will be redirected to `http://127.0.0.1:3101` where you will see EKG monitoring page for corresponding node.
 
 ### Verbosity
 
-The optional field `verbosity` specifies the verbosity level for the `cardano-tracer` itself. There are 3 levels:
+```
+{
+  "networkMagic": ..,
+  .. 
+  "verbosity": "ErrorsOnly"
+}
+```
+
+The `verbosity` field (optional) specifies the verbosity level for the `cardano-tracer` itself. There are 3 levels:
 
 1. `Minimum` - `cardano-tracer` will work as silently as possible.
 2. `ErrorsOnly` - messages about problems will be shown in standard output.
 3. `Maximum` - all the messages will be shown in standard output. **Caution**: the number of messages can be huge.
 
-Please note that if you skip this field, `ErrorsOnly` verbosity will be used by default.
+If you skip this field, `ErrorsOnly` verbosity will be used by default.

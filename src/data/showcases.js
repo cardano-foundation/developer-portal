@@ -273,7 +273,7 @@ export const Showcases = [
   {
     title: "Cardano Foundation Explorer",
     description:
-      "A Cardano explorer focused on the needs of a non technical target audience like regulators and policy makers built by Cardano Foundation, currently under development",
+      "List of Cardano Explorers built by the community for the community.",
     preview: require("./showcase/cf-explorer.png"),
     website: "https://beta.explorer.cardano.org",
     source: "https://github.com/cardano-foundation/cf-explorer",
@@ -305,15 +305,6 @@ export const Showcases = [
     website: "https://pool.pm",
     source: null,
     tags: ["favorite", "explorer"],
-  },
-  {
-    title: "Adafolio",
-    description:
-      "Adafolio provides a place to create and share multi-delegation portfolios.",
-    preview: require("./showcase/adafolio.png"),
-    website: "https://adafolio.com",
-    source: null,
-    tags: ["favorite", "pooltool"],
   },
   {
     title: "PoolTool",
@@ -550,8 +541,8 @@ export const Showcases = [
     title: "Staking Rewards Calculator",
     description:
       "A detailed Staking Rewards Calculator thats shows expected return to the operator and delegators of each pool based on the current and alternative network parameters. It also runs a Monte Carlo simulation to show possible variability in the return.",
-    preview: require("./showcase/dsio-reward-calculator.png"),
-    website: "https://dynamicstrategies.io/crewardcalculator",
+    preview: require("./showcase/staking-rewards-calculator.png"),
+    website: "https://cardano.org/calculator/",
     source: null,
     tags: ["pooltool", "analytics", "educational"],
   },
@@ -610,15 +601,6 @@ export const Showcases = [
     tags: ["token"],
   },
   {
-    title: "epoch.art",
-    description:
-      "A Cardano NFT marketplace to discover, collect and trade unique exciting digital arts.",
-    preview: require("./showcase/epochart.png"),
-    website: "https://epoch.art",
-    source: null,
-    tags: ["marketplace", "nftsupport"],
-  },
-  {
     title: "Open CNFT",
     description:
       "Leaderboards & Analytics of the Cardano NFT ecosystem.",
@@ -640,7 +622,7 @@ export const Showcases = [
     description:
       "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
-    website: "https://app.minswap.org",
+    website: "https://minswap.org",
     source: null,
     tags: ["dex", "token"],
   },
@@ -690,15 +672,6 @@ export const Showcases = [
     tags: ["analytics", "nftsupport"],
   },
   {
-    title: "Galaxy Of Art",
-    description:
-      "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
-    preview: require("./showcase/galaxyofart.png"),
-    website: "https://galaxyof.art",
-    source: null,
-    tags: ["marketplace", "nftsupport"],
-  },
-  {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
@@ -706,15 +679,6 @@ export const Showcases = [
     website: "https://www.jpg.store",
     source: null,
     tags: ["marketplace", "nftsupport"],
-  },
-  {
-    title: "Atala Scan",
-    description:
-      "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
-    preview: require("./showcase/atalascan.png"),
-    website: "https://atalascan.io",
-    source: null,
-    tags: ["metadata", "identity"],
   },
   {
     title: "Pavia",
@@ -753,15 +717,6 @@ export const Showcases = [
     tags: ["ecosystem"],
   },
   {
-    title: "Pool Peek",
-    description:
-      "An extensive Cardano stake pool explorer.",
-    preview: require("./showcase/poolpeek.png"),
-    website: "https://poolpeek.com",
-    source: null,
-    tags: ["pooltool", "analytics"],
-  },
-  {
     title: "Lido Nation",
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
@@ -796,15 +751,6 @@ export const Showcases = [
     website: "https://www.hazelnet.io",
     source: "https://github.com/nilscodes/hazelnet",
     tags: ["nftsupport", "opensource", "token"],
-  },
-  {
-    title: "Profiler",
-    description:
-      "Cardano explorer tailored to boost security and decision-making. Users can thoroughly examine their wallets, receiving a detailed overview of their transactions, tokens, and NFTs, complemented by interactive visualizations.",
-    preview: require("./showcase/profiler.png"),
-    website: "https://profiler.biz/",
-    source: null,
-    tags: ["analytics", "explorer"],
   },
   {
     title: "Dapps on Cardano",
@@ -953,20 +899,11 @@ export const Showcases = [
   {
     title: "BALANCE Analytics",
     description:
-      "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
+      "Graphical, configurable analytics specialising in Cardano PoS decentralisation metrics.",
     preview: require("./showcase/balance-analytics.png"),
-    website: "https://balanceanalytics.io/",
+    website: "https://www.balanceanalytics.io/",
     source: null,
     tags: ["analytics", "pooltool"],
-  },
-  {
-    title: "Peer Review Money",
-    description: 
-      "Pretty straight forward site about the economics of ada, the native currency of the Cardano blockchain.",
-    preview: require("./showcase/peerreview.money.png"),
-    website: "https://peerreview.money",
-    source: null,
-    tags: ["analytics"],
   },
   {
     title: "Aeoniumsky",
@@ -1066,15 +1003,6 @@ export const Showcases = [
     website: "https://continuity.to/",
     source: null,
     tags: ["nftsupport", "token"],
-  },
-  {
-    title: "BALANCE",
-    description:
-      "A Cardano Blockchain Research & Analytics Provider.",
-    preview: require("./showcase/balanceanalytics.png"),
-    website: "https://www.balanceanalytics.io/",
-    source: null,
-    tags: ["analytics", "pooltool"],
   },
   {
     title: "Summon Platform",
@@ -1219,6 +1147,15 @@ export const Showcases = [
     website: "https://nioapp.io",
     source: null,
     tags: ["explorer"],
+  },
+  {
+    title: "Begin Wallet",
+    description:
+      "Begin Wallet a non-custodial light Cardano Wallet, available as an Extension and Mobile. We offer payment link compatibility with deep link support, Begin ID user name based on ENS protocol for Wallet Address. Hardware wallet support Ledger and Keystone. Based on our own open source cryptographic core.",
+    preview: require("./showcase/begin.png"),
+    website: "https://begin.is",
+    source: null,
+    tags: ["wallet", "nftsupport"],
   },
 ];
 
