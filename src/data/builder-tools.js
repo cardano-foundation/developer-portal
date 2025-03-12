@@ -528,14 +528,6 @@ export const Showcases = [
     tags: ["favorite", "golang", "serialization"],
   },
   {
-    title: "Pooldata API",
-    description: "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
-    preview: require("./builder-tools/pooldata-api.png"),
-    website: "https://api.pooldata.live",
-    getstarted: null,
-    tags: ["operatortool", "http", "hosted"],
-  },
-  {
     title: "Python Module",
     description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
     preview: require("./builder-tools/cardano-python.png"),
@@ -593,14 +585,6 @@ export const Showcases = [
     website: "https://github.com/HarmonicPool/cardano-wallet-interface",
     getstarted: null,
     tags: ["javascript", "wallet"],
-  },
-  {
-    title: "Plutus Fee Estimator",
-    description: "Helps developers to estimate the cost of smart contract scripts for maximum efficiency and minimum cost.",
-    preview: require("./builder-tools/plutus-fee-estimator.png"),
-    website: "https://testnets.cardano.org/en/testnets/cardano/tools/plutus-fee-estimator/",
-    getstarted: null,
-    tags: ["plutus", "hosted"],
   },
   {
     title: "Plutus Extra",
@@ -796,7 +780,7 @@ export const Showcases = [
     title: "plu-ts",
     description: "Typescript-embedded smart contract programming language and transaction creation library",
     preview: require("./builder-tools/plu-ts.png"),
-    website: "https://pluts.harmoniclabs.tech/docs/intro",
+    website: "https://pluts.harmoniclabs.tech/",
     getstarted: "/docs/get-started/plu-ts",
     tags: ["plutus", "javascript", "typescript", "serialization"],
   },
@@ -911,15 +895,6 @@ export const Showcases = [
     website: "https://github.com/dcSpark/carp",
     getstarted: "https://dcspark.github.io/carp/docs/intro",
     tags: ["chainindex", "sql", "typescript"],
-  },
-  {
-    title: "Pooldata.live",
-    description:
-      "Pooldata.live API provides a public Grafana datasource for pool operators with several operational metrics related to a stake pool.",
-    preview: require("./builder-tools/pooldata-live.png"),
-    website: "https://api.pooldata.live",
-    getstarted: null,
-    tags: ["operatortool", "http"],
   },
   {
     title: "Plutip",
@@ -1090,14 +1065,6 @@ export const Showcases = [
     website: "https://github.com/bloxbean/yaci-devkit",
     getstarted: null,
     tags: ["cli", "testing"]
-  },
-  {
-    title: "MazzumaGPT",
-    description: "Generate smart contract code in Plutus using AI",
-    preview: require("./builder-tools/mazzumagpt.png"),
-    website: "https://mazzumagpt.com",
-    getstarted: "https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
-    tags: ["plutus"]
   },
   {
     title: "Xogmios",
