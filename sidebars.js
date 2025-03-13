@@ -168,14 +168,9 @@ module.exports = {
       },
       {
         type: "category",
-        label: "Installation Guide (Node)",
-        items: ["operate-a-stake-pool/node-installation-process"],
-      },
-      {
-        type: "category",
         label: "Cardano Relay Configuration",
         items: [
-          "operate-a-stake-pool/cardano-relay-configuration",
+          "operate-a-stake-pool/relay-node-configuration",
           "operate-a-stake-pool/monitoring-gLiveView",
           "operate-a-stake-pool/grafana-dashboard-tutorial",
         ],

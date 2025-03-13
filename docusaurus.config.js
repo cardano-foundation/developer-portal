@@ -265,7 +265,7 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/setup-firewall',
           },
           {
-            to: '/docs/operate-a-stake-pool/node-installation-process/',
+            to: '/docs/get-started/cardano-node/installing-cardano-node/',
             from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
           },
           {
@@ -303,7 +303,7 @@ module.exports = {
                   ]
           },
           {
-            to: '/docs/operate-a-stake-pool/cardano-relay-configuration/',
+            to: '/docs/operate-a-stake-pool/relay-node-configuration/',
             from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
         ],
