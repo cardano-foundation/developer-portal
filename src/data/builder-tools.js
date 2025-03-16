@@ -33,6 +33,14 @@ export const Tags = {
     color: '#65d2a1',
   },
 
+  // C
+  c: {
+    label: "C",
+    description: "C language",
+    icon: null,
+    color: '#eca882',
+  },
+
   // Chain Index
   chainindex: {
     label: "Chain Index",
@@ -528,14 +536,6 @@ export const Showcases = [
     tags: ["favorite", "golang", "serialization"],
   },
   {
-    title: "Pooldata API",
-    description: "The Pooldata public API provide several operational metrics for SPOs in the form of time-series and tabular data. It can be plugged directly to a Grafana environment as datasource.",
-    preview: require("./builder-tools/pooldata-api.png"),
-    website: "https://api.pooldata.live",
-    getstarted: null,
-    tags: ["operatortool", "http", "hosted"],
-  },
-  {
     title: "Python Module",
     description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
     preview: require("./builder-tools/cardano-python.png"),
@@ -547,7 +547,7 @@ export const Showcases = [
     title: "Marlowe Playground",
     description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
     preview: require("./builder-tools/marlowe-playground.png"),
-    website: "https://play.marlowe.iohk.io",
+    website: "https://marlowe.iohk.io",
     getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
     tags: ["favorite", "marlowe", "hosted"],
   },
@@ -593,14 +593,6 @@ export const Showcases = [
     website: "https://github.com/HarmonicPool/cardano-wallet-interface",
     getstarted: null,
     tags: ["javascript", "wallet"],
-  },
-  {
-    title: "Plutus Fee Estimator",
-    description: "Helps developers to estimate the cost of smart contract scripts for maximum efficiency and minimum cost.",
-    preview: require("./builder-tools/plutus-fee-estimator.png"),
-    website: "https://testnets.cardano.org/en/testnets/cardano/tools/plutus-fee-estimator/",
-    getstarted: null,
-    tags: ["plutus", "hosted"],
   },
   {
     title: "Plutus Extra",
@@ -796,7 +788,7 @@ export const Showcases = [
     title: "plu-ts",
     description: "Typescript-embedded smart contract programming language and transaction creation library",
     preview: require("./builder-tools/plu-ts.png"),
-    website: "https://pluts.harmoniclabs.tech/docs/intro",
+    website: "https://pluts.harmoniclabs.tech/",
     getstarted: "/docs/get-started/plu-ts",
     tags: ["plutus", "javascript", "typescript", "serialization"],
   },
@@ -850,7 +842,7 @@ export const Showcases = [
   },
   {
     title: "Mesh SDK",
-    description: "An Open-Source library by Martify Labs with the purpose of making building dApps on Cardano easier than ever. The Mesh library is engineered to simplify the development and implementation of blockchain technology, so you can focus on your project.",
+    description: "A feature-complete, open-source TypeScript SDK and off-chain framework including wallet integration, transaction building, a smart contract library, third-party API integration, and UI components: with thorough documentation and live demos for all skill levels.",
     preview: require("./builder-tools/mesh.png"),
     website: "https://meshjs.dev/",
     getstarted: "/docs/get-started/mesh/overview",
@@ -911,15 +903,6 @@ export const Showcases = [
     website: "https://github.com/dcSpark/carp",
     getstarted: "https://dcspark.github.io/carp/docs/intro",
     tags: ["chainindex", "sql", "typescript"],
-  },
-  {
-    title: "Pooldata.live",
-    description:
-      "Pooldata.live API provides a public Grafana datasource for pool operators with several operational metrics related to a stake pool.",
-    preview: require("./builder-tools/pooldata-live.png"),
-    website: "https://api.pooldata.live",
-    getstarted: null,
-    tags: ["operatortool", "http"],
   },
   {
     title: "Plutip",
@@ -1092,14 +1075,6 @@ export const Showcases = [
     tags: ["cli", "testing"]
   },
   {
-    title: "MazzumaGPT",
-    description: "Generate smart contract code in Plutus using AI",
-    preview: require("./builder-tools/mazzumagpt.png"),
-    website: "https://mazzumagpt.com",
-    getstarted: "https://mazzumagpt.gitbook.io/mazzumagpt-docs/",
-    tags: ["plutus"]
-  },
-  {
     title: "Xogmios",
     description: "An Elixir client for Ogmios.",
     preview: require("./builder-tools/xogmios.png"),
@@ -1210,7 +1185,34 @@ export const Showcases = [
     website: "https://github.com/cardano-community/pg_cardano",
     getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
     tags: ["rust", "serialization", "sql", "lowlevel"]
-  }
+  },
+  {
+    title: "Cardano-C",
+    description: "A pure C library for interacting with the Cardano blockchain. Compliant with MISRA standards and binding-friendly architecture.",
+    preview: require("./builder-tools/cardano-c.png"),
+    website: "https://github.com/Biglup/cardano-c",
+    getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
+    tags: ["c", "serialization", "sdk", "lowlevel"]
+  },
+  {
+    title: "Orcfax",
+    description:
+      "Orcfax is a decentralized oracle service designed to publish data about real world events to the Cardano blockchain. Orcfax data is made available to on-chain smart contracts in Cardano's eUTXO native format using the Orcfax Protocol.",
+    preview: require("./showcase/orcfax.png"),
+    website: "https://orcfax.io",
+    getstarted: "https://docs.orcfax.io/consume",
+    tags: ["oracle"],
+  },
+  {
+    title: "Lucid Evolution",
+    description:
+      "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
+    preview: require("./builder-tools/lucid-evolution.png"),
+    website: "https://anastasia-labs.github.io/lucid-evolution/",
+    getstarted:
+      "https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution",
+    tags: ["typescript", "javascript", "sdk", "plutus"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -1225,6 +1227,7 @@ function sortShowcases() {
 }
 
 export const LanguagesOrTechnologiesTags = [
+  "c",
   "cli",
   "crystal",
   "golang",

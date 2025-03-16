@@ -75,7 +75,7 @@ When calculating the fee for a transaction, the `--witness-count` option indicat
 Now, we build the transaction which will return the `tx.raw` transaction file and also the transaction fees:
 
 ```
-cardano-cli transaction build \
+cardano-cli conway transaction build \
     --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
     --tx-out $(cat payment.addr)+1000000 \
     --change-address $(cat payment.addr) \
@@ -116,7 +116,7 @@ echo ${txOut}
 Now we have all the information in place to build the final transaction file:
 
 ```
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     --tx-in b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1 \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $((${currentSlot} + 1000)) \
@@ -130,7 +130,7 @@ cardano-cli transaction build-raw \
 Sign the transaction with both the payment and stake secret keys:
 
 ```
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -141,11 +141,11 @@ cardano-cli transaction sign \
 And submit it:
 
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --testnet-magic 1 
 ```
 In the next section we will register the pool metadata.
 
 ## References 
-- [CIP 19 Cardano Addresses](/docs/governance/cardano-improvement-proposals/CIP-0019)
+- [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)

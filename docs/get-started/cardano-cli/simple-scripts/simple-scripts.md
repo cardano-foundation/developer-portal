@@ -427,7 +427,7 @@ To construct and submit a tx to send ada to the script address, construct the
 transaction body:
 
 ```shell
-cardano-cli transaction build-raw
+cardano-cli conway transaction build-raw
     --invalid-hereafter 1000
     --fee 0
     --tx-in utxoinput
@@ -440,7 +440,7 @@ literal value.
 Create the transaction witness:
 
 ```bash
-cardano-cli transaction witness
+cardano-cli conway transaction witness
   --tx-body-file txbody
   --signing-key-file utxoSignKey
   --out-file utxoWitness
@@ -449,7 +449,7 @@ cardano-cli transaction witness
 Assemble the transaction witness and the tx body to create the transaction:
 
 ```bash
-cardano-cli transaction assemble
+cardano-cli conway transaction assemble
   --tx-body-file txbody
   --witness-file utxoWitness
   --out-file allWitnessesTx
@@ -463,7 +463,7 @@ will be "guarded" by the script.
 #### Step 1 - construct the tx body
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     --invalid-hereafter 1000 \
     --fee 0 \
     --tx-in (txin of script address)
@@ -477,22 +477,22 @@ To construct the script witness and three key witnesses required by the example
 `all` script, run the following commands:
 
 ```bash
-cardano-cli transaction witness \
+cardano-cli conway transaction witness \
   --tx-body-file spendScriptTxBody \
   --script-file allMultiSigScript \
   --out-file scriptWitness
 
-cardano-cli transaction witness \
+cardano-cli conway transaction witness \
   --tx-body-file spendScriptTxBody \
   --signing-key-file paySignKey1 \
   --out-file key1witness
 
-cardano-cli transaction witness \
+cardano-cli conway transaction witness \
   --tx-body-file spendScriptTxBody \
   --signing-key-file paySignKey2 \
   --out-file key2witness
 
-cardano-cli transaction witness \
+cardano-cli conway transaction witness \
   --tx-body-file spendScriptTxBody \
   --signing-key-file paySignKey3 \
   --out-file key3witness
@@ -504,7 +504,7 @@ To construct and submit a transaction, you must assemble it with the script
 witness and all the other required key witnesses.
 
 ```bash
-cardano-cli transaction assemble \
+cardano-cli conway transaction assemble \
   --tx-body-file spendScriptTxBody \
   --witness-file scriptWitness \
   --witness-file key1witness \
@@ -512,7 +512,7 @@ cardano-cli transaction assemble \
   --witness-file key3witness \
   --out-file spendMultiSig
 ```
-You can now submit this tx via `cardano-cli transaction submit`!
+You can now submit this tx via `cardano-cli conway transaction submit`!
 
 
 ### Example of using a script for time locking
@@ -562,7 +562,7 @@ transaction is expired in slot 500.
 
 Once you have generated your time lock script you need to follow all the same
 steps as above in the multi-signature script example but with a slight
-modification of [step 1](#Step-1---construct-the-tx-body) which needs to be
+modification of [step 1](#step-1---construct-the-tx-body) which needs to be
 amended as follows:
 
 Example time locking script file:
@@ -588,7 +588,7 @@ than or equal to the specified slot number in our simple script. In the example
 above this means >= 1000.
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     --invalid-before 1000 \
     --fee 0 \
     --tx-in (txin of script address)
@@ -619,10 +619,10 @@ using this script after time slot 3000 will be locked there permanently!
 
 For before scripts we must provide a `--invalid-hereafter` slot that is less
 than or equal to the specified slot number in our simple script. In the example
-above this means <= 3000:
+above this means `<= 3000`:
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     --invalid-hereafter 3000\
     --fee 0 \
     --tx-in (txin of script address)

@@ -273,7 +273,7 @@ export const Showcases = [
   {
     title: "Cardano Foundation Explorer",
     description:
-      "A Cardano explorer focused on the needs of a non technical target audience like regulators and policy makers built by Cardano Foundation, currently under development",
+      "List of Cardano Explorers built by the community for the community.",
     preview: require("./showcase/cf-explorer.png"),
     website: "https://beta.explorer.cardano.org",
     source: "https://github.com/cardano-foundation/cf-explorer",
@@ -305,15 +305,6 @@ export const Showcases = [
     website: "https://pool.pm",
     source: null,
     tags: ["favorite", "explorer"],
-  },
-  {
-    title: "Adafolio",
-    description:
-      "Adafolio provides a place to create and share multi-delegation portfolios.",
-    preview: require("./showcase/adafolio.png"),
-    website: "https://adafolio.com",
-    source: null,
-    tags: ["favorite", "pooltool"],
   },
   {
     title: "PoolTool",
@@ -520,15 +511,6 @@ export const Showcases = [
     tags: ["minting", "token", "nftsupport"],
   },
   {
-    title: "Tokhun.io",
-    description:
-      "Powerful yet easy to use NFT & FT Minting and Marketplace on Cardano.",
-    preview: require("./showcase/tokhun.png"),
-    website: "https://tokhun.io",
-    source: null,
-    tags: ["favorite", "minting", "marketplace", "nftsupport"],
-  },
-  {
     title: "cardano-tools.io",
     description:
       "An advanced CNFT maker. You just pay network fees.",
@@ -559,8 +541,8 @@ export const Showcases = [
     title: "Staking Rewards Calculator",
     description:
       "A detailed Staking Rewards Calculator thats shows expected return to the operator and delegators of each pool based on the current and alternative network parameters. It also runs a Monte Carlo simulation to show possible variability in the return.",
-    preview: require("./showcase/dsio-reward-calculator.png"),
-    website: "https://dynamicstrategies.io/crewardcalculator",
+    preview: require("./showcase/staking-rewards-calculator.png"),
+    website: "https://cardano.org/calculator/",
     source: null,
     tags: ["pooltool", "analytics", "educational"],
   },
@@ -601,15 +583,6 @@ export const Showcases = [
     tags: ["favorite", "dex", "token"],
   },
   {
-    title: "Flint Wallet",
-    description:
-      "Flint is a friendly go-to wallet for DeFi and NFTs. As a light wallet, Flint allows you to easily manage multiple assets from different chains in your browser.",
-    preview: require("./showcase/flintwallet.png"),
-    website: "https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj",
-    source: null,
-    tags: ["favorite", "wallet", "nftsupport", "metadata"],
-  },
-  {
     title: "DripDropz",
     description:
       "We provide token dispensing services to the Cardano community. An intuitive platform that offers projects a comprehensive selection of distribution parameters.",
@@ -626,15 +599,6 @@ export const Showcases = [
     website: "https://worldmobile.io",
     source: null,
     tags: ["token"],
-  },
-  {
-    title: "epoch.art",
-    description:
-      "A Cardano NFT marketplace to discover, collect and trade unique exciting digital arts.",
-    preview: require("./showcase/epochart.png"),
-    website: "https://epoch.art",
-    source: null,
-    tags: ["marketplace", "nftsupport"],
   },
   {
     title: "Open CNFT",
@@ -658,7 +622,7 @@ export const Showcases = [
     description:
       "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
-    website: "https://app.minswap.org",
+    website: "https://minswap.org",
     source: null,
     tags: ["dex", "token"],
   },
@@ -708,15 +672,6 @@ export const Showcases = [
     tags: ["analytics", "nftsupport"],
   },
   {
-    title: "Galaxy Of Art",
-    description:
-      "Galaxy of Art is an environmentally friendly digital marketplace for non-fungible tokens (NFTs) that aims to bring joy and wealth to the creatives of the world.",
-    preview: require("./showcase/galaxyofart.png"),
-    website: "https://galaxyof.art",
-    source: null,
-    tags: ["marketplace", "nftsupport"],
-  },
-  {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
@@ -724,15 +679,6 @@ export const Showcases = [
     website: "https://www.jpg.store",
     source: null,
     tags: ["marketplace", "nftsupport"],
-  },
-  {
-    title: "Atala Scan",
-    description:
-      "Easy-to-use mobile app that gives customers real-time proof of products’ authenticity, recorded on the Cardano blockchain for life.",
-    preview: require("./showcase/atalascan.png"),
-    website: "https://atalascan.io",
-    source: null,
-    tags: ["metadata", "identity"],
   },
   {
     title: "Pavia",
@@ -771,15 +717,6 @@ export const Showcases = [
     tags: ["ecosystem"],
   },
   {
-    title: "Pool Peek",
-    description:
-      "An extensive Cardano stake pool explorer.",
-    preview: require("./showcase/poolpeek.png"),
-    website: "https://poolpeek.com",
-    source: null,
-    tags: ["pooltool", "analytics"],
-  },
-  {
     title: "Lido Nation",
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
@@ -814,15 +751,6 @@ export const Showcases = [
     website: "https://www.hazelnet.io",
     source: "https://github.com/nilscodes/hazelnet",
     tags: ["nftsupport", "opensource", "token"],
-  },
-  {
-    title: "Profiler",
-    description:
-      "Cardano explorer tailored to boost security and decision-making. Users can thoroughly examine their wallets, receiving a detailed overview of their transactions, tokens, and NFTs, complemented by interactive visualizations.",
-    preview: require("./showcase/profiler.png"),
-    website: "https://profiler.biz/",
-    source: null,
-    tags: ["analytics", "explorer"],
   },
   {
     title: "Dapps on Cardano",
@@ -971,20 +899,11 @@ export const Showcases = [
   {
     title: "BALANCE Analytics",
     description:
-      "A Blockchain Intelligence app dedicated to supporting the Cardano Blockchain Ecosystem.",
+      "Graphical, configurable analytics specialising in Cardano PoS decentralisation metrics.",
     preview: require("./showcase/balance-analytics.png"),
-    website: "https://balanceanalytics.io/",
+    website: "https://www.balanceanalytics.io/",
     source: null,
     tags: ["analytics", "pooltool"],
-  },
-  {
-    title: "Peer Review Money",
-    description: 
-      "Pretty straight forward site about the economics of ada, the native currency of the Cardano blockchain.",
-    preview: require("./showcase/peerreview.money.png"),
-    website: "https://peerreview.money",
-    source: null,
-    tags: ["analytics"],
   },
   {
     title: "Aeoniumsky",
@@ -1084,15 +1003,6 @@ export const Showcases = [
     website: "https://continuity.to/",
     source: null,
     tags: ["nftsupport", "token"],
-  },
-  {
-    title: "BALANCE",
-    description:
-      "A Cardano Blockchain Research & Analytics Provider.",
-    preview: require("./showcase/balanceanalytics.png"),
-    website: "https://www.balanceanalytics.io/",
-    source: null,
-    tags: ["analytics", "pooltool"],
   },
   {
     title: "Summon Platform",
@@ -1205,11 +1115,46 @@ export const Showcases = [
   {
     title: "Medusa Wallet",
     description:
-        "A lightweight Cardano wallet focused on privacy and user protection, enabling easy and secure access to funds even in untrusted or compromised environments.",
+        "A lightweight Cardano wallet focused on privacy and user protection, enabling easy and secure access to funds even in untrusted or compromised environments. ",
     preview: require("./showcase/medusa_wallet_poster.png"),
     website: "https://adawallet.io",
     source: null,
     tags: ["wallet"],
+   },
+    title: "Danogo",
+    description:
+      "Danogo is a yield aggregator that provides lending and borrowing, obtaining optimized rates by combining data from multiple Cardano protocols.",
+    preview: require("./showcase/danogo.png"),
+    website: "https://danogo.io/",
+    source: null,
+    tags: ["lending", "marketplace", "dex", "token"],
+  },
+  {
+    title: "Multisig Platform",
+    description:
+      "Secure your treasury and participant in governance, as a team with multi-signature.",
+    preview: require("./showcase/mesh-multisig-platform.jpg"),
+    website: "https://multisig.meshjs.dev/features",
+    source: null,
+    tags: ["governance", "wallet", "daotool"],
+  },
+  {
+    title: "Tempo",
+    description:
+      "Tempo is a governance tool designed to streamline and enhance Cardano’s decision-making processes. We make it easier for DReps to register, gain delegations, and engage with their delegators. Additionally, Tempo supports DAOs and SPOs by providing essential tools for governance and transparency.",
+    preview: require("./showcase/tempo.png"),
+    website: "https://tempo.vote",
+    source: null,
+    tags: ["daotool", "governance"],
+  },
+  {
+    title: "Begin Wallet",
+    description:
+      "Begin Wallet a non-custodial light Cardano Wallet, available as an Extension and Mobile. We offer payment link compatibility with deep link support, Begin ID user name based on ENS protocol for Wallet Address. Hardware wallet support Ledger and Keystone. Based on our own open source cryptographic core.",
+    preview: require("./showcase/begin.png"),
+    website: "https://begin.is",
+    source: null,
+    tags: ["wallet", "nftsupport"],
   },
 ];
 

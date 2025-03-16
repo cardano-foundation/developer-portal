@@ -372,7 +372,7 @@ cardano-cli conway transaction witness \
 Assemble the tranaction with all the witnesses from previous step:
 
 ```shell
-cardano-cli transaction assemble \
+cardano-cli conway transaction assemble \
   --tx-body-file tx.raw \
   --witness-file  payment.witness \
   --witness-file  alice.witness \

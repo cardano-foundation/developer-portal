@@ -129,7 +129,7 @@ IP based relays, 1 entry per IP address
 | Parameter | Explanation |
 | :--- | :--- |
 | cold-verification-key-file | verification _cold_ key |
-| vrf-verification-key-file | verification _VRS_ key |
+| vrf-verification-key-file | verification _VRF_ key |
 | pool-pledge | pledge lovelace |
 | pool-cost | operational costs per epoch lovelace |
 | pool-margin | operator margin |
@@ -220,7 +220,7 @@ expr UTxO BALANCE - poolDeposit - TRANSACTION FEE
 which in our case would be 9497237500 - 500000000 - 1000000 = 8996237500
 
 ```
-cardano-cli transaction build \
+cardano-cli conway transaction build \
     ${tx_in} \
     --tx-out $(cat payment.addr)+8996237500 \
     --change-address $(cat payment.addr) \
@@ -247,7 +247,7 @@ echo ${txOut}
 
 Build the transaction:
 ```
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $((${currentSlot} + 1000)) \
@@ -259,7 +259,7 @@ cardano-cli transaction build-raw \
 
 Sign the transaction:
 ```
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file cold.skey \
@@ -270,7 +270,7 @@ cardano-cli transaction sign \
 
 Submit the transaction:
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --testnet-magic 1
 ```

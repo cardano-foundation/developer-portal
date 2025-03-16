@@ -7,15 +7,13 @@ description: How to make a donation to the treasury.
 keywords: [cardano-cli, cli, treasury, donation, cardano-node, transactions]
 ---
 
-Starting from Conway era, you can make donations to the Treasury. It only takes a transaction to do it. You can use `build` or `build-raw` to construct this type of transaction, the only special thing about this transaction is that is must be submitted on the same epoch it is created, this because the transaction body incudes the field `currentTreasuryValue`, which of course, will be different on the next epoch. 
+In the Conway era, you can make donations to the Treasury through a transaction. To construct this transaction, you can use either `build` or `build-raw`. The key requirement for this type of transaction is that it must be submitted within the same epoch in which it is created. This is because the transaction body includes the field `currentTreasuryValue`, which will change in the next epoch, causing the transaction to fail at submission time.
 
-
-In the Conway era, you can make donations to the Treasury with a transaction. To construct this transaction, you can use either `build` or `build-raw`. The key requirement for this type of transaction is that it must be submitted within the same epoch it is created. This is because the transaction body includes the field `currentTreasuryValue`, which will change in the next epoch. 
-
-::: info
+:::note
 The examples on this tutorial are created on a local clusters that hardfork to Conway on epoch 0.
 
 The treasury donation is created on epoch 0 so that when querying the treasury value on epoch 1, the only lovelace in the treasury are those comming from the donation. 
+
 :::
 
 ## Using build-raw
@@ -95,7 +93,7 @@ cardano-cli conway transaction sign \
 --out-file treasury.tx.signed
 ```
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
 --tx-file treasury.tx.signed
 ```
 
@@ -132,7 +130,7 @@ cardano-cli conway transaction sign \
 ### Submit the transaction:
 
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
 --tx-file treasury.tx.signed
 ```
 
@@ -148,7 +146,7 @@ cardano-cli conway query treasury
 The transaction body carries the fields `"currentTreasuryValue":` and `"treasuryDonation":`, these are `null` in other transactions, this time the fields have a value. 
 
 ```
-cardano-cli conway transaction view --tx-file example/transactions/treasury.tx.signed
+cardano-cli debug transaction view --tx-file example/transactions/treasury.tx.signed
 {
     "auxiliary scripts": null,
     "certificates": null,

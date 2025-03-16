@@ -97,7 +97,7 @@ Congratulations, you have successfully installed `cardano-wallet` into your Linu
 ## Windows
 
 :::important
-Currently, the **Windows** installation guide is still in-progress. In the meantime we recommend using [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/) to get a Linux environment on-top of Windows. Once you have that installed you can use the [Linux](#linux) guide to install and run `cardano-node` within **WSL**.
+Currently, the **Windows** installation guide is still in-progress. In the meantime we recommend using [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/) to get a Linux environment on-top of Windows. Once you have that installed you can use the [Linux](#macos--linux) guide to install and run `cardano-node` within **WSL**.
 
 Optionally, you can download the latest precompiled Windows binary from the GitHub repository:  [`cardano-wallet` Releases](https://github.com/cardano-foundation/cardano-wallet/releases)
 :::

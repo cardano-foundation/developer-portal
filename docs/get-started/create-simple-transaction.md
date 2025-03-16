@@ -42,7 +42,7 @@ For `--tx-in` we use the following syntax: `TxHash#TxIx` where `TxHash` is the t
 :::note
 
 ```sh
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
     --tx-out $(cat payment2.addr)+0 \
     --tx-out $(cat payment.addr)+0 \
@@ -61,7 +61,7 @@ A simple transaction needs one input, a valid UTXO from `payment.addr`, and two 
 Note that to calculate the fee you need to include the draft transaction
 
 ```sh
-cardano-cli transaction calculate-min-fee \
+cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.draft \
     --tx-in-count 1 \
     --tx-out-count 2 \
@@ -75,7 +75,7 @@ cardano-cli transaction calculate-min-fee \
 
 all amounts must be in Lovelace:
 
-    expr <UTXO BALANCE> - <AMOUNT TO SEND> - <TRANSACTION FEE>
+    expr `UTXO BALANCE` - `AMOUNT TO SEND` - `TRANSACTION FEE`
 
 For example, if we send 10 ada from a UTxO containing 20 ada, the change to send back to `payment.addr` after paying the fee is: 9.832035 ada
 
@@ -111,7 +111,7 @@ Calculate your TTL, for example:  369200 + 200 slots = 369400
 We write the transaction in a file, we will name it `tx.raw`.
 
 ```sh
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
     --tx-out $(cat payment2.addr)+10000000 \
     --tx-out $(cat payment.addr)+9832035 \
@@ -125,7 +125,7 @@ cardano-cli transaction build-raw \
 Sign the transaction with the signing key **payment.skey** and save the signed transaction in **tx.signed**
 
 ```sh
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --mainnet \
@@ -135,7 +135,7 @@ cardano-cli transaction sign \
 ## Submit the transaction
 
 ```sh
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```

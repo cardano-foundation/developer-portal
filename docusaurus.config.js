@@ -1,6 +1,15 @@
 // GitHub Settings
 const vars = require('./variables')
 
+// enable or disable the announcement header bar (see 'announcementBar' section below)
+const isAnnouncementActive = false;
+
+// There are various equivalent ways to declare the Docusaurus config.
+// See: https://docusaurus.io/docs/api/docusaurus-config
+import {themes as prismThemes} from 'prism-react-renderer';
+
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
 // Docusaurus Config
 module.exports = {
   title: "Cardano Developer Portal",
@@ -16,6 +25,10 @@ module.exports = {
     repository: `${vars.repository}`,
     branch: `${vars.branch}`,
   },
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
     // Docs Sidebar
     docs: {
@@ -26,20 +39,22 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      additionalLanguages: ['csharp', 'php'],
+      //theme: prismThemes.github, // uncomment for light mode in code boxes
+      darkTheme: prismThemes.dracula,
+      additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff'],
     },
 
     // Announcement Bar
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
-    announcementBar: {
+    announcementBar: isAnnouncementActive ?{
       id: "announcement_index5", // Any value that will identify this message + increment the number every time to be unique
       content:
         `<strong>Calling all Cardano developers! Your experience matters, take the annual <a target="_blank" rel="noopener noreferrer" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-survey-2024">Developer Ecosystem Survey</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
-    },
+    }: undefined,
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
@@ -104,16 +119,16 @@ module.exports = {
           title: "Developer Portal",
           items: [
             {
-              label: "Contributors",
-              to: "docs/portal-contributors/",
-            },
-            {
-              label: "Changelog",
-              to: "/changelog",
-            },
-            {
               label: "How to Contribute",
               to: "docs/portal-contribute/",
+            },
+            {
+              label: "Contributors",
+              href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
+            },
+            {
+              label: "Releases",
+              href: "https://github.com/cardano-foundation/developer-portal/releases",
             },
             {
               label: "Style Guide",
@@ -215,11 +230,6 @@ module.exports = {
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
-            // redirect the old cardano improvement proposal overview
-            to: '/docs/governance/cardano-improvement-proposals/CIP-0001',
-            from: '/docs/governance/cardano-improvement-proposals/',
-          },
-          {
             // redirect as many pages as possible from old SPO course to new SPO course
             // (any old page not existing on new course, include in redirection to top level)
             to: '/docs/operate-a-stake-pool/',
@@ -255,7 +265,7 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/setup-firewall',
           },
           {
-            to: '/docs/operate-a-stake-pool/node-installation-process/',
+            to: '/docs/get-started/cardano-node/installing-cardano-node/',
             from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
           },
           {
@@ -293,32 +303,10 @@ module.exports = {
                   ]
           },
           {
-            to: '/docs/operate-a-stake-pool/cardano-relay-configuration/',
+            to: '/docs/operate-a-stake-pool/relay-node-configuration/',
             from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
         ],
-      },
-    ],
-    [
-      require.resolve('./src/plugins/changelog/index.js'),
-      {
-        blogTitle: 'Developer Portal Changelog',
-        blogDescription:
-          'Keep yourself up-to-date about new features in every release',
-        blogSidebarCount: 'ALL',
-        blogSidebarTitle: 'Changelog',
-        routeBasePath: '/changelog',
-        showReadingTime: false,
-        postsPerPage: 20,
-        archiveBasePath: null,
-        authorsMapPath: 'authors.json',
-        feedOptions: {
-          type: 'all',
-          title: 'Developer Portal Changelog',
-          description:
-            'Keep yourself up-to-date about new features in every release',
-          language: 'en',
-        },
       },
     ],
   ],
