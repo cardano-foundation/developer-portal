@@ -1113,6 +1113,15 @@ export const Showcases = [
     tags: ["governance", "analytics"],
   },
   {
+    title: "Medusa Wallet",
+    description:
+        "A lightweight Cardano wallet focused on privacy and user protection, enabling easy and secure access to funds even in untrusted or compromised environments. ",
+    preview: require("./showcase/medusa_wallet_poster.png"),
+    website: "https://adawallet.io",
+    source: null,
+    tags: ["wallet"],
+   },
+   {
     title: "Danogo",
     description:
       "Danogo is a yield aggregator that provides lending and borrowing, obtaining optimized rates by combining data from multiple Cardano protocols.",
