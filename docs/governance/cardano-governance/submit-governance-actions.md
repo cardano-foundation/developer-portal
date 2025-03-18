@@ -15,9 +15,7 @@ This guide provides a comprehensive, step-by-step process to help you successful
 
 ## Introduction
 
-Cardano's governance is designed to be decentralized and permissionless, allowing any ada holder to propose changes. Governance actions are the mechanism for enacting these changes, and they are voted on by at least two of the three key governance bodies: Delegated Representatives (DReps), the Constitutional Committee (CC), and Stake Pool Operators (SPOs). 'Enactment' refers to the point at which a governance action, having passed all necessary votes and checks, is implemented on the Cardano blockchain, and its proposed changes take effect. This guide will walk you through the steps necessary to successfully submit a governance action.
-
-Cardano's governance is decentralized and permissionless—any ADA holder can propose changes. Governance actions are on-chain proposals that require a deposit (currently 100,000 ADA as of March 2025) and are subject to a voting process by Delegated Representatives (DReps), the Constitutional Committee (CC), and Stake Pool Operators (SPOs). This guide walks you through the process from preparation to submission.
+Cardano's governance is decentralized and permissionless, any ada holder can propose changes. Governance actions are the mechanism for enacting these changes, and they are voted on by at least two of the three governance bodies: **Delegated Representatives** (DReps), the **Constitutional Committee** (CC), and **Stake Pool Operators** (SPOs). 'Enactment' refers to the point at which a governance action, having passed all necessary votes and checks, is implemented on the Cardano blockchain, and its proposed changes take effect. This guide will walk you through the steps necessary to successfully submit a governance action.
 
 ---
 
@@ -27,7 +25,7 @@ Governance actions are formal, on-chain proposals to modify aspects of the Carda
 
 1. **Motion of No-Confidence:** Initiates a vote of no confidence in the current Constitutional Committee. If enacted, the entire CC will be removed.
 2. **New Constitutional Committee and/or Threshold and/or Terms:** Proposes changes to the Constitutional Committee's membership, term limits, or the threshold required for their decisions.
-3. **Update to the Constitution or Proposal Policy:** Modifies the on-chain hash of the Cardano Constitution or Guardrails Script.
+3. **Update to the Constitution or Guardrails Script:** Modifies the on-chain hash of the Cardano Constitution or Guardrails Script.
 4. **Hard Fork Initiation:** Triggers a non-backwards compatible upgrade of the Cardano protocol (a "hard fork").
 5. **Protocol Parameter Changes:** Modifies existing protocol parameters (e.g., transaction fees, block size).
 6. **Treasury Withdrawals:** Requests funds from the Cardano treasury.
@@ -43,10 +41,10 @@ All governance actions require a deposit of 100,000 ada (as of March 2025), whic
 
 Before submitting a governance action, you *should* complete the following:
 
-1. **Prepare Metadata:** Create a JSON metadata file hosted at an immutable URL (e.g., using [IPFS](https://ipfs.tech/) or [Arweave](https://arweave.org/)). This file provides context and rationale for your proposal. See "Creating the Metadata File" below.
-2. **Obtain Sufficient ada:** Ensure you have the required 100,000 ada deposit.
+1. **Prepare Metadata:** Create a metadata file and host it at a content-addressable storage solution (e.g., using [IPFS](https://ipfs.tech/)). This file provides context and rationale for your proposal. See [Creating the Metadata File](#creating-the-metadata-file) below.
+2. **Obtain Sufficient ada:** Ensure you have the required deposit of 100,000 ada (as of March 2025).
 3. **Choose a Submission Method:** You can submit governance actions using:
-    - **cardano-cli:** The command-line interface for interacting with the Cardano network. [How to propose a governance actions Via Cardano-cli](https://developers.cardano.org/docs/get-started/cardano-cli/governance/create-governance-actions)
+    - **cardano-cli:** The command-line interface for interacting with the Cardano blockchain. [How to propose a governance actions Via Cardano-cli](https://developers.cardano.org/docs/get-started/cardano-cli/governance/create-governance-actions)
     - **GovTool:** A dedicated governance tool. [How to propose a governance actions Via GovTools](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
 
 ---
@@ -56,15 +54,15 @@ Before submitting a governance action, you *should* complete the following:
 The metadata file is critical for informing voters about your proposal. It should:
 
 - **Follow the Standardized Format (CIP-100 and CIP-108):**
-    - [CIP-100 (Governance Metadata - Standard)](https://github.com/cardano-foundation/CIPs/tree/master/CIP-100)
-    - [CIP-108 (Governance Metadata - Governance Action - Standard)](https://github.com/cardano-foundation/CIPs/tree/master/CIP-108)
+  - [CIP-100 (Governance Metadata - Standard)](https://github.com/cardano-foundation/CIPs/tree/master/CIP-010)
+  - [CIP-108 (Governance Metadata - Governance Action - Standard)](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108)
 - **Provide Sufficient Rationale:** Clearly explain *why* the change is proposed and *how* it will benefit the Cardano ecosystem. Include:
-    - **Title:** A concise title for the governance action.
-    - **Abstract:** A brief summary of the proposal.
-    - **Motivation:** A concise statement of the problem or opportunity that the governance action addresses.
-    - **Rationale:** A logical argument explaining why the proposed solution is the best approach to address the stated motivation.
-    - **References:** Links to any relevant documents, research, or discussions, ideally hosted on a content-addressable storage solution like [IPFS](https://ipfs.tech/) or [Arweave](https://arweave.org/).
-- **Be hosted on Immutable Storage:** Use a content-addressable storage solution like [IPFS](https://ipfs.tech/) or [Arweave](https://arweave.org/). This ensures the content cannot be altered after submission. [Blockfrost IPFS Tutorial](https://blockfrost.dev/start-building/ipfs/)
+  - **Title:** A concise title for the governance action.
+  - **Abstract:** A brief summary of the proposal.
+  - **Motivation:** A concise statement of the problem or opportunity that the governance action addresses.
+  - **Rationale:** A logical argument explaining why the proposed solution is the best approach to address the stated motivation.
+  - **References:** Links to any relevant documents, research, or discussions, ideally all references should also be hosted on a content-addressable storage solution like [IPFS](https://ipfs.tech/).
+- **Be hosted on Immutable Storage:** Use a content-addressable storage solution like [IPFS](https://ipfs.tech/). This ensures the content cannot be altered after submission. See [Hosting Your Metadata on Immutable Storage](#hosting-your-metadata-on-immutable-storage) below.
 
 **Example Metadata Structures:**
 
@@ -74,7 +72,7 @@ The metadata file is critical for informing voters about your proposal. It shoul
 
 ---
 
-## Hosting Your Metadata on Immutable Storage
+## Immutable Metadata Hosting
 
 To ensure transparency and permanence, your metadata file and references should remain immutable. Here’s how to do this, starting with your metadata hosted in a GitHub repository:
 
@@ -98,10 +96,9 @@ Pinning your metadata to IPFS ensures that it is stored on a decentralized netwo
   Follow the NMKR API instructions for pinning files to IPFS. [NMKR API Tutorial for Pinning Files to IPFS](https://docs.nmkr.io/nmkr-studio-api/api-features#ipfs)
 - **Using the Blockfrost Tutorial:**  
   Use Blockfrost’s guide to pin your metadata via their API. [Blockfrost Tutorial for Pinning Files to IPFS](https://blockfrost.dev/start-building/ipfs/)
+- **Using IPFS:**  
+  Follow the official IPFS guide to pin your files manually. [IPFS Pinning Guide](https://docs.ipfs.io/how-to/pin-files/)
 
-### 4. (Optional) Using Arweave for Permanent Storage
-
-Arweave offers permanent data storage with a one-time fee. Refer to the Arweave documentation for details on uploading and pinning your file.
 
 By following these steps, you ensure your metadata is permanently accessible and immutable, which builds trust in your governance actions by allowing all stakeholders to verify the original content using a permanent link or CID.
 
@@ -111,79 +108,77 @@ By following these steps, you ensure your metadata is permanently accessible and
 
 For all governance actions, follow these best practices:
 
-- **Immutability:** Host all metadata and referenced documents on a content-addressable storage (e.g., IPFS, Arweave).
+- **Immutability:** Host all metadata and referenced documents on a content-addressable storage (e.g., IPFS).
 - **Adherence to Cardano Constitution:** Ensure your proposal aligns with the [Cardano Constitution](https://github.com/IntersectMBO/cardano-constitution/blob/main/cardano-constitution-1/cardano-constitution-1.txt.md) in its entirety.
-- **Socialization:** Discuss your proposal on community forums (e.g., [Cardano Forum](https://forum.cardano.org/c/governance/general-governance-conversation/217), [GovTool](https://gov.tools/)) to gather feedback.
+- **Socialization:** Discuss your proposal prior to submission on community forums (e.g., [Cardano Forum](https://forum.cardano.org/c/governance/general-governance-conversation/217), [GovTool](https://gov.tools/)) to gather feedback.
 - **Testing:** Always test your submission on a Cardano testnet (e.g., the preview network) before submitting on Mainnet. This is especially crucial because governance actions cannot be modified after submission.
 - **Transparency:** Keep your proposal clear, provide thorough context, and be responsive to community feedback.
-- **Follow CIP Standards:** Ensure compliance with [CIP-100](https://github.com/cardano-foundation/CIPs/tree/master/CIP-100) and [CIP-108](https://github.com/cardano-foundation/CIPs/tree/master/CIP-108).
+- **Follow CIP Standards:** Ensure compliance with [CIP-100](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0100) and [CIP-108](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108).
 
 ---
 
-## Action Type–Specific Recommendations
+## Action Type – Specific Recommendations
 
 These recommendations provide additional guidance for each specific type of governance action.
 
 ### Motion of no-confidence
 
-- **Clearly state the reasons** for the motion, providing specific evidence of why the Constitutional Committee is no longer trusted.
+- **Clearly state the reasons** for the motion in the *motivation* and *rationale* section of the metadata, providing specific evidence of why the Constitutional Committee is no longer trusted.
 - **Consider the implications** carefully. A successful motion of no confidence halts most other governance actions until a new Constitutional Committee is established.
 
 ### Update committee and/or threshold and/or terms
 
-- **Justify any proposed changes** to the Constitutional Committee's structure, term limits, or decision-making threshold. Explain how these changes will improve governance.
-- **Ensure compliance** with UPDATE-CC-01a, CMTL-01a/02a/03a/04a/05a, and CMS-01/02/03 from the guardrails.
+- **Justify any proposed changes** to the Constitutional Committee's structure, term limits, or decision-making threshold in the *motivation* and *rationale* section of the metadata. Explain how these changes will improve governance.
+- **Ensure compliance** with `UPDATE-CC-01a`, `CMTL-01a/02a/03a/04a/05a`, and `CMS-01/02/03` from the guardrails.
 - **Propose a clear transition plan** if changing the committee's membership.
 
 ### New Constitution or Guardrails Script
 
 - **Provide a detailed comparison** between the existing and proposed versions, highlighting the specific changes and their rationale.
 - **Explain the impact** of these changes on the Cardano ecosystem.
-- **Ensure consistency** between the new Constitution and the Guardrails Script (NEW-CONSTITUTION-02).
-- **If introducing new parameters via a Hard Fork, define Guardrails for them** (NEW-CONSTITUTION-01a).
+- **Ensure consistency** between the new Constitution and the Guardrails Script, as defined in guardrail `NEW-CONSTITUTION-02`.
+- **If introducing new parameters via a Hard Fork, define Guardrails for them**, as required by `NEW-CONSTITUTION-01a`.
 
 ### Hard Fork Initiation
 
 - **Provide comprehensive documentation** outlining the changes introduced by the hard fork.
-- **Conduct a thorough technical review** that makes sure the governance action does not endanger the security, functionality, performance, or long-term sustainability of the Cardano Blockchain.
-- **Ensure sufficient stake pool operator support** (at least 85% upgraded to a compatible node version - HARDFORK-04a).
-- **Follow versioning rules** (HARDFORK-01/02a/03).
-- **Document new/deprecated parameters in the Guardrails** (HARDFORK-05/06/07).
-- **Provide a cost model for new Plutus versions** (HARDFORK-08).
+- **Conduct a thorough technical review** that makes sure the governance action does not endanger the security, functionality, performance, or long-term sustainability of the Cardano Blockchain, as required by [Article III, Section 5 of the Constitution](https://constitution.gov.tools/en/constitution#section-5) of the Constitution.
+- **Ensure sufficient stake pool operator support** (at least 85% upgraded to a compatible node version - `HARDFORK-04a`).
+- **Follow versioning rules**, as defined in guardrails `HARDFORK-01/02a/03`.
+- **Document new/deprecated parameters in the Guardrails**, as mandated by `HARDFORK-05/06/07`.
+- **Provide a cost model for new Plutus versions**, as per `HARDFORK-08`.
 - **Clearly communicate the timeline** and any required actions for users and stakeholders.
 
 ### Protocol Parameter Changes
 
 - **Thoroughly research the impact** of any proposed parameter changes. Use data and evidence to support your proposal.
-- **Conduct a thorough technical review** that makes sure the governance action does not endanger the security, functionality, performance, or long-term sustainability of the Cardano Blockchain.
-- **Follow the protocol parameter changes specific guardrails** PARAM-01/02a/03a/04a/05a/06a.
+- **Conduct a thorough technical review** that makes sure the governance action does not endanger the security, functionality, performance, or long-term sustainability of the Cardano Blockchain, as required by [Article III, Section 5 of the Constitution](https://constitution.gov.tools/en/constitution#section-5) of the Constitution.
+- **Follow the protocol parameter changes specific guardrails** `PARAM-01/02a/03a/04a/05a/06a`.
 - **Adhere to the specific Guardrails** for each parameter group. These Guardrails cover allowed ranges, change frequency, and other restrictions. The Guardrails are extensive and categorized:
-  - Critical Protocol Parameters ([Section 2.1](https://constitution.gov.tools/en/constitution#21-critical-protocol-parameters))
-  - Economic Parameters ([Section 2.2](https://constitution.gov.tools/en/constitution#22-economic-parameters))
-  - Network Parameters ([Section 2.3](https://constitution.gov.tools/en/constitution#23-network-parameters))
-  - Technical/Security Parameters ([Section 2.4](https://constitution.gov.tools/en/constitution#24-technicalsecurity-parameters))
-  - Governance Parameters ([Section 2.5](https://constitution.gov.tools/en/constitution#25-governance-parameters))
+  - **Critical Protocol Parameters** ([Section 2.1](https://constitution.gov.tools/en/constitution#21-critical-protocol-parameters))
+  - **Economic Parameters** ([Section 2.2](https://constitution.gov.tools/en/constitution#22-economic-parameters))
+  - **Network Parameters** ([Section 2.3](https://constitution.gov.tools/en/constitution#23-network-parameters))
+  - **Technical/Security Parameters** ([Section 2.4](https://constitution.gov.tools/en/constitution#24-technicalsecurity-parameters))
+  - **Governance Parameters** ([Section 2.5](https://constitution.gov.tools/en/constitution#25-governance-parameters))
 - **Develop a reversion/recovery plan** in case of negative consequences ([Section 2.6](https://constitution.gov.tools/en/constitution#26-monitoring-and-reversion-of-parameter-changes)).
 - **Monitor network performance** after changes to network parameters ([Section 2.6](https://constitution.gov.tools/en/constitution#26-monitoring-and-reversion-of-parameter-changes)).
-- **Be aware of non-updatable parameters** that require a hard fork ([Section 2.7](https://constitution.gov.tools/en/constitution#27-non-updatable-protocol-parameters)).
 - **Utilize and be aware of the guardrails script**, an extra layer of automated security checks.
 
 ### Treasury Withdrawals
 
 - **Clearly define the purpose** of the withdrawal and how the funds will be used.
-- **Provide a detailed budget** outlining all expenses.
-- **Ensure the withdrawal does not exceed the net change limit** (TREASURY-01a, TREASURY-02a).
-- **Denominate the withdrawal in ada** (TREASURY-03a).
+- **Provide a detailed cost breakdown** outlining all expenses.
+- **Ensure the withdrawal does not exceed the net change limit**, as required by `TREASURY-01a` and `TREASURY-02a`.
+- **Denominate the withdrawal in ada**, as per `TREASURY-03a`.
 - **Include an allocation for audits and oversight** ([Article IV, Section 4 of the Constitution](https://github.com/IntersectMBO/cardano-constitution/blob/main/cardano-constitution-1/cardano-constitution-1.txt.md#section-4-2)).
 - **Ensure funds are held in auditable accounts**, as long as an administrator holds funds before paying vendors ([Article IV, Section 5 of the Constitution](https://github.com/IntersectMBO/cardano-constitution/blob/main/cardano-constitution-1/cardano-constitution-1.txt.md#section-5-1)).
 - **Funds held by administrators must be delegated to the "auto abstain" voting option and shall not be delegated to SPOs** ([Article IV, Section 5 of the Constitution](https://github.com/IntersectMBO/cardano-constitution/blob/main/cardano-constitution-1/cardano-constitution-1.txt.md#section-5-1)).
-- **Before approving treasury withdrawals, the DReps must approve a net change limit and budget through info actions** (TREASURY-04a).
+- **Before approving treasury withdrawals, the DReps must approve a net change limit and budget through info actions**, `TREASURY-01a`, `TREASURY-02a` and `TREASURY-04a`.
 
 ### Info
 
 - **Clearly state the question or information** being presented.
 - **Explain the purpose of the Info action** and how the results will be used.
-- **For budget/treasury "Info" actions, the CC *shall* vote on whether the proposed action *would be* constitutional if implemented.**
 
 ---
 
@@ -202,8 +197,8 @@ Before submitting your governance action, verify you have completed all the foll
 - [ ] **Metadata Preparation:**
   - [ ] Created a detailed metadata file following CIP-100 and CIP-108.
   - [ ] Included all required information (title, abstract, motivation, rationale, references).
-  - [ ] Hosted the metadata file on an immutable storage solution (e.g., IPFS or Arweave).
-  - [ ] Obtained the content hash of the metadata file.
+  - [ ] Hosted the metadata file on an immutable storage solution (e.g., IPFS).
+  - [ ] Obtained the immutable link of the hosted metadata file.
 - [ ] **Technical Preparation:**
   - [ ] Secured the required 100,000 ada deposit.
   - [ ] Chosen a submission method (cardano-cli or GovTool).
@@ -220,16 +215,16 @@ Before submitting your governance action, verify you have completed all the foll
 
 ## Consolidated Resources
 
-- **Governance Action Overview:** [https://developers.cardano.org/docs/governance/cardano-governance/governance-actions](https://developers.cardano.org/docs/governance/cardano-governance/governance-actions)
-- **cardano-cli Guide:** [https://developers.cardano.org/docs/get-started/cardano-cli/governance/create-governance-actions](https://developers.cardano.org/docs/get-started/cardano-cli/governance/create-governance-actions)
-- **GovTool Guide:** [https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
-- **CIP-100 (Governance Metadata Standard):** [https://github.com/cardano-foundation/CIPs/tree/master/CIP-100](https://github.com/cardano-foundation/CIPs/tree/master/CIP-100)
-- **CIP-108 (Governance Action Metadata Standard):** [https://github.com/cardano-foundation/CIPs/tree/master/CIP-108](https://github.com/cardano-foundation/CIPs/tree/master/CIP-108)
-- **Treasury Withdrawal Example (CIP-108):** [https://github.com/cardano-foundation/CIPs/blob/master/CIP-0108/examples/treasury-withdrawal.jsonld](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0108/examples/treasury-withdrawal.jsonld)
-- **CIP-108 Test Vectors (Various Examples):** [https://github.com/cardano-foundation/CIPs/blob/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/test-vector.md](https://github.com/cardano-foundation/CIPs/blob/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/test-vector.md)
-- **Blockfrost IPFS Tutorial:** [https://blockfrost.dev/start-building/ipfs/](https://blockfrost.dev/start-building/ipfs/)
-- **Cardano Constitution:** [https://constitution.gov.tools/en](https://constitution.gov.tools/en) 
-- **Anchor metadata for Governance Actions submitted by Intersect:** https://github.com/IntersectMBO/governance-actions
+- [**Governance Action Overview**](./governance-actions.md)
+- [**`cardano-cli` Guide**](https://developers.cardano.org/docs/get-started/cardano-cli/governance/create-governance-actions)
+- [**GovTool Guide**](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
+- [**CIP-100 (Governance Metadata Standard)**](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0100)
+- [**CIP-108 (Governance Action Metadata Standard)**](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108)
+- [**Treasury Withdrawal Example (CIP-108)**](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0108/examples/treasury-withdrawal.jsonld)
+- [**CIP-108 Test Vectors (Various Examples)**](https://github.com/cardano-foundation/CIPs/blob/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/test-vector.md)
+- [**Blockfrost IPFS Tutorial**](https://blockfrost.dev/start-building/ipfs/)
+- [**Cardano Constitution**](https://constitution.gov.tools/en)
+- [**Anchor metadata for Governance Actions submitted by Intersect**](https://github.com/IntersectMBO/governance-actions)
 
 ---
 
