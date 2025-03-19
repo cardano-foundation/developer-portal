@@ -1,37 +1,55 @@
 ---
-id: cardano-relay-configuration
-title: Cardano Relay Configuration (Startup scripts, Systemd)
-sidebar_label: Cardano Relay Configuration
-description: Cardano Relay Configuration (Startup scripts, Systemd)
+id: relay-node-configuration
+title: Cardano Relay Node Configuration
+sidebar_label: Relay Node Configuration
+description: Cardano Relay Node Configuration
 image: ../img/og-developer-portal.png
 ---
-In the last section, we went through the process of downloading, compiling, and installing cardano-node and cardano-cli into your Linux-based operating system. Now in this section we will walk through the process of configuring the installed node as a relay node.
+
+## Install node software
+
+First, follow & complete the guide [Installing the node from source](/docs/get-started/cardano-node/installing-cardano-node).
+
+:::note
+The focus of this tutorial is on learning how to setup a stake pool. So unless you have the proper knowledge or guidance to set up a Mainnet pool, continue as recommended to set up a pool on a [testnet network](docs/get-started/testnets-and-devnets.md) and not the Mainnet.
+:::
+
+Continue below when you have a machine with the software installed.  The guide below will set up your node as a relay and verify its connection to the Cardano network.  You can then prepare further nodes as needed for your stake pool by the same process.
 
 ## Configuration Files
 
 The `cardano-node` application requires the following configuration files to run as of writing this article.
 
-- **Main Config**: It contains general node settings such as **logging** and **versioning**. It also points to the **Byron Genesis** and the **Shelly Genesis** file.
-- **Byron Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Byron Era** of the **Cardano** blockchain.
-- **Shelly Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Shelly Era** of the **Cardano** blockchain.
-- **Alonzo Genesis**: It contains the initial protocol parameters and instructs the `cardano-node` on how to bootstrap the **Alonzo Era** of the **Cardano** blockchain.
-- **Topology**: It contains the list of network peers (**`IP Address` and `Port` of other nodes running the blockchain network**) that your node will connect to.
+- **Main Config**: It contains general node settings such as **logging** and **versioning**. It also points to the **Genesis Files** below.
+- **Genesis Files**: These contain the initial data structure and protocol parameters which begin each Cardano Ledger Era so far:
+  - **Byron Genesis**
+  - **Shelley Genesis**
+  - **Alonzo Genesis**
+  - **Conway Genesis**
+- **Topology**: Initial settings to define any default network peers and to obtain any network peers dynamically according to Cardano's P2P (peer-to-peer) networking system (see [Topology](docs/get-started/cardano-node/p2p)).
 
-:::important
-Currently, the `cardano-node` topology is manually set by the community of network operators in the **Cardano** blockchain. But an automated p2p (peer-to-peer) system is in the works. For more information visit [Introducing our new peer-to-peer (P2P) testnet](https://iohk.io/en/blog/posts/2021/12/08/introducing-our-new-peer-to-peer-p2p-testnet/).
-
-For more information about **Cardano** blockchain eras and upgrades, please visit the [Cardano Roadmap](https://roadmap.cardano.org/en).
+:::note
+For a timeline and description of thse Ledger eras, see the
+[Cardano Roadmap](https://roadmap.cardano.org) and the
+[Cardano Features](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0059/feature-table.md) table.
 :::
 
-The focus of this tutorial is on learning how to setup a stake pool. So we will go through the steps of configuring the relay on a [testnet network](docs/get-started/testnets-and-devnets.md) and not the Mainnet.
-You can download the current **Cardano** blockchain network configuration files here:
+:::important
+Keep in mind that when you set up the Block Producer later, it will have a more restricted topology than your Relay: generally only connecting to nodes in your own stake pool.
+:::
 
 ## Pre-Production Testnet
 
 ```
 mkdir -p $HOME/cardano-testnet
 cd $HOME/cardano-testnet
+```
 
+:::note
+These files are included in the download of `cardano-node`; if needed again they can be obtained by:
+:::
+
+```
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/config.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/topology.json
 curl -O -J https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
