@@ -42,7 +42,6 @@ If you are a talented graphic designer, you can improve various charts and diagr
 
 ### Participate in the discussions
 If you think something is wrong or something fundamental should change, discussions are the appropriate start to find consensus. There are always [ongoing discussions](https://github.com/cardano-foundation/developer-portal/discussions/243) on how to handle or improve something. Please take part in them. Even if you are not a developer, your views are valuable:
-* [Developer Portal Discord](https://discord.gg/Exe6XmqKDx) 
 * [Issues in the GitHub Repo](https://github.com/cardano-foundation/developer-portal/issues) 
 * [Discussions in the GitHub Repo](https://github.com/cardano-foundation/developer-portal/discussions)
 
@@ -101,7 +100,7 @@ You should have an excellent technical understanding, great ethics and have alre
 ### How to connect with the developer community?
 Cardano developers and stake pool operators spread across many different platforms. [We aim to provide a complete overview.](/docs/get-started/cardano-developer-community) 
 
-If you are interested in connecting with people from the Developer Portal, either visit [the Discord](https://discord.gg/Exe6XmqKDx) or [open a thread in the forum](https://forum.cardano.org/c/developers/29). 
+If you are interested in connecting with people from the Developer Portal, [open a thread in the forum](https://forum.cardano.org/c/developers/29). 
 
 
 ## Installation
