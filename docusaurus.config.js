@@ -50,7 +50,7 @@ module.exports = {
     announcementBar: isAnnouncementActive ?{
       id: "announcement_index6", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Cardano developers, quick poll: Should smart contract memory units increase by 50%? Share your thoughts <a target="_blank" rel="noopener noreferrer" href="https://cardanocommunity.typeform.com/to/HqPkH5Yy">here</a> ⭐️</strong>`,
+        `<strong>Cardano developers, quick poll: Should smart contract memory units be increased? Share your thoughts <a target="_blank" rel="noopener noreferrer" href="https://cardanocommunity.typeform.com/to/HqPkH5Yy">here</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
