@@ -49,11 +49,12 @@ Before submitting a governance action, you *should* complete the following:
     - **cardano-cli:** The command-line interface for interacting with the Cardano blockchain. [How to propose a governance actions Via Cardano-cli](/docs/get-started/cardano-cli/governance/governance-actions.md)
     - **GovTool:** A dedicated governance tool. [How to propose a governance actions Via GovTools](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
 
+Optionally, authors can consider socialising their idea for a governance action before submission, giving stakeholders time to provide feedback.
 ---
 
 ## Creating the Metadata File
 
-The metadata file is critical for informing voters about your proposal. It should:
+The metadata file is critical for informing voters about the context of your proposal. It should:
 
 - **Follow the Standardized Format (CIP-100 and CIP-108):**
   - [CIP-100 (Governance Metadata - Standard)](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0100)
@@ -99,6 +100,7 @@ Pinning your metadata to IPFS ensures that it is stored on a decentralized netwo
 - **Using IPFS:**  
   Follow the official IPFS guide to pin your files manually. [IPFS Pinning Guide](https://docs.ipfs.io/how-to/pin-files/)
 
+To ensure fast and reliable access, it is recommended to use multiple different pinning services.
 
 By following these steps, you ensure your metadata is permanently accessible and immutable, which builds trust in your governance actions by allowing all stakeholders to verify the original content using a permanent link or CID.
 
@@ -178,7 +180,7 @@ These recommendations provide additional guidance for each specific type of gove
 ### Info
 
 - **Clearly state the question or information** being presented.
-- **Explain the purpose of the Info action** and how the results will be used.
+- **Explain the purpose of the Info action** and how the votes will be counted (if any ratification criteria is desired) and how the results will be used.
 
 ---
 
