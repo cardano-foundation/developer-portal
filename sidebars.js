@@ -151,6 +151,7 @@ module.exports = {
         items: [
           "governance/cardano-governance/overview",
           "governance/cardano-governance/governance-actions",
+          "governance/cardano-governance/submitting-governance-actions",
         ],
       },
       "governance/project-catalyst",
