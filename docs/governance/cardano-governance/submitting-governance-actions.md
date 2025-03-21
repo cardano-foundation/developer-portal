@@ -89,14 +89,16 @@ To ensure transparency and permanence, your metadata file and references should 
 - **Generate an Immutable Link:**  
   Navigate to your metadata file in your repository and click the **"Raw"** button. Copy the URL from your browser’s address bar, then replace the branch name with the commit hash. Detailed instructions can be found here: [Getting Permanent Links to Files on GitHub](https://docs.github.com/en/github/managing-files-in-a-repository/getting-permanent-links-to-files)
 
-### 3. Pin Your Metadata to IPFS
+### 3. Pin Your Metadata to IPFS or Filecoin
 
-Pinning your metadata to IPFS ensures that it is stored on a decentralized network and remains available permanently:
+Pinning your metadata to IPFS or Filecoin ensures that it is stored on a decentralized network and remains available permanently:
 
 - **Using the NMKR API:**  
   Follow the NMKR API instructions for pinning files to IPFS. [NMKR API Tutorial for Pinning Files to IPFS](https://docs.nmkr.io/nmkr-studio-api/api-features#ipfs)
 - **Using the Blockfrost Tutorial:**  
-  Use Blockfrost’s guide to pin your metadata via their API. [Blockfrost Tutorial for Pinning Files to IPFS](https://blockfrost.dev/start-building/ipfs/)
+  Use Blockfrost’s guide to pin your metadata via their API. 
+  - [Blockfrost Tutorial for Pinning Files to IPFS](https://blockfrost.dev/start-building/ipfs/)
+  - [Blockfrost Tutorial for Pinning Files to Filecoin](https://blockfrost.dev/start-building/ipfs/#filecoin)
 - **Using IPFS:**  
   Follow the official IPFS guide to pin your files manually. [IPFS Pinning Guide](https://docs.ipfs.io/how-to/pin-files/)
 
