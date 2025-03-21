@@ -2,7 +2,7 @@
 const vars = require('./variables')
 
 // enable or disable the announcement header bar (see 'announcementBar' section below)
-const isAnnouncementActive = false;
+const isAnnouncementActive = true;
 
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
@@ -48,9 +48,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: isAnnouncementActive ?{
-      id: "announcement_index5", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index6", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Calling all Cardano developers! Your experience matters, take the annual <a target="_blank" rel="noopener noreferrer" href="https://cardanofoundation.outgrow.us/cardano-developer-ecosystem-survey-2024">Developer Ecosystem Survey</a> ⭐️</strong>`,
+        `<strong>Cardano developers, quick poll: Should smart contract memory units be increased? Share your thoughts <a target="_blank" rel="noopener noreferrer" href="https://cardanocommunity.typeform.com/to/HqPkH5Yy">here</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -154,10 +154,6 @@ module.exports = {
             {
               label: "Cardano Forum",
               href: "https://forum.cardano.org/c/developers/29",
-            },
-            {
-              label: "Developer Portal Discord",
-              href: "https://discord.com/invite/Exe6XmqKDx",
             },
             {
               label: "Developer Ecosystem Survey",
@@ -265,7 +261,7 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/setup-firewall',
           },
           {
-            to: '/docs/operate-a-stake-pool/node-installation-process/',
+            to: '/docs/get-started/cardano-node/installing-cardano-node/',
             from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
           },
           {
@@ -303,7 +299,7 @@ module.exports = {
                   ]
           },
           {
-            to: '/docs/operate-a-stake-pool/cardano-relay-configuration/',
+            to: '/docs/operate-a-stake-pool/relay-node-configuration/',
             from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
         ],
