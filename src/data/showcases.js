@@ -1023,15 +1023,6 @@ export const Showcases = [
     tags: ["wallet", "nftsupport"],
   },
   {
-    title: "DROPSPOT",
-    description:
-      "Premium NFT-as-a-Service, project advisory & design, minting services, white label services, claim services, loyalty programs, collectible design & development, activations and artist collaborations.",
-    preview: require("./showcase/dropspot.png"),
-    website: "https://dropspot.io/",
-    source: null,
-    tags: ["marketplace", "nftsupport", "minting"],
-  },
-  {
     title: "DexHunter",
     description:
       "DexHunter is a decentralized exchange aggregator with real-time alerts and an easy to use interface.",
@@ -1048,15 +1039,6 @@ export const Showcases = [
     website: "https://liqwid.finance/",
     source: null,
     tags: ["lending", "token", "marketplace", "nftsupport"],
-  },
-  {
-    title: "decon",
-    description:
-      "decon is a decentralized social forum.",
-    preview: require("./showcase/decon.png"),
-    website: "https://decon.app/",
-    source: "https://github.com/alucao/decon",
-    tags: ["opensource", "metadata"],
   },
   {
     title: "Charli3",
