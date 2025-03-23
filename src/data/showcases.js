@@ -1023,15 +1023,6 @@ export const Showcases = [
     tags: ["wallet", "nftsupport"],
   },
   {
-    title: "DROPSPOT",
-    description:
-      "Premium NFT-as-a-Service, project advisory & design, minting services, white label services, claim services, loyalty programs, collectible design & development, activations and artist collaborations.",
-    preview: require("./showcase/dropspot.png"),
-    website: "https://dropspot.io/",
-    source: null,
-    tags: ["marketplace", "nftsupport", "minting"],
-  },
-  {
     title: "DexHunter",
     description:
       "DexHunter is a decentralized exchange aggregator with real-time alerts and an easy to use interface.",
@@ -1048,15 +1039,6 @@ export const Showcases = [
     website: "https://liqwid.finance/",
     source: null,
     tags: ["lending", "token", "marketplace", "nftsupport"],
-  },
-  {
-    title: "decon",
-    description:
-      "decon is a decentralized social forum.",
-    preview: require("./showcase/decon.png"),
-    website: "https://decon.app/",
-    source: "https://github.com/alucao/decon",
-    tags: ["opensource", "metadata"],
   },
   {
     title: "Charli3",
@@ -1113,6 +1095,15 @@ export const Showcases = [
     tags: ["governance", "analytics"],
   },
   {
+    title: "Medusa Wallet",
+    description:
+        "A lightweight Cardano wallet focused on privacy and user protection, enabling easy and secure access to funds even in untrusted or compromised environments. ",
+    preview: require("./showcase/medusa_wallet_poster.png"),
+    website: "https://adawallet.io",
+    source: null,
+    tags: ["wallet"],
+   },
+   {
     title: "Danogo",
     description:
       "Danogo is a yield aggregator that provides lending and borrowing, obtaining optimized rates by combining data from multiple Cardano protocols.",
