@@ -1139,6 +1139,15 @@ export const Showcases = [
     source: null,
     tags: ["wallet", "nftsupport"],
   },
+  {
+    title: "Onboard Ninja",
+    description:
+      "Onboard is a platform that allows creators to effortlessly distribute Cardano airdrops at in-person events.",
+    preview: require("./showcase/onboard-ninja.jpg"),
+    website: "https://onboard.ninja",
+    source: null,
+    tags: ["favorite", "minting", "token", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
