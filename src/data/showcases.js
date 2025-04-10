@@ -27,6 +27,14 @@ export const Tags = {
     color: '#e9669e',  // Vibrant Pink
   },
 
+  // Accounting
+  accounting: {
+    label: "Accounting",
+    description: "Tools providing specialised analytics for financial purposes, including portfolio tracking.",
+    icon: null,
+    color: '#85BB65',  // Dollar Bill Green
+  },
+
   // Analytics
   analytics: {
     label: "Analytics",
