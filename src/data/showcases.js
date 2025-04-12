@@ -1137,7 +1137,7 @@ export const Showcases = [
     preview: require("./showcase/Nio_app.png"),
     website: "https://nioapp.io",
     source: null,
-    tags: ["explorer"],
+    tags: ["accounting"],
   },
   {
     title: "Begin Wallet",
