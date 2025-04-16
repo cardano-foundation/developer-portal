@@ -1148,6 +1148,15 @@ export const Showcases = [
     source: null,
     tags: ["favorite", "minting", "token", "nftsupport"],
   },
+  {
+    title: "Cardano Budget Proposals",
+    description:
+      "This is a budget proposal aggregator tool, designed to help DReps and ADA holders easily track proposals submitted on GovTool — without needing to connect a wallet or go through authentication when accessing it.",
+    preview: require("./showcase/cardano-budget-proposals.jpg"),
+    website: "https://cardanobudget.com",
+    source: null,
+    tags: ["governance"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
