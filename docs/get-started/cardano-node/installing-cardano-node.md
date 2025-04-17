@@ -238,7 +238,7 @@ sudo make install
 
 Find out the correct `blst` version:
 ```bash
-BLST_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/master/flake.lock | jq -r '.nodes.blst.original.ref')
+BLST_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.blst.original.ref')
 echo "Using blst version: ${BLST_VERSION}"
 ```
 
