@@ -1050,15 +1050,6 @@ export const Showcases = [
     tags: ["oracle", "metadata"],
   },
   {
-    title: "Emurgo Academy",
-    description:
-      "Blockchain education and training programs designed to equip individuals with the knowledge and skills needed to understand and develop blockchain solutions. The paid courses cover various aspects of blockchain technology, including its fundamentals, development, and applications, with a focus on Cardano.",
-    preview: require("./showcase/emurgo-academy.jpg"),
-    website: "https://education.emurgo.io/cardano-courses/",
-    source: null,
-    tags: ["educational"],
-  },
-  {
     title: "Cardano Academy",
     description:
       "Learn blockchain fundamentals, consensus algorithms, and encryption methods. You’ll explore transaction models, risk mitigation, and scaling solutions. Additionally, you’ll delve into the Cardano blockchain, its governance, and practical uses of ada, including staking and decentralized applications.​",
