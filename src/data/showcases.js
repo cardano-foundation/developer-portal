@@ -1142,7 +1142,7 @@ export const Showcases = [
   {
     title: "Cardano Budget Proposals",
     description:
-      "This is a budget proposal aggregator tool, designed to help DReps and ada holders easily track proposals submitted easy way.",
+      "This is a budget proposal aggregator tool, designed to help DReps and ada holders easily track submitted proposals.",
     preview: require("./showcase/cardano-budget-proposals.jpg"),
     website: "https://cardanobudget.com",
     source: null,
