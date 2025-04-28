@@ -1129,7 +1129,7 @@ export const Showcases = [
     website: "https://begin.is",
     source: null,
     tags: ["wallet", "nftsupport"],
-  },
+  }, 
   {
     title: "Onboard Ninja",
     description:
@@ -1138,6 +1138,15 @@ export const Showcases = [
     website: "https://onboard.ninja",
     source: null,
     tags: ["favorite", "minting", "token", "nftsupport"],
+  },
+  {
+    title: "IAMX",
+    description: 
+      "IAMX.id builds digital self-sovereign identity solutions, including decentralized identifier (DID) methods. The platform provides advanced, compliant onboarding services (KYC, KYB, AML) and offers fully customizable integration for blockchain projects.",
+    preview: require("./showcase/iamx.png"),
+    website: "https://iamx.id",
+    source: null,
+    tags: ["metadata", "identity"],
   },
 ];
 
