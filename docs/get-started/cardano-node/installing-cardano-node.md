@@ -6,6 +6,7 @@ sidebar_position: 2
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
 image: /img/og/og-getstarted-installing-cardano-node.png
 ---
+
 # Installing the node from source
 
 The **latest** version of the node may be downloaded from the [cardano-node GitHub Releases](https://github.com/intersectmbo/cardano-node/releases) page.
@@ -36,7 +37,7 @@ To download the source code and build it, you need the following packages and to
 * developer libraries for `ncurses`,
 * `ncurses` compatibility libraries,
 * the Haskell build tool `cabal`,
-* the GHC Haskell compiler (version `8.10.7` or above).
+* the GHC Haskell compiler (version `9.6.7` or above).
 
 In Redhat, Fedora, and Centos:
 
@@ -112,15 +113,15 @@ The recommended way to install the Haskell tools is via [GHCup](https://www.hask
 Once GHCup is installed, open a new terminal (to get an updated environment) and run:
 
 ```bash
-ghcup install ghc 8.10.7
-ghcup install cabal 3.8.1.0
-ghcup set ghc 8.10.7
-ghcup set cabal 3.8.1.0
+ghcup install ghc 9.6.7
+ghcup install cabal 3.12.1.0
+ghcup set ghc 9.6.7
+ghcup set cabal 3.12.1.0
 ```
 
 Alternatively, with `ghcup tui` you can pick the specific versions of the tools that you want to install, in particular you should have installed and set:
-- `cabal >= 3.8.1.0`
-- `GHC >= 8.10.7`
+- `cabal >= 3.12.1.0`
+- `GHC >= 9.6.7`
 
 To check that you will use the GHCup tools (and not any other installation on the system), you can execute
 
@@ -238,7 +239,7 @@ sudo make install
 
 Find out the correct `blst` version:
 ```bash
-BLST_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/master/flake.lock | jq -r '.nodes.blst.original.ref')
+BLST_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.blst.original.ref')
 echo "Using blst version: ${BLST_VERSION}"
 ```
 
