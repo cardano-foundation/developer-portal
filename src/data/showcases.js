@@ -1140,6 +1140,15 @@ export const Showcases = [
     tags: ["favorite", "minting", "token", "nftsupport"],
   },
   {
+    title: "Governance Space",
+    description:
+      "All-in-One Governance Platform. Decentralized Governance for Everyone. A complete blockchain governance platform for DAOs, projects, and institutions seeking transparency, security, and efficiency in their decision-making processes.",
+    preview: require("./showcase/govspace.png"),
+    website: "https://governancespace.com/",
+    source: null,
+    tags: ["daotool", "governance"],
+  },
+  {
     title: "Cardano Budget Proposals",
     description:
       "This is a budget proposal aggregator tool, designed to help DReps and ada holders easily track submitted proposals.",
