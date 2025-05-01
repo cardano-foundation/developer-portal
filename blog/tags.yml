@@ -1,7 +1,7 @@
 # TODO: This file needs a lot of work, once done re-tagging of the developer blog is needed
-# please refrain from using tags that are not defined here. 
+# please refrain from using tags that are not defined here.
 # (because of this we are getting a lot of build warnings)
-# 
+#
 # General advice when it comes to tagging: if only one blog post is using this tag, dont create it.
 
 interview:
@@ -24,8 +24,8 @@ DAO:
   permalink: /DAO
   description: All blockchain-based self-governing organizations (Decentralised Autonomous Organization)
 
-developer office hours:
-  label: Developer Office Hours
+developer-office-hours:
+  label: developer-office-hours
   permalink: /developer-office-hours
   description: Developer Office Hours are dynamic and interactive sessions where the Cardano developer community connects with experts to explore new and evolving developments. These sessions focus on exploring new and updated developments, featuring expert presentations, live demos, and interactive Q&A segments that break down complex topics.
 
@@ -98,3 +98,8 @@ real-world-assets:
   label: real-world-assets
   permalink: /real-world-assets
   description: All content related to real-world-assets includes tangible and intangible physical-world assets, such as real estate, commodities, financial instruments, and intellectual property, often digitized or tokenized for blockchain or DeFi.
+
+media:
+  label: media
+  permalink: /media
+  description: Content with media
