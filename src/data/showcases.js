@@ -1148,6 +1148,15 @@ export const Showcases = [
     source: null,
     tags: ["governance"],
   },
+  {
+    title: "Adastack.io",
+    description:
+      "Comprehenisive Cardano ecosystem explorer: Explore intro guides, wallets, DApps, NFTs, games, governance, Project Catalyst, DAOs, development, sidechains, L2s and more.",
+    preview: require("./showcase/adastack.png"),
+    website: "https://www.adastack.io",
+    source: null,
+    tags: ["ecosystem", "educational"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
