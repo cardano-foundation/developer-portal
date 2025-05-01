@@ -48,9 +48,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: isAnnouncementActive ?{
-      id: "announcement_index6", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index7", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Cardano developers, quick poll: Should smart contract memory units be increased? Share your thoughts <a target="_blank" rel="noopener noreferrer" href="https://cardanocommunity.typeform.com/to/HqPkH5Yy">here</a> ⭐️</strong>`,
+        `<strong>Cardano developers, quick poll: Should the memory execution limits be increased by 25%? Share your thoughts <a target="_blank" rel="noopener noreferrer" href="https://cardanocommunity.typeform.com/to/rjRd2Fn0">here</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true

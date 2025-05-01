@@ -1,122 +1,157 @@
 ---
 id: installing-cardano-node
-title: Installing cardano-node and cardano-cli from source
-sidebar_label: Installing cardano-node
+title: Getting cardano-node and cardano-cli
+sidebar_label: Getting cardano-node
 sidebar_position: 2
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
 image: /img/og/og-getstarted-installing-cardano-node.png
 ---
 
-# Installing the node from source
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-The **latest** version of the node may be downloaded from the [cardano-node GitHub Releases](https://github.com/intersectmbo/cardano-node/releases) page.
 
-## Prerequisites
+# Getting `cardano-node`
+
+Binaries for the **latest** version of the node may be downloaded from the [cardano-node GitHub Releases](https://github.com/intersectmbo/cardano-node/releases) page.
+
+Alternatively, one can build `cardano-node` from source code locally.
+
+## Building from source
+
+The preferred way of building `cardano-node` is via Nix, but the node is
+buildable also using standard Haskell tools after setting up the building
+environment.
+
+### Hardware requirements
 
 To set up your platform, you will need:
 
 
 | Network | CPU Cores | Free RAM | Free storage | OS for Pasive Node | OS for Stake pool |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| Mainnet | 2 | 24GB | 150GB of free storage (250GB recommended for future growth) | Linux / Windows** / MacOS | Linux |
-| Testnet | 2 | 4GB | 20GB | Linux / Windows** / MacOS | Linux |
+| Mainnet | 2 | 24GB | 300GB of free storage (350GB recommended for future growth) | Linux / Windows / MacOS | Linux |
+| Testnet | 2 | 4GB | 20GB | Linux / Windows / MacOS | Linux |
 
-****Note** If you are building on Windows, we recommend using WSL2 under Windows 10 as this provides a development and execution environment that is very similar to Ubuntu.
+### Building via Nix
 
+Having [Git](https://git-scm.com/) and [Nix](https://nixos.org/download/) installed on your system, run the following command to get a built `cardano-node`:
 
-## System dependencies installation
+```bash
+$ git clone https://github.com/IntersectMBO/cardano-node
+$ cd cardano-node
+$ git tag | sort -V
+$ git switch -d tags/<TAGGED VERSION>
+$ nix build .#cardano-node
+```
 
-To download the source code and build it, you need the following packages and tools on your Linux system:
+Alternatively you can build a node without manually cloning the repository with:
+
+```bash
+$ nix build github:IntersectMBO/cardano-node/<TAGGED VERSION>
+```
+
+Consider setting up the IOG binary cache in order to avoid building the universe locally on your machine. See the [IOGX](https://github.com/input-output-hk/iogx/blob/main/doc/nix-setup-guide.md) template documentation for more information.
+
+### Building via `cabal`
+
+To download the source code and build it, you need the following packages and
+tools on your system:
 
 * the version control system `git`,
-* the `gcc` C-compiler,
-* C++ support for `gcc`,
-* developer libraries for the arbitrary precision library `gmp`,
-* developer libraries for the compression library `zlib`,
-* developer libraries for `systemd`,
-* developer libraries for `ncurses`,
+* a C and C++ compiler, either `gcc` or `clang`,
+* developer libraries for:
+  * the arbitrary precision library `gmp`,
+  * the compression library `zlib`,
+  * the service manager `systemd`,
+  * the TUI library `ncurses`,
+  * the key-value database `lmdb`,
+  * the cryptographic suite `openssl`,
 * `ncurses` compatibility libraries,
-* the Haskell build tool `cabal`,
+* the Haskell build tool `cabal` (`3.10.2.0` or above),
 * the GHC Haskell compiler (version `9.6.7` or above).
 
-In Redhat, Fedora, and Centos:
+#### System libraries
 
+<div class="tabsblock">
+<Tabs>
+  <TabItem value="ubuntu" label="Debian/Ubuntu" default>
+    ```bash
+    sudo apt-get update -y
+    sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libncurses-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libtool autoconf liblmdb-dev -y
+    ```
+  </TabItem>
+  <TabItem value="fedora" label="Fedora, RedHat or CentOS">
+    ```bash
+    sudo yum update -y
+    sudo yum install git gcc gcc-c++ tmux gmp-fdevel make tar xz wget zlib-devel libtool autoconf -y
+    sudo yum install systemd-devel ncurses-devel ncurses-compat-libs which jq openssl-devel lmdb-devel -y
+    ```
+  </TabItem>
+  <TabItem value="macos" label="MacOS">
+     You'll need the following packages and tools on your MacOS system:
 
-```bash
-sudo yum update -y
-sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y
-sudo yum install systemd-devel ncurses-devel ncurses-compat-libs which jq openssl-devel lmdb-devel -y
-```
+     * [Xcode](https://developer.apple.com/xcode) - The Apple Development IDE and SDK/Tools
+     * [Xcode Command Line Tools](https://developer.apple.com/xcode/features/), you can install it by typing `xcode-select --install` in the terminal.
+     * [Homebrew](https://brew.sh) - The Missing Package Manager for MacOS (or Linux)
 
-For Debian/Ubuntu:
+     Then using homebrew install the following:
 
-```bash
-sudo apt-get update -y
-sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf liblmdb-dev -y
-```
+     ```bash
+     brew install jq libtool autoconf automake pkg-config openssl
+     ```
 
-Possible issue with `pkg-config`:
+     You will need to install llvm in case you are using M1
 
-`pkgconf` 1.9.5 (which is default in `Fedora 39` and `Rawhide`) produces output unreadable by `cabal`, which results in an errors like:
+     ```
+     brew install llvm@13
+     ```
+  </TabItem>
+  <TabItem value="windows" label="Windows MSYS2">
+  :::caution
+  These instructions might fall out of date unnoticed given the fact that the user base on Windows is small. If you find something is off, please submit a PR.
+  :::
 
-```
-conflict: pkg-config package libsodium-any, not found in the pkg-config database
-```
+  Git can be installed via [chocolatey](https://community.chocolatey.org/) (via `choco install git`) or [Scoop](https://scoop.sh) (via `scoop install git`).
 
-despite having `libsodium` installed in the system.
+  :::caution
+  Using [Winget](https://winget.run/) will install [Git for Windows](https://gitforwindows.org/) which might be confusing as it works in an environment separate from MSYS2. It is perfectly possible to use this git but things can become confusing.
+  :::
 
-The possible solutions to this problem are:
+  The rest of the libraries will be installed inside MSYS2, for whichever [environment](https://www.msys2.org/docs/environments/) you choose to use. As GHC on Windows switched to `clang` it seems acceptable to recommend using `CLANG64` environment, but others might also work.
 
-- to upgrade `pkgconf` to version 2 by building it from source:
+  GHCup offers installing a MSYS2 environment local to the Haskell installation, just by running the command on [GHCup's front page](https://ghcup.haskell.org/). It also can work with an existing system-wide [MSYS2](https://www.msys2.org/) installation if using the following command (just adding a couple of parameters to the invocation of the bootstrap script. If you installed it somewhere else than `C:\msys64` modify the parameter accordingly):
+
+  ```powershell
+  PS> Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+  PS> try { & ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -Interactive -DisableCurl -ExistingMsys2Dir C:\msys64 -Msys2Env CLANG64 } catch { Write-Error $_ }
   ```
-  yum update -y && \
-  yum install git diffutils gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y && \
-  mkdir -p /root/src/ && cd /root/src && \
-  curl -O https://distfiles.ariadne.space/pkgconf/pkgconf-2.0.3.tar.xz && \
-  tar -xvf pkgconf-2.0.3.tar.xz && \
-  cd pkgconf-2.0.3 && \
-  ./configure && make && make install && \
+
+  Once an MSYS2 environment is installed we should install the following packages via `pacman` (note that you will have to prefix the `pacman` invocation with `ghcup run --mingw-path --` if using the GHCup MSYS2):
+
+  ```console
+  > pacman -S autoconf autotools ca-certificates mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-gmp mingw-w64-clang-x86_64-libtool mingw-w64-clang-x86_64-libffi mingw-w64-clang-x86_64-openssl mingw-w64-clang-x86_64-zlib mingw-w64-clang-x86_64-lmdb
   ```
 
-- to use `cabal` version (higher than `3.10.2.0`) that have these changes already integrated:
-  - [Try each pkg-config query separatedly](https://github.com/haskell/cabal/pull/9134)
-  - [fix pkgconf 1.9 --modversion regression](https://github.com/haskell/cabal/pull/9391)
+  </TabItem>
+</Tabs>
+
+</div>
 
 
-Optional dependencies that may be required: llvm libnuma-dev
-
-If you are using a different flavor of Linux, you will need to use the correct package manager for your platform instead of `yum` or `apt-get`, and the names of the packages you need to install might differ.
-
-For MacOS:
-
-You'll need the following packages and tools on your MacOS system:
-
-* [Xcode](https://developer.apple.com/xcode) - The Apple Development IDE and SDK/Tools
-* [Xcode Command Line Tools](https://developer.apple.com/xcode/features/), you can install it by typing `xcode-select --install` in the terminal.
-* [Homebrew](https://brew.sh) - The Missing Package Manager for MacOS (or Linux)
-
-Then using homebrew install the following:
-
-```bash
-brew install jq libtool autoconf automake pkg-config openssl
-```
-### You will need to install llvm in case you are using M1
-
-```
-brew install llvm@13
-```
-
-## Installing the Haskell environment
+#### Installing the Haskell environment
 
 The recommended way to install the Haskell tools is via [GHCup](https://www.haskell.org/ghcup/). Its installation script will guide you through the installation, and warn you about packages that you have to make sure are installed in the system (the ones described on the step above). Check [this page](https://www.haskell.org/ghcup/install/) for further explanation on the installation process.
+
+:::caution
+On Windows, we discussed how to install GHCup in the step above, depending on how you want to install MSYS2.
+:::
 
 Once GHCup is installed, open a new terminal (to get an updated environment) and run:
 
 ```bash
-ghcup install ghc 9.6.7
-ghcup install cabal 3.12.1.0
-ghcup set ghc 9.6.7
-ghcup set cabal 3.12.1.0
+ghcup install --set ghc 9.6.7
+ghcup install --set cabal 3.12.1.0
 ```
 
 Alternatively, with `ghcup tui` you can pick the specific versions of the tools that you want to install, in particular you should have installed and set:
@@ -131,23 +166,35 @@ which cabal
 
 and it should return a path of this shape: `/home/<user>/.ghcup/bin/cabal`.
 
-## Installing dependencies
+#### Dependencies required to be at specific versions
 
-Decide which version of Cardano Node you will be installing. 
+:::info
+Pre-built libraries can be downloaded from iohk-nix releases, following what is done [in the base CI Github Action](https://github.com/input-output-hk/actions/blob/latest/base/action.yml).
+
+In particular for Windows this is probably the easiest method. Note you will need to set these variables in your `.bashrc` or whatever you use to source your shell:
+
+```bash
+export PKG_CONFIG_PATH=/mingw64/opt/cardano/lib/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=/mingw64/opt/cardano/bin:$LD_LIBRARY_PATH
+export PATH=/mingw64/opt/cardano/bin:$PATH
+```
+:::
+
+Decide which version of Cardano Node you will be installing.
 A list of available tags is available at: https://github.com/IntersectMBO/cardano-node/tags.
 Set the environment variable to the tag you selected (or use `master` for the latest unstable version):
 ```bash
-CARDANO_NODE_VERSION='9.2.1'
+CARDANO_NODE_VERSION='10.3.1'
 IOHKNIX_VERSION=$(curl https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')
 echo "iohk-nix version: $IOHKNIX_VERSION"
 ```
-The variable `IOHKNIX_VERSION` is used to retrieve the correct versions of `sodium`, `secp256k1` and `blst`.
+The variable `IOHKNIX_VERSION` will be used going forward to retrieve the correct versions of `sodium`, `secp256k1` and `blst`.
 
 :::caution
 Make sure that `secp256k1`, `sodium` and `blst` versions match flake input version in [`iohkNix`](https://github.com/input-output-hk/iohk-nix/blob/master/flake.nix#L14) for a particular node version used.
 :::
 
-### Installing "sodium"
+##### Installing "sodium"
 
 Cardano uses a custom fork of `sodium` which exposes some internal functions
 and adds some other new functions. This fork lives in
@@ -191,31 +238,7 @@ check by running `ldd`), the running binary might still use the wrong library.
 You can check this by running `pldd`. If the `pldd` shows that the running executable
 is using the wrong library, run `ldconfig`.
 
-#### Using the ported `c` code for development
-:::caution
-The ported `c` code should not be used to run the node, and should only be
-used for development purposes.
-:::
-
-In order to avoid having to install the custom version of libsodium for development
-purposes, `cardano-crypto-praos` defines a `cabal` flag that makes use of C code located
-[here](https://github.com/input-output-hk/cardano-base/tree/master/cardano-crypto-praos/cbits).
-
-The C code is merely a port of the bits missing in a normal `libsodium`
-installation. To enable this code, one has to add the following code in the
-`cabal.project.local` file:
-```bash
-package cardano-crypto-praos
-  flags: -external-libsodium-vrf
-```
-
-For this to work, `libsodium` has to be in the system. For Ubuntu, this is achieved by:
-```bash
-sudo apt install libsodium-dev
-```
-
-### Installing `secp256k1`
-
+##### Installing `secp256k1`
 
 Find out the correct `secp256k1` version:
 ```bash
@@ -235,7 +258,7 @@ make check
 sudo make install
 ```
 
-### Installing `blst`
+##### Installing `blst`
 
 Find out the correct `blst` version:
 ```bash
@@ -268,8 +291,8 @@ sudo cp libblst.a /usr/local/lib
 sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{blst.{h,hpp},blst_aux.h}}
 ```
 
-## Installing the node
-### Downloading the source code for cardano-node
+#### Installing the node
+##### Downloading the source code for cardano-node
 
 Create a working directory for your builds:
 ```bash
@@ -287,20 +310,18 @@ Change the working directory to the downloaded source code folder:
 cd cardano-node
 ```
 
-
 Check out the latest version of cardano-node (choose the tag with the highest version number: ``TAGGED-VERSION``):
 ```bash
-git fetch --all --recurse-submodules --tags
 git tag | sort -V
-git checkout tags/<TAGGED VERSION>
+git switch -d tags/<TAGGED VERSION>
 ```
 
-### Configuring the build options
+##### Configuring the build options
 
 We explicitly use the GHC version that we installed earlier.  This avoids defaulting to a system version of GHC that might be different than the one you have installed.
 
 ```bash
-echo "with-compiler: ghc-8.10.7" >> cabal.project.local
+echo "with-compiler: ghc-9.6.7" >> cabal.project.local
 ```
 
 You will need to run following commands on M1, those commands will set some cabal related options before building
@@ -313,6 +334,8 @@ echo "package HsOpenSSL" >> cabal.project.local
 echo "  flags: -homebrew-openssl" >> cabal.project.local
 echo "" >> cabal.project.local
 ```
+
+:::caution
 
 More recent versions of MacOS seems to install openssl in a different location than expected by default. If you have installed openssl via homebrew and encounter the following build error:
 
@@ -334,23 +357,36 @@ sudo ln -s /opt/homebrew/opt/openssl@3/include /usr/local/opt/openssl/include
 
 This is a wart of the `HsOpenSSL` library wrapper, and using classic methods such as setting `LDFLAGS` & `CPPFLAGS`, or using `--extra-include-dirs` and `--extra-lib-dirs` won't work properly.
 
-### Building and installing the node
+:::
+
+##### Building and installing the node
 
 Build the node and CLI with `cabal`:
 
 
 ```bash
 cabal update
-cabal build all
-cabal build cardano-cli
+cabal build exe:cardano-node
+cabal build exe:cardano-cli
 ```
+
+:::caution
+On Windows, should you run into an error like this one when building:
+```
+ld.lld: error: undefined symbol: __local_stdio_printf_options
+>>> referenced by libHSprocess-1.6.25.0-4d1c620770857b639d352d5e988299133f830295.a(runProcess.o):(swprintf_s)
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+
+You should comment out `extra-lib-dirs` and `extra-include-dirs` in `~/AppData/Roaming/cabal/config`. See [this ticket](https://github.com/haskell/process/issues/340) for an example.
+:::
 
 Install the newly built node and CLI commands to the `~/.local/bin` directory:
 
 ```bash
 mkdir -p ~/.local/bin
-cp -p "$(./scripts/bin-path.sh cardano-node)" ~/.local/bin/
-cp -p "$(./scripts/bin-path.sh cardano-cli)" ~/.local/bin/
+cp -p "$(cabal list-bin cardano-node)" ~/.local/bin/
+cp -p "$(cabal list-bin cardano-cli)" ~/.local/bin/
 ```
 **Note:** If cardano-cli does not build with 'cabal build all', run 'cabal build cardano-cli'.
 **Note:** `~/.local/bin` should be in the `$PATH`.
@@ -361,10 +397,10 @@ the git revision with the `--version` switch.
 Check the version that has been installed:
 
 ```bash
+cardano-node --version
 cardano-cli --version
 ```
 
 Repeat the above process when you need to update to a new version.
 
-
-**Note:** It might be necessary to delete the `db`-folder \(the database-folder\) before running an updated version of the node.
+**Note:** If serialization of the ledger state changed, snapshots in your `db/ledger` folder will be deleted by the node on startup. Consider backing those up before starting a new version of the node.

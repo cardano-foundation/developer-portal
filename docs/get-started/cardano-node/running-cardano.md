@@ -5,8 +5,8 @@ sidebar_label: Running cardano-node
 sidebar_position: 3
 description: This guide will explain and show you how to run the cardano-node and components on your system.
 image: /img/og/og-getstarted-running-cardano-node.png
---- 
-### Overview 
+---
+### Overview
 
 This guide will show you how to run `cardano-node` and `cardano-cli` on your system and some simple examples of how you can interact with the **Cardano** blockchain.
 
@@ -55,28 +55,14 @@ You can download the current **Cardano** blockchain network configuration files 
 **NetworkMagic**: `2`
 
 ```
-curl -O -J https://book.play.dev.cardano.org/environments/preview/config.json
-curl -O -J https://book.play.dev.cardano.org/environments/preview/db-sync-config.json
-curl -O -J https://book.play.dev.cardano.org/environments/preview/submit-api-config.json
-curl -O -J https://book.play.dev.cardano.org/environments/preview/topology.json
-curl -O -J https://book.play.dev.cardano.org/environments/preview/byron-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/preview/shelley-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/preview/alonzo-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/preview/conway-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preview/{config,db-sync-config,submit-api-config,topology,byton-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json
 ```
 #### Testnet / Preprod
 
 **NetworkMagic**: `1`
 
 ```
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/config.json
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/db-sync-config.json
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/submit-api-config.json
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/topology.json
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/byron-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/shelley-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/alonzo-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/preprod/conway-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/preprod/{config,db-sync-config,submit-api-config,topology,byton-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json
 ```
 
 #### Mainnet / Production
@@ -84,14 +70,7 @@ curl -O -J https://book.play.dev.cardano.org/environments/preprod/conway-genesis
 **NetworkMagic**: `764824073`
 
 ```
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/config.json
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/db-sync-config.json
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/submit-api-config.json
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/topology.json
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/byron-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/shelley-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/alonzo-genesis.json
-curl -O -J https://book.play.dev.cardano.org/environments/mainnet/conway-genesis.json
+curl -O -J https://book.play.dev.cardano.org/environments/mainnet/{config,db-sync-config,submit-api-config,topology,byton-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json
 ```
 
 The latest supported networks can be found at https://book.play.dev.cardano.org/environments.html
@@ -107,9 +86,9 @@ You might be asking what the difference is between `mainnet` and `testnet` and w
 
 Testing the network's features and capabilities can be expensive and will consume real value. So [Input-Output Global](https://iohk.io) has spun up sandboxes or testnet versions of the network. Instead of using real `ada` tokens for transactions, you use the `tAda` or **Test ADA**. Alternatively, you can spin up your own custom **Cardano** network, but that is outside the scope of this guide.
 
-### Running the node
+## Running the node
 
-To run `cardano-node` you enter something like this into the terminal: 
+To run `cardano-node` you enter something like this into the terminal:
 
 ```bash
  cardano-node run \
@@ -124,22 +103,43 @@ To run `cardano-node` you enter something like this into the terminal:
 To get the complete list of available options, use `cardano-node run --help`
 
 ```
-Usage: cardano-node run [--topology FILEPATH] [--database-path FILEPATH] 
-                        [--socket-path FILEPATH] 
-                        [--byron-delegation-certificate FILEPATH] 
-                        [--byron-signing-key FILEPATH] 
-                        [--shelley-kes-key FILEPATH] 
-                        [--shelley-vrf-key FILEPATH] 
-                        [--shelley-operational-certificate FILEPATH] 
-                        [--bulk-credentials-file FILEPATH] [--host-addr IPV4] 
-                        [--host-ipv6-addr IPV6] [--port PORT] 
-                        [--config NODE-CONFIGURATION] [--validate-db]
+Usage: cardano-node run [--topology FILEPATH]
+  [ --database-path FILEPATH
+  | --immutable-database-path FILEPATH --volatile-database-path FILEPATH
+  ]
+  [--validate-db]
+  [--socket-path FILEPATH]
+  [--tracer-socket-path-accept FILEPATH | --tracer-socket-path-connect FILEPATH]
+  [--config NODE-CONFIGURATION]
+  [--byron-delegation-certificate FILEPATH]
+  [--byron-signing-key FILEPATH]
+  [--shelley-kes-key FILEPATH]
+  [--shelley-vrf-key FILEPATH]
+  [--shelley-operational-certificate FILEPATH]
+  [--bulk-credentials-file FILEPATH]
+  [--non-producing-node]
+  [--host-addr IPV4]
+  [--host-ipv6-addr IPV6]
+  [--port PORT]
+w
   Run the node.
 
 Available options:
   --topology FILEPATH      The path to a file describing the topology.
   --database-path FILEPATH Directory where the state is stored.
+  --immutable-database-path FILEPATH
+                           Directory where the state is stored.
+  --volatile-database-path FILEPATH
+                           Directory where the state is stored.
+  --validate-db            Validate all on-disk database files
   --socket-path FILEPATH   Path to a cardano-node socket
+  --tracer-socket-path-accept FILEPATH
+                           Accept incoming cardano-tracer connection at local
+                           socket
+  --tracer-socket-path-connect FILEPATH
+                           Connect to cardano-tracer listening on a local socket
+  --config NODE-CONFIGURATION
+                           Configuration file for the cardano-node
   --byron-delegation-certificate FILEPATH
                            Path to the delegation certificate.
   --byron-signing-key FILEPATH
@@ -152,17 +152,19 @@ Available options:
                            Path to the delegation certificate.
   --bulk-credentials-file FILEPATH
                            Path to the bulk pool credentials file.
-  --host-addr IPV4         An optional ipv4 address
-  --host-ipv6-addr IPV6    An optional ipv6 address
+  --non-producing-node     Start the node as a non block producing node even if
+                           credentials are specified.
+  --host-addr IPV4         An optional IPv4 address
+  --host-ipv6-addr IPV6    An optional IPv6 address
   --port PORT              The port number
-  --config NODE-CONFIGURATION
-                           Configuration file for the cardano-node
-  --validate-db            Validate all on-disk database files
   --shutdown-ipc FD        Shut down the process when this inherited FD reaches
                            EOF
   --shutdown-on-slot-synced SLOT
                            Shut down the process after ChainDB is synced up to
                            the specified slot
+  --shutdown-on-block-synced BLOCK
+                           Shut down the process after ChainDB is synced up to
+                           the specified block
   -h,--help                Show this help text
 ```
 ### cardano-node parameters
@@ -171,7 +173,7 @@ Available options:
 In this section, we will use the path `$HOME/cardano/testnet` to store all the testnet `cardano-node` related files as an example, and please replace it with the directory you have chosen to store the files.
 :::
 
-We will focus on six key command-line parameters for running a node: 
+We will focus on six key command-line parameters for running a node:
 
 **`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](docs/get-started/cardano-node/running-cardano.md#configuration-files).
 
@@ -192,14 +194,9 @@ $HOME/cardano/testnet/
 ├── config.json
 ├── shelley-genesis.json
 └── topology.json
-├── alonzo-genesis.json
-├── byron-genesis.json
-├── config.json
-├── shelley-genesis.json
-└── topology.json
-1 directory, 4 files
+1 directory, 5 files
 ```
-> As you may have noticed, we are planning to run a testnet node in this example and have downloaded the configuration files into the `$HOME/cardano/testnet/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/testnet/` successfully. The argument would look something like this: 
+> As you may have noticed, we are planning to run a testnet node in this example and have downloaded the configuration files into the `$HOME/cardano/testnet/` directory. We also see that we have created the `db` directory inside `$HOME/cardano/testnet/` successfully. The argument would look something like this:
 ```
 --database-path $HOME/cardano/testnet/db
 ```
@@ -208,13 +205,13 @@ $HOME/cardano/testnet/
 **`--socket-path`**: This expects the path to the `unix socket` or `named pipe` path that the `cardano-node` will use for [IPC (Inter-Process-Communication)](https://en.wikipedia.org/wiki/Inter-process_communication).
 
 > The `cardano-node` uses **IPC (Inter-Process-Communication)** for communicating with other **Cardano** components like `cardano-cli`, `cardano-wallet`, and `cardano-db-sync`. In **Linux** and **MacOS** it uses something called [unix sockets](https://en.wikipedia.org/wiki/Unix_domain_socket) and [Named Pipes](https://docs.microsoft.com/en-us/windows/win32/ipc/named-pipes) in **Windows**.
-> 
+>
 > Here is an example `--socket-path` argument for **Linux**:
 ```
 --socket-path $HOME/cardano/testnet/db/node.socket
 ```
 > As you can see, the argument points to a file since **unix sockets** are represented as files (like everything else in **Linux**). In this case, we put the socket file in the `db` directory that we have just created before.
-> 
+>
 > In **Windows**, the `--socket-path` argument would look something like this:
 ```
 --socket-path "\\\\.\\pipe\\cardano-node-testnet"
@@ -290,7 +287,7 @@ Listening on http://127.0.0.1:12798
 
 Syncing the blockchain from zero can take a while. Please be patient. If you want to stop syncing, you can do so by pressing `CTRL` + `C` while in the terminal. Rerunning the `cardano-node run` command with the correct parameters will resume syncing the blockchain.
 
-### Querying the Cardano Blockchain
+## Querying the Cardano Blockchain
 
 Now that we have `cardano-node` running and syncing, we can test it out by querying the blockchain tip data; which is the current point your local node is synced. To do this, we use the `cardano-cli` command-line application.
 
