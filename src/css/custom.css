@@ -118,3 +118,8 @@ div#faucetcontainer {
   -moz-resize: none;
   resize: none;
 }
+
+.tabsblock {
+    background: rgba(86, 91, 115, 0.15);
+    border-radius: .4rem;
+}
