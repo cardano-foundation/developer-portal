@@ -111,10 +111,9 @@ DNS based relays, 1 entry per DNS record
     --pool-relay-port 6000 \
 ```
 
-Round Robin DNS based relays, 1 entry per SRV DNS record
+SRV based relays
 ```
     --multi-host-pool-relay <relaynodes.yourpoolname.com> \
-    --pool-relay-port 6000 \
 ```
 
 IP based relays, 1 entry per IP address
