@@ -1155,7 +1155,7 @@ export const Showcases = [
     preview: require("./showcase/adam.png"),
     website: "https://androdevs.de",
     source: null,
-    tags: ["explorer", "pooltool", "nftsupport"],
+    tags: ["accounting", "nftsupport"],
   },
 ];
 
