@@ -1156,6 +1156,15 @@ export const Showcases = [
     source: null,
     tags: ["governance"],
   },
+  {
+    title: "Cardano Signer",
+    description:
+      "Tool to sign and verify keys and metadata for pools, wallets and governance usage.",
+    preview: require("./builder-tools/cardano-signer.png"),
+    website: "https://github.com/gitmachtl/cardano-signer",
+    source: null,
+    tags: ["governance", "wallet", "pooltool", "metadata", "opensource"],
+  }, 
 ];
 
 export const TagList = Object.keys(Tags);
