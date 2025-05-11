@@ -18,6 +18,7 @@ import PortalHero from "../portalhero";
 import { toggleListItem } from "../../utils/jsUtils";
 import { SortedShowcases, Tags, TagList, Showcases } from "../../data/showcases";
 import { useHistory, useLocation } from "@docusaurus/router";
+import _debounce from 'lodash/debounce';
 import styles from "./styles.module.css";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
@@ -112,7 +113,11 @@ function useFilteredProjects() {
     setOperator(readOperator(location.search));
     setLatest(readLatestOperator(location.search));
     setSearchName(readSearchName(location.search));
-    restoreUserState(location.state);
+    if (ExecutionEnvironment.canUseDOM && location.state) {
+      setTimeout(() => {
+        restoreUserState(location.state);
+      }, 0);
+    }
   }, [location]);
 
   return useMemo(
@@ -301,33 +306,38 @@ function readSearchName(search) {
 function SearchBar() {
   const history = useHistory();
   const location = useLocation();
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(() => readSearchName(location.search) || '');
 
   useEffect(() => {
-    setValue(readSearchName(location.search));
-  }, [location]);
+    setValue(readSearchName(location.search) || '');
+  }, [location.search]);
+
+  const debouncedHistoryPush = useCallback(
+    _debounce((newSearchString) => {
+      history.push({
+        ...location,
+        search: newSearchString,
+        state: prepareUserState(),
+      });
+    }, 300),
+    [history, location] // Dependencies for useCallback
+  );
 
   return (
     <div className={styles.searchContainer}>
       <input
         id="searchbar"
         placeholder="Search projects..."
-        value={value ?? undefined}
+        value={value}
         onInput={(e) => {
-          setValue(e.currentTarget.value);
+          const currentInputValue = e.currentTarget.value;
+          setValue(currentInputValue);
           const newSearch = new URLSearchParams(location.search);
           newSearch.delete(SearchNameQueryKey);
-          if (e.currentTarget.value) {
-            newSearch.set(SearchNameQueryKey, e.currentTarget.value);
+          if (currentInputValue) {
+            newSearch.set(SearchNameQueryKey, currentInputValue);
           }
-          history.push({
-            ...location,
-            search: newSearch.toString(),
-            state: prepareUserState(),
-          });
-          setTimeout(() => {
-            document.getElementById("searchbar")?.focus();
-          }, 0);
+          debouncedHistoryPush(newSearch.toString());
         }}
       />
     </div>
