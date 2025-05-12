@@ -38,17 +38,17 @@ To set up your platform, you will need:
 Having [Git](https://git-scm.com/) and [Nix](https://nixos.org/download/) installed on your system, run the following command to get a built `cardano-node`:
 
 ```bash
-$ git clone https://github.com/IntersectMBO/cardano-node
-$ cd cardano-node
-$ git tag | sort -V
-$ git switch -d tags/<TAGGED VERSION>
-$ nix build .#cardano-node
+git clone https://github.com/IntersectMBO/cardano-node
+cd cardano-node
+git tag | sort -V
+git switch -d tags/<TAGGED VERSION>
+nix build .#cardano-node
 ```
 
 Alternatively you can build a node without manually cloning the repository with:
 
 ```bash
-$ nix build github:IntersectMBO/cardano-node/<TAGGED VERSION>
+nix build github:IntersectMBO/cardano-node/<TAGGED VERSION>
 ```
 
 Consider setting up the IOG binary cache in order to avoid building the universe locally on your machine. See the [IOGX](https://github.com/input-output-hk/iogx/blob/main/doc/nix-setup-guide.md) template documentation for more information.
@@ -123,14 +123,14 @@ tools on your system:
   GHCup offers installing a MSYS2 environment local to the Haskell installation, just by running the command on [GHCup's front page](https://ghcup.haskell.org/). It also can work with an existing system-wide [MSYS2](https://www.msys2.org/) installation if using the following command (just adding a couple of parameters to the invocation of the bootstrap script. If you installed it somewhere else than `C:\msys64` modify the parameter accordingly):
 
   ```powershell
-  PS> Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
-  PS> try { & ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -Interactive -DisableCurl -ExistingMsys2Dir C:\msys64 -Msys2Env CLANG64 } catch { Write-Error $_ }
+  Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+  try { & ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -Interactive -DisableCurl -ExistingMsys2Dir C:\msys64 -Msys2Env CLANG64 } catch { Write-Error $_ }
   ```
 
   Once an MSYS2 environment is installed we should install the following packages via `pacman` (note that you will have to prefix the `pacman` invocation with `ghcup run --mingw-path --` if using the GHCup MSYS2):
 
   ```console
-  > pacman -S autoconf autotools ca-certificates mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-gmp mingw-w64-clang-x86_64-libtool mingw-w64-clang-x86_64-libffi mingw-w64-clang-x86_64-openssl mingw-w64-clang-x86_64-zlib mingw-w64-clang-x86_64-lmdb
+  pacman -S autoconf autotools ca-certificates mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-gmp mingw-w64-clang-x86_64-libtool mingw-w64-clang-x86_64-libffi mingw-w64-clang-x86_64-openssl mingw-w64-clang-x86_64-zlib mingw-w64-clang-x86_64-lmdb
   ```
 
   </TabItem>
