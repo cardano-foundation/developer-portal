@@ -1156,6 +1156,15 @@ export const Showcases = [
     source: null,
     tags: ["governance"],
   },
+  {
+    title: "Moments",
+    description:
+      "A never-ending timeline where creators, share, own and govern their decentralized legacies.",
+    preview: require("./showcase/moments.png"),
+    website: "https://adamoments.io/",
+    source: null,
+    tags: ["analytics","marketplace","minting","nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
