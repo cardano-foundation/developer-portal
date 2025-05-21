@@ -22,7 +22,7 @@ In this model, each transaction consists of inputs and outputs, where inputs rep
   - Handles tracking, building, and submitting transactions, providing all functionality needed for exchange operations.
   - All-in-one package with Cardano node, Submit API, Mesh API, and Yaci-Store indexer with Postgres database—streamlining your Cardano integration workflow.
 :::note
-Rosetta specificaition does not include transaction signing capabilites. This is done  in a separate offline service for best security partices using any signing libraries available. Sampel example using [CSL](https://github.com/Emurgo/cardano-serialization-lib/blob/master/doc/getting-started/singing_rosetta_tx.ts).  
+Rosetta specification does not include transaction signing capabilities. This is done  in a separate offline service for best security practices using any signing libraries available. See example using [CSL](https://github.com/Emurgo/cardano-serialization-lib/blob/master/doc/getting-started/singing_rosetta_tx.ts).  
 For creating addresses, [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) provides mnemonic (backup phrase) creation, and conversion of a mnemonic to seed for wallet restoration, and address derivation functionalities. This can also be achieved using other libraries like [cardano-serialization-lib](https://github.com/Emurgo/cardano-serialization-lib)
 :::
 - [**cardano-graphql**](https://github.com/cardano-foundation/cardano-graphql): GraphQL API for querying blockchain data.
