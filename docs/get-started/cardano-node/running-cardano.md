@@ -55,7 +55,7 @@ You can download the current **Cardano** blockchain network configuration files 
 **NetworkMagic**: `2`
 
 ```
-curl -O -J "https://book.play.dev.cardano.org/environments/preview/{config,db-sync-config,submit-api-config,topology,byton-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
+curl -O -J "https://book.play.dev.cardano.org/environments/preview/{config,db-sync-config,submit-api-config,topology,byron-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
 ```
 #### Testnet / Preprod
 
