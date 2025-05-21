@@ -1150,7 +1150,7 @@ export const Showcases = [
   {
     title: "Veridian Wallet",
     description: 
-      "Veridian Wallet empowers you with decentralized public key infrastructure and verifiable credentials to independently manage your identity across platforms—ensuring data privacy and ownership. Built on KERI and optionally anchored to Cardano, it offers a tamper-proof, quantum-resistant, and seamless identity experience.",
+      "Manages identity across platforms using decentralized public key infrastructure and verifiable credentials: ensuring data privacy and ownership with tamper proofing and quantum resistance. Built on KERI and optionally anchored to Cardano.",
     preview: require("./showcase/veridian.png"),
     website: "https://www.veridian.id/",
     source: null,
