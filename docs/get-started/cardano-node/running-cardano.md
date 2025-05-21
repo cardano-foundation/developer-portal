@@ -70,7 +70,7 @@ curl -O -J "https://book.play.dev.cardano.org/environments/preprod/{config,db-sy
 **NetworkMagic**: `764824073`
 
 ```
-curl -O -J "https://book.play.dev.cardano.org/environments/mainnet/{config,db-sync-config,submit-api-config,topology,byton-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
+curl -O -J "https://book.play.dev.cardano.org/environments/mainnet/{config,db-sync-config,submit-api-config,topology,byron-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
 ```
 
 The latest supported networks can be found at https://book.play.dev.cardano.org/environments.html
