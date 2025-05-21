@@ -1174,6 +1174,15 @@ export const Showcases = [
     source: null,
     tags: ["governance"],
   },
+  {
+    title: "ADAM Cardano App",
+    description:
+      "Are you looking for an efficient way to connect and track your ADA wallets? ADAM Cardano app for iOS and Android is designed to help track all your Cardano stacking rewards, wallets and funds from a single, cohesive interface. ADAM app also exclusively provides stunning price widgets, packed with valuable price insights.",
+    preview: require("./showcase/adam.png"),
+    website: "https://androdevs.de",
+    source: null,
+    tags: ["accounting", "nftsupport"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);

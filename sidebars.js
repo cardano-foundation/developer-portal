@@ -111,6 +111,7 @@ module.exports = {
       "integrate-cardano/point-of-sale",
       "integrate-cardano/testnet-faucet",
       "integrate-cardano/user-wallet-authentication",
+      "integrate-cardano/exchange-integrations",
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
