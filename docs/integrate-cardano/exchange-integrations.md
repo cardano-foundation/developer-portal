@@ -33,7 +33,8 @@ For creating addresses, [cardano-addresses](https://github.com/IntersectMBO/card
   - All-in-one solution for integration: address creation, automatic coin selection, transaction building, signing, and submission.
   - Great solution for smaller exchanges.
 :::note
-Does not support offline transaction signing; all keys are exposed online.
+Does not support offline transaction signing; all keys are exposed online.  
+Cardano Wallet is currently in maintenance-only mode. The Cardano Foundation is committed to maintaining it for the foreseeable future by upgrading to new versions of the cardano-node, fixing bugs, improving quality and stability of both the code and server stability, plus providing general user support.
 :::
 - [**cardano-db-sync**](https://github.com/IntersectMBO/cardano-db-sync): Syncs blockchain data to a PostgreSQL database.
   - PostgreSQL database with the entire blockchain schema, queried with SQL.
@@ -45,14 +46,40 @@ Does not support offline transaction signing; all keys are exposed online.
 
 ## Wallet Management
 
-### Address Handling
-- Generate deposit addresses for customers using [cardano-address](https://github.com/IntersectMBO/cardano-addresses).
-- Monitor addresses for deposits and manage withdrawals via hot and cold wallets.
+### Address Handling  
+A common and effective approach for exchanges integrating with Cardano involves using individual deposit addresses per customer and managing withdrawals from a centralized wallet. This model enables clear tracking, simplifies auditing, and enhances security and operational control.
+
+The typical workflow is as follows:
+
+- **Address Creation** - The exchange generates a unique deposit address for each customer using [cardano-address](https://github.com/IntersectMBO/cardano-addresses)
+
+- **Deposit Monitoring** - The exchange continuously monitors the blockchain for incoming transactions to these addresses.
+
+- **Customer Account Update** - Upon detecting a deposit, the exchange credits the corresponding customer account in its internal database.
+
+- **Consolidation of Funds** - The exchange periodically moves funds from individual deposit addresses to a centralized withdrawal wallet by creating and submitting a transaction. This consolidation step simplifies fund management and improves operational efficiency.
+
+- **Withdrawals** - When a customer requests a withdrawal, the exchange creates an outgoing transaction from the centralized withdrawal wallet and updates the customer's account in the internal database to reflect the withdrawal.
 
 ## Transaction Handling
 
-### Creation and Submission
-- Supported tools: cardano-wallet, cardano-rosetta-java, and [cardano-serialization-lib](https://github.com/Emurgo/cardano-serialization-lib).
+###  Creation and Submission
+
+Cardano offers multiple tools for transaction creation and submission, each designed to suit different integration architectures. The choice of tool depends on your infrastructure, security model, and level of control required. Most tools also support **fee estimation**, either explicitly or as part of the transaction construction process.
+
+| Tool | Create | Sign | Submit | Notes |
+|------|--------|------|--------|-------|
+| [`cardano-wallet`](https://github.com/cardano-foundation/cardano-wallet) | ✅ | ✅ | ✅ | Full-featured REST API with built-in fee calculation and UTxO management. |
+| [`cardano-rosetta`](https://github.com/cardano-foundation/cardano-rosetta-java) | ✅ | ❌ | ✅ | Rosetta does not handle key management or signing. Transactions must be signed offline. |
+| [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) | ✅ | ✅ | ❌ | Low-level library for custom workflows. Commonly used with `cardano-submit-api` for submission. |
+| [`cardano-submit-api`](https://github.com/IntersectMBO/cardano-node/tree/master/cardano-submit-api) | ❌ | ❌ | ✅ | Lightweight API for submitting signed transactions to a Cardano node. |
+
+
+
+:::tip
+The best practice for exchanges is to use `cardano-rosetta` for transaction construction and submission, and sign the transaction using signing libraries of their choice such as `cardano-serialization-lib`.
+:::
+
 
 ### Fee Calculation
 The formula for calculating minimal fees for a transaction (tx) is:
@@ -65,16 +92,94 @@ Where:
 - `a` and `b` are protocol parameters.
 - `size(tx)` is the transaction size in bytes.
 
-### Monitoring
-- Track transaction confirmations using blockchain querying tools such as cardano-rosetta-java and cardano-graphql.
+### Monitoring Transactions
+
+Once transactions are submitted to the Cardano network, exchanges must monitor their status to ensure successful inclusion in a block and confirmation over time. This step is critical for updating customer balances, handling retries, and maintaining overall system integrity.
+
+Several tools and interfaces are available to support transaction monitoring:
+
+| Tool | Monitoring Capability | Notes |
+|------|------------------------|-------|
+| [`cardano-rosetta-java`](https://github.com/cardano-foundation/cardano-rosetta-java) | ✅ Transaction status and block inclusion | Suitable for exchanges using the [Rosetta API](https://cardano-foundation.github.io/cardano-rosetta-java/api#tag/block) standard. Supports structured responses for [Account Balance](https://cardano-foundation.github.io/cardano-rosetta-java/api#tag/account/POST/account/balance) updates and transaction queries. |
+| [`cardano-graphql`](https://github.com/cardano-foundation/cardano-graphql) | ✅ Rich query support for entire blockchain data | Useful for querying confirmations, transaction metadata, and UTxO states using GraphQL. Cross-platform, typed, and queryable API for Cardano.   |
+| [`cardano-wallet`](https://github.com/cardano-foundation/cardano-wallet) | ✅ Built-in tracking for submitted transactions | Automatically tracks transaction state, confirmation depth, and balances. Exposes these via a REST API. |
+
+Additional considerations:
+
+- **Confirmation depth**: For customer-facing actions like crediting a deposit, exchanges typically wait for a configurable number of block confirmations (e.g., 20–30 blocks)
 
 ## Native Assets
 
-### Support for Native Assets
-- [Native assets](https://developers.cardano.org/docs/get-started/cardano-cli/native-assets/) are first-class citizens in Cardano's ecosystem, living within the UTXO model.
+Cardano supports **native assets** that can be stored and transferred directly in UTxOs alongside ADA. These assets can be **fungible** (tokens) or **non-fungible** (NFTs), and are handled **natively by the ledger** without smart contracts.
 
-### Min-ADA Requirements
-- Each UTXO containing native assets must also hold a minimum ada amount. Factors include asset count, policy IDs, and name lengths.
+:::tip
+Native assets follow the same transaction and validation rules as ADA and are treated as first-class citizens in the Cardano ledger.
+:::
+
+#### Why This Matters for Exchanges
+
+- **No smart contract complexity**: Native assets do not require Plutus scripts, reducing operational complexity.
+- **Unified infrastructure**: The same transaction structure used for ADA also supports native assets.
+- **Automatic deposits**: Deposit addresses may receive native assets, even if the exchange does not actively support them yet.
+
+### Working with Native Assets
+
+Use tools like [`cardano-rosetta-java`](https://github.com/cardano-foundation/cardano-rosetta-java) or [`cardano-graphql`](https://github.com/cardano-foundation/cardano-graphql) to track native assets across UTxOs. These tools allow you to:
+
+- Detect native assets per address
+- Query balances for specific assets
+- Monitor transaction inclusion and confirmations
+
+🔗 **See also:** [Using multi-assets with Rosetta](https://cardano-foundation.github.io/cardano-rosetta-java/docs/user-guides/multi-assets)
+
+### Cardano Token Registry
+
+The **Cardano Token Registry** provides a way to register **off-chain metadata** for native assets on Cardano. This metadata is used by wallets, explorers, and exchanges to display human-readable and visual information about tokens.
+
+Registered metadata includes:
+
+- ✅ Human-readable name (e.g., "MyToken")
+- ✅ Ticker symbol (e.g., "MTK")
+- ✅ Description and project website URL
+- ✅ Logo or icon
+- ✅ Decimal places (important for allowing fractional token balances)
+
+This makes it easier for users and systems to interpret tokens consistently across the ecosystem.
+
+:::info
+The Cardano Token Registry data is included **by default** when using [`cardano-graphql`](https://github.com/input-output-hk/cardano-graphql), so exchanges using it can access token metadata without additional integration.
+:::
+
+You can also self-host the token registry using the official GitHub repository:
+
+🔗 [cf-token-metadata-registry – GitHub](https://github.com/cardano-foundation/cf-token-metadata-registry)
+
+:::tip
+Always check and validate the **decimal places** of a token using the registry to ensure accurate accounting and display of fractional amounts.
+:::
+
+### Minimum ADA Requirement for Native Assets
+
+Each UTxO on Cardano is required to contain a **minimum amount of ADA**, which **varies depending on the size and complexity** of the UTxO — including how many native assets it contains.
+
+For native asset transactions, this means:
+
+- Any deposit or withdrawal involving a native asset must also include ADA.
+- The minimum ADA depends on:
+  - The number of **policy IDs**
+  - The length of **asset names**
+  - The total number of **distinct assets** in the UTxO
+
+Exchanges should:
+
+- Validate that customers include sufficient ADA when depositing native assets
+- Enforce minimum withdrawal amounts that meet the ADA requirement
+
+🔗 **Reference**: [Minimum ADA in Mary-era transactions](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo-mary.html)
+
+:::note
+Failure to meet the minimum ADA requirement will result in invalid transactions that are rejected by the network.
+:::
 
 ## Explorers
 
@@ -110,14 +215,6 @@ Faucets for [Test ADA](https://docs.cardano.org/cardano-testnets/tools/faucet)
 
 ### Compatibility
 - Follow the Cardano [compatibility matrix](https://docs.cardano.org/developer-resources/release-notes/comp-matrix) for version alignment.
-
-## Compliance and Regulatory Considerations
-
-### Transaction Monitoring
-- Ensure compliance with KYC/AML requirements.
-
-### Audit Trails
-- Maintain logs for deposit and withdrawal transactions.
 
 ## Support and Resources
 
