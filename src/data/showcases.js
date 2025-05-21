@@ -1147,6 +1147,15 @@ export const Showcases = [
     source: null,
     tags: ["favorite", "minting", "token", "nftsupport"],
   },
+    {
+    title: "Stuff.io",
+    description:
+      "Stuff.io is the global leader in true digital ownership, enabling consumers to genuinely own, share, gift, or resell their digital media like movies, music, ebooks, audiobooks, and podcasts.",
+    preview: require("./showcase/stuff-io.png"),
+    website: "https://stuff.io",
+    source: null,
+    tags: ["marketplace"],
+  },
   {
     title: "Veridian Wallet",
     description: 
