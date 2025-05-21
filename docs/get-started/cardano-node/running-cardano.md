@@ -62,7 +62,7 @@ curl -O -J "https://book.play.dev.cardano.org/environments/preview/{config,db-sy
 **NetworkMagic**: `1`
 
 ```
-curl -O -J "https://book.play.dev.cardano.org/environments/preprod/{config,db-sync-config,submit-api-config,topology,byton-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
+curl -O -J "https://book.play.dev.cardano.org/environments/preprod/{config,db-sync-config,submit-api-config,topology,byron-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
 ```
 
 #### Mainnet / Production
