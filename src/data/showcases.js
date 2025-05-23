@@ -1166,6 +1166,15 @@ export const Showcases = [
     tags: ["marketplace"],
   },
   {
+    title: "Veridian Wallet",
+    description: 
+      "Manages identity across platforms using decentralized public key infrastructure and verifiable credentials: ensuring data privacy and ownership with tamper proofing and quantum resistance. Built on KERI and optionally anchored to Cardano.",
+    preview: require("./showcase/veridian.png"),
+    website: "https://www.veridian.id/",
+    source: null,
+    tags: ["metadata", "identity"],
+  },
+  {
     title: "Cardano Budget Proposals",
     description:
       "This is a budget proposal aggregator tool, designed to help DReps and ada holders easily track submitted proposals.",
