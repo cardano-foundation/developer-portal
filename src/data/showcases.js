@@ -1150,7 +1150,7 @@ export const Showcases = [
   {
     title: "Governance Space",
     description:
-      "All-in-One Governance Platform. Decentralized Governance for Everyone. A complete blockchain governance platform for DAOs, projects, and institutions seeking transparency, security, and efficiency in their decision-making processes.",
+      "A blockchain governance platform for DAOs, projects, and institutions: providing indexing & analytics for DReps, governance actions, budget proposals & discussions, committee members, live events, and more.",
     preview: require("./showcase/govspace.png"),
     website: "https://governancespace.com/",
     source: null,
