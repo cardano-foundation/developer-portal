@@ -1130,6 +1130,15 @@ export const Showcases = [
     tags: ["daotool", "governance"],
   },
   {
+    title: "Nio",
+    description:
+      "Track and monitor all assets in any wallet or locked in Cardano DeFi smart contracts.",
+    preview: require("./showcase/Nio_app.png"),
+    website: "https://nioapp.io",
+    source: null,
+    tags: ["accounting"],
+  },
+  {
     title: "Begin Wallet",
     description:
       "Begin Wallet a non-custodial light Cardano Wallet, available as an Extension and Mobile. We offer payment link compatibility with deep link support, Begin ID user name based on ENS protocol for Wallet Address. Hardware wallet support Ledger and Keystone. Based on our own open source cryptographic core.",
@@ -1146,6 +1155,15 @@ export const Showcases = [
     website: "https://onboard.ninja",
     source: null,
     tags: ["favorite", "minting", "token", "nftsupport"],
+  },
+    {
+    title: "Stuff.io",
+    description:
+      "Stuff.io is the global leader in true digital ownership, enabling consumers to genuinely own, share, gift, or resell their digital media like movies, music, ebooks, audiobooks, and podcasts.",
+    preview: require("./showcase/stuff-io.png"),
+    website: "https://stuff.io",
+    source: null,
+    tags: ["marketplace"],
   },
   {
     title: "Governance Space",
@@ -1164,6 +1182,15 @@ export const Showcases = [
     website: "https://cardanobudget.com",
     source: null,
     tags: ["governance"],
+  },
+  {
+    title: "ADAM Cardano App",
+    description:
+      "Are you looking for an efficient way to connect and track your ADA wallets? ADAM Cardano app for iOS and Android is designed to help track all your Cardano stacking rewards, wallets and funds from a single, cohesive interface. ADAM app also exclusively provides stunning price widgets, packed with valuable price insights.",
+    preview: require("./showcase/adam.png"),
+    website: "https://androdevs.de",
+    source: null,
+    tags: ["accounting", "nftsupport"],
   },
 ];
 
