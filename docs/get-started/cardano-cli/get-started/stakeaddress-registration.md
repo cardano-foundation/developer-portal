@@ -242,6 +242,7 @@ cardano-cli latest transaction build-raw \
 cardano-cli latest transaction sign \
   --tx-body-file tx.raw \
   --signing-key-file payment.skey \
+  --signing-key-file stake.skey \
   --out-file tx.signed
 ```
 ```shell
