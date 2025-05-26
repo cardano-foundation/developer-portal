@@ -192,7 +192,7 @@ You can now follow the instructions recommended in [Secure Transaction Workflow]
   - Save the resulting transaction file to your Host Folder.
   - Reboot into the host computer, upload your transaction file if necessary, and submit it.
 
-Some copy-paste models & templates for basic Cardano transactions are being assembled here: [Frankenwallet > Transaction templates](https://frankenwallet.com/cardano/templates)
+This means of implementing the [Secure Transaction Workflow](/docs/get-started/secure-workflow) process is outlined specifically in [Frankenwallet > Transaction flow](https://frankenwallet.com/cardano/model).
 
 ### Making & verifying backups of assets & keys  
 
