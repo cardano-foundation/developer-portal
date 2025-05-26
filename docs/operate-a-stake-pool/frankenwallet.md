@@ -25,7 +25,7 @@ Operators needing a safer path can follow instructions at the [Air Gap Environme
 
 ### How to use this guide  
 
-This tool has been developed by the [COSD stake pool](https://cexplorer.io/pool/pool1e98xlcgj80c3rdmm27v5hnvrdtut52e65uk0ema7ctfag596vr2), beginning as a publication of their own operating environment when scared to death of losing their pool pledge and not being able to come by a second machine for the conventional [air gap environment](/docs/get-started/air-gap) (see origin story: [Why was the Frankenwallet developed?](https://cosd.com/frankenwallet/intro/history)).
+This tool has been developed by the [COSD stake pool](https://cexplorer.io/pool/pool1e98xlcgj80c3rdmm27v5hnvrdtut52e65uk0ema7ctfag596vr2), beginning as a publication of their own operating environment when scared to death of losing their pool pledge and not being able to come by a second machine for the conventional [air gap environment](/docs/get-started/air-gap) (see origin story: [Why was the Frankenwallet developed?](https://frankenwallet.com/intro/history)).
 
 At the time of this writing, the full instructions for:
 
@@ -33,7 +33,7 @@ At the time of this writing, the full instructions for:
   - how to provision & build your own Frankenwallet
   - how to use the tool for stake pool operations & secure transactions
 
-… are in the online book at this external link: [The Frankenwallet](https://cosd.com/frankenwallet).  If you see any problems with this material, please submit an issue at:
+… are in the online book at this external link: [The Frankenwallet](https://frankenwallet.com).  If you see any problems with this material, please submit an issue at:
 
   - [github:rphair/frankenwallet](https://github.com/rphair/frankenwallet) if you find an error in the material in the externally linked web site
   - [github:cardano-foundation/developer-portal](https://github.com/cardano-foundation/developer-portal) with any updates or corrections to this page itself.
@@ -44,7 +44,7 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ➤ Anyone working with private keys & [secure transaction signing](/docs/get-started/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/cardano-key-pairs)).
 
-➤ Anyone wishing to work in high security with these resources without either a second computer (e.g. perpetual travellers, students, and hardware minimalists) or a hardware wallet ([Why wouldn't I want a hardware wallet?](https://cosd.com/frankenwallet/intro/hardware-wallets))  
+➤ Anyone wishing to work in high security with these resources without either a second computer (e.g. perpetual travellers, students, and hardware minimalists) or a hardware wallet ([Why wouldn't I want a hardware wallet?](https://frankenwallet.com/intro/hardware-wallets))  
 
 ➤ Anyone wanting or needing direct access to all their own files on their main computer in the air-gapped environment.
 
@@ -56,13 +56,13 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ### If so universally useful, why the build instructions & not just a downloadable ISO image?  
 
-**TL;DR** because then all Frankenwallets would be the same, and any security flaw found in one of them might allow all of them to be exploited before a response could be mounted (see [Why is there no ISO image for Frankenwallet?](https://cosd.com/frankenwallet/intro/no-iso)).
+**TL;DR** because then all Frankenwallets would be the same, and any security flaw found in one of them might allow all of them to be exploited before a response could be mounted (see [Why is there no ISO image for Frankenwallet?](https://frankenwallet.com/intro/no-iso)).
 
 ### Some other use cases & limitations of this material
 
 ➤ You *can* use the Frankenwallet instructions to set up an Air Gap node on a full computer… but since the time of its development, this procedure has been adapted to a more appropriate page on the Dev Portal (the aforementioned [Air Gap Environment](/docs/get-started/air-gap)).
 
-From [Frankenwallet \> Miscellaneous FAQ's](https://cosd.com/frankenwallet/intro/faq):
+From [Frankenwallet > Miscellaneous FAQ's](https://frankenwallet.com/intro/faq):
 
 ➤ Your VirtualBox or other VM software on your host computer *does not* isolate you from the network, even if you have the network device disabled… nor can it be ever assumed that the screen or keyboard are isolated either… so VMs are generally unsuitable to create an air gap *<span class="underline">or</span>* to implement these instructions.
 
@@ -72,7 +72,7 @@ From [Frankenwallet \> Miscellaneous FAQ's](https://cosd.com/frankenwallet/intro
 
 ## Preparing to build the Frankenwallet
 
-From [Frankenwallet \> Preparation](https://cosd.com/frankenwallet/prepare):
+From [Frankenwallet > Preparation](https://frankenwallet.com/prepare):
 
 #### Planning your communication with the host computer
 
@@ -95,15 +95,15 @@ Though regularly used Frankenwallets have been built on cheap & slow USB drives,
 
 Users who have built dual-boot configurations before will also know you should **familiarise yourself with the computer's BIOS settings** in anticipation of the same type of setup.
 
-Note there are <span class="underline">limitations about using a Mac</span> as host computer which stem from the different means of booting (see [Frankenwallet \> Hardware Requirements](https://cosd.com/frankenwallet/prepare/hardware) \> What if I have a Mac?).
+Note there are <span class="underline">limitations about using a Mac</span> as host computer which stem from the different means of booting (see [Frankenwallet > Hardware Requirements](https://frankenwallet.com/prepare/hardware) > What if I have a Mac?).
 
 ### Choosing passwords
 
-(from Frankenwallet passwords \> [low security](https://cosd.com/frankenwallet/prepare/password-low) & [high security](https://cosd.com/frankenwallet/prepare/password-high))  
+(from Frankenwallet passwords > [low security](https://frankenwallet.com/prepare/password-low) & [high security](https://frankenwallet.com/prepare/password-high))  
 
-The [low security password](https://cosd.com/frankenwallet/prepare/password-low) can be one you've already used to encrypt files on the host computer… strong enough you feel comfortable backing up files over the net.
+The [low security password](https://frankenwallet.com/prepare/password-low) can be one you've already used to encrypt files on the host computer… strong enough you feel comfortable backing up files over the net.
 
-The [high security password](https://cosd.com/frankenwallet/prepare/password-high)… called the Frankenwallet password itself… should also be strictly long & complex, but should never have been used in a network environment, not even on a network connected machine… otherwise you will be defeating the purpose of using the Air Gap for any purposes of file storage or backup of files to the host computer  
+The [high security password](https://frankenwallet.com/prepare/password-high)… called the Frankenwallet password itself… should also be strictly long & complex, but should never have been used in a network environment, not even on a network connected machine… otherwise you will be defeating the purpose of using the Air Gap for any purposes of file storage or backup of files to the host computer  
 
 See each of these web links to see which of the Cardano asset & stake pool files it would typically be used to encrypt.
 
@@ -121,7 +121,7 @@ For ease of use, you can separate the "low security" and "high security" stake p
 
 ## Installing the OS onto the USB device  
 
-(from [Frankenwallet \> Host computer & media](https://cosd.com/frankenwallet/prepare/computer) though end of [Installation](https://cosd.com/frankenwallet/install) section)  
+(from [Frankenwallet > Host computer & media](https://frankenwallet.com/prepare/computer) though end of [Installation](https://frankenwallet.com/install) section)  
 
 The full instructions mainly document the [installation of Ubuntu](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview) in the common "dual boot" configuration: something the target audience should feel comfortable with, and can probably improvise for themselves if also following these checklists during the installation & setup or the installed environment:
 
@@ -147,18 +147,18 @@ Note the password you chose will be required now to boot the OS as well as decry
 
 :::warning warning
 
-At the next screen Erase disk and install Ubuntu, watch out that you don't accidentally select your computer's own drive… this can be very easy to do\!
+At the next screen Erase disk and install Ubuntu, watch out that you don't accidentally select your computer's own drive… this can be very easy to do!
 
 :::
 
 ### Setup notes: operating system  
 
   - Don't let Ubuntu link with any online accounts in its initialisation process: refuse everything like location services, "livepatch", etc.
-  - Disable lots of little services & settings which might leak your information (see [Frankenwallet \> First boot: Secure system settings](https://cosd.com/frankenwallet/install/settings))
+  - Disable lots of little services & settings which might leak your information (see [Frankenwallet > First boot: Secure system settings](https://frankenwallet.com/install/settings))
 
 ### Setup notes: packages
 
-(details: [Frankenwallet \> First boot: Package installation](https://cosd.com/frankenwallet/install/packages))  
+(details: [Frankenwallet > First boot: Package installation](https://frankenwallet.com/install/packages))  
 
  - Remove all "snaps" and disable Snap.
  - Remove CUPS (network printer service).
@@ -173,13 +173,13 @@ At the next screen Erase disk and install Ubuntu, watch out that you don't accid
 
 ### Tune browser & turn off network access FOREVER
 
-Lock down the browser settings, just in case, even if you think you'll never use it ([Frankenwallet \> Securing Firefox browser](https://cosd.com/frankenwallet/install/browser))
+Lock down the browser settings, just in case, even if you think you'll never use it ([Frankenwallet > Securing Firefox browser](https://frankenwallet.com/install/browser))
 
 At this point you disable Wi-Fi and all other networks in the system settings, and go on without any future connection to the Internet in your new environment.  
 
 ## What to use the Frankenwallet for
 
-From a growing body of material beginning at [Frankenwallet \> Usage](https://cosd.com/frankenwallet/usage):
+From a growing body of material beginning at [Frankenwallet > Usage](https://frankenwallet.com/usage):
 
 ### Prepare and submit secure transactions
 
@@ -192,20 +192,20 @@ You can now follow the instructions recommended in [Secure Transaction Workflow]
   - Save the resulting transaction file to your Host Folder.
   - Reboot into the host computer, upload your transaction file if necessary, and submit it.
 
-Some copy-paste models & templates for basic Cardano transactions are being assembled here: [Frankenwallet \> Transaction templates](https://cosd.com/frankenwallet/cardano/templates)
+Some copy-paste models & templates for basic Cardano transactions are being assembled here: [Frankenwallet > Transaction templates](https://frankenwallet.com/cardano/templates)
 
 ### Making & verifying backups of assets & keys  
 
-from [Frankenwallet \> Backups to host machine](https://cosd.com/frankenwallet/usage/backups):
+from [Frankenwallet > Backups to host machine](https://frankenwallet.com/usage/backups):
 
-For [highly secure stake pool & asset files](https://cosd.com/frankenwallet/prepare/password-high), and any documents storing wallet key phrases or raw private key data:
+For [highly secure stake pool & asset files](https://frankenwallet.com/prepare/password-high), and any documents storing wallet key phrases or raw private key data:
 
   - First create the file archive (with 7z) or text document (with LibreOffice) using your "high security" password.
   - Then copy it to your host folder, where it can remain stored or backed up (over the network if desired) along with all your other computer's data.
   - This is safe (pending the usual arguments) because **you never have entered, and never will enter, the Frankenwallet (high security) password on your host computer <span class="underline">or</span> any other machine**.
-  - This means you can only verify these backups on this or another Frankenwallet… never on the host computer environment itself\!  
+  - This means you can only verify these backups on this or another Frankenwallet… never on the host computer environment itself!  
 
-For [less secure stake pool & asset files](https://cosd.com/frankenwallet/prepare/password-low), and documents with general transaction records & source data:
+For [less secure stake pool & asset files](https://frankenwallet.com/prepare/password-low), and documents with general transaction records & source data:
 
   - First create the file archive (with 7z) or text document (with LibreOffice) using your "high security" password.
   - These files you might feel comfortable verifying on your host computer.
@@ -213,7 +213,7 @@ For [less secure stake pool & asset files](https://cosd.com/frankenwallet/prepar
 
 ### The "cool" Frankenwallet: a sandbox for crypto wallets
 
-from [Frankenwallet \> Cool environments](https://cosd.com/frankenwallet/cool):
+from [Frankenwallet > Cool environments](https://frankenwallet.com/cool):
 
 Relaxing the Internet environment (meaning **this device should no longer be used for cold, unencrypted key storage**) allows you to use this device for node- or browser-based wallets.
 

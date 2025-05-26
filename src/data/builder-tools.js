@@ -876,7 +876,7 @@ export const Showcases = [
     title: "Frankenwallet",
     description: "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
     preview: require("./builder-tools/frankenwallet.png"),
-    website: "https://cosd.com/frankenwallet",
+    website: "https://frankenwallet.com",
     getstarted: "/docs/operate-a-stake-pool/frankenwallet",
     tags: ["operatortool"],
   },
