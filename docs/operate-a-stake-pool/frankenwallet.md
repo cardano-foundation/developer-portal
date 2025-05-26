@@ -44,7 +44,7 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ➤ Anyone working with private keys & [secure transaction signing](/docs/get-started/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/cardano-key-pairs)).
 
-➤ Anyone wishing to work in high security with these resources without either a second computer (e.g. perpetual travellers, students, and hardware minimalists) or a hardware wallet ([Why wouldn't I want a hardware wallet?](https://frankenwallet.com/intro/hardware-wallets))  
+➤ Anyone wishing to work in high security with these resources without either a second computer (e.g. perpetual travellers, students, and hardware minimalists) or a hardware wallet ([Frankenwallet vs. Hardware wallets](https://frankenwallet.com/intro/hardware-wallets))
 
 ➤ Anyone wanting or needing direct access to all their own files on their main computer in the air-gapped environment.
 
