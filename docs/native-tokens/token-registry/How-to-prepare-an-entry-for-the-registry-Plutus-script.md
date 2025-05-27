@@ -2,7 +2,7 @@
 sidebar_label: How to prepare an entry for the registry (Plutus script)
 custom_edit_url: null
 title: How to prepare an entry for the registry (Plutus script)
-sidebar_position: 3
+sidebar_position: 5
 --- 
 ## Pre-Requisites    
 

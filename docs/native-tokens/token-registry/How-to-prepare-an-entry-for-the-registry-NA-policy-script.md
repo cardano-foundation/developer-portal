@@ -2,7 +2,7 @@
 sidebar_label: How to prepare an entry for the registry (NA policy script)
 custom_edit_url: null
 title: How to prepare an entry for the registry (NA policy script)
-sidebar_position: 2
+sidebar_position: 4
 --- 
 ## Pre-Requisites
 
