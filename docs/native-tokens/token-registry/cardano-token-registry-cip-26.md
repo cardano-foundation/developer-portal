@@ -9,7 +9,7 @@ sidebar_position: 2
 The [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).
 
 # CIP26 Off-Chain Metadata Registry (mainnet)
-This is the CIP26 off-chain metadata registry for **mainnet**. If you intend to register any metadata for on-chain assets that exist on the publicly available testnets only (e.g. preview and preprod environments) please use the [metadata-registry from IOHK](https://github.com/input-output-hk/metadata-registry-testnet).
+This is the [CIP26](https://cips.cardano.org/cip/CIP-0026) off-chain metadata registry for **mainnet**. If you intend to register any metadata for on-chain assets that exist on the publicly available testnets only (e.g. preview and preprod environments) please use the [metadata-registry from IOHK](https://github.com/input-output-hk/metadata-registry-testnet).
 
 ##  Background
 This repository provides a means to register off-chain token metadata that can map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).

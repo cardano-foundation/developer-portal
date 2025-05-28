@@ -8,7 +8,7 @@ sidebar_position: 3
 --- 
 # CIP-68: Cardano On-Chain Metadata Standard
 
-CIP-68 is an on-chain metadata standard for Cardano native assets, designed to provide a flexible and programmable way to manage metadata directly on the blockchain. Unlike CIP-26, which relies on off-chain storage, CIP-68 uses **datums**—on-chain data structures in Cardano’s extended UTxO model—to store metadata. This standard introduces two types of tokens: a **reference NFT** that holds the metadata and a **user token** that represents the asset in a user’s wallet. The reference NFT points to the metadata, which can be updated without minting new tokens.
+[CIP-68](https://cips.cardano.org/cip/CIP-0068) is an on-chain metadata standard for Cardano native assets, designed to provide a flexible and programmable way to manage metadata directly on the blockchain. Unlike CIP-26, which relies on off-chain storage, CIP-68 uses **datums**—on-chain data structures in Cardano’s extended UTxO model—to store metadata. This standard introduces two types of tokens: a **reference NFT** that holds the metadata and a **user token** that represents the asset in a user’s wallet. The reference NFT points to the metadata, which can be updated without minting new tokens.
 
 CIP-68 also incorporates **asset name labels** (defined in CIP-67) to classify tokens, making it easier for third-party tools like wallets and decentralized exchanges (DEXs) to identify their purpose. The metadata is stored in a structured format, allowing for fields such as:
 - **name**: The token’s name.

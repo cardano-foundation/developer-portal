@@ -15,7 +15,7 @@ Native assets are versatile, supporting a wide range of use cases, such as digit
 
 Metadata in Cardano native assets provides contextual information that enhances their functionality and user experience. For example, metadata for an NFT might include its artwork, creator details, or rarity attributes, while metadata for a fungible token might specify its ticker symbol or decimal precision. Metadata ensures that third-party tools, such as wallets and explorers, can interpret and display asset information correctly.
 
-Cardano supports two primary metadata standards for native assets:
+Cardano supports two primary metadata standards for **fungible tokens** (FT):
 - **CIP-26**: An off-chain metadata standard that stores data in a centralized or semi-centralized registry, suitable for simple and static use cases.
 - **CIP-68**: An on-chain metadata standard that uses datums to store dynamic and programmable metadata directly on the blockchain, enabling advanced use cases.
 
