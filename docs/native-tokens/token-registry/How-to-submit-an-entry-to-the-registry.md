@@ -2,7 +2,7 @@
 sidebar_label: How to submit an entry to the registry
 custom_edit_url: null
 title: How to submit an entry to the registry
-sidebar_position: 6
+sidebar_position: 7
 --- 
 ## Pre-Requisites
 
