@@ -6,72 +6,41 @@ description: The Cardano Token Registry provides a means to register off-chain t
 image: /img/og/og-developer-portal.png 
 sidebar_position: 3
 --- 
-The [Cardano Token Registry](https://github.com/cardano-foundation/cardano-token-registry) provides a means to register off-chain token metadata to map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).
+# CIP-68: Cardano On-Chain Metadata Standard
 
-# CIP26 Off-Chain Metadata Registry (mainnet)
-This is the CIP26 off-chain metadata registry for **mainnet**. If you intend to register any metadata for on-chain assets that exist on the publicly available testnets only (e.g. preview and preprod environments) please use the [metadata-registry from IOHK](https://github.com/input-output-hk/metadata-registry-testnet).
+CIP-68 is an on-chain metadata standard for Cardano native assets, designed to provide a flexible and programmable way to manage metadata directly on the blockchain. Unlike CIP-26, which relies on off-chain storage, CIP-68 uses **datums**—on-chain data structures in Cardano’s extended UTxO model—to store metadata. This standard introduces two types of tokens: a **reference NFT** that holds the metadata and a **user token** that represents the asset in a user’s wallet. The reference NFT points to the metadata, which can be updated without minting new tokens.
 
-##  Background
-This repository provides a means to register off-chain token metadata that can map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).
+CIP-68 also incorporates **asset name labels** (defined in CIP-67) to classify tokens, making it easier for third-party tools like wallets and decentralized exchanges (DEXs) to identify their purpose. The metadata is stored in a structured format, allowing for fields such as:
+- **name**: The token’s name.
+- **image**: A link (e.g., IPFS) to associated media.
+- **description**: Details about the token’s purpose or attributes.
+- **custom fields**: Programmable metadata for specific use cases, such as NFT attributes or token properties.
 
-A [server](#server) exposes the functionality of a key-value store, allowing users and applications to query registry entries through a RESTful API.
+This standard supports dynamic metadata updates, making it suitable for advanced use cases like evolving NFTs or fractionalized assets.
 
-While this registry is limited in scope to handle native tokens only, it will also serve to facilitate a discussion and introduce a standard for a metadata distribution system that is currently put forward as a [draft CIP](https://github.com/michaelpj/CIPs/blob/cip-metadata-server/cip-metadata-server.md).
+## Use Cases
 
-Use of this registry is subject to the [Registry Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/Registry_Terms_of_Use.md).           
-Use of the public API is subject to the [API Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/API_Terms_of_Use.md).
+CIP-68 is well-suited for:
+- Non-fungible tokens (NFTs) with dynamic or updatable metadata, such as digital art or gaming assets.
+- Fungible tokens requiring programmable metadata for smart contract integration.
+- Decentralized applications (dApps) that need on-chain metadata for automated processes, such as NFT marketplaces or automated market makers (AMMs).
 
-## Process
+## Pros of CIP-68
 
-#### New registration
+- **Dynamic Metadata**: Metadata can be updated on-chain without minting new tokens, enabling evolving NFTs or tokens with changing properties.
+- **Smart Contract Integration**: CIP-68 metadata is accessible to Plutus smart contracts, making it ideal for dApps and complex token logic.
+- **Decentralization**: Storing metadata on-chain eliminates reliance on centralized registries, enhancing trustlessness and resilience.
+- **Flexibility**: Supports a wide range of asset classes and use cases, from NFTs to fractionalized tokens, due to its programmable structure.
+- **Interoperability**: Asset name labels (CIP-67) make it easier for third-party tools to identify and process CIP-68-compliant assets.
+- **Immediate Availability**: Metadata are available immediately after being minted on-chain, usually within a minute.
 
-New submissions to this registry will take the form of a GitHub Pull Request with the addition of one JSON file to the [mappings/](https://github.com/cardano-foundation/cardano-token-registry/blob/master/mappings) folder. Submissions will be subject to automated checking for well-formedness and human vetting before being merged to the registry.
+## Cons of CIP-68
 
+- **Higher Costs**: Storing metadata on-chain requires datums and additional UTxOs, doubling the transaction costs compared to CIP-26.[](https://www.crypto-news-flash.com/cardano-advances-blockchain-innovation-with-cip25-metadata-validation-boosting-nfts-and-amms/)
+- **Complexity**: Implementing CIP-68 is more technically demanding, requiring knowledge of Plutus or other on-chain programming tools.
+- **Compatibility Issues**: Some existing Cardano tools and wallets still primarily support CIP-26 (or CIP-25 for NFTs), leading to potential interoperability challenges.[](https://www.crypto-news-flash.com/cardano-advances-blockchain-innovation-with-cip25-metadata-validation-boosting-nfts-and-amms/)
+- **Scalability Concerns**: On-chain metadata increases the blockchain’s data load, which could impact scalability for projects with large numbers of assets.
 
-#### Updating existing entries
+## Summary
 
-Modification of entries in this registry require a GitHub Pull Request with the modification of one JSON file in the [mappings/](https://github.com/cardano-foundation/cardano-token-registry/blob/master/mappings) folder.  Submissions will be subject to automated checking for well-formedness and human vetting before being merged to the registry. 
-
-
-## Semantic content of registry entries
-
-Each entry contains the following information:
-
-**Name**             | **Required/Optional**|**Description**
----              | ---       | ---
-`subject`        | Required  | The base16-encoded policyId + base16-encoded assetName
-`name`           | Required  | A human-readable name for the subject, suitable for use in an interface
-`description`    | Required  | A human-readable description for the subject, suitable for use in an interface
-`policy`         | Optional  | The base16-encoded CBOR representation of the monetary policy script, used to verify ownership. Optional in the case of Plutus scripts as verification is handled elsewhere.
-`ticker`         | Optional  | A human-readable ticker name for the subject, suitable for use in an interface
-`url`            | Optional  | A HTTPS URL (web page relating to the token)
-`logo`           | Optional  | A PNG image file as a byte string
-`decimals`       | Optional  | how many decimals to the token
-
-The policy field is optional in order to support Plutus Smart-Contracts which are not linked to a set of signing keys by default. It is used in priority if present. Otherwise, signature verification is performed using user-provided trusted keys.
-
-For a comprehensive description of all fields and how to generate them, please see [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools).  
-
-## Submission well-formedness rules
-
-1. Submissions to the registry must consist of a single commit, directly off the **master** branch of the **cardano-token-registry** repository.
-
-2. Submissions must add or modify a singular file in the [mappings/](https://github.com/cardano-foundation/cardano-token-registry/blob/master/mappings) folder. Multiple mappings should be split across multiple PRs.
-
-3. The file name must match the encoded `"subject"` key of the entry, all lowercase.
-
-4. The maximum file size of a single metadata entry is 370KB.
-
-
-##  Server
-
-Users and applications can query this registry through an API at `https://tokens.cardano.org/metadata`.
-
-The API documentation and source code for the server implementation is available with the [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools).        
-            
-Use of the `https://tokens.cardano.org/metadata` API is subject to the [API Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/API_Terms_of_Use.md).  
-
-   
-  
-## Token Registry Information  
-This page was generated automatically from: [https://github.com/cardano-foundation/cardano-token-registry/blob/master/](https://github.com/cardano-foundation/cardano-token-registry/blob/master//README.md).
+CIP-68 is a powerful standard for developers seeking to create dynamic, programmable, and decentralized native assets on Cardano. Its on-chain approach enables integration with smart contracts and supports innovative use cases, but it comes at the cost of higher transaction fees and increased complexity. Developers should consider CIP-68 for projects requiring flexibility and on-chain functionality, while being mindful of its cost and compatibility trade-offs.
