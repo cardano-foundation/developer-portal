@@ -7,7 +7,7 @@ image: /img/og/og-developer-portal.png
 sidebar_position: 1 
 --- 
 
-As introduced [here](/docs/native-tokens), Cardano native assets are custom tokens created and managed directly on the Cardano blockchain, leveraging its native multi-asset ledger. Unlike tokens on other blockchains that rely on smart contracts, Cardano's native assets are integrated into the protocol itself, enabling efficient creation, transfer, and management of both fungible and non-fungible tokens (NFTs). Native assets are identified by a unique combination of two onchain properteis called **policy ID** and **asset name**, which ensure secure and decentralized token operations.
+As introduced [here](/docs/native-tokens), Cardano native assets are custom tokens created and managed directly on the Cardano blockchain, leveraging its native multi-asset ledger. Unlike tokens on other blockchains that rely on smart contracts, Cardano's native assets are integrated into the protocol itself, enabling efficient creation, transfer, and management of both fungible and non-fungible tokens (NFTs). Native assets are identified by a unique combination of two onchain properties called **Policy Id** and **Asset Name**, which ensure secure and decentralized token operations.
 
 Native assets are versatile, supporting a wide range of use cases, such as digital collectibles, tokenized real-world assets, stablecoins, and governance tokens. Tokens' metadata are additional data which describe assets’ properties, such as name, description, image or website and play a critical role in making these assets usable and interoperable across wallets, marketplaces, and decentralized applications (dApps).
 

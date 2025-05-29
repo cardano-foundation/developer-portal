@@ -63,15 +63,28 @@ For a comprehensive description of all fields and how to generate them, please s
 4. The maximum file size of a single metadata entry is 370KB.
 
 
-##  Server
+## Use Cases
 
-Users and applications can query this registry through an API at `https://tokens.cardano.org/metadata`.
+CIP-26 is ideal for:
+- Fungible tokens requiring static metadata, such as stablecoins or utility tokens.
+- Projects that prioritize low transaction costs and simplicity.
+- Assets that do not require frequent metadata updates or on-chain programmability.
 
-The API documentation and source code for the server implementation is available with the [offchain-metadata-tools](https://github.com/input-output-hk/offchain-metadata-tools).        
-            
-Use of the `https://tokens.cardano.org/metadata` API is subject to the [API Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/API_Terms_of_Use.md).  
+## Pros of CIP-26
 
-   
-  
-## Token Registry Information  
-This page was generated automatically from: [https://github.com/cardano-foundation/cardano-token-registry/blob/master/](https://github.com/cardano-foundation/cardano-token-registry/blob/master//README.md).
+- **Cost-Effective**: Since metadata is stored off-chain, CIP-26 avoids the additional transaction costs associated with on-chain storage, making it cheaper to mint and manage assets.
+- **Simplicity**: The JSON-based structure is straightforward, making it easy for developers to create and submit metadata to the Cardano Token Registry.
+- **Wide Adoption**: CIP-26 is widely supported by existing Cardano tools, wallets, and marketplaces, ensuring broad compatibility.
+- **Lightweight**: Off-chain storage reduces the blockchain’s data load, improving scalability for simple use cases.
+
+## Cons of CIP-26
+
+- **Centralization Risk**: The Cardano Token Registry introduces a degree of centralization, as it is managed by the Cardano Foundation. This creates a single point of failure.
+- **Limited Flexibility**: CIP-26 metadata is static, meaning updates require manual submission to the registry, which can be cumbersome for dynamic use cases like evolving NFTs.
+- **Inaccessibility to Smart Contracts**: Off-chain metadata cannot be directly accessed by Plutus smart contracts, limiting its use in dApps that require on-chain logic.
+- **Trust Dependency**: Users and developers must trust the registry’s integrity and the process for metadata submission and validation.
+- **Periodicly updated**: Token's Metadata might be available from hours to days after request being submitted to token registry as manual review is required and server takes a few hours to re-sync all tokens metadata.
+
+## Summary
+
+CIP-26 is a practical choice for projects that need a simple, cost-effective way to attach static metadata to native assets. Its reliance on an off-chain registry makes it accessible and widely supported but introduces centralization and limits its suitability for dynamic or smart contract-dependent use cases. Developers should weigh these trade-offs when deciding whether CIP-26 meets their project’s needs.
