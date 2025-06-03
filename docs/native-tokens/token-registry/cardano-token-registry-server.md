@@ -9,7 +9,7 @@ sidebar_position: 4
 
 # Cardano Token Metadata Server (API v2)
 
-The Cardano Token Metadata Server provides a robust API for querying metadata associated with **fungible** Cardano native assets, enabling wallets, explorers, and decentralized applications (dApps) to retrieve human-readable information about tokens. With the release of API v2, the server now supports both **CIP-26** (off-chain metadata) and **CIP-68** (on-chain metadata) standards, offering a unified interface for accessing metadata regardless of the standard used by a token. This ensures compatibility with a wide range of Cardano native assets, from fungible tokens to non-fungible tokens (NFTs).
+The Cardano Token Metadata Server provides a robust API for querying metadata associated with **fungible** Cardano native assets, enabling wallets, explorers, and decentralized applications (dApps) to retrieve human-readable information about tokens. With the release of API v2, the server now supports both **CIP-26** (off-chain metadata) and **CIP-68** (on-chain metadata) standards, offering a unified interface for accessing metadata regardless of the standard used by a token.
 
 The API is accessible at `https://tokens.cardano.org` and is subject to the [API Terms of Use](https://tokens.cardano.org/terms). The OpenAPI documentation is available at [https://tokens.cardano.org/apidocs](https://tokens.cardano.org/apidocs), providing detailed specifications for endpoints, parameters, and response formats.
 
