@@ -359,6 +359,15 @@ export const Showcases = [
     source: "https://github.com/Emurgo/yoroi-frontend",
     tags: ["wallet", "opensource"],
   },
+    {
+    title: "Gem Wallet",
+    description:
+      "Gem Wallet is an open-source and self-custodial crypto wallet that lets you send, receive, swap, use dApps, buy, and stake cryptocurrencies.",
+    preview: require("./showcase/gem-wallet.png"),
+    website: "https://gemwallet.com",
+    source: "https://github.com/gemwalletcom",
+    tags: ["wallet", "opensource"],
+  },
   {
     title: "Cardano Warriors",
     description: "The retro RPG NFT Collection minted in Cardano Blockchain.",
