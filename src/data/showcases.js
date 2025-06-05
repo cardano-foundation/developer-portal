@@ -1175,6 +1175,15 @@ export const Showcases = [
     tags: ["metadata", "identity"],
   },
   {
+    title: "Governance Space",
+    description:
+      "A blockchain governance platform for DAOs, projects, and institutions: providing indexing & analytics for DReps, governance actions, budget proposals & discussions, committee members, live events, and more.",
+    preview: require("./showcase/govspace.png"),
+    website: "https://governancespace.com/",
+    source: null,
+    tags: ["daotool", "governance"],
+  },
+  {
     title: "Cardano Budget Proposals",
     description:
       "This is a budget proposal aggregator tool, designed to help DReps and ada holders easily track submitted proposals.",
