@@ -1171,8 +1171,8 @@ export const Showcases = [
       "Manages identity across platforms using decentralized public key infrastructure and verifiable credentials: ensuring data privacy and ownership with tamper proofing and quantum resistance. Built on KERI and optionally anchored to Cardano.",
     preview: require("./showcase/veridian.png"),
     website: "https://www.veridian.id/",
-    source: null,
-    tags: ["metadata", "identity"],
+    source: "https://github.com/cardano-foundation/veridian-wallet",
+    tags: ["metadata", "identity", "opensource"],
   },
   {
     title: "Governance Space",
