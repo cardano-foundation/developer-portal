@@ -234,6 +234,15 @@ export const Tags = {
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 export const Showcases = [
   {
+    title: "Open DJED",
+    description:
+      "Mint and burn DJED, Cardano's overcollateralized stablecoin, with our open-source platform. Transparent alternative to DJED.xyz - accessible 24/7 anywhere. Built by Artifex Labs for the Cardano community.",
+    preview: require("./showcase/open-djed.png"),
+    website: "https://djed.artifex.finance/",
+    source: "https://github.com/artifex-labs/open-djed",
+    tags: ["token", "opensource"],
+  },
+  {
     title: "Cardano Kidz",
     description:
       "Each of these unique Limited Edition designs is being minted on the Cardano Blockchain as a Non Fungible Token (NFT).",
