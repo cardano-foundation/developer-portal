@@ -165,6 +165,5 @@ There is also an optional _open-role validator_ which enables just-in-time assig
 ## Metrics, Adoption, Audit
 
 - [Marlowe Explorer: Scanners for contracts on Mainnet & testnets](https://marlowescan.com/)
-- [MarloweStat: Statistics for Marlowe contracts on public networks](http://data.marlowestat.org/)
 - [Technical review of Marlowe: Final report (Tweag, 2023-03-24)](https://github.com/tweag/tweag-audit-reports/blob/main/Marlowe-2023-03.pdf)
   - [Response to Audit Report for the Marlowe Specification (IOG)](https://github.com/input-output-hk/marlowe/blob/master/response-to-audit-report.md)

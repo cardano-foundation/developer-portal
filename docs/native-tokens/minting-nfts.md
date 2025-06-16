@@ -79,7 +79,7 @@ The first is [CIP-25](https://cips.cardano.org/cips/cip25/) which is the old met
 
 The second standard is [CIP-68](https://cips.cardano.org/cips/cip68/) which is a dynamic standard that allows for complex NFT functionality with metadata that can be read by smart contracts. This is the preferred standard now that smart contracts are fully operational on Cardano.
 
-These NFTs are more difficult to create however, a tutorial for how to create these NFTs can be found in this [open source repository](https://github.com/NicholasMaselli/CIP-68Showcase). If you don't mind a minting service having the policyId, [Saturn NFT](https://saturnnft.io/) supports minting on the standard with custom functionality.
+If you don't mind a minting service having the policyId, [Saturn NFT](https://saturnnft.io/) supports minting on the standard with custom functionality.
 :::
 
 :::caution
