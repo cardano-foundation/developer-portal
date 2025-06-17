@@ -46,7 +46,7 @@ sudo ufw allow 443/tcp
 sudo ufw enable
 ```
 
-Now you should be able to visit your server's public IP address : http://your-ip-address which should lead to the default Nginx page.
+Now you should be able to visit your server's public IP address : `http://your-ip-address` which should lead to the default Nginx page.
 
 **Create and edit an nginx config file for your Grafana server**
 
@@ -73,7 +73,7 @@ proxy_pass http://localhost:3000/;
 sudo systemctl restart nginx
 ```
 
-Now access your monitoring server http://your-FQDN : you should see the Grafana login page.
+Now access your monitoring server `http://your-FQDN` : you should see the Grafana login page.
 
 **Nginx cleanup : remove the default enabled site**
 ```shell
@@ -102,7 +102,7 @@ sudo certbot --nginx
 Respond to prompts to configure your HTTPS settings (FQDN,email..).
 At the end of installation, you should be able to access your Grafana Server with HTTPS :
 
-https://your-FQDN
+`https://your-FQDN`
 
 ### Post install nginx hardening
 
@@ -190,8 +190,8 @@ important in our case).
 
 - Application Type: Web Application
 - Name: Grafana
-- Authorized JavaScript Origins: https://your-FQDN-used-to-access-your-grafana-server
-- Authorized Redirect URLs: https://your-FQDN-used-to-access-your-grafana-server/login/google
+- Authorized JavaScript Origins: `https://your-FQDN-used-to-access-your-grafana-server`
+- Authorized Redirect URLs: `https://your-FQDN-used-to-access-your-grafana-server/login/google`
 
 4- Click on Create
 
@@ -228,7 +228,7 @@ Save and close the file
 sudo systemctl restart grafana-server.service
 ```
 
-Access to your Grafana FQDN : https://your-FQDN-used-to-access-your-grafana-server
+Access to your Grafana FQDN : `https://your-FQDN-used-to-access-your-grafana-server`
 
 You should now have a “Sign-in with Google” option on the login page. You can now use the account you created with your own domain name to access your Grafana Cardano dashboards. 
 
