@@ -298,7 +298,7 @@ If this appeals to you, and you don't mind following a more complicated and erro
 
 This loosely documented configuration has been called the **Frankenwallet**, with separate instructions at these links which mostly follow the procedure above:
 
-  - **[The Frankenwallet](https://cosd.com/frankenwallet)** - detailed external web site, including semantics for using your bootable USB environment in secure & blockchain workflow
+  - **[The Frankenwallet](https://frankenwallet.com)** - detailed external web site, including semantics for using your bootable USB environment in secure & blockchain workflow
   - [Get Started with the Frankenwallet](/docs/operate-a-stake-pool/frankenwallet.md) - one-page summary here on the Developer Portal
 
 :::warning
