@@ -48,13 +48,10 @@ The Pre-Production Testnet is a more comprehensive testing environment used to v
 - [Eternl Wallet](https://eternl.io/) is a another lightweight wallet supporting both  with PreProd, Preview and Sancho testnets.
 - [Yoroi Nightly Wallet](https://chromewebstore.google.com/detail/yoroi-nightly/poonlenmfdfbjfeeballhiibknlknepo?hl=en&authuser=0) is a lightweight wallet developed by Emurgo and supports PreProd, PreView and Sancho testnet.
 - [Typhon Wallet](https://testnet.typhonwallet.io/#/wallet/access) is a lightweight wallet developed by StricaHQ and supports PreProd testnet.
-- [Flint Wallet](https://flint-wallet.com/) is a lightweight wallet developed by dcSpark and supports PreProd testnet.
 - [Ledger Nano S and Ledger Nano X](https://www.ledger.com/) are hardware wallets that support both PreProd and Preview testnets.
 - [Cardano-wallet](/docs/integrate-cardano/listening-for-payments-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
 
 It's important to note that while all of these wallets support Cardano testnets, you will need to choose the testnet network option within the wallet when setting it up or switching to testnet, or choose the right version before you install a specific testnet wallet.
-
-In preparation for the Chang Hardfork in the second half of 2024, the so-called Sancho Testnet has been in place since the end of 2023 in which all governance actions, functions and tools are tested. Here is a [list of wallets that support Sanchonet](https://docs.sanchogov.tools/how-to-use-the-govtool/getting-started/get-a-compatible-wallet). 
 
 ### Where to get test ada?
 

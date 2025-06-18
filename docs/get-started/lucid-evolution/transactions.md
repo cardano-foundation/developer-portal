@@ -88,8 +88,8 @@ console.log(txHash);
 
 Explore the following sections to learn more about Lucid Evolution:
 
-- [Under the hood](https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/under-the-hood) - Understand how Evolution library works
-- [Deep dives](https://anastasia-labs.github.io/lucid-evolution/documentation/deep-dives/make-payments) - Follow this series in order to step-by-step understand how to build your own off-chain code for different/advanced use cases
+- [Under the hood](https://github.com/no-witness-labs/lucid-evolution/blob/main/docs/pages/documentation/under-the-hood.mdx) - Understand how Evolution library works
+- [Deep dives](https://github.com/no-witness-labs/lucid-evolution/blob/main/docs/pages/documentation/deep-dives/pay-methods.mdx) - Follow this series in order to step-by-step understand how to build your own off-chain code for different/advanced use cases
 
 ### Video Tutorial
 
@@ -97,7 +97,7 @@ Explore the following sections to learn more about Lucid Evolution:
 
 ## Resources
 
-- [Official Evolution Library Documentation](https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution)
+- [Official Evolution Library Documentation](https://github.com/no-witness-labs/lucid-evolution/blob/main/docs/pages/documentation/core-concepts/instantiate-evolution.mdx)
 - [GitHub Repository](https://github.com/anastasia-labs/lucid-evolution)
 
 > You now have all you need to start playing around with Lucid Evolution. If you have any questions, please refer to the library's [Discord community](https://discord.gg/G9GbN2CVTR).
