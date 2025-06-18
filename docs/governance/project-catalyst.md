@@ -63,7 +63,6 @@ Please join our different channels on Telegram, Discord and Forum to join our Ca
 * [General Voltaire discussions](https://t.me/CardanoGovernanceOfficial)
 * [Improving project Catalyst process on Ideascale](https://cardano.ideascale.com/a/campaign-home/25622)
 * [Cardano Project Catalyst Discord](https://discord.gg/GUeYabmP4r)
-* [Cardano Catalyst Community Site](https://cardanocataly.st/)
 
 ## Instruction guides
 
