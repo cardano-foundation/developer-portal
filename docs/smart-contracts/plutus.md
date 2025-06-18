@@ -72,7 +72,7 @@ At weekly [Live Coding sessions](https://plutuspbl.io/calendar), students gather
 
 The PPBL 2024 Course is currently going live in English, French, Indonesian, Japanese, Spanish, and Vietnamese.
 
-- [Get started with the free PPBL 2024 course](https://www.andamio.io/course/ppbl2024)
+- [Get started with the PPBL 2025 course](https://app.andamio.io/course/4a79b279593a787b79da46df4dc34a3e59b003838dcf48a2f436094d)
 
 ## Demeter
 

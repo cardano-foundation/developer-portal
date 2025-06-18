@@ -120,7 +120,7 @@ tools on your system:
 
   The rest of the libraries will be installed inside MSYS2, for whichever [environment](https://www.msys2.org/docs/environments/) you choose to use. As GHC on Windows switched to `clang` it seems acceptable to recommend using `CLANG64` environment, but others might also work.
 
-  GHCup offers installing a MSYS2 environment local to the Haskell installation, just by running the command on [GHCup's front page](https://ghcup.haskell.org/). It also can work with an existing system-wide [MSYS2](https://www.msys2.org/) installation if using the following command (just adding a couple of parameters to the invocation of the bootstrap script. If you installed it somewhere else than `C:\msys64` modify the parameter accordingly):
+  GHCup offers installing a MSYS2 environment local to the Haskell installation, just by running the command on [GHCup's front page](https://www.haskell.org/ghcup/). It also can work with an existing system-wide [MSYS2](https://www.msys2.org/) installation if using the following command (just adding a couple of parameters to the invocation of the bootstrap script. If you installed it somewhere else than `C:\msys64` modify the parameter accordingly):
 
   ```powershell
   Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
