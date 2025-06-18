@@ -70,7 +70,7 @@ The table below outlines the voting thresholds and which roles participate in ea
     - SPOs: `pvt_hard_fork_initiation`
     - CC: `threshold`
 
-1. **Protocol Parameter Changes**: Adjusts [protocol parameters](https://beta.explorer.cardano.org/en/protocol-parameters/) such as block size or transaction fees. They require a majority vote from DReps and the CC. To change security-relevant protocol parameters, the approval of SPOs is also required. A breakdown of the different groups of protocol parameters (`Network`, `Economic`, `Technical`, `Governance`, `Security`) can be found in [CIP-1694](https://github.com/cardano-foundation/CIPs/tree/master/CIP-1694#protocol-parameter-groups).
+1. **Protocol Parameter Changes**: Adjusts [protocol parameters](https://cardanoscan.io/protocolparams) such as block size or transaction fees. They require a majority vote from DReps and the CC. To change security-relevant protocol parameters, the approval of SPOs is also required. A breakdown of the different groups of protocol parameters (`Network`, `Economic`, `Technical`, `Governance`, `Security`) can be found in [CIP-1694](https://github.com/cardano-foundation/CIPs/tree/master/CIP-1694#protocol-parameter-groups).
 
   **Relevant Threshold Protocol Parameters**:
     - DReps: `dvt_p_p_network_group`, `dvt_p_p_economic_group`, `dvt_p_p_technical_group`, `dvt_p_p_gov_group`
