@@ -1169,7 +1169,7 @@ export const Showcases = [
     title: "Veridian Wallet",
     description: 
       "Manages identity across platforms using decentralized public key infrastructure and verifiable credentials: ensuring data privacy and ownership with tamper proofing and quantum resistance. Built on KERI and optionally anchored to Cardano.",
-    preview: require("./showcase/veridian.png"),
+    preview: require("./showcase/veridian2.png"),
     website: "https://www.veridian.id/",
     source: "https://github.com/cardano-foundation/veridian-wallet",
     tags: ["metadata", "identity", "opensource"],
