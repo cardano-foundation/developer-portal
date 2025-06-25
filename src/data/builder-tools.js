@@ -587,14 +587,6 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
-    title: "cardano-wallet-interface",
-    description: "A Javascript library to easily interact with the dApp connector of various wallets.",
-    preview: require("./builder-tools/cardano-wallet-interface.png"),
-    website: "https://github.com/HarmonicPool/cardano-wallet-interface",
-    getstarted: null,
-    tags: ["javascript", "wallet"],
-  },
-  {
     title: "Plutus Extra",
     description: "A collection of Plutus-related helper libraries.",
     preview: require("./builder-tools/plutus-extra.png"),
