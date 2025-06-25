@@ -370,12 +370,12 @@ export const Showcases = [
     tags: ["chainindex", "http"]
   },
   {
-    title: "cardano-rosetta",
-    description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
-    preview: require("./builder-tools/cardano-rosetta.png"),
-    website: "https://github.com/cardano-foundation/cardano-rosetta/#cardano-rosetta",
-    getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
-    tags: ["http", "json"]
+    title: "cardano-rosetta-java",
+    description: "A lightweight Java implementation of the Mesh (formerly Rosetta) API for Cardano, built on Yaci-store for reduced resource footprint.",
+    preview: require("./builder-tools/cardano-rosetta-java.png"),
+    website: "https://github.com/cardano-foundation/cardano-rosetta-java",
+    getstarted: "https://cardano-foundation.github.io/cardano-rosetta-java/",
+    tags: ["http", "json", "java"]
   },
   {
     title: "cardano-db-sync",
