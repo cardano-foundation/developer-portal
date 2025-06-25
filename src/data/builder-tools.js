@@ -569,13 +569,13 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
-    title: "Fracada",
+    title: "Fracada v2",
     description:
-      "Plutus dApp which enables users to fractionalize their NFTs. The contract locks an NFT and mints a number of tokens representing fractions of it. To get the NFT back, the fraction tokens are burned.",
-    preview: require("./builder-tools/fracada.png"),
-    website: "https://github.com/dcSpark/fracada",
+      "Advanced Plutus fractionalized Token protocol which supports Token Bag functionality.",
+    preview: require("./builder-tools/fracada-v2.png"),
+    website: "https://github.com/dcSpark/fracada-il-primo",
     getstarted: null,
-    tags: ["favorite", "plutus", "nft"],
+    tags: ["plutus", "nft"],
   },
   {
     title: "Cardano Light Tools",
