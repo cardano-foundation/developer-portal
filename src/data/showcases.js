@@ -212,6 +212,14 @@ export const Tags = {
     color: '#6C6FFF',  // Soft Blue
   },
 
+  // Social
+  social: {
+    label: "Social",
+    description: "Sites that use the Cardano blockchain for social messaging, groups and sharing.",
+    icon: null,
+    color: '#4d6545',  // Custom: Olive (green-grey)
+  },
+
   // Native token projects
   token: {
     label: "Native Token",
