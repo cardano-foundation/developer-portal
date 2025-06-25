@@ -793,14 +793,6 @@ export const Showcases = [
     tags: ["plutus", "javascript", "typescript", "serialization"],
   },
   {
-    title: "cardanocli-pluts",
-    description: "Wrapper of the cardano-cli tool based on the plu-ts offchain types",
-    preview: require("./builder-tools/plu-ts.png"),
-    website: "https://github.com/HarmonicLabs/cardanocli-pluts",
-    getstarted: null,
-    tags: ["javascript", "typescript", "serialization"],
-  },
-  {
     title: "koios-pluts",
     description: "Wrapper of the koios tool based on the plu-ts offchain types",
     preview: require("./builder-tools/plu-ts.png"),
