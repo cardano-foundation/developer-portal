@@ -212,6 +212,14 @@ export const Tags = {
     color: '#6C6FFF',  // Soft Blue
   },
 
+  // Social
+  social: {
+    label: "Social",
+    description: "Sites that use the Cardano blockchain for social messaging, groups and sharing.",
+    icon: null,
+    color: '#4d6545',  // Custom: Olive (green-grey)
+  },
+
   // Native token projects
   token: {
     label: "Native Token",
@@ -233,6 +241,15 @@ export const Tags = {
 // Please don't add the "favorite"-tag yourself.
 // Provide pure NFT projects only get the tag NFT, not "tokens"
 export const Showcases = [
+  {
+    title: "Open DJED",
+    description:
+      "Mint and burn DJED, Cardano's overcollateralized stablecoin, with our open-source platform. Transparent alternative to DJED.xyz - accessible 24/7 anywhere. Built by Artifex Labs for the Cardano community.",
+    preview: require("./showcase/open-djed.png"),
+    website: "https://djed.artifex.finance/",
+    source: "https://github.com/artifex-labs/open-djed",
+    tags: ["token", "opensource"],
+  },
   {
     title: "Cardano Kidz",
     description:
@@ -1191,6 +1208,15 @@ export const Showcases = [
     website: "https://cardanobudget.com",
     source: null,
     tags: ["governance"],
+  },
+  {
+    title: "Adastack.io",
+    description:
+      "Comprehensive Cardano ecosystem explorer: Explore intro guides, wallets, DApps, NFTs, games, governance, Project Catalyst, DAOs, development, sidechains, L2s and more.",
+    preview: require("./showcase/adastack.png"),
+    website: "https://www.adastack.io",
+    source: null,
+    tags: ["ecosystem", "educational"],
   },
   {
     title: "ADAM Cardano App",
