@@ -945,14 +945,6 @@ export const Showcases = [
     tags: ["koios", "python", "sdk"],
   },
   {
-    title: "Cardano Token Registry Python API",
-    description: "A simple Python API for the Cardano Token Registry.",
-    preview: require("./builder-tools/token-registry-api.png"),
-    website: "https://github.com/cardano-apexpool/token-registry-api",
-    getstarted: null,
-    tags: ["python"],
-  },
-  {
     title: "Periodic DNS resolver",
     description: "System service to configure a DDNS address firewall rule on a BP and send a message via Telegram Bot if your relay IP address has changed. Keeps Cardano nodes connected and secure on residential ISPs with rolling public IPs.",
     preview: require("./builder-tools/pdr_bot.png"),
