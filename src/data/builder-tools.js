@@ -511,23 +511,6 @@ export const Showcases = [
     tags: ["favorite", "operatortool"],
   },
   {
-<<<<<<< purge/go-cardano-serialization
-    title: "libada-go",
-    description: "A Golang library for Cardano network, it is used and maintained by Bitrue.",
-    preview: require("./builder-tools/libada-go.png"),
-    website: "https://github.com/Bitrue-exchange/libada-go",
-    getstarted: null,
-    tags: ["golang", "sdk"],
-=======
-    title: "go-cardano-serialization",
-    description: "A Golang serialisation library for Cardano network.",
-    preview: require("./builder-tools/go-cardano-serialisation.png"),
-    website: "https://github.com/fivebinaries/go-cardano-serialization",
-    getstarted: null,
-    tags: ["favorite", "golang", "serialization"],
->>>>>>> staging
-  },
-  {
     title: "Python Module",
     description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
     preview: require("./builder-tools/cardano-python.png"),
