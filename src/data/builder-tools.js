@@ -504,14 +504,6 @@ export const Showcases = [
     tags: ["favorite", "sdk", "wallet", "net"],
   },
   {
-    title: "Cardano Metadata Oracle",
-    description: "Oracle submitting information using Cardano Metadata.",
-    preview: require("./builder-tools/cardano-metadata-oracle.png"),
-    website: "https://github.com/fivebinaries/cardano-metadata-oracle",
-    getstarted: null,
-    tags: ["oracle", "cli"],
-  },
-  {
     title: "Guild Operators Suite",
     description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./builder-tools/guild-operators.png"),
