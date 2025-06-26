@@ -511,14 +511,6 @@ export const Showcases = [
     tags: ["favorite", "operatortool"],
   },
   {
-    title: "go-cardano-serialization",
-    description: "A Golang serialisation library for Cardano network.",
-    preview: require("./builder-tools/go-cardano-serialisation.png"),
-    website: "https://github.com/fivebinaries/go-cardano-serialization",
-    getstarted: null,
-    tags: ["favorite", "golang", "serialization"],
-  },
-  {
     title: "Python Module",
     description: "The module provides tools for developers to accept and send transactions, manage staking and much more. It uses cardano-wallet as backend but is future-compatible with other solutions.",
     preview: require("./builder-tools/cardano-python.png"),
