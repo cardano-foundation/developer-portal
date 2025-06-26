@@ -511,14 +511,6 @@ export const Showcases = [
     tags: ["favorite", "operatortool"],
   },
   {
-    title: "libada-go",
-    description: "A Golang library for Cardano network, it is used and maintained by Bitrue.",
-    preview: require("./builder-tools/libada-go.png"),
-    website: "https://github.com/Bitrue-exchange/libada-go",
-    getstarted: null,
-    tags: ["golang", "sdk"],
-  },
-  {
     title: "go-cardano-serialization",
     description: "A Golang serialisation library for Cardano network.",
     preview: require("./builder-tools/go-cardano-serialisation.png"),
