@@ -1010,14 +1010,6 @@ export const Showcases = [
     tags: ["crystal", "sdk", "json"],
   },
   {
-    title: "cardano-kit-crystal",
-    description: "At toolkit for Crystal to ease development for the Cardano blockchain.",
-    preview: require("./builder-tools/cardano-kit-crystal.png"),
-    website: "https://github.com/wout/cardano-kit",
-    getstarted: null,
-    tags: ["crystal", "serialization"]
-  },
-  {
     title: "Maestro Dapp Platform",
     description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
     preview: require("./builder-tools/maestro.png"),
