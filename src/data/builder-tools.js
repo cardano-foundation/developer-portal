@@ -760,11 +760,11 @@ export const Showcases = [
     tags: ["favorite", "cli", "plutus", "aiken"],
   },
   {
-    title: "Acca",
-    description: "Aiken's utility library (extending standard library). It takes it's inspiration from libraries like Guava (Java) or Lodash (JavaScript). You can find in this library many missing functions, new data types (e.g. Either) also collections (e.g. HashTree, HashList, Stack, Binomial Heap).",
-    preview: require("./builder-tools/acca.png"),
-    website: "https://github.com/Cardano-Fans/acca",
-    getstarted: null,
+    title: "Awesome Aiken",
+    description: "A collection of curated awesome Aiken libraries, DApps, tutorials & other cool stuff.",
+    preview: require("./builder-tools/awesome-aiken.png"),
+    website: "https://github.com/aiken-lang/awesome-aiken",
+    getstarted: "https://aiken-lang.org/fundamentals/getting-started",
     tags: ["plutus", "aiken"],
   },
   {
