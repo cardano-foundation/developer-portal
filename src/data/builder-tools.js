@@ -561,14 +561,6 @@ export const Showcases = [
     tags: ["python", "nft"],
   },
   {
-    title: "Ansible cardano-node",
-    description: "An Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
-    preview: require("./builder-tools/ansible-cardano-node.png"),
-    website: "https://github.com/moaipool/ansible-cardano-node",
-    getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
-    tags: ["operatortool"],
-  },
-  {
     title: "Fracada",
     description:
       "Plutus dApp which enables users to fractionalize their NFTs. The contract locks an NFT and mints a number of tokens representing fractions of it. To get the NFT back, the fraction tokens are burned.",
