@@ -495,14 +495,6 @@ export const Showcases = [
     tags: ["favorite", "sdk", "wallet", "net"],
   },
   {
-    title: "Cardano Metadata Oracle",
-    description: "Oracle submitting information using Cardano Metadata.",
-    preview: require("./builder-tools/cardano-metadata-oracle.png"),
-    website: "https://github.com/fivebinaries/cardano-metadata-oracle",
-    getstarted: null,
-    tags: ["oracle", "cli"],
-  },
-  {
     title: "Guild Operators Suite",
     description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./builder-tools/guild-operators.png"),
@@ -552,14 +544,6 @@ export const Showcases = [
     website: "https://github.com/orpheus-antpool/cardano-light-tools",
     getstarted: null,
     tags: ["operatortool"],
-  },
-  {
-    title: "Plutus Extra",
-    description: "A collection of Plutus-related helper libraries.",
-    preview: require("./builder-tools/plutus-extra.png"),
-    website: "https://github.com/Liqwid-Labs/plutus-extra",
-    getstarted: null,
-    tags: ["plutus", "haskell"],
   },
   {
     title: "PyCardano",
@@ -768,11 +752,11 @@ export const Showcases = [
     tags: ["favorite", "cli", "plutus", "aiken"],
   },
   {
-    title: "Acca",
-    description: "Aiken's utility library (extending standard library). It takes it's inspiration from libraries like Guava (Java) or Lodash (JavaScript). You can find in this library many missing functions, new data types (e.g. Either) also collections (e.g. HashTree, HashList, Stack, Binomial Heap).",
-    preview: require("./builder-tools/acca.png"),
-    website: "https://github.com/Cardano-Fans/acca",
-    getstarted: null,
+    title: "Awesome Aiken",
+    description: "A collection of curated awesome Aiken libraries, DApps, tutorials & other cool stuff.",
+    preview: require("./builder-tools/awesome-aiken.png"),
+    website: "https://github.com/aiken-lang/awesome-aiken",
+    getstarted: "https://aiken-lang.org/fundamentals/getting-started",
     tags: ["plutus", "aiken"],
   },
   {
@@ -943,14 +927,6 @@ export const Showcases = [
     website: "https://github.com/blockfrost/blockfrost-crystal",
     getstarted: null,
     tags: ["crystal", "sdk", "json"],
-  },
-  {
-    title: "cardano-kit-crystal",
-    description: "At toolkit for Crystal to ease development for the Cardano blockchain.",
-    preview: require("./builder-tools/cardano-kit-crystal.png"),
-    website: "https://github.com/wout/cardano-kit",
-    getstarted: null,
-    tags: ["crystal", "serialization"]
   },
   {
     title: "Maestro Dapp Platform",
