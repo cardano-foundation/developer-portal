@@ -921,14 +921,6 @@ export const Showcases = [
     tags: ["http"],
   },
   {
-    title: "blockfrost-crystal",
-    description: "A Crystal SDK for the Blockfrost.io API.",
-    preview: require("./builder-tools/blockfrost-crystal.png"),
-    website: "https://github.com/blockfrost/blockfrost-crystal",
-    getstarted: null,
-    tags: ["crystal", "sdk", "json"],
-  },
-  {
     title: "Maestro Dapp Platform",
     description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
     preview: require("./builder-tools/maestro.png"),
