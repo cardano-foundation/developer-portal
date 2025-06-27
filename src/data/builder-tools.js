@@ -503,12 +503,12 @@ export const Showcases = [
     tags: ["favorite", "operatortool"],
   },
   {
-    title: "Marlowe Playground",
-    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
-    preview: require("./builder-tools/marlowe-playground.png"),
-    website: "https://marlowe.iohk.io",
-    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
-    tags: ["favorite", "marlowe", "hosted"],
+    title: "Marlowe",
+    description: "As a special purpose, domain-specific language (DSL) it offers a higher-level model of contracts than other Cardano smart contract languages, albeit in a more restricted domain.",
+    preview: require("./builder-tools/marlowe.png"),
+    website: "https://github.com/marlowe-lang/marlowe-cardano",
+    getstarted: "/docs/smart-contracts/marlowe",
+    tags: ["favorite", "marlowe"],
   },
   {
     title: "Automint",
