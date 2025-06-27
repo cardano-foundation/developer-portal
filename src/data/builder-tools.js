@@ -769,14 +769,6 @@ export const Showcases = [
     tags: ["http", "golang", "json", "websocket"],
   },
   {
-    title: "cscli",
-    description: "A lightweight cross-platform CLI tool for generating/serialising Cardano wallet primitives (i.e. recovery-phrases, keys, addresses and transactions), querying the chain and submitting transactions to the testnet or mainnet networks.",
-    preview: require("./builder-tools/cscli.png"),
-    website: "https://github.com/CardanoSharp/cscli",
-    getstarted: "/docs/get-started/cscli",
-    tags: ["cli", "serialization", "wallet"],
-  },
-  {
     title: "HeliosLang",
     description: "A DSL for writing Cardano Smart Contracts. Reference compiler is a single Javascript file without dependencies.",
     preview: require("./builder-tools/helioslang.png"),
