@@ -370,12 +370,12 @@ export const Showcases = [
     tags: ["chainindex", "http"]
   },
   {
-    title: "cardano-rosetta",
-    description: "An implementation of Rosetta (an open-source specification and set of tools for blockchain integration) for Cardano. Rosetta’s goal is to make blockchain integration simpler, faster, and more reliable than using a native integration.",
-    preview: require("./builder-tools/cardano-rosetta.png"),
-    website: "https://github.com/cardano-foundation/cardano-rosetta/#cardano-rosetta",
-    getstarted: "https://www.rosetta-api.org/docs/getting_started.html",
-    tags: ["http", "json"]
+    title: "cardano-rosetta-java",
+    description: "A lightweight Java implementation of the Mesh (formerly Rosetta) API for Cardano, built on Yaci-store for reduced resource footprint.",
+    preview: require("./builder-tools/cardano-rosetta-java.png"),
+    website: "https://github.com/cardano-foundation/cardano-rosetta-java",
+    getstarted: "https://cardano-foundation.github.io/cardano-rosetta-java/",
+    tags: ["http", "json", "java"]
   },
   {
     title: "cardano-db-sync",
@@ -461,15 +461,6 @@ export const Showcases = [
     tags: ["java", "sdk", "favorite"],
   },
   {
-    title: "Imperator - imperative, secure SC programming language",
-    description:
-      "A proof of concept secure, imperative language for writing Smart Contracts on Cardano L1.",
-    preview: require("./builder-tools/imperator.png"),
-    website: "https://github.com/ImperatorLang/imperator",
-    getstarted: null,
-    tags: ["python", "plutus"],
-  },
-  {
     title: "cardano-addresses TypeScript binding",
     description: "This is a Typescript/Javascript version of the cardano-addresses API. It includes a web demo.",
     preview: require("./builder-tools/cardano-addresses-typescript-binding.png"),
@@ -504,36 +495,12 @@ export const Showcases = [
     tags: ["favorite", "sdk", "wallet", "net"],
   },
   {
-    title: "Cardano Metadata Oracle",
-    description: "Oracle submitting information using Cardano Metadata.",
-    preview: require("./builder-tools/cardano-metadata-oracle.png"),
-    website: "https://github.com/fivebinaries/cardano-metadata-oracle",
-    getstarted: null,
-    tags: ["oracle", "cli"],
-  },
-  {
     title: "Guild Operators Suite",
     description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./builder-tools/guild-operators.png"),
     website: "https://cardano-community.github.io/guild-operators/",
     getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
     tags: ["favorite", "operatortool"],
-  },
-  {
-    title: "libada-go",
-    description: "A Golang library for Cardano network, it is used and maintained by Bitrue.",
-    preview: require("./builder-tools/libada-go.png"),
-    website: "https://github.com/Bitrue-exchange/libada-go",
-    getstarted: null,
-    tags: ["golang", "sdk"],
-  },
-  {
-    title: "go-cardano-serialization",
-    description: "A Golang serialisation library for Cardano network.",
-    preview: require("./builder-tools/go-cardano-serialisation.png"),
-    website: "https://github.com/fivebinaries/go-cardano-serialization",
-    getstarted: null,
-    tags: ["favorite", "golang", "serialization"],
   },
   {
     title: "Marlowe Playground",
@@ -561,13 +528,13 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
-    title: "Fracada",
+    title: "Fracada v2",
     description:
-      "Plutus dApp which enables users to fractionalize their NFTs. The contract locks an NFT and mints a number of tokens representing fractions of it. To get the NFT back, the fraction tokens are burned.",
-    preview: require("./builder-tools/fracada.png"),
-    website: "https://github.com/dcSpark/fracada",
+      "Advanced Plutus fractionalized Token protocol which supports Token Bag functionality.",
+    preview: require("./builder-tools/fracada-v2.png"),
+    website: "https://github.com/dcSpark/fracada-il-primo",
     getstarted: null,
-    tags: ["favorite", "plutus", "nft"],
+    tags: ["plutus", "nft"],
   },
   {
     title: "Cardano Light Tools",
@@ -579,28 +546,12 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
-    title: "cardano-wallet-interface",
-    description: "A Javascript library to easily interact with the dApp connector of various wallets.",
-    preview: require("./builder-tools/cardano-wallet-interface.png"),
-    website: "https://github.com/HarmonicPool/cardano-wallet-interface",
-    getstarted: null,
-    tags: ["javascript", "wallet"],
-  },
-  {
-    title: "Plutus Extra",
-    description: "A collection of Plutus-related helper libraries.",
-    preview: require("./builder-tools/plutus-extra.png"),
-    website: "https://github.com/Liqwid-Labs/plutus-extra",
-    getstarted: null,
-    tags: ["plutus", "haskell"],
-  },
-  {
     title: "PyCardano",
     description:
       "A Cardano library written in Python. It allows users to build and sign transactions without depending on other Cardano serialization tools (such as cardano-cli and cardano-serialization-lib), making it a lightweight library that is easy and fast to set up in all kinds of environments.",
     preview: require("./builder-tools/pycardano.png"),
-    website: "https://github.com/cffls/pycardano",
-    getstarted: null,
+    website: "https://github.com/Python-Cardano/pycardano",
+    getstarted: "https://pycardano.readthedocs.io/en/latest",
     tags: ["python", "sdk"],
   },
   {
@@ -785,14 +736,6 @@ export const Showcases = [
     tags: ["plutus", "javascript", "typescript", "serialization"],
   },
   {
-    title: "cardanocli-pluts",
-    description: "Wrapper of the cardano-cli tool based on the plu-ts offchain types",
-    preview: require("./builder-tools/plu-ts.png"),
-    website: "https://github.com/HarmonicLabs/cardanocli-pluts",
-    getstarted: null,
-    tags: ["javascript", "typescript", "serialization"],
-  },
-  {
     title: "koios-pluts",
     description: "Wrapper of the koios tool based on the plu-ts offchain types",
     preview: require("./builder-tools/plu-ts.png"),
@@ -809,11 +752,11 @@ export const Showcases = [
     tags: ["favorite", "cli", "plutus", "aiken"],
   },
   {
-    title: "Acca",
-    description: "Aiken's utility library (extending standard library). It takes it's inspiration from libraries like Guava (Java) or Lodash (JavaScript). You can find in this library many missing functions, new data types (e.g. Either) also collections (e.g. HashTree, HashList, Stack, Binomial Heap).",
-    preview: require("./builder-tools/acca.png"),
-    website: "https://github.com/Cardano-Fans/acca",
-    getstarted: null,
+    title: "Awesome Aiken",
+    description: "A collection of curated awesome Aiken libraries, DApps, tutorials & other cool stuff.",
+    preview: require("./builder-tools/awesome-aiken.png"),
+    website: "https://github.com/aiken-lang/awesome-aiken",
+    getstarted: "https://aiken-lang.org/fundamentals/getting-started",
     tags: ["plutus", "aiken"],
   },
   {
@@ -881,14 +824,6 @@ export const Showcases = [
     tags: ["javascript", "typescript", "nft"]
   },
   {
-    title: "Bakrypt.io",
-    description: "Bakrypt offers backend tools and Cloud storage services for brands, companies, and creators to help them build their NFTs.",
-    preview: require("./builder-tools/bakrypt-io.png"),
-    website: "https://bakrypt.io",
-    getstarted: "https://bakrypt.readme.io",
-    tags: ["nft", "http", "hosted"],
-  },
-  {
     title: "CARP (Cardano Postgres Indexer)",
     description: "A modular indexer for Cardano with an SQL Postgres backend.",
     preview: require("./builder-tools/carp.png"),
@@ -935,14 +870,6 @@ export const Showcases = [
     website: "https://github.com/cardano-apexpool/koios-api-python",
     getstarted: null,
     tags: ["koios", "python", "sdk"],
-  },
-  {
-    title: "Cardano Token Registry Python API",
-    description: "A simple Python API for the Cardano Token Registry.",
-    preview: require("./builder-tools/token-registry-api.png"),
-    website: "https://github.com/cardano-apexpool/token-registry-api",
-    getstarted: null,
-    tags: ["python"],
   },
   {
     title: "Periodic DNS resolver",
@@ -1000,14 +927,6 @@ export const Showcases = [
     website: "https://github.com/blockfrost/blockfrost-crystal",
     getstarted: null,
     tags: ["crystal", "sdk", "json"],
-  },
-  {
-    title: "cardano-kit-crystal",
-    description: "At toolkit for Crystal to ease development for the Cardano blockchain.",
-    preview: require("./builder-tools/cardano-kit-crystal.png"),
-    website: "https://github.com/wout/cardano-kit",
-    getstarted: null,
-    tags: ["crystal", "serialization"]
   },
   {
     title: "Maestro Dapp Platform",
