@@ -58,15 +58,6 @@ export const Tags = {
     color: '#921f32',
   },
 
-  // Crystal
-  crystal: {
-    label: "Crystal",
-    description:
-      "Crystal language",
-    icon: null,
-    color: '#ddd',
-  },
-
   // Golang
   golang: {
     label: "Go",
@@ -1132,7 +1123,6 @@ function sortShowcases() {
 export const LanguagesOrTechnologiesTags = [
   "c",
   "cli",
-  "crystal",
   "golang",
   "haskell",
   "http",
