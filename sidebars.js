@@ -60,7 +60,6 @@ module.exports = {
           "get-started/cardanocli-js",
           "get-started/cardano-wallet-js",
           "get-started/cscli",
-          "get-started/dandelion-apis",
           "get-started/koios",
           {
             type: "category",

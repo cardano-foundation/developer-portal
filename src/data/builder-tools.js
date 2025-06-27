@@ -435,15 +435,6 @@ export const Showcases = [
     tags: ["javascript", "sdk"],
   },
   {
-    title: "Dandelion APIs",
-    description:
-      "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
-    preview: require("./builder-tools/dandelion-apis.png"),
-    website: "https://gimbalabs.com/dandelion",
-    getstarted: "/docs/get-started/dandelion-apis",
-    tags: ["http", "websocket", "json", "hosted"],
-  },
-  {
     title: "Ogmios",
     description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./builder-tools/ogmios.png"),
