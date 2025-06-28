@@ -504,10 +504,10 @@ export const Showcases = [
   },
   {
     title: "Marlowe",
-    description: "As a special purpose, domain-specific language (DSL) it offers a higher-level model of contracts than other Cardano smart contract languages, albeit in a more restricted domain.",
+    description: "Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.",
     preview: require("./builder-tools/marlowe.png"),
-    website: "https://github.com/marlowe-lang/marlowe-cardano",
-    getstarted: "/docs/smart-contracts/marlowe",
+    website: "https://marlowe-lang.org/",
+    getstarted: "https://playground.marlowe-lang.org/",
     tags: ["favorite", "marlowe"],
   },
   {
