@@ -664,14 +664,6 @@ export const Showcases = [
     tags: ["haskell", "plutus", "testing"]
   },
   {
-    title: "Pluto",
-    description: "An untyped Plutus Core assembler.",
-    preview: require("./builder-tools/pluto.png"),
-    website: "https://github.com/Plutonomicon/pluto#pluto",
-    getstarted: null,
-    tags: ["plutus", "lowlevel"]
-  },
-  {
     title: "Plutonomicon",
     description: "A developer-driven guide to the Plutus smart contract language in practice.",
     preview: require("./builder-tools/plutonomicon.png"),
