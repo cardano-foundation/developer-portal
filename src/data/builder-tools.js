@@ -469,15 +469,6 @@ export const Showcases = [
     tags: ["typescript", "serialization"],
   },
   {
-    title: "Heidrun",
-    description:
-      "An automation platform for Cardano to trigger various action based on detecting payment to a wallet address.",
-    preview: require("./builder-tools/heidrun.png"),
-    website: "https://github.com/adosia/Heidrun",
-    getstarted: null,
-    tags: ["http", "json"],
-  },
-  {
     title: "cardano-wallet-js",
     description: "A JavaScript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
     preview: require("./builder-tools/cardano-wallet-js.png"),
