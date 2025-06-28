@@ -897,14 +897,6 @@ export const Showcases = [
     tags: ["koios", "java", "sdk"],
   },
   {
-    title: "Ogmios Java Client",
-    description: "A Java API library for interacting with Ogmios.",
-    preview: require("./builder-tools/ogmios-java-client.png"),
-    website: "https://github.com/adabox-aio/ogmios-java-client",
-    getstarted: null,
-    tags: ["ogmios", "websocket", "java", "sdk"],
-  },
-  {
     title: "@dotare/cardano-delegation",
     description: "A delegation button that uses cip30 to improve the quality of life for developers and delegators.",
     preview: require("./builder-tools/dotare-cardano-delegation.png"),
