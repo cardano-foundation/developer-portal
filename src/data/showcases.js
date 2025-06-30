@@ -625,15 +625,7 @@ export const Showcases = [
     source: null,
     tags: ["token"],
   },
-  {
-    title: "Open CNFT",
-    description:
-      "Leaderboards & Analytics of the Cardano NFT ecosystem.",
-    preview: require("./showcase/opencnft.png"),
-    website: "https://opencnft.io",
-    source: null,
-    tags: ["analytics", "nftsupport"],
-  },
+
   {
     title: "ADAZOO MMORPG and Metaverse",
     description: "Start exploring ADAZOO, battle and capture CNFT's. Brag to your friends, show off your stats.",
