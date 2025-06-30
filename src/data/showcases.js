@@ -300,8 +300,8 @@ export const Showcases = [
     description:
       "List of Cardano Explorers built by the community for the community.",
     preview: require("./showcase/cf-explorer.png"),
-    website: "https://beta.explorer.cardano.org",
-    source: "https://github.com/cardano-foundation/cf-explorer",
+    website: "https://explorer.cardano.org",
+    source: "https://github.com/cardano-foundation/cf-explorer-landing",
     tags: ["explorer", "opensource"],
   },
   {
