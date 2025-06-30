@@ -886,15 +886,6 @@ export const Showcases = [
     tags: ["minting", "nftsupport"],
   },
   {
-    title: "Raw Cardano Explorer",
-    description: 
-      "Cardano Blockchain Explorer to show data in a simple and fast way.",
-    preview: require("./showcase/raw-cardano.png"),
-    website: "https://www.rawcardano.app",
-    source: null,
-    tags: ["explorer"],
-  },
-  {
     title: "NFTada.io",
     description: 
       "Simple web interface and sophisticated API for automated printing and distribution.",
