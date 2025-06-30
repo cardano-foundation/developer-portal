@@ -688,15 +688,6 @@ export const Showcases = [
     tags: ["ecosystem"],
   },
   {
-    title: "CNFT Jungle",
-    description:
-      "CNFT Jungle is the biggest automated Cardano NFT rarity database and market analytics platform.",
-    preview: require("./showcase/cnftjungle.png"),
-    website: "https://www.cnftjungle.io",
-    source: null,
-    tags: ["analytics", "nftsupport"],
-  },
-  {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
