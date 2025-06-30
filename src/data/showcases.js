@@ -733,15 +733,6 @@ export const Showcases = [
     tags: ["dex", "token"],
   },
   {
-    title: "Building On Cardano",
-    description:
-      "Place to view whats happening within the cardano ecosystem.",
-    preview: require("./showcase/buildingoncardano.png"),
-    website: "https://buildingoncardano.com",
-    source: null,
-    tags: ["ecosystem"],
-  },
-  {
     title: "Lido Nation",
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
