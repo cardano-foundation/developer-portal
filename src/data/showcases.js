@@ -814,15 +814,6 @@ export const Showcases = [
     tags: [ "wallet", "dex", "nftsupport"],
   }, 
   {
-    title: "Voteaire",
-    description:
-      "Voteaire allows everyone in the ecosystem to create a poll. All results are weighted. All proposals and votes are stored publicly on-chain.",
-    preview: require("./showcase/voteaire.png"),
-    website: "https://voteaire.io/",
-    source: null,
-    tags: [ "daotool"],
-  },
-  {
     title: "Carda Station",
     description: 
       "Explore this virtual world on the moon with an in game avatar, and interact with other players through hangouts, games or events.",
