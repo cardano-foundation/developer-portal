@@ -474,14 +474,6 @@ export const Showcases = [
     tags: ["favorite", "wallet", "nftsupport"],
   },
   {
-    title: "Milkomeda",
-    description: "Cross-blockchain Level 2 solutions including EVM support on Cardano and wrapped native assets.",
-    preview: require("./showcase/milkomeda.png"),
-    website: "https://milkomeda.com",
-    source: null,
-    tags: ["bridge"]
-  },
-  {
     title: "Clay Mates",
     description:
       "Collectibles brought to life and re-homed on the Cardano blockchain. Winner of the CNFT Awards 2022 in the category \"best generative art\".",
