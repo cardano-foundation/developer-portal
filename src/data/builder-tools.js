@@ -21,11 +21,6 @@ import { sortBy, difference } from "../utils/jsUtils";
 // To modify: edit the title, description, or featured tool titles
 export const WorkflowCategories = [
   {
-    title: 'Getting Started',
-    description: 'Essential tools to begin your Cardano development journey',
-    featured: ['Blockfrost', 'cardano-cli', 'Mesh SDK']
-  },
-  {
     title: 'Smart Contracts',
     description: 'Languages and frameworks for building on-chain logic',
     featured: ['Aiken', 'Marlowe Playground', 'Plutarch']
@@ -1022,7 +1017,7 @@ export const Showcases = [
   },
   {
     title: "whisky",
-    description: "This is a library for building off-chain code on Cardano. It is a cardano-cli like wrapper on cardano-serialization-lib (equivalent on MeshJS’s lower level APIs), supporting serious DApps’ backend on rust codebase.",
+    description: "This is a library for building off-chain code on Cardano. It is a cardano-cli like wrapper on cardano-serialization-lib (equivalent on MeshJS's lower level APIs), supporting serious DApps' backend on rust codebase.",
     preview: require("./builder-tools/whisky.png"),
     website: "https://github.com/sidan-lab/whisky",
     getstarted: "https://whisky.sidan.io/",

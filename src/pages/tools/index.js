@@ -21,9 +21,9 @@ import {
   LanguagesOrTechnologiesTags,
   SortedShowcases,
   Tags,
-  Showcases,
-  WorkflowCategories
+  Showcases
 } from "../../data/builder-tools";
+import CategoryOverview from "../../components/tools/CategoryOverview";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from 'lodash/debounce';
 import styles from "./styles.module.css";
@@ -35,72 +35,6 @@ const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
 const CTA = "₳dd your tool";
 const FILENAME = "builder-tools.js";
-
-function CategoryCard({ category }) {
-  // Find featured tools by exact title match (validation handled at build time)
-  const tools = Showcases.filter(tool => 
-    category.featured.includes(tool.title)
-  ).slice(0, 3);
-  
-  return (
-    <div className={styles.categoryCard}>
-      <div className={styles.categoryHeader}>
-        <h3 className={styles.categoryTitle}>{category.title}</h3>
-        <p className={styles.categoryDescription}>{category.description}</p>
-      </div>
-      
-      <div className={styles.categoryTools}>
-        {tools.map((tool) => (
-          <a 
-            key={tool.title}
-            href={tool.website} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={styles.toolPreview}
-          >
-            <div className={styles.toolIcon}>
-              🔧
-            </div>
-            <div className={styles.toolInfo}>
-              <h4 className={styles.toolTitle}>{tool.title}</h4>
-              <p className={styles.toolDescription}>
-                {tool.description.length > 60 
-                  ? `${tool.description.substring(0, 60)}...` 
-                  : tool.description
-                }
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CategoryOverview() {
-  return (
-    <section className={styles.categoryOverview}>
-      <div className="container">
-        <div className={styles.overviewHeader}>
-          <h2>Find tools for your project</h2>
-          <p>
-            Choose a category below, or{' '}
-            <button className={styles.questionnaireLink} disabled>
-              take our questionnaire
-            </button>{' '}
-            to get personalized recommendations.
-          </p>
-        </div>
-        
-        <div className={styles.categoryGrid}>
-          {WorkflowCategories.map((category, index) => (
-            <CategoryCard key={index} category={category} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export function prepareUserState() {
   if (ExecutionEnvironment.canUseDOM) {
@@ -131,9 +65,14 @@ function restoreUserState(userState) {
 }
 
 const TagQueryStringKey = "tags";
+const SearchNameQueryKey = "name";
 
 function readSearchTags(search) {
   return new URLSearchParams(search).getAll(TagQueryStringKey);
+}
+
+function readSearchName(search) {
+  return new URLSearchParams(search).get(SearchNameQueryKey);
 }
 
 // Replace seach tags in the query
@@ -229,6 +168,47 @@ function useSelectedTags() {
   return { selectedTags, toggleTag };
 }
 
+function SearchBar() {
+  const history = useHistory();
+  const location = useLocation();
+  const [value, setValue] = useState(() => readSearchName(location.search) || '');
+
+  useEffect(() => {
+    setValue(readSearchName(location.search) || '');
+  }, [location.search]);
+
+  const debouncedHistoryPush = useCallback(
+    _debounce((newSearchString) => {
+      history.push({
+        ...location,
+        search: newSearchString,
+        state: prepareUserState(),
+      });
+    }, 300),
+    [history, location] // Dependencies for useCallback
+  );
+
+  return (
+    <div className={styles.searchContainer}>
+      <input
+        id="searchbar"
+        placeholder="Search builder tools..."
+        value={value}
+        onInput={(e) => {
+          const currentInputValue = e.currentTarget.value;
+          setValue(currentInputValue);
+          const newSearch = new URLSearchParams(location.search);
+          newSearch.delete(SearchNameQueryKey);
+          if (currentInputValue) {
+            newSearch.set(SearchNameQueryKey, currentInputValue);
+          }
+          debouncedHistoryPush(newSearch.toString());
+        }}
+      />
+    </div>
+  );
+}
+
 function ShowcaseFilters() {
   const filteredProjects = useFilteredProjects();
 
@@ -241,6 +221,7 @@ function ShowcaseFilters() {
             filteredProjects.length === 1 ? "" : "s"
           }`}</span>
         </div>
+        <SearchBar />
         <ShowcaseLatestToggle />
         <ShowcaseFilterToggle />
       </div>
@@ -314,7 +295,6 @@ function ShowcaseCards() {
               >
                 <h2 className={styles.ourFavorites}>Our favorites</h2>
                 <Fav className={styles.svgIconFavorite} size="small" />
-                <SearchBar />
               </div>
               <ul className={clsx("container", styles.showcaseList)}>
                 {favoriteShowcases.map((showcase) => (
@@ -334,11 +314,6 @@ function ShowcaseCards() {
         </>
       ) : (
         <div className="container">
-          <div
-            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
-          >
-            <SearchBar />
-          </div>
           <ul className={styles.showcaseList}>
             {filteredProjects.map((showcase) => (
               <ShowcaseCard key={showcase.title} showcase={showcase} />
@@ -347,52 +322,6 @@ function ShowcaseCards() {
         </div>
       )}
     </section>
-  );
-}
-const SearchNameQueryKey = "name";
-
-function readSearchName(search) {
-  return new URLSearchParams(search).get(SearchNameQueryKey);
-}
-
-function SearchBar() {
-  const history = useHistory();
-  const location = useLocation();
-  const [value, setValue] = useState(() => readSearchName(location.search) || '');
-
-  useEffect(() => {
-    setValue(readSearchName(location.search) || '');
-  }, [location.search]);
-
-  const debouncedHistoryPush = useCallback(
-    _debounce((newSearchString) => {
-      history.push({
-        ...location,
-        search: newSearchString,
-        state: prepareUserState(),
-      });
-    }, 300),
-    [history, location] // Dependencies for useCallback
-  );
-
-  return (
-    <div className={styles.searchContainer}>
-      <input
-        id="searchbar"
-        placeholder="Search builder tools..."
-        value={value}
-        onInput={(e) => {
-          const currentInputValue = e.currentTarget.value;
-          setValue(currentInputValue);
-          const newSearch = new URLSearchParams(location.search);
-          newSearch.delete(SearchNameQueryKey);
-          if (currentInputValue) {
-            newSearch.set(SearchNameQueryKey, currentInputValue);
-          }
-          debouncedHistoryPush(newSearch.toString());
-        }}
-      />
-    </div>
   );
 }
 
@@ -406,62 +335,36 @@ function MetaData() {
   )
 }
 
+function ShowcaseHeader() {
+  return (
+    <PortalHero
+      title={TITLE}
+      description={DESCRIPTION}
+      cta={CTA}
+      filename={FILENAME}
+    />
+  );
+}
+
 function Showcase() {
   const { selectedTags, toggleTag } = useSelectedTags();
   const filteredProjects = useFilteredProjects();
   const location = useLocation();
-  const history = useHistory();
   
-  // Derive view state from URL parameters
-  const urlParams = new URLSearchParams(location.search);
-  const isBrowseView = urlParams.get('view') === 'browse';
+  // Simple check - show categories when no filters are applied
   const hasFiltersApplied = selectedTags.length > 0 || location.search.includes('name=');
-  const showOverview = !isBrowseView && !hasFiltersApplied;
-
-  const handleShowAllTools = () => {
-    // Navigate to browse view while preserving other params
-    const newParams = new URLSearchParams(location.search);
-    newParams.set('view', 'browse');
-    history.push({ 
-      pathname: location.pathname, 
-      search: newParams.toString(),
-      state: prepareUserState()
-    });
-  };
-
-  const handleBackToOverview = () => {
-    // Clear all URL parameters and return to overview
-    history.push({ 
-      pathname: location.pathname, 
-      search: '',
-      state: prepareUserState()
-    });
-  };
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <MetaData/> 
-      <PortalHero
-        title={TITLE}
-        description={DESCRIPTION}
-        cta={CTA}
-        filename={FILENAME}
-        secondaryCta={showOverview && !hasFiltersApplied ? `Browse all tools` : "← Back to categories"}
-        secondaryOnClick={showOverview && !hasFiltersApplied ? handleShowAllTools : handleBackToOverview}
-      />
-        
-      {showOverview && !hasFiltersApplied && (
-        <>
-          <CategoryOverview />
-        </>
+      <ShowcaseHeader />
+      
+      {!hasFiltersApplied && (
+        <CategoryOverview />
       )}
       
-      {(!showOverview || hasFiltersApplied) && (
-        <>
-          <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
-          <ShowcaseCards filteredProjects={filteredProjects} />
-        </>
-      )}
+      <ShowcaseFilters />
+      <ShowcaseCards />
       
       <OpenStickyButton />
     </Layout>
