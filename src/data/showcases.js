@@ -474,14 +474,6 @@ export const Showcases = [
     tags: ["favorite", "wallet", "nftsupport"],
   },
   {
-    title: "Milkomeda",
-    description: "Cross-blockchain Level 2 solutions including EVM support on Cardano and wrapped native assets.",
-    preview: require("./showcase/milkomeda.png"),
-    website: "https://milkomeda.com",
-    source: null,
-    tags: ["bridge"]
-  },
-  {
     title: "Clay Mates",
     description:
       "Collectibles brought to life and re-homed on the Cardano blockchain. Winner of the CNFT Awards 2022 in the category \"best generative art\".",
@@ -505,15 +497,6 @@ export const Showcases = [
       "16 year old female fine art NFTs on the Cardano blockchain!",
     preview: require("./showcase/jesart.png"),
     website: "https://www.jes-art.com",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
-    title: "Stellar Hood",
-    description:
-      "Space, the final frontier: Discover and study the stars and planets in our galaxy, our Stellar Hood, as 3d interactive NFTs which are coded directly onto the Cardano blockchain! Customize your solar systems on the interactive map.",
-    preview: require("./showcase/stellarhood.png"),
-    website: "https://stellarhood.com",
     source: null,
     tags: ["nftproject"],
   },
@@ -722,15 +705,6 @@ export const Showcases = [
     website: "https://www.wingriders.com",
     source: null,
     tags: ["dex", "token"],
-  },
-  {
-    title: "Building On Cardano",
-    description:
-      "Place to view whats happening within the cardano ecosystem.",
-    preview: require("./showcase/buildingoncardano.png"),
-    website: "https://buildingoncardano.com",
-    source: null,
-    tags: ["ecosystem"],
   },
   {
     title: "Lido Nation",
