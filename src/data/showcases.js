@@ -1,4 +1,3 @@
-
 /*
  * SHOWCASE SECTION INFO
  *
