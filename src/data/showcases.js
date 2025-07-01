@@ -296,7 +296,7 @@ export const Showcases = [
     tags: ["explorer"],
   },
   {
-    title: "Cardano Foundation Explorer",
+    title: "Cardano Explorer Landing Page",
     description:
       "List of Cardano Explorers built by the community for the community.",
     preview: require("./showcase/cf-explorer.png"),
