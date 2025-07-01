@@ -9,11 +9,38 @@
  * - Add a local image preview. (decent screenshot or logo of your builder tool)
  * - The image must be added to the GitHub repository and use `require("image")`.
  *
+ * WORKFLOW CATEGORIES:
+ * - Categories are displayed on the tools overview page
+ * - Edit the WorkflowCategories array below to modify categories
+ * - Featured tools are matched by exact title - ensure tool titles match exactly
+ *
  */
-
-import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
-import { Fav } from '../svg/fav.svg'
+
+// Workflow categories for the tools overview page
+// To modify: edit the title, description, or featured tool titles
+export const WorkflowCategories = [
+  {
+    title: 'Getting Started',
+    description: 'Essential tools to begin your Cardano development journey',
+    featured: ['Blockfrost', 'cardano-cli', 'Mesh SDK']
+  },
+  {
+    title: 'Smart Contracts',
+    description: 'Languages and frameworks for building on-chain logic',
+    featured: ['Aiken', 'Marlowe Playground', 'Plutarch']
+  },
+  {
+    title: 'Blockchain Data',
+    description: 'Query and index blockchain data efficiently',
+    featured: ['Koios', 'Ogmios', 'Kupo']
+  },
+  {
+    title: 'Pool Operations',
+    description: 'Tools for stake pool operators and infrastructure',
+    featured: ['Guild Operators Suite', 'StakePool Operator Scripts', 'Cardano Audit Script for SPOs']
+  }
+];
 
 // List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
@@ -1283,3 +1310,50 @@ function ensureShowcaseValid(showcase) {
 }
 
 Showcases.forEach(ensureShowcaseValid);
+
+// Validate workflow categories
+function ensureWorkflowCategoryValid(category) {
+  function checkTitle() {
+    if (!category.title) {
+      throw new Error("WorkflowCategory title is missing");
+    }
+  }
+
+  function checkDescription() {
+    if (!category.description) {
+      throw new Error("WorkflowCategory description is missing");
+    }
+  }
+
+  function checkFeatured() {
+    if (!category.featured || !Array.isArray(category.featured)) {
+      throw new Error("WorkflowCategory must have a featured tools array");
+    }
+  }
+
+  function checkFeaturedToolsExist() {
+    const missingTools = category.featured.filter(toolTitle => 
+      !Showcases.find(tool => tool.title === toolTitle)
+    );
+    
+    if (missingTools.length > 0) {
+      throw new Error(
+        `WorkflowCategory references non-existent tools: [${missingTools.join(', ')}].\n` +
+        `Available tool titles: ${Showcases.map(s => s.title).join(', ')}`
+      );
+    }
+  }
+
+  try {
+    checkTitle();
+    checkDescription();
+    checkFeatured();
+    checkFeaturedToolsExist();
+  } catch (e) {
+    throw new Error(
+      `WorkflowCategory with title=${category.title} contains errors:\n${e.message}`
+    );
+  }
+}
+
+WorkflowCategories.forEach(ensureWorkflowCategoryValid);

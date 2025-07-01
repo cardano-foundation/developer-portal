@@ -22,6 +22,8 @@ html[data-theme=dark] .getStarted {
   color: #000;
 }
 
+
+
 html[data-theme=light] .heroBanner {
   background-image: url(/img/dev-portal-hero-light.webp);
   background-color: #383fd0;
@@ -55,7 +57,10 @@ html[data-theme=dark] .heroBanner {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 }
+
+
 
 .features {
   display: flex;
