@@ -17,7 +17,7 @@ This guide provides a comprehensive overview for new and prospective members of 
 
 The [Constitutional Committee](overview.md#cc) is a core component of Cardano's governance framework. Its primary mandate is to ensure the integrity of the ecosystem by assessing whether on-chain governance actions are compliant with the [Cardano Constitution](https://github.com/IntersectMBO/cardano-constitution/blob/main/cardano-constitution-1/cardano-constitution-1.txt.md).
 
-The CC does not judge the *merit* or *wisdom* of a proposal; it acts as a technical guardian, confirming that governance actions adhere to the established rules before they are put to a vote of all ada holders.
+The CC does not judge the *merit* or *wisdom* of a proposal; it acts as a technical guardian, confirming that governance actions adhere to the established rules in parallel with the community-wide vote by ada holders.
 
 ### Core Responsibilities & Required Skills
 
