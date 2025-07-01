@@ -1233,8 +1233,8 @@ export const Showcases = [
       "A simple tool to help every Cardano stakeholder participate in on-chain governance with confidence.",
     preview: require("./showcase/cf-voting-tool.png"),
     website: "https://voting.cardanofoundation.org/",
-    source: null,
-    tags: ["governance"],
+    source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
+    tags: ["governance", "opensource"],
   },
 ];
 
