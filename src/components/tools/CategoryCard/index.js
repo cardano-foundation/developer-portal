@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "./styles.module.css";
-import { SortedShowcases } from "../../../data/builder-tools";
 
-function CategoryCard({ category }) {
-  // Find featured tools by exact title match (validation handled at build time)
-  const tools = SortedShowcases.filter(tool => 
-    category.featured.includes(tool.title)
+function CategoryCard({ category, items }) {
+  // Find featured items by exact title match (validation handled at build time)
+  const featuredItems = items.filter(item => 
+    category.featured.includes(item.title)
   ).slice(0, 3);
   
   return (
@@ -16,20 +15,20 @@ function CategoryCard({ category }) {
       </div>
       
       <div className={styles.categoryTools}>
-        {tools.map((tool) => (
+        {featuredItems.map((item) => (
           <a 
-            key={tool.title}
-            href={tool.website} 
+            key={item.title}
+            href={item.website} 
             target="_blank" 
             rel="noopener noreferrer"
             className={styles.toolCard}
           >
             <div className={styles.toolInfo}>
-              <h4 className={styles.toolTitle}>{tool.title}</h4>
+              <h4 className={styles.toolTitle}>{item.title}</h4>
               <p className={styles.toolDescription}>
-                {tool.description.length > 120 
-                  ? `${tool.description.substring(0, 120)}...` 
-                  : tool.description
+                {item.description.length > 120 
+                  ? `${item.description.substring(0, 120)}...` 
+                  : item.description
                 }
               </p>
             </div>

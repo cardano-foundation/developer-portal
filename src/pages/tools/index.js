@@ -21,7 +21,8 @@ import {
   LanguagesOrTechnologiesTags,
   SortedShowcases,
   Tags,
-  Showcases
+  Showcases,
+  WorkflowCategories
 } from "../../data/builder-tools";
 import CategoryOverview from "../../components/tools/CategoryOverview";
 import { useHistory, useLocation } from "@docusaurus/router";
@@ -360,7 +361,16 @@ function Showcase() {
       <ShowcaseHeader />
       
       {!hasFiltersApplied && (
-        <CategoryOverview />
+        <CategoryOverview 
+          categories={WorkflowCategories}
+          items={SortedShowcases}
+          introTitle="Develop on Cardano"
+          introDescription="Discover the tools and libraries that power Cardano development. From smart contract languages to blockchain APIs, these community-built tools help you create decentralized applications, integrate with wallets, and interact with the Cardano ecosystem."
+          ctaTitle="Don't know where to start?"
+          ctaDescription="Follow our decision tree to get personalized recommendations for what you want to build."
+          ctaButtonText="Find Your Tools →"
+          ctaButtonUrl="https://example.com"
+        />
       )}
       
       <ShowcaseFilters />

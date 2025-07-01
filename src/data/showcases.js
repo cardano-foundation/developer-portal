@@ -12,10 +12,39 @@
  * - Add your project in the JSON array below.
  * - Add a local image preview. (decent screenshot or logo of your project)
  * - The image must be added to the GitHub repository and use `require("image")`.
+ * 
+ * SHOWCASE CATEGORIES:
+ * - Categories are displayed on the showcase overview page
+ * - Edit the ShowcaseCategories array below to modify categories
+ * - Featured projects are matched by exact title - ensure project titles match exactly
+ *
  */
-
-import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
+
+// Showcase categories for the showcase overview page
+// To modify: edit the title, description, or featured project titles
+export const ShowcaseCategories = [
+  {
+    title: 'Wallets & Identity',
+    description: 'Secure wallets and identity solutions for managing your assets',
+    featured: ['Lace', 'Eternl', 'Nami']
+  },
+  {
+    title: 'DeFi & Trading',
+    description: 'Decentralized exchanges, lending platforms, and financial tools',
+    featured: ['MuesliSwap', 'SundaeSwap', 'Liqwid']
+  },
+  {
+    title: 'NFTs & Gaming',
+    description: 'NFT marketplaces, games, and creative projects on Cardano',
+    featured: ['JPG Store', 'Pavia', 'Clay Mates']
+  },
+  {
+    title: 'Governance & DAOs',
+    description: 'Tools for governance participation and DAO management',
+    featured: ['Cardano Governance Tool', 'Summon Platform', 'RoundTable']
+  }
+];
 
 // List of available tags. The tag and the label should be in singular. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
@@ -1354,4 +1383,50 @@ function ensureShowcaseValid(showcase) {
   }
 }
 
+// Validate showcase categories
+function ensureShowcaseCategoryValid(category) {
+  function checkTitle() {
+    if (!category.title) {
+      throw new Error("ShowcaseCategory title is missing");
+    }
+  }
+
+  function checkDescription() {
+    if (!category.description) {
+      throw new Error("ShowcaseCategory description is missing");
+    }
+  }
+
+  function checkFeatured() {
+    if (!category.featured || !Array.isArray(category.featured)) {
+      throw new Error("ShowcaseCategory must have a featured projects array");
+    }
+  }
+
+  function checkFeaturedProjectsExist() {
+    const missingProjects = category.featured.filter(projectTitle => 
+      !Showcases.find(project => project.title === projectTitle)
+    );
+    
+    if (missingProjects.length > 0) {
+      throw new Error(
+        `ShowcaseCategory references non-existent projects: [${missingProjects.join(', ')}].\n` +
+        `Available project titles: ${Showcases.map(s => s.title).join(', ')}`
+      );
+    }
+  }
+
+  try {
+    checkTitle();
+    checkDescription();
+    checkFeatured();
+    checkFeaturedProjectsExist();
+  } catch (e) {
+    throw new Error(
+      `ShowcaseCategory with title=${category.title} contains errors:\n${e.message}`
+    );
+  }
+}
+
 Showcases.forEach(ensureShowcaseValid);
+ShowcaseCategories.forEach(ensureShowcaseCategoryValid);

@@ -16,7 +16,7 @@ import ShowcaseLatestToggle, {
 
 import PortalHero from "../portalhero";
 import { toggleListItem } from "../../utils/jsUtils";
-import { SortedShowcases, Tags, TagList, Showcases } from "../../data/showcases";
+import { SortedShowcases, Tags, TagList, Showcases, ShowcaseCategories } from "../../data/showcases";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from 'lodash/debounce';
 import styles from "./styles.module.css";
@@ -24,6 +24,7 @@ import styles from "./styles.module.css";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import Fav from "../../svg/fav.svg";
 import BackgroundWrapper from "@site/src/components/BackgroundWrapper";
+import CategoryOverview from "../../components/tools/CategoryOverview";
 
 const TITLE = "Showcase";
 const DESCRIPTION = "See the awesome projects people are building with Cardano";
@@ -357,11 +358,29 @@ function MetaData() {
 function Showcase() {
   const { selectedTags, toggleTag } = useSelectedTags();
   const filteredProjects = useFilteredProjects();
+  const location = useLocation();
+  
+  // Simple check - show categories when no filters are applied
+  const hasFiltersApplied = selectedTags.length > 0 || location.search.includes('name=');
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <MetaData />
       <ShowcaseHeader />
+      
+      {!hasFiltersApplied && (
+        <CategoryOverview 
+          categories={ShowcaseCategories}
+          items={SortedShowcases}
+          introTitle="Explore the Cardano Ecosystem"
+          introDescription="Discover the vibrant ecosystem of projects built on Cardano. From wallets and DeFi platforms to NFT marketplaces and games, explore what makes Cardano a thriving blockchain platform."
+          ctaTitle="Want to get featured?"
+          ctaDescription="Showcase your Cardano project to the community and help others discover what you've built."
+          ctaButtonText="Submit Your Project →"
+          ctaButtonUrl="/docs/portal-contribute#add-a-project-to-showcase"
+        />
+      )}
+      
       <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
       <ShowcaseCards filteredProjects={filteredProjects} />
       <OpenStickyButton />

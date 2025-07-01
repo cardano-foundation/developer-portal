@@ -1,43 +1,40 @@
 import React from "react";
 import styles from "./styles.module.css";
 import CategoryCard from "../CategoryCard";
-import { WorkflowCategories } from "../../../data/builder-tools";
 
-function CategoryOverview() {
+function CategoryOverview({ categories, items, introTitle, introDescription, ctaTitle, ctaDescription, ctaButtonText, ctaButtonUrl }) {
   return (
     <section className={styles.categoryOverview}>
       <div className="container">
         <div className={styles.headerSection}>
           <div className={styles.introContent}>
-            <h2 className={styles.introTitle}>Develop on Cardano</h2>
+            <h2 className={styles.introTitle}>{introTitle}</h2>
             <p className={styles.introDescription}>
-              Discover the tools and libraries that power Cardano development. From smart contract languages 
-              to blockchain APIs, these community-built tools help you create decentralized applications, 
-              integrate with wallets, and interact with the Cardano ecosystem.
+              {introDescription}
             </p>
           </div>
           
           <div className={styles.divider}>|</div>
           
           <div className={styles.ctaContent}>
-            <h3 className={styles.ctaTitle}>Don't know where to start?</h3>
+            <h3 className={styles.ctaTitle}>{ctaTitle}</h3>
             <p className={styles.ctaDescription}>
-              Follow our decision tree to get personalized recommendations for what you want to build.
+              {ctaDescription}
             </p>
             <a 
-              href="https://example.com" 
+              href={ctaButtonUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               className={styles.ctaButton}
             >
-              Find Your Tools →
+              {ctaButtonText}
             </a>
           </div>
         </div>
         
         <div className={styles.categoryGrid}>
-          {WorkflowCategories.map((category, index) => (
-            <CategoryCard key={index} category={category} />
+          {categories.map((category, index) => (
+            <CategoryCard key={index} category={category} items={items} />
           ))}
         </div>
       </div>
