@@ -474,14 +474,6 @@ export const Showcases = [
     tags: ["favorite", "wallet", "nftsupport"],
   },
   {
-    title: "Milkomeda",
-    description: "Cross-blockchain Level 2 solutions including EVM support on Cardano and wrapped native assets.",
-    preview: require("./showcase/milkomeda.png"),
-    website: "https://milkomeda.com",
-    source: null,
-    tags: ["bridge"]
-  },
-  {
     title: "Clay Mates",
     description:
       "Collectibles brought to life and re-homed on the Cardano blockchain. Winner of the CNFT Awards 2022 in the category \"best generative art\".",
@@ -731,15 +723,6 @@ export const Showcases = [
     website: "https://www.wingriders.com",
     source: null,
     tags: ["dex", "token"],
-  },
-  {
-    title: "Building On Cardano",
-    description:
-      "Place to view whats happening within the cardano ecosystem.",
-    preview: require("./showcase/buildingoncardano.png"),
-    website: "https://buildingoncardano.com",
-    source: null,
-    tags: ["ecosystem"],
   },
   {
     title: "Lido Nation",
