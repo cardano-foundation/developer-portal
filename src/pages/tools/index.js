@@ -222,7 +222,6 @@ function ShowcaseFilters() {
             filteredProjects.length === 1 ? "" : "s"
           }`}</span>
         </div>
-        <SearchBar />
         <ShowcaseLatestToggle />
         <ShowcaseFilterToggle />
       </div>
@@ -296,6 +295,7 @@ function ShowcaseCards() {
               >
                 <h2 className={styles.ourFavorites}>Our favorites</h2>
                 <Fav className={styles.svgIconFavorite} size="small" />
+                <SearchBar />
               </div>
               <ul className={clsx("container", styles.showcaseList)}>
                 {favoriteShowcases.map((showcase) => (
@@ -315,6 +315,11 @@ function ShowcaseCards() {
         </>
       ) : (
         <div className="container">
+          <div
+            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
+          >
+            <SearchBar />
+          </div>
           <ul className={styles.showcaseList}>
             {filteredProjects.map((showcase) => (
               <ShowcaseCard key={showcase.title} showcase={showcase} />
@@ -350,28 +355,22 @@ function ShowcaseHeader() {
 function Showcase() {
   const { selectedTags, toggleTag } = useSelectedTags();
   const filteredProjects = useFilteredProjects();
-  const location = useLocation();
-  
-  // Simple check - show categories when no filters are applied
-  const hasFiltersApplied = selectedTags.length > 0 || location.search.includes('name=');
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <MetaData/> 
       <ShowcaseHeader />
       
-      {!hasFiltersApplied && (
-        <CategoryOverview 
-          categories={WorkflowCategories}
-          items={SortedShowcases}
-          introTitle="Develop on Cardano"
-          introDescription="Discover the tools and libraries that power Cardano development. From smart contract languages to blockchain APIs, these community-built tools help you create decentralized applications, integrate with wallets, and interact with the Cardano ecosystem."
-          ctaTitle="Don't know where to start?"
-          ctaDescription="Follow our decision tree to get personalized recommendations for what you want to build."
-          ctaButtonText="Find Your Tools →"
-          ctaButtonUrl="https://example.com"
-        />
-      )}
+      <CategoryOverview 
+        categories={WorkflowCategories}
+        items={SortedShowcases}
+        introTitle="Develop on Cardano"
+        introDescription="Discover the tools and libraries that power Cardano development. From smart contract languages to blockchain APIs, these community-built tools help you create decentralized applications, integrate with wallets, and interact with the Cardano ecosystem."
+        ctaTitle="Don't know where to start?"
+        ctaDescription="Follow our decision tree to get personalized recommendations for what you want to build."
+        ctaButtonText="Find Your Tools →"
+        ctaButtonUrl="https://example.com"
+      />
       
       <ShowcaseFilters />
       <ShowcaseCards />
