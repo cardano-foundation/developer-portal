@@ -677,7 +677,7 @@ export const Showcases = [
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
     preview: require("./showcase/lidonation.png"),
-    website: "https://www.lidonation.com/en/project-catalyst/projects",
+    website: "https://www.lidonation.com/en/catalyst-explorer",
     source: null,
     tags: ["catalyst", "analytics"],
   },
