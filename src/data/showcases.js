@@ -410,15 +410,6 @@ export const Showcases = [
     tags: ["pooltool", "analytics"],
   },
   {
-    title: "Ada Tools",
-    description:
-      "Visualizes the nodes on a globe and also provides various tools.",
-    preview: require("./showcase/adatools.png"),
-    website: "https://adatools.io/hologram",
-    source: null,
-    tags: ["pooltool", "analytics"],
-  },
-  {
     title: "Cardano Blockchain Insights",
     description:
       "A Google Data Studio dashboard that visualizes many Cardano on-chain metrics.",
