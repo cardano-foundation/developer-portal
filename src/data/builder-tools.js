@@ -699,14 +699,6 @@ export const Showcases = [
     tags: ["plutus", "aiken"],
   },
   {
-    title: "Pix",
-    description: "An NFT collection generator that is CIP-25 compliant",
-    preview: require("./builder-tools/pix.png"),
-    website: "https://github.com/txpipe/pix",
-    getstarted: null,
-    tags: ["cli", "nft"],
-  },
-  {
     title: "Cardano Signer",
     description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
     preview: require("./builder-tools/cardano-signer.png"),
