@@ -781,15 +781,6 @@ export const Showcases = [
     tags: ["minting", "nftsupport"],
   },
   {
-    title: "NFTada.io",
-    description: 
-      "Simple web interface and sophisticated API for automated printing and distribution.",
-    preview: require("./showcase/nftada.png"),
-    website: "https://nftada.io/",
-    source: null,
-    tags: ["minting", "nftsupport"],
-  },
-  {
     title: "Cardano Relay Map",
     description: 
       "Shows geographical distribution of Cardano stake pool relay nodes with flexible map features.",
