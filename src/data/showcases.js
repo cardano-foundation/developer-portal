@@ -727,15 +727,6 @@ export const Showcases = [
     tags: [ "analytics", "ecosystem", "nftsupport"],
   },
   {
-    title: "Lending Pond",
-    description:
-      "Provide or Receive ada through a smart contract driven P2P lending marketplace using Cardano NFTs as collateral.",
-    preview: require("./showcase/lending-pond.png"),
-    website: "https://lendingpond.app",
-    source: null,
-    tags: [ "marketplace", "nftsupport", "lending"],
-  },
-  {
     title: "Book.io",
     description:
       "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
