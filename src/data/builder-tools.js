@@ -58,15 +58,6 @@ export const Tags = {
     color: '#921f32',
   },
 
-  // Crystal
-  crystal: {
-    label: "Crystal",
-    description:
-      "Crystal language",
-    icon: null,
-    color: '#ddd',
-  },
-
   // Golang
   golang: {
     label: "Go",
@@ -894,14 +885,6 @@ export const Showcases = [
     tags: ["http"],
   },
   {
-    title: "blockfrost-crystal",
-    description: "A Crystal SDK for the Blockfrost.io API.",
-    preview: require("./builder-tools/blockfrost-crystal.png"),
-    website: "https://github.com/blockfrost/blockfrost-crystal",
-    getstarted: null,
-    tags: ["crystal", "sdk", "json"],
-  },
-  {
     title: "Maestro Dapp Platform",
     description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
     preview: require("./builder-tools/maestro.png"),
@@ -1113,7 +1096,6 @@ function sortShowcases() {
 export const LanguagesOrTechnologiesTags = [
   "c",
   "cli",
-  "crystal",
   "golang",
   "haskell",
   "http",
