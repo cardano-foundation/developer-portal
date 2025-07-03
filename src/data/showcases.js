@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Ascent Rivals",
+    description:
+      "A competitive multiplayer racing-combat game featuring dual-engine twin-stick controls. Compete in sponsored tournaments, earn credits, place contracts on rivals, and master risk-reward combat mechanics in death-racing esports.",
+    preview: require("./showcase/ascent-rivals.png"),
+    website: "https://www.ascentrivals.com/",
+    source: null,
+    tags: ["game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
