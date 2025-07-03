@@ -725,15 +725,6 @@ export const Showcases = [
     tags: ["catalyst", "analytics"],
   },
   {
-    title: "RoundTable",
-    description:
-      "A open source multi-sig DApp for the cardano blockchain.",
-    preview: require("./showcase/roundtable.png"),
-    website: "https://roundtable.adaodapp.xyz/",
-    source: "https://github.com/ADAOcommunity/round-table",
-    tags: ["opensource", "daotool"],
-  },
-  {
     title: "eUTxO",
     description:
       "Visual blockchain explorer for Cardano.",
