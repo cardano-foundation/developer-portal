@@ -58,15 +58,6 @@ export const Tags = {
     color: '#921f32',
   },
 
-  // Crystal
-  crystal: {
-    label: "Crystal",
-    description:
-      "Crystal language",
-    icon: null,
-    color: '#ddd',
-  },
-
   // Golang
   golang: {
     label: "Go",
@@ -435,15 +426,6 @@ export const Showcases = [
     tags: ["javascript", "sdk"],
   },
   {
-    title: "Dandelion APIs",
-    description:
-      "Kubernetes-based project to easily deploy Cardano APIs and a free, hosted community service to access all of them instantly.",
-    preview: require("./builder-tools/dandelion-apis.png"),
-    website: "https://gimbalabs.com/dandelion",
-    getstarted: "/docs/get-started/dandelion-apis",
-    tags: ["http", "websocket", "json", "hosted"],
-  },
-  {
     title: "Ogmios",
     description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./builder-tools/ogmios.png"),
@@ -467,15 +449,6 @@ export const Showcases = [
     website: "https://www.npmjs.com/package/cardano-addresses",
     getstarted: null,
     tags: ["typescript", "serialization"],
-  },
-  {
-    title: "Heidrun",
-    description:
-      "An automation platform for Cardano to trigger various action based on detecting payment to a wallet address.",
-    preview: require("./builder-tools/heidrun.png"),
-    website: "https://github.com/adosia/Heidrun",
-    getstarted: null,
-    tags: ["http", "json"],
   },
   {
     title: "cardano-wallet-js",
@@ -503,12 +476,12 @@ export const Showcases = [
     tags: ["favorite", "operatortool"],
   },
   {
-    title: "Marlowe Playground",
-    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
-    preview: require("./builder-tools/marlowe-playground.png"),
-    website: "https://marlowe.iohk.io",
-    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
-    tags: ["favorite", "marlowe", "hosted"],
+    title: "Marlowe",
+    description: "Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.",
+    preview: require("./builder-tools/marlowe.png"),
+    website: "https://marlowe-lang.org/",
+    getstarted: "https://playground.marlowe-lang.org/",
+    tags: ["favorite", "marlowe"],
   },
   {
     title: "Automint",
@@ -520,14 +493,6 @@ export const Showcases = [
     tags: ["python", "nft"],
   },
   {
-    title: "Ansible cardano-node",
-    description: "An Ansible playbook that helps operators provision and maintain a secure Cardano stake pool.",
-    preview: require("./builder-tools/ansible-cardano-node.png"),
-    website: "https://github.com/moaipool/ansible-cardano-node",
-    getstarted: "/docs/operate-a-stake-pool/ansible-cardano-node",
-    tags: ["operatortool"],
-  },
-  {
     title: "Fracada v2",
     description:
       "Advanced Plutus fractionalized Token protocol which supports Token Bag functionality.",
@@ -535,15 +500,6 @@ export const Showcases = [
     website: "https://github.com/dcSpark/fracada-il-primo",
     getstarted: null,
     tags: ["plutus", "nft"],
-  },
-  {
-    title: "Cardano Light Tools",
-    description:
-      "A set of lightweight tools to operate and maintain a Cardano Stake Pool. Currently includes a leaderlog script based on BlockFrost (no need for working cardano-cli/cardano-node setup and less CPU/mem utilization) and a monitoring script to log relevant metrics directly into a text file in human-readable form (less complex and more resource-efficient than Grafana).",
-    preview: require("./builder-tools/cardano-light-tools.png"),
-    website: "https://github.com/orpheus-antpool/cardano-light-tools",
-    getstarted: null,
-    tags: ["operatortool"],
   },
   {
     title: "PyCardano",
@@ -562,15 +518,6 @@ export const Showcases = [
     website: "https://github.com/txpipe/oura",
     getstarted: null,
     tags: ["favorite", "rust", "chainindex"],
-  },
-  {
-    title: "cardano-wallet-connector",
-    description:
-      "A quickstart and boilerplate code to connect dApps with Web wallets using the latest cardano-serialization-lib. It includes examples with how to lock ADA and Tokens (NFTs) at a plutus script address and then how to redeem them from the plutus script address ... All from the front end. The project is bootstrapped with a Create React App, so is quick to get started for those familiar with this front end framework.",
-    preview: require("./builder-tools/cardano-wallet-connector.png"),
-    website: "https://github.com/dynamicstrategies/cardano-wallet-connector",
-    getstarted: null,
-    tags: ["javascript", "wallet", "plutus"],
   },
   {
     title: "Stricahq Typhonjs Wallet",
@@ -664,14 +611,6 @@ export const Showcases = [
     tags: ["haskell", "plutus", "testing"]
   },
   {
-    title: "Pluto",
-    description: "An untyped Plutus Core assembler.",
-    preview: require("./builder-tools/pluto.png"),
-    website: "https://github.com/Plutonomicon/pluto#pluto",
-    getstarted: null,
-    tags: ["plutus", "lowlevel"]
-  },
-  {
     title: "Plutonomicon",
     description: "A developer-driven guide to the Plutus smart contract language in practice.",
     preview: require("./builder-tools/plutonomicon.png"),
@@ -752,14 +691,6 @@ export const Showcases = [
     tags: ["plutus", "aiken"],
   },
   {
-    title: "Pix",
-    description: "An NFT collection generator that is CIP-25 compliant",
-    preview: require("./builder-tools/pix.png"),
-    website: "https://github.com/txpipe/pix",
-    getstarted: null,
-    tags: ["cli", "nft"],
-  },
-  {
     title: "Cardano Signer",
     description: "Tool to sign data with a Cardano-Secret-Key and verify data with a Cardano-Public-Key",
     preview: require("./builder-tools/cardano-signer.png"),
@@ -806,14 +737,6 @@ export const Showcases = [
     website: "https://frankenwallet.com",
     getstarted: "/docs/operate-a-stake-pool/frankenwallet",
     tags: ["operatortool"],
-  },
-  {
-    title: "cnft",
-    description: "A library for validating metadata for the 721 metadatum property. Complies with community standards",
-    preview: require("./builder-tools/cnft9000.png"),
-    website: "https://github.com/ada9000/cnft#readme",
-    getstarted: null,
-    tags: ["javascript", "typescript", "nft"]
   },
   {
     title: "CARP (Cardano Postgres Indexer)",
@@ -889,14 +812,6 @@ export const Showcases = [
     tags: ["koios", "java", "sdk"],
   },
   {
-    title: "Ogmios Java Client",
-    description: "A Java API library for interacting with Ogmios.",
-    preview: require("./builder-tools/ogmios-java-client.png"),
-    website: "https://github.com/adabox-aio/ogmios-java-client",
-    getstarted: null,
-    tags: ["ogmios", "websocket", "java", "sdk"],
-  },
-  {
     title: "@dotare/cardano-delegation",
     description: "A delegation button that uses cip30 to improve the quality of life for developers and delegators.",
     preview: require("./builder-tools/dotare-cardano-delegation.png"),
@@ -911,14 +826,6 @@ export const Showcases = [
     website: "https://github.com/DCOneCrypto/StakeAddress-Tracking-Webhook-API",
     getstarted: null,
     tags: ["http"],
-  },
-  {
-    title: "blockfrost-crystal",
-    description: "A Crystal SDK for the Blockfrost.io API.",
-    preview: require("./builder-tools/blockfrost-crystal.png"),
-    website: "https://github.com/blockfrost/blockfrost-crystal",
-    getstarted: null,
-    tags: ["crystal", "sdk", "json"],
   },
   {
     title: "Maestro Dapp Platform",
@@ -1132,7 +1039,6 @@ function sortShowcases() {
 export const LanguagesOrTechnologiesTags = [
   "c",
   "cli",
-  "crystal",
   "golang",
   "haskell",
   "http",

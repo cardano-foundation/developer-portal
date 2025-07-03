@@ -59,7 +59,6 @@ module.exports = {
           },
           "get-started/cardanocli-js",
           "get-started/cardano-wallet-js",
-          "get-started/dandelion-apis",
           "get-started/koios",
           {
             type: "category",
@@ -206,7 +205,6 @@ module.exports = {
         label: "Operator Tools",
         items: [
           "operate-a-stake-pool/guild-ops-suite",
-          "operate-a-stake-pool/ansible-cardano-node",
           "operate-a-stake-pool/frankenwallet",
         ],
       },
