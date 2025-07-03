@@ -780,14 +780,6 @@ export const Showcases = [
     tags: ["operatortool"],
   },
   {
-    title: "cnft",
-    description: "A library for validating metadata for the 721 metadatum property. Complies with community standards",
-    preview: require("./builder-tools/cnft9000.png"),
-    website: "https://github.com/ada9000/cnft#readme",
-    getstarted: null,
-    tags: ["javascript", "typescript", "nft"]
-  },
-  {
     title: "CARP (Cardano Postgres Indexer)",
     description: "A modular indexer for Cardano with an SQL Postgres backend.",
     preview: require("./builder-tools/carp.png"),
