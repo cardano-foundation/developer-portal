@@ -484,15 +484,6 @@ export const Showcases = [
     tags: ["nftproject"],
   },
   {
-    title: "Nami",
-    description:
-      "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
-    preview: require("./showcase/namiwallet.png"),
-    website: "https://namiwallet.io",
-    source: "https://github.com/Berry-Pool/nami-wallet",
-    tags: ["favorite", "wallet", "opensource", "nftsupport"],
-  },
-  {
     title: "Cardano Token and NFT Builder",
     description:
       "Create your own native tokens and NFT in a few clicks without any code.",
