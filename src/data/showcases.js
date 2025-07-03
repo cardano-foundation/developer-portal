@@ -385,14 +385,6 @@ export const Showcases = [
     tags: ["nftproject", "game"],
   },
   {
-    title: "Cardano Assets",
-    description: "Overview of native tokens on Cardano.",
-    preview: require("./showcase/cardanoassets.png"),
-    website: "https://cardanoassets.com",
-    source: null,
-    tags: ["token", "analytics"],
-  },
-  {
     title: "Cardano Updates",
     description:
       "Follow the development of Cardano in real time without the hassle of GitHub.",
@@ -406,15 +398,6 @@ export const Showcases = [
     description: "Pool tool and insights visualized by heat maps.",
     preview: require("./showcase/poolstats.png"),
     website: "https://poolstats.io",
-    source: null,
-    tags: ["pooltool", "analytics"],
-  },
-  {
-    title: "Ada Tools",
-    description:
-      "Visualizes the nodes on a globe and also provides various tools.",
-    preview: require("./showcase/adatools.png"),
-    website: "https://adatools.io/hologram",
     source: null,
     tags: ["pooltool", "analytics"],
   },
@@ -499,15 +482,6 @@ export const Showcases = [
     website: "https://www.jes-art.com",
     source: null,
     tags: ["nftproject"],
-  },
-  {
-    title: "Nami",
-    description:
-      "Nami was developed by Berry Pool. A browser based wallet extension to also interact with Cardano from any website.",
-    preview: require("./showcase/namiwallet.png"),
-    website: "https://namiwallet.io",
-    source: "https://github.com/Berry-Pool/nami-wallet",
-    tags: ["favorite", "wallet", "opensource", "nftsupport"],
   },
   {
     title: "Cardano Token and NFT Builder",
@@ -608,15 +582,7 @@ export const Showcases = [
     source: null,
     tags: ["token"],
   },
-  {
-    title: "Open CNFT",
-    description:
-      "Leaderboards & Analytics of the Cardano NFT ecosystem.",
-    preview: require("./showcase/opencnft.png"),
-    website: "https://opencnft.io",
-    source: null,
-    tags: ["analytics", "nftsupport"],
-  },
+
   {
     title: "ADAZOO MMORPG and Metaverse",
     description: "Start exploring ADAZOO, battle and capture CNFT's. Brag to your friends, show off your stats.",
@@ -671,15 +637,6 @@ export const Showcases = [
     tags: ["ecosystem"],
   },
   {
-    title: "CNFT Jungle",
-    description:
-      "CNFT Jungle is the biggest automated Cardano NFT rarity database and market analytics platform.",
-    preview: require("./showcase/cnftjungle.png"),
-    website: "https://www.cnftjungle.io",
-    source: null,
-    tags: ["analytics", "nftsupport"],
-  },
-  {
     title: "JPG Store",
     description:
       "Discover artwork, explore communities, and support artists on Cardano.",
@@ -720,18 +677,9 @@ export const Showcases = [
     description:
       "Aggregation of existing catalyst proposals, results, feedbacks and many more.",
     preview: require("./showcase/lidonation.png"),
-    website: "https://www.lidonation.com/en/project-catalyst/projects",
+    website: "https://www.lidonation.com/en/catalyst-explorer",
     source: null,
     tags: ["catalyst", "analytics"],
-  },
-  {
-    title: "RoundTable",
-    description:
-      "A open source multi-sig DApp for the cardano blockchain.",
-    preview: require("./showcase/roundtable.png"),
-    website: "https://roundtable.adaodapp.xyz/",
-    source: "https://github.com/ADAOcommunity/round-table",
-    tags: ["opensource", "daotool"],
   },
   {
     title: "eUTxO",
@@ -752,15 +700,6 @@ export const Showcases = [
     tags: ["nftsupport", "opensource", "token"],
   },
   {
-    title: "Lending Pond",
-    description:
-      "Provide or Receive ada through a smart contract driven P2P lending marketplace using Cardano NFTs as collateral.",
-    preview: require("./showcase/lending-pond.png"),
-    website: "https://lendingpond.app",
-    source: null,
-    tags: [ "marketplace", "nftsupport", "lending"],
-  },
-  {
     title: "Book.io",
     description:
       "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
@@ -778,15 +717,6 @@ export const Showcases = [
     source: null,
     tags: [ "wallet", "dex", "nftsupport"],
   }, 
-  {
-    title: "Voteaire",
-    description:
-      "Voteaire allows everyone in the ecosystem to create a poll. All results are weighted. All proposals and votes are stored publicly on-chain.",
-    preview: require("./showcase/voteaire.png"),
-    website: "https://voteaire.io/",
-    source: null,
-    tags: [ "daotool"],
-  },
   {
     title: "Carda Station",
     description: 
@@ -849,15 +779,6 @@ export const Showcases = [
     website: "https://cardano-studio.app",
     source: null,
     tags: ["minting", "nftsupport"],
-  },
-  {
-    title: "Raw Cardano Explorer",
-    description: 
-      "Cardano Blockchain Explorer to show data in a simple and fast way.",
-    preview: require("./showcase/raw-cardano.png"),
-    website: "https://www.rawcardano.app",
-    source: null,
-    tags: ["explorer"],
   },
   {
     title: "NFTada.io",
@@ -966,15 +887,6 @@ export const Showcases = [
     website: "https://app.doitwithlovelace.io",
     source: null,
     tags: ["funding"],
-  },
-  {
-    title: "flipr.io",
-    description: 
-      "flipr.io is a Web3 application that aspires to serve many purposes within the world of Cardano NFTs.",
-    preview: require("./showcase/flipr.png"),
-    website: "https://www.flipr.io/",
-    source: null,
-    tags: ["marketplace", "nftsupport", "minting"],
   },
   {
     title: "Aada.finance",
@@ -1191,6 +1103,15 @@ export const Showcases = [
     website: "https://androdevs.de",
     source: null,
     tags: ["accounting", "nftsupport"],
+  },
+  {
+    title: "Cardano Governance Voting Tool",
+    description:
+      "A simple tool to help every Cardano stakeholder participate in on-chain governance with confidence.",
+    preview: require("./showcase/cf-voting-tool.png"),
+    website: "https://voting.cardanofoundation.org/",
+    source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
+    tags: ["governance", "opensource"],
   },
 ];
 
