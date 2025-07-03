@@ -385,14 +385,6 @@ export const Showcases = [
     tags: ["nftproject", "game"],
   },
   {
-    title: "Cardano Assets",
-    description: "Overview of native tokens on Cardano.",
-    preview: require("./showcase/cardanoassets.png"),
-    website: "https://cardanoassets.com",
-    source: null,
-    tags: ["token", "analytics"],
-  },
-  {
     title: "Cardano Updates",
     description:
       "Follow the development of Cardano in real time without the hassle of GitHub.",
