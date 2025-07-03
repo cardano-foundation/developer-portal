@@ -1113,6 +1113,15 @@ export const Showcases = [
     source: null,
     tags: ["accounting", "nftsupport"],
   },
+  {
+    title: "Cardano Governance Voting Tool",
+    description:
+      "A simple tool to help every Cardano stakeholder participate in on-chain governance with confidence.",
+    preview: require("./showcase/cf-voting-tool.png"),
+    website: "https://voting.cardanofoundation.org/",
+    source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
+    tags: ["governance", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
