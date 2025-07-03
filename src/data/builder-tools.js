@@ -528,15 +528,6 @@ export const Showcases = [
     tags: ["plutus", "nft"],
   },
   {
-    title: "Cardano Light Tools",
-    description:
-      "A set of lightweight tools to operate and maintain a Cardano Stake Pool. Currently includes a leaderlog script based on BlockFrost (no need for working cardano-cli/cardano-node setup and less CPU/mem utilization) and a monitoring script to log relevant metrics directly into a text file in human-readable form (less complex and more resource-efficient than Grafana).",
-    preview: require("./builder-tools/cardano-light-tools.png"),
-    website: "https://github.com/orpheus-antpool/cardano-light-tools",
-    getstarted: null,
-    tags: ["operatortool"],
-  },
-  {
     title: "PyCardano",
     description:
       "A Cardano library written in Python. It allows users to build and sign transactions without depending on other Cardano serialization tools (such as cardano-cli and cardano-serialization-lib), making it a lightweight library that is easy and fast to set up in all kinds of environments.",
