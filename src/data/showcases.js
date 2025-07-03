@@ -700,15 +700,6 @@ export const Showcases = [
     tags: ["nftsupport", "opensource", "token"],
   },
   {
-    title: "Dapps on Cardano",
-    description:
-      "Provides insights in decentralized applications on Cardano. See total transactions, total scripts locked and script invocations.",
-    preview: require("./showcase/dapps-on-cardano.png"),
-    website: "https://dappsoncardano.com",
-    source: null,
-    tags: [ "analytics", "ecosystem", "nftsupport"],
-  },
-  {
     title: "Book.io",
     description:
       "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
