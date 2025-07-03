@@ -494,12 +494,12 @@ export const Showcases = [
     tags: ["favorite", "operatortool"],
   },
   {
-    title: "Marlowe Playground",
-    description: "In the browser-based Marlowe Playground you can write Marlowe contracts, in a variety of different ways.",
-    preview: require("./builder-tools/marlowe-playground.png"),
-    website: "https://marlowe.iohk.io",
-    getstarted: "/docs/smart-contracts/marlowe#marlowe-playground",
-    tags: ["favorite", "marlowe", "hosted"],
+    title: "Marlowe",
+    description: "Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.",
+    preview: require("./builder-tools/marlowe.png"),
+    website: "https://marlowe-lang.org/",
+    getstarted: "https://playground.marlowe-lang.org/",
+    tags: ["favorite", "marlowe"],
   },
   {
     title: "Automint",
