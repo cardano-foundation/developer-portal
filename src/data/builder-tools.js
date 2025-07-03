@@ -1065,6 +1065,16 @@ export const Showcases = [
     getstarted: null,
     tags: ["golang", "lowlevel"]
   },
+  {
+    title: "Weld Wallet Connector",
+    description:
+      "Manage wallet connections across multiple blockchains using a single intuitive interface",
+    preview: require("./builder-tools/weld.png"),
+    website: "https://dev.ada-anvil.io/",
+    getstarted:
+      "https://github.com/Cardano-Forge/anvil-api-examples",
+    tags: ["typescript", "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
