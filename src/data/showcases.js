@@ -700,15 +700,6 @@ export const Showcases = [
     tags: ["nftsupport", "opensource", "token"],
   },
   {
-    title: "Dapps on Cardano",
-    description:
-      "Provides insights in decentralized applications on Cardano. See total transactions, total scripts locked and script invocations.",
-    preview: require("./showcase/dapps-on-cardano.png"),
-    website: "https://dappsoncardano.com",
-    source: null,
-    tags: [ "analytics", "ecosystem", "nftsupport"],
-  },
-  {
     title: "Book.io",
     description:
       "An NFT marketplace for buying, reading, and selling eBooks and Audiobooks.",
@@ -786,15 +777,6 @@ export const Showcases = [
       "Create and mint NFTs on Cardano all in your browser - without trusting a third party for minting.",
     preview: require("./showcase/cardano-studio.png"),
     website: "https://cardano-studio.app",
-    source: null,
-    tags: ["minting", "nftsupport"],
-  },
-  {
-    title: "NFTada.io",
-    description: 
-      "Simple web interface and sophisticated API for automated printing and distribution.",
-    preview: require("./showcase/nftada.png"),
-    website: "https://nftada.io/",
     source: null,
     tags: ["minting", "nftsupport"],
   },
