@@ -106,6 +106,49 @@ module.exports = {
           position: "left",
         },
         {
+          type: 'dropdown',
+          label: 'Resources',
+          position: 'left',
+          items: [
+            {
+              type: 'html',
+              value: `
+                <div class="two-column-dropdown">
+                  <div class="dropdown-column">
+                    <div class="column-header">
+                      <span class="column-icon">🛠️</span>
+                      <span class="column-title">SECTION ONE</span>
+                    </div>
+                    <a href="/link1" class="dropdown-item">
+                      <div class="item-title">Item Title 1</div>
+                      <div class="item-description">Short description here</div>
+                    </a>
+                    <a href="/link2" class="dropdown-item">
+                      <div class="item-title">Item Title 2</div>
+                      <div class="item-description">Short description here</div>
+                    </a>
+                  </div>
+                  <div class="dropdown-column">
+                    <div class="column-header">
+                      <span class="column-icon">📚</span>
+                      <span class="column-title">SECTION TWO</span>
+                    </div>
+                    <a href="/link3" class="dropdown-item">
+                      <div class="item-title">Item Title 3</div>
+                      <div class="item-description">Short description here</div>
+                    </a>
+                    <a href="/link4" class="dropdown-item">
+                      <div class="item-title">Item Title 4</div>
+                      <div class="item-description">Short description here</div>
+                    </a>
+                  </div>
+                </div>
+              `,
+              className: 'two-column-dropdown-container',
+            },
+          ],
+        },
+        {
           href: `${vars.repository}`,
           position: "right",
           className: "header-github-link",
