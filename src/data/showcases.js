@@ -1176,6 +1176,15 @@ export const Showcases = [
     source: "https://github.com/zenGate-Global/winter-cardano",
     tags: ["marketplace", "opensource"],
   },
+  {
+    title: "Optim Finance",
+    description:
+      "Optimize your yield with a decentralized suite of products.",
+    preview: require("./showcase/optim.png"),
+    website: "https://www.optim.finance/",
+    source: null,
+    tags: ["lending", "marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
