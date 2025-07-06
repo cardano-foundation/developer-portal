@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Nuvola",
+    description:
+      "Network expansion protocol engaging with decentralized storage and computing, addressing a critical gap in the current digital ecosystem.",
+    preview: require("./showcase/nuvola.png"),
+    website: "https://www.nuvoladigital.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
