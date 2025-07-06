@@ -1373,6 +1373,15 @@ export const Showcases = [
     source: null,
     tags: ["bridge", "dex"],
   },
+  {
+    title: "Clarity Protocol",
+    description:
+      "Clarity Protocol provides community governance and management tools usable by any Cardano project.",
+    preview: require("./showcase/clarity.png"),
+    website: "https://www.clarity.community/",
+    source: null,
+    tags: ["daotool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
