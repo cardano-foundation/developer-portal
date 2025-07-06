@@ -1364,6 +1364,15 @@ export const Showcases = [
     source: null,
     tags: ["game", "token", "nftproject"],
   },
+  {
+    title: "Mynth",
+    description:
+      "Layer-zero network for any token to any token on any blockchain swaps.",
+    preview: require("./showcase/mynth.png"),
+    website: "https://mynth.io",
+    source: null,
+    tags: ["bridge", "dex"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
