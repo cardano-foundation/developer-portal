@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Mynth",
+    description:
+      "Layer-zero network for any token to any token on any blockchain swaps.",
+    preview: require("./showcase/mynth.png"),
+    website: "https://mynth.io",
+    source: null,
+    tags: ["bridge", "dex"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
