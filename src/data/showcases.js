@@ -1131,6 +1131,15 @@ export const Showcases = [
     source: "https://github.com/fluidtokens",
     tags: ["lending", "marketplace", "opensource"],
   },
+  {
+    title: "Genius Yield",
+    description:
+      "All-in-one platform, that combines an order book DEX with an automated yield optimizer.",
+    preview: require("./showcase/genius-yield.png"),
+    website: "https://www.geniusyield.co/",
+    source: "https://github.com/geniusyield",
+    tags: ["dex", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
