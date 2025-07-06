@@ -1158,6 +1158,15 @@ export const Showcases = [
     source: null,
     tags: ["dex"],
   },
+  {
+    title: "Splash",
+    description:
+      "Decentralized open-source protocol for efficient market-making and trading on Cardano.",
+    preview: require("./showcase/splash.png"),
+    website: "https://www.splash.trade/",
+    source: "https://github.com/splashprotocol",
+    tags: ["dex", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
