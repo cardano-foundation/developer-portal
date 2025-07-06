@@ -1164,7 +1164,7 @@ export const Showcases = [
       "Decentralized open-source protocol for efficient market-making and trading on Cardano.",
     preview: require("./showcase/splash.png"),
     website: "https://www.splash.trade/",
-    source: "https://github.com/splashprotocol",
+    source: "https://github.com/splashprotocol/splash-core",
     tags: ["dex", "opensource"],
   },
 ];
