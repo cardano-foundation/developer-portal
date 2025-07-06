@@ -1274,6 +1274,15 @@ export const Showcases = [
     source: "https://github.com/encryptedcoins",
     tags: ["identity", "opensource"],
   },
+  {
+    title: "Finest",
+    description:
+      "Invest in tokenized real world assets. Fully regulated and compliant in Europe.",
+    preview: require("./showcase/finest.png"),
+    website: "https://www.finest.investments/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
