@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Clarity Protocol",
+    description:
+      "We make community governance and management tools for every Cardano project.",
+    preview: require("./showcase/clarity.png"),
+    website: "https://www.clarity.community/",
+    source: null,
+    tags: ["daotool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
