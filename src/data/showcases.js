@@ -1194,6 +1194,15 @@ export const Showcases = [
     source: null,
     tags: ["ecosystem"],
   },
+  {
+    title: "TokeoPay",
+    description:
+      "Your go-to multichain smart wallet on Cardano.",
+    preview: require("./showcase/tokeo.png"),
+    website: "https://tokeo.io/",
+    source: null,
+    tags: ["wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
