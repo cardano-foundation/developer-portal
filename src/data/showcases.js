@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "NEWM",
+    description:
+      "Decentralized music streaming replaces middlemen with code that’s not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
+    preview: require("./showcase/newm.png"),
+    website: "https://newm.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
