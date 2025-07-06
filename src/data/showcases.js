@@ -1382,6 +1382,15 @@ export const Showcases = [
     source: null,
     tags: ["daotool"],
   },
+  {
+    title: "Indigo",
+    description:
+      "Indigo is an autonomous synthetics protocol for on-chain price exposure to real-world assets, built on Cardano.",
+    preview: require("./showcase/indigo.png"),
+    website: "https://indigoprotocol.io/",
+    source: "https://github.com/IndigoProtocol/indigo-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
