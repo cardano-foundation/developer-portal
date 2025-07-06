@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Cornucopias",
+    description:
+      "Open world MMO set in a world where humanity has ascended from the Earth's surface and created a breathtaking new world in the sky. ",
+    preview: require("./showcase/cornucopias.png"),
+    website: "https://cornucopias.io/",
+    source: null,
+    tags: ["game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
