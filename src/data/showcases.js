@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Optim Finance",
+    description:
+      "Optimize your yield with a decentralized suite of products.",
+    preview: require("./showcase/optim.png"),
+    website: "https://www.optim.finance/",
+    source: null,
+    tags: ["lending", "marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
