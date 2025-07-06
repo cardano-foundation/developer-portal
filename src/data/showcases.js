@@ -1369,7 +1369,7 @@ export const Showcases = [
     description:
       "Layer-zero network for any token to any token on any blockchain swaps.",
     preview: require("./showcase/mynth.png"),
-    website: "https://mynth.io",
+    website: "https://mynth.ai",
     source: null,
     tags: ["bridge", "dex"],
   },
