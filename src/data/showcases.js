@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "IAMX",
+    description:
+      "IAMX is the first-ever SSI solution to financially incentivize and reward the consumer each time they use their identity online. Digitize & automate your compliance - customizable onboarding solution - KYC/KYT",
+    preview: require("./showcase/iamx.png"),
+    website: "https://iamx.id/",
+    source: null,
+    tags: ["identity", "marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
