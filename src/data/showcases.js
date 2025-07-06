@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "TokeoPay",
+    description:
+      "Your go-to multichain smart wallet on Cardano.",
+    preview: require("./showcase/tokeo.png"),
+    website: "https://tokeo.io/",
+    source: null,
+    tags: ["wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
