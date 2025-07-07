@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Smart Places",
+    description:
+      "Geo-location based SocialFi Network where owning digital land means owning opportunity. Each Landplot is a unique Virtual piece representing a real-world location ",
+    preview: require("./showcase/smart-places.png"),
+    website: "https://smartplaces.io/",
+    source: null,
+    tags: ["social"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
