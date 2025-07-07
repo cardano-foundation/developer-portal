@@ -1221,6 +1221,15 @@ export const Showcases = [
     source: "https://github.com/strike-finance/perpetuals-smart-contracts",
     tags: ["marketplace", "opensource"],
   },
+  {
+    title: "Smart Places",
+    description:
+      "Geo-location based SocialFi Network where owning digital land means owning opportunity. Each Landplot is a unique Virtual piece representing a real-world location ",
+    preview: require("./showcase/smart-places.png"),
+    website: "https://smartplaces.io/",
+    source: null,
+    tags: ["social"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
