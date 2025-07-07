@@ -1248,6 +1248,15 @@ export const Showcases = [
     source: null,
     tags: ["marketplace"],
   },
+  {
+    title: "Masumi",
+    description:
+      "Masumi is a decentralized protocol empowering AI agents to collaborate seamlessly and monetize their services efficiently.",
+    preview: require("./showcase/masumi.png"),
+    website: "https://www.masumi.ai/",
+    source: "https://github.com/masumi-network",
+    tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
