@@ -1253,7 +1253,7 @@ export const Showcases = [
     description:
       "Masumi is a decentralized protocol empowering AI agents to collaborate seamlessly and monetize their services efficiently.",
     preview: require("./showcase/masumi.png"),
-    website: "https://www.masumi.ai/",
+    website: "https://www.masumi.network",
     source: "https://github.com/masumi-network",
     tags: ["marketplace", "opensource"],
   },
