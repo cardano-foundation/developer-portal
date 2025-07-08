@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Finest",
+    description:
+      "Finest envisions a world where the barriers to investing in high-value assets are removed, allowing anyone, anywhere, to participate in markets traditionally reserved for the wealthy and institutional investors.",
+    preview: require("./showcase/finest.png"),
+    website: "https://www.finest.investments/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
