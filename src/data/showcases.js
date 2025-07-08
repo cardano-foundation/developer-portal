@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Dedium",
+    description:
+      "Use the power of your idle GPU for AI and rendering workloads.",
+    preview: require("./showcase/dedium.png"),
+    website: "https://dedium.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
