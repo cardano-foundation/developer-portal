@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Iagon",
+    description:
+      "Iagon is an AI-driven shared storage and compute economy. Bridging decentralization with compliance to revolutionize cloud services.",
+    preview: require("./showcase/iagon.png"),
+    website: "https://iagon.com",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
