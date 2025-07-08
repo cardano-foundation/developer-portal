@@ -817,15 +817,6 @@ export const Showcases = [
     tags: ["nftproject"],
   },
   {
-    title: "VyFinance",
-    description: 
-      "Winner of the CNFT Awards 2022 in the category \"best longterm utility\".",
-    preview: require("./showcase/vyfinance.png"),
-    website: "https://vyfi.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "Universe 25",
     description: 
       "Winner of the CNFT Awards 2022 in the category \"Zeitgeist\".",
@@ -1103,6 +1094,15 @@ export const Showcases = [
     website: "https://voting.cardanofoundation.org/",
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
+  },
+  {
+    title: "VyFinance",
+    description:
+      "VyFinance is Decentralized Finance protocol built on Cardano that includes features such as a decentralised exchange (DEx), redistributive mechanism (BAR), governance, lottery and token/NFT Vaults.",
+    preview: require("./showcase/vyfi.png"),
+    website: "https://app.vyfi.io/",
+    source: null,
+    tags: ["dex"],
   },
 ];
 
