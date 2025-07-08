@@ -1107,7 +1107,7 @@ export const Showcases = [
   {
     title: "Clarity Protocol",
     description:
-      "We make community governance and management tools for every Cardano project.",
+      "Clarity Protocol provides community governance and management tools usable by any Cardano project.",
     preview: require("./showcase/clarity.png"),
     website: "https://www.clarity.community/",
     source: null,
