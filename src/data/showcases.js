@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Farmroll",
+    description:
+      "Crypto engagement platform designed to enhance community interaction, incentivized participation, and AI-driven automation",
+    preview: require("./showcase/farmroll.png"),
+    website: "https://farmroll.io/",
+    source: null,
+    tags: ["ecosystem"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
