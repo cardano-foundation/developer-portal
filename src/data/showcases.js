@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Nunet",
+    description:
+      "Decentralized P2P network operating as a global sharing economy of computing.",
+    preview: require("./showcase/nunet.png"),
+    website: "https://nunet.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
