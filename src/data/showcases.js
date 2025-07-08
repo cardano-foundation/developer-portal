@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Strike Finance",
+    description:
+      "DeFi derivatives protocol revolutionizing perpetual futures trading on the Cardano blockchain.",
+    preview: require("./showcase/strike.png"),
+    website: "https://www.strikefinance.org/",
+    source: "https://github.com/strike-finance/perpetuals-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
