@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Palmyra",
+    description:
+      "Empowering inclusion for underserved commodities through RWA Tokenization.",
+    preview: require("./showcase/palmyra.png"),
+    website: "https://palmeconomy.io/",
+    source: "https://github.com/zenGate-Global/winter-cardano",
+    tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
