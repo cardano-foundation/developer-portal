@@ -1197,7 +1197,7 @@ export const Showcases = [
   {
     title: "TokeoPay",
     description:
-      "Your go-to multichain smart wallet on Cardano.",
+      "Tokeo is a feature-rich Bitcoin and Cardano wallet that lets you securely store, manage, and trade your BTC, ADA, Runes, Cardano Native Tokens, Ordinals and NFTs, while providing seamless access to the Bitcoin and Cardano blockchain ecosystem.",
     preview: require("./showcase/tokeo.png"),
     website: "https://tokeo.io/",
     source: null,
