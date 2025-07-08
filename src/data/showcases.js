@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "CSWAP",
+    description:
+      "CSWAP Systems is a next-gen decentralized exchange (DEX) that bridges tokens, NFTs, and real-world assets in one seamless trading ecosystem. ",
+    preview: require("./showcase/cswap.png"),
+    website: "https://www.cswap.fi/",
+    source: null,
+    tags: ["dex"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
