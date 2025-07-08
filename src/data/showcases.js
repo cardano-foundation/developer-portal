@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Splash",
+    description:
+      "Decentralized open-source protocol for efficient market-making and trading on Cardano.",
+    preview: require("./showcase/splash.png"),
+    website: "https://www.splash.trade/",
+    source: "https://github.com/splashprotocol/splash-core",
+    tags: ["dex", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
