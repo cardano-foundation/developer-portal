@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "TokeoPay",
+    description:
+      "Tokeo is a feature-rich Bitcoin and Cardano wallet that lets you securely store, manage, and trade your BTC, ADA, Runes, Cardano Native Tokens, Ordinals and NFTs, while providing seamless access to the Bitcoin and Cardano blockchain ecosystem.",
+    preview: require("./showcase/tokeo.png"),
+    website: "https://tokeo.io/",
+    source: null,
+    tags: ["wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
