@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Butane",
+    description:
+      "Butane is a fast, powerful, and innovative decentralised synthetics platform built on the Cardano blockchain.",
+    preview: require("./showcase/butane.png"),
+    website: "https://butane.dev/",
+    source: "https://github.com/butaneprotocol/butane-contracts",
+    tags: ["opensource", "marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
