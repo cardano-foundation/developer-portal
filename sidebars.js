@@ -151,6 +151,7 @@ module.exports = {
           "governance/cardano-governance/overview",
           "governance/cardano-governance/governance-actions",
           "governance/cardano-governance/submitting-governance-actions",
+          "governance/cardano-governance/constitutional-committee-guide",
         ],
       },
       "governance/project-catalyst",
