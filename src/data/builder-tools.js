@@ -1070,9 +1070,9 @@ export const Showcases = [
     description:
       "Manage wallet connections across multiple blockchains using a single intuitive interface",
     preview: require("./builder-tools/weld.png"),
-    website: "https://dev.ada-anvil.io/",
+    website: "https://github.com/Cardano-Forge/weld/",
     getstarted:
-      "https://github.com/Cardano-Forge/anvil-api-examples",
+      "https://github.com/Cardano-Forge/weld/tree/main/documentation/",
     tags: ["typescript", "wallet"],
   },
 ];
