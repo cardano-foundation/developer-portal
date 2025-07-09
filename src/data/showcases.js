@@ -1104,6 +1104,15 @@ export const Showcases = [
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
+  {
+    title: "Andamio",
+    description:
+      "Verified trust protocol for distributed work. Organizations can mint credentials, verify skills, and find contributors. Individuals can learn, discover opportunities, join project teams, and launch their own projects.",
+    preview: require("./showcase/andamio.png"),
+    website: "https://www.andamio.io/",
+    source: null,
+    tags: ["ecosystem","governance"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
