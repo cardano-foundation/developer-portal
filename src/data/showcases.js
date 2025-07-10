@@ -1163,7 +1163,7 @@ export const Showcases = [
     preview: require("./showcase/moments.png"),
     website: "https://adamoments.io/",
     source: null,
-    tags: ["analytics","marketplace","minting","nftsupport"],
+    tags: ["marketplace", "minting", "nftsupport"],
   },
 ];
 
