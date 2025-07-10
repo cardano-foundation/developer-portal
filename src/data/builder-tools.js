@@ -1023,6 +1023,16 @@ export const Showcases = [
       "https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution",
     tags: ["typescript", "javascript", "sdk", "plutus"],
   },
+  {
+    title: "Weld Wallet Connector",
+    description:
+      "Manage wallet connections across multiple blockchains using a single intuitive interface",
+    preview: require("./builder-tools/weld.png"),
+    website: "https://github.com/Cardano-Forge/weld/",
+    getstarted:
+      "https://github.com/Cardano-Forge/weld/tree/main/documentation/",
+    tags: ["typescript", "wallet"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
