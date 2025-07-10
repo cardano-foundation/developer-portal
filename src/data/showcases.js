@@ -296,12 +296,12 @@ export const Showcases = [
     tags: ["explorer"],
   },
   {
-    title: "Cardano Foundation Explorer",
+    title: "Cardano Explorer Landing Page",
     description:
       "List of Cardano Explorers built by the community for the community.",
     preview: require("./showcase/cf-explorer.png"),
-    website: "https://beta.explorer.cardano.org",
-    source: "https://github.com/cardano-foundation/cf-explorer",
+    website: "https://explorer.cardano.org",
+    source: "https://github.com/cardano-foundation/cf-explorer-landing",
     tags: ["explorer", "opensource"],
   },
   {
@@ -1103,6 +1103,15 @@ export const Showcases = [
     website: "https://voting.cardanofoundation.org/",
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
+  },
+  {
+    title: "NEWM",
+    description:
+      "Decentralized music streaming replaces middlemen with code that’s not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
+    preview: require("./showcase/newm.png"),
+    website: "https://newm.io/",
+    source: null,
+    tags: ["marketplace"],
   },
 ];
 
