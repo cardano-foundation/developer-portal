@@ -74,7 +74,7 @@ Testnet addresses start with 'addr_test' and mainnet addresses with 'addr'.
 ### Generate a stake key pair 
 
 ```shell
-cardano-cli stake-address key-gen \
+cardano-cli latest stake-address key-gen \
 --verification-key-file stake.vkey \
 --signing-key-file stake.skey
 ```
