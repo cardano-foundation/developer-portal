@@ -1111,7 +1111,7 @@ export const Showcases = [
     preview: require("./showcase/andamio.png"),
     website: "https://www.andamio.io/",
     source: null,
-    tags: ["DAO Tool"],
+    tags: ["daotool"],
   },
 ];
 
