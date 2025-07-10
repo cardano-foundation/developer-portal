@@ -26,7 +26,7 @@ The `cardano-node` application requires the following configuration files to run
   - **Shelley Genesis**
   - **Alonzo Genesis**
   - **Conway Genesis**
-- **Topology**: Initial settings to define any default network peers and to obtain any network peers dynamically according to Cardano's P2P (peer-to-peer) networking system (see [Topology](docs/get-started/cardano-node/p2p)).
+- **Topology**: Initial settings to define any default network peers and to obtain any network peers dynamically according to Cardano's P2P (peer-to-peer) networking system (see [Topology](/docs/get-started/cardano-node/topology)).
 
 :::note
 For a timeline and description of thse Ledger eras, see the
