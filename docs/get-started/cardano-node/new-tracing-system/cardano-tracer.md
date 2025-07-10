@@ -110,7 +110,7 @@ The `TraceOptionForwarder` values can be given on the node's CLI instead, as is 
 
 [New Tracing Quickstart](docs/get-started/cardano-node/new-tracing-system/quick-start.md)
 
-### Distributed Scenario (real-life)
+### Distributed Scenario
 
 This is an example with 3 nodes and one `cardano-tracer`:
 
@@ -229,7 +229,7 @@ Now run the same command on machines `B` and `C` to connect corresponding nodes 
 
 Nodes working on machines `A`, `B` and `C` should specify paths `/tmp/forwarder.sock` using node's CLI-parameter `--tracer-socket-path-connect` or `--tracer-socket-path-accept` (see explanation below). There is another CLI-parameter `--socket-path` as well, but it's **not** related to `cardano-tracer`.
 
-### Local Scenario (testing)
+### Local Scenario
 
 As was mentioned above, local scenario is for testing, when your nodes and `cardano-tracer` reside on the same machine. In this case all processes can see the same local sockets so we don't need `ssh`. The configuration file for 3 local nodes would look like this (same as before):
 
