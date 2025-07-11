@@ -136,4 +136,4 @@ Writing well-designed smart contracts requires you to have a solid understanding
 - [opshin](opshin) - a programming language for generic Smart Contracts based on Python. 
 - [Plutus](plutus) - a platform to write full applications that interact with the Cardano blockchain. 
 - [plu-ts](plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library. 
-
+- [Scalus](scalus) - a unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic.  
