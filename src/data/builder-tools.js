@@ -1018,9 +1018,9 @@ export const Showcases = [
     description:
       "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
     preview: require("./builder-tools/lucid-evolution.png"),
-    website: "https://anastasia-labs.github.io/lucid-evolution/",
+    website: "https://no-witness-labs.github.io/lucid-evolution/",
     getstarted:
-      "https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution",
+      "https://no-witness-labs.github.io/lucid-evolution/install",
     tags: ["typescript", "javascript", "sdk", "plutus"],
   },
 ];

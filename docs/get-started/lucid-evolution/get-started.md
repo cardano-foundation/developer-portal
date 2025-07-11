@@ -15,9 +15,9 @@ Lucid Evolution is a highly scalable, production-ready transaction builder & off
 
 In this guide, we will walk you through just 3 easy steps to install the `lucid-evolution` package, instantiate the Lucid Evolution library, create/choose a wallet, and build and submit a transaction. The library is capable of much more and is one of the popular tools for building off-chain code for Cardano dApps.
 
-> For more examples and use cases, please refer to the official Lucid Evolution [documentation](https://anastasia-labs.github.io/lucid-evolution/documentation/deep-dives/make-payments).
+> For more examples and use cases, please refer to the official Lucid Evolution [documentation](https://no-witness-labs.github.io/lucid-evolution/).
 
-> Come say hi on [Discord](https://discord.gg/G9GbN2CVTR) if you have any questions!
+> Come say hi on [Discord](https://discord.com/invite/eqZDvHvW6k) if you have any questions!
 
 ## Installation
 
@@ -61,7 +61,7 @@ bun i @lucid-evolution/lucid
 
 :::note
 
-Installing the `lucid` package will automatically export all other Lucid Evolution packages as well. For more information on more granular package definitions for lightweight development, please refer to the the Evolution library [installation guide](https://anastasia-labs.github.io/lucid-evolution/install).
+Installing the `lucid` package will automatically export all other Lucid Evolution packages as well. For more information on more granular package definitions for lightweight development, please refer to the the Evolution library [installation guide](https://no-witness-labs.github.io/lucid-evolution/install).
 
 :::
 
