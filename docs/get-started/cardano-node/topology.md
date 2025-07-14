@@ -1,5 +1,5 @@
 ---
-id: p2p
+id: topology
 title: Topology
 sidebar_label: Topology
 sidebar_position: 5

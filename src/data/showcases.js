@@ -1105,6 +1105,15 @@ export const Showcases = [
     tags: ["governance", "opensource"],
   },
   {
+    title: "NEWM",
+    description:
+      "Decentralized music streaming replaces middlemen with code that’s not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
+    preview: require("./showcase/newm.png"),
+    website: "https://newm.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
+  {
     title: "Andamio",
     description:
       "Verified trust protocol for distributed work. Organizations can mint credentials, verify skills, and find contributors. Individuals can learn, discover opportunities, join project teams, and launch their own projects.",
