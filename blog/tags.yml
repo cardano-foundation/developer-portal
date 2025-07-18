@@ -15,7 +15,7 @@ wallet:
   description: Content for all Cardano-supporting wallets
 
 AI:
-  label: ai
+  label: AI
   permalink: /AI
   description: Leveraging machine intelligence in applications (Artificial intelligence)
 
@@ -24,7 +24,7 @@ DAO:
   permalink: /DAO
   description: All blockchain-based self-governing organizations (Decentralised Autonomous Organization)
 
-developer office hours:
+Developer Office Hours:
   label: Developer Office Hours
   permalink: /developer-office-hours
   description: Developer Office Hours are dynamic and interactive sessions where the Cardano developer community connects with experts to explore new and evolving developments. These sessions focus on exploring new and updated developments, featuring expert presentations, live demos, and interactive Q&A segments that break down complex topics.
@@ -39,7 +39,7 @@ DEX:
   permalink: /DEX
   description: Decentralized peer-to-peer crypto trading platforms (Decentralized Exchanges)
 
-defi:
+DeFi:
   label: DeFi
   permalink: /defi
   description: Blockchain-powered financial services (Decentralized Finance)
@@ -58,6 +58,11 @@ intellectual-property:
   label: intellectual-property
   permalink: /intellectual-property
   description: Legal rights protecting creations of the mind, such as inventions, designs, and artistic works, granting creators control over their use. Intellectual Property (IP) rights
+
+media:
+  label: media
+  permalink: /media
+  description: Content related to videos, podcasts, and other multimedia educational resources
 
 metaverse:
   label: metaverse
