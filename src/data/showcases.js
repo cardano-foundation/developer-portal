@@ -1113,6 +1113,15 @@ export const Showcases = [
     source: null,
     tags: ["marketplace"],
   },
+  {
+    title: "Andamio",
+    description:
+      "Verified trust protocol for distributed work. Organizations can mint credentials, verify skills, and find contributors. Individuals can learn, discover opportunities, join project teams, and launch their own projects.",
+    preview: require("./showcase/andamio.png"),
+    website: "https://www.andamio.io/",
+    source: null,
+    tags: ["daotool"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
