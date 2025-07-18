@@ -1113,6 +1113,15 @@ export const Showcases = [
     source: null,
     tags: ["marketplace"],
   },
+  {
+    title: "Coin Wallet",
+    description:
+    "Self-custodial crypto wallet since 2015. Available on Android, iOS, Linux, Windows, Web, and TOR. Supports Cardano and multiple other blockchains.",
+  preview: require("./showcase/coinwallet.png"),
+  website: "https://coin.space",
+  source: "https://github.com/CoinSpace/CoinSpace",
+  tags: ["wallet", "opensource"]
+  }
 ];
 
 export const TagList = Object.keys(Tags);
