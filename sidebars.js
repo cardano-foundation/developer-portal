@@ -141,6 +141,7 @@ module.exports = {
       "smart-contracts/aiken",
       "smart-contracts/opshin",
       "smart-contracts/plu-ts",
+      "smart-contracts/scalus",
     ],
     "Participate in Governance": [
       "governance/overview",

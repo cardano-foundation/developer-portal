@@ -323,6 +323,13 @@ export const Tags = {
     icon: null,
     color: "#3D5AFE"
   },
+  // Scala
+  scala: {
+    label: "Scala",
+    description: "Scala language",
+    icon: null,
+    color: "#2D79C7"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -1023,6 +1030,14 @@ export const Showcases = [
       "https://no-witness-labs.github.io/lucid-evolution/install",
     tags: ["typescript", "javascript", "sdk", "plutus"],
   },
+  {
+    title: "Scalus",
+    description: "Scalus is a development platform for building decentralized applications (DApps) on the Cardano blockchain. It provides a unified environment where developers can write both on-chain smart contracts and off-chain logic using Scala 3 - a modern, expressive, and type-safe functional programming language.",
+    preview: require("./builder-tools/scalus.png"),
+    website: "https://scalus.org/",
+    getstarted: "https://scalus.org/docs/get-started",
+    tags: ["scala", "sdk", "plutus"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
@@ -1053,6 +1068,7 @@ export const LanguagesOrTechnologiesTags = [
   "python",
   "redis",
   "rust",
+  "scala",
   "sql",
   "typescript",
   "websocket",
