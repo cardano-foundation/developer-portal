@@ -1212,6 +1212,15 @@ export const Showcases = [
     source: null,
     tags: ["marketplace"],
   },
+  {
+    title: "Strike Finance",
+    description:
+      "DeFi derivatives protocol revolutionizing perpetual futures trading on the Cardano blockchain.",
+    preview: require("./showcase/strike.png"),
+    website: "https://www.strikefinance.org/",
+    source: "https://github.com/strike-finance/perpetuals-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
