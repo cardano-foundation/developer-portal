@@ -1203,6 +1203,15 @@ export const Showcases = [
     source: null,
     tags: ["wallet"],
   },
+  {
+    title: "Empowa",
+    description:
+      "Join a RWA project looking to enable 1 million African families to become owners of a climate-smart home across Africa by 2030.",
+    preview: require("./showcase/empowa.png"),
+    website: "https://empowa.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
