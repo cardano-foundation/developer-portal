@@ -1239,6 +1239,15 @@ export const Showcases = [
     source: null,
     tags: ["token", "marketplace"],
   },
+  {
+    title: "Xerberus",
+    description:
+      "Xerberus' Risk Ratings deliver automated, objective, and real-time insights derived from on-chain data, providing investors and dApps with accurate risk assessments.",
+    preview: require("./showcase/xerberus.png"),
+    website: "https://www.xerberus.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
