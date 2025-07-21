@@ -1230,6 +1230,15 @@ export const Showcases = [
     source: null,
     tags: ["social"],
   },
+  {
+    title: "Snek.fun",
+    description:
+      "Snek.fun is a fair-launch token launchpad on Cardano, designed for effortless memecoin creation. Users can launch a token in seconds for a flat fee, with built-in liquidity protection and no team allocations. Tokens are automatically listed via Splash DEX with LP burned, ensuring transparency and rug-pull resistance.",
+    preview: require("./showcase/snek-fun.png"),
+    website: "https://snek.fun/",
+    source: null,
+    tags: ["token", "marketplace"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
