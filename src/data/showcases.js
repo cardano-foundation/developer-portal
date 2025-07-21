@@ -1149,6 +1149,15 @@ export const Showcases = [
     source: null,
     tags: ["marketplace"],
   },
+  {
+    title: "Yamfore",
+    description:
+      "Yamfore streamlines lending on the Cardano blockchain with its decentralized platform that eliminates the need for traditional lenders. Utilizing an internal stablecoin reserve, it offers indefinite loan durations and no margin calls, ensuring borrowers are safe from loan liquidation during market volatility.",
+    preview: require("./showcase/yamfore.png"),
+    website: "https://www.yamfore.com/",
+    source: "https://github.com/BigBlymp/yamfore-resources",
+    tags: ["lending", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
