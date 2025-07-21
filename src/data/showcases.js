@@ -1107,11 +1107,20 @@ export const Showcases = [
   {
     title: "NEWM",
     description:
-      "Decentralized music streaming replaces middlemen with code that’s not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
+      "Decentralized music streaming replaces middlemen with code that's not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
     preview: require("./showcase/newm.png"),
     website: "https://newm.io/",
     source: null,
     tags: ["marketplace"],
+  },
+  {
+    title: "CSWAP",
+    description:
+      "CSWAP Systems is a next-gen decentralized exchange (DEX) that bridges tokens, NFTs, and real-world assets in one seamless trading ecosystem. ",
+    preview: require("./showcase/cswap.png"),
+    website: "https://www.cswap.fi/",
+    source: null,
+    tags: ["dex"],
   },
 ];
 
