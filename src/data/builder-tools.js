@@ -1066,6 +1066,14 @@ export const Showcases = [
     getstarted: "https://datum-explorer.wingriders.com/?schema=detect",
     tags: ["rust", "typescript", "cli", "serialization", "plutus", "hosted"]
   },
+  {
+    title: "Apollo",
+    description: "Pure Golang Cardano Serialization: Objective of this library is to give developers access to each and every needed resource for cardano development.",
+    preview: require("./builder-tools/apollo.png"),
+    website: "https://github.com/Salvionied/apollo",
+    getstarted: null,
+    tags: ["golang", "lowlevel"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
