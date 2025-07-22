@@ -1038,6 +1038,14 @@ export const Showcases = [
     getstarted: "https://scalus.org/docs/get-started",
     tags: ["scala", "sdk", "plutus"]
   },
+  {
+    title: "Apollo",
+    description: "Pure Golang Cardano Serialization: Objective of this library is to give developers access to each and every needed resource for cardano development.",
+    preview: require("./builder-tools/apollo.png"),
+    website: "https://github.com/Salvionied/apollo",
+    getstarted: null,
+    tags: ["golang", "lowlevel"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
