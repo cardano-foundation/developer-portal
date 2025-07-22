@@ -1117,7 +1117,7 @@ export const Showcases = [
     title: "MAYZ Protocol",
     description:
       "MAYZ is a DeFi protocol inspired by mutual funds that allows users to invest in crypto indexes without relying on third parties by providing a permissionless platform for creating and managing investment funds, facilitating liquidity, and empowering users through innovative mechanisms.",
-    preview: require("./showcase/mayz.svg"),
+    preview: require("./showcase/MAYZ.png"),
     website: "https://mayz.io/",
     source: "https://github.com/MAYZGitHub",
     tags: ["token", "marketplace", "nftproject", "minting", "opensource"],
