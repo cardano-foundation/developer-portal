@@ -1044,7 +1044,7 @@ export const Showcases = [
     preview: require("./builder-tools/datum-explorer.png"), // Add image to builder-tools/
     website: "https://github.com/WingRiders/datum-explorer#readme",
     getstarted: "https://datum-explorer.wingriders.com/?schema=detect",
-    tags: ["rust", "typescript", "cli", "serialization", "plutus", "hosted", "opensource"]
+    tags: ["rust", "typescript", "cli", "serialization", "plutus", "hosted"]
   }
 ];
 
