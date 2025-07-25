@@ -1257,6 +1257,15 @@ export const Showcases = [
     source: "https://github.com/masumi-network",
     tags: ["marketplace", "opensource"],
   },
+  {
+    title: "Datum Explorer",
+    description:
+    "Decode, understand, and build with Cardano CBOR data using CDDL schemas. Built with Rust, WASM, and TypeScript.",
+    preview: require("./showcase/datum-explorer.png"),
+    website: "https://datum-explorer.wingriders.com/?schema=detect",
+    source: "https://github.com/WingRiders/datum-explorer",
+    tags: ["explorer", "analytics", "opensource", "educational"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
