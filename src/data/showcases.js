@@ -1107,7 +1107,7 @@ export const Showcases = [
   {
     title: "Finest",
     description:
-      "Finest envisions a world where the barriers to investing in high-value assets are removed, allowing anyone, anywhere, to participate in markets traditionally reserved for the wealthy and institutional investors.",
+      "Invest in tokenized real world assets. Fully regulated and compliant in Europe.",
     preview: require("./showcase/finest.png"),
     website: "https://www.finest.investments/",
     source: null,
