@@ -80,6 +80,18 @@ Documentation can constantly be improved, and there are gaps in the developer po
 ### Create/improve tutorials
 Apart from documentation, tutorials are an excellent way to explain things. If you already have a website with tutorials, consider moving them to the Developer Portal. [To create and improve documentation, you should install the portal on your local machine.](#installation)
 
+### Blog contributions
+When contributing blog posts, please follow these guidelines:
+
+**Tag naming conventions:**
+- Use lowercase tags only (e.g., `ai`, `defi`, `dex`, `dao`)
+- Tags must be defined in `blog/tags.yml` before use
+- Check existing tags in `blog/tags.yml` before adding new ones
+
+**Truncation markers:**
+- Most blog posts should include `<!-- truncate -->` markers for better previews
+- **Exception:** Posts tagged with `media` (short video content) should NOT include truncation markers to preserve video visibility in blog listings
+
 ### Create pull requests
 A pull request is a proposal to change something on the developer portal. It can be a small change like fixing a typo or a complete category with hundreds of new files. [Pull requests must be reviewed.](#how-are-pull-requests-reviewed)
 
