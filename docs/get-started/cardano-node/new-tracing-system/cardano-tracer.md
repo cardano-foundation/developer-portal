@@ -62,18 +62,13 @@ The way how to configure `cardano-tracer` depends on your requirements. There ar
 
 Distributed scenario is for real-life case. You may have `N` nodes, running on `N` different hosts, and you want to collect all the logging and monitoring information from these nodes using one `cardano-tracer` process working on your machine.
 
-Local scenario is for testing case. For example, you want to try your new infrastructure from scratch so you run `N` nodes and one `cardano-tracer` process on your machine.
-
-:::tip Important
-`cardano-tracer` **does not** support connection via IP-address and port to prevent unauthorized connections. The **only** way to establish connection with the node is the local socket (Unix sockets or Windows named pipes).
-:::
+Local scenario is best for testing and debugging. For example, you want to try your new infrastructure from scratch so you run `N` nodes and one `cardano-tracer` process on your machine.
 
 ### Settings in Cardano Node config.json file
 
-To use cardano tracer, we must add the field `UseTraceDispatcher` to the Node's configuration file, wich can be in JSON or YAML format. Tracing options
-can be given based on a namespace: `severity`, `detail`, `backends` and `limiter`.
+Backends can be a combination of `Forwarder`, `EKGBackend`, `PrometheusSimple <...>`, and one of `Stdout MachineFormat`, `Stdout HumanFormatColoured` and `Stdout HumanFormatUncoloured`.
 
-Backends can be a combination of `Forwarder`, `EKGBackend`, and one of `Stdout MachineFormat`, `Stdout HumanFormatColoured` and `Stdout HumanFormatUncoloured`.
+Tracing options that can be given based on a namespace are `severity`, `detail` and `maxFrequency`.
 
 ```json
 {
@@ -96,17 +91,11 @@ Backends can be a combination of `Forwarder`, `EKGBackend`, and one of `Stdout M
       "maxFrequency": 2.0
     }
   },
-  "TraceOptionForwarder": {
-    "address": {
-      "filePath": "/tmp/forwarder.sock"
-    },
-    "mode": "Initiator"
-  },
   "TraceOptionPeerFrequency": 2000
 }
 ```
 
-The `TraceOptionForwarder` values can be given on the node's CLI instead, as is the case in the Quickstart example. For further node-side configuration explanations, refer to:
+For further node-side configuration explanations, refer to:
 
 [New Tracing Quickstart](docs/get-started/cardano-node/new-tracing-system/quick-start.md)
 

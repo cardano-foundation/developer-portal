@@ -3,7 +3,7 @@ id: wallets
 sidebar_position: 2
 title: Create & Choose Wallets
 sidebar_label: Create & Choose Wallets
-description: How to create and choose wallets with Lucid Evolution
+description: How to create and choose wallets with Evolution SDK
 ---
 
 import Tabs from '@theme/Tabs';
@@ -24,7 +24,7 @@ values={[
 Generate a new private key:
 
 ```typescript
-import { generatePrivateKey } from "@lucid-evolution/lucid";
+import { generatePrivateKey } from "@evolution-sdk/lucid";
 
 const privateKey = generatePrivateKey(); // Bech32 encoded private key
 // console.log(privateKey);
@@ -36,7 +36,7 @@ const privateKey = generatePrivateKey(); // Bech32 encoded private key
 Generate a new seed phrase (mnemonic):
 
 ```typescript
-import { generateSeedPhrase } from "@lucid-evolution/lucid";
+import { generateSeedPhrase } from "@evolution-sdk/lucid";
 
 const seedPhrase = generateSeedPhrase(); // BIP-39
 // console.log(seedPhrase);
