@@ -14,14 +14,14 @@ wallet:
   permalink: /wallet
   description: Content for all Cardano-supporting wallets
 
-AI:
+ai:
   label: AI
-  permalink: /AI
+  permalink: /ai
   description: Leveraging machine intelligence in applications (Artificial intelligence)
 
-DAO:
+dao:
   label: DAO
-  permalink: /DAO
+  permalink: /dao
   description: All blockchain-based self-governing organizations (Decentralised Autonomous Organization)
 
 Developer Office Hours:
@@ -34,12 +34,12 @@ developer-portal:
   permalink: /developer-portal
   description: legacy Interview tag
 
-DEX:
+dex:
   label: DEX
-  permalink: /DEX
+  permalink: /dex
   description: Decentralized peer-to-peer crypto trading platforms (Decentralized Exchanges)
 
-DeFi:
+defi:
   label: DeFi
   permalink: /defi
   description: Blockchain-powered financial services (Decentralized Finance)
