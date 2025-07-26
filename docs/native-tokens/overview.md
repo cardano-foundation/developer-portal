@@ -32,7 +32,7 @@ Before we go any further, here's a quick rundown of what you need to know.
 ### How we interact with the blockchain
 Almost all interactions with the Cardano network/blockchain are transaction-based. We can divide interactions into two tiers with this in mind.
 
-![img](../../static/img/nfts/overview_nfts.svg)
+![img](../../static/img/nfts/overview_nfts.png)
 
 The top layer emphasizes a visual approach and covers standard interaction. Sending and receiving ada or tokens, delegating your stake, and voting are all examples of this. Wallets such as the full node Daedalus wallet or the lighter Yoroi wallet can be used to carry out these interactions.
 
