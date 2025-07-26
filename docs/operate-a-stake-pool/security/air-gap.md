@@ -48,7 +48,7 @@ We choose Ubuntu here because:
 The rest of these instructions will assume the choice of **Ubuntu** for your air gap environment OS. If installing a different variant of Linux, please remember:
 
   - When you read the term Ubuntu or show screenshots of its installer, look for equivalents on your own chosen Linux variant.
-  - There may be better choices than Ubuntu now or in the future: please feel free to share your results with others in the Cardano community, perhaps [contributing](../portal-contribute) your findings & procedures here on the Developer Portal.
+  - There may be better choices than Ubuntu now or in the future: please feel free to share your results with others in the Cardano community, perhaps [contributing](../../portal-contribute) your findings & procedures here on the Developer Portal.
 
 ### Prepare to follow Ubuntu installation instructions
 
@@ -205,7 +205,7 @@ sudo apt upgrade
 
 This is recommended because it will give you a means of taking password-encrypted notes that can move between your air gap and computer host environments *in both directions*, so you can:
 
-  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/get-started/secure-workflow.md)):
+  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/operate-a-stake-pool/security/secure-workflow.md)):
       - your Cardano account balances, UTxO addresses & payment addresses
       - notes from personal files & web sites about the work you will be doing within the air gap (since you won't have Internet access there);
   - take notes in the air gap environment (problems, error messages) to copy back to your computer, since you can't upload them through the air gap.
@@ -244,7 +244,7 @@ This confirms that your system will start properly after having updated your sys
 
 Use the standard instructions here at the Developer Portal:
 
-  - **[Installing the node from source](/docs/get-started/cardano-node/installing-cardano-node.md)**
+  - **[Installing the node from source](/docs/operate-a-stake-pool/node-operations/installing-cardano-node.md)**
 
 Note this will build `cardano-node` as well as `cardano-cli`, but don't worry: you won't be running a node inside the air gap. 😜
 
@@ -277,7 +277,7 @@ Therefore, you can [find your WiFi MAC address](https://help.ubuntu.com/stable/u
 
 ### Congratulations, your air gap environment is complete!
 
-You now have a safe place you can use for your [Secure Transaction Workflow](/docs/get-started/secure-workflow.md).
+You now have a safe place you can use for your [Secure Transaction Workflow](/docs/operate-a-stake-pool/security/secure-workflow.md).
 
 ## Option 2: Install your air gap environment on a persistent USB drive
 
