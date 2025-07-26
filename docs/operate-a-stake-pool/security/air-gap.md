@@ -105,7 +105,7 @@ If your computer doesn't have a cabled connection, it is acceptable under our se
 
 #### Updates and other software
 
-![img](../../static/img/get-started/air-gap/10-software-choices.png)
+![img](../../../static/img/get-started/air-gap/10-software-choices.png)
 
 Select **Minimal installation**, since this is the least likely to leave you with security intrusive applications and services.
 
@@ -119,7 +119,7 @@ Select **Minimal installation**, since this is the least likely to leave you wit
 
 #### Installation type
 
-![img](../../static/img/get-started/air-gap/20-installation-type.png)
+![img](../../../static/img/get-started/air-gap/20-installation-type.png)
 
 Tick **Erase disk and install Ubuntu**.... you've already confirmed there's nothing else that needs to be kept on this computer, and that it won't have any other operating systems or working disks.
 
@@ -133,7 +133,7 @@ Before you hit **Continue**, if you've chosen to encrypt your files:
 
 ##### (optional) Set up the hard drive for encryption
 
-![img](../../static/img/get-started/air-gap/30-encrypt-disk.png)
+![img](../../../static/img/get-started/air-gap/30-encrypt-disk.png)
 
 Hit the button below the *Erase disk* option: **Advanced Features** which will at first say *None selected*.
 
@@ -142,7 +142,7 @@ Hit the button below the *Erase disk* option: **Advanced Features** which will a
 
 Don’t hit the **Continue** button unless you can verify it now says ***LVM and encryption selected*** under Advanced options:
 
-![img](../../static/img/get-started/air-gap/35-disk-encrypted.png)
+![img](../../../static/img/get-started/air-gap/35-disk-encrypted.png)
 
 Enter the password you have prepared earlier as a **volume decryption key.**
 
