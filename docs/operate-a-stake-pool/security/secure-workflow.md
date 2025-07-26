@@ -16,7 +16,7 @@ Payment keys can never be stored, even for a moment, on an Internet connected ma
 
 Therefore we present a secure, standard workflow for `cardano-cli` commands like the ones presented without consideration of security here:
 
-  - **[Create Simple Transaction](/docs/get-started/cardano-cli/get-started/simple-transactions.md)**
+  - **[Create Simple Transaction](/docs/operate-a-stake-pool/cli-operations/basic-operations/simple-transactions.md)**
 
 Once you feel comfortable doing a simple transaction securely, you'll also be able to use it to securely execute these more complex transactions as well:
 
@@ -31,7 +31,7 @@ All transactions will be done in these 3 steps:
 
 1.  on Internet connected computer:
       - **Assemble** all transaction details (from Cardano node or other query) in a file & save it to a removable device.
-2.  in [air gap environment](/docs/get-started/air-gap.md):
+2.  in [air gap environment](/docs/operate-a-stake-pool/security/air-gap.md):
       - **Build** information from this file into a signed transaction & save the Tx file back on the same device (note `Tx` = "transaction").
 3.  on Internet connected computer:
       - **Upload** the Tx file to your Cardano node and submit it.
@@ -44,15 +44,15 @@ Therefore, the payment signing key (the private component of the [Cardano wallet
 
 ## Prerequisites
 
-### Your [air gap environment](/docs/get-started/air-gap.md)
+### Your [air gap environment](/docs/operate-a-stake-pool/security/air-gap.md)
 
-Follow [these instructions](/docs/get-started/air-gap.md) to procure the environment (usually a dedicated "air gap machine") if you haven't already.
+Follow [these instructions](/docs/operate-a-stake-pool/security/air-gap.md) to procure the environment (usually a dedicated "air gap machine") if you haven't already.
 
 ### Move any existing keys inside the air gap
 
 Second, if you've been running your applications, token/NFT generation, or stake pool with keys stored on any Internet connected machine (whether desktop or server):
 
-  - Move all those keys onto the air gap host and [securely delete](/docs/get-started/air-gap.md#install-secure-deletion-tools) the originals.
+  - Move all those keys onto the air gap host and [securely delete](/docs/operate-a-stake-pool/security/air-gap.md#install-secure-deletion-tools) the originals.
   - Also, seriously consider whether those resources should be rebuilt due to the exposure of those private keys.
 
 To simplify the commands below, this guide assumes you will store all your keys and addresses *in the same single directory* where you will be building your transactions.
