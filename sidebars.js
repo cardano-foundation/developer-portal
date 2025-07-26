@@ -44,9 +44,8 @@ module.exports = {
       },
       {
         type: "category",
-        label: "Builder Tools",
+        label: "Builder Tutorials",
         items: [
-          "get-started/aiken",
           {
             type: "category",
             label: "Blockfrost",
