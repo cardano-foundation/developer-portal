@@ -1271,7 +1271,7 @@ export const Showcases = [
       "ENCOINS is a decentralized private accounts and payments protocol on the Cardano blockchain.",
     preview: require("./showcase/encoins.png"),
     website: "https://www.encoins.io/",
-    source: "https://github.com/encryptedcoins?tab=repositories",
+    source: "https://github.com/encryptedcoins",
     tags: ["identity", "opensource"],
   },
 ];
