@@ -31,7 +31,7 @@ The new system separates monitoring responsibilities between the **Cardano Node*
 
 #### Introducing Trace Forwarding
 
-Trace forwarding enables seamless transmission of trace data and metrics from nodes to a centralized tracer service. This feature simplifies remote monitoring and supports scenarios where multiple nodes are monitored by a single `cardano-tracer` instance.
+Trace forwarding enables seamless transmission of trace data and metrics from nodes to a centralized tracer service. This feature simplifies remote monitoring and supports scenarios where multiple nodes are monitored by a single `cardano-tracer` instance. Forwarding via Unix domain sockets or Windows named pipes is the preferred option, although support for forwarding over TCP/IP exists.
 
 #### Hierarchical Namespaces for Trace Messages
 
@@ -41,11 +41,11 @@ To streamline configuration, the system now uses **hierarchical namespaces** for
 
 The new tracing system supports several modes of operation to suit different deployment scenarios:
 
-- **Without Forwarding (No Metrics):** The node operates independently and writes trace messages to `stdout`. Metrics are not provided and would have to be built manually from observing `stdout`.
+- **Without Forwarding:** The node operates independently and writes trace messages to `stdout`. Metrics can be exposed by using the `PrometheusSimple` backend.
 
-- **One Node, One Cardano Tracer (Local Socket):** The tracer connects to a single node over a local socket. Trace output and metrics are forwarded to the tracer, and are available according to its configuration.
+- **One Node, One Cardano Tracer:** The tracer connects to a single node over socket (or loopback device). Trace output and metrics are forwarded to the tracer, and are available according to its configuration.
 
-- **One Tracer, Many Nodes (Socket Connection, possibly via SSH Tunnel):** A single tracer connects to multiple nodes over socket connections, either locally on the same host, or remotely through secure SSH tunnels.
+- **One Tracer, Many Nodes:** A single tracer connects to multiple nodes over socket (possibly via SSH tunnel between hosts) or over IPv4 / IPv6. Forwarding works exactly as described under the previous point.
 
 #### Two-Part Configuration
 
@@ -150,6 +150,30 @@ Go through the adjustments for your Node configuration file (next chapter). When
 
 For more complex setups, such as monitoring multiple nodes or exposing metrics via Prometheus, additional configuration examples are available. Please refer to the [Cardano Tracer Documentation] for detailed guidance on advanced setups and use cases.
 
+#### Forwarding over TCP
+
+In addition to forwarding over sockets, forwarding over TCP/IP is supported. In both cases, the 'forwarding protocol' is identical. For TCP forwarding, adjust the following:
+
+_From Step 1_ - replace node CLI option:
+```bash
+--tracer-socket-network-connect 10.0.0.2:34567
+```
+
+_From Step 3_ - adjust value for `network` in `cardano-tracer`'s configuration:
+
+```yaml
+network:
+  tag: AcceptAt
+  contents: "0.0.0.0:34567"
+```
+
+In this example, `cardano-tracer` listens on port 34567. Nodes can connect via IPv4 for forwarding, with `10.0.0.2` being `cardano-tracer`'s IP in that example.
+
+:::tip Important
+On same-host setups sockets are always preferrable due to less overhead and better performance. On multi-host setups, socket connection via SSH tunnels is always preferrable due to increased security.
+
+Use TCP forwarding **if and only if** you control each and every aspect of the environment, such as port mapping or firewalls, or virtual network setup - the 'forwarding protocol' does not implement encrypting traffic nor authentication methods.
+:::
 
 ## Node-side configuration of new tracing
 
@@ -162,16 +186,17 @@ The values are provided in the new `TraceOptions` object in the node configurati
 
 #### 1. Specify Message Severity Filter
 
-Define the **severity level** of messages you want to be included in trace output. More specific namespaces override general ones.
+Define the **severity level** of messages you want to be included in trace output. More specific namespaces override more general ones.
 
 **Example:**
 
 ```yaml
-# Default: show messages of severity Notice or higher
+# namespace root - applies to all dependent messages (*): show messages of severity Notice or higher
 "":
   severity: Notice
 
-# ChainDB messages: show starting from severity Info
+# ChainDB messages: show messages of severity Info or higher
+# Overrides setting from namespace root, being more specific, and applies to all dependent messages (ChainDB.*).
 ChainDB:
   severity: Info
 ```
@@ -234,20 +259,26 @@ Define the **backends** that will be enabled inside the Node to process trace da
     - Stdout MachineFormat
     - EKGBackend
     - Forwarder
+    - PrometheusSimple 127.0.0.1 12798
 ```
 
-- Writing to standard output (only one can be used):
+- Write to standard output (only one can be used):
   - `Stdout MachineFormat`: in JSON format
   - `Stdout HumanFormatColoured`: in color-coded text format
   - `Stdout HumanFormatUncoloured`: in plain text format
-- `EKGBackend`: Forwards metrics to `cardano-tracer`
-- `Forwarder`: Forwards trace messages to `cardano-tracer`
+- `EKGBackend`: Have the node collect metrics. Required to forward metrics or expose them via PrometheusSimple
+- `Forwarder`: Forwards trace messages and metrics to `cardano-tracer`
+- `PrometheusSimple` (with connection string): Have the node expose Prometheus metrics directly; in the example under URL `localhost:12798/metrics`
 
 *Note*: For standard output, trace messages that do not implement a text format might be displayed as JSON.
 
-*Note*: Please make sure to enable the `Forwarder` backend **if and only if** you intend to consume the trace ouput with a running `cardano-tracer` instance. In case of unreliable forwarding connections, the Node generously buffers traces that have not been consumed; and though the buffer is bounded, you will experience permanently increased RAM usage if traces are never consumed at all.
+*Note*: Metrics, although being based on trace data, are **independent** of trace messages. This means, you can access all metrics even if their corresponding trace messages are filtered out or silenced in your configuration. It also means, they can be forwarded to `cardano-tracer` even when you don't forward their corresponding trace messages
 
-*Note*: Metrics, although being based on trace data, are **independent** of trace messages. This means, you can receive all metrics with `cardano-tracer` even when you don't forward the corresponding trace messages. This also means, all metrics will be available even if their corresponding trace messages are filtered out or silenced in your configuration.
+:::tip Important
+Please make sure to enable the `Forwarder` backend **if and only if** you intend to consume the trace ouput with a running `cardano-tracer` instance. In case of unreliable forwarding connections, the Node generously buffers traces that have not been consumed; and though the buffer is bounded, you will experience permanently increased RAM usage if traces are never consumed at all.
+
+Please make sure to enable the `PrometheusSimple` backend **if and only if** you intend to scrape the node process itself for metrics. This way, you avoid exposing the node over an open port unnecessarily.
+:::
 
 ---
 
@@ -265,7 +296,7 @@ In addition to providing a `TraceOptions` entry, the new tracing system introduc
 
 Configurations can be written in both **JSON** and **YAML**. The examples in this document are provided in **YAML** for readability.  
 
-A full example of a mainnet node config file utilizing various settings for the new tracing system can be found here: [mainnet-config-new-tracing.json]
+A full example of a mainnet node config file utilizing various settings for the new tracing system can be found here: [mainnet-config.json]
 
 There's a sensible **fallback** configuration hard-coded inside a Haskell module of the Node: [Cardano.Node.Tracing.DefaultTraceConfig]. It is important to state the `TraceOptions` from this fallback will be used if and only if the `TraceOptions` object in your Node configuration is empty.
 
@@ -337,5 +368,5 @@ To support users, administrators and developers, the following documentation pro
 [Cardano Trace Documentation]: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/new-tracing/tracers_doc_generated.md
 [Cardano Tracer Documentation]: https://github.com/intersectmbo/cardano-node/blob/master/cardano-tracer/docs/cardano-tracer.md
 [Cardano.Node.Tracing.DefaultTraceConfig]: https://github.com/intersectmbo/cardano-node/blob/master/cardano-node/src/Cardano/Node/Tracing/DefaultTraceConfig.hs
-[mainnet-config-new-tracing.json]: https://github.com/IntersectMBO/cardano-node/blob/master/configuration/cardano/mainnet-config-new-tracing.json
+[mainnet-config.json]: https://github.com/IntersectMBO/cardano-node/blob/master/configuration/cardano/mainnet-config.json
 [trace-dispatcher: Efficient, Simple, and Flexible Program Tracing]: https://github.com/intersectmbo/cardano-node/blob/master/trace-dispatcher/doc/trace-dispatcher.md
