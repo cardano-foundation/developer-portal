@@ -2,7 +2,7 @@
  * HOW TO ADD YOUR BUILDER TOOL:
  *
  * 1. Add image: Place PNG/JPG in src/data/builder-tools/your-tool-name.png
- * 2. Add entry: Copy format below, add to END of Showcases array (line ~1041)
+ * 2. Add entry: Copy format below, add to END of Showcases array
  * 3. Required fields:
  *    - title: "Your Tool Name"
  *    - description: "Brief description (avoid 'best/first/only' claims)"  
