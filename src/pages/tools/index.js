@@ -188,10 +188,10 @@ function DevelopOnCardanoSection() {
           <div className={styles.developCta}>
             <h3>Need help choosing the right tools?</h3>
             <p>
-              Get tailored recommendations for APIs, indexers, SDKs, and infrastructure that match your project's needs.
+              Answer a few questions about your project and discover which APIs, indexers, SDKs, and infrastructure are best for you.
             </p>
-            <a href="https://cardano-foundation.github.io/cardano-tool-compass/questionnaire/B1/" className={styles.ctaLink} target="_blank">
-              Tool Compass →
+            <a href="https://cardano-foundation.github.io/cardano-tool-compass/questionnaire/B1/" className={styles.ctaButton} target="_blank">
+              → Tool Compass 
             </a>
           </div>
         </div>

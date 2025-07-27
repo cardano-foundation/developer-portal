@@ -217,6 +217,29 @@
   text-decoration: none;
 }
 
+.ctaButton {
+  display: inline-block;
+  background-color: var(--ifm-color-primary);
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.025em;
+}
+
+.ctaButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 56, 175, 0.25);
+}
+
 @media screen and (max-width: 996px) {
   .developGrid {
     grid-template-columns: 1fr;
