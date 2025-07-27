@@ -225,7 +225,7 @@
   font-weight: 500;
   font-size: 0.875rem;
   padding: 0.5rem 1.25rem;
-  border: 1px solid var(--ifm-color-primary);
+  border: 1.5px solid var(--ifm-color-primary);
   border-radius: 6px;
   transition: all 0.2s ease;
   letter-spacing: 0.025em;
