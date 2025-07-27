@@ -83,7 +83,7 @@ loadCsl();
 ...
 ```
 
-With the above lines, we just made available to the rest of our script, the [Buffer](https://www.npmjs.com/package/buffer) package and the [Cardano Serialization Library](/docs/get-started/cardano-serialization-lib/overview). Also, we just declared the top-level variable `wallet` there for convenience later. We will set its value in the following steps.
+With the above lines, we just made available to the rest of our script, the [Buffer](https://www.npmjs.com/package/buffer) package and the [Cardano Serialization Library](/docs/smart-contracts/cardano-serialization-lib/overview). Also, we just declared the top-level variable `wallet` there for convenience later. We will set its value in the following steps.
 
 Now, let's make the `authenticate` function actually do some things:
 

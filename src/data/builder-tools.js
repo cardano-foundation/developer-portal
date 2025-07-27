@@ -413,7 +413,7 @@ export const Showcases = [
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
     preview: require("./builder-tools/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
-    getstarted: "/docs/get-started/cardano-serialization-lib/overview",
+    getstarted: "/docs/smart-contracts/cardano-serialization-lib/overview",
     tags: ["serialization", "rust"],
   },
   {

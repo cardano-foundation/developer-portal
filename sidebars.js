@@ -130,7 +130,7 @@ module.exports = {
           "get-started/cardanosharp-wallet",
           {
             type: "category",
-            label: "Serialization-Lib",
+            label: "Cardano Serialization Library (CSL)",
             items: [
               {
                 // Generate sidebar automatically from docs/smart-contracts/cardano-serialization-lib
