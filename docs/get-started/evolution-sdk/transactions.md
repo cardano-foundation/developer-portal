@@ -3,7 +3,7 @@ id: transactions
 sidebar_position: 3
 title: Transactions
 sidebar_label: Your First Transaction
-description: How to build, sign, and submit transactions with Lucid Evolution
+description: How to build, sign, and submit transactions with Evolution SDK
 ---
 
 import Tabs from '@theme/Tabs';
@@ -60,7 +60,7 @@ The wallet selection methods we discussed in the [previous section](wallets.md) 
 ## Putting everything together
 
 ```typescript
-import { Lucid, Blockfrost } from "@lucid-evolution/lucid";
+import { Lucid, Blockfrost } from "@evolution-sdk/lucid";
 
 // Initialize Lucid with a provider
 const lucid = await Lucid(
@@ -86,14 +86,14 @@ console.log(txHash);
 
 ### Next Steps
 
-Explore the following sections to learn more about Lucid Evolution:
+Explore the following sections to learn more about Evolution SDK:
 
-- [Under the hood](https://no-witness-labs.github.io/lucid-evolution/documentation/under-the-hood) - Understand how Evolution library works
-- [Deep dives](https://no-witness-labs.github.io/lucid-evolution/documentation/pay-methods) - Follow this series in order to step-by-step understand how to build your own off-chain code for different/advanced use cases
+- [Under the hood](https://no-witness-labs.github.io/evolution-sdk/documentation/under-the-hood) - Understand how Evolution library works
+- [Deep dives](https://no-witness-labs.github.io/evolution-sdk/documentation/pay-methods) - Follow this series in order to step-by-step understand how to build your own off-chain code for different/advanced use cases
 
 ## Resources
 
-- [Official Evolution Library Documentation](https://no-witness-labs.github.io/lucid-evolution/)
-- [GitHub Repository](https://github.com/no-witness-labs/lucid-evolution)
+- [Official Evolution Library Documentation](https://no-witness-labs.github.io/evolution-sdk/)
+- [GitHub Repository](https://github.com/no-witness-labs/evolution-sdk)
 
-> You now have all you need to start playing around with Lucid Evolution. If you have any questions, please refer to the library's [Discord community](https://discord.com/invite/eqZDvHvW6k).
+> You now have all you need to start playing around with Evolution SDK. If you have any questions, please refer to the library's [Discord community](https://discord.com/invite/eqZDvHvW6k).
