@@ -1021,13 +1021,13 @@ export const Showcases = [
     tags: ["oracle"],
   },
   {
-    title: "Lucid Evolution",
+    title: "Evolution SDK",
     description:
       "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
-    preview: require("./builder-tools/lucid-evolution.png"),
-    website: "https://no-witness-labs.github.io/lucid-evolution/",
+    preview: require("./builder-tools/evolution-sdk.png"),
+    website: "https://no-witness-labs.github.io/evolution-sdk/",
     getstarted:
-      "https://no-witness-labs.github.io/lucid-evolution/install",
+      "https://no-witness-labs.github.io/evolution-sdk/install",
     tags: ["typescript", "javascript", "sdk", "plutus"],
   },
   {
