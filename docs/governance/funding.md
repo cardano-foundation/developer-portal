@@ -8,77 +8,71 @@ image: /img/og/og-developer-portal.png
 
 Cardano offers one of the most comprehensive and decentralized funding ecosystems in blockchain. From grassroots innovation to large-scale infrastructure, find the right funding path for your project.
 
-## Project Catalyst - Community Innovation Engine
+## Funding Options
 
-Project Catalyst is the world's largest decentralized grant program, distributing over **+$150M** across **+2000** funded proposals through community voting.
+### Project Catalyst
+
+Project Catalyst is one of the world's largest decentralized grant programs, having distributed over **+$150M** across **+2000** funded proposals through community voting.
 
 Visit the official [Project Catalyst website](https://projectcatalyst.io/) to explore current funding opportunities and active campaigns.
 
-## How It Works
+#### How It Works
 
 Project Catalyst operates in three phases:
 
 1) Community responds to challenges with ideas. Brainstorming leads to conceptualization, feedback, and finalized proposals.
 
-2) Participants vote on proposals they wish to see funded. Results are tallied and shared transparently after voting ends.
+2) Participants vote on proposals they wish to see funded.
 
-3) Selected projects receive milestone-based funding with community guidance and regular progress reports.
+3) Selected projects receive milestone-based funding with community reviewer feedback loop and progress reports.
 
-## Why Participate?
+#### How to Participate
+
+| Role | What You Do | How to Get Started |
+|------|-------------|-------------------|
+| **Proposers** | Submit innovative ideas for community funding | Create account on [Project Catalyst platform](https://projectcatalyst.io/) during active campaigns |
+| **Community Reviewers** | Evaluate and provide feedback on proposals | Join as incentivized reviewer to ensure proposal quality |
+| **Voters (Ada Holders)** | Decide which proposals receive funding | Download Catalyst app ([iOS](https://apps.apple.com/kg/app/catalyst-voting/id1517473397) \| [Android](https://play.google.com/store/apps/details?id=io.iohk.vitvoting&gl=US)) |
+| **Milestone Reviewers** | Track funded project progress and deliverables | Review Statement of Milestones and Proof of Achievement as incentivized role |
+
+#### Why Participate?
 
 - Build better, faster, and cheaper through community empowerment
 - Connect with collaborators and form impactful project teams  
 - Improve proposals through constructive community feedback
-- Access millions in ada grants for your innovative ideas
+- Access ada grants for your innovative ideas
 
-:::tip Current Opportunities
-Check [projectcatalyst.io](https://projectcatalyst.io/) for active funding rounds and submission deadlines.
-:::
+#### Resources
 
-## How to Participate
+- **Documentation:** [Project Catalyst Knowledge Base](https://docs.projectcatalyst.io/)
+- **Community:** [Discord](https://discord.gg/GUeYabmP4r) | [Telegram](https://t.me/cardanocatalyst) | [Cardano Forum](https://forum.cardano.org)
+- **Browse Projects:** [Catalyst Website](https://projectcatalyst.io/search) | [LIDO Explorer](https://www.lidonation.com/en/project-catalyst/proposals)
 
-### Proposers
+---
 
-Propose new ideas for funding by creating an account on the [Project Catalyst platform](https://projectcatalyst.io/) and submitting your proposal during active campaign periods.
+### Cardano Builder DAO
 
-### Community Reviewers
+**Cardano Builder DAO** is a smart contract-governed funding mechanism that supports high-potential projects with demonstrated traction and measurable impact.
 
-Provide opinions and guidance to help voters evaluate proposals. This incentivized role helps ensure proposal quality and community alignment.
+- More than 50 established Cardano projects vote on funding decisions
+- Projects must track KPIs like on-chain activity, users, and TVL
+- Predictable 6-month funding rounds for project planning
+- Funded through Cardano Treasury withdrawals with full transparency
 
-### Voters
+**When to Consider:**
 
-Download the Catalyst voting app ([iOS](https://apps.apple.com/kg/app/catalyst-voting/id1517473397) | [Android](https://play.google.com/store/apps/details?id=io.iohk.vitvoting&gl=US)) to decide which proposals receive funding.
+- Functional dApp with existing user base seeking growth funding
+- Project with measurable on-chain activity and metrics
+- Team ready for accountability through KPI reporting
+- Need for structured funding between Catalyst grants and large Treasury proposals
 
-### Milestone Reviewers
+Learn more at [Cardano Builder DAO](https://buildingoncardano.io/).
 
-Review project progress by evaluating Statement of Milestones and Proof of Achievement submissions. This incentivized role ensures funded projects deliver as promised. 
+---
 
-## Community Impact
+### Treasury Withdrawals
 
-Over the past ten funds, Project Catalyst has distributed over **+$150M** across **+2000** funded proposals, with **+84K+** community members casting over **3 million votes** on nearly **10,000 proposals**.
-
-View current and past funding results on the [Project Catalyst website](https://projectcatalyst.io/).
-
-## Resources
-
-### Documentation
-
-- [Project Catalyst Knowledge Base](https://docs.projectcatalyst.io/) - Complete guides and documentation
-
-### Community Channels
-
-- [Telegram Announcements](https://t.me/cardanocatalyst)
-- [Discord Community](https://discord.gg/GUeYabmP4r)
-- [Cardano Forum](https://forum.cardano.org) 
-
-### Explore Funded Projects
-
-- [Project Catalyst Website](https://projectcatalyst.io/search) - Browse all current and past proposals and their outputs
-- [LIDO Nation Explorer](https://www.lidonation.com/en/project-catalyst/proposals) - Alternative proposal explorer
-
-## Treasury Withdrawals - Large-Scale Funding
-
-For mature projects with proven impact, Cardano's on-chain governance enables **Treasury withdrawals** - multi-million ada funding proposals voted on by the community.
+For mature projects with proven impact, Cardano's on-chain governance enables **Treasury withdrawals**. Ada funding proposals voted on by the community.
 
 **When to Consider:**
 
@@ -87,34 +81,71 @@ For mature projects with proven impact, Cardano's on-chain governance enables **
 - Large-scale infrastructure or protocol improvements
 - Community-wide benefit and long-term value
 
-Treasury proposals require approval from **DReps** (Delegated Representatives) and the **Constitutional Committee** through Cardano's governance system.
+Anyone can submit treasury withdrawal proposals, which require approval from **DReps** (Delegated Representatives) and the **Constitutional Committee** through Cardano's governance system. Organizations like [Intersect](https://www.intersectmbo.org/) and [PRAGMA](https://pragma.builders) can serve as administrators to help coordinate due diligence, contracting, and disbursements for approved proposals.
 
-Learn more about [Treasury withdrawals](cardano-governance/governance-actions.md#treasury-withdrawals).
+Learn more about [Treasury withdrawals](cardano-governance/governance-actions).
 
-## Funding Pathway
+---
 
-Cardano's funding ecosystem creates a natural progression for projects:
+## Your Funding Journey
 
-1. **Start Small** - Use Project Catalyst grants (typically $5K-$500K) to validate ideas and build MVPs
-2. **Prove Value** - Demonstrate product-market fit, user adoption, and ecosystem benefit  
-3. **Scale Big** - Access Treasury withdrawals (multi-million ada) for major infrastructure and growth
+Cardano's funding ecosystem creates a natural progression for projects. Here's how to navigate it:
 
-This pathway ensures sustainable funding allocation while supporting innovation at every stage.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Getting Started
+<Tabs
+  defaultValue="catalyst"
+  values={[
+    {label: 'Bootstrap (Catalyst)', value: 'catalyst'},
+    {label: 'Prove Value (DAOs)', value: 'daos'},
+    {label: 'Scale Bigger (Treasury)', value: 'treasury'},
+  ]}>
 
-### For New Projects
+<TabItem value="catalyst">
 
-- Explore current campaigns and learn from past proposals on the [Catalyst website](https://projectcatalyst.io/search)
-- Connect with the community on [Discord](https://discord.gg/GUeYabmP4r)
+**For:** New ideas, MVPs, proof-of-concepts  
+**Funding:** $5K-$500K through community voting  
 
+**Your next steps:**
 
-### For Established Projects  
+- Check when the [next fund](https://projectcatalyst.io/) is accepting proposals
+- Browse successful proposals in your category for inspiration
+- Draft your idea in few clear sentences
+- Connect with the community on [Discord](https://discord.gg/GUeYabmP4r) for feedback
 
-- Review Treasury governance processes
-- Engage with the Cardano community
-- Prepare comprehensive impact documentation with clear APIs
+</TabItem>
+
+<TabItem value="daos">
+
+**For:** Functional dApps with existing users seeking growth funding  
+**Funding:** Based on demonstrated traction and KPIs  
+**Timeline:** Predictable 6-month funding rounds
+
+**Your next steps:**
+
+- Track your on-chain activity, user metrics, and TVL
+- Prepare measurable impact data and growth projections
+- Learn more at [buildingoncardano.io](https://buildingoncardano.io/)
+
+</TabItem>
+
+<TabItem value="treasury">
+
+**For:** Established projects with proven ecosystem impact, or high impact new ecosystem players  
+**Funding:** Multi-million ada through on-chain governance  
+**Timeline:** 12+ month proposal and approval process
+
+**Your next steps:**
+
+- Document significant ecosystem impact and community benefit
+- Prepare for DRep and Constitutional Committee review
+- Learn about the [Treasury withdrawal process](cardano-governance/governance-actions)
+
+</TabItem>
+
+</Tabs>
 
 :::tip Need Help?
-Join the [Cardano Developer Community](../get-started/cardano-developer-community.md) for support, feedback, and collaboration opportunities.
+Join the [Cardano Developer Community](../get-started/cardano-developer-community) for support, feedback, and collaboration opportunities.
 :::
