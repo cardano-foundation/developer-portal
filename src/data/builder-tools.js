@@ -1038,6 +1038,14 @@ export const Showcases = [
     getstarted: "https://scalus.org/docs/get-started",
     tags: ["scala", "sdk", "plutus"]
   },
+  {
+    title: "Lace Anatomy",
+    description: "Renders transactions from CBOR and transaction hashes, providing a graphical representation of blockchain data for developers and analysts. Includes dissect functionality that breaks down CBOR structures for debugging and troubleshooting low-level Cardano transactions.",
+    preview: require("./builder-tools/lace-anatomy.png"),
+    website: "https://laceanatomy.com",
+    getstarted: "https://laceanatomy.com",
+    tags: ["testing", "lowlevel"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
