@@ -128,7 +128,7 @@ module.exports = {
           "governance/cardano-governance/constitutional-committee-guide",
         ],
       },
-      "governance/project-catalyst",
+      "governance/funding",
     ],
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",
