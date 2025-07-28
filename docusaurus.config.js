@@ -221,8 +221,8 @@ module.exports = {
             from: '/docs/fund-your-project/',
           },
           {
-            // redirect to the new catalyst page
-            to: '/docs/governance/project-catalyst',
+            // redirect to the new funding page
+            to: '/docs/governance/funding',
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
