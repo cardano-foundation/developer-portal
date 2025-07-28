@@ -1052,11 +1052,11 @@ export const Showcases = [
   },
   {
     title: "Gastronomy",
-    description: "A powerful UPLC debugger with VSCode integration that lets you step through UPLC execution, travel backwards in time, and map directly to smart contract source code making complex debugging simple and intuitive.",
+    description: "A powerful UPLC debugger that lets you step through UPLC execution, travel backwards in time, and map directly to smart contract source code making complex debugging simple and intuitive.",
     preview: require("./builder-tools/gastronomy.png"),
     website: "https://sundae.fi/products/gastronomy",
     getstarted: "https://github.com/SundaeSwap-finance/gastronomy",
-    tags: ["testing", "IDE", "plutus"]
+    tags: ["testing", "plutus"]
   },
 ];
 
