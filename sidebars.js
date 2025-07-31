@@ -20,7 +20,6 @@ module.exports = {
         type: "category",
         label: "Builder Tools",
         items: [
-          "get-started/aiken",
           {
             type: "category",
             label: "Blockfrost",
