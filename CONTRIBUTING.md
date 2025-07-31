@@ -69,7 +69,12 @@ yarn start  # Development server
 ## FAQ
 
 **Q: I accidentally committed yarn.lock changes, how do I fix it?**  
-A: Remove it with: `git rm yarn.lock && git commit -m "remove yarn.lock"`
+A: First, restore the original yarn.lock using **one of these** (depending on your git setup):
+- If you created your PR branch from staging: `git checkout staging -- yarn.lock`
+- If you need it from your fork's origin: `git checkout origin/staging -- yarn.lock`  
+- If you need it from the upstream repo: `git checkout upstream/staging -- yarn.lock`
+
+Then commit the reversion: `git commit -m "revert yarn.lock to original state"`
 
 ## Need Help?
 
