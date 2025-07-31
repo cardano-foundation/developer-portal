@@ -17,7 +17,7 @@ cd $HOME/cardano-testnet/keys
 ```
 
 :::important
-Due to security reasons, for the Mainnet these keys should be generated and stored on an [air-gapped system](/docs/get-started/air-gap.md), but since we are working on a testnet, we can generate and keep them on the block producing node.
+Due to security reasons, for the Mainnet these keys should be generated and stored on an [air-gapped system](/docs/operate-a-stake-pool/security/air-gap.md), but since we are working on a testnet, we can generate and keep them on the block producing node.
 :::
 
 ## Generating Payment Keys
