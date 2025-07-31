@@ -10,7 +10,7 @@
 
 - [ ] I have read the [Contributing Guidelines](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md).
 - [ ] I have run `yarn build` after adding my changes **without getting any errors**. 
-- [ ] I have not committed any changes to `yarn.lock`.
+- [ ] I have not committed any changes to `yarn.lock` (or have [removed these changes](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md#faq)).
 
 ## Updating documentation or Bugfix
 

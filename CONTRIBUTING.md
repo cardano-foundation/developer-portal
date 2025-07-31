@@ -66,6 +66,11 @@ yarn start  # Development server
 3. **Ensure `yarn build` succeeds** without errors
 4. **Wait for review** (requires 3 approvals for showcase/tools)
 
+## FAQ
+
+**Q: I accidentally committed yarn.lock changes, how do I fix it?**  
+A: Remove it with: `git rm yarn.lock && git commit -m "remove yarn.lock"`
+
 ## Need Help?
 
 - **Questions:** [GitHub Discussions](https://github.com/cardano-foundation/developer-portal/discussions)
