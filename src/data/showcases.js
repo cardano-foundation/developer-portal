@@ -1,17 +1,25 @@
 /*
  * SHOWCASE SECTION INFO
- *
+ * 
  * The project showcase should be a place where someone new to the ecosystem 
  * can come to see what can be done - it should not be seen as a database where 
  * every project is promoted.
  * 
- * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * https://developers.cardano.org/docs/portal-contribute#add-a-project-to-showcase
+ * HOW TO ADD YOUR PROJECT TO SHOWCASE:
  *
- * INSTRUCTIONS:
- * - Add your project in the JSON array below.
- * - Add a local image preview. (decent screenshot or logo of your project)
- * - The image must be added to the GitHub repository and use `require("image")`.
+ * 1. Add image: Place PNG/JPG in src/data/showcase/your-project-name.png
+ * 2. Add entry: Copy format below, add to END of Showcases array 
+ * 3. Required fields:
+ *    - title: "Your Project Name"
+ *    - description: "Brief description (avoid 'best/first/only' claims)"
+ *    - preview: require("./showcase/your-project-name.png")
+ *    - website: "https://your-project.com"
+ *    - getstarted: "https://docs.url" OR null
+ *    - tags: ["relevant", "tags"] (see available tags below)
+ * 4. Test: Run `yarn build` (must complete without errors)
+ * 5. Submit: Create PR using "Add Showcase" template
+ *
+ * Requirements: Live on Cardano mainnet, functional product, stable domain
  */
 
 import React from "react";

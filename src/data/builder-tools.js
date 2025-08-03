@@ -1,13 +1,17 @@
 /*
- * BUILDER TOOLS SECTION INFO
+ * HOW TO ADD YOUR BUILDER TOOL:
  *
- * Requirements for adding your builder tool:
- * https://developers.cardano.org/docs/portal-contribute#add-tools-to-builder-tools
- *
- * Instructions:
- * - Add your tool in the json array at the end of the array.
- * - Add a local image preview. (decent screenshot or logo of your builder tool)
- * - The image must be added to the GitHub repository and use `require("image")`.
+ * 1. Add image: Place PNG/JPG in src/data/builder-tools/your-tool-name.png
+ * 2. Add entry: Copy format below, add to END of Showcases array
+ * 3. Required fields:
+ *    - title: "Your Tool Name"
+ *    - description: "Brief description (avoid 'best/first/only' claims)"  
+ *    - preview: require("./builder-tools/your-tool-name.png")
+ *    - website: "https://your-tool.com"
+ *    - getstarted: "https://docs.url" OR null
+ *    - tags: ["relevant", "tags"] (see available tags below)
+ * 4. Test: Run `yarn build` (must complete without errors)
+ * 5. Submit: Create PR using "Add Builder Tool" template
  *
  */
 
