@@ -1292,6 +1292,15 @@ export const Showcases = [
     source: "https://github.com/butaneprotocol/butane-contracts",
     tags: ["opensource", "marketplace"],
   },
+  {
+    title: "Bodega Market",
+    description:
+      "As a prediction market, we provide a unique platform where you can speculate on the outcomes of real-world events, leveraging the security, scalability, and transparency that only Cardano can offer.",
+    preview: require("./showcase/bodega.png"),
+    website: "https://www.bodegamarket.xyz/",
+    source: "https://github.com/bodega-market/bodega-market-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
