@@ -1300,6 +1300,7 @@ export const Showcases = [
     website: "https://www.bodegamarket.xyz/",
     source: "https://github.com/bodega-market/bodega-market-smart-contracts",
     tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
