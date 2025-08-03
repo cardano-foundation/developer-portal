@@ -1301,6 +1301,15 @@ export const Showcases = [
     source: "https://github.com/bodega-market/bodega-market-smart-contracts",
     tags: ["marketplace", "opensource"],
   },
+  {
+    title: "Cornucopias",
+    description:
+      "Open world MMO set in a world where humanity has ascended from the Earth's surface and created a breathtaking new world in the sky. ",
+    preview: require("./showcase/cornucopias.png"),
+    website: "https://cornucopias.io/",
+    source: null,
+    tags: ["game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
