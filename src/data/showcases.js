@@ -1265,6 +1265,15 @@ export const Showcases = [
     source: "https://github.com/masumi-network",
     tags: ["marketplace", "opensource"],
   },
+  {
+    title: "Encoins",
+    description:
+      "ENCOINS is a decentralized private accounts and payments protocol on the Cardano blockchain.",
+    preview: require("./showcase/encoins.png"),
+    website: "https://www.encoins.io/",
+    source: "https://github.com/encryptedcoins",
+    tags: ["identity", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
