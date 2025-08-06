@@ -1113,6 +1113,15 @@ export const Showcases = [
     tags: ["marketplace"],
   },
   {
+    title: "Andamio",
+    description:
+      "Verified trust protocol for distributed work. Organizations can mint credentials, verify skills, and find contributors. Individuals can learn, discover opportunities, join project teams, and launch their own projects.",
+    preview: require("./showcase/andamio.png"),
+    website: "https://www.andamio.io/",
+    source: null,
+    tags: ["daotool"],
+  },
+  {
     title: "CSWAP",
     description:
       "CSWAP Systems is a next-gen decentralized exchange (DEX) that bridges tokens, NFTs, and real-world assets in one seamless trading ecosystem. ",
