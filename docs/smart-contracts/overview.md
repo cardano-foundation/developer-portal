@@ -87,7 +87,7 @@ This is only an example! The validator does not need to rely on hashsums - you c
 
 - You create a script, using your language of choice, that creates a transaction moving some amount of ada or other assets to the address of the validator-script. When generating the transaction you specify the datum to be ```Hash("secret")``` making sure that only the hashsum of the word "secret" gets stored on-chain. This is your off-chain component.
 
-- You sign and submit the transaction to a Cardano node either directly or via one of many available API's such as Blockfrost or Dandelion. Now the ada you sent to the contract is locked by your validator.
+- You sign and submit the transaction to a Cardano node either directly or via one of many available API's such as Blockfrost. Now the ada you sent to the contract is locked by your validator.
 
 - The only way for anyone to move this locked ada now is to generate a transaction with the word 'secret' as a redeemer, as the UTXO is locked in the script which will enforce this rule you created where the hashsum of the redeemer must match ```Hash("secret")```. 
 Normally, your datum would be more complicated than this, and the person running the contract might not know how it is supposed to work at all, so they would rely on your off-chain component to create the transaction - often this is something you would provide an API for.
@@ -133,7 +133,7 @@ Writing well-designed smart contracts requires you to have a solid understanding
 
 - [Aiken](aiken) - for on-chain validator scripts only: a language & toolchain favouring developer experience.
 - [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
-- [opshin](opshin) - a programming language for generic Smart Contracts based on Python. 
-- [Plutus](plutus) - a platform to write full applications that interact with the Cardano blockchain. 
+- [opshin](opshin) - a programming language for generic Smart Contracts based on Python.
+- [Plinth](plinth) - a platform to write full applications that interact with the Cardano blockchain.
 - [plu-ts](plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library. 
-
+- [Scalus](scalus) - a unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic.  
