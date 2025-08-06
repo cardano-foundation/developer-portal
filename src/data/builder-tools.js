@@ -1,13 +1,17 @@
 /*
- * BUILDER TOOLS SECTION INFO
+ * HOW TO ADD YOUR BUILDER TOOL:
  *
- * Requirements for adding your builder tool:
- * https://developers.cardano.org/docs/portal-contribute#add-tools-to-builder-tools
- *
- * Instructions:
- * - Add your tool in the json array at the end of the array.
- * - Add a local image preview. (decent screenshot or logo of your builder tool)
- * - The image must be added to the GitHub repository and use `require("image")`.
+ * 1. Add image: Place PNG/JPG in src/data/builder-tools/your-tool-name.png
+ * 2. Add entry: Copy format below, add to END of Showcases array
+ * 3. Required fields:
+ *    - title: "Your Tool Name"
+ *    - description: "Brief description (avoid 'best/first/only' claims)"  
+ *    - preview: require("./builder-tools/your-tool-name.png")
+ *    - website: "https://your-tool.com"
+ *    - getstarted: "https://docs.url" OR null
+ *    - tags: ["relevant", "tags"] (see available tags below)
+ * 4. Test: Run `yarn build` (must complete without errors)
+ * 5. Submit: Create PR using "Add Builder Tool" template
  *
  */
 
@@ -322,6 +326,13 @@ export const Tags = {
     description: "Reward Calculation",
     icon: null,
     color: "#3D5AFE"
+  },
+  // Scala
+  scala: {
+    label: "Scala",
+    description: "Scala language",
+    icon: null,
+    color: "#2D79C7"
   },
 };
 
@@ -1014,14 +1025,38 @@ export const Showcases = [
     tags: ["oracle"],
   },
   {
-    title: "Lucid Evolution",
+    title: "Evolution SDK",
     description:
       "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
-    preview: require("./builder-tools/lucid-evolution.png"),
-    website: "https://anastasia-labs.github.io/lucid-evolution/",
+    preview: require("./builder-tools/evolution-sdk.png"),
+    website: "https://no-witness-labs.github.io/evolution-sdk/",
     getstarted:
-      "https://anastasia-labs.github.io/lucid-evolution/documentation/core-concepts/instantiate-evolution",
+      "https://no-witness-labs.github.io/evolution-sdk/install",
     tags: ["typescript", "javascript", "sdk", "plutus"],
+  },
+  {
+    title: "Scalus",
+    description: "Scalus is a development platform for building decentralized applications (DApps) on the Cardano blockchain. It provides a unified environment where developers can write both on-chain smart contracts and off-chain logic using Scala 3 - a modern, expressive, and type-safe functional programming language.",
+    preview: require("./builder-tools/scalus.png"),
+    website: "https://scalus.org/",
+    getstarted: "https://scalus.org/docs/get-started",
+    tags: ["scala", "sdk", "plutus"]
+  },
+  {
+    title: "Lace Anatomy",
+    description: "Renders transactions from CBOR and transaction hashes, providing a graphical representation of blockchain data for developers and analysts. Includes dissect functionality that breaks down CBOR structures for debugging and troubleshooting low-level Cardano transactions.",
+    preview: require("./builder-tools/lace-anatomy.png"),
+    website: "https://laceanatomy.com",
+    getstarted: "https://laceanatomy.com",
+    tags: ["testing", "lowlevel"]
+  },
+  {
+    title: "Gastronomy",
+    description: "A powerful UPLC debugger that lets you step through UPLC execution, travel backwards in time, and map directly to smart contract source code making complex debugging simple and intuitive.",
+    preview: require("./builder-tools/gastronomy.png"),
+    website: "https://sundae.fi/products/gastronomy",
+    getstarted: "https://github.com/SundaeSwap-finance/gastronomy",
+    tags: ["testing", "plutus"]
   },
 ];
 
@@ -1053,6 +1088,7 @@ export const LanguagesOrTechnologiesTags = [
   "python",
   "redis",
   "rust",
+  "scala",
   "sql",
   "typescript",
   "websocket",

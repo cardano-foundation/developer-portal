@@ -1,17 +1,25 @@
 /*
  * SHOWCASE SECTION INFO
- *
+ * 
  * The project showcase should be a place where someone new to the ecosystem 
  * can come to see what can be done - it should not be seen as a database where 
  * every project is promoted.
  * 
- * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * https://developers.cardano.org/docs/portal-contribute#add-a-project-to-showcase
+ * HOW TO ADD YOUR PROJECT TO SHOWCASE:
  *
- * INSTRUCTIONS:
- * - Add your project in the JSON array below.
- * - Add a local image preview. (decent screenshot or logo of your project)
- * - The image must be added to the GitHub repository and use `require("image")`.
+ * 1. Add image: Place PNG/JPG in src/data/showcase/your-project-name.png
+ * 2. Add entry: Copy format below, add to END of Showcases array 
+ * 3. Required fields:
+ *    - title: "Your Project Name"
+ *    - description: "Brief description (avoid 'best/first/only' claims)"
+ *    - preview: require("./showcase/your-project-name.png")
+ *    - website: "https://your-project.com"
+ *    - getstarted: "https://docs.url" OR null
+ *    - tags: ["relevant", "tags"] (see available tags below)
+ * 4. Test: Run `yarn build` (must complete without errors)
+ * 5. Submit: Create PR using "Add Showcase" template
+ *
+ * Requirements: Live on Cardano mainnet, functional product, stable domain
  */
 
 import React from "react";
@@ -817,15 +825,6 @@ export const Showcases = [
     tags: ["nftproject"],
   },
   {
-    title: "VyFinance",
-    description: 
-      "Winner of the CNFT Awards 2022 in the category \"best longterm utility\".",
-    preview: require("./showcase/vyfinance.png"),
-    website: "https://vyfi.io",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "Universe 25",
     description: 
       "Winner of the CNFT Awards 2022 in the category \"Zeitgeist\".",
@@ -1107,7 +1106,7 @@ export const Showcases = [
   {
     title: "NEWM",
     description:
-      "Decentralized music streaming replaces middlemen with code that’s not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
+      "Decentralized music streaming replaces middlemen with code that's not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
     preview: require("./showcase/newm.png"),
     website: "https://newm.io/",
     source: null,
@@ -1121,6 +1120,204 @@ export const Showcases = [
     website: "https://www.andamio.io/",
     source: null,
     tags: ["daotool"],
+  },
+  {
+    title: "CSWAP",
+    description:
+      "CSWAP Systems is a next-gen decentralized exchange (DEX) that bridges tokens, NFTs, and real-world assets in one seamless trading ecosystem. ",
+    preview: require("./showcase/cswap.png"),
+    website: "https://www.cswap.fi/",
+    source: null,
+    tags: ["dex"],
+  },
+  {
+    title: "Fluid Tokens",
+    description:
+      "FluidTokens kicked off its journey on the Cardano blockchain as a DeFi platform, presenting a diverse range of services like lending, borrowing, staking, and an array of other inventive products including rental options, boosted stake features, and more.",
+    preview: require("./showcase/fluid.png"),
+    website: "https://fluidtokens.com/",
+    source: "https://github.com/fluidtokens",
+    tags: ["lending", "marketplace", "opensource"],
+  },
+  {
+    title: "Genius Yield",
+    description:
+      "All-in-one platform, that combines an order book DEX with an automated yield optimizer.",
+    preview: require("./showcase/genius-yield.png"),
+    website: "https://www.geniusyield.co/",
+    source: "https://github.com/geniusyield",
+    tags: ["dex", "opensource"],
+  },
+  {
+    title: "Iagon",
+    description:
+      "Iagon is an AI-driven shared storage and compute economy. Bridging decentralization with compliance to revolutionize cloud services.",
+    preview: require("./showcase/iagon.png"),
+    website: "https://iagon.com",
+    source: null,
+    tags: ["marketplace"],
+  },
+  {
+    title: "Yamfore",
+    description:
+      "Yamfore streamlines lending on the Cardano blockchain with its decentralized platform that eliminates the need for traditional lenders. Utilizing an internal stablecoin reserve, it offers indefinite loan durations and no margin calls, ensuring borrowers are safe from loan liquidation during market volatility.",
+    preview: require("./showcase/yamfore.png"),
+    website: "https://www.yamfore.com/",
+    source: "https://github.com/BigBlymp/yamfore-resources",
+    tags: ["lending", "opensource"],
+  },
+  {
+    title: "VyFinance",
+    description:
+      "VyFinance is Decentralized Finance protocol built on Cardano that includes features such as a decentralised exchange (DEx), redistributive mechanism (BAR), governance, lottery and token/NFT Vaults.",
+    preview: require("./showcase/vyfi.png"),
+    website: "https://app.vyfi.io/",
+    source: null,
+    tags: ["dex"],
+  },
+  {
+    title: "Splash",
+    description:
+      "Decentralized open-source protocol for efficient market-making and trading on Cardano.",
+    preview: require("./showcase/splash.png"),
+    website: "https://www.splash.trade/",
+    source: "https://github.com/splashprotocol/splash-core",
+    tags: ["dex", "opensource"],
+  },
+  {
+    title: "Palmyra",
+    description:
+      "Empowering inclusion for underserved commodities through RWA Tokenization.",
+    preview: require("./showcase/palmyra.png"),
+    website: "https://palmeconomy.io/",
+    source: "https://github.com/zenGate-Global/winter-cardano",
+    tags: ["marketplace", "opensource"],
+  },
+  {
+    title: "Optim Finance",
+    description:
+      "Optimize your yield with a decentralized suite of products.",
+    preview: require("./showcase/optim.png"),
+    website: "https://www.optim.finance/",
+    source: null,
+    tags: ["lending", "marketplace"],
+  },
+  {
+    title: "Farmroll",
+    description:
+      "Crypto engagement platform designed to enhance community interaction, incentivized participation, and AI-driven automation",
+    preview: require("./showcase/farmroll.png"),
+    website: "https://farmroll.io/",
+    source: null,
+    tags: ["ecosystem"],
+  },
+  {
+    title: "TokeoPay",
+    description:
+      "Tokeo is a feature-rich Bitcoin and Cardano wallet that lets you securely store, manage, and trade your BTC, ADA, Runes, Cardano Native Tokens, Ordinals and NFTs, while providing seamless access to the Bitcoin and Cardano blockchain ecosystem.",
+    preview: require("./showcase/tokeo.png"),
+    website: "https://tokeo.io/",
+    source: null,
+    tags: ["wallet"],
+  },
+  {
+    title: "Empowa",
+    description:
+      "Join a RWA project looking to enable 1 million African families to become owners of a climate-smart home across Africa by 2030.",
+    preview: require("./showcase/empowa.png"),
+    website: "https://empowa.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
+  {
+    title: "Strike Finance",
+    description:
+      "DeFi derivatives protocol revolutionizing perpetual futures trading on the Cardano blockchain.",
+    preview: require("./showcase/strike.png"),
+    website: "https://www.strikefinance.org/",
+    source: "https://github.com/strike-finance/perpetuals-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
+  {
+    title: "Smart Places",
+    description:
+      "Geo-location based SocialFi Network where owning digital land means owning opportunity. Each Landplot is a unique Virtual piece representing a real-world location.",
+    preview: require("./showcase/smart-places.png"),
+    website: "https://smartplaces.io/",
+    source: null,
+    tags: ["social"],
+  },
+  {
+    title: "Snek.fun",
+    description:
+      "Snek.fun is a fair-launch token launchpad on Cardano, designed for effortless memecoin creation. Users can launch a token in seconds for a flat fee, with built-in liquidity protection and no team allocations. Tokens are automatically listed via Splash DEX with LP burned, ensuring transparency and rug-pull resistance.",
+    preview: require("./showcase/snek-fun.png"),
+    website: "https://snek.fun/",
+    source: null,
+    tags: ["token", "marketplace"],
+  },
+  {
+    title: "Xerberus",
+    description:
+      "Xerberus' Risk Ratings deliver automated, objective, and real-time insights derived from on-chain data, providing investors and dApps with accurate risk assessments.",
+    preview: require("./showcase/xerberus.png"),
+    website: "https://www.xerberus.io/",
+    source: null,
+    tags: ["marketplace"],
+  },
+  {
+    title: "Masumi",
+    description:
+      "Masumi is a decentralized protocol empowering AI agents to collaborate seamlessly and monetize their services efficiently.",
+    preview: require("./showcase/masumi.png"),
+    website: "https://www.masumi.network",
+    source: "https://github.com/masumi-network",
+    tags: ["marketplace", "opensource"],
+  },
+  {
+    title: "Encoins",
+    description:
+      "ENCOINS is a decentralized private accounts and payments protocol on the Cardano blockchain.",
+    preview: require("./showcase/encoins.png"),
+    website: "https://www.encoins.io/",
+    source: "https://github.com/encryptedcoins",
+    tags: ["identity", "opensource"],
+  },
+  {
+    title: "Finest",
+    description:
+      "Invest in tokenized real world assets. Fully regulated and compliant in Europe.",
+    preview: require("./showcase/finest.png"),
+    website: "https://www.finest.investments/",
+    source: null,
+    tags: ["marketplace"],
+  },
+  {
+    title: "Butane",
+    description:
+      "Butane is a fast, powerful, and innovative decentralised synthetics platform built on the Cardano blockchain.",
+    preview: require("./showcase/butane.png"),
+    website: "https://butane.dev/",
+    source: "https://github.com/butaneprotocol/butane-contracts",
+    tags: ["opensource", "marketplace"],
+  },
+  {
+    title: "Bodega Market",
+    description:
+      "As a prediction market, we provide a unique platform where you can speculate on the outcomes of real-world events, leveraging the security, scalability, and transparency that only Cardano can offer.",
+    preview: require("./showcase/bodega.png"),
+    website: "https://www.bodegamarket.xyz/",
+    source: "https://github.com/bodega-market/bodega-market-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
+  {
+    title: "Cornucopias",
+    description:
+      "Open world MMO set in a world where humanity has ascended from the Earth's surface and created a breathtaking new world in the sky. ",
+    preview: require("./showcase/cornucopias.png"),
+    website: "https://cornucopias.io/",
+    source: null,
+    tags: ["game"],
   },
 ];
 

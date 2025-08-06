@@ -8,10 +8,10 @@
 
  <-- Please fill the boxes with [x] before submitting a pull request --> 
 
-- [ ] I have read the [How to Contribute](https://developers.cardano.org/docs/portal-contribute/).
+- [ ] I have read the [Contributing Guidelines](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md).
 - [ ] I have read the [Builder Tool Requirements](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/builder-tools.js)
 - [ ] I have run `yarn build` after adding my changes **without getting any errors**. 
-- [ ] I have not committed any changes to `yarn.lock` (or have [removed these changes](https://developers.cardano.org/docs/portal-contribute/#i-committed-yarnlock-to-my-pr-branch-what-do-i-do)).
+- [ ] I have not committed any changes to `yarn.lock` (or have [removed these changes](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md#faq)).
 
 ## Builder Tool addition
 
