@@ -46,9 +46,6 @@ yarn-error.log*
 /static/img/cps/*
 /changelog/*
 
-# Auto generated content like Rust Library, Token Registry 
-/docs/get-started/cardano-serialization-lib/*
-
 # (only check in yarn.lock when deliberately establishing a software baseline)
 yarn.lock
 

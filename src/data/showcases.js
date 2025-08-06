@@ -1,17 +1,25 @@
 /*
  * SHOWCASE SECTION INFO
- *
+ * 
  * The project showcase should be a place where someone new to the ecosystem 
  * can come to see what can be done - it should not be seen as a database where 
  * every project is promoted.
  * 
- * REQUIREMENTS FOR ADDING YOUR PROJECT TO THE SHOWCASE SECTION:
- * https://developers.cardano.org/docs/portal-contribute#add-a-project-to-showcase
+ * HOW TO ADD YOUR PROJECT TO SHOWCASE:
  *
- * INSTRUCTIONS:
- * - Add your project in the JSON array below.
- * - Add a local image preview. (decent screenshot or logo of your project)
- * - The image must be added to the GitHub repository and use `require("image")`.
+ * 1. Add image: Place PNG/JPG in src/data/showcase/your-project-name.png
+ * 2. Add entry: Copy format below, add to END of Showcases array 
+ * 3. Required fields:
+ *    - title: "Your Project Name"
+ *    - description: "Brief description (avoid 'best/first/only' claims)"
+ *    - preview: require("./showcase/your-project-name.png")
+ *    - website: "https://your-project.com"
+ *    - getstarted: "https://docs.url" OR null
+ *    - tags: ["relevant", "tags"] (see available tags below)
+ * 4. Test: Run `yarn build` (must complete without errors)
+ * 5. Submit: Create PR using "Add Showcase" template
+ *
+ * Requirements: Live on Cardano mainnet, functional product, stable domain
  */
 
 import React from "react";
@@ -1105,6 +1113,15 @@ export const Showcases = [
     tags: ["marketplace"],
   },
   {
+    title: "Andamio",
+    description:
+      "Verified trust protocol for distributed work. Organizations can mint credentials, verify skills, and find contributors. Individuals can learn, discover opportunities, join project teams, and launch their own projects.",
+    preview: require("./showcase/andamio.png"),
+    website: "https://www.andamio.io/",
+    source: null,
+    tags: ["daotool"],
+  },
+  {
     title: "CSWAP",
     description:
       "CSWAP Systems is a next-gen decentralized exchange (DEX) that bridges tokens, NFTs, and real-world assets in one seamless trading ecosystem. ",
@@ -1256,6 +1273,51 @@ export const Showcases = [
     website: "https://www.masumi.network",
     source: "https://github.com/masumi-network",
     tags: ["marketplace", "opensource"],
+  },
+  {
+    title: "Encoins",
+    description:
+      "ENCOINS is a decentralized private accounts and payments protocol on the Cardano blockchain.",
+    preview: require("./showcase/encoins.png"),
+    website: "https://www.encoins.io/",
+    source: "https://github.com/encryptedcoins",
+    tags: ["identity", "opensource"],
+  },
+  {
+    title: "Finest",
+    description:
+      "Invest in tokenized real world assets. Fully regulated and compliant in Europe.",
+    preview: require("./showcase/finest.png"),
+    website: "https://www.finest.investments/",
+    source: null,
+    tags: ["marketplace"],
+  },
+  {
+    title: "Butane",
+    description:
+      "Butane is a fast, powerful, and innovative decentralised synthetics platform built on the Cardano blockchain.",
+    preview: require("./showcase/butane.png"),
+    website: "https://butane.dev/",
+    source: "https://github.com/butaneprotocol/butane-contracts",
+    tags: ["opensource", "marketplace"],
+  },
+  {
+    title: "Bodega Market",
+    description:
+      "As a prediction market, we provide a unique platform where you can speculate on the outcomes of real-world events, leveraging the security, scalability, and transparency that only Cardano can offer.",
+    preview: require("./showcase/bodega.png"),
+    website: "https://www.bodegamarket.xyz/",
+    source: "https://github.com/bodega-market/bodega-market-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
+  {
+    title: "Cornucopias",
+    description:
+      "Open world MMO set in a world where humanity has ascended from the Earth's surface and created a breathtaking new world in the sky. ",
+    preview: require("./showcase/cornucopias.png"),
+    website: "https://cornucopias.io/",
+    source: null,
+    tags: ["game"],
   },
 ];
 
