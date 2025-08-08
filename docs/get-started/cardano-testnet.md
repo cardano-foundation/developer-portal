@@ -9,7 +9,7 @@ In the future, cardano-testnet will be available from [cardano-node GitHub Relea
 
 ## Building cardano-testnet
 
-We refer to [the instructions](https://developers.cardano.org/docs/get-started/cardano-node/installing-cardano-node) for building cardano-node from source. Once you are done with these instructions, run the following to build cardano-testnet.
+We refer to [the instructions](https://developers.cardano.org/docs/operate-a-stake-pool/node-operations/installing-cardano-node) for building cardano-node from source. Once you are done with these instructions, run the following to build cardano-testnet.
 
 ```bash
 cabal build cardano-testnet
@@ -268,7 +268,7 @@ Testnet is running.  Type CTRL-C to exit.
 You can ignore the initial `✗ <interactive> failed` log. This is an artifact from the fact that cardano-testnet relies
 on a test library to run. The same applies to all `forAllX = ...` logs. That being said, those logs give the location of the output directory being used: it is `/tmp/nix-shell.iZ2TPc/tmp.ly3nO21w1e/` in the log above. This can be useful if you didn't specify `--output-dir` yourself and rely on cardano-testnet's default behavior.
 
-Once the line `Testnet is running.  Type CTRL-C to exit.` appears, the testnet is running and building blocks, and regular queries commands (for example using [cardano-cli](https://developers.cardano.org/docs/get-started/cardano-cli/get-started/)) can be executed against it.
+Once the line `Testnet is running.  Type CTRL-C to exit.` appears, the testnet is running and building blocks, and regular queries commands (for example using [cardano-cli](https://developers.cardano.org/docs/operate-a-stake-pool/cli-operations/basic-operations/)) can be executed against it.
 
 ## Stopping a local cluster
 

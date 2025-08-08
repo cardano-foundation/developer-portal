@@ -1,6 +1,6 @@
 ---
 slug: 2023-09-18-august
-title: "Adastat.net"
+title: "Adastat.net Interview"
 authors: [denicio]
 tags: [explorer]
 description: "Meet AdaStat, a cutting-edge Cardano (ADA) Blockchain Explorer, crafted by active members of the Russian-speaking Cardano community. It's your independent alternative to standard network-developed explorers. With AdaStat, you can effortlessly explore blocks, transactions, pools, addresses, accounts, epochs, and slots, including active epochs, created blocks, staking rewards, and more.

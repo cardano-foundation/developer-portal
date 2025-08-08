@@ -19,13 +19,13 @@ When one's primary computer is booted from this removable drive, the secure ("co
 
 These instructions may be difficult or unsafe to follow unless you have experience with "dual boot" Linux installations and other custom OS & booting configurations.
 
-Operators needing a safer path can follow instructions at the [Air Gap Environment](/docs/get-started/air-gap) page.
+Operators needing a safer path can follow instructions at the [Air Gap Environment](/docs/operate-a-stake-pool/security/air-gap) page.
 
 :::
 
 ### How to use this guide  
 
-This tool has been developed by the [COSD stake pool](https://cexplorer.io/pool/pool1e98xlcgj80c3rdmm27v5hnvrdtut52e65uk0ema7ctfag596vr2), beginning as a publication of their own operating environment when scared to death of losing their pool pledge and not being able to come by a second machine for the conventional [air gap environment](/docs/get-started/air-gap) (see origin story: [Why was the Frankenwallet developed?](https://frankenwallet.com/intro/history)).
+This tool has been developed by the [COSD stake pool](https://cexplorer.io/pool/pool1e98xlcgj80c3rdmm27v5hnvrdtut52e65uk0ema7ctfag596vr2), beginning as a publication of their own operating environment when scared to death of losing their pool pledge and not being able to come by a second machine for the conventional [air gap environment](/docs/operate-a-stake-pool/security/air-gap) (see origin story: [Why was the Frankenwallet developed?](https://frankenwallet.com/intro/history)).
 
 At the time of this writing, the full instructions for:
 
@@ -42,7 +42,7 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ### Use cases for the Frankenwallet
 
-➤ Anyone working with private keys & [secure transaction signing](/docs/get-started/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/cardano-key-pairs)).
+➤ Anyone working with private keys & [secure transaction signing](/docs/operate-a-stake-pool/security/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/cardano-key-pairs)).
 
 ➤ Anyone wishing to work in high security with these resources without either a second computer (e.g. perpetual travellers, students, and hardware minimalists) or a hardware wallet ([Frankenwallet vs. Hardware wallets](https://frankenwallet.com/intro/hardware-wallets))
 
@@ -60,7 +60,7 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ### Some other use cases & limitations of this material
 
-➤ You *can* use the Frankenwallet instructions to set up an Air Gap node on a full computer… but since the time of its development, this procedure has been adapted to a more appropriate page on the Dev Portal (the aforementioned [Air Gap Environment](/docs/get-started/air-gap)).
+➤ You *can* use the Frankenwallet instructions to set up an Air Gap node on a full computer… but since the time of its development, this procedure has been adapted to a more appropriate page on the Dev Portal (the aforementioned [Air Gap Environment](/docs/operate-a-stake-pool/security/air-gap)).
 
 From [Frankenwallet > Miscellaneous FAQ's](https://frankenwallet.com/intro/faq):
 
@@ -183,7 +183,7 @@ From a growing body of material beginning at [Frankenwallet > Usage](https://fra
 
 ### Prepare and submit secure transactions
 
-You can now follow the instructions recommended in [Secure Transaction Workflow](/docs/get-started/secure-workflow), with the following modifications:
+You can now follow the instructions recommended in [Secure Transaction Workflow](/docs/operate-a-stake-pool/security/secure-workflow), with the following modifications:
 
   - Create a file on your networked host computer in the Host Folder, encrypted with the Low Security password (so you feel safe backing it up over the Internet, but won't store any keys or wallet passphrases there).
   - When planning your transaction, save the transaction details and any commands to cut-and-paste, in this file.
@@ -192,7 +192,7 @@ You can now follow the instructions recommended in [Secure Transaction Workflow]
   - Save the resulting transaction file to your Host Folder.
   - Reboot into the host computer, upload your transaction file if necessary, and submit it.
 
-This means of implementing the [Secure Transaction Workflow](/docs/get-started/secure-workflow) process is outlined specifically in [Frankenwallet > Transaction flow](https://frankenwallet.com/cardano/model).
+This means of implementing the [Secure Transaction Workflow](/docs/operate-a-stake-pool/security/secure-workflow) process is outlined specifically in [Frankenwallet > Transaction flow](https://frankenwallet.com/cardano/model).
 
 ### Making & verifying backups of assets & keys  
 
