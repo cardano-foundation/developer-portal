@@ -1,13 +1,17 @@
 /*
- * BUILDER TOOLS SECTION INFO
+ * HOW TO ADD YOUR BUILDER TOOL:
  *
- * Requirements for adding your builder tool:
- * https://developers.cardano.org/docs/portal-contribute#add-tools-to-builder-tools
- *
- * Instructions:
- * - Add your tool in the json array at the end of the array.
- * - Add a local image preview. (decent screenshot or logo of your builder tool)
- * - The image must be added to the GitHub repository and use `require("image")`.
+ * 1. Add image: Place PNG/JPG in src/data/builder-tools/your-tool-name.png
+ * 2. Add entry: Copy format below, add to END of Showcases array
+ * 3. Required fields:
+ *    - title: "Your Tool Name"
+ *    - description: "Brief description (avoid 'best/first/only' claims)"  
+ *    - preview: require("./builder-tools/your-tool-name.png")
+ *    - website: "https://your-tool.com"
+ *    - getstarted: "https://docs.url" OR null
+ *    - tags: ["relevant", "tags"] (see available tags below)
+ * 4. Test: Run `yarn build` (must complete without errors)
+ * 5. Submit: Create PR using "Add Builder Tool" template
  *
  */
 
@@ -1037,6 +1041,30 @@ export const Showcases = [
     website: "https://scalus.org/",
     getstarted: "https://scalus.org/docs/get-started",
     tags: ["scala", "sdk", "plutus"]
+  },
+  {
+    title: "Lace Anatomy",
+    description: "Renders transactions from CBOR and transaction hashes, providing a graphical representation of blockchain data for developers and analysts. Includes dissect functionality that breaks down CBOR structures for debugging and troubleshooting low-level Cardano transactions.",
+    preview: require("./builder-tools/lace-anatomy.png"),
+    website: "https://laceanatomy.com",
+    getstarted: "https://laceanatomy.com",
+    tags: ["testing", "lowlevel"]
+  },
+  {
+    title: "Gastronomy",
+    description: "A powerful UPLC debugger that lets you step through UPLC execution, travel backwards in time, and map directly to smart contract source code making complex debugging simple and intuitive.",
+    preview: require("./builder-tools/gastronomy.png"),
+    website: "https://sundae.fi/products/gastronomy",
+    getstarted: "https://github.com/SundaeSwap-finance/gastronomy",
+    tags: ["testing", "plutus"]
+  },
+  {
+    title: "Datum Explorer",
+    description: "High-performance Rust + WASM tool to decode CBOR data using CDDL schemas. Includes CLI, libraries, and frontend.",
+    preview: require("./builder-tools/datum-explorer.png"),
+    website: "https://github.com/WingRiders/datum-explorer#readme",
+    getstarted: "https://datum-explorer.wingriders.com/?schema=detect",
+    tags: ["rust", "typescript", "cli", "serialization", "plutus", "hosted"]
   },
 ];
 

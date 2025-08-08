@@ -261,11 +261,11 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/setup-firewall',
           },
           {
-            to: '/docs/get-started/cardano-node/installing-cardano-node/',
+            to: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node/',
             from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
           },
           {
-            to: '/docs/get-started/cardano-node/running-cardano/',
+            to: '/docs/operate-a-stake-pool/node-operations/running-cardano/',
             from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
           },
           {
