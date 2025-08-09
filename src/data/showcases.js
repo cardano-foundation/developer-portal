@@ -1319,6 +1319,15 @@ export const Showcases = [
     source: null,
     tags: ["game"],
   },
+  {
+    title: "Reeve",
+    description:
+      "The Reeve project, aka Ledger on the Blockchain (LOB), project aims to develop a solution that supports the adoption of Blockchain as a decentralised ledger, for digital recording and storing of accounting and financial information.",
+    preview: require("./showcase/reeve.png"),
+    website: "https://www.cardanofoundation.org/reeve#mission",
+    source: "https://github.com/cardano-foundation/cf-reeve-platform",
+    tags: ["accounting", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
