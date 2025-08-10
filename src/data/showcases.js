@@ -1319,6 +1319,24 @@ export const Showcases = [
     source: null,
     tags: ["game"],
   },
+  {
+    title: "Reeve",
+    description:
+      "The Reeve project, aka Ledger on the Blockchain (LOB), project aims to develop a solution that supports the adoption of Blockchain as a decentralised ledger, for digital recording and storing of accounting and financial information.",
+    preview: require("./showcase/reeve.png"),
+    website: "https://www.cardanofoundation.org/reeve#mission",
+    source: "https://github.com/cardano-foundation/cf-reeve-platform",
+    tags: ["accounting", "opensource"],
+  },
+  {
+    title: "Ascent Rivals",
+    description:
+      "A competitive multiplayer racing-combat game featuring dual-engine twin-stick controls. Compete in sponsored tournaments, earn credits, place contracts on rivals, and master risk-reward combat mechanics in death-racing esports.",
+    preview: require("./showcase/ascent-rivals.png"),
+    website: "https://www.ascentrivals.com/",
+    source: null,
+    tags: ["game"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
