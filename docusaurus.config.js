@@ -2,7 +2,7 @@
 const vars = require('./variables')
 
 // enable or disable the announcement header bar (see 'announcementBar' section below)
-const isAnnouncementActive = true;
+const isAnnouncementActive = false;
 
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
