@@ -160,26 +160,40 @@ Always check and validate the **decimal places** of a token using the registry t
 
 ### Minimum ADA Requirement for Native Assets
 
-Each UTxO on Cardano is required to contain a **minimum amount of ADA**, which **varies depending on the size and complexity** of the UTxO — including how many native assets it contains.
+Every UTxO containing native assets must include a **minimum ADA amount**. This requirement varies based on:
 
-For native asset transactions, this means:
+- Number of **policy IDs**
+- Length of **asset names** 
+- Total number of **distinct assets** in the UTxO
 
-- Any deposit or withdrawal involving a native asset must also include ADA.
-- The minimum ADA depends on:
-  - The number of **policy IDs**
-  - The length of **asset names**
-  - The total number of **distinct assets** in the UTxO
-
-Exchanges should:
-
-- Validate that customers include sufficient ADA when depositing native assets
-- Enforce minimum withdrawal amounts that meet the ADA requirement
+:::note
+Transactions failing to meet the minimum ADA requirement will be rejected by the network.
+:::
 
 🔗 **Reference**: [Minimum ADA in Mary-era transactions](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo-mary.html)
 
-:::note
-Failure to meet the minimum ADA requirement will result in invalid transactions that are rejected by the network.
-:::
+#### Exchange Implementation Approaches
+
+**Deposits:**
+- Credit both ADA and tokens when received together
+- Credit excess ADA beyond the minimum requirement
+
+**Withdrawals:**
+Choose one approach:
+
+1. **Deduct from ADA balance**: Users must have sufficient ADA to cover minimum requirement
+2. **Auto-attach ADA**: Automatically include required ADA, deduct equivalent value in tokens
+3. **Fixed allocation**: Use a fixed amount (e.g., 1.5 ADA) to simplify calculations
+
+**Calculation Methods:**
+- Use libraries like [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) for dynamic calculation
+- Or apply fixed ADA amounts for operational simplicity
+
+| Scenario | Approach |
+|----------|----------|
+| **Deposits** | Credit both ADA and tokens |
+| **Withdrawals** | Auto-attach required ADA or deduct from user's ADA balance |
+| **Calculation** | Dynamic calculation or fixed allocation (e.g., 1.5 ADA) |
 
 ## Explorers
 
