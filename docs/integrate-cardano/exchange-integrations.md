@@ -8,7 +8,7 @@ image: /img/og/og-developer-portal.png
 
 ## Overview
 
-This guide is for exchanges, custodians, and other entities interested in or currently listing ADA or Cardano native tokens. It outlines the main available components for integration purposes, providing step-by-step instructions and best practices.
+This guide is for exchanges, custodians, and other entities interested in or currently listing ada or Cardano native tokens. It outlines the main available components for integration purposes, providing step-by-step instructions and best practices.
 
 ## Understanding Cardano's Accounting Model
 
@@ -110,16 +110,16 @@ Additional considerations:
 
 ## Native Assets
 
-Cardano supports **native assets** that can be stored and transferred directly in UTxOs alongside ADA. These assets can be **fungible** (tokens) or **non-fungible** (NFTs), and are handled **natively by the ledger** without smart contracts.
+Cardano supports **native assets** that can be stored and transferred directly in UTxOs alongside ada. These assets can be **fungible** (tokens) or **non-fungible** (NFTs), and are handled **natively by the ledger** without smart contracts.
 
 :::tip
-Native assets follow the same transaction and validation rules as ADA and are treated as first-class citizens in the Cardano ledger.
+Native assets follow the same transaction and validation rules as ada and are treated as first-class citizens in the Cardano ledger.
 :::
 
 #### Why This Matters for Exchanges
 
 - **No smart contract complexity**: Native assets do not require Plutus scripts, reducing operational complexity.
-- **Unified infrastructure**: The same transaction structure used for ADA also supports native assets.
+- **Unified infrastructure**: The same transaction structure used for ada also supports native assets.
 - **Automatic deposits**: Deposit addresses may receive native assets, even if the exchange does not actively support them yet.
 
 ### Working with Native Assets
@@ -158,42 +158,42 @@ You can also self-host the token registry using the official GitHub repository:
 Always check and validate the **decimal places** of a token using the registry to ensure accurate accounting and display of fractional amounts.
 :::
 
-### Minimum ADA Requirement for Native Assets
+### Minimum ada Requirement for Native Assets
 
-Every UTxO containing native assets must include a **minimum ADA amount**. This requirement varies based on:
+Every UTxO containing native assets must include a **minimum ada amount**. This requirement varies based on:
 
 - Number of **policy IDs**
 - Length of **asset names** 
 - Total number of **distinct assets** in the UTxO
 
 :::note
-Transactions failing to meet the minimum ADA requirement will be rejected by the network.
+Transactions failing to meet the minimum ada requirement will be rejected by the network.
 :::
 
-🔗 **Reference**: [Minimum ADA in Mary-era transactions](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo-mary.html)
+🔗 **Reference**: [Minimum ada in Mary-era transactions](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo-mary.html)
 
 #### Exchange Implementation Approaches
 
 **Deposits:**
-- Credit both ADA and tokens when received together
-- Credit excess ADA beyond the minimum requirement
+- Credit both ada and tokens when received together
+- Credit excess ada beyond the minimum requirement
 
 **Withdrawals:**
 Choose one approach:
 
-1. **Deduct from ADA balance**: Users must have sufficient ADA to cover minimum requirement
-2. **Auto-attach ADA**: Automatically include required ADA, deduct equivalent value in tokens
-3. **Fixed allocation**: Use a fixed amount (e.g., 1.5 ADA) to simplify calculations
+1. **Deduct from ada balance**: Users must have sufficient ada to cover minimum requirement
+2. **Auto-attach ada**: Automatically include required ada, deduct equivalent value in tokens
+3. **Fixed allocation**: Use a fixed amount (e.g., 1.5 ada) to simplify calculations
 
 **Calculation Methods:**
 - Use libraries like [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) for dynamic calculation
-- Or apply fixed ADA amounts for operational simplicity
+- Or apply fixed ada amounts for operational simplicity
 
 | Scenario | Approach |
 |----------|----------|
-| **Deposits** | Credit both ADA and tokens |
-| **Withdrawals** | Auto-attach required ADA or deduct from user's ADA balance |
-| **Calculation** | Dynamic calculation or fixed allocation (e.g., 1.5 ADA) |
+| **Deposits** | Credit both ada and tokens |
+| **Withdrawals** | Auto-attach required ada or deduct from user's ada balance |
+| **Calculation** | Dynamic calculation or fixed allocation (e.g., 1.5 ada) |
 
 ## Explorers
 
@@ -224,7 +224,7 @@ There are two testnet environments:
 - **Preprod:** Configuration is the same as mainnet (5 days per epoch).
 - **Preview:** Configured to have one day per epoch.
 
-Faucets for [Test ADA](https://docs.cardano.org/cardano-testnets/tools/faucet)
+Faucets for [Test ada](https://docs.cardano.org/cardano-testnets/tools/faucet)
 
 
 ### Compatibility
