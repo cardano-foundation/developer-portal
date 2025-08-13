@@ -160,17 +160,36 @@ Always check and validate the **decimal places** of a token using the registry t
 
 ### Minimum ada Requirement for Native Assets
 
-Every UTxO containing native assets must include a **minimum ada amount**. This requirement varies based on:
+Every output must contain enough ada - the amount of ada depends on the **byte-size of the output**. This includes both the output being created and any change remaining.
 
-- Number of **policy IDs**
-- Length of **asset names** 
-- Total number of **distinct assets** in the UTxO
+The minimum ada calculation is **simplified** (CIP-55) to be more transparent and predictable:
+
+**Current Formula:** `(160 + |serialized_output|) * coinsPerUTxOByte`
+
+Where:
+- `160` is the **constant overhead** in bytes (accounts for transaction input and UTxO map entry)
+- `|serialized_output|` is the size of the serialized output in bytes
+- `coinsPerUTxOByte` is the protocol parameter (converted from the previous `coinsPerUTxOWord` by dividing by 8)
+
+**Key Improvements:**
+- **Simpler calculation**: Switched from complex word-based formulas to straightforward byte-based calculation
+- **More predictable**: Linear relationship between output size and minimum ada required
+- **Easier to implement**: No need for complex asset counting - just measure serialized output size
+
+When a UTxO contains **native tokens (fungible or NFTs)**, the serialized output is larger due to:
+- Policy IDs
+- Asset names
+- Number of distinct assets in the output
+
+As these grow, so does the minimum ADA needed.
 
 :::note
 Transactions failing to meet the minimum ada requirement will be rejected by the network.
 :::
 
-🔗 **Reference**: [Minimum ada in Mary-era transactions](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo-mary.html)
+🔗 **References**: 
+- [CIP-55: The new minimum lovelace calculation](https://cips.cardano.org/cips/cip55/)
+
 
 #### Exchange Implementation Approaches
 
@@ -183,17 +202,69 @@ Choose one approach:
 
 1. **Deduct from ada balance**: Users must have sufficient ada to cover minimum requirement
 2. **Auto-attach ada**: Automatically include required ada, deduct equivalent value in tokens
-3. **Fixed allocation**: Use a fixed amount (e.g., 1.5 ada) to simplify calculations
+
+#### Practical Examples (for simpler calculation fees are not considered)
+
+**Example 1: Token deposit**
+```
+User deposits: 1000 MyToken + 2.5 ada
+Minimum required: 1.25 ada
+Exchange credits:
+  - MyToken: 1000
+  - ada: 2.5 (including 1 ada excess)
+```
+
+**Example 2: Direct token Buy (user deposit address has ada more than minimum required)**
+```
+User buy request: 1000 MyToken
+Minimum required: 1.25 ada
+Exchange credits:
+  - MyToken: 1000
+  - ada: Use the ada from the user deposit address and create new utxos with ada + MyToken
+```
+
+**Example 3: Direct token Buy (user deposit address has no ada)**
+```
+User buy request: 1000 MyToken [conversion value: 1 ada ==> 100 MyToken]
+Minimum required: 1.25 ada
+Exchange credits:
+  - MyToken: 875
+  - ada: 1.25 ada
+```
+
+**Example 4: Token withdrawal (user deposit address has ada more than minimum required)**
+```
+User withdraw request: 1000 MyToken
+Minimum required: 1.25 ada
+Exchange debited:
+  - MyToken: 1000
+  - ada: 1.25 ada attached with utxo
+```
+
+**Example 5: Token withdrawal (user deposit address has no ada)**
+```
+User withdraw request: 1000 MyToken [conversion value: 1 ada ==> 100 MyToken]
+Minimum required: 1.25 ada
+Exchange debited:
+  - MyToken: 875
+  - ada: 1.25 ada attached with utxo
+```
 
 **Calculation Methods:**
-- Use libraries like [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) for dynamic calculation
-- Or apply fixed ada amounts for operational simplicity
 
-| Scenario | Approach |
-|----------|----------|
-| **Deposits** | Credit both ada and tokens |
-| **Withdrawals** | Auto-attach required ada or deduct from user's ada balance |
-| **Calculation** | Dynamic calculation or fixed allocation (e.g., 1.5 ada) |
+1. **Dynamic Calculation (Recommended)**
+- Use libraries like [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) for dynamic calculation
+
+
+2. **Fixed Allocation (Simpler but less efficient)**
+- Single token: 1.5 ada
+- Multiple tokens: 2.0-2.5 ada  
+- Complex multi-asset: 3.0 ada
+
+:::tip
+With the new CIP-55 formula, dynamic calculation is now much simpler and more predictable than before. Consider implementing it instead of fixed allocations for better efficiency.
+:::
+
 
 ## Explorers
 
