@@ -614,14 +614,6 @@ export const Showcases = [
     tags: ["javascript", "sdk", "plutus"]
   },
   {
-    title: "Pirouette",
-    description: "Pirouette is a semi-automatic code extraction tool for model-checking. It extracts a TLA+ specification from a Plutus Mealy Machine.",
-    preview: require("./builder-tools/pirouette.png"),
-    website: "https://github.com/tweag/pirouette#readme",
-    getstarted: null,
-    tags: ["haskell", "plutus", "testing"]
-  },
-  {
     title: "Plutonomicon",
     description: "A developer-driven guide to the Plutus smart contract language in practice.",
     preview: require("./builder-tools/plutonomicon.png"),
