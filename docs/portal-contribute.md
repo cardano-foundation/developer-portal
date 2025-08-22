@@ -154,6 +154,19 @@ If you are a talented graphic designer, you can improve various charts and diagr
 
 If you think something is wrong or something fundamental should change, discussions are the appropriate start to find consensus. There are always [ongoing discussions](https://github.com/cardano-foundation/developer-portal/discussions) on how to handle or improve something. Please take part in them. Even if you are not a developer, your views are valuable.
 
+### Blog Contributions
+
+When contributing blog posts, please follow these guidelines:
+
+**Tag naming conventions:**
+- Use lowercase tags only (e.g., `ai`, `defi`, `dex`, `dao`)
+- Tags must be defined in `blog/tags.yml` before use
+- Check existing tags in `blog/tags.yml` before adding new ones
+
+**Truncation markers:**
+- Most blog posts should include `<!-- truncate -->` markers for better previews
+- **Exception:** Posts tagged with `media` (short video content) should NOT include truncation markers to preserve video visibility in blog listings
+
 ### Review Pull Requests
 
 If you have excellent technical understanding and mistakes catch your eye, you can review pull requests. You should have made contributions before and have a GitHub account with some reputation. [If you are unsure, just participate in the discussions.](#participate-in-discussions)
@@ -171,4 +184,3 @@ If you are interested in connecting with people from the Developer Portal, [open
 Pull requests must be approved by **three reviewers** to be merged. They are always merged into the **staging branch** first. [staging-dev-portal.netlify.app](https://staging-dev-portal.netlify.app) reflects the state of the current staging branch.
 
 Later, the changes are pushed from staging to the main branch. This requires another pull request. (For this reason, there is always a small delay between staging and production).
-
