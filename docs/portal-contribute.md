@@ -25,6 +25,7 @@ This guide is for **content writers and developers** who want to work on documen
 **Setup:**
 
 ```bash
+# External contributors: fork the repo first, then clone your fork
 git clone https://github.com/cardano-foundation/developer-portal.git
 cd developer-portal
 yarn install
