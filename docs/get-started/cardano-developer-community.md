@@ -6,46 +6,48 @@ description: Get Started in the Cardano Developer Community.
 image: /img/og/og-getstarted-developer-community.png
 --- 
 
-Apart from the two leading platforms [Stack Exchange](https://cardano.stackexchange.com) and [Cardano Forum](https://forum.cardano.org/c/developers/29), Cardano developers and stake pool operators spread across different platforms. Each with its niche.
+Thousands of Cardano developers and enthusiasts gather across these online communities to share knowledge, discuss technical developments, get support, and collaborate on building the future of Cardano.
 
-## Cardano developers channels
+## Forums & Q&A
 
-[**cardano.stackexchange.com**](https://cardano.stackexchange.com)  
-Stack Exchange communities are democratically created and maintained. It is a question-and-answer website, not meant for extensive discussion or opinions.
+[**Cardano Stack Exchange**](https://cardano.stackexchange.com)  
+The primary question-and-answer platform for Cardano developers. Get technical help, share knowledge, and find solutions to specific development challenges.
 
-[**forum.cardano.org**](https://forum.cardano.org/c/developers/29)  
-The developer categories on the [Cardano Forum](https://forum.cardano.org/c/developers/29) is an excellent place for extensive discussions and opinions, but also to get support. 
+[**Cardano Forum - Developers**](https://forum.cardano.org/c/developers/29)  
+Long-form discussions, technical debates, and community support. Perfect for in-depth conversations and sharing detailed insights about Cardano development.
 
-[**Cardano Community Discord**](https://discord.gg/kfATXEENPD)  
-Visit the developer categories on the [Cardano Community Discord](https://discord.gg/kfATXEENPD) if you prefer chat-style conversations.
+[**r/CardanoDevelopers**](https://www.reddit.com/r/CardanoDevelopers/)  
+Reddit community dedicated to everyone building on the Cardano blockchain. Share projects, ask questions, and connect with fellow developers.
 
-[**reddit.com/r/CardanoDevelopers**](https://www.reddit.com/r/CardanoDevelopers/)  
-A subreddit dedicated to everyone building on the Cardano blockchain.        
+## Chat Communities
 
-[**t.me/CardanoDevelopersOfficial**](https://t.me/CardanoDevelopersOfficial)    
-Chat style conversations on Telegram in one of the oldest Cardano developer groups.
+[**Cardano Developers Telegram**](https://t.me/CardanoDevelopersOfficial)  
+One of the oldest Cardano developer community groups on Telegram. Good to get in touch with the general developer community, have active conversations and get community support.
+
+[**CIP Biweekly Meetings**](https://discord.com/invite/Jy9YM69Ezf)  
+Join Cardano Improvement Proposal discussions every two weeks. Participate in technical standards development and ongoing Cardano protocol improvement conversations.
+
+[**Cardano Community Discord**](https://discord.gg/6ucHxyCTXV)  
+Chat with general developer community channels. Great for quick questions, community discussions, and staying up-to-date with the latest developments.
 
 [**IOG Technical Discord**](https://discord.com/invite/w6TwW9bGA6)  
-Head to the [IOG Discord](https://discord.com/invite/w6TwW9bGA6) if you want to join the [Plutus Pioneers](../smart-contracts/plinth#resources).
+Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pioneers](../smart-contracts/plinth#resources) and technical discussions with IOG developers.
 
-[**t.me/IOHK_Marlowe**](https://t.me/IOHK_Marlowe)  
-Dedicated channel for Marlowe developers and users. Marlowe is a specialised domain-specific language for financial smart contracts on Cardano. You can ask questions, participate in discussions and meet the team behind Marlowe.
-
-[**CIPs - biweekly meetings**](https://discord.com/invite/Jy9YM69Ezf)  
-CIP meetings discuss Cardano Improvement Proposals every other week. Join Editors and community members in the dedicated discord server to keep up with the ongoing technical discussions regarding standards, processes and ongoing Cardano conversations.
+[**CF Engineering Discord**](https://discord.gg/invite/xPkQ9jskKS)  
+Official [Cardano Foundation](https://cardanofoundation.org/) Engineering Discord server for technical discussions with CF engineers.
 
 ## Stake pool operator channels
 
 [**t.me/CardanoStakePoolWorkgroup**](https://t.me/CardanoStakePoolWorkgroup)  
 Best practice workgroup on Telegram for stake pool operators. This group is hectic. A good resource to search for answers.
 
-[**forum.cardano.org**](https://forum.cardano.org/c/staking-delegation/156)  
+[**Cardano Forum - SPO**](https://forum.cardano.org/c/staking-delegation/156)  
 If you care about well structured, long format discussions, visit the stake pool operator categories on [forum.cardano.org](https://forum.cardano.org/c/staking-delegation/156).
 
 ## Developer Surveys
 
-[**Developer Ecosystem Survey 2022**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022)  
-For the first time ever, an annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem. 
+An annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem.
 
-[**Developer Ecosystem Survey 2023**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem)  
-The second edition of the annual survey to assess the state of the Cardano developer ecosystem was conducted.
+- [**Developer Ecosystem Survey 2022**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022)  
+- [**Developer Ecosystem Survey 2023**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2023)  
+- [**Developer Ecosystem Survey 2024**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2024)  
