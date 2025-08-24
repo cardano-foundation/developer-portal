@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         type: "category",
-        label: "Builder Tools",
+        label: "Builder Tutorials",
         items: [
           {
             type: "category",
