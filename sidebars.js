@@ -2,6 +2,7 @@ module.exports = {
   someSidebar: {
     "Get Started": [
       "get-started/overview",
+      "get-started/technical-concepts",
       {
         type: "category",
         label: "Development Environment",
@@ -69,7 +70,6 @@ module.exports = {
           },
         ],
       },
-      "get-started/technical-concepts",
       "get-started/cardano-developer-community",
     ],
     "Integrate Cardano": [
