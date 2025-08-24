@@ -107,12 +107,12 @@ module.exports = {
     ],
     "Create Smart Contracts": [
       "smart-contracts/overview",
-      "smart-contracts/marlowe",
-      "smart-contracts/plinth",
       "smart-contracts/aiken",
+      "smart-contracts/plinth",
       "smart-contracts/opshin",
       "smart-contracts/plu-ts",
       "smart-contracts/scalus",
+      "smart-contracts/marlowe",
     ],
     "Participate in Governance": [
       "governance/overview",
