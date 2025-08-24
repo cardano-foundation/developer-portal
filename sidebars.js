@@ -107,12 +107,18 @@ module.exports = {
     ],
     "Create Smart Contracts": [
       "smart-contracts/overview",
-      "smart-contracts/aiken",
-      "smart-contracts/plinth",
-      "smart-contracts/opshin",
-      "smart-contracts/plu-ts",
-      "smart-contracts/scalus",
-      "smart-contracts/marlowe",
+      {
+        type: "category",
+        label: "Smart Contract Languages",
+        items: [
+          "smart-contracts/aiken",
+          "smart-contracts/plinth",
+          "smart-contracts/opshin",
+          "smart-contracts/plu-ts",
+          "smart-contracts/scalus",
+          "smart-contracts/marlowe",
+        ],
+      },
     ],
     "Participate in Governance": [
       "governance/overview",
