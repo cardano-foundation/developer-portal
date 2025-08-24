@@ -23,155 +23,170 @@ import TabItem from '@theme/TabItem';
 
 Say goodbye to juggling multiple languages, libraries, and tools—meet Scalus, a development platform made for professionals and businesses who want to get things done.
 
-## Getting Started 
+## Getting Started
 
 This guide will help you set up your development environment and get your first Scalus Validator.
 
-## Install Scala on your computer
+### Install Scala on your computer
 
-    We  recommend using Scala Installer - [Coursier](https://get-coursier.io/docs/cli-overview), that ensures that a
-     JVM and standard Scala tools are installed on
-    your system.
+We recommend using Scala Installer - [Coursier](https://get-coursier.io/docs/cli-overview), that ensures that a JVM and standard Scala tools are installed on your system.
 
-    <Tabs
-    defaultValue="macos-brew"
-    values={[
-    {label: 'macOS - Brew', value: 'macos-brew'},
-    {label: 'macOS', value: 'macos'},
-    {label: 'Linux', value: 'linux'},
-    {label: 'Windows', value: 'windows'},
-    ]}>
-    <TabItem value="macos-brew">
-    Homebrew based installation:
-    ```sh copy
-    brew install coursier && coursier setup
-    ```
-    </TabItem>
-    <TabItem value="macos">
-    On the Apple Silicon (M1, M2, …) architecture:
-    ```sh copy
-    curl -fL https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-apple-darwin.gz | gzip -d > cs && chmod +x cs && (xattr -d com.apple.quarantine cs || true) && ./cs setup
-    ```
-    Otherwise, on the x86-64 architecture:
-    ```sh copy
-    curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-apple-darwin.gz | gzip -d > cs && chmod +x cs && (xattr -d com.apple.quarantine cs || true) && ./cs setup
-    ```
-    </TabItem>
-    <TabItem value="linux">
-    On the x86-64 architecture:
-    ```sh copy
-    curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup
-    ```
-    Otherwise, on the ARM64 architecture:
-    ```sh copy
-    curl -fL https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup
-    ```
-    </TabItem>
-    <TabItem value="windows">Download and execute [the Scala installer for Windows](https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-win32.zip) based on Coursier, and follow the on-screen
-    instructions.</TabItem>
-    </Tabs>
+<Tabs
+defaultValue="macos-brew"
+values={[
+{label: 'macOS - Brew', value: 'macos-brew'},
+{label: 'macOS', value: 'macos'},
+{label: 'Linux', value: 'linux'},
+{label: 'Windows', value: 'windows'},
+]}>
 
-    Coursier will install Scala compiler,
-        Command line tool: [Scala CLI](https://scala-cli.virtuslab.org/),
-        Build tool: [sbt](https://www.scala-sbt.org/),
-        REPL: [Ammonite](https://ammonite.io/) and
-        Code formatter: [Scalafmt](https://scalameta.org/scalafmt/).
+<TabItem value="macos-brew">
 
-    ## Get your first Scalus Validator
-    
-    ```sh copy
-   sbt new scalus3/hello.g8
-    ```
-    This ran the template scalus3/hello.g8 using [Giter8](https://www.foundweekends.org/giter8/). Let’s take a look at what just got generated:
-    ```ansi
-    validator/
-    ├── HelloCardano.scala        # Simple validator
-    ├── HelloCardano.test.scala   # Simple tests
-    ├── project.scala             # Project configuration
-    └── README.md
-    ```
+Homebrew based installation:
 
-    ## Test
-    Run unit tests (MUnit, ScalaTest and ScalaCheck):
-    ```sh copy
-    scala-cli test hello
-    ```
-    All is good if you see the following output:
-    ```sh
-    validator.HelloCardanoSpec:
-        + Hello Cardano 0.385s
-    ```
+```sh copy
+brew install coursier && coursier setup
+```
 
-    ## Configure IDE
-    Setting up a productive development environment will significantly improve your Scala/Scalus development experience.
-    Scala offers wide range of IDE support, the most popular are IntelliJ and VSCode.
+</TabItem>
+<TabItem value="macos">
 
-    <Tabs
-    defaultValue="intellij"
-    values={[
-    {label: 'IntelliJ', value: 'intellij'},
-    {label: 'VS Code', value: 'vscode'},
-    {label: 'Others', value: 'others'},
-    ]}>
-    <TabItem value="intellij">
-      1. Install IntelliJ IDEA (Community or Ultimate edition) from the [JetBrains website](https://www.jetbrains.com/idea/download/)
-      2. Install the Scala plugin:
-         - Go to **Settings/Preferences → Plugins → Marketplace**
-         - Search for "Scala" and install the plugin
-         - Restart IntelliJ IDEA when prompted
-      {/*(https://www.jetbrains.com/help/idea/discover-intellij-idea-for-scala.html) */}
-      3. Open your Scalus project:
-         - Select **File → Open** and navigate to your project directory
-         - Choose Import as sbt project when prompted
-    </TabItem>
-    <TabItem value="vscode">
-      1. Install [Visual Studio Code](https://code.visualstudio.com/Download) from the official website.
-      2. Install the Metals extension from [the Marketplace](https://marketplace.visualstudio.com/items?itemName=scalameta.metals)
-      3. Open your Scalus project folder:
-         - Select **File → Open Folder** and navigate to your project directory.
-      4. Metals should activate and begin importing the project automatically.
-    </TabItem>
-    <TabItem value="others">
-      Metals is most commonly used with VS Code, but it's also available for Emacs, Vim, Sublime Text, Helix as
-    documented [here](https://scalameta.org/metals/docs/#editor-support).
-    </TabItem>
-    </Tabs>
+On the Apple Silicon (M1, M2, …) architecture:
 
-    ## You are good to go! Start exploring.
+```sh copy
+curl -fL https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-apple-darwin.gz | gzip -d > cs && chmod +x cs && (xattr -d com.apple.quarantine cs || true) && ./cs setup
+```
 
+Otherwise, on the x86-64 architecture:
 
-    ```js filename="HelloCardano.scala" copy showLineNumbers
-    import scalus.*
-    import scalus.builtin.Data
-    import scalus.ledger.api.v3.{PubKeyHash, TxInfo, TxOutRef}
-    import scalus.prelude.*
-    import scalus.prelude.Option.Some
-    import scalus.prelude.Prelude.*
+```sh copy
+curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-apple-darwin.gz | gzip -d > cs && chmod +x cs && (xattr -d com.apple.quarantine cs || true) && ./cs setup
+```
 
-    /** This validator demonstrates two key validation checks:
-    * 1. It verifies that the transaction is signed by the owner's public key hash (stored in the datum)
-    * 2. It confirms that the redeemer contains the exact string "Hello, Cardano!"
-    * 
-    * Both conditions must be met for the validator to approve spending the UTxO.
-      */
+</TabItem>
+<TabItem value="linux">
 
-    @Compile
-    object HelloCardano extends Validator:
-        override def spend(
-            datum: Option[Data],
-            redeemer: Data,
-            tx: TxInfo,
-            sourceTxOutRef: TxOutRef
-        ): Unit = 
-            val Some(ownerData) = datum: @unchecked
-            val owner = ownerData.to[PubKeyHash]
-            val signed = tx.signatories.contains(owner)
-            require(signed, "Must be signed")
-            val saysHello = redeemer.to[String] == "Hello, Cardano!"
-            require(saysHello, "Invalid redeemer")
-    ```
+On the x86-64 architecture:
+
+```sh copy
+curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup
+```
+
+Otherwise, on the ARM64 architecture:
+
+```sh copy
+curl -fL https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup
+```
+
+</TabItem>
+<TabItem value="windows">Download and execute [the Scala installer for Windows](https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-win32.zip) based on Coursier, and follow the on-screen
+instructions.</TabItem>
+</Tabs>
+
+Coursier will install Scala compiler, Command line tool: [Scala CLI](https://scala-cli.virtuslab.org/), Build tool: [sbt](https://www.scala-sbt.org/), REPL: [Ammonite](https://ammonite.io/) and Code formatter: [Scalafmt](https://scalameta.org/scalafmt/).
+
+### Get your first Scalus Validator
+
+```sh copy
+sbt new scalus3/hello.g8
+```
+
+This ran the template scalus3/hello.g8 using [Giter8](https://www.foundweekends.org/giter8/). Let's take a look at what just got generated:
+
+```ansi
+validator/
+├── HelloCardano.scala        # Simple validator
+├── HelloCardano.test.scala   # Simple tests
+├── project.scala             # Project configuration
+└── README.md
+```
+
+### Test
+
+Run unit tests (MUnit, ScalaTest and ScalaCheck):
+
+```sh copy
+scala-cli test hello
+```
+
+All is good if you see the following output:
+
+```sh
+validator.HelloCardanoSpec:
+    + Hello Cardano 0.385s
+```
+
+## Configure IDE
+
+Setting up a productive development environment will significantly improve your Scala/Scalus development experience.
+Scala offers wide range of IDE support, the most popular are IntelliJ and VSCode.
+
+<Tabs
+defaultValue="intellij"
+values={[
+{label: 'IntelliJ', value: 'intellij'},
+{label: 'VS Code', value: 'vscode'},
+{label: 'Others', value: 'others'},
+]}>
+<TabItem value="intellij">
+
+  1. Install IntelliJ IDEA (Community or Ultimate edition) from the [JetBrains website](https://www.jetbrains.com/idea/download/)
+  2. Install the Scala plugin:
+     - Go to **Settings/Preferences → Plugins → Marketplace**
+     - Search for "Scala" and install the plugin
+     - Restart IntelliJ IDEA when prompted
+  {/*(https://www.jetbrains.com/help/idea/discover-intellij-idea-for-scala.html) */}
+  3. Open your Scalus project:
+     - Select **File → Open** and navigate to your project directory
+     - Choose Import as sbt project when prompted
+</TabItem>
+
+<TabItem value="vscode">
+  1. Install [Visual Studio Code](https://code.visualstudio.com/Download) from the official website.
+  2. Install the Metals extension from [the Marketplace](https://marketplace.visualstudio.com/items?itemName=scalameta.metals)
+  3. Open your Scalus project folder:
+     - Select **File → Open Folder** and navigate to your project directory.
+  4. Metals should activate and begin importing the project automatically.
+</TabItem>
+
+<TabItem value="others">
+Metals is most commonly used with VS Code, but it's also available for Emacs, Vim, Sublime Text, Helix as [documented](https://scalameta.org/metals/docs/#editor-support).
+</TabItem>
+
+</Tabs>
+
+```js filename="HelloCardano.scala" copy showLineNumbers
+import scalus.*
+import scalus.builtin.Data
+import scalus.ledger.api.v3.{PubKeyHash, TxInfo, TxOutRef}
+import scalus.prelude.*
+import scalus.prelude.Option.Some
+import scalus.prelude.Prelude.*
+
+/** This validator demonstrates two key validation checks:
+* 1. It verifies that the transaction is signed by the owner's public key hash (stored in the datum)
+* 2. It confirms that the redeemer contains the exact string "Hello, Cardano!"
+* 
+* Both conditions must be met for the validator to approve spending the UTxO.
+  */
+
+@Compile
+object HelloCardano extends Validator:
+    override def spend(
+        datum: Option[Data],
+        redeemer: Data,
+        tx: TxInfo,
+        sourceTxOutRef: TxOutRef
+    ): Unit = 
+        val Some(ownerData) = datum: @unchecked
+        val owner = ownerData.to[PubKeyHash]
+        val signed = tx.signatories.contains(owner)
+        require(signed, "Must be signed")
+        val saysHello = redeemer.to[String] == "Hello, Cardano!"
+        require(saysHello, "Invalid redeemer")
+```
 
 ## Support
 
-Further documentation can be found [here](https://scalus.org/).
-You can ask questions on Scalus Discord: https://discord.gg/ygwtuBybsy
+- Further [documentation](https://scalus.org/)
+- You can ask questions on Scalus Discord: https://discord.gg/ygwtuBybsy

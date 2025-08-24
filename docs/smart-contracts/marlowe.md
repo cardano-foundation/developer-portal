@@ -6,27 +6,32 @@ description: Marlowe
 image: /img/og/og-developer-portal.png
 --- 
 
-## Get started with Marlowe 
+## Get started with Marlowe
+
 Marlowe is a domain-specific language (DSL) that enables users to create blockchain applications that are specifically designed for financial contracts.
 
-If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://docs.marlowe-lang.org/tutorials), or jump right into the [Marlowe Playground](https://playground.marlowe-lang.org): 
+If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://docs.marlowe-lang.org/tutorials), or jump right into the [Marlowe Playground](https://playground.marlowe-lang.org):
 
 ![Marlowe Playground](../../static/img/get-started/smart-contracts/marlowe-playground.jpg)
 
 On the Cardano Forum, you can [discuss Marlowe](https://forum.cardano.org/tag/marlowe) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 
 ## The Marlowe platform
+
 When compared to a [Turing-complete](https://en.wikipedia.org/wiki/Turing_completeness) language, the Marlowe DSL provides significantly greater security, certainty, [guarantees of termination](https://en.wikipedia.org/wiki/Halting_problem), and behavior correctness.
 
 The design guarantees the following:
+
 - Contracts are finite. No recursion or loops.
 - Contracts will terminate. Timeout on all actions.
-- Contracts have a defined lifetime. 
-- No assets retained on close. 
+- Contracts have a defined lifetime.
+- No assets retained on close.
 - Conservation of value.
 
-## Marlowe Playground 
+## Marlowe Playground
+
 The Marlowe Playground is a plug-and-play smart contract builder and simulator that is simple to use, visual, and modular. Build, simulate, and analyze Marlowe contracts in this 4-minute tour of the Marlowe Playground.
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EgCqG0hPmwc?si=doukCRT63l-mUOD6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Resources for Developing and Deploying Marlowe Contracts
@@ -44,7 +49,7 @@ The Marlowe Playground is a plug-and-play smart contract builder and simulator t
 
 Marlowe is implemented for the Cardano blockchain as a validator script that uses the Marlowe DSL in transaction datums for describing the contract states.
 
-The script is implemented in Plutus [here](https://github.com/marlowe-lang/marlowe-cardano/blob/main/marlowe/src/Language/Marlowe/Scripts.hs) and plays a crucial role in validating state transitions for Marlowe contracts. Its purpose is to ensure that transitions caused by transactions comply with both the general rules defined in the Marlowe specification and the current state of the contract, as described in the datum using the Marlowe DSL.
+The [script](https://github.com/marlowe-lang/marlowe-cardano/blob/main/marlowe/src/Language/Marlowe/Scripts.hs) is implemented in Plutus and plays a crucial role in validating state transitions for Marlowe contracts. Its purpose is to ensure that transitions caused by transactions comply with both the general rules defined in the Marlowe specification and the current state of the contract, as described in the datum using the Marlowe DSL.
 
 One important rule enforced by the Marlowe validator is that [a transaction can only consume a single UTXO](https://github.com/marlowe-lang/marlowe-cardano/blob/main/marlowe/specification/marlowe-cardano-specification.md#constraint-2-single-marlowe-script-input) and [output at most one from the same Marlowe script address](https://github.com/marlowe-lang/marlowe-cardano/blob/main/marlowe/specification/marlowe-cardano-specification.md#constraint-3-single-marlowe-output). Consequently, a Marlowe contract can be envisioned as a chain of transactions that concludes with a transaction consuming an input from the Marlowe address but producing no output to the same address.
 
@@ -62,8 +67,8 @@ The well-known versions of the validator script are specified in the [ScriptRegi
 
 Version hashes as of January 20, 2024:
 
-Marlowe uses two validators: the _semantics validator_ for the Marlowe DSL and a _role-payout_ validator that allows the holder of a role token to withdraw funds paid by the semantics validator.
-There is also an optional _open-role validator_ which enables just-in-time assignment of roles to a contract.
+Marlowe uses two validators: the *semantics validator* for the Marlowe DSL and a *role-payout* validator that allows the holder of a role token to withdraw funds paid by the semantics validator.
+There is also an optional *open-role validator* which enables just-in-time assignment of roles to a contract.
 
 | Version | Technical Notes                         | Hash for Semantics Validator                               | Hash for Role-Payout Validator                             | Hash for Open-Role Validator                               |
 |---------|-----------------------------------------|------------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
@@ -128,13 +133,15 @@ There is also an optional _open-role validator_ which enables just-in-time assig
 ### Videos
 
 - Marlowe Pioneers 1st Cohort
-	1. [Welcome](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x3xkV0OQ0PjRaCtlbPhL0Eg)
-	2. [Using Marlowe](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x1o4Hv1GC_0kxXnquikXl70)
-	3. [Marlowe in Depth](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0beuXQwbcy58pAIyF4kASc)
-	4. [Marlowe Embedded in Haskell and JavaScript](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0maFKSYpW-17FV0B0MbAoW)
-	5. [Marlowe and Standardization / ACTUS](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0KLofo1maCkO3AYjQKknz-)
-	6. [Assurance and Convenience](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x3PArP4vcu4WV0Z5xV0OLhy)
-	7. [Marlowe CLI](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw)
+
+ 1. [Welcome](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x3xkV0OQ0PjRaCtlbPhL0Eg)
+ 2. [Using Marlowe](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x1o4Hv1GC_0kxXnquikXl70)
+ 3. [Marlowe in Depth](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0beuXQwbcy58pAIyF4kASc)
+ 4. [Marlowe Embedded in Haskell and JavaScript](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0maFKSYpW-17FV0B0MbAoW)
+ 5. [Marlowe and Standardization / ACTUS](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0KLofo1maCkO3AYjQKknz-)
+ 6. [Assurance and Convenience](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x3PArP4vcu4WV0Z5xV0OLhy)
+ 7. [Marlowe CLI](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x0GbvCw-61e9VfRafBT1JSw)
+
 - [Using the Marlowe Runtime backend to execute a Marlowe contract on Cardano's preview network](https://www.youtube.com/watch?v=ZmZdgxz2i9A)
 - [Marlowe Lambda in the Browser](https://www.youtube.com/watch?v=yKhQpIEliBc)
 

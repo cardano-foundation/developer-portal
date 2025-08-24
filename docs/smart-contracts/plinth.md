@@ -6,8 +6,6 @@ description: Haskell-based smart contract development for Cardano
 image: /img/og/og-developer-portal.png
 ---
 
-# Plinth (formerly Plutus Tx)
-
 [**Plinth**](https://plutus.cardano.intersectmbo.org/docs/) is a subset of Haskell designed for writing smart contract validators on Cardano. As a high-level, purely functional language, Plinth leverages Haskell's powerful type system to help developers write secure, reliable, and deterministic on-chain code.
 
 Plinth compiles to **Untyped Plutus Core (UPLC)**, the low-level lambda calculus language that actually executes on Cardano's blockchain. This architecture allows developers to write in familiar Haskell syntax while targeting Cardano's optimized execution environment.
@@ -16,7 +14,7 @@ Plinth compiles to **Untyped Plutus Core (UPLC)**, the low-level lambda calculus
 
 The term "Plutus" has historically caused confusion by referring to multiple components. To clarify:
 
-**Plinth** (formerly Plutus Tx) is the high-level Haskell subset you write code in. **Untyped Plutus Core (UPLC)** is the low-level execution language that runs on-chain. Plinth is one of several languages that compile to UPLC, alongside Aiken, Plutarch, and others.
+**Plinth** (formerly Plutus Tx) is the high-level Haskell subset you write code in. **Untyped Plutus Core (UPLC)** is the low-level execution language that runs on-chain. Plinth is one of several languages that compile to UPLC, alongside Aiken, [Plutarch](https://plutarch-plutus.org/), and others.
 
 **Plinth focuses exclusively on on-chain validator scripts** that determine whether transactions can spend UTXOs, mint tokens, or perform other blockchain operations. For off-chain components like transaction building and wallet integration, you'll use standard Haskell libraries and tools.
 

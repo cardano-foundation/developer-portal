@@ -17,10 +17,9 @@ On the Cardano blockchain, the compiled code of smart contracts is stored on, an
 
 ## Introduction
 
-As mentioned in the [general overview](/docs/get-started/), smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/#unspent-transaction-output-utxo) model. 
+As mentioned in the [general overview](/docs/get-started/), smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/#unspent-transaction-output-utxo) model.
 
-Smart contracts are more or less just a piece of code that you write to validate the movement of UTXOs locked in your contract's address. You will lock UTXOs at the address of your script and then the UTXOs can only ever be spent/moved if your script allows the transaction spending it to do so. 
-
+Smart contracts are more or less just a piece of code that you write to validate the movement of UTXOs locked in your contract's address. You will lock UTXOs at the address of your script and then the UTXOs can only ever be spent/moved if your script allows the transaction spending it to do so.
 
 ## Conceptual overview
 
@@ -76,7 +75,6 @@ The information contained in the context and thus available for your script to r
 | **info data**    | A map of datum hashes to their datum value.                      |
 | **id**           | Transaction identification.                                     |
 
-
 ### Basic contract workflow
 
 :::note
@@ -89,9 +87,8 @@ This is only an example! The validator does not need to rely on hashsums - you c
 
 - You sign and submit the transaction to a Cardano node either directly or via one of many available API's such as Blockfrost. Now the ada you sent to the contract is locked by your validator.
 
-- The only way for anyone to move this locked ada now is to generate a transaction with the word 'secret' as a redeemer, as the UTXO is locked in the script which will enforce this rule you created where the hashsum of the redeemer must match ```Hash("secret")```. 
+- The only way for anyone to move this locked ada now is to generate a transaction with the word 'secret' as a redeemer, as the UTXO is locked in the script which will enforce this rule you created where the hashsum of the redeemer must match ```Hash("secret")```.
 Normally, your datum would be more complicated than this, and the person running the contract might not know how it is supposed to work at all, so they would rely on your off-chain component to create the transaction - often this is something you would provide an API for.
-
 
 ### Multi-step contract workflow
 
@@ -115,13 +112,12 @@ There is no standard for how to do this as of now, but one way to accomplish thi
 
 One of the best known examples of real-world use for this type of smart contract on the Cardano blockchain is [Marlowe](marlowe).
 
-For the datum used in transactions validated by the Marlowe validator-script, a custom domain specific language (DSL) was designed to make it easy for end users to create their own financial contracts. The off-chain component takes care of creating transactions that include the contract DSL in the transaction together with the current state, while the validator makes sure that all state transitions are valid according to the custom Marlowe logic. 
+For the datum used in transactions validated by the Marlowe validator-script, a custom domain specific language (DSL) was designed to make it easy for end users to create their own financial contracts. The off-chain component takes care of creating transactions that include the contract DSL in the transaction together with the current state, while the validator makes sure that all state transitions are valid according to the custom Marlowe logic.
 
 The redeemer sent as part of the state transition transactions contain the 'input' to script, i.e. it specifies what is being applied to the old state in order to create the new state: the datum in the output transaction. The script can apply the input to the old datum locally and see if the result matches that of the output UTXO being created in the transaction currently being evaluated.
 
 Facilitating the actual use of Marlowe also required creating multiple API's, chain indexers and frontends for interacting with such contracts.
 Of course not all contracts are as complex, requiring the same amount of infrastructure around them, but it is worth noting that the off-chain components are just as important as the on-chain parts.
-
 
 ## Programming languages
 
@@ -135,5 +131,5 @@ Writing well-designed smart contracts requires you to have a solid understanding
 - [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
 - [opshin](opshin) - a programming language for generic Smart Contracts based on Python.
 - [Plinth](plinth) - a platform to write full applications that interact with the Cardano blockchain.
-- [plu-ts](plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library. 
+- [plu-ts](plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
 - [Scalus](scalus) - a unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic.  
