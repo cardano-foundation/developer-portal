@@ -7,6 +7,7 @@ module.exports = {
         label: "Development Environment",
         items: [
           "get-started/testnets-and-devnets",
+          "integrate-cardano/testnet-faucet",
           {
             type: "category",
             label: "Local Development Networks", 
@@ -78,7 +79,6 @@ module.exports = {
       "integrate-cardano/listening-for-payments-cli",
       "integrate-cardano/listening-for-payments-wallet",
       "integrate-cardano/point-of-sale",
-      "integrate-cardano/testnet-faucet",
       "integrate-cardano/user-wallet-authentication",
       "integrate-cardano/exchange-integrations",
     ],
