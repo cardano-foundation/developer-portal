@@ -31,7 +31,7 @@ We observed people who had no prior knowledge of Linux, shells, or networking, b
 Best practices should always be a key consideration when running a stake pool. Security isn't something you can turn on or off or change in a configuration file. It is both an attitude and a way of life, therefore consider following the [security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157) on the Cardano Forum. Make sure to fully understand [Cardano Key Pairs](cardano-key-pairs) in the basic category.
  
 ## Learn the basics
-The basic category starts with an [introduction to Cardano](introduction-to-cardano), you will learn the [relay and block producer topology](stake-pool-networking), what the [hardware requirements](hardware-requirements) are, which [keys are available](cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
+The basic category starts with learning about [relay and block producer topology](stake-pool-networking), what the [hardware requirements](hardware-requirements) are, which [keys are available](cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
 
 ## Stake pool operator resources
 - [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content. 

@@ -17,7 +17,7 @@ On the Cardano blockchain, the compiled code of smart contracts is stored on, an
 
 ## Introduction
 
-As mentioned in the [general overview](/docs/get-started/), smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/#unspent-transaction-output-utxo) model.
+As mentioned in the [general overview](/docs/get-started/), smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/core-blockchain-fundamentals#extended-unspent-transaction-output-eutxo) model.
 
 Smart contracts are more or less just a piece of code that you write to validate the movement of UTXOs locked in your contract's address. You will lock UTXOs at the address of your script and then the UTXOs can only ever be spent/moved if your script allows the transaction spending it to do so.
 
@@ -46,90 +46,135 @@ For contracts that require multiple steps to complete, it is common to encode th
 
 ## Technical overview
 
-Smart contracts are really very simple constructs based on validator-scripts which you now know are just some logic/rules created by you to be enforced by the Cardano nodes when they see a transaction attempting to move a UTXO locked inside of your script's address.
+Smart contracts are validator scripts that enforce custom logic when UTXOs are spent. Think of them as parameterized mathematical functions that return true or false to determine transaction validity.
 
-Because the validator script has access to read the transaction context (things like who signed it and which assets are being sent to/from where) and datum of the locked UTXO being moved, you can build some very complex contracts this way. For example, [Marlowe](marlowe) is a good example of this technique used in practice.
+### Understanding Validators: The Mathematical Model
 
-More specifically, the validator scripts are passed these three pieces of information as arguments:
+Validators work like mathematical functions with three inputs:
 
-- Datum: this is a piece of data attached to the output that the script is locking. This is typically used to carry state.
+```
+Script: f(datum, redeemer, context) = true | false
+```
 
-- Redeemer: this is a piece of data attached to the spending input. This is typically used to provide an input to the script from the spender. For example, your validator can use a function to 'apply' the redeemer contents to the datum and verify that it gets the same result as what the output UTXO datum is set to.
+Consider the analogy of a simple function: `f(x) = x * a + b`
 
-- Context: this is a piece of data that represents information about the spending transaction. This is used to make assertions about the way the output is being sent (such as “Bob signed it”).
+- **Script** is the function definition (`x * a + b`) - your validation logic
+- **Datum** contains the parameters (`a` and `b`) - configuration data set when the UTXO is created
+- **Redeemer** provides the argument (`x`) - user input provided when spending
+- **Context** gives access to transaction details for validation
 
-The information contained in the context and thus available for your script to read:
+### The Three Script Arguments
+
+#### Datum: Contract State
+
+Data attached to UTXOs when they're created, carrying contract state between transactions. Datums enable complex state machines by preserving information that subsequent transactions can read and modify.
+
+#### Redeemer: User Input  
+
+Data provided by users when spending UTXOs. Redeemers drive state transitions by supplying the inputs needed to transform the current state (datum) into a new state.
+
+#### Context: Transaction Information
+
+Comprehensive information about the spending transaction, including inputs, outputs, signatures, fees, and other transaction properties. This allows scripts to make assertions about transaction structure and participants.
+
+**Available Context Properties:**
 
 | Property         | Description                                                     |
 | ---------------- | --------------------------------------------------------------- |
-| **inputs**       | Outputs to be spent.                                            |
-| **reference inputs** | Inputs used for reference only, not spent.                       |
-| **outputs**      | New outputs created by the transaction.                          |
-| **fees**         | Transaction fees.                                               |
-| **minted value** | Minted or burned value.                                         |
-| **certificates** | Digest of certificates contained in the transaction.             |
-| **withdrawals**  | Used to withdraw rewards from the stake pool.                    |
-| **valid range**  | A range of time in which the transaction is valid.               |
-| **signatories**  | A list of transaction signatures.                                |
-| **redeemers**    | Data used to provide an input to the script from the spender.    |
-| **info data**    | A map of datum hashes to their datum value.                      |
-| **id**           | Transaction identification.                                     |
+| **inputs**       | Outputs to be spent                                            |
+| **reference inputs** | Inputs used for reference only, not spent                       |
+| **outputs**      | New outputs created by the transaction                          |
+| **fees**         | Transaction fees                                               |
+| **minted value** | Minted or burned value                                         |
+| **certificates** | Digest of certificates contained in the transaction             |
+| **withdrawals**  | Used to withdraw rewards from the stake pool                    |
+| **valid range**  | A range of time in which the transaction is valid               |
+| **signatories**  | A list of transaction signatures                                |
+| **id**           | Transaction identification                                     |
 
-### Basic contract workflow
+### Script Purposes and Types
+
+Scripts validate different operations depending on their purpose:
+
+**Spending Scripts (spend)** - Validate UTXO consumption. These are the most common scripts and the only ones that receive datum information.
+
+**Minting Scripts (mint)** - Control token creation and destruction through minting policies.
+
+**Certificate Scripts (publish)** - Validate delegation and stake pool certificates.
+
+**Withdrawal Scripts (withdraw)** - Control stake reward withdrawals.
+
+**Governance Scripts (vote/propose)** - Validate governance votes and constitutional constraints on proposals.
+
+**Native Scripts** - Cardano's "original" scripting language that predates Plutus, providing simple multisig and time-lock functionality through a minimal domain-specific language with constructs like "all-of", "any-of", and "after/before" time constraints.
+
+### Deterministic Validation
+
+Validators are fully deterministic - their execution depends only on the transaction context. This predictability allows you to verify transaction outcomes before submission, unlike systems where network conditions can affect execution.
+
+## Contract Workflows
+
+Understanding how scripts work in practice helps bridge the conceptual model with real implementation.
+
+### Basic Contract Example
+
+Let's trace through a simple secret-word contract that demonstrates the datum/redeemer relationship:
+
+**Step 1: Create the Validator**
+Write a script that validates permission to spend a UTxO from its address by comparing the hash of the redeemer provided in a transaction against the datum of the UTxO its trying to spend (locked UTxO):
+
+```
+validator(datum, redeemer, context):
+  return hash(redeemer) == datum
+```
+
+**Step 2: Lock Funds**
+Create a transaction that sends Ada to the script address with `datum = Hash("secret")`. This locks the funds under your validation logic.
+
+**Step 3: Unlock Funds**
+To spend the locked UTXO, provide `redeemer = "secret"`. The validator will hash the redeemer and compare it to the stored datum, allowing the transaction if they match.
+
+This example illustrates the mathematical function model: `f("secret") = hash("secret") == Hash("secret")` returns `true`.
 
 :::note
-This is only an example! The validator does not need to rely on hashsums - you can have any logic you want here.
+This is a simplified example. Real validators can implement any validation logic - not just hash comparisons.
 :::
 
-- You create a validator-script that compares the datum in the UTXO being moved from the contract's address to the hash of the redeemer being used in the transaction moving it. This is your on-chain component.
+### Stateful Contracts
 
-- You create a script, using your language of choice, that creates a transaction moving some amount of ada or other assets to the address of the validator-script. When generating the transaction you specify the datum to be ```Hash("secret")``` making sure that only the hashsum of the word "secret" gets stored on-chain. This is your off-chain component.
+For contracts requiring multiple transactions, datums carry state between interactions:
 
-- You sign and submit the transaction to a Cardano node either directly or via one of many available API's such as Blockfrost. Now the ada you sent to the contract is locked by your validator.
+**Example**: A simple counter that tracks the number of times it's been used:
 
-- The only way for anyone to move this locked ada now is to generate a transaction with the word 'secret' as a redeemer, as the UTXO is locked in the script which will enforce this rule you created where the hashsum of the redeemer must match ```Hash("secret")```.
-Normally, your datum would be more complicated than this, and the person running the contract might not know how it is supposed to work at all, so they would rely on your off-chain component to create the transaction - often this is something you would provide an API for.
+```
+validator(datum, redeemer, context):
+  new_count = datum.count + 1
+  return output_datum.count == new_count
+```
 
-### Multi-step contract workflow
+Each transaction reads the current count from the datum, increments it, and ensures the output contains the updated count. This creates a chain of state transitions across multiple transactions.
 
-Expanding on the basic workflow, imagine that you want to create a contract that required multiple steps. Such a contract might be one that requires 3 different people to agree on who should be able to claim the value locked in a contract instance.
+## Takeaways
 
-- Your on-chain component, the validator script, would have to encode logic for allowing two different types of actions: moving the contract forward (step), or moving the UTXO and hence its value to any other address (unlock).
+- Think of validators as mathematical functions that receive three inputs (datum, redeemer, context) and return true/false to allow/deny transactions.
 
-- Your off-chain component will need to be able to look at the locked UTXO and decode its datum to see which state the contract is currently in, so that it can correctly generate a transaction for either unlocking the UTXO or driving the contract forward.
+- Datums carry contract state between transactions, while redeemers provide the inputs to drive state changes.
 
-:::note
-You can also design contracts that never close, but only ever change state, while still allowing funds to be added and withdrawn from the contract.
-:::
+- Validators are predictable meaning the same inputs always produce the same result, allowing you to verify transaction outcomes before submission.
 
-### Contract instances
-
-When you have contracts designed to run in multiple steps, the UTXO that represents the current state of a specific instance/invocation of that script is something you need to be able to keep track of.
-
-There is no standard for how to do this as of now, but one way to accomplish this is to be to create a minting-policy that only allows minting of thread token NFTs to the script's address, and then use the NFTs as thread-tokens by having the validator script enforce such NFTs be moved with each transaction.
-
-### Real-world use
-
-One of the best known examples of real-world use for this type of smart contract on the Cardano blockchain is [Marlowe](marlowe).
-
-For the datum used in transactions validated by the Marlowe validator-script, a custom domain specific language (DSL) was designed to make it easy for end users to create their own financial contracts. The off-chain component takes care of creating transactions that include the contract DSL in the transaction together with the current state, while the validator makes sure that all state transitions are valid according to the custom Marlowe logic.
-
-The redeemer sent as part of the state transition transactions contain the 'input' to script, i.e. it specifies what is being applied to the old state in order to create the new state: the datum in the output transaction. The script can apply the input to the old datum locally and see if the result matches that of the output UTXO being created in the transaction currently being evaluated.
-
-Facilitating the actual use of Marlowe also required creating multiple API's, chain indexers and frontends for interacting with such contracts.
-Of course not all contracts are as complex, requiring the same amount of infrastructure around them, but it is worth noting that the off-chain components are just as important as the on-chain parts.
+- Smart contracts require both on-chain validators and off-chain code to construct valid transactions. The off-chain component is equally critical for user experience.
 
 ## Programming languages
 
-Cardano introduced smart contracts in 2021 and now supports the development and deployment of smart contracts using multiple different languages.
+Cardano introduced smart contracts in 2021 and supports the development and deployment of smart contracts using multiple different languages.
 
 :::tip
-Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts) page as well.
+Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts/overview) page as well.
 :::
 
-- [Aiken](aiken) - for on-chain validator scripts only: a language & toolchain favouring developer experience.
-- [Marlowe](marlowe) - a domain-specific language, it covers the world of financial contracts.
-- [opshin](opshin) - a programming language for generic Smart Contracts based on Python.
-- [Plinth](plinth) - a platform to write full applications that interact with the Cardano blockchain.
-- [plu-ts](plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
-- [Scalus](scalus) - a unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic.  
+- [Aiken](smart-contract-languages/aiken) - for on-chain validator scripts only: a language & toolchain favouring developer experience.
+- [OpShin](smart-contract-languages/opshin) - a programming language for generic Smart Contracts based on Python.
+- [Plinth](smart-contract-languages/plinth) - a platform to write full applications that interact with the Cardano blockchain.
+- [Plu-ts](smart-contract-languages/plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
+- [Scalus](smart-contract-languages/scalus) - a unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic.  
+- [Marlowe](smart-contract-languages/marlowe) - a domain-specific language, it covers the world of financial contracts.
