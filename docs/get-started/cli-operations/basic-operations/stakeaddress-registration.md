@@ -140,7 +140,7 @@ cardano-cli debug transaction view --tx-file tx.raw
 
 ### Using the `build-raw` command
 
-Using the `build-raw` command involves a slightly more intricate process. Similarly to the steps outlined in [simple transactions](docs/operate-a-stake-pool/cli-operations/basic-operations/simple-transactions.md), you should calculate the fee yourself, and handle the deposit accordingly.
+Using the `build-raw` command involves a slightly more intricate process. Similarly to the steps outlined in [simple transactions](docs/get-started/cli-operations/basic-operations/simple-transactions.md), you should calculate the fee yourself, and handle the deposit accordingly.
 
 Query the balance of the `payment.addr`:
 

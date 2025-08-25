@@ -18,7 +18,7 @@ In addition to the registered DReps, the system features a couple of default vot
 ### Prerequisites
 
 * Payment keys and address with funds
-* [Registered stake address](docs/operate-a-stake-pool/cli-operations/basic-operations/stakeaddress-registration.md)
+* [Registered stake address](docs/get-started/cli-operations/basic-operations/stakeaddress-registration.md)
 * DRep ID (key hash or script hash) of a registered DRep.
 
 ## Generating the vote delegation certificate

@@ -151,7 +151,7 @@ cardano-cli conway transaction submit \
 
 Constitutional Committee members comprising multiple individuals can opt for a multisignature setup using simple scripts.
 
-There are multiple possible setups, in this example we show how [Simple scripts](docs/operate-a-stake-pool/cli-operations/simple-scripts/simple-scripts.md) can be used for both the *cold* and the *hot* credentials. 
+There are multiple possible setups, in this example we show how [Simple scripts](docs/get-started/cli-operations/simple-scripts/simple-scripts.md) can be used for both the *cold* and the *hot* credentials. 
 
 Assume Alice, Bob and Carol form an organization "ABC" and the community wishes to appoint "ABC" as a Constitutional Committee member. 
 
@@ -199,7 +199,7 @@ da1a4d13a1c951f30a7efb4dac2b4c1f603f4eabbfa0ecc7f361bfc1
 ```
 ### Create the multisignature cold script: 
 
-Create the multisignature `cold.script` file using the simple scrypt syntax. In this example we use the `atLeast` type, so that 2 out of the 3 keys are required for the script to evaluate to true. To learn more about simple scripts read [this article](docs/operate-a-stake-pool/cli-operations/simple-scripts/simple-scripts.md)
+Create the multisignature `cold.script` file using the simple scrypt syntax. In this example we use the `atLeast` type, so that 2 out of the 3 keys are required for the script to evaluate to true. To learn more about simple scripts read [this article](docs/get-started/cli-operations/simple-scripts/simple-scripts.md)
 
 ```shell
 cat cold.script

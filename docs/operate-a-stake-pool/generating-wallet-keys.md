@@ -22,6 +22,10 @@ Due to security reasons, for the Mainnet these keys should be generated and stor
 
 ## Generating Payment Keys
 
+:::note
+This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](docs/get-started/cli-operations/basic-operations/get-started.md) guide for instructions on how to do that.
+:::
+
 Create a new payment key pair: `payment.skey` & `payment.vkey`
 
 ```
