@@ -98,15 +98,86 @@ How dropped transactions happen on cardano and how to ensure we always deliver t
 
 ## Addresses
 
-Cardano Addresses are used as destinations to send ada on the blockchain. We break them down into their parts and show how they're created.  
+Cardano addresses are used as destinations to send ada on the blockchain. Understanding their structure and types is fundamental to working with the Cardano ecosystem.
+
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
-### Franken Addresses
+### Address Construction and Structure
 
-Franken Addresses are a way to register additional pledge to a pool without registering a second owner on the blockchain.
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/KULzovfWn-M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+Cardano addresses are blake2b-224 hash digests of relevant verifying/public keys concatenated with metadata. They are binary sequences consisting of a one-byte header and variable-length payload:
 
-### Pointer Addresses
+- **Header**: Contains address type information (bits 7-4) and network tags (bits 3-0) distinguishing mainnet from testnet
+- **Payload**: The raw or encoded data containing the actual address information
+
+#### Encoding Formats
+
+**Shelley addresses** use Bech32 encoding with human-readable prefixes:
+
+- `addr` for mainnet addresses
+- `addr_test` for testnet addresses  
+- `stake` for mainnet reward addresses
+- `stake_test` for testnet reward addresses
+
+**Byron addresses** use Base58 encoding for backward compatibility, making them easily distinguishable from newer addresses.
+
+#### Payment and Delegation Components
+
+Shelley addresses contain two distinct parts:
+
+**Payment Part**: Controls fund ownership. Spending requires a witness (signature or script validation) proving control over this component.
+
+**Delegation Part**: Controls stake rights associated with funds. This can be:
+
+- A stake key hash (direct delegation)
+- A pointer to an on-chain stake registration certificate (compact representation)
+- Empty (enterprise addresses with no stake rights)
+
+**Mangled addresses** allow payment and delegation parts to be controlled by different entities, enabling separation of fund control and staking rights.
+
+### Address Types
+
+Cardano supports 11 different address types across three main categories:
+
+#### Shelley Address Types
+
+**Base Addresses** directly specify the staking key controlling stake rights. The staking rights can be exercised by registering the stake key and delegating to a stake pool. Base addresses can be used in transactions without prior stake key registration.
+
+**Pointer Addresses** indirectly specify staking keys by referencing a location on the blockchain where a stake key registration certificate exists. Pointers are considerably shorter than stake key hashes. If the referenced certificate is lost due to rollback, pointer addresses remain valid for payments but lose stake participation rights.
+
+**Enterprise Addresses** carry no stake rights, allowing users to opt out of proof-of-stake participation. Exchanges and organizations holding ada on behalf of others often use these to demonstrate they don't exercise stake rights. These addresses can still receive, hold, and send native tokens.
+
+**Reward Account Addresses** distribute rewards for proof-of-stake participation. They use account-style (not UTXO-style) accounting, cannot receive funds via transactions, and have a one-to-one correspondence with registered staking keys.
+
+#### Legacy Byron Addresses
+
+Byron addresses are legacy addresses from Cardano's Byron era, using CBOR encoding and Base58 representation. They have no stake rights and are maintained for backward compatibility.
+
+#### Technical Overview
+
+**Shelley Addresses** (8 types):
+
+- Types 0-3: Base addresses with different key/script credential combinations
+- Types 4-5: Pointer addresses referencing on-chain certificates
+- Types 6-7: Enterprise addresses with no delegation rights
+
+**Stake Addresses** (2 types):
+
+- Types 14-15: Reward addresses for stake distribution
+
+**Byron Addresses** (1 type):  
+
+- Type 8: Legacy addresses from the Byron era
+
+For complete technical specifications including binary format details, see [CIP-19](https://cips.cardano.org/cip/CIP-19).
+
+### Specialized Address Types
+
+#### Pointer Addresses
 
 Learn and dive into CPS-0002 which focuses on Pointer Addresses.
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/XKgmP1r_GSA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+#### Franken Addresses
+
+Franken Addresses are a way to register additional pledge to a pool without registering a second owner on the blockchain.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/KULzovfWn-M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
