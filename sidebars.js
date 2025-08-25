@@ -2,7 +2,19 @@ module.exports = {
   someSidebar: {
     "Get Started": [
       "get-started/overview",
-      "get-started/technical-concepts",
+      {
+        type: "category",
+        label: "Technical Concepts",
+        items: [
+          "get-started/technical-concepts/overview",
+          "get-started/technical-concepts/core-blockchain-fundamentals",
+          "get-started/technical-concepts/wallet-key-management",
+          "get-started/technical-concepts/assets",
+          "get-started/technical-concepts/consensus-staking",
+          "get-started/technical-concepts/network-communication",
+          "get-started/technical-concepts/governance-standards",
+        ],
+      },
       {
         type: "category",
         label: "Development Environment",
@@ -219,7 +231,6 @@ module.exports = {
             type: "category",
             label: "Pool Requirements",
             items: [
-              "operate-a-stake-pool/introduction-to-cardano",
               "operate-a-stake-pool/stake-pool-networking",
               "operate-a-stake-pool/hardware-requirements",
               "operate-a-stake-pool/cardano-key-pairs",

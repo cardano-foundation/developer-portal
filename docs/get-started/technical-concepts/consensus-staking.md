@@ -1,28 +1,18 @@
 ---
-id: introduction-to-cardano
-title: (Re)introduction to Cardano
-sidebar_label: (Re)introduction to Cardano
-description: "(Re)introduction to Cardano: why stake pools are needed on Cardano & how they work"
-image: ../img/og-developer-portal.png
+id: consensus-staking
+title: Consensus & Staking
+sidebar_label: Consensus & Staking
+description: Learn about consensus and staking on Cardano including the Ouroboros protocol, stake pools, and block production.
+image: /img/og/og-getstarted-technical-concepts.png
 ---
 
-Developing Cardano is no small feat. There is no other project that has ever been built to these parameters, combining peer reviewed cryptographic research with an implementation in highly secure Haskell code.
-
-This is not the copy and paste code seen in so many other blockchains. Instead, Cardano was designed with input from a large global team including leading experts and professors in the fields of computer programming languages, network design and cryptography.
-
-We are extremely proud of Cardano, which required a months-long meticulous and painstaking development process by our talented engineers.
-
-If you haven't seen it yet, watch the legendary whiteboard video from 2017. Some details are a bit outdated, but it is still worth seeing to understand what Cardano is and where Cardano came from.
-
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/Ja9D0kpksxw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## Understanding Consensus
+### Understanding Consensus
 
 Consensus is the process by which a majority opinion is reached by everyone who is involved in running the blockchain. Agreement must be made on which blocks to produce, which chain to adopt, and to determine the single state of the network. The consensus protocol determines how individual nodes assess the current state of the ledger system and reach a consensus. It has three main responsibilities; to perform a leader check and decide if a block should be produced, to handle chain selection, and to verify blocks that are produced.
 
 Blockchains create consensus by allowing participants to bundle transactions that others have submitted to the system in _blocks_, and add them to their _chain_ (sequence of blocks). Determining who is allowed to produce a block when, and what to do in case of conflicts, (such as two participants adding different blocks at the same point of the chain), is the purpose of the different consensus protocols. Our ground-breaking proof-of-stake consensus protocol [Ouroboros](https://iohk.io/en/blog/posts/2020/06/23/the-ouroboros-path-to-decentralization/) is proven to have the same security guarantees that proof of work has. Rigorous security guarantees are established by Ouroboros and it was delivered with several peer-reviewed papers that were presented in top-tier conferences and publications in the area of cybersecurity and cryptography. Different [implementations of Ouroboros](https://iohk.io/en/blog/posts/2020/03/23/from-classic-to-hydra-the-implementations-of-ouroboros-explained/) have been developed. For further details on each flavour of Ouroboros, you can read the technical specifications for [Classic](https://iohk.io/en/research/library/papers/ouroborosa-provably-secure-proof-of-stake-blockchain-protocol/), [Byzantine Fault Tolerance (BFT)](https://iohk.io/en/research/library/papers/ouroboros-bfta-simple-byzantine-fault-tolerant-consensus-protocol/), [Genesis](https://iohk.io/en/research/library/papers/ouroboros-genesiscomposable-proof-of-stake-blockchains-with-dynamic-availability/), [Praos](https://iohk.io/en/research/library/papers/ouroboros-praosan-adaptively-securesemi-synchronous-proof-of-stake-protocol/), and more recently the scalability solution [Hydra](https://eprint.iacr.org/2020/299.pdf).
 
-## Stake Pools
+### Stake Pools
 
 By running a Cardano node, users participate in and contribute to the network.
 
@@ -32,36 +22,35 @@ To be secure, Ouroboros requires a good number of ada holders to be online and m
 
 While Ouroboros is cheaper to run than a proof of work protocol, running Ouroboros still incurs some costs. Therefore, stake pool operators are rewarded for running the protocol in the form of incentives that come from the transaction fees and from inflation of the circulating supply of ada.
 
-## How Are New Blocks Produced?
+### How Are New Blocks Produced?
 
 The goal of blockchain technology is the production of an independently-verifiable and cryptographically-linked chain of records (blocks). A network of block producers works to collectively advance the blockchain. A consensus protocol provides transparency and decides which candidate blocks should be used to extend the chain.
 
 Submitted valid transactions might be included in any new block. A block is cryptographically signed by its producer (the stake pool) and linked to the previous block in the chain. This makes it impossible to delete transactions from a block, alter the order of the blocks, remove a block from the chain (if it already has a number of other blocks following it), or to insert a new block into the chain without alerting all the network participants. This ensures the integrity and transparency of the blockchain expansion.
 
-### Slots and Epochs
+#### Slots and Epochs
 
 The Cardano blockchain uses the Ouroboros Praos protocol to facilitate consensus on the chain.
 
 Ouroboros Praos divides time into epochs. Each Cardano epoch consists of a number of slots, where each slot lasts for one second. A Cardano epoch currently includes 432,000 slots (5 days). In any slot, zero or more block-producing nodes might be nominated to be the slot leader. On average, one node is expected to be nominated every 20 seconds, for a total of 21,600 nominations per epoch. If randomly elected slot leaders produce blocks, one of them will be added to the chain. Other candidate blocks will be discarded.
 
-### Slot Leader Election
+#### Slot Leader Election
 
 The Cardano network consists of a number of stake pools that control the aggregated stake of their owners and other delegators, also known as stakeholders. Slot leaders are elected randomly from among the stake pools. The more stake the pool controls, the greater the chance it has of being elected as a slot leader to produce a new block that is accepted into the blockchain. This is the concept of proof-of-stake (PoS).
 
-### Transaction Validation
+#### Transaction Validation
 
 When validating a transaction, a slot leader needs to ensure that the sender has included enough funds to pay for that transaction and must also ensure that the transaction’s parameters are met. Assuming that the transaction meets all these requirements, the slot leader will record it as a part of a new block, which will then be connected to other blocks in the chain.
 
+### Ouroboros Protocol
 
-## Ouroboros Protocol
-
-### Consensus
+#### Consensus
 
 Blockchains require an agreement mechanism between the participants of the network on how to add new transactions to the ledger and its state at any given moment. This mechanism is known as a consensus protocol.
 
 The goal of the consensus protocol is to ensure that only one chain is adopted and followed, otherwise, the system would collapse immediately.
 
-### The Proof-of-work consensus algorithm
+#### The Proof-of-work consensus algorithm
 
 Bitcoin implemented a Proof-of-work consensus algorithm. In this protocol, for a new block to be added to the blockchain, the node that attempts it must provide a proof-of-work, which is expressed by the solution of a mathematical puzzle. This process is known as mining.
 
@@ -75,7 +64,7 @@ Apart from the environmental concerns, the rewards scheme of the proof-of-work a
 
 The underlying problem is that Bitcoin makes a clear distinction between the actual users of the network and the miners. Owning Bitcoins does not grant you any control over the network, nor any power over the decisions on the evolution of it. The system is controlled by a small pool of developers and miners.
 
-### Ouroboros, a Proof-of-stake consensus algorithm
+#### Ouroboros, a Proof-of-stake consensus algorithm
 
 In Ouroboros, there is no race between stakeholders to produce a block. Instead, a slot leader is randomly selected, proportionally to the amount of tokens he owns (the stake), to get the opportunity to produce a new block.
 
@@ -83,13 +72,13 @@ So it is not hashing power what gives you the opportunity to produce a new block
 
 Since there is no race to mine a block, there is no waste of energy or computational resources. In that sense, Ouroboros is a more efficient and cheaper protocol to run than Bitcoin’s proof-of-work, while keeping all the security guarantees.
 
-### What if you are not online? (Stake pools)
+#### What if you are not online? (Stake pools)
 
 To produce a block you have to be online, but asking everyone to be online at every moment is impractical and unrealistic. This is why Ouroboros introduces the figure of _Stake Delegation_. As stakeholder, you can delegate your stake to a third party to act on your behalf whenever you are elected slot leader. Such delegates are known as _staking pools_. They are members of the community that commit to run the protocol on your behalf and to be online close to 100% of the time.
 
 An important thing to notice is that you only delegate your rights to participate in the protocol, not your actual funds. Your ada are still secure and under your control in your wallet, and funds are not locked, you can still make transactions.
 
-### What about the incentives?
+#### What about the incentives?
 
 Stakeholders that issue blocks are incentivized to participate in the protocol by collecting transaction fees. But Ouroboros does not incentivize stakeholders to invest computational resources to issue blocks. Rather, availability and transaction verification are preferred.
 
@@ -101,13 +90,13 @@ In the case of stake pools, those get a fraction of the rewards to cover operati
 
 To participate in the protocol, you can choose a staking pool or choose to act on your own at any moment creating your own stake pool.
 
-### What if for some reason there is a fork?
+#### What if for some reason there is a fork?
 
 Given that stakeholders are not always online, they come and go (a.k.a. dynamic availability), and sometimes they are offline for long periods, it is important for them to be able to resynchronize with the correct chain when they come back online.
 
 The key feature of Ouroboros Genesis is that thanks to a unique chain selection rule, it allows new or re-joining parties to synchronize to the “good chain” with only a trusted copy of the genesis block. This makes the protocol secure against the so-called “long-range attack”.
 
-### Self-produced randomness
+#### Self-produced randomness
 
 Making the slot leader selection fair and secure **(staking procedure)** requires a good source of randomness.
 
@@ -117,7 +106,7 @@ This is achieved by the implementation of a Verifiable Random Function. When eva
 
 This is why the protocol is named Ouroboros, the snake that eats its own tail.
 
-### Promoting decentralization
+#### Promoting Decentralization
 
 Finally, the Ouroboros incentives mechanism promotes the decentralization of the system in a better way than Proof-of-work does. Because Ouroboros considers two key scenarios:
 
@@ -127,7 +116,7 @@ At the same time, when the aggregate stake of a stake pool grows beyond a certai
 
 All these functionalities make Ouroboros the best proof of stake ledger protocol to date. And its only implementation is currently in the Cardano blockchain.
 
-## How it works
+### How it works
 
 1. **Time** is divided into epochs and slots and begins at Genesis. At most one block is produced in every slot. Only the slot leader can sign a block for a particular slot.
 2. **Register:** The first thing a user needs to do to participate in the protocol is registering to:
@@ -157,7 +146,7 @@ Then applies the Chain Selection Rule: pick the longest chain as long as it grow
 
 This chain selection rule allows for a party that joins the network at any time to synchronize with the correct blockchain, based only on a trusted copy of the genesis block and by observing how the chain grows for a sufficient time.
 
-## Reference material
+### Reference material
 
 [Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol](https://eprint.iacr.org/2016/889.pdf)
 
@@ -165,6 +154,21 @@ This chain selection rule allows for a party that joins the network at any time 
 
 [Ouroboros Genesis: Composable Proof-of-Stake Blockchains with Dynamic Availability](https://eprint.iacr.org/2018/378.pdf)
 
-## Video: What’s an Ouroboros and how you cook it?
+### Video: What’s an Ouroboros and how you cook it?
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+#### Slot Lottery
+
+In this video, we describe exactly how a stake pool on Cardano gets elected to make a block.  
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/M3Xq1qz3ljU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+#### Slot Battles
+
+On Cardano, slot battles happen when two pools try to make a block in the same slot (at the same time). We break down how the blockchain determines which block should win and what is the "correct" source of truth on the blockchain.  
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/Cm5pBM7UYa0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
+#### Epoch Nonce
+
+The epoch nonce allows you to calculate leaderlogs for your stake pool on Cardano.
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/vF82ZalZlcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
