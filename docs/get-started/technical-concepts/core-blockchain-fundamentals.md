@@ -286,11 +286,19 @@ Cardano addresses are blake2b-224 hash digests of relevant verifying/public keys
 
 **Byron addresses** use Base58 encoding for backward compatibility, making them easily distinguishable from newer addresses.
 
+#### Key Types and Their Purposes
+
+Cardano uses two main types of Ed25519 keys, each serving distinct purposes:
+
+**Payment Keys**: Used to sign transactions involving fund transfers, minting tokens, and interacting with smart contracts. The payment verification (public) key is used to derive addresses that can receive and send ada and native tokens.
+
+**Stake Keys**: Used to sign staking-related transactions including stake address registration, delegation to stake pools, and reward withdrawals. Stake keys enable participation in Cardano's proof-of-stake consensus mechanism.
+
 #### Payment and Delegation Components
 
 Shelley addresses contain two distinct parts:
 
-**Payment Part**: Controls fund ownership. Spending requires a witness (signature or script validation) proving control over this component.
+**Payment Part**: Controls fund ownership. Spending requires a witness (signature or script validation) proving control over this component. This is typically derived from a payment verification key.
 
 **Delegation Part**: Controls stake rights associated with funds. This can be:
 

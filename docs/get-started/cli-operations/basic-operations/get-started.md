@@ -6,7 +6,7 @@ sidebar_label: CLI - Get started
 keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 ---
 
-## Setting up environment variables 
+## Setting up environment variables
 
 ### CARDANO_NODE_SOCKET_PATH
 
@@ -21,18 +21,25 @@ export CARDANO_NODE_SOCKET_PATH=~/node.socket
 Each network has a unique identifier (--mainnet or --testnet-magic NATURAL). This is used by the node-to-client protocol to ensure communication with a node on the desired network. It is useful to set up an environment variable for the network ID. Alternatively, you can provide the flag `--testnet-magic <network-id>` with each command that interacts with the node.  
 
 - **Mainnet**
-```bash 
+
+```bash
 export CARDANO_NODE_NETWORK_ID=mainnet 
 ```
+
 - **Pre-production testnet**
+
 ```bash
 export CARDANO_NODE_NETWORK_ID=1
 ```
+
 - **Preview testnet**
+
 ```bash
 export CARDANO_NODE_NETWORK_ID=2
 ```
-- **SanchoNet testnet** 
+
+- **SanchoNet testnet**
+
 ```bash
 export CARDANO_NODE_NETWORK_ID=4
 ```
@@ -67,11 +74,12 @@ cardano-cli address build \
 cat paymentNoStake.addr
 addr_test1vzdtyyt48yrn2fa3wvh939rat0gyv6ly0ljt449sw8tppzq84xstz
 ```
+
 :::info
 Testnet addresses start with 'addr_test' and mainnet addresses with 'addr'.
 :::
 
-### Generate a stake key pair 
+### Generate a stake key pair
 
 ```shell
 cardano-cli latest stake-address key-gen \
@@ -95,7 +103,7 @@ cat payment.addr
 addr_test1qzdtyyt48yrn2fa3wvh939rat0gyv6ly0ljt449sw8tppzrcc3g0zu63cp6rnjumfcadft63x3w8ds4u28z6zlvra4fqy2sm8n
 ```
 
-### Query the balance of an address 
+### Query the balance of an address
 
 ```shell
 cardano-cli query utxo --address $(< paymentNoStake.addr)
@@ -103,9 +111,10 @@ cardano-cli query utxo --address $(< paymentNoStake.addr)
 --------------------------------------------------------------------------------------
 262c7891f932cde390bcc04c25805f3f422c1a5687d5d47f6681e68bb384fe6d     0        10000000000 lovelace + TxOutDatumNone
 ```
+
 :::tip
+
 - You can get test tokens for **pre-production** and **preview** testnets [using this faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)
 - For SanchoNet tokens, go to the [SanchoNet faucet](https://sancho.network/faucet).
+
 :::
-
-
