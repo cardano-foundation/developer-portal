@@ -205,7 +205,7 @@ sudo apt upgrade
 
 This is recommended because it will give you a means of taking password-encrypted notes that can move between your air gap and computer host environments *in both directions*, so you can:
 
-  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/operate-a-stake-pool/security/secure-workflow.md)):
+  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/get-started/security/secure-workflow.md)):
       - your Cardano account balances, UTxO addresses & payment addresses
       - notes from personal files & web sites about the work you will be doing within the air gap (since you won't have Internet access there);
   - take notes in the air gap environment (problems, error messages) to copy back to your computer, since you can't upload them through the air gap.
@@ -277,7 +277,7 @@ Therefore, you can [find your WiFi MAC address](https://help.ubuntu.com/stable/u
 
 ### Congratulations, your air gap environment is complete!
 
-You now have a safe place you can use for your [Secure Transaction Workflow](/docs/operate-a-stake-pool/security/secure-workflow.md).
+You now have a safe place you can use for your [Secure Transaction Workflow](/docs/get-started/security/secure-workflow.md).
 
 ## Option 2: Install your air gap environment on a persistent USB drive
 
