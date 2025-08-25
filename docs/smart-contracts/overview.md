@@ -285,9 +285,8 @@ Instead of the old spend-and-recreate pattern, just reference the UTXO you want 
 
 Store your datum data directly in outputs instead of dealing with hashes. This means:
 
-- No more datum hash calculations
+- No datum hash calculations
 - No need to provide separate datum data when spending
-- Cleaner, more straightforward transactions
 
 Your datum is right there in the output - much simpler to work with.
 
@@ -303,8 +302,6 @@ Deploy your script once, then reference it from multiple transactions. You get:
 On Cardano, typically only the **hash** of a validator script is stored on-chain. Optionally, the full script can be included via a **reference script** (CIP-33), allowing later transactions to reference it without resubmitting the code. It is not possible to modify the rules of an existing smart contract, nor is it possible to decompile the stored smart contract code from its compiled state into the original source code.
 :::
 
-Perfect for contracts that will get used frequently.
-
 ### Collateral Output ([CIP-40](https://cips.cardano.org/cip/CIP-40))
 
 Transactions that call Plutus smart contracts are required to put up collateral to cover the potential cost of smart contract execution failure.
@@ -319,9 +316,10 @@ Cardano introduced smart contracts in 2021 and supports the development and depl
 Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts/overview) page as well.
 :::
 
-- [Aiken](smart-contract-languages/aiken/overview) - for on-chain validator scripts only: a language & toolchain favouring developer experience.
-- [OpShin](smart-contract-languages/opshin) - a programming language for generic Smart Contracts based on Python.
-- [Plinth](smart-contract-languages/plinth) - a platform to write full applications that interact with the Cardano blockchain.
+- [Aiken](smart-contract-languages/aiken/overview) - Most popular smart contract language on Cardano written in Rust like syntax. Specifically designed for on-chain validators only and embraces/treats UTxO model as a first citizen: a language & toolchain favouring developer experience.
+- [Plutarch](https://github.com/Plutonomicon/plutarch-plutus) - With Plutarch, you have much more fine gained control of the Plutus Core you generate, without giving up any type information. Not for the faint hearted as it is close to writing UPLC by hand, but will almost always yield highest performance.
+- [OpShin](smart-contract-languages/opshin) - Pythonic programming language used for smart contracts.
+- [Scalus](smart-contract-languages/scalus) - a modern unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic. Scalus works with JVM and JavaScript too.
+- [Plinth](smart-contract-languages/plinth) - "Canonical" smart contract language of Cardano written in Haskell with advanced tooling. Can be used for both on-chain and off-chain.
 - [Plu-ts](smart-contract-languages/plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
-- [Scalus](smart-contract-languages/scalus) - a unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic.  
-- [Marlowe](smart-contract-languages/marlowe) - a domain-specific language, it covers the world of financial contracts.
+

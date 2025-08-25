@@ -41,7 +41,7 @@ Each UTXO can only be consumed once and as a whole which introduces the concept 
 
 Transactions are atomic operations - either all changes are applied successfully, or none are applied at all. This all-or-nothing approach ensures consistency and prevents partial state updates that could corrupt the ledger.
 
-This creates an interesting bootstrapping question: if inputs reference previous outputs, where do the first outputs come from? The answer is the **genesis configuration** - an initial agreed-upon state that creates the first UTXOs without requiring inputs. In Cardano, this initial distribution resulted from the token voucher sale before network launch.
+This creates an interesting bootstrapping question: if inputs reference previous outputs, where do the first outputs come from? The answer is the **genesis configuration** - an initial agreed-upon state that creates the first UTXOs without requiring inputs.
 
 ### UTXO Set Management
 
@@ -51,16 +51,16 @@ Every node maintains a complete record of all currently unspent transaction outp
 
 EUTXO extends the basic UTXO model in two critical ways:
 
-1. **Arbitrary Logic**: Instead of restricting addresses to simple public key signatures, EUTXO allows addresses to contain complex logic in the form of scripts that determine spending conditions.
+1. Instead of restricting addresses to simple public key signatures, EUTXO allows addresses to contain complex logic in the form of scripts that determine spending conditions.
 
-2. **Rich Data**: Outputs can carry arbitrary data (datum) in addition to addresses and values, enabling scripts to maintain and access contract state.
+2. Outputs can carry arbitrary data (datum) in addition to addresses and values, enabling scripts to maintain and access local state of a UTxO.
 
 The EUTXO model combines:
 
-- **Smart contracts**: Scripts that define arbitrary validation logic for spending conditions
-- **Redeemers**: User-supplied arguments passed to scripts during validation
-- **Datum**: Contract-specific data stored with outputs for script state
-- **Context**: Transaction metadata available to scripts during validation
+- Smart Contracts (Validator scripts) that define arbitrary validation logic for different conditions like spending, minting, withdrawing etc.
+- Datums: Data stored/attached to outputs (UTxO) to carry state
+- Redeemers: User-supplied arguments passed to scripts during validation
+- Context: Transaction information available to scripts during validation
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
@@ -68,15 +68,15 @@ The EUTXO model combines:
 Deep dive into [Cardano's EUTXO accounting model here](https://ucarecdn.com/3da33f2f-73ac-4c9b-844b-f215dcce0628/EUTXOhandbook_for_EC.pdf).
 :::
 
-### Key Advantages for Developers
-
-**Predictable Fees**: Transaction costs can be calculated precisely off-chain before submission. Unlike other blockchains where network activity can influence gas costs, Cardano's fees are deterministic and fixed at transaction creation time.
-
-**Deterministic Validation**: Transaction success depends only on the transaction itself and its inputs. Users can predict locally (off-chain) how their transaction will impact the ledger state without encountering unexpected validation failures, fees, or state updates. If inputs are available when validated, the transaction is guaranteed to succeed. This contrasts with account-based models, where a transaction can fail mid-script execution.
+### eUTxO Advantages for Developers
 
 **Parallelization**: Transactions can be processed in parallel as long as they don't consume the same inputs, offering superior scalability. The level of concurrency is limited only by the degree of contention for shared UTXOs.
 
 **Local State**: Unlike account-based models where every transaction affects global state, EUTXO validation occurs locally, preventing many classes of errors and attacks.
+
+**Predictable Fees**: Transaction costs can be calculated precisely off-chain before submission. Unlike other blockchains where network activity can influence gas costs, Cardano's fees are deterministic and fixed at transaction creation time.
+
+**Deterministic Validation**: Transaction success depends only on the transaction itself and its inputs. Users can predict locally (off-chain) how their transaction will impact the ledger state without encountering unexpected validation failures, fees, or state updates. If inputs are available when validated, the transaction is guaranteed to succeed. This contrasts with account-based models, where a transaction can fail mid-script execution.
 
 ### Important Development Considerations
 
@@ -92,7 +92,7 @@ To maximize parallelism and scaling benefits, developers must architect DApps us
 
 **Parallelization Strategy**: By splitting logic across different branches, applications can achieve greater parallelism. This approach is similar to how Bitcoin services split wallets into sub-wallets for better performance.
 
-The key insight is that **single on-chain state patterns from account-based systems will not achieve concurrency on Cardano**. Instead, developers must embrace the EUTXO model's strengths by designing for distributed state and parallel execution from the ground up.
+The key insight is that **single on-chain state patterns from account-based systems will not achieve concurrency on Cardano**. Instead, developers embrace the EUTXO model's strengths by designing for distributed state and parallel execution from the ground up.
 
 ## TPS vs. eUTxO
 
@@ -165,24 +165,15 @@ transaction = [
 - **Plutus Data** (field 4): Unhashed datums referenced in the transaction
 - **Redeemers** (field 5): Arguments passed to script execution
 
-#### Key Development Implications
+#### Implications
 
 **Input Ordering**: Inputs are automatically sorted lexicographically by (transaction_id, index), not by the order you specify. This affects redeemer indexing.
 
 **Script Data Hash**: Any change to redeemers, datums, or protocol parameters requires recalculating this hash. Transaction libraries handle this automatically.
 
-**Execution Budgets**: Scripts must declare their memory and CPU requirements upfront in redeemers, enabling predictable fee calculation.
-
 **Two-Phase Validation**: Phase 1 validates basic transaction structure, Phase 2 executes scripts. If Phase 2 fails, collateral is consumed as penalty.
 
-**Policy ID Language Tags**: When working with native tokens, policy IDs are hashes of tagged scripts where each language has a discriminator byte:
-
-- Native scripts: `0x00`
-- Plutus V1: `0x01`
-- Plutus V2: `0x02`
-- Plutus V3: `0x03`
-
-For complete technical specifications and debugging tools, see the [Cardano Ledger Specifications](https://github.com/IntersectMBO/cardano-ledger) and [CBOR playground](http://cbor.me/) for decoding raw transactions.
+For complete technical specifications and debugging tools, see the [Cardano Ledger Specifications](https://github.com/IntersectMBO/cardano-ledger) and [Lace Anatomy](https://laceanatomy.com/) for decoding raw transactions.
 
 ### Validity Intervals and Time
 
@@ -192,8 +183,8 @@ Smart contract execution on Cardano is fully deterministic, which raises an inte
 
 Transactions can specify a time window during which they're considered valid:
 
-- **Lower bound** (optional): Transaction valid only after this time
-- **Upper bound** (optional): Transaction expires after this time
+- **Lower bound**: Transaction valid only after this time
+- **Upper bound**: Transaction expires after this time
 
 These intervals are checked during Phase 1 validation, before script execution. This means validators can assume the transaction is within the specified time bounds, enabling deterministic time-based logic.
 
@@ -202,8 +193,6 @@ These intervals are checked during Phase 1 validation, before script execution. 
 **Time-locked contracts**: Record a deadline in the datum and check that the transaction's lower bound exceeds that deadline.
 
 **Auction deadlines**: Set an upper bound so bids can only be placed before the auction ends.
-
-**Precision vs Convenience**: Intervals can be as narrow as one second for precise timing, but narrow windows make it harder to get transactions included in blocks (blocks are produced every ~20 seconds on average).
 
 ### Transaction Latency vs Finality
 
@@ -214,10 +203,9 @@ Understanding the difference between when a transaction appears on-chain versus 
 **Finality**: Time for a transaction to become immutable and irreversible. This depends on:
 
 - Network conditions and adversarial stake proportion
-- Risk tolerance of your application
-- Number of confirmations required
+- Number of confirmations required (Risk tolerance of your application)
 
-For most applications, waiting 6-20 confirmations (2-7 minutes) provides strong finality guarantees. High-value transactions may require more confirmations, while small transactions might accept fewer.
+For most applications, waiting 6-20 confirmations provides really strong finality guarantees. High-value transactions may require more confirmations, while small transactions might accept fewer.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
@@ -246,10 +234,6 @@ Both parameters `a` and `b` serve crucial economic and security purposes:
 ### Fee Distribution Model
 
 Unlike many blockchains where fees go directly to block producers, Cardano uses a unique pooled distribution system. Transaction fees are collected and distributed among all stake pools that produced blocks during an epoch, regardless of which specific pool processed each transaction. This approach promotes network stability and fair reward distribution.
-
-### Smart Contract Execution Costs
-
-For Plutus scripts, transactions must specify their computational execution budgets upfront. If a script exceeds its allocated budget, execution terminates with a predictable outcome. This prevents infinite loops and ensures bounded execution time while maintaining cost predictability.
 
 ### Economic Attack Prevention
 
@@ -313,7 +297,7 @@ Franken Addresses are a way to register additional pledge to a pool without regi
 
 ### Address Types
 
-Cardano supports 11 different address types across three main categories:
+Cardano supports different address types across categories:
 
 #### Shelley Address Types
 
@@ -333,22 +317,6 @@ Learn and dive into CPS-0002 which focuses on Pointer Addresses.
 
 Byron addresses are legacy addresses from Cardano's Byron era, using CBOR encoding and Base58 representation. They have no stake rights and are maintained for backward compatibility.
 
-**Important Limitation**: Byron addresses are **forbidden in transactions that contain Plutus scripts**. This means smart contracts will never encounter Byron addresses during validation. If you're working with dApps, ensure all addresses are Shelley-era addresses to avoid transaction failures.
-
-#### Technical Overview
-
-**Shelley Addresses** (8 types):
-
-- Types 0-3: Base addresses with different key/script credential combinations
-- Types 4-5: Pointer addresses referencing on-chain certificates
-- Types 6-7: Enterprise addresses with no delegation rights
-
-**Stake Addresses** (2 types):
-
-- Types 14-15: Reward addresses for stake distribution
-
-**Byron Addresses** (1 type):  
-
-- Type 8: Legacy addresses from the Byron era
+**Important Limitation**: Byron addresses are **not allowed in transactions that contain Plutus scripts**. This means smart contracts will never encounter Byron addresses during validation. If you're working with dApps, ensure all addresses are Shelley-era addresses to avoid transaction failures.
 
 For complete technical specifications including binary format details, see [CIP-19](https://cips.cardano.org/cip/CIP-19).
