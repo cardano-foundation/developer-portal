@@ -307,3 +307,7 @@ Note, in the `MeshTxBuilder` class, we have set `verbose: true`, which will prin
 ## Source code
 
 The source code for this lesson is available on [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-hello-cardano/01-wallet-send-lovelace).
+
+### Educational
+
+You can find a youtube video of an initial walkthrough/workshop [here](https://www.youtube.com/watch?v=Spz8iAggFns).

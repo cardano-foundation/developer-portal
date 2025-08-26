@@ -60,3 +60,7 @@ The result is a directory filled with the contract address, policy ID and data t
 - [opshin pioneer program](https://github.com/OpShin/opshin-pioneer-program)
 - [opshin starter kit](https://github.com/OpShin/opshin-starter-kit)
 - [PyCardano Smart Contract documentation](https://pycardano.readthedocs.io/en/latest/guides/plutus.html).
+
+### Educational
+
+You can find a youtube playlist to see OpShin in action [here](https://www.youtube.com/playlist?list=PLTh2dOp0i8OKn3H45KH7EqdI4wmkOjeCM).

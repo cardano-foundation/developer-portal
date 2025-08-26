@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Design Patterns
-sidebar_label: Design Patterns & Concepts
+sidebar_label: Overview
 description: Simplifying complex smart contract design patterns on the Cardano blockchain
 ---
 

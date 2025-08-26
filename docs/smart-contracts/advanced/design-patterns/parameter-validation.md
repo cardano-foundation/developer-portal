@@ -5,6 +5,8 @@ sidebar_label: Onchain Parameter Application
 description: Check that a script hash is an instantiation of a unparameterised script.
 ---
 
+## Introduction
+
 When writing onchain code you might encounter a situation where you want to be able to check that a script hash is an instantiation of a unparameterised script.
 It is common for smart contracts to accept parameters (e.g. fees, references to other scripts, magical numbers). Perhaps the most well known example of such a script is the
 one-shot minting policy script, that enforces that the minting policy can only ever succeed once (ie. for NFTs, or fixed-supply fungible tokens).

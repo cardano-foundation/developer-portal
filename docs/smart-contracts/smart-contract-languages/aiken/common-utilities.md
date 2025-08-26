@@ -5,7 +5,7 @@ sidebar_label: Common Utility Functions
 description: Streamlining common functions from utility libraries
 ---
 
-### Common Utilities/Helpers
+## Common Utilities/Helpers
 
 :::tip Reusable Patterns
 These functions create reusable validation logic for common operations. These utility functions eliminate repetitive code and provide safe, tested implementations for common validator operations:
@@ -13,7 +13,7 @@ These functions create reusable validation logic for common operations. These ut
 
 To discover a list of utility libraries providing functions to streamline common operations, visit [Aiken Package Registry](https://packages.aiken-lang.org/).
 
-#### Input/Output Filtering
+### Input/Output Filtering
 
 ```rust title="Input/Output Filtering Utilities"
 // Filter inputs by address
@@ -59,7 +59,7 @@ validator my_validator {
 }
 ```
 
-#### Extract Datum
+### Extract Datum
 
 ```rust title="Datum Extraction Helpers"
 // Safely extract inline datum from input
@@ -102,7 +102,7 @@ validator state_machine {
 }
 ```
 
-#### Value Operations
+### Value Operations
 
 ```rust title="Value Operation Helpers"
 // Check if first value contains at least the second value
@@ -148,7 +148,59 @@ validator payment_validator {
 }
 ```
 
-#### Minting Validation
+### Address Utilities
+
+```rust title="Address Validaton Helpers"
+// Extract public key hash from address (if it's a pubkey address)
+fn address_pub_key(address: Address) -> Option<VerificationKeyHash> {
+  when address.payment_credential is {
+    VerificationKey(key_hash) -> Some(key_hash)
+    _ -> None
+  }
+}
+
+// Extract script hash from address (if it's a script address)  
+fn address_script_hash(address: Address) -> Option<ScriptHash> {
+  when address.payment_credential is {
+    Script(script_hash) -> Some(script_hash)
+    _ -> None
+  }
+}
+
+// Example Validator
+validator payment_splitter {
+  spend(datum: Option<SplitterDatum>, _redeemer: Data, own_ref: OutputReference, self: Transaction) {
+    expect Some(datum) = datum
+    
+    // Validate payments go to pubkey addresses only
+    let all_payments_to_pubkeys = list.all(datum.recipients, fn(recipient) {
+      when address_pub_key(recipient.address) is {
+        Some(_) -> True
+        None -> False
+      }
+    })
+    
+    all_payments_to_pubkeys
+  }
+}
+
+// Address validation utilities
+fn validate_payment_to_pubkey(output: Output, expected_pubkey_hash: ByteArray) -> Bool {
+  when output.address.payment_credential is {
+    VerificationKey(hash) -> hash == expected_pubkey_hash
+    _ -> False
+  }
+}
+
+fn validate_payment_to_script(output: Output, expected_script_hash: ByteArray) -> Bool {
+  when output.address.payment_credential is {
+    Script(hash) -> hash == expected_script_hash  
+    _ -> False
+  }
+}
+```
+
+### Minting Validation
 
 ```rust title="Minting Validation Helpers"
 // Validate exactly one specific token was minted
@@ -204,58 +256,6 @@ validator token_burner {
   }
 }
 ```
-
-#### Address Utilities
-
-```rust title="Address Validaton Helpers"
-// Extract public key hash from address (if it's a pubkey address)
-fn address_pub_key(address: Address) -> Option<VerificationKeyHash> {
-  when address.payment_credential is {
-    VerificationKey(key_hash) -> Some(key_hash)
-    _ -> None
-  }
-}
-
-// Extract script hash from address (if it's a script address)  
-fn address_script_hash(address: Address) -> Option<ScriptHash> {
-  when address.payment_credential is {
-    Script(script_hash) -> Some(script_hash)
-    _ -> None
-  }
-}
-
-// Example Validator
-validator payment_splitter {
-  spend(datum: Option<SplitterDatum>, _redeemer: Data, own_ref: OutputReference, self: Transaction) {
-    expect Some(datum) = datum
-    
-    // Validate payments go to pubkey addresses only
-    let all_payments_to_pubkeys = list.all(datum.recipients, fn(recipient) {
-      when address_pub_key(recipient.address) is {
-        Some(_) -> True
-        None -> False
-      }
-    })
-    
-    all_payments_to_pubkeys
-  }
-}
-
-// Address validation utilities
-fn validate_payment_to_pubkey(output: Output, expected_pubkey_hash: ByteArray) -> Bool {
-  when output.address.payment_credential is {
-    VerificationKey(hash) -> hash == expected_pubkey_hash
-    _ -> False
-  }
-}
-
-fn validate_payment_to_script(output: Output, expected_script_hash: ByteArray) -> Bool {
-  when output.address.payment_credential is {
-    Script(hash) -> hash == expected_script_hash  
-    _ -> False
-  }
-}
-````
 
 ### Value Validation
 

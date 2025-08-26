@@ -5,6 +5,8 @@ sidebar_label: Enum Data Mapping Functions
 description: Explores the implementation of PlutusTypeEnum Redeemers for efficient data encoding.
 ---
 
+## Introduction
+
 In the Cardano blockchain ecosystem, smart contract UTxOs often come equipped with redeemers, which
 are crucial components indicating the purpose or cause of the transaction. These redeemers may carry
 additional data to facilitate computations within the validator function. However, in many
