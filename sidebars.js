@@ -186,6 +186,26 @@ module.exports = {
               },
             ],
           },
+          {
+            type: "category",
+            label: "Plutarch",
+            items: [
+              "smart-contracts/smart-contract-languages/plutarch/overview",
+              {
+                type: "category",
+                label: "Production Grade DApps",
+                items: [
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/overview",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/nix-environments",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/bridge-template",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/linear-vesting",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/merkle-tree",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/yield-farming",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/single-asset-staking",
+                ],
+              },
+            ],
+          },
           "smart-contracts/smart-contract-languages/plinth",
           "smart-contracts/smart-contract-languages/opshin",
           "smart-contracts/smart-contract-languages/plu-ts",
