@@ -96,7 +96,7 @@ Let's explore the representation of an address type in Plutus:
 
 Constructing an Address involves specifying the Credential and optionally the StakingCredential
 
-```rs
+```rust
 data Address = 
   Address 
   { addressCredential :: Credential
@@ -116,7 +116,7 @@ For the purpose of this article we are going to create an Script Address by hash
 
 In the below code we can see that our address is composed of the Spending Validator and Staking Validator
 
-```rs
+```rust
 scriptAddress = 
   Address 
     (ScriptCredential $ ScriptHash "SpendingValidatorHash") 
@@ -206,7 +206,7 @@ This field encapsulates a Map where each `StakingCredential` serves as a key, pa
 
 [^1]: [https://github.com/input-output-hk/plutus/blob/d6382618ae38ce75cdef432e4974809ec466456e/plutus-tx/src/PlutusTx/Builtins/Internal.hs#L473-L476]
 
-```rs
+```rust
 data TxInfo = TxInfo
     { txInfoInputs          :: [TxInInfo] -- ^ Transaction inputs
     , txInfoReferenceInputs :: [TxInInfo] -- ^ Transaction reference inputs
@@ -227,7 +227,7 @@ data TxInfo = TxInfo
 
 To implement this validation requirement, a parameterized `Spending Validator` is created as follows:
 
-```rs
+```rust
 mkValidator :: StakingCredential -> Datum -> Redeemer -> ScriptContext -> Bool
 mkValidator stakingCred _datum _redeemer context =
   case PlutusTx.AssocMap.lookup stakingCred $ txInfoWdrl txinfo of
@@ -303,7 +303,7 @@ data StakeValidatorRedeemer = StakeValidatorRedeemer
 
 For e.g.
 
-```rs
+```rust
 Inputs     :  [scriptInputA, scriptInputC, randomInput3, scriptInputB, randomInput1, randomInput2]          // random inputs are not the concerned script inputs
 Outputs    :  [outputA, outputB, outputC, randomOuput1, randomOutput2, randomOutput3]
 InputIdxs  :  [0, 1, 3]

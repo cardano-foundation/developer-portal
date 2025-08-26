@@ -10,7 +10,7 @@ are crucial components indicating the purpose or cause of the transaction. These
 additional data to facilitate computations within the validator function. However, in many
 scenarios, a straightforward enumeration suffices:
 
-```rs
+```rust
 data AuctionRedeemer = Initializing | Bidding | Closing
 
 PlutusTx.makeLift ''AuctionRedeemer

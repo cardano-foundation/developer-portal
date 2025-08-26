@@ -35,7 +35,7 @@ representations to prevent funds from being indefinitely locked within them.
 
 An example on how to handle every case correctly:
 
-```rs
+```rust
 isTimeValid :: Datum -> POSIXTimeRange -> Bool
 isTimeValid datum (Interval (LowerBound (Finite l) False) (UpperBound (Finite u) False)) = ...
 isTimeValid datum (Interval (LowerBound NegInf     False) (UpperBound (Finite u) False)) = ...
@@ -59,7 +59,7 @@ always range, aligning with the standard convention in mathematics.
 
 With this the example above can be implemented in a much cleaner way:
 
-```rs
+```rust
 isTimeValid :: Datum -> POSIXTimeRange -> Bool
 isTimeValid datum r =
   case normalizedTimeRange r of

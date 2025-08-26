@@ -9,7 +9,7 @@ When writing onchain code you might encounter a situation where you want to be a
 It is common for smart contracts to accept parameters (e.g. fees, references to other scripts, magical numbers). Perhaps the most well known example of such a script is the
 one-shot minting policy script, that enforces that the minting policy can only ever succeed once (ie. for NFTs, or fixed-supply fungible tokens).
 
-```rs
+```rust
 -- Check that a specific UTxO was spent in the transaction.
 oneShotValidate :: TxOutRef -> ScriptContext -> ()
 oneShotValidate oref ctx = any (\input -> txInInfoOutRef input == oref) inputs 
@@ -20,7 +20,7 @@ oneShotValidate oref ctx = any (\input -> txInInfoOutRef input == oref) inputs
 
 To determine that a `CurrencySymbol`, for instance `scriptHashToCheck`, is derived from the result of applying a given `TxOutRef` to the `oneShotValidate` script (and thus must be a fixed-supply token):
 
-```rs
+```rust
 let plutusVersion = 3
     versionHeader = integerToByteString True 1 plutusVersion
     scriptHeader = versionHeader <> prefix <> param
@@ -32,7 +32,7 @@ Where `param` is `serialiseData TX_OUT_REF_PARAM`, `prefix` is the cbor script b
 
 Parameterized scripts used in this design pattern should have the form:
 
-```rs
+```rust
 [ (lam x …) PARAMHERE] 
 ```
 

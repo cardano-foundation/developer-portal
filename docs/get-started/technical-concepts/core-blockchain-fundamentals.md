@@ -12,16 +12,13 @@ Learn fundamental terms like blockchain, consensus, decentralization delegation 
 
 Developing Cardano is no small feat. There is no other project that has ever been built to these parameters, combining peer reviewed cryptographic research with an implementation in highly secure Haskell code.
 
-This is not the copy and paste code seen in so many other blockchains. Instead, Cardano was designed with input from a large global team including leading experts and professors in the fields of computer programming languages, network design and cryptography.
-
-We are extremely proud of Cardano, which required a months-long meticulous and painstaking development process by our talented engineers.
+Cardano was designed with input from a large global team including leading experts and professors in the fields of computer programming languages, network design and cryptography.
 
 If you haven't seen it yet, watch the legendary whiteboard video from 2017. Some details are a bit outdated, but it is still worth seeing to understand what Cardano is and where Cardano came from.
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/Ja9D0kpksxw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br/><br/>
 
 ## Extended Unspent Transaction Output (EUTXO)
 
@@ -78,6 +75,11 @@ Deep dive into [Cardano's EUTXO accounting model here](https://ucarecdn.com/3da3
 
 **Deterministic Validation**: Transaction success depends only on the transaction itself and its inputs. Users can predict locally (off-chain) how their transaction will impact the ledger state without encountering unexpected validation failures, fees, or state updates. If inputs are available when validated, the transaction is guaranteed to succeed. This contrasts with account-based models, where a transaction can fail mid-script execution.
 
+### TPS vs. eUTxO
+
+Which is better, high transactions per second or eUTxO?  
+<iframe width="100%" height="325" src="https://www.youtube.com/embed/wDmLVMmevNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+
 ### Important Development Considerations
 
 The UTXO model's graph structure is fundamentally different from the account-based model used by existing smart-contract enabled blockchains. As a result, **design patterns that work for DApps on account-based blockchains do not translate directly to Cardano**. New design patterns are utilized because the underlying representation of data is different.
@@ -86,18 +88,19 @@ The UTXO model's graph structure is fundamentally different from the account-bas
 
 To maximize parallelism and scaling benefits, developers must architect DApps using multiple UTXOs rather than relying on single shared state. This fundamental shift requires:
 
-**Multiple UTXOs Design**: Smart contracts should split their on-chain state across many UTXOs rather than concentrating it in a single location. This increases concurrency by allowing multiple users to interact with different parts of the contract simultaneously.
+#### Multiple UTXOs Design
 
-**Avoiding Contention**: Since each UTXO can only be spent once, multiple users trying to access the same UTXO creates contention. Proper design distributes interactions across different UTXOs to minimize this bottleneck.
+Smart contracts should split their on-chain state across many UTXOs rather than concentrating it in a single location. This increases concurrency by allowing multiple users to interact with different parts of the contract simultaneously.
 
-**Parallelization Strategy**: By splitting logic across different branches, applications can achieve greater parallelism. This approach is similar to how Bitcoin services split wallets into sub-wallets for better performance.
+#### Avoiding Contention
+
+Since each UTXO can only be spent once, multiple users trying to access the same UTXO would create contention just like the account-based system on Ethereum and the UTxO model would lose its meaning. Proper design distributes interactions across different UTXOs to minimize this bottleneck.
+
+#### Parallelization Strategy
+
+By splitting logic across different branches, applications can achieve greater parallelism. This approach is similar to how Bitcoin services split wallets into sub-wallets for better performance.
 
 The key insight is that **single on-chain state patterns from account-based systems will not achieve concurrency on Cardano**. Instead, developers embrace the EUTXO model's strengths by designing for distributed state and parallel execution from the ground up.
-
-## TPS vs. eUTxO
-
-Which is better, high transactions per second or eUTxO?  
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/wDmLVMmevNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Transactions
 

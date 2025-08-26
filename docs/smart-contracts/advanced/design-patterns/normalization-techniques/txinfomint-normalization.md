@@ -18,7 +18,7 @@ explores the problem and introduces a solution through the concept of txInfoMint
 In Cardano smart contract development, validators are crucial components that enforce
 transaction-specific conditions. Consider the following Haskell code snippet:
 
-```rs
+```rust
 validator :: CurrencySymbol -> Datum -> Redeemer -> ScriptContext -> Bool
 validator ourPolicy datum redeemer context =
   traceIfFalse "should only mint our token" (symbols mint == [ourPolicy])
@@ -43,7 +43,7 @@ implemented in a library. The key idea is to normalize the txInfoMint value, mit
 unintended consequences of the automatic addition of 0 Lovelace. Let's see how this library can
 simplify the validator function:
 
-```rs
+```rust
 validator :: CurrencySymbol -> Datum -> Redeemer -> ScriptContext -> Bool
 validator ourPolicy datum redeemer context =
   traceIfFalse "should only mint our token" (symbols mint == [ourPolicy])

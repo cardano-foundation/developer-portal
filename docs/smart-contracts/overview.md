@@ -50,17 +50,15 @@ Validator scripts are executed automatically when a UTXO residing at the address
 
 This means that in order for the validator script to execute, a transaction must first move a UTXO to the address of the contract; the address is derived from the contract mathematically. Normally, only the script hash is stored on-chain. With CIP-33 reference scripts, you can include the full script in a UTXO so later transactions can reference it without including the full script code.
 
-You might think of this initial transaction where you move a UTXO to the script address to be the initialisation of a contract instance. Each UTXO residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the UTXOs being sent to the script address: anyone can send a UTXO containing no datum, or an arbitrary datum.
-
 ### Off-Chain
+
+You might think of this initial transaction where you move a UTXO to the script address to be the initialisation of a contract instance. Each UTXO residing on the address of the contract can thus be seen as an instance of the contract. Note that there is no restriction on the UTXOs being sent to the script address: anyone can send a UTXO containing no datum, or an arbitrary datum.
 
 The off-chain part is needed in order to locate UTXOs that are locked in your contract and generate transactions that are valid for moving them.
 
-For contracts that require multiple steps to complete, it is common to encode the state of a contract inside of a datum using a specific schema of your own design that is then attached to each transaction. You would then create a 'thread' of UTXOs by designing a validator such that it only allows moving the UTXO to the script address so that the value of the UTXO remains locked in the new UTXO, but with a new datum/state.
-
 ## Technical overview
 
-Smart contracts are validator scripts that enforce custom logic when UTXOs are spent. Think of them as parameterized mathematical functions that return true or false to determine transaction validity.
+Smart contracts on Cardano are validator scripts that enforce custom logic when interacting with UTXOs "owned" by a script (owned meaning the UTxO sits at the script address). Think of them as parameterized mathematical functions that return true or false to determine transaction validity.
 
 ### Understanding Validators: The Mathematical Model
 
@@ -74,7 +72,7 @@ Conceptually, you can think of validators as returning true/false, though under 
 
 ```mermaid
 flowchart TD
-    A[Transaction Submitted] --> B{Validator Execution}
+    B{Validator Execution}
     B --> C[Datum: Contract State]
     B --> D[Redeemer: User Input]
     B --> E[Context: Transaction Info]
@@ -82,8 +80,8 @@ flowchart TD
     D --> F
     E --> F
     F --> G{Result}
-    G -->|Success| H[Transaction Approved]
-    G -->|Failure| I[Transaction Rejected]
+    G -->|Success| H[Transaction Valid]
+    G -->|Failure| I[Transaction Invalid]
     
     style C fill:#e1f5fe
     style D fill:#f3e5f5
@@ -117,19 +115,26 @@ Comprehensive information about the spending transaction, including inputs, outp
 
 | Property | Description |
 | -------- | ----------- |
-| **inputs** | Outputs to be spent |
-| **reference inputs** | Inputs used for reference only, not spent |
+| **inputs** | List of transaction inputs to be spent |
+| **reference_inputs** | Inputs used for reference only, not spent |
 | **outputs** | New outputs created by the transaction |
-| **fee** | Transaction fee |
-| **minted value** | Minted or burned value |
+| **fee** | Transaction fee in Lovelace |
+| **mint** | Value being minted or burned |
 | **certificates** | Certificates for delegation, pool operations, governance roles, etc. |
-| **withdrawals** | Used to withdraw rewards from stake pools |
-| **valid range** | A range of time in which the transaction is valid |
-| **signatories** | A list of transaction signatures |
-| **required_signers** | Additional required signatures for script validation |
-| **txId** | Transaction identification (hash) |
-| **votes** | Governance votes (Conway era) |
+| **withdrawals** | Stake reward withdrawals as credential-lovelace pairs |
+| **validity_range** | Time range in which the transaction is valid |
+| **extra_signatories** | Additional verification key hashes required for validation |
+| **redeemers** | Script purpose and redeemer pairs for script execution |
+| **datums** | Dictionary mapping data hashes to datum data |
+| **id** | Transaction identification (hash) |
+| **votes** | Governance votes as voter-vote pairs (Conway era) |
 | **proposal_procedures** | Governance proposals (Conway era) |
+| **current_treasury_amount** | Current treasury amount (optional) |
+| **treasury_donation** | Treasury donation amount (optional) |
+
+:::note Transaction Context Representation
+This is a representation of a transaction as seen by on-chain scripts, and not the 1:1 translation of the transaction as seen by the ledger. The underlying ledger uses a different structure with numeric field keys as defined in the [Conway CDDL specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl-files/conway.cddl). In particular, on-chain scripts can't see inputs locked by bootstrap addresses, outputs to bootstrap addresses, or transaction metadata.
+:::
 
 ### Script Addresses
 
@@ -148,6 +153,20 @@ Unlike regular addresses controlled by private keys, script addresses are contro
 - The script executes automatically whenever someone attempts to spend UTXOs from its address
 - Multiple developers deploying identical code will interact with the same contract address
 
+### Script Purposes and Types
+
+Scripts validate different operations depending on their purpose, as defined in the [Conway era ledger specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl-files/conway.cddl):
+
+| Script Type | Description |
+| ----------- | ----------- |
+| **Spend Scripts** | Validate UTXO consumption. These are the most common scripts and the only ones that receive datum information. |
+| **Mint Scripts** | Control token creation and destruction through minting policies. |
+| **Publish Scripts** | Validate certificates including stake delegation, pool registration/retirement, DRep registration, committee changes, and other governance roles. |
+| **Withdraw Scripts** | Control stake reward withdrawals. |
+| **Vote Scripts** | Validate governance votes (introduced in Conway era). |
+| **Propose Scripts** | Validate governance proposals (introduced in Conway era). |
+| **Native Scripts** | Cardano's "original" scripting language that predates Plutus, providing simple multisig and time-lock functionality through a minimal domain-specific language with constructs like "all-of", "any-of", and "after/before" time constraints. |
+
 ### Collateral and Script Execution
 
 **Collateral**: UTXOs that must be provided when executing Plutus scripts to cover potential execution costs if the script fails during validation.
@@ -164,108 +183,51 @@ When a transaction includes script execution:
 - Should be sufficient to cover script execution costs
 - With Vasil upgrade: can specify change address to return excess collateral
 
-### Script Purposes and Types
-
-Scripts validate different operations depending on their purpose, as defined in the [Conway era ledger specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl-files/conway.cddl):
-
-**Spend Scripts** - Validate UTXO consumption. These are the most common scripts and the only ones that receive datum information.
-
-**Mint Scripts** - Control token creation and destruction through minting policies.
-
-**Publish Scripts** - Validate certificates including stake delegation, pool registration/retirement, DRep registration, committee changes, and other governance roles.
-
-**Withdraw Scripts** - Control stake reward withdrawals.
-
-**Vote Scripts** - Validate governance votes (introduced in Conway era).
-
-**Propose Scripts** - Validate governance proposals (introduced in Conway era).
-
-**Native Scripts** - Cardano's "original" scripting language that predates Plutus, providing simple multisig and time-lock functionality through a minimal domain-specific language with constructs like "all-of", "any-of", and "after/before" time constraints.
-
 ### Deterministic Validation
 
 Validators are fully deterministic - their execution depends only on the transaction context. This predictability allows you to verify transaction outcomes before submission, unlike systems where network conditions can affect execution.
 
 ## Contract Workflows
 
-Understanding how scripts work in practice helps bridge the conceptual model with real implementation.
+Understanding how scripts work in practice helps bridge the unique UTxO model with a basic example. Let's trace through a simple counter contract that demonstrates the datum/redeemer relationship:
 
-### Basic Contract Example
+### Step 1: Create the Validator
 
-Let's trace through a simple secret-word contract that demonstrates the datum/redeemer relationship:
+Write a script that validates state transitions by checking that the redeemer (user action) correctly transforms the current datum (contract state) into the new datum AND that all contract rules are met. For example, a counter validator ensures the count increments by exactly one & that the transaction is signed by the authorized owner to spend the UTxO.
 
-**Step 1: Create the Validator**
-Write a script that validates permission to spend a UTxO from its address by comparing the redeemer message provided in a transaction against the datum of the UTxO its trying to spend (locked UTxO)
+### Step 2: Lock Funds (Initialize State)
 
-**Step 2: Lock Funds**
-Create a transaction that sends Ada to the script address with a datum which contains a field you will want to compare the redeemer value to. This locks the funds under your validation logic.
+Create a transaction that sends a UTxO value to the script address with a datum containing the initial state (e.g., `count: 0`) and any access control information (e.g., the owner's public key hash). This locks the funds under your validation logic and establishes both the contract's starting state and who can interact with it.
 
-**Step 3: Unlock Funds**
-To spend the locked UTXO, provide a correct redeemer which fulfills the contract logic. The validator compare it to the "stored" datum tied to the UTxO owned by its own address, allowing the transaction if they match.
+### Step 3: Unlock and Update State
 
-### Stateful Contracts and State Persistence
-
-For contracts that need to maintain state across multiple transactions, Cardano uses the "spend-and-recreate" pattern:
-
-1. **Spend** the UTXO containing the current state
-2. **Recreate** a new UTXO at the same contract address with updated state
-3. **Validate** that the state transition follows your contract rules
+To spend the locked UTXO, provide a redeemer that specifies the desired action (e.g., "increment"). The validator compares the input datum (`count: 0`) with the redeemer ("increment") and the output datum (`count: 1`), allowing the transaction only if the state transition is valid (meets all validator requirements, like being transaction being signed by the authorized owner and following the correct state transition - incrementing the count only by 1). This creates a new UTXO with updated state while the old one is consumed/spent.
 
 ```mermaid
 flowchart LR
-    A[UTXO₁<br/>State: count=0] --> B[Transaction]
-    B --> C[UTXO₂<br/>State: count=1]
-    C --> D[Transaction]
-    D --> E[UTXO₃<br/>State: count=2]
+    A[UTXO₁<br/>State: count=0] --> B{Validate:<br/>• count₁ = count₀ + 1<br/>• Signed by owner<br/>}
+    B -->|✓ Valid| C[UTXO₂<br/>State: count=1]
+    B -->|✗ Invalid| G[Transaction Fails]
+    C --> D{Validate:<br/>• count₂ = count₁ + 1<br/>• Signed by owner<br/>}
+    D -->|✓ Valid| E[UTXO₃<br/>State: count=2]
+    D -->|✗ Invalid| H[Transaction Fails]
     E --> F[...]
-    
-    B -.->|Validates| G[count₁ = count₀ + 1]
-    D -.->|Validates| H[count₂ = count₁ + 1]
     
     style A fill:#e1f5fe
     style C fill:#e1f5fe
     style E fill:#e1f5fe
-    style G fill:#fff3e0
-    style H fill:#fff3e0
+    style G fill:#ffcdd2
+    style H fill:#ffcdd2
 ```
 
-**Example**: A simple counter that tracks the number of times it's been used:
+### Workflow Diagrams
 
-```rust title="State Threading Counter Example"
-smart_contract_logic(datum, redeemer, context):
-  old_count = datum.count
-  new_count = old_count + 1
-  
-  // Ensure the transaction creates a new output at the same script address
-  // with the incremented count in its datum
-  validate_output_has_incremented_count(context, new_count)
-```
+![Continue Counting Tests](./img/overview-1.png)
+![Continue Counting Tests](./img/overview-2.png)
+![Continue Counting Tests](./img/overview-3.png)
+![Continue Counting Tests](./img/overview-4.png)
 
-This creates a "thread" of UTXOs, each containing the evolved state of your contract. The key insight: **state isn't stored in a contract - it's stored in UTXOs that the contract validates**.
-
-### State Validation and Trust
-
-:::warning State Security
-There's a critical security consideration: anyone can send a UTXO to your contract address with any datum they want. The spending validator only "runs" (validates the logic you defin) when UTXOs are tried to be spent, not when they're received.
-:::
-
-To ensure state authenticity, many Cardano applications use **state-thread tokens** or **auth tokens** (NFTs) that prove a UTXO's state is legitimate. This is commonly called the **state-thread token pattern**. The pattern works like this:
-
-1. **Minting policy** validates that new state is created correctly and mints an NFT
-2. **Spending validator** requires the NFT to be present and passed along to the new state
-3. **NFT presence** proves the state was created through proper validation
-
-This bridges minting policies and spending validators to create trustless, validated state management.
-
-## Takeaways
-
-- Think of validators as mathematical functions that receive three inputs (datum, redeemer, context) and return true/false to allow/deny transactions.
-
-- Datums carry contract state between transactions, while redeemers provide the inputs to drive state changes.
-
-- Validators are predictable meaning the same inputs always produce the same result, allowing you to verify transaction outcomes before submission.
-
-- Smart contracts require both on-chain validators and off-chain code to construct valid transactions. The off-chain component is equally critical for user experience.
+This pattern - spending a UTXO and recreating it with new state - is how Cardano handles stateful contracts. Each transaction in the chain validates that the state evolution follows your contract's rules, creating an auditable history of state changes.
 
 ## Modern Smart Contract Features
 
@@ -322,4 +284,3 @@ Writing well-designed smart contracts requires you to have a solid understanding
 - [Scalus](smart-contract-languages/scalus) - a modern unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic. Scalus works with JVM and JavaScript too.
 - [Plinth](smart-contract-languages/plinth) - "Canonical" smart contract language of Cardano written in Haskell with advanced tooling. Can be used for both on-chain and off-chain.
 - [Plu-ts](smart-contract-languages/plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
-

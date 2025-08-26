@@ -40,7 +40,7 @@ You can also use this design pattern to avoid the need to perform expensive trav
 
 Here is a non-optimized implementation of a length function that calculates and returns the number of elements in a `BuiltinList`.
 
-```rs
+```rust
 builtinListLength :: Integer -> BI.BuiltinList a -> Integer
 builtinListLength l =
  go :: Integer -> BI.BuiltinList a -> Integer
@@ -58,7 +58,7 @@ As an exercise in this design pattern, try to design an optimized version of the
 
 ### Example 2 - List Length
 
-```rs
+```rust
 import qualified PlutusTx.Builtins as BI
 import qualified PlutusTx.Builtins.Internal as BI
 import Language.Haskell.TH
@@ -112,7 +112,7 @@ More generally, this design pattern can be used to improve performance in any si
 Here is a non-optimized implementation of a function that counts the amount of `Spend` redeemers in `txInfoRedeemers`, thus it tells us the total number of spending script executions
 in the transaction (this will also be the total number of script inputs in the transaction).
 
-```rs
+```rust
 {-# INLINE countSpendRedeemersSkipFirst #-}
 countSpendRedeemersSkipFirst :: BuiltinData -> Integer
 countSpendRedeemersSkipFirst b = go (BI.tail $ BI.unsafeDataAsMap b) 0
@@ -148,7 +148,7 @@ smart contract to verify and process the transaction.
 
 The code for the validator in this case would be something like this:
 
-```rs
+```rust
 validatorA :: Datum -> Redeemer -> ScriptContext -> Bool
 validatorA datum redeemer context =
   let input    = findOwnInput         context
@@ -164,7 +164,7 @@ validatorA datum redeemer context =
 
 Note that `findOwnInput` checks the `TxOutRef` of each input to identify the one currently being validated. In this case, the check (comparing `TxOutRef`) is relatively cheap, even so, the actual search is very expensive since in the worst-case we traverse the entire list of inputs and check each one. Furthermore, often you will want to search for an input / output with more complex criteria ie:
 
-```rs
+```rust
 validatorB :: AssetClass -> BuiltinData -> BuiltinData -> ScriptContext -> Bool
 validatorB stateToken _ _ ctx =
   let authInput  = findAuth ctx  
@@ -182,7 +182,7 @@ validatorB stateToken _ _ ctx =
 
 Using the redeemer indexing design pattern we can avoid needing to make these checks for each input / output, instead we pass the index of the input / output we are looking into the redeemer then we just make our checks for the element at that index:
 
-```rs
+```rust
 validatorA :: AssetClass -> BuiltinData -> Integer -> ScriptContext -> Bool 
 validatorA stateToken _ tkIdx ctx =
   assetClassValueOf stateToken (txInInfoResolved (elemAt tkIdx (txInfoInputs (txInfo ctx)))) == 1  
@@ -306,7 +306,7 @@ introduces the use of UTxO indices within the redeemer. The redeemer is a compon
 that carries additional data required for smart contract validation. In this context, the indices of
 script inputs and their corresponding outputs are included within the redeemer.
 
-```rs
+```rust
 data MyRedeemer = MyRedeemer
   { ioIndices :: [(Integer, Integer)] -- [(inputIndex, outputIndex)]
   }
@@ -361,7 +361,7 @@ providing their absolute indexes.
 
 ### Example 3 - Expected Redeemers
 
-```rs
+```rust
 import qualified PlutusTx.Builtins as BI
 import qualified PlutusTx.Builtins.Internal as BI
 import PlutusTx.Builtins.Internal (BuiltinData)

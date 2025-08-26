@@ -12,7 +12,7 @@ Perhaps the most pervasive use-case of this is to allow logic that is shared acr
 
 This is commonly referred to as the forwarding validator design pattern. In this design pattern, the validator (typically a spending validator) defers its logic to another validator by checking that a state token is present in one of the transaction inputs:
 
-```rs
+```rust
 forwardNFTValidator :: AssetClass -> BuiltinData -> BuiltinData -> ScriptContext -> () 
 forwardNFTValidator stateToken _ _ ctx = assetClassValueOf stateToken (valueSpent (txInfo ctx)) == 1
 ```
@@ -22,7 +22,7 @@ we guarantee that the spending validator with the state token successfully execu
 
 This pattern is a core component of the batcher architecture. Some protocols improve on this pattern by including the index of the input with the state token in the redeemer:
 
-```rs
+```rust
 forwardNFTValidator :: AssetClass -> BuiltinData -> Integer -> ScriptContext -> () 
 forwardNFTValidator stateToken _ tkIdx ctx =  assetClassValueOf stateToken (txInInfoResolved (elemAt tkIdx (txInfoInputs (txInfo ctx)))) == 1 
 ```
@@ -34,7 +34,7 @@ The redundant execution of identical validation logic across spending validator 
 
 For the stake validator trick, the forwardValidator logic becomes:
 
-```rs
+```rust
 forwardWithStakeTrick:: StakingCredential -> BuiltinData -> BuiltinData -> ScriptContext -> ()
 forwardWithStakeTrick obsScriptCred tkIdx ctx = fst (head stakeCertPairs) == obsScriptCred 
   where 
