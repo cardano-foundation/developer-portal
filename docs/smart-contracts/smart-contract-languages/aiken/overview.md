@@ -141,7 +141,6 @@ Visit [Danolearn](https://danolearn.com/en/course/cardano-smart-contract-develop
 ### Examples
 
 - Visit [Awesome Aiken](https://github.com/aiken-lang/awesome-aiken#readme) repository to find a curated list of open-source projects using Aiken.
-- [Aiken Playground](https://play.aiken-lang.org/) is an online environment where developers can test and experiment with Aiken functions and smart contracts without needing to install software on their local device.
 - For advanced design patterns, check out the [Aiken Design Patterns](https://github.com/aiken-lang/aiken-design-patterns) repository.
 
 ## Development Workflow
@@ -162,7 +161,6 @@ These functions create reusable validation logic for common operations. These ut
 :::
 
 - To discover a list of utility libraries providing functions to streamline common operations, visit [Aiken Package Registry](https://packages.aiken-lang.org/).
-
 - A great library of reusable functions to simplify your dev workflows which gives you a access to common use cases to be imported into your Aiken project. Definitely check out [Vodka](https://github.com/sidan-lab/vodka).
 
 ## Testing in Aiken
@@ -174,3 +172,4 @@ Aiken provides first-class support for both unit tests and property-based [tests
 ### Debugging
 
 - [Gastronomy](https://sundae.fi/products/gastronomy), is an advanced tool that lets you step through Cardano smart contract code, line-by-line.
+- [Aiken Playground](https://play.aiken-lang.org/) is an online environment where developers can test and experiment with Aiken functions and smart contracts without needing to install software on their local device.
