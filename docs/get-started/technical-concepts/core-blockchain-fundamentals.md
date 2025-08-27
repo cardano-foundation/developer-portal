@@ -16,9 +16,9 @@ Cardano was designed with input from a large global team including leading exper
 
 If you haven't seen it yet, watch the legendary whiteboard video from 2017. Some details are a bit outdated, but it is still worth seeing to understand what Cardano is and where Cardano came from.
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/Ja9D0kpksxw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/Ja9D0kpksxw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Extended Unspent Transaction Output (EUTXO)
 
@@ -59,7 +59,7 @@ The EUTXO model combines:
 - Redeemers: User-supplied arguments passed to scripts during validation
 - Context: Transaction information available to scripts during validation
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 :::info
 Deep dive into [Cardano's EUTXO accounting model here](https://ucarecdn.com/3da33f2f-73ac-4c9b-844b-f215dcce0628/EUTXOhandbook_for_EC.pdf).
@@ -75,10 +75,12 @@ Deep dive into [Cardano's EUTXO accounting model here](https://ucarecdn.com/3da3
 
 **Deterministic Validation**: Transaction success depends only on the transaction itself and its inputs. Users can predict locally (off-chain) how their transaction will impact the ledger state without encountering unexpected validation failures, fees, or state updates. If inputs are available when validated, the transaction is guaranteed to succeed. This contrasts with account-based models, where a transaction can fail mid-script execution.
 
+**Zero-Knowledge Proof Compatibility**: EUTXO's deterministic nature makes it ideal for zero-knowledge scaling solutions. Since transaction outcomes are deterministic and predictable, you can execute complex computations off-chain and generate proofs against known state. The proof can then be verified on-chain without re-executing the computation. This contrasts with account-based models where global state changes unpredictably, making it difficult to construct valid ZK proofs since the state may change between proof generation and verification.
+
 ### TPS vs. eUTxO
 
 Which is better, high transactions per second or eUTxO?  
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/wDmLVMmevNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/wDmLVMmevNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ### Important Development Considerations
 
@@ -210,7 +212,7 @@ Understanding the difference between when a transaction appears on-chain versus 
 
 For most applications, waiting 6-20 confirmations provides really strong finality guarantees. High-value transactions may require more confirmations, while small transactions might accept fewer.
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Transaction Fees
 
@@ -242,18 +244,18 @@ Unlike many blockchains where fees go directly to block producers, Cardano uses 
 
 The fee structure prevents economic attacks where system operator costs exceed user fees. Without proper fee alignment, users could impose costs on operators without paying proportionally, potentially leading to reduced participation and system instability. Cardano's parameters are designed to ensure fees cover both processing and long-term storage costs.
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/lpSIpPWp7H8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/lpSIpPWp7H8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Guaranteed Transaction Delivery
 
 How dropped transactions happen on cardano and how to ensure we always deliver them into blocks.
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/gm-phCUGEoY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/gm-phCUGEoY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Addresses
 
 Cardano addresses are used as destinations to send ada on the blockchain. Understanding their structure and types is fundamental to working with the Cardano ecosystem.
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ### Address Construction and Structure
 
@@ -296,7 +298,7 @@ Shelley addresses contain two distinct parts:
 **Franken addresses** allow payment and delegation parts to be controlled by different entities, enabling separation of fund control and staking rights.
 
 Franken Addresses are a way to register additional pledge to a pool without registering a second owner on the blockchain.
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/KULzovfWn-M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/KULzovfWn-M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ### Address Types
 
@@ -314,7 +316,7 @@ Cardano supports different address types across categories:
 
 Learn and dive into CPS-0002 which focuses on Pointer Addresses.
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/XKgmP1r_GSA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/XKgmP1r_GSA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 #### Legacy Byron Addresses
 

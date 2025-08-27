@@ -156,19 +156,19 @@ This chain selection rule allows for a party that joins the network at any time 
 
 ### Video: What’s an Ouroboros and how you cook it?
 
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/U92Ks8rucDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### Slot Lottery
 
 In this video, we describe exactly how a stake pool on Cardano gets elected to make a block.  
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/M3Xq1qz3ljU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/M3Xq1qz3ljU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 #### Slot Battles
 
 On Cardano, slot battles happen when two pools try to make a block in the same slot (at the same time). We break down how the blockchain determines which block should win and what is the "correct" source of truth on the blockchain.  
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/Cm5pBM7UYa0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/Cm5pBM7UYa0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 #### Epoch Nonce
 
 The epoch nonce allows you to calculate leaderlogs for your stake pool on Cardano.
-<iframe width="100%" height="325" src="https://www.youtube.com/embed/vF82ZalZlcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/vF82ZalZlcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
