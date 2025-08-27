@@ -5,7 +5,7 @@ title: Smart Contracts
 sidebar_label: Overview
 description: Learn how to create smart contracts on Cardano.
 image: /img/og/og-developer-portal.png
---- 
+---
 
 ![Smart Contracts](../../static/img/card-smart-contracts-title.svg)
 
@@ -82,7 +82,7 @@ flowchart TD
     F --> G{Result}
     G -->|Success| H[Transaction Valid]
     G -->|Failure| I[Transaction Invalid]
-    
+
     style C fill:#e1f5fe
     style D fill:#f3e5f5
     style E fill:#e8f5e8
@@ -101,36 +101,40 @@ Consider the analogy of a simple function: `f(x) = x * a + b`
 
 #### Datum: Contract State
 
-Data attached to UTXOs when they're created that "locks" funds under specific conditions. Datums carry contract state between transactions, enabling complex state machines by preserving information that subsequent transactions can read and modify. When someone sends funds to a script address, they attach the datum to define the conditions under which the funds can be spent.
+Data attached to UTXOs and is immutable. Datums carry contract state between transactions, enabling complex state machines by preserving information that subsequent transactions can read and modify. When someone sends UTxOs to a script address, they attach the datum to define the conditions under which the UTxO can be spent. Datum are the extension to the UTxO model and, in a way, stand for the "e" in eUTxO. Unlike the Bitcoin UTxO model, which lacks datums and thus has limited capabilities, the extended UTxO model provides capabilities comparable to an account-based model while maintaining a safer approach to transactions by avoiding global state mutations.
 
-#### Redeemer: User Input  
+#### Redeemer: User Input
 
-Data provided by users when spending UTXOs that "unlocks" funds by satisfying the script's conditions. Redeemers drive state transitions by supplying the inputs needed to transform the current state (datum) into a new state. The redeemer must meet the validation logic specified by the script to successfully spend the locked funds.
+Data provided by users with the transaction for script execution when spending UTXOs that "unlocks" funds by satisfying the script's conditions. Redeemers drive state transitions by supplying the inputs needed to transform the current state (datum) into a new state. The redeemer must meet the validation logic specified by the script to successfully spend the locked funds.
 
-#### Context: Transaction Information
+> Recap: The datum is set when the UTxO is created, whereas the redeemer is provided only when spending the UTxO.
 
-Comprehensive information about the spending transaction, including inputs, outputs, signatures, fees, and other transaction properties. This allows scripts to make assertions about transaction structure and participants.
+#### Script Context: Transaction Information
+
+Logic in smart contracts involves making validations about certain properties of the transaction, including inputs, outputs, signatures, fees, and other transaction properties. This allows scripts to make assertions about transaction structure, participants, timing, and other properties.
 
 **Available Context Properties:**
 
-| Property | Description |
-| -------- | ----------- |
-| **inputs** | List of transaction inputs to be spent |
-| **reference_inputs** | Inputs used for reference only, not spent |
-| **outputs** | New outputs created by the transaction |
-| **fee** | Transaction fee in Lovelace |
-| **mint** | Value being minted or burned |
-| **certificates** | Certificates for delegation, pool operations, governance roles, etc. |
-| **withdrawals** | Stake reward withdrawals as credential-lovelace pairs |
-| **validity_range** | Time range in which the transaction is valid |
-| **extra_signatories** | Additional verification key hashes required for validation |
-| **redeemers** | Script purpose and redeemer pairs for script execution |
-| **datums** | Dictionary mapping data hashes to datum data |
-| **id** | Transaction identification (hash) |
-| **votes** | Governance votes as voter-vote pairs (Conway era) |
-| **proposal_procedures** | Governance proposals (Conway era) |
-| **current_treasury_amount** | Current treasury amount (optional) |
-| **treasury_donation** | Treasury donation amount (optional) |
+| Property                                                                                 | Description                                                                                                                             |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **inputs**                                                                               | List of transaction inputs being spent in the transaction. In the UTXO model,                                                           |
+| every transaction produces outputs, which in turn become inputs for future transactions. |
+| **reference_inputs**                                                                     | Inputs used for reference only, not spent                                                                                               |
+| **outputs**                                                                              | New outputs created by the transaction. These are the new UTXOs created by the transaction                                              |
+| **fee**                                                                                  | Transaction fee in Lovelace. This value is predictable                                                                                  |
+| and depends on the transaction size. Fees can often be optimized.                        |
+| **minted value**                                                                         | This is the value of tokens being minted or burned in the transaction                                                                   |
+| **certificates**                                                                         | Certificates for delegation, pool operations (register/deregister stake key), governance roles, etc.                                    |
+| **withdrawals**                                                                          | Stake reward withdrawals as credential-lovelace pairs                                                                                   |
+| **validity_range**                                                                       | Time range in which the transaction is valid.                                                                                           |
+| **signatories**                                                                          | A list of hashes representing who signed the transaction.                                                                               |
+| **redeemers**                                                                            | Script purpose and redeemer pairs for script execution. These are a list of redeemers used by the contracts executed in the transaction |
+| **datums**                                                                               | Dictionary mapping data hashes to datum data                                                                                            |
+| **id**                                                                                   | Transaction identification (hash) that is unique for each transaction                                                                   |
+| **votes**                                                                                | Governance votes as voter-vote pairs (Conway era)                                                                                       |
+| **proposal_procedures**                                                                  | Governance proposals (Conway era)                                                                                                       |
+| **current_treasury_amount**                                                              | Current treasury amount (optional)                                                                                                      |
+| **treasury_donation**                                                                    | Treasury donation amount (optional)                                                                                                     |
 
 :::note Transaction Context Representation
 This is a representation of a transaction as seen by on-chain scripts, and not the 1:1 translation of the transaction as seen by the ledger. The underlying ledger uses a different structure with numeric field keys as defined in the [Conway CDDL specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl-files/conway.cddl). In particular, on-chain scripts can't see inputs locked by bootstrap addresses, outputs to bootstrap addresses, or transaction metadata.
@@ -157,19 +161,21 @@ Unlike regular addresses controlled by private keys, script addresses are contro
 
 Scripts validate different operations depending on their purpose, as defined in the [Conway era ledger specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl-files/conway.cddl):
 
-| Script Type | Description |
-| ----------- | ----------- |
-| **Spend Scripts** | Validate UTXO consumption. These are the most common scripts and the only ones that receive datum information. |
-| **Mint Scripts** | Control token creation and destruction through minting policies. |
-| **Publish Scripts** | Validate certificates including stake delegation, pool registration/retirement, DRep registration, committee changes, and other governance roles. |
-| **Withdraw Scripts** | Control stake reward withdrawals. |
-| **Vote Scripts** | Validate governance votes (introduced in Conway era). |
-| **Propose Scripts** | Validate governance proposals (introduced in Conway era). |
-| **Native Scripts** | Cardano's "original" scripting language that predates Plutus, providing simple multisig and time-lock functionality through a minimal domain-specific language with constructs like "all-of", "any-of", and "after/before" time constraints. |
+| Script Type          | Description                                                                                                                                                                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Spend Scripts**    | Validate UTXO consumption. These are the most common scripts and the only ones that receive datum information.                                                                                                                               |
+| **Mint Scripts**     | Control token creation and destruction through minting policies.                                                                                                                                                                             |
+| **Publish Scripts**  | Validate certificates including stake delegation, pool registration/retirement, DRep registration, committee changes, and other governance roles.                                                                                            |
+| **Withdraw Scripts** | Control stake reward withdrawals.                                                                                                                                                                                                            |
+| **Vote Scripts**     | Validate governance votes (introduced in Conway era).                                                                                                                                                                                        |
+| **Propose Scripts**  | Validate governance proposals (introduced in Conway era).                                                                                                                                                                                    |
+| **Native Scripts**   | Cardano's "original" scripting language that predates Plutus, providing simple multisig and time-lock functionality through a minimal domain-specific language with constructs like "all-of", "any-of", and "after/before" time constraints. |
 
 ### Collateral and Script Execution
 
 **Collateral**: UTXOs that must be provided when executing Plutus scripts to cover potential execution costs if the script fails during validation.
+
+#### Transaction Validation Phases
 
 When a transaction includes script execution:
 
@@ -177,11 +183,25 @@ When a transaction includes script execution:
 - **Phase 2 Validation**: Script execution and validation
 - If Phase 2 fails, collateral UTXOs are consumed instead of regular transaction fees
 
-**Collateral Requirements**:
+#### Collateral Requirements
 
 - Must contain only ADA (no native tokens)
 - Should be sufficient to cover script execution costs
+- Collateral amount is determined by the total balance of UTXOs marked as collateral inputs
 - With Vasil upgrade: can specify change address to return excess collateral
+
+#### Purpose and Protection
+
+Collateral serves as a monetary guarantee that encourages careful design and testing of smart contracts. Without collateral, malicious actors could exploit the network by flooding it with invalid transactions at little cost. Key protections include:
+
+- **Network Security**: Makes Denial of Service (DoS) attacks prohibitively expensive
+- **Node Compensation**: Ensures nodes are compensated for their work if Phase 2 validation fails
+- **User Safety**: Collateral is not collected if a transaction succeeds or is invalid at Phase 1
+- **Deterministic Costs**: Unlike Ethereum where gas costs vary based on network activity, Cardano's deterministic design allows users to calculate execution costs and collateral requirements in advance
+
+#### Technical Implementation
+
+Phase 2 scripts require a budget of execution units (ExUnits) to quantify resource usage for metrics like memory usage and execution steps. This budget is included in the transaction fee calculation, with collateral providing additional safeguards for script execution failures.
 
 ### Deterministic Validation
 
@@ -212,7 +232,7 @@ flowchart LR
     D -->|✓ Valid| E[UTXO₃<br/>State: count=2]
     D -->|✗ Invalid| H[Transaction Fails]
     E --> F[...]
-    
+
     style A fill:#e1f5fe
     style C fill:#e1f5fe
     style E fill:#e1f5fe
@@ -238,7 +258,7 @@ Cardano provides several powerful features that make smart contract development 
 You can read UTXO data without spending it. This is great for:
 
 - **Oracle feeds**: Multiple contracts can read the same price data simultaneously
-- **State queries**: Check contract state without modifying it  
+- **State queries**: Check contract state without modifying it
 - **Shared resources**: Multiple users can access the same data without conflicts
 
 Instead of the old spend-and-recreate pattern, just reference the UTXO you want to read from.
