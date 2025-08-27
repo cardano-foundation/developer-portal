@@ -5,11 +5,13 @@ sidebar_label: Merkle Tree
 description: A Merkle tree structure designed following the Aiken methodology.
 ---
 
-> The codebase can be found [here](https://github.com/Anastasia-Labs/aiken-merkle-tree)
-
 ## Introduction
 
 The Aiken Merkle Tree project provides a Plutarch-based implementation of Merkle Trees for the Cardano blockchain. This project allows developers to leverage the security and efficiency of Merkle Trees in their Cardano smart contracts, ensuring data integrity and efficient data verification.
+
+:::info 
+The github repository introducing these data structures can be found [here](https://github.com/Anastasia-Labs/aiken-merkle-tree).
+:::
 
 ## Documentation
 

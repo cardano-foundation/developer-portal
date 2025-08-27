@@ -100,3 +100,8 @@ Transaction level validation can be implemented using minting policies. However,
 validation tokens is impractical, the recommended approach is to implement transaction level
 validation using a staking validator due to lower ExUnits cost compared to minting policy checks,
 based on our experience.
+
+
+:::note
+You can find a sample implementation of a tx level minter written in Aiken in this[repository](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/spend-logic.ak).
+:::

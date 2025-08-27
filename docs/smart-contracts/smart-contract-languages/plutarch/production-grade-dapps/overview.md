@@ -1,21 +1,17 @@
 ---
 id: overview
-title: Plutarch Overview
+title: Overview
 sidebar_label: Plutarch Overview
 description: Efficient Smart Contract Platform
 ---
 
 ## Introduction to Production-Grade DApp Development on Cardano
 
-Welcome to the beginning of an educational journey tailored for developers and enthusiasts venturing into the Cardano decentralized application (DApp) ecosystem. The landscape of blockchain and DApp development is ever-evolving, marked by innovation, complex challenges, and the constant pursuit of efficiency and security. In the realm of Cardano, a blockchain platform known for its robust security features and scalable solutions, the need for open-source, production-grade resources has never been more pronounced.
+Blockchain and DApp development keep moving fast, new tools, new challenges, and a constant push for better security and efficiency. Cardano is known for its strong foundations in security and scalability, but one big issue stands out: developers don’t have enough open, production-ready code to learn from and build on.
 
-The Cardano ecosystem, while rich in potential and innovation, currently faces a significant challenge: the scarcity of openly available, production-level codebases. This gap is particularly noticeable when compared to ecosystems like Ethereum, where resources such as the entire UniSwap codebase are readily accessible, providing invaluable insights into architecture, design, implementation, and optimization techniques.
+That’s the gap we’re trying to close. The goal is to provide the Cardano community with open-source smart contract libraries that are practical, reliable, and production-grade. More than just snippets, these libraries reflect best practices in contract design, security, testing, and optimization. They’re meant to be composable building blocks, helping developers move faster, avoid common pitfalls, and focus energy where it really matters: building great DApps.
 
-This scarcity hinders not only the proliferation of knowledge and best practices among existing developers but also poses a daunting barrier to entry for teams aspiring to transition or start fresh in the Cardano ecosystem. The consequence is a landscape where redundant efforts prevail, and the wheel is often reinvented, diverting valuable resources away from innovation and improvement towards merely catching up with existing standards.
-
-Recognizing this critical gap, our mission is to equip the Cardano community with a suite of versatile, open-source smart contract libraries. These libraries are not just code snippets; they are a testament to best practices in smart contract design, security, testing, and optimization. Designed with composability in mind, they serve as foundational blocks for building complex DApps, streamlining the development process, and fostering innovation within the ecosystem.
-
-Our offerings include:
+Production Grade dApp in this list include:
 
 - **[Merkle Tree Contracts](./merkle-tree)**: Enhance data integrity verification and enable swift proof checks in extensive datasets.
 

@@ -5,7 +5,13 @@ sidebar_label: Yield Farming
 description: Yield farming is a financial strategy in the world of decentralized finance (DeFi) that allows cryptocurrency holders to earn passive income through their assets.
 ---
 
-Yield farming is a financial strategy in the world of decentralized finance (DeFi) that allows cryptocurrency holders to earn passive income through their assets. This guide will provide you with an understanding of yield farming and its implementation, particularly within the Cardano blockchain ecosystem, funded by the Cardano Treasury in [Catalyst Fund 10](https://projectcatalyst.io/funds/10/f10-developer-ecosystem-the-evolution/anastasia-labs-open-source-production-grade-dapps).
+## Introduction
+
+Yield farming is a financial strategy in the world of decentralized finance (DeFi) that allows cryptocurrency holders to earn passive income through their assets. This guide will provide you with an understanding of yield farming and its implementation.
+
+:::info
+The source code for these dApps can be found [here](https://github.com/Anastasia-Labs/yieldfarming).
+:::
 
 ## Understanding Yield Farming
 
@@ -68,7 +74,7 @@ Adds more rewards to the yield farming pool.
 
 - `YieldFarmingDatum`
 
-```haskell
+```rust
 data YieldFarmingDatum = YieldFarmingDatum
   { owner :: Address
   , lpCS :: CurrencySymbol
@@ -80,7 +86,7 @@ A data type that encapsulates the information related to a yield farming operati
 
 - `YieldFarmRedeemer`:
 
-```haskell
+```rust
 data YieldFarmRedeemer
   = Terminate
   | HarvestRewards {ownIndex :: Integer}
@@ -114,9 +120,3 @@ graph TD
 
     class B,C,D operation
 ```
-
-## Conclusion
-
-Yield farming on Cardano, powered by Plutarch script, represents an innovative approach to earning rewards in the DeFi space. This guide has provided a comprehensive look at the yield farming implementation, the functions, data types, and a visual representation of the process. While yield farming can be profitable, it is crucial to be aware of the risks and approach this investment strategy with due diligence.
-
-- Source Code can be found [here](https://github.com/Anastasia-Labs/yieldfarming).

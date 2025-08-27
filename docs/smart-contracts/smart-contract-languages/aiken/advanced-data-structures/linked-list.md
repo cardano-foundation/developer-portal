@@ -5,11 +5,13 @@ sidebar_label: Linked List
 description: A linked list implementation using the Aiken methodology.
 ---
 
-> The codebase can be found [here](https://github.com/Anastasia-Labs/aiken-linked-list)
-
 ## Introduction
 
 Linked list structures leverage the EUTXO model to enhancing scalability and throughput significantly. By linking multiple UTXOs together through a series of minting policies and validators, it can improve the user experience interacting with smart contract concurrently.
+
+:::info 
+The github repository introducing these data structures can be found [here](https://github.com/Anastasia-Labs/aiken-linked-list).
+:::
 
 ## Documentation
 

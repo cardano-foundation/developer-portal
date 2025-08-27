@@ -11,7 +11,9 @@ Linear Vesting contract aims at providing a reliable mechanism for releasing Car
 
 With so many projects launching on Cardano, many a times, there arises a requirement of vesting a project's own tokens to either their core team or supporters of the project. Vesting assets to beneficiary in proportion to the elapsed time, i.e. Linear Vesting is a very straightforward and common preference. While there definitely exist more complex vesting requirements, we hope that the contract here will help those looking for something simple for their use case. Or serve as a reference for those who want to build more elaborate arrangements.
 
-This project is funded by the Cardano Treasury in [Catalyst Fund 10](https://projectcatalyst.io/funds/10/f10-developer-ecosystem-the-evolution/anastasia-labs-open-source-production-grade-dapps).
+:::info
+The source code for these dApps can be found [here](https://github.com/Anastasia-Labs/linear-vesting).
+:::
 
 ## Key Features
 
@@ -27,7 +29,7 @@ The linear vesting validator is not a parameterized one. All its customization n
 
 This data structure holds the details of the vesting arrangement, including the beneficiary's address, the asset class of the tokens being vested, the total quantity of tokens, the start and end of the vesting period, the earliest point at which tokens can be unlocked, and the total number of installments.
 
-```hs
+```rust
 data VestingDatum = VestingDatum
   { beneficiary :: Address
   , vestingAsset :: AssetClass
@@ -45,7 +47,7 @@ A single UTxO at the validator address corresponds to a single vesting arrangeme
 
 After `firstUnlockPossibleAfter` and before `vestingPeriodEnd`, beneficiary can claim the vested asset in proportion to the time that has passed after `vestingPeriodStart`. The remaining assets needs to be sent back to the validator address with the original datum intact otherwise the validation will fail. This spending tx requires `PartialUnlock` redeemer.
 
-```hs
+```rust
 data VestingRedeemer
   = PartialUnlock
   | FullUnlock
@@ -75,9 +77,3 @@ sequenceDiagram
 :::warning
 An important thing to note about the validator is that it only allows one script input to be spent in a single tx. Allowing more than one script input to be spent within it, could result in a critical vulnerability in the form of [Double Satisfaction Attack](https://plutus.readthedocs.io/en/latest/reference/writing-scripts/common-weaknesses/double-satisfaction.html?highlight=double#unique-outputs) by spending two vesting UTxOs with the exact datum.
 :::
-
-## Conclusion
-
-This resource aims to provide a clear understanding of the Linear Vesting contract's functionality, its components, and the operational flow, supplemented by a visual representation to aid in comprehension.
-
-- Source Code can be found [here](https://github.com/Anastasia-Labs/linear-vesting).

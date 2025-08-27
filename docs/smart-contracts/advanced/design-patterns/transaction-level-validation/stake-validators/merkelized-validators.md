@@ -97,3 +97,7 @@ merkelizedValidator stakeCred ... = P.do
 This is useful because with reference scripts this essentially gives us the ability to create scripts with near infinite size which means optimization strategies that involve increasing script size to reduce mem / CPU (ie loop unrolling) now are available to us at nearly zero cost.
 
 Consider a batching architecture, with a very large `processOrders` function. Normally it would not be feasible to perform recursion unrolling / inlining optimizations with such a function since it would quickly exceed the max script size limit; however, with this design pattern we simply move `processOrders` into its own validator script which we can fill with 16kb of loop unrolling and other powerful optimizations which increase script size in order to reduce ExUnits. We provide this new script as a reference script when executing our main validator. Then in our main validator we verify that the `processOrders` validator was executed with the expected redeemer (`inputState` must match the arguments we want to pass to `processOrders`) after which have access to the result of the optimized `processOrders` function applied to our inputs.
+
+:::note
+You can find a sample implementation of a merkelized validator written in Aiken in this[repository](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/main-contract.ak).
+:::

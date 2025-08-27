@@ -5,7 +5,13 @@ sidebar_label: Bridge Contracts
 description: Bridge contracts are smart contracts designed to connect two or more blockchain networks.
 ---
 
+## Introduction
+
 In the ever-evolving landscape of blockchain technology, interoperability has emerged as a critical feature, enabling disparate blockchain networks to communicate and share information seamlessly. Bridge contracts play a pivotal role in this domain, facilitating the secure and efficient transfer of assets and data across different blockchain ecosystems. This educational resource delves into the concept of bridge contracts, offering developers insights into their implementation and integration within decentralized applications (DApps).
+
+:::info
+The source code for these dApps can be found [here](https://github.com/Anastasia-Labs/bridge-template).
+:::
 
 ## Understanding Bridge Contracts
 
@@ -152,12 +158,6 @@ In this phase, the multisig system aggregates requests from the guardian validat
 
 ![fulfill.png](../img/fulfill.png)
 
-## Conclusion
+These operations are not merely transactions but represent the establishment of a cohesive and interconnected blockchain environment where assets and data move fluidly, unlocking new possibilities in the realm of DApps. The `GuardianValidator`, `MultiSigMintPolicy`, and `WrapMintPolicy` contracts, each play a distinct and critical role in ensuring these cross-chain interactions are performed without compromising the integrity and security of the networks involved.
 
-Through the exploration of bridge contracts and their integration into decentralized applications, we have uncovered the profound potential they hold in achieving interoperability between blockchain ecosystems. The minting and burning of wrapped tokens, as detailed in the process flows, demonstrate the seamless and secure transfer of assets between the Cardano blockchain and other chains, such as the X-chain.
-
-These operations are not merely transactions but represent the establishment of a cohesive and interconnected blockchain environment where assets and data move fluidly, unlocking new possibilities in the realm of DApps. The GuardianValidator, MultiSigMintPolicy, and WrapMintPolicy contracts, each play a distinct and critical role in ensuring these cross-chain interactions are performed without compromising the integrity and security of the networks involved.
-
-In conclusion, the advent of bridge contracts symbolizes a significant stride towards a future where the barriers between blockchain networks are transcended, fostering a landscape where diverse platforms can coalesce harmoniously. For developers and users alike, the understanding and application of bridge contracts will be instrumental in crafting DApps that are not just bound to a single blockchain but are truly global and universally accessible.
-
-- Source Code can be found [here](https://github.com/Anastasia-Labs/bridge-template).
+For developers and users alike, the understanding and application of bridge contracts will be instrumental in crafting DApps that are not just bound to a single blockchain but are truly global and universally accessible.

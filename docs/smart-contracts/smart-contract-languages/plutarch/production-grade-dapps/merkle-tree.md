@@ -5,11 +5,15 @@ sidebar_label: Merkle Trees
 description: Definitive guide on leveraging Plutarch Merkle Trees within the Cardano
 ---
 
+## Introduction
+
 Welcome to the definitive guide on leveraging Plutarch Merkle Trees within the Cardano smart contract ecosystem. This comprehensive documentation is designed to equip developers with the knowledge and tools necessary to integrate the robust and efficient data structure of Merkle Trees into their decentralized applications (DApps) using Plutarch, thereby enhancing data integrity and verification processes.
 
-## Introduction to Merkle Trees
-
 Merkle Trees are a cornerstone of cryptographic and computer science, offering a secure and efficient method to summarize and verify large datasets. Named after Ralph Merkle, this data structure is particularly beneficial in distributed systems like blockchains for its ability to ensure data integrity through cryptographic hashes.
+
+:::info
+The source code for these dApps can be found [here](https://github.com/Anastasia-Labs/plutarch-merkle-tree).
+:::
 
 ### Basic concept
 
@@ -110,7 +114,7 @@ fromList :: [BuiltinByteString] -> MerkleTree
 
 -`toList`: Deconstructs a Merkle Tree back into a list of elements.
 
-```haskell
+```rust
 toList :: MerkleTree -> [BuiltinByteString]
 ```
 
@@ -120,7 +124,7 @@ toList :: MerkleTree -> [BuiltinByteString]
 
 -`rootHash`: Retrieves the root hash of a Merkle Tree.
 
-```haskell
+```rust
 rootHash :: MerkleTree -> Hash
 ```
 
@@ -130,7 +134,7 @@ rootHash :: MerkleTree -> Hash
 
 -`isNull`: Checks if a Merkle Tree is empty.
 
-```haskell
+```rust
 isNull :: MerkleTree -> Bool
 ```
 
@@ -140,7 +144,7 @@ isNull :: MerkleTree -> Bool
 
 -`size`: Returns the number of leaf nodes in a Merkle Tree.
 
-```haskell
+```rust
 size :: MerkleTree -> Integer
 ```
 
@@ -150,7 +154,7 @@ size :: MerkleTree -> Integer
 
 -`mkProof`: Generates a proof of membership for an element in the Merkle Tree.
 
-```haskell
+```rust
 mkProof :: BuiltinByteString -> MerkleTree -> Maybe Proof
 ```
 
@@ -160,7 +164,7 @@ mkProof :: BuiltinByteString -> MerkleTree -> Maybe Proof
 
 -`member`: Verifies if an element is part of a Merkle Tree using a proof.
 
-```haskell
+```rust
 member :: BuiltinByteString -> Hash -> Proof -> Bool
 ```
 
@@ -170,7 +174,7 @@ member :: BuiltinByteString -> Hash -> Proof -> Bool
 
 -`hash`: Computes a SHA-256 hash of a given byte string.
 
-```haskell
+```rust
 hash :: BuiltinByteString -> Hash
 ```
 
@@ -180,7 +184,7 @@ hash :: BuiltinByteString -> Hash
 
 -`combineHash`: Combines two hashes into a new one.
 
-```haskell
+```rust
 combineHash :: Hash -> Hash -> Hash
 ```
 
@@ -190,7 +194,7 @@ combineHash :: Hash -> Hash -> Hash
 
 -`addLeaf`: Adds a new leaf to the Merkle Tree.
 
-```haskell
+```rust
 addLeaf :: BuiltinByteString -> MerkleTree -> MerkleTree
 ```
 
@@ -204,7 +208,7 @@ addLeaf :: BuiltinByteString -> MerkleTree -> MerkleTree
 
 Begin by creating a Merkle Tree from your dataset. This is achieved using the fromList function, which takes a list of data items (typically strings or bytes) and organizes them into a Merkle Tree structure:
 
-```haskell
+```rust
 import Plutus.MerkleTree (fromList)
 
 myData :: [String]
@@ -217,7 +221,7 @@ myMerkleTree = fromList myData
 
 To verify an item's presence within the tree, generate a cryptographic proof with mkProof. This proof is essential for the verification process:
 
-```haskell
+```rust
 import Plutus.MerkleTree (mkProof)
 import Data.Maybe (fromJust)
 
@@ -232,7 +236,7 @@ Caution: Ensure the item exists within the tree before using fromJust to avoid r
 
 With the proof in hand, you can assert the item's presence using the member function. This involves checking the item against the tree's root hash:
 
-```haskell
+```rust
 import Plutus.MerkleTree (member, rootHash)
 
 isValid = member "data1" (rootHash myMerkleTree) myProof
@@ -242,7 +246,7 @@ isValid = member "data1" (rootHash myMerkleTree) myProof
 
 Transitioning to on-chain validation with Plutarch involves converting data and proofs to Plutarch-compatible types and utilizing pmember for verification:
 
-```haskell
+```rust
 import Plutarch.MerkleTree (pmember)
 import Plutarch (pconstant, pdata, (#$), (#))
 
@@ -251,10 +255,6 @@ pmyProof = pdata $ pconstant myProof
 pIsValid = pmember # pdata (pconstant "data1") # pdata (pconstant $ rootHash myMerkleTree) # pmyProof
 ```
 
-### Advanced Functionalities
-
-Dive deeper into the Plutarch Merkle Tree library to discover functions for adding leaves, combining hashes, and evaluating tree properties like size and emptiness. These advanced features enable complex data management and verification schemes within your smart contracts.
-
 ### Best Practices and Considerations
 
 - **Data Pre-Hashing**: Maintain data confidentiality and integrity by pre-hashing data before tree insertion.
@@ -262,9 +262,3 @@ Dive deeper into the Plutarch Merkle Tree library to discover functions for addi
 - **Optimization**: Balance the tree's depth and breadth to optimize verification speed and minimize on-chain costs.
 
 - **Robust Error Handling**: Implement comprehensive error handling, especially for proof generation, to enhance contract reliability.
-
-## Conclusion
-
-The integration of Plutarch Merkle Trees into your Cardano DApps marks a significant step towards achieving enhanced data verification and integrity. This guide provides a foundation for incorporating Merkle Trees into your development projects, fostering a more secure, efficient, and robust Cardano ecosystem. Continue exploring and experimenting with the library's capabilities to unlock new possibilities and optimizations for your smart contracts.
-
-- Source Code can be found [here](https://github.com/Anastasia-Labs/plutarch-merkle-tree).

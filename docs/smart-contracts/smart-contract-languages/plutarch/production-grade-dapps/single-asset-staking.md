@@ -5,19 +5,23 @@ sidebar_label: Single Asset Staking
 description: Single Asset Staking contracts facilitate collective staking of digital assets and distributing rewards among participants in a completely on-chain and trustless manner.
 ---
 
+## Introduction
+
 Single Asset Staking contracts facilitate collective staking of digital assets and distributing rewards among participants in a completely on-chain and trustless manner.
 
 As the name suggests, it allows for a single asset, which can be any Cardano Native Fungible Token, to be staked to earn rewards. The reward itself can be any Cardano Native Fungible Token. The contracts are parameterized with `policyId` and `tokenName` (in addition to a few others) of stake token and reward token. This allows different projects conducting the Staking event to configure the contracts accordingly.
 
 Instead of a fixed percentage based return, the staking reward obtained is not known beforehand. Because its determined by the total amount of assets staked till the end of the staking period and the total rewards locked before staking begins. Eligible participants are then given rewards propotional to their share of stake (`(userStake * totalRewards) / totalStake`).
 
-These project is funded by the Cardano Treasury in [Catalyst Fund 10](https://projectcatalyst.io/funds/10/f10-developer-ecosystem-the-evolution/anastasia-labs-open-source-production-grade-dapps).
+:::info
+The source code for these dApps can be found [here](https://github.com/Anastasia-Labs/single-asset-staking).
+:::
 
 ## Overview
 
 An interesting technical detail about this protocol is the use of an [on-chain association list](https://github.com/Plutonomicon/plutonomicon/blob/main/assoc.md). It maintains every unique public key's stake in a separate UTxO which points to the next stake UTxO. Every UTxO in the list will have `StakingSetNode` in its datum.
 
-```haskell
+```rust
 data StakingSetNode = MkSetNode
   { key :: StakingNodeKey  -- owner wallet's PaymentPubKeyHash
   , next :: StakingNodeKey -- next PaymentPubKeyHash in a list of lexicographically sorted key hashes
@@ -445,9 +449,3 @@ Once the rewards are processed, project is free to claim any remaining project t
 ### Deinitialize Head Node
 
 The project is also free to reclaim the Head Node with the "minStake" and lovelaces present in it. It can only be done after the reward fold is initiated (Reward Fold Token datum has `next == *head node's next*`), therefore ensuring no information is lost.
-
-## Conclusion
-
-This educational content aims to provide a clear understanding of the Single Asset Staking Offchain process, from deployment through to reward distribution and claim. By understanding each phase and its components, participants and project organizers can engage with the staking contracts effectively and securely.
-
-- Source Code can be found [here](https://github.com/Anastasia-Labs/single-asset-staking).
