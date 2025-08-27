@@ -278,6 +278,7 @@ module.exports = {
             type: "category",
             label: "Smart Contract Vulnerabilities",
             items: [
+              "smart-contracts/advanced/smart-contract-vulnerabilities/ctf",
               {
                 type: "category",
                 label: "Invariant0 Blog Series",
