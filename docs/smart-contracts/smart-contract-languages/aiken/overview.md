@@ -155,8 +155,22 @@ Visit [Danolearn](https://danolearn.com/en/course/cardano-smart-contract-develop
 
 :::
 
+## Common Utilities/Helpers
+
+:::tip Reusable Patterns
+These functions create reusable validation logic for common operations. These utility functions eliminate repetitive code and provide safe, tested implementations for common validator operations:
+:::
+
+- To discover a list of utility libraries providing functions to streamline common operations, visit [Aiken Package Registry](https://packages.aiken-lang.org/).
+
+- A great library of reusable functions to simplify your dev workflows which gives you a access to common use cases to be imported into your Aiken project. Definitely check out [Vodka](https://github.com/sidan-lab/vodka).
+
 ## Testing in Aiken
 
 :::tip Testing in Aiken
 Aiken provides first-class support for both unit tests and property-based [tests](https://aiken-lang.org/language-tour/tests). Tests run on the same virtual machine as your on-chain code and report CPU/memory costs, making them effective benchmarks. Tests must return `True` to pass.
 :::
+
+### Debugging
+
+- [Gastronomy](https://sundae.fi/products/gastronomy), is an advanced tool that lets you step through Cardano smart contract code, line-by-line.

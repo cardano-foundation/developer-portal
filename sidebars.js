@@ -182,7 +182,6 @@ module.exports = {
             items: [
               "smart-contracts/smart-contract-languages/aiken/overview",
               "smart-contracts/smart-contract-languages/aiken/smart-contract-library",
-              "smart-contracts/smart-contract-languages/aiken/common-utilities",
               {
                 type: "category",
                 label: "Advanced Data Structures",

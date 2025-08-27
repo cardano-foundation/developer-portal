@@ -1,5 +1,5 @@
 ---
-id: cardano-ctf
+id: ctf
 title: Cardano Capture The Flag (CTF)
 sidebar_label: Cardano CTF
 description: Learn smart contract security through hands-on vulnerability exploitation in the Cardano CTF game.
