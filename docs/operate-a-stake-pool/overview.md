@@ -52,3 +52,11 @@ If you would like to do a deep dive on technical concepts please visit [Consensu
 - [RaspberryPi with Docker](https://github.com/speedwing/cardano-staking-pool-edu) Full guide to build and run both testnet and mainnet Cardano stake pool with Docker on Raspberry Pi. [Youtube Playlist](https://www.youtube.com/playlist?list=PLBhbLwOuj0DfTnneuG3vyoDHY7Dv_aiyq)
 - [TOPO Guide](https://es-kb.topopool.com/primeros-pasos). A friendly and complete guide to create a stake pool in Spanish
 - [Cardano Course](https://cardano-course.gitbook.io/cardano-course/), a cardano-node and cardano-cli course by IOG.
+
+## Stake pool operator channels
+
+[**t.me/CardanoStakePoolWorkgroup**](https://t.me/CardanoStakePoolWorkgroup)  
+Best practice workgroup on Telegram for stake pool operators. This group is hectic. A good resource to search for answers.
+
+[**Cardano Forum - SPO**](https://forum.cardano.org/c/staking-delegation/156)  
+If you care about well structured, long format discussions, visit the stake pool operator categories on [forum.cardano.org](https://forum.cardano.org/c/staking-delegation/156).

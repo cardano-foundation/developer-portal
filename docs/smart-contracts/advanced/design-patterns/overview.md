@@ -7,8 +7,8 @@ description: Simplifying complex smart contract design patterns on the Cardano b
 
 This project is dedicated to simplifying complex Plutus smart contract design patterns on the Cardano blockchain through the creation of two distinct libraries:
 
+- [Aiken](https://github.com/Anastasia-Labs/aiken-design-patterns)
 - [Plutarch](https://github.com/Anastasia-Labs/plutarch-design-patterns)
-- [Aiken](https://github.com/Anastasia-Labs/aiken-design-patterns).
 
 These libraries are designed to abstract away some of the more unintuitive and lesser-known design patterns, making them more accessible to developers. Below is an overview of the key features and design patterns these libraries address:
 

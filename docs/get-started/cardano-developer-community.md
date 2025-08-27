@@ -36,14 +36,6 @@ Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pionee
 [**CF Engineering Discord**](https://discord.gg/invite/xPkQ9jskKS)  
 Official [Cardano Foundation](https://cardanofoundation.org/) Engineering Discord server for technical discussions with CF engineers.
 
-## Stake pool operator channels
-
-[**t.me/CardanoStakePoolWorkgroup**](https://t.me/CardanoStakePoolWorkgroup)  
-Best practice workgroup on Telegram for stake pool operators. This group is hectic. A good resource to search for answers.
-
-[**Cardano Forum - SPO**](https://forum.cardano.org/c/staking-delegation/156)  
-If you care about well structured, long format discussions, visit the stake pool operator categories on [forum.cardano.org](https://forum.cardano.org/c/staking-delegation/156).
-
 ## Developer Surveys
 
 An annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem.
