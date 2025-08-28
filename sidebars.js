@@ -129,6 +129,7 @@ module.exports = {
                 type: "category",
                 label: "Local Development Networks", 
                 items: [
+                  "get-started/yaci-devkit",
                   "get-started/cardano-testnet",
                 ],
               },
