@@ -77,3 +77,7 @@ sequenceDiagram
 :::warning
 An important thing to note about the validator is that it only allows one script input to be spent in a single tx. Allowing more than one script input to be spent within it, could result in a critical vulnerability in the form of [Double Satisfaction Attack](https://plutus.readthedocs.io/en/latest/reference/writing-scripts/common-weaknesses/double-satisfaction.html?highlight=double#unique-outputs) by spending two vesting UTxOs with the exact datum.
 :::
+
+## Offchain Implementation
+
+You can find the entire offchain implementation complimenting this dApp [here](https://github.com/Anastasia-Labs/linear-vesting-offchain).

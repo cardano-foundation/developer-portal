@@ -449,3 +449,7 @@ Once the rewards are processed, project is free to claim any remaining project t
 ### Deinitialize Head Node
 
 The project is also free to reclaim the Head Node with the "minStake" and lovelaces present in it. It can only be done after the reward fold is initiated (Reward Fold Token datum has `next == *head node's next*`), therefore ensuring no information is lost.
+
+## Offchain Implementation
+
+You can find the entire offchain implementation complimenting this dApp [here](https://github.com/Anastasia-Labs/single-asset-staking-offchain).

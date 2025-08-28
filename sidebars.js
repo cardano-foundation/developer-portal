@@ -227,6 +227,15 @@ module.exports = {
               "smart-contracts/smart-contract-languages/plutarch/overview",
               {
                 type: "category",
+                label: "Advanced Data Structures",
+                items: [
+                  "smart-contracts/smart-contract-languages/plutarch/advanced-data-structures/linked-list",
+                  "smart-contracts/smart-contract-languages/plutarch/advanced-data-structures/merkle-tree",
+                  "smart-contracts/smart-contract-languages/plutarch/advanced-data-structures/trie",
+                ],
+              },
+              {
+                type: "category",
                 label: "Production Grade DApps",
                 items: [
                   "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/overview",
@@ -236,6 +245,8 @@ module.exports = {
                   "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/merkle-tree",
                   "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/yield-farming",
                   "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/single-asset-staking",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/smart-handles",
+                  "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/direct-offer",
                 ],
               },
             ],

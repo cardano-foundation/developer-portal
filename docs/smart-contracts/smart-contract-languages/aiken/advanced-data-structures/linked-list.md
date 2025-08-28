@@ -30,7 +30,7 @@ Each entry in the list comprises:
 
 #### EntryDatum Definition
 
-```haskell
+```rust
 data EntryDatum = EntryDatum {
   key :: BuiltinByteString,
   value :: Maybe SomeValue,
