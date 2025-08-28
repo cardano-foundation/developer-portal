@@ -321,6 +321,6 @@ on a test library to run. The same applies to all `forAllX = ...` logs.
 
 The last few lines give you the location of the config file (hence the location of the sandbox directory, if you haven't specified it), and the logs of the SPO node.
 
-It also gives you some environment variables to export, should you want to use [cardano-cli](https://developers.cardano.org/docs/operate-a-stake-pool/cli-operations/basic-operations/) to interact with the testnet.
+It also gives you some environment variables to export, should you want to use [cardano-cli](https://developers.cardano.org/docs/get-started/cli-operations/basic-operations/) to interact with the testnet.
 
 Once the line `Testnet is running.  Type CTRL-C to exit.` appears, the testnet is running and building blocks.
