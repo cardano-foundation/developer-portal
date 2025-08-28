@@ -2,7 +2,7 @@
 id: debug-cbor
 title: Debugging CBOR
 sidebar_label: Debugging CBOR
-description: Assembly language of Cardano smart contract platform
+description: Under the hood of Cardano transactions
 ---
 
 ## Introduction
@@ -11,7 +11,7 @@ description: Assembly language of Cardano smart contract platform
 This article assumes that you are familiar with the EUTxO model and with Cardano transactions at an abstract level (e.g. you can understand the information shown in a blockchain explorer).
 :::
 :::note
-This article is a modernized version (conway era CDDL specifications instead of Alonzo) of the joinplank [blog post](https://www.joinplank.com/articles/debugging-plutus-an-introduction-to-low-level-cardano-transactions-in-the-alonzo-era)
+This article is a modernized version of the joinplank [blog post](https://www.joinplank.com/articles/debugging-plutus-an-introduction-to-low-level-cardano-transactions-in-the-alonzo-era) ([conway era CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl) specifications instead of Alonzo) 
 :::
 
 The first thing to know about the specification, is that transactions are defined and serialized using the CBOR format, defined first in [RCF 0749](https://www.rfc-editor.org/rfc/rfc7049) and then updated in [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949). CBOR stands for Concise Binary Object Representation, a data format that can be seen as a “binary JSON”. This binary representation allows for more compact messages at the cost of human readability. Fortunately, CBOR messages can be easily encoded and decoded using any existing [implementation](https://cbor.io/impls.html) of the CBOR protocol in a variety of languages, but also online by using the [CBOR playground](https://cbor.me/). CBOR is all around Cardano, as transactions themselves are encoded using this format, also do the Plutus data inside them, and even complete blocks of transactions are.
@@ -20,11 +20,11 @@ The first thing to know about the specification, is that transactions are define
 
 As Cardano has passed through different eras, the specification is splitted into several documents, one for each era, describing incrementally the modifications and additions that each era introduced. For each era there is also as part of the specification a text file that precisely defines the CBOR schema used for blocks and transactions. For this, the CDDL (Concise Data Definition Language) format is used, a notational convention defined in [RFC 8610](https://www.rfc-editor.org/rfc/rfc8610) that is used to describe CBOR data structures.
 
-In this post, we will concentrate on the Alonzo era specification, the one that introduced all the smart contract functionality through Plutus.
+In this post, we will concentrate on the Conway era specification, the one that introduced all the smart contract functionality through Plutus.
 
-## First, an example: A simple smart contract
+## A simple smart contract
 
-To learn about Alonzo transactions we will take an example transaction related to a very simple smart contract designed for this purpose. The smart contract is just a single script UTxO that holds an integer in its datum. It admits two operations: increment, to add 1 to the integer, and decrement, tu substract 1 from it. The UTxO also holds in its value an NFT we only use to identify it.
+To learn about Conway transactions we will take an example transaction related to a very simple smart contract designed for this purpose. The smart contract is just a single script UTxO that holds an integer in its datum. It admits two operations: increment, to add 1 to the integer, and decrement, tu substract 1 from it. The UTxO also holds in its value an NFT we only use to identify it.
 
 The example transaction we provide is an increment operation. It increments the integer from 47 to 48 in the datum, while preserving the NFT in the value. It can be illustrated the following way:
 
@@ -81,7 +81,7 @@ h'F2F0A179D98C04B51BC1C7A891708ADFEF9EB28818054E28FCA6CF769518E4DD148ED024208CA3
 
 Quite a mess, right? Don’t let it scare you. Each line here has a meaning, and it is worth to understand it, or at least know where we can find a good explanation for it. Let’s see.
 
-## Transactions in the Alonzo era
+## Transactions in the Conway era
 
 The main reference to understand Cardano transactions are the CDDL specification, where we can find the [transaction definition](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl#L17):
 
@@ -131,7 +131,7 @@ The mandatory parts are the inputs (field 0), the outputs (field 1) and the fee 
 
 ### Transaction inputs
 
-Transaction inputs are listed in field 0 of the transaction body. A transaction input, you probably know, is a reference to a UTxO (Unspent Transaction Output). In other words, it is the output of a previous transaction that was not spent yet (i.e. used as input) by any other transaction. According to the [CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/8a8daef6d88b4f7b6f4ca7dafb0d5bde54617d8f/eras/alonzo/test-suite/cddl-files/alonzo.cddl#L69), a reference to a UTxO is defined by the following pair:
+Transaction inputs are listed in field 0 of the transaction body. A transaction input, you probably know, is a reference to a UTxO (Unspent Transaction Output). In other words, it is the output of a previous transaction that was not spent yet (i.e. used as input) by any other transaction. According to the [CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl#L156), a reference to a UTxO is defined by the following pair:
 
 ```rust
 transaction_input = [ transaction_id : $hash32
@@ -153,7 +153,7 @@ In our example, two inputs are present:
 
 So, the first input is the UTxO corresponding to the first output of transaction [A1D13B…](https://explorer.cardano.org/transaction?id=a1d13b016fd106784482d2b2e1c85330090b3c27464d2163f752ad42730a2867&network=preprod), and the second one corresponds to the second output of transaction [A51F7E…](https://explorer.cardano.org/transaction?id=a51f7e6ec66f1db366f2a7ad63b8041b51b269cebd5d52a140f6c5b7e069dfb7&network=preprod ). As we will see next, one of them corresponds to the smart contract, and the other one is used to pay for the transaction fees.
 
-## Inputs Information
+#### Inputs Information
 
 To be able to understand and debug our transaction, it is important to know the information about the inputs, not present in the transaction itself. The information is comprised of these three components:
 
@@ -174,7 +174,7 @@ In our example, we can find this information by navigating the Cardano explorer:
 
 From this information, it is clear that the first input is used to pay for the transaction, and the second one is the “smart contract”. Usually, when the off-chain code of a dapp builds a transaction, the inputs used to pay for it are introduced in a last stage called “balancing”. As a wallet may have several UTxOs, selecting which one/s will be used to pay is a complex subject called “coin selection”, something that is extensively discussed in [CIP 2](https://cips.cardano.org/cips/cip2/).
 
-### The ordering of the inputs
+#### The ordering of the inputs
 
 In the CDDL specification it can be seen that the inputs are in a set, not a list. Why a set? Well, Cardano doesn’t allow us to choose how to order the inputs. The ordering we use in the serialized raw transaction is completely ignored. Instead, the specifications assumes that the inputs are ordered lexicographically in the pair (transaction_id, index).
 
@@ -188,7 +188,7 @@ Transaction outputs (field 1) are a bit more complex than inputs, as they are ne
 transaction_output =  [ address  , amount : value  , ? datum_hash : $hash32 ]
 ```
 
-The components are: the raw value of the address where the UTxO is paid to, the value it will contain and an optional datum hash it can also carry. The datum hash can be used to encode data in the UTxO, and was introduced in Alonzo to store “state” information for script UTxOs. While not forbidden, datum hashes are rarely used in wallet UTxOs.
+The components are: the raw value of the address where the UTxO is paid to, the value it will contain and an optional datum hash it can also carry. The datum hash can be used to encode data in the UTxO, and was introduced in Conway to store “state” information for script UTxOs. While not forbidden, datum hashes are rarely used in wallet UTxOs.
 
 In the example we have two outputs:
 
@@ -215,7 +215,7 @@ Computing this field is a bit complex and all transaction libraries that support
 
 ## Collaterals
 
-Starting from Alonzo, transaction validation is divided into two phases, where phase 1 involves all basic checks for transaction correctness, and phase 2 is comprised of the execution of all the involved Plutus scripts. If the validation in phase 2 fails, the transaction is rejected but a penalty must be applied to cover the execution costs (and discourage failing transactions). This is the collateral, a set of inputs that is spent in this case.
+Transaction validation is divided into two phases, where phase 1 involves all basic checks for transaction correctness, and phase 2 is comprised of the execution of all the involved Plutus scripts. If the validation in phase 2 fails, the transaction is rejected but a penalty must be applied to cover the execution costs (and discourage failing transactions). This is the collateral, a set of inputs that is spent in this case.
 
 Collaterals (field 13) must be wallet UTxOs, can only contain ADA and the included signatures must allow their spending. An interesting observation is that the same inputs can be used as regular inputs and as collateral, because only one of the two sets will be spent.
 
@@ -235,7 +235,7 @@ So far we only covered fields 0, 1, 11, 13 and 14 of the transaction body. Of co
 
 - Field 2: The fee paid by this transaction (in Lovelace). It must be enough to cover for the costs related to transaction size and script execution units.
 - Fields 3 and 8: The “time to live” (TTL) and the “validity interval start”. Together, they form the ValidityInterval defined in the specification document (Fig. 2). It is the slot range where we expect the transaction to be executed, and phase 1 will fail if it is not the case. If phase 1 succeeds, the interval information is then converted to a POSIX time range and passed to the scripts, allowing for phase 2 checks.
-- Field 9: The minted value, all assets that are being minted or burned in the transaction. Minting can be done using pre-Alonzo simple scripts (defined in field 1 of the witness set) or using Plutus minting policies (included in field 3 for the witness set). For the latter, redeemers must be specified, and for this a lexicographical ordering in the policy IDs is assumed (see below in section about redeemers).
+- Field 9: The minted value, all assets that are being minted or burned in the transaction. Minting can be done using pre-Alonzo simple scripts (native scripts) (defined in field 1 of the witness set) or using minting policies (included in field 3 for the witness set). For the latter, redeemers must be specified, and for this a lexicographical ordering in the policy IDs is assumed (see below in section about redeemers).
 
 ## The witness set
 
@@ -260,7 +260,7 @@ You can see that all fields are optional. However, field 0 will be present as it
 
 Field 3 is the list of Plutus scripts, this is, the binaries of the Plutus Core code for all the Plutus scripts that must be executed to validate the transaction, both for consuming script UTxOs and for minting Plutus assets.
 
-Plutus scripts are without doubt the biggest part of Alonzo transactions and an important source of headache for any engineer trying to develop a meaningful dapp without hitting transaction size limit of 16kB.
+Plutus scripts are without doubt the biggest part of Conway transactions and an important source of headache for any engineer trying to develop a meaningful dapp without hitting transaction size limit of 16kB.
 
 For instance, in our example the Plutus script takes up to 4353 bytes, more than 45% of the total transaction size (9666 bytes).
 
