@@ -16,7 +16,7 @@ This article is a modernized version of the joinplank [blog post](https://www.jo
 
 The first thing to know about the specification, is that transactions are defined and serialized using the CBOR format, defined first in [RCF 0749](https://www.rfc-editor.org/rfc/rfc7049) and then updated in [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949). CBOR stands for Concise Binary Object Representation, a data format that can be seen as a “binary JSON”. This binary representation allows for more compact messages at the cost of human readability. Fortunately, CBOR messages can be easily encoded and decoded using any existing [implementation](https://cbor.io/impls.html) of the CBOR protocol in a variety of languages, but also online by using the [CBOR playground](https://cbor.me/). CBOR is all around Cardano, as transactions themselves are encoded using this format, also do the Plutus data inside them, and even complete blocks of transactions are.
 
-## The Cardano specification/s
+## Cardano specification/s
 
 As Cardano has passed through different eras, the specification is splitted into several documents, one for each era, describing incrementally the modifications and additions that each era introduced. For each era there is also as part of the specification a text file that precisely defines the CBOR schema used for blocks and transactions. For this, the CDDL (Concise Data Definition Language) format is used, a notational convention defined in [RFC 8610](https://www.rfc-editor.org/rfc/rfc8610) that is used to describe CBOR data structures.
 
