@@ -11,7 +11,7 @@ description: Under the hood of Cardano transactions
 This article assumes that you are familiar with the EUTxO model and with Cardano transactions at an abstract level (e.g. you can understand the information shown in a blockchain explorer).
 :::
 :::note
-This article is a modernized version of the joinplank [blog post](https://www.joinplank.com/articles/debugging-plutus-an-introduction-to-low-level-cardano-transactions-in-the-alonzo-era) ([conway era CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl) specifications instead of Alonzo) 
+This article is a modernized version of the joinplank [blog post](https://www.joinplank.com/articles/debugging-plutus-an-introduction-to-low-level-cardano-transactions-in-the-alonzo-era) ([conway era CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl) specifications instead of Alonzo)
 :::
 
 The first thing to know about the specification, is that transactions are defined and serialized using the CBOR format, defined first in [RCF 0749](https://www.rfc-editor.org/rfc/rfc7049) and then updated in [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949). CBOR stands for Concise Binary Object Representation, a data format that can be seen as a “binary JSON”. This binary representation allows for more compact messages at the cost of human readability. Fortunately, CBOR messages can be easily encoded and decoded using any existing [implementation](https://cbor.io/impls.html) of the CBOR protocol in a variety of languages, but also online by using the [CBOR playground](https://cbor.me/). CBOR is all around Cardano, as transactions themselves are encoded using this format, also do the Plutus data inside them, and even complete blocks of transactions are.
@@ -34,7 +34,7 @@ Here, besides the script input and output, there are also wallet input and outpu
 
 ### The raw transaction
 
-The transaction was made in the preprod testnet, and it can be found in the Cardano explorer with hash [8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c](https://explorer.cardano.org/transaction?id=8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c&network=preprod).
+The transaction was made in the preprod testnet, and it can be found in the Cardano explorer with hash [8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c](https://explorer.cardano.org/transaction?id=8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c&network=preprod). 
 
 As the transaction is in CBOR format, we can decode it using the CBOR playground to find something that looks like this:
 
@@ -163,11 +163,14 @@ To be able to understand and debug our transaction, it is important to know the 
 
 In our example, we can find this information by navigating the Cardano explorer:
 
-- Input (A1D13B…, 0):
+**Input ([A1D13B…](https://explorer.cardano.org/transaction?id=A1D13B016FD106784482D2B2E1C85330090B3C27464D2163F752AD42730A2867&network=preprod), 0)**:
+
 - Address: [addr_test1wpht0…](https://preprod.cexplorer.io/address/addr_test1wpht0s5ajd3d6ugfq2thhdj9awtmkakxy3nk3pg7weyf7xs6nm2gz) (a script UTxO)
 - Value: 2 ADA and an [unnamed NFT](https://preprod.cexplorer.io/asset/asset17s6927lhfd39y874f3psjfkz7ds444lw6g5gxt)
 - Datum hash: 8cf95d… (encodes the integer 47, see section “The Plutus data” below)
-- Input (A51F7E…, 1):
+
+**Input ([A51F7E…](https://explorer.cardano.org/transaction?id=a51f7e6ec66f1db366f2a7ad63b8041b51b269cebd5d52a140f6c5b7e069dfb7&network=preprod), 1)**:
+
 - Address: addr_test1qqk3qc… (a wallet UTxO)
 - Value: 1,247.80 ADA
 - Datum hash: Not present.
@@ -180,7 +183,7 @@ In the CDDL specification it can be seen that the inputs are in a set, not a lis
 
 This is important, because in the redeemers we will use indexes to refer to positions in the list of inputs following this ordering criteria. We will talk about this later.
 
-## Transaction outputs
+### Transaction outputs
 
 Transaction outputs (field 1) are a bit more complex than inputs, as they are new UTxOs that are being created by the transaction. Their [CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl#L165) specification is:
 
@@ -207,13 +210,13 @@ The first one corresponds to the script address where the smart contract lives. 
 
 The second output is the “change”, the remaining ADA value that goes back to the wallet that paid for the transaction. This output is usually introduced in the balancing stage of the transaction building process.
 
-## The script data hash
+### The script data hash
 
 Field 11 of the transaction body is the script data hash, also called `ScriptIntegrityHash` in the specification document. This hash encodes information that determines the results of scripts execution otherwise not present in the body. The encoding includes the redeemers and the data, both from the witnesses (see below), but also the protocol parameters that determine the costs and limits for script execution.
 
 Computing this field is a bit complex and all transaction libraries that support Plutus are able to do this for you. However, you must have present that any modification you do to a transaction that may alter the script data hash, requires recomputing and updating the value of this field.
 
-## Collaterals
+### Collaterals
 
 Transaction validation is divided into two phases, where phase 1 involves all basic checks for transaction correctness, and phase 2 is comprised of the execution of all the involved Plutus scripts. If the validation in phase 2 fails, the transaction is rejected but a penalty must be applied to cover the execution costs (and discourage failing transactions). This is the collateral, a set of inputs that is spent in this case.
 
@@ -221,7 +224,7 @@ Collaterals (field 13) must be wallet UTxOs, can only contain ADA and the includ
 
 In our example, the collateral is a single input with 5 ADA, a standard amount for collaterals.
 
-## Required signers
+### Required signers
 
 The required signers (field 14) is a set of hashed keys that can be used to require additional signatures besides those required to spend wallet UTxOs. If a key is present but the corresponding signature is not in the witness set, the transaction will fail in phase 1.
 
@@ -229,7 +232,7 @@ The required signers set is also made available to the Plutus script executions 
 
 Our example doesn’t have required signers, but it is an important component because checking for signatures is a frequent requirement in smart contracts.
 
-## Other relevant body fields
+### Other relevant body fields
 
 So far we only covered fields 0, 1, 11, 13 and 14 of the transaction body. Of course, there are other important fields. We briefly describe here the ones we find interesting:
 
@@ -237,7 +240,7 @@ So far we only covered fields 0, 1, 11, 13 and 14 of the transaction body. Of co
 - Fields 3 and 8: The “time to live” (TTL) and the “validity interval start”. Together, they form the ValidityInterval defined in the specification document (Fig. 2). It is the slot range where we expect the transaction to be executed, and phase 1 will fail if it is not the case. If phase 1 succeeds, the interval information is then converted to a POSIX time range and passed to the scripts, allowing for phase 2 checks.
 - Field 9: The minted value, all assets that are being minted or burned in the transaction. Minting can be done using pre-Alonzo simple scripts (native scripts) (defined in field 1 of the witness set) or using minting policies (included in field 3 for the witness set). For the latter, redeemers must be specified, and for this a lexicographical ordering in the policy IDs is assumed (see below in section about redeemers).
 
-## The witness set
+#### Witness set
 
 Here is the CDDL specification for the [witness set](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl#L652):
 
@@ -256,7 +259,7 @@ transaction_witness_set =
 
 You can see that all fields are optional. However, field 0 will be present as it contains the transaction signatures and at least one signature is always required. For Plutus, the most relevant fields are the last three, so we address them in the following subsections.
 
-## The Plutus scripts
+## Plutus scripts
 
 Field 3 is the list of Plutus scripts, this is, the binaries of the Plutus Core code for all the Plutus scripts that must be executed to validate the transaction, both for consuming script UTxOs and for minting Plutus assets.
 
@@ -266,7 +269,7 @@ For instance, in our example the Plutus script takes up to 4353 bytes, more than
 
 The Babbage era, introduced “reference scripts” [CIP 33](https://cips.cardano.org/cip/CIP-33), a feature that provides a way to use scripts without the need for explicitly including them in transactions. We will leave this discussion for a future article.
 
-## The Plutus data
+### Plutus data
 
 Field 4 is the Plutus data, a list that has the unhashed datums of all datum hashes present in the transaction inputs and outputs. These datums are made available to the Plutus validators through the “script context”, so checks can be made on them.
 
@@ -278,7 +281,7 @@ In the example, the Plutus data is:
 
 The first one corresponds to the datum hash of the script input, and the second one to the datum hash of the script output. In these datums, the integers are wrapped into some other data constructors, but this is just the way we chose to encode them, and has to do with the Haskell data structures we defined for the contract state.
 
-## The redeemers
+### Redeemers
 
 Field 5 is the list of redeemers. Each redeemer refers to the execution of a Plutus script.
 
