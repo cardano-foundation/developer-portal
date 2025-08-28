@@ -482,7 +482,7 @@ Congratulations, You have created and sent your first **Cardano** transaction us
 #### Creating a wallet with `cardano-wallet`
 
 :::note
-This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](docs/operate-a-stake-pool/cardano-wallet/installing-cardano-wallet.md) guide for instructions on how to do that.
+This guide assumes you have installed `cardano-wallet` into your system. If not you can refer to [Installing cardano-wallet](docs/get-started/cardano-wallet/installing-cardano-wallet.md) guide for instructions on how to do that.
 
 We will use the path `$HOME/cardano/wallets` to store all the `cardano-wallet` related files as an example, please replace it with the directory you have chosen to store the files.
 :::

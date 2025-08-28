@@ -6,8 +6,6 @@ description: How to contribute to the Cardano developer portal.
 image: /img/og/og-developer-portal.png
 ---
 
-# Contributing to the Developer Portal
-
 :::tip Want to add your project or tool?
 **Go to [CONTRIBUTING.md](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md)** to add projects to showcase or builder tools.
 :::
@@ -25,6 +23,7 @@ This guide is for **content writers and developers** who want to work on documen
 **Setup:**
 
 ```bash
+# External contributors: fork the repo first, then clone your fork
 git clone https://github.com/cardano-foundation/developer-portal.git
 cd developer-portal
 yarn install
@@ -41,7 +40,7 @@ yarn start  # Development server at http://localhost:3000
 
 ## Project Structure
 
-```
+```bash
 developer-portal/
 ├── docs/              # Documentation content (you'll edit these)
 ├── blog/              # Developer blog posts  
@@ -175,7 +174,7 @@ If you have excellent technical understanding and mistakes catch your eye, you c
 
 ### How to Connect with the Developer Community
 
-Cardano developers and stake pool operators spread across many different platforms. [We aim to provide a complete overview.](/docs/get-started/cardano-developer-community) 
+Cardano developers and stake pool operators spread across many different platforms. [We aim to provide a complete overview.](/docs/get-started/cardano-developer-community)
 
 If you are interested in connecting with people from the Developer Portal, [open a thread in the forum](https://forum.cardano.org/c/developers/29).
 

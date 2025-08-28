@@ -2,7 +2,7 @@
 const vars = require('./variables')
 
 // enable or disable the announcement header bar (see 'announcementBar' section below)
-const isAnnouncementActive = true;
+const isAnnouncementActive = false;
 
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
@@ -244,7 +244,7 @@ module.exports = {
                   ]
           },
           {
-            to: '/docs/operate-a-stake-pool/introduction-to-cardano/',
+            to: '/docs/get-started/technical-concepts/core-blockchain-fundamentals#introduction-to-cardano-the-big-picture',
             from: '/docs/stake-pool-course/introduction-to-cardano',
           },
           {
@@ -276,7 +276,7 @@ module.exports = {
                   ]
           },
           {
-            to: '/docs/get-started/technical-concepts/',
+            to: '/docs/get-started/technical-concepts/overview',
             from: '/docs/stake-pool-course/handbook/utxo-model',
           },
           {
