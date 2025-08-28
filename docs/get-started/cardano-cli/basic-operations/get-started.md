@@ -16,6 +16,10 @@ Cardano CLI uses the *node-to-client* protocol to communicate with the node. Thi
 export CARDANO_NODE_SOCKET_PATH=~/node.socket
 ```
 
+:::note
+This guide assumes you have installed cardano-node into your system. If not you can refer to Installing [cardano-node](../../../operate-a-stake-pool/node-operations/installing-cardano-node) guide for instructions on how to do that.
+:::
+
 ### CARDANO_NODE_NETWORK_ID
 
 Each network has a unique identifier (--mainnet or --testnet-magic NATURAL). This is used by the node-to-client protocol to ensure communication with a node on the desired network. It is useful to set up an environment variable for the network ID. Alternatively, you can provide the flag `--testnet-magic <network-id>` with each command that interacts with the node.  
