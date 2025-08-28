@@ -163,6 +163,7 @@ module.exports = {
         ],
       },
       "get-started/cardano-developer-community",
+      "get-started/funding",
     ],
     "Integrate Cardano": [
       "integrate-cardano/overview",
@@ -273,6 +274,7 @@ module.exports = {
         label: "Advanced",
         items: [
           "smart-contracts/advanced/uplc",
+          "smart-contracts/advanced/debug-cbor",
           {
             type: "category",
             label: "Design Patterns",
@@ -357,7 +359,6 @@ module.exports = {
           "governance/cardano-governance/constitutional-committee-guide",
         ],
       },
-      "governance/funding",
     ],
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",

@@ -222,7 +222,7 @@ module.exports = {
           },
           {
             // redirect to the new funding page
-            to: '/docs/governance/funding',
+            to: '/docs/get-started/funding',
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
