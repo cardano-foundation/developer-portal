@@ -83,11 +83,11 @@ flowchart TD
     G -->|Success| H[Transaction Valid]
     G -->|Failure| I[Transaction Invalid]
 
-    style C fill:#e1f5fe
-    style D fill:#f3e5f5
-    style E fill:#e8f5e8
-    style H fill:#c8e6c9
-    style I fill:#ffcdd2
+    style C fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
+    style D fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
+    style E fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
+    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+    style I fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
 ```
 
 Consider the analogy of a simple function: `f(x) = x * a + b`
@@ -117,12 +117,10 @@ Logic in smart contracts involves making validations about certain properties of
 
 | Property                                                                                 | Description                                                                                                                             |
 | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **inputs**                                                                               | List of transaction inputs being spent in the transaction. In the UTXO model,                                                           |
-| every transaction produces outputs, which in turn become inputs for future transactions. |
+| **inputs**                                                                               | List of transaction inputs being spent in the transaction. In the UTXO model, every transaction produces outputs, which in turn become inputs for future transactions. |
 | **reference_inputs**                                                                     | Inputs used for reference only, not spent                                                                                               |
 | **outputs**                                                                              | New outputs created by the transaction. These are the new UTXOs created by the transaction                                              |
-| **fee**                                                                                  | Transaction fee in Lovelace. This value is predictable                                                                                  |
-| and depends on the transaction size. Fees can often be optimized.                        |
+| **fee**                                                                                  | Transaction fee in Lovelace. This value is predictable and depends on the transaction size. Fees can often be optimized.                                                                                  |
 | **minted value**                                                                         | This is the value of tokens being minted or burned in the transaction                                                                   |
 | **certificates**                                                                         | Certificates for delegation, pool operations (register/deregister stake key), governance roles, etc.                                    |
 | **withdrawals**                                                                          | Stake reward withdrawals as credential-lovelace pairs                                                                                   |
@@ -233,11 +231,11 @@ flowchart LR
     D -->|✗ Invalid| H[Transaction Fails]
     E --> F[...]
 
-    style A fill:#e1f5fe
-    style C fill:#e1f5fe
-    style E fill:#e1f5fe
-    style G fill:#ffcdd2
-    style H fill:#ffcdd2
+    style A fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
+    style C fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
+    style E fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
+    style G fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    style H fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
 ```
 
 ### Workflow Diagrams
