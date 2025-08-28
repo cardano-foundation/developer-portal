@@ -1,7 +1,7 @@
 ---
 id: simple-scripts
 title: Simple scripts
-sidebar_label: CLI - Simple scripts
+sidebar_label: Simple scripts
 sidebar_position: 1
 description: Writing Cardano Simple scripts. 
 keywords: [scripts, native scripts, simple scripts, cardano, cardano-node, cardano-cli]

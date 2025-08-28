@@ -11,7 +11,7 @@ description: Under the hood of Cardano transactions
 This article assumes that you are familiar with the EUTxO model and with Cardano transactions at an abstract level (e.g. you can understand the information shown in a blockchain explorer).
 :::
 :::note
-This article is a modernized version of the joinplank [blog post](https://www.joinplank.com/articles/debugging-plutus-an-introduction-to-low-level-cardano-transactions-in-the-alonzo-era) ([conway era CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl) specifications instead of Alonzo)
+This article is a modernized version of the joinplank [blog post](https://www.joinplank.com/articles/debugging-plutus-an-introduction-to-low-level-cardano-transactions-in-the-alonzo-era) ([conway era CDDL](https://github.com/IntersectMBO/cardano-ledger/blob/c2b7ea777317dd1dfeba576d044be2cbe742d9a8/eras/conway/impl/cddl-files/conway.cddl) specifications instead of Alonzo) and shares a [section](https://aiken-lang.org/language-tour/troubleshooting#cbor-diagnostic) from Aiken documentation
 :::
 
 The first thing to know about the specification, is that transactions are defined and serialized using the CBOR format, defined first in [RCF 0749](https://www.rfc-editor.org/rfc/rfc7049) and then updated in [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949). CBOR stands for Concise Binary Object Representation, a data format that can be seen as a “binary JSON”. This binary representation allows for more compact messages at the cost of human readability. Fortunately, CBOR messages can be easily encoded and decoded using any existing [implementation](https://cbor.io/impls.html) of the CBOR protocol in a variety of languages, but also online by using the [CBOR playground](https://cbor.me/). CBOR is all around Cardano, as transactions themselves are encoded using this format, also do the Plutus data inside them, and even complete blocks of transactions are.
@@ -34,7 +34,7 @@ Here, besides the script input and output, there are also wallet input and outpu
 
 ### The raw transaction
 
-The transaction was made in the preprod testnet, and it can be found in the Cardano explorer with hash [8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c](https://explorer.cardano.org/transaction?id=8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c&network=preprod). 
+The transaction was made in the preprod testnet, and it can be found in the Cardano explorer with hash [8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c](https://explorer.cardano.org/transaction?id=8ae88d7ee59eda5a7a95dd66e9cf123a89758f2ec31e73a5c65b4d9cf312f71c&network=preprod).
 
 As the transaction is in CBOR format, we can decode it using the CBOR playground to find something that looks like this:
 
@@ -328,3 +328,85 @@ Answer True or False to the following assertions:
 - Every transaction needs a collateral.
 - Every transaction with script inputs needs a collateral.
 - No transaction with no script inputs needs a collateral.
+
+## Runtime CBOR Debugging with Aiken
+
+While the previous sections focused on analyzing transactions at the blockchain and understanding what is CBOR and how to interpret it, developers need to debug CBOR data during smart contract development. This section covers techniques for inspecting individual values and data structures as you build and test your contracts.
+
+:::info
+You can read more at [Aiken - CBOR diagostic](https://aiken-lang.org/language-tour/troubleshooting#cbor-diagnostic) section.
+
+### CBOR Diagnostics in Aiken
+
+When developing smart contracts with Aiken, compiled programs lose type information and variable names, making runtime inspection challenging. However, Aiken provides the `cbor.diagnostic()` function to inspect values at runtime using CBOR diagnostic notation - a human-readable representation of binary CBOR data.
+
+```rust
+use aiken/cbor
+
+pub fn diagnostic(data: Data) -> String
+```
+
+CBOR diagnostics use a JSON-like syntax that can represent binary data. For example, the serialized bytes `83010203` appear as `[1, 2, 3]` in diagnostic notation.
+
+### CBOR Diagnostic Syntax Reference
+
+| Type | Examples |
+|------|----------|
+| Int | `1`, `-14`, `42` |
+| ByteArray | `h'FF00'`, `h'666f6f'` |
+| List | `[]`, `[1, 2, 3]`, `[_ 1, 2, 3]` |
+| Map | `{}`, `{ 1: h'FF', 2: 14 }`, `{_ 1: "AA" }` |
+| Tag | `42(1)`, `10(h'ABCD')`, `1280([1, 2])` |
+
+**Tags** are particularly important for custom types on-chain. Aiken uses tag 121 for the first constructor of a data type, 122 for the second, and so forth. The tagged content represents the constructor's fields as a list.
+
+### Practical Examples
+
+Here are examples showing how Aiken values translate to CBOR diagnostics:
+
+```rust
+use aiken/cbor
+
+// Basic types
+cbor.diagnostic(42) == @"42"
+cbor.diagnostic("foo") == @"h'666F6F'"
+cbor.diagnostic([1, 2, 3]) == @"[_ 1, 2, 3]"
+cbor.diagnostic((1, 2)) == @"[_ 1, 2]"
+
+// Maps from list of tuples
+cbor.diagnostic([(1, #"ff")]) == @"{ 1: h'FF' }"
+
+// Option types using tags
+cbor.diagnostic(Some(42)) == @"121([_ 42])"  // First constructor
+cbor.diagnostic(None) == @"122([])"          // Second constructor
+```
+
+### Testing Datum and Redeemer Representations
+
+You can use CBOR diagnostics to verify the exact binary representation of your data structures:
+
+```rust
+type MyDatum {
+  foo: Int,
+  bar: ByteArray
+}
+
+test my_datum_representation() {
+  let datum = MyDatum { foo: 42, bar: "Hello, World!" }
+  cbor.diagnostic(datum) == @"121([42, h'48656c6c6f2c20576f726c6421'])"
+}
+```
+
+This diagnostic output can then be converted to raw CBOR using tools like [cbor.me](https://cbor.me) for use in transaction building.
+
+### Integration with Transaction Analysis
+
+The diagnostic output from development tools directly corresponds to what you'll see in transaction CBOR:
+
+1. **During development**: Use `cbor.diagnostic()` to inspect your datum/redeemer values
+2. **In transactions**: These same values appear in the Plutus data field (field 4 of witness set)
+3. **For debugging**: Convert between diagnostic notation and raw CBOR using online tools
+
+This creates a complete debugging workflow from contract development to transaction analysis.
+
+

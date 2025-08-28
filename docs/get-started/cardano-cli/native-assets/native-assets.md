@@ -1,7 +1,7 @@
 ---
 id: native-assets
 title: Native assets
-sidebar_label: CLI - Native assets
+sidebar_label: Native assets
 sidebar_position: 3
 description: Native assets in cardano
 keywords: [native assets, cardano, cardano-node, cardano-cli]

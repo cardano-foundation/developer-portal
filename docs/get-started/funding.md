@@ -46,7 +46,7 @@ Project Catalyst operates in three phases:
 
 - **Documentation:** [Project Catalyst Knowledge Base](https://docs.projectcatalyst.io/)
 - **Community:** [Discord](https://discord.gg/GUeYabmP4r) | [Telegram](https://t.me/cardanocatalyst) | [Cardano Forum](https://forum.cardano.org)
-- **Browse Projects:** [Catalyst Website](https://projectcatalyst.io/search) | [LIDO Explorer](https://www.lidonation.com/en/project-catalyst/proposals)
+- **Browse Projects:** [Catalyst Website](https://projectcatalyst.io/search)
 
 ---
 

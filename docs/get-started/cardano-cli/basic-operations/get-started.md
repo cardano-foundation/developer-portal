@@ -2,7 +2,7 @@
 id: get-started
 title: Get started with Cardano CLI
 sidebar_position: 1
-sidebar_label: CLI - Get started
+sidebar_label: Get started
 keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 ---
 
