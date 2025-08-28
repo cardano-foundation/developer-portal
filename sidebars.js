@@ -133,6 +133,15 @@ module.exports = {
               },
             ],
           },
+          {
+            type: "category",
+            label: "Haskell",
+            items: [
+              "get-started/haskell/onboarding",
+              "get-started/haskell/functional-programming",
+              "get-started/haskell/advanced-functional-programming",
+            ],
+          },
         ],
       },
       "get-started/cardano-developer-community",
