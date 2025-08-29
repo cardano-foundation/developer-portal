@@ -43,6 +43,7 @@ module.exports = {
                   },
                 ],
               },
+              "get-started/pycardano",
               {
                 type: "category",
                 label: "cardano-cli",
