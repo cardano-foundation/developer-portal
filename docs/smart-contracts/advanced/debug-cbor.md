@@ -127,7 +127,7 @@ transaction_body =
 
 So, the transaction body is a map from integer keys to values of different types. Some of the entries, marked as ‘?’, are optional.
 
-The mandatory parts are the inputs (field 0), the outputs (field 1) and the fee (field 2). In the smart contract example above, also the fields 11 (script_data_hash) and 13 (`nonempty_set<transaction_input>` meaning -> collateral) are present, which are always required if the transaction involves script execution.
+The mandatory parts are the inputs (field 0), the outputs (field 1) and the fee (field 2). In the smart contract example above, also the fields 11 (`script_data_hash`) and 13 (`nonempty_set<transaction_input>` meaning -> collateral) are present, which are always required if the transaction involves script execution.
 
 ### Transaction inputs
 
