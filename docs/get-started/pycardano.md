@@ -357,4 +357,5 @@ Note that there are specific fields you may need.
 
 ## Resources
 
-Visit [PyCardano Documentation](pycardano.readthedocs.io) for indepth guides.
+Visit [PyCardano Documentation](https://pycardano.readthedocs.io/en/latest/) for indepth guides.
+Watch [PyCardano Application Demo](https://www.youtube.com/watch?v=2r2CiE0YqWQ).
