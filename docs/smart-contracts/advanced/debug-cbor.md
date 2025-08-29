@@ -335,6 +335,7 @@ While the previous sections focused on analyzing transactions at the blockchain 
 
 :::info
 You can read more at [Aiken - CBOR diagostic](https://aiken-lang.org/language-tour/troubleshooting#cbor-diagnostic) section.
+:::
 
 ### CBOR Diagnostics in Aiken
 
