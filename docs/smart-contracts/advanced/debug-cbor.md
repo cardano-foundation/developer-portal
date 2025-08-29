@@ -312,7 +312,7 @@ In our example, we have only one redeemer for spending the script UTxO that is t
 5: [[0, 0, 121([]), [1302238, 360901332]]]
 ```
 
-We use 121([]) as the redeemer data to indicate to the script that we are trying to perform an increment operation. If it was 122([]), it would be a decrement operation. The script will validate, among other things, that the datum is updated according to the operation. The execution budget is 1302238 memory units and 360901332 CPU units, and was obtained in the balancing stage by doing an off-chain run of the validation.
+We use `121([])` as the redeemer data to indicate to the script that we are trying to perform an increment operation. If it was `122([])`, it would be a decrement operation. The script will validate, among other things, that the datum is updated according to the operation. The execution budget is 1302238 memory units and 360901332 CPU units, and was obtained in the balancing stage by doing an off-chain run of the validation.
 
 ## Trivia
 
