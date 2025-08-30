@@ -34,6 +34,7 @@
 **Installation** (see [README.md](README.md) for full setup):
 
 ```bash
+# External contributors: fork the repo first, then clone your fork
 git clone https://github.com/cardano-foundation/developer-portal.git
 cd developer-portal
 yarn install
