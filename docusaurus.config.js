@@ -244,7 +244,7 @@ module.exports = {
                   ]
           },
           {
-            to: '/docs/operate-a-stake-pool/introduction-to-cardano/',
+            to: '/docs/get-started/technical-concepts/core-blockchain-fundamentals#introduction-to-cardano-the-big-picture',
             from: '/docs/stake-pool-course/introduction-to-cardano',
           },
           {
@@ -276,7 +276,7 @@ module.exports = {
                   ]
           },
           {
-            to: '/docs/get-started/technical-concepts/',
+            to: '/docs/get-started/technical-concepts/overview',
             from: '/docs/stake-pool-course/handbook/utxo-model',
           },
           {
