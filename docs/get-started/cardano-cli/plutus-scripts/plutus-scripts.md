@@ -1,7 +1,7 @@
 ---
 id: plutus-scripts
 title: Plutus scripts
-sidebar_label: CLI - Plutus scripts
+sidebar_label: Plutus scripts
 sidebar_position: 4
 description: Transactions involving plutus scripts. 
 keywords: [scripts, plutus scripts, cardano, cardano-node, cardano-cli]
@@ -9,11 +9,9 @@ keywords: [scripts, plutus scripts, cardano, cardano-node, cardano-cli]
 
 This tutorial covers the basics of using the Cardano CLI to create transactions that involve executing Plutus scripts. Please checkout [Plutus user guide](https://plutus.cardano.intersectmbo.org/docs/) to learn how to write Plutus scrtipts.
 
-
 ## Basic validator plutus script
 
 For this tutorial we borrowed a simple validator script from the [Plutus Pioneer Program](https://iog-academy.gitbook.io/plutus-pioneers-program-fourth-cohort). We will use the [FortyTwoTyped.hs](https://github.com/input-output-hk/plutus-pioneer-program/blob/fourth-iteration/code/Week02/lecture/FortyTwoTyped.hs) script. You can download the serialized script form [this link](https://github.com/input-output-hk/plutus-pioneer-program/blob/fourth-iteration/code/Week02/assets/fortytwotyped.plutus).  
-
 
 :::note FortyTwoTyped.hs
 
@@ -26,13 +24,13 @@ mk42Validator :: () -> Integer -> PlutusV2.ScriptContext -> Bool
 mk42Validator _ r _ = traceIfFalse "expected 42" $ r == 42
 ```
 
-The type signature of **mk42Validator**  tells us that it takes three arguments and returns a Bool: 
+The type signature of **mk42Validator**  tells us that it takes three arguments and returns a Bool:
 
 ```
 mk42Validator :: () -> Integer -> PlutusV2.ScriptContext -> Bool
 ```
 
-As hinted by the comment line, these three arguments correspond to **Datum, Redeemer and Script Context**. 
+As hinted by the comment line, these three arguments correspond to **Datum, Redeemer and Script Context**.
 
 On the function definition we see that it does not care about the Datum and the Script Context and only cares about the redeemer.
 
@@ -45,18 +43,18 @@ The underscores (`_`) in the datum and script context positions mean that the fu
 
 So, the general plan for using this script is:
 
-1. Lock some funds in the script address. 
+1. Lock some funds in the script address.
 2. Attempt to spend the locked funds. The script will only permit the spending if the correct redeemer is provided.
 
-### Get the compiled script.
+### Get the compiled script
 
 Compiling the script is out of the scope of this tutorial, we can get the compiled version with:
 
-```
+```shell
 wget https://raw.githubusercontent.com/input-output-hk/plutus-pioneer-program/fourth-iteration/code/Week02/assets/fortytwotyped.plutus
 ```
 
-```
+```shell
 {
     "type": "PlutusScriptV2",
     "description": "",
@@ -64,10 +62,9 @@ wget https://raw.githubusercontent.com/input-output-hk/plutus-pioneer-program/fo
 }
 ```
 
+### Build the script address
 
-### Build the script address:
-
-```
+```shell
 cardano-cli address build \
 --payment-script-file fortytwotyped.plutus \
 --out-file script.addr
@@ -80,25 +77,25 @@ addr_test1wzqvkn6myu8ay080wdsju4s4mzuzgwwv9rxsz2xuc8ycaus9zk46q
 
 ## Lock funds in the script address
 
-Let's lock 10 ADA in the script. 
+Let's lock 10 ADA in the script.
 
-### Prepare the Datum:
+### Prepare the Datum
 
 To do this, we must create a transaction that sends 10 ADA to the script address and attach a datum. This particular script does not care about the content of the Datum, so we will use Haskell's unit data type.
 
-The unit data type is represented by (). It is a special type that has only one value, also written as (). This type is analogous to void in other programming languages, but it is a proper type with a single value. 
+The unit data type is represented by (). It is a special type that has only one value, also written as (). This type is analogous to void in other programming languages, but it is a proper type with a single value.
 
 We can create the file `datum.json` with the following content:
 
-```
+```json
 {"constructor":0,"fields":[]}
 ```
 
-### Submit the the transaction to lock the funds:
+### Submit the the transaction to lock the funds
 
 When building the transaction, it is important to use the `--tx-out-inline-datum-file` flag immediately after the `--tx-out` option to which the datum should be attached. The order of these options matters.
 
-```
+```shell
 cardano-cli conway transaction build \
 --tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-out $(< script.addr)+10000000 \
@@ -111,7 +108,7 @@ cardano-cli conway transaction build \
 
 Sign the transaction with the payment.skey
 
-```
+```shell
 cardano-cli conway transaction sign \
 --tx-file lock.tx `\
 -signing-key-file payment.skey \
@@ -120,7 +117,7 @@ cardano-cli conway transaction sign \
 
 Submit the transaction
 
-```
+```shell
 cardano-cli conway transaction submit \
 --tx-file lock.tx.signed 
 
@@ -129,7 +126,7 @@ cardano-cli conway transaction submit \
 
 ### Query the utxos in the script address
 
-```
+```shell
 cardano-cli query utxo --address $(< script.addr) --output-json
 {
     "4c31734468d4f5957328f8fcbb612201c2f774b4ef2bde09b0c6e12cb7ce3f10#0": {
@@ -148,13 +145,13 @@ cardano-cli query utxo --address $(< script.addr) --output-json
 }
 ```
 
-Perfect, we have locked 10 ada on the script address, the only way to spend it is by executing the script providing the correct redeeemer. 
+Perfect, we have locked 10 ada on the script address, the only way to spend it is by executing the script providing the correct redeeemer.
 
-### Attempt to spend the funds passing the wrong redeemer:
+### Attempt to spend the funds passing the wrong redeemer
 
-We could say that failing is the primarily duty of a Plutus script. Let's check that our script fails if we pass the wrong redeemer. 
+We could say that failing is the primarily duty of a Plutus script. Let's check that our script fails if we pass the wrong redeemer.
 
-```
+```shell
 cardano-cli conway transaction build \
 --tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
@@ -164,8 +161,9 @@ cardano-cli conway transaction build \
 --change-address $(< payment.addr) \
 --out-file unlock.tx
 ```
-We will explain this command in detail below, for now lets focus on the fact that we are passing the Integer **57** as redeemer using the flag 
-`--tx-in-redeemer-value 57`. When we hit Enter, the `build` command will try to construct the transaction body, running the script in the process. 
+
+We will explain this command in detail below, for now lets focus on the fact that we are passing the Integer **57** as redeemer using the flag
+`--tx-in-redeemer-value 57`. When we hit Enter, the `build` command will try to construct the transaction body, running the script in the process.
 
 ```
 Command failed: transaction build  Error: The following scripts have execution failures:
@@ -180,11 +178,11 @@ The script failed to run. It threw the programmed error message "expected 42" an
 
 If we really wanted, we could use `build-raw` to construct the same transaction and bypass this failure on `build`. However, we would get the same error on `submit`. This transaction can never make it to the chain because it is being rejected by the local node.
 
-### Attempt to spend the funds passing the correct redeemer:
+### Attempt to spend the funds passing the correct redeemer
 
-Let's re-use the `build` command from above, this time we pass the correct redeemer value `--tx-in-redeemer-value 42`. 
+Let's re-use the `build` command from above, this time we pass the correct redeemer value `--tx-in-redeemer-value 42`.
 
-```
+```shell
 cardano-cli conway transaction build \
 --tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
@@ -199,20 +197,20 @@ Lets break down the command:
 
 - `--tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]')`
 
-We use the first UTxO on the script address as input for the transaction. So we are trying to spend the locked funds. 
+We use the first UTxO on the script address as input for the transaction. So we are trying to spend the locked funds.
 
 - `--tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr)`  
   `--output-json | jq -r 'keys[0]')`
 
-Since we are running a Plutus script, we must provide a collateral. We use the first utxo of payment address. 
+Since we are running a Plutus script, we must provide a collateral. We use the first utxo of payment address.
 
 - `--tx-in-script-file fortytwotyped.plutus`
 
-We supply the script file. 
+We supply the script file.
 
 - `--tx-in-inline-datum-present`
 
-We need to supply a datum. When we locked the funds a few steps above we put the datum inline with *--tx-out-inline-datum-file datum.json* this allows us to not supply the datum when trying to spend the funds from the script, instead we are telling the node that the utxo on the script address has the inline datum and the node should get the datum from there. 
+We need to supply a datum. When we locked the funds a few steps above we put the datum inline with *--tx-out-inline-datum-file datum.json* this allows us to not supply the datum when trying to spend the funds from the script, instead we are telling the node that the utxo on the script address has the inline datum and the node should get the datum from there.
 
 - `--tx-in-redeemer-value 42`
 
@@ -220,13 +218,13 @@ We pass the Integer 42 as redeemer
 
 - `--change-address $(< payment.addr)`
 
-If sucesfull, the 10 ada locked on the script will be sent to payment.addr. Note that we will pay the transactin fee from this UTXO so payment address should receive a little under 10 ada. 
+If sucesfull, the 10 ada locked on the script will be sent to payment.addr. Note that we will pay the transactin fee from this UTXO so payment address should receive a little under 10 ada.
 
 - `--out-file unlock.tx`
 
 We save the transaction body as `unlock.tx`.
 
-When running the command we get 
+When running the command we get
 
 ```
 Estimated transaction fee: Coin 300777
@@ -234,14 +232,14 @@ Estimated transaction fee: Coin 300777
 
 This time, the node validated the transaction and successfully ran the script. The transaction should succeed if we provide the correct witness for the collateral. Let's do that.
 
-
-```
+```shell
 cardano-cli conway transaction sign \
 --tx-file unlock.tx \
 --signing-key-file payment.skey \
 --out-file unlock.tx.signed 
 ```
-```
+
+```shell
 cardano-cli conway transaction submit -\
 -tx-file unlock.tx.signed
 
@@ -250,23 +248,23 @@ cardano-cli conway transaction submit -\
 
 For tracking purposes, lets find our transaction id
 
-```
+```shell
 cardano-cli conway transaction txid --tx-file unlock.tx.signed 
 74c856f90276315a14bd2bd35b3a2f803b763a1bdfa2648ec30a85a129048131
 ```
 
 Query the UTXOs on both addresses. The script address is now empty
 
-```
+```shell
 cardano-cli query utxo --address $(< script.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 ```
 
 and the payment address shows the expected utxo **74c856f90276315a14bd2bd35b3a2f803b763a1bdfa2648ec30a85a129048131#0** with the funds
-we unlocked from the script. 
+we unlocked from the script.
 
-```
+```shell
 cardano-cli query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
@@ -274,14 +272,3 @@ cardano-cli query utxo --address $(< payment.addr)
 74c856f90276315a14bd2bd35b3a2f803b763a1bdfa2648ec30a85a129048131     0        9699223 lovelace + TxOutDatumNone
 c0e5fe9a87290b137d0acc995f13493eb423f831c8edaa54e6c86f381a31caf3     1        5898934190 lovelace + TxOutDatumNone
 ```
-
-
-
-
-
-
-
-
-
- 
- 

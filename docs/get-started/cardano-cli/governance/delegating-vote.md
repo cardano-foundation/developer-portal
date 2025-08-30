@@ -18,12 +18,12 @@ In addition to the registered DReps, the system features a couple of default vot
 ### Prerequisites
 
 * Payment keys and address with funds
-* [Registered stake address](docs/get-started/cli-operations/basic-operations/stakeaddress-registration.md)
+* [Registered stake address](docs/get-started/cardano-cli/basic-operations/stakeaddress-registration.md)
 * DRep ID (key hash or script hash) of a registered DRep.
 
 ## Generating the vote delegation certificate
 
-### Generate the vote delegation certificate.
+### Generate the vote delegation certificate
 
 * Delegating to the `--always-abstain` default voting option:
 
@@ -34,7 +34,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
   --out-file vote-deleg.cert
 ```
 
-* Delegating to the `--always-no-confidence` default voting option: 
+* Delegating to the `--always-no-confidence` default voting option:
 
 ```shell
 cardano-cli conway stake-address vote-delegation-certificate \
@@ -51,6 +51,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
   --drep-key-hash $(< drep.id) \
   --out-file vote-deleg.cert
 ```
+
 * Delegating to a **script-based** (i.e. multisignature) registered DRep:
 
 ```shell

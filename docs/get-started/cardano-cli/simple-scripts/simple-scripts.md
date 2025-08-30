@@ -1,7 +1,7 @@
 ---
 id: simple-scripts
 title: Simple scripts
-sidebar_label: CLI - Simple scripts
+sidebar_label: Simple scripts
 sidebar_position: 1
 description: Writing Cardano Simple scripts. 
 keywords: [scripts, native scripts, simple scripts, cardano, cardano-node, cardano-cli]
@@ -12,13 +12,13 @@ that are related to scripts work the same irrespective of the script language
 (or version of a script language).
 
 Since Shelley era, Cardano supports the **Simple script** language, which can be used for
-multi-signature addresses. 
+multi-signature addresses.
 
 The Allegra era extends the simple script language with a feature to make scripts
 conditional on time (token locking). This can be used to make address with "time locks",
 where the funds cannot be withdrawn from a script address until after a certain point in time.
 
-The Alonzo era brought support for **Plutus scripts**, these are out of the scope of this section. 
+The Alonzo era brought support for **Plutus scripts**, these are out of the scope of this section.
 
 ## Script addresses
 
@@ -26,8 +26,8 @@ In general, addresses (both payment addresses and stake addresses) specify the _
 met for the address to be used. For payment addresses, this means the authorisation conditions for funds to be
 withdrawn. For stake addresses, this means the authorisation conditions for setting a delegation choice or rewards withdrawal.
 
-Both payment and stake addresses come in two flavours: *single-key based* or
-*script based*. The key-based addresses use a single cryptographic key per
+Both payment and stake addresses come in two flavours: _single-key based_ or
+_script based_. The key-based addresses use a single cryptographic key per
 address. The authorisation condition to use the address is that one holds the
 secret (signing) part of the cryptographic key (for that address) and thus be
 able to make a cryptographic signature for that key.
@@ -47,7 +47,7 @@ the general case.
 
 When using an address (payment or stake) in a transaction, the transaction must
 contain the information needed to show that the authorisation conditions for the
-use of the address are met. This information is known as a *transaction witness*.
+use of the address are met. This information is known as a _transaction witness_.
 We say that it _witnesses_ the validity of the transaction using the address.
 The addresses themselves have a _credential_ which is information sufficient to
 check that a witness is the right witness.
@@ -55,12 +55,12 @@ check that a witness is the right witness.
 Specifically, there are two types of such credentials, for key and script
 addresses:
 
-+ **Key credential** - a key credential is constructed using a *verification
-  key (vk)* (which has corresponding *signing key (sk)*). The credential is the
-  cryptographic hash of the verification key *H(vk)*.
++ **Key credential** - a key credential is constructed using a _verification
+  key (vk)_ (which has corresponding _signing key (sk)_). The credential is the
+  cryptographic hash of the verification key _H(vk)_.
 
-  The transaction witness for a key credential consists of the *verification
-  key vk* and the signature of transaction body hash using the *signing key sk*.
+  The transaction witness for a key credential consists of the _verification
+  key vk_ and the signature of transaction body hash using the _signing key sk_.
 
 + **Script credential** - a script credential is the hash of the script.
 
@@ -74,8 +74,8 @@ addresses:
 In Shelley and later eras, multisig scripts are used to make script addresses
 where the authorisation condition for a transaction to use that address is that
 the transaction has signatures from multiple cryptographic keys. Examples
-include M of N schemes, where a transaction can be authorized if at least *M*
-distinct keys, from a set of *N* keys, sign the transaction.
+include M of N schemes, where a transaction can be authorized if at least _M_
+distinct keys, from a set of _N_ keys, sign the transaction.
 
 As with all scripts, the transaction witness for a multisig script address
 includes the script itself. The multisig language is so simple that this is
@@ -89,12 +89,14 @@ The multisig script language is an expression language. Its scripts form an
 expression tree. The evaluation of the script produces either `true` or `false`.
 
 In BNF notation, the script expressions follow the following abstract syntax:
+
 ```
 <script> ::= <RequireSignature> <vkeyhash>
            | <RequireAllOf>     <script>*
            | <RequireAnyOf>     <script>*
            | <RequireMOf> <num> <script>*
 ```
+
 Note that it is recursive. There are no constraints on the nesting or
 size, except that imposed by the overall transaction size limit (given that
 the script must be included in the transaction in a script witnesses).
@@ -125,7 +127,6 @@ In more detail, the four multisig constructors are:
   This expression evaluates to `true` if (and only if) at least M of the
   sub-expressions evaluate to `true`.
 
-
 ## Time locking
 
 In the Allegra and later eras, the **simple script** language above is
@@ -142,6 +143,7 @@ correspond to time. The extra constructors allow expressing that the current
 time slot number must be before a certain slot, or after a certain slot.
 
 The BNF notation for the abstract syntax is:
+
 ```
 <script> ::= <RequireSignature>  <vkeyhash>
            | <RequireTimeBefore> <slotno>
@@ -185,15 +187,13 @@ With this in mind, we can understand the interpretation of the new expressions:
 One might reasonably wonder why use this two-stage check via the validity
 interval rather than more straightforwardly check the actual slot time. The
 reason is to give deterministic script evaluation, which becomes crucial for
-Plutus scripts. In this context, by *deterministic* we mean that the result of the
+Plutus scripts. In this context, by _deterministic_ we mean that the result of the
 script evaluation depends only on the transaction itself and not any other
 context or state of the system. This property is less crucial for this simple
 script language, but it is better if all the languages behave the same in this
 regard. Even for the simple script language it does still have the advantage
 that the script itself can be evaluated without needing to know the current slot
 number.
-
-
 
 ## JSON script syntax
 
@@ -222,6 +222,7 @@ This corresponds to the "RequireAllOf" expression above. It specifies the type
 
 This example requires signatures from all of three keys, but remember that the
 sub-expressions could be any script type, not just type "sig".
+
 ```json
 {
   "type": "all",
@@ -250,6 +251,7 @@ This corresponds to the "RequireAnyOf" expression above. It specifies the type
 
 This example requires signatures from any of three keys, but remember that the
 sub-expressions could be any script type, not just type "sig".
+
 ```json
 {
   "type": "any",
@@ -308,6 +310,7 @@ type "after" and the slot number.
 
 This example requires a signature from a single key and requires that the time
 be after slot 1000.
+
 ```json
 {
   "type": "all",
@@ -368,7 +371,6 @@ key is acceptable, but at slot 3000 and thereafter only one key is acceptable.
 Note that transactions spending from scripts that use type `before` must provide
 the lower bound for the transaction validity interval. See below for examples of
 how to do this using the `cardano-cli`.
-
 
 ### Example of using a script for multi-signatures
 
@@ -434,6 +436,7 @@ cardano-cli conway transaction build-raw
     --tx-out "$(< script.addr) ${amount}"
     --out-file txbody
 ```
+
 Where `amount` is a shell variable you have defined, or replace it with a
 literal value.
 
@@ -500,6 +503,7 @@ cardano-cli conway transaction witness \
 ```
 
 #### Step 3 - construct and submit the transaction
+
 To construct and submit a transaction, you must assemble it with the script
 witness and all the other required key witnesses.
 
@@ -512,8 +516,8 @@ cardano-cli conway transaction assemble \
   --witness-file key3witness \
   --out-file spendMultiSig
 ```
-You can now submit this tx via `cardano-cli conway transaction submit`!
 
+You can now submit this tx via `cardano-cli conway transaction submit`!
 
 ### Example of using a script for time locking
 
@@ -530,17 +534,22 @@ slot number. This has been replaced with the `--invalid-before` and
 
 If you specify only a lower bound on a transaction, with `--invalid-before=X`,
 it is valid in slot X and thereafter. The valid slot interval is:
+
 ```
       [X, infinity)
 ```
+
 If you specify an upper bound on a transaction, with `--invalid-hereafter=X`,
 it is valid up to but not including slot X. The valid slot interval is:
+
 ```
       [0, X)
 ```
+
 If you specify both bounds, with `--invalid-before=X --invalid-hereafter=Y`,
 then the tx is valid in slot X up to but not including slot Y. The valid slot
 interval is:
+
 ```
 
       [X, Y)
@@ -583,6 +592,7 @@ Example time locking script file:
   ]
 }
 ```
+
 For `after` scripts we must provide a `--invalid-before` slot that is greater
 than or equal to the specified slot number in our simple script. In the example
 above this means >= 1000.
@@ -613,6 +623,7 @@ A simple example for a before-time script is:
     "type": "all"
 }
 ```
+
 Note that this is not really time locking in the normal sense, and indeed this
 is a very dangerous script to use because any funds left in a script address
 using this script after time slot 3000 will be locked there permanently!

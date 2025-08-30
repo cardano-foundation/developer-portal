@@ -56,9 +56,9 @@ The result is a directory filled with the contract address, policy ID and data t
 
 ## Links
 
-- [opshin Github Repository](https://github.com/OpShin/opshin).
-- [opshin pioneer program](https://github.com/OpShin/opshin-pioneer-program)
-- [opshin starter kit](https://github.com/OpShin/opshin-starter-kit)
+- [Opshin Github Repository](https://github.com/OpShin/opshin).
+- [Opshin pioneer program](https://github.com/OpShin/opshin-pioneer-program)
+- [Opshin starter kit](https://github.com/OpShin/opshin-starter-kit)
 - [PyCardano Smart Contract documentation](https://pycardano.readthedocs.io/en/latest/guides/plutus.html).
 
 ### Educational

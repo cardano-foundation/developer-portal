@@ -46,10 +46,10 @@ Before submitting a governance action, you *should* complete the following:
 1. **Prepare Metadata:** Create a metadata file and host it at a content-addressable storage solution (e.g., using [IPFS](https://ipfs.tech/)). This file provides context and rationale for your proposal. See [Creating the Metadata File](#creating-the-metadata-file) below.
 2. **Obtain Sufficient ada:** Ensure you have the required governance action deposit of 100,000 ada (as of March 2025).
 3. **Choose a Submission Method:** You can submit governance actions using:
-    - **cardano-cli:** The command-line interface for interacting with the Cardano blockchain. [How to propose a governance actions Via Cardano-cli](/docs/get-started/cli-operations/governance/governance-actions.md)
+    - **cardano-cli:** The command-line interface for interacting with the Cardano blockchain. [How to propose a governance actions Via Cardano-cli](/docs/get-started/cardano-cli/governance/governance-actions.md)
     - **GovTool:** A dedicated governance tool. [How to propose a governance actions Via GovTools](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
 
-Optionally, authors can consider socialising their idea for a governance action before submission, giving stakeholders time to provide feedback.
+Optionally, authors can consider socialising their idea for a governance action before submission, giving stakeholders time to provide feedback
 ---
 
 ## Creating the Metadata File
@@ -96,7 +96,7 @@ Pinning your metadata to IPFS or Filecoin ensures that it is stored on a decentr
 - **Using the NMKR API:**  
   Follow the NMKR API instructions for pinning files to IPFS. [NMKR API Tutorial for Pinning Files to IPFS](https://docs.nmkr.io/nmkr-studio-api/api-features#ipfs)
 - **Using the Blockfrost Tutorial:**  
-  Use Blockfrost’s guide to pin your metadata via their API. 
+  Use Blockfrost’s guide to pin your metadata via their API.
   - [Blockfrost Tutorial for Pinning Files to IPFS](https://blockfrost.dev/start-building/ipfs/)
   - [Blockfrost Tutorial for Pinning Files to Filecoin](https://blockfrost.dev/start-building/ipfs/#filecoin)
 - **Using IPFS:**  
@@ -238,11 +238,12 @@ Before submitting your governance action, verify you have completed all the foll
 
 ### Tools and Tutorials
 
-- [**Governance Action cardano-cli Submission Guide**](https://developers.cardano.org/docs/get-started/cli-operations/governance/governance-actions)
+- [**Governance Action cardano-cli Submission Guide**](docs/get-started/cardano-cli/governance/governance-actions.md)
 - [**Governance Action GovTool Submission Guide**](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
 - [**Blockfrost IPFS Tutorial**](https://blockfrost.dev/start-building/ipfs/)
 
 ### Other Governance Resources
+
 - [**Governance Category in Showcase section**](https://developers.cardano.org/showcase?tags=governance)
 - [**Cardano Forum Governance Category**](https://forum.cardano.org/c/governance/140)
 - [**GovTool**](https://gov.tools/)
