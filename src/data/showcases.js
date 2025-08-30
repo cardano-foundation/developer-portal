@@ -1337,6 +1337,15 @@ export const Showcases = [
     source: null,
     tags: ["game"],
   },
+  {
+    title: "Asteria",
+    description:
+      "A fully on-chain strategy game for devs. Pilot a spaceship in a 2D grid where everything is a UTxO. ",
+    preview: require("./showcase/asteria.png"),
+    website: "https://github.com/txpipe/asteria",
+    source: "https://github.com/txpipe/asteria",
+    tags: ["game", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
