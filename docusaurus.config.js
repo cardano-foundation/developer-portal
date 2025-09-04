@@ -384,6 +384,18 @@ module.exports = {
             to: '/docs/operate-a-stake-pool/relay-node-configuration/',
             from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
+          {
+            to: '/docs/get-started/security/air-gap',
+            from: '/docs/operate-a-stake-pool/security/air-gap',
+          },
+          {
+            to: '/docs/get-started/security/secure-workflow',
+            from: '/docs/operate-a-stake-pool/security/secure-workflow',
+          },
+          {
+            to: '/docs/get-started/security/frankenwallet',
+            from: '/docs/operate-a-stake-pool/frankenwallet',
+          },
         ],
       },
     ],
