@@ -73,7 +73,7 @@ While Cardano governance operates on-chain, CC members operate in the real world
 * **Contractual Agreements:** For consortia, a legal entity provides a framework for creating binding agreements between members regarding responsibilities, compensation, and decision-making.  
 * **Professionalism and Longevity:** A formal structure signals a long-term commitment and a professional approach to the role.
 
-**Common Structures:** 
+**Common Structures:**
 
 The appropriate legal entity depends heavily on your jurisdiction and goals. Standard options include a Limited Liability Company (LLC), a non-profit organization, or a foundation.  
 
@@ -94,8 +94,8 @@ Becoming a member of the Constitutional Committee is a formal on-chain governanc
 The process is as follows:
 
 1. **Submit a Governance Action:** A proposal to modify the committee must be submitted to the blockchain. This is the ["Update committee/threshold"](governance-actions.md#detailed-technical-breakdown) governance action. Any ada holder can use this action to add or remove members, change their terms, or adjust the voting threshold required for the committee itself.  
-2. **Community Ratification:** For the governance action to pass, it must be approved by both DReps and SPOs. The exact voting threshold required depends on the current state of the Constitutional Committee (normal vs. no-confidence). These thresholds are defined by updatable protocol parameters. 
-    
+2. **Community Ratification:** For the governance action to pass, it must be approved by both DReps and SPOs. The exact voting threshold required depends on the current state of the Constitutional Committee (normal vs. no-confidence). These thresholds are defined by updatable protocol parameters.
+
     | Category                   | Normal State | No-Confidence State |
     |----------------------------|--------------|---------------------|
     | DRep Approval Thresholds   | 67%          | 60%                 |
@@ -116,7 +116,7 @@ The tools below are used to generate the credential hash that you include in the
   * **User Guide:** [Credential Manager Documentation](https://credential-manager.readthedocs.io/en/latest/)  
   * **Video Workshops:** [Credential Manager & CC Workshops Playlist from Mike Hornan](https://www.youtube.com/playlist?list=PLWYf5eQbRdbUPdt9UT-Vjhi6b840WSIWg)  
 * **Alternative Method: Native CLI:** Users can generate keys and register credentials directly using the cardano-cli. This approach can also be used to create native multi-signature credentials.  
-  * **Tutorial:** [CLI Guide for Constitutional Committee Actions](/docs/get-started/cli-operations/governance/constitutional-committee.md)
+  * **Tutorial:** [CLI Guide for Constitutional Committee Actions](/docs/get-started/cardano-cli/governance/constitutional-committee.md)
 
 ### Testing on SanchoNet
 
@@ -128,6 +128,7 @@ Before engaging in the mainnet governance process, it is advisable to test your 
 2. Create your hot and cold keys.  
 3. Practice creating voting rationales and vote transactions on SanchoNet.  
 4. Use a block explorer to confirm your test transactions were successfully recorded.
+
 * **Key Resources:** [SanchoNet Tutorials](https://github.com/Hornan7/SanchoNet-Tutorials), [SanchoNet Explorer](https://sancho.cardanoconnect.io/)
 
 ### How to Vote On-Chain

@@ -59,7 +59,7 @@ const features = [
     targetUrl: "docs/smart-contracts/",
     description: (
       <>
-        Discover Marlowe and Plutus and learn how to create smart contracts on Cardano.
+        Discover Aiken and Plutarch and learn how to create smart contracts on Cardano.
       </>
     ),
   },

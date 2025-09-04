@@ -7,18 +7,21 @@ description: Query the node to obtain information about the governance state
 keywords: [Governance, queries, CIP1694]
 ---
 
-There are various queries you can do to your local node to find relevant information about different aspects of thenpm governance state. 
+There are various queries you can do to your local node to find relevant information about different aspects of thenpm governance state.
 
 ### Query proposals
 
 #### Query all proposals
-This query returns all the proposals that can be ratified in the current epoch. This means that it excludes proposals that were submitted on the current epoch, as these cannot be ratified on the current epoch. 
+
+This query returns all the proposals that can be ratified in the current epoch. This means that it excludes proposals that were submitted on the current epoch, as these cannot be ratified on the current epoch.
 
 ```shell
 cardano-cli conway query proposals --all-proposals
 ```
+
 #### Query proposal by ID
-To query an individual proposal by its governance action id: 
+
+To query an individual proposal by its governance action id:
 
 ```shell
 cardano-cli conway query proposals \
@@ -60,7 +63,7 @@ cardano-cli conway query proposals \
 
 ### Query the gov-state
 
-We are showing only the top level keys of the governance state, the dump is to large to show on this tutorial. 
+We are showing only the top level keys of the governance state, the dump is to large to show on this tutorial.
 
 ```shell
 cardano-cli conway query gov-state
@@ -80,7 +83,8 @@ cardano-cli conway query gov-state
     "proposals": []
 }
 ```
-### Query the constitution:
+
+### Query the constitution
 
 ```shell
 cardano-cli conway query constitution
@@ -92,7 +96,8 @@ cardano-cli conway query constitution
     "script": "fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64"
 }
 ```
-### Query the DRep state for all DReps:
+
+### Query the DRep state for all DReps
 
 ```shell
 cardano-cli conway query drep-state --all-dreps
@@ -140,7 +145,7 @@ cardano-cli conway query drep-state --all-dreps
 ]
 ```
 
-### Query the DRep state for an individual DRep:
+### Query the DRep state for an individual DRep
 
 ```shell
 cardano-cli conway query drep-state --drep-key-hash 8f4fefcf28017a57b41517a67d56ef4c0dc04181a11d35178dd53f4c
@@ -157,7 +162,8 @@ cardano-cli conway query drep-state --drep-key-hash 8f4fefcf28017a57b41517a67d56
     ]
 ]
 ```
-### Query the DRep stake distribution (voting power):
+
+### Query the DRep stake distribution (voting power)
 
 ```shell
 cardano-cli conway query drep-stake-distribution --all-dreps
@@ -177,7 +183,7 @@ cardano-cli conway query drep-stake-distribution --all-dreps
 ]
 ```
 
-### Query the committee state:
+### Query the committee state
 
 ```shell
 cardano-cli conway query committee-state
@@ -248,7 +254,7 @@ cardano-cli conway query committee-state
 }
 ```
 
-### Query the state of an individual committee key hash:
+### Query the state of an individual committee key hash
 
 ```shell
 cardano-cli conway query committee-state --cold-script-hash 7ceede7d6a89e006408e6b7c6acb3dd094b3f6817e43b4a36d01535b
@@ -272,6 +278,7 @@ cardano-cli conway query committee-state --cold-script-hash 7ceede7d6a89e006408e
     "threshold": 0.67
 }
 ```
+
 ### Query expired committee members
 
 ```shell
@@ -294,6 +301,7 @@ cardano-cli conway query committee-state --expired
     "quorum": 0.6
 }
 ```
+
 ### Query active committee members
 
 ```shell
@@ -338,6 +346,7 @@ cardano-cli conway query committee-state --active
     "quorum": 0.6
 }
 ```
+
 ### Query unrecognized committee keys
 
 ```shell
