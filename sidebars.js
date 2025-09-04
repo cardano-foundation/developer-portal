@@ -1,5 +1,5 @@
 module.exports = {
-  someSidebar: {
+  learnSidebar: {
     "Get Started": [
       "get-started/overview",
       {
@@ -166,6 +166,18 @@ module.exports = {
       "get-started/cardano-developer-community",
       "get-started/funding",
     ],
+    "Contribute to the Developer Portal": [
+      "portal-contribute",
+      "portal-style-guide",
+      {
+        type: "link",
+        label: "Contributors",
+        href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
+      },
+    ],
+  },
+
+  developerSidebar: {
     "Integrate Cardano": [
       "integrate-cardano/overview",
       "integrate-cardano/creating-wallet-faucet",
@@ -348,6 +360,9 @@ module.exports = {
         ],
       },
     ],
+  },
+
+  governanceSidebar: {
     "Participate in Governance": [
       "governance/overview",
       {
@@ -362,6 +377,9 @@ module.exports = {
         ],
       },
     ],
+  },
+
+  networkSidebar: {
     "Operate a Stake Pool": [
       "operate-a-stake-pool/overview",
       {
@@ -431,15 +449,6 @@ module.exports = {
           "operate-a-stake-pool/guild-ops-suite",
           "operate-a-stake-pool/frankenwallet",
         ],
-      },
-    ],
-    "Contribute to the Developer Portal": [
-      "portal-contribute",
-      "portal-style-guide",
-      {
-        type: "link",
-        label: "Contributors",
-        href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
       },
     ],
   },
