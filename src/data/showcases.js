@@ -675,7 +675,7 @@ export const Showcases = [
     title: "WingRiders",
     description:
       "The DEX on Cardano. Native and fast AMM decentralized exchange platform.",
-    preview: require("./showcase/wingriders.png"),
+    preview: require("./showcase/wingriders.jpg"),
     website: "https://www.wingriders.com",
     source: null,
     tags: ["dex", "token"],
