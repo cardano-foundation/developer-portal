@@ -10,6 +10,11 @@ image: /img/og/og-developer-portal.png
 
 This guide is for exchanges, custodians, and other entities interested in or currently listing ada or Cardano native tokens. It outlines the main available components for integration purposes, providing step-by-step instructions and best practices.
 
+:::tip Need integration support?
+For tailored support, real-time updates, and integration queries, connect with the Cardano Foundation Core Integrations team at **[integrations@cardanofoundation.org](mailto:integrations@cardanofoundation.org)**.
+:::
+
+
 ## Understanding Cardano's Accounting Model
 
 Cardano utilizes the Extended UTXO (eUTXO) model for its accounting system, which extends the UTXO design to support multi-assets and smart contracts.
