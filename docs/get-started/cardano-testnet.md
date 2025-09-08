@@ -266,9 +266,13 @@ Testnet is running.  Type CTRL-C to exit.
 ```
 
 You can ignore the initial `✗ <interactive> failed` log. This is an artifact from the fact that cardano-testnet relies
-on a test library to run. The same applies to all `forAllX = ...` logs. That being said, those logs give the location of the output directory being used: it is `/tmp/nix-shell.iZ2TPc/tmp.ly3nO21w1e/` in the log above. This can be useful if you didn't specify `--output-dir` yourself and rely on cardano-testnet's default behavior.
+on a test library to run. The same applies to all `forAllX = ...` logs.
 
-Once the line `Testnet is running.  Type CTRL-C to exit.` appears, the testnet is running and building blocks, and regular queries commands (for example using [cardano-cli](cardano-cli/basic-operations/get-started)) can be executed against it.
+The last few lines give you the location of the config file (hence the location of the sandbox directory, if you haven't specified it), and the logs of the SPO node.
+
+It also gives you some environment variables to export, should you want to use [cardano-cli](https://developers.cardano.org/docs/get-started/cli-operations/basic-operations/) to interact with the testnet.
+
+Once the line `Testnet is running.  Type CTRL-C to exit.` appears, the testnet is running and building blocks.
 
 ## Stopping a local cluster
 
