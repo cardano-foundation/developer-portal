@@ -415,6 +415,7 @@ module.exports = {
           showReadingTime: true,
           editUrl: `${vars.repository}/edit/${vars.branch}`,
           blogSidebarCount: 'ALL',
+          onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
