@@ -226,4 +226,4 @@ These are not directly related to transactions, and will all eventually be addre
 - making encrypted backups of your private keys (so they can be kept offsite / stored outside your air gap environment)
 - keeping secure (encrypted) records of your stake pool & development resources
 
-For ideas on secure backup & record-keeping, see [Get Started with the Frankenwallet > Making & verifying backups of assets & keys](/docs/operate-a-stake-pool/frankenwallet.md#making--verifying-backups-of-assets--keys).
+For ideas on secure backup & record-keeping, see [Get Started with the Frankenwallet > Making & verifying backups of assets & keys](/docs/get-started/security/frankenwallet.md#making--verifying-backups-of-assets--keys).
