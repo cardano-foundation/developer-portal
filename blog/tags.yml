@@ -24,7 +24,7 @@ dao:
   permalink: /dao
   description: All blockchain-based self-governing organizations (Decentralised Autonomous Organization)
 
-Developer Office Hours:
+developer-office-hours:
   label: Developer Office Hours
   permalink: /developer-office-hours
   description: Developer Office Hours are dynamic and interactive sessions where the Cardano developer community connects with experts to explore new and evolving developments. These sessions focus on exploring new and updated developments, featuring expert presentations, live demos, and interactive Q&A segments that break down complex topics.
