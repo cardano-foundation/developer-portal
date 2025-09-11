@@ -7,17 +7,16 @@ description: Build all possible transaction with our cardano-cli like APIs.
 image: /img/og/og-getstarted-mesh.png
 ---
 
-The `MeshTxBuilder` is a powerful low-level APIs that allows you to build and sign transactions.
+`MeshTxBuilder` is a powerful interface of low-level APIs that allow you to build and sign transactions.
+It builds the transaction object, which then can be passed to various serialization libraries.
 
-The `MeshTxBuilder` is a powerful interface where the higher level `Transaction` class is indeed a pre-built combination of the `MeshTxBuilder` APIs. With these lower level APIs, it builds the object to be passing to various serialization libraries.
-
-Check out the [Mesh Playground](https://meshjs.dev/apis/txbuilder) for live demo and full explanation.
+Check out [this page](https://meshjs.dev/apis/txbuilder/basics) for a detailed explanation.
 
 ## Initialize the MeshTxBuilder
 
-To start building an customized transaction, you need to first initialize MeshTxBuilder:
+To start building customized transactions, you need to first initialize an instance of `MeshTxBuilder`:
 
-```
+```javascript
 import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core";
 
 const blockchainProvider = new BlockfrostProvider('<Your-API-Key>');
@@ -28,31 +27,35 @@ const txBuilder = new MeshTxBuilder({
 });
 ```
 
-The MeshTxBuilder instance has the following signature:
+The `MeshTxBuilder` constructor accepts the following parameters:
 
-```
+```javascript
 {
   fetcher?: IFetcher;
   submitter?: ISubmitter;
   evaluator?: IEvaluator;
   serializer?: IMeshTxSerializer;
+  selector?: IInputSelector;
   isHydra?: boolean;
   params?: Partial<Protocol>;
+  verbose?: boolean;
 }
 ```
 
-There are 6 optional fields to pass in to initialized the lower level APIs instance:
+A brief explanation:
 
-- `serializer`: The default serializer is CSLSerializer. You can pass in your own serializer instance.
-- `fetcher`: When you build the transaction without sufficient fields as required by the serialization library, we would index the blockchain to fill the information for you. Affected APIs are txIn, txInCollateral, spendingTxInReference.
-- `submitter`: It is used if you would like to use the submitter submitTx API directly from the instance.
-- `evaluator`: It would perform redeemer execution unit optimization, returning error message in case of invalid transaction.
+- `fetcher`: When you build a transaction without sufficient fields as required by the serialization library,
+we would index the blockchain to fill the missing information for you. Affected APIs are: `txIn`, `txInCollateral`, `spendingTxInReference`.
+- `submitter`: It is used if you would like to use the submitter's `submitTx` API directly from the instance.
+- `evaluator`: It would perform redeemer execution unit calculation, returning error message in case of invalid transaction.
+- `serializer`: The default serializer is `CSLSerializer`. You can pass in your own serializer instance.
+- `selector`: The default selector is `CardanoSDKInputSelector`. You can pass in your own selector instance.
 - `isHydra`: Use another set of default protocol parameters for building transactions.
 - `params`: You can pass in the protocol parameters directly.
 
-## Send a value transaction
+## Send a Value Transaction
 
-Sending value with `MeshTxBuilder` come with the `.txOut()` endpoint:
+Sending value with `MeshTxBuilder` comes with the `.txOut()` endpoint:
 
 ```javascript
 .txOut(address: string, amount: Asset[])
@@ -60,13 +63,13 @@ Sending value with `MeshTxBuilder` come with the `.txOut()` endpoint:
 
 In order to send values (so as every Cardano transaction), we have to fund the transaction to do so. There are 2 ways to provide values in a transaction:
 
-Specifying which input to spend with:
+1. By specifying which input to spend with:
 
 ```javascript
 .txIn(txHash: string, txIndex: number, amount?: Asset[], address?: string)
 ```
 
-Providing an array of UTxOs, and perform auto UTxO selection:
+2. Providing an array of UTxOs, and perform auto UTxO selection:
 
 ```javascript
 .selectUtxosFrom(extraInputs: UTxO[], strategy?: UtxoSelectionStrategy, threshold?: string, includeTxFees?: boolean)
@@ -88,3 +91,4 @@ txBuilder
   .complete();
 ```
 
+Check out [this page](https://meshjs.dev/apis/txbuilder/basics#send-value) for a detailed explanation.

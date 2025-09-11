@@ -16,7 +16,7 @@ Whether you're a new developer, a startup, or a large enterprise, Mesh makes Web
 | List of Features |  |
 |----|---|
 | [Clean and intuitive APIs](https://meshjs.dev/apis/) | Whether you're a new developer, a startup, or a large enterprise; Mesh makes Web3 development easy with reliable, scalable, and well-engineered APIs & developer tools. |
-| [Mesh Playground](https://meshjs.dev/) | Mesh Playground is an interactive tool which allows you to explore Mesh's features. Most APIs are interactive, where you can modify the inputs and see how to use the code in your project. |
+| [Mesh Official Site](https://meshjs.dev/) | Discover Mesh’s features, learn with beginner-friendly guides, and get help instantly from our new AI bot. |
 | [Smart contract library](https://meshjs.dev/smart-contracts) | A collection of smart contracts that you can use in your project. Great for anyone starting out. |
 | [Documentation](https://docs.meshjs.dev/) | Generated from the source code, the documentation is always up-to-date. |
 | [Transaction builder](https://meshjs.dev/apis/txbuilder) | Syntax and endpoints are heavily inspired by cardano-cli, so if you are familiar with it, you will feel right at home |

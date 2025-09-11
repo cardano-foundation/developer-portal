@@ -30,7 +30,7 @@ To understand how something like this could work in a technical point of view, l
 
 ![img](../../static/img/integrate-cardano/ada-payment-flow-wallet.png)
 
-So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has chosen and added all the items into the **shopping cart**. The next step would then be to checkout and pay for the items, Of course we will be using **Cardano** for that!
+So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has chosen and added all the items into the **shopping cart**. The next step would then be to check out and pay for the items, Of course we will be using **Cardano** for that!
 
 The **front-end** application would then request for a **wallet address** from the backend service and render a QR code to the **customer** to be scanned via a **Cardano wallet**. The backend service would then know that it has to query the `cardano-wallet` with a certain time interval to confirm and alert the **front-end** application that the payment has completed successfully.
 
