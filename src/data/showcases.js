@@ -1346,6 +1346,15 @@ export const Showcases = [
     source: "https://github.com/txpipe/asteria",
     tags: ["game", "opensource"],
   },
+  {
+    title: "No Witness Labs",
+    description:
+      "Smart contract development, security audit services, and open source tools.",
+    preview: require("./showcase/no-witness-labs.png"),
+    website: "https://nowitnesslabs.com/",
+    source: "https://nowitnesslabs.com/",
+    tags: ["opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
