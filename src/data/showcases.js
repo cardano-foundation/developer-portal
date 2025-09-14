@@ -1346,6 +1346,15 @@ export const Showcases = [
     source: "https://github.com/txpipe/asteria",
     tags: ["game", "opensource"],
   },
+  {
+    title: "Token Allies",
+    description:
+      "The first decentralized VC in Cardano. Token Allies is building a decentralized, community-driven venture capital protocol that bridges the gap between innovation and sustainable growth.",
+    preview: require("./showcase/tokenallies.png"),
+    website: "https://www.tokenallies.com",
+    source: null,
+    tags: ["funding"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
