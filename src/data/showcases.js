@@ -1,14 +1,14 @@
 /*
  * SHOWCASE SECTION INFO
- *
- * The project showcase should be a place where someone new to the ecosystem
- * can come to see what can be done - it should not be seen as a database where
+ * 
+ * The project showcase should be a place where someone new to the ecosystem 
+ * can come to see what can be done - it should not be seen as a database where 
  * every project is promoted.
- *
+ * 
  * HOW TO ADD YOUR PROJECT TO SHOWCASE:
  *
  * 1. Add image: Place PNG/JPG in src/data/showcase/your-project-name.png
- * 2. Add entry: Copy format below, add to END of Showcases array
+ * 2. Add entry: Copy format below, add to END of Showcases array 
  * 3. Required fields:
  *    - title: "Your Project Name"
  *    - description: "Brief description (avoid 'best/first/only' claims)"
@@ -32,16 +32,15 @@ export const Tags = {
     label: "Favorite",
     description:
       "Our favorite Cardano projects that you must absolutely check-out.",
-    color: "#e9669e", // Vibrant Pink
+    color: '#e9669e',  // Vibrant Pink
   },
 
   // Accounting
   accounting: {
     label: "Accounting",
-    description:
-      "Tools providing specialised analytics for financial purposes, including portfolio tracking.",
+    description: "Tools providing specialised analytics for financial purposes, including portfolio tracking.",
     icon: null,
-    color: "#85BB65", // Dollar Bill Green
+    color: '#85BB65',  // Dollar Bill Green
   },
 
   // Analytics
@@ -49,15 +48,15 @@ export const Tags = {
     label: "Analytics",
     description: "Tools that provide special insights related to Cardano.",
     icon: null,
-    color: "#6A8EAE", // Cool Steel Blue
+    color: '#6A8EAE',  // Cool Steel Blue
   },
 
-  // Bridge
+  // Bridge 
   bridge: {
     label: "Bridge",
     description: "Projects that provide cross-chain bridge support.",
     icon: null,
-    color: "#FFC107", // Golden Yellow
+    color: '#FFC107',  // Golden Yellow
   },
 
   // Block Explorer
@@ -66,34 +65,31 @@ export const Tags = {
     description:
       "Block explorers are browsers for the Cardano blockchain. They can display the contents of individual blocks and transactions.",
     icon: null,
-    color: "#2E3B4E", // Deep Navy Blue
+    color: '#2E3B4E',  // Deep Navy Blue
   },
 
   // Catalyst
   catalyst: {
     label: "Catalyst",
-    description:
-      "Projects that aid to Cardano's innovation fund. (Project Catalyst)",
+    description: "Projects that aid to Cardano's innovation fund. (Project Catalyst)",
     icon: null,
-    color: "#3AA655", // Vibrant Green
+    color: '#3AA655',  // Vibrant Green
   },
 
   // DAO Tool
   daotool: {
     label: "DAO Tool",
-    description:
-      "DAO tools help in the proper control and management of a DAO.",
+    description: "DAO tools help in the proper control and management of a DAO.",
     icon: null,
-    color: "#37BEB0", // Bright Cyan
+    color: '#37BEB0',  // Bright Cyan
   },
 
   // DEX
   dex: {
     label: "DEX",
-    description:
-      "Decentralised exchanges allow direct peer-to-peer cryptocurrency transactions to take place online securely.",
+    description: "Decentralised exchanges allow direct peer-to-peer cryptocurrency transactions to take place online securely.",
     icon: null,
-    color: "#3D5AFE", // Bright Blue
+    color: '#3D5AFE',  // Bright Blue
   },
 
   // Ecosystem
@@ -101,25 +97,23 @@ export const Tags = {
     label: "Ecosystem",
     description: "The Cardano ecosystem projects.",
     icon: null,
-    color: "#9C27B0", // Purple
+    color: '#9C27B0',  // Purple
   },
 
   // Educational
   educational: {
     label: "Educational",
-    description:
-      "Educational projects that will help you onboarding to Cardano.",
+    description: "Educational projects that will help you onboarding to Cardano.",
     icon: null,
-    color: "#D81B60", // Hot Pink
+    color: '#D81B60',  // Hot Pink
   },
 
-  // Funding
+  // Funding 
   funding: {
     label: "Funding",
-    description:
-      "Projects aimed at providing funding assistance to individuals.",
+    description: "Projects aimed at providing funding assistance to individuals.",
     icon: null,
-    color: "#004BA0", // Rich Blue
+    color: '#004BA0',  // Rich Blue
   },
 
   // Game
@@ -127,7 +121,7 @@ export const Tags = {
     label: "Game",
     description: "Games on the Cardano blockchain.",
     icon: null,
-    color: "#008080", // Teal
+    color: '#008080',  // Teal
   },
 
   // Gateways
@@ -135,7 +129,7 @@ export const Tags = {
     label: "Gateway",
     description: "Payment Gateway Providers.",
     icon: null,
-    color: "#FF5722", // Bright Orange
+    color: '#FF5722',  // Bright Orange
   },
 
   // Governance
@@ -143,7 +137,7 @@ export const Tags = {
     label: "Governance",
     description: "Governance tools.",
     icon: null,
-    color: "#673AB7", // Deep Purple
+    color: '#673AB7',  // Deep Purple
   },
 
   // Identity
@@ -151,23 +145,23 @@ export const Tags = {
     label: "Identity",
     description: "Decentralized identifiers (DIDs).",
     icon: null,
-    color: "#212121", // Solid Black
+    color: '#212121',  // Solid Black
   },
 
-  // Lending
+  // Lending 
   lending: {
     label: "Lending",
     description: "Projects that provide lending and borrowing of ada.",
     icon: null,
-    color: "#9E1C1C", // Deep Red
+    color: '#9E1C1C',  // Deep Red
   },
 
-  // Marketplace
+  // Marketplace 
   marketplace: {
     label: "Marketplace",
     description: "Marketplace where you can buy or sell NFTs.",
     icon: null,
-    color: "#E53935", // Bright Red
+    color: '#E53935',  // Bright Red
   },
 
   // Meta data projects
@@ -175,15 +169,15 @@ export const Tags = {
     label: "Metadata",
     description: "Transaction metadata.",
     icon: null,
-    color: "#00ACC1", // Bright Teal
+    color: '#00ACC1',  // Bright Teal
   },
 
-  // Minting
+  // Minting 
   minting: {
     label: "Minting",
     description: "Minting Tool.",
     icon: null,
-    color: "#42A5F5", // Light Blue
+    color: '#42A5F5',  // Light Blue
   },
 
   // NFT Project (example: Spacebudz, Cardano Kidz)
@@ -191,7 +185,7 @@ export const Tags = {
     label: "NFT Project",
     description: "A project which main component is NFT.",
     icon: null,
-    color: "#FFD700", // Gold
+    color: '#FFD700',  // Gold
   },
 
   // NFT Support (example: a wallet or marketplace)
@@ -199,15 +193,15 @@ export const Tags = {
     label: "NFT Support",
     description: "A project that supports NFT.",
     icon: null,
-    color: "#B8860B", // Dark Gold
+    color: '#B8860B',  // Dark Gold
   },
 
-  // Open-Source
+  // Open-Source 
   opensource: {
     label: "Open-Source",
     description: "Open-Source sites can be useful for inspiration.",
     icon: null,
-    color: "#8C2F00", // Dark Orange-Red
+    color: '#8C2F00',  // Dark Orange-Red
   },
 
   // Oracle
@@ -215,25 +209,23 @@ export const Tags = {
     label: "Oracle",
     description: "Oracles provide smart contracts with external data.",
     icon: null,
-    color: "#1E88E5", // Medium Blue
+    color: '#1E88E5',  // Medium Blue
   },
 
   // Pool Tool
   pooltool: {
     label: "Pool Tool",
-    description:
-      "Pool tools provide delegates with the necessary tools to find a good pool.",
+    description: "Pool tools provide delegates with the necessary tools to find a good pool.",
     icon: null,
-    color: "#6C6FFF", // Soft Blue
+    color: '#6C6FFF',  // Soft Blue
   },
 
   // Social
   social: {
     label: "Social",
-    description:
-      "Sites that use the Cardano blockchain for social messaging, groups and sharing.",
+    description: "Sites that use the Cardano blockchain for social messaging, groups and sharing.",
     icon: null,
-    color: "#4d6545", // Custom: Olive (green-grey)
+    color: '#4d6545',  // Custom: Olive (green-grey)
   },
 
   // Native token projects
@@ -241,16 +233,15 @@ export const Tags = {
     label: "Native Token",
     description: "Native Tokens.",
     icon: null,
-    color: "#FF1744", // Bright Red
+    color: '#FF1744',  // Bright Red
   },
 
   // Wallets
   wallet: {
     label: "Wallet",
-    description:
-      "Cardano wallets store the public and/or private keys to access and manage your funds.",
+    description: "Cardano wallets store the public and/or private keys to access and manage your funds.",
     icon: null,
-    color: "#7BC8A6", // Soft Green
+    color: '#7BC8A6',  // Soft Green
   },
 };
 
@@ -324,7 +315,7 @@ export const Showcases = [
   {
     title: "CExplorer",
     description:
-      "An independent Cardano Explorer that provides useful all-in-one dashboards additionally.",
+        "An independent Cardano Explorer that provides useful all-in-one dashboards additionally.",
     preview: require("./showcase/cexplorer.png"),
     website: "https://cexplorer.io/",
     source: null,
@@ -458,7 +449,7 @@ export const Showcases = [
   {
     title: "Gimbalabs",
     description:
-      'Gimbalabs is a collaborative community and space where dApps and OpenSource tools are developed in the "Playground" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!',
+      "Gimbalabs is a collaborative community and space where dApps and OpenSource tools are developed in the \"Playground\" (Project-Based Learning experiences). All are welcome to join every Tuesday at 4pm UTC!",
     preview: require("./showcase/gimbalabs.png"),
     website: "https://gimbalabs.com",
     source: "https://gitlab.com/gimbalabs",
@@ -476,7 +467,7 @@ export const Showcases = [
   {
     title: "Clay Mates",
     description:
-      'Collectibles brought to life and re-homed on the Cardano blockchain. Winner of the CNFT Awards 2022 in the category "best generative art".',
+      "Collectibles brought to life and re-homed on the Cardano blockchain. Winner of the CNFT Awards 2022 in the category \"best generative art\".",
     preview: require("./showcase/clay-mates.png"),
     website: "https://www.claymates.org",
     source: null,
@@ -484,7 +475,8 @@ export const Showcases = [
   },
   {
     title: "DEADPXLZ",
-    description: "Interactive, web-based NFT collectibles.",
+    description:
+      "Interactive, web-based NFT collectibles.",
     preview: require("./showcase/deadpxlz.png"),
     website: "https://pxlz.org",
     source: null,
@@ -492,7 +484,8 @@ export const Showcases = [
   },
   {
     title: "JES-Art",
-    description: "16 year old female fine art NFTs on the Cardano blockchain!",
+    description:
+      "16 year old female fine art NFTs on the Cardano blockchain!",
     preview: require("./showcase/jesart.png"),
     website: "https://www.jes-art.com",
     source: null,
@@ -509,7 +502,8 @@ export const Showcases = [
   },
   {
     title: "cardano-tools.io",
-    description: "An advanced CNFT maker. You just pay network fees.",
+    description:
+      "An advanced CNFT maker. You just pay network fees.",
     preview: require("./showcase/cardano-tools.io.png"),
     website: "https://cardano-tools.io",
     source: "https://github.com/wutzebaer/cardano-tools",
@@ -599,8 +593,7 @@ export const Showcases = [
 
   {
     title: "ADAZOO MMORPG and Metaverse",
-    description:
-      "Start exploring ADAZOO, battle and capture CNFT's. Brag to your friends, show off your stats.",
+    description: "Start exploring ADAZOO, battle and capture CNFT's. Brag to your friends, show off your stats.",
     preview: require("./showcase/adazoo.png"),
     website: "https://adazoo.com",
     source: null,
@@ -608,7 +601,8 @@ export const Showcases = [
   },
   {
     title: "Minswap Dex",
-    description: "Minswap is a multi-pool decentralized exchange on Cardano.",
+    description:
+      "Minswap is a multi-pool decentralized exchange on Cardano.",
     preview: require("./showcase/minswap.png"),
     website: "https://minswap.org",
     source: null,
@@ -643,7 +637,8 @@ export const Showcases = [
   },
   {
     title: "CardanoCube",
-    description: "Explore 650+ Projects Building on Cardano.",
+    description:
+      "Explore 650+ Projects Building on Cardano.",
     preview: require("./showcase/cardanocube.png"),
     website: "https://www.cardanocube.io",
     source: null,
@@ -696,7 +691,8 @@ export const Showcases = [
   },
   {
     title: "eUTxO",
-    description: "Visual blockchain explorer for Cardano.",
+    description:
+      "Visual blockchain explorer for Cardano.",
     preview: require("./showcase/eutxo.png"),
     website: "https://eutxo.org",
     source: null,
@@ -718,19 +714,20 @@ export const Showcases = [
     preview: require("./showcase/book-token.png"),
     website: "https://www.book.io",
     source: null,
-    tags: ["marketplace", "nftsupport", "token"],
+    tags: [ "marketplace", "nftsupport", "token"],
   },
   {
     title: "NuFi Wallet",
-    description: "Non-custodial, multi-chain wallet with in-app DEX.",
+    description:
+      "Non-custodial, multi-chain wallet with in-app DEX.",
     preview: require("./showcase/nufiwallet.png"),
     website: "https://nu.fi",
     source: null,
-    tags: ["wallet", "dex", "nftsupport"],
-  },
+    tags: [ "wallet", "dex", "nftsupport"],
+  }, 
   {
     title: "Carda Station",
-    description:
+    description: 
       "Explore this virtual world on the moon with an in game avatar, and interact with other players through hangouts, games or events.",
     preview: require("./showcase/cardastation.png"),
     website: "https://cardastation.com/",
@@ -739,7 +736,7 @@ export const Showcases = [
   },
   {
     title: "STAMPD",
-    description:
+    description: 
       "Use the public blockchains to timestamp your files with indelible proof and mint with linked NFC physical tags for embedment in physical objects.",
     preview: require("./showcase/stampd.png"),
     website: "https://stampd.io/",
@@ -748,7 +745,7 @@ export const Showcases = [
   },
   {
     title: "CNFTLab Party",
-    description:
+    description: 
       "Tool for minting CNFTs, manage your policyID, create royalties and start minting in few seconds.",
     preview: require("./showcase/cnftlab-party.png"),
     website: "https://www.cnftlab.party/",
@@ -762,11 +759,11 @@ export const Showcases = [
     preview: require("./showcase/taptools.png"),
     website: "https://www.taptools.io",
     source: null,
-    tags: ["favorite", "analytics", "token", "minting"],
+    tags: [ "favorite", "analytics", "token", "minting"],
   },
   {
     title: "Chainport",
-    description:
+    description: 
       "ChainPort is a next-gen hard-security blockchain bridge that lets you hop across EVM chains to Cardano at a click.",
     preview: require("./showcase/chainport.png"),
     website: "https://www.chainport.io/",
@@ -775,13 +772,13 @@ export const Showcases = [
   },
   {
     title: "Cardano Pet Registry",
-    description:
+    description: 
       "A virtually free, non profit, global pet registry system built on the Cardano blockchain, facilitates peer to peer pet rescue and historical proof of pet ownership.",
     preview: require("./showcase/petregistry.png"),
     website: "https://www.petregistry.io",
     source: null,
     tags: ["metadata", "identity"],
-  },
+  }, 
   {
     title: "Cardano Studio",
     description:
@@ -793,7 +790,7 @@ export const Showcases = [
   },
   {
     title: "Cardano Relay Map",
-    description:
+    description: 
       "Shows geographical distribution of Cardano stake pool relay nodes with flexible map features.",
     preview: require("./showcase/monadpool-relay-map.png"),
     website: "https://monadpool.com/cardano.html",
@@ -802,7 +799,7 @@ export const Showcases = [
   },
   {
     title: "Finitum Bridge",
-    description:
+    description: 
       "Move supported tokens cross-chain, from BSC to Cardano and vice versa.",
     preview: require("./showcase/finitum-bridge.png"),
     website: "https://finitum.io/bridge",
@@ -820,8 +817,8 @@ export const Showcases = [
   },
   {
     title: "Aeoniumsky",
-    description:
-      'Winner of the CNFT Awards 2022 in the category "best digital art".',
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"best digital art\".",
     preview: require("./showcase/aeoniumsky.png"),
     website: "https://www.aeoniumsky.io",
     source: null,
@@ -829,7 +826,8 @@ export const Showcases = [
   },
   {
     title: "Universe 25",
-    description: 'Winner of the CNFT Awards 2022 in the category "Zeitgeist".',
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"Zeitgeist\".",
     preview: require("./showcase/universe25.png"),
     website: "https://www.universe25.io",
     source: null,
@@ -837,8 +835,8 @@ export const Showcases = [
   },
   {
     title: "Unsigned Algorithms",
-    description:
-      'Winner of the CNFT Awards 2022 in the category "most innovative".',
+    description: 
+      "Winner of the CNFT Awards 2022 in the category \"most innovative\".",
     preview: require("./showcase/unsigs.png"),
     website: "https://www.unsigs.com",
     source: null,
@@ -846,8 +844,8 @@ export const Showcases = [
   },
   {
     title: "Hosky",
-    description:
-      'Meme coin. Winner of the CNFT Awards 2022 in the category "most impactful".',
+    description: 
+      "Meme coin. Winner of the CNFT Awards 2022 in the category \"most impactful\".",
     preview: require("./showcase/hosky.png"),
     website: "https://hosky.io",
     source: null,
@@ -855,7 +853,7 @@ export const Showcases = [
   },
   {
     title: "adahandle",
-    description:
+    description: 
       "A standardized NFT that developers and users can use to associate an address with a custom and human-readable address.",
     preview: require("./showcase/adahandle.png"),
     website: "https://adahandle.com",
@@ -864,7 +862,7 @@ export const Showcases = [
   },
   {
     title: "Lace",
-    description:
+    description: 
       "A new light wallet platform from IOG, one of the creators of Cardano. Manually verified by an independent auditor, Lace lets you quickly, easily, and securely manage your digital assets and enjoy Web3.",
     preview: require("./showcase/lace.png"),
     website: "https://www.lace.io/",
@@ -882,7 +880,7 @@ export const Showcases = [
   },
   {
     title: "Aada.finance",
-    description:
+    description: 
       "Aada is a peer-to-peer lending and borrowing protocol on the Cardano blockchain.",
     preview: require("./showcase/aada-finance.png"),
     website: "https://app.aada.finance",
@@ -982,13 +980,13 @@ export const Showcases = [
   {
     title: "Medusa Wallet",
     description:
-      "A lightweight Cardano wallet focused on privacy and user protection, enabling easy and secure access to funds even in untrusted or compromised environments. ",
+        "A lightweight Cardano wallet focused on privacy and user protection, enabling easy and secure access to funds even in untrusted or compromised environments. ",
     preview: require("./showcase/medusa_wallet_poster.png"),
     website: "https://adawallet.io",
     source: null,
     tags: ["wallet"],
-  },
-  {
+   },
+   {
     title: "Danogo",
     description:
       "Danogo is a yield aggregator that provides lending and borrowing, obtaining optimized rates by combining data from multiple Cardano protocols.",
@@ -1042,7 +1040,7 @@ export const Showcases = [
     source: null,
     tags: ["favorite", "minting", "token", "nftsupport"],
   },
-  {
+    {
     title: "Stuff.io",
     description:
       "Stuff.io is the global leader in true digital ownership, enabling consumers to genuinely own, share, gift, or resell their digital media like movies, music, ebooks, audiobooks, and podcasts.",
@@ -1053,7 +1051,7 @@ export const Showcases = [
   },
   {
     title: "Veridian Wallet",
-    description:
+    description: 
       "Manages identity across platforms using decentralized public key infrastructure and verifiable credentials: ensuring data privacy and ownership with tamper proofing and quantum resistance. Built on KERI and optionally anchored to Cardano.",
     preview: require("./showcase/veridian2.png"),
     website: "https://www.veridian.id/",
@@ -1102,8 +1100,7 @@ export const Showcases = [
       "A simple tool to help every Cardano stakeholder participate in on-chain governance with confidence.",
     preview: require("./showcase/cf-voting-tool.png"),
     website: "https://voting.cardanofoundation.org/",
-    source:
-      "https://github.com/cardano-foundation/cardano-governance-voting-tool",
+    source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
   },
   {
@@ -1198,7 +1195,8 @@ export const Showcases = [
   },
   {
     title: "Optim Finance",
-    description: "Optimize your yield with a decentralized suite of products.",
+    description:
+      "Optimize your yield with a decentralized suite of products.",
     preview: require("./showcase/optim.png"),
     website: "https://www.optim.finance/",
     source: null,
@@ -1351,11 +1349,11 @@ export const Showcases = [
   {
     title: "Token Allies",
     description:
-      "The first decentralized VC in Cardano. Democratizing investments, one Token at a Time. Token Allies exist to unlock the hidden potential of innovation and transform it into Real World Value (RWV). We are building a decentralized, community-driven venture capital protocol that bridges the gap between innovation and sustainable growth.",
+      "The first decentralized VC in Cardano. Token Allies is building a decentralized, community-driven venture capital protocol that bridges the gap between innovation and sustainable growth.",
     preview: require("./showcase/tokenallies.png"),
     website: "https://www.tokenallies.com",
     source: null,
-    tags: ["funding", "ecosystem"],
+    tags: ["funding"],
   },
 ];
 
