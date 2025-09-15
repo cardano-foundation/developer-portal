@@ -1345,7 +1345,7 @@ export const Showcases = [
     website: "https://github.com/txpipe/asteria",
     source: "https://github.com/txpipe/asteria",
     tags: ["game", "opensource"],
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
