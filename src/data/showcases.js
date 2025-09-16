@@ -1369,7 +1369,7 @@ export const Showcases = [
     description:
       "A web3 agency creating custom NFT minting and staking experiences. ",
     preview: require("./showcase/tavern-forge.png"),
-    website: "https://tavernsquad.io/pages/forge",
+    website: "https://tavernforge.com",
     source: null,
     tags: ["nftsupport", "minting"],
   },
