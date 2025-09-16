@@ -1347,32 +1347,14 @@ export const Showcases = [
     tags: ["game", "opensource"],
   },
   {
-    title: "Tavern Squad",
-    description:
-      "A RPG Fantasy themed NFT Project with in-game utility. ",
-    preview: require("./showcase/tavern-squad.png"),
-    website: "https://tavernsquad.io/",
-    source: null,
-    tags: ["nftproject"],
-  },
-  {
     title: "Ale & Axes",
     description:
-      "A mobile app & browser-based, party RPG set in the world of Teya — a tactical, turn-based “dungeon raid” game that blends classic fantasy combat with AI-driven events and a web3 layer for ownership and rewards in the form of NFT's and native tokens. ",
+      "A mobile & browser fantasy RPG built on Cardano, with native token $WYRM as the main in-game currency, and NFTs unlocking unique in-game perks. The game features advanced tokenomics that reward long-term strategy and engagement. Playable by both web2 and web3 gamers.",
     preview: require("./showcase/ale-axes.png"),
     website: "https://aleaxes.com/",
     source: null,
     tags: ["game", "token", "nftproject"],
-  },
-  {
-    title: "Tavern Forge",
-    description:
-      "A web3 agency creating custom NFT minting and staking experiences. ",
-    preview: require("./showcase/tavern-forge.png"),
-    website: "https://tavernforge.com",
-    source: null,
-    tags: ["nftsupport", "minting"],
-  },
+  }
 ];
 
 export const TagList = Object.keys(Tags);
