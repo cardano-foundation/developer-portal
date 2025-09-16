@@ -1337,6 +1337,15 @@ export const Showcases = [
     source: null,
     tags: ["game"],
   },
+  {
+    title: "The Worldeater",
+    description:
+      "The Worldeater is a decentralized governance entity on Cardano. Read, vote on, and submit real governance proposals to the cardano mainnet.",
+    preview: require("./showcase/theworldeater.png"),
+    website: "https://www.worldeater.io/governance",
+    source: null,
+    tags: ["nftproject", "governance"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
