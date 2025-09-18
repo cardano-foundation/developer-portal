@@ -1106,7 +1106,7 @@ export const Showcases = [
   {
     title: "NEWM",
     description:
-      "At NEWM, we're on a mission to reshape the music industry by fostering direct, seamless connections between artists and fans.",
+      "Decentralized music streaming platform that enables artists to own and monetize their creative content through fractionalized IP rights, direct fan tipping, music rights marketplace, and real-time royalty payouts. NEWM is the true place for fandom — where fans and artists connect directly, share in ownership, and build lasting communities around music.",
     preview: require("./showcase/newm.png"),
     website: "https://newm.io/",
     source: "https://github.com/projectNEWM/",
