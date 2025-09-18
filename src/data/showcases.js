@@ -268,15 +268,6 @@ export const Showcases = [
     tags: ["nftproject"],
   },
   {
-    title: "NEWM",
-    description:
-      "At NEWM, we're on a mission to reshape the music industry by fostering direct, seamless connections between artists and fans.",
-    preview: require("./showcase/newm.png"),
-    website: "https://newm.io/",
-    source: "https://github.com/projectNEWM/",
-    tags: ["opensource", "marketplace", "ecosystem", "nftsupport"],
-  },
-  {
     title: "Cardano Wall",
     description:
       "Demonstrates several use cases for transaction metadata. You can sign messages and create proof of existence for files.",
@@ -1111,6 +1102,15 @@ export const Showcases = [
     website: "https://voting.cardanofoundation.org/",
     source: "https://github.com/cardano-foundation/cardano-governance-voting-tool",
     tags: ["governance", "opensource"],
+  },
+  {
+    title: "NEWM",
+    description:
+      "At NEWM, we're on a mission to reshape the music industry by fostering direct, seamless connections between artists and fans.",
+    preview: require("./showcase/newm.png"),
+    website: "https://newm.io/",
+    source: "https://github.com/projectNEWM/",
+    tags: ["favorite", "opensource", "marketplace", "ecosystem", "nftsupport"],
   },
   {
     title: "Andamio",
