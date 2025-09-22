@@ -1337,6 +1337,15 @@ export const Showcases = [
     source: null,
     tags: ["game"],
   },
+  {
+    title: "USDM Stablecoin",
+    description:
+      "USDM is a fully backed USD stablecoin on Cardano, designed for seamless transactions and DeFi applications.",
+    preview: require("./showcase/usdm.png"),
+    website: "https://moneta.global/",
+    source: null,
+    tags: ["ecosystem", "token"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
