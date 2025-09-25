@@ -324,7 +324,7 @@ export const Showcases = [
   {
     title: "Cardano Scan",
     description:
-      "A combination of block explorer and pool tool, uses its own implementation of db-sync.",
+      "A combination of block explorer and pool tool, using its own implementation of db-sync.",
     preview: require("./showcase/cardanoscan.png"),
     website: "https://cardanoscan.io/",
     source: null,
