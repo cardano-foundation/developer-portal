@@ -1362,7 +1362,7 @@ export const Showcases = [
     preview: require("./showcase/bankfi.png"),
     website: "https://bankerlabs.io/",
     source: null,
-    tags: ["funding", "governance", "token", "nftproject],
+    tags: ["funding", "governance", "token", "nftproject"],
   }
 ];
 
