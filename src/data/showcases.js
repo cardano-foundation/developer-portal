@@ -156,8 +156,7 @@ export const Tags = {
     color: '#9E1C1C',  // Deep Red
   },
 
-  // Marketplace 
-  marketplace: {
+  // Marketplace  marketplace: {
     label: "Marketplace",
     description: "Marketplace where you can buy or sell NFTs.",
     icon: null,
@@ -1354,6 +1353,15 @@ export const Showcases = [
     website: "https://aleaxes.com/",
     source: null,
     tags: ["game", "token", "nftproject"],
+  },
+  {
+    title: "BankFi",
+    description:
+      "BankFi is a platform where users can purchase a lifetime share of rewards from a diverse selection of revenue-generating opportunities. We aim to provide options for everyone's unique financial goals, mazimize rewards through scale, and achieve sustainability of all revenue sources.",
+    preview: require("./showcase/bankfi.png"),
+    website: "https://bankerlabs.io/",
+    source: null,
+    tags: ["funding", "governance", "token", "nftproject],
   }
 ];
 
