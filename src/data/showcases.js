@@ -1358,7 +1358,7 @@ export const Showcases = [
   {
     title: "BankFi",
     description:
-      "BankFi is a platform where users can purchase a lifetime share of rewards from a diverse selection of revenue-generating opportunities. We aim to provide options for everyone's unique financial goals, mazimize rewards through scale, and achieve sustainability of all revenue sources.",
+      "BankFi is a platform where users can purchase a lifetime share of rewards from a diverse selection of revenue-generating opportunities. We aim to provide options for everyone's unique financial goals, maximize rewards through scale, and achieve sustainability of all revenue sources.",
     preview: require("./showcase/bankfi.png"),
     website: "https://bankerlabs.io/",
     source: null,
