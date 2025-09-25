@@ -156,7 +156,7 @@ export const Tags = {
     color: '#9E1C1C',  // Deep Red
   },
 
-  // Marketplace
+  // Marketplace 
   marketplace: {
     label: "Marketplace",
     description: "Marketplace where you can buy or sell NFTs.",
