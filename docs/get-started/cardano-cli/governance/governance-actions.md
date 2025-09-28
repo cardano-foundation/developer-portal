@@ -32,6 +32,7 @@ You can get the last enacted governance action IDs with:
 ```shell
 cardano-cli conway query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds
 ```
+
 ```json
 {
   "Committee": {
@@ -56,7 +57,7 @@ actions against this single stored value.
 When proposing a governance action, the proposer must employ an *anchor*, which comprises a *URL* hosting a document that outlines additional context
 for the proposed changes, along with the document's *hash*.
 
-The document at the URL can be of a free form. It's important that it should communicate to ada holders the *why* and the *how* of the proposal. This tutorial mostly uses 'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0108/examples/treasury-withdrawal.jsonld' as an example, see [here](https://github.com/cardano-foundation/CIPs/blob/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/test-vector.md) for more details.
+The document at the URL can be of a free form. It's important that it should communicate to ada holders the *why* and the *how* of the proposal. This tutorial mostly uses [https://github.com/cardano-foundation/CIPs/blob/master/CIP-0108/examples/treasury-withdrawal.jsonld](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0108/examples/treasury-withdrawal.jsonld) as an example, see [here](https://github.com/cardano-foundation/CIPs/blob/4640b74025c4d7f233c47ebc8319e634d2de39de/CIP-0108/test-vector.md) for more details.
 
 See [CIP-100 | Governance Metadata](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0100) and [CIP-0108 | Governance Metadata - Governance Actions](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108) for standard.
 
@@ -66,26 +67,29 @@ You can use `cardano-cli` to get the hash:
 cardano-cli hash anchor-data --file-text treasury-withdrawal.jsonld
 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4
 ```
+
 Alternatively, utilize b2sum to hash the document:
 
 ```shell
 b2sum -l 256 treasury-withdrawal.jsonld
 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4  treasury-withdrawal.jsonld
 ```
+
 You will need to supply the hash of the document when creating a governance action.
 
 ## Update committee actions
 
-### Update committee to *add* a new CC member:
+### Update committee to *add* a new CC member
 
 Assume you want to add three CC members who have generated cold keys and have provided their key hashes:
+
 - `89181f26b47c3d3b6b127df163b15b74b45bba7c3b7a1d185c05c2de`
 - `ea8738081fca0726f4e781f5e55fda05f8745432a5f8a8d09eb0b34b`
 - `7f6721067362d4ae9ca73469fe983ce5572dad9028386100104b0da0`
 
 You can create a proposal to add them as new CC members with an expiration epoch (`--epoch`) for each of them. This is a good time to review the threshold. Let’s say that our proposal will change the Committee threshold to 66%:
 
-* Create the proposal:
+- Create the proposal:
 
 ```shell
 cardano-cli conway governance action update-committee \
@@ -104,9 +108,9 @@ cardano-cli conway governance action update-committee \
   --out-file update-committee.action
 ```
 
-* Note: If there is a **previously enacted** governance action to update the committee, the proposal must also include `--prev-governance-action-tx-id` and `--prev-governance-action-index`.
+- Note: If there is a **previously enacted** governance action to update the committee, the proposal must also include `--prev-governance-action-tx-id` and `--prev-governance-action-index`.
 
-### Update committee to *remove* an existing CC member:
+### Update committee to *remove* an existing CC member
 
 Assume that you want to remove the CC member with the key hash `89181f26b47c3d3b6b127df163b15b74b45bba7c3b7a1d185c05c2de`. You can do this with:
 
@@ -124,7 +128,7 @@ cardano-cli conway governance action update-committee \
   --out-file update-committee.action
 ```
 
-### Update committee to only change the *threshold*:
+### Update committee to only change the *threshold*
 
 ```shell
 cardano-cli conway governance action update-committee \
@@ -141,10 +145,10 @@ cardano-cli conway governance action update-committee \
 
 ## Updating the constitution
 
-This section describes how to propose a new constitution. Lets's use as an example the interim constitution that is to be used 
-on Mainnet. It is available in https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm
+This section describes how to propose a new constitution. Lets's use as an example the interim constitution that is to be used
+on Mainnet. It is available in `https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm`
 
-### Find the last enacted Constitution governance action 
+### Find the last enacted Constitution governance action
 
 Find the last enacted governance action of this type, If the query returns `null` it means the current constitution (if it exists) is not enacted in a governance action, but instead supplied on the Conway genesis file.
 
@@ -163,23 +167,24 @@ cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prev
 }
 ```
 
-### Prepare the constitution anchor.
+### Prepare the constitution anchor
 
-When proposing a new constitution, you are required to put it on a URL that is publicly accessible and, ideally, in some sort of persistent form. For example 
+When proposing a new constitution, you are required to put it on a URL that is publicly accessible and, ideally, in some sort of persistent form. For example
 put it on IPFS, like the [interim constitution](https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm)
 
-* Download the file from its url:
+- Download the file from its url:
 
 ```shell
 wget https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lndqybyc5wnnt3jkwyutci4e2tmbnj3xrdm -O constitution.txt
 ```
 
-* Get its hash, you can do it with blake2 or with cardano-cli:
+- Get its hash, you can do it with blake2 or with cardano-cli:
 
 ```shell
 b2sum -l 256 constitution.txt
 a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d  constitution.txt
 ```
+
 or
 
 ```shell
@@ -189,7 +194,7 @@ a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d
 
 ### The guardrails script
 
-While the constitution is an informal, off-chain document, there will also be an optional script that can enforce some guidelines. This script acts 
+While the constitution is an informal, off-chain document, there will also be an optional script that can enforce some guidelines. This script acts
 to supplement the constitutional committee by restricting some proposal types.
 
 At the Chang hardfork, the interim constitution will be supplemented with a Guardrails script. The raw files can be found at [Plutus/cardano-constitution](https://github.com/IntersectMBO/plutus/tree/master/cardano-constitution).
@@ -217,9 +222,9 @@ cardano-cli hash script --script-file guardrails-script.plutus
 fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64
 ```
 
-#### Create the proposal to update the constitution:
+#### Create the proposal to update the constitution
 
-When there is no previously enacted constitution: 
+When there is no previously enacted constitution:
 
 ```shell
 cardano-cli conway governance action create-constitution \
@@ -233,6 +238,7 @@ cardano-cli conway governance action create-constitution \
   --constitution-script-hash "fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64"
   --out-file 
 ```
+
 When there is a previously enacted constitution, we need to reference the previous governance action id (TXID and INDEX):
 
 ```shell
@@ -249,7 +255,8 @@ cardano-cli conway governance action create-constitution \
   --prev-governance-action-index 0 \
   --out-file constitution.action
 ```
-From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
+
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction)
 
 ## Motion of no confidence
 
@@ -258,6 +265,7 @@ From here, you just need to [submit the proposal in a transaction](#build-sign-a
 ```shell
 cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prevGovActionIds.Committee'
 ```
+
 ```json
 {
   "govActionIx": 0,
@@ -265,7 +273,7 @@ cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prev
 }
 ```
 
-#### Create a motion no-confidence governance action:
+#### Create a motion no-confidence governance action
 
 ```shell
 cardano-cli conway governance action create-no-confidence \
@@ -278,15 +286,16 @@ cardano-cli conway governance action create-no-confidence \
   --prev-governance-action-index 0 \
   --out-file no-confidence.action
 ```
-From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
+
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction)
 
 ## Treasury withdrawal
 
 In addition to the stake credential required to obtain a deposit refund, the proposer must also furnish stake credentials for receiving funds from the treasury in the event that the governance action is approved.
 
-Also, treasury withdrawals must reference the Guardrails script when present. 
+Also, treasury withdrawals must reference the Guardrails script when present.
 
-#### Create the treasury withdrawal proposal:
+#### Create the treasury withdrawal proposal
 
 ```shell
 cardano-cli conway governance action create-treasury-withdrawal \
@@ -301,13 +310,13 @@ cardano-cli conway governance action create-treasury-withdrawal \
   --out-file treasury.action
 ```
 
-* Note that you do not need to provide any previous governance action ID on treasury withdrawals.
+- Note that you do not need to provide any previous governance action ID on treasury withdrawals.
 
-From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction)
 
 ## Info
 
-#### Create the 'info' governance action:
+#### Create the 'info' governance action
 
 ```shell
 cardano-cli conway governance action create-info --testnet \
@@ -317,12 +326,13 @@ cardano-cli conway governance action create-info --testnet \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
   --out-file info.action
 ```
-From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction) 
+
+From here, you just need to [submit the proposal in a transaction](#build-sign-and-submit-the-transaction)
 
 ## Update protocol parameters
 
-When updating protocol parameters, you must reference the Guardrails script. This reference is not automatically inferred 
-because, actions can be created off-line so the cli may not have access to a node, and also because a governance action may be submitted in advance, 
+When updating protocol parameters, you must reference the Guardrails script. This reference is not automatically inferred
+because, actions can be created off-line so the cli may not have access to a node, and also because a governance action may be submitted in advance,
 anticipating that a new Guardrails script will be ratified and enacted during the proposal's lifespan.
 
 ```shell
@@ -337,9 +347,9 @@ cardano-cli conway governance action create-protocol-parameters-update \
   --out-file pp-update.action
 ```
 
-* Note: If there is a **previously enacted** governance action to update the protocol parameters, the proposal must also include `--prev-governance-action-tx-id` and `--prev-governance-action-index`.
+- Note: If there is a **previously enacted** governance action to update the protocol parameters, the proposal must also include `--prev-governance-action-tx-id` and `--prev-governance-action-index`.
 
-Continue with [build, sign and submit the transactions](#build-sign-and-submit-the-transaction) 
+Continue with [build, sign and submit the transactions](#build-sign-and-submit-the-transaction)
 
 ## Submitting Motion of no-confidence, Update committee, New Constitution, Hardfork initiation or Info proposals in a transaction
 
@@ -347,7 +357,7 @@ Submitting the `*.action` file to the blockchain is the essential step in bringi
 voting process. This process essentially transforms your proposal from a conceptual idea into an actionable item. Once submitted, it becomes part of the public ledger,
 while also allowing members of the governance bodies to review, discuss, and ultimately cast their votes on its approval or rejection.
 
-* Note that you can also use `build-raw` and `calculate-min-fee` to build transactions in an off-line setting. The example below uses the convenient `build`:
+- Note that you can also use `build-raw` and `calculate-min-fee` to build transactions in an off-line setting. The example below uses the convenient `build`:
 
 ```shell
 cardano-cli conway transaction build \
@@ -372,11 +382,11 @@ cardano-cli conway transaction submit \
 ## Submitting a Treasury-withdrawal or Protocol-parameter-update governance action
 
 :::info
-These types of proposals must reference the guardrails script, therefore must supply a collateral and the guardrails script either directly or as 
+These types of proposals must reference the guardrails script, therefore must supply a collateral and the guardrails script either directly or as
 a reference script.
 :::
 
-#### Build, sign and submit the transaction 
+#### Build, sign and submit the transaction
 
 When building the transaction, we include the `*.action` file and supply the guardrails script with --proposal-script-file. Note that the guardrails script does not require a datum to be passed, only a redeemer value, which can be just an empty json.
 
@@ -419,6 +429,7 @@ First, find your key hash with:
 ```shell
 cardano-cli conway stake-address key-hash --stake-verification-key-file stake.vkey
 ```
+
 `8e0debc9fdc6c616ac40d98bf3950b436895eea9cccf0396a6e5e12b`
 
 Use `jq` to filter the `gov-state` output by the stake key hash. The output contains all the relevant information about your governance actions, including `actionId`:

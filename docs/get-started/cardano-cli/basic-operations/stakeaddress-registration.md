@@ -8,7 +8,7 @@ keywords: [cardano-cli, cli, keys, stake addresses, register, cardano-node, tran
 ---
 
 :::tip
-To integrate the latest (Conway) era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli <era> transaction build <options>`. 
+To integrate the latest (Conway) era, which differs significantly from previous eras, `cardano-cli` has introduced `<era>` as a top-level command, replacing the former `<era>` flags. For example, instead of using era-specific flags like `--babbage-era` with commands such as `cardano-cli transaction build --babbage-era`, users must now utilize the syntax `cardano-cli <era> transaction build <options>`.
 :::
 
 ## Registering a stake address
@@ -82,15 +82,17 @@ cardano-cli latest transaction build \
   --certificate-file registration.cert \
   --out-file tx.raw
 ```
-:::note 
+
+:::note
 With the `build` command, you don't need to worry about the transaction fees and deposit, it handles it automatically:
 :::
 
-Inspecting the `tx.raw` file reveals that this transaction includes the certificate, and is ready to be signed and submitted. 
+Inspecting the `tx.raw` file reveals that this transaction includes the certificate, and is ready to be signed and submitted.
 
 ```shell
 cardano-cli debug transaction view --tx-file tx.raw
 ```
+
 ```json
 {
     "auxiliary scripts": null,
@@ -140,7 +142,7 @@ cardano-cli debug transaction view --tx-file tx.raw
 
 ### Using the `build-raw` command
 
-Using the `build-raw` command involves a slightly more intricate process. Similarly to the steps outlined in [simple transactions](docs/get-started/cli-operations/basic-operations/simple-transactions.md), you should calculate the fee yourself, and handle the deposit accordingly.
+Using the `build-raw` command involves a slightly more intricate process. Similarly to the steps outlined in [simple transactions](docs/get-started/cardano-cli/basic-operations/simple-transactions.md), you should calculate the fee yourself, and handle the deposit accordingly.
 
 Query the balance of the `payment.addr`:
 
@@ -169,20 +171,23 @@ cardano-cli latest query utxo --address $(< paymentstake.addr) --output-json
   }
 }
 ```
+
 Using `jq` to parse that JSON  
+
 ```shell
 cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
 9999834851
 ```
+
 :::
 
-Query the protocol parameters: 
+Query the protocol parameters:
 
 ```shell
 cardano-cli latest query protocol parameters --out-file pparams.json
 ```
 
-Draft the transaction to calculate its transaction fee: 
+Draft the transaction to calculate its transaction fee:
 
 ```shell
 cardano-cli latest transaction build-raw \
@@ -206,16 +211,16 @@ cardano-cli latest transaction calculate-min-fee \
 >171089 Lovelace
 ```
 
-Calculate the change of the transaction. Note that the deposit is not explicitly included, instead, you should deduct the deposit amount (2000000 lovelace) from the change __Change = currentBalance - fee - deposit__:
+Calculate the change of the transaction. Note that the deposit is not explicitly included, instead, you should deduct the deposit amount (2000000 lovelace) from the change **Change = currentBalance - fee - deposit**:
 
-Query the protocol parameters to get the deposit amount: 
+Query the protocol parameters to get the deposit amount:
 
 ```shell
 cardano-cli latest query protocol-parameters | jq .stakeAddressDeposit
 2000000
 ```
-Query the current balance of `payment.addr`:
 
+Query the current balance of `payment.addr`:
 
 ```shell
 cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
@@ -226,7 +231,7 @@ cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 
 change=$((9999834851 - 171089 - 2000000))
 ```
 
-Build the transaction: 
+Build the transaction:
 
 ```shell
 cardano-cli latest transaction build-raw \
@@ -236,6 +241,7 @@ cardano-cli latest transaction build-raw \
   --certificate-file registration.cert \
   --out-file tx.raw
 ```
+
 ## Sign and submit the transaction
 
 ```shell
@@ -245,9 +251,8 @@ cardano-cli latest transaction sign \
   --signing-key-file stake.skey \
   --out-file tx.signed
 ```
+
 ```shell
 cardano-cli latest transaction submit \
   --tx-file tx.signed 
 ```
-
-

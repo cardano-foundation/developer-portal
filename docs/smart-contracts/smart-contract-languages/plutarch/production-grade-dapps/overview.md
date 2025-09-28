@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Overview
-sidebar_label: Plutarch Overview
+sidebar_label: Overview
 description: Efficient Smart Contract Platform
 ---
 

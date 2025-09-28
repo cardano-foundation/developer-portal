@@ -1,13 +1,13 @@
 ---
 id: native-assets
 title: Native assets
-sidebar_label: CLI - Native assets
+sidebar_label: Native assets
 sidebar_position: 3
 description: Native assets in cardano
 keywords: [native assets, cardano, cardano-node, cardano-cli]
 ---
 
-From the Mary ledger upgrade and onwards, Cardano supports [multi-assets](https://github.com/intersectmbo/cardano-ledger/releases/download/cardano-ledger-spec-2023-01-18/mary-ledger.pdf), also referred to as a *native tokens* feature. This feature extends the ledger’s accounting infrastructure (originally designed for processing ada-only transactions) to accommodate transactions using a range of assets. These assets include ada and a variety of user-defined token types, the mixture of which can be transacted in a single tx output. Note that native tokens cannot exist on its own at a UTXO, a minimum number of lovelace is required at the UTXO to support the native tokens. 
+From the Mary ledger upgrade and onwards, Cardano supports [multi-assets](https://github.com/intersectmbo/cardano-ledger/releases/download/cardano-ledger-spec-2023-01-18/mary-ledger.pdf), also referred to as a *native tokens* feature. This feature extends the ledger’s accounting infrastructure (originally designed for processing ada-only transactions) to accommodate transactions using a range of assets. These assets include ada and a variety of user-defined token types, the mixture of which can be transacted in a single tx output. Note that native tokens cannot exist on its own at a UTXO, a minimum number of lovelace is required at the UTXO to support the native tokens.
 
 ## What are Native assets?
 
@@ -27,27 +27,27 @@ Tokens that have the same asset ID have the property of being fungible with each
 
 Further reading:
 
-- [Native token explainers](https://cardano-ledger.readthedocs.io/en/latest/)
++ [Native token explainers](https://cardano-ledger.readthedocs.io/en/latest/)
 
 Before you start, you should:
 
-- have the [latest version of the node](https://github.com/intersectmbo/cardano-node/releases)
-- configure the node to communicate with the [testnet environment](https://book.world.dev.cardano.org/environments.html)
-- A [running cardano-node](docs/operate-a-stake-pool/node-operations/running-cardano.md) on the desired network.
-- Cardano-cli installed 
++ have the [latest version of the node](https://github.com/intersectmbo/cardano-node/releases)
++ configure the node to communicate with the [testnet environment](https://book.world.dev.cardano.org/environments.html)
++ A [running cardano-node](docs/operate-a-stake-pool/node-operations/running-cardano.md) on the desired network.
++ Cardano-cli installed
 
 ### Syntax for expressing values in a transaction output
 
 Lovelace values can be specified in two ways:
 
-- `${quantity} lovelace` (where quantity is a signed integer)
-- `${quantity}` (where quantity is a signed integer)
-- `${assetName}` (where assetName is hex-encoded 61737365744e616d65)
++ `${quantity} lovelace` (where quantity is a signed integer)
++ `${quantity}` (where quantity is a signed integer)
++ `${assetName}` (where assetName is hex-encoded 61737365744e616d65)
 
 Values for other assets can be specified as:
 
-- `${quantity} ${policyId}.${assetName}`
-- `${quantity} ${policyId}` 
++ `${quantity} ${policyId}.${assetName}`
++ `${quantity} ${policyId}`
 
 Where `quantity` is a signed integer and `policyId` is a hex-encoded policy ID [a script hash], and `assetName` is a hex-encoded assetName.
 
@@ -55,12 +55,12 @@ Where `quantity` is a signed integer and `policyId` is a hex-encoded policy ID [
 
 The `cardano-cli` can specify native asset values in transaction outputs and when minting or burning tokens. The syntax for these values has been designed to be backwards-compatible with the previous ada-only syntax (`address+lovelace`):
 
-- ada values are defined as integer (INT) lovelace, e.g. `42 lovelace`
-- native asset values can be defined as:
-  - `INT policyid.assetName`, e.g. `42 $MYPOLICY.61737365744e616d65`
-  - `INT policyid`, e.g. `42 $MYPOLICY` (No assetName specified)
-  - `policyid.assetName`, e.g `$MYPOLICY.61737365744e616d65` (This will mint only one of `assetName`)
-- Multiple assets can be combined in the same transaction output using the `+` operator, e.g:
++ ada values are defined as integer (INT) lovelace, e.g. `42 lovelace`
++ native asset values can be defined as:
+  + `INT policyid.assetName`, e.g. `42 $MYPOLICY.61737365744e616d65`
+  + `INT policyid`, e.g. `42 $MYPOLICY` (No assetName specified)
+  + `policyid.assetName`, e.g `$MYPOLICY.61737365744e616d65` (This will mint only one of `assetName`)
++ Multiple assets can be combined in the same transaction output using the `+` operator, e.g:
 
 `100 lovelace + 42 $MYPOLICY.666f6f + -2 $MYPOLICY.626172 + 10 lovelace`
 
@@ -68,25 +68,25 @@ The `cardano-cli` can specify native asset values in transaction outputs and whe
 
 Any individual value can be negated using the `-` prefix operator. For example:
 
-- `-42 $MYPOLICY`
-- `-72191 $MYPOLICY.666f6f`
-- `-100`
-- `-920 lovelace`
++ `-42 $MYPOLICY`
++ `-72191 $MYPOLICY.666f6f`
++ `-100`
++ `-920 lovelace`
 
 **Combining individual values**
 
 Values can be combined using the binary operator `+`. For example:
 
-- `42 lovelace + -1 (this would result in a Value of 41 lovelace)`
-- `20 $MYPOLICY + 12 $MYPOLICY.666f6f + -2 $MYPOLICY.626172`
-- `201 4$MYPOLICY.666f6f + 12 + -1 + 9 lovelace + 10 $MYPOLICY`
++ `42 lovelace + -1 (this would result in a Value of 41 lovelace)`
++ `20 $MYPOLICY + 12 $MYPOLICY.666f6f + -2 $MYPOLICY.626172`
++ `201 4$MYPOLICY.666f6f + 12 + -1 + 9 lovelace + 10 $MYPOLICY`
 
 ### Creating a transaction
 
 The native tokens syntax can be used in the following contexts:
 
-- `cardano-cli conway transaction build-raw --tx-out="..."`
-- `cardano-cli conway transaction build-raw --mint="..."`
++ `cardano-cli conway transaction build-raw --tx-out="..."`
++ `cardano-cli conway transaction build-raw --mint="..."`
 
 The CLI command `cardano-cli conway transaction build-raw` creates the transaction body. The `--tx-out` option specifies the transaction output in the usual way *(This is expressed as address+lovelace, where address is a Bech32-encoded address, and lovelace is the amount in lovelace)*, and the `--mint` option specifies the value to be minted or burnt.
 
@@ -94,8 +94,8 @@ The CLI command `cardano-cli conway transaction build-raw` creates the transacti
 
 The syntax for TxOut values has been extended to include multi-asset tokens. These values can be specified in two different ways:
 
-- `$address $value`
-- `${address}+${value}`
++ `$address $value`
++ `${address}+${value}`
 
 (where *address* is a Cardano address and *value* is a value). The second form is provided for backwards compatibility with earlier versions of the node.
 
@@ -126,22 +126,23 @@ This minting policy requires any transaction that mints tokens to be witnessed b
 
 #### Overview
 
-This section describes how to manually mint a new native token ('customcoin') using cardano-cli, and send a transaction of this newly minted token to a new address. 
- 
-#### Pre-requisites 
+This section describes how to manually mint a new native token ('customcoin') using cardano-cli, and send a transaction of this newly minted token to a new address.
+
+#### Pre-requisites
 
 1. Download the latest version of [cardano-node from the releases page](https://github.com/intersectmbo/cardano-node/releases) and config files for the public testnet from the [Cardano World](https://book.world.dev.cardano.org/environments.html)
 
 2. Run the cardano-node:
 
-```bash
+```shell
 cardano-node run --topology topology.json --database-path db --port 3001 --config config.json --socket-path node.socket
 
 export CARDANO_NODE_SOCKET_PATH=~/node.socket
 ```
+
 3. Generate a verification key and a signing key:
 
-```bash
+```shell
 cardano-cli address key-gen \
     --verification-key-file payment.vkey \
     --signing-key-file payment.skey
@@ -149,7 +150,7 @@ cardano-cli address key-gen \
 
 The code should output something similar to this:
 
-```bash
+```shell
 $ cat payment.skey 
 {
     "type": "PaymentSigningKeyShelley_ed25519",
@@ -166,7 +167,7 @@ $ cat payment.vkey
 
 4. Generate the payment address:
 
-```bash
+```shell
 cardano-cli address build \
 --payment-verification-key-file payment.vkey \
 --out-file payment.addr
@@ -174,31 +175,31 @@ cardano-cli address build \
 
 This code produces the following payment address:
 
-```bash
+```shell
 $ cat payment.addr
 addr_test1vp6jzppqqegyvjnwc25dg853eam2xmxvydjntfw6d8x4p7qrnsnj9
 ```
 
 5. Check the balance of the payment address:
 
-```bash
+```shell
 cardano-cli query utxo --address
 ```
 
 The response should show no funds:
 
-```bash
+```shell
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 ```
 
-6. Fund the address: 
+6. Fund the address:
 
 Use the [testnet faucet]( https://docs.cardano.org/cardano-testnets/tools/faucet/) to fund your address,
 
 and check again:
 
-```bash
+```shell
 cardano-cli query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
@@ -209,7 +210,7 @@ cardano-cli query utxo --address $(< payment.addr)
 
 1. Create a policy script:
 
-```bash
+```shell
 mkdir policy
 
 cardano-cli address key-gen \
@@ -236,20 +237,21 @@ cat policy.script
 
 The policyID is the script hash of the `policy.script`:
 
-```bash 
+```shell
 cardano-cli hash script --script-file policy.script 
 
 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74
 ```
-get the asset name in hex, our token will be named "melcoin": 
 
-```bash
+get the asset name in hex, our token will be named "melcoin":
+
+```shell
 echo -n "customcoin" | xxd -ps 
 
 637573746f6d636f696e
 ```
 
-#### Build the asset-minting transaction 
+#### Build the asset-minting transaction
 
 1. Query the protocol parameters:
 
@@ -266,12 +268,12 @@ cardano-cli conway transaction calculate-min-required-utxo \
 Coin 1051640
 ```
 
-This means that we need at least 1051640 lovelace at the utxo to support the 1000 `customcoin`. To give ourselves some room for future transactions where we might send `custocoin` to different addresses 
+This means that we need at least 1051640 lovelace at the utxo to support the 1000 `customcoin`. To give ourselves some room for future transactions where we might send `custocoin` to different addresses
 we will send 10 ada on the minting transaction.
 
 1. This transaction will mint 1000 "customcoin", with asset id `11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e`
 
-```bash
+```shell
 cardano-cli conway transaction build \
 --tx-in 503c699e81d4abc3f8a1d2681425aee1e2ac5770a5be5b9314339591a7158f34#0 \
 --tx-out $(< payment.addr)+10000000+"1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
@@ -283,9 +285,9 @@ cardano-cli conway transaction build \
 Estimated transaction fee: Coin 175621
 ```
 
-#### Sign the transaction:
+#### Sign the transaction
 
-```bash
+```shell
 cardano-cli conway transaction sign \
 --tx-file mint-tx.raw \
 --signing-key-file policy.skey \
@@ -294,14 +296,14 @@ cardano-cli conway transaction sign \
 
 ```
 
-#### Submit the transaction:
+#### Submit the transaction
 
-```bash
+```shell
 cardano-cli conway transaction submit --tx-file mint-tx.signed
 Transaction successfully submitted.
 ```
 
-```bash
+```shell
 cardano-cli query utxo --address $(< payment.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
@@ -312,10 +314,10 @@ d4b158e58cb58da28b25837300f6ef8f9f7d67fd5a5ce07648d17a6fae31b88a     1        99
 
 ### Transferring tokens
 
-Tokens can be sent just like ada by any token holder, just remember that it is not possible to send *only* native-assets in a transaction, some 
-ada always needs to be included in each output. The minimum amount is determined by the `utxoCostPerByte` protocol parameter. Also note that, 
-currently, the `build` command  cannot automatically balance native assets. This is, we need to manually balance native assets with `--tx-out` flags and 
-use `--change-address` to automatically balance ada-only utxos. 
+Tokens can be sent just like ada by any token holder, just remember that it is not possible to send *only* native-assets in a transaction, some
+ada always needs to be included in each output. The minimum amount is determined by the `utxoCostPerByte` protocol parameter. Also note that,
+currently, the `build` command  cannot automatically balance native assets. This is, we need to manually balance native assets with `--tx-out` flags and
+use `--change-address` to automatically balance ada-only utxos.
 
 For example, to send 1 `customcoin` to the address `addr_test1vp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeuegh55grh` we do:
 
@@ -326,7 +328,7 @@ cardano-cli conway transaction calculate-min-required-utxo \
 Coin 1043020
 ```
 
-and build the transaction with: 
+and build the transaction with:
 
 ```shell
 cardano-cli conway transaction build \
@@ -337,9 +339,11 @@ cardano-cli conway transaction build \
 --change-address $(< payment.addr) \
 --out-file tx.raw
 ```
+
 ```
 cardano-cli conway transaction sign --tx-file tx.raw --signing-key-file policy.skey --signing-key-file payment.skey --out-file tx.signed
 ```
+
 ```
 cardano-cli conway transaction submit --tx-file tx.signedTransaction successfully submitted.
 ```
@@ -379,7 +383,7 @@ cardano-cli conway transaction sign \
 --signing-key-file "$MINTING_KEY" \
 --script-file "$SCRIPT" \
 --tx-body-file  "$TX_BODY_FILE_2" \
---out-file  	"TX_FILE_2"
+--out-file   "TX_FILE_2"
  
 cardano-cli conway transaction submit --tx-file  "$TX_FILE_2" 
 ```

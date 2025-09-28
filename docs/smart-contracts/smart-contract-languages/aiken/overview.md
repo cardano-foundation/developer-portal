@@ -27,10 +27,12 @@ The built-in testing framework supports both unit tests and property-based testi
 ## Understanding the Architecture
 
 :::note Haskell Not Required
-A common misconception is that Cardano smart contracts must be written in Haskell. The reality is that Cardano's virtual machine executes **Untyped Plutus Core (UPLC)**, and Aiken compiles straight to UPLC—just like Plinth or Plutarch which are written in Haskell. Haskell is just one of several ways to "generate" UPLC, not a requirement.
+A common misconception is that Cardano smart contracts must be written in Haskell. The reality is that Cardano's virtual machine executes **Untyped Plutus Core (UPLC)**, and Aiken compiles straight to UPLC, just like Plinth or Plutarch which are written in Haskell. Haskell is just one of several ways to "generate" UPLC, not a requirement.
 :::
 
 **Aiken focuses exclusively on on-chain validator scripts.** These define the logic that validates Cardano transactions. For off-chain stuff like building transactions, wallet integration, and UIs, you'll use other tools from the Cardano ecosystem.
+
+![Aiken Overview1](./img/aiken-overview1.png)
 
 ## Getting Started
 
@@ -70,12 +72,14 @@ curl -sSfL https://install.aiken-lang.org | bash
   </TabItem>
 </Tabs>
 
+![Aiken Overview2](./img/aiken-overview2.png)
+![Aiken Overview3](./img/aiken-overview3.png)
+
 ## Next Steps
 
-Visit **[aiken-lang.org](https://aiken-lang.org)** for the complete language guide, tutorials, and API documentation. The **[GitHub repository](https://github.com/aiken-lang/aiken)** contains examples and an active community of over 200 contributors.
+Visit **[aiken-lang.org](https://aiken-lang.org)** for the complete language guide, tutorials, and API documentation. The **[GitHub repository](https://github.com/aiken-lang/aiken)** contains examples and a highly active community.
 
-- Be part of the journey and join the welcoming community on [TxPipe's Discord](https://discord.com/invite/RgHzxh92WH)
-- Try out your smart contracts at [Aiken Playground](https://play.aiken-lang.org/)
+Continue the journey and join the welcoming community on [TxPipe's Discord](https://discord.com/invite/RgHzxh92WH) for further support and guidance.
 
 ### Educational Resources
 
