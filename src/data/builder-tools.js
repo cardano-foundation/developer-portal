@@ -1068,7 +1068,7 @@ export const Showcases = [
   },
   {
     title: "Apollo",
-    description: "Pure Golang Cardano Serialization: Objective of this library is to give developers access to each and every needed resource for cardano development.",
+    description: "Building blocks for serialization and pure Golang development: a layer to interact with the Cardano Node including providers for commonly used services.",
     preview: require("./builder-tools/apollo.png"),
     website: "https://github.com/Salvionied/apollo",
     getstarted: null,
