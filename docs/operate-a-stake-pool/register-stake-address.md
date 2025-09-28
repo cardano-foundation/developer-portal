@@ -19,7 +19,11 @@ To build the transaction the following information will be collected first:
 * `certificate-file`: stake address registration certificate
 * `fee`: The fee amount in Lovelace
 
-## `tx-in`:
+:::note
+This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](docs/get-started/cardano-cli/basic-operations/get-started.md) guide for instructions on how to do that.
+:::
+
+## `tx-in`
 
 Query the UTXO of the address that pays for the transaction and deposit:
 
@@ -42,13 +46,14 @@ cat fullUtxo.out
 
 so in this case the required UTXO would be `b64ae44e1195b04663ab863b62337e626c65b0c9855a9fbb9ef4458f81a6f5ee#1`.
 
-## `tx-out`:
+## `tx-out`
 
 This would be `payment.addr` and the amount that has to be paid.  Since we don't know how much the transaction will cost we put it as 1 ADA for the moment - `$(cat payment.addr)+1000000`
 
-## `invalid-hereafter`:
+## `invalid-hereafter`
 
 Find out the current slot:
+
 ```
 currentSlot=$(cardano-cli query tip --testnet-magic 1 | jq -r '.slot')
 echo Current Slot: $currentSlot
@@ -56,7 +61,7 @@ echo Current Slot: $currentSlot
 
 The `invalid-hereafter` value must be greater than the current tip. In this example, we use current slot + 1000 -  `$currentSlot+1000`.
 
-## `certificate`:
+## `certificate`
 
 Create a stake address registration certificate:
 
@@ -66,11 +71,11 @@ cardano-cli stake-address registration-certificate \
     --out-file stake.cert
 ```
 
-## `witness-override`:
+## `witness-override`
 
 When calculating the fee for a transaction, the `--witness-count` option indicates the number of keys signing the transaction. You must sign a transaction submitting a stake address registration certificate to the blockchain using the secret key for the payment address spending the input, as well as the secret key for the stake address to register.
 
-## `fee`:
+## `fee`
 
 Now, we build the transaction which will return the `tx.raw` transaction file and also the transaction fees:
 
@@ -87,6 +92,7 @@ cardano-cli conway transaction build \
 ```
 
 The output is the transaction fee in lovelace:
+
 ```
 Estimated transaction fee: Lovelace 172013
 ```
@@ -145,7 +151,9 @@ cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --testnet-magic 1 
 ```
+
 In the next section we will register the pool metadata.
 
-## References 
-- [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)
+## References
+
+* [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)

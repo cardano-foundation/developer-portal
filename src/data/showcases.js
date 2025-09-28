@@ -324,7 +324,7 @@ export const Showcases = [
   {
     title: "Cardano Scan",
     description:
-      "A combination of block explorer and pool tool, uses it's own implementation of db-sync.",
+      "A combination of block explorer and pool tool, using its own implementation of db-sync.",
     preview: require("./showcase/cardanoscan.png"),
     website: "https://cardanoscan.io/",
     source: null,
@@ -1319,6 +1319,42 @@ export const Showcases = [
     source: null,
     tags: ["game"],
   },
+  {
+    title: "Reeve",
+    description:
+      "The Reeve project, aka Ledger on the Blockchain (LOB), project aims to develop a solution that supports the adoption of Blockchain as a decentralised ledger, for digital recording and storing of accounting and financial information.",
+    preview: require("./showcase/reeve.png"),
+    website: "https://www.cardanofoundation.org/reeve#mission",
+    source: "https://github.com/cardano-foundation/cf-reeve-platform",
+    tags: ["accounting", "opensource"],
+  },
+  {
+    title: "Ascent Rivals",
+    description:
+      "A competitive multiplayer racing-combat game featuring dual-engine twin-stick controls. Compete in sponsored tournaments, earn credits, place contracts on rivals, and master risk-reward combat mechanics in death-racing esports.",
+    preview: require("./showcase/ascent-rivals.png"),
+    website: "https://www.ascentrivals.com/",
+    source: null,
+    tags: ["game"],
+  },
+  {
+    title: "Asteria",
+    description:
+      "A fully on-chain strategy game for devs. Pilot a spaceship in a 2D grid where everything is a UTxO. ",
+    preview: require("./showcase/asteria.png"),
+    website: "https://github.com/txpipe/asteria",
+    source: "https://github.com/txpipe/asteria",
+    tags: ["game", "opensource"],
+  },
+  {
+    title: "Ale & Axes",
+    description:
+      "A mobile & browser fantasy RPG built on Cardano, with native token $WYRM as the main in-game currency, and NFTs unlocking unique in-game perks. The game features advanced tokenomics that reward long-term strategy and engagement. Playable by both web2 and web3 gamers.",
+    preview: require("./showcase/ale-axes.png"),
+    website: "https://aleaxes.com/",
+    source: null,
+    tags: ["game", "token", "nftproject"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);

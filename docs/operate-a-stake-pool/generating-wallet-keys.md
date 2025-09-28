@@ -7,7 +7,7 @@ image: ../img/og-developer-portal.png
 ---
 Once the relay nodes in our last section are in sync with our chosen [testnet network](docs/get-started/testnets-and-devnets.md), it's time to configure one of these relays into a block producing node. In this section we will create wallet keys which are needed to register a pool and run the block producer.
 
-A wallet address is needed to pay the pool deposit, to pay transaction costs of the network, and for staking to a pool. So it's a combination of payment keys and stake keys. 
+A wallet address is needed to pay the pool deposit, to pay transaction costs of the network, and for staking to a pool. So it's a combination of payment keys and stake keys.
 
 Let's first create a directory to store all the keys.
 
@@ -17,10 +17,14 @@ cd $HOME/cardano-testnet/keys
 ```
 
 :::important
-Due to security reasons, for the Mainnet these keys should be generated and stored on an [air-gapped system](/docs/operate-a-stake-pool/security/air-gap.md), but since we are working on a testnet, we can generate and keep them on the block producing node.
+Due to security reasons, for the Mainnet these keys should be generated and stored on an [air-gapped system](/docs/get-started/security/air-gap.md), but since we are working on a testnet, we can generate and keep them on the block producing node.
 :::
 
 ## Generating Payment Keys
+
+:::note
+This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](docs/get-started/cardano-cli/basic-operations/get-started.md) guide for instructions on how to do that.
+:::
 
 Create a new payment key pair: `payment.skey` & `payment.vkey`
 
@@ -55,6 +59,7 @@ cardano-cli stake-address build \
     --out-file stake.addr \
     --testnet-magic 1
 ```
+
 ## Generating Wallet Keys
 
 The next step would be to generate a wallet address for the payment key `payment.vkey` which will delegate to the stake address `stake.vkey`:
@@ -114,5 +119,6 @@ Once the test ADA are transferred and you run the above query utxo again, you sh
 
 Now the pool wallet and stake keys are ready and we can go to the next step of creating the pool keys.
 
-## References 
+## References
+
 - [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)

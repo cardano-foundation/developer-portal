@@ -1050,6 +1050,14 @@ export const Showcases = [
     getstarted: "https://github.com/SundaeSwap-finance/gastronomy",
     tags: ["testing", "plutus"]
   },
+  {
+    title: "Datum Explorer",
+    description: "High-performance Rust + WASM tool to decode CBOR data using CDDL schemas. Includes CLI, libraries, and frontend.",
+    preview: require("./builder-tools/datum-explorer.png"),
+    website: "https://github.com/WingRiders/datum-explorer#readme",
+    getstarted: "https://datum-explorer.wingriders.com/?schema=detect",
+    tags: ["rust", "typescript", "cli", "serialization", "plutus", "hosted"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);

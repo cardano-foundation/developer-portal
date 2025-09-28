@@ -8,7 +8,12 @@ image: /img/og/og-developer-portal.png
 
 ## Overview
 
-This guide is for exchanges, custodians, and other entities interested in or currently listing ADA or Cardano native tokens. It outlines the main available components for integration purposes, providing step-by-step instructions and best practices.
+This guide is for exchanges, custodians, and other entities interested in or currently listing ada or Cardano native tokens. It outlines the main available components for integration purposes, providing step-by-step instructions and best practices.
+
+:::tip Need integration support?
+For tailored support, real-time updates, and integration queries, connect with the Cardano Foundation Core Integrations team at **[integrations@cardanofoundation.org](mailto:integrations@cardanofoundation.org)**.
+:::
+
 
 ## Understanding Cardano's Accounting Model
 
@@ -110,16 +115,16 @@ Additional considerations:
 
 ## Native Assets
 
-Cardano supports **native assets** that can be stored and transferred directly in UTxOs alongside ADA. These assets can be **fungible** (tokens) or **non-fungible** (NFTs), and are handled **natively by the ledger** without smart contracts.
+Cardano supports **native assets** that can be stored and transferred directly in UTxOs alongside ada. These assets can be **fungible** (tokens) or **non-fungible** (NFTs), and are handled **natively by the ledger** without smart contracts.
 
 :::tip
-Native assets follow the same transaction and validation rules as ADA and are treated as first-class citizens in the Cardano ledger.
+Native assets follow the same transaction and validation rules as ada and are treated as first-class citizens in the Cardano ledger.
 :::
 
 #### Why This Matters for Exchanges
 
 - **No smart contract complexity**: Native assets do not require Plutus scripts, reducing operational complexity.
-- **Unified infrastructure**: The same transaction structure used for ADA also supports native assets.
+- **Unified infrastructure**: The same transaction structure used for ada also supports native assets.
 - **Automatic deposits**: Deposit addresses may receive native assets, even if the exchange does not actively support them yet.
 
 ### Working with Native Assets
@@ -158,28 +163,113 @@ You can also self-host the token registry using the official GitHub repository:
 Always check and validate the **decimal places** of a token using the registry to ensure accurate accounting and display of fractional amounts.
 :::
 
-### Minimum ADA Requirement for Native Assets
+### Minimum ada Requirement for Native Assets
 
-Each UTxO on Cardano is required to contain a **minimum amount of ADA**, which **varies depending on the size and complexity** of the UTxO — including how many native assets it contains.
+Every output must contain enough ada - the amount of ada depends on the **byte-size of the output**. This includes both the output being created and any change remaining.
 
-For native asset transactions, this means:
+The minimum ada calculation is **simplified** (CIP-55) to be more transparent and predictable:
 
-- Any deposit or withdrawal involving a native asset must also include ADA.
-- The minimum ADA depends on:
-  - The number of **policy IDs**
-  - The length of **asset names**
-  - The total number of **distinct assets** in the UTxO
+**Current Formula:** `(160 + |serialized_output|) * coinsPerUTxOByte`
 
-Exchanges should:
+Where:
+- `160` is the **constant overhead** in bytes (accounts for transaction input and UTxO map entry)
+- `|serialized_output|` is the size of the serialized output in bytes
+- `coinsPerUTxOByte` is the protocol parameter (converted from the previous `coinsPerUTxOWord` by dividing by 8)
 
-- Validate that customers include sufficient ADA when depositing native assets
-- Enforce minimum withdrawal amounts that meet the ADA requirement
+**Key Improvements:**
+- **Simpler calculation**: Switched from complex word-based formulas to straightforward byte-based calculation
+- **More predictable**: Linear relationship between output size and minimum ada required
+- **Easier to implement**: No need for complex asset counting - just measure serialized output size
 
-🔗 **Reference**: [Minimum ADA in Mary-era transactions](https://cardano-ledger.readthedocs.io/en/latest/explanations/min-utxo-mary.html)
+When a UTxO contains **native tokens (fungible or NFTs)**, the serialized output is larger due to:
+- Policy IDs
+- Asset names
+- Number of distinct assets in the output
+
+As these grow, so does the minimum ADA needed.
 
 :::note
-Failure to meet the minimum ADA requirement will result in invalid transactions that are rejected by the network.
+Transactions failing to meet the minimum ada requirement will be rejected by the network.
 :::
+
+🔗 **References**: 
+- [CIP-55: The new minimum lovelace calculation](https://cips.cardano.org/cips/cip55/)
+
+
+#### Exchange Implementation Approaches
+
+**Deposits:**
+- Credit both ada and tokens when received together
+- Credit excess ada beyond the minimum requirement
+
+**Withdrawals:**
+Choose one approach:
+
+1. **Deduct from ada balance**: Users must have sufficient ada to cover minimum requirement
+2. **Auto-attach ada**: Automatically include required ada, deduct equivalent value in tokens
+
+#### Practical Examples (for simpler calculation fees are not considered)
+
+**Example 1: Token deposit**
+```
+User deposits: 1000 MyToken + 2.5 ada
+Minimum required: 1.25 ada
+Exchange credits:
+  - MyToken: 1000
+  - ada: 2.5 (including 1 ada excess)
+```
+
+**Example 2: Direct token Buy (user deposit address has ada more than minimum required)**
+```
+User buy request: 1000 MyToken
+Minimum required: 1.25 ada
+Exchange credits:
+  - MyToken: 1000
+  - ada: Use the ada from the user deposit address and create new utxos with ada + MyToken
+```
+
+**Example 3: Direct token Buy (user deposit address has no ada)**
+```
+User buy request: 1000 MyToken [conversion value: 1 ada ==> 100 MyToken]
+Minimum required: 1.25 ada
+Exchange credits:
+  - MyToken: 875
+  - ada: 1.25 ada
+```
+
+**Example 4: Token withdrawal (user deposit address has ada more than minimum required)**
+```
+User withdraw request: 1000 MyToken
+Minimum required: 1.25 ada
+Exchange debited:
+  - MyToken: 1000
+  - ada: 1.25 ada attached with utxo
+```
+
+**Example 5: Token withdrawal (user deposit address has no ada)**
+```
+User withdraw request: 1000 MyToken [conversion value: 1 ada ==> 100 MyToken]
+Minimum required: 1.25 ada
+Exchange debited:
+  - MyToken: 875
+  - ada: 1.25 ada attached with utxo
+```
+
+**Calculation Methods:**
+
+1. **Dynamic Calculation (Recommended)**
+- Use libraries like [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) for dynamic calculation
+
+
+2. **Fixed Allocation (Simpler but less efficient)**
+- Single token: 1.5 ada
+- Multiple tokens: 2.0-2.5 ada  
+- Complex multi-asset: 3.0 ada
+
+:::tip
+With the new CIP-55 formula, dynamic calculation is now much simpler and more predictable than before. Consider implementing it instead of fixed allocations for better efficiency.
+:::
+
 
 ## Explorers
 
@@ -210,7 +300,7 @@ There are two testnet environments:
 - **Preprod:** Configuration is the same as mainnet (5 days per epoch).
 - **Preview:** Configured to have one day per epoch.
 
-Faucets for [Test ADA](https://docs.cardano.org/cardano-testnets/tools/faucet)
+Faucets for [Test ada](https://docs.cardano.org/cardano-testnets/tools/faucet)
 
 
 ### Compatibility
