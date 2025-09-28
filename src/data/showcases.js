@@ -324,7 +324,7 @@ export const Showcases = [
   {
     title: "Cardano Scan",
     description:
-      "A combination of block explorer and pool tool, uses it's own implementation of db-sync.",
+      "A combination of block explorer and pool tool, using its own implementation of db-sync.",
     preview: require("./showcase/cardanoscan.png"),
     website: "https://cardanoscan.io/",
     source: null,
@@ -1346,6 +1346,15 @@ export const Showcases = [
     source: "https://github.com/txpipe/asteria",
     tags: ["game", "opensource"],
   },
+  {
+    title: "Ale & Axes",
+    description:
+      "A mobile & browser fantasy RPG built on Cardano, with native token $WYRM as the main in-game currency, and NFTs unlocking unique in-game perks. The game features advanced tokenomics that reward long-term strategy and engagement. Playable by both web2 and web3 gamers.",
+    preview: require("./showcase/ale-axes.png"),
+    website: "https://aleaxes.com/",
+    source: null,
+    tags: ["game", "token", "nftproject"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
