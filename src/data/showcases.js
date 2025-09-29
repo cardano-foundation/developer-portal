@@ -1363,7 +1363,7 @@ export const Showcases = [
     website: "https://bankerlabs.io/",
     source: null,
     tags: ["funding", "token", "nftproject", "daotool"],
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
