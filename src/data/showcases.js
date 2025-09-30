@@ -927,10 +927,10 @@ export const Showcases = [
     title: "Liqwid",
     description:
       "Liqwid is a non-custodial pooled lending protocol with liquid staking built on Cardano.",
-    preview: require("./showcase/liqwid.png"),
+    preview: require("./showcase/liqwid.webp"),
     website: "https://liqwid.finance/",
     source: null,
-    tags: ["lending", "token", "marketplace", "nftsupport"],
+    tags: ["lending", "token", "marketplace", "nftsupport", "token"],
   },
   {
     title: "Charli3",
