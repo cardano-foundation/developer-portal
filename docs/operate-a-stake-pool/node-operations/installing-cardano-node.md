@@ -28,7 +28,7 @@ environment.
 To set up your platform, you will need:
 
 
-| Network | CPU Cores | Free RAM | Free storage | OS for Pasive Node | OS for Stake pool |
+| Network | CPU Cores | Free RAM | Free storage | OS for Passive Node | OS for Stake pool |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | Mainnet | 2 | 24GB | 300GB of free storage (350GB recommended for future growth) | Linux / Windows / MacOS | Linux |
 | Testnet | 2 | 4GB | 20GB | Linux / Windows / MacOS | Linux |

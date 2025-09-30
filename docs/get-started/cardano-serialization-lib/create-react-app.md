@@ -169,7 +169,7 @@ txBuilder.add_inputs_from(txUnspentOutputs, 1)
 ```
 
 Note that as of version Serialization-Lib v10, it now has these UTXO selection algorithms built-in.
-In the previous versions of teh Serialization-Lib, the RandomImprove had to be done using other libraries which and as a result you still might
+In the previous versions of the Serialization-Lib, the RandomImprove had to be done using other libraries which and as a result you still might
 see this when reading code from implementation of others - be careful to check which version of the Serialization-Lib they are using
 
 ### 4. Add Outputs to the Transaction

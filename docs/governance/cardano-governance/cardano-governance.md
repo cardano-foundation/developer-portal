@@ -1,23 +1,23 @@
 ---
 id: cardano-governance
 title: Cardano governance
-sidebar_label: CLI - Governance 
+sidebar_label: Protocol Governance 
 sidebar_position: 5
-description: Overview ov cardano governance across ledger eras. 
+description: Overview of cardano governance across ledger eras. 
 keywords: [governance, update proposals, cardano, cardano-node]
 ---
 
 ## Cardano ledger eras
 
-Cardano has undergone various ledger era upgrades – Byron, Shelley, Allegra, Mary, Alonzo, and the current Babbage era. Each era has introduced new functionalities to the network. The upcoming era, Conway, is planned to introduce decentralized governance, implementing [CIP-1694](https://cips.cardano.org/cip/CIP-1694) functionality.
+Cardano has undergone various ledger era upgrades – Byron, Shelley, Allegra, Mary, Alonzo, Babbage and the current Conway era. Each era has introduced new functionalities to the network. Conway introduced decentralized governance, implementing [CIP-1694](https://cips.cardano.org/cip/CIP-1694) functionality.
 
 | Era     | Key features | Consensus | Protocol versions (major/minor) | Hard fork event   | Date |
 | ------- | -------------| ----------| :-----------------------------: | ----------------- | --- |
-| Byron   | Proof of stake | Ouroboros Classic<br/>PBFT | 0.0<br/>1.0  | Genesis Byron reboot |  | 
-| Shelley | Decentralized block production | TPraos |  2.0 | Shelley HF | | 
+| Byron   | Proof of stake | Ouroboros Classic<br/>PBFT | 0.0<br/>1.0  | Genesis Byron reboot |  |
+| Shelley | Decentralized block production | TPraos |  2.0 | Shelley HF | |
 | Allegra | Token locking | TPraos| 3.0 | Allegra HF |  |
 | Mary    | Native tokens | TPraos| 4.0 | Mary HF    |  |
-| Alonzo  | Plutus smart contracts| TPraos| 5.0<br/>6.0 | Alonzo HF<br/>Alonzo intra-era |  | 
+| Alonzo  | Plutus smart contracts| TPraos| 5.0<br/>6.0 | Alonzo HF<br/>Alonzo intra-era |  |
 | Babbage | PlutusV2<br/>Reference inputs<br/>Inline datums<br/>Reference scripts<br/>Removal of the "d" parameter | Praos | 7.0<br/>8.0 | Vasil<br/>Valentine intra-era (SECP) |  |
 | Conway  | Decentralized governance | Praos | 9.0<br/>10.0 | Chang HF Bootstrap<br/>Full governance |  |
 
@@ -49,7 +49,7 @@ The update mechanism in Shelley is simpler than in Byron. There is no distinctio
 The procedure is as follows:
 
 1. **Register the proposal.** During each epoch, a genesis key can submit (via its delegates) zero, one, or many proposals; each submission overrides the previous one. Proposals can be explicitly marked for future epochs; in that case, they are simply not considered until that epoch is reached.
-2. **Voting.** There is no explicit voting, to vote for a proposal, other delegate key holders must submit the exact same proposal to the chain. The window for submitting proposals ends 6k/f slots before the end of the epoch, where *k* is the security parameter and *f* is the _active slot coefficient_.
+2. **Voting.** There is no explicit voting, to vote for a proposal, other delegate key holders must submit the exact same proposal to the chain. The window for submitting proposals ends 6k/f slots before the end of the epoch, where _k_ is the security parameter and _f_ is the _active slot coefficient_.
 3. **Quorum.** At the end of the epoch, if the majority of nodes, determined by the **Quorum** specification constant (which must exceed half the total number of nodes), have most recently submitted the identical proposal, it becomes adopted.
 4. **Update.** The update is applied at the epoch boundary.
 
@@ -59,13 +59,13 @@ Changing the values of the global constants always requires a software update, i
 
 On the other hand, updating protocol parameters can be done without a software update.
 
-Before the Chang hardfork that brought Cardano to the Conway era, only **genesis delegate key** holders were able to submit and vote on proposals. 
+Before the Chang hardfork that brought Cardano to the Conway era, only **genesis delegate key** holders were able to submit and vote on proposals.
 
 ## Conway era update proposals
 
-The Conway ledger era introduces a new governance framework to Cardano, marking a significant evolution in how decisions about the protocol are made. Building on the foundations laid in previous eras, Conway empowers Cardano with a decentralized governance model where decision-making is accessible to stakeholders. Key features include the introduction of *Delegated Representatives (DReps)*, the *Constitutional Committee*, and an decision making role for *Stake Pool Operators* (SPOs). These entities collaborate through a formalized voting system to vote on governance actions that can be proposed by any ada holder. These governance bodies are in charge of treasury funds, adding or removing members from the constitutional committee, making updates to the Cardano Constitution and changes to protocol parameters. Conway era makes Cardano more resilient and 100% community-driven.
+The Conway ledger era introduces a new governance framework to Cardano, marking a significant evolution in how decisions about the protocol are made. Building on the foundations laid in previous eras, Conway empowers Cardano with a decentralized governance model where decision-making is accessible to stakeholders. Key features include the introduction of _Delegated Representatives (DReps)_, the _Constitutional Committee_, and an decision making role for _Stake Pool Operators_ (SPOs). These entities collaborate through a formalized voting system to vote on governance actions that can be proposed by any ada holder. These governance bodies are in charge of treasury funds, adding or removing members from the constitutional committee, making updates to the Cardano Constitution and changes to protocol parameters. Conway era makes Cardano more resilient and 100% community-driven.
 
-The process for submitting and voting protocol update proposals undergoes significant changes in the Conway era. First, Genesis delegations and MIR certificates are eliminated. In `DState`, the fields associated with these features are no longer included, and `DelegEnv` no longer contains the fields it had in the Shelley era, effectively rendering the genesis keys obsolete. 
+The process for submitting and voting protocol update proposals undergoes significant changes in the Conway era. First, Genesis delegations and MIR certificates are eliminated. In `DState`, the fields associated with these features are no longer included, and `DelegEnv` no longer contains the fields it had in the Shelley era, effectively rendering the genesis keys obsolete.
 
 ### Governance actions
 
@@ -123,15 +123,14 @@ vote of the SPOs, with the threshold 0.51
 
 To propose a governance action, a `Proposal` needs to be submitted in a transaction. Beside the proposed governance action, it requires:
 
-- potentially a **pointer** to the previous action [See Hash Protection](#hash-protection),
-- potentially a **pointer** to the proposal policy (the guardrial script for `ChangePParams` and `TreasuryWdrl`),
-- a **deposit**, which will be returned to **returnAddr**, and
-- an **anchor**, providing further information about the proposal.
-
+* potentially a **pointer** to the previous action [See Hash Protection](#hash-protection),
+* potentially a **pointer** to the proposal policy (the guardrial script for `ChangePParams` and `TreasuryWdrl`),
+* a **deposit**, which will be returned to **returnAddr**, and
+* an **anchor**, providing further information about the proposal.
 
 #### Votes
-A vote is **Yes**, **No** or **Abstain**,  to be cast, a vote must include additional details such as the voter's role (e.g., CC, DRep, or SPO) and their `credential`, along with the specific governance action ID being voted on. Optionally, an anchor may be provided to give context or explain the reasoning behind the vote.
 
+A vote is **Yes**, **No** or **Abstain**,  to be cast, a vote must include additional details such as the voter's role (e.g., CC, DRep, or SPO) and their `credential`, along with the specific governance action ID being voted on. Optionally, an anchor may be provided to give context or explain the reasoning behind the vote.
 
 ### Governance Action lifecycle
 
@@ -140,12 +139,14 @@ A vote is **Yes**, **No** or **Abstain**,  to be cast, a vote must include addit
 
 ![](/img/cli/conwayup.png)
 
-3. At every epoch boundary within the Governance action lifetime, proposals and votes are snapshotted. The _DRepPulserState_ snapshot includes: 
-  - SPOs, DReps, CC members, 
-  - their votes (yes, no, abstain), 
-  - stake distribution 'Mark' 
-  - delegation map. 
-4. The system will use the _DRepPulserState_ snapshot to calculate the DReps and SPOs _votingStakeDistribution_. This computation is expensive to run, therefore it is not executed at the epoch boundary, intead, the **DRep Pulser** performs this computation gradually with every `TICK` during the first **4k/f** slots. 
+3. At every epoch boundary within the Governance action lifetime, proposals and votes are snapshotted. The _DRepPulserState_ snapshot includes:
+
+* SPOs, DReps, CC members,
+* their votes (yes, no, abstain),
+* stake distribution 'Mark'
+* delegation map.
+
+4. The system will use the _DRepPulserState_ snapshot to calculate the DReps and SPOs _votingStakeDistribution_. This computation is expensive to run, therefore it is not executed at the epoch boundary, intead, the **DRep Pulser** performs this computation gradually with every `TICK` during the first **4k/f** slots.
 5. The **Hardfork-combinator** requires to "know" about a potential hardfork 6k/f slots before the epoch change. To meet this requiterement, if the _votingStakeDistribution_ is not finished by the time we reach that point, the computation is forced to complete.
 6. On the first `TICK` that occures within the **last 6k/f** slots of the epoch (2 stability windows), the system _solidifies_ the next epoch protocol parameters, see [_solidifyNextEpochPParams_](https://github.com/IntersectMBO/cardano-ledger/blob/a00b723cd93658e67d21f40c771fad80c463d9c4/eras/shelley/impl/src/Cardano/Ledger/Shelley/Rules/Tick.hs#L180C1-L195C6). The RATIFY and ENACT rules are executed at this point to deterimne the _enactState_. If a governance action has enough votes (meets the thresholds for its type), it is said to be **Ratified** and it is added to the _enactState_.
 7. At the next epoch boundary, the system **applies** the _enactState_.

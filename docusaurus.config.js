@@ -81,34 +81,116 @@ module.exports = {
 
       items: [
         {
-          to: "docs/get-started/",
-          label: "Get Started",
-          position: "left",
+          type: 'dropdown',
+          label: 'Learn',
+          position: 'left',
+          items: [
+            {
+              to: "docs/get-started/",
+              label: "Get Started",
+            },
+            {
+              to: "docs/get-started/technical-concepts/overview",
+              label: "Technical Concepts",
+            },
+            {
+              to: "docs/get-started/technical-concepts/core-blockchain-fundamentals",
+              label: "Cardano Fundamentals",
+            },
+            {
+              href: "https://docs.cardano.org/en/latest/",
+              label: "Docs",
+            },
+          ],
         },
         {
-          to: "tools",
-          label: "Builder Tools",
-          position: "left",
+          type: 'dropdown',
+          label: 'Developers',
+          position: 'left',
+          items: [
+            {
+              to: "/docs/integrate-cardano/",
+              label: "Integrate Cardano",
+            },
+            {
+              to: "/docs/transaction-metadata/",
+              label: "Transaction Metadata",
+            },
+            {
+              to: "/docs/native-tokens/",
+              label: "Native Tokens",
+            },
+            {
+              to: "/docs/smart-contracts/",
+              label: "Smart Contracts",
+            },
+            {
+              to: "blog/",
+              label: "Dev Blog",
+            },
+          ],
         },
         {
-          to: "showcase",
-          label: "Showcase",
-          position: "left",
-        },
-        {
-          to: "blog/",
-          label: "Dev Blog",
-          position: "left",
-        },
-        {
-          href: "https://docs.cardano.org/en/latest/",
-          label: "Docs",
-          position: "left",
+          type: 'dropdown',
+          label: 'Ecosystem',
+          position: 'left',
+          items: [
+            {
+              to: "tools",
+              label: "Builder Tools",
+            },
+            {
+              to: "showcase",
+              label: "Showcase",
+            },
+          ],
         },
         {
           href: `${vars.repository}`,
           position: "right",
           className: "header-github-link",
+        },
+        {
+          type: 'dropdown',
+          label: 'Governance',
+          position: 'left',
+          items: [
+            {
+              to: '/docs/governance/',
+              label: 'Participate in Governance',
+            },
+            {
+              to: '/docs/governance/cardano-governance/governance-actions',
+              label: 'Governance Actions',
+            },
+            {
+              to: '/docs/governance/cardano-governance/submitting-governance-actions',
+              label: 'Submitting Actions',
+            },
+            {
+              to: '/docs/governance/cardano-governance/constitutional-committee-guide',
+              label: 'Constitutional Committee',
+            },
+          ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Network',
+          position: 'left',
+          items: [
+            {
+              to: '/docs/operate-a-stake-pool/',
+              label: 'Operate a Stake Pool',
+            },
+            {
+              to: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node',
+              label: 'Installing Cardano Node',
+            },
+            {
+              to: '/docs/operate-a-stake-pool/hardening-server',
+              label: 'Operations & Security',
+            },
+          ],
         },
       ],
     },
@@ -222,7 +304,7 @@ module.exports = {
           },
           {
             // redirect to the new funding page
-            to: '/docs/governance/funding',
+            to: '/docs/get-started/funding',
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
@@ -302,6 +384,18 @@ module.exports = {
             to: '/docs/operate-a-stake-pool/relay-node-configuration/',
             from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
+          {
+            to: '/docs/get-started/security/air-gap',
+            from: '/docs/operate-a-stake-pool/security/air-gap',
+          },
+          {
+            to: '/docs/get-started/security/secure-workflow',
+            from: '/docs/operate-a-stake-pool/security/secure-workflow',
+          },
+          {
+            to: '/docs/get-started/security/frankenwallet',
+            from: '/docs/operate-a-stake-pool/frankenwallet',
+          },
         ],
       },
     ],
@@ -321,6 +415,7 @@ module.exports = {
           showReadingTime: true,
           editUrl: `${vars.repository}/edit/${vars.branch}`,
           blogSidebarCount: 'ALL',
+          onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

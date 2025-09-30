@@ -2,7 +2,7 @@
 id: get-started
 title: Get started with Cardano CLI
 sidebar_position: 1
-sidebar_label: CLI - Get started
+sidebar_label: Get started
 keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 ---
 
@@ -15,6 +15,10 @@ Cardano CLI uses the *node-to-client* protocol to communicate with the node. Thi
 ```bash
 export CARDANO_NODE_SOCKET_PATH=~/node.socket
 ```
+
+:::note
+This guide assumes you have installed cardano-node into your system. If not you can refer to Installing [cardano-node](../../../operate-a-stake-pool/node-operations/installing-cardano-node) guide for instructions on how to do that.
+:::
 
 ### CARDANO_NODE_NETWORK_ID
 

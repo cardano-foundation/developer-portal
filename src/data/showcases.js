@@ -324,7 +324,7 @@ export const Showcases = [
   {
     title: "Cardano Scan",
     description:
-      "A combination of block explorer and pool tool, uses it's own implementation of db-sync.",
+      "A combination of block explorer and pool tool, using its own implementation of db-sync.",
     preview: require("./showcase/cardanoscan.png"),
     website: "https://cardanoscan.io/",
     source: null,
@@ -1131,10 +1131,10 @@ export const Showcases = [
     tags: ["dex"],
   },
   {
-    title: "Fluid Tokens",
+    title: "FluidTokens",
     description:
-      "FluidTokens kicked off its journey on the Cardano blockchain as a DeFi platform, presenting a diverse range of services like lending, borrowing, staking, and an array of other inventive products including rental options, boosted stake features, and more.",
-    preview: require("./showcase/fluid.png"),
+      "FluidTokens is the leading Cardano-Bitcoin DeFi ecosystem, presenting a diverse range of services like lending, borrowing, staking, sponsored transactions and an array of other inventive products including rental options, boosted stake features, and more.",
+    preview: require("./showcase/fluidtokens.png"),
     website: "https://fluidtokens.com/",
     source: "https://github.com/fluidtokens",
     tags: ["lending", "marketplace", "opensource"],
@@ -1345,6 +1345,24 @@ export const Showcases = [
     website: "https://moneta.global/",
     source: null,
     tags: ["ecosystem", "token"],
+  },
+  {
+    title: "Asteria",
+    description:
+      "A fully on-chain strategy game for devs. Pilot a spaceship in a 2D grid where everything is a UTxO. ",
+    preview: require("./showcase/asteria.png"),
+    website: "https://github.com/txpipe/asteria",
+    source: "https://github.com/txpipe/asteria",
+    tags: ["game", "opensource"],
+  },
+  {
+    title: "Ale & Axes",
+    description:
+      "A mobile & browser fantasy RPG built on Cardano, with native token $WYRM as the main in-game currency, and NFTs unlocking unique in-game perks. The game features advanced tokenomics that reward long-term strategy and engagement. Playable by both web2 and web3 gamers.",
+    preview: require("./showcase/ale-axes.png"),
+    website: "https://aleaxes.com/",
+    source: null,
+    tags: ["game", "token", "nftproject"],
   },
 ];
 
