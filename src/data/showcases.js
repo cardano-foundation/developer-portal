@@ -930,7 +930,7 @@ export const Showcases = [
     preview: require("./showcase/liqwid.webp"),
     website: "https://liqwid.finance/",
     source: null,
-    tags: ["lending", "token", "marketplace", "nftsupport", "token"],
+    tags: ["lending", "token", "marketplace", "nftsupport"],
   },
   {
     title: "Charli3",
