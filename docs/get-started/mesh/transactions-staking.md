@@ -7,48 +7,77 @@ description: APIs for staking ADA and managing stake pools.
 image: /img/og/og-getstarted-mesh.png
 ---
 
-In this section, we will learn to create to stake ADA in stake pools. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
-
 In this section, we will explore the following:
 
 - [Register Stake Address](#register-stake-address)
 - [Delegate ADA to Stake Pool](#delegate-ada-to-stake-pool)
 
+If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
+
 ## Register Stake Address
 
-New address must "register" before they can delegate to stake pools.
+Before you can delegate to a stake pool, you need to register an address from which your ADA will be delegated.
 
 ```javascript
-import { Transaction } from "@meshsdk/core";
+import { MeshTxBuilder } from "@meshsdk/core";
 
-const rewardAddress = "stake1qdzmqvfdnxsn4a3hd57x435madswynt4hqw8n7f2pdq05g4995re";
-const poolId = "pool1mhww3q6d7qssj5j2add05r7cyr7znyswe2g6vd23anpx5sh6z8d";
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // checkout https://meshjs.dev/providers
+  verbose: true, // for extra info logging
+});
 
-const tx = new Transaction({ initiator: wallet });
-tx.registerStake(rewardAddress);
-tx.delegateStake(rewardAddress, poolId);
+const rewardAddress = (await wallet.getRewardAddresses())[0];
+const utxos = await wallet.getUtxos();
+const addr = (await wallet.getUsedAddress("payment")).toBech32();
 
-const unsignedTx = await tx.build();
-const signedTx = await wallet.signTx(unsignedTx);
+const registerTx = await txBuilder
+  .registerStakeCertificate(rewardAddress)
+  .selectUtxosFrom(utxos)
+  .changeAddress(addr)
+  .complete();
+
+const signedTx = await wallet.signTx(registerTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-## Delegate ADA to Stake pool
+## Delegate ADA to Stake Pool
 
-Delegation is the process by which ADA holders delegate the stake associated with their ADA to a stake pool. Doing so, this allows ADA holders to participate in the network and be rewarded in proportion to the amount of stake delegated.
+Delegation is the process by which ADA holders delegate their staking rights to a stake pool.
+Doing so, this allows ADA holders to participate in the network and be rewarded in proportion to the amount of stake delegated.
+
 
 ```javascript
-import { Transaction } from "@meshsdk/core";
+// Here we need an additional wallet instance to be able to sign the transaction.
+// We provide "stake" for the `accountType` parameter.
+const stakeWallet = new MeshWallet({
+  key: {
+    type: "mnemonic",
+    words: mnemonic,
+  },
+  networkId: 0,
+  fetcher: provider,
+  submitter: provider,
+  accountType: "stake",
+});
 
-const rewardAddress = "stake1qdzmqvfdnxsn4a3hd57x435madswynt4hqw8n7f2pdq05g4995re";
-const poolId = "pool1mhww3q6d7qssj5j2add05r7cyr7znyswe2g6vd23anpx5sh6z8d";
+const rewardAddress = (await wallet.getRewardAddresses())[0];
+const poolIdHash = deserializePoolId(
+  "pool1kgzq2g7glzcu76ygcl2llhamjjutcts5vhe2mzglmn5jxt2cnfs",
+);
 
-const tx = new Transaction({ initiator: wallet });
-tx.delegateStake(rewardAddress, poolId);
+const registerTx = await txBuilder
+  .delegateStakeCertificate(rewardAddress, poolIdHash)
+  .selectUtxosFrom(utxos)
+  .changeAddress(addr)
+  .complete();
 
-const unsignedTx = await tx.build();
-const signedTx = await wallet.signTx(unsignedTx);
-const txHash = await wallet.submitTx(signedTx);
+// Here we are signing the transaction with both wallets,
+// passing on the second argument 'true', as to signal
+// that it's a partially signed transaction.
+const signedTx = await wallet.signTx(
+    await stakeWallet.signTx(registerTx, true),
+    true);
+return await wallet.submitTx(signedTx);
 ```
 
-Check out the [Mesh Playground](https://meshjs.dev/apis/transaction/staking) for live demo and full explanation.
+[Check out this page](https://meshjs.dev/apis/txbuilder/staking#delegate-stake) for a detailed explanation.
