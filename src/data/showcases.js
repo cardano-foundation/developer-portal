@@ -1338,6 +1338,15 @@ export const Showcases = [
     tags: ["game"],
   },
   {
+    title: "USDM Stablecoin",
+    description:
+      "USDM is a fully backed USD stablecoin on Cardano, designed for seamless transactions and DeFi applications.",
+    preview: require("./showcase/usdm.png"),
+    website: "https://moneta.global/",
+    source: null,
+    tags: ["ecosystem", "token"],
+  },
+  {
     title: "Asteria",
     description:
       "A fully on-chain strategy game for devs. Pilot a spaceship in a 2D grid where everything is a UTxO. ",
@@ -1354,7 +1363,7 @@ export const Showcases = [
     website: "https://aleaxes.com/",
     source: null,
     tags: ["game", "token", "nftproject"],
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
