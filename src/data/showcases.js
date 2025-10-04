@@ -1131,10 +1131,10 @@ export const Showcases = [
     tags: ["dex"],
   },
   {
-    title: "Fluid Tokens",
+    title: "FluidTokens",
     description:
-      "FluidTokens kicked off its journey on the Cardano blockchain as a DeFi platform, presenting a diverse range of services like lending, borrowing, staking, and an array of other inventive products including rental options, boosted stake features, and more.",
-    preview: require("./showcase/fluid.png"),
+      "FluidTokens is the leading Cardano-Bitcoin DeFi ecosystem, presenting a diverse range of services like lending, borrowing, staking, sponsored transactions and an array of other inventive products including rental options, boosted stake features, and more.",
+    preview: require("./showcase/fluidtokens.png"),
     website: "https://fluidtokens.com/",
     source: "https://github.com/fluidtokens",
     tags: ["lending", "marketplace", "opensource"],
@@ -1338,6 +1338,15 @@ export const Showcases = [
     tags: ["game"],
   },
   {
+    title: "USDM Stablecoin",
+    description:
+      "USDM is a fully backed USD stablecoin on Cardano, designed for seamless transactions and DeFi applications.",
+    preview: require("./showcase/usdm.png"),
+    website: "https://moneta.global/",
+    source: null,
+    tags: ["ecosystem", "token"],
+  },
+  {
     title: "Asteria",
     description:
       "A fully on-chain strategy game for devs. Pilot a spaceship in a 2D grid where everything is a UTxO. ",
@@ -1354,7 +1363,7 @@ export const Showcases = [
     website: "https://aleaxes.com/",
     source: null,
     tags: ["game", "token", "nftproject"],
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
