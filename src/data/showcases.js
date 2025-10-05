@@ -1106,11 +1106,11 @@ export const Showcases = [
   {
     title: "NEWM",
     description:
-      "Decentralized music streaming replaces middlemen with code that's not incentivized to act in favor of third parties that take a huge cut of streaming revenue.",
+      "Decentralized music streaming platform that enables artists to own and monetize their creative content through fractionalized IP rights, direct fan tipping, music rights marketplace, and real-time royalty payouts. NEWM is the true place for fandom — where fans and artists connect directly, share in ownership, and build lasting communities around music.",
     preview: require("./showcase/newm.png"),
     website: "https://newm.io/",
-    source: null,
-    tags: ["marketplace"],
+    source: "https://github.com/projectNEWM/",
+    tags: ["favorite", "opensource", "marketplace", "ecosystem", "nftsupport"],
   },
   {
     title: "Andamio",
