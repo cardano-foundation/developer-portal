@@ -1,6 +1,6 @@
 # Contributing to the Cardano Developer Portal
 
-👍🎉First of all, thank you for taking the time to contribute!🎉👍
+First of all, thank you for taking the time to contribute!🎉👍
 
 ## Quick Contributions (No Setup Required)
 
