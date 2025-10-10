@@ -67,12 +67,14 @@ The next step would be to generate a wallet address for the payment key `payment
 ```
 cardano-cli address build \
     --payment-verification-key-file payment.vkey \
+    --stake-verification-key-file stake.vkey \
     --out-file payment.addr \
     --testnet-magic 1
 ```
 
 - `cardano-cli address build` : Generates a wallet address from a vkey file.
-- `--payment-verification-key-file` : The path to the vkey file to be used for the derivation.
+- `--payment-verification-key-file` : The path to the vkey file used for the payment address verification key.
+- `--stake-verification-key-file` : The path to the vkey file used for the stake address verification key.
 - `--out-file` : The path to save the wallet address file.
 - `--testnet-magic` : The NetworkMagic of the network that where you want to use the wallet address. In this case it is 1.
 
