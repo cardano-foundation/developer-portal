@@ -7,14 +7,13 @@ tags: [open-source]
 
 Below is a well-deserved Q3 update highlighting ecosystem tooling and solutions across July, August, and September.
 
-The past three months have been packed with releases, integrations, and upgrades that continue to strengthen Cardano’s developer tooling and infrastructure.  
-With more than 240 pull requests merged across the Foundation’s Java ecosystem, it’s been a quarter of consistent growth, performance improvements, and developer-first innovation.
+The past three months have been packed with releases, integrations, and upgrades that continue to strengthen Cardano’s developer tooling and infrastructure. With more than 240 pull requests merged across the Foundation’s Java ecosystem, it’s been a quarter of consistent growth, performance improvements, and developer-first innovation. Check out the highlights below to see what’s been delivered.
 
-Check out the highlights below to see what’s been delivered.
+<!-- truncate -->
+<br />
 
----
 
-## :large_blue_diamond: Reeve
+## Reeve
 
 `cardano-foundation/reeve`
 
@@ -28,10 +27,22 @@ Massive set of fixes, features, and updates for the Reeve platform — including
 - New CSV upload features and upsert logic for setup tables
 - API versioning and response code improvements
 
+**August**: 30 PRs Merged  
+- Expanded sorting and filtering across reports, organization endpoints, and batch APIs  
+- Added preview mode for report generation and aggregation columns for transactions  
+- Introduced new filter options endpoint and enriched cost center responses with hierarchy  
+- Started building a community Reeve-indexer as a public dashboard  
+- Completed concept phase for identity integration  
+
+**September**:  
+- Added batch filters by project customer code and improved reconciliation filtering  
+- Enhanced transaction logic with new validation checks  
+- Expanded report preview and improved CSV consistency  
+- Refactors, query optimizations, and import reliability fixes  
 
 ---
 
-## :gear: Cardano Rosetta Java
+## Cardano Rosetta Java
 
 `cardano-foundation/cardano-rosetta-java`
 
@@ -59,7 +70,7 @@ Massive set of fixes, features, and updates for the Reeve platform — including
 
 ---
 
-## :test_tube: Yaci DevKit
+## Yaci DevKit
 
 `bloxbean/yaci-devkit`
 
@@ -73,7 +84,7 @@ Massive set of fixes, features, and updates for the Reeve platform — including
 
 ---
 
-## :heavy_division_sign: Yaci
+## Yaci
 
 `bloxbean/yaci`
 
@@ -88,7 +99,7 @@ Massive set of fixes, features, and updates for the Reeve platform — including
 
 ---
 
-## :classical_building: Yaci Store
+## Yaci Store
 
 `bloxbean/yaci-store`
 
@@ -119,27 +130,7 @@ Breakthrough release enhancing flexibility, interoperability, and operational re
 
 ---
 
-## :link: CF LOB Platform
-
-`cardano-foundation/cf-lob-platform`
-
-**August**: 30 PRs Merged  
-- Expanded sorting and filtering across reports, organization endpoints, and batch APIs  
-- Added preview mode for report generation and aggregation columns for transactions  
-- Introduced new filter options endpoint and enriched cost center responses with hierarchy  
-- Started building a community Reeve-indexer as a public dashboard  
-- Completed concept phase for identity integration  
-
-**September**:  
-- Added batch filters by project customer code and improved reconciliation filtering  
-- Enhanced transaction logic with new validation checks  
-- Expanded report preview and improved CSV consistency  
-- Refactors, query optimizations, and import reliability fixes  
-
-
----
-
-## :large_blue_diamond: Cardano IBC Incubator
+## Cardano IBC Incubator
 
 `cardano-foundation/cardano-ibc-incubator`
 
@@ -152,7 +143,7 @@ Breakthrough release enhancing flexibility, interoperability, and operational re
 
 ---
 
-## :ballot_box: CF Cardano Ballot
+## CF Cardano Ballot
 
 `cardano-foundation/cf-cardano-ballot`
 
@@ -172,7 +163,7 @@ Breakthrough release enhancing flexibility, interoperability, and operational re
 
 ---
 
-## :large_blue_diamond: Cardano Client Lib
+## Cardano Client Lib
 
 `bloxbean/cardano-client-lib`
 
@@ -187,7 +178,7 @@ Breakthrough release enhancing flexibility, interoperability, and operational re
 
 ---
 
-## :small_blue_diamond: CIP-30 Data Signature Parser
+## CIP-30 Data Signature Parser
 
 `cardano-foundation/cip30-data-signature-parser`
 
@@ -198,4 +189,5 @@ Breakthrough release enhancing flexibility, interoperability, and operational re
 ---
 
 #### Thank you to everyone who contributed throughout Q3!  
-Your consistent effort, expertise, and passion continue to move the Cardano ecosystem forward — one release at a time. :rocket:
+Your consistent effort, expertise, and passion continue to move the Cardano ecosystem forward — one release at a time.
+
