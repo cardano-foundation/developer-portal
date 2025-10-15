@@ -1364,6 +1364,33 @@ export const Showcases = [
     source: null,
     tags: ["game", "token", "nftproject"],
   },
+  {
+    title: "Mynth",
+    description:
+      "Layer-zero network for any token to any token on any blockchain swaps.",
+    preview: require("./showcase/mynth.png"),
+    website: "https://mynth.ai",
+    source: null,
+    tags: ["bridge", "dex"],
+  },
+  {
+    title: "Clarity Protocol",
+    description:
+      "Clarity Protocol provides community governance and management tools usable by any Cardano project.",
+    preview: require("./showcase/clarity.png"),
+    website: "https://www.clarity.community/",
+    source: null,
+    tags: ["daotool"],
+  },
+  {
+    title: "Indigo",
+    description:
+      "Indigo is an autonomous synthetics protocol for on-chain price exposure to real-world assets, built on Cardano.",
+    preview: require("./showcase/indigo.png"),
+    website: "https://indigoprotocol.io/",
+    source: "https://github.com/IndigoProtocol/indigo-smart-contracts",
+    tags: ["marketplace", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
