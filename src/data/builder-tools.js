@@ -1066,6 +1066,14 @@ export const Showcases = [
     getstarted: "https://datum-explorer.wingriders.com/?schema=detect",
     tags: ["rust", "typescript", "cli", "serialization", "plutus", "hosted"]
   },
+  {
+    title: "Apollo",
+    description: "Building blocks for serialization and pure Golang development: a layer to interact with the Cardano Node including providers for commonly used services.",
+    preview: require("./builder-tools/apollo.png"),
+    website: "https://github.com/Salvionied/apollo",
+    getstarted: null,
+    tags: ["golang", "lowlevel"]
+  },
 ];
 
 export const TagList = Object.keys(Tags);
