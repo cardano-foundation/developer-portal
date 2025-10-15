@@ -2,7 +2,7 @@
 const vars = require('./variables')
 
 // enable or disable the announcement header bar (see 'announcementBar' section below)
-const isAnnouncementActive = false;
+const isAnnouncementActive = true;
 
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
@@ -48,9 +48,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: isAnnouncementActive ?{
-      id: "announcement_index7", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index8", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Apply to Intersect <a target="_blank" rel="noopener noreferrer" href="https://share-eu1.hsforms.com/1maE1eibKTdOpZuoEdQRPggqare0">Developer Advocate Program</a> ⭐️</strong>`,
+        `<strong>Shape the future of the Cardano Developer Ecosystem - <a target="_blank" rel="noopener noreferrer" href="https://state-of-the-developer-ecosystem.cardano.org">take the survey</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
