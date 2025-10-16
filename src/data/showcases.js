@@ -897,15 +897,6 @@ export const Showcases = [
     tags: ["nftsupport", "token"],
   },
   {
-    title: "Summon Platform",
-    description:
-      "A DAO creation and governance platform on the Cardano blockchain.",
-    preview: require("./showcase/summonplatform.png"),
-    website: "https://summonplatform.io/",
-    source: null,
-    tags: ["daotool"],
-  },
-  {
     title: "VESPR Wallet",
     description:
       "VESPR is a non-custodial mobile light wallet for the Cardano network, prioritizing the security and safety of your digital assets while ensuring exceptional ease-of-use. Your private keys and assets always remain under your control.",
