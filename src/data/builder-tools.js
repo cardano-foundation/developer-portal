@@ -156,14 +156,6 @@ export const Tags = {
     color: '#4267b2',
   },
 
-  // Oracle Tools
-  oracle: {
-    label: "Oracle",
-    description:
-      "Oracle tools.",
-    icon: null,
-    color: '#14cfc3',
-  },
   // Plutus
   plutus: {
     label: "Plutus",
