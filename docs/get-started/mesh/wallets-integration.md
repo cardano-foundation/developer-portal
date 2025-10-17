@@ -8,7 +8,7 @@ image: /img/og/og-getstarted-mesh.png
 ---
 
 With Mesh, you can initialize a new wallet with:
-- Wallet as a Service ([Wallet as a Service](#waas))
+- Social login self-custody wallet ([Wallet as a Service](#wallet-as-a-service))
 - CIP-30 & CIP-95 wallets ([Browser Wallet](#browser-wallet))
 - Cardano CLI generated keys ([Mesh Wallet](#mesh-wallet))
 - Mnemonic phrases ([Mesh Wallet](#mesh-wallet))
