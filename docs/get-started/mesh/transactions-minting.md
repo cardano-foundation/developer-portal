@@ -11,7 +11,7 @@ Minting and burning assets with Native Script and Plutus Script
 
 Minting and burning assets is a common operation in blockchain applications. In the Cardano ecosystem, minting and burning are achieved through Native Scripts and Plutus Scripts.
 
-To view a video demonstration of this feature of the MeshSDK, navigate to the video guide <Link href="/apis//guides/nft-collection">Mint an NFT Collection</Link>.
+To view a video demonstration of this feature of the MeshSDK, navigate to the video guide [Mint an NFT Collection](https://meshjs.dev/guides/nft-collection).
 
 In this page, you will find the APIs to create transactions for minting and burning assets.
 

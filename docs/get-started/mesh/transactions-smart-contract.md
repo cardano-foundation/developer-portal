@@ -34,7 +34,7 @@ Same as `Transaction` demo, we will lock selected assets from your wallet in an 
   .txOutDatumHashValue(data)
 ```
 
-The lower level APIs support providing your datum in all Mesh `Data` (default), JSON and CBOR representations. For details and helper utilities, please check <Link href="/apis/data">Data section</Link>.
+The lower level APIs support providing your datum in all Mesh `Data` (default), JSON and CBOR representations. For details and helper utilities, please check [Data section](https://meshjs.dev/apis/data).
 
 ```javascript
 // For inline datum provided in JSONtxBuilder
@@ -120,7 +120,7 @@ Similar to script, datum can also either be provided by transaction builder or a
 
 **Redeemer of the unlock**
 
-Redeemer can be provided in different <Link href="/apis/data">data types</Link>. If your MeshTxBuilder does not include an `evaluator` instance, you can also provide your budget for the unlock with this redeemer endpoint
+Redeemer can be provided in different [Data section](https://meshjs.dev/apis/data). If your MeshTxBuilder does not include an `evaluator` instance, you can also provide your budget for the unlock with this redeemer endpoint
 
 ```javascript
 .txInRedeemerValue(redeemer: Data | object | string, type: "Mesh" | "CBOR" | "JSON", exUnits?: Budget)
