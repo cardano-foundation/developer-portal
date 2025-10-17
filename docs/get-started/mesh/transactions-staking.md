@@ -7,48 +7,91 @@ description: APIs for staking ADA and managing stake pools.
 image: /img/og/og-getstarted-mesh.png
 ---
 
-In this section, we will learn to create to stake ADA in stake pools. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
-
-In this section, we will explore the following:
-
-- [Register Stake Address](#register-stake-address)
-- [Delegate ADA to Stake Pool](#delegate-ada-to-stake-pool)
-
 ## Register Stake Address
 
-New address must "register" before they can delegate to stake pools.
+Same as Transaction, with `MeshTxBuilder` you have to register a stake address before delegate to stakepools. Here's the 2 APIs you need:
 
 ```javascript
-import { Transaction } from "@meshsdk/core";
+txBuilder
+  .registerStakeCertificate(rewardAddress)
+  .delegateStakeCertificate(rewardAddress, poolIdHash)
+```
 
-const rewardAddress = "stake1qdzmqvfdnxsn4a3hd57x435madswynt4hqw8n7f2pdq05g4995re";
-const poolId = "pool1mhww3q6d7qssj5j2add05r7cyr7znyswe2g6vd23anpx5sh6z8d";
+Since we need to provide the deserilized hash of pool id, we can use the following util to get it:
 
-const tx = new Transaction({ initiator: wallet });
-tx.registerStake(rewardAddress);
-tx.delegateStake(rewardAddress, poolId);
+```javascript
+const poolIdHash = deserializePoolId(
+  "pool107k26e3wrqxwghju2py40ngngx2qcu48ppeg7lk0cm35jl2aenx",
+);
+```
 
-const unsignedTx = await tx.build();
+### Register Stake Address
+
+Register a stake address before delegate to stakepools.
+
+**Pool ID**
+`pool107k26e3wrqxwghju2py40ngngx2qcu48ppeg7lk0cm35jl2aenx`
+
+```javascript
+const utxos = await wallet.getUtxos();
+const address = await wallet.getChangeAddress();
+const addresses = await wallet.getRewardAddresses();
+const rewardAddress = addresses[0]!;
+const poolIdHash = deserializePoolId("pool107k26e3wrqxwghju2py40ngngx2qcu48ppeg7lk0cm35jl2aenx");
+
+if (rewardAddress === undefined) {
+  throw "No address found";
+}
+
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+
+const unsignedTx = await txBuilder
+  .registerStakeCertificate(rewardAddress)
+  .delegateStakeCertificate(rewardAddress, poolIdHash)
+  .selectUtxosFrom(utxos)
+  .changeAddress(address)
+  .complete();
+
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-## Delegate ADA to Stake pool
+## Delegate Stake
 
-Delegation is the process by which ADA holders delegate the stake associated with their ADA to a stake pool. Doing so, this allows ADA holders to participate in the network and be rewarded in proportion to the amount of stake delegated.
+Delegation with `MeshTxBuilder` is exactly the same as first delegate, but without registering stake key, so only one API is needed:
 
 ```javascript
-import { Transaction } from "@meshsdk/core";
+txBuilder
+  .delegateStakeCertificate(rewardAddress, poolIdHash)
+```
 
-const rewardAddress = "stake1qdzmqvfdnxsn4a3hd57x435madswynt4hqw8n7f2pdq05g4995re";
-const poolId = "pool1mhww3q6d7qssj5j2add05r7cyr7znyswe2g6vd23anpx5sh6z8d";
+```javascript
+const utxos = await wallet.getUtxos();
+const address = await wallet.getChangeAddress();
+const addresses = await wallet.getRewardAddresses();
+const rewardAddress = addresses[0]!;
+const poolIdHash = deserializePoolId("pool107k26e3wrqxwghju2py40ngngx2qcu48ppeg7lk0cm35jl2aenx");
 
-const tx = new Transaction({ initiator: wallet });
-tx.delegateStake(rewardAddress, poolId);
+if (rewardAddress === undefined) {
+  throw "No address found";
+}
 
-const unsignedTx = await tx.build();
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+
+const unsignedTx = await txBuilder
+  .delegateStakeCertificate(rewardAddress, poolIdHash)
+  .selectUtxosFrom(utxos)
+  .changeAddress(address)
+  .complete();
+
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-Check out the [Mesh Playground](https://meshjs.dev/apis/transaction/staking) for live demo and full explanation.
+Check out the [Mesh website](https://meshjs.dev/apis/txbuilder/governance) to see the full list of APIs.

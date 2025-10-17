@@ -7,142 +7,185 @@ description: Create transactions to work with smart contracts.
 image: /img/og/og-getstarted-mesh.png
 ---
 
-In this section, we will look at how to create transactions to work with smart contracts. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
+In this guide, you will understand all logics you need to know for interacting with smart contracts with `MeshTxBuilder`.
 
-We have also released a collection of Aiken smart contracts and its corresponding transactions. You can check out the [Aiken Playground](https://meshjs.dev/smart-contracts) for live demo and full explanation.
-
-In this section, we will explore the following:
-
-- [Lock Assets in Smart Contract](#lock-assets-in-smart-contract)
-- [Unlock Assets from Smart Contract](#unlock-assets-from-smart-contract)
-- [Minting Assets with Smart Contract](#minting-assets-with-smart-contract)
-
-## Lock Assets in Smart Contract
-
-Token locking is a feature where certain assets are reserved on the smart contract. The assets can only be unlocked when certain conditions are met, for example, when making a purchase.
-
-To lock assets in the always succeed contract:
+In Cardano, whenever you need the nodes' computing power to execute a smart contract, you need to provide collateral to prevent spamming. You will see this is everywhere when script execution is needed in below's examples, and here's how you can do so:
 
 ```javascript
-import { Transaction } from "@meshsdk/core";
-
-// this is the script address of always succeed contract
-const scriptAddress = "addr_test1wpnlxv2xv9a9ucvnvzqakwepzl9ltx7jzgm53av2e9ncv4sysemm8";
-
-const tx = new Transaction({ initiator: wallet }).sendAssets(
-  {
-    address: scriptAddress,
-    datum: {
-      value: "supersecret",
-    },
-  },
-  [
-    {
-      unit: "64af286e2ad0df4de2e7de15f8ff5b3d27faecf4ab2757056d860a424d657368546f6b656e",
-      quantity: "1",
-    },
-  ]
-);
-
-const unsignedTx = await tx.build();
-const signedTx = await wallet.signTx(unsignedTx);
-const txHash = await wallet.submitTx(signedTx);
+txBuilder
+  .txInCollateral(txHash: string, txIndex: number, amount?: Asset[], address?: string)
 ```
 
-[Try demo](https://meshjs.dev/apis/transaction/smart-contract#lockAssets)
+## Lock Assets
 
-## Unlock Assets from Smart Contract
+Locking assets meaning sending value to a script address with datum.
 
-As we may have locked assets in the contract, you can create transactions to unlock the assets with a redeemer that corresponds to the datum. Define the corresponding code to create the datum, only a transaction with the correct datum hash is able to unlock the asset. Define the unit of the locked asset to search for the UTXO in the smart contract, which is required for the transaction's input.
+Same as `Transaction` demo, we will lock selected assets from your wallet in an `always succeed` smart contract. We use one API to represent sending value, another API to represent attaching datum to complete the locking assets process:
 
 ```javascript
-async function _getAssetUtxo({ scriptAddress, asset, datum }) {
-  const koios = new KoiosProvider("preprod");
-
-  const utxos = await koios.fetchAddressUTxOs(scriptAddress, asset);
-
-  const dataHash = resolveDataHash(datum);
-
-  let utxo = utxos.find((utxo: any) => {
-    return utxo.output.dataHash == dataHash;
-  });
-
-  return utxo;
-}
-
-// fetch input UTXO
-const assetUtxo = await _getAssetUtxo({
-  scriptAddress: "addr_test1wpnlxv2xv9a9ucvnvzqakwepzl9ltx7jzgm53av2e9ncv4sysemm8",
-  asset: "64af286e2ad0df4de2e7de15f8ff5b3d27faecf4ab2757056d860a424d657368546f6b656e",
-  datum: "supersecret",
-});
-
-// get wallet change address
-const address = await wallet.getChangeAddress();
-
-// create the unlock asset transaction
-const tx = new Transaction({ initiator: wallet })
-  .redeemValue({
-    value: assetUtxo,
-    script: {
-      version: "V1",
-      code: "4e4d01000033222220051200120011",
-    },
-    datum: "supersecret",
-  })
-  .sendValue(address, assetUtxo) // address is recipient address
-  .setRequiredSigners([address]);
-
-const unsignedTx = await tx.build();
-// note that the partial sign is set to true
-const signedTx = await wallet.signTx(unsignedTx, true);
-const txHash = await wallet.submitTx(signedTx);
+// For inline datumtxBuilder
+  .txOut(address, assets)
+  .txOutInlineDatumValue(data)
 ```
 
-[Try demo](https://meshjs.dev/apis/transaction/smart-contract#unlockAssets)
+```javascript
+// For datum hashtxBuilder
+  .txOut(address, assets)
+  .txOutDatumHashValue(data)
+```
 
-## Minting Assets with Smart Contract
-
-We can use a Plutus Script to mint tokens. This script is designed to always succeed, meaning that anyone can sign and mint tokens with it, as there are no validation on this script.
+The lower level APIs support providing your datum in all Mesh `Data` (default), JSON and CBOR representations. For details and helper utilities, please check <Link href="/apis/data">Data section</Link>.
 
 ```javascript
-import {
-  Transaction,
-  AssetMetadata,
-  Mint,
-  Action,
-  PlutusScript,
-} from "@meshsdk/core";
+// For inline datum provided in JSONtxBuilder
+  .txOut(address, assets)
+  .txOutInlineDatumValue(jsonData, "JSON")
+```
+
+Example code:
+```javascript
+const utxos = await wallet.getUtxos();
+const changeAddress = await wallet.getChangeAddress();
 
 const script: PlutusScript = {
-  code: plutusMintingScriptCbor,
+  code: demoPlutusAlwaysSucceedScript,
   version: "V2",
 };
+const { address: scriptAddress } = serializePlutusScript(script);
 
-const redeemer: Partial<Action> = {
-  tag: "MINT",
-};
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
 
-const tx = new Transaction({ initiator: wallet });
+const unsignedTx = await txBuilder
+  .txOut(scriptAddress, [{ unit: "d9312da562da182b02322fd8acb536f37eb9d29fba7c49dc172555274d657368546f6b656e", quantity: "1" }])
+  .txOutInlineDatumValue("meshsecretcode")
+  .changeAddress(changeAddress)
+  .selectUtxosFrom(utxos)
+  .complete();
 
-const assetMetadata1: AssetMetadata = {
-  name: "Mesh Token",
-  image: "ipfs://QmRzicpReutwCkM6aotuKjErFCUD213DpwPq6ByuzMJaua",
-  mediaType: "image/jpg",
-  description: "This NFT is minted by Mesh (https://meshjs.dev/).",
-};
-const asset1: Mint = {
-  assetName: "MeshToken",
-  assetQuantity: "1",
-  metadata: assetMetadata1,
-  label: "721",
-  recipient: "addr_test1vpvx0sacufuypa2k4sngk7q40zc5c4npl337uusdh64kv0c7e4cxr",
-};
-tx.mintAsset(script, asset1, redeemer);
-
-const unsignedTx = await tx.build();
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-Check out the [Mesh Playground](https://meshjs.dev/apis/transaction/smart-contract) for live demo and full explanation.
+## Unlock Assets
+
+Unlocking with `MeshTxBuilder` starts with anyone of the below script version indicators:
+
+```javascript
+.spendingPlutusScriptV1()
+.spendingPlutusScriptV2()
+.spendingPlutusScriptV3()
+```
+
+Followed by specifying the exact script input to spend with:
+
+```javascript
+.txIn(txHash: string, txIndex: number, amount?: Asset[], address?: string)
+```
+
+In Cardano, if you want to unlock assets from a script address, you have to provide 3 other necessary information apart from `.txIn()` itself. They are:
+
+- Actual script
+- Datum of the input
+- Redeemer of the unlock
+
+**Actual script**
+The actual script can be either provided by transaction builder or referenced from an UTxO onchain.
+
+- (i) Reference script
+```javascript
+.spendingTxInReference()
+```
+
+- (ii) Supplying script
+```javascript
+.txInScript(scriptCbor: string)
+```
+
+**Datum of the input**
+
+Similar to script, datum can also either be provided by transaction builder or as inline datum.
+
+- (i) Referencing inline datum
+```javascript
+.txInInlineDatumPresent()
+```
+
+- (ii) Supplying datum
+```javascript
+.txInDatumValue(datum: Data | object | string, type?: "Mesh" | "CBOR" | "JSON")
+```
+
+**Redeemer of the unlock**
+
+Redeemer can be provided in different <Link href="/apis/data">data types</Link>. If your MeshTxBuilder does not include an `evaluator` instance, you can also provide your budget for the unlock with this redeemer endpoint
+
+```javascript
+.txInRedeemerValue(redeemer: Data | object | string, type: "Mesh" | "CBOR" | "JSON", exUnits?: Budget)
+```
+
+An example of complete set of endpoints to unlock assets from a script address:
+
+```javascript
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+
+txBuilder
+  .spendingPlutusScriptV2()
+  .txIn(txHash: string, txIndex: number, amount?: Asset[], address?: string)
+  .txInInlineDatumPresent() // or .txInDatumValue(datum: Data | string | object)
+  .txInRedeemerValue(redeemer: Data | object | string, type?: string, exUnits?: Budget)
+  .spendingTxInReference(txHash: string, txIndex: number, spendingScriptHash?: string) // or supplying script
+```
+
+Example code:
+```javascript
+const utxos = await wallet.getUtxos();
+const collateral = await wallet.getCollateral();
+const changeAddress = await wallet.getChangeAddress();
+
+const script: PlutusScript = {
+  code: demoPlutusAlwaysSucceedScript,
+  version: "V2",
+};
+const { address: scriptAddress } = serializePlutusScript(script);
+
+const assetUtxo = await fetchAssetUtxo({
+  address: scriptAddress,
+  asset: userInput,
+  datum: userInput2,
+});
+if (assetUtxo === undefined) {
+  throw "Asset UTXO not found";
+}
+
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+
+const unsignedTx = await txBuilder
+  .spendingPlutusScriptV2()
+  .txIn(assetUtxo.input.txHash, assetUtxo.input.outputIndex)
+  .txInInlineDatumPresent()
+  .txInRedeemerValue(mConStr0([]))
+  .txInScript(demoPlutusAlwaysSucceedScript)
+  .changeAddress(changeAddress)
+  .txInCollateral(
+    collateral[0]?.input.txHash!,
+    collateral[0]?.input.outputIndex!,
+    collateral[0]?.output.amount!,
+    collateral[0]?.output.address!,
+  )
+  .selectUtxosFrom(utxos)
+  .complete();
+
+const signedTx = await wallet.signTx(unsignedTx);
+const txHash = await wallet.submitTx(signedTx);
+```
+
+Check out the [Mesh website](https://meshjs.dev/apis/txbuilder/smart-contracts) to see the full list of APIs.
