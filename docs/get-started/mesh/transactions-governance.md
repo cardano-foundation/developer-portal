@@ -1,6 +1,6 @@
 ---
 id: transactions-governance
-sidebar_position: 10
+sidebar_position: 8
 title: Governance Transactions
 sidebar_label: Governance Transactions
 description: Transactions for registering DRep and participating in Cardano's on-chain governance
@@ -39,8 +39,6 @@ const unsignedTx = await txBuilder.complete();
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
-
-[Try demo](https://meshjs.dev/apis/txbuilder/governance#registration)
 
 ## Vote Delegation
 
@@ -82,8 +80,6 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-[Try demo](https://meshjs.dev/apis/txbuilder/governance#delegation)
-
 ## Vote
 
 Voting is done by creating a vote certificate and submitting it to the blockchain.
@@ -118,4 +114,4 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-[Try demo](https://meshjs.dev/apis/txbuilder/governance#vote)
+Check out the [Mesh website](https://meshjs.dev/apis/txbuilder/governance) to see the full list of APIs.
