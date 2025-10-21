@@ -41,14 +41,6 @@ In this example, we query the **Cardano Mainnet** for any metadata under the key
 
 Please visit their official [documentation](https://docs.blockfrost.io) to know more.
 
-## cardano-db-sync
-
-@TODO
-
-## cardano-graphql
-
-@TODO
-
 ## cardano-wallet
 
 :::note
@@ -131,7 +123,3 @@ The `JSON` returning the single Transaction Metadata will have some format like 
   }
 }
 ```
-
-## Ogmios
-
-@TODO

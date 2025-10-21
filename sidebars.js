@@ -189,8 +189,15 @@ module.exports = {
     ],
     "Build with Transaction Metadata": [
       "transaction-metadata/overview",
-      "transaction-metadata/how-to-create-a-metadata-transaction-cli",
-      "transaction-metadata/how-to-create-a-metadata-transaction-wallet",
+      {
+        type: "category",
+        label: "Tutorials",
+        items: [
+          "transaction-metadata/how-to-create-a-metadata-transaction-cli",
+          "transaction-metadata/how-to-create-a-metadata-transaction-wallet",
+          "transaction-metadata/mesh",
+        ],
+      },
       "transaction-metadata/retrieving-metadata",
     ],
     "Discover Native Tokens": [
