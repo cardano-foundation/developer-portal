@@ -184,7 +184,18 @@ module.exports = {
       "integrate-cardano/listening-for-payments-cli",
       "integrate-cardano/listening-for-payments-wallet",
       "integrate-cardano/point-of-sale",
-      "integrate-cardano/user-wallet-authentication",
+      {
+        type: "category",
+        label: "User Wallet Authentication",
+        link: {
+          type: "doc",
+          id: "integrate-cardano/user-wallet-authentication/overview"
+        },
+        items: [
+          "integrate-cardano/user-wallet-authentication/mesh",
+          "integrate-cardano/user-wallet-authentication/cardano-serialization-lib",
+        ],
+      },
       "integrate-cardano/exchange-integrations",
     ],
     "Build with Transaction Metadata": [
