@@ -189,15 +189,9 @@ module.exports = {
           id: "integrate-cardano/listening-for-payments/overview"
         },
         items: [
-          "integrate-cardano/listening-for-payments/point-of-sale",
-          {
-            type: "category",
-            label: "Backend-only approaches",
-            items: [
-              "integrate-cardano/listening-for-payments/cardano-cli",
-              "integrate-cardano/listening-for-payments/cardano-wallet",
-            ],
-          },
+          "integrate-cardano/listening-for-payments/point-of-sale", 
+          "integrate-cardano/listening-for-payments/cardano-cli",
+          "integrate-cardano/listening-for-payments/cardano-wallet",
         ],
       },
       {
@@ -220,9 +214,9 @@ module.exports = {
         type: "category",
         label: "Tutorials",
         items: [
+          "transaction-metadata/mesh",
           "transaction-metadata/how-to-create-a-metadata-transaction-cli",
           "transaction-metadata/how-to-create-a-metadata-transaction-wallet",
-          "transaction-metadata/mesh",
         ],
       },
       "transaction-metadata/retrieving-metadata",
