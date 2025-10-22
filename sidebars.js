@@ -181,9 +181,25 @@ module.exports = {
       "integrate-cardano/overview",
       "integrate-cardano/creating-wallet-faucet",
       "integrate-cardano/multi-witness-transactions-cli",
-      "integrate-cardano/listening-for-payments-cli",
-      "integrate-cardano/listening-for-payments-wallet",
-      "integrate-cardano/point-of-sale",
+      {
+        type: "category",
+        label: "Listening for Payments",
+        link: {
+          type: "doc",
+          id: "integrate-cardano/listening-for-payments/overview"
+        },
+        items: [
+          "integrate-cardano/listening-for-payments/point-of-sale",
+          {
+            type: "category",
+            label: "Backend-only approaches",
+            items: [
+              "integrate-cardano/listening-for-payments/cardano-cli",
+              "integrate-cardano/listening-for-payments/cardano-wallet",
+            ],
+          },
+        ],
+      },
       {
         type: "category",
         label: "User Wallet Authentication",

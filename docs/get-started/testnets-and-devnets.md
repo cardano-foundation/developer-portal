@@ -51,7 +51,7 @@ The Pre-Production Testnet is a more comprehensive testing environment used to v
 - [Yoroi Nightly Wallet](https://chromewebstore.google.com/detail/yoroi-nightly/poonlenmfdfbjfeeballhiibknlknepo?hl=en&authuser=0) is a lightweight wallet developed by Emurgo and supports PreProd, PreView and Sancho testnet.
 - [Typhon Wallet](https://testnet.typhonwallet.io/#/wallet/access) is a lightweight wallet developed by StricaHQ and supports PreProd testnet.
 - [Ledger Nano S and Ledger Nano X](https://www.ledger.com/) are hardware wallets that support both PreProd and Preview testnets.
-- [Cardano-wallet](/docs/integrate-cardano/listening-for-payments-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
+- [Cardano-wallet](/docs/integrate-cardano/listening-for-payments/cardano-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
 
 It's important to note that while all of these wallets support Cardano testnets, you will need to choose the testnet network option within the wallet when setting it up or switching to testnet, or choose the right version before you install a specific testnet wallet.
 

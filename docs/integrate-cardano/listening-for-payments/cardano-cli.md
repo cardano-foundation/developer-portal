@@ -1,12 +1,18 @@
 ---
-id: listening-for-payments-cli
+id: cardano-cli
 title: Listening for ada payments using cardano-cli
-sidebar_label: Receiving payments (cardano-cli)
-description: How to listen for ada Payments with the cardano-cli.
+sidebar_label: cardano-cli
+description: How to listen for ada payments with cardano-cli by querying UTxOs directly.
 image: /img/og/og-developer-portal.png
---- 
+---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+This guide shows how to detect ada payments using `cardano-cli` by directly querying UTxOs on the blockchain. This approach gives you full control and doesn't require external APIs.
+
+:::tip
+For a higher-level approach with less infrastructure, check out the [Point of Sale (Blockfrost)](./point-of-sale) tutorial or the [cardano-wallet](./cardano-wallet) tutorial.
+:::
 
 ## Overview
 
@@ -20,13 +26,13 @@ This guide also assumes that you have `cardano-node` running in the background a
 
 There are many possible reasons why you would want to have the functionality of listening for `ada` payments, but a very obvious use case would be for something like an **online shop** or a **payment gateway** that uses `ada` tokens as the currency.
 
-![img](../../static/img/integrate-cardano/ada-online-shop.png)
+![img](../../../static/img/integrate-cardano/ada-online-shop.png)
 
 ## Technical flow
 
 To understand how something like this could work in a technical point of view, let's take a look at the following diagram:
 
-![img](../../static/img/integrate-cardano/ada-payment-flow.png)
+![img](../../../static/img/integrate-cardano/ada-payment-flow.png)
 
 So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has chosen and added all the items into the **shopping cart**, the next step would then be to checkout and pay for the items. Of course we will be using **Cardano** for that!
 
