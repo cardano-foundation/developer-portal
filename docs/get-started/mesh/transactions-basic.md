@@ -7,119 +7,118 @@ description: Create transactions for sending assets.
 image: /img/og/og-getstarted-mesh.png
 ---
 
-As of writing, there are 4 main types of transactions:
-
-- [Send lovelace and assets](transactions-basic) (this)
-- [Interacting with smart contracts](transactions-smart-contract)
-- [Minting and burning assets](transactions-minting)
-- [Interacting with stake pools](transactions-staking)
-
-In this section, we will explore the following:
-
-- [Send ADA to Addresses](#send-ada-to-addresses)
-- [Send Multiple Assets to Addresses](#send-multiple-assets-to-addresses)
-- [Send Assets to Handler](#send-assets-to-handler)
-- [Send tokens and stable coins to addresses](#send-tokens-and-stable-coins-to-addresses)
-
-## Send ADA to Addresses
-
-You can chain `tx.sendLovelace()` to send to multiple recipients. For example:
+In the code snippet, you will find `txBuilder`, which is an instance of `MeshTxBuilder`, a powerful low-level APIs that allows you to build transactions. Learn how to initialize **MeshTxBuilder**.
 
 ```javascript
-import { Transaction } from "@meshsdk/core";
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+```
 
-const tx = new Transaction({ initiator: wallet })
-  .sendLovelace(
-    "addr_test1vpvx0sacufuypa2k4sngk7q40zc5c4npl337uusdh64kv0c7e4cxr",
-    "1000000"
-  )
-  .sendLovelace("ANOTHER ADDRESS HERE", "1500000");
+The `MeshTxBuilder` is a powerful interface where the higher level `Transaction` class is indeed a pre-built combination of the `MeshTxBuilder` APIs. With these lower level APIs, it builds the object to be passing to the serialization libraries like `cardano-sdk` and `Whisky SDK` to construct transactions.
 
-const unsignedTx = await tx.build();
+In this page, we will cover how to initialize the `MeshTxBuilder` and the basic operations of building a transaction.
+
+
+## Initialize Tx Builder
+
+To start building an customized transaction, you need to first initialize `MeshTxBuilder`:
+
+```javascript
+import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core";
+
+const provider = new BlockfrostProvider('<Your-API-Key>');
+
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider,
+  verbose: true,
+});
+```
+
+The `MeshTxBuilder` instance has the following signature:
+
+```javascript
+{
+  fetcher?: IFetcher;
+  submitter?: ISubmitter;
+  evaluator?: IEvaluator;
+  serializer?: IMeshTxSerializer;
+  isHydra?: boolean;
+  params?: Partial<Protocol>;
+  verbose?: boolean;
+}
+```
+
+There are 6 optional fields to pass in to initialized the lower level APIs instance:
+
+- `serializer`: The default serializer is `CSLSerializer`. You can pass in your own serializer instance.
+- `fetcher`: When you build the transaction without sufficient fields as required by the serialization library, we would index the blockchain to fill the information for you. Affected APIs are `txIn`, `txInCollateral`, `spendingTxInReference`.
+- `submitter`: It is used if you would like to use the `submitter` submitTx API directly from the instance.
+- `evaluator`: It would perform redeemer execution unit optimization, returning error message in case of invalid transaction.
+- `isHydra`: Use another set of default protocol parameters for building transactions.
+- `params`: You can pass in the protocol parameters directly.
+- `verbose`: Set to `true` to enable verbose logging.
+
+
+## Send Value
+
+Sending value with `MeshTxBuilder` come with the `.txOut()` endpoint:
+
+```javascript
+.txOut(address: string, amount: Asset[])
+```
+
+In order to send values (so as every transaction), we have to fund the transaction to do so. There are 2 ways to provide values in a transaction:
+
+- Specifying which input to spend with
+
+```javascript
+.txIn(txHash: string, txIndex: number, amount?: Asset[], address?: string)
+```
+
+
+- Providing an array of UTxOs, and perform auto UTxO selection:
+
+```javascript
+.selectUtxosFrom(extraInputs: UTxO[])
+```
+
+Since the input and output values might not be the same, we have to specify the address (usually own's address) to receive change:
+
+```javascript
+.changeAddress(addr: string)
+```
+
+The following shows a simple example of building a transaction to send values with UTxO selection:
+
+```javascript
+txBuilder
+  .txOut(address, [{ unit: "lovelace", quantity: amount }])
+  .changeAddress(changeAddress)
+  .selectUtxosFrom(utxos)
+  .complete();
+```
+
+Example code:
+
+```javascript
+const utxos = await wallet.getUtxos();
+const changeAddress = await wallet.getChangeAddress();
+
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+
+const unsignedTx = await txBuilder
+  .txOut('addr_test1vpvx0sacufuypa2k4sngk7q40zc5c4npl337uusdh64kv0c7e4cxr', [{ unit: "lovelace", quantity: '1000000' }])
+  .changeAddress(changeAddress)
+  .selectUtxosFrom(utxos)
+  .complete();
+
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-[Try demo](https://meshjs.dev/apis/transaction/basics#sendLovelace)
-
-## Send Multiple Assets to Addresses
-
-We can chain a series of `tx.sendAssets()` and `tx.sendLovelace()` to send multiple assets to multiple recipients. For example:
-
-```javascript
-import { Transaction, Asset } from "@meshsdk/core";
-
-const tx = new Transaction({ initiator: wallet })
-  .sendLovelace(
-    "addr_test1vpvx0sacufuypa2k4sngk7q40zc5c4npl337uusdh64kv0c7e4cxr",
-    "1000000"
-  )
-  .sendAssets(
-    "addr_test1vpvx0sacufuypa2k4sngk7q40zc5c4npl337uusdh64kv0c7e4cxr",
-    [
-      {
-        unit: "64af286e2ad0df4de2e7de15f8ff5b3d27faecf4ab2757056d860a424d657368546f6b656e",
-        quantity: "1",
-      },
-    ]
-  )
-  .sendLovelace("ANOTHER ADDRESS HERE", "1500000");
-
-const unsignedTx = await tx.build();
-const signedTx = await wallet.signTx(unsignedTx);
-const txHash = await wallet.submitTx(signedTx);
-```
-
-[Try demo](https://meshjs.dev/apis/transaction/basics#sendAssets)
-
-## Send Assets to Handler
-
-We can get the ADA Handle's address with any blockchain providers and calling the `fetchHandleAddress()` function.
-
-For instance, lets send some lovelace to `$jingles`:
-
-```javascript
-import { KoiosProvider, Transaction } from "@meshsdk/core";
-
-const koios = new KoiosProvider("api");
-
-const tx = new Transaction({ initiator: wallet })
-  .sendLovelace(
-    await koios.fetchHandleAddress("jingles"),
-    "1000000"
-  );
-
-const unsignedTx = await tx.build();
-const signedTx = await wallet.signTx(unsignedTx);
-const txHash = await wallet.submitTx(signedTx);
-```
-
-## Send tokens and stable coins to addresses
-
-Like `sendLovelace()`, we can chain `sendToken()` along side `tx.sendLovelace()` to send multiple assets to multiple recipients.
-
-For instance, lets send some DJED to ADA to `jingles`:
-
-```javascript
-import { Transaction } from '@meshsdk/core';
-
-const koios = new KoiosProvider("api");
-const address = await koios.fetchHandleAddress("jingles");
-
-const tx = new Transaction({ initiator: wallet })
-  .sendToken(
-    address,
-    'DJED', 
-    '1000000'
-  )
-  .sendLovelace(
-    address,
-    "1000000"
-  );
-
-const unsignedTx = await tx.build();
-const signedTx = await wallet.signTx(unsignedTx);
-const txHash = await wallet.submitTx(signedTx);
-```
-
-Check out the [Mesh Playground](https://meshjs.dev/apis/transaction/basics) for live demo and full explanation.
+Check out the [Mesh website](https://meshjs.dev/apis/txbuilder/basics) to see the full list of APIs.

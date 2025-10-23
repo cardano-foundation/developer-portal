@@ -718,6 +718,14 @@ export const Showcases = [
     tags: ["javascript", "typescript", "serialization", "sdk", "plutus", "favorite"]
   },
   {
+    title: "UTXOS Web3 Services",
+    description: "UTXOS is a suite of tools and services that aim to simplify the onboarding experience for users and businesses to adopt Cardano.",
+    preview: require("./builder-tools/utxos.png"),
+    website: "https://utxos.dev/",
+    getstarted: "/docs/get-started/utxos/overview",
+    tags: ["hosted", "http", "wallet", "sdk", "javascript", "typescript"]
+  },
+  {
     title: "Koios Python",
     description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
     preview: require("./builder-tools/koios-python.png"),
