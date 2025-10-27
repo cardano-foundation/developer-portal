@@ -84,7 +84,6 @@ module.exports = {
                       },
                     ],
                   },
-                  "get-started/cardanocli-js",
                 ],
               },
               {
