@@ -14,7 +14,7 @@ Get your questions answered directly by Cardano Foundation engineers every week!
 
 Join [**Developer Office Hours**](https://www.addevent.com/calendar/TG807216) - a opportunity to interact live with CF engineers and community experts. Each weekly 1-hour session features a different topic presented by the creators behind it, followed by an open Q&A where you can ask anything.
 
-All presentation portions are recorded and available on the [Cardano Community YouTube channel](https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr).
+All presentation portions are recorded and available on the [Cardano Community YouTube channel](https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr). If you prefer not to ask your questions during the live call, you can submit them anonymously through this [form](https://cardanocommunity.typeform.com/DevOfficeHours)!
 
 :::
 
