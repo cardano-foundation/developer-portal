@@ -12,7 +12,6 @@ module.exports = {
           "get-started/technical-concepts/assets",
           "get-started/technical-concepts/consensus-staking",
           "get-started/technical-concepts/network-communication",
-          "get-started/technical-concepts/governance-standards",
           {
             type: "category",
             label: "Security & Key Management",
