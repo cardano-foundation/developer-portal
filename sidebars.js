@@ -1,5 +1,5 @@
 module.exports = {
-  learnSidebar: {
+  developerSidebar: {
     "Get Started": [
       "get-started/overview",
       {
@@ -72,7 +72,7 @@ module.exports = {
                     ],
                   },
                   "get-started/cardano-cli/simple-scripts/simple-scripts",
-                  "get-started/cardano-cli/native-assets/native-assets", 
+                  "get-started/cardano-cli/native-assets/native-assets",
                   "get-started/cardano-cli/plutus-scripts/plutus-scripts",
                   {
                     type: "category",
@@ -136,7 +136,7 @@ module.exports = {
               "integrate-cardano/testnet-faucet",
               {
                 type: "category",
-                label: "Local Development Networks", 
+                label: "Local Development Networks",
                 items: [
                   "get-started/yaci-devkit",
                   "get-started/cardano-testnet",
@@ -164,18 +164,6 @@ module.exports = {
       "get-started/cardano-developer-community",
       "get-started/funding",
     ],
-    "Contribute to the Developer Portal": [
-      "portal-contribute",
-      "portal-style-guide",
-      {
-        type: "link",
-        label: "Contributors",
-        href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
-      },
-    ],
-  },
-
-  developerSidebar: {
     "Integrate Cardano": [
       "integrate-cardano/overview",
       "integrate-cardano/creating-wallet-faucet",
@@ -384,6 +372,15 @@ module.exports = {
             ],
           },
         ],
+      },
+    ],
+    "Contribute to the Developer Portal": [
+      "portal-contribute",
+      "portal-style-guide",
+      {
+        type: "link",
+        label: "Contributors",
+        href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
       },
     ],
   },

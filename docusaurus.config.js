@@ -82,32 +82,13 @@ module.exports = {
       items: [
         {
           type: 'dropdown',
-          label: 'Learn',
+          label: 'Developers',
           position: 'left',
           items: [
-            {
-              to: "docs/get-started/",
-              label: "Get Started",
-            },
             {
               to: "docs/get-started/technical-concepts/overview",
               label: "Technical Concepts",
             },
-            {
-              to: "docs/get-started/technical-concepts/core-blockchain-fundamentals",
-              label: "Cardano Fundamentals",
-            },
-            {
-              href: "https://docs.cardano.org/en/latest/",
-              label: "Docs",
-            },
-          ],
-        },
-        {
-          type: 'dropdown',
-          label: 'Developers',
-          position: 'left',
-          items: [
             {
               to: "/docs/integrate-cardano/",
               label: "Integrate Cardano",
@@ -124,31 +105,7 @@ module.exports = {
               to: "/docs/smart-contracts/",
               label: "Smart Contracts",
             },
-            {
-              to: "blog/",
-              label: "Dev Blog",
-            },
           ],
-        },
-        {
-          type: 'dropdown',
-          label: 'Ecosystem',
-          position: 'left',
-          items: [
-            {
-              to: "tools",
-              label: "Builder Tools",
-            },
-            {
-              to: "showcase",
-              label: "Showcase",
-            },
-          ],
-        },
-        {
-          href: `${vars.repository}`,
-          position: "right",
-          className: "header-github-link",
         },
         {
           type: 'dropdown',
@@ -191,6 +148,38 @@ module.exports = {
               label: 'Operations & Security',
             },
           ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Ecosystem',
+          position: 'left',
+          items: [
+            {
+              to: "tools",
+              label: "Builder Tools",
+            },
+            {
+              to: "showcase",
+              label: "Showcase",
+            },
+            {
+              to: "blog/",
+              label: "Dev Blog",
+            },
+            {
+              href: "https://cardanofoundation.org/academy",
+              label: "Academy",
+            },
+            {
+              href: "https://cips.cardano.org/",
+              label: "CIPs",
+            }
+          ],
+        },
+        {
+          href: `${vars.repository}`,
+          position: "right",
+          className: "header-github-link",
         },
       ],
     },
