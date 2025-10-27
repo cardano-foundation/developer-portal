@@ -8,15 +8,9 @@ keywords: [cardano-cli, cli, keys, addresses, cardano-node]
 
 :::tip Quick Start: Try Without Local Setup
 
-Want to start experimenting right away without installing anything locally? You can use Demeter.run to access a cloud-based development environment with cardano-node and cardano-cli pre-installed:
+Want to start experimenting right away without installing anything locally? You can use Demeter.run to access a cloud-based development environment with cardano-node, cardano-cli pre-installed and a jupyter notebook tutorial you can follow along:
 
 [![Code in Cardano Workspace](https://demeter.run/code/badge.svg)](https://demeter.run/code?repository=https://github.com/txpipe/cardano-cli-starter-kit.git&template=typescript)
-
-This will open a private, web-based VSCode IDE with:
-
-- Access to a fully synced Cardano node
-- Pre-installed cardano-cli binary & environment variables
-- Interactive jupyter notebook tutorial you can follow along
 
 **Alternatively, if you prefer to set up your local environment, continue with the instructions below.**
 
