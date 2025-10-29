@@ -122,7 +122,7 @@ Let's assume we have all the common logics checked in the lesson 4's withdrawal 
 
 ### Spending
 
-```rust
+```aiken
 use aiken/crypto.{ScriptHash}
 use cardano/transaction.{OutputReference, Transaction}
 use cocktail.{withdrawal_script_validated}
@@ -150,7 +150,7 @@ validator spending_logics_delegated(
 
 ### Minting
 
-```rust
+```aiken
 use aiken/crypto.{ScriptHash}
 use cardano/assets.{PolicyId}
 use cardano/transaction.{Transaction}

@@ -66,7 +66,7 @@ This visual representation helps understand how Tries optimize space and search 
 
 ## Validator Logic
 
-```rust
+```aiken
 use aiken/dict
 use aiken/list
 use aiken/transaction.{

@@ -109,7 +109,7 @@ Minting script validation logic is triggered when assets are minted or burned un
 
 Example: `/aiken-workspace/validators/mint.ak`:
 
-```rust
+```aiken
 use cardano/assets.{PolicyId}
 use cardano/transaction.{Transaction, placeholder}
 
@@ -135,7 +135,7 @@ This script compiles into a script with hash `def68337867cb4f1f95b6b811fedbfcdd7
 
 Upgrade the script to allow minting/burning only when signed by a specific key:
 
-```rust
+```aiken
 validator minting_policy(owner_vkey: VerificationKeyHash) {
   mint(_redeemer: Data, _policy_id: PolicyId, tx: Transaction) {
     key_signed(tx.extra_signatories, owner_vkey)
@@ -154,7 +154,7 @@ validator minting_policy(owner_vkey: VerificationKeyHash) {
 
 Extend the policy to include a redeemer specifying the transaction action (minting or burning):
 
-```rust
+```aiken
 pub type MyRedeemer {
   MintToken
   BurnToken
@@ -187,7 +187,7 @@ Spending script validation is triggered when a UTXO is spent in the transaction.
 
 Example: `/aiken-workspace/validators/spend.ak`:
 
-```rust
+```aiken
 pub type Datum {
   oracle_nft: PolicyId,
 }
@@ -226,7 +226,7 @@ Withdrawal script validation is triggered when withdrawing from a reward account
 
 Example: `/aiken-workspace/validators/withdraw.ak`:
 
-```rust
+```aiken
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Credential, Script}
 use cardano/certificate.{Certificate}

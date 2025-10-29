@@ -30,7 +30,7 @@ The datum serves as the configuration for the vesting contract. It includes:
 
 First, we define the datum's shape, as this datum serves as configuration and contains the different parameters of our vesting operation.
 
-```rust
+```aiken
 pub type VestingDatum {
   /// POSIX time in milliseconds, e.g. 1672843961000
   lock_until: Int,
@@ -45,7 +45,7 @@ This datum can be found in `aiken-vesting/aiken-workspace/lib/vesting/types.ak`.
 
 Next, we define the spend validator.
 
-```rust
+```aiken
 validator vesting {
   spend(
     datum_opt: Option<VestingDatum>,
