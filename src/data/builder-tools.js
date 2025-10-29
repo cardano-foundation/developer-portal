@@ -156,14 +156,6 @@ export const Tags = {
     color: '#4267b2',
   },
 
-  // Oracle Tools
-  oracle: {
-    label: "Oracle",
-    description:
-      "Oracle tools.",
-    icon: null,
-    color: '#14cfc3',
-  },
   // Plutus
   plutus: {
     label: "Plutus",
@@ -1022,15 +1014,6 @@ export const Showcases = [
     website: "https://github.com/Biglup/cardano-c",
     getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
     tags: ["c", "serialization", "sdk", "lowlevel"]
-  },
-  {
-    title: "Orcfax",
-    description:
-      "Orcfax is a decentralized oracle service designed to publish data about real world events to the Cardano blockchain. Orcfax data is made available to on-chain smart contracts in Cardano's eUTXO native format using the Orcfax Protocol.",
-    preview: require("./showcase/orcfax.png"),
-    website: "https://orcfax.io",
-    getstarted: "https://docs.orcfax.io/consume",
-    tags: ["oracle"],
   },
   {
     title: "Evolution SDK",
