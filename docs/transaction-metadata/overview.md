@@ -120,3 +120,11 @@ The **front-end** application is not necessarily tied to the specific **back-end
 How do you actually create **transaction metadata** in the **Cardano** blockchain, you ask? We'll let's get our hands dirty!
 
 We invite developers to experiment using **Cardano Transaction Metadata** and come up with new ideas. Next, we'll go over the various methods for creating a transaction that includes metadata.
+
+---
+
+## Tutorials and Resources
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />

@@ -45,7 +45,7 @@ If you have experience with other smart contract platforms and want to start bui
 - You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
 - You can [vote with your ada](funding#how-to-participate) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on [Project Catalyst](funding#project-catalyst).
 - You can earn ada rewards by [voting on proposals](funding#how-to-participate).
-- You can participate in the [Cardano Improvement Proposals](technical-concepts/governance-standards#cardano-improvement-proposals-cip) (CIP) process.
+- You can participate in the [Cardano Improvement Proposals](https://cips.cardano.org/) (CIP) process.
 - You can interact with [smart contracts](../smart-contracts/).
 
 ## Why build on Cardano?

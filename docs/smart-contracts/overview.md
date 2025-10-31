@@ -302,3 +302,11 @@ Writing well-designed smart contracts requires you to have a solid understanding
 - [Scalus](smart-contract-languages/scalus) - a modern unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic. Scalus works with JVM and JavaScript too.
 - [Plinth](smart-contract-languages/plinth) - "Canonical" smart contract language of Cardano written in Haskell with advanced tooling. Can be used for both on-chain and off-chain.
 - [Plu-ts](smart-contract-languages/plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
+
+---
+
+## Explore Smart Contract Topics
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
