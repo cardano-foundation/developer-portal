@@ -1081,7 +1081,7 @@ export const Showcases = [
   preview: require("./builder-tools/smart-wallet-api.png"),
   website: "https://wallet-api.zkfold.io",
   getstarted: "https://docs.zkfold.io/smart-wallet/api/",
-  tags: ["wallet", "haskell", "http"],
+  tags: ["wallet", "haskell", "plutus", "http"],
   },
 ];
 
