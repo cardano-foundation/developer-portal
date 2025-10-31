@@ -9,7 +9,7 @@ module.exports = {
         items: [
           {
             type: "category",
-            label: "Running cardano-node",
+            label: "Running Cardano Node",
             link: {
               type: "doc",
               id: "operate-a-stake-pool/node-operations/cardano-components"
@@ -55,7 +55,7 @@ module.exports = {
       },
       {
         type: "category",
-        label: "cardano-cli",
+        label: "Cardano CLI",
         items: [
           {
             type: "category",
@@ -88,7 +88,7 @@ module.exports = {
       },
       {
         type: "category",
-        label: "High-Level SDKs",
+        label: "SDKs",
         link: {
           type: "doc",
           id: "get-started/high-level-sdks-overview"
