@@ -132,7 +132,7 @@ module.exports = {
         },
         {
           type: 'dropdown',
-          label: 'Network',
+          label: 'SPOs',
           position: 'left',
           items: [
             {
