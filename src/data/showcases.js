@@ -1391,6 +1391,14 @@ export const Showcases = [
     source: "https://github.com/orcfax/orcfax-aiken",
     tags: ["oracle", "opensource"],
   },
+  {
+  title: "Smart Wallet",
+  description: "Create your wallet in just seconds by signing in with your Google or Apple account, no seed phrases or complex setups required. Send crypto instantly to anyone using their email, even if they don’t have a wallet yet. Powered by advanced Zero-Knowledge (ZK) cryptography.",
+  preview: require("./showcase/smart-wallet.png"),
+  website: "https://wallet.zkfold.io",
+  source: "https://github.com/zkFold/smart-wallet-ui",
+  tags: ["wallet", "identity", "opensource"],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
