@@ -40,15 +40,27 @@ Each UTXO must be consumed completely in an "all-or-nothing" manner, introducing
 
 Let's make this concrete. Say Alice has a single UTXO worth 100 ADA and wants to send Bob 10 ADA.
 
-![Alice Sends Bob 10 ADA](./img/alice-sends-bob-example.png)
+```mermaid
+graph LR
+    A["Alice's UTXO<br/>100 ADA"] -->|Input| TX[Transaction]
+    TX -->|Output 1| B["Bob's Address<br/>10 ADA"]
+    TX -->|Output 2| C["Alice's Address<br/>90 ADA (change)"]
+
+    style A fill:#e1f5ff
+    style B fill:#c8e6c9
+    style C fill:#fff9c4
+    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
+```
 
 Alice's transaction must:
+
 1. **Consume** her entire 100 ADA UTXO as input (all-or-nothing)
 2. **Create** two new outputs:
    - 10 ADA to Bob's address
    - 90 ADA back to Alice's address as "change"
 
 After this transaction executes, the UTXO set contains:
+
 - Alice: 90 ADA (new UTXO)
 - Bob: 10 ADA (new UTXO)
 - Alice's original 100 ADA UTXO: **spent** (removed from UTXO set forever)
@@ -57,9 +69,22 @@ After this transaction executes, the UTXO set contains:
 
 Now suppose Bob has two UTXOs (his original 50 ADA plus the 10 ADA from Alice) and wants to send Charlie 55 ADA. Neither UTXO alone is sufficient.
 
-![Bob Combines Multiple UTXOs](./img/bob-combines-utxos-example.png)
+```mermaid
+graph LR
+    A["Bob's UTXO #1<br/>50 ADA"] -->|Input 1| TX[Transaction]
+    B["Bob's UTXO #2<br/>10 ADA"] -->|Input 2| TX
+    TX -->|Output 1| C["Charlie's Address<br/>55 ADA"]
+    TX -->|Output 2| D["Bob's Address<br/>5 ADA (change)"]
+
+    style A fill:#e1f5ff
+    style B fill:#e1f5ff
+    style C fill:#c8e6c9
+    style D fill:#fff9c4
+    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
+```
 
 Bob's transaction must:
+
 1. **Consume** both his 50 ADA and 10 ADA UTXOs as inputs
 2. **Create** two new outputs:
    - 55 ADA to Charlie's address
@@ -92,7 +117,35 @@ The EUTXO model combines:
 - Redeemers: User-supplied arguments passed to scripts during validation
 - Context: Transaction information available to scripts during validation
 
-![Script and Redeemer in EUTXO](./img/script-redeemer-diagram.png)
+```mermaid
+graph TB
+    subgraph LOCKED[" "]
+        UTXO["UTXO at Script Address<br/>Value: 100 ADA"]
+        DATUM["Datum<br/>(state data)"]
+    end
+
+    TX["Transaction<br/>wants to spend this UTXO"]
+
+    TX -->|"provides"| REDEEMER["Redeemer<br/>(spending argument)"]
+
+    SCRIPT["Validator Script asks:<br/>'Is this transaction allowed<br/>to spend this UTXO?'"]
+
+    LOCKED --> SCRIPT
+    REDEEMER --> SCRIPT
+    TX -.->|"transaction details visible to script"| SCRIPT
+
+    SCRIPT -->|"Yes ✓"| APPROVED["Transaction succeeds<br/>UTXO is spent"]
+    SCRIPT -->|"No ✗"| REJECTED["Transaction fails<br/>UTXO remains locked"]
+
+    style UTXO fill:#e1f5ff
+    style DATUM fill:#fff9c4
+    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style REDEEMER fill:#ffe0b2
+    style SCRIPT fill:#e1bee7
+    style APPROVED fill:#c8e6c9
+    style REJECTED fill:#ffcdd2
+```
+
 *In EUTXO based smart contracts (validators), spending conditions are defined by scripts rather than simple signatures. The transaction provides a redeemer (arbitrary data) that the script validates against the datum and transaction context.*
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
