@@ -6,7 +6,7 @@ const isAnnouncementActive = true;
 
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -47,14 +47,14 @@ module.exports = {
     // Announcement Bar
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
-    announcementBar: isAnnouncementActive ?{
+    announcementBar: isAnnouncementActive ? {
       id: "announcement_index8", // Any value that will identify this message + increment the number every time to be unique
       content:
         `<strong>Shape the future of the Cardano Developer Ecosystem - <a target="_blank" rel="noopener noreferrer" href="https://state-of-the-developer-ecosystem.cardano.org">take the survey</a> ⭐️</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
-    }: undefined,
+    } : undefined,
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
@@ -86,20 +86,20 @@ module.exports = {
           position: 'left',
           items: [
             {
-              to: "docs/get-started/technical-concepts/overview",
-              label: "Technical Concepts",
+              to: "docs/get-started/technical-concepts/",
+              label: "Core Concepts",
             },
             {
               to: "/docs/integrate-cardano/",
               label: "Integrate Cardano",
             },
             {
-              to: "/docs/transaction-metadata/",
-              label: "Transaction Metadata",
-            },
-            {
               to: "/docs/native-tokens/",
               label: "Native Tokens",
+            },
+            {
+              to: "/docs/transaction-metadata/",
+              label: "Transaction Metadata",
             },
             {
               to: "/docs/smart-contracts/",
@@ -300,32 +300,32 @@ module.exports = {
             // redirect as many pages as possible from old SPO course to new SPO course
             // (any old page not existing on new course, include in redirection to top level)
             to: '/docs/operate-a-stake-pool/',
-            from: [ 
-                    '/docs/stake-pool-course/',
-                    '/docs/stake-pool-course/lesson-1',
-                    '/docs/stake-pool-course/lesson-2',
-                    '/docs/stake-pool-course/lesson-3',
-                    '/docs/stake-pool-course/lesson-4',
-                    '/docs/stake-pool-course/lesson-5',
-                    '/docs/stake-pool-course/handbook/setup-virtual-box-written',
-                    '/docs/stake-pool-course/handbook/setup-a-server-on-aws-written',
-                    '/docs/stake-pool-course/assignments/assignment-1',
-                    '/docs/stake-pool-course/assignments/assignment-2',
-                    '/docs/stake-pool-course/assignments/kes_period'
-                  ]
+            from: [
+              '/docs/stake-pool-course/',
+              '/docs/stake-pool-course/lesson-1',
+              '/docs/stake-pool-course/lesson-2',
+              '/docs/stake-pool-course/lesson-3',
+              '/docs/stake-pool-course/lesson-4',
+              '/docs/stake-pool-course/lesson-5',
+              '/docs/stake-pool-course/handbook/setup-virtual-box-written',
+              '/docs/stake-pool-course/handbook/setup-a-server-on-aws-written',
+              '/docs/stake-pool-course/assignments/assignment-1',
+              '/docs/stake-pool-course/assignments/assignment-2',
+              '/docs/stake-pool-course/assignments/kes_period'
+            ]
           },
           {
-            to: '/docs/get-started/technical-concepts/core-blockchain-fundamentals#introduction-to-cardano-the-big-picture',
+            to: '/docs/get-started/technical-concepts/',
             from: '/docs/stake-pool-course/introduction-to-cardano',
           },
           {
 
             to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
-                    '/docs/stake-pool-course/handbook/grafana-loki',
-                    '/docs/stake-pool-course/handbook/apply-logging-prometheus',
-                  ]
+            from: [
+              '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
+              '/docs/stake-pool-course/handbook/grafana-loki',
+              '/docs/stake-pool-course/handbook/apply-logging-prometheus',
+            ]
           },
           {
             to: '/docs/operate-a-stake-pool/hardening-server/',
@@ -341,13 +341,13 @@ module.exports = {
           },
           {
             to: '/docs/get-started/create-simple-transaction/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/use-cli',
-                    '/docs/stake-pool-course/handbook/create-simple-transaction',
-                  ]
+            from: [
+              '/docs/stake-pool-course/handbook/use-cli',
+              '/docs/stake-pool-course/handbook/create-simple-transaction',
+            ]
           },
           {
-            to: '/docs/get-started/technical-concepts/overview',
+            to: '/docs/get-started/technical-concepts/',
             from: '/docs/stake-pool-course/handbook/utxo-model',
           },
           {
@@ -364,10 +364,10 @@ module.exports = {
           },
           {
             to: '/docs/operate-a-stake-pool/register-stake-pool/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
-                    '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
-                  ]
+            from: [
+              '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
+              '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
+            ]
           },
           {
             to: '/docs/operate-a-stake-pool/relay-node-configuration/',
@@ -389,7 +389,7 @@ module.exports = {
       },
     ],
   ],
-  
+
   presets: [
     [
       "@docusaurus/preset-classic",
