@@ -58,7 +58,7 @@ html[data-theme="dark"] {
   transition-property: all;
   transition-duration: 200ms;
   box-shadow: 0 8px 28px 4px rgba(86, 91, 115, 0.15);
-  height: calc(100% - 15px);
+  min-height: calc(100% - 15px);
 }
 
 .card a {
