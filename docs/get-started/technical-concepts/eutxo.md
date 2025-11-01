@@ -8,6 +8,21 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 Cardano is an Unspent Transaction Output (UTXO)-based blockchain, which utilizes a different accounting model for its ledger from other account-based blockchains like Ethereum. Cardano implements an innovative Extended Unspent Transaction Output (EUTXO) model to support multi-assets and smart contracts while maintaining the core advantages of the UTXO approach.
 
+## Why Accounting Models Matter
+
+Before Bitcoin, data structures like linked lists (invented in 1955) could chain together transaction records. What makes blockchains different isn't just chaining data—it's achieving **decentralized consensus** on which chain is valid. Multiple parties with conflicting interests must agree on a single version of transaction history without a central authority.
+
+This consensus challenge directly impacts how blockchains represent value and execute transactions. Two fundamentally different approaches emerged: account-based and UTXO-based models.
+
+## Account-Based Model: The Familiar Approach
+
+Most blockchains like Ethereum use an **account-based model**—the same mental model as traditional banking. Each address maintains a balance that increases and decreases with transactions. When you send 10 ETH, the system updates two account balances simultaneously: subtracting from the sender, adding to the receiver.
+
+This model is intuitive because it mirrors how people conceptualize money. However, transactions are **stateful**—they depend on and modify the current global state of all accounts. A transaction's validity and outcome can change based on other transactions processed before it, creating unpredictability between transaction creation and execution.
+
+![EUTXO vs Account Model](./img/eutxo-vs-account-model.jpg)
+*Cardano's EUTXO model represents assets as a directed graph of unspent outputs, while account-based blockchains maintain a database of account balances that update with each state transition.*
+
 ## Understanding the UTXO Foundation
 
 In a UTXO model, the movement of assets is recorded as a directed graph where transactions consume some UTXOs and create new ones. Think of UTXOs like physical cash - if you have $50, it might be composed of different bill combinations, but the total remains the same. Similarly, your wallet balance is the sum of all unspent UTXOs from previous transactions.
@@ -16,7 +31,41 @@ In a UTXO model, the movement of assets is recorded as a directed graph where tr
 
 **Transaction inputs** reference previous outputs using this unique identifier: the transaction hash and output index. To spend an input, you must provide witnesses (signatures or script validations) that satisfy the spending conditions.
 
-Each UTXO can only be consumed once and as a whole which introduces the concept of 'change', just like cash transactions where you can't split a bill into smaller pieces.
+Each UTXO must be consumed completely in an "all-or-nothing" manner, introducing the concept of 'change' similar to cash transactions where you can't split a bill into smaller pieces.
+
+![UTXO Transaction Flow](./img/utxo-transaction-flow.png)
+*A transaction consumes existing UTXOs as inputs and creates new UTXOs as outputs. The consumed UTXOs are removed from the UTXO set, while the new outputs become available for future transactions.*
+
+### Example: Alice Sends Bob 10 ADA
+
+Let's make this concrete. Say Alice has a single UTXO worth 100 ADA and wants to send Bob 10 ADA.
+
+![Alice Sends Bob 10 ADA](./img/alice-sends-bob-example.png)
+
+Alice's transaction must:
+1. **Consume** her entire 100 ADA UTXO as input (all-or-nothing)
+2. **Create** two new outputs:
+   - 10 ADA to Bob's address
+   - 90 ADA back to Alice's address as "change"
+
+After this transaction executes, the UTXO set contains:
+- Alice: 90 ADA (new UTXO)
+- Bob: 10 ADA (new UTXO)
+- Alice's original 100 ADA UTXO: **spent** (removed from UTXO set forever)
+
+### Combining Multiple UTXOs
+
+Now suppose Bob has two UTXOs (his original 50 ADA plus the 10 ADA from Alice) and wants to send Charlie 55 ADA. Neither UTXO alone is sufficient.
+
+![Bob Combines Multiple UTXOs](./img/bob-combines-utxos-example.png)
+
+Bob's transaction must:
+1. **Consume** both his 50 ADA and 10 ADA UTXOs as inputs
+2. **Create** two new outputs:
+   - 55 ADA to Charlie's address
+   - 5 ADA back to Bob's address as change
+
+This demonstrates how UTXOs can be combined to meet transaction requirements, with any remainder returned as change.
 
 ## Atomic Transactions and Genesis Bootstrap
 
@@ -43,11 +92,34 @@ The EUTXO model combines:
 - Redeemers: User-supplied arguments passed to scripts during validation
 - Context: Transaction information available to scripts during validation
 
+![Script and Redeemer in EUTXO](./img/script-redeemer-diagram.png)
+*In EUTXO, spending conditions are defined by scripts rather than simple signatures. The transaction provides a redeemer (arbitrary data) that the script validates against the datum and transaction context.*
+
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 :::info
 Deep dive into [Cardano's EUTXO accounting model here](https://ucarecdn.com/3da33f2f-73ac-4c9b-844b-f215dcce0628/EUTXOhandbook_for_EC.pdf).
 :::
+
+### Script Validation: Bitcoin vs Ethereum vs Cardano
+
+The scope of information available to validator scripts fundamentally differs across blockchain models:
+
+**Bitcoin (UTXO)**: Scripts can only see the redeemer (the signature/unlocking data). This makes validation simple and secure but severely limits smart contract capabilities—hence "dumb contracts."
+
+**Ethereum (Account-Based)**: Scripts can see and modify the entire blockchain state. This unlimited access enables powerful contracts but introduces security complexity and unpredictability.
+
+**Cardano (EUTXO)**: Scripts can see all inputs and outputs of the specific transaction, plus contextual information—but not arbitrary global state. This middle ground has been mathematically proven to provide equivalent computational power to Ethereum while maintaining stronger security guarantees.
+
+### Plutus Script Purity
+
+Plutus scripts are **pure functions**: given identical inputs (datum, redeemer, script context), they always produce identical outputs. This purity enables:
+
+**Mathematical Security Proofs**: You can prove a script is secure by analyzing the transaction inputs alone, not the entire unpredictable blockchain state. The limited scope makes comprehensive security analysis tractable.
+
+**Fail-Fast Validation**: If a transaction references an already-spent input, validation fails immediately off-chain before reaching the network—costing you nothing. The script's deterministic nature allows complete local validation.
+
+**No Partial Failures**: Unlike account-based systems where a transaction can fail mid-execution (after consuming gas fees), EUTXO transactions are validated atomically. Either all conditions are met and the transaction succeeds, or it fails completely without cost.
 
 ## eUTxO Advantages for Developers
 
@@ -55,11 +127,13 @@ Deep dive into [Cardano's EUTXO accounting model here](https://ucarecdn.com/3da3
 
 **Local State**: Unlike account-based models where every transaction affects global state, EUTXO validation occurs locally, preventing many classes of errors and attacks.
 
-**Predictable Fees**: Transaction costs can be calculated precisely off-chain before submission. Unlike other blockchains where network activity can influence gas costs, Cardano's fees are deterministic and fixed at transaction creation time.
+**Predictable Fees**: Transaction costs can be calculated precisely off-chain before submission. Cardano's fees are deterministic and fixed at transaction creation time—no surprises from network congestion or gas price spikes. Critically, if a transaction is invalid (e.g., an input was already spent), it fails validation off-chain before submission, costing you nothing. This contrasts sharply with account-based models where you pay fees even for failed transactions, and gas costs fluctuate unpredictably based on network activity.
 
-**Deterministic Validation**: Transaction success depends only on the transaction itself and its inputs. Users can predict locally (off-chain) how their transaction will impact the ledger state without encountering unexpected validation failures, fees, or state updates. If inputs are available when validated, the transaction is guaranteed to succeed. This contrasts with account-based models, where a transaction can fail mid-script execution.
+**Deterministic Validation**: UTXO transactions are **stateless**—they explicitly include all inputs and outputs within the transaction itself. Validity depends solely on the transaction and its referenced UTXOs, not on external blockchain state that might change. This means if the UTXOs are unspent when your transaction is validated, it is guaranteed to succeed. The transaction's effect is fully determined at creation time. By contrast, account-based transactions are **stateful**—they depend on current account balances that can change between transaction creation and execution. A stateful transaction might fail mid-execution even if it appeared valid when created, and you still pay fees for the failed attempt.
 
 **Zero-Knowledge Proof Compatibility**: EUTXO's deterministic nature makes it ideal for zero-knowledge scaling solutions. Since transaction outcomes are deterministic and predictable, you can execute complex computations off-chain and generate proofs against known state. The proof can then be verified on-chain without re-executing the computation. This contrasts with account-based models where global state changes unpredictably, making it difficult to construct valid ZK proofs since the state may change between proof generation and verification.
+
+**Enhanced Privacy**: The UTXO model naturally encourages privacy-preserving behavior. Best practice is to generate a new address for each incoming transaction, including change addresses. Since your balance is distributed across discrete UTXOs at different addresses rather than consolidated in a single account, it becomes significantly harder to link multiple transactions to a single owner. Account-based models inherently encourage address reuse—the account itself links all transactions together, making transaction history trivially traceable to one entity.
 
 ## TPS vs. eUTxO
 
