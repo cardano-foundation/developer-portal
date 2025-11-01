@@ -1,10 +1,12 @@
 ---
 id: consensus-staking
 title: Consensus & Staking
-sidebar_label: Consensus & Staking
+sidebar_label: (Re)introduction to Cardano
 description: Learn about consensus and staking on Cardano including the Ouroboros protocol, stake pools, and block production.
 image: /img/og/og-getstarted-technical-concepts.png
 ---
+
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/zJUJG6V0Y1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Understanding Consensus
 
