@@ -15,7 +15,7 @@ Smart contracts are digital agreements defined in code that automate and enforce
 
 ## Introduction
 
-Smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/core-blockchain-fundamentals#extended-unspent-transaction-output-eutxo) model.
+Smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/eutxo) model.
 
 Smart contracts are validator scripts that you write to validate the movement of UTXOs locked in your contract's address. You will lock UTXOs at the address of your script and then the UTXOs can only ever be spent/moved if your script allows the transaction spending it to do so.
 
@@ -293,7 +293,7 @@ These features work together to make Cardano smart contracts more practical and 
 Cardano introduced smart contracts in 2021 and supports the development and deployment of smart contracts using multiple different languages.
 
 :::tip
-Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts/overview) page as well.
+Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts/) page as well.
 :::
 
 - [Aiken](smart-contract-languages/aiken/overview) - Most popular smart contract language on Cardano written in Rust like syntax. Specifically designed for on-chain validators only and embraces/treats UTxO model as a first citizen: a language & toolchain favouring developer experience.
