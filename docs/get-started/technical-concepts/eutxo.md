@@ -93,7 +93,7 @@ The EUTXO model combines:
 - Context: Transaction information available to scripts during validation
 
 ![Script and Redeemer in EUTXO](./img/script-redeemer-diagram.png)
-*In EUTXO, spending conditions are defined by scripts rather than simple signatures. The transaction provides a redeemer (arbitrary data) that the script validates against the datum and transaction context.*
+*In EUTXO based smart contracts (validators), spending conditions are defined by scripts rather than simple signatures. The transaction provides a redeemer (arbitrary data) that the script validates against the datum and transaction context.*
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
@@ -133,7 +133,7 @@ Plutus scripts are **pure functions**: given identical inputs (datum, redeemer, 
 
 **Zero-Knowledge Proof Compatibility**: EUTXO's deterministic nature makes it ideal for zero-knowledge scaling solutions. Since transaction outcomes are deterministic and predictable, you can execute complex computations off-chain and generate proofs against known state. The proof can then be verified on-chain without re-executing the computation. This contrasts with account-based models where global state changes unpredictably, making it difficult to construct valid ZK proofs since the state may change between proof generation and verification.
 
-**Enhanced Privacy**: The UTXO model naturally encourages privacy-preserving behavior. Best practice is to generate a new address for each incoming transaction, including change addresses. Since your balance is distributed across discrete UTXOs at different addresses rather than consolidated in a single account, it becomes significantly harder to link multiple transactions to a single owner. Account-based models inherently encourage address reuse—the account itself links all transactions together, making transaction history trivially traceable to one entity.
+**Privacy Oriented**: The UTXO model naturally encourages privacy-preserving behavior. Best practice is to generate a new address for each incoming transaction, including change addresses. Since your balance is distributed across discrete UTXOs at different addresses rather than consolidated in a single account, it becomes significantly harder to link multiple transactions to a single owner. Account-based models inherently encourage address reuse—the account itself links all transactions together, making transaction history trivially traceable to one entity.
 
 ## TPS vs. eUTxO
 
