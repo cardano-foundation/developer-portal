@@ -112,41 +112,14 @@ EUTXO extends the basic UTXO model in two critical ways:
 
 The EUTXO model combines:
 
-- Smart Contracts (Validator scripts) that define arbitrary validation logic for different conditions like spending, minting, withdrawing etc.
-- Datums: Data stored/attached to outputs (UTxO) to carry state
-- Redeemers: User-supplied arguments passed to scripts during validation
-- Context: Transaction information available to scripts during validation
+- **Validator Scripts**: Define arbitrary validation logic for different conditions like spending, minting, withdrawing etc.
+- **Datums**: Data stored/attached to outputs (UTxO) to carry state
+- **Redeemers**: User-supplied arguments passed to scripts during validation
+- **Context**: Transaction information available to scripts during validation
 
-```mermaid
-graph TB
-    subgraph LOCKED[" "]
-        UTXO["UTXO at Script Address<br/>Value: 100 ADA"]
-        DATUM["Datum<br/>(state data)"]
-    end
-
-    TX["Transaction<br/>wants to spend this UTXO"]
-
-    TX -->|"provides"| REDEEMER["Redeemer<br/>(spending argument)"]
-
-    SCRIPT["Validator Script asks:<br/>'Is this transaction allowed<br/>to spend this UTXO?'"]
-
-    LOCKED --> SCRIPT
-    REDEEMER --> SCRIPT
-    TX -.->|"transaction details visible to script"| SCRIPT
-
-    SCRIPT -->|"Yes ✓"| APPROVED["Transaction succeeds<br/>UTXO is spent"]
-    SCRIPT -->|"No ✗"| REJECTED["Transaction fails<br/>UTXO remains locked"]
-
-    style UTXO fill:#e1f5ff
-    style DATUM fill:#fff9c4
-    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
-    style REDEEMER fill:#ffe0b2
-    style SCRIPT fill:#e1bee7
-    style APPROVED fill:#c8e6c9
-    style REJECTED fill:#ffcdd2
-```
-
-*In EUTXO based smart contracts (validators), spending conditions are defined by scripts rather than simple signatures. The transaction provides a redeemer (arbitrary data) that the script validates against the datum and transaction context.*
+:::tip Understanding Validators
+To understand how smart contracts (validators) work on the EUTXO model and how these components interact, see the [Smart Contracts Overview](/docs/smart-contracts/).
+:::
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 

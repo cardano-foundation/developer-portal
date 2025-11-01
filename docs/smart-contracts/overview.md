@@ -71,23 +71,33 @@ Script: f(datum, redeemer, context) = success | failure
 Conceptually, you can think of validators as returning true/false, though under the hood they either succeed (returning unit `()`) or fail (throwing an error).
 
 ```mermaid
-flowchart TD
-    B{Validator Execution}
-    B --> C[Datum: Contract State]
-    B --> D[Redeemer: User Input]
-    B --> E[Context: Transaction Info]
-    C --> F[Validation Logic]
-    D --> F
-    E --> F
-    F --> G{Result}
-    G -->|Success| H[Transaction Valid]
-    G -->|Failure| I[Transaction Invalid]
+graph TB
+    subgraph LOCKED[" "]
+        UTXO["UTXO at Script Address<br/>Value: 100 ADA"]
+        DATUM["Datum<br/>(state data)"]
+    end
 
-    style C fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style D fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style E fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
-    style I fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    TX["Transaction<br/>wants to spend this UTXO"]
+
+    TX -.->|"trying to spend"| UTXO
+    TX -->|"provides"| REDEEMER["Redeemer<br/>(spending argument)"]
+
+    SCRIPT["Validator Script asks:<br/>'Is this transaction allowed<br/>to spend this UTXO?'"]
+
+    LOCKED --> SCRIPT
+    REDEEMER --> SCRIPT
+    TX -.->|"transaction details visible to script"| SCRIPT
+
+    SCRIPT -->|"Yes ✓"| APPROVED["Transaction succeeds<br/>UTXO is spent"]
+    SCRIPT -->|"No ✗"| REJECTED["Transaction fails<br/>UTXO remains locked"]
+
+    style UTXO fill:#e1f5ff
+    style DATUM fill:#fff9c4
+    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style REDEEMER fill:#ffe0b2
+    style SCRIPT fill:#e1bee7
+    style APPROVED fill:#c8e6c9
+    style REJECTED fill:#ffcdd2
 ```
 
 Consider the analogy of a simple function: `f(x) = x * a + b`
