@@ -48,9 +48,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: isAnnouncementActive ? {
-      id: "announcement_index8", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index9", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Shape the future of the Cardano Developer Ecosystem - <a target="_blank" rel="noopener noreferrer" href="https://state-of-the-developer-ecosystem.cardano.org">take the survey</a> ⭐️</strong>`,
+        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/get-started/cardano-developer-community">Learn more</a> 💬</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true

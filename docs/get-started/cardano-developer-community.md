@@ -50,6 +50,4 @@ Official [Cardano Foundation](https://cardanofoundation.org/) Engineering Discor
 
 An annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem.
 
-- [**Developer Ecosystem Survey 2022**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022)  
-- [**Developer Ecosystem Survey 2023**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2023)  
-- [**Developer Ecosystem Survey 2024**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2024)  
+- You can find the annual survey reports in this [repository](https://github.com/cardano-foundation/state-of-the-developer-ecosystem).
