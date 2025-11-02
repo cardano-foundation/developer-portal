@@ -333,8 +333,11 @@ module.exports = {
               {
                 type: "category",
                 label: "Aiken",
+                link: {
+                  type: "doc",
+                  id: "smart-contracts/smart-contract-languages/aiken/overview"
+                },
                 items: [
-                  "smart-contracts/smart-contract-languages/aiken/overview",
                   "smart-contracts/smart-contract-languages/aiken/smart-contract-library",
                   {
                     type: "category",
@@ -350,8 +353,11 @@ module.exports = {
               {
                 type: "category",
                 label: "Plutarch",
+                link: {
+                  type: "doc",
+                  id: "smart-contracts/smart-contract-languages/plutarch/overview"
+                },
                 items: [
-                  "smart-contracts/smart-contract-languages/plutarch/overview",
                   {
                     type: "category",
                     label: "Advanced Data Structures",

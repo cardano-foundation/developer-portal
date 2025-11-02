@@ -88,8 +88,8 @@ graph TB
     REDEEMER --> SCRIPT
     TX -.->|"transaction details visible to script"| SCRIPT
 
-    SCRIPT -->|"Yes ✓"| APPROVED["Transaction succeeds<br/>UTXO is spent"]
-    SCRIPT -->|"No ✗"| REJECTED["Transaction fails<br/>UTXO remains locked"]
+    SCRIPT -->|"Yes ✓"| APPROVED["Validation succeeds<br/>UTXO is spent"]
+    SCRIPT -->|"No ✗"| REJECTED["Validation fails<br/>UTXO remains locked"]
 
     style UTXO fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
     style DATUM fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
