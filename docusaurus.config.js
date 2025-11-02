@@ -137,15 +137,23 @@ module.exports = {
           items: [
             {
               to: '/docs/operate-a-stake-pool/',
-              label: 'Operate a Stake Pool',
+              label: 'Getting Started',
             },
             {
-              to: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node',
-              label: 'Installing Cardano Node',
+              to: '/docs/operate-a-stake-pool/relay-node-configuration',
+              label: 'Relay Configuration',
+            },
+            {
+              to: '/docs/operate-a-stake-pool/register-stake-pool',
+              label: 'Block Producer Setup',
+            },
+            {
+              to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial',
+              label: 'Monitoring',
             },
             {
               to: '/docs/operate-a-stake-pool/hardening-server',
-              label: 'Operations & Security',
+              label: 'Security',
             },
           ],
         },
