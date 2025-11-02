@@ -41,6 +41,8 @@ There are 4 ingredients to signing a message:
 * public key
 * message to sign
 
+![Wallet authentication workflow](/img/integrate-cardano/wallet-authentication-flow.png)
+
 To check if a user owns a certain address on a Web3 site, one needs to provide a message and have the user "sign" it. This "signature" is generated using the message, the user's private key, the public key, and a cryptographic algorithm.
 
 To ensure the signature is valid, the same cryptographic algorithm is applied to the message and the public key is obtained. You may be wondering how this can be secure? The answer is that without the private key, the validation of the message and the public key cannot be cryptographically matched, thereby confirming ownership.
