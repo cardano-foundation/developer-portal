@@ -388,8 +388,11 @@ module.exports = {
           {
             type: "category",
             label: "Design Patterns",
+            link: {
+              type: "doc",
+              id: "smart-contracts/advanced/design-patterns/overview"
+            },
             items: [
-              "smart-contracts/advanced/design-patterns/overview",
               "smart-contracts/advanced/design-patterns/enum-redeemers",
               "smart-contracts/advanced/design-patterns/parameter-validation",
               "smart-contracts/advanced/design-patterns/strict-and-checks",
