@@ -2,7 +2,7 @@ module.exports = {
   developerSidebar: {
     "Get Started": [
       "get-started/overview",
-      "get-started/choose-your-path",
+      "get-started/choose-your-approach",
       {
         type: "category",
         label: "Development Environment",

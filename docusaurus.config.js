@@ -90,20 +90,20 @@ module.exports = {
               label: "Core Concepts",
             },
             {
-              to: "/docs/integrate-cardano/",
-              label: "Integrate Cardano",
-            },
-            {
               to: "/docs/native-tokens/",
               label: "Native Tokens",
             },
             {
-              to: "/docs/transaction-metadata/",
-              label: "Transaction Metadata",
-            },
-            {
               to: "/docs/smart-contracts/",
               label: "Smart Contracts",
+            },
+            {
+              to: "docs/get-started/cardano-developer-community",
+              label: "Dev Community",
+            },
+            {
+              to: "docs/get-started/funding",
+              label: "Grants",
             },
           ],
         },
