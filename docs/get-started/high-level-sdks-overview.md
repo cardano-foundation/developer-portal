@@ -28,14 +28,14 @@ graph TB
 
     Provider --> Blockchain[Cardano Blockchain]
 
-    style App fill:#e1f5ff,stroke:#333,stroke-width:2px
-    style SDK fill:#f3e5f5,stroke:#333,stroke-width:3px
-    style TxBuilder fill:#fff4e6,stroke:#333,stroke-width:1px
-    style Wallet fill:#fff4e6,stroke:#333,stroke-width:1px
-    style Contract fill:#fff4e6,stroke:#333,stroke-width:1px
-    style Data fill:#fff4e6,stroke:#333,stroke-width:1px
-    style Provider fill:#e8f5e9,stroke:#333,stroke-width:2px
-    style Blockchain fill:#e8f5e9,stroke:#333,stroke-width:2px
+    style App fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style SDK fill:#FFFFFF,stroke:#0033AD,stroke-width:3px,color:#000000
+    style TxBuilder fill:#FFFFFF,stroke:#0033AD,stroke-width:1px,color:#000000
+    style Wallet fill:#FFFFFF,stroke:#0033AD,stroke-width:1px,color:#000000
+    style Contract fill:#FFFFFF,stroke:#0033AD,stroke-width:1px,color:#000000
+    style Data fill:#FFFFFF,stroke:#0033AD,stroke-width:1px,color:#000000
+    style Provider fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style Blockchain fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
 ```
 
 SDKs abstract away the complexity of blockchain operations: transaction building, CBOR serialization, UTxO selection, fee calculation, address derivation, and protocol parameter management. This lets you build Cardano applications using modern languages like JavaScript, Python, TypeScript, and C# without needing to understand low-level blockchain internals.

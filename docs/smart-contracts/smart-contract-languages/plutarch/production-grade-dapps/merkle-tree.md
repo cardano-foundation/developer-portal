@@ -60,6 +60,14 @@ graph TD;
     HAB --> HB
     HCD --> HC
     HCD --> HD
+
+    style MR fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style HAB fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style HCD fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style HA fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style HB fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style HC fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style HD fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 1. Each of A, B, C, and D is hashed: Hash(A), Hash(B), Hash(C), Hash(D).

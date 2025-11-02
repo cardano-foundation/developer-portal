@@ -46,10 +46,10 @@ graph LR
     TX -->|Output 1| B["Bob's Address<br/>10 ADA"]
     TX -->|Output 2| C["Alice's Address<br/>90 ADA (change)"]
 
-    style A fill:#e1f5ff
-    style B fill:#c8e6c9
-    style C fill:#fff9c4
-    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style B fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 Alice's transaction must:
@@ -76,11 +76,11 @@ graph LR
     TX -->|Output 1| C["Charlie's Address<br/>55 ADA"]
     TX -->|Output 2| D["Bob's Address<br/>5 ADA (change)"]
 
-    style A fill:#e1f5ff
-    style B fill:#e1f5ff
-    style C fill:#c8e6c9
-    style D fill:#fff9c4
-    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style B fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style C fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style D fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 Bob's transaction must:

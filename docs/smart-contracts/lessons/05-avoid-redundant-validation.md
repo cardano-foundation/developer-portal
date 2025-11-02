@@ -45,15 +45,15 @@ graph TB
     W[Withdrawal Script] --> TX
     
     %% Clear styling with bright colors and black text
-    style TX fill:#FFA07A,stroke:#333,stroke-width:2px,color:#000
-    style M fill:#87CEEB,stroke:#333,stroke-width:2px,color:#000
-    style W fill:#DDA0DD,stroke:#333,stroke-width:2px,color:#000
-    style A1 fill:#E0E0E0,stroke:#333,stroke-width:2px,color:#000
-    style A2 fill:#E0E0E0,stroke:#333,stroke-width:2px,color:#000
-    style A3 fill:#E0E0E0,stroke:#333,stroke-width:2px,color:#000
-    style C1 fill:#FFFFFF,stroke:#333,stroke-width:1px,color:#000
-    style C2 fill:#FFFFFF,stroke:#333,stroke-width:1px,color:#000
-    style C3 fill:#FFFFFF,stroke:#333,stroke-width:1px,color:#000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style M fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style W fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style A1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style A2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style A3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
     
     %% Positioning
     classDef default text-align:center
@@ -97,16 +97,16 @@ graph TB
     W[Withdrawal Script] --> TX
     
     %% Styling
-    style TX fill:#FFA07A,stroke:#333,stroke-width:2px,color:#000
-    style M fill:#87CEEB,stroke:#333,stroke-width:2px,color:#000
-    style W fill:#DDA0DD,stroke:#333,stroke-width:2px,color:#000
-    style A1 fill:#E0E0E0,stroke:#333,stroke-width:2px,color:#000
-    style A2 fill:#E0E0E0,stroke:#333,stroke-width:2px,color:#000
-    style A3 fill:#E0E0E0,stroke:#333,stroke-width:2px,color:#000
-    style C1 fill:#FFFFFF,stroke:#333,stroke-width:1px,color:#000
-    style C2 fill:#FFFFFF,stroke:#333,stroke-width:1px,color:#000
-    style C3 fill:#FFFFFF,stroke:#333,stroke-width:1px,color:#000
-    style WithdrawalCheck fill:#FFFFFF,stroke:#333,stroke-width:1px,color:#000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style M fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style W fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style A1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style A2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style A3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style WithdrawalCheck fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
     
     %% Remove visible connections between check boxes
     linkStyle 0 stroke-width:0px

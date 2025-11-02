@@ -53,6 +53,11 @@ graph LR
     TX --> A1((Output 1))
     TX --> A2((Output 2))
     TX --> A3((Output 3))
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX emphasized
+    class S1,S2,S3,A1,A2,A3 regular
 ```
 
 The solution involves the `Spending Validator` checking that the `Staking validator` is called in the same transaction, consolidating the logic to run once at the `Staking Validator`. This significantly reduces script size and simplifies business logic.
@@ -138,6 +143,10 @@ graph TD
   end
   end
   end
+
+  classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+  classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+  class SA emphasized
 ```
 
 Once you have the script address and following your business logic, now you can lock assets along with datums into the Script Address, therefore associating the new EUTXO and the Script Address with both components `Payment Credential` and `Staking Credential`
@@ -160,6 +169,11 @@ graph TD
   end
   end
   end
+
+  classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+  classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+  class U,SA emphasized
+  class A,D regular
 ```
 
 ## Let's dive into the implementation
@@ -182,6 +196,11 @@ graph LR
     TX --> A1((Output 1))
     TX --> A2((Output 2))
     TX --> A3((Output 3))
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX,ST emphasized
+    class S1,S2,S3,A1,A2,A3 regular
 ```
 
 From the transaction we are going to specifically focus on the `ScriptContext`
@@ -263,6 +282,11 @@ graph LR
     TX --> A1((Output 1))
     TX --> A2((Output 2))
     TX --> A3((Output 3))
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX,ST emphasized
+    class S1,S2,S3,A1,A2,A3 regular
 ```
 
 However it is a must to consider key components to ensure the efficiency and that there are no exploits in your protocol.

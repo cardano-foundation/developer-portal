@@ -91,13 +91,13 @@ graph TB
     SCRIPT -->|"Yes ✓"| APPROVED["Transaction succeeds<br/>UTXO is spent"]
     SCRIPT -->|"No ✗"| REJECTED["Transaction fails<br/>UTXO remains locked"]
 
-    style UTXO fill:#e1f5ff
-    style DATUM fill:#fff9c4
-    style TX fill:#f5f5f5,stroke:#333,stroke-width:2px
-    style REDEEMER fill:#ffe0b2
-    style SCRIPT fill:#e1bee7
-    style APPROVED fill:#c8e6c9
-    style REJECTED fill:#ffcdd2
+    style UTXO fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style DATUM fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style REDEEMER fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style SCRIPT fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style APPROVED fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style REJECTED fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 Consider the analogy of a simple function: `f(x) = x * a + b`
@@ -241,11 +241,11 @@ flowchart LR
     D -->|✗ Invalid| H[Transaction Fails]
     E --> F[...]
 
-    style A fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style C fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style E fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style G fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
-    style H fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style C fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style E fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style G fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style H fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 ### Workflow Diagrams

@@ -24,12 +24,12 @@ graph LR
     Indexer --> |Queries| Node
     API --> |Serves Data| App
 
-    style App fill:#e1f5ff,stroke:#333,stroke-width:2px
-    style Provider fill:#f3e5f5,stroke:#333,stroke-width:3px
-    style Node fill:#fff4e6,stroke:#333,stroke-width:1px
-    style Indexer fill:#fff4e6,stroke:#333,stroke-width:1px
-    style API fill:#fff4e6,stroke:#333,stroke-width:1px
-    style Blockchain fill:#e8f5e9,stroke:#333,stroke-width:2px
+    style App fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style Provider fill:#FFFFFF,stroke:#0033AD,stroke-width:3px,color:#000000
+    style Node fill:#FFFFFF,stroke:#0033AD,stroke-width:1px,color:#000000
+    style Indexer fill:#FFFFFF,stroke:#0033AD,stroke-width:1px,color:#000000
+    style API fill:#FFFFFF,stroke:#0033AD,stroke-width:1px,color:#000000
+    style Blockchain fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
 ```
 
 Providers run and maintain Cardano infrastructure so you don't have to. They operate cardano-node, index blockchain data into queryable databases, and expose developer-friendly APIs (REST, WebSocket, gRPC). This means you can query blocks, transactions, UTXOs, submit transactions, and access protocol parameters without managing servers, handling upgrades, or ensuring uptime.
