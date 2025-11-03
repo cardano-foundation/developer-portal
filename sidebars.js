@@ -287,6 +287,18 @@ module.exports = {
               "integrate-cardano/creating-wallet-faucet",
             ],
           },
+          {
+            type: "category",
+            label: "Oracles",
+            link: {
+              type: "doc",
+              id: "integrate-cardano/oracles-overview"
+            },
+            items: [
+              "integrate-cardano/charli3",
+              "integrate-cardano/orcfax",
+            ],
+          },
         ],
       },
       {
