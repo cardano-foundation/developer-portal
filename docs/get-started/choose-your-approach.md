@@ -1,66 +1,85 @@
 ---
 id: choose-your-approach
-title: Choose Your Approach
-sidebar_label: Choose Your Approach
-description: Understand the two main approaches to building on Cardano - self-hosted infrastructure or managed services.
+title: Infrastructure
+sidebar_label: Overview
+description: Choose how to connect to Cardano - API providers, cloud platform, or run your own node.
 image: /img/og/og-developer-portal.png
 ---
 
-## Two Paths to Building on Cardano
+## Connecting to Cardano
 
-There are **two main approaches** to building on Cardano, each with different trade-offs:
+Once you've chosen your [network](/docs/get-started/networks-overview), you need infrastructure to connect to it. There are **different approaches** to building on Cardano, each with different trade-offs:
 
 ```mermaid
 graph TB
-    Start[Your Application] --> Choice{Choose Your Approach}
+    Start[Your Application] --> Choice{Choose Infrastructure}
 
-    Choice -->|Approach 1: CLI & Node| CLI[cardano-cli]
-    CLI --> Node[cardano-node]
-    Node --> Chain1[Cardano Blockchain]
+    Choice -->|Easiest| Providers[API Providers]
+    Choice -->|Managed| Platform[Cloud Platform]
+    Choice -->|Full Control| Node[Run Your Own Node]
 
-    Choice -->|Approach 2: SDKs| SDK[SDK]
-    SDK --> Provider[Provider]
-    Provider --> Chain2[Cardano Blockchain]
+    Providers --> API[REST/WebSocket APIs]
+    Platform --> Services[Managed Services]
+    Node --> Self[Self-Hosted]
+
+    API --> Cardano[Cardano Networks]
+    Services --> Cardano
+    Self --> Cardano
 
     style Start fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
     style Choice fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
-    style CLI fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style Providers fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style Platform fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
     style Node fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
-    style SDK fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
-    style Provider fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
-    style Chain1 fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
-    style Chain2 fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style Cardano fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
 ```
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+---
 
-<Tabs>
-<TabItem value="cli" label="Approach 1: CLI & Node" default>
+## Infrastructure Options
 
-**Components:** [cardano-cli](/docs/get-started/cardano-cli/basic-operations/get-started) + [cardano-node](/docs/operate-a-stake-pool/node-operations/cardano-components)
+### [API Providers](/docs/get-started/providers-overview)
 
-- Direct, low-level interaction with the blockchain
-- Full control over your infrastructure
-- Requires running and maintaining your own node
-- Manual transaction construction using CLI commands
-- No dependency on third-party services
-- Gain deep understanding of Cardano's inner workings
+Connect to Cardano through REST or WebSocket APIs without managing infrastructure.
 
-</TabItem>
-<TabItem value="sdks" label="Approach 2: SDKs">
+**Examples**: [Blockfrost](/docs/get-started/blockfrost/overview), [Koios](/docs/get-started/koios), [Ogmios](/docs/get-started/ogmios)
 
-**Components:** [SDKs](/docs/get-started/high-level-sdks-overview) + [Providers](/docs/get-started/providers-overview)
+**What you get**: Simple API integration, no infrastructure setup, quick to get started
 
-- Developer-friendly libraries that abstract blockchain complexity
-- Connect via providers (managed services like Blockfrost/Koios or self-hosted like Ogmios)
-- Focus on application logic rather than infrastructure
-- Lower operational overhead
-- Modern developer experience with familiar programming patterns
+**Considerations**: Third-party service dependency, API rate limits may apply, usage-based pricing
 
-</TabItem>
-</Tabs>
+---
 
-:::tip Choosing Your Path
-Most developers start with Approach 2 for rapid development and faster time to market, then explore Approach 1 later to understand the underlying mechanisms or to roll their own infrastructure.
-:::
+### [Demeter](/docs/get-started/demeter)
+
+Cloud-based platform providing managed Cardano middleware and services.
+
+**Provides**: Managed nodes, indexers (DB-Sync, Kupo), RPC services (Ogmios, Submit API)
+
+**What you get**: Full suite of managed Cardano services, no infrastructure maintenance, flexible service selection
+
+**Considerations**: Pay-as-you-go pricing model, platform-managed infrastructure
+
+---
+
+### [Running Cardano Node](/docs/operate-a-stake-pool/node-operations/cardano-components)
+
+Run and maintain your own Cardano node infrastructure.
+
+**Components**: [cardano-node](/docs/operate-a-stake-pool/node-operations/cardano-components), [cardano-cli](/docs/get-started/cardano-cli/basic-operations/get-started)
+
+**What you get**: Complete infrastructure control, no external dependencies, direct blockchain access
+
+**Considerations**: Infrastructure management required, server and maintenance costs, DevOps resources needed
+
+---
+
+## Getting Started
+
+Each approach has its own trade-offs. You can:
+
+- Start with [API Providers](/docs/get-started/providers-overview) for quick integration
+- Use [Demeter](/docs/get-started/demeter) for a managed services platform
+- [Run your own node](/docs/operate-a-stake-pool/node-operations/cardano-components) for full control
+
+Many teams use different approaches at different stages or combine them - such as using providers during development and running their own infrastructure in production.

@@ -1,14 +1,14 @@
 ---
 id: providers-overview
-title: Providers
+title: API Providers
 sidebar_label: Overview
-description: Explore providers for Cardano - managed blockchain infrastructure so you can build without running a node.
+description: Explore API providers for Cardano - query the blockchain via REST, WebSocket, and GraphQL APIs.
 image: /img/og/og-developer-portal.png
 ---
 
-## Choose Your Provider
+## Choose Your API Provider
 
-Providers give you API access to the Cardano blockchain without requiring you to run and maintain your own infrastructure. They handle node operations, data indexing, and provide developer-friendly APIs.
+API providers give you access to the Cardano blockchain through developer-friendly APIs. They handle node operations, data indexing, and expose REST, WebSocket, or GraphQL endpoints so you can query blockchain data without running your own infrastructure.
 
 ```mermaid
 graph LR
@@ -33,6 +33,27 @@ graph LR
 ```
 
 Providers run and maintain Cardano infrastructure so you don't have to. They operate cardano-node, index blockchain data into queryable databases, and expose developer-friendly APIs (REST, WebSocket, gRPC). This means you can query blocks, transactions, UTXOs, submit transactions, and access protocol parameters without managing servers, handling upgrades, or ensuring uptime.
+
+---
+
+## Example API Providers
+
+Different providers offer different features and pricing models:
+
+| Provider | Type | Key Features | Networks |
+|----------|------|--------------|----------|
+| **[Blockfrost](/docs/get-started/blockfrost/overview)** | REST API | Simple REST API, fast integration | Mainnet, Preprod, Preview |
+| **[Koios](/docs/get-started/koios)** | REST/GraphQL API | Community-driven, decentralized infrastructure | Mainnet, Preprod, Preview |
+| **[Ogmios](/docs/get-started/ogmios)** | WebSocket/JSON-RPC | Low-level protocol access, real-time queries | All networks (self-hosted or via providers) |
+
+---
+
+## Other Infrastructure Options
+
+Beyond API providers, you have other ways to connect to Cardano:
+
+- **[Demeter](/docs/get-started/demeter)**: Full cloud infrastructure platform with managed nodes, DB-Sync, Ogmios, and Kupo
+- **[Running Your Own Node](/docs/operate-a-stake-pool/node-operations/cardano-components)**: Complete control over infrastructure
 
 ---
 
