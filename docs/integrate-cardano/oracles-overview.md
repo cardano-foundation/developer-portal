@@ -192,13 +192,12 @@ Statistical methods identify and exclude anomalous data that deviates significan
 
 Consider these factors when selecting an oracle for your Cardano application:
 
-- **Data Sources**: What sources does the oracle use? How reliable are they?
-- **Update Frequency**: Does the publication model match your needs?
-- **Decentralization**: How distributed is the oracle network?
-- **Transparency**: Can you audit the data collection and validation process?
-- **Network Support**: Does it work on mainnet, testnet, or both?
-- **Integration Complexity**: How hard is it to integrate?
-- **Cost Structure**: What are the fees for consuming oracle data?
+- What sources does the oracle use? How reliable are they?
+- Does the publication model match your needs?
+- How distributed is the oracle network?
+- Can you audit the data collection and validation process?
+- How hard is it to integrate?
+- What are the fees for consuming oracle data?
 
 ---
 
