@@ -213,6 +213,13 @@ module.exports = {
           },
           {
             type: "category",
+            label: "Swift",
+            items: [
+              "get-started/client-sdks/swift/cardanokit",
+            ],
+          },
+          {
+            type: "category",
             label: "Low-Level",
             items: [
               {
