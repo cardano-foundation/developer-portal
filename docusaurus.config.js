@@ -98,6 +98,10 @@ module.exports = {
               label: "Smart Contracts",
             },
             {
+              to: "tools",
+              label: "Builder Tools",
+            },
+            {
               to: "docs/get-started/cardano-developer-community",
               label: "Dev Community",
             },
@@ -163,16 +167,16 @@ module.exports = {
           position: 'left',
           items: [
             {
-              to: "tools",
-              label: "Builder Tools",
-            },
-            {
               to: "showcase",
               label: "Showcase",
             },
             {
               to: "blog/",
               label: "Dev Blog",
+            },
+            {
+              href: "https://cardanoupdates.com/",
+              label: "Developer Activity",
             },
             {
               href: "https://cardanofoundation.org/academy",
