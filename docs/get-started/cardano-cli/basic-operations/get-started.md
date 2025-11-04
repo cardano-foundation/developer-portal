@@ -74,6 +74,28 @@ cardano-cli address key-gen \
 --signing-key-file payment.skey
 ```
 
+This creates two files:
+
+- **payment.vkey** (verification key / public key): Used to derive your wallet address. This is what you share to receive funds. The file looks like this:
+
+```json
+{
+    "type": "PaymentVerificationKeyShelley_ed25519",
+    "description": "Payment Verification Key",
+    "cborHex": "582056a29cba161c2a534adae32c4359fda6f90a3f6ae6990491237b28c1caeef0c4"
+}
+```
+
+- **payment.skey** (signing key / private key): Used to sign and approve transactions. Keep this file secure and never expose it publicly. The file looks like this:
+
+```json
+{
+    "type": "PaymentSigningKeyShelley_ed25519",
+    "description": "Payment Signing Key",
+    "cborHex": "58208c61d557e1b8ddd82107fa506fab1b1565ec76fe96e8fb19a922d5460acd5a5b"
+}
+```
+
 ### Build an address
 
 This address will not have staking rights. It cannot delegate or receive rewards because it does not have a stake part associated with it, only a payment part (see [CIP-19](https://cips.cardano.org/cips/cip19/)).
