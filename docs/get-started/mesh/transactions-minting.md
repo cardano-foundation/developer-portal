@@ -7,98 +7,92 @@ description: Learn to use ForgeScript to create minting transactions for minting
 image: /img/og/og-getstarted-mesh.png
 ---
 
-In this section, we will learn to use ForgeScript to create minting transactions for minting and burning native assets. If you are new to transactions, be sure to check out how to create transactions to [send lovelace and assets](transactions-basic).
+Minting and burning assets with Native Script and Plutus Script
 
-In this section, we will explore the following:
+Minting and burning assets is a common operation in blockchain applications. In the Cardano ecosystem, minting and burning are achieved through Native Scripts and Plutus Scripts.
 
-- [Minting Assets](#minting-assets)
-- [Burning Assets](#burning-assets)
+To view a video demonstration of this feature of the MeshSDK, navigate to the video guide [Mint an NFT Collection](https://meshjs.dev/guides/nft-collection).
 
-## Minting Assets
+In this page, you will find the APIs to create transactions for minting and burning assets.
 
-We will see how to mint native assets with a `ForgeScript`.
+## Minting with One Signature
+
+In this section, we will see how to mint native assets with a `MeshTxBuilder`. For minting assets with smart contract, visit MeshTxBuilder - Smart Contract - Minting Assets with Smart Contract.
+
+Firstly, we need to define the `forgingScript` with `ForgeScript`. We use the first wallet address as the "minting address" (you can use other addresses).
 
 ```javascript
-import { Transaction, ForgeScript } from "@meshsdk/core";
-import type { Mint, AssetMetadata } from "@meshsdk/core";
+const changeAddress = await wallet.getChangeAddress();
+const forgingScript = ForgeScript.withOneSignature(changeAddress);
+```
 
-// prepare forgingScript
-const usedAddress = await wallet.getUsedAddresses();
-const address = usedAddress[0];
-const forgingScript = ForgeScript.withOneSignature(address);
+Then, we define the metadata.
 
-const tx = new Transaction({ initiator: wallet });
-
-// define asset#1 metadata
-const assetMetadata1: AssetMetadata = {
+```javascript
+const demoAssetMetadata = {
   name: "Mesh Token",
   image: "ipfs://QmRzicpReutwCkM6aotuKjErFCUD213DpwPq6ByuzMJaua",
   mediaType: "image/jpg",
-  description: "This NFT is minted by Mesh (https://meshjs.dev/).",
+  description: "This NFT was minted by Mesh (https://meshjs.dev/).",
 };
-const asset1: Mint = {
-  assetName: "MeshToken",
-  assetQuantity: "1",
-  metadata: assetMetadata1,
-  label: "721",
-  recipient: "addr_test1vpvx0sacufuypa2k4sngk7q40zc5c4npl337uusdh64kv0c7e4cxr",
-};
-tx.mintAsset(forgingScript, asset1);
+const policyId = resolveScriptHash(forgingScript);
+const tokenName = "MeshToken";
+const tokenNameHex = stringToHex(tokenName);
+const metadata = { [policyId]: { [tokenName]: { ...demoAssetMetadata } } };
+```
 
-const unsignedTx = await tx.build();
+Finally, we create a transaction and mint the asset with the lower level APIs.
+
+```javascript
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+
+const unsignedTx = await txBuilder
+  .txIn(utxo.input.txHash, utxo.input.outputIndex)
+  .mint("1", policyId, tokenName)
+  .mintingScript(forgingScript)
+  .changeAddress(changeAddress)
+  .complete();
+```
+
+Example code:
+
+```javascript
+import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex } from '@meshsdk/core';
+import type { Asset } from '@meshsdk/core';
+
+const utxos = await wallet.getUtxos();
+const changeAddress = await wallet.getChangeAddress();
+const forgingScript = ForgeScript.withOneSignature(changeAddress);
+
+const demoAssetMetadata = {
+  name: "Mesh Token",
+  image: "ipfs://QmRzicpReutwCkM6aotuKjErFCUD213DpwPq6ByuzMJaua",
+  mediaType: "image/jpg",
+  description: "This NFT was minted by Mesh (https://meshjs.dev/).",
+};
+const policyId = resolveScriptHash(forgingScript);
+const tokenName = "MeshToken";
+const tokenNameHex = stringToHex(tokenName);
+const metadata = { [policyId]: { [tokenName]: { ...demoAssetMetadata } } };
+
+const txBuilder = new MeshTxBuilder({
+  fetcher: provider, // get a provider https://meshjs.dev/providers
+  verbose: true,
+});
+
+const unsignedTx = await txBuilder
+  .mint("1", policyId, tokenNameHex)
+  .mintingScript(forgingScript)
+  .metadataValue(721, metadata)
+  .changeAddress(changeAddress)
+  .selectUtxosFrom(utxos)
+  .complete();
+
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-Additionally, you can define the forging script with NativeScript. For example if you want to have a policy locking script, you can do this:
-
-```javascript
-import type { NativeScript } from "@meshsdk/core";
-
-const nativeScript: NativeScript = {
-  type: "all",
-  scripts: [
-    {
-      type: "before",
-      slot: "<insert slot here>",
-    },
-    {
-      type: "sig",
-      keyHash: "<insert keyHash here>",
-    },
-  ],
-};
-
-const forgingScript = ForgeScript.fromNativeScript(nativeScript);
-```
-
-[Try demo](https://meshjs.dev/apis/transaction/minting#minting)
-
-## Burning Assets
-
-Like minting assets, we need to define the `ForgeScript`. We use the first wallet address as the "minting address". Note that, assets can only be burned by its minting address.
-
-```javascript
-import { Transaction, ForgeScript } from "@meshsdk/core";
-import type { Asset } from "@meshsdk/core";
-
-// prepare forgingScript
-const usedAddress = await wallet.getUsedAddresses();
-const address = usedAddress[0];
-const forgingScript = ForgeScript.withOneSignature(address);
-
-const tx = new Transaction({ initiator: wallet });
-
-// burn asset#1
-const asset1: Asset = {
-  unit: "64af286e2ad0df4de2e7de15f8ff5b3d27faecf4ab2757056d860a424d657368546f6b656e",
-  quantity: "1",
-};
-tx.burnAsset(forgingScript, asset1);
-
-const unsignedTx = await tx.build();
-const signedTx = await wallet.signTx(unsignedTx);
-const txHash = await wallet.submitTx(signedTx);
-```
-
-Check out the [Mesh Playground](https://meshjs.dev/apis/transaction/minting) for live demo and full explanation.
+Check out the [Mesh website](https://meshjs.dev/apis/txbuilder/minting) to see the full list of APIs.

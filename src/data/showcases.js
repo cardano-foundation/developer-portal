@@ -897,15 +897,6 @@ export const Showcases = [
     tags: ["nftsupport", "token"],
   },
   {
-    title: "Summon Platform",
-    description:
-      "A DAO creation and governance platform on the Cardano blockchain.",
-    preview: require("./showcase/summonplatform.png"),
-    website: "https://summonplatform.io/",
-    source: null,
-    tags: ["daotool"],
-  },
-  {
     title: "VESPR Wallet",
     description:
       "VESPR is a non-custodial mobile light wallet for the Cardano network, prioritizing the security and safety of your digital assets while ensuring exceptional ease-of-use. Your private keys and assets always remain under your control.",
@@ -1390,6 +1381,15 @@ export const Showcases = [
     website: "https://indigoprotocol.io/",
     source: "https://github.com/IndigoProtocol/indigo-smart-contracts",
     tags: ["marketplace", "opensource"],
+  },
+  {
+    title: "Orcfax",
+    description:
+      "Orcfax is a decentralized oracle service designed to publish data about real world events to the Cardano blockchain. Orcfax data is made available to on-chain smart contracts in Cardano's eUTXO native format using the Orcfax Protocol.",
+    preview: require("./showcase/orcfax.png"),
+    website: "https://orcfax.io",
+    source: "https://github.com/orcfax/orcfax-aiken",
+    tags: ["oracle", "opensource"],
   },
 ];
 

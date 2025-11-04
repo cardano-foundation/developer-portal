@@ -156,14 +156,6 @@ export const Tags = {
     color: '#4267b2',
   },
 
-  // Oracle Tools
-  oracle: {
-    label: "Oracle",
-    description:
-      "Oracle tools.",
-    icon: null,
-    color: '#14cfc3',
-  },
   // Plutus
   plutus: {
     label: "Plutus",
@@ -718,6 +710,14 @@ export const Showcases = [
     tags: ["javascript", "typescript", "serialization", "sdk", "plutus", "favorite"]
   },
   {
+    title: "UTXOS Web3 Services",
+    description: "UTXOS is a suite of tools and services that aim to simplify the onboarding experience for users and businesses to adopt Cardano.",
+    preview: require("./builder-tools/utxos.png"),
+    website: "https://utxos.dev/",
+    getstarted: "/docs/get-started/utxos/overview",
+    tags: ["hosted", "http", "wallet", "sdk", "javascript", "typescript"]
+  },
+  {
     title: "Koios Python",
     description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
     preview: require("./builder-tools/koios-python.png"),
@@ -1016,15 +1016,6 @@ export const Showcases = [
     tags: ["c", "serialization", "sdk", "lowlevel"]
   },
   {
-    title: "Orcfax",
-    description:
-      "Orcfax is a decentralized oracle service designed to publish data about real world events to the Cardano blockchain. Orcfax data is made available to on-chain smart contracts in Cardano's eUTXO native format using the Orcfax Protocol.",
-    preview: require("./showcase/orcfax.png"),
-    website: "https://orcfax.io",
-    getstarted: "https://docs.orcfax.io/consume",
-    tags: ["oracle"],
-  },
-  {
     title: "Evolution SDK",
     description:
       "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
@@ -1073,6 +1064,16 @@ export const Showcases = [
     website: "https://github.com/Salvionied/apollo",
     getstarted: null,
     tags: ["golang", "lowlevel"]
+  },
+  {
+    title: "Weld Wallet Connector",
+    description:
+      "Manage wallet connections across multiple blockchains using a single intuitive interface",
+    preview: require("./builder-tools/weld.png"),
+    website: "https://github.com/Cardano-Forge/weld/",
+    getstarted:
+      "https://github.com/Cardano-Forge/weld/tree/main/documentation/",
+    tags: ["typescript", "wallet"],
   },
 ];
 
