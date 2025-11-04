@@ -8,7 +8,9 @@ image: /img/og/og-developer-portal.png
 
 ## Connecting to Cardano
 
-Once you've chosen your [network](/docs/get-started/networks-overview), you need infrastructure to connect to it. There are **different approaches** to building on Cardano, each with different trade-offs:
+Once you've chosen your [network](/docs/get-started/networks-overview), you need infrastructure to connect to it. To build your application, whether you're using [Client SDKs](/docs/get-started/high-level-sdks-overview), building with cardano-cli directly, you'll need one of these infrastructure approaches as your backend.
+
+Your SDK or application connects to Cardano through your chosen infrastructure - either via API providers like Blockfrost, through middleware like Ogmios (self-hosted or via Demeter), or directly to your own cardano-node. The infrastructure you choose determines how your code queries the blockchain and submits transactions.
 
 ```mermaid
 graph TB
@@ -40,13 +42,15 @@ graph TB
 
 ### [API Providers](/docs/get-started/providers-overview)
 
-Connect to Cardano through REST or WebSocket APIs without managing infrastructure.
+Connect to Cardano through REST or WebSocket APIs without managing infrastructure. Most [Client SDKs](/docs/get-started/high-level-sdks-overview) give access to these providers to query the blockchain and submit transactions.
 
-**Examples**: [Blockfrost](/docs/get-started/blockfrost/overview), [Koios](/docs/get-started/koios), [Ogmios](/docs/get-started/ogmios)
+**Examples**: [Blockfrost](/docs/get-started/blockfrost/overview), [Koios](/docs/get-started/koios)
 
 **What you get**: Simple API integration, no infrastructure setup, quick to get started
 
 **Considerations**: Third-party service dependency, API rate limits may apply, usage-based pricing
+
+**Note**: [Ogmios](/docs/get-started/ogmios) is also commonly used with SDKs, but it's middleware that requires cardano-node (either self-hosted or via Demeter).
 
 ---
 
