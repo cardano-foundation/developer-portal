@@ -33,11 +33,3 @@ The basic payment detection flow:
 5. **Complete transaction** - Fulfill order/service once payment is confirmed
 
 ![Payment Flow](../../../static/img/integrate-cardano/ada-online-shop.png)
-
-Choose your implementation approach:
-
-- **Quick start with minimal setup?** → [Point of Sale (Blockfrost)](./point-of-sale)
-- **Already running cardano-wallet?** → [cardano-wallet](./cardano-wallet)
-- **Need full control and run cardano-node?** → [cardano-cli](./cardano-cli)
-
-All approaches achieve the same goal - reliably detecting ada payments. Choose based on your infrastructure, timeline, and requirements.
