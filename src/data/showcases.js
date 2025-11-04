@@ -775,7 +775,7 @@ export const Showcases = [
     description: 
       "A virtually free, non profit, global pet registry system built on the Cardano blockchain, facilitates peer to peer pet rescue and historical proof of pet ownership.",
     preview: require("./showcase/petregistry.png"),
-    website: "https://www.petregistry.io",
+    website: "https://savepet.org",
     source: null,
     tags: ["metadata", "identity"],
   }, 
