@@ -41,19 +41,11 @@ In this example, we query the **Cardano Mainnet** for any metadata under the key
 
 Please visit their official [documentation](https://docs.blockfrost.io) to know more.
 
-## cardano-db-sync
-
-@TODO
-
-## cardano-graphql
-
-@TODO
-
 ## cardano-wallet
 
 :::note
 
-This Section assumes that you have basic understanding of `cardano-wallet`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md), [Running cardano-node](/docs/operate-a-stake-pool/node-operations/running-cardano.md) and [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guides first.
+This Section assumes that you have basic understanding of `cardano-wallet`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md), [Running cardano-node](/docs/operate-a-stake-pool/node-operations/running-cardano.md), [Installing cardano-wallet](/docs/get-started/cardano-wallet/cardano-wallet) and [Using cardano-wallet](/docs/get-started/cardano-wallet/using-cardano-wallet) guides first.
 
 This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to one of the `testnet` networks.
 
@@ -131,7 +123,3 @@ The `JSON` returning the single Transaction Metadata will have some format like 
   }
 }
 ```
-
-## Ogmios
-
-@TODO

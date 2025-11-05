@@ -1,7 +1,7 @@
 ---
 id: plu-ts
 title: Plu-ts
-sidebar_label: Plu-ts
+sidebar_label: Plu-ts (Typescript)
 description: Plu-ts
 image: /img/plu_ts-logo.svg
 --- 

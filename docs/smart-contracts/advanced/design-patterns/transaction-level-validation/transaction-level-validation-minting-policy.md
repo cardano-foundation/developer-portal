@@ -39,6 +39,11 @@ graph LR
     TX --> A1((Output 1))
     TX --> A2((Output 2))
     TX --> A3((Output 3))
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX emphasized
+    class S1,S2,S3,A1,A2,A3 regular
 ```
 
 ## The Solution
@@ -61,6 +66,11 @@ graph LR
     TX --> A1((Output 1))
     TX --> A2((Output 2))
     TX --> A3((Output 3))
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX,ST emphasized
+    class S1,S2,S3,A1,A2,A3 regular
 ```
 
 The drawback of this approach is that the minted validation tokens must be included in one of the
@@ -75,6 +85,11 @@ graph LR
     TX[Transaction]
     TX --> A1((UTxO \n containing \n validation token))
     MP{{Minting policy}} -.-o |validates token minting| TX
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX,MP emphasized
+    class A1 regular
 ```
 
 ```mermaid
@@ -92,6 +107,11 @@ graph LR
     TX --> A1((Output 1))
     TX --> A2((Output 2))
     TX --> A3((Output 3))
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX,MP emphasized
+    class S1,S2,S3,A1,A2,A3 regular
 ```
 
 ## Conclusion

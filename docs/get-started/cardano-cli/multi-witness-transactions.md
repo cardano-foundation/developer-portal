@@ -1,5 +1,5 @@
 ---
-id: multi-witness-transactions-cli
+id: multi-witness-transactions
 title: Multi-witness transactions
 sidebar_label: Multi-witness transactions
 description: This article explains how you can create multi witness transactions using the cardano-cli.
@@ -12,15 +12,15 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-This guide assumes that you have completed the [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
+This guide assumes that you have completed the [Simple transactions](basic-operations/simple-transactions) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
 
-This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](docs/get-started/testnets-and-devnets.md).
+This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](../testnets-and-devnets).
 
 :::
 
 ### Recap
 
-Let's recap what we did so far. Our goal in the [previous guide](/docs/integrate-cardano/creating-wallet-faucet) was to draw `1000 tADA` from the Testnet Faucet and send `250 tAda` from **payment1** to **payment2**.
+Let's recap what we did so far. Our goal in the [previous guide](basic-operations/simple-transactions) was to draw `1000 tADA` from the Testnet Faucet and send `250 tAda` from **payment1** to **payment2**.
 
 Make sure we are in the correct folder.
 
@@ -179,7 +179,7 @@ There are ways to optimize the amount you spend. We will leave this for you to f
 
 This scenario is pretty straight forward and looks like this.
 
-![img](../../static/img/integrate-cardano/multi-witness-transaction.png "Multi witness flow")
+![img](../../../static/img/integrate-cardano/multi-witness-transaction.png "Multi witness flow")
 
 As you can see in the diagram above, we will build and submit a **multi-witness transaction**, having *two inputs* and *one output*.
 
@@ -193,7 +193,7 @@ We can't do this with `cardano-wallet`, or any other wallet like Daedalus or Yor
 
 :::note
 
-As mentioned above, this guide assumes you completed the [Exploring Cardano Wallets](/docs/integrate-cardano/creating-wallet-faucet) guide.<br />
+As mentioned above, this guide assumes you completed the [Simple transactions](basic-operations/simple-transactions) guide.<br />
 We also assume you paid `174169 Lovelace` in transaction fees and that your current balances are:
 
 * **payment1**: `749825831 Lovelace`

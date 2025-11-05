@@ -1,7 +1,7 @@
 ---
 id: plinth
 title: Plinth (Plutus Tx)
-sidebar_label: Plinth
+sidebar_label: Plinth (Haskell)
 description: Haskell-based smart contract development for Cardano
 image: /img/og/og-developer-portal.png
 ---
