@@ -89,7 +89,7 @@ The Aiken Merkle Tree implementation provides several functions to create and ma
 
 ## Validator Logic
 
-```rust
+```aiken
 // /**
 //  * This file contains the implementation of a spend_validator function that validates a spend transaction
 //  * using a Merkle tree. It also includes a test case for the spend_validator function.
@@ -146,7 +146,7 @@ test spend_validator_1() {
 
 ### Library
 
-```rust
+```aiken
 // This code is sourced from https://github.com/aiken-lang/trees/blob/main/lib/aiken/trees/mt.ak
 //
 // A purely functional implementation of MerkleTrees that is suitable for

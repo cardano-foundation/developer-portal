@@ -1,7 +1,7 @@
 ---
 id: scalus
 title: Scalus
-sidebar_label: Scalus
+sidebar_label: Scalus (Scala)
 description: Scalus
 ---
 

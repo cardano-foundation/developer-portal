@@ -1,69 +1,40 @@
 ---
 id: overview
-title: Get started with the technical concepts
+slug: /get-started/technical-concepts/
+title: Core Concepts
 sidebar_label: Overview
-description: Get started with the technical concepts behind Cardano.
+description: Learn the core technical concepts behind Cardano including EUTXO, transactions, addresses, and more.
 image: /img/og/og-getstarted-technical-concepts.png
---- 
+---
 
-To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts. This section provides comprehensive coverage of Cardano's technical foundations, organized into key areas for easier learning and reference.
+## Introduction to Cardano: the big picture
 
-## [Core Blockchain Fundamentals](core-blockchain-fundamentals)
+Learn fundamental terms like blockchain, consensus, decentralization, delegation and incentives. Understand the big picture of Cardano and why stake pools are so important.
 
-Learn the foundational concepts that power Cardano's blockchain technology:
+Developing Cardano is no small feat. There is no other project that has ever been built to these parameters, combining peer reviewed cryptographic research with an implementation in highly secure Haskell code.
 
-- **Introduction to Cardano** - Understand the big picture and Cardano's unique architecture
-- **Extended UTXO (EUTXO)** - Cardano's innovative accounting model that enables smart contracts on the UTxO model
-- **Transactions** - How transactions work, fees, and guaranteed delivery
-- **Addresses** - Cardano's address system
+Cardano was designed with input from a large global team including leading experts and professors in the fields of computer programming languages, network design and cryptography.
 
-**→ [Explore Core Blockchain Fundamentals](core-blockchain-fundamentals)**
+If you haven't seen it yet, watch the legendary whiteboard video from 2017. Some details are a bit outdated, but it is still worth seeing to understand what Cardano is and where Cardano came from.
 
-## [Wallet & Key Management](wallet-key-management)
+<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/Ja9D0kpksxw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Master the cryptographic foundations of wallet security:
+---
 
-- **Mnemonic Seed Phrases (BIP39)** - How randomness creates secure wallet seeds
-- **Key Derivation** - The process of generating keys and addresses from seed phrases
+## What You'll Learn
 
-**→ [Learn Wallet & Key Management](wallet-key-management)**
+Understanding these concepts is essential for building on Cardano. Unlike account-based blockchains, Cardano uses the Extended UTXO (EUTXO) model, which requires a different mental model for transactions, state management, and smart contracts.
 
-## [Assets](assets)
+### Why Start Here?
 
-Discover Cardano's native asset and smart contract capabilities:
+- **EUTXO is fundamental** - Everything from transactions to smart contracts works differently
+- **Security-first design** - Learn how Cardano's cryptographic foundations protect your applications
+- **Staking as a feature** - Understanding consensus helps you build better dApps
 
-- **NFTs** - Non-fungible tokens as native assets
-- **Fungible Tokens** - Creating quality fungible tokens on Cardano
-- **Multisig** - Multi-signature transaction security
+Ready to dive in? Explore the topics below:
 
-**→ [Explore Assets](assets)**
+---
 
-## [Consensus & Staking](consensus-staking)
+import DocCardList from '@theme/DocCardList';
 
-Understand Cardano's proof-of-stake consensus mechanism:
-
-- **Ouroboros Protocol** - Cardano's provably secure consensus algorithm
-- **Stake Pools** - How delegation and block production work
-- **Slots and Epochs** - Time organization and slot leader election
-- **Incentives and Rewards** - The economic model behind staking
-
-**→ [Deep Dive into Consensus & Staking](consensus-staking)**
-
-## [Network & Communication](network-communication)
-
-Learn how Cardano nodes communicate and share data:
-
-- **Block and Transaction Propagation** - How data moves through the network
-- **P2P Networking** - Peer-to-peer communication protocols
-- **Network Congestion** - Understanding mempool management
-
-**→ [Understand Network & Communication](network-communication)**
-
-## [Governance & Standards](governance-standards)
-
-Participate in Cardano's governance and standards development:
-
-- **Cardano Improvement Proposals (CIPs)** - The formal process for ecosystem improvements  
-- **Governance Snapshots** - Taking blockchain snapshots for voting
-
-**→ [Learn About Governance & Standards](governance-standards)**
+<DocCardList />

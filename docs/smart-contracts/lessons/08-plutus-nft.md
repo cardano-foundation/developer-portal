@@ -23,7 +23,7 @@ The oracle NFT acts as the single source of truth for the system. It uses a stat
 
 The following code defines the minting policy for the oracle NFT:
 
-```rust
+```aiken
 pub type MintPolarity {
   RMint
   RBurn
@@ -66,7 +66,7 @@ The oracle validator holds the current state of the NFT index. It defines the da
 
 ### Datum Definition
 
-```rust
+```aiken
 pub type OracleDatum {
   count: Int,
   lovelace_price: Int,
@@ -76,7 +76,7 @@ pub type OracleDatum {
 
 ### Redeemer Types
 
-```rust
+```aiken
 pub type OracleRedeemer {
   MintPlutusNFT
   StopOracle
@@ -87,7 +87,7 @@ pub type OracleRedeemer {
 
 The validator ensures the state changes are valid:
 
-```rust
+```aiken
 validator oracle {
   spend(
     datum_opt: Option<OracleDatum>,
@@ -114,7 +114,7 @@ In this setup, we identified the own input with `find_input` function, which is 
 
 We know that for state change, we will have exactly one input from current address, and one output to the same address. We can then perform below pattern matching:
 
-```rust
+```aiken
     let own_address = own_input.output.address
     when
       (
@@ -133,7 +133,7 @@ We know that for state change, we will have exactly one input from current addre
 
 Add in core checks for `MintPlutusNFT`:
 
-```rust
+```aiken
         let is_output_value_clean = list.length(flatten(only_output.value)) == 2
         let is_count_updated =
           only_output.datum == InlineDatum(
@@ -149,7 +149,7 @@ Notice there is a `is_output_value_clean` check here, which ensures the changed 
 
 Complete with `StopOracle` logics:
 
-```rust
+```aiken
       (StopOracle, [_], _) -> {
         let is_oracle_nft_burnt =
           only_minted_token(mint, oracle_nft_policy, "", -1)
@@ -161,7 +161,7 @@ Complete with `StopOracle` logics:
 
 A complete oracle validator looks like this:
 
-```rust
+```aiken
 validator oracle {
   spend(
     datum_opt: Option<OracleDatum>,
@@ -221,7 +221,7 @@ The Plutus NFT minting validator ensures the NFT is unique and non-fungible.
 
 ### Code Explanation
 
-```rust
+```aiken
 pub type MintPolarity {
   RMint
   RBurn

@@ -1,38 +1,16 @@
 ---
 id: how-to-create-a-metadata-transaction-cli
 title: How to create a metadata transaction using cardano-cli
-sidebar_label: Create a metadata transaction (CLI)
+sidebar_label: cardano-cli
 description: How to create a metadata transaction using `cardano-cli`
 image: /img/og/og-developer-portal.png
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 :::note
-This guide assumes that you have a basic understanding of `cardano-wallet` and `cardano-cli`, how to use it and that you have installed it into your system. Otherwise, we recommend reading [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md), [Running cardano-node](docs/operate-a-stake-pool/node-operations/running-cardano.md), and [Exploring Cardano Wallets](../integrate-cardano/creating-wallet-faucet) guides first.
+This guide assumes that you have a basic understanding of `cardano-wallet` and `cardano-cli`, how to use it and that you have installed it into your system. Otherwise, we recommend reading [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md), [Running cardano-node](docs/operate-a-stake-pool/node-operations/running-cardano.md), [Get started with Cardano CLI](/docs/get-started/cardano-cli/basic-operations/get-started) and [Using cardano-wallet](/docs/get-started/cardano-wallet/using-cardano-wallet) guides first.
 
 This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to one of the `testnet` networks.
 :::
-
-## Overview 
-
-This article will explore how we can utilize the **Transaction Metadata** feature of the **Cardano** blockchain. More specifically, how we can insert and retrieve metadata that we have stored in the blockchain for a decentralized application using **Transaction Metadata**.
-
-## Use case
-
-Let's imagine a decentralized **To-Do List Application** that stores and retrieve its metadata not from centralized servers or storage but instead from the **Cardano blockchain**. First, let's check the diagram below to see how something like this could theoretically work:
-
-![img](../../static/img/tx-meta-data/todo-list-app.png)
-
-:::important
-The diagram is heavily simplified and is not recommended to deploy in production.
-:::
-
-Here, we see a **front-end** application the user interacts with and is responsible for inserting and retrieving the metadata to/from the **back-end** server. The **back-end** server is responsible for communicating to the `cardano-node` by creating **transactions** and querying the blockchain for the **metadata** information required by the **front-end**.
-
-The **front-end** application is not necessarily tied to the specific **back-end** API and could switch to another API as long as it ultimately communicates to the **Cardano** network.
-
-How do you actually create **transaction metadata** in the **Cardano** blockchain, you ask? We'll let's get our hands dirty!
 
 ## Setup
 

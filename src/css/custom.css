@@ -58,7 +58,7 @@ html[data-theme="dark"] {
   transition-property: all;
   transition-duration: 200ms;
   box-shadow: 0 8px 28px 4px rgba(86, 91, 115, 0.15);
-  height: calc(100% - 15px);
+  min-height: calc(100% - 15px);
 }
 
 .card a {
@@ -90,33 +90,64 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 div#faucetcontainer {
-  width: 650px;
-  /* defines the visible width of the part */
-  height: 650px;
+  width: 100%;
+  max-width: 900px;
+  height: 750px;
   /* defines the visible height of the part */
   overflow: hidden;
-  overflow-x: hidden;
   /* resize and min-height are optional, allows user to resize viewable area */
   -webkit-resize: vertical;
   -moz-resize: vertical;
   resize: vertical;
-  min-height: 317px;
+  min-height: 600px;
+  border: 1px solid #ddd;
+  position: relative;
 }
 
 .faucet {
   border: 0px none;
-  width: 960px;
+  width: 1200px;
   /* set to approximate width of the faucet page */
-  height: 1750px;
+  height: 2500px;
   /* determines where the bottom of the page cuts off */
   margin-left: -300px;
   /* defines the left clipping of the faucet page */
-  margin-top: -1010px !important;
+  margin-top: -1050px;
   /* defines the top clipping of the faucet page */
   overflow: hidden;
   -webkit-resize: none;
   -moz-resize: none;
   resize: none;
+}
+
+/* Hide mobile link on desktop */
+.faucet-mobile-link {
+  display: none;
+}
+
+/* Responsive adjustments for tablets and smaller screens */
+@media screen and (max-width: 996px) {
+  div#faucetcontainer {
+    height: 650px;
+    max-width: 750px;
+  }
+
+  .faucet {
+    width: 1100px;
+    margin-left: -250px;
+    margin-top: -900px;
+  }
+}
+
+/* Mobile devices - hide iframe and show link instead */
+@media screen and (max-width: 768px) {
+  div#faucetcontainer {
+    display: none;
+  }
+
+  .faucet-mobile-link {
+    display: block;
+  }
 }
 
 .tabsblock {

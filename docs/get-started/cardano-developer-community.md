@@ -8,6 +8,16 @@ image: /img/og/og-getstarted-developer-community.png
 
 Thousands of Cardano developers and enthusiasts gather across these online communities to share knowledge, discuss technical developments, get support, and collaborate on building the future of Cardano.
 
+:::tip Join Weekly Developer Office Hours
+
+Get your questions answered directly by Cardano Foundation engineers every week!
+
+Join [**Developer Office Hours**](https://www.addevent.com/calendar/TG807216) - a opportunity to interact live with CF engineers and community experts. Each weekly 1-hour session features a different topic presented by the creators behind it, followed by an open Q&A where you can ask anything.
+
+All presentation portions are recorded and available on the [Cardano Community YouTube channel](https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr). If you prefer not to ask your questions during the live call, you can submit them anonymously through this [form](https://cardanocommunity.typeform.com/DevOfficeHours)!
+
+:::
+
 ## Forums & Q&A
 
 [**Cardano Stack Exchange**](https://cardano.stackexchange.com)  
@@ -40,6 +50,4 @@ Official [Cardano Foundation](https://cardanofoundation.org/) Engineering Discor
 
 An annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem.
 
-- [**Developer Ecosystem Survey 2022**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2022)  
-- [**Developer Ecosystem Survey 2023**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2023)  
-- [**Developer Ecosystem Survey 2024**](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2024)  
+- You can find the annual survey reports in this [repository](https://github.com/cardano-foundation/state-of-the-developer-ecosystem).

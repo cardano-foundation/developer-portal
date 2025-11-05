@@ -1,17 +1,23 @@
 ---
 id: point-of-sale
-title: Receiving payments (Blockfrost API)
-sidebar_label: Receiving payments (Blockfrost API)
-description: Receiving payments (Blockfrost API)
+title: Point of Sale application using Blockfrost API
+sidebar_label: Point of Sale (Blockfrost)
+description: Build a complete Point of Sale application with QR codes, real-time payment detection, and USD/ADA conversion using Blockfrost API.
 image: /img/og/og-developer-portal.png
---- 
+---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This guide shows how to build a complete Point of Sale (POS) application using the Blockfrost API. Unlike the backend-only approaches, this tutorial provides a full-stack solution with React UI, QR code generation, and real-time payment detection.
+
+:::tip
+This is the quickest way to get a production-ready payment system running. No blockchain infrastructure needed - just API keys!
+:::
+
 Welcome to the documentation of a Point of Sale (POS) application built using Cardano APIs. This guide will walk you through the key features and functionalities of the application.
 
-![Point Of Sale](../../static/img/integrate-cardano/point-of-sale-example.png)
+![Point Of Sale](../../../static/img/integrate-cardano/point-of-sale-example.png)
 
 ### Getting Started
 
@@ -70,7 +76,7 @@ Please refer to `.env.example` in the repo and create `.env.local` file. Your ke
 2. Once you're signed in, navigate to your dashboard.
 3. Click on "Add new Project" to create a new project.
 4. Choose the Cardano network you want to use. -->
-1. Please follow [Get Started with Blockfrost](../get-started/blockfrost/get-started.md) to obtain Blockfrost API key
+1. Please follow [Get Started with Blockfrost](../../get-started/blockfrost/get-started.md) to obtain Blockfrost API key
 2. In the code, go to environment file `.env.local` and put the key into `BLOCKFROST_API_KEY`.
 
 

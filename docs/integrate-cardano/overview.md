@@ -23,10 +23,15 @@ Here we show you how to integrate Cardano into existing websites and services.
 - [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) provides mnemonic (backup phrase) creation, and conversion of a mnemonic to seed for wallet restoration, and address derivation functionalities.
 
 ## Tutorials
-- [Explore Cardano wallets](creating-wallet-faucet) - learn how to create a Cardano wallet, receive test ada and create basic transactions.
-- [Multi-witness transactions](multi-witness-transactions-cli) - learn how to create transactions with multiple inputs and one output.
-- [Listening for ada payments using cardano-cli](listening-for-payments-cli) - how to listen to a specific address using cardano-cli.
-- [Listening for ada payments using cardano-wallet](listening-for-payments-wallet) - how to listen to a specific address using cardano-wallet.
+- [Listening for ada payments](listening-for-payments/overview) - learn different approaches to detect and confirm ada payments in your applications.
 - [Testnet Faucet](testnet-faucet) - a service that provides test ada (tAda) to users of the Cardano testnets. 
 - [Sample queries](https://iohk.zendesk.com/hc/en-us/articles/4402395914009-Sample-cardano-rosetta-queries) for cardano-rosetta.
 - [Sample queries](https://iohk.zendesk.com/hc/en-us/articles/900000906566-Sample-cardano-graphql-queries) for cardano-graphql.
+
+---
+
+## Explore More
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />

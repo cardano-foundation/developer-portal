@@ -1,7 +1,7 @@
 ---
 id: installing-cardano-node
 title: Getting cardano-node and cardano-cli
-sidebar_label: Getting cardano-node
+sidebar_label: Installing cardano-node
 sidebar_position: 2
 description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
 image: /img/og/og-getstarted-installing-cardano-node.png
@@ -16,6 +16,10 @@ import TabItem from '@theme/TabItem';
 Binaries for the **latest** version of the node may be downloaded from the [cardano-node GitHub Releases](https://github.com/intersectmbo/cardano-node/releases) page.
 
 Alternatively, one can build `cardano-node` from source code locally.
+
+:::tip Cardano Node Course
+For a comprehensive video course on using the Cardano Node and Cardano-CLI as an end user, stake pool operator, and governance actor, check out the [Cardano Node Course](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x2ut-Pq-hi0NFVsgKB3EddR) video series.
+:::
 
 ## Building from source
 

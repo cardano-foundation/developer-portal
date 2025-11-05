@@ -16,7 +16,7 @@ yarn build  # Required at least once
 yarn start  # Development server at http://localhost:3000
 ```
 
->**Requirements:** Node.js ≥18.0, Yarn ≥1.20
+>**Requirements:** Node.js ≥20.x, Yarn ≥1.20
 
 ## Documentation
 

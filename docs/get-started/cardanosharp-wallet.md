@@ -6,9 +6,6 @@ description: Get Started with CardanoSharp Wallet
 image: /img/og/og-getstarted-cardanosharp-wallet.png
 --- 
 
-# CardanoSharp.Wallet 
-[![Build status](https://ci.appveyor.com/api/projects/status/knh87k86mf7gbxyo?svg=true)](https://ci.appveyor.com/project/nothingalike/cardanosharp-wallet/branch/main) [![Test status](https://img.shields.io/appveyor/tests/nothingalike/cardanosharp-wallet)](https://ci.appveyor.com/project/nothingalike/cardanosharp-wallet/branch/main) [![NuGet Version](https://img.shields.io/nuget/v/CardanoSharp.Wallet.svg?style=flat)](https://www.nuget.org/packages/CardanoSharp.Wallet/) ![NuGet Downloads](https://img.shields.io/nuget/dt/CardanoSharp.Wallet.svg)
-
 CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.
 
 ## Getting Started

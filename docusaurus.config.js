@@ -6,7 +6,7 @@ const isAnnouncementActive = true;
 
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -47,14 +47,14 @@ module.exports = {
     // Announcement Bar
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
-    announcementBar: isAnnouncementActive ?{
-      id: "announcement_index8", // Any value that will identify this message + increment the number every time to be unique
+    announcementBar: isAnnouncementActive ? {
+      id: "announcement_index9", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Shape the future of the Cardano Developer Ecosystem - <a target="_blank" rel="noopener noreferrer" href="https://state-of-the-developer-ecosystem.cardano.org">take the survey</a> ⭐️</strong>`,
+        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/get-started/cardano-developer-community">Learn more</a> 💬</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
-    }: undefined,
+    } : undefined,
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
@@ -82,39 +82,12 @@ module.exports = {
       items: [
         {
           type: 'dropdown',
-          label: 'Learn',
-          position: 'left',
-          items: [
-            {
-              to: "docs/get-started/",
-              label: "Get Started",
-            },
-            {
-              to: "docs/get-started/technical-concepts/overview",
-              label: "Technical Concepts",
-            },
-            {
-              to: "docs/get-started/technical-concepts/core-blockchain-fundamentals",
-              label: "Cardano Fundamentals",
-            },
-            {
-              href: "https://docs.cardano.org/en/latest/",
-              label: "Docs",
-            },
-          ],
-        },
-        {
-          type: 'dropdown',
           label: 'Developers',
           position: 'left',
           items: [
             {
-              to: "/docs/integrate-cardano/",
-              label: "Integrate Cardano",
-            },
-            {
-              to: "/docs/transaction-metadata/",
-              label: "Transaction Metadata",
+              to: "docs/get-started/technical-concepts/",
+              label: "Core Concepts",
             },
             {
               to: "/docs/native-tokens/",
@@ -125,30 +98,18 @@ module.exports = {
               label: "Smart Contracts",
             },
             {
-              to: "blog/",
-              label: "Dev Blog",
-            },
-          ],
-        },
-        {
-          type: 'dropdown',
-          label: 'Ecosystem',
-          position: 'left',
-          items: [
-            {
               to: "tools",
               label: "Builder Tools",
             },
             {
-              to: "showcase",
-              label: "Showcase",
+              to: "docs/get-started/cardano-developer-community",
+              label: "Dev Community",
+            },
+            {
+              to: "docs/get-started/funding",
+              label: "Grants",
             },
           ],
-        },
-        {
-          href: `${vars.repository}`,
-          position: "right",
-          className: "header-github-link",
         },
         {
           type: 'dropdown',
@@ -175,22 +136,62 @@ module.exports = {
         },
         {
           type: 'dropdown',
-          label: 'Network',
+          label: 'SPOs',
           position: 'left',
           items: [
             {
               to: '/docs/operate-a-stake-pool/',
-              label: 'Operate a Stake Pool',
+              label: 'Getting Started',
             },
             {
-              to: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node',
-              label: 'Installing Cardano Node',
+              to: '/docs/operate-a-stake-pool/relay-node-configuration',
+              label: 'Relay Configuration',
+            },
+            {
+              to: '/docs/operate-a-stake-pool/register-stake-pool',
+              label: 'Block Producer Setup',
+            },
+            {
+              to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial',
+              label: 'Monitoring',
             },
             {
               to: '/docs/operate-a-stake-pool/hardening-server',
-              label: 'Operations & Security',
+              label: 'Security',
             },
           ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Ecosystem',
+          position: 'left',
+          items: [
+            {
+              to: "showcase",
+              label: "Showcase",
+            },
+            {
+              to: "blog/",
+              label: "Dev Blog",
+            },
+            {
+              href: "https://cardanoupdates.com/",
+              label: "Developer Activity",
+            },
+            {
+              href: "https://cardanofoundation.org/academy",
+              label: "Academy",
+            },
+            {
+              href: "https://cips.cardano.org/",
+              label: "CIPs",
+            }
+          ],
+        },
+        {
+          href: `${vars.repository}`,
+          position: "right",
+          className: "header-github-link",
         },
       ],
     },
@@ -311,32 +312,32 @@ module.exports = {
             // redirect as many pages as possible from old SPO course to new SPO course
             // (any old page not existing on new course, include in redirection to top level)
             to: '/docs/operate-a-stake-pool/',
-            from: [ 
-                    '/docs/stake-pool-course/',
-                    '/docs/stake-pool-course/lesson-1',
-                    '/docs/stake-pool-course/lesson-2',
-                    '/docs/stake-pool-course/lesson-3',
-                    '/docs/stake-pool-course/lesson-4',
-                    '/docs/stake-pool-course/lesson-5',
-                    '/docs/stake-pool-course/handbook/setup-virtual-box-written',
-                    '/docs/stake-pool-course/handbook/setup-a-server-on-aws-written',
-                    '/docs/stake-pool-course/assignments/assignment-1',
-                    '/docs/stake-pool-course/assignments/assignment-2',
-                    '/docs/stake-pool-course/assignments/kes_period'
-                  ]
+            from: [
+              '/docs/stake-pool-course/',
+              '/docs/stake-pool-course/lesson-1',
+              '/docs/stake-pool-course/lesson-2',
+              '/docs/stake-pool-course/lesson-3',
+              '/docs/stake-pool-course/lesson-4',
+              '/docs/stake-pool-course/lesson-5',
+              '/docs/stake-pool-course/handbook/setup-virtual-box-written',
+              '/docs/stake-pool-course/handbook/setup-a-server-on-aws-written',
+              '/docs/stake-pool-course/assignments/assignment-1',
+              '/docs/stake-pool-course/assignments/assignment-2',
+              '/docs/stake-pool-course/assignments/kes_period'
+            ]
           },
           {
-            to: '/docs/get-started/technical-concepts/core-blockchain-fundamentals#introduction-to-cardano-the-big-picture',
+            to: '/docs/get-started/technical-concepts/',
             from: '/docs/stake-pool-course/introduction-to-cardano',
           },
           {
 
             to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
-                    '/docs/stake-pool-course/handbook/grafana-loki',
-                    '/docs/stake-pool-course/handbook/apply-logging-prometheus',
-                  ]
+            from: [
+              '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
+              '/docs/stake-pool-course/handbook/grafana-loki',
+              '/docs/stake-pool-course/handbook/apply-logging-prometheus',
+            ]
           },
           {
             to: '/docs/operate-a-stake-pool/hardening-server/',
@@ -352,13 +353,13 @@ module.exports = {
           },
           {
             to: '/docs/get-started/create-simple-transaction/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/use-cli',
-                    '/docs/stake-pool-course/handbook/create-simple-transaction',
-                  ]
+            from: [
+              '/docs/stake-pool-course/handbook/use-cli',
+              '/docs/stake-pool-course/handbook/create-simple-transaction',
+            ]
           },
           {
-            to: '/docs/get-started/technical-concepts/overview',
+            to: '/docs/get-started/technical-concepts/',
             from: '/docs/stake-pool-course/handbook/utxo-model',
           },
           {
@@ -375,10 +376,10 @@ module.exports = {
           },
           {
             to: '/docs/operate-a-stake-pool/register-stake-pool/',
-            from: [ 
-                    '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
-                    '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
-                  ]
+            from: [
+              '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
+              '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
+            ]
           },
           {
             to: '/docs/operate-a-stake-pool/relay-node-configuration/',
@@ -400,7 +401,7 @@ module.exports = {
       },
     ],
   ],
-  
+
   presets: [
     [
       "@docusaurus/preset-classic",

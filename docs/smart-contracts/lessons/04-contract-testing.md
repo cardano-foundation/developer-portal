@@ -26,7 +26,7 @@ We will enhance the withdrawal contract from the previous lesson to include two 
 
 ### Contract Code
 
-```rust
+```aiken
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Credential}
 use cardano/assets.{PolicyId}
@@ -100,7 +100,7 @@ In the last line of `ContinueCounting` branch, you may notice the use of `?` ope
 
 We complete the contract by validating inputs and outputs:
 
-```rust
+```aiken
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Credential}
 use cardano/assets.{PolicyId, without_lovelace}
@@ -206,7 +206,7 @@ In Aiken, we can build testing functions with `test` keyword, followed by runnin
 
 The vanilla example:
 
-```rust
+```aiken
 test always_true() {
   True
 }
@@ -220,7 +220,7 @@ With `aiken check`, we will see:
 
 In our complex withdrawal contract, we have a `publish` function that always returns `True`. We can write a test for it:
 
-```rust
+```aiken
 use mocktail.{complete, mock_utxo_ref, mocktail_tx}
 
 test test_publish() {
@@ -238,7 +238,7 @@ In this test, we call the `publish` function of our contract with mock parameter
 
 For the rest of script purposes, it will fallback to the `else` branch which always fails. We can write a test for it:
 
-```rust
+```aiken
 test test_else() fail {
   complex_withdrawal_contract.else(
     "",
@@ -263,7 +263,7 @@ You will notice the `withdraw` function is validated the `Transaction` mostly, t
 
 In `vodka`, the `mocktail` module provides a set of functions to create mock data for testing Aiken contracts. We can use `mocktail_tx()` to create a mock `Transaction` and then use various functions to modify the transaction to fit our test case.
 
-```rust
+```aiken
 const mock_oracle_nft = mock_policy_id(0)
 
 const mock_oracle_address = mock_script_address(0, None)
@@ -323,7 +323,7 @@ We can import all the `mock_...` functions from `mocktail` module to build up th
 
 Now we can write a test for `ContinueCounting` action:
 
-```rust
+```aiken
 test success_continue_counting() {
   complex_withdrawal_contract.withdraw(
     mock_oracle_nft,
@@ -338,7 +338,7 @@ test success_continue_counting() {
 
 In the mocktail transaction building methods, we can pass a boolean parameter to indicate whether we want the field to be present or not. This allows us to dynamically create failure cases by omitting certain fields.
 
-```rust
+```aiken
 type ContinueCountingTest {
   is_ref_input_presented: Bool,
   is_thread_input_presented: Bool,
@@ -395,7 +395,7 @@ fn mock_continue_counting_tx(test_case: ContinueCountingTest) -> Transaction {
 
 And we update the successful test accordingly:
 
-```rust
+```aiken
 test success_continue_counting() {
   let test_case =
     ContinueCountingTest {
@@ -418,7 +418,7 @@ test success_continue_counting() {
 
 And we can populate the failure cases at ease:
 
-```rust
+```aiken
 test fail_continue_counting_no_ref_input() fail {
   let test_case =
     ContinueCountingTest {

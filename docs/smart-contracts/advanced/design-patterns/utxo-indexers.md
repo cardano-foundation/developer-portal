@@ -141,6 +141,11 @@ graph LR
     TX --> O1
     TX --> O2
     TX --> O3
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX emphasized
+    class I1,O1,O2,O3 regular
 ```
 
 This straightforward scenario provides a clear validation path, making it relatively simple for the
@@ -282,6 +287,11 @@ graph LR
     TX --> O1
     TX --> O2
     TX --> O3
+
+    classDef emphasized fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    classDef regular fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    class TX emphasized
+    class I1,I2,I3,O1,O2,O3 regular
 ```
 
 While this approach enhances throughput, it introduces a challenge for the validator. Determining

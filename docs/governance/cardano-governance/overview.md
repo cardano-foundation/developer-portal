@@ -71,3 +71,11 @@ The governance process will involve:
 ## Cardano's Public Testnet for Governance Features
 
 In July 2023, a public Cardano testnet named SanchoNet was announced to test all the governance features described in CIP-1694. Since then, the teams at IOG have introduced new governance features, enabling the Cardano community to gradually familiarize themselves with the novel system. SanchoNet is accessible to everyone, allowing anyone to join and test the new governance features. Additional documentation about SanchoNet is available at https://sancho.network/
+
+---
+
+## Learn More
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
