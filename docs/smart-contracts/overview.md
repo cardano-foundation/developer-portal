@@ -15,7 +15,7 @@ Smart contracts are digital agreements defined in code that automate and enforce
 
 ## Introduction
 
-Smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/core-blockchain-fundamentals#extended-unspent-transaction-output-eutxo) model.
+Smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/get-started/technical-concepts/eutxo) model.
 
 Smart contracts are validator scripts that you write to validate the movement of UTXOs locked in your contract's address. You will lock UTXOs at the address of your script and then the UTXOs can only ever be spent/moved if your script allows the transaction spending it to do so.
 
@@ -71,23 +71,33 @@ Script: f(datum, redeemer, context) = success | failure
 Conceptually, you can think of validators as returning true/false, though under the hood they either succeed (returning unit `()`) or fail (throwing an error).
 
 ```mermaid
-flowchart TD
-    B{Validator Execution}
-    B --> C[Datum: Contract State]
-    B --> D[Redeemer: User Input]
-    B --> E[Context: Transaction Info]
-    C --> F[Validation Logic]
-    D --> F
-    E --> F
-    F --> G{Result}
-    G -->|Success| H[Transaction Valid]
-    G -->|Failure| I[Transaction Invalid]
+graph TB
+    subgraph LOCKED[" "]
+        UTXO["UTXO at Script Address<br/>Value: 100 ADA"]
+        DATUM["Datum<br/>(state data)"]
+    end
 
-    style C fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style D fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style E fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
-    style I fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    TX["Transaction<br/>wants to spend this UTXO"]
+
+    TX -.->|"trying to spend"| UTXO
+    TX -->|"provides"| REDEEMER["Redeemer<br/>(spending argument)"]
+
+    SCRIPT["Validator Script asks:<br/>'Is this transaction allowed<br/>to spend this UTXO?'"]
+
+    LOCKED --> SCRIPT
+    REDEEMER --> SCRIPT
+    TX -.->|"transaction details visible to script"| SCRIPT
+
+    SCRIPT -->|"Yes ✓"| APPROVED["Validation succeeds<br/>UTXO is spent"]
+    SCRIPT -->|"No ✗"| REJECTED["Validation fails<br/>UTXO remains locked"]
+
+    style UTXO fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style DATUM fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style REDEEMER fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style SCRIPT fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style APPROVED fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style REJECTED fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 Consider the analogy of a simple function: `f(x) = x * a + b`
@@ -231,11 +241,11 @@ flowchart LR
     D -->|✗ Invalid| H[Transaction Fails]
     E --> F[...]
 
-    style A fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style C fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style E fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#000
-    style G fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
-    style H fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style C fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style E fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style G fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style H fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 ### Workflow Diagrams
@@ -293,7 +303,7 @@ These features work together to make Cardano smart contracts more practical and 
 Cardano introduced smart contracts in 2021 and supports the development and deployment of smart contracts using multiple different languages.
 
 :::tip
-Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts/overview) page as well.
+Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/get-started/technical-concepts/) page as well.
 :::
 
 - [Aiken](smart-contract-languages/aiken/overview) - Most popular smart contract language on Cardano written in Rust like syntax. Specifically designed for on-chain validators only and embraces/treats UTxO model as a first citizen: a language & toolchain favouring developer experience.
@@ -302,3 +312,11 @@ Writing well-designed smart contracts requires you to have a solid understanding
 - [Scalus](smart-contract-languages/scalus) - a modern unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic. Scalus works with JVM and JavaScript too.
 - [Plinth](smart-contract-languages/plinth) - "Canonical" smart contract language of Cardano written in Haskell with advanced tooling. Can be used for both on-chain and off-chain.
 - [Plu-ts](smart-contract-languages/plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
+
+---
+
+## Explore Smart Contract Topics
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />

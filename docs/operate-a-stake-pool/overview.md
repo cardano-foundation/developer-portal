@@ -39,7 +39,7 @@ Best practices should always be a key consideration when running a stake pool. S
 The basic category starts with learning about [relay and block producer topology](stake-pool-networking), what the [hardware requirements](hardware-requirements) are, which [keys are available](cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
 
 :::tip info
-If you would like to do a deep dive on technical concepts please visit [Consensus](docs/get-started/technical-concepts/consensus-staking.md) and [Network & Communication](docs/get-started/technical-concepts/network-communication.md)
+If you would like to do a deep dive on technical concepts please visit [Consensus & Staking](../get-started/technical-concepts/consensus-staking) and [Core Concepts](../get-started/technical-concepts/)
 :::
 
 ## Stake pool operator resources

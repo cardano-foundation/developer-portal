@@ -26,15 +26,15 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 
 ## What you need to bring
 
-To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](technical-concepts/core-blockchain-fundamentals#extended-unspent-transaction-output-eutxo), [transactions](technical-concepts/core-blockchain-fundamentals#transactions), [addresses](technical-concepts/core-blockchain-fundamentals#addresses), [key derivation](technical-concepts/wallet-key-management#key-derivation), and [networking](technical-concepts/network-communication#networking).
+To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](technical-concepts/eutxo), [transactions](technical-concepts/transactions), [addresses](technical-concepts/addresses), and [key derivation](technical-concepts/wallet-key-management#key-derivation).
 
-If you are unfamiliar with these terms, start with [technical concepts](technical-concepts/overview), and you can complete the [stake pool course](../operate-a-stake-pool/) afterward. It will also help you understand basic concepts, even if you don't want to run a stake pool.
+If you are unfamiliar with these terms, start with [technical concepts](technical-concepts/), and you can complete the [stake pool course](../operate-a-stake-pool/) afterward. It will also help you understand basic concepts, even if you don't want to run a stake pool.
 
 ## Cardano is different
 
 If you have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
 
-- It makes sense to get your head around the [concept of UTxO](technical-concepts/core-blockchain-fundamentals#extended-unspent-transaction-output-eutxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/).
+- It makes sense to get your head around the [concept of UTxO](technical-concepts/eutxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/).
 - [Tokens on Cardano](../native-tokens/) are not built with smart contracts. Instead, tokens are native and live on the ledger. The protocol treats them as first-class citizens, like ada. It is quite different from our peers that don’t have native tokens and need to use a smart contract to send tokens.
 - [Native tokens](../native-tokens/) use the core infrastructure, and the network has to do everything else instead of running a smart contract and calling a method called 'transfer'. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
 - [Smart contracts](../smart-contracts/) work different on Cardano because of the [eUTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/). Misconceptions were floating around suggesting [that Cardano only supports one transaction per block](https://sundaeswap-finance.medium.com/concurrency-state-cardano-c160f8c07575).
@@ -45,7 +45,7 @@ If you have experience with other smart contract platforms and want to start bui
 - You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
 - You can [vote with your ada](funding#how-to-participate) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on [Project Catalyst](funding#project-catalyst).
 - You can earn ada rewards by [voting on proposals](funding#how-to-participate).
-- You can participate in the [Cardano Improvement Proposals](technical-concepts/governance-standards#cardano-improvement-proposals-cip) (CIP) process.
+- You can participate in the [Cardano Improvement Proposals](https://cips.cardano.org/) (CIP) process.
 - You can interact with [smart contracts](../smart-contracts/).
 
 ## Why build on Cardano?

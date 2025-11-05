@@ -1391,6 +1391,15 @@ export const Showcases = [
     source: "https://github.com/orcfax/orcfax-aiken",
     tags: ["oracle", "opensource"],
   },
+  {
+    title: "Arp Radio",
+    description:
+      "Discover the Cardano music ecosystem- where the key center is consensus and the tempo is in slots!  Explore and mint music NFTs and play your collections in our unique player, leveraging the CIP-60 token standard!",
+    preview: require("./showcase/arpradio.png"),
+    website: "https://arpradio.media",
+    source: null,
+    tags: ["minting", "ecosystem", "metadata" ]
+  }
 ];
 
 export const TagList = Object.keys(Tags);

@@ -1,9 +1,9 @@
 ---
 id: others-api
 sidebar_position: 4
-title: IPFS and Milkomeda API
-sidebar_label: IPFS and Milkomeda API
-description: Blockfrost IPFS and Milkomeda API
+title: IPFS
+sidebar_label: IPFS
+description: Blockfrost IPFS
 ---
 
 In addition to the Cardano ecosystem, [Blockfrost](https://blockfrost.io/) also offers entry points to other ecosystems:
@@ -11,8 +11,6 @@ In addition to the Cardano ecosystem, [Blockfrost](https://blockfrost.io/) also 
 | Network                           | Endpoint                                         |
 | --------------------------------- | ------------------------------------------------ |
 | InterPlanetary File System (IPFS) | `https://ipfs.blockfrost.io/api/v0/`              |
-| Milkomeda mainnet                 | `https://milkomeda-mainnet.blockfrost.io/api/v0/` |
-| Milkomeda testnet                 | `https://milkomeda-testnet.blockfrost.io/api/v0/` |
 
 ## IPFS
 
@@ -88,7 +86,6 @@ There are over [over 15 different SDKs](https://blockfrost.dev/docs/sdks) availa
 </TabItem>
 </Tabs>
 
-
 When executed correctly, you will receive a response in JSON format, resembling the following:
 
 ```json
@@ -100,27 +97,3 @@ When executed correctly, you will receive a response in JSON format, resembling 
 ```
 
 To learn more how to use IPFS with Blockfrost, have a look at the [official Blockfrost documentation](https://blockfrost.dev/docs/start-building/ipfs/)
-
-## Milkomeda
-
-Milkomeda is a protocol that brings EVM capabilities to non-EVM blockchains. As development progresses, Milkomeda will expand to offer L2 solutions (rollups) for several major blockchains including Cardano, Solana, and Algorand.
-
-```bash
-export BLOCKFROST_PROJECT_ID_MILKOMEDA_MAINNET=ipfs_YOUR_PROJECT_ID
-curl "https://milkomeda-mainnet.blockfrost.io/api/v0/" \
-   -X POST \
-   -H "project_id: $BLOCKFROST_PROJECT_ID_MILKOMEDA_MAINNET" \
-   -d '{"jsonrpc": "2.0", "id": 1, "method": "eth_blockNumber", "params": []}'
-```
-
-When executed correctly, you will receive a response in JSON format, resembling the following:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0xa06919"
-}
-```
-
-To learn more about how to use different JSON-RPC API calls or to setup the Metamask wallet, have a look at the [official Blockfrost documentation](https://blockfrost.dev/docs/start-building/milkomeda).

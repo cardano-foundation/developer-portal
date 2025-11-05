@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Plutarch
+title: Plutarch (Haskell)
 sidebar_label: Overview
 description: Plutarch
 --- 

@@ -119,4 +119,18 @@ graph TD
     J -->|Actions| M[Terminate, Harvest, Add]
 
     class B,C,D operation
+
+    style A fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style B fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style C fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style D fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style E fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style F fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style G fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style H fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style I fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style J fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style K fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style L fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style M fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```

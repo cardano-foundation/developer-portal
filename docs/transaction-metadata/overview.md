@@ -28,6 +28,7 @@ Any transaction that requires payment data to be attached, as well as the histor
 Metadata, in essence, can be utilized to tell a transaction's story. Metadata can act as a confirmation or assurance of authenticity when combined with off-chain infrastructure such as physical identifiers.
 
 ## Metadata Workshop
+
 The Cardano Foundation's integrations team hosted a session on transaction metadata on January 18, 2021. Jeremy Firster and Mel McCann from the Cardano Foundation's integrations team delivered the workshop. Jeremy and Mel introduced transaction metadata and discussed its potential for creating Cardano apps with IOHK's Alan McSherry and Ben O'Hanlon. [The slides of the presentation are also available](https://docs.google.com/presentation/d/1KUy83TxpJwIxMHYoQQK6SYynTKrmokxgv_vRa3bpGw4/edit?usp=sharing).  
 
 <iframe width="100%" height="325" src="https://www.youtube.com/embed/LrN3ETZ3fRM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
@@ -44,8 +45,8 @@ The binary encoding of metadata values supports three simple types:
 - Strings (`UTF-8` encoded)
 - Bytestrings
 - And two compound types:
-    - Lists of metadata values
-    - Mappings from metadata values to metadata values
+  - Lists of metadata values
+  - Mappings from metadata values to metadata values
 
 It is possible to transform any JSON object into this schema.
 
@@ -100,4 +101,30 @@ However, according to your requirements, if your application uses floating-point
 
 ## Explore
 
+We will explore how we can utilize the **Transaction Metadata** feature of the **Cardano** blockchain. More specifically, how we can insert and retrieve metadata that we have stored in the blockchain for a decentralized application using **Transaction Metadata**.
+
+### Use case
+
+Let's imagine a decentralized **To-Do List Application** that stores and retrieve its metadata not from centralized servers or storage but instead from the **Cardano blockchain**. First, let's check the diagram below to see how something like this could theoretically work:
+
+![img](../../static/img/tx-meta-data/todo-list-app.png)
+
+:::important
+The diagram is heavily simplified and is not recommended to deploy in production.
+:::
+
+We see here that there is a **front-end** application the user interacts with and is responsible for inserting and retrieving the metadata to/from the **back-end** server. The **back-end** server is responsible for communicating to the `cardano-node` by creating **transactions** and querying the blockchain for the **metadata** information required by the **front-end**.
+
+The **front-end** application is not necessarily tied to the specific **back-end** API and could switch to another API as long as it ultimately communicates to the **Cardano** network.
+
+How do you actually create **transaction metadata** in the **Cardano** blockchain, you ask? We'll let's get our hands dirty!
+
 We invite developers to experiment using **Cardano Transaction Metadata** and come up with new ideas. Next, we'll go over the various methods for creating a transaction that includes metadata.
+
+---
+
+## Tutorials and Resources
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />

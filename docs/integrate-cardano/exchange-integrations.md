@@ -1,7 +1,7 @@
 ---
 id: exchange-integrations
 title: Exchange Integrations
-sidebar_label: Exchange Integrations
+sidebar_label: Exchanges
 description: Guide for integrating Cardano with exchanges.
 image: /img/og/og-developer-portal.png
 ---
@@ -14,7 +14,6 @@ This guide is for exchanges, custodians, and other entities interested in or cur
 For tailored support, real-time updates, and integration queries, connect with the Cardano Foundation Core Integrations team at **[integrations@cardanofoundation.org](mailto:integrations@cardanofoundation.org)**.
 :::
 
-
 ## Understanding Cardano's Accounting Model
 
 Cardano utilizes the Extended UTXO (eUTXO) model for its accounting system, which extends the UTXO design to support multi-assets and smart contracts.
@@ -26,10 +25,12 @@ In this model, each transaction consists of inputs and outputs, where inputs rep
   - Employs standardized APIs commonly used across blockchain platforms, promoting ease of understanding and implementation.
   - Handles tracking, building, and submitting transactions, providing all functionality needed for exchange operations.
   - All-in-one package with Cardano node, Submit API, Mesh API, and Yaci-Store indexer with Postgres database—streamlining your Cardano integration workflow.
+
 :::note
 Rosetta specification does not include transaction signing capabilities. This is done  in a separate offline service for best security practices using any signing libraries available. See example using [CSL](https://github.com/Emurgo/cardano-serialization-lib/blob/master/doc/getting-started/singing_rosetta_tx.ts).  
 For creating addresses, [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) provides mnemonic (backup phrase) creation, and conversion of a mnemonic to seed for wallet restoration, and address derivation functionalities. This can also be achieved using other libraries like [cardano-serialization-lib](https://github.com/Emurgo/cardano-serialization-lib)
 :::
+
 - [**cardano-graphql**](https://github.com/cardano-foundation/cardano-graphql): GraphQL API for querying blockchain data.
   - GraphQL layer to access all blockchain data, runs on top of cardano-db-sync indexer.
   - Provides access to staking and all blockchain transaction data, easy to query using GraphQL language.
@@ -37,10 +38,12 @@ For creating addresses, [cardano-addresses](https://github.com/IntersectMBO/card
 - [**cardano-wallet**](https://github.com/cardano-foundation/cardano-wallet): Backend service providing APIs for wallet operations.
   - All-in-one solution for integration: address creation, automatic coin selection, transaction building, signing, and submission.
   - Great solution for smaller exchanges.
+
 :::note
 Does not support offline transaction signing; all keys are exposed online.  
 Cardano Wallet is currently in maintenance-only mode. The Cardano Foundation is committed to maintaining it for the foreseeable future by upgrading to new versions of the cardano-node, fixing bugs, improving quality and stability of both the code and server stability, plus providing general user support.
 :::
+
 - [**cardano-db-sync**](https://github.com/IntersectMBO/cardano-db-sync): Syncs blockchain data to a PostgreSQL database.
   - PostgreSQL database with the entire blockchain schema, queried with SQL.
   - Used with an indexer for GraphQL APIs.
@@ -52,6 +55,7 @@ Cardano Wallet is currently in maintenance-only mode. The Cardano Foundation is 
 ## Wallet Management
 
 ### Address Handling  
+
 A common and effective approach for exchanges integrating with Cardano involves using individual deposit addresses per customer and managing withdrawals from a centralized wallet. This model enables clear tracking, simplifies auditing, and enhances security and operational control.
 
 The typical workflow is as follows:
@@ -68,7 +72,7 @@ The typical workflow is as follows:
 
 ## Transaction Handling
 
-###  Creation and Submission
+### Creation and Submission
 
 Cardano offers multiple tools for transaction creation and submission, each designed to suit different integration architectures. The choice of tool depends on your infrastructure, security model, and level of control required. Most tools also support **fee estimation**, either explicitly or as part of the transaction construction process.
 
@@ -79,14 +83,12 @@ Cardano offers multiple tools for transaction creation and submission, each desi
 | [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) | ✅ | ✅ | ❌ | Low-level library for custom workflows. Commonly used with `cardano-submit-api` for submission. |
 | [`cardano-submit-api`](https://github.com/IntersectMBO/cardano-node/tree/master/cardano-submit-api) | ❌ | ❌ | ✅ | Lightweight API for submitting signed transactions to a Cardano node. |
 
-
-
 :::tip
 The best practice for exchanges is to use `cardano-rosetta` for transaction construction and submission, and sign the transaction using signing libraries of their choice such as `cardano-serialization-lib`.
 :::
 
-
 ### Fee Calculation
+
 The formula for calculating minimal fees for a transaction (tx) is:
 
 ```text
@@ -94,6 +96,7 @@ a * size(tx) + b
 ```
 
 Where:
+
 - `a` and `b` are protocol parameters.
 - `size(tx)` is the transaction size in bytes.
 
@@ -172,16 +175,19 @@ The minimum ada calculation is **simplified** (CIP-55) to be more transparent an
 **Current Formula:** `(160 + |serialized_output|) * coinsPerUTxOByte`
 
 Where:
+
 - `160` is the **constant overhead** in bytes (accounts for transaction input and UTxO map entry)
 - `|serialized_output|` is the size of the serialized output in bytes
 - `coinsPerUTxOByte` is the protocol parameter (converted from the previous `coinsPerUTxOWord` by dividing by 8)
 
 **Key Improvements:**
+
 - **Simpler calculation**: Switched from complex word-based formulas to straightforward byte-based calculation
 - **More predictable**: Linear relationship between output size and minimum ada required
 - **Easier to implement**: No need for complex asset counting - just measure serialized output size
 
 When a UTxO contains **native tokens (fungible or NFTs)**, the serialized output is larger due to:
+
 - Policy IDs
 - Asset names
 - Number of distinct assets in the output
@@ -192,13 +198,14 @@ As these grow, so does the minimum ADA needed.
 Transactions failing to meet the minimum ada requirement will be rejected by the network.
 :::
 
-🔗 **References**: 
-- [CIP-55: The new minimum lovelace calculation](https://cips.cardano.org/cips/cip55/)
+🔗 **References**:
 
+- [CIP-55: The new minimum lovelace calculation](https://cips.cardano.org/cips/cip55/)
 
 #### Exchange Implementation Approaches
 
 **Deposits:**
+
 - Credit both ada and tokens when received together
 - Credit excess ada beyond the minimum requirement
 
@@ -211,6 +218,7 @@ Choose one approach:
 #### Practical Examples (for simpler calculation fees are not considered)
 
 **Example 1: Token deposit**
+
 ```
 User deposits: 1000 MyToken + 2.5 ada
 Minimum required: 1.25 ada
@@ -220,6 +228,7 @@ Exchange credits:
 ```
 
 **Example 2: Direct token Buy (user deposit address has ada more than minimum required)**
+
 ```
 User buy request: 1000 MyToken
 Minimum required: 1.25 ada
@@ -229,6 +238,7 @@ Exchange credits:
 ```
 
 **Example 3: Direct token Buy (user deposit address has no ada)**
+
 ```
 User buy request: 1000 MyToken [conversion value: 1 ada ==> 100 MyToken]
 Minimum required: 1.25 ada
@@ -238,6 +248,7 @@ Exchange credits:
 ```
 
 **Example 4: Token withdrawal (user deposit address has ada more than minimum required)**
+
 ```
 User withdraw request: 1000 MyToken
 Minimum required: 1.25 ada
@@ -247,6 +258,7 @@ Exchange debited:
 ```
 
 **Example 5: Token withdrawal (user deposit address has no ada)**
+
 ```
 User withdraw request: 1000 MyToken [conversion value: 1 ada ==> 100 MyToken]
 Minimum required: 1.25 ada
@@ -258,10 +270,11 @@ Exchange debited:
 **Calculation Methods:**
 
 1. **Dynamic Calculation (Recommended)**
+
 - Use libraries like [`cardano-serialization-lib`](https://github.com/Emurgo/cardano-serialization-lib) for dynamic calculation
 
-
 2. **Fixed Allocation (Simpler but less efficient)**
+
 - Single token: 1.5 ada
 - Multiple tokens: 2.0-2.5 ada  
 - Complex multi-asset: 3.0 ada
@@ -270,7 +283,6 @@ Exchange debited:
 With the new CIP-55 formula, dynamic calculation is now much simpler and more predictable than before. Consider implementing it instead of fixed allocations for better efficiency.
 :::
 
-
 ## Explorers
 
 All available explorers can be found [here](https://explorer.cardano.org).
@@ -278,6 +290,7 @@ All available explorers can be found [here](https://explorer.cardano.org).
 ## Handling Upgrades
 
 ### Upgrade Process
+
 - **Docker:**
   - Stop the containers.
   - Use the new docker-compose file to start the container again.
@@ -289,23 +302,26 @@ All available explorers can be found [here](https://explorer.cardano.org).
   - Make sure all [configuration files](https://book.world.dev.cardano.org/environments.html) and any command line arguments are up to date.
 
 ### Reliability of Upgrades
+
 Adopting a multi-environment strategy is essential for ensuring reliable and safe upgrades. Deploying changes first to a staging or pre-production environment allows for thorough validation before promotion to production.  
 Implementing Infrastructure as Code (IaC) alongside CI/CD pipelines significantly reduces the risk of human error and enables consistent, repeatable deployments.  
-To further enhance uptime and availability, it's recommended to maintain multiple instances of critical components. This ensures that a fully functional stack remains available during upgrades, minimizing or eliminating service interruptions. 
+To further enhance uptime and availability, it's recommended to maintain multiple instances of critical components. This ensures that a fully functional stack remains available during upgrades, minimizing or eliminating service interruptions.
 
 ### Testing Environment
+
 Running a dedicated testnet environment is highly recommended for exchanges to ensure robust testing and validation, especially when dealing with complex logic or preparing for events like hard forks.  
 Testnets offer a safer and more flexible space to simulate real-world scenarios without risking production stability. They also require significantly less hardware and offer faster sync times compared to mainnet, making them ideal for continuous integration and testing workflows.  
 There are two testnet environments:
+
 - **Preprod:** Configuration is the same as mainnet (5 days per epoch).
 - **Preview:** Configured to have one day per epoch.
 
 Faucets for [Test ada](https://docs.cardano.org/cardano-testnets/tools/faucet)
 
-
 ### Compatibility
+
 - Follow the Cardano [compatibility matrix](https://docs.cardano.org/developer-resources/release-notes/comp-matrix) for version alignment.
 
 ## Support and Resources
 
-- [Network configurations](https://book.world.dev.cardano.org/environments.html) 
+- [Network configurations](https://book.world.dev.cardano.org/environments.html)

@@ -72,6 +72,10 @@ sequenceDiagram
 
     B->>V: Request Full Unlock
     V->>B: Release all remaining tokens
+
+    style P fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style V fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style B fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 :::warning

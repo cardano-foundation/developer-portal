@@ -5,7 +5,7 @@ sidebar_label: yaci-devkit
 description: Yaci DevKit offers a customizable Cardano devnet that quickly launches and resets via the Yaci CLI, enabling faster iterations for developers.
 ---
 
-Yaci DevKit offers a customizable Cardano devnet that quickly launches and resets via the Yaci CLI, enabling faster iterations for developers.
+[Yaci DevKit](https://devkit.yaci.xyz/introduction) offers a customizable Cardano devnet that quickly launches and resets via the Yaci CLI, enabling faster iterations for developers.
 
 ## Overview
 
