@@ -12,25 +12,49 @@ The [Cardano testnets](https://docs.cardano.org/cardano-testnets/environments) a
 
 The testnets are an essential part of the development process for Cardano, as they allow developers to test and refine their code before deploying it on the live network, ultimately improving reliability and security.
 
+:::tip Quick Reference
+Need a quick overview of all Cardano networks including mainnet? See the [Networks Overview](/docs/get-started/networks-overview).
+:::
+
 ### What testnet should I use?
 
 #### Preview Testnet
+
+**Network Magic**: `2`
 
 - The Preview Testnet is a testing environment used to showcase new features and functionality to the Cardano community before they are deployed on the Mainnet.
 - It allows developers and users to test and provide feedback on new features and changes before they are released to the wider community.
 - The Preview Testnet helps to ensure that new features are user-friendly and meet the needs of the community, ultimately improving the user experience on the Mainnet.
 - Leads Mainnet hard forks by at least 4 weeks.
 
+**Configuration Files**:
+
 You can download the current Cardano blockchain network configuration files for Preview Testnet here: [The Cardano Operations Book > Preview Testnet.](https://book.world.dev.cardano.org/environments.html#preview-testnet)
 
+Or download directly via command line:
+
+```bash
+curl -O -J "https://book.world.dev.cardano.org/environments/preview/{config,db-sync-config,submit-api-config,topology,byron-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
+```
+
 #### Pre-Production Testnet
+
+**Network Magic**: `1`
 
 - The Pre-Production Testnet is a testing environment used to validate major upgrades and releases before deployment to the Mainnet.
 - It is a staging area where developers can simulate real-world scenarios and ensure that everything is working as expected before going live.
 - The preprod testnet helps to minimize the risk of bugs, security issues, and other problems that could negatively impact the Mainnet.
 - Hard forks at approximately the same time as Mainnet (within an epoch of each other)
 
+**Configuration Files**:
+
 You can download the current Cardano blockchain network configuration files for Pre-Production Testnet here: [The Cardano Operations Book > Pre-Production Testnet.](https://book.world.dev.cardano.org/env-preprod.html)
+
+Or download directly via command line:
+
+```bash
+curl -O -J "https://book.world.dev.cardano.org/environments/preprod/{config,db-sync-config,submit-api-config,topology,byron-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
+```
 
 #### Guild Network
 
@@ -44,6 +68,17 @@ You can [download](https://github.com/cardano-community/guild-operators/tree/alp
 
 The Pre-Production Testnet is a more comprehensive testing environment used to validate major upgrades, while the Preview Testnet is a more targeted testing environment used to showcase new features and gather feedback from the community.
 
+**Quick Comparison**:
+
+| Feature | Preview | Preprod | Guild Network |
+|---------|---------|---------|---------------|
+| **Network Magic** | `2` | `1` | Custom |
+| **Purpose** | Test new features | Pre-production validation | Quick testing |
+| **Hard Fork Schedule** | 4+ weeks before mainnet | ~Same time as mainnet | Flexible |
+| **Epoch Length** | Standard | Standard | 1 hour |
+| **Best For** | Early testing, learning | Final validation | Rapid iteration |
+| **Faucet** | [Automated](/docs/integrate-cardano/testnet-faucet/) | [Automated](/docs/integrate-cardano/testnet-faucet/) | Manual via Telegram |
+
 ### Where to get a testnet wallet?
 
 - [Lace Wallet](https://www.lace.io/) is a lightweight wallet developed by IOG and supports both PreProd, Preview and Sancho testnets.
@@ -51,7 +86,7 @@ The Pre-Production Testnet is a more comprehensive testing environment used to v
 - [Yoroi Nightly Wallet](https://chromewebstore.google.com/detail/yoroi-nightly/poonlenmfdfbjfeeballhiibknlknepo?hl=en&authuser=0) is a lightweight wallet developed by Emurgo and supports PreProd, PreView and Sancho testnet.
 - [Typhon Wallet](https://testnet.typhonwallet.io/#/wallet/access) is a lightweight wallet developed by StricaHQ and supports PreProd testnet.
 - [Ledger Nano S and Ledger Nano X](https://www.ledger.com/) are hardware wallets that support both PreProd and Preview testnets.
-- [Cardano-wallet](/docs/integrate-cardano/listening-for-payments-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
+- [Cardano-wallet](/docs/integrate-cardano/listening-for-payments/cardano-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
 
 It's important to note that while all of these wallets support Cardano testnets, you will need to choose the testnet network option within the wallet when setting it up or switching to testnet, or choose the right version before you install a specific testnet wallet.
 

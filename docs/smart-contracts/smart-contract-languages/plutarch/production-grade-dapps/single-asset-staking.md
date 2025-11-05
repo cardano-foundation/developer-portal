@@ -115,6 +115,10 @@ graph LR
     P --> UV
     UV --> AV
 
+    style P fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style UV fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style AV fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+
 ```
 
 ### Deploy Reference Scripts
@@ -140,6 +144,12 @@ graph LR
     I1 --> TX
     MP{Native Minting Policy} -.-o TX
     TX --> O2
+
+    style I1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style O1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style O2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style MP fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 ### **Lock Rewards**
@@ -164,6 +174,12 @@ graph LR
       $deployId.TokenHolderPolicy"}  -.-o|Mint $TokenHolderPolicy.RTHolder| TX
     TX --> O1
     TX -->|1% Protocol Fees| O2
+
+    style I1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style O1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style O2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style MP fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 ### **Initialize Head Node**
@@ -189,6 +205,11 @@ graph LR
     MP{"RefInput
       $deployId.StakingPolicy"}  -.-o|Mint $StakingPolicy.FSN| TX
     TX --> O1
+
+    style I1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style O1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style MP fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 ## User Participation
@@ -248,6 +269,14 @@ graph LR
     MP{"Ref Input
       $deployId.FoldPolicy"}  -.-o|Mint $FoldPolicy.CFold| TX
     TX --> O1
+
+    style I1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style N1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style O1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style MP fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 ### Complete Commit Fold
@@ -297,6 +326,14 @@ graph LR
     N3 -.-o TX
     I1 --> TX
     TX --> F2
+
+    style I1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style N1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style F1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style F2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 :::note
@@ -363,6 +400,17 @@ graph LR
     I1 --> TX
     TX --> R1
     TX --> N2
+
+    style I1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style N1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style F1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style R1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style T1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style MP1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style MP2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style MP3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 > Note: Upon undergoing rewards fold a UTxO has to pay 1 ADA folding fee.
@@ -432,6 +480,16 @@ graph LR
     TX --> R2
     TX --> N4
     TX --> N5
+
+    style I1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style TX fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style N1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N3 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N4 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style N5 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style R1 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style R2 fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 :::note

@@ -58,6 +58,16 @@ graph TD
     D -->|o| O(O)
     O -->|g| G(G)
     ROOT -->|other| OTH((Others))
+
+    style ROOT fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style C fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style A fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style R fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style T fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style D fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style O fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style G fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style OTH fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 Imagine the Trie as a tree where each node represents a character. The root node is empty and branches out to three paths: one for "c", one for "d", and potentially others for different starting letters of keys not shown in this example. The "c" node branches into "a", which further branches into "r" and "t" to form the words "car" and "cat". Each of these nodes, "r" and "t", would be leaf nodes for "car" and "cat", respectively, possibly containing values or simply marking the end of the word. Similarly, the "d" node branches into "o", which then branches into "g", forming the word "dog" with "g" as its leaf node. This structure allows for efficient searching, adding, and deleting of keys by following the branches corresponding to each character in the key.
@@ -66,7 +76,7 @@ This visual representation helps understand how Tries optimize space and search 
 
 ## Validator Logic
 
-```rust
+```aiken
 use aiken/dict
 use aiken/list
 use aiken/transaction.{

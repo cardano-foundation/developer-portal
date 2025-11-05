@@ -50,6 +50,13 @@ sequenceDiagram
     CContract->>CardanoWallet: Deposit wrap-T token
     CardanoWallet->>User: Wrap-T token received
 
+    style User fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style XWallet fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style BridgeNode fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style CContract fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style XContract fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style CardanoWallet fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+
 ```
 
 Process Description:
@@ -88,6 +95,13 @@ sequenceDiagram
     BridgeNode->>XContract: Burn wrap-T token
     XContract->>XWallet: Unwrap to token T
     XWallet->>User: Token T received
+
+    style User fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style CardanoWallet fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style BridgeNode fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style CContract fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style XContract fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style XWallet fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 
 ```
 

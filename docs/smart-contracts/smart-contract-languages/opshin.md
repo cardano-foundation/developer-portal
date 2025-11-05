@@ -1,7 +1,7 @@
 ---
 id: opshin
 title: OpShin
-sidebar_label: OpShin
+sidebar_label: OpShin (Python)
 description: OpShin
 image: /img/logo-opshin.png
 --- 

@@ -30,7 +30,7 @@ Each entry in the list comprises:
 
 #### EntryDatum Definition
 
-```rust
+```aiken
 data EntryDatum = EntryDatum {
   key :: BuiltinByteString,
   value :: Maybe SomeValue,
@@ -101,7 +101,7 @@ The Aiken Linked List implementation provides several functions to create and ma
 
 For a complete example, including tests and further explanations, reger to the provided sample validator:
 
-```rust
+```aiken
 use aiken/bytearray
 use aiken/dict
 use aiken/interval.{Finite, Interval, IntervalBound, is_entirely_before}
@@ -570,7 +570,7 @@ test mint_validator_remove() {
 
 #### Constants
 
-```rust
+```aiken
 pub const origin_node_token_name = "FSN"
 
 pub const set_node_prefix = "FSN"
@@ -578,7 +578,7 @@ pub const set_node_prefix = "FSN"
 
 #### Linked List
 
-```rust
+```aiken
 use aiken/bytearray
 use aiken/interval.{Interval}
 use aiken/list
@@ -692,7 +692,7 @@ pub fn remove(
 
 #### Types
 
-```rust
+```aiken
 use aiken/hash.{Blake2b_224, Hash}
 use aiken/transaction.{OutputReference}
 use aiken/transaction/credential.{Address, VerificationKey}
@@ -748,7 +748,7 @@ pub type NodeAction {
 
 ### Utilities
 
-```rust
+```aiken
 use aiken/bytearray
 use aiken/dict.{has_key}
 use aiken/interval.{Interval}

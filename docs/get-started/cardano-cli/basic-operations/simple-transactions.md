@@ -10,6 +10,12 @@ keywords: [cardano-cli, cli, keys, addresses, cardano-node, transactions]
 
 Cardano transactions involve consuming one or more Unspent Transaction Outputs (UTXOs) and generating one or more new UTXOs. The most basic transaction type involves transferring ada from one address to another. It is essential to ensure that all transactions are 'well-balanced', meaning that the sum of outputs and transaction fees equals the sum of inputs. This balance ensures the integrity and validity of the transaction. Unbalanced transactions are rejected by the local node.
 
+:::tip Learn more about the UTXO model
+To learn more about **UTXO (unspent transaction output)** and how transactions work in the UTXO model, watch this lecture by [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at InputOutputGlobal:
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/EoO76YCSTLo?t=1854" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+:::
+
 Creating a transaction using the CLI follows a three-step process:
 
 - **Build:** construct the transaction with relevant details
@@ -36,7 +42,7 @@ Usage: cardano-cli conway transaction
                                         )
 
   Transaction commands.
-```                                         
+```
 
 `cardano-cli` provides several options for constructing transactions: `transaction build-raw`, `transaction build`, and `build-estimate`. The key difference between these methods lies in their offline and online capabilities, as well as the degree of manual or automatic processing involved.
 
@@ -70,13 +76,13 @@ cardano-cli conway query utxo --address $(< payment.addr)
 e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891     0        9994790937 lovelace + TxOutDatumNone
 ```
 
-In this example, the address has one UTXO associated with it. It holds 9,994,790,937 lovelace (9,994.790937 ada). 
+In this example, the address has one UTXO associated with it. It holds 9,994,790,937 lovelace (9,994.790937 ada).
 
-Assume you want to send 1,000,000 lovelace (1,000 ada) from `payment.addr` to a `payment2.addr`. This transaction will have one input and two outputs: 
+Assume you want to send 1,000,000 lovelace (1,000 ada) from `payment.addr` to a `payment2.addr`. This transaction will have one input and two outputs:
 
 - The single input is the UTXO that the transaction will consume, in this case `e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0`
-- The first output corresponds to the 1000 ada we are sending to `payment2.addr` 
-- The second output corresponds to the change of the transaction. We are sending the difference (8994790937 lovelace) to `payment.addr`.   
+- The first output corresponds to the 1000 ada we are sending to `payment2.addr`
+- The second output corresponds to the change of the transaction. We are sending the difference (8994790937 lovelace) to `payment.addr`.
 
 At this stage, you do not need to worry about the transaction fees. Save the transaction body in the `tx.draft` file:
 
@@ -91,7 +97,6 @@ cardano-cli conway transaction build-raw \
 ```
 
 `cardano-cli` can handle the nesting of commands. For example, you can use `cat` within `cardano-cli` to read the addresses directly from the file.
-
 
 ```shell
 cardano-cli conway transaction build-raw \
@@ -113,6 +118,7 @@ cat tx.draft
     "cborHex": "84a30081825820e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab812559403889100018282581d60b825c32db03b34efd9ff0b385d23aa2ea47dfd955b2df49d6297e31f1a3b9aca008258390062573d3d7e30dc551b41fc1e11a9558cba6d0b7b179057aa55963c4208f121b36abf2bcdd7daa2551c1e6653413a78c419e170d3319924d31b0000000218219e190200a0f5f6"
 }
 ```
+
 Use the `transaction view` command to show the transaction body in a human-readable format:
 
 ```shell
@@ -174,7 +180,7 @@ cardano-cli debug transaction view --tx-body-file tx.draft
 ### Calculating transaction fees and balancing a transaction
 
 :::info
-In Cardano, transaction fees are [deterministic](https://iohk.io/en/blog/posts/2021/09/06/no-surprises-transaction-validation-on-cardano/), meaning that you can know in advance how much a transaction will cost. 
+In Cardano, transaction fees are [deterministic](https://iohk.io/en/blog/posts/2021/09/06/no-surprises-transaction-validation-on-cardano/), meaning that you can know in advance how much a transaction will cost.
 :::
 
 To process a transaction on the network, it must include fees specified within the transaction body. To calculate the exact cost, use the `transaction calculate-min-fee` command, which takes `tx.draft` and `pparams.json` files as inputs. Within this command, specify details like the total number of inputs, outputs, and the required number of signatures. In this case, only one witness, the `payment.skey` signature, is needed:
@@ -198,7 +204,8 @@ With this, recalculate the change that needs to go to `payment.addr` with a simp
 echo $((9994790937 - 1000000000 - 173993))
 8994616944
 ```
-Re-run `transaction build-raw`, include the fee, and adjust the change (the second tx-out). This completes the transaction body, and conventionally, it is saved into the `tx.raw` file. 
+
+Re-run `transaction build-raw`, include the fee, and adjust the change (the second tx-out). This completes the transaction body, and conventionally, it is saved into the `tx.raw` file.
 
 ```shell
 cardano-cli conway transaction build-raw \
@@ -212,7 +219,7 @@ cardano-cli conway transaction build-raw \
 
 ### Signing the transaction
 
-Sign the transaction with the `transaction sign` command. You must sign with the `payment.skey` that controls the UTXO you are trying to spend. This time, we produce the `tx.signed` file: 
+Sign the transaction with the `transaction sign` command. You must sign with the `payment.skey` that controls the UTXO you are trying to spend. This time, we produce the `tx.signed` file:
 
 ```shell
 cardano-cli conway transaction sign \
@@ -222,11 +229,12 @@ cardano-cli conway transaction sign \
 --out-file tx.signed
 ```
 
-Inspecting `tx.signed` with `transaction view` reveals that the `"witnesses"` field is no longer empty; it now contains the signature. 
+Inspecting `tx.signed` with `transaction view` reveals that the `"witnesses"` field is no longer empty; it now contains the signature.
 
 ```shell
 cardano-cli debug transaction view --tx-file tx.signed
 ```
+
 ```json
 {
     "auxiliary scripts": null,
@@ -283,15 +291,24 @@ cardano-cli debug transaction view --tx-file tx.signed
     ]
 }
 ```
+
 ### Submitting the transaction
 
 Submitting the transaction means sending it to the blockchain for processing by the stake pools and eventual inclusion in a block. While building and signing a transaction can be done without a running node, submitting the transaction requires an active connection to a running node. Use the `tx.signed` file:
 
 ```shell
 cardano-cli conway transaction submit \
-  --tx-file tx.signed 
+  --tx-file tx.signed
 Transaction successfully submitted.
 ```
+
+:::tip Verify your transaction
+You can use the `TxHash` from your UTXO to view the complete transaction on a Cardano blockchain explorer:
+
+- [Mainnet explorers](https://explorer.cardano.org/)
+- [Preprod explorers](https://explorer.cardano.org/preprod)
+- [Preview explorers](https://explorer.cardano.org/preview)
+:::
 
 ## Building transactions with the `build` command
 
@@ -317,6 +334,7 @@ cardano-cli conway transaction build \
   --change-address $(< payment.addr) \
   --out-file tx.raw
 ```
+
 Running this command returns the cost of the transaction fee:
 
 ```shell
@@ -391,6 +409,7 @@ cardano-cli conway transaction sign \
   --signing-key-file payment.skey \
   --out-file tx.signed
 ```
+
 ### Submitting the transaction
 
 ```shell
@@ -409,4 +428,5 @@ cardano-cli conway transaction build \
 --change-address $(< payment.addr) \
 --out-file tx.raw
 ```
+
 :::

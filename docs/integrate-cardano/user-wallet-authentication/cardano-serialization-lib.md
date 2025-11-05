@@ -1,16 +1,16 @@
 ---
-id: user-wallet-authentication
-title: Authenticating users with their Cardano wallet
-sidebar_label: User wallet authentication
-description: Full example on authenticating users on the web with their Cardano wallet.
+id: cardano-serialization-lib
+title: Wallet authentication using Cardano Serialization Library
+sidebar_label: Cardano Serialization Library
+description: Low-level implementation of wallet authentication using Cardano Serialization Library.
 image: /img/og/og-developer-portal.png
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+
+This guide provides a low-level implementation of wallet-based authentication using the [Cardano Serialization Library](../../get-started/cardano-serialization-lib/overview) and [Cardano Message Signing](https://www.npmjs.com/package/@emurgo/cardano-message-signing-nodejs) libraries. This approach gives you direct control over COSE signature parsing and verification.
 
 ## Overview
 
-This guide is a walkthrough on how to implement the *message signing* described in [CIP-08](https://cips.cardano.org/cip/CIP-0008) in order to authenticate users on the web with just their [CIP-30](https://cips.cardano.org/cip/CIP-0030)-compatible wallet app.
+This guide demonstrates how to implement message signing as described in [CIP-8](https://cips.cardano.org/cip/CIP-0008) to authenticate users with their [CIP-30](https://cips.cardano.org/cip/CIP-0030)-compatible wallet app.
 
 :::note
 
@@ -30,7 +30,7 @@ The following are a just some examples of where this implementation can be used:
 
 As mentioned above, there are 2 components in this example - the front-end and the back-end. Our front-end code will handle our interaction with the user, to prompt them to sign some message with their wallet. The signed message will then be submitted to our back-end component which will parse the message and verify the user's signature.
 
-In this example, we will be asking the user to sign a simple text message containing the string `account: `, followed by their wallet's bech32 stake address. For example:
+In this example, we will be asking the user to sign a simple text message containing the string `account:`, followed by their wallet's bech32 stake address. For example:
 
 `account: stake1uynpv0vlulhufm8txwry0da9qq6tn9wn42mxltq65pw403qvdcveh`
 
@@ -138,7 +138,6 @@ async function submitToBackend(sigData){
 
 That completes our front-end code. It can be viewed in full [here](https://github.com/inimrod/cardano-message-signing-demo/blob/main/frontend/js/userWalletAuth.js).
 
-
 ### Back-end
 
 For our back-end, let's create a file named `server.js` and first, we will import the dependencies we need:
@@ -239,7 +238,6 @@ Since we already have the signer's stake address, we also checked it against our
 Lastly, we send a response back to the user with a success message if all three checks where passed and a failure message if otherwise.
 
 That completes our backend component. The full code can be viewed [here](https://github.com/inimrod/cardano-message-signing-demo/blob/main/backend/server.js).
-
 
 ### Demo project repository
 
