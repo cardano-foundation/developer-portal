@@ -1079,7 +1079,7 @@ export const Showcases = [
   title: "Smart Wallet API",
   description: "Backend APIs for implementing OAuth2-backed wallets and dapps on Cardano. Deterministic address derivation allows sending funds to a Web2 account without prior onboarding. Funds are secured by Plutus smart contracts and zero-knowledge cryptography.",
   preview: require("./builder-tools/smart-wallet-api.png"),
-  website: "https://wallet-api.zkfold.io",
+  website: "https://wallet-api.zkfold.io/docs",
   getstarted: "https://docs.zkfold.io/smart-wallet/api/",
   tags: ["wallet", "haskell", "plutus", "http"],
   },
