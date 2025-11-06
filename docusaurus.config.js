@@ -136,7 +136,7 @@ module.exports = {
         },
         {
           type: 'dropdown',
-          label: 'SPOs',
+          label: 'Validators',
           position: 'left',
           items: [
             {
