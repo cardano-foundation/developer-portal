@@ -1,62 +1,59 @@
 ---
 id: plu-ts
-title: Plu-ts
-sidebar_label: Plu-ts (Typescript)
-description: Plu-ts
+title: Pebble
+sidebar_label: Pebble (Typecript)
+description: Pebble - A strongly-typed domain-specific language for writing Cardano smart contracts
 image: /img/plu_ts-logo.svg
---- 
+---
 
 ## Introduction
 
-[`Plu-ts`](https://github.com/HarmonicLabs/plu-ts) is a Typescript-embedded programming language and library for developing smart contracts on the Cardano blockchain. It is designed for smart contract efficiency while staying as close as possible to the Typescript syntax.
+[**Pebble**](https://pluts.harmoniclabs.tech/) is a strongly-typed domain-specific language (DSL) for writing Cardano smart contracts. A simple, yet rock solid, functional language with an imperative bias, targeting UPLC.
 
-The tool is composed by the eDSL that allows you to create smart contracts and compile them; and an off-chain library that introduces all the types required to interact with the Cardano ledger and create transactions.
+At its heart, Pebble is:
+
+- A language: with its own parser, type checker, and compiler.
+- A toolchain: including a CLI, compiler, and integrations for DApp workflows.
+- A bridge: between human-readable smart contract code and low-level Plutus Core.
+
+Pebble is statement-oriented (with constructs like let, if, while, match, return), but under the hood, everything still compiles down to Plutus Core expressions, maintaining full functional correctness.
+
+This makes Pebble feel familiar for developers coming from JavaScript, TypeScript, Rust, or Solidity, while retaining the strict guarantees of Plutus.
+
+To sum it all up, pebble is a first-class language with its own syntax and compiler, but still exposes onchain/offchain type ecosystems for contract and DApp integrations.
 
 ## Getting started
 
-To get started with `plu-ts`, you can install it using `npm` and set up your project following the instructions in the [`plu-ts` documentation](https://pluts.harmoniclabs.tech/).
-
-You can find the documentation for `plu-ts` at [pluts.harmoniclabs.tech](https://pluts.harmoniclabs.tech/).
-
-If you need help feel free to open issues at the [`plu-ts` git repository](https://github.com/HarmonicLabs/plu-ts).
+To get started with Pebble, you can install it using `npm` and set up your project following the instructions in the [Pebble documentation](https://pluts.harmoniclabs.tech/).
 
 ### Example contract
 
-Some example projects can be found [in the `plu-ts` documentation](https://pluts.harmoniclabs.tech/category/examples);
+Example projects can be found in the [Pebble documentation examples section](https://pluts.harmoniclabs.tech/category/examples).
 
-Here we report the `Hello plu-ts` contract; to see how it works you can follow [the example project](https://pluts.harmoniclabs.tech/examples/Hello_world_v0).
+Below is the `Hello Pebble` contract:
 
 ```ts
-import { bool, compile, makeValidator, PaymentCredentials, pBool, pfn, Script, ScriptType, PScriptContext, bs, PPubKeyHash } from "@harmoniclabs/plu-ts";
+istruct HelloWorldDatum {
+    owner: bytes
+}
 
-const contract = pfn([
-    PPubKeyHash.type,
-    bs,
-    PScriptContext.type
-],  bool)
-(( owner, message, ctx ) => {
+contract HelloWorld
+{
+    spend helloWorld(
+        inputIdx: int,
+        message: bytes
+    ) {
+        const { tx, spendingRef } = context;
 
-    const isBeingPolite = message.eq("Hello plu-ts");
+        const { resolved: spendingInput, ref: inputSpendingRef } = tx.inputs[inputIdx];
 
-    const signedByOwner = ctx.tx.signatories.some( owner.eqTerm );
+        assert inputSpendingRef === spendingRef;
 
-    return isBeingPolite.and( signedByOwner );
-});
+        const InlineDatum{ datum: { owner } as HelloWorldDatum } = spendingInput.datum;
 
-// all validators must be untyped once on-chain
-export const untypedValidator = makeValidator( contract );
+        assert tx.requiredSigners.includes( owner );
 
-// here we get the raw bytes of the contract
-export const compiledContract = compile( untypedValidator );
-
-// the `script` object can be used offchain
-export const script = new Script(
-    ScriptType.PlutusV2,
-    compiledContract
-);
+        assert message === "Hello pebble";
+    }
+}
 ```
-
-## Resources
-
-- [`Plu-ts` Documentation](https://pluts.harmoniclabs.tech/#introduction)
-- [`Plu-ts` Github Repository](https://github.com/HarmonicLabs/plu-ts).
