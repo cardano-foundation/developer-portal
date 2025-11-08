@@ -73,7 +73,7 @@ module.exports = {
     // Navbar title, logo and items
     navbar: {
       hideOnScroll: false,
-      title: "Developers",
+      title: "",
       logo: {
         alt: "Cardano Logo",
         src: "img/cardano-black.svg",
