@@ -154,15 +154,6 @@ export const Tags = {
     color: '#4267b2',
   },
 
-  // Plutus
-  plutus: {
-    label: "Plutus",
-    description:
-      "Plutus",
-    icon: null,
-    color: '#8c2f00',
-  },
-
   // Python
   python: {
     label: "Python",
@@ -318,13 +309,6 @@ export const Tags = {
     color: '#673AB7',  // Deep Purple
   },
 
-  // Reward
-  reward: {
-    label: "Reward Calculation",
-    description: "Reward Calculation",
-    icon: null,
-    color: "#3D5AFE"
-  },
   // Scala
   scala: {
     label: "Scala",
@@ -336,6 +320,13 @@ export const Tags = {
   elm: {
     label: "Elm",
     description: "Elm language",
+    icon: null,
+    color: "#2D79C7"
+  },
+  // Smart Contract Languages
+  smartcontracts: {
+    label: "Smart Contracts",
+    description: "Smart contracts",
     icon: null,
     color: "#2D79C7"
   },
@@ -497,7 +488,7 @@ export const Showcases = [
     preview: require("./builder-tools/marlowe.png"),
     website: "https://marlowe-lang.org/",
     getstarted: "https://playground.marlowe-lang.org/",
-    tags: ["plutus"],
+    tags: ["smartcontracts"],
   },
   {
     title: "Automint",
@@ -615,7 +606,7 @@ export const Showcases = [
     preview: require("./builder-tools/plutarch.png"),
     website: "https://github.com/Plutonomicon/plutarch#plutarch",
     getstarted: null,
-    tags: ["plutus", "haskell"]
+    tags: ["smartcontracts", "haskell"]
   },
   {
     title: "gOuroboros",
@@ -647,7 +638,7 @@ export const Showcases = [
     preview: require("./builder-tools/helioslang.png"),
     website: "https://github.com/Hyperion-BT/Helios",
     getstarted: null,
-    tags: ["javascript", "plutus"],
+    tags: ["javascript", "smartcontracts"],
   },
   {
     title: "Pebble",
@@ -655,7 +646,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.png"),
     website: "https://pluts.harmoniclabs.tech/",
     getstarted: "/docs/get-started/plu-ts",
-    tags: ["plutus", "typescript"],
+    tags: ["smartcontracts", "typescript"],
   },
   {
     title: "koios-pluts",
@@ -671,7 +662,7 @@ export const Showcases = [
     preview: require("./builder-tools/aiken.png"),
     website: "https://aiken-lang.org",
     getstarted: "/docs/get-started/aiken",
-    tags: ["favorite", "plutus"],
+    tags: ["favorite", "smartcontracts"],
   },
   {
     title: "Cardano Signer",
@@ -792,7 +783,7 @@ export const Showcases = [
     preview: require("./builder-tools/opshin.png"),
     website: "https://github.com/OpShin/opshin",
     getstarted: null,
-    tags: ["python", "plutus"],
+    tags: ["python", "smartcontracts"],
   },
   {
     title: "Koios Java Client",
@@ -857,7 +848,7 @@ export const Showcases = [
     preview: require("./builder-tools/atlas.jpg"),
     website: "https://atlas-app.io/",
     getstarted: null,
-    tags: ["haskell", "transactionbuilder", "plutus"],
+    tags: ["haskell", "transactionbuilder"],
   },
   {
     title: "NFT Vending Machine",
@@ -1003,7 +994,7 @@ export const Showcases = [
     preview: require("./builder-tools/scalus.png"),
     website: "https://scalus.org/",
     getstarted: "https://scalus.org/docs/get-started",
-    tags: ["scala", "transactionbuilder", "plutus"]
+    tags: ["scala", "transactionbuilder", "smartcontracts"]
   },
   {
     title: "Lace Anatomy",
@@ -1117,11 +1108,11 @@ export const DomainsTags = [
   "lowlevel",
   "nft",
   "operatortool",
-  "plutus",
   "serialization",
   "testing",
   "transactionbuilder",
   "wallet",
+  "smartcontracts",
 ];
 
 export const SortedShowcases = sortShowcases();
