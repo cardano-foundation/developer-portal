@@ -25,7 +25,7 @@ First of all, thank you for taking the time to contribute!🎉👍
 
 ### Add to Builder Tools
 
-- See inline instructions in [src/data/builder-tools.js](https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/builder-tools.js)
+- See inline instructions in [src/data/builder-tools/tools.js](https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/builder-tools/tools.js)
 - Requirements: Helps Cardano developers, stable domain, functional
 - Use the "Add Builder Tool" GitHub PR template
 

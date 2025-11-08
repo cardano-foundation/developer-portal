@@ -128,21 +128,21 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
    - Name it descriptively (e.g., `your-tool-name.png`)
 
 2. **Add your image to the repository**
-   - Place it in: `src/data/builder-tools/your-tool-name.png`
+   - Place it in: `src/data/builder-tools/images/your-tool-name.png`
 
 3. **Add your tool entry**
-   - Edit: `src/data/builder-tools.js`
-   - Add your entry to the **END** of the array
+   - Edit: `src/data/builder-tools/tools.js`
+   - Add your entry to the **END** of the Showcases array
    - Use this format:
 
    ```javascript
    {
      title: "Your Tool Name",
      description: "Brief description of what your tool does",
-     preview: require("./builder-tools/your-tool-name.png"),
+     preview: require("./images/your-tool-name.png"),
      website: "https://your-tool.com",
      getstarted: "https://docs.your-tool.com/getting-started", // or null if no docs
-     tags: ["relevant", "tags"], // see available tags in the file
+     tags: ["relevant", "tags"], // see available tags in tags.js
    }
    ```
 
@@ -150,7 +150,7 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
 
    **Important:**
    - Do NOT add the `favorite` tag yourself
-   - Check `src/data/builder-tools.js` for the complete list
+   - Check `src/data/builder-tools/tags.js` for the complete list of available tags
    - Use multiple relevant tags to help developers find your tool
 
 5. **Test your submission**
@@ -249,7 +249,7 @@ developer-portal/
 
 - `/docs/` - All documentation content
 - `/src/data/showcases.js` - Project showcase data
-- `/src/data/builder-tools.js` - Developer tools data
+- `/src/data/builder-tools/tools.js` - Developer tools data
 - `/sidebars.js` - Controls documentation navigation
 
 ### Writing Content
