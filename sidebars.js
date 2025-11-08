@@ -560,8 +560,8 @@ module.exports = {
       },
     ],
     "Community": [
-      "get-started/cardano-developer-community",
-      "get-started/funding",
+      "community/cardano-developer-community",
+      "community/funding",
       {
         type: "category",
         label: "Contributing to Developer Portal",

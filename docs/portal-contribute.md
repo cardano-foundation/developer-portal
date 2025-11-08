@@ -307,4 +307,4 @@ If you have excellent technical understanding and mistakes catch your eye, you c
 - **Technical issues:** [GitHub Issues](https://github.com/cardano-foundation/developer-portal/issues)
 - **Content questions:** [GitHub Discussions](https://github.com/cardano-foundation/developer-portal/discussions)
 - **Developer community:** [Cardano Forum](https://forum.cardano.org/c/developers/29)
-- **Connect with developers:** [Developer community overview](/docs/get-started/cardano-developer-community)
+- **Connect with developers:** [Developer community overview](/docs/community/cardano-developer-community)

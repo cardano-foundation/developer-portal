@@ -147,5 +147,5 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 
 :::tip Need Help?
-Join the [Cardano Developer Community](../get-started/cardano-developer-community) for support, feedback, and collaboration opportunities.
+Join the [Cardano Developer Community](cardano-developer-community) for support, feedback, and collaboration opportunities.
 :::

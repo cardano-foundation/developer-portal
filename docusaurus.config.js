@@ -51,7 +51,7 @@ module.exports = {
     announcementBar: isAnnouncementActive ? {
       id: "announcement_index9", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/get-started/cardano-developer-community">Learn more</a> 💬</strong>`,
+        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/community/cardano-developer-community">Learn more</a> 💬</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -103,11 +103,11 @@ module.exports = {
               label: "Builder Tools",
             },
             {
-              to: "docs/get-started/cardano-developer-community",
+              to: "docs/community/cardano-developer-community",
               label: "Dev Community",
             },
             {
-              to: "docs/get-started/funding",
+              to: "docs/community/funding",
               label: "Grants",
             },
           ],
@@ -245,7 +245,7 @@ module.exports = {
             },
             {
               label: "More",
-              to: "docs/get-started/cardano-developer-community",
+              to: "docs/community/cardano-developer-community",
             },
           ],
         },
@@ -306,7 +306,7 @@ module.exports = {
           },
           {
             // redirect to the new funding page
-            to: '/docs/get-started/funding',
+            to: '/docs/community/funding',
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
@@ -397,6 +397,14 @@ module.exports = {
           {
             to: '/docs/get-started/security/frankenwallet',
             from: '/docs/operate-a-stake-pool/frankenwallet',
+          },
+          {
+            to: '/docs/community/cardano-developer-community',
+            from: '/docs/get-started/cardano-developer-community',
+          },
+          {
+            to: '/docs/community/funding',
+            from: '/docs/get-started/funding',
           },
         ],
       },
