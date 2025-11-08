@@ -1067,7 +1067,7 @@ export const Showcases = [
     preview: require("./builder-tools/kuber.png"),
     website: "https://github.com/dQuadrant/kuber",
     getstarted: "https://kuberide.com/",
-    tags: ["haskell", "transactionbuilder", "IDE"],
+    tags: ["haskell", "transactionbuilder"],
   },
   {
     title: "Sorbet",
