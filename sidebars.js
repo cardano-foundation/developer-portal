@@ -425,7 +425,7 @@ module.exports = {
               },
               {
                 type: "category",
-                label: "Plutarch",
+                label: "Plutarch (Haskell)",
                 link: {
                   type: "doc",
                   id: "smart-contracts/smart-contract-languages/plutarch/overview"
