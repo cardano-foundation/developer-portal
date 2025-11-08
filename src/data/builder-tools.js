@@ -1132,7 +1132,16 @@ export const Showcases = [
     website: "https://github.com/fabianbormann/cardano-peer-connect",
     getstarted: null,
     tags: ["typescript", "wallet"],
+  },
+  {
+    title: "NMKR Studio",
+    description: "NMKR Studio is a comprehensive platform for Cardano NFT management, built with C# and .NET 8.0. The project provides a complete solution for minting, burning, and managing NFTs on the Cardano blockchain.",
+    preview: require("./builder-tools/nmkr-studio.png"),
+    website: "https://github.com/nftmakerio/NMKR-Studio",
+    getstarted: null,
+    tags: ["net", "nft"],
   }
+
 ];
 
 export const TagList = Object.keys(Tags);
@@ -1173,18 +1182,18 @@ export const LanguagesOrTechnologiesTags = [
 ];
 
 export const DomainsTags = [
+  "smartcontracts",
+  "transactionbuilder",
+  "testing",
   "chainindex",
-  "governance",
+  "wallet",
+  "serialization",
   "hosted",
   "IDE",
   "lowlevel",
   "nft",
   "operatortool",
-  "serialization",
-  "testing",
-  "transactionbuilder",
-  "wallet",
-  "smartcontracts",
+  "governance",
 ];
 
 export const SortedShowcases = sortShowcases();
