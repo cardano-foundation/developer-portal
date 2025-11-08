@@ -44,10 +44,10 @@ export const Tags = {
   },
 
   // Chain Index
-  chainindex: {
-    label: "Chain Index",
+  indexer: {
+    label: "Indexer",
     description:
-      "Index Protocol",
+      "Indexer for Cardano blockchain data",
     icon: null,
     color: '#000'
   },
@@ -96,14 +96,6 @@ export const Tags = {
     color: '#fce300',
   },
 
-  // Koios
-  koios: {
-    label: "Koios",
-    description: "Koios and its integrations",
-    icon: null,
-    color: "#b84421"
-  },
-
   // Kotlin
   kotlin: {
     label: "Kotlin",
@@ -135,14 +127,6 @@ export const Tags = {
     description: "Non-Fungible Token (NFT)",
     icon: null,
     color: '#fe6829',
-  },
-
-  // Ogmios
-  ogmios: {
-    label: "Ogmios",
-    description: "Ogmios and its integrations",
-    icon: null,
-    color: "#ff6d01"
   },
 
   // Stake Pool Operator Tools
@@ -277,14 +261,6 @@ export const Tags = {
     color: "#FD7272"
   },
 
-  // Low-Level
-  lowlevel: {
-    label: "Low-Level",
-    description: "Low-level utility",
-    icon: null,
-    color: "#2C3A47"
-  },
-
   // Testing
   testing: {
     label: "Testing",
@@ -337,6 +313,20 @@ export const Tags = {
     icon: null,
     color: "#777BB4"
   },
+  // Provider
+  provider: {
+    label: "Provider",
+    description: "Provider for Cardano blockchain data",
+    icon: null,
+    color: "#2D79C7"
+  },
+  // Node Client
+  nodeclient: {
+    label: "Node Client",
+    description: "Node Client for Cardano blockchain data",
+    icon: null,
+    color: "#2D79C7"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -372,7 +362,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-graphql.png"),
     website: "https://github.com/cardano-foundation/cardano-graphql/#overview",
     getstarted: "https://github.com/cardano-foundation/cardano-graphql#getting-started",
-    tags: ["chainindex", "http"]
+    tags: ["indexer", "http"]
   },
   {
     title: "cardano-rosetta-java",
@@ -388,7 +378,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-db-sync.png"),
     website: "https://github.com/IntersectMBO/cardano-db-sync#cardano-db-sync",
     getstarted: null,
-    tags: ["chainindex", "sql"]
+    tags: ["indexer", "sql"]
   },
   {
     title: "cardano-addresses",
@@ -404,7 +394,7 @@ export const Showcases = [
     preview: require("./builder-tools/blockfrost.png"),
     website: "https://blockfrost.io",
     getstarted: "/docs/get-started/blockfrost/get-started/",
-    tags: ["favorite", "http", "json", "hosted"],
+    tags: ["favorite", "http", "json", "hosted", "provider"],
   },
   {
     title: "StakePool Operator Scripts",
@@ -445,7 +435,7 @@ export const Showcases = [
     preview: require("./builder-tools/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios",
-    tags: ["favorite", "ogmios", "websocket", "json", "lowlevel"],
+    tags: ["favorite", "websocket", "json", "nodeclient"],
   },
   {
     title: "Cardano Client Library",
@@ -522,7 +512,7 @@ export const Showcases = [
     preview: require("./builder-tools/oura.png"),
     website: "https://github.com/txpipe/oura",
     getstarted: null,
-    tags: ["rust", "chainindex"],
+    tags: ["rust", "nodeclient"],
   },
   {
     title: "Typhonjs",
@@ -549,7 +539,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-snapshots.png"),
     website: "https://cSnapshots.io",
     getstarted: null,
-    tags: ["operatortool", "chainindex", "hosted"],
+    tags: ["operatortool", "hosted"],
   },
   {
     title: "Koios",
@@ -557,7 +547,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios.png"),
     website: "https://koios.rest",
     getstarted: "/docs/get-started/koios",
-    tags: ["koios", "http", "json", "hosted"],
+    tags: ["http", "json", "hosted", "provider"],
   },
   {
     title: "Pallas",
@@ -573,7 +563,7 @@ export const Showcases = [
     preview: require("./builder-tools/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
-    tags: ["chainindex", "redis"]
+    tags: ["indexer", "redis"]
   },
   {
     title: "Kupo",
@@ -581,7 +571,7 @@ export const Showcases = [
     preview: require("./builder-tools/kupo.png"),
     website: "https://github.com/CardanoSolutions/kupo#readme",
     getstarted: null,
-    tags: ["chainindex", "http", "json"]
+    tags: ["indexer", "http", "json"]
   },
   {
     title: "cardano-multiplatform-lib",
@@ -621,7 +611,7 @@ export const Showcases = [
     preview: require("./builder-tools/gOuroboros.png"),
     website: "https://github.com/blinklabs-io/gouroboros",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
-    tags: ["golang", "lowlevel"],
+    tags: ["golang", "nodeclient"],
   },
   {
     title: "Adder",
@@ -629,7 +619,7 @@ export const Showcases = [
     preview: require("./builder-tools/adder.png"),
     website: "https://github.com/blinklabs-io/adder",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/adder",
-    tags: ["cli", "golang", "chainindex"],
+    tags: ["cli", "golang", "nodeclient"],
   },
   {
     title: "Cardano Node API",
@@ -637,7 +627,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-node-api.png"),
     website: "https://github.com/blinklabs-io/cardano-node-api",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/cardano-node-api",
-    tags: ["http", "golang", "json", "websocket"],
+    tags: ["http", "golang", "json", "websocket", "nodeclient"],
   },
   {
     title: "HeliosLang",
@@ -656,14 +646,6 @@ export const Showcases = [
     tags: ["smartcontracts", "typescript"],
   },
   {
-    title: "koios-pluts",
-    description: "Wrapper of the koios tool based on the plu-ts offchain types",
-    preview: require("./builder-tools/plu-ts.png"),
-    website: "https://github.com/HarmonicLabs/koios-pluts",
-    getstarted: null,
-    tags: ["typescript", "serialization", "koios"],
-  },
-  {
     title: "Aiken",
     description: "A modern smart contract platform for Cardano.",
     preview: require("./builder-tools/aiken.png"),
@@ -680,12 +662,12 @@ export const Showcases = [
     tags: ["operatortool", "cli", "json"],
   },
   {
-    title: "Mesh SDK",
+    title: "Mesh",
     description: "A feature-complete, open-source TypeScript SDK and off-chain framework including wallet integration, transaction building, a smart contract library, third-party API integration, and UI components: with thorough documentation and live demos for all skill levels.",
     preview: require("./builder-tools/mesh.png"),
     website: "https://meshjs.dev/",
     getstarted: "/docs/get-started/mesh/overview",
-    tags: ["favorite", "javascript", "typescript", "transactionbuilder"]
+    tags: ["favorite", "typescript", "transactionbuilder"]
   },
   {
     title: "UTXOS Web3 Services",
@@ -693,15 +675,7 @@ export const Showcases = [
     preview: require("./builder-tools/utxos.png"),
     website: "https://utxos.dev/",
     getstarted: "/docs/get-started/utxos/overview",
-    tags: ["hosted", "http", "wallet", "javascript", "typescript"]
-  },
-  {
-    title: "Koios Python",
-    description: "Koios Python wrapper which allow interacting with all information and parameters stored on the Cardano blockchain.",
-    preview: require("./builder-tools/koios-python.png"),
-    website: "https://github.com/cardano-community/koios-python",
-    getstarted: null,
-    tags: ["koios", "python"],
+    tags: ["hosted", "http", "wallet", "typescript"]
   },
   {
     title: "Cardano Leader Slot",
@@ -733,7 +707,7 @@ export const Showcases = [
     preview: require("./builder-tools/carp.png"),
     website: "https://github.com/dcSpark/carp",
     getstarted: "https://dcspark.github.io/carp/docs/intro",
-    tags: ["chainindex", "sql"],
+    tags: ["indexer", "sql"],
   },
   {
     title: "Plutip",
@@ -752,28 +726,12 @@ export const Showcases = [
     tags: ["favorite", "IDE", "hosted"],
   },
   {
-    title: "Kogmios",
-    description: "A Kotlin API library for interacting with Ogmios.",
-    preview: require("./builder-tools/kogmios.png"),
-    website: "https://github.com/projectNEWM/kogmios",
-    getstarted: null,
-    tags: ["ogmios", "kotlin"],
-  },
-  {
     title: "Cardano Verify Datasignature",
     description: "A lightweight typescript library to verify a cip30 datasignature.",
     preview: require("./builder-tools/cardano-verify-datasignature.png"),
     website: "https://github.com/cardano-foundation/cardano-verify-datasignature",
     getstarted: null,
     tags: ["typescript"],
-  },
-  {
-    title: "Koios Api Python package",
-    description: "The Koios Api python package allows interrogating the Cardano blockchain using https://api.koios.rest/. It has pagination and retry in case of errors.",
-    preview: require("./builder-tools/koios-api-python.png"),
-    website: "https://github.com/cardano-apexpool/koios-api-python",
-    getstarted: null,
-    tags: ["koios", "python"],
   },
   {
     title: "Periodic DNS resolver",
@@ -793,22 +751,6 @@ export const Showcases = [
     tags: ["python", "smartcontracts"],
   },
   {
-    title: "Koios Java Client",
-    description: "A Java API library for interacting with Koios Server instances.",
-    preview: require("./builder-tools/koios-java-client.png"),
-    website: "https://github.com/cardano-community/koios-java-client",
-    getstarted: null,
-    tags: ["koios", "java"],
-  },
-  {
-    title: "@dotare/cardano-delegation",
-    description: "A delegation button that uses cip30 to improve the quality of life for developers and delegators.",
-    preview: require("./builder-tools/dotare-cardano-delegation.png"),
-    website: "https://www.npmjs.com/package/@dotare/cardano-delegation",
-    getstarted: null,
-    tags: ["http", "typescript", "javascript", "wallet", "serialization", "operatortool"],
-  },
-  {
     title: "DCOne Crypto Webhook API",
     description: "API for developers to receive information on changing stake balance.",
     preview: require("./builder-tools/dconecrypto-webhook.png"),
@@ -817,12 +759,12 @@ export const Showcases = [
     tags: ["http"],
   },
   {
-    title: "Maestro Dapp Platform",
+    title: "Maestro",
     description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
     preview: require("./builder-tools/maestro.png"),
     website: "https://www.gomaestro.org/dapp-platform",
     getstarted: "https://docs.gomaestro.org/",
-    tags: ["http", "hosted", "chainindex"]
+    tags: ["http", "hosted", "provider"]
   },
   {
     title: "potential-robot",
@@ -874,14 +816,6 @@ export const Showcases = [
     tags: ["cli", "testing"]
   },
   {
-    title: "Xogmios",
-    description: "An Elixir client for Ogmios.",
-    preview: require("./builder-tools/xogmios.png"),
-    website: "https://github.com/wowica/xogmios",
-    getstarted: null,
-    tags: ["ogmios", "elixir"],
-  },
-  {
     title: "whisky",
     description: "This is a library for building off-chain code on Cardano. It is a cardano-cli like wrapper on cardano-serialization-lib (equivalent on MeshJS's lower level APIs), supporting serious DApps' backend on rust codebase.",
     preview: require("./builder-tools/whisky.png"),
@@ -895,7 +829,7 @@ export const Showcases = [
     preview: require("./builder-tools/u5c.png"),
     website: "https://utxorpc.org/",
     getstarted: "https://utxorpc.org/introduction",
-    tags: ["http", "json", "websocket", "chainindex"]
+    tags: ["http", "json", "websocket", "provider"]
   },
   {
     title: "Mumak",
@@ -919,7 +853,7 @@ export const Showcases = [
     preview: require("./builder-tools/argus.png"),
     website: "https://github.com/SAIB-Inc/Cardano.Sync",
     getstarted: null,
-    tags: ["net", "chainindex"]
+    tags: ["net", "indexer"]
   },
   {
     title: "NFT Playground",
@@ -959,7 +893,7 @@ export const Showcases = [
     preview: require("./builder-tools/ledgersync.jpg"),
     website: "https://github.com/cardano-foundation/cf-ledger-sync",
     getstarted: null,
-    tags: ["java", "chainindex"]
+    tags: ["java", "indexer"]
   },
   {
     title: "CFD: Cardano Fast Deployment tool",
@@ -1140,8 +1074,15 @@ export const Showcases = [
     website: "https://github.com/nftmakerio/NMKR-Studio",
     getstarted: null,
     tags: ["net", "nft"],
+  },
+  {
+    title: "Yaci Store",
+    description: "aci Store is a modular, high-performance Cardano blockchain indexer and datastore that provides a flexible foundation for building blockchain applications. Built on top of the Yaci library, it offers both out-of-the-box functionality and extensive customization options through its plugin framework.",
+    preview: require("./builder-tools/yaci-store.png"),
+    website: "https://github.com/bloxbean/yaci-store",
+    getstarted: "https://store.yaci.xyz/docs/intro",
+    tags: ["indexer", "java"],
   }
-
 ];
 
 export const TagList = Object.keys(Tags);
@@ -1156,44 +1097,45 @@ function sortShowcases() {
 }
 
 export const LanguagesOrTechnologiesTags = [
-  "c",
   "cli",
+  "c",
   "golang",
   "haskell",
-  "http",
   "java",
   "javascript",
-  "json",
-  "koios",
   "kotlin",
   "net",
-  "ogmios",
   "php",
   "purescript",
   "python",
   "redis",
   "rust",
   "scala",
-  "elixir",
   "sql",
-  "typescript",
-  "websocket",
   "elm",
+  "elixir",
+  "typescript",
+  "http",
+  "websocket",
+  "json",
 ];
 
 export const DomainsTags = [
   "smartcontracts",
   "transactionbuilder",
+  "nft",
   "testing",
-  "chainindex",
+  "provider",
+  "indexer",
   "wallet",
   "serialization",
-  "hosted",
+  "nodeclient",
   "IDE",
-  "lowlevel",
-  "nft",
+  "hosted",
   "operatortool",
   "governance",
+  
+  
 ];
 
 export const SortedShowcases = sortShowcases();
