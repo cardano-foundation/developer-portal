@@ -1,5 +1,6 @@
 // GitHub Settings
-const vars = require('./variables')
+const repository = "https://github.com/cardano-foundation/developer-portal";
+const branch = "staging";
 
 // enable or disable the announcement header bar (see 'announcementBar' section below)
 const isAnnouncementActive = true;
@@ -22,8 +23,8 @@ module.exports = {
   organizationName: "cardano-foundation",
   projectName: "developer-portal",
   customFields: {
-    repository: `${vars.repository}`,
-    branch: `${vars.branch}`,
+    repository: repository,
+    branch: branch,
   },
   markdown: {
     mermaid: true,
@@ -189,7 +190,7 @@ module.exports = {
           ],
         },
         {
-          href: `${vars.repository}`,
+          href: repository,
           position: "right",
           className: "header-github-link",
         },
@@ -410,11 +411,11 @@ module.exports = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: `${vars.repository}/edit/${vars.branch}`,
+          editUrl: `${repository}/edit/${branch}`,
         },
         blog: {
           showReadingTime: true,
-          editUrl: `${vars.repository}/edit/${vars.branch}`,
+          editUrl: `${repository}/edit/${branch}`,
           blogSidebarCount: 'ALL',
           onUntruncatedBlogPosts: 'ignore',
         },
