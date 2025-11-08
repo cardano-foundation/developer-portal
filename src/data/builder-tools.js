@@ -330,6 +330,13 @@ export const Tags = {
     icon: null,
     color: "#2D79C7"
   },
+  // PHP
+  php: {
+    label: "PHP",
+    description: "PHP language",
+    icon: null,
+    color: "#777BB4"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -777,12 +784,12 @@ export const Showcases = [
     tags: ["operatortool", "cli"],
   },
   {
-    title: "opshin",
+    title: "OpShin",
     description:
-      "A simple pythonic programming language for Smart Contracts on Cardano.",
+      "Opshin is a pythonic language for writing smart contracts on the Cardano blockchain. Opshin is a strict subset of Python, this means anyone who knows Python can get up to speed on Opshin pretty quickly.",
     preview: require("./builder-tools/opshin.png"),
     website: "https://github.com/OpShin/opshin",
-    getstarted: null,
+    getstarted: "https://opshin.dev/user-manual",
     tags: ["python", "smartcontracts"],
   },
   {
@@ -1062,6 +1069,70 @@ export const Showcases = [
     getstarted: "https://kuberide.com/",
     tags: ["haskell", "transactionbuilder", "IDE"],
   },
+  {
+    title: "Sorbet",
+    description: "A mock wallet implementation for testing out different products as if you were the user.",
+    preview: require("./builder-tools/sorbet.png"),
+    website: "https://github.com/SundaeSwap-finance/Sorbet",
+    getstarted: null,
+    tags: ["typescript", "wallet"],
+  },
+  {
+    title: "p2p-wallet",
+    description: "A fully p2p desktop Cardano wallet with builtin DeFi support, and a transaction builder for executing multiple actions in one transaction.",
+    preview: require("./builder-tools/p2p-wallet.png"),
+    website: "https://github.com/fallen-icarus/p2p-wallet",
+    getstarted: null,
+    tags: ["haskell", "wallet"],
+  },
+  {
+    title: "Cardano Dev Wallet",
+    description: "A desktop wallet for Cardano development. It allows you to test your smart contracts and transactions without having to use a full node.",
+    preview: require("./builder-tools/cardano-dev-wallet.png"),
+    website: "https://github.com/mlabs-haskell/cardano-dev-wallet",
+    getstarted: null,
+    tags: ["typescript", "wallet"],
+  },
+  {
+    title: "Bursa",
+    description: "A programmatic Cardano Wallet",
+    preview: require("./builder-tools/bursa.png"),
+    website: "https://github.com/blinklabs-io/bursa",
+    getstarted: null,
+    tags: ["golang", "wallet"],
+  },
+  {
+    title: "CShell",
+    description: "A Cardano wallet built for developers and power users.",
+    preview: require("./builder-tools/cshell.png"),
+    website: "https://github.com/txpipe/cshell",
+    getstarted: null,
+    tags: ["cli", "wallet"],
+  },
+  {
+    title: "Cardano HW CLI",
+    description: "Cardano CLI tool for hardware wallets.",
+    preview: require("./builder-tools/cardano-hw-cli.png"),
+    website: "https://github.com/vacuumlabs/cardano-hw-cli",
+    getstarted: null,
+    tags: ["cli", "wallet"],
+  },
+  {
+    title: "Cardanopress",
+    description: "Cardano & WordPress plugin integration",
+    preview: require("./builder-tools/cardanopress.png"),
+    website: "https://cardanopress.io/",
+    getstarted: "https://github.com/CardanoPress/cardanopress",
+    tags: ["php", "wallet"],
+  },
+  {
+    title: "Cardano Peer Connect",
+    description: "This library aims to provide simple interfaces to implement CIP-0045 (WebRTC communication) for dApps and wallets",
+    preview: require("./builder-tools/cardano-peer-connect.png"),
+    website: "https://github.com/fabianbormann/cardano-peer-connect",
+    getstarted: null,
+    tags: ["typescript", "wallet"],
+  }
 ];
 
 export const TagList = Object.keys(Tags);
@@ -1088,6 +1159,7 @@ export const LanguagesOrTechnologiesTags = [
   "kotlin",
   "net",
   "ogmios",
+  "php",
   "purescript",
   "python",
   "redis",
