@@ -15,9 +15,7 @@
  *
  */
 
-import React from "react";
 import { sortBy, difference } from "../utils/jsUtils";
-import { Fav } from '../svg/fav.svg'
 
 // List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
 export const Tags = {
@@ -192,6 +190,14 @@ export const Tags = {
     color: '#0F9D58',
   },
 
+  // Elixir
+  elixir: {
+    label: "Elixir",
+    description:
+      "Elixir language",
+    icon: null,
+    color: '#4B275F',
+  },
   // WebSocket
   websocket: {
     label: "WebSocket",
@@ -255,13 +261,13 @@ export const Tags = {
     color: "#D6A2E8"
   },
 
-  // SDK
-  sdk: {
-    label: "SDK",
+  // Transaction Builder
+  transactionbuilder: {
+    label: "Transaction Builder",
     description:
-      "Software Development Kit",
+      "Tools for building and submitting Cardano transactions",
     icon: null,
-    color: "#B33771"
+    color: "#16A085"
   },
 
   // Redis
@@ -326,6 +332,13 @@ export const Tags = {
     icon: null,
     color: "#2D79C7"
   },
+  // Elm
+  elm: {
+    label: "Elm",
+    description: "Elm language",
+    icon: null,
+    color: "#2D79C7"
+  },
 };
 
 // Add your builder tool to (THE END OF) this list.
@@ -337,7 +350,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-cli.png"),
     website: "https://github.com/IntersectMBO/cardano-cli#overview-of-the-cardano-cli-repository",
     getstarted: null,
-    tags: ["favorite", "cli", "serialization"]
+    tags: ["favorite", "cli", "transactionbuilder"]
   },
   {
     title: "bech32",
@@ -385,7 +398,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-addresses.png"),
     website: "https://github.com/IntersectMBO/cardano-addresses#overview",
     getstarted: "https://github.com/IntersectMBO/cardano-addresses#command-line",
-    tags: ["cli", "haskell", "serialization"]
+    tags: ["cli", "serialization"]
   },
   {
     title: "Blockfrost",
@@ -401,7 +414,7 @@ export const Showcases = [
     preview: require("./builder-tools/spo-scripts-gitmachtl.png"),
     website: "https://github.com/gitmachtl/scripts",
     getstarted: null,
-    tags: ["operatortool", "cli", "serialization"],
+    tags: ["operatortool", "cli"],
   },
   {
     title: "Cardano Serialization Library",
@@ -418,7 +431,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-transaction-lib.png"),
     website: "https://github.com/Plutonomicon/cardano-transaction-lib/",
     getstarted: "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
-    tags: ["purescript", "sdk", "plutus"]
+    tags: ["purescript", "transactionbuilder"]
   },
   {
     title: "cardanocli-js",
@@ -426,7 +439,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardanocli-js.png"),
     website: "https://github.com/Berry-Pool/cardanocli-js",
     getstarted: "/docs/get-started/cardanocli-js",
-    tags: ["javascript", "sdk"],
+    tags: ["javascript", "cli"],
   },
   {
     title: "Ogmios",
@@ -443,7 +456,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-client-lib.png"),
     website: "https://github.com/bloxbean/cardano-client-lib",
     getstarted: null,
-    tags: ["java", "sdk", "favorite"],
+    tags: ["java", "transactionbuilder"],
   },
   {
     title: "cardano-addresses TypeScript binding",
@@ -459,7 +472,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-wallet-js.png"),
     website: "https://github.com/tango-crypto/cardano-wallet-js",
     getstarted: "/docs/get-started/cardano-wallet-js",
-    tags: ["javascript", "sdk", "wallet"]
+    tags: ["javascript", "wallet"]
   },
   {
     title: "CardanoSharp Wallet",
@@ -468,7 +481,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardanosharp.png"),
     website: "https://www.cardanosharp.com",
     getstarted: "/docs/get-started/cardanosharp-wallet",
-    tags: ["favorite", "sdk", "wallet", "net"],
+    tags: ["net", "transactionbuilder"],
   },
   {
     title: "Guild Operators Suite",
@@ -484,7 +497,7 @@ export const Showcases = [
     preview: require("./builder-tools/marlowe.png"),
     website: "https://marlowe-lang.org/",
     getstarted: "https://playground.marlowe-lang.org/",
-    tags: ["favorite", "marlowe"],
+    tags: ["plutus"],
   },
   {
     title: "Automint",
@@ -496,40 +509,31 @@ export const Showcases = [
     tags: ["python", "nft"],
   },
   {
-    title: "Fracada v2",
-    description:
-      "Advanced Plutus fractionalized Token protocol which supports Token Bag functionality.",
-    preview: require("./builder-tools/fracada-v2.png"),
-    website: "https://github.com/dcSpark/fracada-il-primo",
-    getstarted: null,
-    tags: ["plutus", "nft"],
-  },
-  {
     title: "PyCardano",
     description:
       "A Cardano library written in Python. It allows users to build and sign transactions without depending on other Cardano serialization tools (such as cardano-cli and cardano-serialization-lib), making it a lightweight library that is easy and fast to set up in all kinds of environments.",
     preview: require("./builder-tools/pycardano.png"),
     website: "https://github.com/Python-Cardano/pycardano",
     getstarted: "https://pycardano.readthedocs.io/en/latest",
-    tags: ["python", "sdk"],
+    tags: ["python", "transactionbuilder"],
   },
   {
-    title: "Oura - the tail of Cardano",
+    title: "Oura",
     description:
       "Oura is a rust-native implementation of a pipeline that connects to the tip of a Cardano node through a combination of Ouroboros mini-protocol, filters the events that match a particular pattern and then submits a succint, self-contained payload to pluggable observers called 'sinks'.",
     preview: require("./builder-tools/oura.png"),
     website: "https://github.com/txpipe/oura",
     getstarted: null,
-    tags: ["favorite", "rust", "chainindex"],
+    tags: ["rust", "chainindex"],
   },
   {
-    title: "Stricahq Typhonjs Wallet",
+    title: "Typhonjs",
     description:
-      "Pure javascript Cardano wallet library.",
+      "A pure javascript Cardano transaction builder library.",
     preview: require("./builder-tools/typhonjs.jpg"),
     website: "https://github.com/StricaHQ/typhonjs",
     getstarted: null,
-    tags: ["javascript", "wallet"],
+    tags: ["javascript", "transactionbuilder"],
   },
   {
     title: "IntelliJ IDE",
@@ -563,7 +567,7 @@ export const Showcases = [
     preview: require("./builder-tools/pallas.png"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
-    tags: ["rust", "lowlevel"]
+    tags: ["rust", "serialization"]
   },
   {
     title: "Scrolls",
@@ -571,7 +575,7 @@ export const Showcases = [
     preview: require("./builder-tools/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
-    tags: ["chainindex", "redis", "favorite"]
+    tags: ["chainindex", "redis"]
   },
   {
     title: "Kupo",
@@ -579,7 +583,7 @@ export const Showcases = [
     preview: require("./builder-tools/kupo.png"),
     website: "https://github.com/CardanoSolutions/kupo#readme",
     getstarted: null,
-    tags: ["chainindex", "http", "json", "favorite"]
+    tags: ["chainindex", "http", "json"]
   },
   {
     title: "cardano-multiplatform-lib",
@@ -587,15 +591,15 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-multiplatform-lib.png"),
     website: "https://github.com/dcSpark/cardano-multiplatform-lib#cardano-multiplatform-lib",
     getstarted: null,
-    tags: ["rust", "serialization", "favorite"]
+    tags: ["rust", "serialization"]
   },
   {
     title: "cardano-js-sdk",
-    description: "JavaScript SDK for interacting with Cardano, providing various key management options, soon to be including support for popular hardware wallets.",
+    description: "JavaScript SDK for interacting with Cardano, providing various key management options, with support for popular hardware wallets",
     preview: require("./builder-tools/cardano-js-sdk.png"),
     website: "https://github.com/input-output-hk/cardano-js-sdk/#readme",
     getstarted: null,
-    tags: ["sdk", "javascript"]
+    tags: ["transactionbuilder", "javascript"]
   },
   {
     title: "Lucid",
@@ -603,23 +607,7 @@ export const Showcases = [
     preview: require("./builder-tools/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
     getstarted: "https://lucid.spacebudz.io/docs/getting-started/choose-wallet/",
-    tags: ["javascript", "sdk", "plutus"]
-  },
-  {
-    title: "Pirouette",
-    description: "Pirouette is a semi-automatic code extraction tool for model-checking. It extracts a TLA+ specification from a Plutus Mealy Machine.",
-    preview: require("./builder-tools/pirouette.png"),
-    website: "https://github.com/tweag/pirouette#readme",
-    getstarted: null,
-    tags: ["haskell", "plutus", "testing"]
-  },
-  {
-    title: "Plutonomicon",
-    description: "A developer-driven guide to the Plutus smart contract language in practice.",
-    preview: require("./builder-tools/plutonomicon.png"),
-    website: "https://github.com/Plutonomicon/plutonomicon#readme",
-    getstarted: null,
-    tags: ["plutus"]
+    tags: ["typescript", "transactionbuilder"]
   },
   {
     title: "Plutarch",
@@ -662,12 +650,12 @@ export const Showcases = [
     tags: ["javascript", "plutus"],
   },
   {
-    title: "plu-ts",
-    description: "Typescript-embedded smart contract programming language and transaction creation library",
+    title: "Pebble",
+    description: "Pebble is a strongly-typed domain-specific language (DSL) for writing Cardano smart contracts. A simple, yet rock solid, functional language with an imperative bias, targeting UPLC.",
     preview: require("./builder-tools/plu-ts.png"),
     website: "https://pluts.harmoniclabs.tech/",
     getstarted: "/docs/get-started/plu-ts",
-    tags: ["plutus", "javascript", "typescript", "serialization"],
+    tags: ["plutus", "typescript"],
   },
   {
     title: "koios-pluts",
@@ -675,7 +663,7 @@ export const Showcases = [
     preview: require("./builder-tools/plu-ts.png"),
     website: "https://github.com/HarmonicLabs/koios-pluts",
     getstarted: null,
-    tags: ["javascript", "typescript", "serialization", "koios"],
+    tags: ["typescript", "serialization", "koios"],
   },
   {
     title: "Aiken",
@@ -683,15 +671,7 @@ export const Showcases = [
     preview: require("./builder-tools/aiken.png"),
     website: "https://aiken-lang.org",
     getstarted: "/docs/get-started/aiken",
-    tags: ["favorite", "cli", "plutus", "aiken"],
-  },
-  {
-    title: "Awesome Aiken",
-    description: "A collection of curated awesome Aiken libraries, DApps, tutorials & other cool stuff.",
-    preview: require("./builder-tools/awesome-aiken.png"),
-    website: "https://github.com/aiken-lang/awesome-aiken",
-    getstarted: "https://aiken-lang.org/fundamentals/getting-started",
-    tags: ["plutus", "aiken"],
+    tags: ["favorite", "plutus"],
   },
   {
     title: "Cardano Signer",
@@ -707,7 +687,7 @@ export const Showcases = [
     preview: require("./builder-tools/mesh.png"),
     website: "https://meshjs.dev/",
     getstarted: "/docs/get-started/mesh/overview",
-    tags: ["javascript", "typescript", "serialization", "sdk", "plutus", "favorite"]
+    tags: ["favorite", "javascript", "typescript", "transactionbuilder"]
   },
   {
     title: "UTXOS Web3 Services",
@@ -715,7 +695,7 @@ export const Showcases = [
     preview: require("./builder-tools/utxos.png"),
     website: "https://utxos.dev/",
     getstarted: "/docs/get-started/utxos/overview",
-    tags: ["hosted", "http", "wallet", "sdk", "javascript", "typescript"]
+    tags: ["hosted", "http", "wallet", "javascript", "typescript"]
   },
   {
     title: "Koios Python",
@@ -723,7 +703,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios-python.png"),
     website: "https://github.com/cardano-community/koios-python",
     getstarted: null,
-    tags: ["koios", "python", "sdk"],
+    tags: ["koios", "python"],
   },
   {
     title: "Cardano Leader Slot",
@@ -755,7 +735,7 @@ export const Showcases = [
     preview: require("./builder-tools/carp.png"),
     website: "https://github.com/dcSpark/carp",
     getstarted: "https://dcspark.github.io/carp/docs/intro",
-    tags: ["chainindex", "sql", "typescript"],
+    tags: ["chainindex", "sql"],
   },
   {
     title: "Plutip",
@@ -779,7 +759,7 @@ export const Showcases = [
     preview: require("./builder-tools/kogmios.png"),
     website: "https://github.com/projectNEWM/kogmios",
     getstarted: null,
-    tags: ["ogmios", "sdk", "kotlin", "lowlevel"],
+    tags: ["ogmios", "kotlin"],
   },
   {
     title: "Cardano Verify Datasignature",
@@ -795,7 +775,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios-api-python.png"),
     website: "https://github.com/cardano-apexpool/koios-api-python",
     getstarted: null,
-    tags: ["koios", "python", "sdk"],
+    tags: ["koios", "python"],
   },
   {
     title: "Periodic DNS resolver",
@@ -812,7 +792,7 @@ export const Showcases = [
     preview: require("./builder-tools/opshin.png"),
     website: "https://github.com/OpShin/opshin",
     getstarted: null,
-    tags: ["python", "cli", "plutus"],
+    tags: ["python", "plutus"],
   },
   {
     title: "Koios Java Client",
@@ -820,7 +800,7 @@ export const Showcases = [
     preview: require("./builder-tools/koios-java-client.png"),
     website: "https://github.com/cardano-community/koios-java-client",
     getstarted: null,
-    tags: ["koios", "java", "sdk"],
+    tags: ["koios", "java"],
   },
   {
     title: "@dotare/cardano-delegation",
@@ -844,15 +824,15 @@ export const Showcases = [
     preview: require("./builder-tools/maestro.png"),
     website: "https://www.gomaestro.org/dapp-platform",
     getstarted: "https://docs.gomaestro.org/",
-    tags: ["http", "hosted"]
+    tags: ["http", "hosted", "chainindex"]
   },
   {
     title: "potential-robot",
-    description: "A JavaScript API for test-driven development with Helios.",
+    description: "A TypeScript API for test-driven development with Helios.",
     preview: require("./builder-tools/potential-robot.png"),
     website: "https://github.com/aleeusgr/potential-robot",
     getstarted: null,
-    tags: ["javascript", "typescript", "testing"]
+    tags: ["typescript", "testing"]
   },
   {
     title: "Hydra",
@@ -860,7 +840,7 @@ export const Showcases = [
     preview: require("./builder-tools/hydra.png"),
     website: "https://hydra.family/head-protocol/",
     getstarted: "https://hydra.family/head-protocol/docs/getting-started",
-    tags: ["haskell", "cli", "http", "websocket", "lowlevel"]
+    tags: ["haskell"]
   },
   {
     title: "NFTCDN",
@@ -877,7 +857,7 @@ export const Showcases = [
     preview: require("./builder-tools/atlas.jpg"),
     website: "https://atlas-app.io/",
     getstarted: null,
-    tags: ["haskell", "plutus"],
+    tags: ["haskell", "transactionbuilder", "plutus"],
   },
   {
     title: "NFT Vending Machine",
@@ -901,15 +881,15 @@ export const Showcases = [
     preview: require("./builder-tools/xogmios.png"),
     website: "https://github.com/wowica/xogmios",
     getstarted: null,
-    tags: ["ogmios", "sdk", "lowlevel"],
+    tags: ["ogmios", "elixir"],
   },
   {
     title: "whisky",
-    description: "This is a library for building off-chain code on Cardano. It is a cardano-cli like wrapper on cardano-serialization-lib (equivalent on MeshJS’s lower level APIs), supporting serious DApps’ backend on rust codebase.",
+    description: "This is a library for building off-chain code on Cardano. It is a cardano-cli like wrapper on cardano-serialization-lib (equivalent on MeshJS's lower level APIs), supporting serious DApps' backend on rust codebase.",
     preview: require("./builder-tools/whisky.png"),
     website: "https://github.com/sidan-lab/whisky",
     getstarted: "https://whisky.sidan.io/",
-    tags: ["rust", "typescript", "serialization", "sdk", "plutus"]
+    tags: ["rust", "transactionbuilder"]
   },
   {
     title: "UTxORPC",
@@ -917,7 +897,7 @@ export const Showcases = [
     preview: require("./builder-tools/u5c.png"),
     website: "https://utxorpc.org/",
     getstarted: "https://utxorpc.org/introduction",
-    tags: ["http", "json", "websocket", "lowlevel", "chainindex"]
+    tags: ["http", "json", "websocket", "chainindex"]
   },
   {
     title: "Mumak",
@@ -925,7 +905,7 @@ export const Showcases = [
     preview: require("./builder-tools/mumak.png"),
     website: "https://github.com/txpipe/mumak",
     getstarted: "https://github.com/txpipe/mumak/blob/main/docs/INSTALL.md",
-    tags: ["rust", "chainindex", "sql", "lowlevel"]
+    tags: ["serialization", "sql"]
   },
   {
     title: "Pallas.Dotnet",
@@ -933,7 +913,7 @@ export const Showcases = [
     preview: require("./builder-tools/pallas-dotnet.png"),
     website: "https://github.com/SAIB-Inc/Pallas.Dotnet",
     getstarted: null,
-    tags: ["rust", "net", "serialization", "sdk"]
+    tags: ["net", "serialization"]
   },
   {
     title: "Argus | Cardano.Sync",
@@ -941,15 +921,7 @@ export const Showcases = [
     preview: require("./builder-tools/argus.png"),
     website: "https://github.com/SAIB-Inc/Cardano.Sync",
     getstarted: null,
-    tags: ["net", "sdk", "chainindex"]
-  },
-  {
-    title: "Cardano Looking Glass",
-    description: "A visual blockchain explorer which supports CIP54 and CIP68 Smart NFTs.",
-    preview: require("./builder-tools/clg.png"),
-    website: "https://clg.wtf/",
-    getstarted: null,
-    tags: ["nft", "hosted"]
+    tags: ["net", "chainindex"]
   },
   {
     title: "NFT Playground",
@@ -957,7 +929,7 @@ export const Showcases = [
     preview: require("./builder-tools/nft-playground.png"),
     website: "https://nft-playground.dev/",
     getstarted: "https://nft-playground.dev/help",
-    tags: ["IDE", "sdk", "hosted", "nft", "javascript"]
+    tags: ["IDE", "hosted", "nft", "javascript"]
   },
   {
     title: "Cardano Audit Script for SPOs",
@@ -973,7 +945,7 @@ export const Showcases = [
     preview: require("./builder-tools/zhuli.jpg"),
     website: "https://github.com/CardanoSolutions/zhuli",
     getstarted: null,
-    tags: ["rust", "governance"]
+    tags: ["cli", "governance"]
   },
   {
     title: "cf-java-rewards-calculation",
@@ -981,7 +953,7 @@ export const Showcases = [
     preview: require("./builder-tools/rewardcalc.jpg"),
     website: "https://github.com/cardano-foundation/cf-java-rewards-calculation",
     getstarted: null,
-    tags: ["java", "reward"]
+    tags: ["java", "testing"]
   },
   {
     title: "cf-ledger-sync",
@@ -1001,11 +973,11 @@ export const Showcases = [
   },
   {
     title: "pg_cardano",
-    description: "A fast, Rust-based PostgreSQL extension for Cardano cryptographic operations, including Base58, Bech32, CBOR, Blake2b, and Ed25519 with some useful high-level tools.",
+    description: "A PostgreSQL extension providing a suite of Cardano-related tools, including cryptographic functions, address encoding/decoding, and blockchain data processing.",
     preview: require("./builder-tools/pg_cardano.png"),
     website: "https://github.com/cardano-community/pg_cardano",
     getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
-    tags: ["rust", "serialization", "sql", "lowlevel"]
+    tags: ["serialization", "sql"]
   },
   {
     title: "Cardano-C",
@@ -1013,7 +985,7 @@ export const Showcases = [
     preview: require("./builder-tools/cardano-c.png"),
     website: "https://github.com/Biglup/cardano-c",
     getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
-    tags: ["c", "serialization", "sdk", "lowlevel"]
+    tags: ["c", "serialization"]
   },
   {
     title: "Evolution SDK",
@@ -1023,7 +995,7 @@ export const Showcases = [
     website: "https://no-witness-labs.github.io/evolution-sdk/",
     getstarted:
       "https://no-witness-labs.github.io/evolution-sdk/install",
-    tags: ["typescript", "javascript", "sdk", "plutus"],
+    tags: ["typescript", "transactionbuilder"],
   },
   {
     title: "Scalus",
@@ -1031,7 +1003,7 @@ export const Showcases = [
     preview: require("./builder-tools/scalus.png"),
     website: "https://scalus.org/",
     getstarted: "https://scalus.org/docs/get-started",
-    tags: ["scala", "sdk", "plutus"]
+    tags: ["scala", "transactionbuilder", "plutus"]
   },
   {
     title: "Lace Anatomy",
@@ -1039,7 +1011,7 @@ export const Showcases = [
     preview: require("./builder-tools/lace-anatomy.png"),
     website: "https://laceanatomy.com",
     getstarted: "https://laceanatomy.com",
-    tags: ["testing", "lowlevel"]
+    tags: ["testing"]
   },
   {
     title: "Gastronomy",
@@ -1047,15 +1019,15 @@ export const Showcases = [
     preview: require("./builder-tools/gastronomy.png"),
     website: "https://sundae.fi/products/gastronomy",
     getstarted: "https://github.com/SundaeSwap-finance/gastronomy",
-    tags: ["testing", "plutus"]
+    tags: ["testing"]
   },
   {
     title: "Datum Explorer",
-    description: "High-performance Rust + WASM tool to decode CBOR data using CDDL schemas. Includes CLI, libraries, and frontend.",
+    description: "Designed to decode, understand, and build with CBOR data. The tool simplifies working with CBOR by leveraging schema definitions to provide a more human-readable and structured representation of the data.",
     preview: require("./builder-tools/datum-explorer.png"),
     website: "https://github.com/WingRiders/datum-explorer#readme",
     getstarted: "https://datum-explorer.wingriders.com/?schema=detect",
-    tags: ["rust", "typescript", "cli", "serialization", "plutus", "hosted"]
+    tags: ["typescript", "cli", "serialization", "hosted"]
   },
   {
     title: "Apollo",
@@ -1063,7 +1035,7 @@ export const Showcases = [
     preview: require("./builder-tools/apollo.png"),
     website: "https://github.com/Salvionied/apollo",
     getstarted: null,
-    tags: ["golang", "lowlevel"]
+    tags: ["golang", "serialization"]
   },
   {
     title: "Weld Wallet Connector",
@@ -1074,6 +1046,30 @@ export const Showcases = [
     getstarted:
       "https://github.com/Cardano-Forge/weld/tree/main/documentation/",
     tags: ["typescript", "wallet"],
+  },
+  {
+    title: "Elm Cardano",
+    description: "Elm offchain package for Cardano. This project aims to be the friendliest and most productive way of handling an offchain Cardano frontend. It should be a perfect match to Aiken for onchain code.",
+    preview: require("./builder-tools/elm-cardano.png"),
+    website: "https://github.com/elm-cardano/elm-cardano",
+    getstarted: "https://elm-doc-preview.netlify.app/Cardano-TxIntent?repo=elm-cardano%2Felm-cardano&version=elm-doc-preview",
+    tags: ["elm", "transactionbuilder"],
+  },
+  {
+    title: "Blaze",
+    description: "Blaze is a library, which allows you to create Cardano transactions and off-chain code for your Aiken contracts in JavaScript.",
+    preview: require("./builder-tools/blaze.png"),
+    website: "https://github.com/butaneprotocol/blaze-cardano",
+    getstarted: "https://blaze.butane.dev/",
+    tags: ["javascript", "transactionbuilder"],
+  },
+  {
+    title: "Kuber",
+    description: "Haskell library and API server for composing balanced Cardano transactions.",
+    preview: require("./builder-tools/kuber.png"),
+    website: "https://github.com/dQuadrant/kuber",
+    getstarted: "https://kuberide.com/",
+    tags: ["haskell", "transactionbuilder", "IDE"],
   },
 ];
 
@@ -1106,15 +1102,27 @@ export const LanguagesOrTechnologiesTags = [
   "redis",
   "rust",
   "scala",
+  "elixir",
   "sql",
   "typescript",
   "websocket",
+  "elm",
 ];
 
-export const DomainsTags = TagList.filter((tag) => {
-  const others = LanguagesOrTechnologiesTags.concat("favorite");
-  return !others.includes(tag);
-});
+export const DomainsTags = [
+  "chainindex",
+  "governance",
+  "hosted",
+  "IDE",
+  "lowlevel",
+  "nft",
+  "operatortool",
+  "plutus",
+  "serialization",
+  "testing",
+  "transactionbuilder",
+  "wallet",
+];
 
 export const SortedShowcases = sortShowcases();
 
