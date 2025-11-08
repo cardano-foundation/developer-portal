@@ -188,11 +188,11 @@ function ShowcaseFilters() {
         <ShowcaseLatestToggle />
         <ShowcaseFilterToggle />
       </div>
-        <h3>By language / technology</h3>
-        {filterBy(LanguagesOrTechnologiesTags)}
-        <br/>
         <h3>By domain</h3>
         {filterBy(DomainsTags)}
+        <br/>
+        <h3>By language / technology</h3>
+        {filterBy(LanguagesOrTechnologiesTags)}
     </div>
   );
 }
