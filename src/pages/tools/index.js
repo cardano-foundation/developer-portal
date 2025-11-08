@@ -33,7 +33,7 @@ import Fav from "../../svg/fav.svg";
 const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
 const CTA = "₳dd your tool";
-const FILENAME = "builder-tools.js";
+const FILENAME = "builder-tools/tools.js";
 
 export function prepareUserState() {
   if (ExecutionEnvironment.canUseDOM) {
