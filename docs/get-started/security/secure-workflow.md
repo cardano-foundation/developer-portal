@@ -31,7 +31,7 @@ All transactions will be done in these 3 steps:
 
 1. on Internet connected computer:
       - **Assemble** all transaction details (from Cardano node or other query) in a file & save it to a removable device.
-2. in [air gap environment](/docs/get-started/security/air-gap.md):
+2. in [air gap environment](/docs/learn/educational-resources/air-gap):
       - **Build** information from this file into a signed transaction & save the Tx file back on the same device (note `Tx` = "transaction").
 3. on Internet connected computer:
       - **Upload** the Tx file to your Cardano node and submit it.
@@ -44,15 +44,15 @@ Therefore, the payment signing key (the private component of the [Cardano wallet
 
 ## Prerequisites
 
-### Your [air gap environment](/docs/get-started/security/air-gap.md)
+### Your [air gap environment](/docs/learn/educational-resources/air-gap)
 
-Follow [these instructions](/docs/get-started/security/air-gap.md) to procure the environment (usually a dedicated "air gap machine") if you haven't already.
+Follow [these instructions](/docs/learn/educational-resources/air-gap) to procure the environment (usually a dedicated "air gap machine") if you haven't already.
 
 ### Move any existing keys inside the air gap
 
 Second, if you've been running your applications, token/NFT generation, or stake pool with keys stored on any Internet connected machine (whether desktop or server):
 
-- Move all those keys onto the air gap host and [securely delete](/docs/get-started/security/air-gap.md#install-secure-deletion-tools) the originals.
+- Move all those keys onto the air gap host and [securely delete](/docs/learn/educational-resources/air-gap#install-secure-deletion-tools) the originals.
 - Also, seriously consider whether those resources should be rebuilt due to the exposure of those private keys.
 
 To simplify the commands below, this guide assumes you will store all your keys and addresses *in the same single directory* where you will be building your transactions.

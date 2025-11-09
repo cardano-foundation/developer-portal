@@ -87,7 +87,7 @@ module.exports = {
           position: 'left',
           items: [
             {
-              to: "docs/get-started/technical-concepts/",
+              to: "docs/learn/core-concepts/",
               label: "Core Concepts",
             },
             {
@@ -328,7 +328,7 @@ module.exports = {
             ]
           },
           {
-            to: '/docs/get-started/technical-concepts/',
+            to: '/docs/learn/core-concepts/',
             from: '/docs/stake-pool-course/introduction-to-cardano',
           },
           {
@@ -360,7 +360,7 @@ module.exports = {
             ]
           },
           {
-            to: '/docs/get-started/technical-concepts/',
+            to: '/docs/learn/core-concepts/',
             from: '/docs/stake-pool-course/handbook/utxo-model',
           },
           {
@@ -387,7 +387,7 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/configure-topology-files',
           },
           {
-            to: '/docs/get-started/security/air-gap',
+            to: '/docs/learn/educational-resources/air-gap',
             from: '/docs/operate-a-stake-pool/security/air-gap',
           },
           {
@@ -405,6 +405,46 @@ module.exports = {
           {
             to: '/docs/community/funding',
             from: '/docs/get-started/funding',
+          },
+          {
+            to: '/docs/learn/core-concepts/',
+            from: ['/docs/get-started/technical-concepts/', '/docs/get-started/technical-concepts/overview'],
+          },
+          {
+            to: '/docs/learn/core-concepts/eutxo',
+            from: '/docs/get-started/technical-concepts/eutxo',
+          },
+          {
+            to: '/docs/learn/core-concepts/transactions',
+            from: '/docs/get-started/technical-concepts/transactions',
+          },
+          {
+            to: '/docs/learn/core-concepts/addresses',
+            from: '/docs/get-started/technical-concepts/addresses',
+          },
+          {
+            to: '/docs/learn/core-concepts/fees',
+            from: '/docs/get-started/technical-concepts/fees',
+          },
+          {
+            to: '/docs/learn/core-concepts/assets',
+            from: '/docs/get-started/technical-concepts/assets',
+          },
+          {
+            to: '/docs/learn/educational-resources/haskell/onboarding',
+            from: ['/docs/get-started/haskell/', '/docs/get-started/haskell/onboarding'],
+          },
+          {
+            to: '/docs/learn/educational-resources/haskell/functional-programming',
+            from: '/docs/get-started/haskell/functional-programming',
+          },
+          {
+            to: '/docs/learn/educational-resources/haskell/advanced-functional-programming',
+            from: '/docs/get-started/haskell/advanced-functional-programming',
+          },
+          {
+            to: '/docs/learn/educational-resources/air-gap',
+            from: '/docs/get-started/security/air-gap',
           },
         ],
       },

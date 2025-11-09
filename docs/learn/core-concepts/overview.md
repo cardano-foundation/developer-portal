@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /get-started/technical-concepts/
+slug: /learn/core-concepts/
 title: Core Concepts
 sidebar_label: Overview
 description: Learn the core technical concepts behind Cardano including EUTXO, transactions, addresses, and more.

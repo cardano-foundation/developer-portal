@@ -228,4 +228,4 @@ Positive values create tokens, negative values burn them. The ledger validates m
 
 ## Next Steps
 
-Ready to build with tokens? Check out [Minting Native Tokens](/docs/native-tokens/) for practical guides on creating your own tokens and [Minting NFTs](/docs/native-tokens/minting-nfts) for non-fungible tokens. Learn about metadata standards in the [Token Registry](/docs/native-tokens/token-registry/cardano-token-registry-overview), or explore [Smart Contracts](/docs/smart-contracts/) for advanced minting policies. To understand the foundation of how tokens work, read about the [EUTXO Model](/docs/get-started/technical-concepts/eutxo).
+Ready to build with tokens? Check out [Minting Native Tokens](/docs/native-tokens/) for practical guides on creating your own tokens and [Minting NFTs](/docs/native-tokens/minting-nfts) for non-fungible tokens. Learn about metadata standards in the [Token Registry](/docs/native-tokens/token-registry/cardano-token-registry-overview), or explore [Smart Contracts](/docs/smart-contracts/) for advanced minting policies. To understand the foundation of how tokens work, read about the [EUTXO Model](/docs/learn/core-concepts/eutxo).

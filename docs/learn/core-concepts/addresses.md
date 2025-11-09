@@ -95,6 +95,6 @@ The binary format follows this structure:
 
 ## Next Steps
 
-- Learn about [Wallet & Key Management](/docs/get-started/technical-concepts/wallet-key-management)
-- Understand [Transaction Fees](/docs/get-started/technical-concepts/fees)
+- Learn about [Wallet & Key Management](/docs/learn/core-concepts/wallet-key-management)
+- Understand [Transaction Fees](/docs/learn/core-concepts/fees)
 - Build with addresses: [Building dApps](/docs/integrate-cardano/)

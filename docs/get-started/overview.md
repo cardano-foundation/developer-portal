@@ -26,15 +26,15 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 
 ## What you need to bring
 
-To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](technical-concepts/eutxo), [transactions](technical-concepts/transactions), [addresses](technical-concepts/addresses), and [key derivation](technical-concepts/wallet-key-management#key-derivation).
+To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](../learn/core-concepts/eutxo), [transactions](../learn/core-concepts/transactions), [addresses](../learn/core-concepts/addresses), and [key derivation](../learn/core-concepts/wallet-key-management#key-derivation).
 
-If you are unfamiliar with these terms, start with [technical concepts](technical-concepts/), and you can complete the [stake pool course](../operate-a-stake-pool/) afterward. It will also help you understand basic concepts, even if you don't want to run a stake pool.
+If you are unfamiliar with these terms, start with [technical concepts](../learn/core-concepts/), and you can complete the [stake pool course](../operate-a-stake-pool/) afterward. It will also help you understand basic concepts, even if you don't want to run a stake pool.
 
 ## Cardano is different
 
 If you have experience with other smart contract platforms and want to start building on Cardano, it is vital to know its differences:
 
-- It makes sense to get your head around the [concept of UTxO](technical-concepts/eutxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/).
+- It makes sense to get your head around the [concept of UTxO](../learn/core-concepts/eutxo) and later [the extended UTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/).
 - [Tokens on Cardano](../native-tokens/) are not built with smart contracts. Instead, tokens are native and live on the ledger. The protocol treats them as first-class citizens, like ada. It is quite different from our peers that don’t have native tokens and need to use a smart contract to send tokens.
 - [Native tokens](../native-tokens/) use the core infrastructure, and the network has to do everything else instead of running a smart contract and calling a method called 'transfer'. On Cardano, you are sending a standard transaction. This removes a layer of extra complexity and the risk of human mistakes, as the ledger handles all token-related functions.
 - [Smart contracts](../smart-contracts/) work different on Cardano because of the [eUTxO model](https://iohk.io/en/blog/posts/2021/03/11/cardanos-extended-utxo-accounting-model/). Misconceptions were floating around suggesting [that Cardano only supports one transaction per block](https://sundaeswap-finance.medium.com/concurrency-state-cardano-c160f8c07575).

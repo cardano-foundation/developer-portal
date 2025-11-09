@@ -190,6 +190,6 @@ The key insight is that **single on-chain state patterns from account-based syst
 
 ## Next Steps
 
-- Learn about [Transactions](/docs/get-started/technical-concepts/transactions) and how they work in the EUTXO model
-- Understand [Addresses](/docs/get-started/technical-concepts/addresses) on Cardano
+- Learn about [Transactions](/docs/learn/core-concepts/transactions) and how they work in the EUTXO model
+- Understand [Addresses](/docs/learn/core-concepts/addresses) on Cardano
 - Build smart contracts using EUTXO: [Smart Contracts Overview](/docs/smart-contracts/)

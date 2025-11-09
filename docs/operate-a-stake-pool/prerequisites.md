@@ -29,7 +29,7 @@ We observed people who had no prior knowledge of Linux, shells, or networking, b
 Best procedures should always be a key consideration when running a stake pool. Security isn't something you can turn on or off or change in a configuration file. It is both an attitude and a way of life.
 
 - [Discuss security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157).
-- [Security Best Practices](../get-started/security/air-gap).
+- [Security Best Practices](../learn/educational-resources/air-gap).
 
 In order to provide the best RoS to delegators, a pools has to produce blocks and higher the delegation the more blocks it produces resulting in higher RoS. So, a pool operator needs the skills for attracting delegators to the pool, which usually is the toughest part when starting a new pool. Every new pool operator should device a strategy before starting a pool.
 

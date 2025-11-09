@@ -126,6 +126,6 @@ How dropped transactions happen on cardano and how to ensure we always deliver t
 
 ## Next Steps
 
-- Learn about [Transaction Fees](/docs/get-started/technical-concepts/fees)
-- Understand [Addresses](/docs/get-started/technical-concepts/addresses)
+- Learn about [Transaction Fees](/docs/learn/core-concepts/fees)
+- Understand [Addresses](/docs/learn/core-concepts/addresses)
 - Build transactions: [Building dApps](/docs/integrate-cardano/)

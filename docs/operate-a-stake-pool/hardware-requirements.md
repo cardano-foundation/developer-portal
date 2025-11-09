@@ -15,7 +15,7 @@ Currently the following specifications are recommended on Mainnet:
 - Storage: 150GB of free storage (250GB recommended for future growth)
 - Operating system: 64-bit Linux (Ubuntu 18.04+, Mint 19.3+, Debian 10.3+)
 - Broadband: a good network connection with about 1 GB of bandwidth per hour on a public IP4 address
-- [Air-gapped environment](/docs/get-started/security/air-gap.md) for key security
+- [Air-gapped environment](/docs/learn/educational-resources/air-gap) for key security
 
 For testnet pools, some requirements are smaller:
 - Memory: 4GB of RAM

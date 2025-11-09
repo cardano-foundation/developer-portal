@@ -254,28 +254,28 @@ module.exports = {
         label: "Core Concepts",
         link: {
           type: "doc",
-          id: "get-started/technical-concepts/overview"
+          id: "learn/core-concepts/overview"
         },
         items: [
-          "get-started/technical-concepts/eutxo",
-          "get-started/technical-concepts/transactions",
-          "get-started/technical-concepts/addresses",
-          "get-started/technical-concepts/fees",
-          "get-started/technical-concepts/assets",
+          "learn/core-concepts/eutxo",
+          "learn/core-concepts/transactions",
+          "learn/core-concepts/addresses",
+          "learn/core-concepts/fees",
+          "learn/core-concepts/assets",
         ],
       },
       {
         type: "category",
         label: "Educational Resources",
         items: [
-          "get-started/security/air-gap",
+          "learn/educational-resources/air-gap",
           {
             type: "category",
             label: "Haskell",
             items: [
-              "get-started/haskell/onboarding",
-              "get-started/haskell/functional-programming",
-              "get-started/haskell/advanced-functional-programming",
+              "learn/educational-resources/haskell/onboarding",
+              "learn/educational-resources/haskell/functional-programming",
+              "learn/educational-resources/haskell/advanced-functional-programming",
             ],
           },
         ],

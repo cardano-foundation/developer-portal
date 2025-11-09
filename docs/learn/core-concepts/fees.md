@@ -55,6 +55,6 @@ Or check via blockchain explorers that display protocol parameters.
 
 ## Next Steps
 
-- Learn about [Transactions](/docs/get-started/technical-concepts/transactions)
-- Understand [EUTXO Model](/docs/get-started/technical-concepts/eutxo)
+- Learn about [Transactions](/docs/learn/core-concepts/transactions)
+- Understand [EUTXO Model](/docs/learn/core-concepts/eutxo)
 - Build transactions: [Building dApps](/docs/integrate-cardano/)

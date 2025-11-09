@@ -19,13 +19,13 @@ When one's primary computer is booted from this removable drive, the secure ("co
 
 These instructions may be difficult or unsafe to follow unless you have experience with "dual boot" Linux installations and other custom OS & booting configurations.
 
-Operators needing a safer path can follow instructions at the [Air Gap Environment](/docs/get-started/security/air-gap) page.
+Operators needing a safer path can follow instructions at the [Air Gap Environment](/docs/learn/educational-resources/air-gap) page.
 
 :::
 
 ### How to use this guide  
 
-This tool has been developed by the [COSD stake pool](https://cexplorer.io/pool/pool1e98xlcgj80c3rdmm27v5hnvrdtut52e65uk0ema7ctfag596vr2), beginning as a publication of their own operating environment when scared to death of losing their pool pledge and not being able to come by a second machine for the conventional [air gap environment](/docs/get-started/security/air-gap) (see origin story: [Why was the Frankenwallet developed?](https://frankenwallet.com/intro/history)).
+This tool has been developed by the [COSD stake pool](https://cexplorer.io/pool/pool1e98xlcgj80c3rdmm27v5hnvrdtut52e65uk0ema7ctfag596vr2), beginning as a publication of their own operating environment when scared to death of losing their pool pledge and not being able to come by a second machine for the conventional [air gap environment](/docs/learn/educational-resources/air-gap) (see origin story: [Why was the Frankenwallet developed?](https://frankenwallet.com/intro/history)).
 
 At the time of this writing, the full instructions for:
 
@@ -60,7 +60,7 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ### Some other use cases & limitations of this material
 
-➤ You *can* use the Frankenwallet instructions to set up an Air Gap node on a full computer… but since the time of its development, this procedure has been adapted to a more appropriate page on the Dev Portal (the aforementioned [Air Gap Environment](/docs/get-started/security/air-gap)).
+➤ You *can* use the Frankenwallet instructions to set up an Air Gap node on a full computer… but since the time of its development, this procedure has been adapted to a more appropriate page on the Dev Portal (the aforementioned [Air Gap Environment](/docs/learn/educational-resources/air-gap)).
 
 From [Frankenwallet > Miscellaneous FAQ's](https://frankenwallet.com/intro/faq):
 
