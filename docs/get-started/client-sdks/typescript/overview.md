@@ -1,7 +1,7 @@
 ---
 id: overview
 title: TypeScript SDKs
-sidebar_label: TypeScript
+sidebar_label: Overview
 description: TypeScript/JavaScript SDKs for building on Cardano
 ---
 

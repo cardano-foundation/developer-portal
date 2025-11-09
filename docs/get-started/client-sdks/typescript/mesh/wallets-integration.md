@@ -23,7 +23,7 @@ Wallet key management system uses Shamir’s Secret Sharing to split the private
 
 Overall, the integration with a wallet-as-a-service solution provides a self-custody wallet to end users and accelerates the time-to-market for developers.
 
-To get started with UTXOS wallet-as-a-service, visit the [UTXOS documentation](https://docs.utxos.dev/wallet).
+To get started with UTXOS wallet-as-a-service, visit the [UTXOS documentation](https://docs.utxos.dev/wallet). See also our [UTXOS integration guide](/docs/build/integrate/wallet-authentication/utxos/overview) for detailed setup instructions and examples.
 
 ## Browser Wallet
 

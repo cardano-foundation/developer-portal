@@ -581,8 +581,8 @@ module.exports = {
             from: '/docs/get-started/evolution-sdk',
           },
           {
-            to: '/docs/get-started/client-sdks/typescript/utxos/overview',
-            from: '/docs/get-started/utxos',
+            to: '/docs/build/integrate/wallet-authentication/utxos/overview',
+            from: ['/docs/get-started/utxos', '/docs/get-started/client-sdks/typescript/utxos/overview'],
           },
           {
             to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
@@ -633,16 +633,20 @@ module.exports = {
             from: '/docs/integrate-cardano/x402-standard',
           },
           {
-            to: '/docs/build/integrate/user-wallet-authentication/overview',
-            from: '/docs/integrate-cardano/user-wallet-authentication/overview',
+            to: '/docs/build/integrate/wallet-authentication/overview',
+            from: ['/docs/integrate-cardano/user-wallet-authentication/overview', '/docs/build/integrate/user-wallet-authentication/overview'],
           },
           {
-            to: '/docs/build/integrate/user-wallet-authentication/mesh',
-            from: '/docs/integrate-cardano/user-wallet-authentication/mesh',
+            to: '/docs/build/integrate/wallet-authentication/mesh',
+            from: ['/docs/integrate-cardano/user-wallet-authentication/mesh', '/docs/build/integrate/user-wallet-authentication/mesh'],
           },
           {
-            to: '/docs/build/integrate/user-wallet-authentication/cardano-serialization-lib',
-            from: '/docs/integrate-cardano/user-wallet-authentication/cardano-serialization-lib',
+            to: '/docs/build/integrate/wallet-authentication/cardano-serialization-lib',
+            from: ['/docs/integrate-cardano/user-wallet-authentication/cardano-serialization-lib', '/docs/build/integrate/user-wallet-authentication/cardano-serialization-lib'],
+          },
+          {
+            to: '/docs/build/integrate/wallet-authentication/utxos/overview',
+            from: '/docs/build/integrate/user-wallet-authentication/utxos/overview',
           },
           {
             to: '/docs/build/integrate/ai-agents/overview',
@@ -673,8 +677,8 @@ module.exports = {
             from: '/docs/integrate-cardano/listening-for-payments',
           },
           {
-            to: '/docs/build/integrate/user-wallet-authentication/overview',
-            from: '/docs/integrate-cardano/user-wallet-authentication',
+            to: '/docs/build/integrate/wallet-authentication/overview',
+            from: ['/docs/integrate-cardano/user-wallet-authentication', '/docs/build/integrate/user-wallet-authentication'],
           },
           {
             to: '/docs/build/integrate/ai-agents/overview',
