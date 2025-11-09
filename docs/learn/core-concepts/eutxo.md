@@ -118,7 +118,7 @@ The EUTXO model combines:
 - **Context**: Transaction information available to scripts during validation
 
 :::tip Understanding Validators
-To understand how smart contracts (validators) work on the EUTXO model and how these components interact, see the [Smart Contracts Overview](/docs/smart-contracts/).
+To understand how smart contracts (validators) work on the EUTXO model and how these components interact, see the [Smart Contracts Overview](/docs/build/smart-contracts/overview).
 :::
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
@@ -192,4 +192,4 @@ The key insight is that **single on-chain state patterns from account-based syst
 
 - Learn about [Transactions](/docs/learn/core-concepts/transactions) and how they work in the EUTXO model
 - Understand [Addresses](/docs/learn/core-concepts/addresses) on Cardano
-- Build smart contracts using EUTXO: [Smart Contracts Overview](/docs/smart-contracts/)
+- Build smart contracts using EUTXO: [Smart Contracts Overview](/docs/build/smart-contracts/overview)

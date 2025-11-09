@@ -28,7 +28,7 @@ To read more about CIP 721 and the NFT Metadata Standard, click [here](https://g
 
 **How we minted the NFTAs**
 
-Tokens that are built on Cardano are native. Unlike Ethereum’s ERC-20 tokens, Cardano doesn’t require a smart contract. Instead, the tokens are treated like Cardano’s native token, ADA. Using native tokens, you can create a variety of digital assets like Non-Fungible-Tokens representing art or appreciation. Learn more about this [here](../docs/native-tokens/).
+Tokens that are built on Cardano are native. Unlike Ethereum’s ERC-20 tokens, Cardano doesn’t require a smart contract. Instead, the tokens are treated like Cardano’s native token, ADA. Using native tokens, you can create a variety of digital assets like Non-Fungible-Tokens representing art or appreciation. Learn more about this [here](/docs/build/native-tokens/overview).
 
 To make sure the NFTAs came from the Cardano Foundation, a **policyId** identifies them. You can check out more information about the NFTAs and the **policyId** at the [Cardano Foundation NFTA Official Page](https://cardanofoundation.org/nfta). In addition, they are attached with [metadata](https://pool.pm/2783ee3048c5158646674def386e8610ce2c8824e515451baa4769a6.CFNFTA01) that describes the details of the transaction and ownership address.
 
@@ -36,4 +36,4 @@ To mint the NFT’s, we first used a Cardano Foundation wallet to create a trans
 
 ![title image](/img/devblog/how-to-mint.png)
 
-At the time of writing this article, two NFTs have not been minted. We are waiting on two developers to provide their wallet addresses. Also, the Cardano Explorer is not showing the transactions correctly when you try to scan the QR code on the NFTAs. If you are interested in learning more or mint native assets or NFTs, visit the [Cardano Developer Portal](../docs/native-tokens/). 
+At the time of writing this article, two NFTs have not been minted. We are waiting on two developers to provide their wallet addresses. Also, the Cardano Explorer is not showing the transactions correctly when you try to scan the QR code on the NFTAs. If you are interested in learning more or mint native assets or NFTs, visit the [Cardano Developer Portal](/docs/build/native-tokens/overview). 

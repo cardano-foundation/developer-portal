@@ -11,7 +11,7 @@ image: /img/og/og-getstarted-running-cardano-node.png
 This guide will show you how to run `cardano-node` and `cardano-cli` on your system and some simple examples of how you can interact with the **Cardano** blockchain.
 
 :::note
-This guide assumes you installed `cardano-node` and `cardano-cli` into your system. If not, you can refer to [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md) guide for instructions on how to do that.
+This guide assumes you installed `cardano-node` and `cardano-cli` into your system. If not, you can refer to [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) guide for instructions on how to do that.
 :::
 
 :::important
@@ -175,7 +175,7 @@ In this section, we will use the path `$HOME/cardano/testnet` to store all the t
 
 We will focus on six key command-line parameters for running a node:
 
-**`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](docs/operate-a-stake-pool/node-operations/running-cardano.md#configuration-files).
+**`--topology`**: This requires the path of the `topology.json` file that you have downloaded as instructed [above](/docs/get-started/infrastructure/node/running-cardano#configuration-files).
 
 > For example, If you have downloaded the `topology.json` file to the path `$HOME/cardano/testnet/topology.json`, then the argument would be something like this:
 ```

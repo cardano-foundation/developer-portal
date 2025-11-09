@@ -53,7 +53,7 @@ Different providers offer different features and pricing models:
 Beyond API providers, you have other ways to connect to Cardano:
 
 - **[Demeter](/docs/get-started/infrastructure/demeter)**: Full cloud infrastructure platform with managed nodes, DB-Sync, Ogmios, and Kupo
-- **[Running Your Own Node](/docs/operate-a-stake-pool/node-operations/cardano-components)**: Complete control over infrastructure
+- **[Running Your Own Node](/docs/get-started/infrastructure/node/cardano-components)**: Complete control over infrastructure
 
 ---
 

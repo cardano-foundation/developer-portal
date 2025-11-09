@@ -128,4 +128,4 @@ How dropped transactions happen on cardano and how to ensure we always deliver t
 
 - Learn about [Transaction Fees](/docs/learn/core-concepts/fees)
 - Understand [Addresses](/docs/learn/core-concepts/addresses)
-- Build transactions: [Building dApps](/docs/integrate-cardano/)
+- Build transactions: [Building dApps](/docs/build/integrate/overview)

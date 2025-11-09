@@ -91,11 +91,11 @@ module.exports = {
               label: "Core Concepts",
             },
             {
-              to: "/docs/native-tokens/",
+              to: "/docs/build/native-tokens/overview",
               label: "Native Tokens",
             },
             {
-              to: "/docs/smart-contracts/",
+              to: "/docs/build/smart-contracts/overview",
               label: "Smart Contracts",
             },
             {
@@ -296,7 +296,7 @@ module.exports = {
         redirects: [
           {
             // redirect the old smart contracts signpost to the new smart contract category
-            to: '/docs/smart-contracts/',
+            to: '/docs/build/smart-contracts/overview',
             from: '/docs/get-started/smart-contracts-signpost',
           },
           {
@@ -677,6 +677,10 @@ module.exports = {
           {
             to: '/docs/build/transaction-metadata/mesh',
             from: '/docs/transaction-metadata/mesh',
+          },
+          {
+            to: '/docs/build/smart-contracts/overview',
+            from: ['/docs/smart-contracts/', '/docs/smart-contracts/overview'],
           },
         ],
       },

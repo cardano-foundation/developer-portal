@@ -27,7 +27,7 @@ export CARDANO_NODE_SOCKET_PATH=~/node.socket
 ```
 
 :::note
-This guide assumes you have installed cardano-node into your system. If not you can refer to Installing [cardano-node](../../../operate-a-stake-pool/node-operations/installing-cardano-node) guide for instructions on how to do that.
+This guide assumes you have installed cardano-node into your system. If not you can refer to Installing [cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) guide for instructions on how to do that.
 :::
 
 ### CARDANO_NODE_NETWORK_ID

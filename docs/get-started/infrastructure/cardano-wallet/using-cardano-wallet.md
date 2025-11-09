@@ -273,9 +273,9 @@ It is important to note that the parameter of this request is the **wallet id** 
 
 We are basically querying the first wallet address that has not been used just yet, Indicated by `state: "unused"`. As we can see the wallet address value is: `addr_test1qzf9q3qjcaf6kxshwjfw9ge29njtm56r2a08g49l79xgt4je0592agqpwraqajx2dsu2sxj64uese5s4qum293wuc00q7j6vsp"`
 
-Now we can finally request some `tAda` for the wallet address from the [Cardano Testnet Faucet](../../get-started/networks/testnets/testnet-faucet).
+Now we can finally request some `tAda` for the wallet address from the [Cardano Testnet Faucet](/docs/get-started/networks/testnets/testnet-faucet).
 
-Once you requested some `tAda` from the [Cardano Testnet Faucet](../../get-started/networks/testnets/testnet-faucet), we can then check if it has arrived into our wallet like so:
+Once you requested some `tAda` from the [Cardano Testnet Faucet](/docs/get-started/networks/testnets/testnet-faucet), we can then check if it has arrived into our wallet like so:
 
 ```bash
 curl --url http://localhost:1337/v2/wallets/5076b34c6949dbd150eb9c39039037543946bdce | jq '.balance'
@@ -300,7 +300,7 @@ You should see something like this:
 }
 ```
 
-As we can see here we have a total of `1,000,000,000 lovelace` available to spend that we received from the [Cardano Testnet Faucet](../../get-started/networks/testnets/testnet-faucet).
+As we can see here we have a total of `1,000,000,000 lovelace` available to spend that we received from the [Cardano Testnet Faucet](/docs/get-started/networks/testnets/testnet-faucet).
 
 ## Creating simple transactions
 

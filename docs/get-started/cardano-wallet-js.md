@@ -570,7 +570,7 @@ Output:
 > "xprv..."
 ```
 
-All the method mentioned above return a `Bip32PrivateKey` which you can use to keep deriving and generating keys and addresses check [here](../get-started/cardano-serialization-lib/overview.md) for more info. For example, assuming you have `cardano-serialization-lib` installed, 
+All the method mentioned above return a `Bip32PrivateKey` which you can use to keep deriving and generating keys and addresses check [here](/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview.md) for more info. For example, assuming you have `cardano-serialization-lib` installed, 
 you can get a stake address like this:
 ```js
 let rootKey = Seed.deriveRootKey(phrase);

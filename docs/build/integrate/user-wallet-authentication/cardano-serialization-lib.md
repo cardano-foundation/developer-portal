@@ -6,7 +6,7 @@ description: Low-level implementation of wallet authentication using Cardano Ser
 image: /img/og/og-developer-portal.png
 ---
 
-This guide provides a low-level implementation of wallet-based authentication using the [Cardano Serialization Library](../../get-started/cardano-serialization-lib/overview) and [Cardano Message Signing](https://www.npmjs.com/package/@emurgo/cardano-message-signing-nodejs) libraries. This approach gives you direct control over COSE signature parsing and verification.
+This guide provides a low-level implementation of wallet-based authentication using the [Cardano Serialization Library](/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview) and [Cardano Message Signing](https://www.npmjs.com/package/@emurgo/cardano-message-signing-nodejs) libraries. This approach gives you direct control over COSE signature parsing and verification.
 
 ## Overview
 
@@ -83,7 +83,7 @@ loadCsl();
 ...
 ```
 
-With the above lines, we just made available to the rest of our script, the [Buffer](https://www.npmjs.com/package/buffer) package and the [Cardano Serialization Library](/docs/get-started/cardano-serialization-lib/overview). Also, we just declared the top-level variable `wallet` there for convenience later. We will set its value in the following steps.
+With the above lines, we just made available to the rest of our script, the [Buffer](https://www.npmjs.com/package/buffer) package and the [Cardano Serialization Library](/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview). Also, we just declared the top-level variable `wallet` there for convenience later. We will set its value in the following steps.
 
 Now, let's make the `authenticate` function actually do some things:
 

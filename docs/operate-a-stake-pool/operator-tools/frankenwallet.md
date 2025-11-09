@@ -42,7 +42,7 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ### Use cases for the Frankenwallet
 
-➤ Anyone working with private keys & [secure transaction signing](/docs/get-started/security/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/cardano-key-pairs)).
+➤ Anyone working with private keys & [secure transaction signing](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/cardano-key-pairs)).
 
 ➤ Anyone wishing to work in high security with these resources without either a second computer (e.g. perpetual travellers, students, and hardware minimalists) or a hardware wallet ([Frankenwallet vs. Hardware wallets](https://frankenwallet.com/intro/hardware-wallets))
 
@@ -183,7 +183,7 @@ From a growing body of material beginning at [Frankenwallet > Usage](https://fra
 
 ### Prepare and submit secure transactions
 
-You can now follow the instructions recommended in [Secure Transaction Workflow](/docs/get-started/security/secure-workflow), with the following modifications:
+You can now follow the instructions recommended in [Secure Transaction Workflow](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow), with the following modifications:
 
   - Create a file on your networked host computer in the Host Folder, encrypted with the Low Security password (so you feel safe backing it up over the Internet, but won't store any keys or wallet passphrases there).
   - When planning your transaction, save the transaction details and any commands to cut-and-paste, in this file.
@@ -192,7 +192,7 @@ You can now follow the instructions recommended in [Secure Transaction Workflow]
   - Save the resulting transaction file to your Host Folder.
   - Reboot into the host computer, upload your transaction file if necessary, and submit it.
 
-This means of implementing the [Secure Transaction Workflow](/docs/get-started/security/secure-workflow) process is outlined specifically in [Frankenwallet > Transaction flow](https://frankenwallet.com/cardano/model).
+This means of implementing the [Secure Transaction Workflow](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow) process is outlined specifically in [Frankenwallet > Transaction flow](https://frankenwallet.com/cardano/model).
 
 ### Making & verifying backups of assets & keys  
 

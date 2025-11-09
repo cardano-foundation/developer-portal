@@ -12,7 +12,7 @@ There are many ways to retrieve metadata stored in the **Cardano** blockchain. T
 
 ## Blockfrost
 
-[Blockfrost](/docs/get-started/blockfrost/get-started) provides an **API** to access the **Cardano** blockchain fast and easily. 
+[Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/get-started) provides an **API** to access the **Cardano** blockchain fast and easily. 
 
 To retrieve metadata using **Blockfrost**, we call a specific endpoint for **transaction metadata** that they provide.
 
@@ -45,7 +45,7 @@ Please visit their official [documentation](https://docs.blockfrost.io) to know 
 
 :::note
 
-This Section assumes that you have basic understanding of `cardano-wallet`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md), [Running cardano-node](/docs/operate-a-stake-pool/node-operations/running-cardano.md), [Installing cardano-wallet](/docs/get-started/cardano-wallet/cardano-wallet) and [Using cardano-wallet](/docs/get-started/cardano-wallet/using-cardano-wallet) guides first.
+This Section assumes that you have basic understanding of `cardano-wallet`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node), [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano.md), [Installing cardano-wallet](/docs/get-started/infrastructure/cardano-wallet/cardano-wallet) and [Using cardano-wallet](/docs/get-started/infrastructure/cardano-wallet/using-cardano-wallet) guides first.
 
 This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to one of the `testnet` networks.
 

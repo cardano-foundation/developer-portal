@@ -51,7 +51,7 @@ There are 3 such kinds of information:
 
 ## Build and run
 
-For how to build `cardano-tracer`, refer to the [New Tracing Quickstart](docs/operate-a-stake-pool/node-operations/new-tracing-system/quick-start.md).
+For how to build `cardano-tracer`, refer to the [New Tracing Quickstart](/docs/get-started/infrastructure/node/new-tracing-system/cardano-tracer).
 
 ## Configuration
 
@@ -97,7 +97,7 @@ Tracing options that can be given based on a namespace are `severity`, `detail` 
 
 For further node-side configuration explanations, refer to:
 
-[New Tracing Quickstart](docs/operate-a-stake-pool/node-operations/new-tracing-system/quick-start.md)
+[New Tracing Quickstart](/docs/get-started/infrastructure/node/new-tracing-system/cardano-tracer)
 
 ### Distributed Scenario
 

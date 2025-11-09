@@ -8,7 +8,7 @@ image: /img/og/og-getstarted-testnets.png
 
 ## Cardano testnets
 
-The [Cardano testnets](https://docs.cardano.org/cardano-testnets/environments) are your playgrounds when testing [Cardano integration](/docs/integrate-cardano/), building with [transaction metadata](/docs/transaction-metadata/), exploring [native tokens](/docs/native-tokens/) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/).
+The [Cardano testnets](https://docs.cardano.org/cardano-testnets/environments) are your playgrounds when testing [Cardano integration](/docs/build/integrate/overview), building with [transaction metadata](/docs/build/transaction-metadata/overview), exploring [native tokens](/docs/build/native-tokens/overview) or learning how to [operate a stake pool](/docs/operate-a-stake-pool/).
 
 The testnets are an essential part of the development process for Cardano, as they allow developers to test and refine their code before deploying it on the live network, ultimately improving reliability and security.
 
@@ -86,7 +86,7 @@ The Pre-Production Testnet is a more comprehensive testing environment used to v
 - [Yoroi Nightly Wallet](https://chromewebstore.google.com/detail/yoroi-nightly/poonlenmfdfbjfeeballhiibknlknepo?hl=en&authuser=0) is a lightweight wallet developed by Emurgo and supports PreProd, PreView and Sancho testnet.
 - [Typhon Wallet](https://testnet.typhonwallet.io/#/wallet/access) is a lightweight wallet developed by StricaHQ and supports PreProd testnet.
 - [Ledger Nano S and Ledger Nano X](https://www.ledger.com/) are hardware wallets that support both PreProd and Preview testnets.
-- [Cardano-wallet](/docs/integrate-cardano/listening-for-payments/cardano-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
+- [Cardano-wallet](/docs/build/integrate/payments/listening-for-payments/cardano-wallet) is a convenient way of using the cardano-wallet HTTP Application Programming Interface.
 
 It's important to note that while all of these wallets support Cardano testnets, you will need to choose the testnet network option within the wallet when setting it up or switching to testnet, or choose the right version before you install a specific testnet wallet.
 

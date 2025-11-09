@@ -9,7 +9,7 @@ In the future, cardano-testnet will be available from [cardano-node GitHub Relea
 
 ## Building cardano-testnet
 
-We refer to [the instructions](https://developers.cardano.org/docs/operate-a-stake-pool/node-operations/installing-cardano-node) for building cardano-node from source. Once you are done with these instructions, run the following to build cardano-testnet.
+We refer to [the instructions](https://developers.cardano.org/docs/get-started/infrastructure/node/installing-cardano-node) for building cardano-node from source. Once you are done with these instructions, run the following to build cardano-testnet.
 
 ```bash
 cabal build cardano-testnet

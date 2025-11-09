@@ -396,7 +396,7 @@ module.exports = {
         label: "Smart Contracts",
         link: {
           type: "doc",
-          id: "smart-contracts/overview"
+          id: "build/smart-contracts/overview"
         },
         items: [
           {
@@ -408,17 +408,17 @@ module.exports = {
                 label: "Aiken",
                 link: {
                   type: "doc",
-                  id: "smart-contracts/smart-contract-languages/aiken/overview"
+                  id: "build/smart-contracts/languages/aiken/overview"
                 },
                 items: [
-                  "smart-contracts/smart-contract-languages/aiken/smart-contract-library",
+                  "build/smart-contracts/languages/aiken/smart-contract-library",
                   {
                     type: "category",
                     label: "Advanced Data Structures",
                     items: [
-                      "smart-contracts/smart-contract-languages/aiken/advanced-data-structures/linked-list",
-                      "smart-contracts/smart-contract-languages/aiken/advanced-data-structures/merkle-tree",
-                      "smart-contracts/smart-contract-languages/aiken/advanced-data-structures/trie",
+                      "build/smart-contracts/languages/aiken/advanced-data-structures/linked-list",
+                      "build/smart-contracts/languages/aiken/advanced-data-structures/merkle-tree",
+                      "build/smart-contracts/languages/aiken/advanced-data-structures/trie",
                     ],
                   },
                 ],
@@ -428,40 +428,40 @@ module.exports = {
                 label: "Plutarch (Haskell)",
                 link: {
                   type: "doc",
-                  id: "smart-contracts/smart-contract-languages/plutarch/overview"
+                  id: "build/smart-contracts/languages/plutarch/overview"
                 },
                 items: [
                   {
                     type: "category",
                     label: "Advanced Data Structures",
                     items: [
-                      "smart-contracts/smart-contract-languages/plutarch/advanced-data-structures/linked-list",
-                      "smart-contracts/smart-contract-languages/plutarch/advanced-data-structures/merkle-tree",
-                      "smart-contracts/smart-contract-languages/plutarch/advanced-data-structures/trie",
+                      "build/smart-contracts/languages/plutarch/advanced-data-structures/linked-list",
+                      "build/smart-contracts/languages/plutarch/advanced-data-structures/merkle-tree",
+                      "build/smart-contracts/languages/plutarch/advanced-data-structures/trie",
                     ],
                   },
                   {
                     type: "category",
                     label: "Production Grade DApps",
                     items: [
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/overview",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/nix-environments",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/bridge-template",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/linear-vesting",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/merkle-tree",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/yield-farming",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/single-asset-staking",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/smart-handles",
-                      "smart-contracts/smart-contract-languages/plutarch/production-grade-dapps/direct-offer",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/overview",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/nix-environments",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/bridge-template",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/linear-vesting",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/merkle-tree",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/single-asset-staking",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/smart-handles",
+                      "build/smart-contracts/languages/plutarch/production-grade-dapps/direct-offer",
                     ],
                   },
                 ],
               },
-              "smart-contracts/smart-contract-languages/plinth",
-              "smart-contracts/smart-contract-languages/opshin",
-              "smart-contracts/smart-contract-languages/plu-ts",
-              "smart-contracts/smart-contract-languages/scalus",
-              "smart-contracts/smart-contract-languages/marlowe",
+              "build/smart-contracts/languages/plinth",
+              "build/smart-contracts/languages/opshin",
+              "build/smart-contracts/languages/plu-ts",
+              "build/smart-contracts/languages/scalus",
+              "build/smart-contracts/languages/marlowe",
             ],
           },
           {
@@ -469,34 +469,34 @@ module.exports = {
             label: "Design Patterns",
             link: {
               type: "doc",
-              id: "smart-contracts/advanced/design-patterns/overview"
+              id: "build/smart-contracts/advanced/design-patterns/overview"
             },
             items: [
-              "smart-contracts/advanced/design-patterns/enum-redeemers",
-              "smart-contracts/advanced/design-patterns/parameter-validation",
-              "smart-contracts/advanced/design-patterns/strict-and-checks",
-              "smart-contracts/advanced/design-patterns/utxo-indexers",
+              "build/smart-contracts/advanced/design-patterns/enum-redeemers",
+              "build/smart-contracts/advanced/design-patterns/parameter-validation",
+              "build/smart-contracts/advanced/design-patterns/strict-and-checks",
+              "build/smart-contracts/advanced/design-patterns/utxo-indexers",
               {
                 type: "category",
                 label: "Normalization Techniques",
                 items: [
-                  "smart-contracts/advanced/design-patterns/normalization-techniques/txinfomint-normalization",
-                  "smart-contracts/advanced/design-patterns/normalization-techniques/validity-range-normalization",
+                  "build/smart-contracts/advanced/design-patterns/normalization-techniques/txinfomint-normalization",
+                  "build/smart-contracts/advanced/design-patterns/normalization-techniques/validity-range-normalization",
                 ],
               },
               {
                 type: "category",
                 label: "Transaction Level Validation",
                 items: [
-                  "smart-contracts/advanced/design-patterns/transaction-level-validation/transaction-level-validation-minting-policy",
+                  "build/smart-contracts/advanced/design-patterns/transaction-level-validation/transaction-level-validation-minting-policy",
                   {
                     type: "category",
                     label: "Stake Validators",
                     items: [
-                      "smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/stake-validator",
-                      "smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/withdraw-zero",
-                      "smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/merkelized-validators",
-                      "smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/global-state",
+                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/stake-validator",
+                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/withdraw-zero",
+                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/merkelized-validators",
+                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/global-state",
                     ],
                   },
                 ],
@@ -507,29 +507,29 @@ module.exports = {
             type: "category",
             label: "Smart Contract Security",
             items: [
-              "smart-contracts/advanced/smart-contract-vulnerabilities/ctf",
+              "build/smart-contracts/advanced/smart-contract-vulnerabilities/ctf",
               {
                 type: "category",
                 label: "Invariant0 Blog Series",
                 items: [
-                  "smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/1-double-satisfaction",
-                  "smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/2-trust-no-utxo",
-                  "smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/3-time-handling",
-                  "smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/4-token-security",
+                  "build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/1-double-satisfaction",
+                  "build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/2-trust-no-utxo",
+                  "build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/3-time-handling",
+                  "build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/4-token-security",
                 ],
               },
               {
                 type: "category",
                 label: "MLabs Common Vulnerabilities",
                 items: [
-                  "smart-contracts/advanced/smart-contract-vulnerabilities/mlabs-common-vulnerabilities/overview",
+                  "build/smart-contracts/advanced/smart-contract-vulnerabilities/mlabs-common-vulnerabilities/overview",
                 ],
               },
               {
                 type: "category",
                 label: "Mesh Bad Contracts",
                 items: [
-                  "smart-contracts/advanced/smart-contract-vulnerabilities/mesh-bad-contracts/overview",
+                  "build/smart-contracts/advanced/smart-contract-vulnerabilities/mesh-bad-contracts/overview",
                 ],
               },
             ],
@@ -538,8 +538,8 @@ module.exports = {
             type: "category",
             label: "Advanced",
             items: [
-              "smart-contracts/advanced/uplc",
-              "smart-contracts/advanced/debug-cbor",
+              "build/smart-contracts/advanced/uplc",
+              "build/smart-contracts/advanced/debug-cbor",
             ],
           },
         ],
@@ -549,12 +549,12 @@ module.exports = {
         label: "Lessons",
         link: {
           type: "doc",
-          id: "smart-contracts/lessons-overview"
+          id: "build/smart-contracts/lessons-overview"
         },
         items: [
           {
             type: "autogenerated",
-            dirName: "smart-contracts/lessons",
+            dirName: "build/smart-contracts/lessons",
           },
         ],
       },

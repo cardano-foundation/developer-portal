@@ -36,4 +36,4 @@ Visit [docs.charli3.io](https://docs.charli3.io/oracles) for:
 
 ---
 
-**Related**: [Orcfax](/docs/integrate-cardano/orcfax) | [Oracles Overview](/docs/integrate-cardano/oracles-overview)
+**Related**: [Orcfax](/docs/build/integrate/oracles/orcfax) | [Oracles Overview](/docs/build/integrate/oracles/overview)

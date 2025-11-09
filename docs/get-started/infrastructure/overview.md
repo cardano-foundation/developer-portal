@@ -8,7 +8,7 @@ image: /img/og/og-developer-portal.png
 
 ## Connecting to Cardano
 
-Once you've chosen your [network](/docs/get-started/networks/overview), you need infrastructure to connect to it. To build your application, whether you're using [Client SDKs](/docs/get-started/high-level-sdks-overview), building with cardano-cli directly, you'll need one of these infrastructure approaches as your backend.
+Once you've chosen your [network](/docs/get-started/networks/overview), you need infrastructure to connect to it. To build your application, whether you're using [Client SDKs](/docs/get-started/client-sdks/overview), building with cardano-cli directly, you'll need one of these infrastructure approaches as your backend.
 
 Your SDK or application connects to Cardano through your chosen infrastructure - either via API providers like Blockfrost, through middleware like Ogmios (self-hosted or via Demeter), or directly to your own cardano-node. The infrastructure you choose determines how your code queries the blockchain and submits transactions.
 
@@ -42,7 +42,7 @@ graph TB
 
 ### [API Providers](/docs/get-started/infrastructure/api-providers/overview)
 
-Connect to Cardano through REST or WebSocket APIs without managing infrastructure. Most [Client SDKs](/docs/get-started/high-level-sdks-overview) give access to these providers to query the blockchain and submit transactions.
+Connect to Cardano through REST or WebSocket APIs without managing infrastructure. Most [Client SDKs](/docs/get-started/client-sdks/overview) give access to these providers to query the blockchain and submit transactions.
 
 **Examples**: [Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/overview), [Koios](/docs/get-started/infrastructure/api-providers/koios)
 
@@ -66,11 +66,11 @@ Cloud-based platform providing managed Cardano middleware and services.
 
 ---
 
-### [Running Cardano Node](/docs/operate-a-stake-pool/node-operations/cardano-components)
+### [Running Cardano Node](/docs/get-started/infrastructure/node/cardano-components)
 
 Run and maintain your own Cardano node infrastructure.
 
-**Components**: [cardano-node](/docs/operate-a-stake-pool/node-operations/cardano-components), [cardano-cli](/docs/get-started/cardano-cli/basic-operations/get-started)
+**Components**: [cardano-node](/docs/get-started/infrastructure/node/cardano-components), [cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started)
 
 **What you get**: Complete infrastructure control, no external dependencies, direct blockchain access
 
@@ -84,6 +84,6 @@ Each approach has its own trade-offs. You can:
 
 - Start with [API Providers](/docs/get-started/infrastructure/api-providers/overview) for quick integration
 - Use [Demeter](/docs/get-started/infrastructure/demeter) for a managed services platform
-- [Run your own node](/docs/operate-a-stake-pool/node-operations/cardano-components) for full control
+- [Run your own node](/docs/get-started/infrastructure/node/cardano-components) for full control
 
 Many teams use different approaches at different stages or combine them - such as using providers during development and running their own infrastructure in production.

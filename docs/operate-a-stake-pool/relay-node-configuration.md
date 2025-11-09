@@ -8,10 +8,10 @@ image: ../img/og-developer-portal.png
 
 ## Install node software
 
-First, follow & complete the guide [Installing the node from source](/docs/operate-a-stake-pool/node-operations/installing-cardano-node).
+First, follow & complete the guide [Installing the node from source](/docs/get-started/infrastructure/node/installing-cardano-node).
 
 :::note
-The focus of this tutorial is on learning how to setup a stake pool. So unless you have the proper knowledge or guidance to set up a Mainnet pool, continue as recommended to set up a pool on a [testnet network](docs/get-started/testnets-and-devnets.md) and not the Mainnet.
+The focus of this tutorial is on learning how to setup a stake pool. So unless you have the proper knowledge or guidance to set up a Mainnet pool, continue as recommended to set up a pool on a [testnet network](/docs/get-started/networks/testnets/overview) and not the Mainnet.
 :::
 
 Continue below when you have a machine with the software installed.  The guide below will set up your node as a relay and verify its connection to the Cardano network.  You can then prepare further nodes as needed for your stake pool by the same process.
@@ -26,7 +26,7 @@ The `cardano-node` application requires the following configuration files to run
   - **Shelley Genesis**
   - **Alonzo Genesis**
   - **Conway Genesis**
-- **Topology**: Initial settings to define any default network peers and to obtain any network peers dynamically according to Cardano's P2P (peer-to-peer) networking system (see [Topology](/docs/operate-a-stake-pool/node-operations/topology)).
+- **Topology**: Initial settings to define any default network peers and to obtain any network peers dynamically according to Cardano's P2P (peer-to-peer) networking system (see [Topology](/docs/get-started/infrastructure/node/topology)).
 
 :::note
 For a timeline and description of thse Ledger eras, see the
@@ -149,7 +149,7 @@ CONFIG=<$HOME>/cardano-testnet/config.json
 
 :::note
 
-For a detailed understanding of all the configuration parameters, please refer to [Running cardano-node](docs/operate-a-stake-pool/node-operations/running-cardano.md#cardano-node-parameters)
+For a detailed understanding of all the configuration parameters, please refer to [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano#cardano-node-parameters)
 
 :::
 

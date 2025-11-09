@@ -16,12 +16,12 @@ Payment keys can never be stored, even for a moment, on an Internet connected ma
 
 Therefore we present a secure, standard workflow for `cardano-cli` commands like the ones presented without consideration of security here:
 
-- **[Create Simple Transaction](/docs/get-started/cardano-cli/basic-operations/simple-transactions.md)**
+- **[Create Simple Transaction](/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions)**
 
 Once you feel comfortable doing a simple transaction securely, you'll also be able to use it to securely execute these more complex transactions as well:
 
-- [Minting Native Assets](/docs/native-tokens/minting.md)
-- [Minting NFTs](/docs/native-tokens/minting-nfts.md)
+- [Minting Native Assets](/docs/build/native-tokens/minting.md)
+- [Minting NFTs](/docs/build/native-tokens/minting-nfts.md)
 - [Registering a Stake Address](/docs/operate-a-stake-pool/register-stake-address.md)
 - [Registering a Stake Pool](/docs/operate-a-stake-pool/register-stake-pool.md)
 
@@ -226,4 +226,4 @@ These are not directly related to transactions, and will all eventually be addre
 - making encrypted backups of your private keys (so they can be kept offsite / stored outside your air gap environment)
 - keeping secure (encrypted) records of your stake pool & development resources
 
-For ideas on secure backup & record-keeping, see [Get Started with the Frankenwallet > Making & verifying backups of assets & keys](/docs/get-started/security/frankenwallet.md#making--verifying-backups-of-assets--keys).
+For ideas on secure backup & record-keeping, see [Get Started with the Frankenwallet > Making & verifying backups of assets & keys](/docs/operate-a-stake-pool/operator-tools/frankenwallet.md#making--verifying-backups-of-assets--keys).

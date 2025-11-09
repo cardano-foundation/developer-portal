@@ -12,7 +12,7 @@ Marlowe is a domain-specific language (DSL) that enables users to create blockch
 
 If you want to learn Marlowe from the ground up, start with [Marlowe Tutorial](https://docs.marlowe-lang.org/tutorials), or jump right into the [Marlowe Playground](https://playground.marlowe-lang.org):
 
-![Marlowe Playground](../../../static/img/get-started/smart-contracts/marlowe-playground.jpg)
+![Marlowe Playground](/img/get-started/smart-contracts/marlowe-playground.jpg)
 
 On the Cardano Forum, you can [discuss Marlowe](https://forum.cardano.org/tag/marlowe) or if you prefer Telegram, there is a special [Marlowe Telegram Group](https://t.me/IOHK_Marlowe).
 

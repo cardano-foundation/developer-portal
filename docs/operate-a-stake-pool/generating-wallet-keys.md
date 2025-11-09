@@ -5,7 +5,7 @@ sidebar_label: Generating wallet keys
 description: Generating wallet keys (Faucet for tADA)
 image: ../img/og-developer-portal.png
 ---
-Once the relay nodes in our last section are in sync with our chosen [testnet network](docs/get-started/testnets-and-devnets.md), it's time to configure one of these relays into a block producing node. In this section we will create wallet keys which are needed to register a pool and run the block producer.
+Once the relay nodes in our last section are in sync with our chosen [testnet network](/docs/get-started/networks/testnets/overview), it's time to configure one of these relays into a block producing node. In this section we will create wallet keys which are needed to register a pool and run the block producer.
 
 A wallet address is needed to pay the pool deposit, to pay transaction costs of the network, and for staking to a pool. So it's a combination of payment keys and stake keys.
 
@@ -23,7 +23,7 @@ Due to security reasons, for the Mainnet these keys should be generated and stor
 ## Generating Payment Keys
 
 :::note
-This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](docs/get-started/cardano-cli/basic-operations/get-started.md) guide for instructions on how to do that.
+This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started) guide for instructions on how to do that.
 :::
 
 Create a new payment key pair: `payment.skey` & `payment.vkey`

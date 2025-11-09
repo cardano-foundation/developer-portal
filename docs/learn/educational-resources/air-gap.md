@@ -205,7 +205,7 @@ sudo apt upgrade
 
 This is recommended because it will give you a means of taking password-encrypted notes that can move between your air gap and computer host environments *in both directions*, so you can:
 
-  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/get-started/security/secure-workflow.md)):
+  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow.md)):
       - your Cardano account balances, UTxO addresses & payment addresses
       - notes from personal files & web sites about the work you will be doing within the air gap (since you won't have Internet access there);
   - take notes in the air gap environment (problems, error messages) to copy back to your computer, since you can't upload them through the air gap.
@@ -244,7 +244,7 @@ This confirms that your system will start properly after having updated your sys
 
 Use the standard instructions here at the Developer Portal:
 
-  - **[Installing the node from source](/docs/operate-a-stake-pool/node-operations/installing-cardano-node.md)**
+  - **[Installing the node from source](/docs/get-started/infrastructure/node/installing-cardano-node.md)**
 
 Note this will build `cardano-node` as well as `cardano-cli`, but don't worry: you won't be running a node inside the air gap. 😜
 
@@ -277,7 +277,7 @@ Therefore, you can [find your WiFi MAC address](https://help.ubuntu.com/stable/u
 
 ### Congratulations, your air gap environment is complete!
 
-You now have a safe place you can use for your [Secure Transaction Workflow](/docs/get-started/security/secure-workflow.md).
+You now have a safe place you can use for your [Secure Transaction Workflow](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow.md).
 
 ## Option 2: Install your air gap environment on a persistent USB drive
 
@@ -299,7 +299,7 @@ If this appeals to you, and you don't mind following a more complicated and erro
 This loosely documented configuration has been called the **Frankenwallet**, with separate instructions at these links which mostly follow the procedure above:
 
   - **[The Frankenwallet](https://frankenwallet.com)** - detailed external web site, including semantics for using your bootable USB environment in secure & blockchain workflow
-  - [Get Started with the Frankenwallet](/docs/get-started/security/frankenwallet.md) - one-page summary here on the Developer Portal
+  - [Get Started with the Frankenwallet](/docs/operate-a-stake-pool/operator-tools/frankenwallet.md) - one-page summary here on the Developer Portal
 
 :::warning
 

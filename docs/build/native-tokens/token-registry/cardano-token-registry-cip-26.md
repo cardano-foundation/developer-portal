@@ -14,7 +14,7 @@ This is the [CIP26](https://cips.cardano.org/cip/CIP-0026) off-chain metadata re
 ##  Background
 This repository provides a means to register off-chain token metadata that can map to on-chain identifiers (typically hashes representing asset IDs, output locking scripts, or token forging policies).
 
-A [server](/docs/native-tokens/token-registry/cardano-token-registry-server) exposes the functionality of a key-value store, allowing users and applications to query registry entries through a RESTful API.
+A [server](/docs/build/native-tokens/token-registry/cardano-token-registry-server) exposes the functionality of a key-value store, allowing users and applications to query registry entries through a RESTful API.
 
 While this registry is limited in scope to handle native tokens only, it will also serve to facilitate a discussion and introduce a standard for a metadata distribution system that is currently put forward as a [draft CIP](https://github.com/michaelpj/CIPs/blob/cip-metadata-server/cip-metadata-server.md).
 

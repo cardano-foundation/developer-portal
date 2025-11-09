@@ -56,7 +56,7 @@ graph LR
     style Cardano fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
 ```
 
-If you need complete control over your infrastructure or are running a stake pool, you'll want to [run your own node](/docs/operate-a-stake-pool/node-operations/cardano-components) instead.
+If you need complete control over your infrastructure or are running a stake pool, you'll want to [run your own node](/docs/get-started/infrastructure/node/cardano-components) instead.
 
 ## Getting Started
 
@@ -64,4 +64,4 @@ Visit [demeter.run](https://demeter.run) to create an account and access the Dem
 
 ---
 
-**Compare with**: [API Providers](/docs/get-started/infrastructure/api-providers/overview) (Blockfrost, Koios, Ogmios) or [Running your own node](/docs/operate-a-stake-pool/node-operations/cardano-components)
+**Compare with**: [API Providers](/docs/get-started/infrastructure/api-providers/overview) (Blockfrost, Koios, Ogmios) or [Running your own node](/docs/get-started/infrastructure/node/cardano-components)

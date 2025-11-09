@@ -33,7 +33,7 @@ Before you start, you should:
 
 + have the [latest version of the node](https://github.com/intersectmbo/cardano-node/releases)
 + configure the node to communicate with the [testnet environment](https://book.world.dev.cardano.org/environments.html)
-+ A [running cardano-node](docs/operate-a-stake-pool/node-operations/running-cardano.md) on the desired network.
++ A [running cardano-node](/docs/get-started/infrastructure/node/running-cardano) on the desired network.
 + Cardano-cli installed
 
 ### Syntax for expressing values in a transaction output

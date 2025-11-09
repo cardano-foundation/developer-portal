@@ -98,7 +98,7 @@ export CARDANO_NODE_SOCKET_PATH="$HOME/TESTNET_NODE/socket/node.socket"
 You need to adjust the path on your setup and your socket path accordingly.
 
 ### Improve readability
-Since we've already answered all of the questions above, we will set variables on our terminal/bash to make readability a bit easier. First, we will specify a [testnet](docs/get-started/testnets-and-devnets.md), either Pre-production:
+Since we've already answered all of the questions above, we will set variables on our terminal/bash to make readability a bit easier. First, we will specify a [testnet](/docs/get-started/networks/testnets/overview), either Pre-production:
 ```bash
 testnet="--testnet-magic 1"
 ```
@@ -185,7 +185,7 @@ address=$(cat payment.addr)
 Submitting transactions always require you to pay a fee. Sending native assets also requires sending at least 1 ada.  
 So make sure the address you are going to use as the input for the minting transaction has sufficient funds. 
 
-For **testnets**, you can request funds through the [Testnet Faucet](../integrate-cardano/testnet-faucet).
+For **testnets**, you can request funds through the [Testnet Faucet](/docs/get-started/networks/testnets/testnet-faucet).
 
 ### Export protocol parameters
 

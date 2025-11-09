@@ -18,13 +18,13 @@ In this guide, we will show you how to compile and install `cardano-wallet` into
 If you want to avoid compiling the binaries yourself, you can download the latest pre-built binaries from the GitHub repository:  [`cardano-wallet` Releases](https://github.com/cardano-foundation/cardano-wallet/releases)
 
   
-This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md) guide for instructions on how to do that.
+This guide assumes you have installed `cardano-node` and `cardano-cli` into your system. If not you can refer to [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) guide for instructions on how to do that.
 
 :::
 
 :::important
 
-You must connect your `cardano-node` to a [testnet network](/docs/get-started/networks/testnets/overview) and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](docs/operate-a-stake-pool/node-operations/running-cardano.md) guide before proceeding.
+You must connect your `cardano-node` to a [testnet network](/docs/get-started/networks/testnets/overview) and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano) guide before proceeding.
 
 :::
 
@@ -41,7 +41,7 @@ In this section, we will walk you through the process of downloading, compiling 
 
 We need to install cabal, if we don't have it. See the following link for instructions: https://www.haskell.org/cabal/
 
-If you have followed the [Installing cardano-node](docs/operate-a-stake-pool/node-operations/installing-cardano-node.md) guide, You should have the `$HOME/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
+If you have followed the [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) guide, You should have the `$HOME/cardano-src` directory. If not, let's create a working directory to store the source-code and build for `cardano-wallet`.
 
 ```bash
 mkdir -p $HOME/cardano-src

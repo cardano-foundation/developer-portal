@@ -11,7 +11,7 @@ image: /img/og/og-developer-portal.png
 
 There are excellent guidelines available on how to set up cardano-node as a stake pool. You may even set one up without any prior Linux experience or concern for best practices. Simply copy and paste the commands from the instructions into your shell.
 
-Unfortunately, simply getting your node up and running is insufficient. You must be able to manage, update, and safeguard it. To do so, you must first comprehend what you are doing [in one of the testnets](/docs/get-started/testnets-and-devnets/). Consider this category an entry point into the Cardano Pool Operator Community.
+Unfortunately, simply getting your node up and running is insufficient. You must be able to manage, update, and safeguard it. To do so, you must first comprehend what you are doing [in one of the testnets](/docs/get-started/networks/testnets/overview). Consider this category an entry point into the Cardano Pool Operator Community.
 
 ## What are the prerequisites for persons who wish to learn how to run a stake pool?
 
@@ -39,7 +39,7 @@ Best practices should always be a key consideration when running a stake pool. S
 The basic category starts with learning about [relay and block producer topology](stake-pool-networking), what the [hardware requirements](hardware-requirements) are, which [keys are available](cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
 
 :::tip info
-If you would like to do a deep dive on technical concepts please visit [Consensus & Staking](../get-started/technical-concepts/consensus-staking) and [Core Concepts](../learn/core-concepts/)
+If you would like to do a deep dive on technical concepts please visit [Consensus & Staking](/docs/operate-a-stake-pool/basics/consensus-staking) and [Core Concepts](../learn/core-concepts/)
 :::
 
 ## Stake pool operator resources

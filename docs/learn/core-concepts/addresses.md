@@ -97,4 +97,4 @@ The binary format follows this structure:
 
 - Learn about [Wallet & Key Management](/docs/learn/core-concepts/wallet-key-management)
 - Understand [Transaction Fees](/docs/learn/core-concepts/fees)
-- Build with addresses: [Building dApps](/docs/integrate-cardano/)
+- Build with addresses: [Building dApps](/docs/build/integrate/overview)

@@ -53,4 +53,4 @@ Explore available feeds on the [Orcfax Explorer](https://explorer.orcfax.io).
 
 ---
 
-**Related**: [Charli3](/docs/integrate-cardano/charli3) | [Oracles Overview](/docs/integrate-cardano/oracles-overview)
+**Related**: [Charli3](/docs/build/integrate/oracles/charli3) | [Oracles Overview](/docs/build/integrate/oracles/overview)

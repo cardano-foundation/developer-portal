@@ -20,7 +20,7 @@ To build the transaction the following information will be collected first:
 * `fee`: The fee amount in Lovelace
 
 :::note
-This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](docs/get-started/cardano-cli/basic-operations/get-started.md) guide for instructions on how to do that.
+This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started) guide for instructions on how to do that.
 :::
 
 ## `tx-in`

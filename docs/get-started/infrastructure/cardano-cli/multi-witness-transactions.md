@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 This guide assumes that you have completed the [Simple transactions](basic-operations/simple-transactions) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
 
-This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](../networks/testnets/overview).
+This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](/docs/get-started/networks/testnets/overview).
 
 :::
 

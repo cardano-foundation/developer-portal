@@ -1,13 +1,12 @@
 ---
 id: overview
-slug: /transaction-metadata/
 title: Build with transaction metadata
 sidebar_label: Overview
 description: The Cardano Transaction Metadata is a feature that allows anyone to embed metadata into transactions and ultimately storing metadata into the blockchain.
 image: /img/og/og-developer-portal.png
 ---
 
-![Cardano Transaction Metadata](../../static/img/card-transaction-metadata-title.svg)
+![Cardano Transaction Metadata](/img/card-transaction-metadata-title.svg)
 
 ## Introduction
 
@@ -107,7 +106,7 @@ We will explore how we can utilize the **Transaction Metadata** feature of the *
 
 Let's imagine a decentralized **To-Do List Application** that stores and retrieve its metadata not from centralized servers or storage but instead from the **Cardano blockchain**. First, let's check the diagram below to see how something like this could theoretically work:
 
-![img](../../static/img/tx-meta-data/todo-list-app.png)
+![img](/img/tx-meta-data/todo-list-app.png)
 
 :::important
 The diagram is heavily simplified and is not recommended to deploy in production.
