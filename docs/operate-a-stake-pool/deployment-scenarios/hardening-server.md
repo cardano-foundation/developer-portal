@@ -163,7 +163,7 @@ ssh cardano@server-ip -p <custom port number>
 ```
 
 ### 7- Firewall configuration
-We are going to use UFW firewall to secure network access to your Cardano node. We are only focusing on ports that are used for SSH, and Cardano node. If you want to use Grafana and Prometheus for monitoring, please, refer to this [guide](docs/operate-a-stake-pool/grafana-dashboard-tutorial.md), to add appropriate ports to your UFW configuration.
+We are going to use UFW firewall to secure network access to your Cardano node. We are only focusing on ports that are used for SSH, and Cardano node. If you want to use Grafana and Prometheus for monitoring, please, refer to this [guide](/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial), to add appropriate ports to your UFW configuration.
 
 #### On your Relay Node :
 ```shell

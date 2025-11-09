@@ -5,7 +5,7 @@ sidebar_label: Grafana Dashboard Tutorial
 description: "Stake pool course: Grafana Dashboard Tutorial"
 image: /img/og/og-developer-portal.png
 ---
-![Grafana Tutorial](../../static/img/stake-pool-guide/snsky_dashboard.jpg)
+![Grafana Tutorial](../../../static/img/stake-pool-guide/snsky_dashboard.jpg)
 
 Once your Cardano pool is successfully set up, then comes the most beautiful part - setting up your Dashboard and Alerts!
 

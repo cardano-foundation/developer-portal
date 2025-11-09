@@ -145,19 +145,19 @@ module.exports = {
               label: 'Getting Started',
             },
             {
-              to: '/docs/operate-a-stake-pool/relay-node-configuration',
+              to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration',
               label: 'Relay Configuration',
             },
             {
-              to: '/docs/operate-a-stake-pool/register-stake-pool',
+              to: '/docs/operate-a-stake-pool/block-producer/register-stake-pool',
               label: 'Block Producer Setup',
             },
             {
-              to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial',
+              to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
               label: 'Monitoring',
             },
             {
-              to: '/docs/operate-a-stake-pool/hardening-server',
+              to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server',
               label: 'Security',
             },
           ],
@@ -204,7 +204,7 @@ module.exports = {
           items: [
             {
               label: "How to Contribute",
-              to: "docs/portal-contribute/",
+              to: "docs/contribute/portal-contribute",
             },
             {
               label: "Contributors",
@@ -216,7 +216,7 @@ module.exports = {
             },
             {
               label: "Style Guide",
-              to: "docs/portal-style-guide",
+              to: "docs/contribute/portal-style-guide",
             },
             {
               label: "Suggest Content",
@@ -254,7 +254,7 @@ module.exports = {
           items: [
             {
               label: "Careers on Cardano",
-              to: "docs/careers",
+              to: "docs/community/careers",
             },
             {
               label: "Cardano Enterprise",
@@ -333,7 +333,7 @@ module.exports = {
           },
           {
 
-            to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial/',
+            to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
             from: [
               '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
               '/docs/stake-pool-course/handbook/grafana-loki',
@@ -341,7 +341,7 @@ module.exports = {
             ]
           },
           {
-            to: '/docs/operate-a-stake-pool/hardening-server/',
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server',
             from: '/docs/stake-pool-course/handbook/setup-firewall',
           },
           {
@@ -353,10 +353,11 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
           },
           {
-            to: '/docs/get-started/create-simple-transaction/',
+            to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions',
             from: [
               '/docs/stake-pool-course/handbook/use-cli',
               '/docs/stake-pool-course/handbook/create-simple-transaction',
+              '/docs/get-started/create-simple-transaction',
             ]
           },
           {
@@ -364,27 +365,28 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/utxo-model',
           },
           {
-            to: '/docs/operate-a-stake-pool/cardano-key-pairs/',
-            from: '/docs/stake-pool-course/handbook/keys-addresses',
+            to: '/docs/operate-a-stake-pool/basics/cardano-key-pairs',
+            from: ['/docs/stake-pool-course/handbook/keys-addresses', '/docs/operate-a-stake-pool/cardano-key-pairs'],
           },
           {
-            to: '/docs/operate-a-stake-pool/generating-wallet-keys/',
-            from: '/docs/stake-pool-course/handbook/create-stake-pool-keys',
+            to: '/docs/operate-a-stake-pool/block-producer/generating-wallet-keys',
+            from: ['/docs/stake-pool-course/handbook/create-stake-pool-keys', '/docs/operate-a-stake-pool/generating-wallet-keys'],
           },
           {
-            to: '/docs/operate-a-stake-pool/register-stake-address/',
-            from: '/docs/stake-pool-course/handbook/register-stake-keys',
+            to: '/docs/operate-a-stake-pool/block-producer/register-stake-address',
+            from: ['/docs/stake-pool-course/handbook/register-stake-keys', '/docs/operate-a-stake-pool/register-stake-address'],
           },
           {
-            to: '/docs/operate-a-stake-pool/register-stake-pool/',
+            to: '/docs/operate-a-stake-pool/block-producer/register-stake-pool',
             from: [
               '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
               '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
+              '/docs/operate-a-stake-pool/register-stake-pool',
             ]
           },
           {
-            to: '/docs/operate-a-stake-pool/relay-node-configuration/',
-            from: '/docs/stake-pool-course/handbook/configure-topology-files',
+            to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration',
+            from: ['/docs/stake-pool-course/handbook/configure-topology-files', '/docs/operate-a-stake-pool/relay-node-configuration'],
           },
           {
             to: '/docs/learn/educational-resources/air-gap',
@@ -397,6 +399,46 @@ module.exports = {
           {
             to: '/docs/operate-a-stake-pool/operator-tools/frankenwallet',
             from: '/docs/operate-a-stake-pool/frankenwallet',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/basics/stake-pool-networking',
+            from: '/docs/operate-a-stake-pool/stake-pool-networking',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/basics/hardware-requirements',
+            from: '/docs/operate-a-stake-pool/hardware-requirements',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/relay-configuration/monitoring-gLiveView',
+            from: '/docs/operate-a-stake-pool/monitoring-gLiveView',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
+            from: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/block-producer/block-producer-keys',
+            from: '/docs/operate-a-stake-pool/block-producer-keys',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server',
+            from: '/docs/operate-a-stake-pool/hardening-server',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/improve-grafana-security',
+            from: '/docs/operate-a-stake-pool/improve-grafana-security',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/audit-your-node',
+            from: '/docs/operate-a-stake-pool/audit-your-node',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/governance/on-chain-polls',
+            from: '/docs/operate-a-stake-pool/on-chain-polls',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/operator-tools/guild-ops-suite',
+            from: '/docs/operate-a-stake-pool/guild-ops-suite',
           },
           {
             to: '/docs/community/cardano-developer-community',
@@ -681,6 +723,18 @@ module.exports = {
           {
             to: '/docs/build/smart-contracts/overview',
             from: ['/docs/smart-contracts/', '/docs/smart-contracts/overview'],
+          },
+          {
+            to: '/docs/contribute/portal-contribute',
+            from: '/docs/portal-contribute',
+          },
+          {
+            to: '/docs/contribute/portal-style-guide',
+            from: '/docs/portal-style-guide',
+          },
+          {
+            to: '/docs/community/careers',
+            from: '/docs/careers',
           },
         ],
       },

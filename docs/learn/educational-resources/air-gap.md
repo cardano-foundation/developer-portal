@@ -48,7 +48,7 @@ We choose Ubuntu here because:
 The rest of these instructions will assume the choice of **Ubuntu** for your air gap environment OS. If installing a different variant of Linux, please remember:
 
   - When you read the term Ubuntu or show screenshots of its installer, look for equivalents on your own chosen Linux variant.
-  - There may be better choices than Ubuntu now or in the future: please feel free to share your results with others in the Cardano community, perhaps [contributing](../../portal-contribute) your findings & procedures here on the Developer Portal.
+  - There may be better choices than Ubuntu now or in the future: please feel free to share your results with others in the Cardano community, perhaps [contributing](../../contribute/portal-contribute) your findings & procedures here on the Developer Portal.
 
 ### Prepare to follow Ubuntu installation instructions
 

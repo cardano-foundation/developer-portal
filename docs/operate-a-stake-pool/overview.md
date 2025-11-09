@@ -32,11 +32,11 @@ We observed people who had no prior knowledge of Linux, shells, or networking, b
 
 ## Choose security over comfort
 
-Best practices should always be a key consideration when running a stake pool. Security isn't something you can turn on or off or change in a configuration file. It is both an attitude and a way of life, therefore consider following the [security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157) on the Cardano Forum. Make sure to fully understand [Cardano Key Pairs](cardano-key-pairs) in the basic category.
+Best practices should always be a key consideration when running a stake pool. Security isn't something you can turn on or off or change in a configuration file. It is both an attitude and a way of life, therefore consider following the [security related topics with stake pool operators](https://forum.cardano.org/c/staking-delegation/stake-pool-security/157) on the Cardano Forum. Make sure to fully understand [Cardano Key Pairs](basics/cardano-key-pairs) in the basic category.
 
 ## Learn the basics
 
-The basic category starts with learning about [relay and block producer topology](stake-pool-networking), what the [hardware requirements](hardware-requirements) are, which [keys are available](cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
+The basic category starts with learning about [relay and block producer topology](basics/stake-pool-networking), what the [hardware requirements](basics/hardware-requirements) are, which [keys are available](basics/cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
 
 :::tip info
 If you would like to do a deep dive on technical concepts please visit [Consensus & Staking](/docs/operate-a-stake-pool/basics/consensus-staking) and [Core Concepts](../learn/core-concepts/)

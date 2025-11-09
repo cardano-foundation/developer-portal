@@ -20,10 +20,10 @@ Therefore we present a secure, standard workflow for `cardano-cli` commands like
 
 Once you feel comfortable doing a simple transaction securely, you'll also be able to use it to securely execute these more complex transactions as well:
 
-- [Minting Native Assets](/docs/build/native-tokens/minting.md)
-- [Minting NFTs](/docs/build/native-tokens/minting-nfts.md)
-- [Registering a Stake Address](/docs/operate-a-stake-pool/register-stake-address.md)
-- [Registering a Stake Pool](/docs/operate-a-stake-pool/register-stake-pool.md)
+- [Minting Native Assets](/docs/build/native-tokens/minting)
+- [Minting NFTs](/docs/build/native-tokens/minting-nfts)
+- [Registering a Stake Address](/docs/operate-a-stake-pool/block-producer/register-stake-address)
+- [Registering a Stake Pool](/docs/operate-a-stake-pool/block-producer/register-stake-pool)
 
 ### A model for a secure transaction
 
@@ -36,7 +36,7 @@ All transactions will be done in these 3 steps:
 3. on Internet connected computer:
       - **Upload** the Tx file to your Cardano node and submit it.
 
-Therefore, the payment signing key (the private component of the [Cardano wallet address key pair](/docs/operate-a-stake-pool/cardano-key-pairs.md#wallet-address-key-pairs)) **never leaves the air gap environment**. This is vital because:
+Therefore, the payment signing key (the private component of the [Cardano wallet address key pair](/docs/operate-a-stake-pool/basics/cardano-key-pairs#wallet-address-key-pairs)) **never leaves the air gap environment**. This is vital because:
 
 - A standard assumption in security is that *any* Internet connection on *any* computer creates opportunities for malicious people or programs to copy, view, or modify *anything* unencrypted on that computer.
 - Unlike transactions with cryptocurrency wallet software, in which the wallet's private payment keys are carefully encrypted and securely managed, the payment key (in this documentation, `payment.skey`) used for the raw transactions of development & stake pool operations is *not encrypted*.

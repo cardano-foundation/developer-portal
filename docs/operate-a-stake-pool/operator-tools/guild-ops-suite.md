@@ -14,17 +14,17 @@ The Guild-Operators suite is a set of tools and scripts for setting up, managing
 
 #### CNTools
 
-CNTools is a swiss army knife for pool operators who want to make routine tasks easier. It's a menu-driven bash GUI application for creating and managing wallets, sending ada and tokens, and just about any pool function. In addition, the tool has been enhanced with new features and improvements since its initial release in July 2020, coinciding with the introduction of the Cardano Shelley MainNet. More information regarding CNTools can be found [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).  
-![img](../../static/img/get-started/guild-ops-suite/guild_cntools.png)  
+CNTools is a swiss army knife for pool operators who want to make routine tasks easier. It's a menu-driven bash GUI application for creating and managing wallets, sending ada and tokens, and just about any pool function. In addition, the tool has been enhanced with new features and improvements since its initial release in July 2020, coinciding with the introduction of the Cardano Shelley MainNet. More information regarding CNTools can be found [here](https://cardano-community.github.io/guild-operators/Scripts/cntools/).
+![img](../../../static/img/get-started/guild-ops-suite/guild_cntools.png)
 
 #### gLiveView
 
-Guild LiveView, often known as gLiveView, is a local bash CLI monitoring utility with an easy-to-use interface for monitoring node status. It connects to the locally running node via the specified EKG/Prometheus node endpoints to collect and show node metrics, network information, and other information in real time. The program recognizes whether the node is being used as a relay or a block producer and adjusts the output accordingly. More information regarding gLiveView can be found [here](https://cardano-community.github.io/guild-operators/Scripts/gliveview/).  
-![img](../../static/img/get-started/guild-ops-suite/guild_gliveview.png)  
+Guild LiveView, often known as gLiveView, is a local bash CLI monitoring utility with an easy-to-use interface for monitoring node status. It connects to the locally running node via the specified EKG/Prometheus node endpoints to collect and show node metrics, network information, and other information in real time. The program recognizes whether the node is being used as a relay or a block producer and adjusts the output accordingly. More information regarding gLiveView can be found [here](https://cardano-community.github.io/guild-operators/Scripts/gliveview/).
+![img](../../../static/img/get-started/guild-ops-suite/guild_gliveview.png)  
 
 #### Topology Updater
-Topology Updater was built as a workaround to allow stake pool relays to auto-discover and pair with peers on the network. While P2P implementation was put on hold owing to other priorities, this script has become one of the most important tools for avoiding having to manually contact friends and request that individual nodes be included to topology files. More information about the tool may be found [here](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater/).  
-![img](../../static/img/get-started/guild-ops-suite/guild_topologyupdater.png)  
+Topology Updater was built as a workaround to allow stake pool relays to auto-discover and pair with peers on the network. While P2P implementation was put on hold owing to other priorities, this script has become one of the most important tools for avoiding having to manually contact friends and request that individual nodes be included to topology files. More information about the tool may be found [here](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater/).
+![img](../../../static/img/get-started/guild-ops-suite/guild_topologyupdater.png)  
 
 #### Guild Network and Support for other networks
 

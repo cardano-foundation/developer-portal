@@ -33,7 +33,7 @@ Example projects can be found in the [Pebble documentation examples section](htt
 Below is the `Hello Pebble` contract:
 
 ```ts
-istruct HelloWorldDatum {
+struct HelloWorldDatum {
     owner: bytes
 }
 

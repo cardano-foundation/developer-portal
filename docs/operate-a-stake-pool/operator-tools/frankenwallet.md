@@ -42,7 +42,7 @@ This is a one-page summary of those external instructions to help you (the opera
 
 ### Use cases for the Frankenwallet
 
-➤ Anyone working with private keys & [secure transaction signing](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/cardano-key-pairs)).
+➤ Anyone working with private keys & [secure transaction signing](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow), seed phrases, or other high value resources targeted by hackers (e.g., [stake pool keys](/docs/operate-a-stake-pool/basics/cardano-key-pairs)).
 
 ➤ Anyone wishing to work in high security with these resources without either a second computer (e.g. perpetual travellers, students, and hardware minimalists) or a hardware wallet ([Frankenwallet vs. Hardware wallets](https://frankenwallet.com/intro/hardware-wallets))
 
