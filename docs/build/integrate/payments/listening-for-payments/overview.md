@@ -32,4 +32,4 @@ The basic payment detection flow:
 4. **Verify amount** - Confirm received amount matches expected payment
 5. **Complete transaction** - Fulfill order/service once payment is confirmed
 
-![Payment Flow](../../../static/img/integrate-cardano/ada-online-shop.png)
+![Payment Flow](/img/integrate-cardano/ada-online-shop.png)

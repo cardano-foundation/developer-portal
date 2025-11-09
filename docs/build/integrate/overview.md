@@ -1,6 +1,5 @@
 ---
 id: overview
-slug: /integrate-cardano/
 title: Integrate Cardano
 sidebar_label: Overview
 description: How to integrate Cardano into existing websites and services.
@@ -8,7 +7,7 @@ image: /img/og/og-developer-portal.png
 --- 
 
 
-![Integrate Cardano](../../static/img/card-integrate-cardano-title.svg)
+![Integrate Cardano](/img/card-integrate-cardano-title.svg)
 
 ## Introduction
 Here we show you how to integrate Cardano into existing websites and services. 

@@ -17,7 +17,7 @@ This is the quickest way to get a production-ready payment system running. No bl
 
 Welcome to the documentation of a Point of Sale (POS) application built using Cardano APIs. This guide will walk you through the key features and functionalities of the application.
 
-![Point Of Sale](../../../static/img/integrate-cardano/point-of-sale-example.png)
+![Point Of Sale](/img/integrate-cardano/point-of-sale-example.png)
 
 ### Getting Started
 

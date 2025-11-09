@@ -28,13 +28,13 @@ This guide also assumes that you have `cardano-node` and `cardano-wallet` runnin
 
 There are many possible reasons why you would want to have the functionality of listening for `ada` payments, but a very obvious use case would be for something like an **online shop** or a **payment gateway** that uses `ada` tokens as the currency.
 
-![img](../../../static/img/integrate-cardano/ada-online-shop.png)
+![img](/img/integrate-cardano/ada-online-shop.png)
 
 ## Technical flow
 
 To understand how something like this could work in a technical point of view, let's take a look at the following diagram:
 
-![img](../../../static/img/integrate-cardano/ada-payment-flow-wallet.png)
+![img](/img/integrate-cardano/ada-payment-flow-wallet.png)
 
 So let's imagine a very basic scenario where a **customer** is browsing an online shop. Once the user has chosen and added all the items into the **shopping cart**. The next step would then be to checkout and pay for the items, Of course we will be using **Cardano** for that!
 

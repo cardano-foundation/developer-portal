@@ -566,6 +566,78 @@ module.exports = {
             to: '/docs/operate-a-stake-pool/basics/consensus-staking',
             from: '/docs/get-started/technical-concepts/consensus-staking',
           },
+          {
+            to: '/docs/build/integrate/overview',
+            from: ['/docs/integrate-cardano/', '/docs/integrate-cardano/overview'],
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/overview',
+            from: '/docs/integrate-cardano/listening-for-payments/overview',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/cardano-cli',
+            from: '/docs/integrate-cardano/listening-for-payments/cardano-cli',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/cardano-wallet',
+            from: '/docs/integrate-cardano/listening-for-payments/cardano-wallet',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/point-of-sale',
+            from: '/docs/integrate-cardano/listening-for-payments/point-of-sale',
+          },
+          {
+            to: '/docs/build/integrate/payments/x402-standard',
+            from: '/docs/integrate-cardano/x402-standard',
+          },
+          {
+            to: '/docs/build/integrate/user-wallet-authentication/overview',
+            from: '/docs/integrate-cardano/user-wallet-authentication/overview',
+          },
+          {
+            to: '/docs/build/integrate/user-wallet-authentication/mesh',
+            from: '/docs/integrate-cardano/user-wallet-authentication/mesh',
+          },
+          {
+            to: '/docs/build/integrate/user-wallet-authentication/cardano-serialization-lib',
+            from: '/docs/integrate-cardano/user-wallet-authentication/cardano-serialization-lib',
+          },
+          {
+            to: '/docs/build/integrate/ai-agents/overview',
+            from: '/docs/integrate-cardano/ai-agents/overview',
+          },
+          {
+            to: '/docs/build/integrate/ai-agents/masumi',
+            from: '/docs/integrate-cardano/ai-agents/masumi',
+          },
+          {
+            to: '/docs/build/integrate/oracles/overview',
+            from: '/docs/integrate-cardano/oracles-overview',
+          },
+          {
+            to: '/docs/build/integrate/oracles/charli3',
+            from: '/docs/integrate-cardano/charli3',
+          },
+          {
+            to: '/docs/build/integrate/oracles/orcfax',
+            from: '/docs/integrate-cardano/orcfax',
+          },
+          {
+            to: '/docs/build/integrate/exchange-integrations',
+            from: '/docs/integrate-cardano/exchange-integrations',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/overview',
+            from: '/docs/integrate-cardano/listening-for-payments',
+          },
+          {
+            to: '/docs/build/integrate/user-wallet-authentication/overview',
+            from: '/docs/integrate-cardano/user-wallet-authentication',
+          },
+          {
+            to: '/docs/build/integrate/ai-agents/overview',
+            from: '/docs/integrate-cardano/ai-agents',
+          },
         ],
       },
     ],

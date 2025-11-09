@@ -287,7 +287,7 @@ module.exports = {
         label: "Integrate",
         link: {
           type: "doc",
-          id: "integrate-cardano/overview"
+          id: "build/integrate/overview"
         },
         items: [
           {
@@ -299,15 +299,15 @@ module.exports = {
                 label: "Listening for Payments",
                 link: {
                   type: "doc",
-                  id: "integrate-cardano/listening-for-payments/overview"
+                  id: "build/integrate/payments/listening-for-payments/overview"
                 },
                 items: [
-                  "integrate-cardano/listening-for-payments/point-of-sale",
-                  "integrate-cardano/listening-for-payments/cardano-cli",
-                  "integrate-cardano/listening-for-payments/cardano-wallet",
+                  "build/integrate/payments/listening-for-payments/point-of-sale",
+                  "build/integrate/payments/listening-for-payments/cardano-cli",
+                  "build/integrate/payments/listening-for-payments/cardano-wallet",
                 ],
               },
-              "integrate-cardano/x402-standard",
+              "build/integrate/payments/x402-standard",
             ],
           },
           {
@@ -315,11 +315,11 @@ module.exports = {
             label: "User Wallet Authentication",
             link: {
               type: "doc",
-              id: "integrate-cardano/user-wallet-authentication/overview"
+              id: "build/integrate/user-wallet-authentication/overview"
             },
             items: [
-              "integrate-cardano/user-wallet-authentication/mesh",
-              "integrate-cardano/user-wallet-authentication/cardano-serialization-lib",
+              "build/integrate/user-wallet-authentication/mesh",
+              "build/integrate/user-wallet-authentication/cardano-serialization-lib",
             ],
           },
           {
@@ -327,10 +327,10 @@ module.exports = {
             label: "AI Agents",
             link: {
               type: "doc",
-              id: "integrate-cardano/ai-agents/overview"
+              id: "build/integrate/ai-agents/overview"
             },
             items: [
-              "integrate-cardano/ai-agents/masumi",
+              "build/integrate/ai-agents/masumi",
             ],
           },
           {
@@ -338,14 +338,14 @@ module.exports = {
             label: "Oracles",
             link: {
               type: "doc",
-              id: "integrate-cardano/oracles-overview"
+              id: "build/integrate/oracles/overview"
             },
             items: [
-              "integrate-cardano/charli3",
-              "integrate-cardano/orcfax",
+              "build/integrate/oracles/charli3",
+              "build/integrate/oracles/orcfax",
             ],
           },
-          "integrate-cardano/exchange-integrations",
+          "build/integrate/exchange-integrations",
         ],
       },
       {
