@@ -1,5 +1,5 @@
 ---
-id: high-level-sdks-overview
+id: overview
 title: High-Level SDKs
 sidebar_label: Overview
 description: Explore high-level SDKs for building Cardano dApps - developer-friendly tools that abstract away blockchain complexity.

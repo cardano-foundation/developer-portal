@@ -179,7 +179,7 @@ There are ways to optimize the amount you spend. We will leave this for you to f
 
 This scenario is pretty straight forward and looks like this.
 
-![img](../../../static/img/integrate-cardano/multi-witness-transaction.png "Multi witness flow")
+![img](/img/integrate-cardano/multi-witness-transaction.png "Multi witness flow")
 
 As you can see in the diagram above, we will build and submit a **multi-witness transaction**, having *two inputs* and *one output*.
 

@@ -345,11 +345,11 @@ module.exports = {
             from: '/docs/stake-pool-course/handbook/setup-firewall',
           },
           {
-            to: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node/',
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
             from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
           },
           {
-            to: '/docs/operate-a-stake-pool/node-operations/running-cardano/',
+            to: '/docs/get-started/infrastructure/node/running-cardano',
             from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
           },
           {
@@ -391,11 +391,11 @@ module.exports = {
             from: '/docs/operate-a-stake-pool/security/air-gap',
           },
           {
-            to: '/docs/get-started/security/secure-workflow',
+            to: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow',
             from: '/docs/operate-a-stake-pool/security/secure-workflow',
           },
           {
-            to: '/docs/get-started/security/frankenwallet',
+            to: '/docs/operate-a-stake-pool/operator-tools/frankenwallet',
             from: '/docs/operate-a-stake-pool/frankenwallet',
           },
           {
@@ -513,6 +513,58 @@ module.exports = {
           {
             to: '/docs/get-started/infrastructure/node/topology',
             from: '/docs/operate-a-stake-pool/node-operations/topology',
+          },
+          {
+            to: '/docs/get-started/client-sdks/overview',
+            from: '/docs/get-started/high-level-sdks-overview',
+          },
+          {
+            to: '/docs/get-started/client-sdks/typescript/overview',
+            from: '/docs/get-started/typescript-sdks',
+          },
+          {
+            to: '/docs/get-started/client-sdks/python/pycardano',
+            from: '/docs/get-started/pycardano',
+          },
+          {
+            to: '/docs/get-started/client-sdks/csharp/cardanosharp-wallet',
+            from: '/docs/get-started/cardanosharp-wallet',
+          },
+          {
+            to: '/docs/get-started/client-sdks/typescript/mesh/overview',
+            from: '/docs/get-started/mesh',
+          },
+          {
+            to: '/docs/get-started/client-sdks/typescript/evolution-sdk/get-started',
+            from: '/docs/get-started/evolution-sdk',
+          },
+          {
+            to: '/docs/get-started/client-sdks/typescript/utxos/overview',
+            from: '/docs/get-started/utxos',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
+            from: '/docs/get-started/cardano-cli',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-wallet/cardano-wallet',
+            from: '/docs/get-started/cardano-wallet',
+          },
+          {
+            to: '/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview',
+            from: '/docs/get-started/cardano-serialization-lib',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow',
+            from: '/docs/get-started/security/secure-workflow',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/operator-tools/frankenwallet',
+            from: '/docs/get-started/security/frankenwallet',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/basics/consensus-staking',
+            from: '/docs/get-started/technical-concepts/consensus-staking',
           },
         ],
       },

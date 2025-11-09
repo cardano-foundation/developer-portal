@@ -344,7 +344,7 @@ To know whether you are fully synced or not, you can check the **Cardano Blockch
 
 Scroll down to the **Latest Blocks** section, and you can find the latest network tip.
 
-![img](../../../static/img/integrate-cardano/latest-block.png)
+![img](/img/integrate-cardano/latest-block.png)
 
 :::important
 Before making any transactions, make sure you are fully synced to the blockchain network.
