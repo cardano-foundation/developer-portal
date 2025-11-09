@@ -490,6 +490,30 @@ module.exports = {
             to: '/docs/get-started/infrastructure/demeter',
             from: '/docs/get-started/demeter',
           },
+          {
+            to: '/docs/get-started/infrastructure/node/cardano-components',
+            from: '/docs/operate-a-stake-pool/node-operations/cardano-components',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
+            from: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/running-cardano',
+            from: '/docs/operate-a-stake-pool/node-operations/running-cardano',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/dynamic-block-forging',
+            from: '/docs/operate-a-stake-pool/node-operations/dynamic-block-forging',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/rts-options-node',
+            from: '/docs/operate-a-stake-pool/node-operations/rts-options-node',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/topology',
+            from: '/docs/operate-a-stake-pool/node-operations/topology',
+          },
         ],
       },
     ],
