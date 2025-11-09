@@ -638,6 +638,26 @@ module.exports = {
             to: '/docs/build/integrate/ai-agents/overview',
             from: '/docs/integrate-cardano/ai-agents',
           },
+          {
+            to: '/docs/build/native-tokens/overview',
+            from: ['/docs/native-tokens/', '/docs/native-tokens/overview'],
+          },
+          {
+            to: '/docs/build/native-tokens/minting',
+            from: '/docs/native-tokens/minting',
+          },
+          {
+            to: '/docs/build/native-tokens/minting-nfts',
+            from: '/docs/native-tokens/minting-nfts',
+          },
+          {
+            to: '/docs/build/native-tokens/authenticated-products',
+            from: '/docs/native-tokens/authenticated-products',
+          },
+          {
+            to: '/docs/build/native-tokens/cardano-token-registry',
+            from: '/docs/native-tokens/cardano-token-registry',
+          },
         ],
       },
     ],

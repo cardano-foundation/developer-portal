@@ -22,7 +22,7 @@ The data on the NFC chip is encrypted using symmetric encryption keys, which mea
 
 The process is depicted in here:
  
- ![img](../../static/img/native-tokens/nft-merch-store-poc.png)
+ ![img](/img/native-tokens/nft-merch-store-poc.png)
 
 
 :::tip

@@ -148,7 +148,7 @@ Epoch and slot number should match when being compared to the data shown by Card
 - [testnet.cexplorer.io](https://testnet.cexplorer.io/) is a Pre-Production and Preview block explorer by [Cexplorer](https://cexplorer.io).
 
 
-![img](../../static/img/nfts/cardano_explorer_testnet.png)
+![img](/img/nfts/cardano_explorer_testnet.png)
 
 ### Set up your workspace
 
@@ -525,7 +525,7 @@ cardano-cli conway transaction submit --tx-file rec_matx.signed $testnet
 
 After a few seconds, you, the receiver, should have your tokens. For this example, a Daedalus testnet wallet is used.
 
-![img](../../static/img/nfts/daedalus_tokens_rec.PNG)
+![img](/img/nfts/daedalus_tokens_rec.PNG)
 
 
 ## Burning token

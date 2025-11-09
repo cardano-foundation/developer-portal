@@ -169,7 +169,7 @@ ipfs_hash="please insert your ipfs hash here"
 
 :::note
 The IPFS hash is a key requirement and can be found once you upload your image to IPFS. Here's an example of how the IPFS looks like when an image is uploaded in [pinata](https://www.pinata.cloud/)
-![img](../../static/img/nfts/pinata_pin.PNG)
+![img](/img/nfts/pinata_pin.PNG)
 :::
 
 ### Generate keys and address
@@ -872,7 +872,7 @@ One of the most adopted NFT browsers with testnet supported is [pool.pm](https:/
 
 Copy metadata from `metadata.json` file into the field and your NFT will be displayed with all its attributes and the corresponding image.
 
-![img](../../static/img/nfts/poolpm_nft_testnet.png)
+![img](/img/nfts/poolpm_nft_testnet.png)
 
   </TabItem>
 
@@ -882,7 +882,7 @@ One of the most adopted NFT browsers with testnet supported is [pool.pm](https:/
 
 Copy metadata from `metadata.json` file into the field and your NFT will be displayed with all its attributes and the corresponding image.
 
-![img](../../static/img/nfts/poolpm_nft_testnet.png)
+![img](/img/nfts/poolpm_nft_testnet.png)
 
   </TabItem>
 
@@ -891,7 +891,7 @@ Copy metadata from `metadata.json` file into the field and your NFT will be disp
 One of the most adopted NFT browsers is [pool.pm](https://pool.pm/tokens).
 Enter your address in the search bar, hit enter, and your NFT will be displayed with all its attributes and the corresponding image.
 
-![img](../../static/img/nfts/poolpm_nft.png)
+![img](/img/nfts/poolpm_nft.png)
 
 You can check it out yourself and see the NFT created for this tutorial [here](https://pool.pm/6574f051ee0c4cae35c0407b9e104ed8b3c9cab31dfb61308d69f33c.NFT1).
 
