@@ -12,6 +12,6 @@ Webhooks empower Blockfrost to deliver real-time notifications to your applicati
 
 Optionally, you can create up to 5 trigger conditions for a webhook. Only events that meet all of the conditions will be sent to your endpoint. A condition rule consist of a field, a value, and an operator. You can choose from predefined condition fields or create a custom JSONPath query extracting the field you want to match.
 
-![Blockfrost.io JSONPath](../../../static/img/get-started/blockfrost/secure-webhooks-1_webhooks_jsonpath.png)
+![Blockfrost.io JSONPath](/img/get-started/blockfrost/secure-webhooks-1_webhooks_jsonpath.png)
 
 Webhooks are both powerful and complex. To learn more, have a look at the [official Blockfrost documentation](https://blockfrost.dev/docs/start-building/webhooks/)

@@ -19,7 +19,7 @@ You can access API documentation [here](https://api.koios.rest). Koios leverages
 
 Each endpoint in the document provides a sample curl command that can be used to test using an example, which can be executed directly from the browser for testing as well.
 
-![img](../../static/img/get-started/koios/1-usage.png)
+![img](/img/get-started/koios/1-usage.png)
  
 ### Limits
 

@@ -32,7 +32,7 @@ If you prefer to build everything from source or without docker, please head to 
 
 You should now be able to access the dashboard on [http://localhost:1337](http://localhost:1337) with a real-time visualization of some of the server runtime metrics. 
 
-![img](../../static/img/get-started/ogmios/1-dashboard.gif)
+![img](/img/get-started/ogmios/1-dashboard.gif)
 
 ## Query metrics
 

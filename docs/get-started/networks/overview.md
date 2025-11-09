@@ -1,5 +1,5 @@
 ---
-id: networks-overview
+id: overview
 title: Cardano Networks
 sidebar_label: Overview
 description: Understand the different Cardano networks - mainnet, testnets, and local development environments.
@@ -87,13 +87,13 @@ Dedicated testnet for testing governance features (CIP-1694). Learn more at [san
 
 ### Getting Test ADA
 
-Test ADA (tAda) has no real value and is distributed for free. You can get test ADA for Preview or Preprod testnets via the [Cardano Testnet Faucet](/docs/integrate-cardano/testnet-faucet/).
+Test ADA (tAda) has no real value and is distributed for free. You can get test ADA for Preview or Preprod testnets via the [Cardano Testnet Faucet](/docs/get-started/networks/testnets/testnet-faucet).
 
 ### Detailed Testnet Information
 
 For comprehensive testnet documentation including wallet setup, faucet access, and block explorers:
 
-→ **[View detailed testnet guide](/docs/get-started/testnets-and-devnets)**
+→ **[View detailed testnet guide](/docs/get-started/networks/testnets/overview)**
 
 ---
 
@@ -103,9 +103,9 @@ Local networks run on your machine for rapid development and testing without req
 
 ### Available Tools
 
-**[Yaci DevKit](/docs/get-started/yaci-devkit)**: A development kit for quickly setting up a local Cardano network with Provider API compatibility, Tx building SDKs integration and Docker support.
+**[Yaci DevKit](/docs/get-started/networks/development-networks/yaci-devkit)**: A development kit for quickly setting up a local Cardano network with Provider API compatibility, Tx building SDKs integration and Docker support.
 
-**[cardano-testnet](/docs/get-started/cardano-testnet)**: A tool for launching custom local Cardano clusters with configurable parameters like epochs, slots, and genesis configurations.
+**[cardano-testnet](/docs/get-started/networks/development-networks/cardano-testnet)**: A tool for launching custom local Cardano clusters with configurable parameters like epochs, slots, and genesis configurations.
 
 ### When to Use Local Networks
 
@@ -131,9 +131,9 @@ Local networks run on your machine for rapid development and testing without req
 
 Now that you understand the available networks, choose how to connect to them:
 
-→ **[Choose Your Infrastructure](/docs/get-started/choose-your-approach)** - Compare API providers, cloud platforms, and running your own node
+→ **[Choose Your Infrastructure](/docs/get-started/infrastructure/overview)** - Compare API providers, cloud platforms, and running your own node
 
 Or explore specific network options:
 
-- **Start with testnets**: Learn about [Preview and Preprod testnets](/docs/get-started/testnets-and-devnets) and get [test ADA](/docs/integrate-cardano/testnet-faucet/)
-- **Develop locally**: Set up [Yaci DevKit](/docs/get-started/yaci-devkit) or [cardano-testnet](/docs/get-started/cardano-testnet) for local testing
+- **Start with testnets**: Learn about [Preview and Preprod testnets](/docs/get-started/networks/testnets/overview) and get [test ADA](/docs/get-started/networks/testnets/testnet-faucet)
+- **Develop locally**: Set up [Yaci DevKit](/docs/get-started/networks/development-networks/yaci-devkit) or [cardano-testnet](/docs/get-started/networks/development-networks/cardano-testnet) for local testing

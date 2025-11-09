@@ -1,5 +1,5 @@
 ---
-id: testnets-and-devnets
+id: overview
 title: Get started with testnets
 sidebar_label: Testnets
 description: Get started with testnets and devnets
@@ -13,7 +13,7 @@ The [Cardano testnets](https://docs.cardano.org/cardano-testnets/environments) a
 The testnets are an essential part of the development process for Cardano, as they allow developers to test and refine their code before deploying it on the live network, ultimately improving reliability and security.
 
 :::tip Quick Reference
-Need a quick overview of all Cardano networks including mainnet? See the [Networks Overview](/docs/get-started/networks-overview).
+Need a quick overview of all Cardano networks including mainnet? See the [Networks Overview](/docs/get-started/networks/overview).
 :::
 
 ### What testnet should I use?
@@ -77,7 +77,7 @@ The Pre-Production Testnet is a more comprehensive testing environment used to v
 | **Hard Fork Schedule** | 4+ weeks before mainnet | ~Same time as mainnet | Flexible |
 | **Epoch Length** | Standard | Standard | 1 hour |
 | **Best For** | Early testing, learning | Final validation | Rapid iteration |
-| **Faucet** | [Automated](/docs/integrate-cardano/testnet-faucet/) | [Automated](/docs/integrate-cardano/testnet-faucet/) | Manual via Telegram |
+| **Faucet** | [Automated](/docs/get-started/networks/testnets/testnet-faucet) | [Automated](/docs/get-started/networks/testnets/testnet-faucet) | Manual via Telegram |
 
 ### Where to get a testnet wallet?
 
@@ -98,7 +98,7 @@ Test ada is worth nothing. With it you can safely perform all tests free of char
 
 To get free test ada for Preprod or Preview, you need to visit: [Cardano Testnet Faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)
 
-- In depth [explanation](/docs/integrate-cardano/testnet-faucet/) about Cardano Testnet Faucet
+- In depth [explanation](/docs/get-started/networks/testnets/testnet-faucet) about Cardano Testnet Faucet
 
 ### Which block explorers can I use for the Cardano testnets?
 

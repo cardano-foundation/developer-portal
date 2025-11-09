@@ -446,6 +446,50 @@ module.exports = {
             to: '/docs/learn/educational-resources/air-gap',
             from: '/docs/get-started/security/air-gap',
           },
+          {
+            to: '/docs/get-started/networks/overview',
+            from: '/docs/get-started/networks-overview',
+          },
+          {
+            to: '/docs/get-started/networks/testnets/overview',
+            from: '/docs/get-started/testnets-and-devnets',
+          },
+          {
+            to: '/docs/get-started/networks/testnets/testnet-faucet',
+            from: '/docs/integrate-cardano/testnet-faucet',
+          },
+          {
+            to: '/docs/get-started/networks/development-networks/overview',
+            from: '/docs/get-started/development-networks',
+          },
+          {
+            to: '/docs/get-started/networks/development-networks/yaci-devkit',
+            from: '/docs/get-started/yaci-devkit',
+          },
+          {
+            to: '/docs/get-started/networks/development-networks/cardano-testnet',
+            from: '/docs/get-started/cardano-testnet',
+          },
+          {
+            to: '/docs/get-started/infrastructure/overview',
+            from: '/docs/get-started/choose-your-approach',
+          },
+          {
+            to: '/docs/get-started/infrastructure/api-providers/overview',
+            from: '/docs/get-started/providers-overview',
+          },
+          {
+            to: '/docs/get-started/infrastructure/api-providers/koios',
+            from: '/docs/get-started/koios',
+          },
+          {
+            to: '/docs/get-started/infrastructure/api-providers/ogmios',
+            from: '/docs/get-started/ogmios',
+          },
+          {
+            to: '/docs/get-started/infrastructure/demeter',
+            from: '/docs/get-started/demeter',
+          },
         ],
       },
     ],

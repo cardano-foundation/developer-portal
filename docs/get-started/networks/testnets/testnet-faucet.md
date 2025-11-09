@@ -8,7 +8,7 @@ image: /img/og/og-developer-portal.png
 
 Since Cardano testnets are independent networks, separate from the Cardano mainnet, they require their own tokens.
 
-The testnet faucet is a web-based service that provides test ada to users of the Cardano testnets. While these tokens have no real-world value, they enable users to experiment with Cardano testnet features without spending real ada on the mainnet. You can use test ada to [mint native tokens](../native-tokens/minting), practice with [cardano-cli](/docs/get-started/cardano-cli/basic-operations/get-started) or [cardano-wallet](/docs/get-started/cardano-wallet/using-cardano-wallet), or to [learn how to operate a stake pool](../operate-a-stake-pool/).
+The testnet faucet is a web-based service that provides test ada to users of the Cardano testnets. While these tokens have no real-world value, they enable users to experiment with Cardano testnet features without spending real ada on the mainnet. You can use test ada to [mint native tokens](../../../native-tokens/minting), practice with [cardano-cli](/docs/get-started/cardano-cli/basic-operations/get-started) or [cardano-wallet](/docs/get-started/cardano-wallet/using-cardano-wallet), or to [learn how to operate a stake pool](../../../operate-a-stake-pool/).
 
 ## How to get test ada
 

@@ -11,7 +11,7 @@ In order to use the [hosted version of Blockfrost API](https://blockfrost.io/), 
 
 # Log in / Sign up
 
-![Blockfrost.io landing page](../../../static/img/get-started/blockfrost/getting-started-1_frontend_landing.png)
+![Blockfrost.io landing page](/img/get-started/blockfrost/getting-started-1_frontend_landing.png)
 
 When [creating a Blockfrost.io account](https://blockfrost.io/auth/signin) you can use your email or Single Sing-On through Google, GitHub and GitLab. Armed with an account, you can start building your apps!
 
@@ -23,11 +23,11 @@ Blockfrost.io uses password-less login. No need to worry about losing or storing
 
 After setting up your account, you can now create your first project. Select **+ ADD PROJECT**, choose a suitable name, and ensure you pick the correct network.
 
-![Add Blockfrost project](../../../static/img/get-started/blockfrost/getting-started-2_add_project.png)
+![Add Blockfrost project](/img/get-started/blockfrost/getting-started-2_add_project.png)
 
 Upon clicking **SAVE PROJECT**, you will be redirected to the project subpage where a unique secret API key, known as `project_id`, will be generated.
 
-![Get Blockfrost project_id](../../../static/img/get-started/blockfrost/getting-started-3_get_api_key.png)
+![Get Blockfrost project_id](/img/get-started/blockfrost/getting-started-3_get_api_key.png)
 
 :::warning
 Protect your secrets! Since `project_id` is a secret, ensure it is not committed to a public repository or embedded in your code. When possible, use environment variables to prevent exposing `project_id`. Ideally, set up your own application backend to store your `project_id` securely, avoiding potential leaks. Otherwise, unauthorized individuals could exploit your token.

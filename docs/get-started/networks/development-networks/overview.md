@@ -1,5 +1,5 @@
 ---
-id: development-networks
+id: overview
 title: Development Networks
 sidebar_label: Overview
 description: Local blockchain networks for faster Cardano development and testing.
