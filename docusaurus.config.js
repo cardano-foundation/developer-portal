@@ -658,6 +658,26 @@ module.exports = {
             to: '/docs/build/native-tokens/cardano-token-registry',
             from: '/docs/native-tokens/cardano-token-registry',
           },
+          {
+            to: '/docs/build/transaction-metadata/overview',
+            from: ['/docs/transaction-metadata/', '/docs/transaction-metadata/overview'],
+          },
+          {
+            to: '/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-cli',
+            from: '/docs/transaction-metadata/how-to-create-a-metadata-transaction-cli',
+          },
+          {
+            to: '/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-wallet',
+            from: '/docs/transaction-metadata/how-to-create-a-metadata-transaction-wallet',
+          },
+          {
+            to: '/docs/build/transaction-metadata/retrieving-metadata',
+            from: '/docs/transaction-metadata/retrieving-metadata',
+          },
+          {
+            to: '/docs/build/transaction-metadata/mesh',
+            from: '/docs/transaction-metadata/mesh',
+          },
         ],
       },
     ],

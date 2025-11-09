@@ -376,19 +376,19 @@ module.exports = {
         label: "Transaction Metadata",
         link: {
           type: "doc",
-          id: "transaction-metadata/overview"
+          id: "build/transaction-metadata/overview"
         },
         items: [
           {
             type: "category",
             label: "Tutorials",
             items: [
-              "transaction-metadata/mesh",
-              "transaction-metadata/how-to-create-a-metadata-transaction-cli",
-              "transaction-metadata/how-to-create-a-metadata-transaction-wallet",
+              "build/transaction-metadata/mesh",
+              "build/transaction-metadata/how-to-create-a-metadata-transaction-cli",
+              "build/transaction-metadata/how-to-create-a-metadata-transaction-wallet",
             ],
           },
-          "transaction-metadata/retrieving-metadata",
+          "build/transaction-metadata/retrieving-metadata",
         ],
       },
       {
