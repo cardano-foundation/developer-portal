@@ -87,16 +87,24 @@ module.exports = {
           position: 'left',
           items: [
             {
-              to: "docs/learn/core-concepts/",
+              to: "/docs/get-started/",
+              label: "Getting Started",
+            },
+            {
+              to: "/docs/learn/core-concepts/",
               label: "Core Concepts",
             },
             {
-              to: "/docs/build/native-tokens/overview",
-              label: "Native Tokens",
+              to: "/docs/get-started/client-sdks/overview",
+              label: "Client SDKs",
             },
             {
               to: "/docs/build/smart-contracts/overview",
               label: "Smart Contracts",
+            },
+            {
+              to: "/docs/build/integrate/overview",
+              label: "Integration",
             },
             {
               to: "tools",
@@ -104,7 +112,7 @@ module.exports = {
             },
             {
               to: "docs/community/cardano-developer-community",
-              label: "Dev Community",
+              label: "Community",
             },
             {
               to: "docs/community/funding",

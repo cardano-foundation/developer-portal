@@ -21,7 +21,7 @@ export const Tags = {
     label: "Elm",
     description: "Elm language",
     icon: null,
-    color: "#2D79C7"
+    color: "#60B5CC"
   },
 
   golang: {
@@ -98,7 +98,7 @@ export const Tags = {
     label: "Scala",
     description: "Scala language",
     icon: null,
-    color: "#2D79C7"
+    color: "#DC322F"
   },
 
   typescript: {
@@ -106,7 +106,7 @@ export const Tags = {
     description:
       "TypeScript language",
     icon: null,
-    color: "#2D79C7"
+    color: "#3178C6"
   },
 
   // ===== PROTOCOLS/APIs =====
@@ -132,7 +132,7 @@ export const Tags = {
     description:
       "JSON data format",
     icon: null,
-    color: "#FCE300"
+    color: "#F7931E"
   },
 
   // ===== DATABASES =====
@@ -147,7 +147,7 @@ export const Tags = {
     label: "SQL",
     description: "SQL database (MySQL, PostgreSQL, SQLite...)",
     icon: null,
-    color: "#FD7272"
+    color: "#336791"
   },
 
   // ===== TOOLS =====
@@ -171,7 +171,7 @@ export const Tags = {
     label: "Smart Contracts",
     description: "Smart contracts",
     icon: null,
-    color: "#2D79C7"
+    color: "#FF6B6B"
   },
 
   transactionbuilder: {
@@ -211,14 +211,14 @@ export const Tags = {
     label: "Provider",
     description: "Provider for Cardano blockchain data",
     icon: null,
-    color: "#2D79C7"
+    color: "#4ECDC4"
   },
 
   nodeclient: {
     label: "Node Client",
     description: "Node Client for Cardano blockchain data",
     icon: null,
-    color: "#2D79C7"
+    color: "#95E1D3"
   },
 
   hosted: {
@@ -263,48 +263,39 @@ export const Tags = {
 export const TagList = Object.keys(Tags);
 
 export const LanguagesOrTechnologiesTags = [
-  // Programming Languages (alphabetical)
   "c",
+  "cli",
   "elm",
   "golang",
   "haskell",
+  "http",
   "java",
   "javascript",
+  "json",
   "net",
   "php",
   "purescript",
   "python",
+  "redis",
   "rust",
   "scala",
-  "typescript",
-  // Protocols/APIs
-  "http",
-  "websocket",
-  // Data Formats
-  "json",
-  // Databases
-  "redis",
   "sql",
-  // Tools
-  "cli",
+  "typescript",
+  "websocket",
 ];
 
 export const DomainsTags = [
-  // Development Tools
-  "IDE",
-  "smartcontracts",
-  "transactionbuilder",
-  "serialization",
-  // Testing & Quality
-  "testing",
-  // Infrastructure & Data
-  "indexer",
-  "provider",
-  "nodeclient",
-  "hosted",
-  // Application Domains
-  "wallet",
-  "nft",
   "governance",
+  "hosted",
+  "IDE",
+  "indexer",
+  "nft",
+  "nodeclient",
   "operatortool",
+  "provider",
+  "serialization",
+  "smartcontracts",
+  "testing",
+  "transactionbuilder",
+  "wallet",
 ];
