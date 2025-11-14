@@ -1399,6 +1399,15 @@ export const Showcases = [
     website: "https://arpradio.media",
     source: null,
     tags: ["minting", "ecosystem", "metadata" ]
+  },
+  {
+    title: "DeltaDeFi",
+    description:
+      "The First Hydra Dex, Instant Order Confirmation, Place/Cancel Order with Zero Fee, API Trading - Enable High-Frequency Trading for Cardano",
+    preview: require("./showcase/deltadefi.png"),
+    website: "https://app.deltadefi.io/",
+    source: null,
+    tags: ["dex", "ecosystem"],
   }
 ];
 
