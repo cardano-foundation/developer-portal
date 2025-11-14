@@ -23,7 +23,7 @@ const features = [
   {
     title: "Integrate Cardano",
     imageUrl: "img/card-integrate-cardano.svg",
-    targetUrl: "docs/integrate-cardano/",
+    targetUrl: "docs/build/integrate/overview",
     description: (
       <>
         Explore Cardano wallets and learn how to integrate Cardano into
@@ -34,7 +34,7 @@ const features = [
   {
     title: "Build with Transaction Metadata",
     imageUrl: "img/card-transaction-metadata.svg",
-    targetUrl: "docs/transaction-metadata/",
+    targetUrl: "docs/build/transaction-metadata/overview",
     description: (
       <>
         Learn what transaction metadata is, how to add it to a transaction, how
@@ -45,7 +45,7 @@ const features = [
   {
     title: "Discover Native Tokens",
     imageUrl: "img/card-native-tokens.svg",
-    targetUrl: "docs/native-tokens/",
+    targetUrl: "docs/build/native-tokens/overview",
     description: (
       <>
         Read what native tokens are, how to mint them, ways to create NFT and
@@ -56,7 +56,7 @@ const features = [
   {
     title: "Create Smart Contracts",
     imageUrl: "img/card-smart-contracts.svg",
-    targetUrl: "docs/smart-contracts/",
+    targetUrl: "docs/build/smart-contracts/overview",
     description: (
       <>
         Discover Aiken and Plutarch and learn how to create smart contracts on Cardano.

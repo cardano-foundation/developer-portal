@@ -46,7 +46,7 @@ Before submitting a governance action, you *should* complete the following:
 1. **Prepare Metadata:** Create a metadata file and host it at a content-addressable storage solution (e.g., using [IPFS](https://ipfs.tech/)). This file provides context and rationale for your proposal. See [Creating the Metadata File](#creating-the-metadata-file) below.
 2. **Obtain Sufficient ada:** Ensure you have the required governance action deposit of 100,000 ada (as of March 2025).
 3. **Choose a Submission Method:** You can submit governance actions using:
-    - **cardano-cli:** The command-line interface for interacting with the Cardano blockchain. [How to propose a governance actions Via Cardano-cli](/docs/get-started/cardano-cli/governance/governance-actions.md)
+    - **cardano-cli:** The command-line interface for interacting with the Cardano blockchain. [How to propose a governance actions Via Cardano-cli](/docs/get-started/infrastructure/cardano-cli/governance/create-governance-actions)
     - **GovTool:** A dedicated governance tool. [How to propose a governance actions Via GovTools](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
 
 Optionally, authors can consider socialising their idea for a governance action before submission, giving stakeholders time to provide feedback
@@ -238,7 +238,7 @@ Before submitting your governance action, verify you have completed all the foll
 
 ### Tools and Tutorials
 
-- [**Governance Action cardano-cli Submission Guide**](docs/get-started/cardano-cli/governance/governance-actions.md)
+- [**Governance Action cardano-cli Submission Guide**](/docs/get-started/infrastructure/cardano-cli/governance/create-governance-actions)
 - [**Governance Action GovTool Submission Guide**](https://docs.gov.tools/cardano-govtool/using-govtool/governance-actions/propose-a-governance-action)
 - [**Blockfrost IPFS Tutorial**](https://blockfrost.dev/start-building/ipfs/)
 

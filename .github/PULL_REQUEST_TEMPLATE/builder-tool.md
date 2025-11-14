@@ -9,44 +9,49 @@
  <-- Please fill the boxes with [x] before submitting a pull request --> 
 
 - [ ] I have read the [Contributing Guidelines](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md).
-- [ ] I have read the [Builder Tool Requirements](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/builder-tools.js)
-- [ ] I have run `yarn build` after adding my changes **without getting any errors**. 
+- [ ] I have read the [Builder Tool Requirements](https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/builder-tools/tools.js)
+- [ ] I have added my image to `src/data/builder-tools/images/`
+- [ ] I have run `yarn build` after adding my changes **without getting any errors**.
 - [ ] I have not committed any changes to `yarn.lock` (or have [removed these changes](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md#faq)).
 
 ## Builder Tool addition
 
-<-- Provide information for every bullet in the list below. The tags you select must match the tags in your changes to the builder-tools.js -->
+<-- Provide information for every bullet in the list below. The tags you select must match the tags in your changes to tools.js -->
 
 * Title: *Project name*
 * Description: *Describe your project* 
 * Website:   <link_to_project>
 * Getstarted: <link_to_getstarted_page>
 * Tags:
-  * `chainindex`
+  * `c`
   * `cli`
+  * `elm`
   * `golang`
+  * `governance`
+  * `haskell`
+  * `hosted`
+  * `http`
   * `IDE`
+  * `indexer`
   * `java`
   * `javascript`
-  * `marlowe`
+  * `json`
   * `net`
   * `nft`
+  * `nodeclient`
   * `operatortool`
-  * `oracle`
-  * `plutus`
-  * `python`
-  * `rust`
+  * `php`
+  * `provider`
   * `purescript`
-  * `websocket`
-  * `http`
-  * `json`
-  * `haskell`
+  * `python`
+  * `redis`
+  * `rust`
+  * `scala`
+  * `serialization`
+  * `smartcontracts`
+  * `sql`
+  * `testing`
+  * `transactionbuilder`
   * `typescript`
   * `wallet`
-  * `serialization`
-  * `sdk`
-  * `redis`
-  * `sql`
-  * `lowlevel`
-  * `testing`
-  * `hosted`
+  * `websocket`
