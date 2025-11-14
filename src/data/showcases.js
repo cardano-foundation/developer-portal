@@ -1406,7 +1406,7 @@ export const Showcases = [
       "The First Hydra Dex, Instant Order Confirmation, Place/Cancel Order with Zero Fee, API Trading - Enable High-Frequency Trading for Cardano",
     preview: require("./showcase/deltadefi.png"),
     website: "https://app.deltadefi.io/",
-    source: null,
+    source: "https://github.com/deltadefi-protocol",
     tags: ["dex", "ecosystem"],
   }
 ];
