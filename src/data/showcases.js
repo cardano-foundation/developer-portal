@@ -1408,6 +1408,15 @@ export const Showcases = [
     website: "https://app.deltadefi.io/",
     source: "https://github.com/deltadefi-protocol",
     tags: ["dex", "opensource"],
+  },
+  {
+    title: 'Spidex',
+    description:
+      'Applying AI to Cardano DeFi. Spidex provides DEX aggregation, collective AI agents, and conversational interface for seamless cross-platform trading with optimized fees and aggregated liquidity.',
+    preview: require('./showcase/spidex.png'),
+    website: 'https://spidex.ag/',
+    source: null,
+    tags: ['analytics', 'dex'],
   }
 ];
 
