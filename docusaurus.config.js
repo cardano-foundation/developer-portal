@@ -1,5 +1,6 @@
 // GitHub Settings
-const vars = require('./variables')
+const repository = "https://github.com/cardano-foundation/developer-portal";
+const branch = "staging";
 
 // enable or disable the announcement header bar (see 'announcementBar' section below)
 const isAnnouncementActive = true;
@@ -22,8 +23,8 @@ module.exports = {
   organizationName: "cardano-foundation",
   projectName: "developer-portal",
   customFields: {
-    repository: `${vars.repository}`,
-    branch: `${vars.branch}`,
+    repository: repository,
+    branch: branch,
   },
   markdown: {
     mermaid: true,
@@ -50,7 +51,7 @@ module.exports = {
     announcementBar: isAnnouncementActive ? {
       id: "announcement_index9", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/get-started/cardano-developer-community">Learn more</a> 💬</strong>`,
+        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/community/cardano-developer-community">Learn more</a> 💬</strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -72,7 +73,7 @@ module.exports = {
     // Navbar title, logo and items
     navbar: {
       hideOnScroll: false,
-      title: "Developers",
+      title: "",
       logo: {
         alt: "Cardano Logo",
         src: "img/cardano-black.svg",
@@ -86,27 +87,35 @@ module.exports = {
           position: 'left',
           items: [
             {
-              to: "docs/get-started/technical-concepts/",
+              to: "/docs/get-started/",
+              label: "Getting Started",
+            },
+            {
+              to: "/docs/learn/core-concepts/",
               label: "Core Concepts",
             },
             {
-              to: "/docs/native-tokens/",
-              label: "Native Tokens",
+              to: "/docs/get-started/client-sdks/overview",
+              label: "Client SDKs",
             },
             {
-              to: "/docs/smart-contracts/",
+              to: "/docs/build/smart-contracts/overview",
               label: "Smart Contracts",
+            },
+            {
+              to: "/docs/build/integrate/overview",
+              label: "Integration",
             },
             {
               to: "tools",
               label: "Builder Tools",
             },
             {
-              to: "docs/get-started/cardano-developer-community",
-              label: "Dev Community",
+              to: "docs/community/cardano-developer-community",
+              label: "Community",
             },
             {
-              to: "docs/get-started/funding",
+              to: "docs/community/funding",
               label: "Grants",
             },
           ],
@@ -144,19 +153,19 @@ module.exports = {
               label: 'Getting Started',
             },
             {
-              to: '/docs/operate-a-stake-pool/relay-node-configuration',
+              to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration',
               label: 'Relay Configuration',
             },
             {
-              to: '/docs/operate-a-stake-pool/register-stake-pool',
+              to: '/docs/operate-a-stake-pool/block-producer/register-stake-pool',
               label: 'Block Producer Setup',
             },
             {
-              to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial',
+              to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
               label: 'Monitoring',
             },
             {
-              to: '/docs/operate-a-stake-pool/hardening-server',
+              to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server',
               label: 'Security',
             },
           ],
@@ -189,7 +198,7 @@ module.exports = {
           ],
         },
         {
-          href: `${vars.repository}`,
+          href: repository,
           position: "right",
           className: "header-github-link",
         },
@@ -203,7 +212,7 @@ module.exports = {
           items: [
             {
               label: "How to Contribute",
-              to: "docs/portal-contribute/",
+              to: "docs/contribute/portal-contribute",
             },
             {
               label: "Contributors",
@@ -215,7 +224,7 @@ module.exports = {
             },
             {
               label: "Style Guide",
-              to: "docs/portal-style-guide",
+              to: "docs/contribute/portal-style-guide",
             },
             {
               label: "Suggest Content",
@@ -244,7 +253,7 @@ module.exports = {
             },
             {
               label: "More",
-              to: "docs/get-started/cardano-developer-community",
+              to: "docs/community/cardano-developer-community",
             },
           ],
         },
@@ -253,7 +262,7 @@ module.exports = {
           items: [
             {
               label: "Careers on Cardano",
-              to: "docs/careers",
+              to: "docs/community/careers",
             },
             {
               label: "Cardano Enterprise",
@@ -295,7 +304,7 @@ module.exports = {
         redirects: [
           {
             // redirect the old smart contracts signpost to the new smart contract category
-            to: '/docs/smart-contracts/',
+            to: '/docs/build/smart-contracts/overview',
             from: '/docs/get-started/smart-contracts-signpost',
           },
           {
@@ -305,7 +314,7 @@ module.exports = {
           },
           {
             // redirect to the new funding page
-            to: '/docs/get-started/funding',
+            to: '/docs/community/funding',
             from: ['/docs/fund-your-project/project-catalyst', '/docs/fund-your-project/alternatives']
           },
           {
@@ -327,12 +336,12 @@ module.exports = {
             ]
           },
           {
-            to: '/docs/get-started/technical-concepts/',
+            to: '/docs/learn/core-concepts/',
             from: '/docs/stake-pool-course/introduction-to-cardano',
           },
           {
 
-            to: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial/',
+            to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
             from: [
               '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
               '/docs/stake-pool-course/handbook/grafana-loki',
@@ -340,62 +349,404 @@ module.exports = {
             ]
           },
           {
-            to: '/docs/operate-a-stake-pool/hardening-server/',
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server',
             from: '/docs/stake-pool-course/handbook/setup-firewall',
           },
           {
-            to: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node/',
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
             from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
           },
           {
-            to: '/docs/operate-a-stake-pool/node-operations/running-cardano/',
+            to: '/docs/get-started/infrastructure/node/running-cardano',
             from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
           },
           {
-            to: '/docs/get-started/create-simple-transaction/',
+            to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions',
             from: [
               '/docs/stake-pool-course/handbook/use-cli',
               '/docs/stake-pool-course/handbook/create-simple-transaction',
+              '/docs/get-started/create-simple-transaction',
             ]
           },
           {
-            to: '/docs/get-started/technical-concepts/',
+            to: '/docs/learn/core-concepts/',
             from: '/docs/stake-pool-course/handbook/utxo-model',
           },
           {
-            to: '/docs/operate-a-stake-pool/cardano-key-pairs/',
-            from: '/docs/stake-pool-course/handbook/keys-addresses',
+            to: '/docs/operate-a-stake-pool/basics/cardano-key-pairs',
+            from: ['/docs/stake-pool-course/handbook/keys-addresses', '/docs/operate-a-stake-pool/cardano-key-pairs'],
           },
           {
-            to: '/docs/operate-a-stake-pool/generating-wallet-keys/',
-            from: '/docs/stake-pool-course/handbook/create-stake-pool-keys',
+            to: '/docs/operate-a-stake-pool/block-producer/generating-wallet-keys',
+            from: ['/docs/stake-pool-course/handbook/create-stake-pool-keys', '/docs/operate-a-stake-pool/generating-wallet-keys'],
           },
           {
-            to: '/docs/operate-a-stake-pool/register-stake-address/',
-            from: '/docs/stake-pool-course/handbook/register-stake-keys',
+            to: '/docs/operate-a-stake-pool/block-producer/register-stake-address',
+            from: ['/docs/stake-pool-course/handbook/register-stake-keys', '/docs/operate-a-stake-pool/register-stake-address'],
           },
           {
-            to: '/docs/operate-a-stake-pool/register-stake-pool/',
+            to: '/docs/operate-a-stake-pool/block-producer/register-stake-pool',
             from: [
               '/docs/stake-pool-course/handbook/generate-stake-pool-keys',
               '/docs/stake-pool-course/handbook/register-stake-pool-metadata',
+              '/docs/operate-a-stake-pool/register-stake-pool',
             ]
           },
           {
-            to: '/docs/operate-a-stake-pool/relay-node-configuration/',
-            from: '/docs/stake-pool-course/handbook/configure-topology-files',
+            to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration',
+            from: ['/docs/stake-pool-course/handbook/configure-topology-files', '/docs/operate-a-stake-pool/relay-node-configuration'],
           },
           {
-            to: '/docs/get-started/security/air-gap',
+            to: '/docs/learn/educational-resources/air-gap',
             from: '/docs/operate-a-stake-pool/security/air-gap',
           },
           {
-            to: '/docs/get-started/security/secure-workflow',
+            to: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow',
             from: '/docs/operate-a-stake-pool/security/secure-workflow',
           },
           {
-            to: '/docs/get-started/security/frankenwallet',
+            to: '/docs/operate-a-stake-pool/operator-tools/frankenwallet',
             from: '/docs/operate-a-stake-pool/frankenwallet',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/basics/stake-pool-networking',
+            from: '/docs/operate-a-stake-pool/stake-pool-networking',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/basics/hardware-requirements',
+            from: '/docs/operate-a-stake-pool/hardware-requirements',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/relay-configuration/monitoring-gLiveView',
+            from: '/docs/operate-a-stake-pool/monitoring-gLiveView',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
+            from: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/block-producer/block-producer-keys',
+            from: '/docs/operate-a-stake-pool/block-producer-keys',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server',
+            from: '/docs/operate-a-stake-pool/hardening-server',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/improve-grafana-security',
+            from: '/docs/operate-a-stake-pool/improve-grafana-security',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/deployment-scenarios/audit-your-node',
+            from: '/docs/operate-a-stake-pool/audit-your-node',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/governance/on-chain-polls',
+            from: '/docs/operate-a-stake-pool/on-chain-polls',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/operator-tools/guild-ops-suite',
+            from: '/docs/operate-a-stake-pool/guild-ops-suite',
+          },
+          {
+            to: '/docs/community/cardano-developer-community',
+            from: '/docs/get-started/cardano-developer-community',
+          },
+          {
+            to: '/docs/community/funding',
+            from: '/docs/get-started/funding',
+          },
+          {
+            to: '/docs/learn/core-concepts/',
+            from: ['/docs/get-started/technical-concepts/', '/docs/get-started/technical-concepts/overview'],
+          },
+          {
+            to: '/docs/learn/core-concepts/eutxo',
+            from: '/docs/get-started/technical-concepts/eutxo',
+          },
+          {
+            to: '/docs/learn/core-concepts/transactions',
+            from: '/docs/get-started/technical-concepts/transactions',
+          },
+          {
+            to: '/docs/learn/core-concepts/addresses',
+            from: '/docs/get-started/technical-concepts/addresses',
+          },
+          {
+            to: '/docs/learn/core-concepts/fees',
+            from: '/docs/get-started/technical-concepts/fees',
+          },
+          {
+            to: '/docs/learn/core-concepts/assets',
+            from: '/docs/get-started/technical-concepts/assets',
+          },
+          {
+            to: '/docs/learn/educational-resources/haskell/onboarding',
+            from: ['/docs/get-started/haskell/', '/docs/get-started/haskell/onboarding'],
+          },
+          {
+            to: '/docs/learn/educational-resources/haskell/functional-programming',
+            from: '/docs/get-started/haskell/functional-programming',
+          },
+          {
+            to: '/docs/learn/educational-resources/haskell/advanced-functional-programming',
+            from: '/docs/get-started/haskell/advanced-functional-programming',
+          },
+          {
+            to: '/docs/learn/educational-resources/air-gap',
+            from: '/docs/get-started/security/air-gap',
+          },
+          {
+            to: '/docs/get-started/networks/overview',
+            from: '/docs/get-started/networks-overview',
+          },
+          {
+            to: '/docs/get-started/networks/testnets/overview',
+            from: '/docs/get-started/testnets-and-devnets',
+          },
+          {
+            to: '/docs/get-started/networks/testnets/testnet-faucet',
+            from: '/docs/integrate-cardano/testnet-faucet',
+          },
+          {
+            to: '/docs/get-started/networks/development-networks/overview',
+            from: '/docs/get-started/development-networks',
+          },
+          {
+            to: '/docs/get-started/networks/development-networks/yaci-devkit',
+            from: '/docs/get-started/yaci-devkit',
+          },
+          {
+            to: '/docs/get-started/networks/development-networks/cardano-testnet',
+            from: '/docs/get-started/cardano-testnet',
+          },
+          {
+            to: '/docs/get-started/infrastructure/overview',
+            from: '/docs/get-started/choose-your-approach',
+          },
+          {
+            to: '/docs/get-started/infrastructure/api-providers/overview',
+            from: '/docs/get-started/providers-overview',
+          },
+          {
+            to: '/docs/get-started/infrastructure/api-providers/koios',
+            from: '/docs/get-started/koios',
+          },
+          {
+            to: '/docs/get-started/infrastructure/api-providers/ogmios',
+            from: '/docs/get-started/ogmios',
+          },
+          {
+            to: '/docs/get-started/infrastructure/demeter',
+            from: '/docs/get-started/demeter',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/cardano-components',
+            from: '/docs/operate-a-stake-pool/node-operations/cardano-components',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
+            from: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/running-cardano',
+            from: '/docs/operate-a-stake-pool/node-operations/running-cardano',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/dynamic-block-forging',
+            from: '/docs/operate-a-stake-pool/node-operations/dynamic-block-forging',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/rts-options-node',
+            from: '/docs/operate-a-stake-pool/node-operations/rts-options-node',
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/topology',
+            from: '/docs/operate-a-stake-pool/node-operations/topology',
+          },
+          {
+            to: '/docs/get-started/client-sdks/overview',
+            from: '/docs/get-started/high-level-sdks-overview',
+          },
+          {
+            to: '/docs/get-started/client-sdks/typescript/overview',
+            from: '/docs/get-started/typescript-sdks',
+          },
+          {
+            to: '/docs/get-started/client-sdks/python/pycardano',
+            from: '/docs/get-started/pycardano',
+          },
+          {
+            to: '/docs/get-started/client-sdks/csharp/cardanosharp-wallet',
+            from: '/docs/get-started/cardanosharp-wallet',
+          },
+          {
+            to: '/docs/get-started/client-sdks/typescript/mesh/overview',
+            from: '/docs/get-started/mesh',
+          },
+          {
+            to: '/docs/get-started/client-sdks/typescript/evolution-sdk/get-started',
+            from: '/docs/get-started/evolution-sdk',
+          },
+          {
+            to: '/docs/build/integrate/wallet-authentication/utxos/overview',
+            from: ['/docs/get-started/utxos', '/docs/get-started/client-sdks/typescript/utxos/overview'],
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
+            from: '/docs/get-started/cardano-cli',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-wallet/cardano-wallet',
+            from: '/docs/get-started/cardano-wallet',
+          },
+          {
+            to: '/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview',
+            from: '/docs/get-started/cardano-serialization-lib',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow',
+            from: '/docs/get-started/security/secure-workflow',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/operator-tools/frankenwallet',
+            from: '/docs/get-started/security/frankenwallet',
+          },
+          {
+            to: '/docs/operate-a-stake-pool/basics/consensus-staking',
+            from: '/docs/get-started/technical-concepts/consensus-staking',
+          },
+          {
+            to: '/docs/build/integrate/overview',
+            from: ['/docs/integrate-cardano/', '/docs/integrate-cardano/overview'],
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/overview',
+            from: '/docs/integrate-cardano/listening-for-payments/overview',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/cardano-cli',
+            from: '/docs/integrate-cardano/listening-for-payments/cardano-cli',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/cardano-wallet',
+            from: '/docs/integrate-cardano/listening-for-payments/cardano-wallet',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/point-of-sale',
+            from: '/docs/integrate-cardano/listening-for-payments/point-of-sale',
+          },
+          {
+            to: '/docs/build/integrate/payments/x402-standard',
+            from: '/docs/integrate-cardano/x402-standard',
+          },
+          {
+            to: '/docs/build/integrate/wallet-authentication/overview',
+            from: ['/docs/integrate-cardano/user-wallet-authentication/overview', '/docs/build/integrate/user-wallet-authentication/overview'],
+          },
+          {
+            to: '/docs/build/integrate/wallet-authentication/mesh',
+            from: ['/docs/integrate-cardano/user-wallet-authentication/mesh', '/docs/build/integrate/user-wallet-authentication/mesh'],
+          },
+          {
+            to: '/docs/build/integrate/wallet-authentication/cardano-serialization-lib',
+            from: ['/docs/integrate-cardano/user-wallet-authentication/cardano-serialization-lib', '/docs/build/integrate/user-wallet-authentication/cardano-serialization-lib'],
+          },
+          {
+            to: '/docs/build/integrate/wallet-authentication/utxos/overview',
+            from: '/docs/build/integrate/user-wallet-authentication/utxos/overview',
+          },
+          {
+            to: '/docs/build/integrate/ai-agents/overview',
+            from: '/docs/integrate-cardano/ai-agents/overview',
+          },
+          {
+            to: '/docs/build/integrate/ai-agents/masumi',
+            from: '/docs/integrate-cardano/ai-agents/masumi',
+          },
+          {
+            to: '/docs/build/integrate/oracles/overview',
+            from: '/docs/integrate-cardano/oracles-overview',
+          },
+          {
+            to: '/docs/build/integrate/oracles/charli3',
+            from: '/docs/integrate-cardano/charli3',
+          },
+          {
+            to: '/docs/build/integrate/oracles/orcfax',
+            from: '/docs/integrate-cardano/orcfax',
+          },
+          {
+            to: '/docs/build/integrate/exchange-integrations',
+            from: '/docs/integrate-cardano/exchange-integrations',
+          },
+          {
+            to: '/docs/build/integrate/payments/listening-for-payments/overview',
+            from: '/docs/integrate-cardano/listening-for-payments',
+          },
+          {
+            to: '/docs/build/integrate/wallet-authentication/overview',
+            from: ['/docs/integrate-cardano/user-wallet-authentication', '/docs/build/integrate/user-wallet-authentication'],
+          },
+          {
+            to: '/docs/build/integrate/ai-agents/overview',
+            from: '/docs/integrate-cardano/ai-agents',
+          },
+          {
+            to: '/docs/build/native-tokens/overview',
+            from: ['/docs/native-tokens/', '/docs/native-tokens/overview'],
+          },
+          {
+            to: '/docs/build/native-tokens/minting',
+            from: '/docs/native-tokens/minting',
+          },
+          {
+            to: '/docs/build/native-tokens/minting-nfts',
+            from: '/docs/native-tokens/minting-nfts',
+          },
+          {
+            to: '/docs/build/native-tokens/authenticated-products',
+            from: '/docs/native-tokens/authenticated-products',
+          },
+          {
+            to: '/docs/build/native-tokens/cardano-token-registry',
+            from: '/docs/native-tokens/cardano-token-registry',
+          },
+          {
+            to: '/docs/build/transaction-metadata/overview',
+            from: ['/docs/transaction-metadata/', '/docs/transaction-metadata/overview'],
+          },
+          {
+            to: '/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-cli',
+            from: '/docs/transaction-metadata/how-to-create-a-metadata-transaction-cli',
+          },
+          {
+            to: '/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-wallet',
+            from: '/docs/transaction-metadata/how-to-create-a-metadata-transaction-wallet',
+          },
+          {
+            to: '/docs/build/transaction-metadata/retrieving-metadata',
+            from: '/docs/transaction-metadata/retrieving-metadata',
+          },
+          {
+            to: '/docs/build/transaction-metadata/mesh',
+            from: '/docs/transaction-metadata/mesh',
+          },
+          {
+            to: '/docs/build/smart-contracts/overview',
+            from: ['/docs/smart-contracts/', '/docs/smart-contracts/overview'],
+          },
+          {
+            to: '/docs/contribute/portal-contribute',
+            from: '/docs/portal-contribute',
+          },
+          {
+            to: '/docs/contribute/portal-style-guide',
+            from: '/docs/portal-style-guide',
+          },
+          {
+            to: '/docs/community/careers',
+            from: '/docs/careers',
           },
         ],
       },
@@ -410,11 +761,11 @@ module.exports = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: `${vars.repository}/edit/${vars.branch}`,
+          editUrl: `${repository}/edit/${branch}`,
         },
         blog: {
           showReadingTime: true,
-          editUrl: `${vars.repository}/edit/${vars.branch}`,
+          editUrl: `${repository}/edit/${branch}`,
           blogSidebarCount: 'ALL',
           onUntruncatedBlogPosts: 'ignore',
         },
