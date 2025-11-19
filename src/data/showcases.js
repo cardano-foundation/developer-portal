@@ -1407,7 +1407,7 @@ export const Showcases = [
     preview: require("./showcase/deltadefi.png"),
     website: "https://app.deltadefi.io/",
     source: "https://github.com/deltadefi-protocol",
-    tags: ["dex", "ecosystem"],
+    tags: ["dex", "opensource"],
   }
 ];
 
