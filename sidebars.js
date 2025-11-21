@@ -409,35 +409,12 @@ module.exports = {
             label: "Design Patterns",
             items: [
               "build/smart-contracts/advanced/design-patterns/overview",
-              "build/smart-contracts/advanced/design-patterns/enum-redeemers",
-              "build/smart-contracts/advanced/design-patterns/parameter-validation",
-              "build/smart-contracts/advanced/design-patterns/strict-and-checks",
+              "build/smart-contracts/advanced/design-patterns/stake-validator",
               "build/smart-contracts/advanced/design-patterns/utxo-indexers",
-              {
-                type: "category",
-                label: "Normalization Techniques",
-                items: [
-                  "build/smart-contracts/advanced/design-patterns/normalization-techniques/txinfomint-normalization",
-                  "build/smart-contracts/advanced/design-patterns/normalization-techniques/validity-range-normalization",
-                ],
-              },
-              {
-                type: "category",
-                label: "Transaction Level Validation",
-                items: [
-                  "build/smart-contracts/advanced/design-patterns/transaction-level-validation/transaction-level-validation-minting-policy",
-                  {
-                    type: "category",
-                    label: "Stake Validators",
-                    items: [
-                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/stake-validator",
-                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/withdraw-zero",
-                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/merkelized-validators",
-                      "build/smart-contracts/advanced/design-patterns/transaction-level-validation/stake-validators/global-state",
-                    ],
-                  },
-                ],
-              },
+              "build/smart-contracts/advanced/design-patterns/tx-level-minter",
+              "build/smart-contracts/advanced/design-patterns/validity-range-normalization",
+              "build/smart-contracts/advanced/design-patterns/merkelized-validator",
+              "build/smart-contracts/advanced/design-patterns/parameter-validation",
             ],
           },
           {
