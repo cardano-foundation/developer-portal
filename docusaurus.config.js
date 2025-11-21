@@ -748,6 +748,35 @@ module.exports = {
             to: '/docs/community/careers',
             from: '/docs/careers',
           },
+          // Smart Contract Vulnerabilities → Security section redirects
+          {
+            to: '/docs/build/smart-contracts/advanced/security/overview',
+            from: [
+              '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/overview',
+              '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/mlabs-common-vulnerabilities/overview',
+              '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/mesh-bad-contracts/overview',
+            ],
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/ctf',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/ctf',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/double-satisfaction',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/1-double-satisfaction',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/2-trust-no-utxo',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/time-handling',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/3-time-handling',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/token-security',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/4-token-security',
+          },
         ],
       },
     ],
