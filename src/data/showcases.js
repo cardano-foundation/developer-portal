@@ -252,10 +252,10 @@ export const Showcases = [
   {
     title: "Open DJED",
     description:
-      "Mint and burn DJED, Cardano's overcollateralized stablecoin, with our open-source platform. Transparent alternative to DJED.xyz - accessible 24/7 anywhere. Built by Artifex Labs for the Cardano community.",
+      "Mint and burn DJED, Cardano's overcollateralized stablecoin, with our open-source platform. Transparent alternative to DJED.xyz - accessible 24/7 anywhere. Built by Artifi Labs for the Cardano community.",
     preview: require("./showcase/open-djed.png"),
-    website: "https://djed.artifex.finance/",
-    source: "https://github.com/artifex-labs/open-djed",
+    website: "https://djed.artifi.finance/",
+    source: "https://github.com/artifi-labs/open-djed",
     tags: ["token", "opensource"],
   },
   {
@@ -1399,6 +1399,15 @@ export const Showcases = [
     website: "https://arpradio.media",
     source: null,
     tags: ["minting", "ecosystem", "metadata" ]
+  },
+  {
+    title: "DeltaDeFi",
+    description:
+      "The First Hydra Dex, Instant Order Confirmation, Place/Cancel Order with Zero Fee, API Trading - Enable High-Frequency Trading for Cardano",
+    preview: require("./showcase/deltadefi.png"),
+    website: "https://app.deltadefi.io/",
+    source: "https://github.com/deltadefi-protocol",
+    tags: ["dex", "opensource"],
   }
 ];
 
