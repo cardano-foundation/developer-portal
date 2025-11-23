@@ -1417,7 +1417,7 @@ export const Showcases = [
     website: 'https://spidex.ag/',
     source: null,
     tags: ['analytics', 'dex'],
-  }
+  },
 ];
 
 export const TagList = Object.keys(Tags);
