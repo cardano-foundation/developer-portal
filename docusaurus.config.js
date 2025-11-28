@@ -777,6 +777,13 @@ module.exports = {
             to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/token-security',
             from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/4-token-security',
           },
+          {
+            to: '/docs/get-started/networks/testnets',
+            from: [
+              '/docs/get-started/networks/testnets/overview',
+              '/docs/get-started/networks/testnets/testnet-faucet',
+            ],
+          },
         ],
       },
     ],

@@ -7,14 +7,7 @@ module.exports = {
         label: "Networks",
         items: [
           "get-started/networks/overview",
-          {
-            type: "category",
-            label: "Testnets",
-            items: [
-              "get-started/networks/testnets/overview",
-              "get-started/networks/testnets/testnet-faucet",
-            ],
-          },
+          "get-started/networks/testnets",
           {
             type: "category",
             label: "Development Networks",
