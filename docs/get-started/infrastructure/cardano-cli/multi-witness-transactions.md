@@ -330,7 +330,6 @@ cardano-cli query utxo \
 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f     0        999646250 lovelace
 ```
 
-
 :::tip Success!
 
 He can see that the transaction has one output to his wallet. No other outputs, hence you must have spent all of your `tAda`.
@@ -346,13 +345,13 @@ We had to pay `179581 Lovelace` to get all of our funds from A+B to C. Let's com
 For that we draft two transactions
 
 ```sh
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
 --tx-in 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f#0 \
 --tx-out $(cat $HOME/cardano/keys/payment1.addr)+0 \
 --fee 0 \
 --out-file $HOME/cardano/multi-witness-sample/tx-single1.draft
 
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
 --tx-in 258abd628eef7d6ff0f7b4e6866b4f7c21065f4d6b5e49b51e2ac4ff035ad06f#0 \
 --tx-out $(cat $HOME/cardano/keys/payment2.addr)+0 \
 --fee 0 \
@@ -362,7 +361,7 @@ cardano-cli conway transaction build-raw \
 And invoke the calculate-min-fees endpoint on `cardano-cli` for both of them:
 
 ```bash {8,17}
-cardano-cli conway transaction calculate-min-fee \
+cardano-cli latest transaction calculate-min-fee \
 --tx-body-file $HOME/cardano/multi-witness-sample/tx-single1.draft \
 --tx-in-count 1 \
 --tx-out-count 1 \
@@ -371,7 +370,7 @@ cardano-cli conway transaction calculate-min-fee \
 --protocol-params-file $HOME/cardano/protocol.json 
 169857 Lovelace
 
-cardano-cli conway transaction calculate-min-fee \
+cardano-cli latest transaction calculate-min-fee \
 --tx-body-file $HOME/cardano/multi-witness-sample/tx-single2.draft \
 --tx-in-count 1 \
 --tx-out-count 1 \

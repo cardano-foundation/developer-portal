@@ -192,10 +192,10 @@ cardano-cli latest transaction submit \
 ### Query the DRep state to confirm
 
 ```bash
-cardano-cli query drep-state  --all-dreps
+cardano-cli latest query drep-state  --all-dreps
 
 
-cardano-cli query drep-state --drep-key-hash 687c9849e1792f9b43d2a78153c412406950ee0c6f2b417226da9dcc 
+cardano-cli latest query drep-state --drep-key-hash 687c9849e1792f9b43d2a78153c412406950ee0c6f2b417226da9dcc 
 [
     [
         {
@@ -466,7 +466,7 @@ cardano-cli latest transaction submit \
 ### Query the DRep state to confirm
 
 ```bash
-cardano-cli query drep-state \
+cardano-cli latest query drep-state \
   --drep-script-hash $(< drep-multisig.id)
 ```
 

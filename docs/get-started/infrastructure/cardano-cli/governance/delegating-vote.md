@@ -28,7 +28,7 @@ In addition to the registered DReps, the system features a couple of default vot
 * Delegating to the `--always-abstain` default voting option:
 
 ```shell
-cardano-cli conway stake-address vote-delegation-certificate \
+cardano-cli latest stake-address vote-delegation-certificate \
   --stake-verification-key-file stake.vkey \
   --always-abstain \
   --out-file vote-deleg.cert
@@ -37,7 +37,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
 * Delegating to the `--always-no-confidence` default voting option:
 
 ```shell
-cardano-cli conway stake-address vote-delegation-certificate \
+cardano-cli latest stake-address vote-delegation-certificate \
   --stake-verification-key-file stake.vkey \
   --always-no-confidence \
   --out-file vote-deleg.cert
@@ -46,7 +46,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
 * Delegating to a **key-based** registered DRep:
 
 ```shell
-cardano-cli conway stake-address vote-delegation-certificate \
+cardano-cli latest stake-address vote-delegation-certificate \
   --stake-verification-key-file stake.vkey \
   --drep-key-hash $(< drep.id) \
   --out-file vote-deleg.cert
@@ -55,7 +55,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
 * Delegating to a **script-based** (i.e. multisignature) registered DRep:
 
 ```shell
-cardano-cli conway stake-address vote-delegation-certificate \
+cardano-cli latest stake-address vote-delegation-certificate \
   --stake-verification-key-file stake.vkey \
   --drep-script-hash $(< script.hash) \
   --out-file vote-deleg.cert
@@ -66,7 +66,7 @@ cardano-cli conway stake-address vote-delegation-certificate \
 * Build:
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in $(cardano-cli query utxo --address $(< payment.addr) --testnet-magic 4 --out-file  /dev/stdout | jq -r 'keys[0]') \
   --change-address $(< payment.addr) \
   --certificate-file vote-deleg.cert \
@@ -77,7 +77,7 @@ cardano-cli conway transaction build \
 * Sign with payment and stake keys:
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --tx-body-file tx.raw \
   --signing-key-file payment.skey \
   --signing-key-file stake.skey \
@@ -87,6 +87,6 @@ cardano-cli conway transaction sign \
 * Submit:
 
 ```shell
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
   --tx-file tx.signed
 ```

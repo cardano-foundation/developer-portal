@@ -116,7 +116,7 @@ Create a draft for the transaction and save it in `tx.draft`. Notes:
 - The values after `--tx-in` are taken from the output of `cardano-cli query utxo` that you saved in your scratch file.
 
 ``` sh
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
     --tx-out $(cat payment2.addr)+0 \
     --tx-out $(cat payment.addr)+0 \
@@ -135,7 +135,7 @@ The generally simplest transaction needs one input (a valid UTXO from `payment.a
 Note that to calculate the fee you need to include the draft transaction:
 
 ``` sh
-cardano-cli conway transaction calculate-min-fee \
+cardano-cli latest transaction calculate-min-fee \
     --tx-body-file tx.draft \
     --tx-in-count 1 \
     --tx-out-count 2 \
@@ -163,7 +163,7 @@ expr 20000000 - 10000000 - 167965
 We write the transaction in a file; we will name it `tx.raw`:
 
 ``` sh
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
     --tx-in 4e3a6e7fdcb0d0efa17bf79c13aed2b4cb9baf37fb1aa2e39553d5bd720c5c99#4 \
     --tx-out $(cat payment2.addr)+10000000 \
     --tx-out $(cat payment.addr)+9832035 \
@@ -176,7 +176,7 @@ cardano-cli conway transaction build-raw \
 Sign the transaction with the signing key `payment.skey` and save the signed transaction in `tx.signed`:
 
 ``` sh
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --mainnet \
@@ -194,7 +194,7 @@ Reattach your transfer memory stick back to the Internet connected computer, the
 Log into your Cardano node (or prepare Daedalus if using its node) and execute:
 
 ``` sh
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -203,20 +203,20 @@ Then check for a successful transaction by whatever means you prefer, e.g. a [Ca
 
 ## FAQ
 
-### Why can't I use `cardano-cli conway transaction build`?
+### Why can't I use `cardano-cli latest transaction build`?
 
 This is a convenient command to avoid the ["change" (return UTxO) calculation](#calculate-the-change-to-send-back-to-paymentaddr) which requires you to prepare a test transaction, estimate fees, and calculate a final value of the funds to be moved. Instead, `transaction build` sends back "change" to a designated address.
 
 Some consider this so much easier to use that ***all*** transactions should be performed with this command, as discussed here:
 
-- [Please use `cardano-cli conway transaction build` instead of `cardano-cli conway transaction build-raw`](https://forum.cardano.org/t/please-use-cardano-cli-transaction-build-instead-of-cardano-cli-transaction-build-raw/94919)
+- [Please use `cardano-cli latest transaction build` instead of `cardano-cli latest transaction build-raw`](https://forum.cardano.org/t/please-use-cardano-cli-transaction-build-instead-of-cardano-cli-transaction-build-raw/94919)
 
 However, this discussion revealed the undocumented condition that `transaction build` can only be done on a **live** Cardano node. The community in general doesn't know the reasons for this (with some speculation in the thread above), so in the meantime:
 
 - Using `transaction build` would require, in addition to accumulating the UTxO and balance information from your live Cardano node or network environment to build your transaction, that you also run the `build` command in the networked environment as well and save the unsigned transaction file on your transfer media.
 - This transaction file would then need to be copied from the live environment to the air gap environment, where it would be signed... but in a security paranoid environment the user could never be sure the transaction was not built or modified maliciously outside the air gap.
 
-Therefore this guide suggests *only* assembling transaction *details* outside the air gap, to be applied to `cardano-cli conway transaction build-raw` inside the air gap, because there is not much more convenience overall in using `transaction build` while perhaps introducing some security risk.
+Therefore this guide suggests *only* assembling transaction *details* outside the air gap, to be applied to `cardano-cli latest transaction build-raw` inside the air gap, because there is not much more convenience overall in using `transaction build` while perhaps introducing some security risk.
 
 ## Other pending topics in secure workflow
 

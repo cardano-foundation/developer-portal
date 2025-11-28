@@ -46,6 +46,7 @@ cardano-cli latest transaction build \
 
 > Estimated transaction fee: Coin 180593
 ```
+
 or using `<` and the `$rewards` variable from above:
 
 ```shell
@@ -76,6 +77,7 @@ If you inspect the transaction, you'll notice that the 'withdrawals' field conta
 ```shell
 cardano-cli debug transaction view --tx-file tx.signed
 ```
+
 ```json
 {
     "auxiliary scripts": null,

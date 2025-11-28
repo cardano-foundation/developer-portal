@@ -17,11 +17,11 @@ In Cardano, delegating to a stake pool doesn't necessitate locking your funds or
 
 ### Create a delegation certificate
 
-To delegate your stake to a stake pool, you need to create a **stake delegation certificate**. `cardano-cli` offers a simple way to create one, you'll find the corresponding command under `cardano-cli conway stake-address`:
+To delegate your stake to a stake pool, you need to create a **stake delegation certificate**. `cardano-cli` offers a simple way to create one, you'll find the corresponding command under `cardano-cli latest stake-address`:
 
 ```shell
-cardano-cli conway stake-address
-Usage: cardano-cli conway stake-address 
+cardano-cli latest stake-address
+Usage: cardano-cli latest stake-address 
                                           ( key-gen
                                           | key-hash
                                           | build
@@ -42,7 +42,7 @@ Usage: cardano-cli conway stake-address
 To produce a delegation certificate, your stake address must already be registered on the chain, as outlined in the documentation on [registering the stake address](./stake-address-registration). Additionally, you need to know the pool ID to which you will delegate.
 
 ```shell
-cardano-cli conway stake-address stake-delegation-certificate \
+cardano-cli latest stake-address stake-delegation-certificate \
 --stake-verification-key-file stake.vkey \
 --stake-pool-id pool17navl486tuwjg4t95vwtlqslx9225x5lguwuy6ahc58x5dnm9ma \
 --out-file delegation.cert
@@ -66,7 +66,7 @@ After generating the delegation certificate, you need to submit it to the chain 
 This type of transaction requires signatures from both `payment.skey` and `stake.skey`, making the transaction slightly larger due to the two signatures. Consequently, it incurs a slightly higher fee. To help the build command accurately calculate transaction fees, you must use the `--witness-override 2` flag:
 
 ```
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
 --tx-in $(cardano-cli query utxo --address $(< payment.addr) --out-file  /dev/stdout | jq -r 'keys[0]') \
 --change-address $(< payment.addr) \
 --certificate-file delegation.cert \
@@ -75,7 +75,7 @@ cardano-cli conway transaction build \
 ```
 
 ```
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-body-file tx.raw \
 --signing-key-file payment.skey \
 --signing-key-file stake.skey \
@@ -83,11 +83,10 @@ cardano-cli conway transaction sign \
 ```
 
 ```
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
 --tx-file tx.signed 
 ```
 
 For a quick overview of how stake delegation and rewards distribution work at the protocol level, see :
-
 
 ![delegation cycle](/img/cli/delegationcycle.gif).
