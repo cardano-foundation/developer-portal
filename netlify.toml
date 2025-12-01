@@ -473,8 +473,7 @@
   status = 301
 
 [[redirects]]
-  from = "/*"
+  from = "https://developer.cardano.org/*"
   to = "https://developers.cardano.org/:splat"
   status = 301
   force = true
-  conditions = {Host = ["developer.cardano.org"]}
