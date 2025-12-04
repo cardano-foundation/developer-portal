@@ -154,3 +154,212 @@ div#faucetcontainer {
     background: rgba(86, 91, 115, 0.15);
     border-radius: .4rem;
 }
+
+/* Mega menu styles */
+.navbar__item--mega {
+  position: relative;
+}
+
+.megaMenuTrigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 var(--ifm-navbar-item-padding-horizontal);
+  height: var(--ifm-navbar-height);
+  display: flex;
+  align-items: center;
+}
+
+/* Make the mega trigger match other navbar links (font, color, caret) */
+.megaMenuTrigger {
+  color: var(--ifm-navbar-link-color);
+  font-size: var(--ifm-font-size-base);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.megaMenuTrigger::after {
+  content: '';
+  display: inline-block;
+  margin-left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid currentColor;
+  vertical-align: middle;
+  opacity: 0.9;
+}
+
+.megaMenuPanel {
+  position: absolute;
+  top: var(--ifm-navbar-height);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 2px 0 0 0;
+  padding: 16px 24px 24px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  z-index: 1000;
+  display: none;
+  box-sizing: border-box;
+  /* Width is set by data-column-count variant rules below */
+}
+
+/* Invisible hover zone below panel to prevent closing when moving mouse down */
+.megaMenuPanel::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -20px;
+  right: -20px;
+  height: 10px;
+  pointer-events: auto;
+}
+
+.navbar__item--mega:hover .megaMenuPanel,
+.navbar__item--mega:focus-within .megaMenuPanel {
+  display: block;
+}
+
+.megaMenuInner {
+  display: grid;
+  /* ensure each column has a reasonable minimum width so labels don't
+     wrap into vertical stacks on narrow viewports */
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* Dynamic width based on column count */
+.navbar__item--mega[data-column-count="2"] .megaMenuPanel {
+  width: min(600px, calc(100vw - 48px));
+  max-width: 600px;
+  min-width: 640px;
+}
+
+.navbar__item--mega[data-column-count="2"] .megaMenuInner {
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+}
+
+.navbar__item--mega[data-column-count="3"] .megaMenuPanel {
+  width: min(800px, calc(100vw - 48px));
+  max-width: 800px;
+  min-width: 720px;
+}
+
+.navbar__item--mega[data-column-count="3"] .megaMenuInner {
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+}
+
+.megaMenuColumnTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.megaMenuColumnIcon {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+  opacity: 0.7;
+  filter: none;
+}
+
+/* Improve contrast for column icons in dark mode */
+[data-theme="dark"] .megaMenuColumnIcon {
+  /* invert black icons to light, then tone down to a soft grey */
+  filter: invert(1) brightness(1.05) contrast(0.9) saturate(0.6);
+  opacity: 0.85;
+}
+
+.megaMenuItemLink {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 12px;
+  margin: 0 -12px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+  gap: 12px;
+}
+
+.megaMenuItemLink:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  text-decoration: none;
+}
+
+/* (focus visible outlines intentionally omitted in original version) */
+
+.megaMenuItemLabel {
+  font-weight: 500;
+  display: block;
+  font-size: 1.05rem;
+  /* force horizontal text flow */
+  writing-mode: horizontal-tb;
+  white-space: normal;
+  color: var(--ifm-color-primary);
+}
+
+.megaMenuItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.megaMenuItemDescription {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  display: block;
+}
+
+/* Replace default list bullets with Font Awesome icons */
+.megaMenuColumnList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.megaMenuItem {
+  display: block;
+}
+
+.megaMenuItemIcon {
+  display: flex-shrink;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 4px;
+  object-fit: contain;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+  filter: grayscale(5%) brightness(0) saturate(100%) invert(21%) sepia(78%) saturate(2273%) hue-rotate(222deg);
+}
+
+.megaMenuItemLink:hover .megaMenuItemIcon {
+  opacity: 0.95;
+}
+
+/* Strong reset for text orientation inside the mega menu to avoid
+   inherited or theme rules that could produce vertical text. */
+.navbar__item--mega,
+.navbar__item--mega * {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  transform: none !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* Ensure mega menu doesn't display on small screens */
+@media (max-width: 899px) {
+  .megaMenuPanel {
+    display: none !important;
+  }
+}
