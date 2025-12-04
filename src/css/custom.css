@@ -245,7 +245,7 @@ div#faucetcontainer {
 .navbar__item--mega[data-column-count="2"] .megaMenuPanel {
   width: min(600px, calc(100vw - 48px));
   max-width: 600px;
-  min-width: 640px;
+  min-width: 480px;
 }
 
 .navbar__item--mega[data-column-count="2"] .megaMenuInner {
@@ -341,7 +341,7 @@ div#faucetcontainer {
 }
 
 .megaMenuItemIcon {
-  display: flex-shrink;
+  flex-shrink: 0;
   width: 1.25rem;
   height: 1.25rem;
   margin-top: 4px;
