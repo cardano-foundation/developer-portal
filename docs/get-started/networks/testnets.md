@@ -23,6 +23,7 @@ For mainnet configuration and other networks, see the [Networks Overview](/docs/
 ### Preview testnet
 
 Preview showcases new Cardano features before mainnet deployment. Use Preview to:
+
 - Test upcoming protocol features early
 - Provide feedback on new functionality
 - Learn new capabilities before they go live
@@ -40,6 +41,7 @@ curl -O -J "https://book.world.dev.cardano.org/environments/preview/{config,db-s
 ### Preprod testnet
 
 Preprod mirrors mainnet as closely as possible. Use Preprod to:
+
 - Validate your application before mainnet deployment
 - Test against production-like conditions
 - Perform final integration testing
@@ -57,6 +59,7 @@ curl -O -J "https://book.world.dev.cardano.org/environments/preprod/{config,db-s
 ### Guild network
 
 Guild Network is a community-maintained testnet optimized for rapid testing with 1-hour epochs. Use Guild to:
+
 - Iterate quickly during development
 - Test epoch boundary logic without waiting days
 - Access historical data across multiple hard forks (10K+ epochs)
@@ -72,15 +75,18 @@ Guild Network is a community-maintained testnet optimized for rapid testing with
 Choose a wallet that supports your target testnet:
 
 **Light wallets (Browser/Mobile):**
+
 - [Lace](https://www.lace.io/) - IOG wallet supporting Preview, Preprod, and Sancho
 - [Eternl](https://eternl.io/) - Supports Preview, Preprod, and Sancho
 - [Yoroi Nightly](https://chromewebstore.google.com/detail/yoroi-nightly/poonlenmfdfbjfeeballhiibknlknepo) - Emurgo wallet for Preview, Preprod, and Sancho
 - [Typhon](https://testnet.typhonwallet.io/#/wallet/access) - StricaHQ wallet for Preprod
 
 **Hardware wallets:**
+
 - [Ledger Nano S/X](https://www.ledger.com/) - Supports Preview and Preprod
 
 **Developer tools:**
+
 - [cardano-wallet](/docs/build/integrate/payments/listening-for-payments/cardano-wallet) - HTTP API for programmatic access
 
 :::note
