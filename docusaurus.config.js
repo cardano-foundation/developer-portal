@@ -248,6 +248,12 @@ module.exports = {
           },
         },
         {
+          href: "https://discord.gg/6ucHxyCTXV",
+          position: "right",
+          className: "header-discord-link",
+          "aria-label": "Discord",
+        },
+        {
           href: repository,
           position: "right",
           className: "header-github-link",
