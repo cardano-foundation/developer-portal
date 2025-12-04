@@ -164,17 +164,12 @@ div#faucetcontainer {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0 var(--ifm-navbar-item-padding-horizontal);
-  height: var(--ifm-navbar-height);
+  padding: var(--ifm-navbar-item-padding-vertical) var(--ifm-navbar-item-padding-horizontal);
   display: flex;
   align-items: center;
-}
-
-/* Make the mega trigger match other navbar links (font, color, caret) */
-.megaMenuTrigger {
   color: var(--ifm-navbar-link-color);
   font-size: var(--ifm-font-size-base);
-  font-weight: 600;
+  font-weight: 550;
   text-decoration: none;
 }
 
@@ -193,10 +188,9 @@ div#faucetcontainer {
 
 .megaMenuPanel {
   position: absolute;
-  top: var(--ifm-navbar-height);
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 2px 0 0 0;
+  top: 100%;
+  left: 0;
+  margin: 0;
   padding: 16px 24px 24px;
   background: var(--ifm-background-surface-color);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);

@@ -81,279 +81,171 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/cardano-logo-blue.svg",
-        srcDark: "img/cardano-logo-white.svg",
+        src: "img/cardano-black.svg",
+        srcDark: "img/cardano-white.svg",
       },
 
       items: [
-          {
-            // The collapsed mega menu for "Learn"
-            label: 'Learn',
-            type: 'dropdown',
-            position: 'left',
-            items: [
-              //{to: '/discover-cardano', label: 'Discover Cardano'}, //TODO: needs revamp
-              {to: '/what-is-ada', label: 'What is ada?'},
-              {to: '/what-is-ada#wallets', label: 'Cardano wallets'},
-              {to: '/common-scams', label: 'Protect your ada'},
-              {to: '/stake-pool-delegation', label: 'Delegate your stake'},
-              {to: '/stake-pool-operation', label: 'Operate a stake pool'},
-              {to: '/governance', label: 'Participate in governance'},
-              {to: '/developers', label: 'Start building on Cardano'},
-              {to: '/research', label: 'Cardano Research'},
-              {href: 'https://developers.cardano.org/showcase', label: 'Cardano Showcase'},
-            ],
-            // The mega menu full version for "Learn"
-            mega: true,
-            customProps: {
-              columns: [
-                {
-                  title: 'Get to know',
-                  icon: 'book-solid',
-                  items: [
-                    //{to: '/discover-cardano', label: 'Discover Cardano', description: 'What makes Cardano unique'}, //TODO: needs revamp
-                    {to: '/what-is-ada', label: 'What is ada?', description: 'Cardano\'s native token', icon: 'ada'},
-                    {to: '/what-is-ada#wallets', label: 'Cardano wallets', description: 'An app to store and use ada', icon: 'wallet-solid'},
-                    {to: '/where-to-get-ada', label: 'Where to get ada?', description: 'Obtain ada to use the Cardano', icon: 'coins-solid'},
-                    {to: '/common-scams', label: 'Protect your ada', description: 'Don\'t fall for scams', icon: 'shield-solid'},
-                  ],
-                },
-                {
-                  title: 'Take part',
-                  icon: 'shapes-solid',
-                  items: [
-                    {to: '/stake-pool-delegation', label: 'Delegate your ada', description: 'Be a part of it and earn rewards', icon: 'handshake-solid'},
-                    {to: '/apps', label: 'Use Cardano Apps', description: 'Explore curated applications', icon: 'shapes-solid'},
-                    {to: '/docs', label: 'Get involved in cardano.org', description: 'If you’d like to participate, this will get you started', icon: 'shapes-solid'},
-                    
-                  ],
-                },
-                {
-                  title: 'Research',
-                  icon: 'flask-vial-solid',
-                  items: [
-                    {to: '/research', label: 'Cardano Research', description: 'Peer-reviewed research and papers', icon: 'flask-vial-solid'},
-                    {href: '/insights', label: 'Cardano Insights', description: 'On‑chain or regularly refreshed data', icon: 'chart-line-solid'},
-                    {to: '/hardforks', label: 'Hard Forks', description: 'Implemented Upgrades', icon: 'code-branch-solid'},
-                  ],
-                },
-              ],
-            },
-          },
-          {
-            // The collapsed mega menu for "Participate"
-            label: 'Participate',
-            type: 'dropdown',
-            position: 'left',
-            items: [
-              {to: '/events', label: 'Cardano Events'},
-              {to: '/constitution', label: 'Cardano Constitution'},
-              {to: '/community-code-of-conduct', label: 'Code of Conduct'},
-              {to: '/ambassadors', label: 'Cardano Ambassadors'},
-              {to: '/newsletter', label: 'Newsletter'},
-              {to: '/#follow', label: 'Follow Cardano'},
-              {href: 'https://forum.cardano.org', label: 'Cardano Forum'},
-              {href: 'https://forum.cardano.org/t/cardano-stay-safe-series-official-community-channel-list/20046', label: 'Social Channels'},
-            ],
-            // The mega menu full version for "Participate"
-            mega: true,
-            customProps: {
-              columns: [
-                {
-                  title: 'Connect',
-                  icon: 'link-solid',
-                  items: [
-                    {to: '/#follow', label: 'Follow Cardano', description: 'Stay Updated', icon: 'link-solid'},
-                    {to: '/newsletter', label: 'Newsletter', description: 'Stay updated with Cardano news', icon: 'envelope-solid'},
-                    {href: 'https://forum.cardano.org/t/cardano-stay-safe-series-official-community-channel-list/20046', label: 'Social Channels', description: 'Recommended Communtiy Channels', icon: 'share-nodes-solid'},
-                  ],
-                },
-                {
-                  title: 'Engage',
-                  icon: 'comments-solid',
-                  items: [
-                     {to: '/events', label: 'Cardano Events', description: 'Join Cardano community events', icon: 'calendar-solid'},
-                    {href: 'https://forum.cardano.org', label: 'Cardano Forum', description: 'Structured long-format discussions', icon: 'comments-solid'},
-                     {href: 'https://discord.com/invite/2PNbVTr', label: 'Cardano Discord', description: 'Real-time chat and quick discussions', icon: 'comments-solid'},
-                    {to: '/ambassadors', label: 'Cardano Ambassadors', description: 'Become a Cardano ambassador', icon: 'people-group-solid'},
-                    
-                    
-                  ],
-                },
-                {
-                  title: 'Governance',
-                  icon: 'users-solid',
-                  items: [
-                     {to: '/governance', label: 'Participate in governance', description: 'Shape Cardano\'s future', icon: 'scroll-solid'},
-                     {to: '/constitution', label: 'Cardano Constitution', description: 'Learn about governance', icon: 'scroll-solid'},
-                    {to: '/community-code-of-conduct', label: 'Code of Conduct', description: 'Community standards and values', icon: 'heart-solid'},
-                  ],
-                },
-              ],
-            },
-          },
-          /* 
-          {
-            
-            label: 'Insights',
-            position: 'left',
-            items: [  
-              {to: '/insights/demo/', label: 'Simple Demo'},
-              {to: '/insights/supply/', label: 'Supply'}, 
-            ],
-          },*/
-          {
-            // The collapsed mega menu for "Build"
-            label: 'Build',
-            type: 'dropdown',
-            position: 'left',
-            items: [
-              {to: '/developers', label: 'Start building on Cardano'},
-              {to: '/research', label: 'Cardano Research'},
-              {to: '/exchanges', label: 'Integrate Cardano'},
-              {to: '/entities/#companies', label: 'Companies building on Cardano'},
-            ],
-            // The mega menu full version for "Build"
-            mega: true,
-            customProps: {
-              columnCount: 2,
-              columns: [
-                {
-                  title: 'Get started',
-                  icon: 'code-solid',
-                  items: [
-                    {to: '/developers', label: 'Start building on Cardano', description: 'Developer resources and tooling', icon: 'code-solid'},
-                    {to: '/research', label: 'Cardano Research', description: 'Peer-reviewed research and papers', icon: 'flask-solid'},
-                    {to: '/exchanges', label: 'Integrate Cardano', description: 'Exchange and integration guides', icon: 'plug-solid'},
-                  ],
-                },
-                {
-                  title: 'Tools',
-                  icon: 'wrench-solid',
-                  items: [
-                    {href: 'https://developers.cardano.org', label: 'Developer Portal', description: 'Cardano developer portal and docs', icon: 'book-solid'},
-                    {href: 'https://developers.cardano.org/tools', label: 'Builder Tools', description: 'Tools to build on Cardano', icon: 'wrench-solid'},
-                     {to: '/entities/#companies', label: 'Companies building on Cardano', description: 'Companies, associations, and collaborations', icon: 'building-solid'},
-                  ],
-                },
-              ],
-            },
-          },
         {
+          // Developers mega menu
           type: 'dropdown',
           label: 'Developers',
           position: 'left',
           items: [
-            {
-              to: "/docs/get-started/",
-              label: "Getting Started",
-            },
-            {
-              to: "/docs/learn/core-concepts/",
-              label: "Core Concepts",
-            },
-            {
-              to: "/docs/get-started/client-sdks/overview",
-              label: "Client SDKs",
-            },
-            {
-              to: "/docs/build/smart-contracts/overview",
-              label: "Smart Contracts",
-            },
-            {
-              to: "/docs/build/integrate/overview",
-              label: "Integration",
-            },
-            {
-              to: "tools",
-              label: "Builder Tools",
-            },
-            {
-              to: "docs/community/cardano-developer-community",
-              label: "Community",
-            },
-            {
-              to: "docs/community/funding",
-              label: "Grants",
-            },
+            {to: "/docs/get-started/", label: "Getting Started"},
+            {to: "/docs/learn/core-concepts/", label: "Core Concepts"},
+            {to: "/docs/get-started/client-sdks/overview", label: "Client SDKs"},
+            {to: "/docs/build/smart-contracts/overview", label: "Smart Contracts"},
+            {to: "/docs/build/integrate/overview", label: "Integration"},
+            {to: "tools", label: "Builder Tools"},
+            {to: "docs/community/cardano-developer-community", label: "Community"},
+            {to: "docs/community/funding", label: "Grants"},
           ],
+          mega: true,
+          customProps: {
+            columnCount: 3,
+            columns: [
+              {
+                title: 'Get Started',
+                icon: 'book-solid',
+                items: [
+                  {to: '/docs/get-started/', label: 'Getting Started', description: 'Begin your Cardano development journey', icon: 'arrow-down-to-line-solid'},
+                  {to: '/docs/learn/core-concepts/', label: 'Core Concepts', description: 'Understand the fundamentals', icon: 'book-solid'},
+                  {to: '/docs/get-started/client-sdks/overview', label: 'Client SDKs', description: 'Libraries for TypeScript, Python, Rust, and more', icon: 'code-solid'},
+                  {to: '/docs/get-started/infrastructure/overview', label: 'Infrastructure', description: 'Nodes, APIs, and tooling', icon: 'plug-solid'},
+                ],
+              },
+              {
+                title: 'Build',
+                icon: 'code-solid',
+                items: [
+                  {to: '/docs/build/smart-contracts/overview', label: 'Smart Contracts', description: 'Write and deploy smart contracts', icon: 'scroll-solid'},
+                  {to: '/docs/build/native-tokens/overview', label: 'Native Tokens', description: 'Create and manage tokens', icon: 'coins-solid'},
+                  {to: '/docs/build/integrate/overview', label: 'Integration', description: 'Payments, wallets, and oracles', icon: 'link-solid'},
+                  {to: '/docs/build/transaction-metadata/overview', label: 'Transaction Metadata', description: 'Attach data to transactions', icon: 'shapes-solid'},
+                ],
+              },
+              {
+                title: 'Resources',
+                icon: 'wrench-solid',
+                items: [
+                  {to: '/tools', label: 'Builder Tools', description: 'Explore developer tools', icon: 'wrench-solid'},
+                  {to: '/docs/community/cardano-developer-community', label: 'Community', description: 'Connect with other developers', icon: 'people-group-solid'},
+                  {to: '/docs/community/funding', label: 'Grants & Funding', description: 'Fund your project', icon: 'handshake-solid'},
+                ],
+              },
+            ],
+          },
         },
         {
+          // Governance mega menu
           type: 'dropdown',
           label: 'Governance',
           position: 'left',
           items: [
-            {
-              to: '/docs/governance/',
-              label: 'Participate in Governance',
-            },
-            {
-              to: '/docs/governance/cardano-governance/governance-actions',
-              label: 'Governance Actions',
-            },
-            {
-              to: '/docs/governance/cardano-governance/submitting-governance-actions',
-              label: 'Submitting Actions',
-            },
-            {
-              to: '/docs/governance/cardano-governance/constitutional-committee-guide',
-              label: 'Constitutional Committee',
-            },
+            {to: '/docs/governance/', label: 'Participate in Governance'},
+            {to: '/docs/governance/cardano-governance/governance-actions', label: 'Governance Actions'},
+            {to: '/docs/governance/cardano-governance/submitting-governance-actions', label: 'Submitting Actions'},
+            {to: '/docs/governance/cardano-governance/constitutional-committee-guide', label: 'Constitutional Committee'},
           ],
+          mega: true,
+          customProps: {
+            columnCount: 2,
+            columns: [
+              {
+                title: 'Overview',
+                icon: 'users-solid',
+                items: [
+                  {to: '/docs/governance/', label: 'Participate in Governance', description: 'Shape Cardano\'s future', icon: 'users-solid'},
+                  {to: '/docs/governance/cardano-governance/governance-model', label: 'Cardano Governance', description: 'How governance works', icon: 'scroll-solid'},
+                ],
+              },
+              {
+                title: 'Advanced',
+                icon: 'scroll-solid',
+                items: [
+                  {to: '/docs/governance/cardano-governance/governance-actions', label: 'Governance Actions', description: 'Types of governance actions', icon: 'shapes-solid'},
+                  {to: '/docs/governance/cardano-governance/submitting-governance-actions', label: 'Submitting Actions', description: 'How to submit proposals', icon: 'arrow-down-to-line-solid'},
+                  {to: '/docs/governance/cardano-governance/constitutional-committee-guide', label: 'Constitutional Committee', description: 'CC member guide', icon: 'shield-solid'},
+                ],
+              },
+            ],
+          },
         },
         {
+          // Validators mega menu
           type: 'dropdown',
           label: 'Validators',
           position: 'left',
           items: [
-            {
-              to: '/docs/operate-a-stake-pool/',
-              label: 'Getting Started',
-            },
-            {
-              to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration',
-              label: 'Relay Configuration',
-            },
-            {
-              to: '/docs/operate-a-stake-pool/block-producer/register-stake-pool',
-              label: 'Block Producer Setup',
-            },
-            {
-              to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
-              label: 'Monitoring',
-            },
-            {
-              to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server',
-              label: 'Security',
-            },
+            {to: '/docs/operate-a-stake-pool/', label: 'Getting Started'},
+            {to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration', label: 'Relay Configuration'},
+            {to: '/docs/operate-a-stake-pool/block-producer/register-stake-pool', label: 'Block Producer Setup'},
+            {to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial', label: 'Monitoring'},
+            {to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server', label: 'Security'},
           ],
+          mega: true,
+          customProps: {
+            columnCount: 2,
+            columns: [
+              {
+                title: 'Getting Started',
+                icon: 'book-solid',
+                items: [
+                  {to: '/docs/operate-a-stake-pool/', label: 'Overview', description: 'Start operating a stake pool', icon: 'book-solid'},
+                  {to: '/docs/operate-a-stake-pool/basics/hardware-requirements', label: 'Hardware Requirements', description: 'What you need to run a pool', icon: 'microscope-solid'},
+                  {to: '/docs/operate-a-stake-pool/basics/stake-pool-networking', label: 'Stake Pool Networking', description: 'Network setup and topology', icon: 'share-nodes-solid'},
+                  {to: '/docs/operate-a-stake-pool/basics/cardano-key-pairs', label: 'Key Pairs', description: 'Understanding Cardano keys', icon: 'shield-solid'},
+                ],
+              },
+              {
+                title: 'Operations',
+                icon: 'wrench-solid',
+                items: [
+                  {to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration', label: 'Relay Configuration', description: 'Configure your relay nodes', icon: 'plug-solid'},
+                  {to: '/docs/operate-a-stake-pool/block-producer/register-stake-pool', label: 'Block Producer Setup', description: 'Register your stake pool', icon: 'building-solid'},
+                  {to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial', label: 'Monitoring', description: 'Monitor with Grafana', icon: 'chart-line-solid'},
+                  {to: '/docs/operate-a-stake-pool/deployment-scenarios/hardening-server', label: 'Security', description: 'Harden your server', icon: 'shield-solid'},
+                ],
+              },
+            ],
+          },
         },
         {
+          // Ecosystem mega menu
           type: 'dropdown',
           label: 'Ecosystem',
           position: 'left',
           items: [
-            {
-              to: "showcase",
-              label: "Showcase",
-            },
-            {
-              to: "blog/",
-              label: "Dev Blog",
-            },
-            {
-              href: "https://cardanoupdates.com/",
-              label: "Developer Activity",
-            },
-            {
-              href: "https://cardanofoundation.org/academy",
-              label: "Academy",
-            },
-            {
-              href: "https://cips.cardano.org/",
-              label: "CIPs",
-            }
+            {to: "showcase", label: "Showcase"},
+            {to: "blog/", label: "Dev Blog"},
+            {href: "https://cardanoupdates.com/", label: "Developer Activity"},
+            {href: "https://cardanofoundation.org/academy", label: "Academy"},
+            {href: "https://cips.cardano.org/", label: "CIPs"},
           ],
+          mega: true,
+          customProps: {
+            columnCount: 2,
+            columns: [
+              {
+                title: 'Explore',
+                icon: 'shapes-solid',
+                items: [
+                  {to: '/showcase', label: 'Showcase', description: 'Discover projects built on Cardano', icon: 'shapes-solid'},
+                  {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book-solid'},
+                ],
+              },
+              {
+                title: 'External Resources',
+                icon: 'link-solid',
+                items: [
+                  {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Track development progress', icon: 'chart-line-solid'},
+                  {href: 'https://cardanofoundation.org/academy', label: 'Cardano Academy', description: 'Learn about Cardano', icon: 'book-solid'},
+                  {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll-solid'},
+                ],
+              },
+            ],
+          },
         },
         {
           href: repository,
