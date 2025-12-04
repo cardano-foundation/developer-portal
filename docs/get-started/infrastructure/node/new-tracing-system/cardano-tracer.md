@@ -26,6 +26,7 @@ keywords: [Tracing, cardano-tracer, trace-dispatch, new tracing system, monitori
    1. [Logging](#logging)
    1. [Logs Rotation](#logs-rotation)
    1. [Prometheus](#prometheus)
+      1. [Prometheus HTTP Service Discovery](#prometheus-http-service-discovery)
    1. [EKG Monitoring](#ekg-monitoring)
    1. [Verbosity](#verbosity)
 
@@ -91,7 +92,6 @@ Tracing options that can be given based on a namespace are `severity`, `detail` 
       "maxFrequency": 2.0
     }
   },
-  "TraceOptionPeerFrequency": 2000
 }
 ```
 
@@ -401,6 +401,29 @@ rts_gc_bytes_copied 17114384
 ```
 
 That page from the example can of course be directly accessed by `http://127.0.0.1:3000/kindstar-3001`.
+
+#### Prometheus HTTP Service discovery
+
+The `/targets` path can be used for Prometheus HTTP service discovery. This lets
+Prometheus dynamically discover all connected nodes, and scrape their metrics.
+Below is a minimal example of a corresponding job definition that goes into the
+`prometheus.yml` configuration:
+
+```yaml
+  - job_name: "cardano-tracer"
+    http_sd_configs:
+      - url: 'http://127.0.0.1:3200/targets'    # <-- Your cardano-tracer's real hostname:prometheus port
+```
+
+Each target will have a label `node_name` which corresponds to the `TraceOptionNodeName` setting in the respective node config.
+
+In `cardano-tracer`'s config, you can optionally provide additional labels to be attached to *all* targets
+(default is no additional labels):
+```json
+  "prometheusLabels": {
+      "<labelname>": "<labelvalue>", ...
+    }
+```
 
 ### EKG Monitoring
 
