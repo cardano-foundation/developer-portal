@@ -471,3 +471,9 @@
   from = "/plutus-pioneer-program/"
   to = "https://testnets.cardano.org/plutus-pioneer-program/"
   status = 301
+
+[[redirects]]
+  from = "https://developer.cardano.org/*"
+  to = "https://developers.cardano.org/:splat"
+  status = 301
+  force = true

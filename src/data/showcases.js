@@ -1399,7 +1399,25 @@ export const Showcases = [
     website: "https://arpradio.media",
     source: null,
     tags: ["minting", "ecosystem", "metadata" ]
-  }
+  },
+  {
+    title: "DeltaDeFi",
+    description:
+      "The First Hydra Dex, Instant Order Confirmation, Place/Cancel Order with Zero Fee, API Trading - Enable High-Frequency Trading for Cardano",
+    preview: require("./showcase/deltadefi.png"),
+    website: "https://app.deltadefi.io/",
+    source: "https://github.com/deltadefi-protocol",
+    tags: ["dex", "opensource"],
+  },
+  {
+    title: 'Spidex',
+    description:
+      'Applying AI to Cardano DeFi. Spidex provides DEX aggregation, collective AI agents, and conversational interface for seamless cross-platform trading with optimized fees and aggregated liquidity.',
+    preview: require('./showcase/spidex.png'),
+    website: 'https://spidex.ag/',
+    source: null,
+    tags: ['analytics', 'dex'],
+  },
 ];
 
 export const TagList = Object.keys(Tags);
