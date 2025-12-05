@@ -88,7 +88,7 @@ tools on your system:
   <TabItem value="fedora" label="Fedora, RedHat or CentOS">
     ```bash
     sudo yum update -y
-    sudo yum install git gcc gcc-c++ tmux gmp-fdevel make tar xz wget zlib-devel libtool autoconf -y
+    sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y
     sudo yum install systemd-devel ncurses-devel ncurses-compat-libs which jq openssl-devel lmdb-devel -y
     ```
   </TabItem>
@@ -154,8 +154,8 @@ On Windows, we discussed how to install GHCup in the step above, depending on ho
 Once GHCup is installed, open a new terminal (to get an updated environment) and run:
 
 ```bash
-ghcup install --set ghc 9.6.7
-ghcup install --set cabal 3.12.1.0
+ghcup install ghc 9.6.7 --set
+ghcup install cabal 3.12.1.0 --set
 ```
 
 Alternatively, with `ghcup tui` you can pick the specific versions of the tools that you want to install, in particular you should have installed and set:
@@ -371,7 +371,7 @@ Build the node and CLI with `cabal`:
 ```bash
 cabal update
 cabal build exe:cardano-node
-cabal build exe:cardano-cli
+cabal build cardano-cli
 ```
 
 :::caution
