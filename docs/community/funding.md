@@ -1,6 +1,6 @@
 ---
 id: funding
-title: Fund your Project on Cardano
+title: Get funding for your project on Cardano
 sidebar_label: Funding
 description: Comprehensive guide to funding opportunities for Cardano developers and builders
 image: /img/og/og-developer-portal.png

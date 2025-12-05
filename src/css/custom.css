@@ -89,6 +89,22 @@ html[data-theme='dark'] .header-github-link:before {
   opacity: 0.6;
 }
 
+.header-discord-link:before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z'/%3E%3C/svg%3E") no-repeat;
+}
+
+html[data-theme='dark'] .header-discord-link:before {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='white' d='M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z'/%3E%3C/svg%3E") no-repeat;
+}
+
+.header-discord-link:hover {
+  opacity: 0.6;
+}
+
 div#faucetcontainer {
   width: 100%;
   max-width: 900px;
@@ -153,4 +169,207 @@ div#faucetcontainer {
 .tabsblock {
     background: rgba(86, 91, 115, 0.15);
     border-radius: .4rem;
+}
+
+/* Mega menu styles */
+.navbar__item--mega {
+  position: relative;
+}
+
+.megaMenuTrigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--ifm-navbar-item-padding-vertical) var(--ifm-navbar-item-padding-horizontal);
+  display: flex;
+  align-items: center;
+  color: var(--ifm-navbar-link-color);
+  font-size: var(--ifm-font-size-base);
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.megaMenuTrigger::after {
+  content: '';
+  display: inline-block;
+  margin-left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid currentColor;
+  vertical-align: middle;
+  opacity: 0.9;
+}
+
+.megaMenuPanel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 16px 24px 24px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  z-index: 1000;
+  display: none;
+  box-sizing: border-box;
+  /* Width is set by data-column-count variant rules below */
+}
+
+/* Invisible hover zone below panel to prevent closing when moving mouse down */
+.megaMenuPanel::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -20px;
+  right: -20px;
+  height: 10px;
+  pointer-events: auto;
+}
+
+.navbar__item--mega:hover .megaMenuPanel,
+.navbar__item--mega:focus-within .megaMenuPanel {
+  display: block;
+}
+
+.megaMenuInner {
+  display: grid;
+  /* ensure each column has a reasonable minimum width so labels don't
+     wrap into vertical stacks on narrow viewports */
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* Dynamic width based on column count */
+.navbar__item--mega[data-column-count="2"] .megaMenuPanel {
+  width: min(600px, calc(100vw - 48px));
+  max-width: 600px;
+  min-width: 480px;
+}
+
+.navbar__item--mega[data-column-count="2"] .megaMenuInner {
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+}
+
+.navbar__item--mega[data-column-count="3"] .megaMenuPanel {
+  width: min(800px, calc(100vw - 48px));
+  max-width: 800px;
+  min-width: 720px;
+}
+
+.navbar__item--mega[data-column-count="3"] .megaMenuInner {
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+}
+
+.megaMenuColumnTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.megaMenuColumnIcon {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+  opacity: 0.7;
+  filter: none;
+}
+
+/* Improve contrast for column icons in dark mode */
+[data-theme="dark"] .megaMenuColumnIcon {
+  /* invert black icons to light, then tone down to a soft grey */
+  filter: invert(1) brightness(1.05) contrast(0.9) saturate(0.6);
+  opacity: 0.85;
+}
+
+.megaMenuItemLink {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 12px;
+  margin: 0 -12px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+  gap: 12px;
+}
+
+.megaMenuItemLink:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  text-decoration: none;
+}
+
+/* (focus visible outlines intentionally omitted in original version) */
+
+.megaMenuItemLabel {
+  font-weight: 500;
+  display: block;
+  font-size: 1.05rem;
+  /* force horizontal text flow */
+  writing-mode: horizontal-tb;
+  white-space: normal;
+  color: var(--ifm-color-primary);
+}
+
+.megaMenuItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.megaMenuItemDescription {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  display: block;
+}
+
+/* Replace default list bullets with Font Awesome icons */
+.megaMenuColumnList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.megaMenuItem {
+  display: block;
+}
+
+.megaMenuItemIcon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 4px;
+  object-fit: contain;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+  filter: grayscale(5%) brightness(0) saturate(100%) invert(21%) sepia(78%) saturate(2273%) hue-rotate(222deg);
+}
+
+.megaMenuItemLink:hover .megaMenuItemIcon {
+  opacity: 0.95;
+}
+
+/* Strong reset for text orientation inside the mega menu to avoid
+   inherited or theme rules that could produce vertical text. */
+.navbar__item--mega,
+.navbar__item--mega * {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  transform: none !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* Ensure mega menu doesn't display on small screens */
+@media (max-width: 899px) {
+  .megaMenuPanel {
+    display: none !important;
+  }
 }
