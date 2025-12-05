@@ -9,9 +9,9 @@ image: /img/og/og-getstarted-installing-cardano-wallet.png
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Overview 
+### Overview
 
-In this guide, we will show you how to compile and install `cardano-wallet` into your operating system of choice, directly from the source-code. This component provides a [CLI (Command Line Interface)](https://en.wikipedia.org/wiki/Command-line_interface) and [Web API](https://en.wikipedia.org/wiki/Web_API) for creating multiple **Cardano** wallets, sending transactions, getting transaction history details, wallet balances and more!
+Install `cardano-wallet` from source to access CLI and Web API for managing wallets, sending transactions, and querying balances.
 
 :::note
 
@@ -24,7 +24,7 @@ This guide assumes you have installed `cardano-node` and `cardano-cli` into your
 
 :::important
 
-You must connect your `cardano-node` to a [testnet network](/docs/get-started/networks/testnets/overview) and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano) guide before proceeding.
+You must connect your `cardano-node` to a [testnet network](/docs/get-started/networks/testnets) and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano) guide before proceeding.
 
 :::
 

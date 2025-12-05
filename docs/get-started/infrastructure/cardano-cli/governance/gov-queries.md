@@ -16,7 +16,7 @@ There are various queries you can do to your local node to find relevant informa
 This query returns all the proposals that can be ratified in the current epoch. This means that it excludes proposals that were submitted on the current epoch, as these cannot be ratified on the current epoch.
 
 ```shell
-cardano-cli conway query proposals --all-proposals
+cardano-cli latest query proposals --all-proposals
 ```
 
 #### Query proposal by ID
@@ -24,7 +24,7 @@ cardano-cli conway query proposals --all-proposals
 To query an individual proposal by its governance action id:
 
 ```shell
-cardano-cli conway query proposals \
+cardano-cli latest query proposals \
 --governance-action-tx-id d098afe0db98605c243c13c8a537a3eb51e6ded5e3a48acca83e7082a0086428 \ --governance-action-index 0 
 
 
@@ -66,7 +66,7 @@ cardano-cli conway query proposals \
 We are showing only the top level keys of the governance state, the dump is to large to show on this tutorial.
 
 ```shell
-cardano-cli conway query gov-state
+cardano-cli latest query gov-state
 
 {
     "committee": {},
@@ -87,7 +87,7 @@ cardano-cli conway query gov-state
 ### Query the constitution
 
 ```shell
-cardano-cli conway query constitution
+cardano-cli latest query constitution
 {
     "anchor": {
         "dataHash": "ca41a91f399259bcefe57f9858e91f6d00e1a38d6d9c63d4052914ea7bd70cb2",
@@ -100,7 +100,7 @@ cardano-cli conway query constitution
 ### Query the DRep state for all DReps
 
 ```shell
-cardano-cli conway query drep-state --all-dreps
+cardano-cli latest query drep-state --all-dreps
 [
     [
         {
@@ -148,7 +148,7 @@ cardano-cli conway query drep-state --all-dreps
 ### Query the DRep state for an individual DRep
 
 ```shell
-cardano-cli conway query drep-state --drep-key-hash 8f4fefcf28017a57b41517a67d56ef4c0dc04181a11d35178dd53f4c
+cardano-cli latest query drep-state --drep-key-hash 8f4fefcf28017a57b41517a67d56ef4c0dc04181a11d35178dd53f4c
 [
     [
         {
@@ -166,7 +166,7 @@ cardano-cli conway query drep-state --drep-key-hash 8f4fefcf28017a57b41517a67d56
 ### Query the DRep stake distribution (voting power)
 
 ```shell
-cardano-cli conway query drep-stake-distribution --all-dreps
+cardano-cli latest query drep-stake-distribution --all-dreps
 [
     [
         "drep-keyHash-13797df5308dfebf2348fa58b312a177cf97939f5f7d21168e1a54db",
@@ -186,7 +186,7 @@ cardano-cli conway query drep-stake-distribution --all-dreps
 ### Query the committee state
 
 ```shell
-cardano-cli conway query committee-state
+cardano-cli latest query committee-state
 {
     "committee": {
         "scriptHash-27999ed757d6dac217471ae61d69b1b067b8b240d9e3ff36eb66b5d0": {
@@ -257,7 +257,7 @@ cardano-cli conway query committee-state
 ### Query the state of an individual committee key hash
 
 ```shell
-cardano-cli conway query committee-state --cold-script-hash 7ceede7d6a89e006408e6b7c6acb3dd094b3f6817e43b4a36d01535b
+cardano-cli latest query committee-state --cold-script-hash 7ceede7d6a89e006408e6b7c6acb3dd094b3f6817e43b4a36d01535b
 {
     "committee": {
         "scriptHash-7ceede7d6a89e006408e6b7c6acb3dd094b3f6817e43b4a36d01535b": {
@@ -282,7 +282,7 @@ cardano-cli conway query committee-state --cold-script-hash 7ceede7d6a89e006408e
 ### Query expired committee members
 
 ```shell
-cardano-cli conway query committee-state --expired
+cardano-cli latest query committee-state --expired
 {
     "committee": {
         "keyHash-059349cd1e77dc3e500d3ffc498adb7307001ecc022c8b083faaa48b": {
@@ -305,7 +305,7 @@ cardano-cli conway query committee-state --expired
 ### Query active committee members
 
 ```shell
-cardano-cli conway query committee-state --active 
+cardano-cli latest query committee-state --active 
 {
     "committee": {
         "keyHash-059349cd1e77dc3e500d3ffc498adb7307001ecc022c8b083faaa48b": {
@@ -350,7 +350,7 @@ cardano-cli conway query committee-state --active
 ### Query unrecognized committee keys
 
 ```shell
-cardano-cli conway query committee-state --unrecognized
+cardano-cli latest query committee-state --unrecognized
 {
     "committee": {},
     "epoch": 106,

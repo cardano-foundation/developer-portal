@@ -11,7 +11,7 @@ image: ../img/og-developer-portal.png
 First, follow & complete the guide [Installing the node from source](/docs/get-started/infrastructure/node/installing-cardano-node).
 
 :::note
-The focus of this tutorial is on learning how to setup a stake pool. So unless you have the proper knowledge or guidance to set up a Mainnet pool, continue as recommended to set up a pool on a [testnet network](/docs/get-started/networks/testnets/overview) and not the Mainnet.
+The focus of this tutorial is on learning how to setup a stake pool. So unless you have the proper knowledge or guidance to set up a Mainnet pool, continue as recommended to set up a pool on a [testnet network](/docs/get-started/networks/testnets) and not the Mainnet.
 :::
 
 Continue below when you have a machine with the software installed.  The guide below will set up your node as a relay and verify its connection to the Cardano network.  You can then prepare further nodes as needed for your stake pool by the same process.

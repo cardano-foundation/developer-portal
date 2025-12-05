@@ -6,25 +6,55 @@ description: Local blockchain networks for faster Cardano development and testin
 image: /img/og/og-developer-portal.png
 ---
 
-Development networks let you run a local Cardano blockchain instance on your machine. Instead of connecting to testnet for every test, you can emulate the network locally with full control over the network state. This gives you a customizable environment for fast iteration during development.
+Development networks run locally on your machine, giving you full control over blockchain state, network parameters, and block production without internet dependency or testnet tokens.
 
-## What They Provide
+## Choosing a development network
 
-With a development network, you control the entire blockchain. You can create UTxOs without faucets, set network parameters exactly as needed, adjust genesis configuration and stake distribution to match your testing requirements. Since everything runs locally, you can develop offline without the internet too.
+| Feature | Yaci DevKit | cardano-testnet |
+|---------|-------------|-----------------|
+| **Setup** | Docker Compose or NPM | Build from source |
+| **Includes** | Indexer, viewer, Ogmios, Kupo, Blockfrost API | Minimal tooling, full customization |
+| **Use Case** | Integration testing, SDK development | Protocol testing, custom scenarios |
 
-The iteration speed is faster than using public testnets. There's no waiting for block confirmations or dealing with the network itself. You get control over block production, which makes debugging much easier when something goes wrong or edge case testing with rollbacks.
+### Yaci DevKit
 
-## When to Use Them
+Quick-start development environment with built-in indexer, transaction viewer, and Provider API compatibility.
 
-Development networks are particularly useful when you're building and testing smart contracts locally or iterating quickly on transaction logic. They're great for testing edge cases without worrying about testnet token availability, and for developing integrations that need deterministic blockchain state.
+Use Yaci DevKit to:
+- Get started quickly with Docker Compose
+- Test integrations requiring Blockfrost API compatibility
+- Access blockchain data through lightweight indexer
+- Develop with Ogmios and Kupo integration
+- Run in CI/CD pipelines (NPM package)
 
-Once your application is stable, you can move to public testnets for production-like testing before mainnet deployment.
+**Learn more**: [Yaci DevKit guide](/docs/get-started/networks/development-networks/yaci-devkit)
 
-## Available Tools
+### cardano-testnet
 
-Cardano offers purpose-built development networks that provide these capabilities out of the box. Choose the one that best fits your workflow and requirements.
+Lightweight local cluster from cardano-node with full customization over genesis files and network parameters.
 
-import DocCardList from '@theme/DocCardList';
+Use cardano-testnet to:
+- Customize genesis files and on-chain parameters
+- Test protocol-level behavior
+- Create specific network scenarios
+- Match mainnet parameters exactly
+- Control epoch length, slot timing, and stake distribution
 
-<DocCardList />
+**Learn more**: [cardano-testnet guide](/docs/get-started/networks/development-networks/cardano-testnet)
 
+## When to use development networks
+
+Development networks are ideal when you need:
+- Fast iteration without waiting for testnet block confirmations
+- Deterministic blockchain state for testing
+- Offline development without internet dependency
+- Custom network parameters or genesis configuration
+- Automated testing in CI/CD pipelines
+
+Once your application is stable, move to public testnets for production-like testing before mainnet deployment.
+
+## Next steps
+
+- **Quick start**: [Set up Yaci DevKit](/docs/get-started/networks/development-networks/yaci-devkit) with Docker Compose
+- **Advanced setup**: [Build cardano-testnet](/docs/get-started/networks/development-networks/cardano-testnet) for custom configurations
+- **Test on public networks**: [Use testnets](/docs/get-started/networks/testnets) for pre-production validation

@@ -2,13 +2,13 @@
 id: overview
 title: API Providers
 sidebar_label: Overview
-description: Explore API providers for Cardano - query the blockchain via REST, WebSocket, and GraphQL APIs.
+description: Connect to Cardano via REST, WebSocket, and GraphQL APIs without managing infrastructure.
 image: /img/og/og-developer-portal.png
 ---
 
-## Choose Your API Provider
+API providers run cardano-node infrastructure and expose blockchain data through developer-friendly APIs, letting you query data and submit transactions without managing servers.
 
-API providers give you access to the Cardano blockchain through developer-friendly APIs. They handle node operations, data indexing, and expose REST, WebSocket, or GraphQL endpoints so you can query blockchain data without running your own infrastructure.
+## How API providers work
 
 ```mermaid
 graph LR
@@ -32,33 +32,49 @@ graph LR
     style Blockchain fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
 ```
 
-Providers run and maintain Cardano infrastructure so you don't have to. They operate cardano-node, index blockchain data into queryable databases, and expose developer-friendly APIs (REST, WebSocket, gRPC). This means you can query blocks, transactions, UTXOs, submit transactions, and access protocol parameters without managing servers, handling upgrades, or ensuring uptime.
+## Choosing a provider
 
----
+| Provider | API Type | Key Features | Networks |
+|----------|----------|--------------|----------|
+| **[Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/overview)** | REST | Simple REST API, webhooks, fast integration | Mainnet, Preprod, Preview |
+| **[Koios](/docs/get-started/infrastructure/api-providers/koios)** | REST, GraphQL | Community-driven, decentralized, open source | Mainnet, Preprod, Preview |
+| **[Ogmios](/docs/get-started/infrastructure/api-providers/ogmios)** | WebSocket, JSON-RPC | Low-level protocol access, real-time queries | All networks (requires node) |
 
-## Example API Providers
+### Blockfrost
 
-Different providers offer different features and pricing models:
+Hosted REST API with simple endpoints for querying blockchain data. Use Blockfrost to:
 
-| Provider | Type | Key Features | Networks |
-|----------|------|--------------|----------|
-| **[Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/overview)** | REST API | Simple REST API, fast integration | Mainnet, Preprod, Preview |
-| **[Koios](/docs/get-started/infrastructure/api-providers/koios)** | REST/GraphQL API | Community-driven, decentralized infrastructure | Mainnet, Preprod, Preview |
-| **[Ogmios](/docs/get-started/infrastructure/api-providers/ogmios)** | WebSocket/JSON-RPC | Low-level protocol access, real-time queries | All networks (self-hosted or via providers) |
+- Integrate quickly with REST endpoints
+- Subscribe to blockchain events via webhooks
+- Build with extensive SDK support
 
----
+**Learn more**: [Blockfrost documentation](/docs/get-started/infrastructure/api-providers/blockfrost/overview)
 
-## Other Infrastructure Options
+### Koios
 
-Beyond API providers, you have other ways to connect to Cardano:
+Community-run REST and GraphQL API with decentralized infrastructure. Use Koios to:
 
-- **[Demeter](/docs/get-started/infrastructure/demeter)**: Full cloud infrastructure platform with managed nodes, DB-Sync, Ogmios, and Kupo
-- **[Running Your Own Node](/docs/get-started/infrastructure/node/cardano-components)**: Complete control over infrastructure
+- Query via REST or GraphQL endpoints
+- Access open-source, community-maintained service
+- Connect without registration requirements
 
----
+**Learn more**: [Koios documentation](/docs/get-started/infrastructure/api-providers/koios)
 
-## Available Providers
+### Ogmios
 
-import DocCardList from '@theme/DocCardList';
+WebSocket-based JSON-RPC API providing low-level protocol access. Use Ogmios to:
 
-<DocCardList />
+- Query blockchain state in real-time
+- Access protocol-level details
+- Build custom indexing solutions
+
+**Note**: Ogmios requires cardano-node (self-hosted or via [Demeter](/docs/get-started/infrastructure/demeter))
+
+**Learn more**: [Ogmios documentation](/docs/get-started/infrastructure/api-providers/ogmios)
+
+## Next steps
+
+- **Get started quickly**: [Set up Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/get-started) for immediate API access
+- **Explore alternatives**: [Try Koios](/docs/get-started/infrastructure/api-providers/koios) for community-driven infrastructure
+- **Advanced access**: [Use Ogmios](/docs/get-started/infrastructure/api-providers/ogmios) for protocol-level queries
+- **Compare options**: [View all infrastructure approaches](/docs/get-started/infrastructure/overview)

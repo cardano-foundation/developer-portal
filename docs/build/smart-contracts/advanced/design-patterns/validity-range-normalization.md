@@ -33,18 +33,6 @@ handle these diverse representations. Moreover, as the standard method of commun
 may change with any hard fork, long-lived smart contracts must be designed to accommodate various
 representations to prevent funds from being indefinitely locked within them.
 
-An example on how to handle every case correctly:
-
-```rust
-isTimeValid :: Datum -> POSIXTimeRange -> Bool
-isTimeValid datum (Interval (LowerBound (Finite l) False) (UpperBound (Finite u) False)) = ...
-isTimeValid datum (Interval (LowerBound NegInf     False) (UpperBound (Finite u) False)) = ...
-isTimeValid datum (Interval (LowerBound (Finite l) False) (UpperBound PosInf     False)) = ...
-isTimeValid datum (Interval (LowerBound PosInf     False) (UpperBound (Finite u) False)) = ...
-...
-isTimeValid datum (Interval (LowerBound PosInf True) (UpperBound PosInf True)) = ...
-```
-
 ## The Solution
 
 In our endeavor to establish best practices, we advocate for the adoption of normalized versions of
@@ -57,14 +45,70 @@ The recommended formats for normalized validity ranges are as follows:
 `(-∞, +∞)`: Signifies an open range on both sides, specifically used for the representation of the
 always range, aligning with the standard convention in mathematics.
 
-With this the example above can be implemented in a much cleaner way:
+## Aiken Implementation
+
+The datatype that models validity range in Cardano currently allows for values
+that are either meaningless, or can have more than one representations. For
+example, since the values are integers, the inclusive flag for each end is
+redundant for most cases and can be omitted in favor of a predefined convention
+(e.g. a value should always be considered inclusive).
+
+The library presents a custom datatype that essentially reduces the value
+domain of the original validity range to a smaller one that eliminates
+meaningless instances and redundancies.
+
+The datatype is defined as following:
 
 ```rust
-isTimeValid :: Datum -> POSIXTimeRange -> Bool
-isTimeValid datum r =
-  case normalizedTimeRange r of
-    ClosedRange l u -> ...
-    FromNegInf    u -> ...
-    ToPosInf    l   -> ...
-    Always          -> ...
+pub type NormalizedTimeRange {
+  ClosedRange { lower: Int, upper: Int }
+  FromNegInf  {             upper: Int }
+  ToPosInf    { lower: Int             }
+  Always
+}
 ```
+
+The exposed function of the module (`normalize_time_range`), takes a
+`ValidityRange` and returns this custom datatype.
+
+### Example Usage
+
+```rust
+use aiken_design_patterns/validity_range_normalization.{
+  NormalizedTimeRange, normalize_time_range,
+}
+
+validator my_validator {
+  spend(
+    _datum: Option<Datum>,
+    _redeemer: Redeemer,
+    _own_ref: OutputReference,
+    tx: Transaction,
+  ) {
+    let Transaction { validity_range, .. } = tx
+
+    when normalize_time_range(validity_range) is {
+      ClosedRange { lower, upper } -> {
+        // Handle finite range [lower, upper]
+        validate_closed_range(lower, upper)
+      }
+      FromNegInf { upper } -> {
+        // Handle range (-∞, upper]
+        validate_until(upper)
+      }
+      ToPosInf { lower } -> {
+        // Handle range [lower, +∞)
+        validate_from(lower)
+      }
+      Always -> {
+        // Handle unbounded range (-∞, +∞)
+        True
+      }
+    }
+  }
+}
+```
+
+## Example Code
+
+Full working example: [validity-range-normalization.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/lib/aiken-design-patterns/validity-range-normalization.ak)

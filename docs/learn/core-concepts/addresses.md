@@ -6,95 +6,137 @@ description: Understanding Cardano address types, structure, and how payment and
 image: /img/og/og-getstarted-technical-concepts.png
 ---
 
-Cardano addresses are used as destinations to send ada on the blockchain. Understanding their structure and types is fundamental to working with the Cardano ecosystem.
+## Address Structure
+
+A Cardano address consists of 2 or 3 parts:
+
+```mermaid
+graph LR
+    h[Header] --- p[Payment credentials] --- d[Delegation credentials]
+
+    style h fill:#2d3748,stroke:#cbd5e0,stroke-width:2px,color:#fff
+    style p fill:#2d3748,stroke:#cbd5e0,stroke-width:2px,color:#fff
+    style d fill:#2d3748,stroke:#cbd5e0,stroke-width:2px,color:#fff
+```
+
+**Header**: Describes the address type and network (mainnet or testnet). The network discriminant prevents sending mainnet funds to testnet addresses.
+
+**Payment credentials**: Defines spending conditions - who can spend funds at this address.
+
+**Delegation credentials** (optional): Controls stake delegation and reward withdrawals.
+
+Addresses are encoded using Bech32 with human-readable prefixes: `addr` (mainnet), `addr_test` (testnet), `stake` (rewards).
+
+**Example addresses:**
+
+- `addr1vpu5vlrf4xkxv2qpwngf6cjhtw542ayty80v8dyr49rf5eg0yu80w`
+- `stake1vpu5vlrf4xkxv2qpwngf6cjhtw542ayty80v8dyr49rf5egfu2p0u`
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/NjPf_b9UQNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
-## Address Construction and Structure
-
-Cardano addresses are blake2b-224 hash digests of relevant verifying/public keys concatenated with metadata. They are binary sequences consisting of a one-byte header and variable-length payload:
-
-- **Header**: Contains address type information (bits 7-4) and network tags (bits 3-0) distinguishing mainnet from testnet
-- **Payload**: The raw or encoded data containing the actual address information
-
-### Encoding Formats
-
-**Shelley addresses** use Bech32 encoding with human-readable prefixes:
-
-- `addr` for mainnet addresses
-- `addr_test` for testnet addresses
-- `stake` for mainnet reward addresses
-- `stake_test` for testnet reward addresses
-
-**Byron addresses** use Base58 encoding for backward compatibility, making them easily distinguishable from newer addresses.
-
-## Key Types and Their Purposes
-
-Cardano uses two main types of Ed25519 keys, each serving distinct purposes:
-
-**Payment Keys**: Used to sign transactions involving fund transfers, minting tokens, and interacting with smart contracts. The payment verification (public) key is used to derive addresses that can receive and send ada and native tokens.
-
-**Stake Keys**: Used to sign staking-related transactions including stake address registration, delegation to stake pools, and reward withdrawals. Stake keys enable participation in Cardano's proof-of-stake consensus mechanism.
-
-## Payment and Delegation Components
-
-Shelley addresses contain two distinct parts:
-
-**Payment Part**: Controls fund ownership. Spending requires a witness (signature or script validation) proving control over this component. This is typically derived from a payment verification key.
-
-**Delegation Part**: Controls stake rights associated with funds. This can be:
-
-- A stake key hash (direct delegation)
-- A pointer to an on-chain stake registration certificate (compact representation)
-- Empty (enterprise addresses with no stake rights)
-
-**Franken addresses** allow payment and delegation parts to be controlled by different entities, enabling separation of fund control and staking rights.
-
-Franken Addresses are a way to register additional pledge to a pool without registering a second owner on the blockchain.
-<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/KULzovfWn-M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
-
 ## Address Types
 
-Cardano supports different address types across categories:
+### Base Addresses
 
-### Shelley Address Types
+Payment credentials + delegation credentials. **Most common address type.** Standard wallets and dApps with staking support use base addresses, which enable delegation to pools and earning rewards.
 
-**Base Addresses** directly specify the staking key controlling stake rights. The staking rights can be exercised by registering the stake key and delegating to a stake pool. Base addresses can be used in transactions without prior stake key registration.
+### Enterprise Addresses
 
-**Enterprise Addresses** carry no stake rights, allowing users to opt out of proof-of-stake participation. Exchanges and organizations holding ada on behalf of others often use these to demonstrate they don't exercise stake rights. These addresses can still receive, hold, and send native tokens.
+Payment credentials only - no delegation credentials. Exchanges holding customer funds and organizations that want to demonstrate non-exercise of stake rights use enterprise addresses to explicitly opt out of staking.
 
-**Reward Account Addresses** distribute rewards for proof-of-stake participation. They use account-style (not UTXO-style) accounting, cannot receive funds via transactions, and have a one-to-one correspondence with registered staking keys.
+## Payment Credentials
 
-**Pointer Addresses** indirectly specify staking keys by referencing a location on the blockchain where a stake key registration certificate exists. Pointers are considerably shorter than stake key hashes. If the referenced certificate is lost due to rollback, pointer addresses remain valid for payments but lose stake participation rights.
+Payment credentials define spending conditions and come in two forms:
 
-Learn and dive into CPS-0002 which focuses on Pointer Addresses.
+**Verification Key Hash**: Blake2b-224 hash of an Ed25519 public key. Regular wallets like Lace, Eternl, and Yoroi use this type. To spend funds, you must provide the public key and a signature of the transaction.
 
-<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/XKgmP1r_GSA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
+**Script Hash**: Blake2b-224 hash of a Plutus or native script. Smart contracts, DEX liquidity pools, and escrow services use script hashes to lock funds programmatically. To spend funds, you must provide the script source and satisfy its validation logic. Scripts are predicates that return True or False - all scripts in a transaction must return True for the transaction to be valid.
 
-### Legacy Byron Addresses
+### Key Hashes vs Public Keys
 
-Byron addresses are legacy addresses from Cardano's Byron era, using CBOR encoding and Base58 representation. They have no stake rights and are maintained for backward compatibility.
+**Important**: Addresses contain **hashes** of public keys, not the public keys themselves. You cannot retrieve a public key solely from an address.
 
-:::caution
-**Important Limitation**: Byron addresses are **not allowed in transactions that contain Plutus scripts**. This means smart contracts will never encounter Byron addresses during validation. If you're working with dApps, ensure all addresses are Shelley-era addresses to avoid transaction failures.
-:::
+When spending from an address, you must provide:
 
-<details>
-<summary>Technical Reference: Address Binary Format</summary>
+1. The actual public key (revealed for the first time)
+2. A signature proving you control the corresponding private key
+3. The network validates the public key hashes to the credential in the address
 
-For complete technical specifications including binary format details and address derivation paths, see [CIP-19: Cardano Addresses](https://cips.cardano.org/cip/CIP-19).
+This design provides an additional layer of security - public keys remain hidden until funds are spent.
 
-The binary format follows this structure:
-- 1 byte header (address type + network tag)
-- Variable payload depending on address type
-- Bech32 or Base58 encoding applied to the final binary
+## Delegation Credentials
 
-</details>
+Delegation credentials control two operations:
 
----
+1. **Publishing delegation certificates** - Delegate your stake to a stake pool
+2. **Withdrawing rewards** - Claim staking rewards earned from delegation
+
+Like payment credentials, delegation credentials come in two forms: verification key hash or script hash.
+
+**Key insight**: When you delegate, funds remain at your payment address under your control. The delegation credentials only control which pool receives your stake and when you withdraw rewards.
+
+### Privacy Considerations
+
+Multiple payment addresses using the same delegation credentials are publicly linked because the stake key hash appears in all addresses.
+
+```
+Address 1: addr1q[payment_hash_1][stake_hash_shared]...
+Address 2: addr1q[payment_hash_2][stake_hash_shared]...
+Address 3: addr1q[payment_hash_3][stake_hash_shared]...
+```
+
+Anyone can see these addresses share the same stake key, linking them together on-chain.
+
+**Privacy strategies:**
+
+- **Accept the linking**: Most users delegate all addresses to one stake key (standard wallet behavior)
+- **Forgo staking**: Use enterprise addresses with no delegation credentials (unlinked but no rewards)
+- **Multiple stake keys**: Create separate stake keys per address (complex, multiple registrations, impractical)
+
+For most applications, stake key linking is acceptable. Only privacy-critical applications need to consider alternatives.
+
+## Putting It Together
+
+Now that you understand address types and credentials, here's the complete structure:
+
+```mermaid
+graph LR
+    subgraph header["Header"]
+        type["Type<br/>Network"]
+    end
+    subgraph payment["Payment credentials"]
+        pvkey["Verification key hash<br/>OR<br/>Script hash"]
+    end
+    subgraph delegation["Delegation credentials"]
+        dvkey["Verification key hash<br/>OR<br/>Script hash"]
+    end
+
+    header --- payment --- delegation
+
+    style header fill:#2d3748,stroke:#cbd5e0,stroke-width:2px,color:#fff
+    style payment fill:#2d3748,stroke:#cbd5e0,stroke-width:2px,color:#fff
+    style delegation fill:#2d3748,stroke:#cbd5e0,stroke-width:2px,color:#fff
+    style type fill:#1a202c,stroke:#a0aec0,color:#fff
+    style pvkey fill:#1a202c,stroke:#a0aec0,color:#fff
+    style dvkey fill:#1a202c,stroke:#a0aec0,color:#fff
+```
+
+**Payment credentials** are used for spending funds at the address.
+
+**Delegation credentials** are used for publishing delegation certificates and withdrawing staking rewards.
+
+## Resources
+
+Tools for inspecting and decoding addresses:
+
+- **[cardano-address](https://github.com/IntersectMBO/cardano-addresses)**: Inspect address components, extract key hashes
+- **[bech32](https://github.com/input-output-hk/bech32)**: Decode bech32 encoding to hex
+- **[cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started)**: Generate keys, hash keys, and verify they match address credentials
+
+**Technical Reference**: [CIP-19: Cardano Addresses](https://cips.cardano.org/cip/CIP-19)
 
 ## Next Steps
 
-- Learn about [Wallet & Key Management](/docs/learn/core-concepts/wallet-key-management)
+- Learn about [Transactions](/docs/learn/core-concepts/transactions)
 - Understand [Transaction Fees](/docs/learn/core-concepts/fees)
 - Build with addresses: [Building dApps](/docs/build/integrate/overview)

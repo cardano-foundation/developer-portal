@@ -2,28 +2,20 @@
 id: overview
 title: Design Patterns
 sidebar_label: Overview
-description: Simplifying complex smart contract design patterns on the Cardano blockchain
+description: Common design patterns for Cardano smart contracts with Aiken implementations
 ---
 
-This project is dedicated to simplifying complex Plutus smart contract design patterns on the Cardano blockchain through the creation of two distinct libraries:
+A collection of tried and tested design patterns for building efficient and secure Cardano smart contracts. All patterns include Aiken implementations with code examples.
 
-- [Aiken](https://github.com/Anastasia-Labs/aiken-design-patterns)
-- [Plutarch](https://github.com/Anastasia-Labs/plutarch-design-patterns)
+Based on [Anastasia Labs aiken-design-patterns](https://github.com/Anastasia-Labs/aiken-design-patterns) library.
 
-These libraries are designed to abstract away some of the more unintuitive and lesser-known design patterns, making them more accessible to developers. Below is an overview of the key features and design patterns these libraries address:
+## Available Patterns
 
-## Key Features
-
-- **Transaction Level Validation**: Abstracts the intricacies of spending validator validation through:
-  - Stake Validators using the "withdraw zero" trick.
-  - Minting Policies for enhanced control and security.
-
-- **Input/Output Indexing with Redeemers**: Simplifies the management of input/output indexing, streamlining the process of associating redeemers with their respective inputs or outputs.
-
-- **Strict Boolean Validation Checks**: Offers a robust framework for implementing boolean binary operators, ensuring strict validation checks across Plutus, Plutarch, and Aiken.
-
-- **PlutusTypeEnum Redeemers**: Introduces an efficient data encoding method for simple redeemers, utilizing Enums to minimize complexity and optimize performance.
-
-- **Normalization Techniques**: Enhances data integrity and contract reliability through:
-  - **TxInfoMint Normalization**: Cleanses txInfoMint data to eliminate 0 lovelace value entries, ensuring cleaner and more accurate data representation.
-  - **Validity Range Normalization**: Standardizes the treatment of validity ranges, ensuring consistent and predictable contract behavior.
+| Pattern | Description |
+|---------|-------------|
+| [Stake Validator](stake-validator) | Delegate computations to staking scripts using the "withdraw zero trick" for optimized validation |
+| [UTxO Indexers](utxo-indexers) | Efficient one-to-one and one-to-many mappings between inputs and outputs with O(1) lookups |
+| [Transaction Level Minting Policy](tx-level-minter) | Couple spend and mint endpoints for single-execution validation logic |
+| [Validity Range Normalization](validity-range-normalization) | Standardize validity range handling to eliminate redundancies |
+| [Merkelized Validator](merkelized-validator) | Delegate logic to external withdrawal scripts to stay within size limits |
+| [Parameter Validation](parameter-validation) | Verify script instances are derived from specific parameterized scripts |

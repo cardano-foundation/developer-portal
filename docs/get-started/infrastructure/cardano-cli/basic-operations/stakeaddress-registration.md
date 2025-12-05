@@ -43,7 +43,7 @@ Usage: cardano-cli latest stake-address
 Query the protocol parameters to find out the amount of lovelace required as a deposit for registering a stake address, in this case, it is 2000000 lovelace (two ada):
 
 ```shell
-cardano-cli latest query protocol-parameters | jq .stakeAddressDeposit
+cardano-cli query protocol-parameters | jq .stakeAddressDeposit
 2000000
 ```
 
@@ -77,7 +77,7 @@ It's important to note that when using `build`, the deposit is automatically inc
 
 ```shell
 cardano-cli latest transaction build \
-  --tx-in $(cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --change-address $(< payment.addr) \
   --certificate-file registration.cert \
   --out-file tx.raw
@@ -147,7 +147,7 @@ Using the `build-raw` command involves a slightly more intricate process. Simila
 Query the balance of the `payment.addr`:
 
 ```shell
-cardano-cli latest query utxo --address $(< paymentstake.addr)
+cardano-cli query utxo --address $(< paymentstake.addr)
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
 0690c70f117281627fc128ede51b1fe762c2bbc15c2e3d4eff2101c9d2613cd8     0        9999834851 lovelace + TxOutDatumNone
@@ -157,7 +157,7 @@ cardano-cli latest query utxo --address $(< paymentstake.addr)
 You can leverage `jq` by having `cardano-cli` return the output in JSON:
 
 ```shell
-cardano-cli latest query utxo --address $(< paymentstake.addr) --output-json
+cardano-cli query utxo --address $(< paymentstake.addr) --output-json
 {
   "0690c70f117281627fc128ede51b1fe762c2bbc15c2e3d4eff2101c9d2613cd8#0": {
     "address": "addr_test1qp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeue2jrk54ttv0yj7llrfuhr66z4wynpcqxuqeln0jp9y70e0qvjewan",
@@ -175,7 +175,7 @@ cardano-cli latest query utxo --address $(< paymentstake.addr) --output-json
 Using `jq` to parse that JSON  
 
 ```shell
-cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
+cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
 9999834851
 ```
 
@@ -184,15 +184,15 @@ cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 
 Query the protocol parameters:
 
 ```shell
-cardano-cli latest query protocol parameters --out-file pparams.json
+cardano-cli query protocol-parameters --out-file pparams.json
 ```
 
 Draft the transaction to calculate its transaction fee:
 
 ```shell
 cardano-cli latest transaction build-raw \
-  --tx-in $(cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
-  --tx-out $(< payment.addr)+"$(cardano-cli latest query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r .[].value.lovelace)" \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-out $(< payment.addr)+"$(cardano-cli query utxo --address $(< payment.addr) --out-file /dev/stdout | jq -r .[].value.lovelace)" \
   --fee 0 \
   --certificate-file registration.cert \
   --out-file tx.draft
@@ -216,14 +216,14 @@ Calculate the change of the transaction. Note that the deposit is not explicitly
 Query the protocol parameters to get the deposit amount:
 
 ```shell
-cardano-cli latest query protocol-parameters | jq .stakeAddressDeposit
+cardano-cli query protocol-parameters | jq .stakeAddressDeposit
 2000000
 ```
 
 Query the current balance of `payment.addr`:
 
 ```shell
-cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
+cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r .[].value.lovelace
 9999834851
 ```
 
@@ -235,7 +235,7 @@ Build the transaction:
 
 ```shell
 cardano-cli latest transaction build-raw \
-  --tx-in $(cardano-cli latest query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --tx-out $(< payment.addr)+$change \
   --fee 171089 \
   --certificate-file registration.cert \

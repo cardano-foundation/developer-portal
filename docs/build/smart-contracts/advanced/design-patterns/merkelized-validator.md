@@ -1,8 +1,8 @@
 ---
-id: merkelized-validators
-title: Merkelized Validators
-sidebar_label: Merkelized Validators
-description: Circumvent validator script size limitations.
+id: merkelized-validator
+title: Merkelized Validator
+sidebar_label: Merkelized Validator
+description: Delegate logic to external withdrawal scripts to stay within size limits
 ---
 
 There are very tight execution budget constraints imposed on Plutus script evaluation; this, in combination with the fact that a higher execution budget
@@ -98,6 +98,42 @@ This is useful because with reference scripts this essentially gives us the abil
 
 Consider a batching architecture, with a very large `processOrders` function. Normally it would not be feasible to perform recursion unrolling / inlining optimizations with such a function since it would quickly exceed the max script size limit; however, with this design pattern we simply move `processOrders` into its own validator script which we can fill with 16kb of loop unrolling and other powerful optimizations which increase script size in order to reduce ExUnits. We provide this new script as a reference script when executing our main validator. Then in our main validator we verify that the `processOrders` validator was executed with the expected redeemer (`inputState` must match the arguments we want to pass to `processOrders`) after which have access to the result of the optimized `processOrders` function applied to our inputs.
 
+## Aiken Implementation
+
+Since transaction size is limited in Cardano, some validators benefit from a solution which allows them to delegate parts of their logics. This becomes more prominent in cases where such logics can greatly benefit from optimization solutions that trade computation resources for script sizes (e.g. table lookups can take up more space so that costly computations can be averted).
+
+This design pattern offers an interface for off-loading such logics into an external withdrawal script, so that the size of the validator itself can stay within the limits of Cardano.
+
 :::note
-You can find a sample implementation of a merkelized validator written in Aiken in this[repository](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/main-contract.ak).
+Be aware that total size of reference scripts is currently limited to 200KiB (204800 bytes), and they also impose additional fees in an exponential manner. See [here](https://github.com/IntersectMBO/cardano-ledger/issues/3952) and [here](https://github.com/CardanoSolutions/ogmios/releases/tag/v6.5.0) for more info.
 :::
+
+### Using the Library
+
+The exposed `delegated_compute` function from `merkelized_validator` expects 4 arguments:
+
+1. The arbitrary input value for the underlying computation logic
+2. The hash of the withdrawal validator that performs the computation
+3. Validation function for coercing a `Data` to the format of the input expected by the staking script's computation
+4. The `Pairs` of all redeemers within the current script context
+
+This function expects to find the given stake validator in the `redeemers` list, such that its redeemer is of type `WithdrawRedeemerIO` (which carries the generic input argument(s) and the expected output(s)), makes sure provided input(s) match the ones given to the validator through its redeemer, and returns the output(s) (which are carried inside the withdrawal redeemer) so that you can safely use them.
+
+### Withdrawal Script (Computation Logic)
+
+For defining a withdrawal logic that carries out the computation, use the exposed `withdraw_io` function. It expects 2 arguments:
+
+1. The computation itself. It has to take an argument of type `a`, and return a value of type `b`
+2. A redeemer of type `WithdrawRedeemerIO<a, b>`. Note that `a` is the type of input argument(s), and `b` is the type of output argument(s)
+
+It validates that the given input(s) and output(s) match correctly with the provided computation logic.
+
+There are also `WithdrawRedeemer<a>`, `withdraw` and `delegated_validation` variants which can be used for validations that don't return any outputs.
+
+## Example Code
+
+Full working example: [merkelized-validator.ak](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/validators/examples/merkelized-validator.ak)
+
+Library implementation: [merkelized_validator module](https://github.com/Anastasia-Labs/aiken-design-patterns/blob/main/lib/aiken-design-patterns/merkelized-validator.ak)
+
+Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-delegation-sample/blob/main/validators/main-contract.ak)

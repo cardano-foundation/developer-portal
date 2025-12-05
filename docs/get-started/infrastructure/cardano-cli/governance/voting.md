@@ -26,7 +26,7 @@ Assume we need to submit a vote on the governance action with ID `df58f714c0765f
 1. Obtain the URL and hash of the new constitution proposal from the governance state:
 
 ```shell
-cardano-cli conway query gov-state | \
+cardano-cli latest query gov-state | \
   jq -r --arg govActionId "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" '.proposals | to_entries[] | select(.value.actionId.txId | contains($govActionId)) | .value'
 ```
 
@@ -92,7 +92,7 @@ In the future, voting apps, explorers, wallets, and other tools could perform th
 Voting with DRep keys:
 
 ```shell
-cardano-cli conway governance vote create \
+cardano-cli latest governance vote create \
   --yes \
   --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
   --governance-action-index "0" \
@@ -103,7 +103,7 @@ cardano-cli conway governance vote create \
 Voting with CC hot keys:
 
 ```shell
-cardano-cli conway governance vote create \
+cardano-cli latest governance vote create \
   --yes \
   --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
   --governance-action-index "0" \
@@ -114,7 +114,7 @@ cardano-cli conway governance vote create \
 Voting with SPO keys:
 
 ```shell
-cardano-cli conway governance vote create \
+cardano-cli latest governance vote create \
   --yes \
   --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
   --governance-action-index "0" \
@@ -127,7 +127,7 @@ cardano-cli conway governance vote create \
 Build the transaction:
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in "$(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')" \
   --change-address $(< payment.addr) \
   --vote-file df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79-constitution.vote \
@@ -138,7 +138,7 @@ cardano-cli conway transaction build \
 Sign it with the DRep key:
 
 ```shell
-cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
+cardano-cli latest transaction sign --tx-body-file vote-tx.raw \
   --signing-key-file drep.skey \
   --signing-key-file payment.skey \
   --out-file vote-tx.signed
@@ -147,7 +147,7 @@ cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
 OR sign it with the CC hot key:
 
 ```shell
-cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
+cardano-cli latest transaction sign --tx-body-file vote-tx.raw \
   --signing-key-file cc-hot.skey \
   --signing-key-file payment.skey \
   --out-file vote-tx.signed
@@ -156,7 +156,7 @@ cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
 OR sign it with the SPO cold key:
 
 ```shell
-cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
+cardano-cli latest transaction sign --tx-body-file vote-tx.raw \
   --signing-key-file cold.skey \
   --signing-key-file payment.skey \
   --out-file vote-tx.signed
@@ -165,5 +165,5 @@ cardano-cli conway transaction sign --tx-body-file vote-tx.raw \
 Submit the transaction:
 
 ```shell
-cardano-cli conway transaction submit --tx-file vote-tx.signed
+cardano-cli latest transaction submit --tx-file vote-tx.signed
 ```

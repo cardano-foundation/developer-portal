@@ -12,7 +12,7 @@ keywords: [cardano-cli, cli, delegation, rewards, withdrawal, stake, stake addre
 First, check if you have some rewards to withdraw:
 
 ```shell
-cardano-cli conway query stake-address-info --address $(< stake.addr)
+cardano-cli query stake-address-info --address $(< stake.addr)
 [
     {
         "address": "stake_test1ur453z5nxrgvvu9wfyuxut8ss0mrvca4n8ly44tcu8camlqaz98mh",
@@ -27,7 +27,7 @@ cardano-cli conway query stake-address-info --address $(< stake.addr)
 Nice! There are some rewards, let's store the `rewardAccountBalance` in a variable for future use:
 
 ```shell
-rewards="$(cardano-cli conway query stake-address-info --address $(< stake1.addr) | jq .[].rewardAccountBalance)"
+rewards="$(cardano-cli query stake-address-info --address $(< stake1.addr) | jq .[].rewardAccountBalance)"
 ```
 
 ## Building the transaction
@@ -37,7 +37,7 @@ To withdraw rewards from the rewards account, you must withdraw its entire balan
 By default, the `build` command considers the transaction to only require one witness. However, this type of transaction needs to be signed by `payment.skey` to pay for the transaction fees, and also by `stake.skey` to prove that we control that stake address. Therefore, we inform the `build` command that the transaction will carry two signatures using the `--witness-override 2` flag. This has a slight impact on the fee:
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --withdrawal stake_test1ur453z5nxrgvvu9wfyuxut8ss0mrvca4n8ly44tcu8camlqaz98mh+10534638802 \
   --change-address $(< payment1.addr) \
@@ -46,10 +46,11 @@ cardano-cli conway transaction build \
 
 > Estimated transaction fee: Coin 180593
 ```
+
 or using `<` and the `$rewards` variable from above:
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
   --withdrawal "$(< stake.addr)+$rewards" \
   --change-address $(< payment.addr) \
@@ -64,7 +65,7 @@ cardano-cli conway transaction build \
 As before, sign the transaction with the `payment.skey`:
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-body-file tx.raw \
 --signing-key-file payment.skey \
 --signing-key-file stake.skey \
@@ -76,6 +77,7 @@ If you inspect the transaction, you'll notice that the 'withdrawals' field conta
 ```shell
 cardano-cli debug transaction view --tx-file tx.signed
 ```
+
 ```json
 {
     "auxiliary scripts": null,
@@ -137,7 +139,7 @@ cardano-cli debug transaction view --tx-file tx.signed
 ## Submitting the transaction
 
 ```shell
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
   --tx-file tx.signed 
 
 Transaction successfully submitted.
@@ -146,7 +148,7 @@ Transaction successfully submitted.
 If you query the stake address details again, you'll notice that it has been emptied, and the funds were sent to the payment address.
 
 ```shell
-cardano-cli conway query stake-address-info --address $(< stake1.addr)
+cardano-cli query stake-address-info --address $(< stake1.addr)
 [
     {
         "address": "stake_test1ur453z5nxrgvvu9wfyuxut8ss0mrvca4n8ly44tcu8camlqaz98mh",

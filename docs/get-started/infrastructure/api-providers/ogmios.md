@@ -1,14 +1,16 @@
 ---
 id: ogmios
-title: Get Started with Ogmios
+title: Ogmios
 sidebar_label: Ogmios
-description: Get Started with Ogmios
+description: WebSocket JSON-RPC bridge interface for cardano-node providing low-level protocol access.
 image: /img/og/og-getstarted-ogmios.png
 ---
 
-**Ogmios** is a lightweight bridge interface for [cardano-node](https://github.com/IntersectMBO/cardano-node). It offers a WebSockets API that enables local clients to speak [Ouroboros' mini-protocols](https://github.com/IntersectMBO/ouroboros-network/tree/master/docs/network-spec) via JSON/RPC.
+[Ogmios](https://ogmios.dev) is a lightweight WebSocket bridge interface for cardano-node, providing JSON/RPC access to [Ouroboros mini-protocols](https://github.com/IntersectMBO/ouroboros-network/tree/master/docs/network-spec).
 
-Ogmios doesn’t do much more than what the node itself does. It’s pretty much as low-level as things can get with the Cardano network. For many applications, this is too low in the abstraction layer and they would be better off using higher-level services like [cardano-graphql](https://github.com/cardano-foundation/cardano-graphql), [Rosetta](https://www.rosetta-api.org), or [Blockfrost](https://blockfrost.io).
+:::note
+For higher-level abstractions, consider [Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/overview), [Koios](/docs/get-started/infrastructure/api-providers/koios), or [cardano-graphql](https://github.com/cardano-foundation/cardano-graphql).
+:::
 
 ## Installation
 
@@ -17,26 +19,20 @@ The easiest way to get started with Ogmios is to use [docker](https://www.docker
 ```sh
 git clone --depth 1 https://github.com/CardanoSolutions/ogmios.git
 cd ogmios
-```
-
-
-Then, start the components stack using:
-```sh
 docker-compose up
 ```
 
-If you prefer to build everything from source or without docker, please head to [the Ogmios website](https://ogmios.dev/getting-started).
- 
+For source builds or non-Docker installation, see [ogmios.dev/getting-started](https://ogmios.dev/getting-started).
 
 ## Dashboard
 
-You should now be able to access the dashboard on [http://localhost:1337](http://localhost:1337) with a real-time visualization of some of the server runtime metrics. 
+Access the dashboard at [localhost:1337](http://localhost:1337) for real-time runtime metrics visualization.
 
-![img](/img/get-started/ogmios/1-dashboard.gif)
+![Ogmios Dashboard](/img/get-started/ogmios/1-dashboard.gif)
 
-## Query metrics
+## Query Metrics
 
-The dashboard is powered by JSON responses served by [http://localhost:1337/health](http://localhost:1337/health).
+The dashboard uses JSON responses from the health endpoint:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -63,7 +59,7 @@ wget --header='Accept: application/json' -qO- http://localhost:1337/health
   </TabItem>
 </Tabs>
 
-JSON response:
+**Example response:**
 
 ```json
 {
@@ -96,6 +92,6 @@ JSON response:
 }
 ```
 
-## Ogmios documentation
+## Next steps
 
-To dive further into Ogmios and how to interact with the Ouroboros mini-protocols, visit [ogmios.dev](https://ogmios.dev/mini-protocols).
+Learn how to interact with Ouroboros mini-protocols at [ogmios.dev/mini-protocols](https://ogmios.dev/mini-protocols).

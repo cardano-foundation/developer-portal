@@ -30,7 +30,7 @@ the most recently enacted action of its respective type. Notably, this requireme
 You can get the last enacted governance action IDs with:
 
 ```shell
-cardano-cli conway query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds
+cardano-cli latest query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds
 ```
 
 ```json
@@ -92,7 +92,7 @@ You can create a proposal to add them as new CC members with an expiration epoch
 - Create the proposal:
 
 ```shell
-cardano-cli conway governance action update-committee \
+cardano-cli latest governance action update-committee \
   --testnet \
   --governance-action-deposit $(cardano-cli query protocol-parameters | jq -r '.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
@@ -115,9 +115,9 @@ cardano-cli conway governance action update-committee \
 Assume that you want to remove the CC member with the key hash `89181f26b47c3d3b6b127df163b15b74b45bba7c3b7a1d185c05c2de`. You can do this with:
 
 ```shell
-cardano-cli conway governance action update-committee \
+cardano-cli latest governance action update-committee \
   --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/refs/heads/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
@@ -131,9 +131,9 @@ cardano-cli conway governance action update-committee \
 ### Update committee to only change the *threshold*
 
 ```shell
-cardano-cli conway governance action update-committee \
+cardano-cli latest governance action update-committee \
   --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/refs/heads/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
@@ -153,14 +153,14 @@ on Mainnet. It is available in `https://ipfs.io/ipfs/bafkreifnwj6zpu3ixa4siz2lnd
 Find the last enacted governance action of this type, If the query returns `null` it means the current constitution (if it exists) is not enacted in a governance action, but instead supplied on the Conway genesis file.
 
 ```shell
-cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prevGovActionIds.Constitution'
+cardano-cli latest query gov-state | jq -r '.nextRatifyState.nextEnactState.prevGovActionIds.Constitution'
 null
 ```
 
 When the constitution has been enacted through a governance action, you will see the transaction ID and index of the proposing transaction, we will use this information later:
 
 ```shell
-cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prevGovActionIds.Constitution'
+cardano-cli latest query gov-state | jq -r '.nextRatifyState.nextEnactState.prevGovActionIds.Constitution'
 {
   "govActionIx": 0,
   "txId": "bf4832f443fe34f26f929ce2fbb26cc35ef4fda31150b2da45969a9bac4f7a8c"
@@ -188,7 +188,7 @@ a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d  constitution.t
 or
 
 ```shell
-cardano-cli conway governance hash anchor-data --file-text constitution.txt
+cardano-cli latest governance hash anchor-data --file-text constitution.txt
 a77245f63bc7504c6ce34383633729692388dc1823723b0ee9825743a87a6a6d
 ```
 
@@ -227,9 +227,9 @@ fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64
 When there is no previously enacted constitution:
 
 ```shell
-cardano-cli conway governance action create-constitution \
+cardano-cli latest governance action create-constitution \
   --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0100/cip-0100.common.schema.json \
   --anchor-data-hash "9d99fbca260b2d77e6d3012204e1a8658f872637ae94cdb1d8a53f4369400aa9" \
@@ -242,9 +242,9 @@ cardano-cli conway governance action create-constitution \
 When there is a previously enacted constitution, we need to reference the previous governance action id (TXID and INDEX):
 
 ```shell
-cardano-cli conway governance action create-constitution \
+cardano-cli latest governance action create-constitution \
   --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/refs/heads/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
@@ -263,7 +263,7 @@ From here, you just need to [submit the proposal in a transaction](#build-sign-a
 - Find the last governance action enacted of this type:
 
 ```shell
-cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prevGovActionIds.Committee'
+cardano-cli latest query gov-state | jq -r '.nextRatifyState.nextEnactState.prevGovActionIds.Committee'
 ```
 
 ```json
@@ -276,9 +276,9 @@ cardano-cli conway query gov-state | jq -r '.nextRatifyState.nextEnactState.prev
 #### Create a motion no-confidence governance action
 
 ```shell
-cardano-cli conway governance action create-no-confidence \
+cardano-cli latest governance action create-no-confidence \
   --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/refs/heads/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
@@ -298,9 +298,9 @@ Also, treasury withdrawals must reference the Guardrails script when present.
 #### Create the treasury withdrawal proposal
 
 ```shell
-cardano-cli conway governance action create-treasury-withdrawal \
+cardano-cli latest governance action create-treasury-withdrawal \
   --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/refs/heads/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
@@ -319,8 +319,8 @@ From here, you just need to [submit the proposal in a transaction](#build-sign-a
 #### Create the 'info' governance action
 
 ```shell
-cardano-cli conway governance action create-info --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+cardano-cli latest governance action create-info --testnet \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url  https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
@@ -336,9 +336,9 @@ because, actions can be created off-line so the cli may not have access to a nod
 anticipating that a new Guardrails script will be ratified and enacted during the proposal's lifespan.
 
 ```shell
-cardano-cli conway governance action create-protocol-parameters-update \
+cardano-cli latest governance action create-protocol-parameters-update \
   --testnet \
-  --governance-action-deposit $(cardano-cli conway query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
   --deposit-return-stake-verification-key-file stake.vkey \
   --anchor-url https://raw.githubusercontent.com/cardano-foundation/CIPs/refs/heads/master/CIP-0108/examples/treasury-withdrawal.jsonld \
   --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
@@ -360,7 +360,7 @@ while also allowing members of the governance bodies to review, discuss, and ult
 - Note that you can also use `build-raw` and `calculate-min-fee` to build transactions in an off-line setting. The example below uses the convenient `build`:
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
   --change-address $(< payment.addr) \
   --proposal-file info.action \
@@ -368,14 +368,14 @@ cardano-cli conway transaction build \
 ```
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --tx-body-file tx.raw \
   --signing-key-file payment.skey \
   --out-file tx.signed
 ```
 
 ```shell
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
   --tx-file tx.signed
 ```
 
@@ -391,7 +391,7 @@ a reference script.
 When building the transaction, we include the `*.action` file and supply the guardrails script with --proposal-script-file. Note that the guardrails script does not require a datum to be passed, only a redeemer value, which can be just an empty json.
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --proposal-script-file guardrails-script.plutus \
   --tx-in-collateral "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
   --proposal-redeemer-value {} \
@@ -406,7 +406,7 @@ Estimated transaction fee: Coin 313228
 - Sign the transaction with `payment.skey`:
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --tx-file pparams-tx.raw \
   --signing-key-file payment.skey \
   --out-file pparams-tx.signed 
@@ -415,7 +415,7 @@ cardano-cli conway transaction sign \
 - Submit it to the chain with:
 
 ```shell
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
   --tx-file pparams-tx.signed
 ```
 
@@ -427,7 +427,7 @@ proposal serve as the action ID. An effective way to find your governance action
 First, find your key hash with:
 
 ```shell
-cardano-cli conway stake-address key-hash --stake-verification-key-file stake.vkey
+cardano-cli latest stake-address key-hash --stake-verification-key-file stake.vkey
 ```
 
 `8e0debc9fdc6c616ac40d98bf3950b436895eea9cccf0396a6e5e12b`
@@ -435,7 +435,7 @@ cardano-cli conway stake-address key-hash --stake-verification-key-file stake.vk
 Use `jq` to filter the `gov-state` output by the stake key hash. The output contains all the relevant information about your governance actions, including `actionId`:
 
 ```shell
-cardano-cli conway query gov-state \
+cardano-cli latest query gov-state \
 | jq -r --arg keyHash "8e0debc9fdc6c616ac40d98bf3950b436895eea9cccf0396a6e5e12b" '.proposals | to_entries[] | select(.value.returnAddr.credential.keyHash | contains($keyHash)) | .value'
 ```
 

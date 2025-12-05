@@ -1,5 +1,5 @@
 ---
-id: 4-token-security
+id: token-security
 title: Token Security
 sidebar_label: Token Security
 description: Native tokens are an essential part of the Cardano blockchain representing value that can be created and traded. Understanding token security is crucial for smart contract developers.
@@ -66,7 +66,7 @@ Many tokens represent value. Whether it is ADA, stablecoins, NFTs or tokens mint
 
 As a developer, you need to ensure that you handle these tokens correctly when designing your dApp. Let’s assume you have created a simple treasury to which value can be freely added by anyone, but can only be redeemed in a correctly signed multi-signature transaction. For example, such treasury could be used by a DAO that’s selling NFTs on a marketplace. Users buying the NFTs would pay into this treasury, and they can withdraw the tokens only if multiple members of the DAO agree on how they want to use the funds received. This protocol can be demonstrated in these two simple transactions.
 
-![TS-1](./img/ts-1.png)
+![TS-1](../img/ts-1.png)
 
 What are the security risks you want to prevent when implementing this treasury?
 
@@ -104,7 +104,7 @@ As always, rigorous testing should be in place to test whether even the most ext
 
 We went through the token basics and talked about the use of tokens as a representation of value which is their primary purpose. But native tokens can be used in various creative, more technical ways as well.
 
-To demonstrate one use case, let’s consider on-chain oracles. The main goal of an oracle is to reliably bring real-world data onto the Cardano blockchain. For example, we could want to know the value of a currency, a particular stock or the results of a real-world event. To do so, a special UTxO is often created and this UTxO contains the required information in its datum. The script validator of the UTxO can easily govern how updates are performed — usually, this is by allowing only certain trusted entities to spend the oracle UTxO, often requiring multiple of them to agree on the update. However, there could be multiple UTxOs created on the same script address and they could be created by anyone with any data (see our [Trust no UTxO blog](2-trust-no-utxo) post). Therefore, there is a need to recognize the correct current oracle UTxO.
+To demonstrate one use case, let's consider on-chain oracles. The main goal of an oracle is to reliably bring real-world data onto the Cardano blockchain. For example, we could want to know the value of a currency, a particular stock or the results of a real-world event. To do so, a special UTxO is often created and this UTxO contains the required information in its datum. The script validator of the UTxO can easily govern how updates are performed — usually, this is by allowing only certain trusted entities to spend the oracle UTxO, often requiring multiple of them to agree on the update. However, there could be multiple UTxOs created on the same script address and they could be created by anyone with any data (see our [Missing UTxO Authentication](missing-utxo-authentication) page). Therefore, there is a need to recognize the correct current oracle UTxO.
 
 Let’s suppose the oracle’s purpose is to bring just a single data point to the chain, meaning there’s always just a single up-to-date UTxO valid. To make a UTxO uniquely recognizable, we can create a special kind of an NFT (without an image, just for development purposes) and lock it into the correct oracle UTxO. As there can be only one such NFT (by definition, a non-fungible token), there is always at most one oracle UTxO containing this NFT. When this UTxO is used in a transaction, either as a normal input or as a reference input, any validator can easily check whether the correct NFT is present. When the oracle information needs to be renewed, the old oracle UTxO is spent and the token is sent into the newly created oracle UTxO.
 

@@ -6,11 +6,9 @@ description: Choose how to connect to Cardano - API providers, cloud platform, o
 image: /img/og/og-developer-portal.png
 ---
 
-## Connecting to Cardano
+After choosing your [network](/docs/get-started/networks/overview), select infrastructure to connect your application to Cardano.
 
-Once you've chosen your [network](/docs/get-started/networks/overview), you need infrastructure to connect to it. To build your application, whether you're using [Client SDKs](/docs/get-started/client-sdks/overview), building with cardano-cli directly, you'll need one of these infrastructure approaches as your backend.
-
-Your SDK or application connects to Cardano through your chosen infrastructure - either via API providers like Blockfrost, through middleware like Ogmios (self-hosted or via Demeter), or directly to your own cardano-node. The infrastructure you choose determines how your code queries the blockchain and submits transactions.
+## Choosing infrastructure
 
 ```mermaid
 graph TB
@@ -36,54 +34,58 @@ graph TB
     style Cardano fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
 ```
 
----
+| Approach | Setup | Maintenance | Control | Use Case |
+|----------|-------|-------------|---------|----------|
+| **[API Providers](#api-providers)** | Minutes | None | Limited | Quick integration, prototyping, most applications |
+| **[Demeter](#demeter)** | Minutes | Managed | Flexible | Full service suite, managed infrastructure |
+| **[Own Node](#running-cardano-node)** | Hours/Days | Self-managed | Complete | Production at scale, stake pools, maximum control |
 
-## Infrastructure Options
+### API Providers
 
-### [API Providers](/docs/get-started/infrastructure/api-providers/overview)
+Connect through REST or WebSocket APIs without managing infrastructure. Providers run nodes and indexers, exposing developer-friendly endpoints.
 
-Connect to Cardano through REST or WebSocket APIs without managing infrastructure. Most [Client SDKs](/docs/get-started/client-sdks/overview) give access to these providers to query the blockchain and submit transactions.
+Use API providers to:
+- Integrate quickly with simple REST APIs
+- Query blockchain data and submit transactions
+- Build with existing SDKs (most support Blockfrost, Koios)
+- Avoid infrastructure setup and maintenance
 
-**Examples**: [Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/overview), [Koios](/docs/get-started/infrastructure/api-providers/koios)
+**Trade-offs**: Third-party dependency, rate limits, usage-based pricing
 
-**What you get**: Simple API integration, no infrastructure setup, quick to get started
+**Learn more**: [API Providers overview](/docs/get-started/infrastructure/api-providers/overview) - Blockfrost, Koios, Ogmios
 
-**Considerations**: Third-party service dependency, API rate limits may apply, usage-based pricing
+### Demeter
 
-**Note**: [Ogmios](/docs/get-started/infrastructure/api-providers/ogmios) is also commonly used with SDKs, but it's middleware that requires cardano-node (either self-hosted or via Demeter).
+Cloud platform providing managed Cardano services - nodes, indexers (DB-Sync, Kupo), and RPC services (Ogmios, Submit API).
 
----
+Use Demeter to:
+- Access full service suite without setup
+- Select only services you need
+- Scale services on demand
+- Focus on building, not DevOps
 
-### [Demeter](/docs/get-started/infrastructure/demeter)
+**Trade-offs**: Platform dependency, pay-as-you-go pricing
 
-Cloud-based platform providing managed Cardano middleware and services.
+**Learn more**: [Demeter platform](/docs/get-started/infrastructure/demeter)
 
-**Provides**: Managed nodes, indexers (DB-Sync, Kupo), RPC services (Ogmios, Submit API)
+### Running Cardano Node
 
-**What you get**: Full suite of managed Cardano services, no infrastructure maintenance, flexible service selection
+Run and maintain your own cardano-node infrastructure with direct blockchain access.
 
-**Considerations**: Pay-as-you-go pricing model, platform-managed infrastructure
+Use your own node to:
+- Eliminate external dependencies
+- Access blockchain data directly
+- Run stake pool operations
+- Control all infrastructure aspects
 
----
+**Trade-offs**: Server costs, DevOps resources, maintenance overhead
 
-### [Running Cardano Node](/docs/get-started/infrastructure/node/cardano-components)
+**Learn more**: [Cardano node setup](/docs/get-started/infrastructure/node/cardano-components) and [cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started)
 
-Run and maintain your own Cardano node infrastructure.
+## Next steps
 
-**Components**: [cardano-node](/docs/get-started/infrastructure/node/cardano-components), [cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started)
+- **Start quickly**: [Choose an API provider](/docs/get-started/infrastructure/api-providers/overview) for immediate integration
+- **Managed services**: [Explore Demeter](/docs/get-started/infrastructure/demeter) for full service platform
+- **Self-host**: [Install cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) for complete control
 
-**What you get**: Complete infrastructure control, no external dependencies, direct blockchain access
-
-**Considerations**: Infrastructure management required, server and maintenance costs, DevOps resources needed
-
----
-
-## Getting Started
-
-Each approach has its own trade-offs. You can:
-
-- Start with [API Providers](/docs/get-started/infrastructure/api-providers/overview) for quick integration
-- Use [Demeter](/docs/get-started/infrastructure/demeter) for a managed services platform
-- [Run your own node](/docs/get-started/infrastructure/node/cardano-components) for full control
-
-Many teams use different approaches at different stages or combine them - such as using providers during development and running their own infrastructure in production.
+Many teams combine approaches - API providers for development, own nodes for production, or Demeter for managed infrastructure throughout.

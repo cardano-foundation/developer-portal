@@ -22,11 +22,11 @@ Creating a transaction using the CLI follows a three-step process:
 - **Sign:** authenticate the transaction with appropriate signatures
 - **Submit:** send the signed transaction to the network for processing.
 
-You'll find commands for these tasks under `cardano-cli conway transaction`
+You'll find commands for these tasks under `cardano-cli latest transaction`
 
 ```bash
-cardano-cli conway transaction
-Usage: cardano-cli conway transaction 
+cardano-cli latest transaction
+Usage: cardano-cli latest transaction 
                                         ( build-raw
                                         | build
                                         | build-estimate
@@ -61,7 +61,7 @@ When building a transaction, it's essential to specify the following elements:
 To create a transaction using `build-raw`, you will need the protocol parameters.  These parameters are necessary for calculating the transaction fee at a later stage. Querying the protocol parameters requires a running node:
 
 ```bash
-cardano-cli conway query protocol-parameters --out-file pparams.json
+cardano-cli query protocol-parameters --out-file pparams.json
 ```
 
 You also need to know the inputs (UTXOs) you will use. A UTXO is identified by its **transaction hash** (`TxHash`) and **transaction index** (`TxIx`) with the syntax `TxHash#TxIx`. You can only use UTXOs controlled by your `payment.skey`.
@@ -69,7 +69,7 @@ You also need to know the inputs (UTXOs) you will use. A UTXO is identified by i
 To query the UTXOs associated to your `payment.addr`, run:
 
 ```bash
-cardano-cli conway query utxo --address $(< payment.addr)
+cardano-cli query utxo --address $(< payment.addr)
 
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ Assume you want to send 1,000,000 lovelace (1,000 ada) from `payment.addr` to a 
 At this stage, you do not need to worry about the transaction fees. Save the transaction body in the `tx.draft` file:
 
 ```shell
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
   --tx-in e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0 \
   --tx-out addr_test1vzuztsedkqanfm7elu9nshfr4gh2gl0aj4djmayav2t7x8ch3pg30+1000000000 \
   --tx-out addr_test1qp39w0fa0ccdc4gmg87puydf2kxt5mgt0vteq4a22ktrcssg7ysmx64l90xa0k4z25wpuejngya833qeu9cdxvveynfscsskf5+8994790937 \
@@ -99,7 +99,7 @@ cardano-cli conway transaction build-raw \
 `cardano-cli` can handle the nesting of commands. For example, you can use `cat` within `cardano-cli` to read the addresses directly from the file.
 
 ```shell
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
   --tx-in e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0 \
   --tx-out "$(< payment2.addr)+1000000000" \
   --tx-out "$(< payment.addr)+8994790937" \
@@ -186,10 +186,10 @@ In Cardano, transaction fees are [deterministic](https://iohk.io/en/blog/posts/2
 To process a transaction on the network, it must include fees specified within the transaction body. To calculate the exact cost, use the `transaction calculate-min-fee` command, which takes `tx.draft` and `pparams.json` files as inputs. Within this command, specify details like the total number of inputs, outputs, and the required number of signatures. In this case, only one witness, the `payment.skey` signature, is needed:
 
 ```shell
-cardano-cli conway transaction calculate-min-fee \
+cardano-cli latest transaction calculate-min-fee \
   --tx-body-file tx.draft \
   --protocol-params-file pparams.json \
-  --witness-count 1 
+  --witness-count 1
 ```
 
 Running the command returns the fee that needs to be paid:
@@ -208,10 +208,10 @@ echo $((9994790937 - 1000000000 - 173993))
 Re-run `transaction build-raw`, include the fee, and adjust the change (the second tx-out). This completes the transaction body, and conventionally, it is saved into the `tx.raw` file.
 
 ```shell
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
   --tx-in e29e96a012c2443d59f2e53c156503a857c2f27c069ae003dab8125594038891#0 \
   --tx-out $(< payment2.addr)+1000000000 \
-  --tx-out $(< payment.addr)+8994616944 \ 
+  --tx-out $(< payment.addr)+8994616944 \
   --fee 173993 \
   --protocol-params-file pparams.json \
   --out-file tx.raw
@@ -222,7 +222,7 @@ cardano-cli conway transaction build-raw \
 Sign the transaction with the `transaction sign` command. You must sign with the `payment.skey` that controls the UTXO you are trying to spend. This time, we produce the `tx.signed` file:
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-body-file tx.raw \
 --signing-key-file payment.skey \
 --testnet-magic 2 \
@@ -297,7 +297,7 @@ cardano-cli debug transaction view --tx-file tx.signed
 Submitting the transaction means sending it to the blockchain for processing by the stake pools and eventual inclusion in a block. While building and signing a transaction can be done without a running node, submitting the transaction requires an active connection to a running node. Use the `tx.signed` file:
 
 ```shell
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
   --tx-file tx.signed
 Transaction successfully submitted.
 ```
@@ -328,7 +328,7 @@ c57f25ebf9cf1487b13deeb8449215c499f3d61c2836d84ab92a73b0bbaadd38     1        89
 Build the transaction:
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in c57f25ebf9cf1487b13deeb8449215c499f3d61c2836d84ab92a73b0bbaadd38#1 \
   --tx-out $(< payment2.addr)+500000000 \
   --change-address $(< payment.addr) \
@@ -404,7 +404,7 @@ cardano-cli debug transaction view --tx-file tx.raw
 As previously, sign the transaction with the `payment.skey`:
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --tx-body-file tx.raw \
   --signing-key-file payment.skey \
   --out-file tx.signed
@@ -413,8 +413,8 @@ cardano-cli conway transaction sign \
 ### Submitting the transaction
 
 ```shell
-cardano-cli conway transaction submit \
-  --tx-file tx.signed 
+cardano-cli latest transaction submit \
+  --tx-file tx.signed
 Transaction successfully submitted.
 ```
 
@@ -422,7 +422,7 @@ Transaction successfully submitted.
 You can parse `cardano-cli` JSON outputs with `jq` to create programmatic workflows. For example, you can parse the output of `query utxo` to obtain the first UTXO associated with the payment address and use it as input (`--tx-in`) in `transaction build`:
 
 ```
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
 --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-out $(< payment.addr)+500000000 \
 --change-address $(< payment.addr) \
