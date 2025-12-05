@@ -239,7 +239,7 @@ module.exports = {
                 title: 'External Resources',
                 icon: 'link-solid',
                 items: [
-                  {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Track development progress', icon: 'chart-line-solid'},
+                  {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Track ecosystem-wide development progress', icon: 'chart-line-solid'},
                   {href: 'https://cardanofoundation.org/academy', label: 'Cardano Academy', description: 'Learn about Cardano', icon: 'book-solid'},
                   {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll-solid'},
                 ],
