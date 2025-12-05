@@ -248,7 +248,7 @@ module.exports = {
           },
         },
         {
-          href: "https://discord.gg/6ucHxyCTXV",
+          href: "https://discord.gg/2nPUa5d7DE",
           position: "right",
           className: "header-discord-link",
           "aria-label": "Discord",
