@@ -26,7 +26,7 @@ Here we show you how to integrate Cardano into existing websites and services.
 ## Tutorials
 
 - [Listening for ada payments](payments/listening-for-payments/overview) - learn different approaches to detect and confirm ada payments in your applications.
-- [Testnet Faucet](/docs/get-started/networks/testnets/testnet-faucet) - a service that provides test ada (tAda) to users of the Cardano testnets.
+- [Testnet Faucet](/docs/get-started/networks/testnets) - a service that provides test ada (tAda) to users of the Cardano testnets.
 - [Sample queries](https://iohk.zendesk.com/hc/en-us/articles/4402395914009-Sample-cardano-rosetta-queries) for cardano-rosetta.
 - [Sample queries](https://iohk.zendesk.com/hc/en-us/articles/900000906566-Sample-cardano-graphql-queries) for cardano-graphql.
 

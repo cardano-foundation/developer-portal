@@ -501,11 +501,11 @@ module.exports = {
             from: '/docs/get-started/networks-overview',
           },
           {
-            to: '/docs/get-started/networks/testnets/overview',
+            to: '/docs/get-started/networks/testnets',
             from: '/docs/get-started/testnets-and-devnets',
           },
           {
-            to: '/docs/get-started/networks/testnets/testnet-faucet',
+            to: '/docs/get-started/networks/testnets',
             from: '/docs/integrate-cardano/testnet-faucet',
           },
           {

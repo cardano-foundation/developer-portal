@@ -24,7 +24,7 @@ This guide assumes you have installed `cardano-node` and `cardano-cli` into your
 
 :::important
 
-You must connect your `cardano-node` to a [testnet network](/docs/get-started/networks/testnets/overview) and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano) guide before proceeding.
+You must connect your `cardano-node` to a [testnet network](/docs/get-started/networks/testnets) and make sure it is fully synchronized. If you are not sure how to do that, It is recommended to read [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano) guide before proceeding.
 
 :::
 

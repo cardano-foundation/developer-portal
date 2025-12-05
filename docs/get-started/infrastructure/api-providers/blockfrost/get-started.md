@@ -56,6 +56,6 @@ Blockfrost supports [15+ programming languages](https://blockfrost.dev/docs/sdks
 
 ## Next steps
 
-- [Explore Cardano APIs](/docs/get-started/infrastructure/api-providers/blockfrost/cardano-apis) - Query blockchain data
+- [Explore Cardano APIs](/docs/get-started/infrastructure/api-providers/blockfrost/cardano-api) - Query blockchain data
 - [Set up webhooks](/docs/get-started/infrastructure/api-providers/blockfrost/secure-webhooks) - Subscribe to blockchain events
 - [Visit Blockfrost.dev](https://blockfrost.dev/) - API documentation and examples

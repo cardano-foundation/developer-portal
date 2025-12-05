@@ -19,7 +19,7 @@ For a higher-level approach with less infrastructure, check out the [Point of Sa
 :::note
 This guide assumes that you have basic understanding of `cardano-cli`, how to use it and that you have installed it into your system. Otherwise we recommend reading [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node), [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano.md) and [Get started with Cardano CLI](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started) guides first.
 
-This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](/docs/get-started/networks/testnets/overview).
+This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](/docs/get-started/networks/testnets).
 :::
 
 ## Use case
