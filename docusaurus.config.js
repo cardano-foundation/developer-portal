@@ -112,7 +112,7 @@ module.exports = {
                   {to: '/docs/get-started/', label: 'Getting Started', description: 'Begin your Cardano development journey', icon: 'arrow-down-to-line-solid'},
                   {to: '/docs/learn/core-concepts/', label: 'Core Concepts', description: 'Understand the fundamentals', icon: 'book-solid'},
                   {to: '/docs/get-started/client-sdks/overview', label: 'Client SDKs', description: 'Libraries for TypeScript, Python, Rust, and more', icon: 'code-solid'},
-                  {to: '/docs/get-started/infrastructure/overview', label: 'Infrastructure', description: 'Nodes, APIs, and tooling', icon: 'plug-solid'},
+                  {to: '/docs/get-started/infrastructure/overview', label: 'Infrastructure', description: 'Cardano Node, CLI, APIs and tooling', icon: 'plug-solid'},
                 ],
               },
               {
@@ -131,7 +131,7 @@ module.exports = {
                 items: [
                   {to: '/tools', label: 'Builder Tools', description: 'Explore developer tools', icon: 'wrench-solid'},
                   {to: '/docs/community/cardano-developer-community', label: 'Community', description: 'Connect with other developers', icon: 'people-group-solid'},
-                  {to: '/docs/community/funding', label: 'Grants & Funding', description: 'Fund your project', icon: 'handshake-solid'},
+                  {to: '/docs/community/funding', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'handshake-solid'},
                 ],
               },
             ],
