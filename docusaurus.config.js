@@ -414,7 +414,10 @@ module.exports = {
           },
           {
             to: '/docs/get-started/infrastructure/node/running-cardano',
-            from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
+            from: [
+              '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
+              '/docs/get-started/cardano-node/running-cardano',
+            ],
           },
           {
             to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions',
