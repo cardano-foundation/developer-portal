@@ -254,8 +254,6 @@ flowchart LR
 ![Continue Counting Tests](./img/overview-3.png)
 ![Continue Counting Tests](./img/overview-4.png)
 
-This pattern - spending a UTXO and recreating it with new state - is how Cardano handles stateful contracts. Each transaction in the chain validates that the state evolution follows your contract's rules, creating an auditable history of state changes.
-
 ## Modern Smart Contract Features
 
 Cardano provides several powerful features that make smart contract development more efficient and flexible:

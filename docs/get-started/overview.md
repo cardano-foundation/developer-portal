@@ -26,7 +26,7 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 
 ## What you need to bring
 
-To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](../learn/core-concepts/eutxo), [transactions](../learn/core-concepts/transactions), [addresses](../learn/core-concepts/addresses), and [key derivation](../learn/core-concepts/wallet-key-management#key-derivation).
+To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](../learn/core-concepts/eutxo), [transactions](../learn/core-concepts/transactions), and [addresses](../learn/core-concepts/addresses).
 
 If you are unfamiliar with these terms, start with [technical concepts](../learn/core-concepts/), and you can complete the [stake pool course](../operate-a-stake-pool/) afterward. It will also help you understand basic concepts, even if you don't want to run a stake pool.
 

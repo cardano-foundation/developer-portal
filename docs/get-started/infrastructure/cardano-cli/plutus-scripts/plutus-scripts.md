@@ -96,8 +96,8 @@ We can create the file `datum.json` with the following content:
 When building the transaction, it is important to use the `--tx-out-inline-datum-file` flag immediately after the `--tx-out` option to which the datum should be attached. The order of these options matters.
 
 ```shell
-cardano-cli conway transaction build \
---tx-in $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+cardano-cli latest transaction build \
+--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-out $(< script.addr)+10000000 \
 --tx-out-inline-datum-file datum.json \
 --change-address $(< payment.addr) \
@@ -109,7 +109,7 @@ cardano-cli conway transaction build \
 Sign the transaction with the payment.skey
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-file lock.tx `\
 -signing-key-file payment.skey \
 --out-file lock.tx.signed
@@ -118,7 +118,7 @@ cardano-cli conway transaction sign \
 Submit the transaction
 
 ```shell
-cardano-cli conway transaction submit \
+cardano-cli latest transaction submit \
 --tx-file lock.tx.signed 
 
 >Transaction successfully submitted.
@@ -152,9 +152,9 @@ Perfect, we have locked 10 ada on the script address, the only way to spend it i
 We could say that failing is the primarily duty of a Plutus script. Let's check that our script fails if we pass the wrong redeemer.
 
 ```shell
-cardano-cli conway transaction build \
---tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
---tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+cardano-cli latest transaction build \
+--tx-in $(cardano-cli query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
+--tx-in-collateral $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-script-file fortytwotyped.plutus \
 --tx-in-inline-datum-present \
 --tx-in-redeemer-value 57 \
@@ -183,9 +183,9 @@ If we really wanted, we could use `build-raw` to construct the same transaction 
 Let's re-use the `build` command from above, this time we pass the correct redeemer value `--tx-in-redeemer-value 42`.
 
 ```shell
-cardano-cli conway transaction build \
---tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
---tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+cardano-cli latest transaction build \
+--tx-in $(cardano-cli query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]') \
+--tx-in-collateral $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
 --tx-in-script-file fortytwotyped.plutus \
 --tx-in-inline-datum-present \
 --tx-in-redeemer-value 42 \
@@ -195,11 +195,11 @@ cardano-cli conway transaction build \
 
 Lets break down the command:
 
-- `--tx-in $(cardano-cli conway query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]')`
+- `--tx-in $(cardano-cli query utxo --address $(< script.addr) --output-json | jq -r 'keys[0]')`
 
 We use the first UTxO on the script address as input for the transaction. So we are trying to spend the locked funds.
 
-- `--tx-in-collateral $(cardano-cli conway query utxo --address $(< payment.addr)`  
+- `--tx-in-collateral $(cardano-cli query utxo --address $(< payment.addr)`  
   `--output-json | jq -r 'keys[0]')`
 
 Since we are running a Plutus script, we must provide a collateral. We use the first utxo of payment address.
@@ -233,14 +233,14 @@ Estimated transaction fee: Coin 300777
 This time, the node validated the transaction and successfully ran the script. The transaction should succeed if we provide the correct witness for the collateral. Let's do that.
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-file unlock.tx \
 --signing-key-file payment.skey \
 --out-file unlock.tx.signed 
 ```
 
 ```shell
-cardano-cli conway transaction submit -\
+cardano-cli latest transaction submit -\
 -tx-file unlock.tx.signed
 
 > Transaction successfully submitted.
@@ -249,7 +249,7 @@ cardano-cli conway transaction submit -\
 For tracking purposes, lets find our transaction id
 
 ```shell
-cardano-cli conway transaction txid --tx-file unlock.tx.signed 
+cardano-cli latest transaction txid --tx-file unlock.tx.signed 
 74c856f90276315a14bd2bd35b3a2f803b763a1bdfa2648ec30a85a129048131
 ```
 
