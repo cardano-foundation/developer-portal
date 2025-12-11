@@ -45,7 +45,7 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      //theme: prismThemes.github, // uncomment for light mode in code boxes
+      theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff'],
     },
