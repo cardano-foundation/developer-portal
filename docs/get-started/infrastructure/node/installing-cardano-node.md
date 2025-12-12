@@ -102,7 +102,7 @@ tools on your system:
      Then using homebrew install the following:
 
      ```bash
-     brew install jq libtool autoconf automake pkg-config openssl
+     brew install jq libtool autoconf automake pkg-config openssl lmdb
      ```
 
      You will need to install llvm in case you are using M1
