@@ -843,6 +843,10 @@ module.exports = {
               '/docs/get-started/networks/testnets/testnet-faucet',
             ],
           },
+          {
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
+            from: '/docs/get-started/cardano-node/installing-cardano-node',
+          },
         ],
       },
     ],
