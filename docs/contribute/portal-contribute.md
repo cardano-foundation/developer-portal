@@ -40,75 +40,18 @@ Since everything is public, people typically pay greater attention to how well s
 
 **Spread the word:**
 
-- Link to the [wallet showcase](https://developers.cardano.org/showcase?tags=wallet) when someone asks about Cardano wallets
-- Link to the [block explorer showcase](https://developers.cardano.org/showcase?tags=explorer) when they want to know about explorers
+- Link to the [Cardano Apps](https://cardano.org/apps/) when someone asks about projects built on Cardano
+- Share the [Builder Tools](https://developers.cardano.org/tools) page with developers looking for SDKs and libraries
 
-## Add Your Project or Tool
+## Add Your Tool
 
 ### General Submitter Requirements
 
-**For all submissions (projects and tools):**
+**For all tool submissions:**
 
 - Your GitHub account ideally should have some contribution history or be known in the Cardano community
 - Brand new GitHub accounts may face additional scrutiny
 - All submissions must pass `yarn build` without errors before submission
-
-### Add to Project Showcase
-
-The project showcase is where users discover what can be built on Cardano. It should feature quality projects that demonstrate the ecosystem's capabilities.
-
-**Philosophy:** The showcase is designed to help newcomers to the Cardano ecosystem see what's possible today. We focus on live, functional products on mainnet - not promises, pre-sales, or coming soon pages. We're not trying to map out a future ecosystem, but rather showcase the present reality of what's been built.
-
-**Project Requirements:**
-
-- Live on Cardano mainnet
-- Functional product with real use case (not just a concept or idea)
-- Stable domain (no temporary/test domains, URL shorteners, or app store links)
-- Clear description without marketing claims like "the best", "the first", "the only"
-- Must provide unique value distinct from existing showcase items
-- Must have sufficient community reputation
-
-**Step-by-Step Process:**
-
-1. **Prepare your project image**
-   - Create a PNG or JPG file
-   - Name it descriptively (e.g., `your-project-name.png`)
-
-2. **Add your image to the repository**
-   - Place it in: `src/data/showcase/your-project-name.png`
-
-3. **Add your project entry**
-   - Edit: `src/data/showcases.js`
-   - Add your entry to the **END** of the Showcases array
-   - Use this format:
-
-   ```javascript
-   {
-     title: "Your Project Name",
-     description: "Brief description of what your project does (avoid 'best/first/only' claims)",
-     preview: require("./showcase/your-project-name.png"),
-     website: "https://your-project.com",
-     source: "https://github.com/your-org/your-project", // or null if not open-source
-     tags: ["relevant", "tags"], // see available tags in the file
-   }
-   ```
-
-4. **Select appropriate tags**
-
-   Available tags include: `wallet`, `dex`, `oracle`, `bridge`, `lending`, `governance`, `marketplace`, `game`, `nftproject`, `educational`, and more.
-
-   **Important:**
-   - Do NOT add the `favorite` tag yourself
-   - Check `src/data/showcases.js` for the complete list of available tags
-   - If your project is open-source, include `opensource` tag AND provide the `source` URL
-
-5. **Test your submission**
-   - Run `yarn build` (must complete without errors)
-   - Check that your project displays correctly
-
-6. **Submit your pull request**
-   - Use the "Add Showcase" GitHub PR template
-   - Fill out the checklist in the template
 
 ### Add to Builder Tools
 
@@ -167,31 +110,24 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
 
 A: Yes! You can:
 
-- [Open an issue](https://github.com/cardano-foundation/developer-portal/issues) with your project details and someone from the community can help
+- [Open an issue](https://github.com/cardano-foundation/developer-portal/issues) with your tool details and someone from the community can help
 - [Start a discussion](https://github.com/cardano-foundation/developer-portal/discussions) to get guidance
 - Let the community know about your contribution idea in [the forum](https://forum.cardano.org/c/developers/cardano-projects/151)
 
-**Q: How long does it take for my project to be approved?**
+**Q: How long does it take for my tool to be approved?**
 
 A: Pull requests require **3 reviewer approvals**. This typically takes a few days to a week, depending on reviewer availability. After approval, changes are merged to the **staging branch** first (visible at [staging-dev-portal.netlify.app](https://staging-dev-portal.netlify.app)), then later pushed to production. This process causes a small delay between staging and production deployment.
 
-**Q: Can I update my project information later?**
+**Q: Can I update my tool information later?**
 
-A: Yes! Submit a new pull request with the updates to your project entry.
+A: Yes! Submit a new pull request with the updates to your tool entry.
 
-**Q: My project isn't live on mainnet yet. Can I still add it?**
-
-A: No, showcase projects must be live and functional on Cardano mainnet. However, you can add it once it launches!
-
-**Q: Why was my project or tool rejected?**
+**Q: Why was my tool rejected?**
 
 A: Common reasons for rejection include:
 
-- **Project not live on mainnet** - Only functional, live products are accepted
-- **Insufficient unique value** - Project doesn't provide distinct value compared to existing showcase items
 - **Domain issues** - Using temporary hosting domains, URL shorteners, or unstable domains
 - **New GitHub account** - Submitter account lacks contribution history or community recognition
-- **For NFT projects** - Not meeting criteria for exceptional utility or CNFT Award recognition
 - **Incomplete submission** - Missing required fields, broken links, or build errors
 - **Marketing-focused description** - Using claims like "the best," "the first," or "the only"
 
@@ -239,7 +175,7 @@ yarn start  # Development server at http://localhost:3000
 developer-portal/
 ├── docs/              # Documentation content (you'll edit these)
 ├── blog/              # Developer blog posts
-├── src/data/          # Project showcase and builder tools data
+├── src/data/          # Builder tools data
 ├── static/img/        # Images and assets
 ├── sidebars.js        # Navigation structure
 └── docusaurus.config.js
@@ -248,7 +184,6 @@ developer-portal/
 **Key locations:**
 
 - `/docs/` - All documentation content
-- `/src/data/showcases.js` - Project showcase data
 - `/src/data/builder-tools/tools.js` - Developer tools data
 - `/sidebars.js` - Controls documentation navigation
 

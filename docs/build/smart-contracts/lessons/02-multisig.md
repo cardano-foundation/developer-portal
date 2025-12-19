@@ -16,7 +16,7 @@ In this lesson, you'll learn how to:
 
 ### Download CIP30 Wallet Extension
 
-To interact with the blockchain, you'll need a [wallet extension](https://developers.cardano.org/showcase/?tags=wallet) that supports the CIP30 standard.
+To interact with the blockchain, you'll need a [wallet extension](https://cardano.org/apps/?tags=wallet) that supports the CIP30 standard.
 
 After downloading the wallet, restore it using the seed phrase you created in the previous lesson.
 

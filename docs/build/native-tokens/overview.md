@@ -11,7 +11,7 @@ image: /img/og/og-developer-portal.png
 :::note
 There are currently two ways to make your NFTs:
 
-- For the less tech-savvy: through someone else. The showcase section (under [NFT Support](/showcase/?tags=nftsupport)) has a few services that offer this.
+- For the less tech-savvy: through someone else. There are various [NFT minting services](https://cardano.org/apps/?tags=nft) in the Cardano ecosystem that offer this.
 - Tech-savvy users can issue NFTs on a Cardano node. If you want to have full control over your tokens, you need to mint them **yourself**. And this is what this section is all about.
 
 Minting requires a certain amount of skill in navigating and working with Linux through the terminal and a running Cardano node.
