@@ -9,7 +9,6 @@ import React, { useCallback, useState, useEffect, forwardRef } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { toggleListItem } from "@site/src/utils/jsUtils";
 import {prepareUserState} from '../../../pages/tools/index';
-import Tags from "@site/src/data/showcases";
 
 import styles from "./styles.module.css";
 

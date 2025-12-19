@@ -217,7 +217,6 @@ module.exports = {
           label: 'Ecosystem',
           position: 'left',
           items: [
-            {to: "showcase", label: "Showcase"},
             {to: "blog/", label: "Dev Blog"},
             {href: "https://cardanoupdates.com/", label: "Developer Activity"},
             {href: "https://cardanofoundation.org/academy", label: "Academy"},
@@ -231,7 +230,6 @@ module.exports = {
                 title: 'Explore',
                 icon: 'shapes-solid',
                 items: [
-                  {to: '/showcase', label: 'Showcase', description: 'Discover projects built on Cardano', icon: 'shapes-solid'},
                   {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book-solid'},
                 ],
               },
@@ -358,6 +356,11 @@ module.exports = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
+          {
+            // redirect showcase to cardano.org/apps since it moved there
+            to: 'https://cardano.org/apps/',
+            from: '/showcase',
+          },
           {
             // redirect the old smart contracts signpost to the new smart contract category
             to: '/docs/build/smart-contracts/overview',

@@ -15,13 +15,7 @@ First of all, thank you for taking the time to contribute!🎉👍
 - [Create an issue](https://github.com/cardano-foundation/developer-portal/issues)
 - [Start a discussion](https://github.com/cardano-foundation/developer-portal/discussions)
 
-## Add Your Project or Tool
-
-### Add to Project Showcase
-
-- See inline instructions in [src/data/showcases.js](https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/showcases.js)
-- Requirements: Live on Cardano mainnet, functional product, stable domain
-- Use the "Add Showcase" GitHub PR template
+## Add Your Tool
 
 ### Add to Builder Tools
 
@@ -29,7 +23,7 @@ First of all, thank you for taking the time to contribute!🎉👍
 - Requirements: Helps Cardano developers, stable domain, functional
 - Use the "Add Builder Tool" GitHub PR template
 
-## Local Development (Required for Projects/Tools)
+## Local Development (Required for Tools)
 
 **Installation** (see [README.md](README.md) for full setup):
 
@@ -62,10 +56,10 @@ yarn start  # Development server
 
 ## Pull Request Process
 
-1. **Use appropriate PR template** (showcase, builder tool, or standard change)
+1. **Use appropriate PR template** (builder tool or standard change)
 2. **Fill out the checklist** in the template
 3. **Ensure `yarn build` succeeds** without errors
-4. **Wait for review** (requires 3 approvals for showcase/tools)
+4. **Wait for review** (requires 3 approvals for tools)
 
 ## FAQ
 
