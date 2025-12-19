@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 ## Meet Scalus
 
 - Write Cardano smart contracts in Scala 3 that compile to UPLC
-- Maintain fine-grained control over generated on-chain code with [advanced optimisations](https://scalus.org/docs/advanced/macros)
+- Maintain fine-grained control over generated on-chain code with [advanced optimisations](https://scalus.org/docs/smart-contract/optimisations/macros)
 - Build and evaluate transactions off-chain
 - Integrate on-chain and off-chain components in your full-stack application
 - Test your entire application with unit, integration, and property-based tests

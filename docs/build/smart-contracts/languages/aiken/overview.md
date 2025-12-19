@@ -145,7 +145,7 @@ Visit [Danolearn](https://danolearn.com/en/course/cardano-smart-contract-develop
 ### Examples
 
 - Visit [Awesome Aiken](https://github.com/aiken-lang/awesome-aiken#readme) repository to find a curated list of open-source projects using Aiken.
-- For advanced design patterns, check out the [Aiken Design Patterns](https://github.com/aiken-lang/aiken-design-patterns) repository.
+- For advanced design patterns, check out the [Aiken Design Patterns](https://github.com/Anastasia-Labs/aiken-design-patterns) repository.
 
 ## Development Workflow
 

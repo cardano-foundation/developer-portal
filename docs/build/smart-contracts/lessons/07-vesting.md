@@ -104,7 +104,7 @@ The test script includes the following test cases:
 - fail unlocking with only beneficiary signature
 - fail unlocking with only time passed
 
-We recommend you to check out [`vesting.ak`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/03-vesting/src/aiken-workspace/validators/vesting.ak) to learn more.
+We recommend you to check out [`vesting.ak`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/07-vesting/src/aiken-workspace/validators/vesting.ak) to learn more.
 
 ### Compile and build script
 
@@ -114,7 +114,7 @@ To compile the script, run the following command:
 aiken build
 ```
 
-This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/03-vesting/src/aiken-workspace/plutus.json).
+This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/07-vesting/src/aiken-workspace/plutus.json).
 
 ## Deposit funds
 
@@ -259,7 +259,7 @@ Example of a [successful withdraw transaction](https://preprod.cardanoscan.io/tr
 
 ## Source code
 
-The source code for this lesson is available on [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-hello-cardano/03-vesting).
+The source code for this lesson is available on [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-hello-cardano/07-vesting).
 
 ## Challenge
 
