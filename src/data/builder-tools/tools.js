@@ -780,6 +780,22 @@ export const Showcases = [
     getstarted: "https://store.yaci.xyz/docs/intro",
     tags: ["indexer", "java"],
   },
+  {
+    title: "Cometa.js",
+    description: "Cometa.js is a fast, browser and Node ready JavaScript toolkit that brings streamlined Cardano transaction building and dApp smart-contract interactions to web and frontend environments.",
+    preview: require("./images/cometa.js.png"),
+    website: "https://github.com/Biglup/cometa.js",
+    getstarted: "https://cometajs.readthedocs.io/en/latest",
+    tags: ["javascript", "serialization", "transactionbuilder"]
+  },
+  {
+    title: "Cometa.py",
+    description: "Cometa.py is a high-performance Python library for Cardano, focused on rapid prototyping, scripting, and backend automation for transaction building and smart-contract workflows.",
+    preview: require("./images/cometa.py.png"),
+    website: "https://github.com/Biglup/cometa.py",
+    getstarted: "https://cometapy.readthedocs.io/en/latest",
+    tags: ["python", "serialization", "transactionbuilder"]
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
