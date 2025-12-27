@@ -11,9 +11,7 @@ import Image from "@theme/IdealImage";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import Tooltip from "../ShowcaseTooltip/index";
-import { useLocation } from "@docusaurus/router";
-import { Tags as ToolsTags } from "../../../data/builder-tools";
-import { Tags as ShowcaseTags } from "../../../data/showcases";
+import { Tags } from "../../../data/builder-tools";
 import Fav from "../../../svg/fav.svg";
 
 const TagComp = forwardRef(({ label, color, description }, ref) => (
@@ -24,11 +22,7 @@ const TagComp = forwardRef(({ label, color, description }, ref) => (
 ));
 
 function ShowcaseCardTag({ tags }) {
-  const location = useLocation();
-  const selectedTags = location.pathname.includes("tools")
-    ? ToolsTags
-    : ShowcaseTags;
-  const tagObjects = tags.map((tag) => ({ tag, ...selectedTags[tag] }));
+  const tagObjects = tags.map((tag) => ({ tag, ...Tags[tag] }));
 
   return (
     <>

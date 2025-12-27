@@ -31,7 +31,7 @@ The process of flashing the NFC chips, which model we are using and some tools a
 
 :::
 
-All NFTs minted corresponding to the physical Hoodies can be found following this link to [pool.pm](https://pool.pm/policy/e886a328333c28bf3e8fc527206b02dc9ff65fb04cf569ec71983330) or looking for the policy ID `e886a328333c28bf3e8fc527206b02dc9ff65fb04cf569ec71983330` (the hash of the minting policy script) in any other suitable [Explorer](https://developers.cardano.org/showcase?tags=explorer).
+All NFTs minted corresponding to the physical Hoodies can be found following this link to [pool.pm](https://pool.pm/policy/e886a328333c28bf3e8fc527206b02dc9ff65fb04cf569ec71983330) or looking for the policy ID `e886a328333c28bf3e8fc527206b02dc9ff65fb04cf569ec71983330` (the hash of the minting policy script) in any other suitable [Explorer](https://cardano.org/apps/?tags=explorer).
 
 ## Future Work
 
