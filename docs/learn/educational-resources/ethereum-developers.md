@@ -5,7 +5,7 @@ sidebar_label: For Ethereum Developers
 description: A complete guide to Cardano development for developers coming from Ethereum.
 ---
 
-In this guide, we dive into the key differences between developing on Ethereum and Cardano, guiding you through how to build on Cardano. Coming from Ethereum, Cardano will look and feel different and have a distinct toolset to use as you develop. This guide will arm you with all the tools necessary to build on Cardano from an Ethereum background.
+This guide covers the key differences between Ethereum and Cardano development. Coming from Ethereum, Cardano will look and feel different: different account model, different smart contract paradigm, different tooling. By the end, you'll understand how to translate your Ethereum knowledge to Cardano and have clear next steps for building.
 
 ## What Makes Cardano Different from Ethereum?
 
@@ -13,11 +13,11 @@ In this guide, we dive into the key differences between developing on Ethereum a
 
 When developing on Cardano, the most significant difference you will encounter is the account model design. Understanding why Cardano's model was designed differently helps make sense of everything else.
 
-Unlike Ethereum, Cardano is designed around the **Extended UTXO (EUTXO) model** rather than an account-based model. On Ethereum, each address maintains a balance stored in global state. Transactions update these balances directly, and smart contracts hold and modify their own storage.
+Unlike Ethereum, Cardano is designed around the **[Extended UTXO (EUTXO) model](/docs/learn/core-concepts/eutxo)** rather than an account-based model. On Ethereum, each address maintains a balance stored in global state. Transactions update these balances directly, and smart contracts hold and modify their own storage.
 
-On Cardano, value exists as discrete **Unspent Transaction Outputs (UTXOs)**. Think of UTXOs like physical cash: you have specific bills and coins, not just a number in an account. When you spend, you consume entire UTXOs and create new ones as outputs. If you have a 100 ADA UTXO and want to send 10 ADA to someone, the transaction consumes your 100 ADA UTXO entirely and creates two new UTXOs: one with 10 ADA for the recipient and one with 90 ADA as your change.
+On Cardano, there is no global state. Value exists as discrete **Unspent Transaction Outputs (UTXOs)**. Think of them like physical bills and coins rather than a bank balance. When you spend, you consume entire UTXOs and create new ones as outputs. If you have a 100 ADA UTXO and want to send 10 ADA to someone, the transaction consumes your 100 ADA UTXO entirely and creates two new UTXOs: one with 10 ADA for the recipient and one with 90 ADA as your change.
 
-Smart contracts on Cardano carry no state of their own and must have state passed to them. To illustrate this, let's look at two smart contracts for a counter: one in Solidity on Ethereum and one in Aiken on Cardano.
+Critically, smart contracts on Cardano have no internal storage. There's no mutable state sitting inside a contract. Instead, state lives in **datums**, which are data attached to UTXOs. To illustrate this, let's look at two smart contracts for a counter: one in Solidity on Ethereum and one in [Aiken](/docs/build/smart-contracts/languages/aiken/overview) on Cardano.
 
 **Ethereum Counter Smart Contract**
 
@@ -52,30 +52,30 @@ pub type SpendingValidatorDatum {
 Then we define what actions a user can take:
 
 ```aiken
-pub type MyRedeemer {
-  ContinueCounting
-  StopCounting
+pub type CounterAction {
+  Increment
+  Decrement
 }
 ```
 
 Now the validator. When someone wants to increment the counter, they build a transaction that:
 
-1. Consumes the UTXO containing the current count
-2. Creates a new UTXO with the updated count
-3. The validator checks if this transformation is valid
+1. Spends the UTXO sitting at the script address (which holds the current count in its datum)
+2. Creates a new UTXO at the same script address with the updated count
+3. The validator runs and checks if this state transition is valid
 
 ```aiken
 validator counter_validator {
   spend(
     datum_opt: Option<SpendingValidatorDatum>,
-    redeemer: MyRedeemer,
+    redeemer: CounterAction,
     _input: OutputReference,
     tx: Transaction,
   ) {
     expect Some(input_datum) = datum_opt
 
     when redeemer is {
-      ContinueCounting -> {
+      Increment -> {
         // Find the output going back to this script
         expect Some(output) = find_continuing_output(tx)
         expect output_datum: SpendingValidatorDatum = get_datum(output)
@@ -83,9 +83,9 @@ validator counter_validator {
         // Validate: new count must be old count + 1
         input_datum.count + 1 == output_datum.count
       }
-      StopCounting -> {
-        // Allow stopping without creating new output
-        True
+      Decrement -> {
+        // Similar logic: validate count - 1 == output count
+        // ...
       }
     }
   }
@@ -105,37 +105,27 @@ The key differences:
 
 ### What Are the Benefits of the EUTXO Model?
 
-The EUTXO model brings several advantages that become clear once you start building.
+The EUTXO model brings several practical advantages:
 
-**Parallelization**: Transactions operating on different UTXOs can process in parallel. There's no global state contention like you'd find with a single counter contract on Ethereum being accessed by many users. If 100 users each have their own counter UTXO, all 100 can update simultaneously.
+**Parallelization**: Since there's no global state, transactions operating on different UTXOs can process in parallel. There's no contention like you'd find with a single Ethereum contract being accessed by many users. State is local to each UTXO, so if 100 users each have their own counter UTXO, all 100 can update simultaneously without blocking each other.
 
-**Deterministic Validation**: You know exactly what will happen before submitting a transaction. The validator runs the same way locally as it does on-chain. If it passes locally, it passes on-chain.
+**Deterministic Validation**: Because all inputs to a transaction are known upfront (no global state to query), you know exactly what will happen before submitting. The validator runs the same way locally as on-chain. If it passes locally, it passes on-chain.
 
-**No Failed Transaction Fees**: If a transaction will fail validation, it fails off-chain before submission. You don't pay for failed transactions.
+**No Failed Transaction Fees**: Most validation failures are caught locally before submission. You simulate the transaction, see it fail, and never submit, so no fee is lost.
 
-**Local Fee Markets**: High activity on one dApp doesn't spike fees for everyone else. If there's a hot NFT mint happening, users sending simple ADA transfers are unaffected and continue paying normal fees.
+**Predictable Fees**: Fees are based on transaction size, not network demand. A hot NFT mint doesn't spike fees for simple ADA transfers. Everyone pays the same deterministic rate.
 
-**No Reentrancy**: UTXOs are consumed atomically in a single transaction. The reentrancy attacks that have plagued Ethereum contracts are structurally impossible on Cardano.
-
-## How Do Fees Work on Cardano?
-
-Fees on Ethereum are calculated as Gas × Gas Price, making them variable and unpredictable. You don't know the exact cost until execution, and network congestion causes fee spikes. Even failed transactions cost you gas.
-
-Cardano takes a different approach. Fees are calculated using a fixed formula based on transaction size: `a × tx_size + b`, where `a` and `b` are protocol parameters. This makes fees deterministic. You calculate the fee before submitting, and that's exactly what you pay. No gas price auctions, no surprises, no fee spikes during congestion.
-
-Script execution costs are included in this base formula. There's also a per-execution cost for computational units, but it's still deterministic and calculable before submission.
-
-One thing similar to Solana's rent model: every UTXO must contain a minimum amount of ADA to exist on-chain. This prevents ledger bloat from tiny spam UTXOs. The minimum depends on the UTXO's size (more tokens or larger datum means more ADA required). Unlike Solana's rent, this deposit isn't consumed over time; it stays with the UTXO until spent.
+**No Reentrancy**: UTXOs are consumed atomically in a single transaction. Reentrancy attacks are structurally impossible on Cardano.
 
 ## How Do Transactions Work on Cardano?
 
-A Cardano transaction consists of several parts:
+A Cardano transaction transforms UTXOs: it spends existing ones and creates new ones. The key components:
 
-- **Inputs**: UTXOs being consumed (must be unspent)
-- **Outputs**: New UTXOs being created
-- **Signatures**: Required to authorize spending
+- **Inputs**: UTXOs being spent
+- **Outputs**: New UTXOs being created, each with a destination address, value, and optional datum
+- **Signatures**: Authorize spending
+- **Redeemers**: Data passed to validators when spending UTXOs locked at script addresses
 - **Validity interval**: A time window when the transaction is valid
-- **Redeemers**: Data passed to validators
 - **Mint/burn**: Token operations, if any
 
 The validity interval deserves special attention. On Ethereum, smart contracts can call `block.timestamp` to get the current time. This would break determinism on Cardano since asking for "current time" at different moments gives different answers.
@@ -144,13 +134,23 @@ Cardano solves this with validity intervals. Every transaction declares a time w
 
 A significant difference from Ethereum is the number of operations in a single transaction. On Ethereum, you typically call one contract per transaction. On Cardano, you can spend from multiple script addresses, mint tokens from multiple policies, and do it all atomically in one transaction. Each validator runs independently, all must pass, and everything happens atomically. This enables powerful composition without needing router contracts.
 
+## How Do Fees Work on Cardano?
+
+On Ethereum, fees are calculated as Gas × Gas Price, making them variable and unpredictable. You don't know the exact cost until execution, and network congestion causes fee spikes. Even failed transactions cost you gas.
+
+Cardano uses a deterministic fee model. Fees are calculated using a fixed formula based on transaction size: `a × tx_size + b`, where `a` and `b` are protocol parameters. You calculate the fee before submitting, and that's exactly what you pay. No gas price auctions, no surprises, no fee spikes during congestion.
+
+Script execution adds a per-execution cost for computational units, but it's still deterministic and calculable before submission. If your transaction will fail validation, it fails locally before you submit, so you don't pay for failed transactions.
+
+When executing scripts, transactions must include **collateral**: a UTXO that gets consumed only if the script fails on-chain. This protects the network from denial-of-service attacks where someone submits transactions that pass Phase 1 validation (correct structure, valid signatures) but fail Phase 2 (script execution). In practice, your wallet handles collateral automatically, and you rarely lose it since scripts are validated locally first.
+
+Every UTXO must also contain a minimum amount of ADA to exist on-chain. This prevents ledger bloat from tiny spam UTXOs. The minimum depends on the UTXO's size (more tokens or larger datum means more ADA required). This deposit isn't consumed over time; it stays with the UTXO until spent.
+
 ## How Do Smart Contracts Work?
 
-### Validators, Not Actors
+Validators, not actors. This is the key mental model shift. On Ethereum, when you call `counter.increment()`, the contract executes code that modifies its storage. The contract is an actor that takes actions. (For a deeper dive, see the [Smart Contracts overview](/docs/build/smart-contracts/overview).)
 
-This is the key mental model shift. On Ethereum, when you call `counter.increment()`, the contract executes code that modifies its storage. The contract is an actor that takes actions.
-
-On Cardano, validators don't execute actions. They approve or reject proposed actions. You build a transaction that proposes consuming certain UTXOs and creating certain outputs. The validator examines this proposal and returns true or false. It cannot send tokens, call other validators, or modify state directly.
+On Cardano, smart contracts don't execute anything. They validate. To interact with a smart contract, you lock UTXOs at the script's address (derived from the script hash). Each UTXO at that address can carry a datum containing your business logic state. When you want to change that state, you propose a transaction that spends the UTXO. The validator script runs and checks: "Does this transaction follow the rules I define?" If yes, the transaction succeeds and creates new UTXOs with updated state. If no, the transaction is rejected.
 
 Think of it this way: On Ethereum, you tell the contract what to do. On Cardano, you do it yourself and the validator checks if you did it correctly.
 
@@ -179,7 +179,7 @@ use cocktail.{key_signed}
 validator counter_with_owner(owner: VerificationKeyHash) {
   spend(
     datum_opt: Option<SpendingValidatorDatum>,
-    redeemer: MyRedeemer,
+    redeemer: CounterAction,
     _input: OutputReference,
     tx: Transaction,
   ) {
@@ -189,13 +189,16 @@ validator counter_with_owner(owner: VerificationKeyHash) {
     let is_owner_signed = key_signed(tx.extra_signatories, owner)
 
     when redeemer is {
-      ContinueCounting -> {
+      Increment -> {
         expect Some(output) = find_continuing_output(tx)
         expect output_datum: SpendingValidatorDatum = get_datum(output)
 
         is_owner_signed? && (input_datum.count + 1 == output_datum.count)
       }
-      StopCounting -> is_owner_signed?
+      Decrement -> {
+        // Similar logic for decrementing
+        // ...
+      }
     }
   }
 
@@ -243,31 +246,15 @@ validator timed_counter {
 
 The `valid_before` function checks that the transaction's validity interval ends before the deadline. If someone tries to submit a transaction after the deadline, the ledger rejects it before the script even runs.
 
-### Mapping Concepts
-
-Here's how Ethereum concepts map to Cardano:
-
-- **Contract storage** becomes **Datum** (data attached to UTXOs)
-- **Function parameters** become **Redeemer** (user-provided action data)
-- **`msg.sender`** becomes checking **`tx.extra_signatories`**
-- **`msg.value`** becomes examining input/output values explicitly
-- **`require(condition)`** becomes Aiken's **`expect`** or **`?`** assertions
-- **`modifier onlyOwner`** becomes **`key_signed(signers, owner)`**
-- **`mapping(addr => uint)`** becomes one UTXO per entry (datum holds the value)
-- **`constructor`** becomes parameterized script (baked in at compile time)
-- **Events** become transaction metadata or off-chain indexing
-- **View functions** become querying UTXOs directly via API
-- **ABI** becomes **Blueprint** (`plutus.json`, the compiled output with types)
-
 ## Native Tokens vs ERC-20/721
 
 On Ethereum, tokens are smart contracts. Creating an ERC-20 requires deploying a contract (often 200-500 lines of Solidity), and every transfer is a contract call that costs gas. The `approve` + `transferFrom` pattern is necessary for dApps to spend your tokens.
 
-On Cardano, tokens are native to the ledger. They exist at the same level as ADA, not as contract state. Transfers are native transactions with fixed fees, the same as sending ADA. Multiple different tokens can move in a single transaction. There's no `approve` pattern needed because dApps interact with tokens the same way they interact with ADA.
+On Cardano, [native tokens](/docs/learn/core-concepts/assets) are built into the ledger itself. They exist at the same level as ADA, not as contract state. Transfers are native transactions with fixed fees, the same as sending ADA. Multiple different tokens can move in a single transaction. There's no `approve` pattern needed because dApps interact with tokens the same way they interact with ADA.
 
 ### Native Scripts: No Smart Contract Needed
 
-For simple minting rules, you don't need to write any Plutus or Aiken code. Cardano has **native scripts**—a minimal scripting language built into the ledger with six simple constructors: `sig` (require signature), `all` (all conditions), `any` (any condition), `atLeast` (n-of-m), `before` (time lock), and `after` (time lock).
+For simple minting rules, you don't need to write any Plutus or Aiken code. Cardano has **native scripts**, a minimal scripting language built into the ledger with six simple constructors: `sig` (require signature), `all` (all conditions), `any` (any condition), `atLeast` (n-of-m), `before` (time lock), and `after` (time lock).
 
 For example, to create a token that requires your signature and can only be minted before a deadline:
 
@@ -285,7 +272,7 @@ That's it. No contract deployment, no bytecode. The ledger validates these rules
 
 ### Plutus Scripts: When You Need More
 
-When you need complex business logic—conditional minting based on other UTXOs, oracle data, or custom validation—you write a minting policy in Aiken:
+When you need complex business logic like conditional minting based on other UTXOs, oracle data, or custom validation, you write a minting policy in Aiken:
 
 ```aiken
 validator my_token(owner: VerificationKeyHash) {
@@ -299,7 +286,7 @@ validator my_token(owner: VerificationKeyHash) {
 }
 ```
 
-This gives you full programmability: check transaction inputs/outputs, reference other UTXOs, enforce arbitrary conditions. The token still appears in wallets as a native asset—the difference is only in how minting/burning is controlled.
+This gives you full programmability: check transaction inputs/outputs, reference other UTXOs, enforce arbitrary conditions. The token still appears in wallets as a native asset. The difference is only in how minting and burning are controlled.
 
 ## Putting It Together: A Ticketing System
 
@@ -333,7 +320,7 @@ flowchart LR
     TX --> E
 ```
 
-Two inputs are consumed: the buyer's funds and the current protocol state. Three outputs are created: the ticket goes to the buyer, the updated state continues the protocol, and payment goes to the treasury. Everything happens atomically—if any part fails, nothing happens.
+The transaction spends two UTXOs as inputs: the buyer's funds (from their wallet) and the current protocol state (sitting at the script address with `ticket_counter: 7` in its datum). It creates three new UTXOs as outputs: the minted ticket plus change goes back to the buyer's wallet, the updated state (with `ticket_counter: 8`) returns to the script address to continue the protocol, and the payment goes to the treasury address. Everything happens atomically. If any part fails, nothing happens.
 
 ### The Validator
 
@@ -405,7 +392,7 @@ validator ticketer(
 ) {
 ```
 
-Configuration is baked into the script at compile time. `treasury`, `max_tickets`, and prices aren't stored in contract state—they're parameters. Different parameters produce different script hashes, meaning different addresses. There's no mutable storage to update later.
+Configuration is baked into the script at compile time. `treasury`, `max_tickets`, and prices aren't stored in contract state. They're parameters. Different parameters produce different script hashes, meaning different addresses. There's no mutable storage to update later.
 
 ### State Lives in Datums
 
@@ -415,7 +402,7 @@ Configuration is baked into the script at compile time. `treasury`, `max_tickets
     let TicketerDatum { ticket_counter } = datum
 ```
 
-The `ticket_counter` isn't stored in the contract—it's attached to the UTXO being spent. Each purchase consumes the old state UTXO and creates a new one with an incremented counter. The validator receives this state as input, not from internal storage.
+The `ticket_counter` isn't stored in the contract. It's attached to the UTXO being spent. Each purchase consumes the old state UTXO and creates a new one with an incremented counter. The validator receives this state as input, not from internal storage.
 
 ### Validators Approve, Don't Execute
 
@@ -436,7 +423,7 @@ The validator doesn't increment the counter. It checks that whoever built the tr
     }
 ```
 
-Instead of calling `block.timestamp`, the validator checks if the transaction's validity range falls before or after `switch_slot`. Early bird pricing is enforced by the ledger rejecting transactions submitted after the deadline—before the script even runs. The validator just needs to check which price tier applies.
+Instead of calling `block.timestamp`, the validator checks if the transaction's validity range falls before or after `switch_slot`. Early bird pricing is enforced by the ledger rejecting transactions submitted after the deadline, before the script even runs. The validator just needs to check which price tier applies.
 
 ### Multiple Validators, One Transaction
 
@@ -449,7 +436,7 @@ Instead of calling `block.timestamp`, the validator checks if the transaction's 
         })
 ```
 
-The `spend` validator handles state updates while the `mint` validator controls ticket creation. For minting, the validator just checks that the spend validator is also running in this transaction—ensuring state is properly updated. Both validators run independently; if either fails, the whole transaction is rejected atomically.
+The `spend` validator handles state updates while the `mint` validator controls ticket creation. For minting, the validator just checks that the spend validator is also running in this transaction, which ensures state is properly updated. Both validators run independently; if either fails, the whole transaction is rejected atomically.
 
 ### Admin Token for Authentication
 
@@ -495,7 +482,7 @@ Alternatives exist too: **OpShin** offers Python-like syntax, **Plu-ts** is a Ty
 4. Import compiled scripts into your off-chain app
 5. Deploy by sending UTXOs to the script address
 
-There's no separate "deployment" transaction like Ethereum. The script hash determines the address. Same script always produces the same address.
+Unlike Ethereum, scripts don't require deployment to exist. The script hash determines the address, and the same script always produces the same address. However, you can publish scripts on-chain as **reference scripts** (CIP-33) so transactions can reference them instead of including the full script code each time, reducing fees.
 
 ## What's Different with Smart Contract Development?
 
@@ -526,22 +513,33 @@ For upgradeable patterns, you can use parameterized scripts (different parameter
 
 ### Watch Out: Double Satisfaction
 
-This is a Cardano-specific vulnerability with no Ethereum equivalent. Since validators run independently for each input, and all have access to the same transaction outputs, a careless validator can be "satisfied" multiple times by the same output.
+This vulnerability arises from how UTXO-based systems handle multiple inputs. (See our [vulnerability database](/docs/build/smart-contracts/advanced/security/overview) for more.) Since validators run independently for each input, and all have access to the same transaction outputs, a careless validator can be "satisfied" multiple times by the same output.
 
 Example: A swap validator requires "pay 5 ADA to the seller." If two UTXOs are locked at the same price, an attacker can pay 5 ADA once but claim both UTXOs. Each validator sees the payment and approves.
 
 The solution is to tag outputs uniquely, using the input's output reference as a datum on the corresponding output so each validator looks for its specific tagged output.
 
+## Quick Reference: Ethereum to Cardano
+
+| Ethereum | Cardano |
+|----------|---------|
+| Contract storage | **Datum** (data attached to UTXOs) |
+| Function parameters | **Redeemer** (user-provided action data) |
+| `msg.sender` | Check `tx.extra_signatories` |
+| `msg.value` | Examine input/output values explicitly |
+| `require(condition)` | Aiken's `expect` or `?` assertions |
+| `modifier onlyOwner` | `key_signed(signers, owner)` |
+| `mapping(addr => uint)` | One UTXO per entry (datum holds the value) |
+| `constructor` | Parameterized script (baked in at compile time) |
+| Events | Transaction metadata or off-chain indexing |
+| View functions | Query UTXOs directly via API |
+| ABI | **Blueprint** (`plutus.json`) |
+
 ## Next Steps
 
-Ready to start building? Here's your path:
-
-1. **Learn Aiken**: [aiken-lang.org](https://aiken-lang.org) has the complete language guide and tutorials
-2. **Hands-on Lessons**: Work through our [Smart Contract Lessons](/docs/smart-contracts/lessons/) to build real projects
-3. **Set Up Off-chain**: [Mesh SDK](/docs/get-started/client-sdks/typescript/mesh/overview) for transaction building
+1. **Learn Aiken**: Start with [aiken-lang.org](https://aiken-lang.org) for the language guide and tutorials
+2. **Hands-on Lessons**: Work through [Smart Contract Lessons](/docs/smart-contracts/lessons/) to build real projects
+3. **Set Up Off-chain**: Use [Mesh SDK](/docs/get-started/client-sdks/typescript/mesh/overview) for transaction building
 4. **Get Test ADA**: Deploy to [Preview or Preprod testnets](/docs/get-started/networks/testnets)
-5. **Explore Core Concepts**: [EUTXO Model](/docs/learn/core-concepts/eutxo) for deeper understanding
-
-### Community
-
-- [Developer Community](/docs/community/cardano-developer-community) - Connect with the Cardano developer community
+5. **Explore Core Concepts**: Read about the [EUTXO Model](/docs/learn/core-concepts/eutxo) for deeper understanding
+6. **Join the Community**: Connect via the [Developer Community](/docs/community/cardano-developer-community)
