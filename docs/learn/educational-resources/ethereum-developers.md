@@ -15,6 +15,8 @@ When developing on Cardano, the most significant difference you will encounter i
 
 Unlike Ethereum, Cardano is designed around the **[Extended UTXO (EUTXO) model](/docs/learn/core-concepts/eutxo)** rather than an account-based model. On Ethereum, each address maintains a balance stored in global state. Transactions update these balances directly, and smart contracts hold and modify their own storage.
 
+![EUTXO vs Account Model](../core-concepts/img/eutxo-vs-account-model.jpg)
+
 On Cardano, there is no global state. Value exists as discrete **Unspent Transaction Outputs (UTXOs)**. Think of them like physical bills and coins rather than a bank balance. When you spend, you consume entire UTXOs and create new ones as outputs. If you have a 100 ADA UTXO and want to send 10 ADA to someone, the transaction consumes your 100 ADA UTXO entirely and creates two new UTXOs: one with 10 ADA for the recipient and one with 90 ADA as your change.
 
 Critically, smart contracts on Cardano have no internal storage. There's no mutable state sitting inside a contract. Instead, state lives in **datums**, which are data attached to UTXOs. To illustrate this, let's look at two smart contracts for a counter: one in Solidity on Ethereum and one in [Aiken](/docs/build/smart-contracts/languages/aiken/overview) on Cardano.
@@ -49,7 +51,7 @@ pub type SpendingValidatorDatum {
 }
 ```
 
-Then we define what actions a user can take:
+Then we define what actions a user can take (**Redeemer**: The user's intended action is passed as data with the transaction):
 
 ```aiken
 pub type CounterAction {
@@ -96,12 +98,9 @@ validator counter_validator {
 }
 ```
 
-The key differences:
-
-- **No mutable state**: The validator doesn't store `count`. It validates that the transaction correctly updates it.
-- **Datum**: State is attached to UTXOs, not stored in the contract.
-- **Redeemer**: The user's intended action is passed as data with the transaction.
-- **Validation, not execution**: The validator approves or rejects; it doesn't execute the increment itself.
+:::note Helper Functions
+The examples use helper functions like `find_continuing_output` and `get_datum` for clarity. These aren't built into Aiken but are common patterns you'd implement yourself or import from [utility libraries](/docs/build/smart-contracts/languages/aiken/overview#common-utilitieshelpers). For example, `key_signed(extra_signatories, key)` simply checks if a key hash exists in the list: `list.has(extra_signatories, key)`.
+:::
 
 ### What Are the Benefits of the EUTXO Model?
 
@@ -111,15 +110,17 @@ The EUTXO model brings several practical advantages:
 
 **Deterministic Validation**: Because all inputs to a transaction are known upfront (no global state to query), you know exactly what will happen before submitting. The validator runs the same way locally as on-chain. If it passes locally, it passes on-chain.
 
-**No Failed Transaction Fees**: Most validation failures are caught locally before submission. You simulate the transaction, see it fail, and never submit, so no fee is lost.
-
 **Predictable Fees**: Fees are based on transaction size, not network demand. A hot NFT mint doesn't spike fees for simple ADA transfers. Everyone pays the same deterministic rate.
 
 **No Reentrancy**: UTXOs are consumed atomically in a single transaction. Reentrancy attacks are structurally impossible on Cardano.
 
 ## How Do Transactions Work on Cardano?
 
-A Cardano transaction transforms UTXOs: it spends existing ones and creates new ones. The key components:
+A Cardano transaction transforms UTXOs: it spends existing ones and creates new ones.
+
+![UTXO Transaction Flow](../core-concepts/img/utxo-transaction-flow.png)
+
+The key components:
 
 - **Inputs**: UTXOs being spent
 - **Outputs**: New UTXOs being created, each with a destination address, value, and optional datum
@@ -174,8 +175,6 @@ function increment() public onlyOwner {
 On Cardano, we check if the owner signed the transaction. Here's how that looks using the `key_signed` helper function:
 
 ```aiken
-use cocktail.{key_signed}
-
 validator counter_with_owner(owner: VerificationKeyHash) {
   spend(
     datum_opt: Option<SpendingValidatorDatum>,
@@ -215,8 +214,6 @@ The `owner` parameter is baked into the script at compile time. Different owners
 What if we want the counter to only work before a certain deadline? On Ethereum, you'd check `block.timestamp`. On Cardano, we use validity intervals. Here's a more complete example based on our vesting contract pattern:
 
 ```aiken
-use cocktail.{key_signed, valid_before}
-
 pub type CounterDatum {
   count: Int,
   owner: ByteArray,
@@ -321,8 +318,6 @@ flowchart LR
 ```
 
 The transaction spends two UTXOs as inputs: the buyer's funds (from their wallet) and the current protocol state (sitting at the script address with `ticket_counter: 7` in its datum). It creates three new UTXOs as outputs: the minted ticket plus change goes back to the buyer's wallet, the updated state (with `ticket_counter: 8`) returns to the script address to continue the protocol, and the payment goes to the treasury address. Everything happens atomically. If any part fails, nothing happens.
-
-### The Validator
 
 This validator handles both spending (state updates) and minting (ticket creation) in a single script. Here's the complete code:
 
@@ -456,23 +451,25 @@ Alternatives exist too: **OpShin** offers Python-like syntax, **Plu-ts** is a Ty
 
 | Ethereum | Cardano |
 |----------|---------|
-| Hardhat, Foundry | **Aiken CLI** (`aiken build`, `aiken check`) |
+| Hardhat | **Aiken CLI** (`aiken build`, `aiken check`) |
 | Remix | **Aiken Playground** (play.aiken-lang.org) |
 | Web3.js, ethers.js | [Client SDKs](/docs/get-started/client-sdks/overview) like **Mesh SDK** (TypeScript) |
-| Ganache | [Local development networks](/docs/get-started/infrastructure/api-providers/overview) like [**Yaci DevKit**](https://devkit.yaci.xyz/) |
+| Ganache, Foundry | [Local development networks](/docs/get-started/infrastructure/api-providers/overview) like [**Yaci DevKit**](https://devkit.yaci.xyz/) |
 | Infura, Alchemy | [API Providers](/docs/get-started/infrastructure/api-providers/overview) like [Blockfrost](https://blockfrost.dev/), [Maestro](https://www.gomaestro.org/), [Koios](https://koios.rest/) |
 | Etherscan | [Explorers](https://explorer.cardano.org/) |
 | MetaMask | [Wallets](https://cardano.org/apps/?tags=wallet) |
 
 ### Client SDKs
 
-| Language | SDK |
-|----------|-----|
-| TypeScript | **Mesh SDK**, Lucid Evolution |
-| Python | PyCardano |
-| Rust | Pallas |
-| Go | go-cardano |
-| C# | CardanoSharp |
+Client SDKs handle transaction building, wallet integration, UTxO selection, and fee calculation. They're equivalent to ethers.js or web3.js but for Cardano. See the full [Client SDKs documentation](/docs/get-started/client-sdks/overview) for detailed guides.
+
+| Language | SDK | Notes |
+|----------|-----|-------|
+| TypeScript | [Mesh SDK](/docs/get-started/client-sdks/typescript/mesh/overview), [Lucid Evolution](/docs/get-started/client-sdks/typescript/evolution-sdk/get-started) | Most popular for web dApps |
+| Python | [PyCardano](/docs/get-started/client-sdks/python/pycardano) | Great for scripting and backends |
+| Rust | [Pallas](/docs/get-started/client-sdks/rust/pallas) | Low-level, high performance |
+| Go | [Apollo](/docs/get-started/client-sdks/go/apollo) | Go ecosystem |
+| C# | [CardanoSharp](/docs/get-started/client-sdks/csharp/cardanosharp-wallet) | .NET ecosystem |
 
 ### Development Workflow
 
@@ -511,13 +508,15 @@ On Ethereum, proxy patterns enable upgrades while keeping the same address. On C
 
 For upgradeable patterns, you can use parameterized scripts (different parameters create different addresses), reference scripts (CIP-33, store script on-chain and reference it), or migration (move UTXOs from old script to new).
 
-### Watch Out: Double Satisfaction
+### Smart Contract Security
 
-This vulnerability arises from how UTXO-based systems handle multiple inputs. (See our [vulnerability database](/docs/build/smart-contracts/advanced/security/overview) for more.) Since validators run independently for each input, and all have access to the same transaction outputs, a careless validator can be "satisfied" multiple times by the same output.
+The EUTXO model has its own security considerations that differ from account-based systems. Our [Smart Contract Vulnerabilities](/docs/build/smart-contracts/advanced/security/overview) database catalogs common issues and mitigations.
 
-Example: A swap validator requires "pay 5 ADA to the seller." If two UTXOs are locked at the same price, an attacker can pay 5 ADA once but claim both UTXOs. Each validator sees the payment and approves.
+**Example: Double Satisfaction**
 
-The solution is to tag outputs uniquely, using the input's output reference as a datum on the corresponding output so each validator looks for its specific tagged output.
+Since validators run independently for each input and all see the same transaction outputs, a careless validator can be "satisfied" multiple times by the same output. A swap validator requiring "pay 5 ADA to the seller" could be exploited: if two UTXOs are locked at the same price, an attacker pays 5 ADA once but claims both UTXOs. The fix is tagging outputs uniquely so each validator looks for its specific output.
+
+This is just one of many EUTXO-specific patterns to understand. See the [vulnerability database](/docs/build/smart-contracts/advanced/security/overview) for the full list, or try exploiting vulnerable contracts yourself in the [Cardano CTF](/docs/build/smart-contracts/advanced/security/ctf).
 
 ## Quick Reference: Ethereum to Cardano
 
