@@ -201,19 +201,15 @@ validator counter_with_owner(owner: VerificationKeyHash) {
         expect Some(output) = find_continuing_output(tx)
         expect output_datum: CounterDatum = get_datum(output)
 
-        is_owner_signed? && (input_datum.count + 1 == output_datum.count)
+        // Check if the owner signed the transaction and the counter was incremented correctly
+        // If both conditions are true, the transaction is allowed.
+        is_owner_signed && (input_datum.count + 1 == output_datum.count)
       }
       Decrement -> {
-        // Similar logic for decrementing
-        // ...
+        // Similar logic for decrementing.
       }
     }
   }
-
-  else(_) {
-    fail
-  }
-}
 ```
 
 The `owner` parameter is baked into the script at compile time. Different owners produce different script hashes, meaning different addresses:
@@ -251,7 +247,7 @@ validator timed_counter {
     let is_owner_signed = key_signed(tx.extra_signatories, datum.owner)
     let is_not_expired = valid_before(tx.validity_range, datum.deadline)
 
-    is_owner_signed? && is_not_expired?
+    is_owner_signed && is_not_expired
   }
 
   else(_) {
@@ -260,7 +256,7 @@ validator timed_counter {
 }
 ```
 
-The `valid_before` function checks that the transaction's validity interval ends before the deadline. If someone tries to submit a transaction after the deadline, the ledger rejects it before the script even runs.
+The `valid_before` function checks that the transaction's validity interval ends before the deadline.
 
 ## Native Tokens vs ERC-20/721
 
@@ -373,7 +369,7 @@ validator ticketer(
   treasury: Address,
   max_tickets: Int,
 ) {
-  spend(datum: Option<TicketerDatum>, redeemer: TicketerRedeemer, UTxO: OutputReference, tx: Transaction) {
+  spend(datum: Option<TicketerDatum>, redeemer: TicketerRedeemer, utxo: OutputReference, tx: Transaction) {
     expect Some(datum) = datum
     let TicketerDatum { ticket_counter } = datum
 
@@ -459,7 +455,7 @@ The validator doesn't increment the counter. It checks that whoever built the tr
     }
 ```
 
-Instead of calling `block.timestamp`, the validator checks if the transaction's validity range falls before or after `switch_slot`. Early bird pricing is enforced by the ledger rejecting transactions submitted after the deadline, before the script even runs. The validator just needs to check which price tier applies.
+The validator checks if the transaction's validity range falls before or after `switch_slot`. Early bird pricing is enforced by the ledger rejecting transactions submitted after the deadline, before the script even runs. The validator just needs to check which price tier applies.
 
 ### Multiple Validators in one transaction
 
@@ -476,7 +472,7 @@ The `spend` validator handles state updates while the `mint` validator controls 
 
 ### Admin Token for Authentication
 
-The `admin_token` parameter solves a Cardano-specific problem: anyone can create (send) UTxOs to any address. Without the admin token, an attacker could create fake state UTxOs with manipulated counters. Our validator checks that the state UTxO contains this unique token, proving it's legitimate protocol state rather than a spoofed UTxO.
+The `admin_token` parameter solves a Cardano-specific problem: anyone can create (send) UTxOs to any address. Without the admin token, an attacker could create fake state UTxOs with manipulated counters. Our validator checks that the state UTxO contains this unique token, identifying it as the legitimate protocol state rather than a random UTxO at the same address.
 
 This is what production Cardano development looks like: declarative transactions where you specify exactly what should happen, and validators that approve or reject based on whether you followed the rules.
 
