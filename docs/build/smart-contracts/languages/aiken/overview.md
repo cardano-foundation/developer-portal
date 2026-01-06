@@ -10,6 +10,8 @@ image: /img/aiken-logo.png
 that most of the time, the compiler is smart enough to determine the type of something
 without requiring user annotation. Writing smart contracts should be easy and safe. With Aiken, you can get started in minutes, not days, and rapidly build confidence that your on-chain code does what's intended.
 
+![Aiken Overview1](./img/aiken-overview1.png)
+
 ## A Language Built for Smart Contracts
 
 Aiken brings strong static typing with inference, first-class functions, custom types, and modules. The language compiles directly to **Untyped Plutus Core (UPLC)**, Cardano's native smart contract execution format, giving you full access to the blockchain's capabilities. Its syntax resembles other modern languages like Rust, Elm and Gleam, but Aiken is specifically designed for smart contract development and natively supports the mental model required on Cardano.
@@ -32,11 +34,9 @@ A common misconception is that Cardano smart contracts must be written in Haskel
 
 **Aiken focuses exclusively on on-chain validator scripts.** These define the logic that validates Cardano transactions. For off-chain stuff like building transactions, wallet integration, and UIs, you'll use other tools from the Cardano ecosystem.
 
-![Aiken Overview1](./img/aiken-overview1.png)
-
 ## Getting Started
 
-Install Aiken using `aikup`, the official installer and version manager:
+[Install Aiken](https://aiken-lang.org/installation-instructions) using `aikup`, the official installer and version manager:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -77,9 +77,9 @@ curl -sSfL https://install.aiken-lang.org | bash
 
 ## Next Steps
 
-Visit **[aiken-lang.org](https://aiken-lang.org)** for the complete language guide, tutorials, and API documentation. The **[GitHub repository](https://github.com/aiken-lang/aiken)** contains examples and a highly active community.
+Visit **[aiken-lang.org](https://aiken-lang.org)** for the complete language guide, tutorials, and extensive documentation. The **[GitHub repository](https://github.com/aiken-lang/aiken)** contains examples and a highly active community.
 
-Continue the journey and join the welcoming community on [TxPipe's Discord](https://discord.com/invite/RgHzxh92WH) for further support and guidance.
+Continue the journey and join the developer community on [TxPipe's Discord](https://discord.com/invite/RgHzxh92WH) for further support and guidance.
 
 ### Educational Resources
 
