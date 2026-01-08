@@ -181,7 +181,7 @@ function increment() public onlyOwner {
 }
 ```
 
-On Cardano, we check if the owner signed the transaction. The `key_signed` [helper function](/docs/build/smart-contracts/languages/aiken/overview#common-utilitieshelpers) checks whether a specific key hash appears in `tx.extra_signatories`, the list of keys that signed this transaction:
+On Cardano, we would check if the defined owner signed the transaction. The `key_signed` [helper function](/docs/build/smart-contracts/languages/aiken/overview#common-utilitieshelpers) checks whether a specific key hash appears in `tx.extra_signatories`, the list of keys that signed this transaction:
 
 ```aiken
 validator counter_with_owner(owner: VerificationKeyHash) {
@@ -218,11 +218,11 @@ The `owner` parameter is baked into the script at compile time. Different owners
 validator counter_with_owner(owner: VerificationKeyHash) { 
 ```
 
-This is Cardano's equivalent of Solidity's constructor arguments, but with an important difference: the parameter is compiled directly into the script bytecode. Even if two contracts have identical logic, compiling with different `owner` verification keys produces different bytecode. Since the script address is derived by hashing this bytecode, each owner gets their own unique address. This means each owner's counter state lives in UTxOs at a completely separate address, providing natural isolation between different instances of the same contract logic.
+This is Cardano's equivalent of Solidity's constructor arguments, but with an important difference: the parameter is compiled directly into the script bytecode. Even if two contracts have identical logic, compiling with different `owner` verification keys produces different bytecode. Since the script address is derived by hashing this bytecode, each owner gets their own unique address. This means each owner's counter state lives in UTxOs at a completely separate address, providing isolation between different instances of the same contract logic.
 
-In the UTxO model, the [transaction](/docs/learn/core-concepts/transactions) itself is the **local state**. Every input, every output, every signature, every piece of data the validator needs is contained within the transaction. There's no querying external state, no surprises from concurrent modifications.
+In the UTxO model, the [transaction](/docs/learn/core-concepts/transactions) itself is the **local state**. Every input, every output, every signature, every piece of data the validator needs is contained within the transaction. There's no querying external state and as a result there are no surprises from concurrent modifications.
 
-When a validator runs, it receives this complete local state as context. The transaction's extra_signatories field lists every verification key hash that signed it. The validator can inspect all inputs being spent, all outputs being created, and all metadata attached. Given the same transaction input and outputs, a validator will always produce the same result because everything it needs is self-contained.
+When a validator runs, it receives this complete local state as context. For example, the transaction's extra_signatories field lists every verification key hash that signed it. The validator can inspect all inputs being spent, all outputs being created, and all metadata attached. Given the same transaction input and outputs, a validator will always produce the same result because everything it needs is self-contained.
 
 ### Adding Time Locks
 
@@ -256,7 +256,7 @@ validator timed_counter {
 }
 ```
 
-The `valid_before` function checks that the transaction's validity interval ends before the deadline.
+The `valid_before` function checks that the transaction's validity interval ends before the deadline as explained previously in the "how do transactions work" section.
 
 ## Native Tokens vs ERC-20/721
 
@@ -280,7 +280,7 @@ const nativeScript: NativeScript = {
 };
 ```
 
-That's it. No contract deployment, no bytecode. The ledger validates these rules directly. This covers most basic token use cases: single-owner minting, multisig minting, time-locked minting.
+The ledger validates these rules directly. This covers most basic token use cases: single-owner minting, multisig minting, time-locked minting.
 
 ### Validators
 
