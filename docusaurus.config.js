@@ -846,6 +846,14 @@ module.exports = {
               '/docs/get-started/networks/testnets/testnet-faucet',
             ],
           },
+          {
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
+            from: '/docs/get-started/cardano-node/installing-cardano-node',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
+            from: '/docs/get-started/cli-operations/basic-operations',
+          },
         ],
       },
     ],
