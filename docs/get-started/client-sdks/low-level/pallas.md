@@ -1,6 +1,6 @@
 ---
 id: pallas
-title: Pallas - Rust SDK for Cardano
+title: Pallas - Rust Primitives for Cardano
 sidebar_label: Pallas
 description: Rust-native building blocks for the Cardano blockchain ecosystem.
 image: /img/og/og-developer-portal.png
@@ -13,6 +13,10 @@ image: /img/og/og-developer-portal.png
 Pallas is a collection of Rust modules that re-implement common Ouroboros and Cardano logic in native Rust. Rather than providing a specific application, Pallas serves as a foundational layer for building higher-level use cases like explorers, wallets, and potentially even full nodes.
 
 The library is organized as a Cargo workspace where each building block lives in its own crate. The root `pallas` crate serves as an all-in-one dependency that re-exports all modules in a hierarchical structure, with Cargo features to customize the setup for your specific needs.
+
+:::tip Looking for a transaction builder?
+Pallas provides low-level primitives for building custom tooling. If you need a higher-level SDK for transaction building in Rust, check out [Whisky](/docs/get-started/client-sdks/rust/whisky), which uses Pallas internally via its `WhiskyPallas` serializer backend.
+:::
 
 ## Key Components
 

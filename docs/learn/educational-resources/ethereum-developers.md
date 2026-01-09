@@ -580,9 +580,9 @@ Client SDKs handle transaction building, wallet integration, UTxO selection, and
 
 | Language | SDK |
 |----------|-----|
-| TypeScript | [Typescript SDKs](/docs/get-started/client-sdks/typescript/overview)|
+| TypeScript | [Typescript SDKs](/docs/get-started/client-sdks/typescript/overview) |
 | Python | [PyCardano](/docs/get-started/client-sdks/python/pycardano) |
-| Rust | [Pallas](/docs/get-started/client-sdks/rust/pallas) |
+| Rust | [Whisky](/docs/get-started/client-sdks/rust/whisky) |
 | Go | [Apollo](/docs/get-started/client-sdks/go/apollo) |
 | C# | [CardanoSharp](/docs/get-started/client-sdks/csharp/cardanosharp-wallet) |
 
