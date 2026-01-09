@@ -780,6 +780,14 @@ export const Showcases = [
     getstarted: "https://store.yaci.xyz/docs/intro",
     tags: ["indexer", "java"],
   },
+  {
+    title: "Tx-Village",
+    description: "Rust/Haskell ecosystem of libraries and tools to work with Cardano smart contracts.",
+    preview: require("./images/tx-village.jpg"),
+    website: "https://mlabs-haskell.github.io/tx-village",
+    getstarted: "https://github.com/mlabs-haskell/lambda-buffers-for-cardano/tree/main/transactions/demo-tx-village",
+    tags: ["transactionbuilder", "indexer", "rust", "haskell"]
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
