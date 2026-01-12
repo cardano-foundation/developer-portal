@@ -50,11 +50,11 @@ Official [Cardano Foundation](https://cardanofoundation.org/) Engineering Discor
 
 Build, compete, and win! The Cardano ecosystem regularly hosts hackathons and developer challenges where you can showcase your skills, collaborate with other builders, and earn rewards.
 
-:::info Get Notified About Challenges
+:::info Get Notified About New Challenges
 
-Be the first to know when new hackathons and developer challenges are announced. Sign up for notifications and never miss an opportunity to participate.
+Never miss a hackathon or developer challenge. Visit our dedicated hackathons page to learn more and sign up for notifications.
 
-[**Subscribe to Challenge Alerts →**](HUBSPOT_FORM_URL_PLACEHOLDER)
+[**Explore Hackathons →**](/hackathons)
 
 :::
 
