@@ -70,7 +70,7 @@ const benefits = [
   {
     icon: "img/icons/chart-line-solid.svg",
     title: "Launch Your Project",
-    description: "Turn your hackathon idea into a real product in the ecosystem."
+    description: "Turn your idea into a real product in the ecosystem."
   }
 ];
 
@@ -117,7 +117,7 @@ function OverviewSection() {
             </div>
           </div>
           <div className={styles.overviewText}>
-            <h2>What to Expect</h2>
+            <h2>Join the Builders</h2>
             <p>
               Cardano hackathons are global events that bring together the most
               promising developers and entrepreneurs to build real products on Cardano.
@@ -127,9 +127,15 @@ function OverviewSection() {
               mentorship, technical resources, and a community of builders who share
               your passion for decentralized technology.
             </p>
-            <Link className="button button--primary" href={HUBSPOT_URL}>
-              Get Notified
-            </Link>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <Link className="button button--primary" href={HUBSPOT_URL}>
+                Get Notified
+              </Link>
+              <Link to="/docs/community/cardano-developer-community" className={clsx("button button--outline", styles.buttonWithIcon)}>
+                <img src={useBaseUrl("img/icons/users-solid.svg")} alt="Community" />
+                Connect with Developers
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -155,14 +161,14 @@ function WaysToParticipateSection() {
             <span className={styles.wayNumber}>02</span>
             <div className={styles.wayContent}>
               <h3>Bounties</h3>
-              <p>Specific technical challenges with defined goals and immediate rewards. Great for focused problem-solving.</p>
+              <p>Specific technical challenges with defined goals and immediate rewards. Contribute fixes, features, or integrations to existing projects.</p>
             </div>
           </div>
           <div className={styles.wayItem}>
             <span className={styles.wayNumber}>03</span>
             <div className={styles.wayContent}>
               <h3>Grants</h3>
-              <p>Funding opportunities for longer-term projects that benefit the ecosystem. Ideal for ambitious builders.</p>
+              <p>Financial backing to turn ambitious ideas into production-ready products. Receive support to take your idea from concept to launch.</p>
             </div>
           </div>
         </div>
@@ -186,9 +192,9 @@ function ResourcesSection() {
             <div className={styles.resourceLinks}>
               <Link to="/docs/get-started/" className={styles.resourceLink}>
                 <img src={useBaseUrl("img/icons/book-solid.svg")} alt="" />
-                Get Started Guide
+                Get Started
               </Link>
-              <Link to="/docs/build/client-sdks/" className={styles.resourceLink}>
+              <Link to="/docs/get-started/client-sdks/overview" className={styles.resourceLink}>
                 <img src={useBaseUrl("img/icons/code-solid.svg")} alt="" />
                 Client SDKs
               </Link>

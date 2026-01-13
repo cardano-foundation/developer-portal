@@ -231,6 +231,17 @@ html[data-theme="dark"] .photoPlaceholder {
   margin-top: 0.5rem;
 }
 
+.buttonWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.buttonWithIcon img {
+  width: 16px;
+  height: 16px;
+}
+
 /* ===========================================
    WAYS TO PARTICIPATE SECTION
    =========================================== */
