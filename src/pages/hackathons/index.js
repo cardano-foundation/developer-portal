@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
@@ -8,7 +8,6 @@ import styles from "./styles.module.css";
 
 const TITLE = "Hackathons & Challenges";
 const DESCRIPTION = "Build innovative projects, collaborate with developers, and win prizes on Cardano";
-const HUBSPOT_URL = "HUBSPOT_FORM_URL_PLACEHOLDER";
 
 function MetaData() {
   return (
@@ -31,9 +30,9 @@ function HeroSection() {
           and earn rewards in the Cardano ecosystem.
         </p>
         <div className={styles.heroCta}>
-          <Link className={clsx("button button--secondary button--lg", styles.primaryBtn)} href={HUBSPOT_URL}>
+          <a className={clsx("button button--secondary button--lg", styles.primaryBtn)} href="#subscribe">
             Get Notified
-          </Link>
+          </a>
           <Link className={clsx("button button--outline button--lg", styles.secondaryBtn)} to="/docs/get-started/">
             Start Building
           </Link>
@@ -93,7 +92,6 @@ function BenefitsSection() {
   );
 }
 
-// Photo grid + overview section (like Solana's)
 function OverviewSection() {
   return (
     <section className={styles.overview}>
@@ -127,12 +125,12 @@ function OverviewSection() {
               mentorship, technical resources, and a community of builders who share
               your passion for decentralized technology.
             </p>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link className="button button--primary" href={HUBSPOT_URL}>
+            <div className={styles.overviewButtons}>
+              <a className="button button--primary" href="#subscribe">
                 Get Notified
-              </Link>
+              </a>
               <Link to="/docs/community/cardano-developer-community" className={clsx("button button--outline", styles.buttonWithIcon)}>
-                <img src={useBaseUrl("img/icons/users-solid.svg")} alt="Community" />
+                <img src={useBaseUrl("img/icons/users-solid.svg")} alt="" />
                 Connect with Developers
               </Link>
             </div>
@@ -143,7 +141,6 @@ function OverviewSection() {
   );
 }
 
-// Simplified typography-based approach
 function WaysToParticipateSection() {
   return (
     <section className={styles.waysSection}>
@@ -214,16 +211,34 @@ function ResourcesSection() {
 }
 
 function CTASection() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://js-eu1.hsforms.net/forms/embed/7759219.js";
+    script.defer = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
-    <section className={styles.cta}>
+    <section className={styles.cta} id="subscribe">
       <div className="container">
         <h2>Stay Updated</h2>
         <p>
           Be the first to know when new hackathons and challenges are announced.
         </p>
-        <Link className="button button--secondary button--lg" href={HUBSPOT_URL}>
-          Subscribe to Updates
-        </Link>
+        <div className={styles.hubspotFormWrapper}>
+          <div
+            className="hs-form-frame"
+            data-region="eu1"
+            data-form-id="9f20bbcf-9070-4db2-9317-79d678500a89"
+            data-portal-id="7759219"
+          />
+        </div>
       </div>
     </section>
   );

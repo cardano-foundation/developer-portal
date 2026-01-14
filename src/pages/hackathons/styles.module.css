@@ -227,8 +227,10 @@ html[data-theme="dark"] .photoPlaceholder {
   margin-bottom: 1.25rem;
 }
 
-.overviewText .button {
-  margin-top: 0.5rem;
+.overviewButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .buttonWithIcon {
@@ -242,12 +244,30 @@ html[data-theme="dark"] .photoPlaceholder {
   height: 16px;
 }
 
+html[data-theme="light"] .buttonWithIcon img {
+  filter: invert(15%) sepia(95%) saturate(2000%) hue-rotate(215deg) brightness(90%);
+}
+
+html[data-theme="dark"] .buttonWithIcon img {
+  filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
+}
+
 /* ===========================================
    WAYS TO PARTICIPATE SECTION
    =========================================== */
 
 .waysSection {
   padding: 5rem 0;
+}
+
+html[data-theme="light"] .waysSection {
+  background-color: #0538AF;
+  color: #fff;
+}
+
+html[data-theme="dark"] .waysSection {
+  background-color: #1a1a2e;
+  color: #fff;
 }
 
 .waysList {
@@ -263,11 +283,11 @@ html[data-theme="dark"] .photoPlaceholder {
 }
 
 html[data-theme="light"] .wayItem {
-  border-color: #e5e7eb;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 html[data-theme="dark"] .wayItem {
-  border-color: #333;
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .wayItem:last-child {
@@ -282,13 +302,13 @@ html[data-theme="dark"] .wayItem {
 }
 
 html[data-theme="light"] .wayNumber {
-  color: #0538AF;
-  opacity: 0.15;
+  color: #fff;
+  opacity: 0.3;
 }
 
 html[data-theme="dark"] .wayNumber {
-  color: #6684CE;
-  opacity: 0.2;
+  color: #fff;
+  opacity: 0.25;
 }
 
 .wayContent h3 {
@@ -300,7 +320,7 @@ html[data-theme="dark"] .wayNumber {
 .wayContent p {
   font-size: 1rem;
   line-height: 1.6;
-  opacity: 0.75;
+  opacity: 0.85;
   margin: 0;
 }
 
@@ -414,36 +434,36 @@ html[data-theme="dark"] .resourceLink img {
 }
 
 html[data-theme="light"] .cta {
-  background-color: #0538AF;
-  color: #fff;
+  background-color: #fff;
 }
 
 html[data-theme="dark"] .cta {
-  background-color: #1a1a2e;
-  color: #fff;
+  background-color: #242526;
 }
 
 .cta h2 {
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
-  color: #fff;
 }
 
 .cta p {
   font-size: 1.1rem;
-  opacity: 0.9;
+  opacity: 0.8;
   margin-bottom: 1.5rem;
 }
 
-.cta .button {
-  background: #fff !important;
-  color: #0538AF !important;
-  border-color: #fff !important;
+.hubspotFormWrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-.cta .button:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
+/* White background in dark mode ensures HubSpot form text is readable */
+html[data-theme="dark"] .hubspotFormWrapper {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
 }
 
 /* ===========================================
