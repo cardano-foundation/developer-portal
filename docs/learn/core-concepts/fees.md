@@ -16,9 +16,15 @@ Cardano uses a straightforward fee calculation: **fee = a × size(tx) + b**
 
 Where:
 
-- **a**: Protocol parameter reflecting the cost per byte of transaction data
-- **b**: Fixed base fee applied to every transaction regardless of size
+- **a**: Protocol parameter reflecting the cost per byte of transaction data (currently 44 lovelace/byte)
+- **b**: Fixed base fee applied to every transaction regardless of size (currently 155,381 lovelace)
 - **size(tx)**: Transaction size in bytes
+
+Transactions with native tokens, metadata, or multiple outputs are larger and cost more. Smart contract transactions add script execution fees on top.
+
+:::note
+Protocol parameters change through on-chain governance. Query current values with `cardano-cli query protocol-parameters` or via your API provider.
+:::
 
 ## Protocol Parameters and Economic Security
 
@@ -35,6 +41,42 @@ Unlike many blockchains where fees go directly to block producers, Cardano uses 
 ## Economic Attack Prevention
 
 The fee structure prevents economic attacks where system operator costs exceed user fees. Without proper fee alignment, users could impose costs on operators without paying proportionally, potentially leading to reduced participation and system instability. Cardano's parameters are designed to ensure fees cover both processing and long-term storage costs.
+
+## Script Execution Fees
+
+When transactions execute smart contracts (for spending from script addresses, minting tokens, or validating certificates), additional fees apply based on computational resources consumed.
+
+### Execution Units
+
+Script costs are measured in two dimensions:
+
+- Memory units = peak memory used during execution (ExUnits.mem)
+- CPU steps = CPU budget consumed (ExUnits.steps)
+
+The script fee is calculated as:
+
+```
+script_fee = mem_price × memory_units + step_price × cpu_steps
+```
+
+This fee is added to the base transaction fee. Transaction building libraries calculate execution costs automatically by simulating script execution before submission.
+
+### Collateral
+
+Transactions that execute scripts must provide **collateral**: UTXOs that are forfeited if script execution fails during Phase 2 validation.
+
+**Why collateral exists:** Nodes must execute scripts to validate transactions. If a script fails, the node has already spent computational resources. Collateral compensates for this work and discourages submitting transactions that will fail.
+
+**Collateral requirements:**
+
+- Must contain only ADA (no native tokens)
+- Must cover the potential script execution cost (typically 150-200% of expected fees)
+- Is returned if the transaction succeeds
+- Is consumed only if Phase 2 validation fails
+
+**Collateral return (CIP-40):** Since the Vasil upgrade, transactions can specify a collateral return address. If collateral is consumed, any excess beyond the required amount is returned to this address rather than being entirely forfeited.
+
+For more on two-phase validation and script execution, see the [Smart Contracts Overview](/docs/build/smart-contracts/overview#collateral-and-script-execution).
 
 <details>
 <summary>Advanced: Current Protocol Parameters</summary>
@@ -55,6 +97,6 @@ Or check via blockchain explorers that display protocol parameters.
 
 ## Next Steps
 
-- Learn about [Transactions](/docs/learn/core-concepts/transactions)
-- Understand [EUTXO Model](/docs/learn/core-concepts/eutxo)
-- Build transactions: [Building dApps](/docs/build/integrate/overview)
+- Explore [Assets & Tokens](assets) to understand native token fees and minimum UTXO requirements
+- See fees in action: [Minting Native Assets](/docs/build/native-tokens/minting)
+- Learn about script execution: [Smart Contracts Overview](/docs/build/smart-contracts/overview)

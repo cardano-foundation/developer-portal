@@ -6,7 +6,22 @@ description: Understanding how transactions work on Cardano, including determini
 image: /img/og/og-getstarted-technical-concepts.png
 ---
 
-Cardano transactions are deterministic by design, meaning their behavior and outcomes can be predicted before execution. This predictability extends to validation results, fees, and ledger state changes.
+## What is a Transaction?
+
+A transaction is a request to change the blockchain's state. On Cardano, every transaction:
+
+- **Consumes** one or more existing UTXOs (inputs)
+- **Creates** new UTXOs (outputs)
+- Optionally **mints or burns** native tokens
+- Pays a **fee** to the network
+
+Unlike account-based blockchains where you update balances, Cardano transactions explicitly list what goes in and what comes out. The total input value must equal total output value plus the fee. Nothing is left unaccounted for.
+
+This explicit structure makes transactions **deterministic**: you know exactly what will happen before you submit. For the full model of how inputs and outputs work, see the [EUTXO Model](eutxo).
+
+:::tip For Builders
+[Client SDKs](docs/get-started/client-sdks) handle transaction building, CBOR encoding, and fee calculation for you.
+:::
 
 ## Transaction Validation
 
@@ -18,6 +33,10 @@ Transaction validation on Cardano uses scripts (pieces of code) that implement p
 - **Certificate applications**: Scripts validate delegation and registration certificates
 
 Each transaction specifies all arguments passed to scripts during validation, including user-provided redeemers that serve different purposes depending on the script logic.
+
+:::note Script Execution Costs
+When spending from script addresses or minting tokens with smart contract policies, additional computational costs apply. These are measured in execution units (memory and CPU steps) and added to the base transaction fee. See [Transaction Fees](fees) for the complete fee structure including collateral requirements.
+:::
 
 ## Deterministic Outcomes
 
@@ -117,15 +136,10 @@ For most applications, waiting 6-20 confirmations provides really strong finalit
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/OSNf1MgAbII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
-## Guaranteed Transaction Delivery
-
-How dropped transactions happen on cardano and how to ensure we always deliver them into blocks.
-<iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/gm-phCUGEoY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
-
 ---
 
 ## Next Steps
 
-- Learn about [Transaction Fees](/docs/learn/core-concepts/fees)
-- Understand [Addresses](/docs/learn/core-concepts/addresses)
-- Build transactions: [Building dApps](/docs/build/integrate/overview)
+- Learn about [Transaction Fees](fees) and how costs are calculated
+- Understand how transactions interact with [Native Assets](assets)
+- Ready to build? See [Smart Contracts Overview](/docs/build/smart-contracts/overview) or [Minting Native Assets](/docs/build/native-tokens/minting)

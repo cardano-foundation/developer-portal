@@ -19,13 +19,32 @@ Minting requires a certain amount of skill in navigating and working with Linux 
 We will not go into how to spin up a Cardano node, but this is covered in the [integrate Cardano category](/docs/get-started/infrastructure/node/installing-cardano-node).
 :::
 
-## What are native tokens/assets?
+## What are Native Tokens?
 
-The Cardano Blockchain has the unique ability to create, interact with, and delete bespoke tokens (or 'assets') natively. In this example, native means that, in addition to sending and receiving the official currency ada, you may interact with custom assets right out of the box - without the use of smart contracts.
+Cardano is a **multi-asset ledger**. The blockchain natively supports creating and transferring custom tokens alongside ada. Unlike Ethereum where each token requires a smart contract (ERC-20/ERC-721), Cardano tokens are first-class citizens tracked directly by the ledger.
 
-Native assets can practically be treated as ada in every sense because the capability is already built-in. Of course, there are some limitations (which we'll discuss later), but you can think of native assets as a way to produce your own custom for the time being.
+This means:
+- **No smart contracts needed** for basic token operations (minting, sending, burning)
+- **Lower fees** since you're not executing contract code for transfers
+- **Same security guarantees** as ada, tokens benefit from ledger-level validation
 
-## What you need to know 
+:::tip Conceptual Foundation
+Native tokens work within Cardano's [UTXO model](/docs/learn/core-concepts/eutxo). Each UTXO can hold ada plus any number of native tokens bundled together. Understanding UTXOs helps explain why tokens always travel with ada (minimum UTXO requirement) and how minting policies control token creation.
+
+For the full conceptual background, see [Assets & Tokens](/docs/learn/core-concepts/assets).
+:::
+
+## Prerequisites
+
+Before minting tokens, you should understand:
+
+- **[Addresses](/docs/learn/core-concepts/addresses)**: Where your tokens will live
+- **[Transactions](/docs/learn/core-concepts/transactions)**: How minting transactions work
+- **[Transaction Fees](/docs/learn/core-concepts/fees)**: What minting costs
+
+Don't have time to read everything? The minting guides explain concepts as needed, linking back to these pages for deeper understanding.
+
+## What You Need to Know 
 Before we go any further, here's a quick rundown of what you need to know.
 
 ### How we interact with the blockchain
@@ -41,21 +60,27 @@ So, what kinds of sophisticated transactions can we create with a full node, and
 
 In the future, this probably will also be the place where smart contracts are written, tested, and maybe executed if there isn't a visual frontend.
 
-### Constraints when working with tokens
+### Constraints When Working with Tokens
 
-Since we already learned that interaction with the network is almost always a transaction, we need to be aware of a few things enforced through network parameters.
+Since interaction with the network is almost always a transaction, be aware of these network-enforced constraints:
 
-1. A fee must always be paid whether issuing a transaction or sending something. Currently, the cost is determined by the size of the transaction (read: how much "information" gets sent). The size of a transaction can range from a simple "A transmits 2 ada to B" to a considerably more sophisticated transaction with additional metadata.
-2. There is a minimum value that must be sent. Currently, the value is set to 1 ada. This means that if we wish to send a token, we must include at least one ada in the transaction. This is to avoid huge amounts of custom tokens from being created and the network being flooded with custom token transactions.
-3. We currently (June 2021) have no standard way to define an NFT. There is an [open pull request](https://github.com/cardano-foundation/CIPs/pull/85), however. Most of the current NFTs on Cardano mostly follow the proposed structure, as we will in this section.
+1. **Transaction fees** must always be paid. The cost depends on transaction size. More data (metadata, multiple tokens, etc.) means higher fees. See [Transaction Fees](/docs/learn/core-concepts/fees) for how fees are calculated.
 
-Please keep those constraints in mind if you want to work with native assets.
+2. **Minimum UTXO value**: Every output must contain a minimum amount of ada (roughly 1-1.5 ADA depending on what's in the output). This means tokens always travel together with some ada. See [Minimum Ada Requirement](/docs/learn/core-concepts/assets#minimum-ada-requirement) for details.
 
-## Difference between "regular" token and NFTs
+3. **NFT metadata standards**: The community has established standards for NFT metadata through [CIP-25](https://cips.cardano.org/cip/CIP-25) and [CIP-68](https://cips.cardano.org/cip/CIP-68) (newer standard with reference tokens).
 
-In terms of technology, there isn't much of a distinction between "regular" tokens/native assets and NFTs. This is due to the fact that both can be produced using the cardano node cli and are native assets.
+Keep these constraints in mind when working with native assets.
 
-Unlike fungible native assets, which might consist of millions of interchangeable tokens, an NFT is a single native asset that cannot be re-minted or destroyed, and it exists on the blockchain in perpetuity.
+## Difference Between Fungible Tokens and NFTs
+
+Technically, there isn't much distinction between fungible tokens and NFTs, both are native assets created the same way.
+
+The difference is in how they're used:
+- **Fungible tokens**: Millions of interchangeable units
+- **NFTs**: Unique tokens with quantity of 1
+
+For a deeper explanation of fungibility and how minting policies enforce uniqueness, see [Fungible vs Non-Fungible Tokens](/docs/learn/core-concepts/assets#fungible-vs-non-fungible-tokens).
 
 ---
 

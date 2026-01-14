@@ -90,9 +90,11 @@ If using a 3rd party service for minting, the service will have control of the m
 
 ### Time locking
 
-Since NFTs are likely to be traded or sold, they should follow a more strict policy. Most of the time, a value is defined by the (artificial) scarcity of an asset.
+Since NFTs are likely to be traded or sold, they should follow a more strict policy. Most of the time, value is defined by the (artificial) scarcity of an asset.
 
-You can regulate such factors with [multi-signature scripts](https://github.com/IntersectMBO/cardano-node/blob/c6b574229f76627a058a7e559599d2fc3f40575d/doc/reference/simple-scripts.md).
+**Why time-lock NFTs?** NFTs derive value from guaranteed scarcity. A time-locked policy ensures no more tokens can ever be minted after the deadline passes. This guarantee is enforced at the protocol level: the blockchain itself rejects any minting transaction submitted after the policy's slot deadline expires. Buyers can verify this by checking the policy script.
+
+For how validity intervals work at the protocol level, see [Validity Intervals](/docs/learn/core-concepts/transactions#validity-intervals-and-time).
 
 For this guide, we will choose the following constraints:
 

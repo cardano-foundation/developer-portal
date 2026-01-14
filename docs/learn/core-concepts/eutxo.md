@@ -8,6 +8,10 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 Cardano uses the Extended UTXO (EUTXO) model to support multi-assets and smart contracts while maintaining UTXO's core advantages over account-based blockchains.
 
+:::note Quick Summary
+Cardano tracks value as discrete "coins" (UTXOs) rather than account balances. Each transaction consumes existing UTXOs and creates new ones. Smart contracts validate whether a UTXO can be spent, but cannot initiate actions themselves. This model makes transactions deterministic, you know exactly what will happen before you submit a transaction.
+:::
+
 ## Why Accounting Models Matter
 
 Blockchains solve **decentralized consensus** - multiple parties with conflicting interests agreeing on transaction history without central authority. This consensus challenge drives two fundamentally different approaches to representing value: account-based and UTXO-based models.
@@ -33,6 +37,8 @@ UTXOs must be consumed completely - all-or-nothing like cash bills you can't spl
 
 ![UTXO Transaction Flow](./img/utxo-transaction-flow.png)
 *A transaction consumes existing UTXOs as inputs and creates new UTXOs as outputs. The consumed UTXOs are removed from the UTXO set, while the new outputs become available for future transactions.*
+
+## Your First UTXO Transaction
 
 ### Example: Alice Sends Bob 10 ADA
 
@@ -188,6 +194,6 @@ The key insight is that **single on-chain state patterns from account-based syst
 
 ## Next Steps
 
-- Learn about [Transactions](/docs/learn/core-concepts/transactions) and how they work in the EUTXO model
-- Understand [Addresses](/docs/learn/core-concepts/addresses) on Cardano
-- Build smart contracts using EUTXO: [Smart Contracts Overview](/docs/build/smart-contracts/overview)
+- Learn about [Transactions](transactions) and how they consume and create UTXOs
+- Understand [Transaction Fees](fees) and how costs are calculated
+- Ready to build? See [Smart Contracts Overview](/docs/build/smart-contracts/overview) or [Minting Native Assets](/docs/build/native-tokens/minting)

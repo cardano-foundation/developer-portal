@@ -215,10 +215,10 @@ module.exports = {
         label: "Core Concepts",
         items: [
           "learn/core-concepts/overview",
+          "learn/core-concepts/addresses",
           "learn/core-concepts/eutxo",
           "learn/core-concepts/transactions",
           "learn/core-concepts/fees",
-          "learn/core-concepts/addresses",
           "learn/core-concepts/assets",
         ],
       },
