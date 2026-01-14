@@ -20,7 +20,7 @@ Unlike account-based blockchains where you update balances, Cardano transactions
 This explicit structure makes transactions **deterministic**: you know exactly what will happen before you submit. For the full model of how inputs and outputs work, see the [EUTXO Model](eutxo).
 
 :::tip For Builders
-[Client SDKs](docs/get-started/client-sdks) handle transaction building, CBOR encoding, and fee calculation for you.
+[Client SDKs](/docs/get-started/client-sdks/overview) handle transaction building, CBOR encoding, and fee calculation for you.
 :::
 
 ## Transaction Validation
