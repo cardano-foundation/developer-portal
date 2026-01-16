@@ -187,6 +187,20 @@ html[data-theme="dark"] .overview {
   grid-column: 1 / -1;
 }
 
+.photoLarge img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.photoSmall img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
 .photoPlaceholder {
   border-radius: 12px;
   display: flex;
@@ -525,11 +539,13 @@ html[data-theme="dark"] .hubspotFormWrapper {
     padding: 3rem 0;
   }
 
-  .photoLarge .photoPlaceholder {
+  .photoLarge .photoPlaceholder,
+  .photoLarge img {
     height: 180px;
   }
 
-  .photoSmall .photoPlaceholder {
+  .photoSmall .photoPlaceholder,
+  .photoSmall img {
     height: 120px;
   }
 

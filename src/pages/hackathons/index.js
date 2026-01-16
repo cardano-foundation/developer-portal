@@ -99,19 +99,13 @@ function OverviewSection() {
         <div className={styles.overviewContent}>
           <div className={styles.photoGrid}>
             <div className={styles.photoLarge}>
-              <div className={styles.photoPlaceholder}>
-                <span>Hackathon Photo</span>
-              </div>
+              <img src={useBaseUrl("img/hackathons/hackathon.png")} alt="Cardano Hackathon event" />
             </div>
             <div className={styles.photoSmall}>
-              <div className={styles.photoPlaceholder}>
-                <span>Builders</span>
-              </div>
+              <img src={useBaseUrl("img/hackathons/builders.png")} alt="Developers collaborating" />
             </div>
             <div className={styles.photoSmall}>
-              <div className={styles.photoPlaceholder}>
-                <span>Community</span>
-              </div>
+              <img src={useBaseUrl("img/hackathons/community.png")} alt="Hackathon winners" />
             </div>
           </div>
           <div className={styles.overviewText}>
