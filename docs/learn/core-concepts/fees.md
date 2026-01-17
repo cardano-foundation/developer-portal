@@ -36,6 +36,48 @@ Unlike many blockchains where fees go directly to block producers, Cardano uses 
 
 The fee structure prevents economic attacks where system operator costs exceed user fees. Without proper fee alignment, users could impose costs on operators without paying proportionally, potentially leading to reduced participation and system instability. Cardano's parameters are designed to ensure fees cover both processing and long-term storage costs.
 
+## Script Execution Fees
+
+When transactions execute smart contracts (for spending from script addresses, minting tokens, or validating certificates), additional fees apply based on computational resources consumed.
+
+### Execution Units
+
+Script costs are measured in two dimensions:
+
+- **Memory units**: Peak memory used during execution (ExUnits.mem)
+- **CPU steps**: CPU budget consumed (ExUnits.steps)
+
+The script fee is calculated as:
+
+```
+script_fee = mem_price × memory_units + step_price × cpu_steps
+```
+
+This fee is added to the base transaction fee. Transaction building libraries calculate execution costs automatically by simulating script execution before submission.
+
+### Collateral
+
+Transactions that execute scripts must provide **collateral**: UTXOs that are forfeited if script execution fails during Phase 2 validation.
+
+**Why collateral exists:** Nodes must execute scripts to validate transactions. If a script fails, the node has already spent computational resources. Collateral compensates for this work and discourages submitting transactions that will fail.
+
+**Collateral requirements:**
+
+- Must contain only ADA (no native tokens)
+- Must cover the potential script execution cost (typically 150-200% of expected fees)
+- Is returned if the transaction succeeds
+- Is consumed only if Phase 2 validation fails
+
+**Why collateral must be pubkey UTXOs:** Collateral can't come from script-locked UTXOs because those scripts might have failed. If the collateral itself required script validation, and that script failed, there would be no way to compensate nodes. Pubkey UTXOs can be spent with just a signature, guaranteeing the collateral is accessible.
+
+**Collateral return (CIP-40):** Since the Vasil upgrade, transactions can specify a collateral return address. If collateral is consumed, any excess beyond the required amount is returned to this address rather than being entirely forfeited.
+
+:::tip Collateral Reuse
+You can reuse the same collateral inputs for multiple transactions. Since script validation is deterministic, you can verify locally that your transaction will succeed. If it does, your collateral won't be touched. A user acting in good faith should never lose their collateral.
+:::
+
+For more on two-phase validation and script execution, see the [Transactions](transactions) page.
+
 <details>
 <summary>Advanced: Current Protocol Parameters</summary>
 

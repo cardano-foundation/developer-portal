@@ -178,6 +178,10 @@ Smart contracts should split their on-chain state across many UTXOs rather than 
 
 Since each UTXO can only be spent once, multiple users trying to access the same UTXO would create contention just like the account-based system on Ethereum and the UTxO model would lose its meaning. Proper design distributes interactions across different UTXOs to minimize this bottleneck.
 
+:::tip Building Applications with Shared State
+For applications like DEXes or lending protocols where users interact with shared state, architectural patterns like batching and transaction chaining solve contention. See [Building on EUTXO](/docs/build/building-on-eutxo/overview) for detailed coverage of these patterns.
+:::
+
 ### Parallelization Strategy
 
 By splitting logic across different branches, applications can achieve greater parallelism. This approach is similar to how Bitcoin services split wallets into sub-wallets for better performance.

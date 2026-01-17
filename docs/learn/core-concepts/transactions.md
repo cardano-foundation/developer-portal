@@ -21,7 +21,15 @@ Each transaction specifies all arguments passed to scripts during validation, in
 
 ## Deterministic Outcomes
 
-The predictable nature of Cardano transactions is ensured by several key factors:
+Determinism means you can predict locally (off-chain) how your transaction will impact the on-chain state, without:
+
+- **Unexpected script validation outcomes** or failures
+- **Unexpected fees**
+- **Unexpected ledger or script state updates**
+
+This is fundamentally different from account-based blockchains like Ethereum, where gas prices can fluctuate between submission and execution, DEX rates can change, or scripts can fail mid-execution (costing fees without completing the action).
+
+The predictable nature of Cardano transactions is ensured by:
 
 - Scripts always terminate and return consistent results for the same inputs
 - Transactions fix all arguments passed to the script interpreter
@@ -29,7 +37,15 @@ The predictable nature of Cardano transactions is ensured by several key factors
 - Cryptographic signatures prevent transaction tampering
 - EUTXO model ensures deterministic ledger state updates
 
-Whether scripts succeed or fail, the outcome and associated ledger changes are predictable for any given transaction.
+### Rejected vs Failed
+
+A transaction can have two negative outcomes, and the difference matters:
+
+**Rejected**: The transaction couldn't be applied to the ledger at all. It has no effect on the state, and **no fees are paid**. This typically happens when inputs have already been spent by another transaction.
+
+**Failed (Phase 2)**: The transaction structure was valid, but script execution returned False. **Collateral is consumed** as a penalty, but other effects don't occur.
+
+Because validation is deterministic, Phase 2 failures are locally predictable. A user acting in good faith should never have their collateral consumed, since they can verify script execution will succeed before submitting.
 
 ## Transaction Anatomy and CBOR Format
 
@@ -77,7 +93,27 @@ transaction = [
 
 **Script Data Hash**: Any change to redeemers, datums, or protocol parameters requires recalculating this hash. Transaction libraries handle this automatically.
 
-**Two-Phase Validation**: Phase 1 validates basic transaction structure, Phase 2 executes scripts. If Phase 2 fails, collateral is consumed as penalty.
+### Two-Phase Validation
+
+Transaction validation is divided into two phases to limit uncompensated work by nodes.
+
+**Phase 1** checks whether the transaction is constructed correctly and can pay its fees:
+
+- Correct fee and collateral amounts provided
+- All required script data present
+- Protocol parameter bounds respected (output sizes, etc.)
+- All inputs exist on the ledger
+- Computational budget within limits
+- Integrity hash correct
+
+If Phase 1 fails, the transaction is rejected with no effect and no fees charged. Nodes do minimal work.
+
+**Phase 2** executes the scripts:
+
+- If all scripts return True: transaction is fully applied
+- If any script returns False: collateral is consumed, other effects are ignored
+
+Phase 2 failure should be rare because users can predict script outcomes locally before submitting. The collateral mechanism exists to compensate nodes for script execution work even when validation fails.
 
 For complete technical specifications and debugging tools, see the [Cardano Ledger Specifications](https://github.com/IntersectMBO/cardano-ledger) and [Lace Anatomy](https://laceanatomy.com/) for decoding raw transactions.
 
@@ -95,6 +131,10 @@ Transactions can specify a time window during which they're considered valid:
 - **Upper bound**: Transaction expires after this time
 
 These intervals are checked during Phase 1 validation, before script execution. This means validators can assume the transaction is within the specified time bounds, enabling deterministic time-based logic.
+
+:::note Why Scripts Can't See the Current Slot
+Allowing a script to see the actual slot number would break determinism. A user cannot know the exact slot in which their transaction will be processed, so they couldn't predict how the script would behave. By using validity intervals instead, the script only sees bounds that the user specified, preserving determinism.
+:::
 
 ### Practical Applications
 

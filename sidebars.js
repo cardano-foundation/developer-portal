@@ -335,6 +335,16 @@ module.exports = {
       },
       {
         type: "category",
+        label: "Building on EUTXO",
+        items: [
+          "build/building-on-eutxo/overview",
+          "build/building-on-eutxo/contention",
+          "build/building-on-eutxo/batching",
+          "build/building-on-eutxo/transaction-chaining",
+        ],
+      },
+      {
+        type: "category",
         label: "Smart Contracts",
         items: [
           "build/smart-contracts/overview",
