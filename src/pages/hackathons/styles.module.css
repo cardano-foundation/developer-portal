@@ -1,0 +1,560 @@
+/* ===========================================
+   HACKATHONS PAGE
+   =========================================== */
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+
+.hero {
+  padding: 6rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-size: auto;
+  background-position: 59% 50%;
+}
+
+html[data-theme="light"] .hero {
+  background-image: url(/img/dev-portal-hero-light.webp);
+  background-color: #383fd0;
+  color: #fff;
+}
+
+html[data-theme="dark"] .hero {
+  background-image: url(/img/dev-portal-hero-dark.webp);
+  background-color: #2da48d;
+  color: #fff;
+}
+
+@media screen and (max-width: 1024px) {
+  .hero {
+    background-position: 34% 50%;
+  }
+}
+
+@media screen and (min-width: 1950px) {
+  .hero {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.heroCta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+html[data-theme="light"] .primaryBtn {
+  background: #fff !important;
+  color: #383fd0 !important;
+  border-color: #fff !important;
+}
+
+html[data-theme="light"] .primaryBtn:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+html[data-theme="dark"] .primaryBtn {
+  background: #fff !important;
+  color: #1a6b5c !important;
+  border-color: #fff !important;
+}
+
+html[data-theme="dark"] .primaryBtn:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.secondaryBtn {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #fff !important;
+}
+
+/* ===========================================
+   BENEFITS SECTION
+   =========================================== */
+
+.benefits {
+  padding: 5rem 0;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.benefitCard {
+  text-align: center;
+}
+
+.benefitIconWrapper {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefitIcon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.8;
+}
+
+html[data-theme="light"] .benefitIcon {
+  filter: invert(15%) sepia(95%) saturate(2000%) hue-rotate(215deg) brightness(90%);
+}
+
+html[data-theme="dark"] .benefitIcon {
+  filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
+}
+
+.benefitCard h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.benefitCard p {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===========================================
+   OVERVIEW SECTION (Photo Grid + Text)
+   =========================================== */
+
+.overview {
+  padding: 5rem 0;
+}
+
+html[data-theme="light"] .overview {
+  background-color: #f5f6f7;
+}
+
+html[data-theme="dark"] .overview {
+  background-color: #1b1b1d;
+}
+
+.overviewContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.photoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+
+.photoLarge {
+  grid-column: 1 / -1;
+}
+
+.photoLarge img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.photoSmall img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.photoPlaceholder {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+html[data-theme="light"] .photoPlaceholder {
+  background-color: #e0e3e8;
+  color: #666;
+}
+
+html[data-theme="dark"] .photoPlaceholder {
+  background-color: #2a2a2d;
+  color: #888;
+}
+
+.photoLarge .photoPlaceholder {
+  height: 220px;
+}
+
+.photoSmall .photoPlaceholder {
+  height: 140px;
+}
+
+.overviewText h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.overviewText p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-bottom: 1.25rem;
+}
+
+.overviewButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.buttonWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.buttonWithIcon img {
+  width: 16px;
+  height: 16px;
+}
+
+html[data-theme="light"] .buttonWithIcon img {
+  filter: invert(15%) sepia(95%) saturate(2000%) hue-rotate(215deg) brightness(90%);
+}
+
+html[data-theme="dark"] .buttonWithIcon img {
+  filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
+}
+
+/* ===========================================
+   WAYS TO PARTICIPATE SECTION
+   =========================================== */
+
+.waysSection {
+  padding: 5rem 0;
+}
+
+html[data-theme="light"] .waysSection {
+  background-color: #0538AF;
+  color: #fff;
+}
+
+html[data-theme="dark"] .waysSection {
+  background-color: #1a1a2e;
+  color: #fff;
+}
+
+.waysList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.wayItem {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid;
+}
+
+html[data-theme="light"] .wayItem {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+html[data-theme="dark"] .wayItem {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.wayItem:last-child {
+  border-bottom: none;
+}
+
+.wayNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 80px;
+}
+
+html[data-theme="light"] .wayNumber {
+  color: #fff;
+  opacity: 0.3;
+}
+
+html[data-theme="dark"] .wayNumber {
+  color: #fff;
+  opacity: 0.25;
+}
+
+.wayContent h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.wayContent p {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* ===========================================
+   RESOURCES SECTION
+   =========================================== */
+
+.resources {
+  padding: 5rem 0;
+}
+
+html[data-theme="light"] .resources {
+  background-color: #f5f6f7;
+}
+
+html[data-theme="dark"] .resources {
+  background-color: #1b1b1d;
+}
+
+.resourcesContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.resourcesText h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.resourcesText p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.resourceLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resourceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+html[data-theme="light"] .resourceLink {
+  background: #fff;
+  color: var(--ifm-color-primary);
+}
+
+html[data-theme="dark"] .resourceLink {
+  background: #2a2a2d;
+}
+
+.resourceLink:hover {
+  transform: translateX(4px);
+}
+
+html[data-theme="light"] .resourceLink:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="dark"] .resourceLink:hover {
+  background: #3a3a3d;
+}
+
+.resourceLink img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+}
+
+html[data-theme="light"] .resourceLink img {
+  filter: invert(15%) sepia(95%) saturate(2000%) hue-rotate(215deg) brightness(90%);
+}
+
+html[data-theme="dark"] .resourceLink img {
+  filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
+}
+
+.resourcesImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resourcesImage img {
+  max-width: 280px;
+  height: auto;
+}
+
+/* ===========================================
+   CTA SECTION
+   =========================================== */
+
+.cta {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+html[data-theme="light"] .cta {
+  background-color: #fff;
+}
+
+html[data-theme="dark"] .cta {
+  background-color: #242526;
+}
+
+.cta h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.hubspotFormWrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* White background in dark mode ensures HubSpot form text is readable */
+html[data-theme="dark"] .hubspotFormWrapper {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+@media screen and (max-width: 996px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .overviewContent {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .photoGrid {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .resourcesContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .resourcesImage {
+    order: -1;
+  }
+
+  .resourcesImage img {
+    max-width: 200px;
+  }
+
+  .wayItem {
+    gap: 1.5rem;
+  }
+
+  .wayNumber {
+    font-size: 2.5rem;
+    min-width: 60px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hero {
+    padding: 4rem 1rem;
+  }
+
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits,
+  .overview,
+  .waysSection,
+  .resources,
+  .cta {
+    padding: 3rem 0;
+  }
+
+  .photoLarge .photoPlaceholder,
+  .photoLarge img {
+    height: 180px;
+  }
+
+  .photoSmall .photoPlaceholder,
+  .photoSmall img {
+    height: 120px;
+  }
+
+  .wayItem {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .wayNumber {
+    font-size: 2rem;
+  }
+}
