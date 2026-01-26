@@ -1,9 +1,1869 @@
 /* stylelint-disable docusaurus/copyright-header */
 
 /**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
+ * Cardano Developer Portal Landing Page
+ * Brand colors: Teal #44BBA4, Blue #0033AD, Coral #FF5553, Cream #FCDFA6
  */
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+
+.hero {
+  position: relative;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #0033AD;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroBackgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  transform: scale(1.0);
+}
+
+html[data-theme="dark"] .heroBackgroundImage {
+  filter: brightness(0.85) saturate(1.1);
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+}
+
+html[data-theme="light"] .heroOverlay {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 51, 173, 0.92) 0%,
+    rgba(0, 51, 173, 0.7) 35%,
+    rgba(0, 51, 173, 0.3) 60%,
+    transparent 100%
+  );
+}
+
+html[data-theme="dark"] .heroOverlay {
+  background: linear-gradient(
+    90deg,
+    rgba(10, 18, 35, 0.85) 0%,
+    rgba(10, 22, 50, 0.6) 35%,
+    rgba(0, 51, 173, 0.3) 60%,
+    transparent 100%
+  );
+}
+
+/* Ambient glow effect */
+.heroGlow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+}
+
+html[data-theme="light"] .heroGlow {
+  background: radial-gradient(
+    circle,
+    rgba(68, 187, 164, 0.3) 0%,
+    rgba(0, 51, 173, 0.1) 40%,
+    transparent 70%
+  );
+}
+
+html[data-theme="dark"] .heroGlow {
+  background: radial-gradient(
+    circle,
+    rgba(68, 187, 164, 0.25) 0%,
+    rgba(68, 187, 164, 0.08) 40%,
+    transparent 70%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 45vh;
+}
+
+.heroCard {
+  max-width: 480px;
+  padding: 2.75rem 3rem;
+  border-radius: 28px;
+  backdrop-filter: blur(24px);
+}
+
+html[data-theme="light"] .heroCard {
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.08),
+    0 24px 80px rgba(0, 51, 173, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+html[data-theme="dark"] .heroCard {
+  background: rgba(20, 22, 30, 0.92);
+  border: 1px solid rgba(68, 187, 164, 0.15);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    0 24px 80px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.25rem;
+}
+
+html[data-theme="light"] .heroTitle {
+  color: #0a0a0f;
+}
+
+html[data-theme="dark"] .heroTitle {
+  color: #fff;
+}
+
+.heroSubtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+html[data-theme="light"] .heroSubtitle {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .heroSubtitle {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBackgroundImage {
+    object-position: 70% center;
+  }
+
+  .heroGlow {
+    left: 25%;
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    min-height: 55vh;
+  }
+
+  .heroContent {
+    min-height: 40vh;
+  }
+
+  .heroCard {
+    padding: 2rem 1.75rem;
+    margin: 0;
+    border-radius: 20px;
+  }
+
+  .heroBackgroundImage {
+    object-position: 65% center;
+    transform: scale(1.2);
+  }
+
+  .heroGlow {
+    display: none;
+  }
+}
+
+/* ===========================================
+   BENTO GRID - Visual Feature Showcase
+   =========================================== */
+
+.bento {
+  padding: 3.5rem 0;
+}
+
+html[data-theme="light"] .bento {
+  background: #fff;
+}
+
+html[data-theme="dark"] .bento {
+  background: #1b1b1d;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+}
+
+.bentoCard {
+  border-radius: 20px;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+html[data-theme="light"] .bentoCard {
+  background: #f5f7fa;
+  color: var(--ifm-font-color-base);
+}
+
+html[data-theme="dark"] .bentoCard {
+  background: #242526;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--ifm-font-color-base);
+}
+
+.bentoCard:hover {
+  transform: translateY(-6px);
+}
+
+html[data-theme="light"] .bentoCard:hover {
+  box-shadow: 0 20px 60px rgba(0, 51, 173, 0.12);
+}
+
+html[data-theme="dark"] .bentoCard:hover {
+  box-shadow: 0 20px 60px rgba(68, 187, 164, 0.1);
+  border-color: rgba(68, 187, 164, 0.3);
+}
+
+/* Large card - Smart Contracts (spans 8 columns) */
+.bentoLarge {
+  grid-column: span 8;
+  display: flex;
+  align-items: stretch;
+  min-height: 260px;
+}
+
+.bentoLarge .bentoCardContent {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 50%;
+}
+
+.bentoLarge .bentoCardImage {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 110%;
+  width: auto;
+  opacity: 0.9;
+}
+
+html[data-theme="dark"] .bentoLarge .bentoCardImage {
+  opacity: 0.8;
+}
+
+/* Medium cards - Native Tokens, Get Started (span 4 columns each) */
+.bentoMedium {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+}
+
+.bentoMedium .bentoCardImageTop {
+  width: 100%;
+  height: 130px;
+  object-fit: contain;
+  padding: 0.75rem;
+}
+
+.bentoMedium .bentoCardContent {
+  padding: 1rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Accent card variant */
+.bentoAccent {
+  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+html[data-theme="dark"] .bentoAccent {
+  background: linear-gradient(135deg, #44BBA4 0%, #3BA18E 100%) !important;
+}
+
+.bentoAccent h3,
+.bentoAccent p,
+.bentoAccent .bentoLink {
+  color: #fff !important;
+}
+
+/* Row 2: Third-width cards (4 columns each = 33%) */
+.bentoThird {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+}
+
+.bentoThirdImage {
+  width: 100%;
+  height: 110px;
+  object-fit: contain;
+  padding: 1rem 1rem 0;
+}
+
+.bentoAccent .bentoThirdImage {
+  opacity: 0.9;
+}
+
+.bentoThirdContent {
+  padding: 1rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.bentoThirdContent h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.bentoThirdContent p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+html[data-theme="light"] .bentoThirdContent p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .bentoThirdContent p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Row 3: Half-width cards (6 columns each = 50%) */
+.bentoHalf {
+  grid-column: span 6;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  min-height: 140px;
+  gap: 1.25rem;
+}
+
+.bentoHalfImage {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+html[data-theme="light"] .bentoHalfImage {
+  opacity: 0.9;
+}
+
+html[data-theme="dark"] .bentoHalfImage {
+  opacity: 0.9;
+  filter: brightness(0.95);
+}
+
+.bentoHalfContent {
+  flex: 1;
+}
+
+.bentoHalfContent h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.bentoHalfContent p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 0.5rem;
+}
+
+html[data-theme="light"] .bentoHalfContent p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .bentoHalfContent p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Card content shared styles */
+.bentoCardContent h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.bentoCardContent p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+  flex-grow: 1;
+}
+
+html[data-theme="light"] .bentoCardContent p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .bentoCardContent p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.bentoLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: transform 0.2s ease;
+}
+
+html[data-theme="light"] .bentoLink {
+  color: #0033AD;
+}
+
+html[data-theme="dark"] .bentoLink {
+  color: #44BBA4;
+}
+
+.bentoCard:hover .bentoLink {
+  transform: translateX(4px);
+}
+
+/* Bento responsive */
+@media screen and (max-width: 996px) {
+  .bentoGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .bentoLarge {
+    grid-column: span 6;
+  }
+
+  .bentoLarge .bentoCardContent {
+    max-width: 60%;
+  }
+
+  .bentoMedium {
+    grid-column: span 3;
+  }
+
+  .bentoThird {
+    grid-column: span 2;
+    min-height: 200px;
+  }
+
+  .bentoThirdImage {
+    height: 80px;
+  }
+
+  .bentoHalf {
+    grid-column: span 3;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bentoLarge,
+  .bentoMedium,
+  .bentoThird,
+  .bentoHalf {
+    grid-column: span 1;
+  }
+
+  .bentoLarge {
+    min-height: 220px;
+  }
+
+  .bentoLarge .bentoCardContent {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .bentoLarge .bentoCardImage {
+    opacity: 0.15;
+    right: -50px;
+  }
+
+  .bentoMedium {
+    min-height: auto;
+  }
+
+  .bentoMedium .bentoCardImageTop {
+    height: 100px;
+  }
+
+  .bentoThird {
+    min-height: auto;
+  }
+
+  .bentoThirdImage {
+    height: 100px;
+  }
+
+  .bentoHalf {
+    min-height: auto;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .bentoHalfImage {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* ===========================================
+   DEVELOPER SECTION - Full-Width Bento Grid
+   =========================================== */
+
+.developer {
+  padding: 4rem 0;
+}
+
+html[data-theme="light"] .developer {
+  background: linear-gradient(180deg, #f8f9fb 0%, #fff 100%);
+}
+
+html[data-theme="dark"] .developer {
+  background: linear-gradient(180deg, #1f2023 0%, #1b1b1d 100%);
+}
+
+/* Bento Grid - Full width layout */
+.devBento {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 280px;
+  grid-template-rows: auto auto auto auto;
+  gap: 1rem;
+  grid-template-areas:
+    "sdks code help"
+    "extras extras extras"
+    "quickstart quickstart quickstart"
+    "quickstart2 quickstart2 quickstart2";
+}
+
+/* SDK Card */
+.devSdkCard {
+  grid-area: sdks;
+  padding: 1.5rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+html[data-theme="light"] .devSdkCard {
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="dark"] .devSdkCard {
+  background: #242526;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.devSdkHeader h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem;
+}
+
+.devSdkHeader p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+html[data-theme="light"] .devSdkHeader p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+html[data-theme="dark"] .devSdkHeader p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sdkGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.sdkItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+html[data-theme="light"] .sdkItem {
+  background: #f5f7fa;
+  color: var(--ifm-font-color-base);
+}
+
+html[data-theme="dark"] .sdkItem {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ifm-font-color-base);
+}
+
+.sdkItem:hover {
+  transform: translateX(4px);
+}
+
+html[data-theme="light"] .sdkItem:hover {
+  background: #eef1f6;
+}
+
+html[data-theme="dark"] .sdkItem:hover {
+  background: rgba(68, 187, 164, 0.12);
+}
+
+.sdkItem img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Code Card */
+.devCodeCard {
+  grid-area: code;
+}
+
+/* Help Stack */
+.devHelpStack {
+  grid-area: help;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.helpCardSE,
+.helpCardDiscord {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+  flex: 1;
+}
+
+.helpCardSE {
+  background: linear-gradient(135deg, #0033AD 0%, #0044cc 100%);
+}
+
+.helpCardDiscord {
+  background: linear-gradient(135deg, #5865F2 0%, #7289DA 100%);
+}
+
+.helpCardSE:hover,
+.helpCardDiscord:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.helpCardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.helpCardIcon img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.helpCardIcon svg {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+.helpCardText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.helpCardTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.helpCardDesc {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.helpCardArrow {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.2s ease;
+}
+
+.helpCardSE:hover .helpCardArrow,
+.helpCardDiscord:hover .helpCardArrow {
+  transform: translateX(4px);
+  color: #fff;
+}
+
+/* Quickstart Card */
+.devQuickstartCard {
+  grid-area: quickstart;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+}
+
+html[data-theme="light"] .devQuickstartCard {
+  background: linear-gradient(135deg, #44BBA4 0%, #3BA18E 100%);
+}
+
+html[data-theme="dark"] .devQuickstartCard {
+  background: linear-gradient(135deg, #2d7a6d 0%, #44BBA4 100%);
+}
+
+.quickstartLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quickstartBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.quickstartText {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.quickstartRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quickstartLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.quickstartLink:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Extras Row - Builder Tools & Cardano Apps */
+.devExtrasRow {
+  grid-area: extras;
+  display: flex;
+  gap: 1rem;
+}
+
+.extrasCard {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+}
+
+html[data-theme="light"] .extrasCard {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  color: var(--ifm-font-color-base);
+}
+
+html[data-theme="dark"] .extrasCard {
+  background: #242526;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--ifm-font-color-base);
+}
+
+.extrasCard:hover {
+  transform: translateY(-3px);
+}
+
+html[data-theme="light"] .extrasCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.1);
+}
+
+html[data-theme="dark"] .extrasCard:hover {
+  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.1);
+  border-color: rgba(68, 187, 164, 0.3);
+}
+
+.extrasCardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+html[data-theme="light"] .extrasCardIcon {
+  background: #f5f7fa;
+}
+
+html[data-theme="dark"] .extrasCardIcon {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.extrasCardIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+html[data-theme="light"] .extrasCardIcon svg {
+  color: #0033AD;
+}
+
+html[data-theme="dark"] .extrasCardIcon svg {
+  color: #44BBA4;
+}
+
+.extrasCardText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.extrasCardTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.extrasCardDesc {
+  font-size: 0.8rem;
+}
+
+html[data-theme="light"] .extrasCardDesc {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+html[data-theme="dark"] .extrasCardDesc {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.extrasCardArrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+html[data-theme="light"] .extrasCardArrow {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .extrasCardArrow {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.extrasCard:hover .extrasCardArrow {
+  transform: translateX(4px);
+}
+
+html[data-theme="light"] .extrasCard:hover .extrasCardArrow {
+  color: #0033AD;
+}
+
+html[data-theme="dark"] .extrasCard:hover .extrasCardArrow {
+  color: #44BBA4;
+}
+
+/* Second Quickstart Card (YACI DevKit) */
+.devQuickstartCard2 {
+  grid-area: quickstart2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+.quickstartBadge2 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Code Block */
+.codeBlock {
+  background: #1a1a1f;
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #d4d4d4;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  height: 100%;
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.875rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.codeDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.codeDot:nth-child(1) { background: #ff5f56; }
+.codeDot:nth-child(2) { background: #ffbd2e; }
+.codeDot:nth-child(3) { background: #27ca40; }
+
+.codeTitle {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.codeBlock code {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  overflow-x: auto;
+}
+
+.codeComment { color: #6a9955; }
+.codeKeyword { color: #c586c0; }
+.codeFunction { color: #dcdcaa; }
+.codeString { color: #ce9178; }
+.codeVariable { color: #9cdcfe; }
+
+/* CLI Mockup */
+.cliMockup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+
+.cliPrompt {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cliMockup code {
+  background: none;
+  padding: 0;
+  color: #fff;
+}
+
+.copyBtn {
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.copyBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Developer responsive */
+@media screen and (max-width: 996px) {
+  .devBento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "sdks code"
+      "help help"
+      "extras extras"
+      "quickstart quickstart"
+      "quickstart2 quickstart2";
+  }
+
+  .devHelpStack {
+    flex-direction: row;
+  }
+
+  .helpCardSE,
+  .helpCardDiscord {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .devBento {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sdks"
+      "code"
+      "help"
+      "extras"
+      "quickstart"
+      "quickstart2";
+  }
+
+  .sdkGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .devHelpStack {
+    flex-direction: column;
+  }
+
+  .devExtrasRow {
+    flex-direction: column;
+  }
+
+  .devQuickstartCard,
+  .devQuickstartCard2 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .quickstartLeft {
+    justify-content: center;
+  }
+
+  .quickstartRight {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sdkGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quickstartLeft {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ===========================================
+   SMART CONTRACTS SECTION
+   =========================================== */
+
+.smartContracts {
+  padding: 3.5rem 0;
+}
+
+html[data-theme="light"] .smartContracts {
+  background: #fff;
+}
+
+html[data-theme="dark"] .smartContracts {
+  background: #1b1b1d;
+}
+
+.scHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.scHeader h2 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.scHeader p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+html[data-theme="light"] .scHeader p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .scHeader p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.scGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media screen and (max-width: 996px) {
+  .scGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .scLearnCard,
+  .asteriaCard,
+  .scCTFCard {
+    min-height: 260px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .scGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================================
+   FEATURE CARDS (Smart Contracts + CTF)
+   =========================================== */
+
+/* Left: Learn Card */
+.scLearnCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 260px;
+  transition: all 0.3s ease;
+}
+
+.scLearnCard:hover {
+  transform: translateY(-6px);
+}
+
+html[data-theme="light"] .scLearnCard:hover {
+  box-shadow: 0 24px 64px rgba(0, 51, 173, 0.15);
+}
+
+html[data-theme="dark"] .scLearnCard:hover {
+  box-shadow: 0 24px 64px rgba(68, 187, 164, 0.15);
+}
+
+.scLearnImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.scLearnOverlay {
+  position: absolute;
+  inset: 0;
+}
+
+html[data-theme="light"] .scLearnOverlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 51, 173, 0.1) 0%,
+    rgba(0, 51, 173, 0.6) 50%,
+    rgba(0, 33, 110, 0.95) 100%
+  );
+}
+
+html[data-theme="dark"] .scLearnOverlay {
+  background: linear-gradient(
+    180deg,
+    rgba(68, 187, 164, 0.05) 0%,
+    rgba(20, 40, 50, 0.7) 50%,
+    rgba(15, 25, 35, 0.98) 100%
+  );
+}
+
+.scLearnContent {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.scLearnBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.scLearnContent h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: #fff;
+}
+
+.scLearnContent > p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.scLearnLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.scLearnLinks a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: #fff;
+}
+
+.scLearnLinks a:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Middle: Asteria Card */
+.asteriaCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none !important;
+  min-height: 260px;
+  transition: all 0.3s ease;
+}
+
+.asteriaCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(68, 187, 164, 0.25);
+}
+
+.asteriaImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.asteriaOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 20, 30, 0.6) 50%,
+    rgba(0, 15, 25, 0.95) 100%
+  );
+}
+
+.asteriaContent {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.asteriaBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  background: rgba(68, 187, 164, 0.3);
+  backdrop-filter: blur(8px);
+  color: #44BBA4;
+}
+
+.asteriaContent h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: #fff;
+}
+
+.asteriaContent p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.asteriaLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.875rem;
+  color: #44BBA4;
+  transition: all 0.2s ease;
+}
+
+.asteriaCard:hover .asteriaLink {
+  transform: translateX(4px);
+  color: #5DCFB8;
+}
+
+/* Right: CTF Card */
+.scCTFCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none !important;
+  min-height: 260px;
+  transition: all 0.3s ease;
+}
+
+.scCTFCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(107, 78, 216, 0.25);
+}
+
+.scCTFImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.scCTFOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(107, 78, 216, 0) 0%,
+    rgba(107, 78, 216, 0.4) 50%,
+    rgba(42, 32, 64, 0.95) 100%
+  );
+}
+
+.scCTFContent {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.scCTFBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.scCTFContent h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: #fff;
+}
+
+.scCTFContent p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.scCTFLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.875rem;
+  color: #c4b5fd;
+  transition: all 0.2s ease;
+}
+
+.scCTFCard:hover .scCTFLink {
+  transform: translateX(4px);
+  color: #fff;
+}
+
+/* Feature Cards Responsive */
+@media screen and (max-width: 576px) {
+  .scLearnCard,
+  .asteriaCard,
+  .scCTFCard {
+    min-height: 220px;
+  }
+
+  .scLearnLinks {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .scLearnLinks a {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+
+/* ===========================================
+   CTA SECTION - Clean Two-Card Layout
+   =========================================== */
+
+.cta {
+  padding: 4rem 0 5rem;
+}
+
+html[data-theme="light"] .cta {
+  background: linear-gradient(180deg, #fff 0%, #f8f9fb 100%);
+}
+
+html[data-theme="dark"] .cta {
+  background: linear-gradient(180deg, #1b1b1d 0%, #18181a 100%);
+}
+
+/* CTA Header */
+.ctaHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ctaHeader h2 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.ctaHeader p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+html[data-theme="light"] .ctaHeader p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .ctaHeader p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Three-card row layout */
+.ctaRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  min-height: 280px;
+}
+
+/* Hackathons Card - styled like Asteria/CTF cards */
+.ctaHackathons {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+.ctaHackathons:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+}
+
+.ctaHackathonsImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.ctaHackathonsOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+.ctaHackathonsContent {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.ctaHackathonsBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.ctaHackathonsContent h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: #fff;
+}
+
+.ctaHackathonsContent p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ctaHackathonsLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+html[data-theme="light"] .ctaHackathonsLink {
+  color: #44BBA4;
+}
+
+html[data-theme="dark"] .ctaHackathonsLink {
+  color: #5DCFB8;
+}
+
+.ctaHackathons:hover .ctaHackathonsLink {
+  transform: translateX(4px);
+  color: #fff;
+}
+
+/* Events Card - styled like Hackathons */
+.ctaEvents {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+.ctaEvents:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+}
+
+.ctaEventsImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ctaEventsOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+.ctaEventsContent {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.ctaEventsBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.ctaEventsContent h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: #fff;
+}
+
+.ctaEventsContent p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ctaEventsLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+html[data-theme="light"] .ctaEventsLink {
+  color: #44BBA4;
+}
+
+html[data-theme="dark"] .ctaEventsLink {
+  color: #5DCFB8;
+}
+
+.ctaEvents:hover .ctaEventsLink {
+  transform: translateX(4px);
+  color: #fff;
+}
+
+/* Funding Card - styled like bento cards */
+.ctaFunding {
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+html[data-theme="light"] .ctaFunding {
+  background: #f5f7fa;
+  color: var(--ifm-font-color-base);
+}
+
+html[data-theme="dark"] .ctaFunding {
+  background: #242526;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--ifm-font-color-base);
+}
+
+.ctaFunding:hover {
+  transform: translateY(-6px);
+}
+
+html[data-theme="light"] .ctaFunding:hover {
+  box-shadow: 0 20px 60px rgba(0, 51, 173, 0.12);
+}
+
+html[data-theme="dark"] .ctaFunding:hover {
+  box-shadow: 0 20px 60px rgba(68, 187, 164, 0.1);
+  border-color: rgba(68, 187, 164, 0.3);
+}
+
+.ctaFundingIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+html[data-theme="light"] .ctaFundingIcon {
+  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%);
+  color: #fff;
+}
+
+html[data-theme="dark"] .ctaFundingIcon {
+  background: linear-gradient(135deg, #44BBA4 0%, #3BA18E 100%);
+  color: #fff;
+}
+
+.ctaFundingIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ctaFunding h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.ctaFunding p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+html[data-theme="light"] .ctaFunding p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .ctaFunding p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.ctaFundingLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: transform 0.2s ease;
+}
+
+html[data-theme="light"] .ctaFundingLink {
+  color: #0033AD;
+}
+
+html[data-theme="dark"] .ctaFundingLink {
+  color: #44BBA4;
+}
+
+.ctaFunding:hover .ctaFundingLink {
+  transform: translateX(4px);
+}
+
+/* CTA Responsive */
+@media screen and (max-width: 996px) {
+  .ctaRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ctaFunding {
+    grid-column: span 2;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ctaRow {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .ctaHackathons,
+  .ctaEvents {
+    min-height: 220px;
+  }
+
+  .ctaFunding {
+    grid-column: span 1;
+  }
+}
+
+/* ===========================================
+   PORTAL HERO (used by portalhero.js)
+   =========================================== */
 
 .heroBanner {
   padding: 4rem 0;
@@ -14,22 +1874,28 @@
   background-position: 59% 50%;
 }
 
-html[data-theme=light] .getStarted {
-  color: #fff;
-}
-
-html[data-theme=dark] .getStarted {
-  color: #000;
-}
-
-html[data-theme=light] .heroBanner {
+html[data-theme="light"] .heroBanner {
   background-image: url(/img/dev-portal-hero-light.webp);
   background-color: #383fd0;
 }
 
-html[data-theme=dark] .heroBanner {
+html[data-theme="dark"] .heroBanner {
   background-image: url(/img/dev-portal-hero-dark.webp);
   background-color: #2da48d;
+}
+
+html[data-theme="light"] .getStarted {
+  color: #fff;
+}
+
+html[data-theme="dark"] .getStarted {
+  color: #000;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 1024px) {
@@ -51,24 +1917,15 @@ html[data-theme=dark] .heroBanner {
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ===========================================
+   GLOBAL
+   =========================================== */
 
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-}
-
-.featureImage {
-  height: 200px;
-  width: 200px;
-}
-
-.featurePadding {
-  padding-bottom: 1rem !important;
+@media screen and (max-width: 576px) {
+  .bento,
+  .developer,
+  .smartContracts,
+  .cta {
+    padding: 3rem 0;
+  }
 }
