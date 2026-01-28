@@ -780,6 +780,14 @@ export const Showcases = [
     getstarted: "https://store.yaci.xyz/",
     tags: ["indexer", "java"],
   },
+  {
+    title: "Anvil API",
+    description: "Simple REST endpoints for Cardano. Mint tokens, build and submit transactions, deploy and interact with smart contracts. Start free and scale your Web3 project with robust Cardano infrastructure, developer docs, and expert support.",
+    preview: require("./images/anvil-api.png"),
+    website: "https://ada-anvil.io/services/api",
+    getstarted: "https://dev.ada-anvil.io/",
+    tags: ["typescript", "http", "hosted", "transactionbuilder", "nft", "smartcontracts"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
