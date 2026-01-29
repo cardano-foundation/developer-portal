@@ -786,7 +786,7 @@ export const Showcases = [
     preview: require("./images/anvil-api.png"),
     website: "https://ada-anvil.io/services/api",
     getstarted: "https://dev.ada-anvil.io/",
-    tags: ["typescript", "http", "hosted", "transactionbuilder", "nft", "smartcontracts"],
+    tags: ["http", "hosted"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
