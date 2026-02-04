@@ -28,8 +28,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center right;
-  transform: scale(1.0);
+  object-position: center;
+  transform: translateX(40px);
 }
 
 html[data-theme="dark"] .heroBackgroundImage {
@@ -546,7 +546,7 @@ html[data-theme="dark"] .bentoLink {
 }
 
 /* ===========================================
-   DEVELOPER SECTION - Full-Width Bento Grid
+   DEVELOPER SECTION - Developer Toolkit Grid
    =========================================== */
 
 .developer {
@@ -554,29 +554,35 @@ html[data-theme="dark"] .bentoLink {
 }
 
 html[data-theme="light"] .developer {
-  background: linear-gradient(180deg, #f8f9fb 0%, #fff 100%);
+  background:
+    radial-gradient(circle, rgba(0, 51, 173, 0.14) 1px, transparent 1px),
+    linear-gradient(180deg, #fff 0%, #f8f9fb 100%);
+  background-size: 24px 24px, 100% 100%;
 }
 
 html[data-theme="dark"] .developer {
-  background: linear-gradient(180deg, #1f2023 0%, #1b1b1d 100%);
+  background:
+    radial-gradient(circle, rgba(68, 187, 164, 0.17) 1px, transparent 1px),
+    linear-gradient(180deg, #1b1b1d 0%, #1f2023 100%);
+  background-size: 24px 24px, 100% 100%;
 }
 
-/* Bento Grid - Full width layout */
-.devBento {
+.devHeader { text-align: center; margin-bottom: 2rem; }
+.devHeader h2 { font-size: clamp(1.5rem, 3vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+.devHeader p { font-size: 1rem; line-height: 1.5; margin: 0; }
+html[data-theme="light"] .devHeader p { color: rgba(0, 0, 0, 0.65); }
+html[data-theme="dark"] .devHeader p { color: rgba(255, 255, 255, 0.65); }
+
+/* Bento Grid - 12-column layout */
+.devGrid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr 280px;
-  grid-template-rows: auto auto auto auto;
+  grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
-  grid-template-areas:
-    "sdks code help"
-    "extras extras extras"
-    "quickstart quickstart quickstart"
-    "quickstart2 quickstart2 quickstart2";
 }
 
-/* SDK Card */
+/* SDK Card - spans 5 cols */
 .devSdkCard {
-  grid-area: sdks;
+  grid-column: span 5;
   padding: 1.5rem;
   border-radius: 20px;
   display: flex;
@@ -617,7 +623,7 @@ html[data-theme="dark"] .devSdkHeader p {
 
 .sdkGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 }
 
@@ -660,114 +666,142 @@ html[data-theme="dark"] .sdkItem:hover {
   height: 20px;
 }
 
-/* Code Card */
+/* Code Card - spans 7 cols */
 .devCodeCard {
-  grid-area: code;
+  grid-column: span 7;
 }
 
-/* Help Stack */
-.devHelpStack {
-  grid-area: help;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.helpCardSE,
-.helpCardDiscord {
+/* Unified Link Cards - 4 cards at span 3 each */
+.devLinkCard {
+  grid-column: span 3;
   display: flex;
   align-items: center;
   gap: 0.875rem;
-  padding: 1rem 1.25rem;
+  padding: 1.25rem;
   border-radius: 16px;
   text-decoration: none !important;
   transition: all 0.25s ease;
-  flex: 1;
 }
 
-.helpCardSE {
-  background: linear-gradient(135deg, #0033AD 0%, #0044cc 100%);
+html[data-theme="light"] .devLinkCard {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  color: var(--ifm-font-color-base);
 }
 
-.helpCardDiscord {
-  background: linear-gradient(135deg, #5865F2 0%, #7289DA 100%);
+html[data-theme="dark"] .devLinkCard {
+  background: #242526;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--ifm-font-color-base);
 }
 
-.helpCardSE:hover,
-.helpCardDiscord:hover {
+.devLinkCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
-.helpCardIcon {
+html[data-theme="light"] .devLinkCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.1);
+}
+
+html[data-theme="dark"] .devLinkCard:hover {
+  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.1);
+  border-color: rgba(68, 187, 164, 0.3);
+}
+
+/* Icon */
+.devLinkIcon {
   width: 40px;
   height: 40px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
   flex-shrink: 0;
 }
 
-.helpCardIcon img {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
+html[data-theme="light"] .devLinkIcon {
+  background: #f5f7fa;
 }
 
-.helpCardIcon svg {
-  width: 24px;
-  height: 24px;
-  color: #fff;
+html[data-theme="dark"] .devLinkIcon {
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.helpCardText {
+.devLinkIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+html[data-theme="light"] .devLinkIcon svg {
+  color: #0033AD;
+}
+
+html[data-theme="dark"] .devLinkIcon svg {
+  color: #44BBA4;
+}
+
+/* Text */
+.devLinkText {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.helpCardTitle {
+.devLinkTitle {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #fff;
 }
 
-.helpCardDesc {
+.devLinkDesc {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.75);
 }
 
-.helpCardArrow {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.6);
+html[data-theme="light"] .devLinkDesc {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+html[data-theme="dark"] .devLinkDesc {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Arrow */
+.devLinkArrow {
+  font-size: 1rem;
   transition: transform 0.2s ease;
 }
 
-.helpCardSE:hover .helpCardArrow,
-.helpCardDiscord:hover .helpCardArrow {
-  transform: translateX(4px);
-  color: #fff;
+html[data-theme="light"] .devLinkArrow {
+  color: rgba(0, 0, 0, 0.35);
 }
 
-/* Quickstart Card */
+html[data-theme="dark"] .devLinkArrow {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.devLinkCard:hover .devLinkArrow {
+  transform: translateX(4px);
+}
+
+html[data-theme="light"] .devLinkCard:hover .devLinkArrow {
+  color: #0033AD;
+}
+
+html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
+  color: #44BBA4;
+}
+
+/* Quickstart Cards - each span 6 cols, side by side */
 .devQuickstartCard {
-  grid-area: quickstart;
+  grid-column: span 6;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 1rem 1.5rem;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1rem 1.25rem;
   border-radius: 16px;
 }
 
-html[data-theme="light"] .devQuickstartCard {
-  background: linear-gradient(135deg, #44BBA4 0%, #3BA18E 100%);
-}
-
-html[data-theme="dark"] .devQuickstartCard {
-  background: linear-gradient(135deg, #2d7a6d 0%, #44BBA4 100%);
+.devQuickstartCard {
+  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%);
 }
 
 .quickstartLeft {
@@ -782,13 +816,13 @@ html[data-theme="dark"] .devQuickstartCard {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0.35rem 0.75rem;
-  border-radius: 20px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 
 .quickstartText {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #fff;
 }
@@ -796,154 +830,42 @@ html[data-theme="dark"] .devQuickstartCard {
 .quickstartRight {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
-.quickstartLink {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
-  text-decoration: none;
-  opacity: 0.9;
-}
-
-.quickstartLink:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-/* Extras Row - Builder Tools & Cardano Apps */
-.devExtrasRow {
-  grid-area: extras;
-  display: flex;
-  gap: 1rem;
-}
-
-.extrasCard {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
-  text-decoration: none !important;
-  transition: all 0.25s ease;
-}
-
-html[data-theme="light"] .extrasCard {
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  color: var(--ifm-font-color-base);
-}
-
-html[data-theme="dark"] .extrasCard {
-  background: #242526;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--ifm-font-color-base);
-}
-
-.extrasCard:hover {
-  transform: translateY(-3px);
-}
-
-html[data-theme="light"] .extrasCard:hover {
-  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.1);
-}
-
-html[data-theme="dark"] .extrasCard:hover {
-  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.1);
-  border-color: rgba(68, 187, 164, 0.3);
-}
-
-.extrasCardIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+/* Docs icon button */
+.quickstartDocBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
-html[data-theme="light"] .extrasCardIcon {
-  background: #f5f7fa;
+.quickstartDocBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
-html[data-theme="dark"] .extrasCardIcon {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.extrasCardIcon svg {
-  width: 22px;
-  height: 22px;
-}
-
-html[data-theme="light"] .extrasCardIcon svg {
-  color: #0033AD;
-}
-
-html[data-theme="dark"] .extrasCardIcon svg {
-  color: #44BBA4;
-}
-
-.extrasCardText {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.extrasCardTitle {
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.extrasCardDesc {
-  font-size: 0.8rem;
-}
-
-html[data-theme="light"] .extrasCardDesc {
-  color: rgba(0, 0, 0, 0.55);
-}
-
-html[data-theme="dark"] .extrasCardDesc {
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.extrasCardArrow {
-  font-size: 1rem;
-  transition: transform 0.2s ease;
-}
-
-html[data-theme="light"] .extrasCardArrow {
-  color: rgba(0, 0, 0, 0.35);
-}
-
-html[data-theme="dark"] .extrasCardArrow {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.extrasCard:hover .extrasCardArrow {
-  transform: translateX(4px);
-}
-
-html[data-theme="light"] .extrasCard:hover .extrasCardArrow {
-  color: #0033AD;
-}
-
-html[data-theme="dark"] .extrasCard:hover .extrasCardArrow {
-  color: #44BBA4;
+.quickstartDocIcon {
+  width: 16px;
+  height: 16px;
 }
 
 /* Second Quickstart Card (YACI DevKit) */
 .devQuickstartCard2 {
-  grid-area: quickstart2;
+  grid-column: span 6;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 1rem 1.5rem;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1rem 1.25rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%);
 }
 
 .quickstartBadge2 {
@@ -952,7 +874,7 @@ html[data-theme="dark"] .extrasCard:hover .extrasCardArrow {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0.35rem 0.75rem;
-  border-radius: 20px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
@@ -1005,7 +927,6 @@ html[data-theme="dark"] .extrasCard:hover .extrasCardArrow {
 .codeComment { color: #6a9955; }
 .codeKeyword { color: #c586c0; }
 .codeFunction { color: #dcdcaa; }
-.codeString { color: #ce9178; }
 .codeVariable { color: #9cdcfe; }
 
 /* CLI Mockup */
@@ -1013,12 +934,15 @@ html[data-theme="dark"] .extrasCard:hover .extrasCardArrow {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
   font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   background: rgba(0, 0, 0, 0.25);
   color: #fff;
+  flex: 1;
+  white-space: nowrap;
+  border: none;
 }
 
 .cliPrompt {
@@ -1029,76 +953,75 @@ html[data-theme="dark"] .extrasCard:hover .extrasCardArrow {
   background: none;
   padding: 0;
   color: #fff;
+  flex: 1;
+  border: none;
+  box-shadow: none;
 }
 
 .copyBtn {
-  padding: 0.3rem 0.65rem;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   border-radius: 6px;
   border: none;
-  font-size: 0.7rem;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .copyBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.copyIcon {
+  width: 14px;
+  height: 14px;
 }
 
 /* Developer responsive */
 @media screen and (max-width: 996px) {
-  .devBento {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "sdks code"
-      "help help"
-      "extras extras"
-      "quickstart quickstart"
-      "quickstart2 quickstart2";
+  .devGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .devHelpStack {
-    flex-direction: row;
+  .devSdkCard {
+    grid-column: span 1;
   }
 
-  .helpCardSE,
-  .helpCardDiscord {
-    flex: 1;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .devBento {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "sdks"
-      "code"
-      "help"
-      "extras"
-      "quickstart"
-      "quickstart2";
+  .devCodeCard {
+    grid-column: span 1;
   }
 
-  .sdkGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .devHelpStack {
-    flex-direction: column;
-  }
-
-  .devExtrasRow {
-    flex-direction: column;
+  .devLinkCard {
+    grid-column: span 1;
   }
 
   .devQuickstartCard,
   .devQuickstartCard2 {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-    text-align: center;
+    grid-column: span 2;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .devGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .devSdkCard,
+  .devCodeCard,
+  .devLinkCard,
+  .devQuickstartCard,
+  .devQuickstartCard2 {
+    grid-column: span 1;
+  }
+
+  .sdkGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .quickstartLeft {
@@ -1126,15 +1049,15 @@ html[data-theme="dark"] .extrasCard:hover .extrasCardArrow {
    =========================================== */
 
 .smartContracts {
-  padding: 3.5rem 0;
+  padding: 3.5rem 0 5rem;
 }
 
 html[data-theme="light"] .smartContracts {
-  background: #fff;
+  background: #f8f9fb;
 }
 
 html[data-theme="dark"] .smartContracts {
-  background: #1b1b1d;
+  background: #1f2023;
 }
 
 .scHeader {
@@ -1254,19 +1177,6 @@ html[data-theme="dark"] .scLearnOverlay {
   color: #fff;
 }
 
-.scLearnBadge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-}
-
 .scLearnContent h3 {
   font-size: 1.35rem;
   font-weight: 700;
@@ -1350,20 +1260,6 @@ html[data-theme="dark"] .scLearnOverlay {
   color: #fff;
 }
 
-.asteriaBadge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-  background: rgba(68, 187, 164, 0.3);
-  backdrop-filter: blur(8px);
-  color: #44BBA4;
-}
-
 .asteriaContent h3 {
   font-size: 1.35rem;
   font-weight: 700;
@@ -1437,19 +1333,6 @@ html[data-theme="dark"] .scLearnOverlay {
   color: #fff;
 }
 
-.scCTFBadge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-}
-
 .scCTFContent h3 {
   font-size: 1.35rem;
   font-weight: 700;
@@ -1507,11 +1390,11 @@ html[data-theme="dark"] .scLearnOverlay {
 }
 
 html[data-theme="light"] .cta {
-  background: linear-gradient(180deg, #fff 0%, #f8f9fb 100%);
+  background: #f8f9fb;
 }
 
 html[data-theme="dark"] .cta {
-  background: linear-gradient(180deg, #1b1b1d 0%, #18181a 100%);
+  background: #1f2023;
 }
 
 /* CTA Header */
@@ -1593,19 +1476,6 @@ html[data-theme="dark"] .ctaHeader p {
   color: #fff;
 }
 
-.ctaHackathonsBadge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-}
-
 .ctaHackathonsContent h3 {
   font-size: 1.35rem;
   font-weight: 700;
@@ -1664,7 +1534,7 @@ html[data-theme="dark"] .ctaHackathonsLink {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 125%;
 }
 
 .ctaEventsOverlay {
@@ -1683,19 +1553,6 @@ html[data-theme="dark"] .ctaHackathonsLink {
   z-index: 1;
   padding: 1.5rem;
   color: #fff;
-}
-
-.ctaEventsBadge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
 }
 
 .ctaEventsContent h3 {
@@ -1733,105 +1590,83 @@ html[data-theme="dark"] .ctaEventsLink {
   color: #fff;
 }
 
-/* Funding Card - styled like bento cards */
+/* Funding Card - styled like Hackathons/Events cards */
 .ctaFunding {
-  border-radius: 16px;
-  padding: 1.5rem;
-  text-decoration: none !important;
-  transition: all 0.3s ease;
+  position: relative;
   display: flex;
   flex-direction: column;
-}
-
-html[data-theme="light"] .ctaFunding {
-  background: #f5f7fa;
-  color: var(--ifm-font-color-base);
-}
-
-html[data-theme="dark"] .ctaFunding {
-  background: #242526;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--ifm-font-color-base);
+  justify-content: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
 }
 
 .ctaFunding:hover {
   transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
 }
 
-html[data-theme="light"] .ctaFunding:hover {
-  box-shadow: 0 20px 60px rgba(0, 51, 173, 0.12);
+.ctaFundingImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-html[data-theme="dark"] .ctaFunding:hover {
-  box-shadow: 0 20px 60px rgba(68, 187, 164, 0.1);
-  border-color: rgba(68, 187, 164, 0.3);
+.ctaFundingOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
 }
 
-.ctaFundingIcon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-html[data-theme="light"] .ctaFundingIcon {
-  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%);
+.ctaFundingContent {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
   color: #fff;
 }
 
-html[data-theme="dark"] .ctaFundingIcon {
-  background: linear-gradient(135deg, #44BBA4 0%, #3BA18E 100%);
-  color: #fff;
-}
-
-.ctaFundingIcon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.ctaFunding h3 {
-  font-size: 1.25rem;
+.ctaFundingContent h3 {
+  font-size: 1.35rem;
   font-weight: 700;
-  margin: 0 0 0.5rem;
-  letter-spacing: -0.02em;
+  margin: 0 0 0.4rem;
+  color: #fff;
 }
 
-.ctaFunding p {
-  font-size: 0.875rem;
+.ctaFundingContent p {
+  font-size: 0.85rem;
   line-height: 1.5;
   margin: 0;
-  flex-grow: 1;
-}
-
-html[data-theme="light"] .ctaFunding p {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .ctaFunding p {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .ctaFundingLink {
   display: inline-block;
   font-size: 0.85rem;
   font-weight: 600;
-  margin-top: 1rem;
-  transition: transform 0.2s ease;
+  margin-top: 0.875rem;
+  transition: all 0.2s ease;
 }
 
 html[data-theme="light"] .ctaFundingLink {
-  color: #0033AD;
+  color: #44BBA4;
 }
 
 html[data-theme="dark"] .ctaFundingLink {
-  color: #44BBA4;
+  color: #5DCFB8;
 }
 
 .ctaFunding:hover .ctaFundingLink {
   transform: translateX(4px);
+  color: #fff;
 }
 
 /* CTA Responsive */
@@ -1858,6 +1693,207 @@ html[data-theme="dark"] .ctaFundingLink {
 
   .ctaFunding {
     grid-column: span 1;
+  }
+}
+
+/* ===========================================
+   OFFICE HOURS CTA
+   =========================================== */
+
+.officeHours {
+  padding: 4rem 0 5rem;
+}
+
+html[data-theme="light"] .officeHours {
+  background: #fff;
+}
+
+html[data-theme="dark"] .officeHours {
+  background: #1b1b1d;
+}
+
+.officeHoursInner {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+  min-height: 280px;
+}
+
+/* Left: text content */
+.officeHoursContent {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+html[data-theme="light"] .officeHoursContent {
+  background: #f5f7fa;
+}
+
+html[data-theme="dark"] .officeHoursContent {
+  background: #242526;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.officeHoursBadge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px;
+  width: fit-content;
+  margin-bottom: 1rem;
+}
+
+html[data-theme="light"] .officeHoursBadge {
+  background: rgba(0, 51, 173, 0.1);
+  color: #0033AD;
+}
+
+html[data-theme="dark"] .officeHoursBadge {
+  background: rgba(68, 187, 164, 0.15);
+  color: #44BBA4;
+}
+
+.officeHoursContent h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.officeHoursContent p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+html[data-theme="light"] .officeHoursContent p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .officeHoursContent p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.officeHoursActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.officeHoursBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+}
+
+html[data-theme="light"] .officeHoursBtn {
+  background: #0033AD;
+  color: #fff;
+}
+
+html[data-theme="dark"] .officeHoursBtn {
+  background: #44BBA4;
+  color: #fff;
+}
+
+.officeHoursBtn:hover {
+  transform: translateY(-2px);
+}
+
+html[data-theme="light"] .officeHoursBtn:hover {
+  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.2);
+}
+
+html[data-theme="dark"] .officeHoursBtn:hover {
+  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.2);
+}
+
+.officeHoursBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+}
+
+html[data-theme="light"] .officeHoursBtnSecondary {
+  background: transparent;
+  color: #0033AD;
+  border: 1px solid rgba(0, 51, 173, 0.2);
+}
+
+html[data-theme="dark"] .officeHoursBtnSecondary {
+  background: transparent;
+  color: #44BBA4;
+  border: 1px solid rgba(68, 187, 164, 0.25);
+}
+
+.officeHoursBtnSecondary:hover {
+  transform: translateY(-2px);
+}
+
+html[data-theme="light"] .officeHoursBtnSecondary:hover {
+  background: rgba(0, 51, 173, 0.05);
+}
+
+html[data-theme="dark"] .officeHoursBtnSecondary:hover {
+  background: rgba(68, 187, 164, 0.1);
+}
+
+/* Right: image card */
+.officeHoursImageCard {
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.officeHoursImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .officeHoursInner {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .officeHoursImageCard {
+    min-height: 180px;
+  }
+
+  .officeHoursContent {
+    text-align: center;
+  }
+
+  .officeHoursBadge {
+    align-self: center;
+  }
+
+  .officeHoursActions {
+    justify-content: center;
   }
 }
 
@@ -1925,7 +1961,8 @@ html[data-theme="dark"] .getStarted {
   .bento,
   .developer,
   .smartContracts,
-  .cta {
+  .cta,
+  .officeHours {
     padding: 3rem 0;
   }
 }

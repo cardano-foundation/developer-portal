@@ -66,8 +66,8 @@ function Hero() {
           <div className={styles.heroCard}>
             <h1 className={styles.heroTitle}>Cardano developer resources</h1>
             <p className={styles.heroSubtitle}>
-              A builders manual for Cardano. Everything you need to build and scale
-              your onchain app.
+              From first transaction to production dApp and everything in
+              between. Docs, tools, and SDKs for Cardano.
             </p>
           </div>
         </div>
@@ -228,8 +228,77 @@ function DeveloperSection() {
   return (
     <section className={styles.developer}>
       <div className="container">
-        <div className={styles.devBento}>
-          {/* Left: SDK Card with header */}
+        <div className={styles.devHeader}>
+          <h2>Start Building</h2>
+          <p>Everything you need to build on Cardano</p>
+        </div>
+        <div className={styles.devGrid}>
+          {/* Row 1: Quickstart bar (6 cols) + Builder Tools (3 cols) + Cardano Apps (3 cols) */}
+          <div className={styles.devQuickstartCard}>
+            <div className={styles.quickstartLeft}>
+              <span className={styles.quickstartBadge}>Quickstart</span>
+              <span className={styles.quickstartText}>Bootstrap a dApp in seconds</span>
+            </div>
+            <div className={styles.quickstartRight}>
+              <div className={styles.cliMockup}>
+                <span className={styles.cliPrompt}>$</span>
+                <code>{command}</code>
+                <button
+                  className={styles.copyBtn}
+                  onClick={copyCommand}
+                  aria-label="Copy command"
+                >
+                  {copied ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><polyline points="20 6 9 17 4 12" /></svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+                  )}
+                </button>
+              </div>
+              <a href="https://meshjs.dev/" target="_blank" rel="noopener noreferrer" className={styles.quickstartDocBtn} aria-label="MeshJS Docs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.quickstartDocIcon}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+              </a>
+            </div>
+          </div>
+
+          <Link
+            to={useBaseUrl("tools")}
+            className={styles.devLinkCard}
+          >
+            <div className={styles.devLinkIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg>
+            </div>
+            <div className={styles.devLinkText}>
+              <span className={styles.devLinkTitle}>Builder Tools</span>
+              <span className={styles.devLinkDesc}>APIs, indexers, and utilities</span>
+            </div>
+            <span className={styles.devLinkArrow}>→</span>
+          </Link>
+
+          <a
+            href="https://cardano.org/apps/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.devLinkCard}
+          >
+            <div className={styles.devLinkIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+            </div>
+            <div className={styles.devLinkText}>
+              <span className={styles.devLinkTitle}>Cardano Apps</span>
+              <span className={styles.devLinkDesc}>Explore the ecosystem</span>
+            </div>
+            <span className={styles.devLinkArrow}>↗</span>
+          </a>
+
+          {/* Row 2: SDK Card (5 cols) + Code Block (7 cols) */}
           <div className={styles.devSdkCard}>
             <div className={styles.devSdkHeader}>
               <h2>Build in Your Language</h2>
@@ -249,7 +318,6 @@ function DeveloperSection() {
             </div>
           </div>
 
-          {/* Center: Code Block */}
           <div className={styles.devCodeCard}>
             <div className={styles.codeBlock}>
               <div className={styles.codeHeader}>
@@ -259,131 +327,81 @@ function DeveloperSection() {
                 <span className={styles.codeTitle}>transaction.ts</span>
               </div>
               <code>
-                <span className={styles.codeComment}>// Build and sign a transaction</span>
+                <span className={styles.codeComment}>// Build a payment transaction</span>
                 <br />
                 <span className={styles.codeKeyword}>const</span>{" "}
                 <span className={styles.codeVariable}>tx</span> ={" "}
                 <span className={styles.codeKeyword}>await</span>{" "}
-                <span className={styles.codeVariable}>mesh</span>
+                <span className={styles.codeVariable}>txBuilder</span>
                 <br />
                 {"  "}.
-                <span className={styles.codeFunction}>txOut</span>(
-                <span className={styles.codeString}>"addr..."</span>,{" "}
-                <span className={styles.codeVariable}>assets</span>)
+                <span className={styles.codeFunction}>newTx</span>()
                 <br />
                 {"  "}.
-                <span className={styles.codeFunction}>complete</span>();
+                <span className={styles.codeFunction}>payToAddress</span>(
+                <span className={styles.codeVariable}>address</span>,{" "}
+                <span className={styles.codeFunction}>lovelace</span>(
+                <span className={styles.codeVariable}>2_000_000n</span>))
+                <br />
+                {"  "}.
+                <span className={styles.codeFunction}>build</span>();
                 <br />
                 <br />
+                <span className={styles.codeComment}>// Sign and submit</span>
+                <br />
+                <span className={styles.codeKeyword}>const</span>{" "}
+                <span className={styles.codeVariable}>txHash</span> ={" "}
                 <span className={styles.codeKeyword}>await</span>{" "}
                 <span className={styles.codeVariable}>wallet</span>.
-                <span className={styles.codeFunction}>signTx</span>(
-                <span className={styles.codeVariable}>tx</span>);
+                <span className={styles.codeFunction}>sign</span>().
+                <span className={styles.codeFunction}>submit</span>();
               </code>
             </div>
           </div>
 
-          {/* Right: Help Stack */}
-          <div className={styles.devHelpStack}>
-            <Link
-              to={useBaseUrl("docs/community/cardano-developer-community")}
-              className={styles.helpCardSE}
-            >
-              <div className={styles.helpCardIcon}>
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                </svg>
-              </div>
-              <div className={styles.helpCardText}>
-                <span className={styles.helpCardTitle}>Community</span>
-                <span className={styles.helpCardDesc}>Developer resources</span>
-              </div>
-              <span className={styles.helpCardArrow}>→</span>
-            </Link>
-            <a
-              href="https://discord.com/invite/2nPUa5d7DE"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.helpCardDiscord}
-            >
-              <div className={styles.helpCardIcon}>
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-                </svg>
-              </div>
-              <div className={styles.helpCardText}>
-                <span className={styles.helpCardTitle}>Discord</span>
-                <span className={styles.helpCardDesc}>Join community</span>
-              </div>
-              <span className={styles.helpCardArrow}>→</span>
-            </a>
-          </div>
-
-          {/* Extras Row: Builder Tools & Cardano Apps */}
-          <div className={styles.devExtrasRow}>
-            <Link to={useBaseUrl("tools")} className={styles.extrasCard}>
-              <div className={styles.extrasCardIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-                </svg>
-              </div>
-              <div className={styles.extrasCardText}>
-                <span className={styles.extrasCardTitle}>Builder Tools</span>
-                <span className={styles.extrasCardDesc}>APIs, indexers, and developer utilities</span>
-              </div>
-              <span className={styles.extrasCardArrow}>→</span>
-            </Link>
-            <a
-              href="https://cardano.org/apps/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.extrasCard}
-            >
-              <div className={styles.extrasCardIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="7" height="7" />
-                  <rect x="14" y="3" width="7" height="7" />
-                  <rect x="14" y="14" width="7" height="7" />
-                  <rect x="3" y="14" width="7" height="7" />
-                </svg>
-              </div>
-              <div className={styles.extrasCardText}>
-                <span className={styles.extrasCardTitle}>Cardano Apps</span>
-                <span className={styles.extrasCardDesc}>Explore the ecosystem</span>
-              </div>
-              <span className={styles.extrasCardArrow}>↗</span>
-            </a>
-          </div>
-
-          {/* Quickstart: Mesh JS */}
-          <div className={styles.devQuickstartCard}>
-            <div className={styles.quickstartLeft}>
-              <span className={styles.quickstartBadge}>Quickstart</span>
-              <span className={styles.quickstartText}>Bootstrap a dApp in seconds</span>
+          {/* Row 3: Community (3 cols) + Infrastructure (3 cols) + Devnet bar (6 cols) */}
+          <Link
+            to={useBaseUrl("docs/community/cardano-developer-community")}
+            className={styles.devLinkCard}
+          >
+            <div className={styles.devLinkIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
             </div>
-            <div className={styles.quickstartRight}>
-              <div className={styles.cliMockup}>
-                <span className={styles.cliPrompt}>$</span>
-                <code>{command}</code>
-                <button
-                  className={styles.copyBtn}
-                  onClick={copyCommand}
-                  aria-label="Copy command"
-                >
-                  {copied ? "✓" : "Copy"}
-                </button>
-              </div>
-              <a href="https://meshjs.dev/" target="_blank" rel="noopener noreferrer" className={styles.quickstartLink}>
-                Docs ↗
-              </a>
+            <div className={styles.devLinkText}>
+              <span className={styles.devLinkTitle}>Community</span>
+              <span className={styles.devLinkDesc}>Connect with developers</span>
             </div>
-          </div>
+            <span className={styles.devLinkArrow}>→</span>
+          </Link>
 
-          {/* Quickstart 2: YACI DevKit */}
+          <Link
+            to={useBaseUrl("docs/get-started/infrastructure/overview")}
+            className={styles.devLinkCard}
+          >
+            <div className={styles.devLinkIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+                <line x1="6" y1="6" x2="6.01" y2="6" />
+                <line x1="6" y1="18" x2="6.01" y2="18" />
+              </svg>
+            </div>
+            <div className={styles.devLinkText}>
+              <span className={styles.devLinkTitle}>Infrastructure</span>
+              <span className={styles.devLinkDesc}>Nodes, APIs, and services</span>
+            </div>
+            <span className={styles.devLinkArrow}>→</span>
+          </Link>
+
           <div className={styles.devQuickstartCard2}>
             <div className={styles.quickstartLeft}>
               <span className={styles.quickstartBadge2}>Devnet</span>
-              <span className={styles.quickstartText}>Spin up a simulated devnet instantly</span>
+              <span className={styles.quickstartText}>Local development network, ready in one command</span>
             </div>
             <div className={styles.quickstartRight}>
               <div className={styles.cliMockup}>
@@ -394,11 +412,15 @@ function DeveloperSection() {
                   onClick={copyCommand2}
                   aria-label="Copy command"
                 >
-                  {copied2 ? "✓" : "Copy"}
+                  {copied2 ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><polyline points="20 6 9 17 4 12" /></svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.copyIcon}><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+                  )}
                 </button>
               </div>
-              <a href="https://devkit.yaci.xyz/" target="_blank" rel="noopener noreferrer" className={styles.quickstartLink}>
-                Docs ↗
+              <a href="https://devkit.yaci.xyz/" target="_blank" rel="noopener noreferrer" className={styles.quickstartDocBtn} aria-label="YACI DevKit Docs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.quickstartDocIcon}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
               </a>
             </div>
           </div>
@@ -426,7 +448,6 @@ function SmartContractsSection() {
             />
             <div className={styles.scLearnOverlay} />
             <div className={styles.scLearnContent}>
-              <span className={styles.scLearnBadge}>Learn</span>
               <h3>Smart Contracts</h3>
               <p>Design patterns, libraries, and security best practices</p>
               <div className={styles.scLearnLinks}>
@@ -457,9 +478,8 @@ function SmartContractsSection() {
             />
             <div className={styles.asteriaOverlay} />
             <div className={styles.asteriaContent}>
-              <span className={styles.asteriaBadge}>Play</span>
               <h3>Asteria</h3>
-              <p>Learn eUTxO by building bots that compete in a 2D space game</p>
+              <p>Learn development with eUTxOs by building bots that compete in a 2D space game</p>
               <span className={styles.asteriaLink}>Explore universe →</span>
             </div>
           </a>
@@ -476,7 +496,6 @@ function SmartContractsSection() {
             />
             <div className={styles.scCTFOverlay} />
             <div className={styles.scCTFContent}>
-              <span className={styles.scCTFBadge}>Challenge</span>
               <h3>Cardano CTF</h3>
               <p>Find vulnerabilities, exploit contracts, earn rewards</p>
               <span className={styles.scCTFLink}>Start hacking →</span>
@@ -507,7 +526,6 @@ function CTASection() {
             />
             <div className={styles.ctaHackathonsOverlay} />
             <div className={styles.ctaHackathonsContent}>
-              <span className={styles.ctaHackathonsBadge}>Events</span>
               <h3>Hackathons</h3>
               <p>Build, compete, and win prizes with developers worldwide</p>
               <span className={styles.ctaHackathonsLink}>View upcoming →</span>
@@ -522,13 +540,12 @@ function CTASection() {
             className={styles.ctaEvents}
           >
             <img
-              src={useBaseUrl("img/meet-your-community.jpeg")}
+              src={useBaseUrl("img/card-cardano-events.png")}
               alt=""
               className={styles.ctaEventsImage}
             />
             <div className={styles.ctaEventsOverlay} />
             <div className={styles.ctaEventsContent}>
-              <span className={styles.ctaEventsBadge}>Community</span>
               <h3>Cardano Events</h3>
               <p>Meet developers and community members at events worldwide</p>
               <span className={styles.ctaEventsLink}>Find events ↗</span>
@@ -537,15 +554,63 @@ function CTASection() {
 
           {/* Funding Card */}
           <Link to={useBaseUrl("docs/community/funding")} className={styles.ctaFunding}>
-            <div className={styles.ctaFundingIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-              </svg>
+            <img
+              src={useBaseUrl("img/card-get-funded.jpg")}
+              alt=""
+              className={styles.ctaFundingImage}
+            />
+            <div className={styles.ctaFundingOverlay} />
+            <div className={styles.ctaFundingContent}>
+              <h3>Get Funded</h3>
+              <p>Grants and funding opportunities to bring your ideas to life</p>
+              <span className={styles.ctaFundingLink}>Explore grants →</span>
             </div>
-            <h3>Get Funded</h3>
-            <p>Grants and funding opportunities to bring your ideas to life</p>
-            <span className={styles.ctaFundingLink}>Explore grants →</span>
           </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OfficeHoursSection() {
+  return (
+    <section className={styles.officeHours}>
+      <div className="container">
+        <div className={styles.officeHoursInner}>
+          <div className={styles.officeHoursContent}>
+            <span className={styles.officeHoursBadge}>Every week</span>
+            <h2>Developer Office Hours</h2>
+            <p>
+              Get your questions answered live by Cardano Foundation engineers.
+              Each session features a different topic followed by open Q&A. All
+              recordings available on YouTube.
+            </p>
+            <div className={styles.officeHoursActions}>
+              <a
+                href="https://www.addevent.com/calendar/TG807216"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.officeHoursBtn}
+              >
+                Add to Calendar
+              </a>
+              <a
+                href="https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.officeHoursBtnSecondary}
+              >
+                Watch Recordings ↗
+              </a>
+            </div>
+          </div>
+          <div className={styles.officeHoursImageCard}>
+            <img
+              src={useBaseUrl("img/card-office-hours.png")}
+              alt="Cardano Developers Calendar"
+              className={styles.officeHoursImage}
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -562,9 +627,10 @@ function Home() {
       <Hero />
       <main>
         <BentoSection />
+        <CTASection />
         <DeveloperSection />
         <SmartContractsSection />
-        <CTASection />
+        <OfficeHoursSection />
       </main>
       <OpenStickyButton />
     </Layout>
