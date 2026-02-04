@@ -6,11 +6,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import OpenStickyButton from "../components/buttons/openStickyButton";
 
-/* ============================================
-   DATA
-   ============================================ */
+/* --- DATA --- */
 
-// SDKs with language icons
 const sdks = [
   {
     name: "TypeScript",
@@ -45,9 +42,7 @@ const sdks = [
 ];
 
 
-/* ============================================
-   COMPONENTS
-   ============================================ */
+/* --- COMPONENTS --- */
 
 function Hero() {
   return (
@@ -81,7 +76,7 @@ function BentoSection() {
     <section className={styles.bento}>
       <div className="container">
         <div className={styles.bentoGrid}>
-          {/* Large Smart Contracts Card */}
+          {/* Smart Contracts */}
           <Link
             to={useBaseUrl("docs/build/smart-contracts/overview")}
             className={clsx(styles.bentoCard, styles.bentoLarge)}
@@ -98,7 +93,7 @@ function BentoSection() {
             />
           </Link>
 
-          {/* Native Tokens Card */}
+          {/* Native Tokens */}
           <Link
             to={useBaseUrl("docs/build/native-tokens/overview")}
             className={clsx(styles.bentoCard, styles.bentoMedium)}
@@ -115,8 +110,7 @@ function BentoSection() {
             </div>
           </Link>
 
-          {/* Row 2: Three equal cards (4 cols each = 12 total) */}
-          {/* Get Started Card */}
+          {/* Get Started */}
           <Link
             to={useBaseUrl("docs/get-started/")}
             className={clsx(styles.bentoCard, styles.bentoThird, styles.bentoAccent)}
@@ -133,7 +127,7 @@ function BentoSection() {
             </div>
           </Link>
 
-          {/* Integrate Payments Card */}
+          {/* Integrate Payments */}
           <Link
             to={useBaseUrl("docs/build/integrate/overview")}
             className={clsx(styles.bentoCard, styles.bentoThird)}
@@ -150,7 +144,7 @@ function BentoSection() {
             </div>
           </Link>
 
-          {/* Transaction Metadata Card */}
+          {/* Transaction Metadata */}
           <Link
             to={useBaseUrl("docs/build/transaction-metadata/overview")}
             className={clsx(styles.bentoCard, styles.bentoThird)}
@@ -167,8 +161,7 @@ function BentoSection() {
             </div>
           </Link>
 
-          {/* Row 3: Two equal cards (6 cols each = 12 total) */}
-          {/* Stake Pools Card */}
+          {/* Stake Pools */}
           <Link
             to={useBaseUrl("docs/operate-a-stake-pool/")}
             className={clsx(styles.bentoCard, styles.bentoHalf)}
@@ -185,7 +178,7 @@ function BentoSection() {
             </div>
           </Link>
 
-          {/* Governance Card */}
+          {/* Governance */}
           <Link
             to={useBaseUrl("docs/governance/")}
             className={clsx(styles.bentoCard, styles.bentoHalf)}
@@ -233,7 +226,7 @@ function DeveloperSection() {
           <p>Everything you need to build on Cardano</p>
         </div>
         <div className={styles.devGrid}>
-          {/* Row 1: Quickstart bar (6 cols) + Builder Tools (3 cols) + Cardano Apps (3 cols) */}
+          {/* Quickstart */}
           <div className={styles.devQuickstartCard}>
             <div className={styles.quickstartLeft}>
               <span className={styles.quickstartBadge}>Quickstart</span>
@@ -261,6 +254,7 @@ function DeveloperSection() {
             </div>
           </div>
 
+          {/* Builder Tools */}
           <Link
             to={useBaseUrl("tools")}
             className={styles.devLinkCard}
@@ -277,6 +271,7 @@ function DeveloperSection() {
             <span className={styles.devLinkArrow}>→</span>
           </Link>
 
+          {/* Cardano Apps */}
           <a
             href="https://cardano.org/apps/"
             target="_blank"
@@ -298,7 +293,7 @@ function DeveloperSection() {
             <span className={styles.devLinkArrow}>↗</span>
           </a>
 
-          {/* Row 2: SDK Card (5 cols) + Code Block (7 cols) */}
+          {/* SDKs */}
           <div className={styles.devSdkCard}>
             <div className={styles.devSdkHeader}>
               <h2>Build in Your Language</h2>
@@ -318,6 +313,7 @@ function DeveloperSection() {
             </div>
           </div>
 
+          {/* Code sample */}
           <div className={styles.devCodeCard}>
             <div className={styles.codeBlock}>
               <div className={styles.codeHeader}>
@@ -359,7 +355,7 @@ function DeveloperSection() {
             </div>
           </div>
 
-          {/* Row 3: Community (3 cols) + Infrastructure (3 cols) + Devnet bar (6 cols) */}
+          {/* Community */}
           <Link
             to={useBaseUrl("docs/community/cardano-developer-community")}
             className={styles.devLinkCard}
@@ -379,6 +375,7 @@ function DeveloperSection() {
             <span className={styles.devLinkArrow}>→</span>
           </Link>
 
+          {/* Infrastructure */}
           <Link
             to={useBaseUrl("docs/get-started/infrastructure/overview")}
             className={styles.devLinkCard}
@@ -398,6 +395,7 @@ function DeveloperSection() {
             <span className={styles.devLinkArrow}>→</span>
           </Link>
 
+          {/* Devnet (YACI) */}
           <div className={styles.devQuickstartCard2}>
             <div className={styles.quickstartLeft}>
               <span className={styles.quickstartBadge2}>Devnet</span>
@@ -439,7 +437,7 @@ function SmartContractsSection() {
           <p>Master smart contract development on Cardano</p>
         </div>
         <div className={styles.scGrid}>
-          {/* Smart Contracts Card */}
+          {/* Smart Contracts learn */}
           <div className={styles.scLearnCard}>
             <img
               src={useBaseUrl("img/card-smart-contracts.svg")}
@@ -464,7 +462,7 @@ function SmartContractsSection() {
             </div>
           </div>
 
-          {/* Asteria Card */}
+          {/* Asteria */}
           <a
             href="https://asteria.txpipe.io/"
             target="_blank"
@@ -484,7 +482,7 @@ function SmartContractsSection() {
             </div>
           </a>
 
-          {/* CTF Challenge Card */}
+          {/* CTF */}
           <Link
             to={useBaseUrl("docs/build/smart-contracts/advanced/security/ctf")}
             className={styles.scCTFCard}
@@ -517,7 +515,7 @@ function CTASection() {
           <p>Connect, build, and get funded</p>
         </div>
         <div className={styles.ctaRow}>
-          {/* Hackathons Card */}
+          {/* Hackathons */}
           <Link to={useBaseUrl("hackathons")} className={styles.ctaHackathons}>
             <img
               src={useBaseUrl("img/hackathons/hackathon.jpg")}
@@ -532,7 +530,7 @@ function CTASection() {
             </div>
           </Link>
 
-          {/* Events Card */}
+          {/* Events */}
           <a
             href="https://cardano.org/events/"
             target="_blank"
@@ -552,7 +550,7 @@ function CTASection() {
             </div>
           </a>
 
-          {/* Funding Card */}
+          {/* Funding */}
           <Link to={useBaseUrl("docs/community/funding")} className={styles.ctaFunding}>
             <img
               src={useBaseUrl("img/card-get-funded.jpg")}
@@ -617,9 +615,7 @@ function OfficeHoursSection() {
   );
 }
 
-/* ============================================
-   MAIN PAGE
-   ============================================ */
+/* --- MAIN PAGE --- */
 
 function Home() {
   return (

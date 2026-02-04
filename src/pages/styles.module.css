@@ -1,13 +1,8 @@
 /* stylelint-disable docusaurus/copyright-header */
 
-/**
- * Cardano Developer Portal Landing Page
- * Brand colors: Teal #44BBA4, Blue #0033AD, Coral #FF5553, Cream #FCDFA6
- */
+/* Landing page. Brand: Teal #44BBA4, Blue #0033AD, Coral #FF5553, Cream #FCDFA6 */
 
-/* ===========================================
-   HERO SECTION
-   =========================================== */
+/* --- HERO --- */
 
 .hero {
   position: relative;
@@ -61,7 +56,6 @@ html[data-theme="dark"] .heroOverlay {
   );
 }
 
-/* Ambient glow effect */
 .heroGlow {
   position: absolute;
   width: 600px;
@@ -192,9 +186,7 @@ html[data-theme="dark"] .heroSubtitle {
   }
 }
 
-/* ===========================================
-   BENTO GRID - Visual Feature Showcase
-   =========================================== */
+/* --- BENTO GRID --- */
 
 .bento {
   padding: 3.5rem 0;
@@ -247,7 +239,7 @@ html[data-theme="dark"] .bentoCard:hover {
   border-color: rgba(68, 187, 164, 0.3);
 }
 
-/* Large card - Smart Contracts (spans 8 columns) */
+/* large card (Smart Contracts) */
 .bentoLarge {
   grid-column: span 8;
   display: flex;
@@ -278,7 +270,7 @@ html[data-theme="dark"] .bentoLarge .bentoCardImage {
   opacity: 0.8;
 }
 
-/* Medium cards - Native Tokens, Get Started (span 4 columns each) */
+/* medium card (Native Tokens) */
 .bentoMedium {
   grid-column: span 4;
   display: flex;
@@ -300,7 +292,7 @@ html[data-theme="dark"] .bentoLarge .bentoCardImage {
   flex-direction: column;
 }
 
-/* Accent card variant */
+/* accent card (Get Started) */
 .bentoAccent {
   background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%) !important;
   color: #fff !important;
@@ -317,7 +309,7 @@ html[data-theme="dark"] .bentoAccent {
   color: #fff !important;
 }
 
-/* Row 2: Third-width cards (4 columns each = 33%) */
+/* third-width cards */
 .bentoThird {
   grid-column: span 4;
   display: flex;
@@ -365,7 +357,7 @@ html[data-theme="dark"] .bentoThirdContent p {
   color: rgba(255, 255, 255, 0.65);
 }
 
-/* Row 3: Half-width cards (6 columns each = 50%) */
+/* half-width cards (Stake Pools, Governance) */
 .bentoHalf {
   grid-column: span 6;
   display: flex;
@@ -416,7 +408,6 @@ html[data-theme="dark"] .bentoHalfContent p {
   color: rgba(255, 255, 255, 0.65);
 }
 
-/* Card content shared styles */
 .bentoCardContent h3 {
   font-size: 1.35rem;
   font-weight: 700;
@@ -459,7 +450,6 @@ html[data-theme="dark"] .bentoLink {
   transform: translateX(4px);
 }
 
-/* Bento responsive */
 @media screen and (max-width: 996px) {
   .bentoGrid {
     grid-template-columns: repeat(6, 1fr);
@@ -545,9 +535,7 @@ html[data-theme="dark"] .bentoLink {
   }
 }
 
-/* ===========================================
-   DEVELOPER SECTION - Developer Toolkit Grid
-   =========================================== */
+/* --- DEVELOPER SECTION --- */
 
 .developer {
   padding: 4rem 0;
@@ -573,14 +561,13 @@ html[data-theme="dark"] .developer {
 html[data-theme="light"] .devHeader p { color: rgba(0, 0, 0, 0.65); }
 html[data-theme="dark"] .devHeader p { color: rgba(255, 255, 255, 0.65); }
 
-/* Bento Grid - 12-column layout */
 .devGrid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
 }
 
-/* SDK Card - spans 5 cols */
+/* SDK card */
 .devSdkCard {
   grid-column: span 5;
   padding: 1.5rem;
@@ -666,12 +653,12 @@ html[data-theme="dark"] .sdkItem:hover {
   height: 20px;
 }
 
-/* Code Card - spans 7 cols */
+/* code sample block */
 .devCodeCard {
   grid-column: span 7;
 }
 
-/* Unified Link Cards - 4 cards at span 3 each */
+/* link cards (Builder Tools, Apps, Community, Infrastructure) */
 .devLinkCard {
   grid-column: span 3;
   display: flex;
@@ -708,7 +695,6 @@ html[data-theme="dark"] .devLinkCard:hover {
   border-color: rgba(68, 187, 164, 0.3);
 }
 
-/* Icon */
 .devLinkIcon {
   width: 40px;
   height: 40px;
@@ -740,7 +726,6 @@ html[data-theme="dark"] .devLinkIcon svg {
   color: #44BBA4;
 }
 
-/* Text */
 .devLinkText {
   display: flex;
   flex-direction: column;
@@ -764,7 +749,6 @@ html[data-theme="dark"] .devLinkDesc {
   color: rgba(255, 255, 255, 0.55);
 }
 
-/* Arrow */
 .devLinkArrow {
   font-size: 1rem;
   transition: transform 0.2s ease;
@@ -790,7 +774,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   color: #44BBA4;
 }
 
-/* Quickstart Cards - each span 6 cols, side by side */
+/* Quickstart */
 .devQuickstartCard {
   grid-column: span 6;
   display: flex;
@@ -798,9 +782,6 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   gap: 0.625rem;
   padding: 1rem 1.25rem;
   border-radius: 16px;
-}
-
-.devQuickstartCard {
   background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%);
 }
 
@@ -833,7 +814,6 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   gap: 0.5rem;
 }
 
-/* Docs icon button */
 .quickstartDocBtn {
   width: 36px;
   height: 36px;
@@ -857,7 +837,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   height: 16px;
 }
 
-/* Second Quickstart Card (YACI DevKit) */
+/* Devnet */
 .devQuickstartCard2 {
   grid-column: span 6;
   display: flex;
@@ -879,7 +859,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   color: #fff;
 }
 
-/* Code Block */
+/* code block window */
 .codeBlock {
   background: #1a1a1f;
   border-radius: 20px;
@@ -929,7 +909,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 .codeFunction { color: #dcdcaa; }
 .codeVariable { color: #9cdcfe; }
 
-/* CLI Mockup */
+/* CLI mockup */
 .cliMockup {
   display: flex;
   align-items: center;
@@ -983,7 +963,6 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   height: 14px;
 }
 
-/* Developer responsive */
 @media screen and (max-width: 996px) {
   .devGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -1044,9 +1023,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   }
 }
 
-/* ===========================================
-   SMART CONTRACTS SECTION
-   =========================================== */
+/* --- SMART CONTRACTS --- */
 
 .smartContracts {
   padding: 3.5rem 0 5rem;
@@ -1110,11 +1087,7 @@ html[data-theme="dark"] .scHeader p {
   }
 }
 
-/* ===========================================
-   FEATURE CARDS (Smart Contracts + CTF)
-   =========================================== */
-
-/* Left: Learn Card */
+/* Smart contracts learn card */
 .scLearnCard {
   position: relative;
   display: flex;
@@ -1215,7 +1188,7 @@ html[data-theme="dark"] .scLearnOverlay {
   transform: translateY(-2px);
 }
 
-/* Middle: Asteria Card */
+/* Asteria */
 .asteriaCard {
   position: relative;
   display: flex;
@@ -1288,7 +1261,7 @@ html[data-theme="dark"] .scLearnOverlay {
   color: #5DCFB8;
 }
 
-/* Right: CTF Card */
+/* CTF card */
 .scCTFCard {
   position: relative;
   display: flex;
@@ -1361,7 +1334,6 @@ html[data-theme="dark"] .scLearnOverlay {
   color: #fff;
 }
 
-/* Feature Cards Responsive */
 @media screen and (max-width: 576px) {
   .scLearnCard,
   .asteriaCard,
@@ -1381,9 +1353,7 @@ html[data-theme="dark"] .scLearnOverlay {
 }
 
 
-/* ===========================================
-   CTA SECTION - Clean Two-Card Layout
-   =========================================== */
+/* --- CTA --- */
 
 .cta {
   padding: 4rem 0 5rem;
@@ -1397,7 +1367,6 @@ html[data-theme="dark"] .cta {
   background: #1f2023;
 }
 
-/* CTA Header */
 .ctaHeader {
   text-align: center;
   margin-bottom: 2rem;
@@ -1424,7 +1393,6 @@ html[data-theme="dark"] .ctaHeader p {
   color: rgba(255, 255, 255, 0.65);
 }
 
-/* Three-card row layout */
 .ctaRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1432,7 +1400,7 @@ html[data-theme="dark"] .ctaHeader p {
   min-height: 280px;
 }
 
-/* Hackathons Card - styled like Asteria/CTF cards */
+/* Hackathons */
 .ctaHackathons {
   position: relative;
   display: flex;
@@ -1511,7 +1479,7 @@ html[data-theme="dark"] .ctaHackathonsLink {
   color: #fff;
 }
 
-/* Events Card - styled like Hackathons */
+/* Events */
 .ctaEvents {
   position: relative;
   display: flex;
@@ -1590,7 +1558,7 @@ html[data-theme="dark"] .ctaEventsLink {
   color: #fff;
 }
 
-/* Funding Card - styled like Hackathons/Events cards */
+/* Funding */
 .ctaFunding {
   position: relative;
   display: flex;
@@ -1669,7 +1637,6 @@ html[data-theme="dark"] .ctaFundingLink {
   color: #fff;
 }
 
-/* CTA Responsive */
 @media screen and (max-width: 996px) {
   .ctaRow {
     grid-template-columns: repeat(2, 1fr);
@@ -1696,9 +1663,7 @@ html[data-theme="dark"] .ctaFundingLink {
   }
 }
 
-/* ===========================================
-   OFFICE HOURS CTA
-   =========================================== */
+/* --- OFFICE HOURS --- */
 
 .officeHours {
   padding: 4rem 0 5rem;
@@ -1719,7 +1684,6 @@ html[data-theme="dark"] .officeHours {
   min-height: 280px;
 }
 
-/* Left: text content */
 .officeHoursContent {
   flex: 1;
   padding: 2rem;
@@ -1858,7 +1822,6 @@ html[data-theme="dark"] .officeHoursBtnSecondary:hover {
   background: rgba(68, 187, 164, 0.1);
 }
 
-/* Right: image card */
 .officeHoursImageCard {
   flex: 1;
   border-radius: 16px;
@@ -1897,9 +1860,7 @@ html[data-theme="dark"] .officeHoursBtnSecondary:hover {
   }
 }
 
-/* ===========================================
-   PORTAL HERO (used by portalhero.js)
-   =========================================== */
+/* Portal hero (portalhero.js) */
 
 .heroBanner {
   padding: 4rem 0;
@@ -1953,9 +1914,7 @@ html[data-theme="dark"] .getStarted {
   }
 }
 
-/* ===========================================
-   GLOBAL
-   =========================================== */
+/* --- GLOBAL --- */
 
 @media screen and (max-width: 576px) {
   .bento,
