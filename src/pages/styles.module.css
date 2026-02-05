@@ -10,6 +10,13 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+}
+
+html[data-theme="light"] .hero {
+  background: #0337AF;
+}
+
+html[data-theme="dark"] .hero {
   background: #002E9E;
 }
 
