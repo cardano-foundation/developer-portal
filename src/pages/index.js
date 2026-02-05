@@ -59,10 +59,10 @@ function Hero() {
       <div className="container">
         <div className={styles.heroContent}>
           <div className={styles.heroCard}>
-            <h1 className={styles.heroTitle}>Cardano developer resources</h1>
+            <h1 className={styles.heroTitle}> Developer resources</h1>
             <p className={styles.heroSubtitle}>
-              From first transaction to production dApp and everything in
-              between. Docs, tools, and SDKs for Cardano.
+              From the first transaction to the production dApp and everything in
+              between. Docs, tools, and SDKs for everything Cardano.
             </p>
           </div>
         </div>
