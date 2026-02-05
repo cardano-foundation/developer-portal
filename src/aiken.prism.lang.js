@@ -12,7 +12,7 @@ Prism.languages.aiken = {
 
   // Strings (double-quoted with escape sequences)
   'string': {
-    pattern: /"(?:\\.|[^"\\])*"/,
+    pattern: /@?"(?:\\.|[^"\\])*"/,
     greedy: true
   },
 
@@ -35,16 +35,15 @@ Prism.languages.aiken = {
   'keyword': /\b(?:if|else|when|is|fn|use|let|pub|type|opaque|const|todo|expect|test|bench|trace|fail|validator|and|or|as|via)\b/,
 
   // Type names (PascalCase identifiers)
-  'class-name': /\b[A-Z][a-zA-Z0-9_]*\b/,
+  'inserted': /\b[A-Z][a-zA-Z0-9_]*\b/,
 
   // Function calls
-  'function': /\b[a-z][a-zA-Z0-9_]*(?=\s*\()/,
-
-  // Namespace/module prefix (e.g., `module:`)
-  'namespace': /\b[a-z][a-zA-Z0-9_]*(?=:)/,
+  'function': /\b[a-z_][a-zA-Z0-9_]*(?=\s*\()/,
 
   // Operators
   'operator': [
+    // Trace operator
+    /\?/,
     // Arrow operators
     /->|<-/,
     // Pipe operator
