@@ -83,7 +83,7 @@ function BentoSection() {
           >
             <div className={styles.bentoCardContent}>
               <h3>Smart Contracts</h3>
-              <p>Build secure dApps with Aiken. Leverage eUTxO for predictable execution and formal verification.</p>
+              <p>Build dApps with Aiken and leverage the eUTxO model for predictable execution.</p>
               <span className={styles.bentoLink}>Start building →</span>
             </div>
             <img
