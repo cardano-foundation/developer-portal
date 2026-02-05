@@ -31,7 +31,7 @@ html[data-theme="dark"] .hero {
   height: 100%;
   object-fit: contain;
   object-position: center center;
-  transform: translateX(280px);
+  transform: translateX(310px);
 }
 
 html[data-theme="dark"] .heroBackgroundImage {
