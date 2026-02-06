@@ -59,7 +59,7 @@ function Hero() {
       <div className="container">
         <div className={styles.heroContent}>
           <div className={styles.heroCard}>
-            <h1 className={styles.heroTitle}> Developer resources</h1>
+            <h1 className={styles.heroTitle}> Developer Resources</h1>
             <p className={styles.heroSubtitle}>
               From the first transaction to the production dApp and everything in
               between. Docs, tools, and SDKs for everything Cardano.
