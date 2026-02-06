@@ -173,7 +173,7 @@ module.exports = {
             type: "category",
             label: "C#",
             items: [
-              "get-started/client-sdks/csharp/cardanosharp-wallet",
+              "get-started/client-sdks/csharp/chrysalis",
             ],
           },
           {
