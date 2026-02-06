@@ -641,7 +641,7 @@ module.exports = {
             from: '/docs/get-started/pycardano',
           },
           {
-            to: '/docs/get-started/client-sdks/csharp/cardanosharp-wallet',
+            to: '/docs/get-started/client-sdks/csharp/chrysalis',
             from: '/docs/get-started/cardanosharp-wallet',
           },
           {
