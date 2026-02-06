@@ -303,7 +303,7 @@ function DeveloperSection() {
               {sdks.map((sdk) => (
                 <Link
                   key={sdk.name}
-                  to={sdk.targetUrl}
+                  to={useBaseUrl(sdk.targetUrl)}
                   className={styles.sdkItem}
                 >
                   <img
