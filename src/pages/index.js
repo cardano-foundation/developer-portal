@@ -31,7 +31,7 @@ const sdks = [
   },
   {
     name: "C#",
-    targetUrl: "docs/get-started/client-sdks/csharp/cardanosharp-wallet",
+    targetUrl: "docs/get-started/client-sdks/csharp/chrysalis",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
   },
   {
