@@ -167,6 +167,8 @@ cardano_node_metrics_submissions_accepted_counter
 cardano_node_metrics_submissions_rejected_counter
 cardano_node_metrics_submissions_submitted_counter
 cardano_node_metrics_tipBlock
+cardano_node_metrics_txsMempoolTimeoutHard_counter
+cardano_node_metrics_txsMempoolTimeoutSoft_counter
 ```
 
 ### No suffix variant
@@ -275,5 +277,7 @@ cardano_node_metrics_submissions_accepted
 cardano_node_metrics_submissions_rejected
 cardano_node_metrics_submissions_submitted
 cardano_node_metrics_tipBlock
+cardano_node_metrics_txsMempoolTimeoutHard
+cardano_node_metrics_txsMempoolTimeoutSoft
 ```
 
