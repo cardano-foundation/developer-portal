@@ -12,32 +12,32 @@ const sdks = [
   {
     name: "TypeScript",
     targetUrl: "docs/get-started/client-sdks/typescript/overview",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    icon: "img/icons/typescript-original.svg",
   },
   {
     name: "Python",
     targetUrl: "docs/get-started/client-sdks/python/pycardano",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    icon: "img/icons/python-original.svg",
   },
   {
     name: "Rust",
     targetUrl: "docs/get-started/client-sdks/rust/pallas",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg",
+    icon: "img/icons/rust-original.svg",
   },
   {
     name: "Go",
     targetUrl: "docs/get-started/client-sdks/go/apollo",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
+    icon: "img/icons/go-original.svg",
   },
   {
     name: "C#",
     targetUrl: "docs/get-started/client-sdks/csharp/chrysalis",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+    icon: "img/icons/csharp-original.svg",
   },
   {
     name: "Swift",
     targetUrl: "docs/get-started/client-sdks/swift/cardanokit",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
+    icon: "img/icons/swift-original.svg",
   },
 ];
 
@@ -300,13 +300,16 @@ function DeveloperSection() {
               <p>Production-ready SDKs for every stack</p>
             </div>
             <div className={styles.sdkGrid}>
-              {sdks.map((sdk, idx) => (
+              {sdks.map((sdk) => (
                 <Link
-                  key={idx}
+                  key={sdk.name}
                   to={useBaseUrl(sdk.targetUrl)}
                   className={styles.sdkItem}
                 >
-                  <img src={sdk.icon} alt="" />
+                  <img
+                    src={useBaseUrl(sdk.icon)}
+                    alt={`${sdk.name} logo`}
+                  />
                   <span>{sdk.name}</span>
                 </Link>
               ))}
