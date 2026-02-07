@@ -54,9 +54,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: isAnnouncementActive ? {
-      id: "announcement_index9", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index10", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/community/cardano-developer-community">Learn more</a> 💬</strong>`,
+        `<strong>Intersect's State of Developer Experience Survey is here! <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/ey7yRJP2cP92EqrS7">Share your feedback!</a></strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -100,6 +100,7 @@ module.exports = {
             {to: "tools", label: "Builder Tools"},
             {to: "docs/community/cardano-developer-community", label: "Community"},
             {to: "docs/community/funding", label: "Grants"},
+            {to: "/hackathons", label: "Hackathons"},
           ],
           mega: true,
           customProps: {
@@ -132,6 +133,7 @@ module.exports = {
                   {to: '/tools', label: 'Builder Tools', description: 'Explore developer tools', icon: 'wrench-solid'},
                   {to: '/docs/community/cardano-developer-community', label: 'Community', description: 'Connect with other developers', icon: 'people-group-solid'},
                   {to: '/docs/community/funding', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'handshake-solid'},
+                  {to: '/hackathons', label: 'Hackathons', description: 'Compete and build projects', icon: 'code-solid'},
                 ],
               },
             ],
@@ -639,7 +641,7 @@ module.exports = {
             from: '/docs/get-started/pycardano',
           },
           {
-            to: '/docs/get-started/client-sdks/csharp/cardanosharp-wallet',
+            to: '/docs/get-started/client-sdks/csharp/chrysalis',
             from: '/docs/get-started/cardanosharp-wallet',
           },
           {
@@ -845,6 +847,14 @@ module.exports = {
               '/docs/get-started/networks/testnets/overview',
               '/docs/get-started/networks/testnets/testnet-faucet',
             ],
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
+            from: '/docs/get-started/cardano-node/installing-cardano-node',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
+            from: '/docs/get-started/cli-operations/basic-operations',
           },
         ],
       },

@@ -268,7 +268,7 @@ The code example above is presented in [Mesh repository](https://github.com/Mesh
 aiken build
 ```
 
-This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/03-vesting/src/aiken-workspace/plutus.json).
+This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/07-vesting/src/aiken-workspace/plutus.json).
 
 ## Setup Oracle
 

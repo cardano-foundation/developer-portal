@@ -11,7 +11,7 @@ keywords: [cardano-cli, cli, keys, addresses, cardano-node, transactions]
 Cardano transactions involve consuming one or more Unspent Transaction Outputs (UTXOs) and generating one or more new UTXOs. The most basic transaction type involves transferring ada from one address to another. It is essential to ensure that all transactions are 'well-balanced', meaning that the sum of outputs and transaction fees equals the sum of inputs. This balance ensures the integrity and validity of the transaction. Unbalanced transactions are rejected by the local node.
 
 :::tip Learn more about the UTXO model
-To learn more about **UTXO (unspent transaction output)** and how transactions work in the UTXO model, watch this lecture by [Dr. Lars Brünjes](https://iohk.io/en/team/lars-brunjes), Education Director at InputOutputGlobal:
+To learn more about **UTXO (unspent transaction output)** and how transactions work in the UTXO model, watch this lecture:
 
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/EoO76YCSTLo?t=1854" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 :::
