@@ -7,7 +7,7 @@ import ShowcaseTagSelect, {
   replaceSearchTags,
 } from "@site/src/components/showcase/ShowcaseTagSelect";
 import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard/";
-import OpenStickyButton from "../../components/buttons/openStickyButton";
+import OpenStickyButton from "../../components/buttons/OpenStickyButton";
 import ShowcaseFilterToggle, {
   readOperator,
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
