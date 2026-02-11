@@ -8,7 +8,7 @@ const isAnnouncementActive = true;
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-// Custom Prism syntax highlighting themes (One Light / One Dark palette)
+// One Light palette
 const prismLightTheme = {
   plain: {
     color: '#383a42',
@@ -31,7 +31,7 @@ const prismLightTheme = {
   ],
 };
 
-// Dark theme based on Aiken docs / One Dark color scheme
+// One Dark palette
 const prismDarkTheme = {
   plain: {
     color: '#abb2bf',
