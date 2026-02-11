@@ -4,7 +4,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
-import OpenStickyButton from "../components/buttons/openStickyButton";
+import OpenStickyButton from "../components/buttons/OpenStickyButton";
 
 /* --- DATA --- */
 
