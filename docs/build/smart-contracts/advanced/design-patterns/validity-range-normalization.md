@@ -59,7 +59,7 @@ meaningless instances and redundancies.
 
 The datatype is defined as following:
 
-```rust
+```aiken
 pub type NormalizedTimeRange {
   ClosedRange { lower: Int, upper: Int }
   FromNegInf  {             upper: Int }
@@ -73,7 +73,7 @@ The exposed function of the module (`normalize_time_range`), takes a
 
 ### Example Usage
 
-```rust
+```aiken
 use aiken_design_patterns/validity_range_normalization.{
   NormalizedTimeRange, normalize_time_range,
 }
