@@ -2,7 +2,7 @@
 slug: nft-minting-standard
 title: "How we minted the NFTAs, and why we went for this standard"
 authors: [cf]
-tags: [developer-portal, nft, nfta]
+tags: [nft, nfta]
 description: "How we minted the NFTAs, and why we went for this standard."
 image: https://developers.cardano.org/img/og/og-blog-nftas.png
 ---
