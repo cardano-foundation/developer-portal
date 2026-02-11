@@ -10,11 +10,18 @@ Prism.languages.aiken = {
     greedy: true
   },
 
-  // Strings (double-quoted with escape sequences)
-  'string': {
-    pattern: /@?"(?:\\.|[^"\\])*"/,
-    greedy: true
-  },
+  // Strings (double-quoted with escape sequences, and byte array literals)
+  'string': [
+    {
+      pattern: /"(?:\\.|[^"\\])*"/,
+      greedy: true
+    },
+    {
+      // Byte array literals: #"hex content"
+      pattern: /#"(?:[0-9a-fA-F])*"/,
+      greedy: true
+    }
+  ],
 
   // Booleans (must come before class-name to take precedence)
   'boolean': /\b(?:True|False)\b/,
@@ -34,8 +41,11 @@ Prism.languages.aiken = {
   // Keywords
   'keyword': /\b(?:if|else|when|is|fn|use|let|pub|type|opaque|const|todo|expect|test|bench|trace|fail|validator|and|or|as|via)\b/,
 
+  // Module namespace qualifiers (e.g. `module_name.` before a function or type)
+  'namespace': /\b[a-z_][a-zA-Z0-9_]*\b(?=\.)/,
+
   // Type names (PascalCase identifiers)
-  'inserted': /\b[A-Z][a-zA-Z0-9_]*\b/,
+  'class-name': /\b[A-Z][a-zA-Z0-9_]*\b/,
 
   // Function calls
   'function': /\b[a-z_][a-zA-Z0-9_]*(?=\s*\()/,
