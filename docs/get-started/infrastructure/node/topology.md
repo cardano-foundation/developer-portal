@@ -114,6 +114,7 @@ A minimal version of this file looks like this:
 * The `behindFirewall` is an optional field.
   If activated, the node will not attempt to initiate outbound connections to the specified peers.
   Instead, it will wait for the peers behind a firewall to establish the connection.
+  The option is available since `cardano-node-10.7`.
 
 * Local root groups shall be non-overlapping.
 
