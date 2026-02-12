@@ -111,7 +111,7 @@ A minimal version of this file looks like this:
   Local permission corresponds to the value of the advertise parameter.
   On the other hand, 'remote permission' is tied to the `PeerSharing` value associated with the remote address, which is ascertained after the initial handshake between nodes.
 
-* The `behindFirewall` is an optional field.
+* The `behindFirewall` is an optional field (the default value is `false`).
   If activated, the node will not attempt to initiate outbound connections to the specified peers.
   Instead, it will wait for the peers behind a firewall to establish the connection.
   The option is available since `cardano-node-10.7`.
