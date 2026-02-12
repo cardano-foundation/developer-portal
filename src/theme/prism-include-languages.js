@@ -22,7 +22,7 @@ const prismIncludeLanguages = (PrismObject) => {
     });
 
     try {
-      window.x = require('../aiken.prism.lang.js');
+      require('../aiken.prism.lang.js');
     } catch (error) {
       console.error('Failed to load custom Prism language file: aiken.prism.lang.js', error);
     }
