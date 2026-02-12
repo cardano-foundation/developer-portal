@@ -25,7 +25,7 @@ Token names are additional data associated with tokens. They are set by the mint
 
 Note that in a single transaction, each minting policy is run only once. If the transaction mints and/or burns several tokens with the same policy ID but different token names, the corresponding minting policy is run only once and it needs to validate all the policy’s minted and burned tokens.
 
-```rust
+```aiken
 validator {
   fn mint_and_burn(_redeemer: Void, ctx: ScriptContext) -> Bool {
     let ScriptContext { transaction, purpose } = ctx
@@ -146,7 +146,7 @@ There are several options for how to fix this. Perhaps the most elegant is to us
 
 The minting policy won’t be parametrized and it will contain the following change: the validation token can be minted into any address, but its token name needs to match the payment credential part of the address of that UTxO. The script validator then needs to check that the validation token of the policy ID set as a parameter that is present in the UTxO has the corresponding name — that it matches its own script hash. By doing that, the validator can be sure that the token was minted to the same script. Different token names are untrustworthy and need to be considered invalid.
 
-```rust
+```aiken
 use aiken/dict.{to_list}
 use aiken/transaction.{
  Mint, ScriptContext, Spend, Transaction, find_input, find_script_outputs,

@@ -13,7 +13,7 @@ UTxO Indexers provide optimized and composable solutions for mapping inputs to o
 
 Without indexing, validators must search through all inputs/outputs to find specific ones:
 
-```rust
+```aiken
 // Expensive O(n) search
 find_input_with_token(inputs, my_token)  // Searches entire list
 ```
@@ -28,7 +28,7 @@ Leverage Cardano's deterministic script evaluation - all inputs to validators ar
 2. **Off-chain**: Include indices in redeemer
 3. **On-chain**: Use `list.at(index)` for O(1) access, verify element meets criteria
 
-```rust
+```aiken
 // Efficient O(1) access
 expect Some(input) = inputs |> list.at(input_index)
 expect input meets criteria
@@ -44,7 +44,7 @@ For single input processing. Use when spending one UTxO at a time.
 
 **One-to-one** - map one input to one output:
 
-```rust
+```aiken
 use aiken_design_patterns/singular_utxo_indexer
 
 validator my_validator {
@@ -74,7 +74,7 @@ validator my_validator {
 
 **One-to-many** - map one input to multiple outputs:
 
-```rust
+```aiken
 singular_utxo_indexer.one_to_many(
   fn(input, outputs_list) {
     // Validate this input against all these outputs
@@ -101,7 +101,7 @@ For batch processing multiple script UTxOs. Combines with [stake validator](stak
 
 **Example with stake validator:**
 
-```rust
+```aiken
 // Spending validator - minimal check
 use aiken_design_patterns/stake_validator
 
@@ -137,7 +137,7 @@ validator staking {
 
 For mapping multiple inputs where each can have multiple corresponding outputs:
 
-```rust
+```aiken
 use aiken_design_patterns/multi_utxo_indexer_one_to_many
 
 validator staking {
@@ -170,7 +170,7 @@ validator staking {
 
 Singular indexers require manual double satisfaction protection:
 
-```rust
+```aiken
 // ❌ Vulnerable - same output can satisfy multiple inputs
 one_to_one(validate, 0, 0, ...)  // Input 0 → Output 0
 one_to_one(validate, 1, 0, ...)  // Input 1 → Output 0 (same!)
