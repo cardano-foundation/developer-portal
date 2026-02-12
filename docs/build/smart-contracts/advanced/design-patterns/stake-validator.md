@@ -44,7 +44,7 @@ graph LR
 
 ### Spending Validator (Minimal Check)
 
-```rust
+```aiken
 use aiken_design_patterns/stake_validator
 
 validator my_spending_validator {
@@ -62,7 +62,7 @@ validator my_spending_validator {
 
 ### Spending Validator (With Redeemer Validation)
 
-```rust
+```aiken
 use aiken_design_patterns/stake_validator
 
 validator my_spending_validator {
@@ -87,7 +87,7 @@ validator my_spending_validator {
 
 ### Staking Validator (Business Logic)
 
-```rust
+```aiken
 use aiken_design_patterns/stake_validator
 
 validator my_staking_validator {
@@ -118,7 +118,7 @@ The library provides three main functions:
 
 Most efficient option - only checks if the withdrawal credential exists:
 
-```rust
+```aiken
 pub fn spend_minimal(withdraw_script_hash: ScriptHash, tx: Transaction) -> Bool
 ```
 
@@ -126,7 +126,7 @@ pub fn spend_minimal(withdraw_script_hash: ScriptHash, tx: Transaction) -> Bool
 
 Allows validation of withdrawal redeemer and amount:
 
-```rust
+```aiken
 pub fn spend(
   withdraw_script_hash: ScriptHash,
   withdraw_redeemer_validator: fn(Redeemer, Lovelace) -> Bool,
@@ -138,7 +138,7 @@ pub fn spend(
 
 Helper for staking validator implementation:
 
-```rust
+```aiken
 pub fn withdraw(
   withdrawal_logic: fn(a, ScriptHash, Transaction) -> Bool,
   redeemer: a,
@@ -151,7 +151,7 @@ pub fn withdraw(
 
 When using this pattern, your script address includes both payment and staking credentials:
 
-```rust
+```aiken
 // Address composed of spending and staking validators
 Address {
   payment_credential: ScriptCredential(spending_validator_hash),
