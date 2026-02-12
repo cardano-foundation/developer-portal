@@ -18,27 +18,27 @@ We can take advantage of reference scripts and the withdraw-zero trick to separa
 You can use the withdraw zero trick to prove arbitrary computation was done in a separate script execution (to effectively create merkleized smart contracts):
 Redeemer of stake validator:
 
-```rust
+```haskell
 data MerkelizedFunctionRedeemer = MerkelizedFunctionRedeemer {inputState :: [BuiltinData], outputState :: [BuiltinData]}
 ```
 
 Arbitrary computation to prove:
 
-```rust
+```haskell
 f :: [BuiltinData] -> [BuiltinData]
 f inputState = ... -- perform computation on x
 ```
 
 Stake Validator Logic:
 
-```rust
+```haskell
 -- PlutusTx Implementation
 stakeValidator :: MerkelizedFunctionRedeemer -> ScriptContext -> () 
 stakeValidator MerkelizedFunctionRedeemer{inputState, outputState} ctx =
   if (f inputState == outputState) then () else ( error () )
 ```
 
-```rust
+```haskell
 -- Plutarch implementation
 stakeValidator redeemer ctx = P.do
   redF <- pletFields @'["inputState", "outputState"] redeemer
@@ -47,7 +47,7 @@ stakeValidator redeemer ctx = P.do
 
 Then in the actual validator where we would like to outsource the computation to the stake validator:
 
-```rust
+```haskell
 -- PlutusTx implementation
 merkelizedValidator:: StakingCredential -> BuiltinData -> BuiltinData -> ScriptContext -> ()
 merkelizedValidator outsourcedFunctionCred _dat _redeemer ctx = 
@@ -71,7 +71,7 @@ merkelizedValidator outsourcedFunctionCred _dat _redeemer ctx =
     redeemers = txInfoRedeemers info 
 ```
 
-```rust
+```haskell
 --- Plutarch implementation
 merkelizedValidator stakeCred ... = P.do
  ...
