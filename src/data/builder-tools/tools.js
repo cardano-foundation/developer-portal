@@ -780,6 +780,14 @@ export const Showcases = [
     getstarted: "https://store.yaci.xyz/",
     tags: ["indexer", "java"],
   },
+  {
+    title: "Dingo",
+    description: "A Cardano blockchain data node written in Go which actively participates in network communications on the Cardano blockchain using the Ouroboros Network Node-to-Node family of mini-protocols.",
+    preview: require("./images/dingo.png"),
+    website: "https://github.com/blinklabs-io/dingo",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/dingo",
+    tags: ["golang", "nodeclient"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
