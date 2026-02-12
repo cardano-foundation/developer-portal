@@ -78,7 +78,7 @@ graph LR
 
 ### Spending Validator (Minimal Check)
 
-```rust
+```aiken
 use aiken_design_patterns/tx_level_minter
 
 validator my_spending_validator {
@@ -96,7 +96,7 @@ validator my_spending_validator {
 
 ### Spending Validator (With Validation)
 
-```rust
+```aiken
 use aiken_design_patterns/tx_level_minter
 
 validator my_spending_validator {
@@ -125,7 +125,7 @@ validator my_spending_validator {
 
 ### Minting Policy (Business Logic)
 
-```rust
+```aiken
 validator my_minting_policy {
   mint(
     redeemer: MyRedeemer,
