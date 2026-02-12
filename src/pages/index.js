@@ -450,13 +450,13 @@ function SmartContractsSection() {
             <div className={styles.scLearnOverlay} />
             <div className={styles.scLearnContent}>
               <h3>Smart Contracts</h3>
-              <p>Design patterns, libraries, and security best practices</p>
+              <p>Design patterns, examples, and security best practices</p>
               <div className={styles.scLearnLinks}>
                 <Link to={useBaseUrl("docs/build/smart-contracts/advanced/design-patterns/overview")}>
                   Patterns
                 </Link>
-                <Link to={useBaseUrl("docs/build/smart-contracts/languages/aiken/smart-contract-library")}>
-                  Library
+                <Link to={useBaseUrl("docs/build/smart-contracts/example-contracts")}>
+                  Examples
                 </Link>
                 <Link to={useBaseUrl("docs/build/smart-contracts/advanced/security/overview")}>
                   Security

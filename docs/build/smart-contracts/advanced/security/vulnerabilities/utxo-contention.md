@@ -1,7 +1,7 @@
 ---
 id: utxo-contention
-title: Utxo Contention
-sidebar_label: Utxo Contention
+title: UTxO Contention
+sidebar_label: UTxO Contention
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
