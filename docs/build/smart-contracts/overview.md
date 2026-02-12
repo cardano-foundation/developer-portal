@@ -144,7 +144,7 @@ Logic in smart contracts involves making validations about certain properties of
 | **treasury_donation**                                                                    | Treasury donation amount (optional)                                                                                                     |
 
 :::note Transaction Context Representation
-This is a representation of a transaction as seen by on-chain scripts, and not the 1:1 translation of the transaction as seen by the ledger. The underlying ledger uses a different structure with numeric field keys as defined in the [Conway CDDL specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl-files/conway.cddl). In particular, on-chain scripts can't see inputs locked by bootstrap addresses, outputs to bootstrap addresses, or transaction metadata.
+This is a representation of a transaction as seen by on-chain scripts, and not the 1:1 translation of the transaction as seen by the ledger. The underlying ledger uses a different structure with numeric field keys as defined in the [Conway CDDL specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl/data/conway.cddl). In particular, on-chain scripts can't see inputs locked by bootstrap addresses, outputs to bootstrap addresses, or transaction metadata.
 :::
 
 ### Script Addresses
@@ -166,7 +166,7 @@ Unlike regular addresses controlled by private keys, script addresses are contro
 
 ### Script Purposes and Types
 
-Scripts validate different operations depending on their purpose, as defined in the [Conway era ledger specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl-files/conway.cddl):
+Scripts validate different operations depending on their purpose, as defined in the [Conway era ledger specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl/data/conway.cddl):
 
 | Script Type          | Description                                                                                                                                                                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

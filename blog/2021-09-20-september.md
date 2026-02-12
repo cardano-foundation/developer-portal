@@ -105,7 +105,7 @@ Many amazing people are working at NOWPayments and making the dream of Mass Adop
 
 **_Which partnerships have you engaged so far, and which ones are the most impactful?_**
 
-Hundreds of new partners sign up with us every month to start accepting crypto. Some notable partnerships include [Travala](https://travala.com/), a booking service, and [Elongate](https://www.elongate.cc/), a crypto charity project. These two represent two of the most important use cases for crypto: payments and donations.
+Hundreds of new partners sign up with us every month to start accepting crypto. Some notable partnerships include [Travala](https://travala.com/), a booking service, and Elongate, a crypto charity project. These two represent two of the most important use cases for crypto: payments and donations.
 
 <br />
 
