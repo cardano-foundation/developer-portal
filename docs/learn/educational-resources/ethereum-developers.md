@@ -584,7 +584,7 @@ Client SDKs handle transaction building, wallet integration, UTxO selection, and
 | Python | [PyCardano](/docs/get-started/client-sdks/python/pycardano) |
 | Rust | [Pallas](/docs/get-started/client-sdks/rust/pallas) |
 | Go | [Apollo](/docs/get-started/client-sdks/go/apollo) |
-| C# | [CardanoSharp](/docs/get-started/client-sdks/csharp/cardanosharp-wallet) |
+| C# | [Chrysalis](/docs/get-started/client-sdks/csharp/chrysalis) |
 
 ### Development Workflow
 
