@@ -45,7 +45,7 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      //theme: prismThemes.github, // uncomment for light mode in code boxes
+      theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff'],
     },
@@ -54,9 +54,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: isAnnouncementActive ? {
-      id: "announcement_index9", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index10", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Join the weekly Developer Office Hours - Get help, share ideas, and connect with the community! <a target="_blank" rel="noopener noreferrer" href="/docs/community/cardano-developer-community">Learn more</a> 💬</strong>`,
+        `<strong>Intersect's State of Developer Experience Survey is here! <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/ey7yRJP2cP92EqrS7">Share your feedback!</a></strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -100,6 +100,7 @@ module.exports = {
             {to: "tools", label: "Builder Tools"},
             {to: "docs/community/cardano-developer-community", label: "Community"},
             {to: "docs/community/funding", label: "Grants"},
+            {to: "/hackathons", label: "Hackathons"},
           ],
           mega: true,
           customProps: {
@@ -132,6 +133,7 @@ module.exports = {
                   {to: '/tools', label: 'Builder Tools', description: 'Explore developer tools', icon: 'wrench-solid'},
                   {to: '/docs/community/cardano-developer-community', label: 'Community', description: 'Connect with other developers', icon: 'people-group-solid'},
                   {to: '/docs/community/funding', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'handshake-solid'},
+                  {to: '/hackathons', label: 'Hackathons', description: 'Compete and build projects', icon: 'code-solid'},
                 ],
               },
             ],
@@ -217,7 +219,6 @@ module.exports = {
           label: 'Ecosystem',
           position: 'left',
           items: [
-            {to: "showcase", label: "Showcase"},
             {to: "blog/", label: "Dev Blog"},
             {href: "https://cardanoupdates.com/", label: "Developer Activity"},
             {href: "https://cardanofoundation.org/academy", label: "Academy"},
@@ -231,7 +232,6 @@ module.exports = {
                 title: 'Explore',
                 icon: 'shapes-solid',
                 items: [
-                  {to: '/showcase', label: 'Showcase', description: 'Discover projects built on Cardano', icon: 'shapes-solid'},
                   {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book-solid'},
                 ],
               },
@@ -359,6 +359,11 @@ module.exports = {
       {
         redirects: [
           {
+            // redirect showcase to cardano.org/apps since it moved there
+            to: 'https://cardano.org/apps/',
+            from: '/showcase',
+          },
+          {
             // redirect the old smart contracts signpost to the new smart contract category
             to: '/docs/build/smart-contracts/overview',
             from: '/docs/get-started/smart-contracts-signpost',
@@ -414,7 +419,10 @@ module.exports = {
           },
           {
             to: '/docs/get-started/infrastructure/node/running-cardano',
-            from: '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
+            from: [
+              '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
+              '/docs/get-started/cardano-node/running-cardano',
+            ],
           },
           {
             to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions',
@@ -557,11 +565,11 @@ module.exports = {
             from: '/docs/get-started/networks-overview',
           },
           {
-            to: '/docs/get-started/networks/testnets/overview',
+            to: '/docs/get-started/networks/testnets',
             from: '/docs/get-started/testnets-and-devnets',
           },
           {
-            to: '/docs/get-started/networks/testnets/testnet-faucet',
+            to: '/docs/get-started/networks/testnets',
             from: '/docs/integrate-cardano/testnet-faucet',
           },
           {
@@ -633,7 +641,7 @@ module.exports = {
             from: '/docs/get-started/pycardano',
           },
           {
-            to: '/docs/get-started/client-sdks/csharp/cardanosharp-wallet',
+            to: '/docs/get-started/client-sdks/csharp/chrysalis',
             from: '/docs/get-started/cardanosharp-wallet',
           },
           {
@@ -803,6 +811,50 @@ module.exports = {
           {
             to: '/docs/community/careers',
             from: '/docs/careers',
+          },
+          // Smart Contract Vulnerabilities → Security section redirects
+          {
+            to: '/docs/build/smart-contracts/advanced/security/overview',
+            from: [
+              '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/overview',
+              '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/mlabs-common-vulnerabilities/overview',
+              '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/mesh-bad-contracts/overview',
+            ],
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/ctf',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/ctf',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/double-satisfaction',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/1-double-satisfaction',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/2-trust-no-utxo',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/time-handling',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/3-time-handling',
+          },
+          {
+            to: '/docs/build/smart-contracts/advanced/security/vulnerabilities/token-security',
+            from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/4-token-security',
+          },
+          {
+            to: '/docs/get-started/networks/testnets',
+            from: [
+              '/docs/get-started/networks/testnets/overview',
+              '/docs/get-started/networks/testnets/testnet-faucet',
+            ],
+          },
+          {
+            to: '/docs/get-started/infrastructure/node/installing-cardano-node',
+            from: '/docs/get-started/cardano-node/installing-cardano-node',
+          },
+          {
+            to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
+            from: '/docs/get-started/cli-operations/basic-operations',
           },
         ],
       },

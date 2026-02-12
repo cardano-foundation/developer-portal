@@ -244,7 +244,7 @@ Before submitting your governance action, verify you have completed all the foll
 
 ### Other Governance Resources
 
-- [**Governance Category in Showcase section**](https://developers.cardano.org/showcase?tags=governance)
+- [**Governance Apps on Cardano**](https://cardano.org/apps/?tags=governance)
 - [**Cardano Forum Governance Category**](https://forum.cardano.org/c/governance/140)
 - [**GovTool**](https://gov.tools/)
 

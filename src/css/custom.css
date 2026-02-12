@@ -36,11 +36,13 @@ html[data-theme="dark"] {
   border-width: 1.3px !important;
 }
 
-.docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
+/* Code block line highlighting */
+:root {
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='dark'] {
+  --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
 
 @keyframes fadeInUp {
