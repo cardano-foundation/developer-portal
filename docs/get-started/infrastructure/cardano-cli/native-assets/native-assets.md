@@ -85,10 +85,10 @@ Values can be combined using the binary operator `+`. For example:
 
 The native tokens syntax can be used in the following contexts:
 
-+ `cardano-cli conway transaction build-raw --tx-out="..."`
-+ `cardano-cli conway transaction build-raw --mint="..."`
++ `cardano-cli latest transaction build-raw --tx-out="..."`
++ `cardano-cli latest transaction build-raw --mint="..."`
 
-The CLI command `cardano-cli conway transaction build-raw` creates the transaction body. The `--tx-out` option specifies the transaction output in the usual way *(This is expressed as address+lovelace, where address is a Bech32-encoded address, and lovelace is the amount in lovelace)*, and the `--mint` option specifies the value to be minted or burnt.
+The CLI command `cardano-cli latest transaction build-raw` creates the transaction body. The `--tx-out` option specifies the transaction output in the usual way *(This is expressed as address+lovelace, where address is a Bech32-encoded address, and lovelace is the amount in lovelace)*, and the `--mint` option specifies the value to be minted or burnt.
 
 ### Transaction outputs (TxOuts)
 
@@ -262,7 +262,7 @@ cardano-cli query protocol-parameters --out-file pparams.json
 2. Calculate the minimum utxo size required to hold the desired number of native assets. Let's mint 1000 `customcoin`:
 
 ```shell
-cardano-cli conway transaction calculate-min-required-utxo \
+cardano-cli latest transaction calculate-min-required-utxo \
 --protocol-params-file pparams.json \
 --tx-out addr_test1vp6jzppqqegyvjnwc25dg853eam2xmxvydjntfw6d8x4p7qrnsnj9+"1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e"
 Coin 1051640
@@ -274,7 +274,7 @@ we will send 10 ada on the minting transaction.
 1. This transaction will mint 1000 "customcoin", with asset id `11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e`
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
 --tx-in 503c699e81d4abc3f8a1d2681425aee1e2ac5770a5be5b9314339591a7158f34#0 \
 --tx-out $(< payment.addr)+10000000+"1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
 --mint="1000 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
@@ -288,7 +288,7 @@ Estimated transaction fee: Coin 175621
 #### Sign the transaction
 
 ```shell
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --tx-file mint-tx.raw \
 --signing-key-file policy.skey \
 --signing-key-file payment.skey \
@@ -299,7 +299,7 @@ cardano-cli conway transaction sign \
 #### Submit the transaction
 
 ```shell
-cardano-cli conway transaction submit --tx-file mint-tx.signed
+cardano-cli latest transaction submit --tx-file mint-tx.signed
 Transaction successfully submitted.
 ```
 
@@ -322,7 +322,7 @@ use `--change-address` to automatically balance ada-only utxos.
 For example, to send 1 `customcoin` to the address `addr_test1vp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeuegh55grh` we do:
 
 ```shell
-cardano-cli conway transaction calculate-min-required-utxo \
+cardano-cli latest transaction calculate-min-required-utxo \
 --protocol-params-file pparams.json \
 --tx-out addr_test1vp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeuegh55grh+"1 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e"
 Coin 1043020
@@ -331,7 +331,7 @@ Coin 1043020
 and build the transaction with:
 
 ```shell
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
 --tx-in d4b158e58cb58da28b25837300f6ef8f9f7d67fd5a5ce07648d17a6fae31b88a#0 \
 --tx-in d4b158e58cb58da28b25837300f6ef8f9f7d67fd5a5ce07648d17a6fae31b88a#1 \
 --tx-out addr_test1vp9khgeajxw8snjjvaaule727hpytrvpsnq8z7h9t3zeuegh55grh+1043020+"1 11375f8ee31c280e1f2ec6fe11a73bca79d7a6a64f18e1e6980f0c74.637573746f6d636f696e" \
@@ -341,11 +341,11 @@ cardano-cli conway transaction build \
 ```
 
 ```
-cardano-cli conway transaction sign --tx-file tx.raw --signing-key-file policy.skey --signing-key-file payment.skey --out-file tx.signed
+cardano-cli latest transaction sign --tx-file tx.raw --signing-key-file policy.skey --signing-key-file payment.skey --out-file tx.signed
 ```
 
 ```
-cardano-cli conway transaction submit --tx-file tx.signedTransaction successfully submitted.
+cardano-cli latest transaction submit --tx-file tx.signedTransaction successfully submitted.
 ```
 
 ### Buying and spending tokens
@@ -355,11 +355,11 @@ Token holders “buy” tokens from a token issuer. This will usually involve se
 Tokens that have been issued to a token holder can be “spent” by returning them to a token issuer (i.e. by redeeming the tokens). This is done using a normal transaction. The token issuer will then provide the token holder with the agreed object in return (which may be an item of value, a service, a different kind of token, some ada, etc).
 
 ```
-cardano-cli conway transaction build-raw ... --out-file txbody
+cardano-cli latest transaction build-raw ... --out-file txbody
  
-cardano-cli conway transaction sign ... --tx-body-file txbody --out-file tx
+cardano-cli latest transaction sign ... --tx-body-file txbody --out-file tx
 
-cardano-cli conway transaction submit ... --tx-file tx 
+cardano-cli latest transaction submit ... --tx-file tx 
 ```
 
 ### Destroying (burning) tokens
@@ -367,25 +367,25 @@ cardano-cli conway transaction submit ... --tx-file tx
 Tokens can be destroyed by a token issuer according to the token policy by supplying a negative value in the `--mint` field. That allows acquiring tokens in the UTXO entry in the input of a transaction, without adding them to one of the outputs, effectively destroying them. For example, tokens created in the previous section can be destroyed as follows:
 
 ```
-TXID1=$(cardano-cli conway transaction txid --tx-body-file "$TX_BODY_FILE_1")
+TXID1=$(cardano-cli latest transaction txid --tx-body-file "$TX_BODY_FILE_1")
 TX_BODY_FILE_2=...
 TX_FILE_2=...
  
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
 --fee 0 \
 --tx-in "$TXID1"#0 \
 --tx-out="$ADDR+$LOVELACE" \
 --mint="-5 $POLICYID.637573746f6d636f696e" \
 --out-file "$TX_BODY_FILE_2"
  
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
 --signing-key-file "$SPENDING_KEY" \
 --signing-key-file "$MINTING_KEY" \
 --script-file "$SCRIPT" \
 --tx-body-file  "$TX_BODY_FILE_2" \
 --out-file   "TX_FILE_2"
  
-cardano-cli conway transaction submit --tx-file  "$TX_FILE_2" 
+cardano-cli latest transaction submit --tx-file  "$TX_FILE_2" 
 ```
 
 > Note: Destroying tokens requires both the payment credential for using the UTXO entry with the tokens, *and* a credential for the minting policy script.

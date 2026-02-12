@@ -42,8 +42,8 @@ unable to interact with most DApps if the DApp front-ends were to become
 unavailable for any reason or if the backend was down.
 
 There are a few attempts to address this problem, such as
-[DApp Schemas](https://cardano.ideascale.com/c/idea/64468) or
-[Smart Contract Blueprints](https://developers.cardano.org/docs/governance/cardano-improvement-proposals/cip-0057/); however,
+[DApp Schemas](https://github.com/mlabs-haskell/lambda-buffers) or
+[Smart Contract Blueprints](https://cips.cardano.org/cip/CIP-57); however,
 all of these solutions rely on off-chain infrastructure to specify how to
 interpret a DApp's datums, redeemers, and other on-chain data in order to build
 transactions. Smart Beacons differ from these other approaches in that it is a

@@ -8,7 +8,7 @@ image: /img/og/og-getstarted-overview.png
 --- 
 ![Cardano Get Started](../../static/img/card-get-started-title.svg)
 
-Welcome to the Cardano Developer Portal. This content is for technical people; if you are looking for a Cardano wallet please head to the [showcase section](../../showcase).
+Welcome to the Cardano Developer Portal. This content is for technical people; if you are looking for a Cardano wallet please head to [Cardano Apps](https://cardano.org/apps/).
 
 It is noteworthy to mention that the Developer Portal covers everything you can do **today** on the Cardano **mainnet**.
 
@@ -26,7 +26,7 @@ Besides cryptographic research, there was game-theoretic research, identity-mana
 
 ## What you need to bring
 
-To get the most out of the Cardano Developer Portal, you should  have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](../learn/core-concepts/eutxo), [transactions](../learn/core-concepts/transactions), [addresses](../learn/core-concepts/addresses), and [key derivation](../learn/core-concepts/wallet-key-management#key-derivation).
+To get the most out of the Cardano Developer Portal, you should have programming experience and a basic understanding of blockchain concepts of Cardano such as [UTxO](../learn/core-concepts/eutxo), [transactions](../learn/core-concepts/transactions), and [addresses](../learn/core-concepts/addresses).
 
 If you are unfamiliar with these terms, start with [technical concepts](../learn/core-concepts/), and you can complete the [stake pool course](../operate-a-stake-pool/) afterward. It will also help you understand basic concepts, even if you don't want to run a stake pool.
 
@@ -42,7 +42,7 @@ If you have experience with other smart contract platforms and want to start bui
 ## What you can do on Cardano today
 
 - You can send and receive [native tokens](/docs/build/native-tokens/overview), including ada.
-- You can delegate your ada to one of the [existing pools](../../showcase?tags=pooltool) and earn rewards.
+- You can delegate your ada to one of the existing stake pools and earn rewards.
 - You can [vote with your ada](../community/funding#how-to-participate) to distribute over a billion dollars worth of ada from the treasury to fund community-driven proposals on [Project Catalyst](../community/funding#project-catalyst).
 - You can earn ada rewards by [voting on proposals](../community/funding#how-to-participate).
 - You can participate in the [Cardano Improvement Proposals](https://cips.cardano.org/) (CIP) process.

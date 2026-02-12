@@ -26,10 +26,10 @@ yarn start  # Development server at http://localhost:3000
 
 ## Contributing
 
-We welcome all contributions! Whether you're adding your project to the showcase, improving documentation, or fixing typos.
+We welcome all contributions! Whether you're adding your tool to the builder tools, improving documentation, or fixing typos.
 
-**Quick contributions:** Use GitHub's web editor for small changes  
-**Add your project:** Follow the [Contributing Guide](CONTRIBUTING.md)  
+**Quick contributions:** Use GitHub's web editor for small changes
+**Add your tool:** Follow the [Contributing Guide](CONTRIBUTING.md)
 **Report issues:** [Create an issue](https://github.com/cardano-foundation/developer-portal/issues)
 
 ## License
