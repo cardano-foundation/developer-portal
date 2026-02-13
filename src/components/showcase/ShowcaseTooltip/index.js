@@ -80,7 +80,7 @@
      };
  
      const handleClose = () => {
-       clearInterval(!timeout.current);
+       clearTimeout(timeout.current);
        setOpen(false);
      };
  
