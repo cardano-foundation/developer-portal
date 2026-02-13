@@ -503,6 +503,22 @@ const redirects = [
     to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
     from: '/docs/get-started/cli-operations/basic-operations',
   },
+  {
+    to: '/docs/build/smart-contracts/advanced/design-patterns/merkle-tree',
+    from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/merkle-tree',
+  },
+  {
+    to: '/docs/build/smart-contracts/advanced/design-patterns/trie',
+    from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/trie',
+  },
+  {
+    to: '/docs/build/smart-contracts/example-contracts',
+    from: ['/docs/build/smart-contracts/languages/aiken/smart-contract-library', '/docs/build/smart-contracts/smart-contract-library'],
+  },
+  {
+    to: '/docs/build/smart-contracts/advanced/design-patterns/linked-list',
+    from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/linked-list',
+  },
 ];
 
 module.exports = redirects;
