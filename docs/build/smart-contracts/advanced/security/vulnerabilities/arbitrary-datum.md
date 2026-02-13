@@ -1,7 +1,7 @@
 ---
 id: arbitrary-datum
-title: Arbitrary datum
-sidebar_label: Arbitrary datum
+title: Arbitrary Datum
+sidebar_label: Arbitrary Datum
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
