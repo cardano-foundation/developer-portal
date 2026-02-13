@@ -342,23 +342,7 @@ module.exports = {
             type: "category",
             label: "Languages",
             items: [
-              {
-                type: "category",
-                label: "Aiken",
-                items: [
-                  "build/smart-contracts/languages/aiken/overview",
-                  "build/smart-contracts/languages/aiken/smart-contract-library",
-                  {
-                    type: "category",
-                    label: "Advanced Data Structures",
-                    items: [
-                      "build/smart-contracts/languages/aiken/advanced-data-structures/linked-list",
-                      "build/smart-contracts/languages/aiken/advanced-data-structures/merkle-tree",
-                      "build/smart-contracts/languages/aiken/advanced-data-structures/trie",
-                    ],
-                  },
-                ],
-              },
+              "build/smart-contracts/languages/aiken/overview",
               {
                 type: "category",
                 label: "Plutarch (Haskell)",
@@ -368,7 +352,6 @@ module.exports = {
                     type: "category",
                     label: "Advanced Data Structures",
                     items: [
-                      "build/smart-contracts/languages/plutarch/advanced-data-structures/linked-list",
                       "build/smart-contracts/languages/plutarch/advanced-data-structures/merkle-tree",
                       "build/smart-contracts/languages/plutarch/advanced-data-structures/trie",
                     ],
@@ -408,14 +391,23 @@ module.exports = {
               "build/smart-contracts/advanced/design-patterns/validity-range-normalization",
               "build/smart-contracts/advanced/design-patterns/merkelized-validator",
               "build/smart-contracts/advanced/design-patterns/parameter-validation",
+              "build/smart-contracts/advanced/design-patterns/linked-list",
+              {
+                type: "category",
+                label: "Data Structures",
+                items: [
+                  "build/smart-contracts/advanced/design-patterns/merkle-tree",
+                  "build/smart-contracts/advanced/design-patterns/trie",
+                ],
+              },
             ],
           },
+          "build/smart-contracts/example-contracts",
           {
             type: "category",
             label: "Smart Contract Security",
             items: [
               "build/smart-contracts/advanced/security/overview",
-              "build/smart-contracts/advanced/security/ctf",
               {
                 type: "category",
                 label: "Vulnerabilities",
@@ -436,6 +428,7 @@ module.exports = {
                   "build/smart-contracts/advanced/security/vulnerabilities/locked-value",
                 ],
               },
+              "build/smart-contracts/advanced/security/ctf",
             ],
           },
           {

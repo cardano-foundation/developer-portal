@@ -18,6 +18,8 @@
   --ifm-color-primary-lightest: #325CBD;
   --ifm-code-font-size: 95%;
   --ifm-footer-link-hover-color: #6684CE;
+  --site-color-tooltip: #fff;
+  --site-color-tooltip-background: #353738;
 }
 
 html[data-theme="dark"] {

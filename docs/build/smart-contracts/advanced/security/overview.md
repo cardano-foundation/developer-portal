@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Smart Contract Vulnerabilities
+title: Smart Contract Security
 sidebar_label: Overview
 description: Common Cardano smart contract vulnerabilities - a reference database for dApp developers.
 ---

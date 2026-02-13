@@ -1,8 +1,5 @@
-# TODO: This file needs a lot of work, once done re-tagging of the developer blog is needed
-# please refrain from using tags that are not defined here. 
-# (because of this we are getting a lot of build warnings)
-# 
-# General advice when it comes to tagging: if only one blog post is using this tag, dont create it.
+# Please refrain from using tags that are not defined here.
+# General advice when it comes to tagging: if only one blog post is using this tag, don't create it.
 
 interview:
   label: Interview
@@ -28,11 +25,6 @@ developer-office-hours:
   label: Developer Office Hours
   permalink: /developer-office-hours
   description: Developer Office Hours are dynamic and interactive sessions where the Cardano developer community connects with experts to explore new and evolving developments. These sessions focus on exploring new and updated developments, featuring expert presentations, live demos, and interactive Q&A segments that break down complex topics.
-
-developer-portal:
-  label: developer-portal
-  permalink: /developer-portal
-  description: legacy Interview tag
 
 dex:
   label: DEX
@@ -68,11 +60,6 @@ metaverse:
   label: metaverse
   permalink: /metaverse
   description: A virtual space where users interact with digital environments, assets, and each other
-
-music:
-  label: music
-  permalink: /music
-  description: All content related to blockchain based music platforms
 
 nft:
   label: nft

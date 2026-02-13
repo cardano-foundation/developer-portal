@@ -788,6 +788,30 @@ export const Showcases = [
     getstarted: "https://dev.ada-anvil.io/",
     tags: ["http", "hosted"],
   },
+  {
+    title: "Cometa.js",
+    description: "Cometa.js is a fast, browser and Node ready JavaScript toolkit that brings streamlined Cardano transaction building and dApp smart-contract interactions to web and frontend environments.",
+    preview: require("./images/cometa.js.png"),
+    website: "https://github.com/Biglup/cometa.js",
+    getstarted: "https://cometajs.readthedocs.io/en/latest",
+    tags: ["javascript", "serialization", "transactionbuilder"]
+  },
+  {
+    title: "Cometa.py",
+    description: "Cometa.py is a high-performance Python library for Cardano, focused on rapid prototyping, scripting, and backend automation for transaction building and smart-contract workflows.",
+    preview: require("./images/cometa.py.png"),
+    website: "https://github.com/Biglup/cometa.py",
+    getstarted: "https://cometapy.readthedocs.io/en/latest",
+    tags: ["python", "serialization", "transactionbuilder"]
+  },
+  {
+    title: "Dingo",
+    description: "A Cardano blockchain data node written in Go which actively participates in network communications on the Cardano blockchain using the Ouroboros Network Node-to-Node family of mini-protocols.",
+    preview: require("./images/dingo.png"),
+    website: "https://github.com/blinklabs-io/dingo",
+    getstarted: "https://pkg.go.dev/github.com/blinklabs-io/dingo",
+    tags: ["golang", "nodeclient"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
