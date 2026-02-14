@@ -781,6 +781,14 @@ export const Showcases = [
     tags: ["indexer", "java"],
   },
   {
+    title: "Anvil API",
+    description: "Simple REST endpoints for Cardano. Mint tokens, build and submit transactions, deploy and interact with smart contracts. Start free and scale your Web3 project with robust Cardano infrastructure, developer docs, and expert support.",
+    preview: require("./images/anvil-api.png"),
+    website: "https://ada-anvil.io/services/api",
+    getstarted: "https://dev.ada-anvil.io/",
+    tags: ["http", "hosted"],
+  },
+  {
     title: "Cometa.js",
     description: "Cometa.js is a fast, browser and Node ready JavaScript toolkit that brings streamlined Cardano transaction building and dApp smart-contract interactions to web and frontend environments.",
     preview: require("./images/cometa.js.png"),
