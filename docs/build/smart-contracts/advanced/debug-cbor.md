@@ -341,7 +341,7 @@ You can read more at [Aiken - CBOR diagostic](https://aiken-lang.org/language-to
 
 When developing smart contracts with Aiken, compiled programs lose type information and variable names, making runtime inspection challenging. However, Aiken provides the `cbor.diagnostic()` function to inspect values at runtime using CBOR diagnostic notation - a human-readable representation of binary CBOR data.
 
-```rust
+```aiken
 use aiken/cbor
 
 pub fn diagnostic(data: Data) -> String
@@ -365,7 +365,7 @@ CBOR diagnostics use a JSON-like syntax that can represent binary data. For exam
 
 Here are examples showing how Aiken values translate to CBOR diagnostics:
 
-```rust
+```aiken
 use aiken/cbor
 
 // Basic types
@@ -386,7 +386,7 @@ cbor.diagnostic(None) == @"122([])"          // Second constructor
 
 You can use CBOR diagnostics to verify the exact binary representation of your data structures:
 
-```rust
+```aiken
 type MyDatum {
   foo: Int,
   bar: ByteArray

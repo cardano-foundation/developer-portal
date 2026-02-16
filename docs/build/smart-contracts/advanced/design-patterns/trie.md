@@ -9,7 +9,7 @@ description: A trie data structure crafted with the Aiken approach.
 
 The Aiken Trie project provides a Aiken-based implementation of Distributed Tries for the Cardano blockchain. This project allows developers to leverage the security and efficiency of Tries in their Cardano smart contracts, ensuring data integrity and efficient data verification. This project uniquely allows scalable data structures across multiple utxos, with a developer-friendly typescript api.
 
-:::info 
+:::info
 The github repository introducing these data structures can be found [here](https://github.com/Anastasia-Labs/aiken-trie).
 :::
 

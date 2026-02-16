@@ -1,7 +1,7 @@
 ---
 id: unbounded-datum
-title: Unbounded datum
-sidebar_label: Unbounded datum
+title: Unbounded Datum
+sidebar_label: Unbounded Datum
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)

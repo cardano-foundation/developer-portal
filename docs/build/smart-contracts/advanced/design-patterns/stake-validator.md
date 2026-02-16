@@ -42,121 +42,141 @@ graph LR
 
 ## Aiken Implementation
 
-### Spending Validator (Minimal Check)
+This pattern allows for delegating some computations to a given staking script. The primary application for this is the so-called "withdraw zero trick," which is most effective for validators that need to go over multiple inputs.
 
-```rust
+With a minimal spending logic (which is executed for each UTxO), and an arbitrary withdrawal logic (which is executed only once), a much more optimized script can be implemented.
+
+The module offers three functions, primarily meant to be implemented under spending endpoints:
+- `validate_withdraw`
+- `validate_withdraw_with_amount`
+- `validate_withdraw_minimal`
+
+Use `validate_withdraw_minimal` if you don't need to perform any validations on either the staking script's redeemer or withdrawal Lovelace quantity.
+
+All three functions go over the `withdrawals` list in the transaction. However, `validate_withdraw` and `validate_withdraw_with_amount` also traverse the `redeemers` field in order to let you validate against the redeemer (and the withdrawal quantity in case of the latter).
+
+### Example
+
+The following example shows a spending validator that uses `validate_withdraw_with_amount` to delegate to a staking script, and a minimal accompanying withdrawal script:
+
+```aiken
+use aiken/crypto.{ScriptHash}
 use aiken_design_patterns/stake_validator
+use cardano/address.{Credential}
+use cardano/transaction.{OutputReference, Transaction}
 
-validator my_spending_validator {
+pub type ExampleSpendRedeemer {
+  withdraw_redeemer_index: Int,
+  withdrawal_index: Int,
+}
+
+/// Example for a validator that requires a withdrawal from a given staking
+/// script hash.
+validator spend(withdraw_script_hash: ScriptHash) {
   spend(
-    _datum: Option<Datum>,
-    _redeemer: Redeemer,
-    _own_ref: OutputReference,
+    _datum,
+    redeemer: ExampleSpendRedeemer,
+    own_out_ref: OutputReference,
     tx: Transaction,
   ) {
-    // Minimal validation: just check the staking credential is present
-    stake_validator.spend_minimal(withdraw_script_hash, tx)
+    // Extract needed values from `tx`
+    let Transaction { withdrawals, redeemers, .. } = tx
+
+    // Validate the required staking script is present in transaction, and grab
+    // its redeemer data and withdraw quantity in Lovelace.
+    let
+      redeemer_data,
+      withdraw_amount,
+    <-
+      stake_validator.validate_withdraw_with_amount(
+        withdraw_script_hash: withdraw_script_hash,
+        redeemers: redeemers,
+        withdraw_redeemer_index: redeemer.withdraw_redeemer_index,
+        withdrawals: withdrawals,
+        withdrawal_index: redeemer.withdrawal_index,
+      )
+
+    // Example validation, ensuring the staking script has been invoked with
+    // access to the output reference of the UTxO being spent.
+    expect out_ref_passed_to_staking_script: OutputReference = redeemer_data
+    expect out_ref_passed_to_staking_script == own_out_ref
+
+    // Another example validation, only allowing withdrawals from the staking
+    // script as long as no rewards had been accumulated for said script.
+    withdraw_amount == 0
+  }
+
+  else(_) {
+    fail
   }
 }
-```
 
-### Spending Validator (With Redeemer Validation)
-
-```rust
-use aiken_design_patterns/stake_validator
-
-validator my_spending_validator {
-  spend(
-    _datum: Option<Datum>,
-    _redeemer: Redeemer,
-    _own_ref: OutputReference,
-    tx: Transaction,
-  ) {
-    // Validate both the withdrawal redeemer and amount
-    stake_validator.spend(
-      withdraw_script_hash,
-      fn(redeemer, amount) {
-        // Custom validation logic here
-        validate_redeemer(redeemer) && amount >= 0
-      },
-      tx,
-    )
-  }
-}
-```
-
-### Staking Validator (Business Logic)
-
-```rust
-use aiken_design_patterns/stake_validator
-
-validator my_staking_validator {
+/// A very minimal example just to show how an accompanying staking script can
+/// be defined.
+validator witdhraw {
   withdraw(
-    redeemer: MyRedeemer,
-    stake_cred: Credential,
-    tx: Transaction,
+    redeemer: OutputReference,
+    _own_credential: Credential,
+    _tx: Transaction,
   ) {
-    stake_validator.withdraw(
-      fn(rdmr, script_hash, transaction) {
-        // All your business logic goes here
-        // This runs once per transaction, not per UTxO
-        validate_business_logic(rdmr, script_hash, transaction)
-      },
-      redeemer,
-      stake_cred,
-      tx,
-    )
+    let OutputReference { output_index, .. } = redeemer
+    // A contrived check. Only UTxOs that have an output index of 0 pass this
+    // script's validation.
+    output_index == 0
+  }
+
+  else(_) {
+    fail
   }
 }
 ```
 
 ## Key Functions
 
-The library provides three main functions:
+The library provides three functions, all meant to be used in spending endpoints:
 
-### `spend_minimal`
+### `validate_withdraw`
 
-Most efficient option - only checks if the withdrawal credential exists:
+Helper function for implementing validation for spending UTxOs, essentially delegating their requirements to the given withdrawal validator.
 
-```rust
-pub fn spend_minimal(withdraw_script_hash: ScriptHash, tx: Transaction) -> Bool
-```
+In simpler terms, it says: As long as there is a redeemer with a withdrawal purpose, for the given script in transaction, this UTxO can be spent.
 
-### `spend`
+Allows you to validate based on the withdrawal's redeemer, which is mostly useful for ensuring specific endpoints are invoked.
 
-Allows validation of withdrawal redeemer and amount:
-
-```rust
-pub fn spend(
+```aiken
+pub fn validate_withdraw(
   withdraw_script_hash: ScriptHash,
+  redeemers: Pairs<ScriptPurpose, Redeemer>,
+  withdraw_redeemer_index: Int,
+  withdraw_redeemer_validator: fn(Redeemer) -> Bool,
+) -> Bool
+```
+
+### `validate_withdraw_with_amount`
+
+Similar to `validate_withdraw`, but with the additional steps for extracting the withdrawal amount from the `withdrawals` field:
+
+```aiken
+pub fn validate_withdraw_with_amount(
+  withdraw_script_hash: ScriptHash,
+  redeemers: Pairs<ScriptPurpose, Redeemer>,
+  withdraw_redeemer_index: Int,
+  withdrawals: Pairs<Credential, Lovelace>,
+  withdrawal_index: Int,
   withdraw_redeemer_validator: fn(Redeemer, Lovelace) -> Bool,
-  tx: Transaction,
 ) -> Bool
 ```
 
-### `withdraw`
+### `validate_withdraw_minimal`
 
-Helper for staking validator implementation:
+A more minimal version of `validate_withdraw`, where only the presence of a given staking script is checked, regardless of withdraw amount or redeemer:
 
-```rust
-pub fn withdraw(
-  withdrawal_logic: fn(a, ScriptHash, Transaction) -> Bool,
-  redeemer: a,
-  stake_cred: Credential,
-  tx: Transaction,
+```aiken
+pub fn validate_withdraw_minimal(
+  withdraw_script_hash: ScriptHash,
+  withdrawals: Pairs<Credential, Lovelace>,
+  withdrawal_index: Int,
 ) -> Bool
-```
-
-## Script Address Construction
-
-When using this pattern, your script address includes both payment and staking credentials:
-
-```rust
-// Address composed of spending and staking validators
-Address {
-  payment_credential: ScriptCredential(spending_validator_hash),
-  stake_credential: Some(Inline(ScriptCredential(staking_validator_hash)))
-}
 ```
 
 ## Why "Withdraw Zero"?
