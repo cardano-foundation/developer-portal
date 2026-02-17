@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Aiken
-sidebar_label: Overview
+sidebar_label: Aiken
 description: Modern smart contract platform for Cardano
 image: /img/aiken-logo.png
 ---

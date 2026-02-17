@@ -13,8 +13,6 @@ import {prepareUserState} from '../../../pages/tools/index';
 import styles from "./styles.module.css";
 import clsx from "clsx";
 
-export const Operator = "OR" | "AND";
-
 export const OperatorQueryKey = "operator";
 
 export function readOperator(search) {

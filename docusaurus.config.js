@@ -7,7 +7,52 @@ const isAnnouncementActive = true;
 
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
-import { themes as prismThemes } from 'prism-react-renderer';
+
+// One Light palette
+const prismLightTheme = {
+  plain: {
+    color: '#383a42',
+    backgroundColor: '#fafafa',
+  },
+  styles: [
+    { types: ['comment', 'prolog', 'cdata'], style: { color: '#a0a1a7', fontStyle: 'italic' } },
+    { types: ['keyword', 'operator'], style: { color: '#a626a4' } },
+    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#50a14f' } },
+    { types: ['number'], style: { color: '#986801' } },
+    { types: ['boolean', 'constant'], style: { color: '#986801' } },
+    { types: ['class-name'], style: { color: '#c18401' } },
+    { types: ['function'], style: { color: '#4078f2' } },
+    { types: ['tag', 'deleted'], style: { color: '#e45649' } },
+    { types: ['attr-name'], style: { color: '#986801' } },
+    { types: ['namespace'], style: { color: '#383a42' } },
+    { types: ['punctuation'], style: { color: '#383a42' } },
+    { types: ['inserted'], style: { color: '#50a14f' } },
+    { types: ['builtin'], style: { color: '#4078f2' } },
+  ],
+};
+
+// One Dark palette
+const prismDarkTheme = {
+  plain: {
+    color: '#abb2bf',
+    backgroundColor: '#282c34',
+  },
+  styles: [
+    { types: ['comment', 'prolog', 'cdata'], style: { color: '#5c6370', fontStyle: 'italic' } },
+    { types: ['keyword', 'operator'], style: { color: '#c678dd' } },
+    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#98c379' } },
+    { types: ['number'], style: { color: '#d19a66' } },
+    { types: ['boolean', 'constant'], style: { color: '#d19a66' } },
+    { types: ['class-name'], style: { color: '#e6c07b' } },
+    { types: ['function'], style: { color: '#61aeee' } },
+    { types: ['tag', 'deleted'], style: { color: '#e06c75' } },
+    { types: ['attr-name'], style: { color: '#d19a66' } },
+    { types: ['namespace'], style: { color: '#abb2bf' } },
+    { types: ['punctuation'], style: { color: '#abb2bf' } },
+    { types: ['inserted'], style: { color: '#98c379' } },
+    { types: ['builtin'], style: { color: '#61aeee' } },
+  ],
+};
 
 const getNavbarItems = require('./src/data/navbar');
 const redirects = require('./src/data/redirects');
@@ -48,9 +93,9 @@ module.exports = {
 
     // Additional Language Syntax Highlighting
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-      additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff'],
+      theme: prismLightTheme,
+      darkTheme: prismDarkTheme,
+      additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff', 'haskell'],
     },
 
     // Announcement Bar

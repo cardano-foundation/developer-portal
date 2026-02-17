@@ -2,7 +2,10 @@ import React, { useState, useMemo, useCallback, useEffect } from "react";
 import Head from '@docusaurus/Head';
 import Layout from "@theme/Layout";
 import ShowcaseTooltip from "@site/src/components/showcase/ShowcaseTooltip";
-import ShowcaseTagSelect from "@site/src/components/showcase/ShowcaseTagSelect";
+import ShowcaseTagSelect, {
+  readSearchTags,
+  replaceSearchTags,
+} from "@site/src/components/showcase/ShowcaseTagSelect";
 import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard/";
 import OpenStickyButton from "../../components/buttons/openStickyButton";
 import ShowcaseFilterToggle, {
@@ -61,20 +64,6 @@ function restoreUserState(userState) {
 
   document.getElementById(focusedElementId)?.focus();
   window.scrollTo({ top: scrollTopPosition });
-}
-
-const TagQueryStringKey = "tags";
-
-function readSearchTags(search) {
-  return new URLSearchParams(search).getAll(TagQueryStringKey);
-}
-
-// Replace seach tags in the query
-function replaceSearchTags(search, newTags) {
-  const searchParams = new URLSearchParams(search);
-  searchParams.delete(TagQueryStringKey);
-  newTags.forEach((tag) => searchParams.append(TagQueryStringKey, tag));
-  return searchParams.toString();
 }
 
 // Filter projects based on chosen project tags, toggle operator or searchbar value

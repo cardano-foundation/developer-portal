@@ -149,7 +149,7 @@ validator counter_validator {
 }
 ```
 
-To explore more real-world smart contracts written in Aiken, see the [Smart Contract Library](/docs/build/smart-contracts/languages/aiken/smart-contract-library).
+To explore more real-world smart contracts written in Aiken, see the [Example Contracts](/docs/build/smart-contracts/example-contracts).
 
 ## How Do Transactions Work on Cardano?
 

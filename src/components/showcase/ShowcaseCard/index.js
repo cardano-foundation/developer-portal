@@ -68,17 +68,6 @@ const ShowcaseCard = memo((card) => (
             Get Started
           </Link>
         )}
-        {card.showcase.source && (
-          <Link
-            href={card.showcase.source}
-            className={clsx(
-              "button button--secondary button--sm",
-              styles.showcaseCardSrcBtn
-            )}
-          >
-            Source
-          </Link>
-        )}
       </div>
       <p className={styles.showcaseCardBody}>{card.showcase.description}</p>
     </div>

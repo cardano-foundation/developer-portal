@@ -13,8 +13,6 @@ import {prepareUserState} from '../../../pages/tools/index';
 import styles from "./styles.module.css";
 import clsx from "clsx";
 
-export const Operator = "ALL" | "LATEST";
-
 export const OperatorQueryKey = "projects";
 
 export function readLatestOperator(search) {

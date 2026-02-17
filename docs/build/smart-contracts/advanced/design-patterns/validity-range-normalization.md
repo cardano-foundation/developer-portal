@@ -47,24 +47,19 @@ always range, aligning with the standard convention in mathematics.
 
 ## Aiken Implementation
 
-The datatype that models validity range in Cardano currently allows for values
-that are either meaningless, or can have more than one representations. For
-example, since the values are integers, the inclusive flag for each end is
-redundant for most cases and can be omitted in favor of a predefined convention
-(e.g. a value should always be considered inclusive).
+The datatype that models validity range in Cardano currently allows for values that are either meaningless, or can have more than one representations. For example, since the values are integers, the inclusive flag for each end is redundant and can be omitted in favor of a predefined convention (e.g. a value should always be considered inclusive).
 
-The library presents a custom datatype that essentially reduces the value
-domain of the original validity range to a smaller one that eliminates
-meaningless instances and redundancies.
+In this module we present a custom datatype that essentially reduces the value domain of the original validity range to a smaller one that eliminates meaningless instances and redundancies.
 
-The datatype is defined as following:
+The exposed function of the module (`normalize_time_range`), takes a `ValidityRange` and returns a datatype for eliminating meaningless ranges, without the redundant inclusiveness flag (instead all range values are inclusive):
 
-```rust
+```aiken
 pub type NormalizedTimeRange {
   ClosedRange { lower: Int, upper: Int }
   FromNegInf  {             upper: Int }
   ToPosInf    { lower: Int             }
   Always
+  InvalidRange
 }
 ```
 
@@ -73,7 +68,7 @@ The exposed function of the module (`normalize_time_range`), takes a
 
 ### Example Usage
 
-```rust
+```aiken
 use aiken_design_patterns/validity_range_normalization.{
   NormalizedTimeRange, normalize_time_range,
 }
@@ -103,6 +98,10 @@ validator my_validator {
       Always -> {
         // Handle unbounded range (-∞, +∞)
         True
+      }
+      InvalidRange -> {
+        // Handle invalid range (e.g. lower >= upper)
+        False
       }
     }
   }

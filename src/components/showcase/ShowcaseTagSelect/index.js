@@ -12,13 +12,13 @@ import {prepareUserState} from '../../../pages/tools/index';
 
 import styles from "./styles.module.css";
 
-const TagQueryStringKey = "tags";
+export const TagQueryStringKey = "tags";
 
 export function readSearchTags(search) {
   return new URLSearchParams(search).getAll(TagQueryStringKey);
 }
 
-function replaceSearchTags(search, newTags) {
+export function replaceSearchTags(search, newTags) {
   const searchParams = new URLSearchParams(search);
   searchParams.delete(TagQueryStringKey);
   newTags.forEach((tag) => searchParams.append(TagQueryStringKey, tag));
@@ -47,7 +47,7 @@ const ShowcaseTagSelect = forwardRef(
       });
     }, [tag, location, history]);
     return (
-      <>
+      <span ref={ref}>
         <input
           type="checkbox"
           id={id}
@@ -77,7 +77,7 @@ const ShowcaseTagSelect = forwardRef(
           {label}
           {icon}
         </label>
-      </>
+      </span>
     );
   }
 );

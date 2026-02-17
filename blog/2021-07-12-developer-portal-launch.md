@@ -2,7 +2,7 @@
 slug: launch-of-the-developer-portal-2021
 title: "Cardano Developer Portal launch"
 authors: [cf]
-tags: [developer-portal, nft, nfta]
+tags: [nft, nfta]
 description: "Finally here: the Cardano developer portal! Accepting all builds."
 image: https://developers.cardano.org/img/og/og-blog-launch.png
 ---

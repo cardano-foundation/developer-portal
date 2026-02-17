@@ -1,7 +1,7 @@
 ---
 id: other-redeemer
-title: Other redeemer
-sidebar_label: Other redeemer
+title: Other Redeemer
+sidebar_label: Other Redeemer
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
