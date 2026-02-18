@@ -88,6 +88,8 @@ module.exports = {
     docs: {
       sidebar: {
         hideable: true,
+        // Collapse other categories when expanding one, so only one stays open at a time
+        autoCollapseCategories: true,
       }
     },
 
