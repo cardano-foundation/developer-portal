@@ -95,7 +95,7 @@ module.exports = {
     prism: {
       theme: prismLightTheme,
       darkTheme: prismDarkTheme,
-      additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff', 'haskell'],
+      additionalLanguages: ['csharp', 'java', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff', 'haskell'],
     },
 
     // Announcement Bar

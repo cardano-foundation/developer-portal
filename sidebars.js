@@ -118,13 +118,20 @@ module.exports = {
       {
         type: "category",
         label: "Client SDKs",
+        link: {
+          type: "doc",
+          id: "get-started/client-sdks/overview",
+        },
         items: [
-          "get-started/client-sdks/overview",
           {
             type: "category",
             label: "TypeScript",
+
+            link: {
+              type: "doc",
+              id: "get-started/client-sdks/typescript/overview",
+            },
             items: [
-              "get-started/client-sdks/typescript/overview",
               {
                 type: "category",
                 label: "Mesh SDK",
@@ -167,6 +174,13 @@ module.exports = {
             label: "Go",
             items: [
               "get-started/client-sdks/go/apollo",
+            ],
+          },
+          {
+            type: "category",
+            label: "Java",
+            items: [
+              "get-started/client-sdks/java/cardano-client-lib",
             ],
           },
           {
