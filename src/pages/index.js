@@ -30,6 +30,11 @@ const sdks = [
     icon: "img/icons/go-original.svg",
   },
   {
+    name: "Java",
+    targetUrl: "docs/get-started/client-sdks/java/cardano-client-lib",
+    icon: "img/icons/java-original.svg",
+  },
+  {
     name: "C#",
     targetUrl: "docs/get-started/client-sdks/csharp/chrysalis",
     icon: "img/icons/csharp-original.svg",

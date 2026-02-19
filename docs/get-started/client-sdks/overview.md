@@ -38,7 +38,7 @@ graph TB
     style Blockchain fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
 ```
 
-SDKs abstract away the complexity of blockchain operations: transaction building, CBOR serialization, UTxO selection, fee calculation, address derivation, and protocol parameter management. This lets you build Cardano applications using modern languages like JavaScript, Python, TypeScript, and C# without needing to understand low-level blockchain internals.
+SDKs abstract away the complexity of blockchain operations: transaction building, CBOR serialization, UTxO selection, fee calculation, address derivation, and protocol parameter management. This lets you build Cardano applications using modern languages like TypeScript, Python, Rust, Go, Java, C#, and Swift without needing to understand low-level blockchain internals.
 
 ---
 

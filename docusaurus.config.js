@@ -88,6 +88,8 @@ module.exports = {
     docs: {
       sidebar: {
         hideable: true,
+        // Collapse other categories when expanding one, so only one stays open at a time
+        autoCollapseCategories: true,
       }
     },
 
@@ -95,7 +97,7 @@ module.exports = {
     prism: {
       theme: prismLightTheme,
       darkTheme: prismDarkTheme,
-      additionalLanguages: ['csharp', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff', 'haskell'],
+      additionalLanguages: ['csharp', 'java', 'php', 'bash', 'json', 'typescript', 'yaml', 'diff', 'haskell'],
     },
 
     // Announcement Bar

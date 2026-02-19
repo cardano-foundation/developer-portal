@@ -192,18 +192,6 @@ const redirects = [
     from: '/docs/get-started/technical-concepts/assets',
   },
   {
-    to: '/docs/learn/educational-resources/haskell/onboarding',
-    from: ['/docs/get-started/haskell/', '/docs/get-started/haskell/onboarding'],
-  },
-  {
-    to: '/docs/learn/educational-resources/haskell/functional-programming',
-    from: '/docs/get-started/haskell/functional-programming',
-  },
-  {
-    to: '/docs/learn/educational-resources/haskell/advanced-functional-programming',
-    from: '/docs/get-started/haskell/advanced-functional-programming',
-  },
-  {
     to: '/docs/learn/educational-resources/air-gap',
     from: '/docs/get-started/security/air-gap',
   },
