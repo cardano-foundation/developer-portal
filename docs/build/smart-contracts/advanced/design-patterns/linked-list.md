@@ -290,7 +290,7 @@ The `additional_validations` callback receives:
 
 #### `spend_for_updating_elements_data`
 
-Update an element's data without affecting the linked list structure. Uses the [UTxO Indexers](utxo-indexers) pattern for one-to-one input/output mapping.
+Update an element's data without affecting the linked list structure. Uses the [UTxO Indexers](../utxo-indexers) pattern for one-to-one input/output mapping.
 
 ```aiken
 pub fn spend_for_updating_elements_data(

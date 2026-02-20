@@ -185,13 +185,13 @@ The pattern is called "withdraw zero trick" because you can withdraw 0 lovelace 
 
 ## Double Satisfaction Protection
 
-When using this pattern with multiple inputs/outputs, protect against [double satisfaction attacks](../security/vulnerabilities/double-satisfaction) by:
+When using this pattern with multiple inputs/outputs, protect against [double satisfaction attacks](../../security/vulnerabilities/double-satisfaction) by:
 
 1. **Tagging outputs** - Include input OutRef in output datums
 2. **Unique indexing** - Use redeemer indices to pair inputs with outputs
 3. **Filtering inputs** - Validate only inputs from your script address
 
-See [UTxO Indexers](utxo-indexers) for robust input/output pairing patterns.
+See [UTxO Indexers](../utxo-indexers) for robust input/output pairing patterns.
 
 ## Example Code
 

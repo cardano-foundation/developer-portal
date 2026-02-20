@@ -6,7 +6,7 @@ sidebar_position: 7
 --- 
 ## Pre-Requisites
 
-To submit a metadata entry for a native asset on Cardano, you must first follow the steps in [How to prepare an entry for the registry](How-to-prepare-an-entry-for-the-registry-NA-policy-script) and have a finalised metadata file ready for submission.
+To submit a metadata entry for a native asset on Cardano, you must first follow the steps in [How to prepare an entry for the registry](../How-to-prepare-an-entry-for-the-registry-NA-policy-script) and have a finalised metadata file ready for submission.
 
 ## Step 1: Fork and clone the registry repository
 
