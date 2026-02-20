@@ -79,7 +79,7 @@ This will run some additional validations on your submission and check that it i
 ```console
 token-metadata-creator entry baa836fef09cb35e180fce4b55ded152907af1e2c840ed5218776f2f6d7961737365746e616d65 --finalize
 ```
-Your finalized metadata file is now ready to submit to the [cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry). Follow [these steps](How-to-submit-an-entry-to-the-registry) to proceed with the submission.
+Your finalized metadata file is now ready to submit to the [cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry). Follow [these steps](../How-to-submit-an-entry-to-the-registry) to proceed with the submission.
 
 
 ## Token Registry Information  

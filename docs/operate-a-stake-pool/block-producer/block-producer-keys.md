@@ -12,7 +12,7 @@ To run a stake pool, three key pairs are needed:
 * KES keys
 * VRF keys
 
-To understand the purpose of these keys, refer to [Cardano Key Pairs](../basics/cardano-key-pairs).
+To understand the purpose of these keys, refer to [Cardano Key Pairs](../../basics/cardano-key-pairs).
 
 First we change to the keys folder we created in last chapter -
 

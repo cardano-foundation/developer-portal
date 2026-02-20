@@ -9,13 +9,13 @@ If the Pull Request passes validation (meaning you have signed the submission wi
 
 ## Steps
 
-- [Update](How-do-I-update-my-entry-in-the-registry%3F) your entry by updating the value of the 'name' and 'description' fields to 'VOID'.
+- [Update](../How-do-I-update-my-entry-in-the-registry%3F) your entry by updating the value of the 'name' and 'description' fields to 'VOID'.
 - Submit a pull request with a title that indicates the request for deletion.
 - After successful verification we will do the actual deletion of the file.
 
 ## Example
 
-Following along the example provided in [How do I update my entry in the registry?](How-do-I-update-my-entry-in-the-registry%3F) we change the `name` and `description` properties to the value `VOID`, increment the `sequenceNumber` fields of those properties and again sign and finalize the file. 
+Following along the example provided in [How do I update my entry in the registry?](../How-do-I-update-my-entry-in-the-registry%3F) we change the `name` and `description` properties to the value `VOID`, increment the `sequenceNumber` fields of those properties and again sign and finalize the file. 
 
 Considering that the "old" metadata file is still available on your local machine the sequence of the following commands does the job:
 ```console

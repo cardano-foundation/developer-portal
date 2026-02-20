@@ -258,4 +258,4 @@ All withdrawal scripts must be registered on-chain before they can be used. This
 
 #### When withdrawal script is used?
 
-For most Cardano users, we would just use a normal payment key to stake and withdraw rewards. However, it is very popular for Cardano DApps to build withdrawal scripts to enhance the efficiency of validation. We will cover this trick in [lesson 5](./05-avoid-redundant-validation).
+For most Cardano users, we would just use a normal payment key to stake and withdraw rewards. However, it is very popular for Cardano DApps to build withdrawal scripts to enhance the efficiency of validation. We will cover this trick in [lesson 5](../05-avoid-redundant-validation).

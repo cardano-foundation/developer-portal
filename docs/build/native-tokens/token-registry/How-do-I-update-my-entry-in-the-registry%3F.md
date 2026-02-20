@@ -206,6 +206,6 @@ The finalized file looks like:
 ```
 
 ### Step 5: do the PR
-Follow the instructions provided [here](How-to-submit-an-entry-to-the-registry).
+Follow the instructions provided [here](../How-to-submit-an-entry-to-the-registry).
 ## Token Registry Information  
 This page was generated automatically from: [https://github.com/cardano-foundation/cardano-token-registry/wiki](https://github.com/cardano-foundation/cardano-token-registry/wiki/How-do-I-update-my-entry-in-the-registry%3F).

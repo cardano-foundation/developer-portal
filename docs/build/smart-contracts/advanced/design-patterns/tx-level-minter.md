@@ -14,9 +14,9 @@ Unfortunately, invoking the validator script for each input UTxO in a transactio
 pre-processing steps, making it less optimal. To overcome this, the technique of "transaction level
 validation" is employed.
 
-This design pattern couples the spend and minting endpoints of a validator. Very similar to the [Stake Validator](stake-validator) pattern, this approach delegates validation logic to execute once per transaction rather than per UTxO.
+This design pattern couples the spend and minting endpoints of a validator. Very similar to the [Stake Validator](../stake-validator) pattern, this approach delegates validation logic to execute once per transaction rather than per UTxO.
 
-For transaction level validation using staking validators, refer to the [Stake Validator Design pattern](stake-validator). This document outlines implementing the same pattern via minting policies.
+For transaction level validation using staking validators, refer to the [Stake Validator Design pattern](../stake-validator). This document outlines implementing the same pattern via minting policies.
 
 ## The Problem
 
@@ -268,5 +268,5 @@ Additional sample: [aiken-delegation-sample](https://github.com/keyan-m/aiken-de
 
 ## Related Patterns
 
-- [Stake Validator](stake-validator) - Alternative approach with lower ExUnits cost
-- [UTxO Indexers](utxo-indexers) - Combine with indexing for batch processing
+- [Stake Validator](../stake-validator) - Alternative approach with lower ExUnits cost
+- [UTxO Indexers](../utxo-indexers) - Combine with indexing for batch processing

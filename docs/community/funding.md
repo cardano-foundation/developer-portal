@@ -83,7 +83,7 @@ For mature projects with proven impact, Cardano's on-chain governance enables **
 
 Anyone can submit treasury withdrawal proposals, which require approval from **DReps** (Delegated Representatives) and the **Constitutional Committee** through Cardano's governance system. Organizations like [Intersect](https://www.intersectmbo.org/) and [PRAGMA](https://pragma.builders) can serve as administrators to help coordinate due diligence, contracting, and disbursements for approved proposals.
 
-Learn more about [Treasury withdrawals](../governance/cardano-governance/governance-actions).
+Learn more about [Treasury withdrawals](../../governance/cardano-governance/governance-actions).
 
 ---
 
@@ -140,12 +140,12 @@ import TabItem from '@theme/TabItem';
 
 - Document significant ecosystem impact and community benefit
 - Prepare for DRep and Constitutional Committee review
-- Learn about the [Treasury withdrawal process](../governance/cardano-governance/governance-actions)
+- Learn about the [Treasury withdrawal process](../../governance/cardano-governance/governance-actions)
 
 </TabItem>
 
 </Tabs>
 
 :::tip Need Help?
-Join the [Cardano Developer Community](cardano-developer-community) for support, feedback, and collaboration opportunities.
+Join the [Cardano Developer Community](../cardano-developer-community) for support, feedback, and collaboration opportunities.
 :::

@@ -274,5 +274,5 @@ one_to_one(validate, 1, 0, ...)  // Input 1 -> Output 0 (same!)
 
 ## Related Patterns
 
-- [Stake Validator](stake-validator) - Multi-indexers work best with stake validators
-- [Double Satisfaction](../security/vulnerabilities/double-satisfaction) - Vulnerability to protect against
+- [Stake Validator](../stake-validator) - Multi-indexers work best with stake validators
+- [Double Satisfaction](../../security/vulnerabilities/double-satisfaction) - Vulnerability to protect against

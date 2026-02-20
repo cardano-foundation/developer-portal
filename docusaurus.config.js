@@ -65,6 +65,7 @@ module.exports = {
   tagline: "Let’s build together",
   url: "https://developers.cardano.org",
   baseUrl: "/",
+  trailingSlash: true,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",

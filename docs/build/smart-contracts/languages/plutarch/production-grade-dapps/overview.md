@@ -13,15 +13,15 @@ That’s the gap we’re trying to close. The goal is to provide the Cardano com
 
 Production Grade dApp in this list include:
 
-- **[Merkle Tree Contracts](./merkle-tree)**: Enhance data integrity verification and enable swift proof checks in extensive datasets.
+- **[Merkle Tree Contracts](../merkle-tree)**: Enhance data integrity verification and enable swift proof checks in extensive datasets.
 
-- **[Single Asset Staking Contracts](./single-asset-staking)**: Simplify the staking process, allowing for collective asset staking and reward distribution.
+- **[Single Asset Staking Contracts](../single-asset-staking)**: Simplify the staking process, allowing for collective asset staking and reward distribution.
 
-- **[Linear Vesting Contracts](./linear-vesting)**: Offer secure, customizable parameters for linear asset vesting.
+- **[Linear Vesting Contracts](../linear-vesting)**: Offer secure, customizable parameters for linear asset vesting.
 
-- **[Bridge Contracts](./bridge-template)**: Enable seamless asset and data transfers across different blockchain networks, enriching the Cardano ecosystem's interoperability.
+- **[Bridge Contracts](../bridge-template)**: Enable seamless asset and data transfers across different blockchain networks, enriching the Cardano ecosystem's interoperability.
 
-- **[Yield Farming Contracts](./yield-farming)**: Streamline the creation and management of yield farming pools, opening new avenues for passive income generation within the Cardano ecosystem.
+- **[Yield Farming Contracts](../yield-farming)**: Streamline the creation and management of yield farming pools, opening new avenues for passive income generation within the Cardano ecosystem.
 
 Beyond the provision of these libraries, we are committed to ensuring their reliability, functionality, and ease of use. Rigorous testing and a user-friendly development environment, accompanied by comprehensive tutorials, guarantee a smooth onboarding experience for developers of all skill levels.
 

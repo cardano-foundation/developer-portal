@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 This guide shows how to detect ada payments using `cardano-cli` by directly querying UTxOs on the blockchain. This approach gives you full control and doesn't require external APIs.
 
 :::tip
-For a higher-level approach with less infrastructure, check out the [Point of Sale (Blockfrost)](./point-of-sale) tutorial or the [cardano-wallet](./cardano-wallet) tutorial.
+For a higher-level approach with less infrastructure, check out the [Point of Sale (Blockfrost)](../point-of-sale) tutorial or the [cardano-wallet](../cardano-wallet) tutorial.
 :::
 
 ## Overview
