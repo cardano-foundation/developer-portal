@@ -15,7 +15,7 @@ To celebrate the [Cardano Developer Portal launch](../), The Cardano Foundation 
 
 <!-- truncate -->
 
-In addition, to show our appreciation, we rewarded the community members with Bronze Tokens of Appreciation. Bronze Tokens are a way to give the NFTAs extra utility over their collectability. Tokens can be redeemed once to highlight a topic or project on the Cardano Developer Portal. For example, it can spotlight a project they are working on or inform the Cardano community of a specific topic. The spotlight articles can be found at the [Cardano Developer Portal Blog](../blog/). 
+In addition, to show our appreciation, we rewarded the community members with Bronze Tokens of Appreciation. Bronze Tokens are a way to give the NFTAs extra utility over their collectability. Tokens can be redeemed once to highlight a topic or project on the Cardano Developer Portal. For example, it can spotlight a project they are working on or inform the Cardano community of a specific topic. The spotlight articles can be found at the [Cardano Developer Portal Blog](/blog/). 
 
 
 **The minting strategy**

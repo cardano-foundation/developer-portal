@@ -163,7 +163,7 @@ This creates a delegation certificate which delegates funds from all stake addre
 
 ## Submit the certificates to the blockchain
 
-To understand the basics of submitting a transaction on the chain, refer to [Register Stake Address](./register-stake-address).
+To understand the basics of submitting a transaction on the chain, refer to [Register Stake Address](../register-stake-address).
 
 Registering a stake pool requires a deposit. This amount is specified in the already created `protocol.json`:
 

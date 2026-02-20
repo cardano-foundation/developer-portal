@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 :::note
 
-This guide assumes that you have completed the [Simple transactions](basic-operations/simple-transactions) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
+This guide assumes that you have completed the [Simple transactions](../basic-operations/simple-transactions) guide. You will need one UTxO sitting at each of the wallets (`payment1.addr` and `payment2.addr`) to complete this guide.
 
 This guide also assumes that you have `cardano-node` running in the background and connected to a [testnet network](/docs/get-started/networks/testnets).
 
@@ -20,7 +20,7 @@ This guide also assumes that you have `cardano-node` running in the background a
 
 ### Recap
 
-Let's recap what we did so far. Our goal in the [previous guide](basic-operations/simple-transactions) was to draw `1000 tADA` from the Testnet Faucet and send `250 tAda` from **payment1** to **payment2**.
+Let's recap what we did so far. Our goal in the [previous guide](../basic-operations/simple-transactions) was to draw `1000 tADA` from the Testnet Faucet and send `250 tAda` from **payment1** to **payment2**.
 
 Make sure we are in the correct folder.
 
@@ -193,7 +193,7 @@ We can't do this with `cardano-wallet`, or any other wallet like Daedalus or Yor
 
 :::note
 
-As mentioned above, this guide assumes you completed the [Simple transactions](basic-operations/simple-transactions) guide.<br />
+As mentioned above, this guide assumes you completed the [Simple transactions](../basic-operations/simple-transactions) guide.<br />
 We also assume you paid `174169 Lovelace` in transaction fees and that your current balances are:
 
 * **payment1**: `749825831 Lovelace`

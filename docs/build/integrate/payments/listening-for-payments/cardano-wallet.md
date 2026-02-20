@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 This guide shows how to detect ada payments using the `cardano-wallet` REST API. This approach provides a cleaner API interface compared to cardano-cli while still maintaining control over your infrastructure.
 
 :::tip
-For a simpler approach without running any blockchain infrastructure, check out the [Point of Sale (Blockfrost)](./point-of-sale) tutorial.
+For a simpler approach without running any blockchain infrastructure, check out the [Point of Sale (Blockfrost)](../point-of-sale) tutorial.
 :::
 
 ## Overview
