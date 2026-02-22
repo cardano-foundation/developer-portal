@@ -156,9 +156,36 @@ function ShowcaseHeader() {
     <PortalHero
       title={TITLE}
       description={DESCRIPTION}
-      cta={CTA}
-      filename={FILENAME}
     />
+  );
+}
+
+function DevelopOnCardanoSection() {
+  return (
+    <section className={styles.developSection}>
+      <div className="container">
+        <div className={styles.developGrid}>
+          <div>
+            <h2>Develop on Cardano</h2>
+            <p>
+              Discover the tools and libraries that power Cardano development.
+              From smart contract languages to blockchain APIs, these community-built
+              tools help you create decentralized applications, integrate with
+              wallets, and interact with the Cardano ecosystem.
+            </p>
+          </div>
+          <div className={styles.developCta}>
+            <h3>Need help choosing the right tools?</h3>
+            <p>
+              Answer a few questions about your project and discover which APIs, indexers, SDKs, and infrastructure are best for you.
+            </p>
+            <a href="https://cardano-foundation.github.io/cardano-tool-compass/questionnaire/B1/" className={styles.ctaButton} target="_blank">
+              → Tool Compass 
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -325,6 +352,9 @@ function SearchBar() {
           debouncedHistoryPush(newSearch.toString());
         }}
       />
+      <a href={`https://github.com/cardano-foundation/developer-portal/edit/staging/src/data/${FILENAME}`} target="_blank" className={styles.addToolLink}>
+        Add Your Tool →
+      </a>
     </div>
   );
 }
@@ -347,6 +377,7 @@ function Showcase() {
     <Layout title={TITLE} description={DESCRIPTION}>
       <MetaData/> 
       <ShowcaseHeader />
+      <DevelopOnCardanoSection />
       <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
       <ShowcaseCards filteredProjects={filteredProjects} />
       <OpenStickyButton />
