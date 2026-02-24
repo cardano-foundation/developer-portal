@@ -6,6 +6,8 @@ description: Understanding Cardano address types, structure, and how payment and
 image: /img/og/og-getstarted-technical-concepts.png
 ---
 
+Understanding addresses is fundamental to Cardano development. Before you can understand how transactions move value or how the EUTXO model works, you need to know where value lives.
+
 ## Address Structure
 
 A Cardano address consists of 2 or 3 parts:
@@ -51,6 +53,10 @@ Payment credentials define spending conditions and come in two forms:
 **Verification Key Hash**: Blake2b-224 hash of an Ed25519 public key. Regular wallets like Lace, Eternl, and Yoroi use this type. To spend funds, you must provide the public key and a signature of the transaction.
 
 **Script Hash**: Blake2b-224 hash of a Plutus or native script. Smart contracts, DEX liquidity pools, and escrow services use script hashes to lock funds programmatically. To spend funds, you must provide the script source and satisfy its validation logic. Scripts are predicates that return True or False - all scripts in a transaction must return True for the transaction to be valid.
+
+:::tip For Builders
+When minting tokens or building smart contracts, you'll work with **script addresses**, addresses where the payment credential is a script hash rather than a key hash. Your validator script's hash becomes the address where users lock funds.
+:::
 
 ### Key Hashes vs Public Keys
 
@@ -134,9 +140,3 @@ Tools for inspecting and decoding addresses:
 - **[cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started)**: Generate keys, hash keys, and verify they match address credentials
 
 **Technical Reference**: [CIP-19: Cardano Addresses](https://cips.cardano.org/cip/CIP-19)
-
-## Next Steps
-
-- Learn about [Transactions](/docs/learn/core-concepts/transactions)
-- Understand [Transaction Fees](/docs/learn/core-concepts/fees)
-- Build with addresses: [Building dApps](/docs/build/integrate/overview)
