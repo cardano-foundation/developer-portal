@@ -28,6 +28,7 @@
   --site-color-brand-teal-light: #5DCFB8;
   --site-color-surface: #f5f7fa;
   --site-color-surface-hover: #eef1f6;
+  --site-color-bg-dark: #1b1b1d;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -45,6 +46,7 @@ html[data-theme="dark"] {
   --site-color-brand-teal-light: #5DCFB8;
   --site-color-surface: #242526;
   --site-color-surface-hover: #3a3a3d;
+  --site-color-bg-dark: #1b1b1d;
   --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
 

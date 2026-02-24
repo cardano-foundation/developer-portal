@@ -177,7 +177,7 @@ html[data-theme="light"] .bento {
 }
 
 html[data-theme="dark"] .bento {
-  background: #1b1b1d;
+  background: var(--site-color-bg-dark);
 }
 
 .bentoGrid {
@@ -526,7 +526,7 @@ html[data-theme="light"] .developer {
 }
 
 html[data-theme="dark"] .developer {
-  background: #1b1b1d;
+  background: var(--site-color-bg-dark);
 }
 
 .devHeader {
@@ -1028,7 +1028,7 @@ html[data-theme="light"] .smartContracts {
 }
 
 html[data-theme="dark"] .smartContracts {
-  background: #1b1b1d;
+  background: var(--site-color-bg-dark);
 }
 
 .scHeader {
@@ -1357,7 +1357,7 @@ html[data-theme="light"] .cta {
 }
 
 html[data-theme="dark"] .cta {
-  background: #1b1b1d;
+  background: var(--site-color-bg-dark);
 }
 
 .ctaHeader {
@@ -1667,7 +1667,7 @@ html[data-theme="light"] .officeHours {
 }
 
 html[data-theme="dark"] .officeHours {
-  background: #1b1b1d;
+  background: var(--site-color-bg-dark);
 }
 
 .officeHoursInner {

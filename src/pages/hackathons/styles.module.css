@@ -166,7 +166,7 @@ html[data-theme="light"] .overview {
 }
 
 html[data-theme="dark"] .overview {
-  background-color: #1b1b1d;
+  background-color: var(--site-color-bg-dark);
 }
 
 .overviewContent {
@@ -351,7 +351,7 @@ html[data-theme="light"] .resources {
 }
 
 html[data-theme="dark"] .resources {
-  background-color: #1b1b1d;
+  background-color: var(--site-color-bg-dark);
 }
 
 .resourcesContent {
