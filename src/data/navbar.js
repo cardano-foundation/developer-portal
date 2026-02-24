@@ -20,7 +20,7 @@ function getNavbarItems(repository) {
         {to: "/tools/", label: "Builder Tools"},
         {to: "/docs/community/cardano-developer-community/", label: "Community"},
         {to: "/docs/community/funding/", label: "Grants"},
-        {to: "/hackathons", label: "Hackathons"},
+        {to: "/hackathons/", label: "Hackathons"},
       ],
       mega: true,
       customProps: {
