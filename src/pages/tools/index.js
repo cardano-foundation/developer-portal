@@ -7,7 +7,7 @@ import ShowcaseTagSelect, {
   replaceSearchTags,
 } from "@site/src/components/showcase/ShowcaseTagSelect";
 import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard/";
-import OpenStickyButton from "../../components/buttons/OpenStickyButton";
+import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 import ShowcaseFilterToggle, {
   readOperator,
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
@@ -17,21 +17,21 @@ import ShowcaseLatestToggle, {
   readLatestOperator,
 } from "@site/src/components/showcase/ShowcaseLatestToggle";
 
-import PortalHero from "../portalhero";
-import { toggleListItem } from "../../utils/jsUtils";
+import PortalHero from "@site/src/pages/portalhero";
+import { toggleListItem } from "@site/src/utils/jsUtils";
 import {
   DomainsTags,
   LanguagesOrTechnologiesTags,
   SortedShowcases,
   Tags,
   Showcases
-} from "../../data/builder-tools";
+} from "@site/src/data/builder-tools";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from 'lodash/debounce';
 import styles from "./styles.module.css";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import Fav from "../../svg/fav.svg";
+import Fav from "@site/src/svg/fav.svg";
 
 const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
@@ -70,7 +70,7 @@ function restoreUserState(userState) {
 function filterProjects(projects, selectedTags, latest, operator, searchName, unfilteredProjects) {
   // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
   if (latest === "LAST") {
-    var projects = unfilteredProjects.slice(-10);
+    projects = unfilteredProjects.slice(-10);
   }
 
   if (searchName) {
