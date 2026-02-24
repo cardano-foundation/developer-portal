@@ -5,7 +5,7 @@
 // Contributors: edit ./builder-tools/tools.js to add your tool.
 // ============================================================================
 
-import { sortBy } from "../utils/jsUtils";
+import { sortBy } from "@site/src/utils/jsUtils";
 import { Showcases } from "./builder-tools/tools";
 import { Tags, TagList, LanguagesOrTechnologiesTags, DomainsTags } from "./builder-tools/tags";
 import { ensureShowcaseValid } from "./builder-tools/validation";

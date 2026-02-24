@@ -1,4 +1,4 @@
-import { difference } from "../../utils/jsUtils";
+import { difference } from "@site/src/utils/jsUtils";
 import { TagList } from "./tags";
 
 // Fail-fast on common errors

@@ -10,9 +10,9 @@ import clsx from "clsx";
 import Image from "@theme/IdealImage";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
-import Tooltip from "../ShowcaseTooltip/index";
-import { Tags } from "../../../data/builder-tools";
-import Fav from "../../../svg/fav.svg";
+import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
+import { Tags } from "@site/src/data/builder-tools";
+import Fav from "@site/src/svg/fav.svg";
 
 const TagComp = forwardRef(({ label, color, description }, ref) => (
   <li className={styles.tag} title={description}>
@@ -26,17 +26,17 @@ function ShowcaseCardTag({ tags }) {
 
   return (
     <>
-      {tagObjects.map((tagObject, index) => {
+      {tagObjects.map((tagObject) => {
         const id = `showcase_card_tag_${tagObject.tag}`;
 
         return (
           <Tooltip
-            key={index}
+            key={tagObject.tag}
             text={tagObject.description}
             anchorEl="#__docusaurus"
             id={id}
           >
-            <TagComp key={index} {...tagObject} />
+            <TagComp key={tagObject.tag} {...tagObject} />
           </Tooltip>
         );
       })}

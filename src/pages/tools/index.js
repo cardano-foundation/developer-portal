@@ -188,11 +188,11 @@ function ShowcaseFilters() {
 
 function filterBy(tags) {
   return (<div className={styles.checkboxList}>
-    {tags.map((tag, i) => {
+    {tags.map((tag) => {
       const { label, description, color } = Tags[tag];
       const id = `showcase_checkbox_id_${tag}`;
       return (
-          <div key={i} className={styles.checkboxListItem}>
+          <div key={tag} className={styles.checkboxListItem}>
             <ShowcaseTooltip
               id={id}
               text={description}
@@ -203,13 +203,8 @@ function filterBy(tags) {
                 id={id}
                 label={label}
                 icon={(<span
-                  style={{
-                    backgroundColor: color,
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    marginLeft: 8,
-                  }}/>
+                  className={styles.tagDot}
+                  style={{ backgroundColor: color }}/>
                 )}
               />
             </ShowcaseTooltip>
