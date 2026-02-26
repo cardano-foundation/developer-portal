@@ -4,7 +4,8 @@ custom_edit_url: null
 title: generating-keys
 image: /img/og/og-getstarted-serialization-lib.png
 sidebar_position: 3
---- 
+description: "How to generate cryptographic keys and derive addresses using the Cardano Serialization Library."
+---
 # Generating Keys and Addresses
 
 ## BIP32 Keys

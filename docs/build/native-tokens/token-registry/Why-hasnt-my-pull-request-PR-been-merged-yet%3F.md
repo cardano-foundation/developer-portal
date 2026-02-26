@@ -2,7 +2,8 @@
 sidebar_label: Why hasn't my pull request (PR) been merged yet?
 custom_edit_url: null
 title: Why hasn't my pull request (PR) been merged yet?
---- 
+description: "Information about the Cardano Token Registry pull request review process and common reasons for delays."
+---
 Pull Requests are managed by humans and we are doing our best to make this a diligent process: Requests are generally treated from the oldest first; please be patient 🧘‍♂️.
 
 If your PR is one of the older ones, there might be a few things going on, which should be indicated on the PR itself. Make sure your PR is properly formatted: Each goes through a set of automated tests that check details against the schema.

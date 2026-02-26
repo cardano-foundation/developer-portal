@@ -3,7 +3,8 @@ sidebar_label: Metadata
 custom_edit_url: null
 title: metadata
 image: /img/og/og-getstarted-serialization-lib.png
---- 
+description: "How to attach and format transaction metadata using the Cardano Serialization Library."
+---
 # Metadata
 
 ## Transaction Metadata format

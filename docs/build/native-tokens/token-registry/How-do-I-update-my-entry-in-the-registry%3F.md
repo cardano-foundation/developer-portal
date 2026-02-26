@@ -2,7 +2,8 @@
 sidebar_label: How do I update my entry in the registry?
 custom_edit_url: null
 title: How do I update my entry in the registry?
---- 
+description: "Step-by-step guide to updating an existing token metadata entry in the Cardano Token Registry."
+---
 # Updating existing metadata json files
 Basically for updating metadata entries in the token registry the process is the same as for adding a new metadata entry like described [here](https://github.com/cardano-foundation/cardano-token-registry/wiki/How-to-prepare-an-entry-for-the-registry-%28NA-policy-script%29) with only some slight differences. If you still have a _draft file_ available from a previous metadata creation session you start with step 2.
 
