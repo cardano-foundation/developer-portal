@@ -117,7 +117,7 @@ module.exports = {
     // Relative to your site's "static" directory, cannot be SVGs.
     image: "img/og/og-developer-portal.png",
     metadata: [
-      { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, onchain, offchain, developers, developer portal" },
+      { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, stake pool, Web3" },
     ],
 
     // Algolia Search
