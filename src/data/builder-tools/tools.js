@@ -812,6 +812,14 @@ export const Showcases = [
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/dingo",
     tags: ["golang", "nodeclient"],
   },
+  {
+    title: "Aikido",
+    description: "Static security analyzer for Aiken smart contracts. 75 vulnerability detectors covering authorization, value preservation, datum integrity, minting, and arithmetic with Cardano Weakness Classification mapping.",
+    preview: require("./images/aikido.png"),
+    website: "https://github.com/Bajuzjefe/Aikido-Security-Analysis-Platform",
+    getstarted: "https://github.com/Bajuzjefe/Aikido-Security-Analysis-Platform#quick-start",
+    tags: ["rust", "cli", "testing"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
