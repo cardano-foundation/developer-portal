@@ -53,7 +53,7 @@ export default function NotFoundContent({ className }) {
         The page you're looking for doesn't exist or may have been moved.
       </p>
       <p style={{
-        color: "var(--ifm-color-emphasis-700)",
+        color: "var(--ifm-color-emphasis-500)",
         fontSize: "0.9rem",
         marginBottom: "2rem",
       }}>
