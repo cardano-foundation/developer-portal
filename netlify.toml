@@ -4,6 +4,15 @@
 
 # Header configuration
 
+# Allow cardano.org to fetch /stats.json cross-origin (builder-tools count).
+# This is public, non-sensitive data; the CORS header enables browser fetch().
+[[headers]]
+  for = "/stats.json"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://cardano.org"
+    Access-Control-Allow-Methods = "GET"
+    Cache-Control = "public, max-age=3600"
+
 [[headers]]
   for = "/*"
   [headers.values]
