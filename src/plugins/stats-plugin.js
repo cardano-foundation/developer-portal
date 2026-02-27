@@ -8,10 +8,10 @@ const path = require('path');
  * so that external sites like cardano.org can fetch them without scraping.
  *
  * Currently the only data source is builder-tools, but the plugin is
- * designed to be extended with additional stats (e.g. showcase projects,
- * documentation page count) as needs arise.
+ * designed to be extended with additional stats (e.g. documentation page
+ * count) as needs arise.
  *
- * Why count image files instead of importing the Showcases array?
+ * Why count image files instead of importing the tools array?
  * tools.js uses ES module syntax with webpack-style require() for images,
  * which cannot be evaluated in the plain Node.js context of postBuild.
  * Each builder tool requires exactly one image (enforced by validation.js),
