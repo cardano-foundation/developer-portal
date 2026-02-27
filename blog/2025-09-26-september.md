@@ -3,6 +3,7 @@ slug: 2025-09-26-media-cardano-developer-office-hours
 title: "Wallet as a Service"
 authors: [cf]
 tags: [media, developer-office-hours]
+description: "Developer Office Hours session on Wallet-as-a-Service and Transaction Sponsorship from Mesh.js for improved dApp user onboarding on Cardano."
 ---
 
 In this session of the Cardano Developer Office Hours, Jingles, Founder of Mesh.js, explores Wallet-as-a-Service and Transaction Sponsorship, two tools driving the next generation of Cardano dApps. He explains how Wallet-as-a-Service streamlines user onboarding and how Transaction Sponsorship removes barriers for new users. The session features real-world examples and guidance on integrating these capabilities into projects, showcasing how Mesh.js delivers seamless blockchain experiences for both developers and users.

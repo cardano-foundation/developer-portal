@@ -2,6 +2,7 @@
 id: unbounded-inputs
 title: Unbounded Inputs
 sidebar_label: Unbounded Inputs
+description: "How unbounded inputs enable denial-of-service attacks through excessive resource consumption."
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)

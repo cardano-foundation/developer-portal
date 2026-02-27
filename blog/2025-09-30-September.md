@@ -3,6 +3,7 @@ slug: 2025-09-30-quarterly-development-report
 title: "CF Q3 2025 Development Report"
 authors: [cf]
 tags: [open-source]
+description: "Cardano Foundation Q3 2025 quarterly development report covering Reeve, Rosetta Java, Yaci DevKit, Yaci Store, IBC Incubator, and more."
 ---
 
 Below is a well-deserved Q3 update highlighting ecosystem tooling and solutions across July, August, and September.

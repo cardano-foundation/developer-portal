@@ -4,7 +4,8 @@ custom_edit_url: null
 title: prerequisite-knowledge
 image: /img/og/og-getstarted-serialization-lib.png
 sidebar_position: 2
---- 
+description: "Prerequisites and background knowledge needed before using the Cardano Serialization Library."
+---
 # Pre-requisite knowledge
 
 This library assumes a certain amount of knowledge about how Cardano works (want to avoid re-documenting the wheel).

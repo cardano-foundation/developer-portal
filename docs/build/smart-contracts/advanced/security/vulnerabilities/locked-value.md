@@ -2,6 +2,7 @@
 id: locked-value
 title: Locked Value
 sidebar_label: Locked Value
+description: "How the locked value vulnerability permanently locks funds in a UTxO with no recovery path."
 ---
 
 > From [Mesh Bad Contracts](https://github.com/MeshJS/mesh)
