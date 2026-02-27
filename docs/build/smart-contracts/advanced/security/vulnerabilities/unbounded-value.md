@@ -2,6 +2,7 @@
 id: unbounded-value
 title: Unbounded Value
 sidebar_label: Unbounded Value
+description: "How unbounded values can disrupt smart contract logic by sending unexpected token amounts."
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)

@@ -3,7 +3,8 @@ sidebar_label: How to submit an entry to the registry
 custom_edit_url: null
 title: How to submit an entry to the registry
 sidebar_position: 7
---- 
+description: "How to submit a pull request to add your token metadata to the Cardano Token Registry."
+---
 ## Pre-Requisites
 
 To submit a metadata entry for a native asset on Cardano, you must first follow the steps in [How to prepare an entry for the registry](../How-to-prepare-an-entry-for-the-registry-NA-policy-script) and have a finalised metadata file ready for submission.

@@ -9,42 +9,50 @@
 /* You can override the default Infima variables here. */
 
 :root {
-  --ifm-color-primary: #0538AF;
-  --ifm-color-primary-dark: #325CBD;
-  --ifm-color-primary-darker: #325CBD;
-  --ifm-color-primary-darkest: #325CBD;
-  --ifm-color-primary-light: #325CBD;
-  --ifm-color-primary-lighter: #325CBD;
-  --ifm-color-primary-lightest: #325CBD;
+  --ifm-color-primary: #0033AD;
+  --ifm-color-primary-dark: #002E9C;
+  --ifm-color-primary-darker: #002B93;
+  --ifm-color-primary-darkest: #002479;
+  --ifm-color-primary-light: #0038BE;
+  --ifm-color-primary-lighter: #003BC7;
+  --ifm-color-primary-lightest: #0042E1;
   --ifm-code-font-size: 95%;
   --ifm-footer-link-hover-color: #6684CE;
   --site-color-tooltip: #fff;
   --site-color-tooltip-background: #353738;
+  /* Brand palette */
+  --site-color-brand-blue: #0033AD;
+  --site-color-brand-blue-light: #0055E5;
+  --site-color-brand-teal: #44BBA4;
+  --site-color-brand-teal-dark: #3BA18E;
+  --site-color-brand-teal-light: #5DCFB8;
+  --site-color-surface: #f5f7fa;
+  --site-color-surface-hover: #eef1f6;
+  --site-color-bg-dark: #1b1b1d;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 html[data-theme="dark"] {
   --ifm-color-primary: #6684CE;
-  --ifm-color-primary-dark: #6684CE;
-  --ifm-color-primary-darker: #6684CE;
-  --ifm-color-primary-darkest: #6684CE;
-  --ifm-color-primary-light: #6684CE;
-  --ifm-color-primary-lighter: #6684CE;
-  --ifm-color-primary-lightest: #6684CE;
-  --ifm-code-font-size: 95%;
+  --ifm-color-primary-dark: #4E71C5;
+  --ifm-color-primary-darker: #4268C1;
+  --ifm-color-primary-darkest: #3254A8;
+  --ifm-color-primary-light: #7E97D7;
+  --ifm-color-primary-lighter: #8AA0DB;
+  --ifm-color-primary-lightest: #B0BFE7;
+  /* Brand palette */
+  --site-color-brand-blue: #0033AD;
+  --site-color-brand-teal: #44BBA4;
+  --site-color-brand-teal-light: #5DCFB8;
+  --site-color-surface: #242526;
+  --site-color-surface-hover: #3a3a3d;
+  --site-color-bg-dark: #1b1b1d;
+  --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
 
 .button {
   border-style: solid !important;
   border-width: 1.3px !important;
-}
-
-/* Code block line highlighting */
-:root {
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-}
-
-html[data-theme='dark'] {
-  --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
 
 @keyframes fadeInUp {
@@ -55,7 +63,7 @@ html[data-theme='dark'] {
 }
 
 .card {
-  padding: 0rem;
+  padding: 0;
   margin-top: 1rem;
   animation: fadeInUp 400ms backwards;
   animation-delay: 150ms;
@@ -70,7 +78,7 @@ html[data-theme='dark'] {
 }
 
 .card:hover {
-  transform: translate(0px, -5px);
+  transform: translateY(-5px);
 }
 
 .footer--dark {
@@ -125,7 +133,7 @@ div#faucetcontainer {
 }
 
 .faucet {
-  border: 0px none;
+  border: none;
   width: 1200px;
   /* set to approximate width of the faucet page */
   height: 2500px;
@@ -171,8 +179,8 @@ div#faucetcontainer {
 }
 
 .tabsblock {
-    background: rgba(86, 91, 115, 0.15);
-    border-radius: .4rem;
+  background: rgba(86, 91, 115, 0.15);
+  border-radius: 0.4rem;
 }
 
 /* Mega menu styles */
@@ -308,8 +316,6 @@ div#faucetcontainer {
   background-color: var(--ifm-color-emphasis-100);
   text-decoration: none;
 }
-
-/* (focus visible outlines intentionally omitted in original version) */
 
 .megaMenuItemLabel {
   font-weight: 500;

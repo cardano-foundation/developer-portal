@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-export default function openStickyButton() {
+export default function OpenStickyButton() {
   return (
-    <a href="/docs/portal-contribute">
+    <a href="/docs/contribute/portal-contribute/">
       <button className={`${styles.iconBtn} ${styles.addBtn}`}>
         <div className={styles.addIcon}></div>
         <div className={styles.btnText}>

@@ -4,7 +4,8 @@ custom_edit_url: null
 title: generating-transactions
 image: /img/og/og-getstarted-serialization-lib.png
 sidebar_position: 4
---- 
+description: "How to build and serialize Cardano transactions using the Cardano Serialization Library."
+---
 # Generating Transactions
 
 ## TransactionBuilder API

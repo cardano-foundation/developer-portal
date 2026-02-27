@@ -7,7 +7,7 @@ import ShowcaseTagSelect, {
   replaceSearchTags,
 } from "@site/src/components/showcase/ShowcaseTagSelect";
 import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard/";
-import OpenStickyButton from "../../components/buttons/openStickyButton";
+import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 import ShowcaseFilterToggle, {
   readOperator,
 } from "@site/src/components/showcase/ShowcaseFilterToggle";
@@ -17,21 +17,21 @@ import ShowcaseLatestToggle, {
   readLatestOperator,
 } from "@site/src/components/showcase/ShowcaseLatestToggle";
 
-import PortalHero from "../portalhero";
-import { toggleListItem } from "../../utils/jsUtils";
+import PortalHero from "@site/src/pages/portalhero";
+import { toggleListItem } from "@site/src/utils/jsUtils";
 import {
   DomainsTags,
   LanguagesOrTechnologiesTags,
-  SortedShowcases,
+  SortedBuilderTools,
   Tags,
-  Showcases
-} from "../../data/builder-tools";
+  BuilderTools
+} from "@site/src/data/builder-tools";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from 'lodash/debounce';
 import styles from "./styles.module.css";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import Fav from "../../svg/fav.svg";
+import Fav from "@site/src/svg/fav.svg";
 
 const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
@@ -49,11 +49,11 @@ export function prepareUserState() {
   return undefined;
 }
 
-const favoriteShowcases = SortedShowcases.filter((showcase) =>
-  showcase.tags.includes("favorite")
+const favoriteBuilderTools = SortedBuilderTools.filter((tool) =>
+  tool.tags.includes("favorite")
 );
-const otherShowcases = SortedShowcases.filter(
-  (showcase) => !showcase.tags.includes("favorite")
+const otherBuilderTools = SortedBuilderTools.filter(
+  (tool) => !tool.tags.includes("favorite")
 );
 
 function restoreUserState(userState) {
@@ -70,7 +70,7 @@ function restoreUserState(userState) {
 function filterProjects(projects, selectedTags, latest, operator, searchName, unfilteredProjects) {
   // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
   if (latest === "LAST") {
-    var projects = unfilteredProjects.slice(-10);
+    projects = unfilteredProjects.slice(-10);
   }
 
   if (searchName) {
@@ -118,12 +118,12 @@ function useFilteredProjects() {
   return useMemo(
     () =>
       filterProjects(
-        SortedShowcases,
+        SortedBuilderTools,
         selectedTags,
         latest,
         operator,
         searchName,
-        Showcases
+        BuilderTools
       ),
     [selectedTags, latest, operator, searchName]
   );
@@ -188,11 +188,11 @@ function ShowcaseFilters() {
 
 function filterBy(tags) {
   return (<div className={styles.checkboxList}>
-    {tags.map((tag, i) => {
+    {tags.map((tag) => {
       const { label, description, color } = Tags[tag];
       const id = `showcase_checkbox_id_${tag}`;
       return (
-          <div key={i} className={styles.checkboxListItem}>
+          <div key={tag} className={styles.checkboxListItem}>
             <ShowcaseTooltip
               id={id}
               text={description}
@@ -203,13 +203,8 @@ function filterBy(tags) {
                 id={id}
                 label={label}
                 icon={(<span
-                  style={{
-                    backgroundColor: color,
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    marginLeft: 8,
-                  }}/>
+                  className={styles.tagDot}
+                  style={{ backgroundColor: color }}/>
                 )}
               />
             </ShowcaseTooltip>
@@ -235,7 +230,7 @@ function ShowcaseCards() {
 
   return (
     <section className="margin-top--lg margin-bottom--xl">
-      {filteredProjects.length === SortedShowcases.length ? (
+      {filteredProjects.length === SortedBuilderTools.length ? (
         <>
           <div className={styles.showcaseFavorite}>
             <div className="container">
@@ -250,8 +245,8 @@ function ShowcaseCards() {
                 <SearchBar />
               </div>
               <ul className={clsx("container", styles.showcaseList)}>
-                {favoriteShowcases.map((showcase) => (
-                  <ShowcaseCard key={showcase.title} showcase={showcase} />
+                {favoriteBuilderTools.map((tool) => (
+                  <ShowcaseCard key={tool.title} showcase={tool} />
                 ))}
               </ul>
             </div>
@@ -259,8 +254,8 @@ function ShowcaseCards() {
           <div className="container margin-top--lg">
             <h2 className={styles.showcaseHeader}>All Tools</h2>
             <ul className={styles.showcaseList}>
-              {otherShowcases.map((showcase) => (
-                <ShowcaseCard key={showcase.title} showcase={showcase} />
+              {otherBuilderTools.map((tool) => (
+                <ShowcaseCard key={tool.title} showcase={tool} />
               ))}
             </ul>
           </div>

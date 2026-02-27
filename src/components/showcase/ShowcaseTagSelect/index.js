@@ -8,7 +8,7 @@
 import React, { useCallback, useState, useEffect, forwardRef } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { toggleListItem } from "@site/src/utils/jsUtils";
-import {prepareUserState} from '../../../pages/tools/index';
+import {prepareUserState} from '@site/src/pages/tools/index';
 
 import styles from "./styles.module.css";
 

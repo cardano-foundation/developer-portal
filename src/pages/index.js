@@ -4,7 +4,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
-import OpenStickyButton from "../components/buttons/openStickyButton";
+import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 
 /* --- DATA --- */
 
@@ -55,7 +55,7 @@ function Hero() {
       <div className={styles.heroBackground}>
         <img
           src={useBaseUrl("img/hero-smart-contracts.jpeg")}
-          alt=""
+          alt="Cardano developer portal"
           className={styles.heroBackgroundImage}
         />
         <div className={styles.heroOverlay} />
@@ -93,7 +93,7 @@ function BentoSection() {
             </div>
             <img
               src={useBaseUrl("img/card-smart-contracts.svg")}
-              alt=""
+              alt="Smart contracts"
               className={styles.bentoCardImage}
             />
           </Link>
@@ -105,7 +105,7 @@ function BentoSection() {
           >
             <img
               src={useBaseUrl("img/card-native-tokens.svg")}
-              alt=""
+              alt="Native tokens"
               className={styles.bentoCardImageTop}
             />
             <div className={styles.bentoCardContent}>
@@ -122,7 +122,7 @@ function BentoSection() {
           >
             <img
               src={useBaseUrl("img/card-get-started.svg")}
-              alt=""
+              alt="Get started"
               className={styles.bentoThirdImage}
             />
             <div className={styles.bentoThirdContent}>
@@ -139,7 +139,7 @@ function BentoSection() {
           >
             <img
               src={useBaseUrl("img/card-integrate-cardano.svg")}
-              alt=""
+              alt="Integrate payments"
               className={styles.bentoThirdImage}
             />
             <div className={styles.bentoThirdContent}>
@@ -156,7 +156,7 @@ function BentoSection() {
           >
             <img
               src={useBaseUrl("img/card-transaction-metadata.svg")}
-              alt=""
+              alt="Transaction metadata"
               className={styles.bentoThirdImage}
             />
             <div className={styles.bentoThirdContent}>
@@ -173,7 +173,7 @@ function BentoSection() {
           >
             <img
               src={useBaseUrl("img/card-operate-a-stake-pool.svg")}
-              alt=""
+              alt="Operate a stake pool"
               className={styles.bentoHalfImage}
             />
             <div className={styles.bentoHalfContent}>
@@ -190,7 +190,7 @@ function BentoSection() {
           >
             <img
               src={useBaseUrl("img/card-governance.svg")}
-              alt=""
+              alt="Governance"
               className={styles.bentoHalfImage}
             />
             <div className={styles.bentoHalfContent}>
@@ -449,7 +449,7 @@ function SmartContractsSection() {
           <div className={styles.scLearnCard}>
             <img
               src={useBaseUrl("img/card-smart-contracts.svg")}
-              alt=""
+              alt="Smart contract design patterns and security"
               className={styles.scLearnImage}
             />
             <div className={styles.scLearnOverlay} />
@@ -479,7 +479,7 @@ function SmartContractsSection() {
           >
             <img
               src={useBaseUrl("img/asteria-game.jpg")}
-              alt=""
+              alt="Asteria space game for learning eUTxO development"
               className={styles.asteriaImage}
             />
             <div className={styles.asteriaOverlay} />
@@ -497,7 +497,7 @@ function SmartContractsSection() {
           >
             <img
               src={useBaseUrl("img/cardano-ctf.jpeg")}
-              alt=""
+              alt="Cardano Capture The Flag security challenge"
               className={styles.scCTFImage}
             />
             <div className={styles.scCTFOverlay} />
@@ -527,7 +527,7 @@ function CTASection() {
           <Link to={useBaseUrl("hackathons")} className={styles.ctaHackathons}>
             <img
               src={useBaseUrl("img/hackathons/hackathon.jpg")}
-              alt=""
+              alt="Cardano hackathon event"
               className={styles.ctaHackathonsImage}
             />
             <div className={styles.ctaHackathonsOverlay} />
@@ -547,7 +547,7 @@ function CTASection() {
           >
             <img
               src={useBaseUrl("img/card-cardano-events.png")}
-              alt=""
+              alt="Cardano community events"
               className={styles.ctaEventsImage}
             />
             <div className={styles.ctaEventsOverlay} />
@@ -562,7 +562,7 @@ function CTASection() {
           <Link to={useBaseUrl("docs/community/funding")} className={styles.ctaFunding}>
             <img
               src={useBaseUrl("img/card-get-funded.jpg")}
-              alt=""
+              alt="Cardano funding and grants"
               className={styles.ctaFundingImage}
             />
             <div className={styles.ctaFundingOverlay} />

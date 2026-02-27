@@ -2,6 +2,7 @@
 id: utxo-contention
 title: UTxO Contention
 sidebar_label: UTxO Contention
+description: "How UTxO contention causes transaction failures when multiple transactions compete for the same UTxO."
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)

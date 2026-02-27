@@ -3,7 +3,8 @@ sidebar_label: How to prepare an entry for the registry (NA policy script)
 custom_edit_url: null
 title: How to prepare an entry for the registry (NA policy script)
 sidebar_position: 5
---- 
+description: "How to prepare a token metadata entry for the Cardano Token Registry using a native asset policy script."
+---
 ## Pre-Requisites
 
 To register native token mappings, it is recommended to have pre-existing knowledge about Cardano native assets. Start by reading through the [developer guide on Native Assets](https://developers.cardano.org/docs/build/native-tokens/minting/).    

@@ -4,6 +4,7 @@ title: Get started with Cardano CLI
 sidebar_position: 1
 sidebar_label: Get started
 keywords: [cardano-cli, cli, keys, addresses, cardano-node]
+description: "Getting started with the Cardano CLI including environment setup and node socket configuration."
 ---
 
 :::tip Quick Start: Try Without Local Setup

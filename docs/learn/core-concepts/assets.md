@@ -8,6 +8,10 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 One of Cardano's most powerful features is its ability to handle multiple types of assets natively on the blockchain. Unlike other platforms where tokens require smart contracts, Cardano treats custom tokens as first-class citizens alongside ada.
 
+:::tip Ready to Build?
+This page explains how native assets work conceptually. For hands-on minting tutorials, jump to [Minting Native Assets](/docs/build/native-tokens/minting) or [Minting NFTs](/docs/build/native-tokens/minting-nfts).
+:::
+
 ## Multi-Asset Ledger
 
 Cardano is a **multi-asset ledger**, meaning the blockchain can natively track and transfer multiple different asset types without requiring smart contracts. This is fundamentally different from single-asset ledgers like Bitcoin (which tracks only BTC) and account-based multi-asset ledgers like Ethereum (where each token type requires deploying a separate smart contract like ERC-20 or ERC-721).
@@ -62,7 +66,7 @@ Token bundles can be split (one bundle divided into multiple outputs), combined 
 
 ## Minting Policies
 
-A minting policy is a set of rules that controls who can mint (create) or burn (destroy) tokens, when tokens can be minted or burned, and how many tokens can exist. Policies can be expressed as simple multisig scripts or complex Plutus smart contracts.
+A minting policy is a set of rules that controls who can mint (create) or burn (destroy) tokens, when tokens can be minted or burned, and how many tokens can exist. Policies can be expressed as simple multisig scripts or complex Plutus smart contracts. For step-by-step implementation, see [Minting Native Assets](/docs/build/native-tokens/minting).
 
 ### Simple Multisig Policies
 

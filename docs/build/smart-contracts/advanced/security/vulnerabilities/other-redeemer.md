@@ -2,6 +2,7 @@
 id: other-redeemer
 title: Other Redeemer
 sidebar_label: Other Redeemer
+description: "How the other redeemer vulnerability allows attackers to bypass intended smart contract logic."
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)

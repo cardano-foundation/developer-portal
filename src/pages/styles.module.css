@@ -1,6 +1,6 @@
 /* stylelint-disable docusaurus/copyright-header */
 
-/* Landing page. Brand: Teal #44BBA4, Blue #0033AD, Coral #FF5553, Cream #FCDFA6 */
+/* Landing page. Brand colors defined as CSS variables in src/css/custom.css */
 
 /* --- HERO --- */
 
@@ -10,14 +10,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-}
-
-html[data-theme="light"] .hero {
-  background: #0337AF;
-}
-
-html[data-theme="dark"] .hero {
-  background: #002E9E;
+  background: var(--site-color-brand-blue);
 }
 
 .heroBackground {
@@ -41,14 +34,6 @@ html[data-theme="dark"] .heroBackgroundImage {
 .heroOverlay {
   position: absolute;
   inset: 0;
-}
-
-html[data-theme="light"] .heroOverlay {
-  background: none;
-}
-
-html[data-theme="dark"] .heroOverlay {
-  background: none;
 }
 
 .heroGlow {
@@ -123,7 +108,7 @@ html[data-theme="dark"] .heroCard {
 }
 
 html[data-theme="light"] .heroTitle {
-  color: #0a0a0f;
+  color: #000;
 }
 
 html[data-theme="dark"] .heroTitle {
@@ -192,7 +177,7 @@ html[data-theme="light"] .bento {
 }
 
 html[data-theme="dark"] .bento {
-  background: #1b1b1d;
+  background: var(--site-color-bg-dark);
 }
 
 .bentoGrid {
@@ -211,12 +196,12 @@ html[data-theme="dark"] .bento {
 }
 
 html[data-theme="light"] .bentoCard {
-  background: #f5f7fa;
+  background: var(--site-color-surface);
   color: var(--ifm-font-color-base);
 }
 
 html[data-theme="dark"] .bentoCard {
-  background: #242526;
+  background: var(--site-color-surface);
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--ifm-font-color-base);
 }
@@ -289,13 +274,13 @@ html[data-theme="dark"] .bentoLarge .bentoCardImage {
 
 /* accent card (Get Started) */
 .bentoAccent {
-  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%) !important;
+  background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%) !important;
   color: #fff !important;
   border: none !important;
 }
 
 html[data-theme="dark"] .bentoAccent {
-  background: linear-gradient(135deg, #44BBA4 0%, #3BA18E 100%) !important;
+  background: linear-gradient(135deg, var(--site-color-brand-teal) 0%, var(--site-color-brand-teal-dark) 100%) !important;
 }
 
 .bentoAccent h3,
@@ -434,11 +419,11 @@ html[data-theme="dark"] .bentoCardContent p {
 }
 
 html[data-theme="light"] .bentoLink {
-  color: #0033AD;
+  color: var(--site-color-brand-blue);
 }
 
 html[data-theme="dark"] .bentoLink {
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
 }
 
 .bentoCard:hover .bentoLink {
@@ -537,24 +522,38 @@ html[data-theme="dark"] .bentoLink {
 }
 
 html[data-theme="light"] .developer {
-  background:
-    radial-gradient(circle, rgba(0, 51, 173, 0.14) 1px, transparent 1px),
-    linear-gradient(180deg, #fff 0%, #f8f9fb 100%);
-  background-size: 24px 24px, 100% 100%;
+  background: #fff;
 }
 
 html[data-theme="dark"] .developer {
-  background:
-    radial-gradient(circle, rgba(68, 187, 164, 0.17) 1px, transparent 1px),
-    linear-gradient(180deg, #1b1b1d 0%, #1f2023 100%);
-  background-size: 24px 24px, 100% 100%;
+  background: var(--site-color-bg-dark);
 }
 
-.devHeader { text-align: center; margin-bottom: 2rem; }
-.devHeader h2 { font-size: clamp(1.5rem, 3vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
-.devHeader p { font-size: 1rem; line-height: 1.5; margin: 0; }
-html[data-theme="light"] .devHeader p { color: rgba(0, 0, 0, 0.65); }
-html[data-theme="dark"] .devHeader p { color: rgba(255, 255, 255, 0.65); }
+.devHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.devHeader h2 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.devHeader p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+html[data-theme="light"] .devHeader p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .devHeader p {
+  color: rgba(255, 255, 255, 0.65);
+}
 
 .devGrid {
   display: grid;
@@ -578,7 +577,7 @@ html[data-theme="light"] .devSdkCard {
 }
 
 html[data-theme="dark"] .devSdkCard {
-  background: #242526;
+  background: var(--site-color-surface);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -622,7 +621,7 @@ html[data-theme="dark"] .devSdkHeader p {
 }
 
 html[data-theme="light"] .sdkItem {
-  background: #f5f7fa;
+  background: var(--site-color-surface);
   color: var(--ifm-font-color-base);
 }
 
@@ -636,7 +635,7 @@ html[data-theme="dark"] .sdkItem {
 }
 
 html[data-theme="light"] .sdkItem:hover {
-  background: #eef1f6;
+  background: var(--site-color-surface-hover);
 }
 
 html[data-theme="dark"] .sdkItem:hover {
@@ -672,7 +671,7 @@ html[data-theme="light"] .devLinkCard {
 }
 
 html[data-theme="dark"] .devLinkCard {
-  background: #242526;
+  background: var(--site-color-surface);
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--ifm-font-color-base);
 }
@@ -701,7 +700,7 @@ html[data-theme="dark"] .devLinkCard:hover {
 }
 
 html[data-theme="light"] .devLinkIcon {
-  background: #f5f7fa;
+  background: var(--site-color-surface);
 }
 
 html[data-theme="dark"] .devLinkIcon {
@@ -714,11 +713,11 @@ html[data-theme="dark"] .devLinkIcon {
 }
 
 html[data-theme="light"] .devLinkIcon svg {
-  color: #0033AD;
+  color: var(--site-color-brand-blue);
 }
 
 html[data-theme="dark"] .devLinkIcon svg {
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
 }
 
 .devLinkText {
@@ -762,11 +761,11 @@ html[data-theme="dark"] .devLinkArrow {
 }
 
 html[data-theme="light"] .devLinkCard:hover .devLinkArrow {
-  color: #0033AD;
+  color: var(--site-color-brand-blue);
 }
 
 html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
 }
 
 /* Quickstart */
@@ -777,7 +776,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   gap: 0.625rem;
   padding: 1rem 1.25rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%);
+  background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%);
 }
 
 .quickstartLeft {
@@ -840,7 +839,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   gap: 0.625rem;
   padding: 1rem 1.25rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, #0033AD 0%, #0055E5 100%);
+  background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%);
 }
 
 .quickstartBadge2 {
@@ -1025,11 +1024,11 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 }
 
 html[data-theme="light"] .smartContracts {
-  background: #f8f9fb;
+  background: var(--site-color-surface);
 }
 
 html[data-theme="dark"] .smartContracts {
-  background: #1f2023;
+  background: var(--site-color-bg-dark);
 }
 
 .scHeader {
@@ -1247,13 +1246,13 @@ html[data-theme="dark"] .scLearnOverlay {
   font-size: 0.85rem;
   font-weight: 600;
   margin-top: 0.875rem;
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
   transition: all 0.2s ease;
 }
 
 .asteriaCard:hover .asteriaLink {
   transform: translateX(4px);
-  color: #5DCFB8;
+  color: var(--site-color-brand-teal-light);
 }
 
 /* CTF card */
@@ -1271,7 +1270,7 @@ html[data-theme="dark"] .scLearnOverlay {
 
 .scCTFCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(107, 78, 216, 0.25);
+  box-shadow: 0 24px 64px rgba(68, 187, 164, 0.25);
 }
 
 .scCTFImage {
@@ -1288,9 +1287,9 @@ html[data-theme="dark"] .scLearnOverlay {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(107, 78, 216, 0) 0%,
-    rgba(107, 78, 216, 0.4) 50%,
-    rgba(42, 32, 64, 0.95) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 20, 30, 0.6) 50%,
+    rgba(0, 15, 25, 0.95) 100%
   );
 }
 
@@ -1320,7 +1319,7 @@ html[data-theme="dark"] .scLearnOverlay {
   font-size: 0.85rem;
   font-weight: 600;
   margin-top: 0.875rem;
-  color: #c4b5fd;
+  color: var(--site-color-brand-teal);
   transition: all 0.2s ease;
 }
 
@@ -1347,7 +1346,6 @@ html[data-theme="dark"] .scLearnOverlay {
   }
 }
 
-
 /* --- CTA --- */
 
 .cta {
@@ -1355,11 +1353,11 @@ html[data-theme="dark"] .scLearnOverlay {
 }
 
 html[data-theme="light"] .cta {
-  background: #f8f9fb;
+  background: var(--site-color-surface);
 }
 
 html[data-theme="dark"] .cta {
-  background: #1f2023;
+  background: var(--site-color-bg-dark);
 }
 
 .ctaHeader {
@@ -1462,11 +1460,11 @@ html[data-theme="dark"] .ctaHeader p {
 }
 
 html[data-theme="light"] .ctaHackathonsLink {
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
 }
 
 html[data-theme="dark"] .ctaHackathonsLink {
-  color: #5DCFB8;
+  color: var(--site-color-brand-teal-light);
 }
 
 .ctaHackathons:hover .ctaHackathonsLink {
@@ -1541,11 +1539,11 @@ html[data-theme="dark"] .ctaHackathonsLink {
 }
 
 html[data-theme="light"] .ctaEventsLink {
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
 }
 
 html[data-theme="dark"] .ctaEventsLink {
-  color: #5DCFB8;
+  color: var(--site-color-brand-teal-light);
 }
 
 .ctaEvents:hover .ctaEventsLink {
@@ -1620,11 +1618,11 @@ html[data-theme="dark"] .ctaEventsLink {
 }
 
 html[data-theme="light"] .ctaFundingLink {
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
 }
 
 html[data-theme="dark"] .ctaFundingLink {
-  color: #5DCFB8;
+  color: var(--site-color-brand-teal-light);
 }
 
 .ctaFunding:hover .ctaFundingLink {
@@ -1669,7 +1667,7 @@ html[data-theme="light"] .officeHours {
 }
 
 html[data-theme="dark"] .officeHours {
-  background: #1b1b1d;
+  background: var(--site-color-bg-dark);
 }
 
 .officeHoursInner {
@@ -1689,11 +1687,11 @@ html[data-theme="dark"] .officeHours {
 }
 
 html[data-theme="light"] .officeHoursContent {
-  background: #f5f7fa;
+  background: var(--site-color-surface);
 }
 
 html[data-theme="dark"] .officeHoursContent {
-  background: #242526;
+  background: var(--site-color-surface);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -1711,12 +1709,12 @@ html[data-theme="dark"] .officeHoursContent {
 
 html[data-theme="light"] .officeHoursBadge {
   background: rgba(0, 51, 173, 0.1);
-  color: #0033AD;
+  color: var(--site-color-brand-blue);
 }
 
 html[data-theme="dark"] .officeHoursBadge {
   background: rgba(68, 187, 164, 0.15);
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
 }
 
 .officeHoursContent h2 {
@@ -1760,12 +1758,12 @@ html[data-theme="dark"] .officeHoursContent p {
 }
 
 html[data-theme="light"] .officeHoursBtn {
-  background: #0033AD;
+  background: var(--site-color-brand-blue);
   color: #fff;
 }
 
 html[data-theme="dark"] .officeHoursBtn {
-  background: #44BBA4;
+  background: var(--site-color-brand-teal);
   color: #fff;
 }
 
@@ -1795,13 +1793,13 @@ html[data-theme="dark"] .officeHoursBtn:hover {
 
 html[data-theme="light"] .officeHoursBtnSecondary {
   background: transparent;
-  color: #0033AD;
+  color: var(--site-color-brand-blue);
   border: 1px solid rgba(0, 51, 173, 0.2);
 }
 
 html[data-theme="dark"] .officeHoursBtnSecondary {
   background: transparent;
-  color: #44BBA4;
+  color: var(--site-color-brand-teal);
   border: 1px solid rgba(68, 187, 164, 0.25);
 }
 
@@ -1868,12 +1866,12 @@ html[data-theme="dark"] .officeHoursBtnSecondary:hover {
 
 html[data-theme="light"] .heroBanner {
   background-image: url(/img/dev-portal-hero-light.webp);
-  background-color: #383fd0;
+  background-color: var(--site-color-brand-blue);
 }
 
 html[data-theme="dark"] .heroBanner {
   background-image: url(/img/dev-portal-hero-dark.webp);
-  background-color: #2da48d;
+  background-color: var(--site-color-brand-teal-dark);
 }
 
 html[data-theme="light"] .getStarted {

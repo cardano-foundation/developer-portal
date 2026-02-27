@@ -79,8 +79,8 @@ function BenefitsSection() {
       <div className="container">
         <h2 className={styles.sectionTitle}>Why Participate</h2>
         <div className={styles.benefitsGrid}>
-          {benefits.map((benefit, idx) => (
-            <div key={idx} className={styles.benefitCard}>
+          {benefits.map((benefit) => (
+            <div key={benefit.title} className={styles.benefitCard}>
               <BenefitIcon src={benefit.icon} alt={benefit.title} />
               <h3>{benefit.title}</h3>
               <p>{benefit.description}</p>
@@ -123,7 +123,7 @@ function OverviewSection() {
               <a className="button button--primary" href="#subscribe">
                 Get Notified
               </a>
-              <Link to="/docs/community/cardano-developer-community" className={clsx("button button--outline", styles.buttonWithIcon)}>
+              <Link to="/docs/community/cardano-developer-community/" className={clsx("button button--outline", styles.buttonWithIcon)}>
                 <img src={useBaseUrl("img/icons/users-solid.svg")} alt="" />
                 Connect with Developers
               </Link>

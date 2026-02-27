@@ -2,7 +2,8 @@
 sidebar_label: How do I delete my entry from the registry?
 custom_edit_url: null
 title: How do I delete my entry from the registry?
---- 
+description: "Learn how to delete your token metadata entry from the Cardano Token Registry."
+---
 Removing an entry from the registry is not an ad-hoc process. If this was allowed without verification, anyone could delete anyone's metadata. The verification process is therefore identical to updating an entry, with the additional step of updating the value of the 'name' and 'description' fields to 'VOID' and explicitly mentioning in the title of your Pull Request that you would like the entry deleted.
 
 If the Pull Request passes validation (meaning you have signed the submission with the required key/s), the maintainers of the registry will delete your entry.
