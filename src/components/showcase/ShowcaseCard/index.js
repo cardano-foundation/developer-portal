@@ -36,7 +36,7 @@ function ShowcaseCardTag({ tags }) {
             anchorEl="#__docusaurus"
             id={id}
           >
-            <TagComp key={tagObject.tag} {...tagObject} />
+            <TagComp {...tagObject} />
           </Tooltip>
         );
       })}
