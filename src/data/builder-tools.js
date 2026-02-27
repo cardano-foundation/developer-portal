@@ -6,21 +6,21 @@
 // ============================================================================
 
 import { sortBy } from "@site/src/utils/jsUtils";
-import { Showcases } from "./builder-tools/tools";
+import { BuilderTools } from "./builder-tools/tools";
 import { Tags, TagList, LanguagesOrTechnologiesTags, DomainsTags } from "./builder-tools/tags";
-import { ensureShowcaseValid } from "./builder-tools/validation";
+import { ensureBuilderToolValid } from "./builder-tools/validation";
 
-// Sort showcases: alphabetically by title, with favorites first
-function sortShowcases() {
-  let result = Showcases;
-  result = sortBy(result, (showcase) => showcase.title.toLowerCase());
-  result = sortBy(result, (showcase) => !showcase.tags.includes("favorite"));
+// Sort builder tools: alphabetically by title, with favorites first
+function sortBuilderTools() {
+  let result = BuilderTools;
+  result = sortBy(result, (tool) => tool.title.toLowerCase());
+  result = sortBy(result, (tool) => !tool.tags.includes("favorite"));
   return result;
 }
 
-// Validate all showcases
-Showcases.forEach(ensureShowcaseValid);
+// Validate all builder tools
+BuilderTools.forEach(ensureBuilderToolValid);
 
 // Exports
-export const SortedShowcases = sortShowcases();
-export { Showcases, Tags, TagList, LanguagesOrTechnologiesTags, DomainsTags };
+export const SortedBuilderTools = sortBuilderTools();
+export { BuilderTools, Tags, TagList, LanguagesOrTechnologiesTags, DomainsTags };

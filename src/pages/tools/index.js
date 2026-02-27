@@ -22,9 +22,9 @@ import { toggleListItem } from "@site/src/utils/jsUtils";
 import {
   DomainsTags,
   LanguagesOrTechnologiesTags,
-  SortedShowcases,
+  SortedBuilderTools,
   Tags,
-  Showcases
+  BuilderTools
 } from "@site/src/data/builder-tools";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from 'lodash/debounce';
@@ -49,11 +49,11 @@ export function prepareUserState() {
   return undefined;
 }
 
-const favoriteShowcases = SortedShowcases.filter((showcase) =>
-  showcase.tags.includes("favorite")
+const favoriteBuilderTools = SortedBuilderTools.filter((tool) =>
+  tool.tags.includes("favorite")
 );
-const otherShowcases = SortedShowcases.filter(
-  (showcase) => !showcase.tags.includes("favorite")
+const otherBuilderTools = SortedBuilderTools.filter(
+  (tool) => !tool.tags.includes("favorite")
 );
 
 function restoreUserState(userState) {
@@ -118,12 +118,12 @@ function useFilteredProjects() {
   return useMemo(
     () =>
       filterProjects(
-        SortedShowcases,
+        SortedBuilderTools,
         selectedTags,
         latest,
         operator,
         searchName,
-        Showcases
+        BuilderTools
       ),
     [selectedTags, latest, operator, searchName]
   );
@@ -230,7 +230,7 @@ function ShowcaseCards() {
 
   return (
     <section className="margin-top--lg margin-bottom--xl">
-      {filteredProjects.length === SortedShowcases.length ? (
+      {filteredProjects.length === SortedBuilderTools.length ? (
         <>
           <div className={styles.showcaseFavorite}>
             <div className="container">
@@ -245,8 +245,8 @@ function ShowcaseCards() {
                 <SearchBar />
               </div>
               <ul className={clsx("container", styles.showcaseList)}>
-                {favoriteShowcases.map((showcase) => (
-                  <ShowcaseCard key={showcase.title} showcase={showcase} />
+                {favoriteBuilderTools.map((tool) => (
+                  <ShowcaseCard key={tool.title} showcase={tool} />
                 ))}
               </ul>
             </div>
@@ -254,8 +254,8 @@ function ShowcaseCards() {
           <div className="container margin-top--lg">
             <h2 className={styles.showcaseHeader}>All Tools</h2>
             <ul className={styles.showcaseList}>
-              {otherShowcases.map((showcase) => (
-                <ShowcaseCard key={showcase.title} showcase={showcase} />
+              {otherBuilderTools.map((tool) => (
+                <ShowcaseCard key={tool.title} showcase={tool} />
               ))}
             </ul>
           </div>

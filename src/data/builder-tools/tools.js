@@ -5,7 +5,7 @@
  *
  * 1. Add image: Place PNG/JPG in src/data/builder-tools/images/your-tool-name.png
  *
- * 2. Add entry: Copy the template below and add to END of Showcases array
+ * 2. Add entry: Copy the template below and add to END of BuilderTools array
  *
  *    {
  *      title: "Your Tool Name",
@@ -28,7 +28,7 @@
  * ============================================================================
  */
 
-export const Showcases = [
+export const BuilderTools = [
   {
     title: "cardano-cli",
     description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
