@@ -54,12 +54,12 @@ export default function DropdownNavbarItemDesktop({
         {props.children ?? props.label}
       </NavbarNavLink>
       <ul className="dropdown__menu">
-        {items.map((childItemProps, i) => (
+        {items.map((childItemProps) => (
           <NavbarItem
             isDropdownItem
             activeClassName="dropdown__link--active"
             {...childItemProps}
-            key={i}
+            key={childItemProps.label}
           />
         ))}
       </ul>

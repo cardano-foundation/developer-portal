@@ -22,7 +22,7 @@
     width: 10px;
     white-space: nowrap;
   }
-  
+
   input[type='checkbox'] + .checkboxLabel {
     display: flex;
     align-items: center;

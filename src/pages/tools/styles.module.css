@@ -5,43 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
- .checkboxListItem {
-  user-select: none;
-  white-space: nowrap;
-  height: 32px;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.checkboxListItem:last-child {
-  margin-right: 0;
-}
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background-image: url("/img/hero-header-zoom.png");
-  background-size: cover;
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.showcaseUser {
-  height: 100%;
-}
-
 :global(.card__image) {
   max-height: 175px;
   overflow: hidden;
 }
-
 
 .filterCheckbox {
   margin-top: 20px;
@@ -96,7 +63,7 @@
   height: 30px;
   border-radius: 15px;
   padding: 10px;
-  border: 1px solid gray;
+  border: 1px solid var(--ifm-color-emphasis-300);
 }
 
 .showcaseList {
@@ -131,4 +98,11 @@
 
 .ourFavorites {
   margin-right: 0.7rem;
+}
+
+.tagDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 8px;
 }
