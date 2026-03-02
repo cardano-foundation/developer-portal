@@ -408,3 +408,7 @@ cardano-cli --version
 Repeat the above process when you need to update to a new version.
 
 **Note:** If serialization of the ledger state changed, snapshots in your `db/ledger` folder will be deleted by the node on startup. Consider backing those up before starting a new version of the node.
+
+:::tip Fast node bootstrapping with Mithril
+Standard node synchronization can take over 24 hours and is resource-intensive. Mithril certified snapshots allow you to bootstrap a node in minutes while maintaining high security. See how to [bootstrap a node using Mithril](./running-cardano.md#fast-node-bootstrapping-with-mithril).
+:::
