@@ -80,7 +80,7 @@ Use your own node to:
 
 **Trade-offs**: Server costs, DevOps resources, maintenance overhead
 
-**Learn more**: [Cardano node setup](/docs/get-started/infrastructure/node/cardano-components) and [cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started)
+**Learn more**: [Cardano node setup](/docs/get-started/infrastructure/node/cardano-components) and [cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started); [bootstrapping a node with Mithril](https://mithril.network/doc/manual/getting-started/bootstrap-cardano-node) within 30 minutes.
 
 ## Next steps
 
