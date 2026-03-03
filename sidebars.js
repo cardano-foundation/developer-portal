@@ -608,6 +608,7 @@ module.exports = {
         items: [
           "operate-a-stake-pool/basics/consensus-staking",
           "operate-a-stake-pool/basics/stake-pool-networking",
+          "operate-a-stake-pool/basics/scaling-node-operations",
           "operate-a-stake-pool/basics/hardware-requirements",
           "operate-a-stake-pool/basics/cardano-key-pairs",
         ],
