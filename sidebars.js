@@ -618,6 +618,7 @@ module.exports = {
         label: "Cardano Relay Configuration",
         items: [
           "operate-a-stake-pool/relay-configuration/relay-node-configuration",
+          "operate-a-stake-pool/relay-configuration/mithril-relay",
           "operate-a-stake-pool/relay-configuration/monitoring-gLiveView",
           "operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial",
         ],
