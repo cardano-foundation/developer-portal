@@ -170,6 +170,7 @@ module.exports = {
                   },
                 ],
               },
+              "get-started/client-sdks/typescript/mithril",
             ],
           },
           {
