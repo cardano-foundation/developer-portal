@@ -631,6 +631,7 @@ module.exports = {
           "operate-a-stake-pool/block-producer/block-producer-keys",
           "operate-a-stake-pool/block-producer/register-stake-address",
           "operate-a-stake-pool/block-producer/register-stake-pool",
+          "operate-a-stake-pool/block-producer/mithril-signer-configuration",
         ],
       },
       {
