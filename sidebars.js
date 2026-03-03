@@ -183,6 +183,7 @@ module.exports = {
             type: "category",
             label: "Rust",
             items: [
+              "get-started/client-sdks/rust/mithril",
               "get-started/client-sdks/rust/pallas",
               "get-started/client-sdks/rust/whisky",
             ],
