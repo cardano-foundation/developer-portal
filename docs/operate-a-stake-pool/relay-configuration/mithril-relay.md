@@ -6,7 +6,7 @@ description: Set up a Mithril relay node to bridge your signer and the Mithril a
 image: /img/og/og-developer-portal.png
 ---
 
-The Mithril relay is a forward proxy that sits on the Cardano relay machine and routes traffic between the Mithril signer (running on the block producer) and the external Mithril aggregator. It ensures the block producer stays isolated from the public internet, preserving the standard stake pool security model.
+The Mithril relay is a forward proxy that often runs on the Cardano relay machine and routes traffic between the Mithril signer (running on the block producer) and the external Mithril aggregator. It can also run on a separate host if desired. It ensures the block producer stays isolated from the public internet, preserving the standard stake pool security model.
 
 :::important
 
