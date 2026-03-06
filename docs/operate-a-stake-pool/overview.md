@@ -36,11 +36,21 @@ Best practices should always be a key consideration when running a stake pool. S
 
 ## Learn the basics
 
-The basic category starts with learning about [relay and block producer topology](basics/stake-pool-networking), what the [hardware requirements](basics/hardware-requirements) are, which [keys are available](basics/cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
+The basic category starts with learning about [relay and block producer topology](basics/stake-pool-networking), what the [hardware requirements](basics/hardware-requirements) are, which [keys are available](basics/cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.
 
 :::tip info
 If you would like to do a deep dive on technical concepts please visit [Consensus & Staking](/docs/operate-a-stake-pool/basics/consensus-staking) and [Core Concepts](../learn/core-concepts/)
 :::
+
+## Network scalability and optimization
+
+Use Mithril to scale node operations and bootstrapping. Mithril is a stake-based cryptographic protocol designed to improve scalability and resource efficiency in proof-of-stake blockchains. It addresses a core challenge in decentralized systems: how to verify large volumes of chain data efficiently without compromising security or decentralization.
+
+Mithril enables trustless state verification by allowing stake pool operators to collectively certify blockchain state snapshots. This significantly reduces the time and computational cost required to bootstrap or synchronize a node, while preserving the integrity guarantees of the underlying protocol. It also enables Cardano to operate securely in low-resource environments, such as bridges, light wallets, and other systems that require efficient, independently verifiable access to the chain state without running a full node.
+
+- [Scaling node operations](basics/scaling-node-operations), learn how Mithril works and how to participate as a signer
+- [Mithril signer configuration](block-producer/mithril-signer-configuration), configure the signer on your block producer
+- [Setting up a Mithril relay](relay-configuration/mithril-relay), set up a relay to keep your block producer isolated
 
 ## Stake pool operator resources
 
