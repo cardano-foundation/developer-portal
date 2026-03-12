@@ -170,6 +170,7 @@ module.exports = {
                   },
                 ],
               },
+              "get-started/client-sdks/typescript/mithril",
             ],
           },
           {
@@ -183,6 +184,7 @@ module.exports = {
             type: "category",
             label: "Rust",
             items: [
+              "get-started/client-sdks/rust/mithril",
               "get-started/client-sdks/rust/pallas",
               "get-started/client-sdks/rust/whisky",
             ],
@@ -606,6 +608,7 @@ module.exports = {
         items: [
           "operate-a-stake-pool/basics/consensus-staking",
           "operate-a-stake-pool/basics/stake-pool-networking",
+          "operate-a-stake-pool/basics/scaling-node-operations",
           "operate-a-stake-pool/basics/hardware-requirements",
           "operate-a-stake-pool/basics/cardano-key-pairs",
         ],
@@ -615,6 +618,7 @@ module.exports = {
         label: "Cardano Relay Configuration",
         items: [
           "operate-a-stake-pool/relay-configuration/relay-node-configuration",
+          "operate-a-stake-pool/relay-configuration/mithril-relay",
           "operate-a-stake-pool/relay-configuration/monitoring-gLiveView",
           "operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial",
         ],
@@ -627,6 +631,7 @@ module.exports = {
           "operate-a-stake-pool/block-producer/block-producer-keys",
           "operate-a-stake-pool/block-producer/register-stake-address",
           "operate-a-stake-pool/block-producer/register-stake-pool",
+          "operate-a-stake-pool/block-producer/mithril-signer-configuration",
         ],
       },
       {

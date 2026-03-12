@@ -812,6 +812,15 @@ export const BuilderTools = [
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/dingo",
     tags: ["golang", "nodeclient"],
   },
+  {
+    title: "Mithril",
+    description:
+      "A protocol for fast node bootstrapping and secure, lightweight blockchain certification. Essential for efficient node operations and scaling decentralized applications.",
+    preview: require("./images/mithril.png"),
+    website: "https://github.com/input-output-hk/mithril",
+    getstarted: "https://mithril.network/doc/manual/welcome",
+    tags: ["rust", "cli", "javascript", "typescript"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file

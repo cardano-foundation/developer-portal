@@ -350,4 +350,85 @@ Scroll down to the **Latest Blocks** section, and you can find the latest networ
 Before making any transactions, make sure you are fully synced to the blockchain network.
 :::
 
+## Fast node bootstrapping with Mithril
+
+Synchronizing a Cardano node from scratch (genesis) can take over 24 hours on mainnet. [Mithril](https://mithril.network/doc/) is a protocol that provides **cryptographically certified snapshots** of the Cardano database, allowing you to bootstrap a full node in **under 30 minutes** instead.
+
+Mithril snapshots are signed by a quorum of Cardano stake pool operators using stake-based threshold multi-signatures, so you get the same level of trust as syncing from the network, without the wait.
+
+### How it works
+
+1. The **Mithril client** downloads a certified snapshot of the Cardano database from the Mithril network
+2. It verifies the snapshot's certificate chain to ensure authenticity and integrity
+3. The snapshot is unpacked into the `--database-path` directory used by `cardano-node`
+4. Start `cardano-node` as usual -- it resumes from the snapshot state and only needs to synchronize the remaining few minutes of blocks
+
+### Quick start (mainnet)
+
+> For the full step-by-step guide, see [Bootstrap a Cardano node](https://mithril.network/doc/manual/getting-started/bootstrap-cardano-node) in the Mithril documentation.
+
+**Step 1: Install the Mithril client**
+
+Download the latest pre-built binary:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf \
+  https://raw.githubusercontent.com/input-output-hk/mithril/refs/heads/main/mithril-install.sh \
+  | sh -s -- -c mithril-client -d latest -p $HOME/.local/bin
+```
+
+Verify it is installed:
+
+```bash
+./mithril-client -v
+```
+
+**Step 2: Set the environment variables**
+
+```bash
+export CARDANO_NETWORK=mainnet
+export AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator
+export GENESIS_VERIFICATION_KEY=$(wget -q -O - \
+  https://raw.githubusercontent.com/input-output-hk/mithril/main/mithril-infra/configuration/release-mainnet/genesis.vkey)
+export ANCILLARY_VERIFICATION_KEY=$(wget -q -O - \
+  https://raw.githubusercontent.com/input-output-hk/mithril/main/mithril-infra/configuration/release-mainnet/ancillary.vkey)
+```
+
+> For testnet configurations (`preprod`, `preview`), see the [Mithril network configurations](https://mithril.network/doc/manual/getting-started/network-configurations).
+
+**Step 3: Download and verify the snapshot**
+
+```bash
+./mithril-client cardano-db download latest --include-ancillary
+```
+
+This downloads the latest certified snapshot, verifies the full certificate chain, and unpacks the database files into a local `db/` directory.
+
+> The `--include-ancillary` flag is required for fast bootstrapping. It downloads ancillary files (latest ledger state snapshot and last immutable file) that are signed using Ed25519 and verified against the ancillary verification key.
+
+**Step 4: Start `cardano-node` using the restored database**
+
+Point `--database-path` to the restored `db/` directory and start the node as usual:
+
+```bash
+cardano-node run \
+  --config $HOME/cardano/mainnet/config.json \
+  --database-path /path/to/restored/db \
+  --socket-path $HOME/cardano/mainnet/db/node.socket \
+  --host-addr 0.0.0.0 \
+  --port 3001 \
+  --topology $HOME/cardano/mainnet/topology.json
+```
+
+The node validates the restored files and then synchronizes only the blocks produced since the snapshot was created, typically just a few minutes of chain history.
+
+### Useful links
+
+- [Mithril documentation](https://mithril.network/doc/)
+- [Bootstrap a Cardano node (full guide)](https://mithril.network/doc/manual/getting-started/bootstrap-cardano-node)
+- [Network configurations](https://mithril.network/doc/manual/getting-started/network-configurations)
+- [Why use Mithril?](https://mithril.network/doc/mithril/beginner/why-use-mithril)
+- [Mithril Explorer](https://mithril.network/explorer)
+- [Community support (Discord #ask-mithril)](https://discord.gg/5kaErDKDRq)
+
 Congratulations, you are now ready to explore the world of **Cardano**! 🎉🎉🎉
