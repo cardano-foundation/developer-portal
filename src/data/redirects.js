@@ -7,7 +7,7 @@
  */
 const redirects = [
   {
-    // redirect showcase to cardano.org/apps since it moved there
+    // redirect old showcase path to cardano.org/apps since it moved there
     to: 'https://cardano.org/apps/',
     from: '/showcase',
   },

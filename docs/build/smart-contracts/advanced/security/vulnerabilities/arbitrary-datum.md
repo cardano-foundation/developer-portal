@@ -2,6 +2,7 @@
 id: arbitrary-datum
 title: Arbitrary Datum
 sidebar_label: Arbitrary Datum
+description: "How the arbitrary datum vulnerability allows unexpected datum values to bypass smart contract validation."
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)

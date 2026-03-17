@@ -17,13 +17,13 @@
 
 html[data-theme="light"] .hero {
   background-image: url(/img/dev-portal-hero-light.webp);
-  background-color: #383fd0;
+  background-color: var(--site-color-brand-blue);
   color: #fff;
 }
 
 html[data-theme="dark"] .hero {
   background-image: url(/img/dev-portal-hero-dark.webp);
-  background-color: #2da48d;
+  background-color: var(--site-color-brand-teal-dark);
   color: #fff;
 }
 
@@ -64,7 +64,7 @@ html[data-theme="dark"] .hero {
 
 html[data-theme="light"] .primaryBtn {
   background: #fff !important;
-  color: #383fd0 !important;
+  color: var(--site-color-brand-blue) !important;
   border-color: #fff !important;
 }
 
@@ -162,11 +162,11 @@ html[data-theme="dark"] .benefitIcon {
 }
 
 html[data-theme="light"] .overview {
-  background-color: #f5f6f7;
+  background-color: var(--site-color-surface);
 }
 
 html[data-theme="dark"] .overview {
-  background-color: #1b1b1d;
+  background-color: var(--site-color-bg-dark);
 }
 
 .overviewContent {
@@ -211,12 +211,12 @@ html[data-theme="dark"] .overview {
 }
 
 html[data-theme="light"] .photoPlaceholder {
-  background-color: #e0e3e8;
+  background-color: var(--site-color-surface-hover);
   color: #666;
 }
 
 html[data-theme="dark"] .photoPlaceholder {
-  background-color: #2a2a2d;
+  background-color: var(--site-color-surface);
   color: #888;
 }
 
@@ -275,7 +275,7 @@ html[data-theme="dark"] .buttonWithIcon img {
 }
 
 html[data-theme="light"] .waysSection {
-  background-color: #0538AF;
+  background-color: var(--site-color-brand-blue);
   color: #fff;
 }
 
@@ -347,11 +347,11 @@ html[data-theme="dark"] .wayNumber {
 }
 
 html[data-theme="light"] .resources {
-  background-color: #f5f6f7;
+  background-color: var(--site-color-surface);
 }
 
 html[data-theme="dark"] .resources {
-  background-color: #1b1b1d;
+  background-color: var(--site-color-bg-dark);
 }
 
 .resourcesContent {
@@ -397,7 +397,7 @@ html[data-theme="light"] .resourceLink {
 }
 
 html[data-theme="dark"] .resourceLink {
-  background: #2a2a2d;
+  background: var(--site-color-surface);
 }
 
 .resourceLink:hover {
@@ -410,7 +410,7 @@ html[data-theme="light"] .resourceLink:hover {
 }
 
 html[data-theme="dark"] .resourceLink:hover {
-  background: #3a3a3d;
+  background: var(--site-color-surface-hover);
 }
 
 .resourceLink img {
@@ -452,7 +452,7 @@ html[data-theme="light"] .cta {
 }
 
 html[data-theme="dark"] .cta {
-  background-color: #242526;
+  background-color: var(--site-color-surface);
 }
 
 .cta h2 {

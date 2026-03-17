@@ -120,14 +120,14 @@ export default function DropdownNavbarItemMobile({
       </div>
 
       <Collapsible lazy as="ul" className="menu__list" collapsed={collapsed}>
-        {items.map((childItemProps, i) => (
+        {items.map((childItemProps) => (
           <NavbarItem
             mobile
             isDropdownItem
             onClick={onClick}
             activeClassName="menu__link--active"
             {...childItemProps}
-            key={i}
+            key={childItemProps.label}
           />
         ))}
       </Collapsible>

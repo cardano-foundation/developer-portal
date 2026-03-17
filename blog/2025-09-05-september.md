@@ -3,6 +3,7 @@ slug: 2025-09-05-media-cardano-developer-office-hours
 title: "Multi-Vote Tool"
 authors: [cf]
 tags: [media, developer-office-hours]
+description: "Developer Office Hours session on the Multi-Vote Tool for streamlined Cardano governance, allowing users to cast and verify multiple votes in one process."
 ---
 
 In this session of the Cardano Developer Office Hours, Matthieu Pizenberg, Senior Software Engineer at the Cardano Foundation, introduces the Multi-Vote Tool, a solution that streamlines governance participation on Cardano. He demonstrates how it allows users to cast, manage, and verify multiple votes in a single process, without complex setup or heavy requirements. The session also highlights its open-source design and community-ready accessibility.

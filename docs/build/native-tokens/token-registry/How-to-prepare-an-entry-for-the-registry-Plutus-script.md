@@ -3,7 +3,8 @@ sidebar_label: How to prepare an entry for the registry (Plutus script)
 custom_edit_url: null
 title: How to prepare an entry for the registry (Plutus script)
 sidebar_position: 6
---- 
+description: "How to prepare a token metadata entry for the Cardano Token Registry using a Plutus script."
+---
 ## Pre-Requisites    
 
 For a Plutus script, you will need the following to proceed with the steps to generate a mapping for the registry:     

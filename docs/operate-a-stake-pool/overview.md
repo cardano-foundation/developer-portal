@@ -36,22 +36,41 @@ Best practices should always be a key consideration when running a stake pool. S
 
 ## Learn the basics
 
-The basic category starts with learning about [relay and block producer topology](basics/stake-pool-networking), what the [hardware requirements](basics/hardware-requirements) are, which [keys are available](basics/cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.  
+The basic category starts with learning about [relay and block producer topology](basics/stake-pool-networking), what the [hardware requirements](basics/hardware-requirements) are, which [keys are available](basics/cardano-key-pairs), which are hot and sensitive, and which you should never save on a server, no matter how convenient it is.
 
 :::tip info
 If you would like to do a deep dive on technical concepts please visit [Consensus & Staking](/docs/operate-a-stake-pool/basics/consensus-staking) and [Core Concepts](../learn/core-concepts/)
 :::
 
+## Network scalability and optimization
+
+Use Mithril to scale node operations and bootstrapping. Mithril is a stake-based cryptographic protocol designed to improve scalability and resource efficiency in proof-of-stake blockchains. It addresses a core challenge in decentralized systems: how to verify large volumes of chain data efficiently without compromising security or decentralization.
+
+Mithril enables trustless state verification by allowing stake pool operators to collectively certify blockchain state snapshots. This significantly reduces the time and computational cost required to bootstrap or synchronize a node, while preserving the integrity guarantees of the underlying protocol. It also enables Cardano to operate securely in low-resource environments, such as bridges, light wallets, and other systems that require efficient, independently verifiable access to the chain state without running a full node.
+
+- [Scaling node operations](basics/scaling-node-operations), learn how Mithril works and how to participate as a signer
+- [Mithril signer configuration](block-producer/mithril-signer-configuration), configure the signer on your block producer
+- [Setting up a Mithril relay](relay-configuration/mithril-relay), set up a relay to keep your block producer isolated
+
 ## Stake pool operator resources
 
-- [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools) and top-notch content.
-- [CNCLI](https://github.com/cardano-community/cncli) is a collection of utilities to enhance and extend cardano-cli.
+### Stake pool management 
+- [Guild Operators](https://cardano-community.github.io/guild-operators), famous for their [Koios CNTools](https://cardano-community.github.io/guild-operators/basics/) and top-notch content.
 - [Jormanager](https://bitbucket.org/muamw10/jormanager/src/develop/) a Cardano stake pool management software.
 - [Stake Pool Operator Scripts](https://github.com/gitmachtl/scripts) a collection of scripts to manage your stake pool step-by-step.
+- [SPOKit SPO Japanese Guild Tool](https://spokit.spojapanguild.net/) specifically for Japanese-speaking operators
+- [CFD Cardano Fast Deployment tool](https://github.com/cardano-community/cfd) Your toolkit for quick and convenient management of your Cardano software.
+
+### Stake Pool setup guidelines
 - [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
-- [RaspberryPi with Docker](https://github.com/speedwing/cardano-staking-pool-edu) Full guide to build and run both testnet and mainnet Cardano stake pool with Docker on Raspberry Pi. [Youtube Playlist](https://www.youtube.com/playlist?list=PLBhbLwOuj0DfTnneuG3vyoDHY7Dv_aiyq)
+- [Japanese SPO Guild Setup guide](https://docs.spojapanguild.net/cardano/setup/node-setup/)  a technical manual in Japanese for building and operating stake pools
 - [TOPO Guide](https://es-kb.topopool.com/primeros-pasos). A friendly and complete guide to create a stake pool in Spanish
 - [Cardano Course](https://cardano-course.gitbook.io/cardano-course/), a cardano-node and cardano-cli course by IOG.
+
+### Stake pool tools
+- [CNCLI](https://github.com/cardano-community/cncli) is a collection of utilities to enhance and extend cardano-cli.
+- [Cardano Signer](https://github.com/gitmachtl/cardano-signer) can be used to sign & verify data with a Cardano Secret/Public-Key
+- [Block-Notify](https://github.com/btbf/block-notify) Notify block mint results and Next Block Schedule to any message platform.
 
 ## Stake pool operator channels
 

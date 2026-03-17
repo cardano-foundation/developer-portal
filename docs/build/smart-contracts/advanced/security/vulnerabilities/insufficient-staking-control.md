@@ -2,6 +2,7 @@
 id: insufficient-staking-control
 title: Insufficient Staking Control
 sidebar_label: Insufficient Staking Control
+description: "How insufficient staking control allows unauthorized staking operations or reward theft in smart contracts."
 ---
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)

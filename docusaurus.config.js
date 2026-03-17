@@ -116,7 +116,9 @@ module.exports = {
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
     image: "img/og/og-developer-portal.png",
-    metadata: [],
+    metadata: [
+      { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, stake pool, Web3" },
+    ],
 
     // Algolia Search
     algolia: {

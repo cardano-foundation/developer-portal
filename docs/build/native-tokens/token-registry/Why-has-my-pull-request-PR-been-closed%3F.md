@@ -2,7 +2,8 @@
 sidebar_label: Why has my pull request (PR) been closed?
 custom_edit_url: null
 title: Why has my pull request (PR) been closed?
---- 
+description: "Common reasons why your Cardano Token Registry pull request may have been closed."
+---
 If your Pull Requests has failed any of the automated validation tests, it will be closed after a period of time.
 
 To get more details on why it may be failing these tests, click on the 'Checks' section of your Pull Request and scroll to the relevant failing test. 

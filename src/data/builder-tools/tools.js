@@ -5,7 +5,7 @@
  *
  * 1. Add image: Place PNG/JPG in src/data/builder-tools/images/your-tool-name.png
  *
- * 2. Add entry: Copy the template below and add to END of Showcases array
+ * 2. Add entry: Copy the template below and add to END of BuilderTools array
  *
  *    {
  *      title: "Your Tool Name",
@@ -28,7 +28,7 @@
  * ============================================================================
  */
 
-export const Showcases = [
+export const BuilderTools = [
   {
     title: "cardano-cli",
     description: "The companion command-line to interact with a Cardano node, manipulate addresses or create transactions.",
@@ -107,7 +107,7 @@ export const Showcases = [
       "Library for serialization & deserialization of data structures used in Cardano's Haskell implementation.",
     preview: require("./images/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
-    getstarted: "/docs/get-started/cardano-serialization-lib/overview",
+    getstarted: "/docs/get-started/cardano-serialization-lib/overview/",
     tags: ["serialization", "rust"],
   },
   {
@@ -123,7 +123,7 @@ export const Showcases = [
     description: "A library that wraps the cardano-cli in JavaScript.",
     preview: require("./images/cardanocli-js.png"),
     website: "https://github.com/Berry-Pool/cardanocli-js",
-    getstarted: "/docs/get-started/cardanocli-js",
+    getstarted: "/docs/get-started/cardanocli-js/",
     tags: ["javascript", "cli"],
   },
   {
@@ -131,7 +131,7 @@ export const Showcases = [
     description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./images/ogmios.png"),
     website: "https://ogmios.dev",
-    getstarted: "/docs/get-started/ogmios",
+    getstarted: "/docs/get-started/ogmios/",
     tags: ["favorite", "websocket", "json", "nodeclient"],
   },
   {
@@ -156,7 +156,7 @@ export const Showcases = [
     description: "A JavaScript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
     preview: require("./images/cardano-wallet-js.png"),
     website: "https://github.com/tango-crypto/cardano-wallet-js",
-    getstarted: "/docs/get-started/cardano-wallet-js",
+    getstarted: "/docs/get-started/cardano-wallet-js/",
     tags: ["javascript", "wallet"]
   },
   {
@@ -165,7 +165,7 @@ export const Showcases = [
       "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
     preview: require("./images/cardanosharp.png"),
     website: "https://www.cardanosharp.com",
-    getstarted: "/docs/get-started/cardanosharp-wallet",
+    getstarted: "/docs/get-started/cardanosharp-wallet/",
     tags: ["net", "transactionbuilder"],
   },
   {
@@ -173,7 +173,7 @@ export const Showcases = [
     description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./images/guild-operators.png"),
     website: "https://cardano-community.github.io/guild-operators/",
-    getstarted: "/docs/operate-a-stake-pool/guild-ops-suite",
+    getstarted: "/docs/operate-a-stake-pool/guild-ops-suite/",
     tags: ["favorite", "operatortool"],
   },
   {
@@ -243,7 +243,7 @@ export const Showcases = [
     description: "Elastic light/full-mode API query-layer for Cardano Blockchain.",
     preview: require("./images/koios.png"),
     website: "https://koios.rest",
-    getstarted: "/docs/get-started/koios",
+    getstarted: "/docs/get-started/koios/",
     tags: ["http", "json", "hosted", "provider"],
   },
   {
@@ -339,7 +339,7 @@ export const Showcases = [
     description: "Pebble is a strongly-typed domain-specific language (DSL) for writing Cardano smart contracts. A simple, yet rock solid, functional language with an imperative bias, targeting UPLC.",
     preview: require("./images/plu-ts.png"),
     website: "https://pluts.harmoniclabs.tech/",
-    getstarted: "/docs/get-started/plu-ts",
+    getstarted: "/docs/get-started/plu-ts/",
     tags: ["smartcontracts", "typescript"],
   },
   {
@@ -347,7 +347,7 @@ export const Showcases = [
     description: "A modern smart contract platform for Cardano.",
     preview: require("./images/aiken.png"),
     website: "https://aiken-lang.org",
-    getstarted: "/docs/get-started/aiken",
+    getstarted: "/docs/get-started/aiken/",
     tags: ["favorite", "smartcontracts"],
   },
   {
@@ -363,7 +363,7 @@ export const Showcases = [
     description: "A feature-complete, open-source TypeScript SDK and off-chain framework including wallet integration, transaction building, a smart contract library, third-party API integration, and UI components: with thorough documentation and live demos for all skill levels.",
     preview: require("./images/mesh.png"),
     website: "https://meshjs.dev/",
-    getstarted: "/docs/get-started/mesh/overview",
+    getstarted: "/docs/get-started/mesh/overview/",
     tags: ["favorite", "typescript", "transactionbuilder"]
   },
   {
@@ -371,7 +371,7 @@ export const Showcases = [
     description: "UTXOS is a suite of tools and services that aim to simplify the onboarding experience for users and businesses to adopt Cardano.",
     preview: require("./images/utxos.png"),
     website: "https://utxos.dev/",
-    getstarted: "/docs/get-started/utxos/overview",
+    getstarted: "/docs/get-started/utxos/overview/",
     tags: ["hosted", "http", "wallet", "typescript"]
   },
   {
@@ -395,7 +395,7 @@ export const Showcases = [
     description: "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
     preview: require("./images/frankenwallet.png"),
     website: "https://frankenwallet.com",
-    getstarted: "/docs/operate-a-stake-pool/frankenwallet",
+    getstarted: "/docs/operate-a-stake-pool/frankenwallet/",
     tags: ["operatortool"],
   },
   {
@@ -565,7 +565,7 @@ export const Showcases = [
     description: "A security and compliance audit script for Cardano stakepool nodes, to help SPOs check their node and security configuration.",
     preview: require("./images/cardano-node-audit.png"),
     website: "https://github.com/Kirael12/cardano-node-audit",
-    getstarted: "/docs/operate-a-stake-pool/audit-your-node",
+    getstarted: "/docs/operate-a-stake-pool/audit-your-node/",
     tags: ["operatortool", "cli"]
   },
   {
@@ -811,6 +811,15 @@ export const Showcases = [
     website: "https://github.com/blinklabs-io/dingo",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/dingo",
     tags: ["golang", "nodeclient"],
+  },
+  {
+    title: "Mithril",
+    description:
+      "A protocol for fast node bootstrapping and secure, lightweight blockchain certification. Essential for efficient node operations and scaling decentralized applications.",
+    preview: require("./images/mithril.png"),
+    website: "https://github.com/input-output-hk/mithril",
+    getstarted: "https://mithril.network/doc/manual/welcome",
+    tags: ["rust", "cli", "javascript", "typescript"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
