@@ -6,7 +6,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 import styles from "./styles.module.css";
 
-const TITLE = "Hackathons & Challenges";
+const TITLE = "Hackathons & Talent Pool";
 const DESCRIPTION = "Build innovative projects, collaborate with developers, and win prizes on Cardano";
 
 function MetaData() {
@@ -23,11 +23,11 @@ function HeroSection() {
     <header className={styles.hero}>
       <div className="container">
         <h1 className={styles.heroTitle}>
-          Hackathons & Challenges
+          Hackathons & Talent Pool
         </h1>
         <p className={styles.heroSubtitle}>
           Build innovative projects, collaborate with developers worldwide,
-          and earn rewards in the Cardano ecosystem.
+          and join the builders in the Cardano ecosystem.
         </p>
         <div className={styles.heroCta}>
           <a className={clsx("button button--secondary button--lg", styles.primaryBtn)} href="#subscribe">
@@ -223,7 +223,7 @@ function CTASection() {
       <div className="container">
         <h2>Stay Updated</h2>
         <p>
-          Be the first to know when new hackathons and challenges are announced.
+          Be the first to know when new hackathons and opportunities are announced.
         </p>
         <div className={styles.hubspotFormWrapper}>
           <div
