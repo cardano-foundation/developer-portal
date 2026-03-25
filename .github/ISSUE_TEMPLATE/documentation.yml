@@ -1,0 +1,44 @@
+name: Documentation
+description: Report an issue or request with the documentation or website
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request documentation additions, corrections, or link updates.
+
+  - type: input
+    id: page
+    attributes:
+      label: Page or section
+      description: Which page, path, or section needs an update?
+      placeholder: contributor-beginner/docs/tutorial-basics/directive-kickoff.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue description
+      description: What is wrong or missing?
+      placeholder: Broken link, outdated content, missing section, formatting, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: How should it be updated? Include copy or links if available.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and discussions
+          required: true
+        - label: This is about documentation (not a feature request or bug)
+          required: true
