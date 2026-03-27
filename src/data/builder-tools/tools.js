@@ -786,7 +786,9 @@ export const BuilderTools = [
     preview: require("./images/tx-village.jpg"),
     website: "https://mlabs-haskell.github.io/tx-village",
     getstarted: "https://github.com/mlabs-haskell/lambda-buffers-for-cardano/tree/main/transactions/demo-tx-village",
-    tags: ["transactionbuilder", "indexer", "rust", "haskell"]
+    tags: ["transactionbuilder", "indexer", "rust", "haskell"],
+  },
+  {
     title: "Anvil API",
     description: "Simple REST endpoints for Cardano. Mint tokens, build and submit transactions, deploy and interact with smart contracts. Start free and scale your Web3 project with robust Cardano infrastructure, developer docs, and expert support.",
     preview: require("./images/anvil-api.png"),
