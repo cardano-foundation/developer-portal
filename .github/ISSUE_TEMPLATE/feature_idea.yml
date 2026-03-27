@@ -1,0 +1,44 @@
+name: Feature idea
+description: Propose a feature or improvement for the Developer Portal
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing to our project.
+
+        Consider starting a new idea discussion first:
+        https://github.com/cardano-foundation/developer-portal/discussions/new?category=ideas
+        This helps refine the proposal before it becomes a tracked feature.
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Why do we need or want this feature
+      placeholder: |
+        Give context and describe the problem, challenge or opportunity you see
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What
+      description: What is this feature roughly about?
+      placeholder: |
+        For example describe a new API endpoint, a change in messaging formats,
+        a new configuration option, ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: how
+    attributes:
+      label: How
+      description: How could we realize this feature?
+      placeholder: |
+        Which technical solutions, libraries or systems should be used, which
+        components need to change, steps how to implement this, ...
+    validations:
+      required: true
