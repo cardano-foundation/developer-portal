@@ -2,7 +2,7 @@
 id: overview
 title: Cardano Developer Pathway
 sidebar_label: Developer Pathway
-description: Visual map of typical learning and delivery journeys on Cardano—from orientation through tracks, integration, testing, and deeper specialisation.
+description: Visual map of typical learning and delivery journeys on Cardano, from orientation through tracks, integration, testing, and deeper specialisation.
 image: /img/og/og-getstarted-overview.png
 ---
 
@@ -13,100 +13,17 @@ import pathwayChart from '@site/src/data/developer-pathway-chart';
 
 ## From zero to core contributor or dApp builder
 
-The **diagram below** is one visual overview of typical journeys on Cardano: where you start, learning and practice, tracks (contracts, frontend, infra), integration, testing, testnets, and deeper specialisations. It is **illustrative only**—we have **not** tried to list every tool, course, or link; many things are left out so the chart stays usable. **Click** a node to open a related page where we attached one; **hover** may show a short tooltip from the diagram renderer. Use the toolbar for **full screen**, **zoom** (1:1 reset, +/−), or **Ctrl/Cmd + scroll** while the pointer is over the diagram area.
+The **diagram below** is one visual overview of typical journeys on Cardano: where you start, learning and practice, tracks (contracts, frontend, infra), integration, testing, testnets, and deeper specialisations. It is **illustrative only**: we have **not** tried to list every tool, course, or link; many things are left out so the chart stays usable. **Click** a node to open a related page where we attached one; **hover** may show a short tooltip from the diagram renderer. Use the toolbar for **full screen**, **zoom** (1:1 reset, +/−), or **Ctrl/Cmd + scroll** while the pointer is over the diagram area.
 
 ---
 
 ## Full pathway diagram
 
 <MermaidDiagramFrame
-  hint="Full screen uses the whole viewport. Zoom with the buttons, 1:1 to reset, or Ctrl/Cmd + scroll wheel while over the diagram."
+  hint="Full screen uses the whole viewport"
   diagram={pathwayChart}
 />
 
-**How to read this map:** Steps run top to bottom, but **real delivery loops** between validators, off-chain builders, and UI—use the diagram for coverage, not as a strict waterfall.
+This pathway is a planning guide, not a rigid sequence. Expect to revisit fundamentals, tooling, and integration as your dApp grows.
 
-## Explore further
-
-- **[Builder Tools](/tools/)** — Browse tools, APIs, and ecosystem projects.
-- **[Client SDKs overview](/docs/get-started/client-sdks/overview)** — TypeScript, Python, Rust, and more.
-- **[Infrastructure overview](/docs/get-started/infrastructure/overview)** — Node, CLI, API providers.
-- **[Core concepts](/docs/learn/core-concepts/)** — UTxO, transactions, addresses, and fundamentals.
-
----
-
-## Deep links {#pathway-deep-links}
-
-Pointers that match several nodes in the diagram (default stack, full-stack integration, “ready to specialise”).
-
-- **On-chain:** [Smart contracts](/docs/build/smart-contracts/overview), [Native tokens](/docs/build/native-tokens/overview).
-- **Off-chain:** [Client SDKs overview](/docs/get-started/client-sdks/overview), [Mesh (TypeScript)](/docs/get-started/client-sdks/typescript/mesh/overview), [Evolution SDK](/docs/get-started/client-sdks/typescript/evolution-sdk/get-started).
-- **Chain data without a local node:** [API providers overview](/docs/get-started/infrastructure/api-providers/overview), [Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/overview), [Koios](/docs/get-started/infrastructure/api-providers/koios), [Ogmios](/docs/get-started/infrastructure/api-providers/ogmios).
-- **Integration:** [Integrate overview](/docs/build/integrate/overview).
-
----
-
-## CBOR and low-level debugging {#pathway-cbor}
-
-Transactions and scripts on Cardano lean heavily on **CBOR**-encoded structures (outputs, datums, redeemers, addresses).
-
-- [Transactions (core concepts)](/docs/learn/core-concepts/transactions)
-- [Cardano Serialization Library overview](/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview) — lower-level encoding and building blocks
-- [CIPs repository](https://github.com/cardano-foundation/CIPs) — formal specs for many wire formats and standards
-
----
-
-## Local devnet and fast feedback {#pathway-local-devnet}
-
-Iterate quickly before waiting on public testnets.
-
-- [Development networks overview](/docs/get-started/networks/development-networks/overview)
-- [Yaci DevKit](/docs/get-started/networks/development-networks/yaci-devkit)
-- [Cardano testnet](/docs/get-started/networks/development-networks/cardano-testnet)
-- [Ogmios](/docs/get-started/infrastructure/api-providers/ogmios) — local chain interaction
-- [Testnets guide](/docs/get-started/networks/testnets)
-
----
-
-## Transaction anatomy {#pathway-transaction-anatomy}
-
-- [eUTxO](/docs/learn/core-concepts/eutxo), [Transactions](/docs/learn/core-concepts/transactions), [Addresses](/docs/learn/core-concepts/addresses)
-- [Fees](/docs/learn/core-concepts/fees)
-- [Integrate overview](/docs/build/integrate/overview) — wallets, payments, dApp patterns
-- [CIPs](https://github.com/cardano-foundation/CIPs) — e.g. reference scripts (CIP-33), collateral patterns
-
----
-
-## Wallets and dApp connection {#pathway-wallets}
-
-- [Integrate overview](/docs/build/integrate/overview)
-- [CIP-30 (wallet dApp bridge)](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0030)
-- [Mesh wallets integration](/docs/get-started/client-sdks/typescript/mesh/wallets-integration)
-- [Evolution SDK wallets](/docs/get-started/client-sdks/typescript/evolution-sdk/wallets)
-
----
-
-## UTxO concurrency and scaling patterns {#pathway-concurrency}
-
-Cardano uses **eUTxO**: design around contention, batching, and multiple UTxOs rather than a single global account.
-
-- [Smart contracts overview](/docs/build/smart-contracts/overview)
-- [Lesson: concurrency and state](/docs/build/smart-contracts/lessons/05-avoid-redundant-validation) — practical patterns
-
----
-
-## Testing and on-chain debugging {#pathway-testing-debug}
-
-- [Smart contracts overview](/docs/build/smart-contracts/overview) — testing mindset and tooling pointers
-- [cardano-cli Plutus scripts](/docs/get-started/infrastructure/cardano-cli/plutus-scripts/) — CLI evaluation paths
-- [Aiken](https://aiken-lang.org) — traces and tests in the default on-chain toolchain for many teams
-
----
-
-## Cross-chain and bridges {#pathway-bridges}
-
-Bridging and wrapped assets vary by project; start from ecosystem docs and security practices.
-
-- [Integrate overview](/docs/build/integrate/overview)
-- [Project Catalyst](https://projectcatalyst.io) — ecosystem and funded bridge-related work
-- Always pair integration work with **threat modelling** and, for high-value flows, **professional audit** (see nodes in the diagram such as Tweag, Anastasia, MLabs, Vacuumlabs, and peers).
+Follow the links from the nodes that matter to you, then use the other **Get Started** sections (networks, infrastructure, and client SDKs) for step-by-step setup and references.

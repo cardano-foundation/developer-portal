@@ -50,14 +50,25 @@
 
 .viewport {
   position: relative;
-  overflow: auto;
-  /* Tall enough to show a large flowchart; scroll when content exceeds */
-  max-height: min(85vh, 960px);
-  min-height: min(55vh, 640px);
+  /* No inner scroll: content grows and the doc page scrolls instead. */
+  overflow: visible;
+  height: auto;
+  min-height: max(
+    16rem,
+    calc(100vh - var(--ifm-navbar-height, 3.75rem) - 1.5rem)
+  );
   padding: 1rem;
-  -webkit-overflow-scrolling: touch;
   /* Diagram canvas: white in light theme */
   background-color: #ffffff;
+}
+
+@supports (height: 100dvh) {
+  .viewport {
+    min-height: max(
+      16rem,
+      calc(100dvh - var(--ifm-navbar-height, 3.75rem) - 1.5rem)
+    );
+  }
 }
 
 :global(html[data-theme="dark"]) .viewport {
@@ -67,8 +78,10 @@
 
 .root:fullscreen .viewport {
   flex: 1;
-  max-height: none;
   min-height: 0;
+  height: auto;
+  /* Full screen: still no dedicated viewport scrollbar; use zoom if needed. */
+  overflow: hidden;
 }
 
 .scaleWrap {
