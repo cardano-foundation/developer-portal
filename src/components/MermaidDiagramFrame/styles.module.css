@@ -56,6 +56,13 @@
   min-height: min(55vh, 640px);
   padding: 1rem;
   -webkit-overflow-scrolling: touch;
+  /* Diagram canvas: white in light theme */
+  background-color: #ffffff;
+}
+
+:global(html[data-theme="dark"]) .viewport {
+  /* Diagram canvas: dark in dark theme (matches site surfaces) */
+  background-color: var(--site-color-bg-dark);
 }
 
 .root:fullscreen .viewport {
