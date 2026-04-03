@@ -51,7 +51,9 @@
 .viewport {
   position: relative;
   overflow: auto;
-  max-height: min(70vh, 720px);
+  /* Tall enough to show a large flowchart; scroll when content exceeds */
+  max-height: min(85vh, 960px);
+  min-height: min(55vh, 640px);
   padding: 1rem;
   -webkit-overflow-scrolling: touch;
 }
@@ -63,17 +65,22 @@
 }
 
 .scaleWrap {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
   transform-origin: top center;
   transition: transform 0.12s ease-out;
 }
 
+/* Match default doc-column Mermaid: scale SVG to full available width (not intrinsic px size). */
 .scaleWrap :global(.docusaurus-mermaid-container) {
+  width: 100%;
   max-width: none;
+  display: block;
 }
 
 .scaleWrap :global(.docusaurus-mermaid-container svg) {
-  max-width: 100%;
+  width: 100%;
+  max-width: none;
   height: auto;
+  display: block;
 }
