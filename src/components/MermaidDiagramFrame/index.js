@@ -1,183 +1,163 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import clsx from "clsx";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import Mermaid from "@theme/Mermaid";
 import styles from "./styles.module.css";
 
-/** CSS transform at which the toolbar shows 100% (diagram is larger than raw SVG). */
-const DEFAULT_ZOOM = 1.55;
-const MIN_SCALE = 0.45;
-const MAX_SCALE = 3.25;
-const STEP = 0.15;
+const ZOOM_MIN = 0.45;
+const ZOOM_MAX = 2.75;
+const ZOOM_STEP = 0.12;
 
-function displayPercent(scale) {
-  return Math.round((scale / DEFAULT_ZOOM) * 100);
+function requestFullscreen(el) {
+  const fn =
+    el.requestFullscreen ||
+    el.webkitRequestFullscreen ||
+    el.msRequestFullscreen;
+  fn?.call(el);
 }
 
-function measureSvgSize(svg) {
-  if (!svg) {
-    return { w: 0, h: 0 };
+function exitFullscreen() {
+  const fn =
+    document.exitFullscreen ||
+    document.webkitExitFullscreen ||
+    document.msExitFullscreen;
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    fn?.call(document);
   }
-  try {
-    const box = svg.getBBox();
-    if (box.width > 0 && box.height > 0) {
-      return { w: box.width, h: box.height };
-    }
-  } catch {
-    // getBBox can throw before layout
-  }
-  const w = svg.width?.baseVal?.value || svg.clientWidth;
-  const h = svg.height?.baseVal?.value || svg.clientHeight;
-  return { w: w || 0, h: h || 0 };
 }
 
-export default function MermaidDiagramFrame({ chart, hint, className }) {
-  const [scale, setScale] = useState(DEFAULT_ZOOM);
-  const [natural, setNatural] = useState({ w: 0, h: 0 });
+function isFullscreenActive() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement);
+}
+
+/**
+ * Wraps a Mermaid diagram with a toolbar: zoom controls, reset, and fullscreen.
+ * Ctrl/Cmd + scroll over the diagram area adjusts zoom (non-passive wheel).
+ */
+export default function MermaidDiagramFrame({hint, diagram}) {
+  const rootRef = useRef(null);
+  const viewportRef = useRef(null);
+  const zoomRef = useRef(1);
+  const [zoom, setZoom] = useState(1);
   const [fullscreen, setFullscreen] = useState(false);
-  const frameRef = useRef(null);
-  const scaledRef = useRef(null);
 
-  const measure = useCallback(() => {
-    const root = scaledRef.current;
-    if (!root) {
-      return;
-    }
-    const svg = root.querySelector("svg");
-    const { w, h } = measureSvgSize(svg);
-    if (w > 0 && h > 0) {
-      setNatural((prev) => (prev.w !== w || prev.h !== h ? { w, h } : prev));
-    }
+  useEffect(() => {
+    zoomRef.current = zoom;
+  }, [zoom]);
+
+  useEffect(() => {
+    const onChange = () => setFullscreen(isFullscreenActive());
+    document.addEventListener("fullscreenchange", onChange);
+    document.addEventListener("webkitfullscreenchange", onChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", onChange);
+      document.removeEventListener("webkitfullscreenchange", onChange);
+    };
   }, []);
 
   useEffect(() => {
-    const root = scaledRef.current;
-    if (!root) {
+    const el = viewportRef.current;
+    if (!el) {
       return undefined;
     }
-    const ro = new ResizeObserver(() => measure());
-    ro.observe(root);
-    const mo = new MutationObserver(() => measure());
-    mo.observe(root, { childList: true, subtree: true });
-    measure();
-    const t = window.setTimeout(measure, 400);
-    return () => {
-      ro.disconnect();
-      mo.disconnect();
-      window.clearTimeout(t);
+    const onWheel = (e) => {
+      if (!(e.ctrlKey || e.metaKey)) {
+        return;
+      }
+      e.preventDefault();
+      const z = zoomRef.current;
+      const next = e.deltaY > 0 ? z - ZOOM_STEP : z + ZOOM_STEP;
+      const clamped = Math.min(
+        ZOOM_MAX,
+        Math.max(ZOOM_MIN, Math.round(next * 100) / 100),
+      );
+      zoomRef.current = clamped;
+      setZoom(clamped);
     };
-  }, [chart, measure]);
-
-  useEffect(() => {
-    const onFs = () => {
-      setFullscreen(Boolean(document.fullscreenElement));
-    };
-    document.addEventListener("fullscreenchange", onFs);
-    return () => document.removeEventListener("fullscreenchange", onFs);
+    el.addEventListener("wheel", onWheel, {passive: false});
+    return () => el.removeEventListener("wheel", onWheel);
   }, []);
 
-  const zoomIn = () =>
-    setScale((s) => Math.min(MAX_SCALE, Math.round((s + STEP) * 100) / 100));
-  const zoomOut = () =>
-    setScale((s) => Math.max(MIN_SCALE, Math.round((s - STEP) * 100) / 100));
-  const zoomReset = () => setScale(DEFAULT_ZOOM);
+  const zoomIn = useCallback(() => {
+    setZoom((z) =>
+      Math.min(ZOOM_MAX, Math.round((z + ZOOM_STEP) * 100) / 100),
+    );
+  }, []);
 
-  const onWheel = (e) => {
-    if (!(e.ctrlKey || e.metaKey)) {
-      return;
-    }
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.09 : 0.09;
-    setScale((s) => {
-      const next = Math.round((s + delta) * 100) / 100;
-      return Math.min(MAX_SCALE, Math.max(MIN_SCALE, next));
-    });
-  };
+  const zoomOut = useCallback(() => {
+    setZoom((z) =>
+      Math.max(ZOOM_MIN, Math.round((z - ZOOM_STEP) * 100) / 100),
+    );
+  }, []);
 
-  const toggleFullscreen = async () => {
-    const el = frameRef.current;
+  const zoomReset = useCallback(() => setZoom(1), []);
+
+  const toggleFullscreen = useCallback(() => {
+    const el = rootRef.current;
     if (!el) {
       return;
     }
-    try {
-      if (!document.fullscreenElement) {
-        const req = el.requestFullscreen || el.webkitRequestFullscreen;
-        if (req) {
-          await req.call(el);
-        }
-      } else {
-        await document.exitFullscreen();
-      }
-    } catch {
-      // ignore unsupported / denied
+    if (isFullscreenActive()) {
+      exitFullscreen();
+    } else {
+      requestFullscreen(el);
     }
-  };
-
-  const spacerStyle =
-    natural.w > 0 && natural.h > 0
-      ? {
-          width: natural.w * scale,
-          height: natural.h * scale,
-        }
-      : { minHeight: "24rem" };
+  }, []);
 
   return (
-    <div
-      ref={frameRef}
-      className={clsx(
-        styles.frame,
-        fullscreen && styles.frameFullscreen,
-        className
-      )}
-    >
-      <div
-        className={styles.toolbar}
-        role="toolbar"
-        aria-label="Diagram zoom and fullscreen"
-      >
-        <div className={styles.toolbarGroup}>
-          <button type="button" onClick={zoomOut} aria-label="Zoom out">
+    <div ref={rootRef} className={styles.root}>
+      <div className={styles.toolbar}>
+        {hint ? <p className={styles.hint}>{hint}</p> : null}
+        <div className={styles.actions}>
+          <span className={styles.zoomLabel} aria-hidden>
+            {Math.round(zoom * 100)}%
+          </span>
+          <button
+            type="button"
+            className="button button--secondary button--sm"
+            onClick={zoomOut}
+            aria-label="Zoom out"
+          >
             −
           </button>
-          <span className={styles.scaleReadout} aria-live="polite">
-            {displayPercent(scale)}%
-          </span>
-          <button type="button" onClick={zoomIn} aria-label="Zoom in">
+          <button
+            type="button"
+            className="button button--secondary button--sm"
+            onClick={zoomReset}
+            aria-label="Reset zoom"
+          >
+            1:1
+          </button>
+          <button
+            type="button"
+            className="button button--secondary button--sm"
+            onClick={zoomIn}
+            aria-label="Zoom in"
+          >
             +
           </button>
-          <button type="button" onClick={zoomReset} aria-label="Reset zoom">
-            Reset
+          <button
+            type="button"
+            className="button button--primary button--sm"
+            onClick={toggleFullscreen}
+            aria-label={
+              fullscreen ? "Exit full screen" : "Enter full screen"
+            }
+          >
+            {fullscreen ? "Exit full screen" : "Full screen"}
           </button>
         </div>
-        <button
-          type="button"
-          onClick={toggleFullscreen}
-          aria-label={fullscreen ? "Exit full screen" : "Full screen"}
-        >
-          {fullscreen ? "Exit full screen" : "Full screen"}
-        </button>
       </div>
-      {hint ? (
-        <p className={styles.hint}>
-          {hint}
-        </p>
-      ) : null}
       <div
+        ref={viewportRef}
         className={styles.viewport}
-        onWheel={onWheel}
+        tabIndex={0}
         role="region"
-        aria-label="Pathway diagram"
+        aria-label="Pathway diagram. Use toolbar or Ctrl or Command plus scroll to zoom."
       >
-        <div className={styles.spacer} style={spacerStyle}>
-          <div
-            ref={scaledRef}
-            className={styles.scaled}
-            style={{
-              transform: `scale(${scale})`,
-              transformOrigin: "0 0",
-            }}
-          >
-            <Mermaid value={chart} />
-          </div>
+        <div
+          className={styles.scaleWrap}
+          style={{transform: `scale(${zoom})`}}
+        >
+          <Mermaid value={diagram} />
         </div>
       </div>
     </div>

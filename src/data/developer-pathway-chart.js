@@ -1,6 +1,6 @@
 /**
  * Mermaid source for the Cardano Developer Pathway diagram.
- * Consumed by docs/get-started/developer-pathway/overview.mdx.
+ * Consumed by overview.mdx via MermaidDiagramFrame + @theme/Mermaid.
  */
 const pathwayChart = `flowchart TD
   subgraph phase1 [Phase 1 · Orientation and entry]
