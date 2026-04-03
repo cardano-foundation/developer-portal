@@ -1,0 +1,111 @@
+.frame {
+  margin: 1rem 0 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-background-surface-color);
+  overflow: hidden;
+}
+
+.frameFullscreen {
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  height: 100%;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  background: var(--ifm-background-color);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.frameFullscreen .toolbar {
+  flex-shrink: 0;
+}
+
+.toolbarGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.toolbar button {
+  font-size: 0.875rem;
+  line-height: 1.2;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--ifm-global-radius);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.toolbar button:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.scaleReadout {
+  min-width: 3.25rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.hint {
+  margin: 0;
+  padding: 0.5rem 0.75rem 0;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.viewport {
+  overflow: auto;
+  max-height: min(70vh, 720px);
+  padding: 0.75rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.frameFullscreen .viewport {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+}
+
+.spacer {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  min-width: 100%;
+}
+
+.scaled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.scaled :global(.docusaurus-mermaid-container) {
+  margin: 0;
+}
+
+.scaled :global(.docusaurus-mermaid-container svg) {
+  display: block;
+  max-width: none;
+}
