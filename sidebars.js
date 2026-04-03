@@ -8,6 +8,7 @@ module.exports = {
         id: "get-started/overview",
       },
       items: [
+      "get-started/developer-pathway/overview",
       {
         type: "category",
         label: "Networks",
