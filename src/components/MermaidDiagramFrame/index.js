@@ -3,9 +3,15 @@ import clsx from "clsx";
 import Mermaid from "@theme/Mermaid";
 import styles from "./styles.module.css";
 
-const MIN_SCALE = 0.35;
-const MAX_SCALE = 2.75;
+/** CSS transform at which the toolbar shows 100% (diagram is larger than raw SVG). */
+const DEFAULT_ZOOM = 1.55;
+const MIN_SCALE = 0.45;
+const MAX_SCALE = 3.25;
 const STEP = 0.15;
+
+function displayPercent(scale) {
+  return Math.round((scale / DEFAULT_ZOOM) * 100);
+}
 
 function measureSvgSize(svg) {
   if (!svg) {
@@ -25,7 +31,7 @@ function measureSvgSize(svg) {
 }
 
 export default function MermaidDiagramFrame({ chart, hint, className }) {
-  const [scale, setScale] = useState(1);
+  const [scale, setScale] = useState(DEFAULT_ZOOM);
   const [natural, setNatural] = useState({ w: 0, h: 0 });
   const [fullscreen, setFullscreen] = useState(false);
   const frameRef = useRef(null);
@@ -73,7 +79,7 @@ export default function MermaidDiagramFrame({ chart, hint, className }) {
     setScale((s) => Math.min(MAX_SCALE, Math.round((s + STEP) * 100) / 100));
   const zoomOut = () =>
     setScale((s) => Math.max(MIN_SCALE, Math.round((s - STEP) * 100) / 100));
-  const zoomReset = () => setScale(1);
+  const zoomReset = () => setScale(DEFAULT_ZOOM);
 
   const onWheel = (e) => {
     if (!(e.ctrlKey || e.metaKey)) {
@@ -133,7 +139,7 @@ export default function MermaidDiagramFrame({ chart, hint, className }) {
             −
           </button>
           <span className={styles.scaleReadout} aria-live="polite">
-            {Math.round(scale * 100)}%
+            {displayPercent(scale)}%
           </span>
           <button type="button" onClick={zoomIn} aria-label="Zoom in">
             +

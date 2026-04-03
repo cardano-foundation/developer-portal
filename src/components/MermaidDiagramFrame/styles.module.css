@@ -60,11 +60,14 @@
 }
 
 .scaleReadout {
-  min-width: 3.25rem;
+  min-width: 4rem;
+  padding: 0 0.35rem;
   text-align: center;
   font-variant-numeric: tabular-nums;
-  font-size: 0.8125rem;
-  color: var(--ifm-color-emphasis-800);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ifm-font-color-base);
 }
 
 .hint {
