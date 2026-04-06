@@ -238,9 +238,6 @@ module.exports = {
       '@docusaurus/plugin-client-redirects',
       { redirects },
     ],
-    // Generates /stats.json with aggregate site data (e.g. builder-tools count)
-    // consumed by cardano.org — see src/plugins/stats-plugin.js
-    require.resolve('./src/plugins/stats-plugin'),
   ],
 
   presets: [
