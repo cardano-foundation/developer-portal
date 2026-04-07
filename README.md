@@ -1,6 +1,6 @@
 <div align="center">
 
-<img alt="Cardano Developer Portal" src="./static/img/readme-banner.jpeg" width="100%">
+<img alt="Cardano Developer Portal" src="./static/img/og/og-developer-portal.png" width="100%">
 
 **[developers.cardano.org](https://developers.cardano.org/)**
 
@@ -9,33 +9,34 @@
 
 </div>
 
-We wanted to build a developer portal as open and inclusive as Cardano. A portal that is in the hands of the Cardano community and can be constantly evolved by it.
+The Cardano Developer Portal covers smart contracts, native tokens, stake pool operation, governance, and [builder tools](https://developers.cardano.org/tools/). 
 
 The portal relies on your contributions. If you're reading this, you probably have something to contribute, even if you're not a developer.
 
 ## Contribute
 
-The easiest way to start is the [GitHub web editor](https://github.com/cardano-foundation/developer-portal/edit/staging/README.md), no setup needed.
+Every content page on the portal has an **Edit this page** link at the bottom, letting you propose changes directly from your browser.
 
-To work locally, [fork the repo](https://github.com/cardano-foundation/developer-portal/fork) and then:
+Before contributing, check the [Contributing Guide](./CONTRIBUTING.md).
+
+Found something broken? [Open an issue.](https://github.com/cardano-foundation/developer-portal/issues/new) Have an idea? [Start a discussion.](https://github.com/cardano-foundation/developer-portal/discussions)
+
+### Local development setup
+
+[Fork the repo](https://github.com/cardano-foundation/developer-portal/fork), then:
 
 ```bash
 git clone https://github.com/<your-github-username>/developer-portal.git
 cd developer-portal
 yarn install
-yarn build
-yarn start        # dev server on localhost:3000
+yarn build           # also validates builder tools and links
+yarn start           # dev server on localhost:3000
 ```
 
-You'll need [Node.js](https://nodejs.org/) 20+ and [Yarn](https://classic.yarnpkg.com/) 1.20+ installed.
+Requires [Node.js](https://nodejs.org/) 20+ and [Yarn](https://classic.yarnpkg.com/) 1.20+. Built with [Docusaurus](https://docusaurus.io/).
 
-For details on what to contribute and how, check the [Contributing Guide](./CONTRIBUTING.md). If you're adding a tool to the [Builder Tools](https://developers.cardano.org/tools/) showcase, the guide walks you through it step by step.
-
-Found something broken? [Open an issue.](https://github.com/cardano-foundation/developer-portal/issues/new) Have an idea? [Start a discussion.](https://github.com/cardano-foundation/developer-portal/discussions)
-
-The site is built with [Docusaurus](https://docusaurus.io/docs). See the [technical setup guide](https://developers.cardano.org/docs/portal-contribute/) and [style guide](https://developers.cardano.org/docs/portal-style-guide/) for more.
+All pull requests should target the `staging` branch. Changes are merged from `staging` into `main` for production periodically by the maintainers.
 
 ## License
 
 [MIT](./LICENSE)
-

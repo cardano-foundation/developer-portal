@@ -2,9 +2,9 @@
 
 Contributions generally fall into three categories: fixing content (typos, broken links, outdated information), adding developer tools to the [Builder Tools](https://developers.cardano.org/tools/) showcase, and writing new documentation or tutorials.
 
-For small fixes, use the GitHub web editor directly on any file or click the pencil icon on any portal page. No local setup required.
+For small fixes, you can always use the GitHub web editor directly on any file or click the pencil icon at the bottom on portal pages without any setup.
 
-For anything that needs a local build, see the [Contribute](./README.md#contribute) section in the README.
+For anything that needs a local build, see the [local development setup](./README.md#contribute) in the README.
 
 ## Adding a builder tool
 
@@ -27,11 +27,11 @@ This is the most common external contribution. You'll add an image, a tool entry
 
 Don't add the `favorite` tag yourself. Check `src/data/builder-tools/tags.js` for available tags. For a full walkthrough, see the [portal contribution guide](https://developers.cardano.org/docs/portal-contribute/).
 
-## Ground rules
+## Before you open a PR
 
-Write clearly and avoid marketing language. Describe what your project does, not that it's "the best" or "the first." The [style guide](https://developers.cardano.org/docs/portal-style-guide/) covers formatting in detail.
-
-Every pull request must pass `yarn build` before review. Use the appropriate PR template and fill out its checklist.
+- Run `yarn build` and make sure it passes. It checks for broken links and validates builder tool entries.
+- Don't commit `yarn.lock`. It's gitignored. If you accidentally commit it, see the FAQ below.
+- Follow the [style guide](https://developers.cardano.org/docs/portal-style-guide/). Write clearly, describe what your project does, skip the marketing language.
 
 ## FAQ
 
