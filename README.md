@@ -9,9 +9,11 @@
 
 </div>
 
-The Cardano Developer Portal covers smart contracts, native tokens, stake pool operation, governance, and [builder tools](https://developers.cardano.org/tools/). 
+We wanted to build a developer portal as open and inclusive as Cardano. A portal that is in the hands of the Cardano community and can be constantly evolved by it.
 
-The portal relies on your contributions. If you're reading this, you probably have something to contribute, even if you're not a developer.
+For this to be successful, the portal relies on your contributions, and the fact that you are reading this text probably means that you have something to contribute, even if you are not a Developer.
+
+The portal covers everything Cardano developers need in one place, including documentation and [builder tools](https://developers.cardano.org/tools/) on smart contracts, native tokens, stake pool operation, and governance.
 
 ## Contribute
 
