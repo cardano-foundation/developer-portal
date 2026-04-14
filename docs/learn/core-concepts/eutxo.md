@@ -194,6 +194,6 @@ The key insight is that **single on-chain state patterns from account-based syst
 
 ## Next Steps
 
-- Learn about [Transactions](transactions) and how they consume and create UTXOs
-- Understand [Transaction Fees](fees) and how costs are calculated
+- Learn about [Transactions](../transactions) and how they consume and create UTXOs
+- Understand [Transaction Fees](../fees) and how costs are calculated
 - Ready to build? See [Smart Contracts Overview](/docs/build/smart-contracts/overview) or [Minting Native Assets](/docs/build/native-tokens/minting)
