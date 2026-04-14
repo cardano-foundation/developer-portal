@@ -61,7 +61,7 @@ bun i @evolution-sdk/lucid
 
 :::note
 
-Installing the `lucid` package will automatically export all other Evolution SDK packages as well. For more information on more granular package definitions for lightweight development, please refer to the the Evolution library [installation guide](https://no-witness-labs.github.io/evolution-sdk/install).
+Installing the `lucid` package will automatically export all other Evolution SDK packages as well. For more information on more granular package definitions for lightweight development, please refer to the the Evolution library [installation guide](https://intersectmbo.github.io/evolution-sdk/docs/).
 
 :::
 
