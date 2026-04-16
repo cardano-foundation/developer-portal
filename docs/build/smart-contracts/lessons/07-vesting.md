@@ -2,35 +2,36 @@
 id: 07-vesting
 title: Vesting Contract
 sidebar_label: 07 - Vesting Contract
-description: Vesting smart contract that locks up funds and allows the beneficiary to withdraw the funds after the lockup period.
+description: Build a Cardano vesting smart contract with Aiken that locks funds with time-based release and beneficiary withdrawal using Mesh SDK.
 ---
 
-Vesting contracts are a type of smart contract designed to lock funds for a specified period, ensuring that only the designated beneficiary can withdraw them after the lockup period ends. This lesson will guide you through the process of understanding, implementing, and interacting with a vesting contract on Cardano.
+# Lesson #07: Vesting Contract
+
+A vesting contract locks funds for a specified period and allows only the designated beneficiary to withdraw them after the lockup expires. This lesson covers implementing and interacting with a vesting contract on Cardano using Aiken and the Mesh SDK.
+
+> Source code: [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-cardano/07-vesting)
 
 ## Overview
 
-### What is a Vesting Contract?
+### What Is a Vesting Contract?
+A vesting contract locks funds and releases them to a beneficiary only after a specified time period. It provides security and control over fund distribution.
 
-A vesting contract locks funds and allows the beneficiary to withdraw them after a specified lockup period. It ensures security and control over fund distribution.
+![Vesting Contract Timeline](./img/cardano07-01.png)
 
-### Key Features
-
+### Key Features:
 - **Lockup Period**: Funds are locked until a specific timestamp.
 - **Owner and Beneficiary**: The owner deposits funds, and the beneficiary withdraws them after the lockup period.
 
 ## Smart Contract Details
 
 ### Datum Definition
+The datum configures the vesting contract with three parameters:
 
-The datum serves as the configuration for the vesting contract. It includes:
+- **`lock_until`**: POSIX timestamp until which funds are locked
+- **`owner`**: Credentials of the fund owner
+- **`beneficiary`**: Credentials of the beneficiary
 
-- **`lock_until`**: The timestamp until which funds are locked.
-- **`owner`**: Credentials of the fund owner.
-- **`beneficiary`**: Credentials of the beneficiary.
-
-First, we define the datum's shape, as this datum serves as configuration and contains the different parameters of our vesting operation.
-
-```aiken
+```
 pub type VestingDatum {
   /// POSIX time in milliseconds, e.g. 1672843961000
   lock_until: Int,
@@ -45,7 +46,7 @@ This datum can be found in `aiken-vesting/aiken-workspace/lib/vesting/types.ak`.
 
 Next, we define the spend validator.
 
-```aiken
+```
 validator vesting {
   spend(
     datum_opt: Option<VestingDatum>,
@@ -53,8 +54,6 @@ validator vesting {
     _input: OutputReference,
     tx: Transaction,
   ) {
-    // In principle, scripts can be used for different purpose (e.g. minting
-    // assets). Here we make sure it's only used when 'spending' from a eUTxO
     expect Some(datum) = datum_opt
     or {
       key_signed(tx.extra_signatories, datum.owner),
@@ -71,30 +70,24 @@ validator vesting {
 }
 ```
 
-In this example, we define a `vesting` validator that ensures the following conditions are met:
+![Two Unlock Paths: Owner OR Beneficiary + Time](./img/cardano07-02.png)
 
-- The transaction must be signed by owner
+The `vesting` validator allows withdrawal under two conditions:
 
-Or:
-
-- The transaction must be signed by beneficiary
-- The transaction must be valid after the lockup period
+1. The transaction is signed by the **owner** (can withdraw anytime), OR
+2. The transaction is signed by the **beneficiary** AND the current time is past the lockup period
 
 ### How it works
 
-The owner of the funds deposits the funds into the vesting contract. The funds are locked up until the lockup period expires.
+The owner deposits funds into the vesting contract, locking them until the lockup period expires.
 
-Transactions can include validity intervals that specify when the transaction is valid, both from and until a certain time. The ledger verifies these validity bounds before executing a script and will only proceed if they are legitimate.
+Cardano transactions include validity intervals that specify when a transaction is valid. The ledger verifies these bounds before executing any script. This gives scripts a sense of time while maintaining determinism: if a transaction has a lower bound `A`, the current time is at least `A`.
 
-This approach allows scripts to incorporate a sense of time while maintaining determinism within the script's context. For instance, if a transaction has a lower bound `A`, we can infer that the current time is at least `A`.
-
-It's important to note that since we don't control the upper bound, a transaction might be executed even 30 years after the vesting delay. However, from the script's perspective, this is entirely acceptable.
-
-The beneficiary can withdraw the funds after the lockup period expires. The beneficiary can also be different from the owner of the funds.
+Since the upper bound is not controlled, a transaction could execute well after the vesting delay. From the script's perspective, this is acceptable; the contract only enforces a minimum wait time.
 
 ### Testing
 
-To test the vesting contract, we have provided the a comphrehensive test script,you can run tests with `aiken check`.
+A comprehensive test script is provided. Run tests with `aiken check`.
 
 The test script includes the following test cases:
 
@@ -104,7 +97,7 @@ The test script includes the following test cases:
 - fail unlocking with only beneficiary signature
 - fail unlocking with only time passed
 
-We recommend you to check out [`vesting.ak`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/07-vesting/src/aiken-workspace/validators/vesting.ak) to learn more.
+See the full test source in [`vesting.ak`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-cardano/07-vesting/src/aiken-workspace/validators/vesting.ak).
 
 ### Compile and build script
 
@@ -114,11 +107,11 @@ To compile the script, run the following command:
 aiken build
 ```
 
-This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/07-vesting/src/aiken-workspace/plutus.json).
+This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-cardano/07-vesting/src/aiken-workspace/plutus.json).
 
 ## Deposit funds
 
-First, the owner can deposit funds into the vesting contract. The owner can specify the lockup period.
+The owner deposits funds into the vesting contract and specifies the lockup period.
 
 ```ts
 const assets: Asset[] = [
@@ -132,7 +125,7 @@ const lockUntilTimeStamp = new Date();
 lockUntilTimeStamp.setMinutes(lockUntilTimeStamp.getMinutes() + 1);
 ```
 
-In this example, we deposit 10 ADA into the vesting contract. The funds are locked up for 1 minute, and the beneficiary is specified.
+This deposits 10 ADA into the vesting contract with a 1-minute lockup period.
 
 ```ts
 // app wallet
@@ -154,9 +147,7 @@ const { pubKeyHash: beneficiaryPubKeyHash } =
   deserializeAddress(beneficiaryAddress);
 ```
 
-For this tutorial, we use another wallet to fund the deposit. We get the UTXOs from the app wallet and the change address.
-
-We also need both the owner and beneficiary's public key hashes. We can get the public key hash from the address using `deserializeAddress`.
+This tutorial uses a separate app wallet to fund the deposit. Both the owner's and beneficiary's public key hashes are extracted using `deserializeAddress`.
 
 ```ts
 const txBuilder = new MeshTxBuilder({
@@ -174,24 +165,24 @@ const unsignedTx = await txBuilder
   .complete();
 ```
 
-We construct the transaction to deposit the funds into the vesting contract. We specify the script address of the vesting contract, the amount to deposit, and the lockup period, owner, and beneficiary of the funds.
+The transaction sends funds to the vesting contract's script address with an inline datum containing the lockup period, owner, and beneficiary.
 
-Finally, we sign and submit the transaction.
+Sign and submit:
 
 ```ts
 const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-Upon successful execution, you will receive a transaction hash. Save this transaction hash for withdrawing the funds.
+Save the returned transaction hash; you will need it to withdraw the funds.
 
 Example of a [successful deposit transaction](https://preprod.cardanoscan.io/transaction/556f2bfcd447e146509996343178c046b1b9ad4ac091a7a32f85ae206345e925).
 
 ## Withdraw funds
 
-After the lockup period expires, the beneficiary can withdraw the funds from the vesting contract. The owner can also withdraw the funds from the vesting contract.
+After the lockup period expires, the beneficiary (or owner) can withdraw the funds.
 
-First, let's look for the UTxOs containing the funds locked in the vesting contract.
+First, fetch the UTXOs containing the locked funds:
 
 ```ts
 const txHashFromDesposit =
@@ -200,11 +191,7 @@ const utxos = await provider.fetchUTxOs(txHash);
 const vestingUtxo = utxos[0];
 ```
 
-We fetch the UTxOs containing the funds locked in the vesting contract. We specify the transaction hash of the deposit transaction.
-
-Like before, we prepare a few variables to be used in the transaction. We get the wallet address and the UTXOs of the wallet. We also get the script address of the vesting contract, to send the funds to the script address. We also get the owner and beneficiary public key hashes.
-
-Next, we prepare the datum and the slot number to set the transaction valid interval to be valid only after the slot.
+This fetches UTXOs from the deposit transaction. Next, prepare the datum and calculate the slot number for the transaction validity interval:
 
 ```ts
 const datum = deserializeDatum<VestingDatum>(vestingUtxo.output.plutusData!);
@@ -216,9 +203,9 @@ const invalidBefore =
   ) + 1;
 ```
 
-We prepare the datum and the slot number to set the transaction valid interval to be valid only after the slot. We get the lockup period from the datum and set the transaction valid interval to be valid only after the lockup period.
+The lockup period from the datum determines the `invalidBefore` slot, ensuring the transaction is only valid after the lockup expires.
 
-Next, we construct the transaction to withdraw the funds from the vesting contract.
+Construct the withdrawal transaction:
 
 ```ts
 const txBuilder = new MeshTxBuilder({
@@ -251,16 +238,83 @@ const unsignedTx = await txBuilder
   .complete();
 ```
 
-we construct the transaction to withdraw the funds from the vesting contract. We specify the UTxO containing the funds locked in the vesting contract, the script address of the vesting contract, the wallet address to send the funds to, and the transaction valid interval.
+The transaction spends the locked UTXO from the vesting contract, specifying the script, datum, redeemer, collateral, validity interval, and required signer.
 
-Finally, we sign and submit the transaction.
+Sign and submit:
 
 Example of a [successful withdraw transaction](https://preprod.cardanoscan.io/transaction/13d6b2258680bbdf08f50a3bbc03e7ed674f5614844ce773fc191c9582282b04).
 
+## Source Code Walkthrough
+
+This section breaks down the project structure and maps blockchain concepts to familiar web2 patterns to help you understand how the vesting contract works end-to-end.
+
+### Project Structure
+
+```
+07-vesting/
+├── src/                    # NextJS application
+│   ├── app/                # App router pages and API routes
+│   ├── components/         # React components for deposit/withdraw UI
+│   └── lib/                # Shared utilities and contract helpers
+├── aiken-workspace/        # On-chain smart contract code
+│   ├── lib/
+│   │   └── vesting/
+│   │       └── types.ak    # VestingDatum type definition
+│   ├── validators/
+│   │   └── vesting.ak      # Spend validator + tests
+│   └── plutus.json         # Compiled Plutus blueprint (CIP-0057)
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json            # Dependencies: NextJS + @meshsdk/core
+├── postcss.config.mjs
+└── tsconfig.json
+```
+
+The project has two distinct halves. The `aiken-workspace/` directory contains the on-chain validator written in Aiken -- this is the smart contract that the Cardano ledger executes when someone tries to spend locked funds. The `src/` directory is a standard NextJS app that builds and submits the deposit and withdraw transactions using the Mesh SDK. Think of the Aiken code as your backend business logic that runs on the blockchain, and the NextJS app as your frontend client that calls it.
+
+### Vesting Lifecycle
+
+```mermaid
+sequenceDiagram
+    participant Owner
+    participant NextJS as NextJS App (Mesh SDK)
+    participant Script as Script Address (On-chain)
+    participant Beneficiary
+
+    Owner->>NextJS: Initiate deposit (amount, lock_until, beneficiary)
+    NextJS->>Script: Build tx: send funds + inline datum
+    Note over Script: Funds locked at script address<br/>Datum: { lock_until, owner, beneficiary }
+
+    rect rgb(240, 240, 240)
+        Note over Script: Time passes... lock_until expires
+    end
+
+    Beneficiary->>NextJS: Initiate withdrawal
+    NextJS->>NextJS: Set invalidBefore = lock_until slot
+    NextJS->>Script: Build tx: spend UTXO + collateral + required signer
+    Script->>Script: Validator checks:<br/>1. Signed by beneficiary?<br/>2. validity_range > lock_until?
+    Script->>Beneficiary: Funds released
+```
+
+### Web2 Equivalents
+
+If you have built escrow or scheduled-release features in web applications, you already understand the core idea. Here is how each Cardano concept maps:
+
+| Cardano Concept | Web2 Equivalent | What It Does |
+|---|---|---|
+| **Vesting contract** | Escrow service (e.g., Stripe Connect delayed payouts) | Holds funds and releases them when conditions are met |
+| **Datum** (`VestingDatum`) | Escrow terms stored in a database row | Records the lock time, owner, and beneficiary on-chain |
+| **`lock_until`** | Scheduled release date / cron job trigger time | The POSIX timestamp when funds become withdrawable |
+| **`validity_range`** | Request timestamp validation (e.g., JWT `nbf` claim) | The ledger enforces that the transaction is only valid within this time window, giving the script a reliable sense of "now" |
+| **Collateral** | Security deposit for failed API calls (like a held charge) | A small UTXO pledged to cover costs if the script execution fails -- you get it back on success |
+| **Script address** | Escrow account / custodial holding account | A blockchain address controlled by code rather than a private key |
+
+The key difference from web2: there is no server deciding whether to release funds. The validator logic runs deterministically on every Cardano node, and the `validity_range` mechanism lets the ledger itself enforce time constraints without relying on a clock inside the script.
+
 ## Source code
 
-The source code for this lesson is available on [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-hello-cardano/07-vesting).
+The source code for this lesson is available on [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-cardano/07-vesting).
 
 ## Challenge
 
-Change the vesting contract to gradual vesting schedule where instead of a single unlock date, implement gradual vesting where funds are released on a schedule. Or add a cliff feature where the beneficiary must wait for a minimum period before any tokens become available.
+Modify the vesting contract to implement a gradual vesting schedule where funds release over time instead of all at once. Alternatively, add a cliff period where the beneficiary must wait before any tokens become available.

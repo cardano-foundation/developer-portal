@@ -2,28 +2,32 @@
 id: 08-plutus-nft
 title: Plutus NFT Contract
 sidebar_label: 08 - Plutus NFT Contract
-description: Plutus NFT smart contract enforces non-fungibility and uniqueness of the NFT under the same policy.
+description: Build a Plutus NFT contract on Cardano with auto-incrementing indices, oracle state management, and multi-validator architecture using Aiken.
 ---
 
-After the simple vesting contract, let's level up to a more complex contract with multiple validators interacting with each other. This lesson will guide you step-by-step through the process of creating a Plutus NFT contract, ensuring clarity and simplicity.
+# Lesson #08: Plutus NFT Contract
+
+This lesson builds on the vesting contract with a more complex multi-validator architecture. You will create a Plutus NFT contract where multiple validators interact to enforce non-fungibility, uniqueness, and auto-incrementing token indices.
 
 ## Overview
 
-This lesson focuses on creating a smart contract for minting NFTs with an automatically incremented index. The contract ensures non-fungibility and uniqueness of the NFTs under the same policy. To achieve this, we will:
+The contract mints NFTs with auto-incrementing indices, ensuring non-fungibility and uniqueness under a single policy. The architecture uses three components:
 
 1. Set up a one-time minting policy to create an oracle token.
 2. Use the oracle token to maintain the state and index of NFTs.
 3. Increment the token index with each new NFT minted.
 
+![Three-Validator NFT Architecture](./img/cardano08-01.png)
+
 ## Step 1: Oracle NFT
 
-The oracle NFT acts as the single source of truth for the system. It uses a state thread token to ensure consistency. We will implement a one-time minting policy for the oracle NFT.
+The oracle NFT acts as the single source of truth, using a state thread token to ensure consistency. A one-time minting policy guarantees only one oracle NFT exists.
 
 ### Code Explanation
 
 The following code defines the minting policy for the oracle NFT:
 
-```aiken
+```rs
 pub type MintPolarity {
   RMint
   RBurn
@@ -56,17 +60,16 @@ validator oracle_nft(utxo_ref: OutputReference) {
 ```
 
 **Key Points:**
-
 - `RMint` ensures the token is minted only once.
 - `RBurn` allows the token to be burned but prevents reminting.
 
 ## Step 2: Oracle Validator
 
-The oracle validator holds the current state of the NFT index. It defines the datum and redeemer types for state changes.
+The oracle validator maintains the current NFT index as on-chain state. It defines datum and redeemer types for state transitions.
 
 ### Datum Definition
 
-```aiken
+```rs
 pub type OracleDatum {
   count: Int,
   lovelace_price: Int,
@@ -76,7 +79,7 @@ pub type OracleDatum {
 
 ### Redeemer Types
 
-```aiken
+```rs
 pub type OracleRedeemer {
   MintPlutusNFT
   StopOracle
@@ -85,9 +88,9 @@ pub type OracleRedeemer {
 
 ### Validator Logic
 
-The validator ensures the state changes are valid:
+The validator enforces valid state transitions:
 
-```aiken
+```rs
 validator oracle {
   spend(
     datum_opt: Option<OracleDatum>,
@@ -110,11 +113,11 @@ validator oracle {
 }
 ```
 
-In this setup, we identified the own input with `find_input` function, which is a utility function that finds the input with the given output reference. We also expect the oracle NFT policy to be present in the own input's value.
+The `find_input` function locates the validator's own input by output reference. The oracle NFT policy must be present in the input's value.
 
-We know that for state change, we will have exactly one input from current address, and one output to the same address. We can then perform below pattern matching:
+For state changes, there is exactly one input from and one output to the oracle address. Pattern match on this structure:
 
-```aiken
+```rs
     let own_address = own_input.output.address
     when
       (
@@ -133,7 +136,7 @@ We know that for state change, we will have exactly one input from current addre
 
 Add in core checks for `MintPlutusNFT`:
 
-```aiken
+```rs
         let is_output_value_clean = list.length(flatten(only_output.value)) == 2
         let is_count_updated =
           only_output.datum == InlineDatum(
@@ -145,11 +148,11 @@ Add in core checks for `MintPlutusNFT`:
         is_output_value_clean? && is_count_updated? && is_fee_paid?
 ```
 
-Notice there is a `is_output_value_clean` check here, which ensures the changed state UTxO only contains the state thread token and ADA, i.e. no other assets are present in the output value. This is to prevent a common vulnerability of `Unbounded Value`, where people can attach infinitely amount of assets to the output to make it unspendable by overflowing the transaction size.
+The `is_output_value_clean` check ensures the state UTXO contains only the state thread token and ADA. This prevents the `Unbounded Value` vulnerability, where an attacker attaches many assets to the output, making it unspendable by overflowing the transaction size.
 
 Complete with `StopOracle` logics:
 
-```aiken
+```rs
       (StopOracle, [_], _) -> {
         let is_oracle_nft_burnt =
           only_minted_token(mint, oracle_nft_policy, "", -1)
@@ -161,7 +164,7 @@ Complete with `StopOracle` logics:
 
 A complete oracle validator looks like this:
 
-```aiken
+```rs
 validator oracle {
   spend(
     datum_opt: Option<OracleDatum>,
@@ -211,17 +214,16 @@ validator oracle {
 ```
 
 **Key Points:**
-
 - `MintPlutusNFT` increments the NFT index and ensures fees are paid.
 - `StopOracle` burns the oracle NFT and requires owner authorization.
 
 ## Step 3: Plutus NFT Minting Validator
 
-The Plutus NFT minting validator ensures the NFT is unique and non-fungible.
+The Plutus NFT minting validator enforces uniqueness and non-fungibility by reading the oracle's current index.
 
 ### Code Explanation
 
-```aiken
+```rs
 pub type MintPolarity {
   RMint
   RBurn
@@ -254,11 +256,10 @@ validator plutus_nft(collection_name: ByteArray, oracle_nft: PolicyId) {
 ```
 
 **Key Points:**
-
 - Ensures the NFT name includes the incremented index.
 - Validates the minting and burning process.
 
-The code example above is presented in [Mesh repository](https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src/plutus-nft/aiken-workspace), you can find the equivalent tests there.
+The full source code and tests are available in the [Mesh repository](https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src/plutus-nft/aiken-workspace).
 
 ### Compile and build script
 
@@ -268,13 +269,14 @@ The code example above is presented in [Mesh repository](https://github.com/Mesh
 aiken build
 ```
 
-This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-hello-cardano/07-vesting/src/aiken-workspace/plutus.json).
+This command will generate a CIP-0057 Plutus blueprint, which you can find in [`plutus.json`](https://github.com/cardanobuilders/cardanobuilders.github.io/blob/main/codes/course-cardano/07-vesting/src/aiken-workspace/plutus.json).
 
 ## Setup Oracle
 
-To set up the oracle, we need to mint the oracle NFT first and lock it in the oracle validator. This is a one-time operation, and we can do it with the following code:
+Setting up the oracle requires minting the oracle NFT and locking it in the oracle validator. This is a one-time operation.
 
-We prepare the wallet and tx-builder similar to previous lessons, and get some static information:
+Prepare the wallet, transaction builder, and static information:
+
 
 ```ts
 const compiledCode = <the compile code from blueprint>;
@@ -295,7 +297,8 @@ const { pubKeyHash, stakeCredentialHash } =
   deserializeAddress(walletAddress);
 ```
 
-Then we can perform the setup:
+Perform the setup transaction:
+
 
 ```ts
 const txHex = await txBuilder
@@ -328,11 +331,11 @@ const txHex = await txBuilder
   .complete();
 ```
 
-Important, we need to save the `paramUtxo` information for later use:
+Save the `paramUtxo` information for later use.
 
 ## Mint Plutus NFT
 
-To mint the Plutus NFT, first we need to define static info:
+Define the static information needed for minting:
 
 ```ts
 type OracleDatum = ConStr0<[Integer, Integer, PubKeyAddress]>;
@@ -367,7 +370,7 @@ const getAddressUtxosWithToken = async (
   };
 ```
 
-And a helper method to get the existing oracle information:
+Add a helper to fetch the current oracle state:
 
 ```ts
 const getOracleData = async () => {
@@ -400,7 +403,7 @@ const getOracleData = async () => {
 };
 ```
 
-Then we can build the core logic to mint the Plutus NFT:
+Build the core minting transaction:
 
 ```ts
 const utxos = await wallet?.getUtxos();
@@ -477,6 +480,90 @@ tx.mintRedeemerValue(mConStr0([]))
 const txHex = await tx.complete();
 ```
 
+## Source Code Walkthrough
+
+This section maps the multi-validator architecture to web2 patterns and explains how the three validators coordinate to mint unique, auto-incrementing NFTs.
+
+### Project Structure
+
+```
+08-plutus-nft/
+├── src/                    # NextJS application
+│   ├── app/                # App router pages and API routes
+│   ├── components/         # React components for oracle setup + minting UI
+│   └── lib/                # Contract helpers, blueprint loading, Mesh utilities
+├── aiken-workspace/        # On-chain smart contract code
+│   ├── lib/
+│   │   └── plutus-nft/
+│   │       └── types.ak    # OracleDatum, MintPolarity, OracleRedeemer
+│   ├── validators/
+│   │   ├── oracle_nft.ak   # One-time minting policy
+│   │   ├── oracle.ak       # State management validator
+│   │   └── plutus_nft.ak   # NFT minting validator
+│   └── plutus.json         # Compiled Plutus blueprint (CIP-0057)
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json            # Dependencies: NextJS + @meshsdk/core
+├── postcss.config.mjs
+└── tsconfig.json
+```
+
+The project follows the same two-part structure as the vesting lesson: `aiken-workspace/` holds the on-chain validators and `src/` is the NextJS frontend. The critical difference is that this project has three validators that work together rather than one standalone validator. The NextJS app orchestrates multi-validator transactions that touch all three in a single atomic operation.
+
+### The Three-Validator Architecture
+
+The system solves a fundamental problem: how do you guarantee unique, sequentially-numbered NFTs when anyone can submit a minting transaction at any time? The answer is a coordinated trio of validators.
+
+**1. Oracle NFT Validator (`oracle_nft.ak`)** -- The one-time minting policy. It ensures exactly one oracle token ever exists by requiring a specific UTXO to be consumed during minting. Once that UTXO is spent, the token can never be re-minted. This is the bootstrap step.
+
+**2. Oracle Validator (`oracle.ak`)** -- The state manager. It holds the oracle NFT at a script address alongside a datum containing the current NFT index (`count`), the minting price (`lovelace_price`), and the admin address (`fee_address`). Every time an NFT is minted, the oracle validator enforces that the count increments by exactly 1 and the fee is paid.
+
+**3. Plutus NFT Validator (`plutus_nft.ak`)** -- The minting policy for actual NFTs. It reads the oracle's current datum to determine the next index, constructs the token name as `CollectionName (index)`, and enforces that exactly one token with that name is minted.
+
+### Multi-Validator Interaction Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant App as NextJS App (Mesh SDK)
+    participant OracleNFT as Oracle NFT Policy
+    participant Oracle as Oracle Validator
+    participant PlutusNFT as Plutus NFT Policy
+
+    Note over OracleNFT,Oracle: One-time setup (done once by admin)
+    App->>OracleNFT: Mint oracle token (consume paramUtxo)
+    App->>Oracle: Lock oracle token with datum { count: 0, price, admin }
+
+    Note over User,PlutusNFT: Each NFT mint (repeatable)
+    User->>App: Request mint
+    App->>Oracle: Read oracle UTXO (get current count)
+    App->>Oracle: Spend oracle UTXO (redeemer: MintPlutusNFT)
+    Oracle->>Oracle: Validate: count incremented,<br/>fee paid, output value clean
+    App->>Oracle: Output oracle UTXO with { count + 1 }
+    App->>PlutusNFT: Mint token named "Collection (count)"
+    PlutusNFT->>PlutusNFT: Validate: oracle input present,<br/>token name matches index
+    App->>User: NFT delivered, oracle state updated
+```
+
+All of this happens in a single atomic transaction. Either every validator passes and the entire transaction succeeds, or nothing changes. There is no intermediate state where the oracle is updated but the NFT is not minted.
+
+### Web2 Equivalents
+
+If you have built systems with auto-incrementing IDs, unique constraints, and row-level locking, you already understand the patterns at play here.
+
+| Cardano Concept | Web2 Equivalent | What It Does |
+|---|---|---|
+| **Oracle validator** | Database table with an auto-increment primary key | Maintains a single source of truth for the next available index |
+| **One-time minting (oracle NFT)** | `UNIQUE` constraint / singleton row in a config table | Guarantees exactly one oracle exists -- no duplicates possible |
+| **State thread token** | Row-level lock (`SELECT ... FOR UPDATE`) | The oracle NFT must be present in both the input and output, ensuring only one transaction can modify the state at a time |
+| **`OracleDatum`** | Database record: `{ id SERIAL, price INT, admin_address TEXT }` | On-chain state storing the counter, price, and admin -- equivalent to a row in your state table |
+| **`count` field** | Auto-increment column (`SERIAL` / `AUTO_INCREMENT`) | Tracks the next NFT index, incremented atomically with each mint |
+| **`is_output_value_clean` check** | Input sanitization / SQL injection prevention | Prevents attackers from stuffing extra tokens into the oracle UTXO, which would bloat the transaction and potentially make the oracle unspendable -- the blockchain equivalent of a denial-of-service via malformed input |
+| **`StopOracle` redeemer** | Admin `DELETE` endpoint with auth check | Allows the admin to burn the oracle NFT and shut down the minting system, requiring a signature (like an authenticated API call) |
+| **Single atomic transaction** | Database transaction with `BEGIN` / `COMMIT` | All three validators execute in one transaction -- if any check fails, everything rolls back |
+
+The biggest conceptual shift from web2: there is no central database server serializing requests. Instead, the UTXO model provides natural concurrency control. Since the oracle UTXO can only be consumed once, two simultaneous mint requests will compete -- one succeeds and the other must retry with the updated state. This is analogous to optimistic concurrency control with a version column in a relational database.
+
 ## Packaged functions
 
-The Plutus NFT contract has been implemented in `@meshsdk/contract` package, you can find further explanation at the [Mesh documentation](https://meshjs.dev/smart-contracts/plutus-nft) and more details about entire stack source code at [Mesh repository](https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src/plutus-nft).
+The Plutus NFT contract is available as a packaged implementation in `@meshsdk/contract`. See the [Mesh documentation](https://meshjs.dev/smart-contracts/plutus-nft) for usage details and the [Mesh repository](https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src/plutus-nft) for the full source code.
