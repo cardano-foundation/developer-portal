@@ -2,17 +2,21 @@
 id: 04-contract-testing
 title: Contract Testing
 sidebar_label: 04 - Contract Testing
-description: Testing Aiken smart contracts.
+description: Test Aiken smart contracts using mock transactions, the mocktail library, and dynamic failure case generation with aiken check.
 ---
 
-Testing Aiken contracts is crucial to ensure they behave as expected. In this lesson, we will cover:
+# Lesson #04: Contract Testing
+
+Testing Aiken contracts ensures they behave as expected before deployment. This lesson covers:
 
 - Preparing a complex contract for testing
-- Building mock transactions in Aiken and running tests
+- Building mock transactions in Aiken and running tests with `aiken check`
+
+> Source code: [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-cardano/04-contract-testing)
 
 ## Preparing a Complex Contract
 
-We will enhance the withdrawal contract from the previous lesson to include two user actions: `ContinueCounting` or `StopCounting`.
+Start by enhancing the withdrawal contract from the previous lesson with two user actions: `ContinueCounting` and `StopCounting`.
 
 1. **ContinueCounting**:
    - Verify the transaction is signed by the app owner.
@@ -26,7 +30,7 @@ We will enhance the withdrawal contract from the previous lesson to include two 
 
 ### Contract Code
 
-```aiken
+```rs
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Credential}
 use cardano/assets.{PolicyId}
@@ -86,21 +90,21 @@ validator complex_withdrawal_contract(oracle_nft: PolicyId) {
 }
 ```
 
-In this setup, we define 2 potential user action with `MyRedeemer`, either to `ContinueCounting` or `StopCounting`. We built the partial logics for `ContinueCounting` action, which we put all the logics we have learnt from lesson 3.
+This setup defines two user actions with `MyRedeemer`: `ContinueCounting` and `StopCounting`. The partial logic for `ContinueCounting` applies the validation patterns covered in Lesson 3.
 
 ### `expect`
 
-Notice we touch on the syntax of `expect` the first time here. `expect` is used to enforce the exact pattern for a variable. In above example, `inputs_with_policy(reference_inputs, oracle_nft)` returns `List<Input>`. However, since in this application we are confident that there is always one item in the list, perhaps since `oracle_nft` is unique, it is impossible to obtain two inputs with `oracle_nft` in value. So that we can use `expect` here.
+The `expect` keyword enforces an exact pattern match on a variable. In this example, `inputs_with_policy(reference_inputs, oracle_nft)` returns `List<Input>`. Since `oracle_nft` is unique, the list always contains exactly one item, making `expect [oracle_ref_input]` a safe destructuring.
 
 ### `?` operator
 
-In the last line of `ContinueCounting` branch, you may notice the use of `?` operator. This operator is a tracing operator that helps to trace which condition fails when the validator fails. For example, if `is_app_owner_signed` is false, then the validator will fail with message `is_app_owner_signed?` which helps to identify the root cause of failure.
+The `?` operator in the `ContinueCounting` branch is a tracing operator. When a validator fails, it reports which condition evaluated to false. For example, if `is_app_owner_signed` is false, the validator fails with the message `is_app_owner_signed?`, making it easy to identify the root cause.
 
 ## Validating Input & Output
 
 We complete the contract by validating inputs and outputs:
 
-```aiken
+```rs
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Credential}
 use cardano/assets.{PolicyId, without_lovelace}
@@ -194,33 +198,35 @@ validator complex_withdrawal_contract(oracle_nft: PolicyId) {
 }
 ```
 
-We have used some new techniques here. We have extracted the inline datum of the state thread token input and output using `input_inline_datum` and `output_inline_datum`. We have also used `inputs_at_with_policy` and `outputs_at_with_policy` to filter the inputs and outputs at a specific address with a specific policy ID. With that, we can compare the datum of input and output to ensure the count is incremented by 1.
+This version introduces several new techniques:
 
-In `StopCounting` case, we ensure the state thread token is burned by checking the `mint` field of the transaction. We use `without_lovelace` to ignore the lovelace part of the value when comparing.
+- `input_inline_datum` and `output_inline_datum` extract inline datums from the state thread token's input and output
+- `inputs_at_with_policy` and `outputs_at_with_policy` filter inputs and outputs by address and policy ID
+- The datum comparison ensures the count increments by exactly 1
+
+For `StopCounting`, the validator ensures the state thread token is burned by checking the `mint` field. The `without_lovelace` function strips the lovelace portion of the value for clean comparison.
 
 ## Build mock transaction in Aiken
 
-All Aiken contracts can be interpreted as simple functions, which takes in a few parameters and returns a boolean value. This makes it easy to test the contract by providing mock data.
+All Aiken contracts are functions that take parameters and return a boolean. This makes testing straightforward: provide mock data and assert the result.
 
-In Aiken, we can build testing functions with `test` keyword, followed by running `aiken check` in project root to execute the tests.
+Define test functions with the `test` keyword, then run `aiken check` from the project root to execute them.
 
-The vanilla example:
+A minimal example:
 
-```aiken
+```rs
 test always_true() {
   True
 }
 ```
 
-With `aiken check`, we will see:
-
 ![Dummy Test](./img/04-contract-testing-1.png)
 
 ### Testing always succeed and always fail cases
 
-In our complex withdrawal contract, we have a `publish` function that always returns `True`. We can write a test for it:
+The complex withdrawal contract has a `publish` function that always returns `True`. Test it like this:
 
-```aiken
+```rs
 use mocktail.{complete, mock_utxo_ref, mocktail_tx}
 
 test test_publish() {
@@ -234,11 +240,11 @@ test test_publish() {
 }
 ```
 
-In this test, we call the `publish` function of our contract with mock parameters. We use `mocktail_tx()` to create a mock transaction and `complete()` to provide an empty `Transaction`.
+This test calls `publish` with mock parameters. `mocktail_tx()` creates a mock transaction and `complete()` finalizes it as an empty `Transaction`.
 
-For the rest of script purposes, it will fallback to the `else` branch which always fails. We can write a test for it:
+All other script purposes fall through to the `else` branch, which always fails. Test this expected failure:
 
-```aiken
+```rs
 test test_else() fail {
   complex_withdrawal_contract.else(
     "",
@@ -251,19 +257,17 @@ test test_else() fail {
 }
 ```
 
-Note that the test is not returning a `False`, but the programme breaks with `fail`. We can indicate that the test is expected to fail by adding `fail` after the test name.
-
-Running `aiken check` will show:
+The test does not return `False`; the program breaks with `fail`. Adding `fail` after the test name marks the test as expected to fail.
 
 ![Always Succeed and Always Fail Test](./img/04-contract-testing-2.png)
 
 ### Testing `withdraw` function
 
-You will notice the `withdraw` function is validated the `Transaction` mostly, therefore, we should craft the `Transaction` carefully. However, crafting it with mock data is a bit tricky especially when we have to deal with all the Aiken types. `vodka` library comes to rescue.
+The `withdraw` function validates the `Transaction` structure, so crafting accurate mock data is essential. Building all the required Aiken types manually is tedious, which is where the `vodka` library helps.
 
-In `vodka`, the `mocktail` module provides a set of functions to create mock data for testing Aiken contracts. We can use `mocktail_tx()` to create a mock `Transaction` and then use various functions to modify the transaction to fit our test case.
+The `mocktail` module in `vodka` provides functions for creating mock data. Start with `mocktail_tx()` to create a base `Transaction`, then chain modifier functions to fit your test case:
 
-```aiken
+```rs
 const mock_oracle_nft = mock_policy_id(0)
 
 const mock_oracle_address = mock_script_address(0, None)
@@ -319,11 +323,11 @@ fn mock_continue_counting_tx() -> Transaction {
 }
 ```
 
-We can import all the `mock_...` functions from `mocktail` module to build up the types we need. In above example, we create a mock transaction for `ContinueCounting` action. We create the oracle NFT input with inline datum, the state thread token input with inline datum, the state thread token output with inline datum, the required signer and the validity range.
+The `mock_...` functions from the `mocktail` module build up the required types. This mock transaction for `ContinueCounting` includes the oracle NFT reference input with inline datum, state thread token input and output with inline datums, required signer, and validity range.
 
-Now we can write a test for `ContinueCounting` action:
+Test the `ContinueCounting` action:
 
-```aiken
+```rs
 test success_continue_counting() {
   complex_withdrawal_contract.withdraw(
     mock_oracle_nft,
@@ -336,9 +340,11 @@ test success_continue_counting() {
 
 ### Dynamically Testing Failure Cases
 
-In the mocktail transaction building methods, we can pass a boolean parameter to indicate whether we want the field to be present or not. This allows us to dynamically create failure cases by omitting certain fields.
+![Boolean Toggle Testing Pattern](./img/cardano04-01.png)
 
-```aiken
+The mocktail builder methods accept a boolean parameter to include or exclude fields. This enables dynamic failure case generation by toggling individual conditions:
+
+```rs
 type ContinueCountingTest {
   is_ref_input_presented: Bool,
   is_thread_input_presented: Bool,
@@ -393,9 +399,9 @@ fn mock_continue_counting_tx(test_case: ContinueCountingTest) -> Transaction {
 }
 ```
 
-And we update the successful test accordingly:
+Update the success test to use the parameterized structure:
 
-```aiken
+```rs
 test success_continue_counting() {
   let test_case =
     ContinueCountingTest {
@@ -416,9 +422,9 @@ test success_continue_counting() {
 }
 ```
 
-And we can populate the failure cases at ease:
+Failure cases are now straightforward to create by toggling a single boolean:
 
-```aiken
+```rs
 test fail_continue_counting_no_ref_input() fail {
   let test_case =
     ContinueCountingTest {
@@ -534,9 +540,90 @@ test fail_continue_counting_app_expired() {
 }
 ```
 
-Running `aiken check` will show:
 ![Continue Counting Tests](./img/04-contract-testing-3.png)
 
 ### Exercise
 
-Write tests for `StopCounting` action. Refer to `ContinueCounting` tests for guidance. Suggested answers are in the code example.
+Write tests for the `StopCounting` action using the same pattern. Follow the `ContinueCounting` tests as a reference. Suggested answers are available in the code example.
+
+## Source Code Walkthrough
+
+This section walks through the project structure and testing patterns used in the source code, connecting them to testing practices you already know from web2 development.
+
+### Project Structure
+
+```
+04-contract-testing/
+├── validators/
+│   └── withdraw.ak       # Complex withdrawal contract with all tests
+├── aiken.toml             # Project config (like package.json for Aiken)
+├── aiken.lock             # Dependency lock file (like package-lock.json)
+└── plutus.json            # Compiled blueprint output (build artifact)
+```
+
+Compared to Lesson 3's scaffolded project, this is a standalone Aiken project with no `mesh/` folder or `aiken-workspace/` wrapper. Everything lives at the root.
+
+| Aiken File | Web2 Equivalent | Purpose |
+|---|---|---|
+| `aiken.toml` | `package.json` | Declares the project name, version, and dependencies (e.g., `vodka` for test utilities). |
+| `aiken.lock` | `package-lock.json` / `bun.lockb` | Pins exact dependency versions for reproducible builds. |
+| `plutus.json` | Compiled build output (e.g., `dist/`) | The compiled Plutus blueprint. Generated by `aiken build` and consumed by off-chain code to interact with the contract. |
+| `validators/withdraw.ak` | `src/` + `__tests__/` combined | Contains both the contract logic and its test functions in the same file. Aiken does not separate source and test directories. |
+
+### Test Architecture: The Mock Transaction Builder Pattern
+
+The core testing pattern in this lesson is building mock transactions with configurable boolean toggles. This is the Aiken equivalent of parameterized tests with fixture factories.
+
+```mermaid
+flowchart TD
+    subgraph TEST_CASE["Test Case Definition"]
+        TC["ContinueCountingTest struct\n(6 boolean fields)"]
+    end
+
+    subgraph MOCK_BUILDER["Mock Transaction Builder"]
+        BASE["mocktail_tx()\nEmpty transaction"]
+        BASE -->|"is_ref_input_presented"| REF["ref_tx_in()\nOracle NFT reference"]
+        REF -->|"is_thread_input_presented"| TXI["tx_in()\nState thread input"]
+        TXI -->|"is_thread_output_presented"| TXO["tx_out()\nState thread output"]
+        TXO -->|"is_count_added"| DAT["Datum: count 0 or 1"]
+        DAT -->|"is_app_owner_signed"| SIG["required_signer_hash()"]
+        SIG -->|"is_tx_not_expired"| EXP["invalid_hereafter()"]
+        EXP --> DONE["complete()\nFinalized Transaction"]
+    end
+
+    subgraph VALIDATOR["Validator Under Test"]
+        DONE --> VAL["complex_withdrawal_contract.withdraw()"]
+        VAL --> PASS["True = transaction valid"]
+        VAL --> FAIL["False / fail = transaction rejected"]
+    end
+
+    TC --> BASE
+```
+
+The flow works like this:
+
+1. **Define a test case struct** with boolean fields -- one per validation condition in the contract.
+2. **Pass the struct to a builder function** that chains `mocktail` helpers. Each boolean controls whether a particular piece of transaction data is included or excluded.
+3. **Call the validator** with the assembled mock transaction and assert the result.
+
+This pattern maps directly to web2 testing concepts:
+
+| Aiken Testing Concept | Web2 Equivalent | Explanation |
+|---|---|---|
+| `aiken check` | `npm test` / `bun test` | The CLI command that discovers and runs all `test` functions in the project. |
+| `mocktail_tx()` + builder chain | Test fixture factory / request builder | Constructs a fake transaction the same way you would build a mock HTTP request with headers, body, and auth tokens. |
+| `ContinueCountingTest` struct | Parameterized test config | A struct of booleans that toggles individual conditions, similar to `test.each()` in Jest or table-driven tests in Go. |
+| Boolean toggles (`True`/`False`) | Feature flags in test fixtures | Each boolean includes or excludes one piece of the mock transaction, isolating a single failure condition per test. |
+| `test ... fail` keyword | `expect(...).toThrow()` | Marks a test as expected to fail. The test passes only if the validator crashes or returns `False`. |
+| `expect` keyword | `assert` / runtime type check | Pattern-matches a value and crashes if the shape does not match -- like a runtime schema validation. |
+| `?` trace operator | Debug logging on assertion failure | Appends the variable name to the error trace when a condition is `False`, so you immediately see which check failed. |
+
+### Why This Pattern Works Well
+
+In web2 testing, you typically write one test per failure mode: missing auth header, expired token, malformed body, and so on. The boolean toggle pattern achieves the same thing for Cardano validators. The success test has all booleans set to `True`. Each failure test flips exactly one boolean to `False`, isolating the specific validation rule being tested.
+
+This approach scales cleanly: when you add a new validation condition to the contract, you add one boolean to the struct, set it to `True` in the success test, and write one new failure test with that boolean set to `False`.
+
+## Source code
+
+The source code for this lesson is available on [GitHub](https://github.com/cardanobuilders/cardanobuilders.github.io/tree/main/codes/course-cardano/04-contract-testing).
