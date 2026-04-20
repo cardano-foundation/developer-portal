@@ -33,7 +33,3 @@ Visit [docs.charli3.io](https://docs.charli3.io/oracles) for:
 - Example contracts and implementations
 - Datum standard specifications
 - Technical references and terminology
-
----
-
-**Related**: [Orcfax](/docs/build/integrate/oracles/orcfax) | [Oracles Overview](/docs/build/integrate/oracles/overview)

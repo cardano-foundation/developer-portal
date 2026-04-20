@@ -488,6 +488,7 @@ module.exports = {
             items: [
               "build/integrate/oracles/charli3",
               "build/integrate/oracles/orcfax",
+              "build/integrate/oracles/pyth",
             ],
           },
           "build/integrate/exchange-integrations",

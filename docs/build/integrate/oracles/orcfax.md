@@ -50,7 +50,3 @@ Visit [docs.orcfax.io](https://docs.orcfax.io) for:
 - Feed definitions and technical specifications
 
 Explore available feeds on the [Orcfax Explorer](https://explorer.orcfax.io).
-
----
-
-**Related**: [Charli3](/docs/build/integrate/oracles/charli3) | [Oracles Overview](/docs/build/integrate/oracles/overview)
