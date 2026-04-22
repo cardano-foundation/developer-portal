@@ -61,9 +61,9 @@ Mithril enables trustless state verification by allowing stake pool operators to
 - [SPOKit SPO Japanese Guild Tool](https://spokit.spojapanguild.net/) specifically for Japanese-speaking operators
 - [CFD Cardano Fast Deployment tool](https://github.com/cardano-community/cfd) Your toolkit for quick and convenient management of your Cardano software.
 
-### Stake Pool setup guidelines
-- [Coin Cashew Guides](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node) for stake pool operators.
-- [Japanese SPO Guild Setup guide](https://docs.spojapanguild.net/cardano/setup/node-setup/)  a technical manual in Japanese for building and operating stake pools
+### Stake pool setup
+- [CoinCashew Guide](https://coincashew.io) offers up-to-date and comprehensive information including step-by-step procedures on topics related to operating Cardano Node and supporting software in practical, real-world scenarios. The guide also explains in detail how to upgrade Cardano Node software. Open-source educational content available since 2021, the _How to Set Up a Cardano Stake Pool_ guide continues to serve as an invaluable resource for experienced Cardano community members while also playing an essential role in welcoming newcomers to the Cardano ecosystem.
+- [Japanese SPO Guild Setup guide](https://docs.spojapanguild.net/cardano/setup/node-setup/) a technical manual in Japanese for building and operating stake pools
 - [TOPO Guide](https://es-kb.topopool.com/primeros-pasos). A friendly and complete guide to create a stake pool in Spanish
 - [Cardano Course](https://cardano-course.gitbook.io/cardano-course/), a cardano-node and cardano-cli course by IOG.
 
