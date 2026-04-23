@@ -829,6 +829,15 @@ export const BuilderTools = [
     getstarted: "https://mithril.network/doc/manual/welcome",
     tags: ["rust", "cli", "javascript", "typescript"],
   },
+  {
+    title: "NOWNodes",
+    description:
+      "Instant access to multiple Cardano interfaces and 120+ other chains.",
+    preview: require("./images/nownodes.png"),
+    website: "https://nownodes.io",
+    getstarted: "https://nownodes.gitbook.io/ada-cardano-1",
+    tags: ["hosted", "provider", "json", "http", "websocket"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
