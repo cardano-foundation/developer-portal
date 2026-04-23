@@ -82,7 +82,7 @@ tools on your system:
   <TabItem value="ubuntu" label="Debian/Ubuntu" default>
     ```bash
     sudo apt-get update -y
-    sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libncurses-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libtool autoconf liblmdb-dev libsnappy-dev protobuf-compiler liburing2 -y
+    sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libncurses-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libtool autoconf liblmdb-dev libsnappy-dev protobuf-compiler liburing-dev -y
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora, RedHat or CentOS">
