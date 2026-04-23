@@ -39,12 +39,32 @@ export default function MermaidDiagramFrame({hint, diagram}) {
   const zoomRef = useRef(DEFAULT_ZOOM);
   const isPanningRef = useRef(false);
   const panStartRef = useRef({x: 0, y: 0, left: 0, top: 0});
+  const didAutoCenterRef = useRef(false);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [fullscreen, setFullscreen] = useState(false);
+
+  const centerViewport = useCallback(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+    const left = Math.max(0, (el.scrollWidth - el.clientWidth) / 2);
+    const top = Math.max(0, (el.scrollHeight - el.clientHeight) / 2);
+    el.scrollLeft = left;
+    el.scrollTop = top;
+  }, []);
 
   useEffect(() => {
     zoomRef.current = zoom;
   }, [zoom]);
+
+  useEffect(() => {
+    // Auto-center once, after Mermaid has had a moment to render its SVG.
+    if (didAutoCenterRef.current) return;
+    didAutoCenterRef.current = true;
+    const t = setTimeout(() => {
+      requestAnimationFrame(() => centerViewport());
+    }, 0);
+    return () => clearTimeout(t);
+  }, [centerViewport, diagram]);
 
   useEffect(() => {
     const onChange = () => setFullscreen(isFullscreenActive());
@@ -139,7 +159,11 @@ export default function MermaidDiagramFrame({hint, diagram}) {
     );
   }, []);
 
-  const zoomReset = useCallback(() => setZoom(DEFAULT_ZOOM), []);
+  const zoomReset = useCallback(() => {
+    setZoom(DEFAULT_ZOOM);
+    // Re-center after reset so the full map is back in view.
+    setTimeout(() => requestAnimationFrame(() => centerViewport()), 0);
+  }, [centerViewport]);
 
   const toggleFullscreen = useCallback(() => {
     const el = rootRef.current;
