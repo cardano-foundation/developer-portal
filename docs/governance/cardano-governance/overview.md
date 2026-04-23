@@ -17,19 +17,19 @@ Any proposed change to the network is submitted as a **governance action**, a tr
 
 Cardano’s governance relies on three distinct governing bodies working together to balance power, represent the community, and protect the network. 
 
-### 1. Ada Holders & Delegated Representatives (DReps)
+### 1. Ada Holders & Delegated Representatives (DReps) {#dreps}
 Ada holders are the core of Cardano’s governance. Because every Ada holder has voting power, they have the ultimate say in shaping the blockchain's future. 
 
 * **Delegation:** Ada holders can delegate their voting rights to Delegated Representatives (DReps) to aggregate their influence. This is similar to delegating stake to a stake pool, but it specifically directs voting power.
 * **Becoming a DRep:** Any Ada holder can register to become a DRep. By locking a refundable deposit, they can actively debate proposals, gather community feedback, and vote on behalf of the Ada holders who have delegated to them.
 * **Submitting Actions:** Any Ada holder can propose a governance action on-chain by providing a refundable deposit.
 
-### 2. Stake Pool Operators (SPOs)
+### 2. Stake Pool Operators (SPOs) {#spos}
 SPOs are fundamental to the network's operational integrity and security. Alongside producing blocks, they play a crucial role in governance:
 * **Voting on Technical Changes:** SPOs vote on specific governance actions, particularly those that impact the technical operation of the network, such as hard forks.
 * **Implementing Upgrades:** Once a technical change is approved through governance, SPOs are responsible for upgrading their node infrastructure to comply with the new rules.
 
-### 3. The Constitutional Committee (CC)
+### 3. The Constitutional Committee (CC) {#cc}
 The Constitutional Committee oversees the governance process to ensure that all approved actions adhere to the foundational principles defined in the Cardano Constitution. 
 * **Providing Checks and Balances:** The CC does not create proposals; rather, it reviews the constitutionality of submitted governance actions.
 * **Community Elected:** The CC is a community-elected body, ensuring that the oversight of the network remains in the hands of the Cardano ecosystem.

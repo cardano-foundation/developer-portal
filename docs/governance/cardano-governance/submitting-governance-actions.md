@@ -222,7 +222,7 @@ Before submitting your governance action, verify you have completed all the foll
 ### General Documentation
 
 - [**Governance Action Overview**](./governance-actions.md)
-- [**Cardano Constitution**](https://constitution.gov.tools/en)
+- **Cardano Constitution**
 
 ### Governance Action Relevant Cardano Improvment Proposals
 

@@ -88,12 +88,12 @@ console.log(txHash);
 
 Explore the following sections to learn more about Evolution SDK:
 
-- [Under the hood](https://no-witness-labs.github.io/evolution-sdk/documentation/under-the-hood) - Understand how Evolution library works
-- [Deep dives](https://no-witness-labs.github.io/evolution-sdk/documentation/pay-methods) - Follow this series in order to step-by-step understand how to build your own off-chain code for different/advanced use cases
+- [Under the hood](https://intersectmbo.github.io/evolution-sdk/docs/) - Understand how Evolution library works
+- [Deep dives](https://intersectmbo.github.io/evolution-sdk/docs/) - Follow this series in order to step-by-step understand how to build your own off-chain code for different/advanced use cases
 
 ## Resources
 
-- [Official Evolution Library Documentation](https://no-witness-labs.github.io/evolution-sdk/)
-- [GitHub Repository](https://github.com/no-witness-labs/evolution-sdk)
+- [Official Evolution Library Documentation](https://intersectmbo.github.io/evolution-sdk/)
+- [GitHub Repository](https://github.com/IntersectMBO/evolution-sdk)
 
 > You now have all you need to start playing around with Evolution SDK. If you have any questions, please refer to the library's [Discord community](https://discord.com/invite/eqZDvHvW6k).
