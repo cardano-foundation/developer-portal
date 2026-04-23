@@ -829,6 +829,22 @@ export const BuilderTools = [
     getstarted: "https://mithril.network/doc/manual/welcome",
     tags: ["rust", "cli", "javascript", "typescript"],
   },
+  {
+    title: "CardanoVSC",
+    description: "An VS code extenstion for Cardano haskell & Plutus Smart contract Devlopement.",
+    preview: require("./images/cardanoVSC-icon.png"),
+    website: "https://marketplace.visualstudio.com/items?itemName=AIQUANT-TECHNOLOGIES.cardanovsc",
+    getstarted: "https://github.com/AIQUANT-Tech/CardanoVSC/tree/main/CardanoVSC#readme",
+    tags: ["haskell", "IDE","cli","smartcontracts"]  // See tags.js for all available tags
+  },
+  {
+    title: "CardanoVSC Debugger",
+    description: "CardanoVSC Debugger (vscode extension) is a lightweight yet powerful Visual Studio Code extension tailored for debugging Haskell and Plutus smart contracts.",
+    preview: require("./images/cardanoVSCdebugger-icon.png"),
+    website: "https://marketplace.visualstudio.com/items?itemName=AIQUANT-TECHNOLOGIES.cardanovsc-debugger&ssr=false#overview",
+    getstarted: "https://github.com/AIQUANT-Tech/CardanoVSC/tree/main/CardanoVSC_Debugger#readme",
+    tags: ["haskell", "testing","cli","smartcontracts"]  // See tags.js for all available tags
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
