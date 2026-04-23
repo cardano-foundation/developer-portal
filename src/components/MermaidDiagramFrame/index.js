@@ -36,6 +36,7 @@ export default function MermaidDiagramFrame({hint, diagram}) {
   const rootRef = useRef(null);
   const viewportRef = useRef(null);
   const zoomRef = useRef(1);
+  const didAutoFitRef = useRef(false);
   const isPanningRef = useRef(false);
   const panStartRef = useRef({x: 0, y: 0, left: 0, top: 0});
   const [zoom, setZoom] = useState(1);
@@ -54,6 +55,59 @@ export default function MermaidDiagramFrame({hint, diagram}) {
       document.removeEventListener("webkitfullscreenchange", onChange);
     };
   }, []);
+
+  const fitToViewport = useCallback(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    const svg = viewport.querySelector("svg");
+    if (!svg) return;
+
+    // Prefer explicit width; fall back to bounding box.
+    const svgRect = svg.getBoundingClientRect();
+    const viewportRect = viewport.getBoundingClientRect();
+
+    // Account for padding (1rem on each side from CSS).
+    const computed = window.getComputedStyle(viewport);
+    const padX =
+      parseFloat(computed.paddingLeft || "0") +
+      parseFloat(computed.paddingRight || "0");
+
+    const availableW = Math.max(1, viewportRect.width - padX);
+    const diagramW = Math.max(1, svgRect.width);
+    const next = availableW / diagramW;
+    const clamped = Math.min(
+      ZOOM_MAX,
+      Math.max(ZOOM_MIN, Math.round(next * 100) / 100),
+    );
+
+    zoomRef.current = clamped;
+    setZoom(clamped);
+    // Reset pan to top-left so users start “in frame”.
+    viewport.scrollLeft = 0;
+    viewport.scrollTop = 0;
+  }, []);
+
+  // Auto-fit once per diagram render (and after fullscreen toggles).
+  useEffect(() => {
+    didAutoFitRef.current = false;
+  }, [diagram]);
+
+  useEffect(() => {
+    if (didAutoFitRef.current) return;
+    // Mermaid renders async; defer a couple ticks.
+    const t1 = setTimeout(() => {
+      fitToViewport();
+      didAutoFitRef.current = true;
+    }, 50);
+    const t2 = setTimeout(() => {
+      fitToViewport();
+      didAutoFitRef.current = true;
+    }, 250);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [fitToViewport, fullscreen, diagram]);
 
   useEffect(() => {
     const el = viewportRef.current;
@@ -183,6 +237,14 @@ export default function MermaidDiagramFrame({hint, diagram}) {
             aria-label="Zoom in"
           >
             +
+          </button>
+          <button
+            type="button"
+            className="button button--secondary button--sm"
+            onClick={fitToViewport}
+            aria-label="Fit diagram to viewport"
+          >
+            Fit
           </button>
           <button
             type="button"
