@@ -50,9 +50,9 @@
 
 .viewport {
   position: relative;
-  /* No inner scroll: content grows and the doc page scrolls instead. */
-  overflow: visible;
-  height: auto;
+  /* Pannable viewport (scroll), with hidden scrollbars. */
+  overflow: auto;
+  height: calc(100vh - var(--ifm-navbar-height, 3.75rem) - 1.5rem);
   min-height: max(
     16rem,
     calc(100vh - var(--ifm-navbar-height, 3.75rem) - 1.5rem)
@@ -60,15 +60,27 @@
   padding: 1rem;
   /* Diagram canvas: white in light theme */
   background-color: #ffffff;
+  cursor: grab;
+  scrollbar-width: none; /* Firefox */
 }
 
 @supports (height: 100dvh) {
   .viewport {
+    height: calc(100dvh - var(--ifm-navbar-height, 3.75rem) - 1.5rem);
     min-height: max(
       16rem,
       calc(100dvh - var(--ifm-navbar-height, 3.75rem) - 1.5rem)
     );
   }
+}
+
+/* WebKit scrollbar hiding */
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.viewport:active {
+  cursor: grabbing;
 }
 
 :global(html[data-theme="dark"]) .viewport {
@@ -80,12 +92,12 @@
   flex: 1;
   min-height: 0;
   height: auto;
-  /* Full screen: still no dedicated viewport scrollbar; use zoom if needed. */
-  overflow: hidden;
+  overflow: auto;
 }
 
 .scaleWrap {
-  width: 100%;
+  /* Give the inner content room to scroll/pan into. */
+  width: max(100%, 1400px);
   box-sizing: border-box;
   transform-origin: top center;
   transition: transform 0.12s ease-out;

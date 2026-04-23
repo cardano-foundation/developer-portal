@@ -36,6 +36,8 @@ export default function MermaidDiagramFrame({hint, diagram}) {
   const rootRef = useRef(null);
   const viewportRef = useRef(null);
   const zoomRef = useRef(1);
+  const isPanningRef = useRef(false);
+  const panStartRef = useRef({x: 0, y: 0, left: 0, top: 0});
   const [zoom, setZoom] = useState(1);
   const [fullscreen, setFullscreen] = useState(false);
 
@@ -74,6 +76,54 @@ export default function MermaidDiagramFrame({hint, diagram}) {
     };
     el.addEventListener("wheel", onWheel, {passive: false});
     return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) {
+      return undefined;
+    }
+
+    const onPointerDown = (e) => {
+      // Only left click / primary pointer
+      if (e.button !== 0) return;
+      // Avoid interfering with link clicks inside the SVG.
+      if (e.target && e.target.closest && e.target.closest("a")) return;
+
+      isPanningRef.current = true;
+      panStartRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+        left: el.scrollLeft,
+        top: el.scrollTop,
+      };
+      el.setPointerCapture?.(e.pointerId);
+    };
+
+    const onPointerMove = (e) => {
+      if (!isPanningRef.current) return;
+      const start = panStartRef.current;
+      el.scrollLeft = start.left - (e.clientX - start.x);
+      el.scrollTop = start.top - (e.clientY - start.y);
+    };
+
+    const endPan = () => {
+      isPanningRef.current = false;
+    };
+
+    el.addEventListener("pointerdown", onPointerDown);
+    el.addEventListener("pointermove", onPointerMove);
+    el.addEventListener("pointerup", endPan);
+    el.addEventListener("pointercancel", endPan);
+    el.addEventListener("mouseleave", endPan);
+
+    return () => {
+      el.removeEventListener("pointerdown", onPointerDown);
+      el.removeEventListener("pointermove", onPointerMove);
+      el.removeEventListener("pointerup", endPan);
+      el.removeEventListener("pointercancel", endPan);
+      el.removeEventListener("mouseleave", endPan);
+    };
   }, []);
 
   const zoomIn = useCallback(() => {
