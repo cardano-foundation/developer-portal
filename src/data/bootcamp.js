@@ -1,19 +1,29 @@
 /**
  * Bootcamp curriculum data.
- * Drives the landing page accordion timeline. Update this to add modules or topics.
+ * Drives the landing page accordion timeline.
  */
 
 const modules = [
   {
     number: 1,
     title: "Theory",
-    description: "Application-layer fundamentals. What builders need to know, nothing they don't.",
+    description: "Blockchain and Cardano fundamentals. What builders need to know.",
     topics: [
-      { title: "How Cardano Works", description: "Application-layer overview. What the blockchain does and why it's built this way." },
-      { title: "The eUTxO Model", description: "Inputs, outputs, datums, redeemers. Why this shapes everything." },
-      { title: "Transactions & Fees", description: "How transactions are constructed, fee mechanics, min-UTXO." },
-      { title: "Native Assets", description: "Minting policies, asset IDs, fungible vs non-fungible." },
-      { title: "Smart Contracts on Cardano", description: "Validators, script contexts, the validator lifecycle." },
+      { title: "What is a Blockchain?", description: "Distributed ledgers, the trust problem, and how blockchains solve it." },
+      { title: "Cryptographic Primitives", description: "Hashing, digital signatures, and the crypto behind the chain." },
+      { title: "Consensus Mechanisms", description: "How networks agree. Proof of Stake and Ouroboros." },
+      { title: "The UTxO Model", description: "Inputs, outputs, and why Cardano doesn't use accounts." },
+      { title: "Wallets, Keys & Addresses", description: "Key derivation, address types, and wallet architecture." },
+      { title: "Transactions", description: "How transactions are constructed and submitted." },
+      { title: "Smart Contracts", description: "What validators are and how they work on Cardano." },
+      { title: "Smart Contract Languages", description: "Aiken, Plutus, OpShin, and the landscape of choices." },
+      { title: "Datum, Redeemer, Context", description: "The three pieces of data every validator receives." },
+      { title: "Native Tokens", description: "Minting policies, asset IDs, fungible vs non-fungible." },
+      { title: "DeFi Concepts", description: "DEXes, lending, stablecoins, and how they work on UTxO." },
+      { title: "Stake Pools & Delegation", description: "How staking works and what it means for dApps." },
+      { title: "Developer Infrastructure", description: "Nodes, APIs, indexers, and the tools you'll use." },
+      { title: "Blockchain Security", description: "Threat models and security considerations for builders." },
+      { title: "Cardano Governance", description: "On-chain governance, DReps, and the Conway era." },
     ],
   },
   {
@@ -21,14 +31,19 @@ const modules = [
     title: "Practical Course",
     description: "Hands-on exercises. From your first transaction to multi-validator production systems.",
     topics: [
-      { title: "Hello World", description: "Set up Mesh SDK, connect a wallet, send your first transaction." },
+      { title: "Hello World", description: "Set up Mesh SDK, create a wallet, send your first lovelace." },
       { title: "Multisig", description: "Multi-signature transactions with a NextJS frontend." },
-      { title: "First Aiken Contract", description: "Write, compile, and deploy a smart contract in Aiken." },
-      { title: "Testing Contracts", description: "Test Aiken contracts with mock transactions." },
+      { title: "Aiken Contracts", description: "Write, compile, and deploy a smart contract in Aiken." },
+      { title: "Contract Testing", description: "Test Aiken contracts with mock transactions." },
       { title: "Validation Best Practices", description: "Lean validators, less on-chain work." },
-      { title: "Reading Blueprints", description: "CIP-57 blueprints. Bridging on-chain and off-chain." },
+      { title: "Interpreting Blueprints", description: "CIP-57 blueprints. Bridging on-chain and off-chain." },
       { title: "Vesting Contract", description: "Lockup contract. Real DeFi primitive." },
-      { title: "Multi-Validator NFT", description: "Multi-validator system with state threads." },
+      { title: "Plutus NFT", description: "Multi-validator system with state threads." },
+      { title: "Hydra", description: "Layer 2 scaling with Hydra heads." },
+      { title: "Web3 Services", description: "Integrating with Web3 services and APIs." },
+      { title: "Project: Token-Gated Voting", description: "Build a voting dApp with token-gated access." },
+      { title: "Project: Escrow Marketplace", description: "Build an escrow-based marketplace." },
+      { title: "Project: Full-Stack dApp", description: "End-to-end dApp with frontend, contracts, and deployment." },
     ],
   },
   {
