@@ -674,4 +674,40 @@ module.exports = {
       ],
     },
   ],
+
+  bootcampSidebar: [
+    {
+      type: "link",
+      label: "Bootcamp Home",
+      href: "/bootcamp",
+    },
+    {
+      type: "category",
+      label: "Phase 1: Foundations",
+      items: [
+        "bootcamp/theory/overview",
+      ],
+    },
+    {
+      type: "category",
+      label: "Phase 2: Build",
+      items: [
+        "bootcamp/practical/overview",
+      ],
+    },
+    {
+      type: "category",
+      label: "Phase 3: Level Up",
+      items: [
+        "bootcamp/patterns/overview",
+      ],
+    },
+    {
+      type: "category",
+      label: "Phase 4: Defend",
+      items: [
+        "bootcamp/security/overview",
+      ],
+    },
+  ],
 };

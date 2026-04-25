@@ -383,3 +383,8 @@ div#faucetcontainer {
     display: none !important;
   }
 }
+
+/* Hide sidebar on pages that use sidebar_class_name: hidden (e.g. bootcamp landing) */
+aside.hidden {
+  display: none !important;
+}
