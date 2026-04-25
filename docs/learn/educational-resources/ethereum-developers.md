@@ -733,7 +733,7 @@ This is just one of many eUTxO-specific patterns. The documentation covers these
 ## Next Steps
 
 1. **Learn Aiken**: Start with [aiken-lang.org](https://aiken-lang.org) for the language guide and tutorials. Check out the [Aiken Standard Library](https://aiken-lang.github.io/stdlib/) for more to help you build your validator.
-2. **Hands-on Lessons**: Work through [Smart Contract Lessons](/docs/smart-contracts/lessons/) for practical insights
+2. **Hands-on Lessons**: Work through the [Cardano Bootcamp](/docs/bootcamp/curriculum/practical/) for practical insights
 3. **Set Up Off-chain**: Use [Client SDKs](/docs/get-started/client-sdks/overview) for transaction building
 4. **Get Test ADA**: Use the [testnet faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) to get tADA for [Preview or Preprod testnets](/docs/get-started/networks/testnets)
 5. **Explore Core Concepts**: Read about the [eUTxO Model](/docs/learn/core-concepts/eutxo) for deeper understanding

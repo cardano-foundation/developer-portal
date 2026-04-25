@@ -507,6 +507,43 @@ const redirects = [
     to: '/docs/build/smart-contracts/advanced/design-patterns/linked-list',
     from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/linked-list',
   },
+  // Old smart contract lessons → bootcamp practical course
+  {
+    to: '/docs/bootcamp/curriculum/practical/',
+    from: '/docs/smart-contracts/lessons/',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/01-wallet-send-lovelace',
+    from: '/docs/smart-contracts/lessons/01-hello-world',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/02-multisig',
+    from: '/docs/smart-contracts/lessons/02-multisig',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/03-aiken-contracts',
+    from: '/docs/smart-contracts/lessons/03-aiken-contracts',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/04-contract-testing',
+    from: '/docs/smart-contracts/lessons/04-contract-testing',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/05-avoid-redundant-validation',
+    from: '/docs/smart-contracts/lessons/05-avoid-redundant-validation',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/06-interpreting-blueprint',
+    from: '/docs/smart-contracts/lessons/06-interpreting-blueprint',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/07-vesting',
+    from: '/docs/smart-contracts/lessons/07-vesting',
+  },
+  {
+    to: '/docs/bootcamp/curriculum/practical/08-plutus-nft',
+    from: '/docs/smart-contracts/lessons/08-plutus-nft',
+  },
 ];
 
 module.exports = redirects;
