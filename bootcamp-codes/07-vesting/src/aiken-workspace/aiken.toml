@@ -1,0 +1,23 @@
+name = "meshjs/vesting"
+version = "0.0.0"
+compiler = "v1.1.0"
+plutus = "v3"
+license = "Apache-2.0"
+description = "Aiken contracts for project 'meshjs/vesting'"
+
+[repository]
+user = "meshjs"
+project = "vesting"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v2"
+source = "github"
+
+[[dependencies]]
+name = "sidan-lab/vodka"
+version = "0.1.0-beta"
+source = "github"
+
+[config]

@@ -1,0 +1,76 @@
+{
+  "preamble": {
+    "title": "meshjs/vesting",
+    "description": "Aiken contracts for project 'meshjs/vesting'",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.0+unknown"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "vesting.vesting.spend",
+      "datum": {
+        "title": "datum_opt",
+        "schema": {
+          "$ref": "#/definitions/vesting~1VestingDatum"
+        }
+      },
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "compiledCode": "5901a7010100323232323232322533300232323232325332330083001300937540042646464a66601666e1d2000300c37540022646464a66601c660026eb0c008c040dd50059bae3013301430103754006294454ccc038cc004dd6180118081baa00b375c60266028602860206ea800c4c8cc88c8c8c8c8c94ccc058c03cc05cdd5001099299980b802099b88007001002375a603660306ea80080044c94ccc058c03cc05cdd5001099299980b802001099b89007001375a603660306ea8008004528180c8011806180a1baa3018301900133016301700133016333012300b30133754602e603000298103d87a80004c0103d87980004bd7018099baa3003301337540046028602a602a602a602a602a602a602a60226ea8030dd6980098089baa0042301400114a044646600200200644a66602800229404c94ccc048cdc79bae301700200414a2266006006002602e00246024602660266026602660266026602660260026020601a6ea800458c03cc040008c038004c028dd50011b874800858c02cc030008c028004c028008c020004c010dd50008a4c26cacae6955ceaab9e5573eae815d0aba21",
+      "hash": "d13324c13a48b69d67ccfc88e3e87f046f4417f57f5c740d515249fb"
+    },
+    {
+      "title": "vesting.vesting.else",
+      "compiledCode": "5901a7010100323232323232322533300232323232325332330083001300937540042646464a66601666e1d2000300c37540022646464a66601c660026eb0c008c040dd50059bae3013301430103754006294454ccc038cc004dd6180118081baa00b375c60266028602860206ea800c4c8cc88c8c8c8c8c94ccc058c03cc05cdd5001099299980b802099b88007001002375a603660306ea80080044c94ccc058c03cc05cdd5001099299980b802001099b89007001375a603660306ea8008004528180c8011806180a1baa3018301900133016301700133016333012300b30133754602e603000298103d87a80004c0103d87980004bd7018099baa3003301337540046028602a602a602a602a602a602a602a60226ea8030dd6980098089baa0042301400114a044646600200200644a66602800229404c94ccc048cdc79bae301700200414a2266006006002602e00246024602660266026602660266026602660260026020601a6ea800458c03cc040008c038004c028dd50011b874800858c02cc030008c028004c028008c020004c010dd50008a4c26cacae6955ceaab9e5573eae815d0aba21",
+      "hash": "d13324c13a48b69d67ccfc88e3e87f046f4417f57f5c740d515249fb"
+    }
+  ],
+  "definitions": {
+    "ByteArray": {
+      "dataType": "bytes"
+    },
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "Int": {
+      "dataType": "integer"
+    },
+    "vesting/VestingDatum": {
+      "title": "VestingDatum",
+      "anyOf": [
+        {
+          "title": "VestingDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "lock_until",
+              "description": "POSIX time in milliseconds, e.g. 1672843961000",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "owner",
+              "description": "Owner's credentials",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "beneficiary",
+              "description": "Beneficiary's credentials",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

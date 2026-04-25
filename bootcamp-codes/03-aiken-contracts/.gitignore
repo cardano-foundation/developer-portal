@@ -1,0 +1,10 @@
+# Aiken compilation artifacts
+aiken-workspace/artifacts/
+# Aiken's project working directory
+aiken-workspace/build/
+# Aiken's default documentation export
+aiken-workspace/docs/
+
+node_modules/
+yarn.lock
+package-lock.json

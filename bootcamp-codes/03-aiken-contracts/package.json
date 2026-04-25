@@ -1,0 +1,29 @@
+{
+  "name": "03-aiken-contracts",
+  "version": "1.0.0",
+  "description": "A template for Aiken development by MeshJS",
+  "main": "mesh/index.ts",
+  "scripts": {
+    "aiken": "cd aiken-workspace && aiken check && aiken build",
+    "dev": "npx tsx mesh/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeshJS/mesh-aiken-template.git"
+  },
+  "keywords": [
+    "Mesh"
+  ],
+  "author": "Mesh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MeshJS/mesh-aiken-template/issues"
+  },
+  "homepage": "https://github.com/MeshJS/mesh-aiken-template#readme",
+  "dependencies": {
+    "@meshsdk/core": "^1.8",
+    "@meshsdk/core-csl": "^1.8",
+    "axios": "^1.7.5",
+    "tsx": "^4.9.4"
+  }
+}

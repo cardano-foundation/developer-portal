@@ -1,0 +1,158 @@
+{
+  "preamble": {
+    "title": "meshsdk/aiken-template",
+    "description": "Aiken contracts for project 'meshsdk/aiken-template'",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.16+23061c0"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "mint.always_succeed.mint",
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "compiledCode": "585401010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748000c01cdd500144c9289bae30093008375400516401830060013003375400d149a26cac8009",
+      "hash": "def68337867cb4f1f95b6b811fedbfcdd7780d10a95cc072077088ea"
+    },
+    {
+      "title": "mint.always_succeed.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "585401010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748000c01cdd500144c9289bae30093008375400516401830060013003375400d149a26cac8009",
+      "hash": "def68337867cb4f1f95b6b811fedbfcdd7780d10a95cc072077088ea"
+    },
+    {
+      "title": "spend.hello_world.spend",
+      "datum": {
+        "title": "datum_opt",
+        "schema": {
+          "$ref": "#/definitions/spend~1Datum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/spend~1Redeemer"
+        }
+      },
+      "compiledCode": "59010701010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900118031baa00189919912cc004cdc3a400060126ea801626464b3001300f0028acc004cdc3a400060166ea800e2b30013371e6eb8c038c030dd5003a450d48656c6c6f2c20576f726c642100899199119801001000912cc00400629422b30013371e6eb8c04400400e2946266004004602400280690101bac300f30103010301030103010301030103010300d3754601e0146eb8c038c030dd5180718061baa0038a50402914a080522c8068dd7180680098051baa0058b2010300a001300a300b00130073754003164014600e002600e6010002600e00260066ea801e29344d95900101",
+      "hash": "866cc1aa84eb4ced92dab7c8e939cda407e6d7e7ddff2b905e13b45b"
+    },
+    {
+      "title": "spend.hello_world.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59010701010029800aba2aba1aab9faab9eaab9dab9a48888896600264646644b30013370e900118031baa00189919912cc004cdc3a400060126ea801626464b3001300f0028acc004cdc3a400060166ea800e2b30013371e6eb8c038c030dd5003a450d48656c6c6f2c20576f726c642100899199119801001000912cc00400629422b30013371e6eb8c04400400e2946266004004602400280690101bac300f30103010301030103010301030103010300d3754601e0146eb8c038c030dd5180718061baa0038a50402914a080522c8068dd7180680098051baa0058b2010300a001300a300b00130073754003164014600e002600e6010002600e00260066ea801e29344d95900101",
+      "hash": "866cc1aa84eb4ced92dab7c8e939cda407e6d7e7ddff2b905e13b45b"
+    },
+    {
+      "title": "withdraw.always_succeed.withdraw",
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "parameters": [
+        {
+          "title": "_key_hash",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+          }
+        }
+      ],
+      "compiledCode": "587a010100229800aba2aba1aab9eaab9dab9a9bae002488888966002646465300130063754003300800398040012444b30013370e9002001c4c928980598051baa0048acc004cdc3a400c00713233224a26eb4c030004c030c034004c028dd5002459008201018039804000980380098021baa0078a4d1365640081",
+      "hash": "64ed2df4764ef5aaa176ba61fadab76d90d54ebb1913e686eea4d1d3"
+    },
+    {
+      "title": "withdraw.always_succeed.publish",
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "parameters": [
+        {
+          "title": "_key_hash",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+          }
+        }
+      ],
+      "compiledCode": "587a010100229800aba2aba1aab9eaab9dab9a9bae002488888966002646465300130063754003300800398040012444b30013370e9002001c4c928980598051baa0048acc004cdc3a400c00713233224a26eb4c030004c030c034004c028dd5002459008201018039804000980380098021baa0078a4d1365640081",
+      "hash": "64ed2df4764ef5aaa176ba61fadab76d90d54ebb1913e686eea4d1d3"
+    },
+    {
+      "title": "withdraw.always_succeed.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "parameters": [
+        {
+          "title": "_key_hash",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+          }
+        }
+      ],
+      "compiledCode": "587a010100229800aba2aba1aab9eaab9dab9a9bae002488888966002646465300130063754003300800398040012444b30013370e9002001c4c928980598051baa0048acc004cdc3a400c00713233224a26eb4c030004c030c034004c028dd5002459008201018039804000980380098021baa0078a4d1365640081",
+      "hash": "64ed2df4764ef5aaa176ba61fadab76d90d54ebb1913e686eea4d1d3"
+    }
+  ],
+  "definitions": {
+    "ByteArray": {
+      "dataType": "bytes"
+    },
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "aiken/crypto/VerificationKeyHash": {
+      "title": "VerificationKeyHash",
+      "dataType": "bytes"
+    },
+    "spend/Datum": {
+      "title": "Datum",
+      "anyOf": [
+        {
+          "title": "Datum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        }
+      ]
+    },
+    "spend/Redeemer": {
+      "title": "Redeemer",
+      "anyOf": [
+        {
+          "title": "Redeemer",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "msg",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

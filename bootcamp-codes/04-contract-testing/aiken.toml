@@ -1,0 +1,23 @@
+name = "meshsdk/aiken-template"
+version = "0.0.0"
+compiler = "v1.1.16"
+plutus = "v3"
+license = "Apache-2.0"
+description = "Aiken contracts for project 'meshsdk/aiken-template'"
+
+[repository]
+user = "meshsdk"
+project = "aiken-template"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v2.2.0"
+source = "github"
+
+[[dependencies]]
+name = "sidan-lab/vodka"
+version = "0.1.14"
+source = "github"
+
+[config]

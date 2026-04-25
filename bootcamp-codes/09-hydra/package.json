@@ -1,0 +1,22 @@
+{
+  "name": "09-hydra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "generate-keys": "bash generate-keys.sh",
+    "start-alice": "bash start-node-alice.sh",
+    "start-bob": "bash start-node-bob.sh"
+  },
+  "dependencies": {
+    "@meshsdk/core": "^1.9.0-beta.43",
+    "@meshsdk/hydra": "^1.9.0-beta.43",
+    "@meshsdk/wallet": "^1.9.0-beta.43"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}
