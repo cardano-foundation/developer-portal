@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#333333">Layer 1 vs Layer 2: Speed &amp; Cost Tradeoff</text>
+
+  <!-- Left Column: Layer 1 -->
+  <!-- Header -->
+  <rect x="50" y="65" width="330" height="50" rx="12" fill="#42A5F5"/>
+  <text x="215" y="97" text-anchor="middle" font-size="20" font-weight="bold" fill="#FFFFFF">Layer 1</text>
+
+  <!-- Row 1 -->
+  <rect x="50" y="125" width="330" height="60" rx="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="80" y="162" font-size="26" fill="#333">&#x1F422;</text>
+  <text x="115" y="152" font-size="15" fill="#1565C0" font-weight="bold">Confirmation</text>
+  <text x="115" y="172" font-size="14" fill="#555555">~20 seconds</text>
+
+  <!-- Row 2 -->
+  <rect x="50" y="195" width="330" height="60" rx="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="80" y="232" font-size="26" fill="#333">&#x1F4B0;</text>
+  <text x="115" y="222" font-size="15" fill="#1565C0" font-weight="bold">Fees</text>
+  <text x="115" y="242" font-size="14" fill="#555555">~0.17 ADA per transaction</text>
+
+  <!-- Row 3 -->
+  <rect x="50" y="265" width="330" height="60" rx="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="80" y="302" font-size="26" fill="#333">&#x1F512;</text>
+  <text x="115" y="292" font-size="15" fill="#1565C0" font-weight="bold">Security</text>
+  <text x="115" y="312" font-size="14" fill="#555555">Full network consensus</text>
+
+  <!-- Row 4 -->
+  <rect x="50" y="335" width="330" height="60" rx="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="80" y="372" font-size="26" fill="#333">&#x1F4BE;</text>
+  <text x="115" y="362" font-size="15" fill="#1565C0" font-weight="bold">Record</text>
+  <text x="115" y="382" font-size="14" fill="#555555">Permanent on-chain</text>
+
+  <!-- Right Column: Layer 2 (Hydra) -->
+  <!-- Header -->
+  <rect x="420" y="65" width="330" height="50" rx="12" fill="#26C6DA"/>
+  <text x="585" y="97" text-anchor="middle" font-size="20" font-weight="bold" fill="#FFFFFF">Layer 2 (Hydra)</text>
+
+  <!-- Row 1 -->
+  <rect x="420" y="125" width="330" height="60" rx="12" fill="#E0F7FA" stroke="#80DEEA" stroke-width="1.5"/>
+  <text x="450" y="162" font-size="26" fill="#333">&#x26A1;</text>
+  <text x="485" y="152" font-size="15" fill="#00838F" font-weight="bold">Confirmation</text>
+  <text x="485" y="172" font-size="14" fill="#555555">Instant (&lt;1 second)</text>
+
+  <!-- Row 2 -->
+  <rect x="420" y="195" width="330" height="60" rx="12" fill="#E0F7FA" stroke="#80DEEA" stroke-width="1.5"/>
+  <text x="450" y="232" font-size="26" fill="#333">&#x1F193;</text>
+  <text x="485" y="222" font-size="15" fill="#00838F" font-weight="bold">Fees</text>
+  <text x="485" y="242" font-size="14" fill="#555555">Zero fees inside head</text>
+
+  <!-- Row 3 -->
+  <rect x="420" y="265" width="330" height="60" rx="12" fill="#E0F7FA" stroke="#80DEEA" stroke-width="1.5"/>
+  <text x="450" y="302" font-size="26" fill="#333">&#x1F512;</text>
+  <text x="485" y="292" font-size="15" fill="#00838F" font-weight="bold">Security</text>
+  <text x="485" y="312" font-size="14" fill="#555555">Same EUTXO model</text>
+
+  <!-- Row 4 -->
+  <rect x="420" y="335" width="330" height="60" rx="12" fill="#E0F7FA" stroke="#80DEEA" stroke-width="1.5"/>
+  <text x="450" y="372" font-size="26" fill="#333">&#x23F1;</text>
+  <text x="485" y="362" font-size="15" fill="#00838F" font-weight="bold">Record</text>
+  <text x="485" y="382" font-size="14" fill="#555555">Until head is closed</text>
+
+  <!-- VS divider -->
+  <circle cx="400" cy="260" r="24" fill="#F3E5F5" stroke="#CE93D8" stroke-width="2"/>
+  <text x="400" y="267" text-anchor="middle" font-size="16" font-weight="bold" fill="#7B1FA2">VS</text>
+
+  <!-- Bottom summary -->
+  <rect x="150" y="420" width="500" height="44" rx="12" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="400" y="448" text-anchor="middle" font-size="14" fill="#E65100">Hydra processes 1000+ TPS while L1 handles ~7 TPS</text>
+</svg>

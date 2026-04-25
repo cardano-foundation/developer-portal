@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#333333">Hydra: Layer 2 State Channel Lifecycle</text>
+
+  <!-- Layer 1 Top Box -->
+  <rect x="180" y="58" width="440" height="52" rx="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+  <text x="400" y="90" text-anchor="middle" font-size="18" font-weight="bold" fill="#1565C0">Layer 1 (Cardano Main Chain)</text>
+
+  <!-- Arrow Down -->
+  <line x1="400" y1="110" x2="400" y2="165" stroke="#42A5F5" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <rect x="308" y="120" width="184" height="26" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.2"/>
+  <text x="400" y="139" text-anchor="middle" font-size="13" fill="#1565C0">Initialize + Commit</text>
+
+  <!-- Hydra Head Dashed Box -->
+  <rect x="100" y="170" width="600" height="210" rx="16" fill="#E0F7FA" stroke="#26C6DA" stroke-width="2.5" stroke-dasharray="10 5"/>
+  <text x="400" y="198" text-anchor="middle" font-size="17" font-weight="bold" fill="#00838F">Hydra Head (Layer 2)</text>
+
+  <!-- Internal Transactions Visualization -->
+  <!-- Tx arrows inside the head -->
+  <rect x="150" y="215" width="120" height="40" rx="10" fill="#FFFFFF" stroke="#80DEEA" stroke-width="1.5"/>
+  <text x="210" y="240" text-anchor="middle" font-size="13" fill="#00695C">Tx A</text>
+
+  <line x1="275" y1="235" x2="315" y2="235" stroke="#26C6DA" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+  <rect x="320" y="215" width="120" height="40" rx="10" fill="#FFFFFF" stroke="#80DEEA" stroke-width="1.5"/>
+  <text x="380" y="240" text-anchor="middle" font-size="13" fill="#00695C">Tx B</text>
+
+  <line x1="445" y1="235" x2="485" y2="235" stroke="#26C6DA" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+  <rect x="490" y="215" width="120" height="40" rx="10" fill="#FFFFFF" stroke="#80DEEA" stroke-width="1.5"/>
+  <text x="550" y="240" text-anchor="middle" font-size="13" fill="#00695C">Tx C</text>
+
+  <!-- Instant Tx label -->
+  <text x="400" y="280" text-anchor="middle" font-size="13" fill="#00838F">Instant Tx  /  Instant Tx  /  Instant Tx</text>
+
+  <!-- Badges row -->
+  <rect x="190" y="300" width="130" height="34" rx="12" fill="#A5D6A7" stroke="#66BB6A" stroke-width="1.5"/>
+  <text x="255" y="322" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B5E20">Zero Fees</text>
+
+  <rect x="360" y="300" width="250" height="34" rx="12" fill="#B2EBF2" stroke="#26C6DA" stroke-width="1.5"/>
+  <text x="485" y="322" text-anchor="middle" font-size="14" font-weight="bold" fill="#006064">Near-instant confirmation</text>
+
+  <!-- More small tx arrows for visual richness -->
+  <line x1="195" y1="355" x2="245" y2="355" stroke="#80DEEA" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="270" y1="355" x2="320" y2="355" stroke="#80DEEA" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="345" y1="355" x2="395" y2="355" stroke="#80DEEA" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="420" y1="355" x2="470" y2="355" stroke="#80DEEA" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="495" y1="355" x2="545" y2="355" stroke="#80DEEA" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+  <line x1="570" y1="355" x2="620" y2="355" stroke="#80DEEA" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- Arrow Up -->
+  <line x1="400" y1="385" x2="400" y2="430" stroke="#42A5F5" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <rect x="318" y="392" width="164" height="26" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.2"/>
+  <text x="400" y="411" text-anchor="middle" font-size="13" fill="#1565C0">Close + Fanout</text>
+
+  <!-- Layer 1 Bottom Box -->
+  <rect x="180" y="435" width="440" height="52" rx="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+  <text x="400" y="467" text-anchor="middle" font-size="18" font-weight="bold" fill="#1565C0">Layer 1 (Cardano Main Chain)</text>
+
+  <!-- Arrow Markers -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#42A5F5"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#26C6DA"/>
+    </marker>
+  </defs>
+</svg>

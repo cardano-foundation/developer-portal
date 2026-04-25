@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1A237E">Multi-Validator NFT Architecture</text>
+
+  <!-- ============ TOP LEFT: Oracle NFT Policy (Purple) ============ -->
+  <rect x="40" y="75" width="310" height="130" rx="12" fill="#F3E5F5" stroke="#CE93D8" stroke-width="2.5"/>
+  <!-- Header bar -->
+  <rect x="40" y="75" width="310" height="40" rx="12" fill="#CE93D8"/>
+  <rect x="40" y="95" width="310" height="20" fill="#CE93D8"/>
+  <text x="60" y="100" font-family="Arial, sans-serif" font-size="22">&#x1F3F7;&#xFE0F;</text>
+  <text x="90" y="101" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF">Oracle NFT Policy</text>
+  <!-- Content -->
+  <text x="195" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#6A1B9A">Minting policy for the oracle</text>
+  <text x="195" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#6A1B9A">reference token.</text>
+  <!-- Tag -->
+  <rect x="110" y="172" width="170" height="24" rx="8" fill="#E1BEE7"/>
+  <text x="195" y="189" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7B1FA2">One-time mint, unique NFT</text>
+
+  <!-- ============ TOP RIGHT: Oracle Validator (Blue) ============ -->
+  <rect x="450" y="75" width="310" height="130" rx="12" fill="#E3F2FD" stroke="#42A5F5" stroke-width="2.5"/>
+  <!-- Header bar -->
+  <rect x="450" y="75" width="310" height="40" rx="12" fill="#42A5F5"/>
+  <rect x="450" y="95" width="310" height="20" fill="#42A5F5"/>
+  <text x="470" y="100" font-family="Arial, sans-serif" font-size="22">&#x1F4E6;</text>
+  <text x="500" y="101" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF">Oracle Validator</text>
+  <!-- Content -->
+  <text x="605" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1565C0">Holds on-chain state:</text>
+  <text x="605" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#1565C0">count, price, admin</text>
+  <!-- Datum display -->
+  <rect x="510" y="170" width="190" height="26" rx="8" fill="#BBDEFB"/>
+  <text x="605" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0D47A1">datum: {count: 0, price, admin}</text>
+
+  <!-- ============ BOTTOM CENTER: Plutus NFT Policy (Green) ============ -->
+  <rect x="245" y="295" width="310" height="130" rx="12" fill="#E8F5E9" stroke="#66BB6A" stroke-width="2.5"/>
+  <!-- Header bar -->
+  <rect x="245" y="295" width="310" height="40" rx="12" fill="#66BB6A"/>
+  <rect x="245" y="315" width="310" height="20" fill="#66BB6A"/>
+  <text x="265" y="320" font-family="Arial, sans-serif" font-size="22">&#x1F5BC;&#xFE0F;</text>
+  <text x="298" y="321" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF">Plutus NFT Policy</text>
+  <!-- Content -->
+  <text x="400" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#2E7D32">Reads oracle state, mints NFT</text>
+  <text x="400" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#2E7D32">with sequential token name.</text>
+  <!-- Tag -->
+  <rect x="310" y="392" width="180" height="24" rx="8" fill="#C8E6C9"/>
+  <text x="400" y="409" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1B5E20">Mints NFT #(count)</text>
+
+  <!-- ============ ARROWS ============ -->
+
+  <!-- Arrow: Oracle NFT Policy --> Oracle Validator (labeled "locks token") -->
+  <defs>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0,0 10,4 0,8" fill="#AB47BC"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0,0 10,4 0,8" fill="#42A5F5"/>
+    </marker>
+  </defs>
+
+  <!-- Horizontal arrow: Oracle NFT Policy -> Oracle Validator -->
+  <line x1="350" y1="140" x2="445" y2="140" stroke="#AB47BC" stroke-width="2.5" marker-end="url(#arrowPurple)"/>
+  <!-- Label on arrow -->
+  <rect x="362" y="117" width="110" height="22" rx="6" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1"/>
+  <text x="417" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7B1FA2">locks token</text>
+
+  <!-- Arrow: Oracle Validator -> Plutus NFT Policy (labeled "reads state") -->
+  <path d="M 605 205 L 605 260 Q 605 280 585 285 L 465 310" stroke="#42A5F5" stroke-width="2.5" fill="none" marker-end="url(#arrowBlue)"/>
+  <!-- Label on arrow -->
+  <rect x="530" y="245" width="110" height="22" rx="6" fill="#E3F2FD" stroke="#42A5F5" stroke-width="1"/>
+  <text x="585" y="261" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1565C0">reads state</text>
+
+  <!-- ============ FLOW DESCRIPTION ============ -->
+  <text x="400" y="443" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#90A4AE">Three validators work together: oracle NFT guarantees uniqueness, oracle holds state, NFT policy reads and mints.</text>
+</svg>

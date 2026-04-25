@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#333333">Withdraw-Zero Trick: Centralized Validation</text>
+
+  <!-- LEFT COLUMN: 3 validator boxes -->
+  <!-- Spend Validator 1 -->
+  <rect x="40" y="80" width="200" height="70" rx="12" fill="#F5F5F5" stroke="#BDBDBD" stroke-width="1.5"/>
+  <text x="140" y="110" text-anchor="middle" font-size="15" font-weight="bold" fill="#555555">Spend Validator</text>
+  <text x="140" y="130" text-anchor="middle" font-size="12" fill="#888888">UTxO spending logic</text>
+
+  <!-- Mint Validator -->
+  <rect x="40" y="175" width="200" height="70" rx="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="140" y="205" text-anchor="middle" font-size="15" font-weight="bold" fill="#1565C0">Mint Validator</text>
+  <text x="140" y="225" text-anchor="middle" font-size="12" fill="#42A5F5">Token minting logic</text>
+
+  <!-- Spend Validator 2 -->
+  <rect x="40" y="270" width="200" height="70" rx="12" fill="#F5F5F5" stroke="#BDBDBD" stroke-width="1.5"/>
+  <text x="140" y="300" text-anchor="middle" font-size="15" font-weight="bold" fill="#555555">Spend Validator 2</text>
+  <text x="140" y="320" text-anchor="middle" font-size="12" fill="#888888">Another spend script</text>
+
+  <!-- CENTER: Withdrawal Script (large purple box) -->
+  <rect x="420" y="72" width="340" height="280" rx="12" fill="#F3E5F5" stroke="#CE93D8" stroke-width="2"/>
+  <text x="590" y="105" text-anchor="middle" font-size="18" font-weight="bold" fill="#6A1B9A">Withdrawal Script</text>
+  <text x="590" y="128" text-anchor="middle" font-size="13" fill="#AB47BC">(withdraw 0 ADA)</text>
+
+  <!-- Divider line -->
+  <line x1="445" y1="142" x2="735" y2="142" stroke="#CE93D8" stroke-width="1"/>
+
+  <!-- Check items inside withdrawal script -->
+  <rect x="450" y="158" width="280" height="44" rx="10" fill="#FFFFFF" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="470" y="185" font-size="15" fill="#4A148C" font-weight="bold">&#x2713;</text>
+  <text x="492" y="185" font-size="14" fill="#4A148C">Owner signature check</text>
+
+  <rect x="450" y="214" width="280" height="44" rx="10" fill="#FFFFFF" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="470" y="241" font-size="15" fill="#4A148C" font-weight="bold">&#x2713;</text>
+  <text x="492" y="241" font-size="14" fill="#4A148C">Expiry check</text>
+
+  <rect x="450" y="270" width="280" height="44" rx="10" fill="#FFFFFF" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="470" y="297" font-size="15" fill="#4A148C" font-weight="bold">&#x2713;</text>
+  <text x="492" y="297" font-size="14" fill="#4A148C">State validation</text>
+
+  <!-- ARROWS: "delegates to" -->
+  <defs>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#AB47BC"/>
+    </marker>
+  </defs>
+
+  <!-- Arrow from Spend Validator 1 -->
+  <line x1="240" y1="115" x2="415" y2="180" stroke="#AB47BC" stroke-width="2" marker-end="url(#arrowhead2)" stroke-dasharray="6,3"/>
+  <text x="310" y="128" text-anchor="middle" font-size="11" fill="#AB47BC" font-weight="bold" transform="rotate(-12, 310, 128)">delegates to</text>
+
+  <!-- Arrow from Mint Validator -->
+  <line x1="240" y1="210" x2="415" y2="236" stroke="#AB47BC" stroke-width="2" marker-end="url(#arrowhead2)" stroke-dasharray="6,3"/>
+  <text x="320" y="212" text-anchor="middle" font-size="11" fill="#AB47BC" font-weight="bold">delegates to</text>
+
+  <!-- Arrow from Spend Validator 2 -->
+  <line x1="240" y1="305" x2="415" y2="290" stroke="#AB47BC" stroke-width="2" marker-end="url(#arrowhead2)" stroke-dasharray="6,3"/>
+  <text x="310" y="310" text-anchor="middle" font-size="11" fill="#AB47BC" font-weight="bold" transform="rotate(6, 310, 310)">delegates to</text>
+
+  <!-- Bottom label -->
+  <rect x="160" y="380" width="480" height="44" rx="12" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1"/>
+  <text x="400" y="407" text-anchor="middle" font-size="14" font-weight="bold" fill="#6A1B9A">Common logic runs ONCE, not per-validator</text>
+
+  <!-- Footer -->
+  <text x="400" y="442" text-anchor="middle" font-size="12" fill="#999999">Validators assert the withdrawal script is present in the transaction</text>
+</svg>

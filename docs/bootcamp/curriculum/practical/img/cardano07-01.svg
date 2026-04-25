@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1A237E">Vesting Contract: Time-Locked Funds</text>
+
+  <!-- Main timeline arrow -->
+  <line x1="100" y1="230" x2="700" y2="230" stroke="#90CAF9" stroke-width="4" stroke-dasharray="none"/>
+  <polygon points="700,223 720,230 700,237" fill="#90CAF9"/>
+
+  <!-- Dotted line for lockup period (middle section) -->
+  <line x1="250" y1="230" x2="550" y2="230" stroke="#FFCC80" stroke-width="4" stroke-dasharray="12,6"/>
+
+  <!-- LEFT NODE: Owner Deposits -->
+  <!-- Circle with lock -->
+  <circle cx="150" cy="230" r="36" fill="#E3F2FD" stroke="#42A5F5" stroke-width="3"/>
+  <text x="150" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="28">&#x1F512;</text>
+  <!-- Box below -->
+  <rect x="80" y="290" width="140" height="50" rx="12" fill="#E3F2FD" stroke="#42A5F5" stroke-width="2"/>
+  <text x="150" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1565C0">Owner</text>
+  <text x="150" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1565C0">Deposits</text>
+  <!-- Connector line -->
+  <line x1="150" y1="266" x2="150" y2="290" stroke="#42A5F5" stroke-width="2"/>
+
+  <!-- MIDDLE: Lockup Period -->
+  <rect x="310" y="130" width="180" height="55" rx="12" fill="#FFF3E0" stroke="#FFCC80" stroke-width="2"/>
+  <text x="355" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="26">&#x23F0;</text>
+  <text x="430" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#E65100">Lockup Period</text>
+  <!-- Connector line down to timeline -->
+  <line x1="400" y1="185" x2="400" y2="230" stroke="#FFCC80" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Tick marks on timeline -->
+  <line x1="150" y1="218" x2="150" y2="242" stroke="#42A5F5" stroke-width="3"/>
+  <line x1="400" y1="218" x2="400" y2="242" stroke="#FFCC80" stroke-width="3"/>
+  <line x1="650" y1="218" x2="650" y2="242" stroke="#66BB6A" stroke-width="3"/>
+
+  <!-- Small time labels -->
+  <text x="150" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#78909C">t = 0</text>
+  <text x="400" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#78909C">waiting...</text>
+  <text x="650" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#78909C">t = lock_until</text>
+
+  <!-- RIGHT NODE: Beneficiary Withdraws -->
+  <!-- Circle with unlock -->
+  <circle cx="650" cy="230" r="36" fill="#E8F5E9" stroke="#66BB6A" stroke-width="3"/>
+  <text x="650" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="28">&#x1F513;</text>
+  <!-- Box below -->
+  <rect x="575" y="290" width="150" height="50" rx="12" fill="#E8F5E9" stroke="#66BB6A" stroke-width="2"/>
+  <text x="650" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#2E7D32">Beneficiary</text>
+  <text x="650" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#2E7D32">Withdraws</text>
+  <!-- Connector line -->
+  <line x1="650" y1="266" x2="650" y2="290" stroke="#66BB6A" stroke-width="2"/>
+
+  <!-- Flow arrows along the bottom -->
+  <!-- Step labels -->
+  <rect x="105" y="370" width="90" height="32" rx="10" fill="#E3F2FD"/>
+  <text x="150" y="391" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1565C0">Step 1</text>
+
+  <rect x="355" y="370" width="90" height="32" rx="10" fill="#FFF3E0"/>
+  <text x="400" y="391" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#E65100">Step 2</text>
+
+  <rect x="605" y="370" width="90" height="32" rx="10" fill="#E8F5E9"/>
+  <text x="650" y="391" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2E7D32">Step 3</text>
+
+  <!-- Small connecting arrows between steps -->
+  <line x1="195" y1="386" x2="350" y2="386" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="350,383 358,386 350,389" fill="#B0BEC5"/>
+  <line x1="445" y1="386" x2="600" y2="386" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="600,383 608,386 600,389" fill="#B0BEC5"/>
+
+  <!-- Subtitle -->
+  <text x="400" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#90A4AE">Funds are locked on-chain until the deadline passes, then the beneficiary can withdraw.</text>
+</svg>

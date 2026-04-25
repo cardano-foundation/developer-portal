@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#333333">Parameterized Testing: Boolean Toggle Pattern</text>
+
+  <!-- LEFT CARD: All TRUE -->
+  <rect x="40" y="60" width="320" height="310" rx="12" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="2"/>
+  <text x="200" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#333333">Test Struct (Success)</text>
+
+  <!-- Row 1 -->
+  <rect x="60" y="105" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="74" y="127" font-size="12" fill="#555555">is_ref_input_presented</text>
+  <rect x="278" y="111" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="315" cy="122" r="9" fill="#FFFFFF"/>
+  <text x="286" y="127" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 2 -->
+  <rect x="60" y="145" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="74" y="167" font-size="12" fill="#555555">is_thread_input_presented</text>
+  <rect x="278" y="151" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="315" cy="162" r="9" fill="#FFFFFF"/>
+  <text x="286" y="167" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 3 -->
+  <rect x="60" y="185" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="74" y="207" font-size="12" fill="#555555">is_thread_output_presented</text>
+  <rect x="278" y="191" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="315" cy="202" r="9" fill="#FFFFFF"/>
+  <text x="286" y="207" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 4 -->
+  <rect x="60" y="225" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="74" y="247" font-size="12" fill="#555555">is_count_added</text>
+  <rect x="278" y="231" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="315" cy="242" r="9" fill="#FFFFFF"/>
+  <text x="286" y="247" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 5 -->
+  <rect x="60" y="265" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="74" y="287" font-size="12" fill="#555555">is_app_owner_signed</text>
+  <rect x="278" y="271" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="315" cy="282" r="9" fill="#FFFFFF"/>
+  <text x="286" y="287" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 6 -->
+  <rect x="60" y="305" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="74" y="327" font-size="12" fill="#555555">is_tx_not_expired</text>
+  <rect x="278" y="311" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="315" cy="322" r="9" fill="#FFFFFF"/>
+  <text x="286" y="327" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Left label -->
+  <text x="200" y="395" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E7D32">All TRUE = Success Test</text>
+
+  <!-- RIGHT CARD: One flipped -->
+  <rect x="440" y="60" width="320" height="310" rx="12" fill="#FFF3E0" stroke="#FFCC80" stroke-width="2"/>
+  <text x="600" y="90" text-anchor="middle" font-size="16" font-weight="bold" fill="#333333">Test Struct (Failure)</text>
+
+  <!-- Row 1 -->
+  <rect x="460" y="105" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#FFE0B2" stroke-width="1"/>
+  <text x="474" y="127" font-size="12" fill="#555555">is_ref_input_presented</text>
+  <rect x="678" y="111" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="715" cy="122" r="9" fill="#FFFFFF"/>
+  <text x="686" y="127" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 2 -->
+  <rect x="460" y="145" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#FFE0B2" stroke-width="1"/>
+  <text x="474" y="167" font-size="12" fill="#555555">is_thread_input_presented</text>
+  <rect x="678" y="151" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="715" cy="162" r="9" fill="#FFFFFF"/>
+  <text x="686" y="167" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 3 -->
+  <rect x="460" y="185" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#FFE0B2" stroke-width="1"/>
+  <text x="474" y="207" font-size="12" fill="#555555">is_thread_output_presented</text>
+  <rect x="678" y="191" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="715" cy="202" r="9" fill="#FFFFFF"/>
+  <text x="686" y="207" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 4 -->
+  <rect x="460" y="225" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#FFE0B2" stroke-width="1"/>
+  <text x="474" y="247" font-size="12" fill="#555555">is_count_added</text>
+  <rect x="678" y="231" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="715" cy="242" r="9" fill="#FFFFFF"/>
+  <text x="686" y="247" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Row 5 — FLIPPED TO OFF (red) -->
+  <rect x="460" y="265" width="280" height="34" rx="8" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="2"/>
+  <text x="474" y="287" font-size="12" font-weight="bold" fill="#C62828">is_app_owner_signed</text>
+  <rect x="678" y="271" width="48" height="22" rx="11" fill="#EF5350"/>
+  <circle cx="689" cy="282" r="9" fill="#FFFFFF"/>
+  <text x="705" y="287" font-size="10" font-weight="bold" fill="#FFFFFF">OFF</text>
+
+  <!-- Row 6 -->
+  <rect x="460" y="305" width="280" height="34" rx="8" fill="#FFFFFF" stroke="#FFE0B2" stroke-width="1"/>
+  <text x="474" y="327" font-size="12" fill="#555555">is_tx_not_expired</text>
+  <rect x="678" y="311" width="48" height="22" rx="11" fill="#66BB6A"/>
+  <circle cx="715" cy="322" r="9" fill="#FFFFFF"/>
+  <text x="686" y="327" font-size="10" font-weight="bold" fill="#FFFFFF">ON</text>
+
+  <!-- Right label -->
+  <text x="600" y="395" text-anchor="middle" font-size="15" font-weight="bold" fill="#C62828">Flip one = Failure Test</text>
+
+  <!-- Arrow between cards -->
+  <defs>
+    <marker id="arrowhead1" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#AB47BC"/>
+    </marker>
+  </defs>
+  <line x1="365" y1="215" x2="430" y2="215" stroke="#AB47BC" stroke-width="2.5" marker-end="url(#arrowhead1)"/>
+  <text x="398" y="200" text-anchor="middle" font-size="11" fill="#AB47BC" font-weight="bold">Toggle one</text>
+  <text x="398" y="240" text-anchor="middle" font-size="11" fill="#AB47BC" font-weight="bold">condition</text>
+
+  <!-- Footer hint -->
+  <text x="400" y="435" text-anchor="middle" font-size="13" fill="#888888">Each test flips exactly one boolean to isolate failure conditions</text>
+</svg>

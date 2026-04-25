@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333333" text-anchor="middle">Native Script: AND Logic</text>
+
+  <!-- Container box -->
+  <rect x="130" y="80" width="540" height="310" rx="16" ry="16" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="2"/>
+
+  <!-- Container label -->
+  <rect x="220" y="95" width="360" height="36" rx="8" ry="8" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="400" y="119" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#1565C0" text-anchor="middle">&#x1F4DC; Native Script (type: ALL)</text>
+
+  <!-- Row 1: Time condition -->
+  <rect x="170" y="155" width="460" height="60" rx="12" ry="12" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="200" y="192" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">&#x23F0;</text>
+  <text x="370" y="192" font-family="Arial, sans-serif" font-size="16" fill="#E65100" text-anchor="middle">Before Slot 99999999</text>
+  <!-- Green checkmark -->
+  <rect x="560" y="168" width="50" height="34" rx="8" ry="8" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="585" y="192" font-family="Arial, sans-serif" font-size="20" fill="#2E7D32" text-anchor="middle">&#x2705;</text>
+
+  <!-- Row 2: Key condition -->
+  <rect x="170" y="235" width="460" height="60" rx="12" ry="12" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="200" y="272" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">&#x1F511;</text>
+  <text x="370" y="272" font-family="Arial, sans-serif" font-size="16" fill="#6A1B9A" text-anchor="middle">Signed by KeyHash</text>
+  <!-- Green checkmark -->
+  <rect x="560" y="248" width="50" height="34" rx="8" ry="8" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="585" y="272" font-family="Arial, sans-serif" font-size="20" fill="#2E7D32" text-anchor="middle">&#x2705;</text>
+
+  <!-- Divider -->
+  <line x1="180" y1="315" x2="620" y2="315" stroke="#E0E0E0" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Bottom result -->
+  <rect x="200" y="330" width="400" height="44" rx="10" ry="10" fill="#E8F5E9" stroke="#66BB6A" stroke-width="2"/>
+  <text x="400" y="358" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#2E7D32" text-anchor="middle">Both conditions must pass &#x2192; Transaction Valid &#x2705;</text>
+
+  <!-- Footer -->
+  <text x="400" y="430" font-family="Arial, sans-serif" font-size="14" fill="#9E9E9E" text-anchor="middle">ALL conditions in the script must be satisfied for the transaction to succeed</text>
+</svg>

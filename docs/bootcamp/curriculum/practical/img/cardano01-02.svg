@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="55" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#333333" text-anchor="middle">Build &#x2192; Sign &#x2192; Submit</text>
+
+  <!-- Box 1: Fetch UTxOs (light blue) -->
+  <rect x="20" y="150" width="160" height="140" rx="12" ry="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+  <text x="100" y="202" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">&#x1F4E6;</text>
+  <text x="100" y="234" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1565C0" text-anchor="middle">Fetch UTxOs</text>
+  <text x="100" y="258" font-family="Arial, sans-serif" font-size="13" fill="#1E88E5" text-anchor="middle">Query blockchain</text>
+
+  <!-- Arrow 1 -->
+  <line x1="188" y1="220" x2="218" y2="220" stroke="#BDBDBD" stroke-width="2.5"/>
+  <polygon points="218,214 232,220 218,226" fill="#BDBDBD"/>
+
+  <!-- Box 2: Build Tx (light orange) -->
+  <rect x="232" y="150" width="160" height="140" rx="12" ry="12" fill="#FFF3E0" stroke="#FFCC80" stroke-width="2"/>
+  <text x="312" y="202" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">&#x1F528;</text>
+  <text x="312" y="234" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#E65100" text-anchor="middle">Build Tx</text>
+  <text x="312" y="258" font-family="Arial, sans-serif" font-size="13" fill="#F57C00" text-anchor="middle">MeshTxBuilder</text>
+
+  <!-- Arrow 2 -->
+  <line x1="400" y1="220" x2="430" y2="220" stroke="#BDBDBD" stroke-width="2.5"/>
+  <polygon points="430,214 444,220 430,226" fill="#BDBDBD"/>
+
+  <!-- Box 3: Sign (light purple) -->
+  <rect x="444" y="150" width="160" height="140" rx="12" ry="12" fill="#F3E5F5" stroke="#CE93D8" stroke-width="2"/>
+  <text x="524" y="202" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">&#x270D;&#xFE0F;</text>
+  <text x="524" y="234" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#6A1B9A" text-anchor="middle">Sign</text>
+  <text x="524" y="258" font-family="Arial, sans-serif" font-size="13" fill="#8E24AA" text-anchor="middle">Private key</text>
+
+  <!-- Arrow 3 -->
+  <line x1="612" y1="220" x2="642" y2="220" stroke="#BDBDBD" stroke-width="2.5"/>
+  <polygon points="642,214 656,220 642,226" fill="#BDBDBD"/>
+
+  <!-- Box 4: Submit (light green) -->
+  <rect x="656" y="150" width="130" height="140" rx="12" ry="12" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="2"/>
+  <text x="721" y="202" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">&#x1F680;</text>
+  <text x="721" y="234" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2E7D32" text-anchor="middle">Submit</text>
+  <text x="721" y="258" font-family="Arial, sans-serif" font-size="13" fill="#43A047" text-anchor="middle">To blockchain</text>
+
+  <!-- Subtitle -->
+  <text x="400" y="370" font-family="Arial, sans-serif" font-size="15" fill="#9E9E9E" text-anchor="middle">Transaction Lifecycle: Fetch &#x2192; Build &#x2192; Sign &#x2192; Submit</text>
+</svg>

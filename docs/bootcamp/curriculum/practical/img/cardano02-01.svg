@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333333" text-anchor="middle">Multi-Signature: Both Parties Must Sign</text>
+
+  <!-- Wallet A (top-left) -->
+  <rect x="40" y="100" width="170" height="90" rx="12" ry="12" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+  <text x="125" y="140" font-family="Arial, sans-serif" font-size="26" text-anchor="middle">&#x1F464;</text>
+  <text x="125" y="170" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1565C0" text-anchor="middle">Wallet A</text>
+
+  <!-- Wallet B (bottom-left) -->
+  <rect x="40" y="260" width="170" height="90" rx="12" ry="12" fill="#F3E5F5" stroke="#CE93D8" stroke-width="2"/>
+  <text x="125" y="300" font-family="Arial, sans-serif" font-size="26" text-anchor="middle">&#x1F464;</text>
+  <text x="125" y="330" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#6A1B9A" text-anchor="middle">Wallet B</text>
+
+  <!-- Arrow from Wallet A to Transaction -->
+  <line x1="220" y1="145" x2="320" y2="205" stroke="#42A5F5" stroke-width="2.5"/>
+  <polygon points="316,198 330,205 318,210" fill="#42A5F5"/>
+  <!-- Signature 1 label -->
+  <rect x="225" y="148" width="100" height="28" rx="6" ry="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="275" y="167" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2E7D32" text-anchor="middle">&#x2705; Signed</text>
+
+  <!-- Arrow from Wallet B to Transaction -->
+  <line x1="220" y1="305" x2="320" y2="245" stroke="#AB47BC" stroke-width="2.5"/>
+  <polygon points="316,240 330,245 318,252" fill="#AB47BC"/>
+  <!-- Signature 2 label -->
+  <rect x="225" y="272" width="100" height="28" rx="6" ry="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="275" y="291" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2E7D32" text-anchor="middle">&#x2705; Signed</text>
+
+  <!-- Transaction Document (center) -->
+  <rect x="330" y="170" width="180" height="110" rx="12" ry="12" fill="#FFF3E0" stroke="#FFCC80" stroke-width="2.5"/>
+  <text x="420" y="215" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">&#x1F4C4;</text>
+  <text x="420" y="248" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#E65100" text-anchor="middle">Transaction</text>
+  <text x="420" y="268" font-family="Arial, sans-serif" font-size="12" fill="#F57C00" text-anchor="middle">Requires 2 signatures</text>
+
+  <!-- Arrow from Transaction to Blockchain -->
+  <line x1="520" y1="225" x2="590" y2="225" stroke="#66BB6A" stroke-width="2.5"/>
+  <polygon points="590,219 605,225 590,231" fill="#66BB6A"/>
+  <!-- Label: Both required -->
+  <text x="558" y="212" font-family="Arial, sans-serif" font-size="11" fill="#757575" text-anchor="middle">Both</text>
+  <text x="558" y="246" font-family="Arial, sans-serif" font-size="11" fill="#757575" text-anchor="middle">required</text>
+
+  <!-- Blockchain (right) -->
+  <rect x="610" y="170" width="160" height="110" rx="12" ry="12" fill="#E8F5E9" stroke="#66BB6A" stroke-width="2.5"/>
+  <text x="690" y="215" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">&#x26D3;&#xFE0F;</text>
+  <text x="690" y="248" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2E7D32" text-anchor="middle">Blockchain</text>
+  <text x="690" y="268" font-family="Arial, sans-serif" font-size="12" fill="#43A047" text-anchor="middle">Validated on-chain</text>
+
+  <!-- Footer -->
+  <text x="400" y="415" font-family="Arial, sans-serif" font-size="14" fill="#9E9E9E" text-anchor="middle">Both wallets must sign the transaction before it can be submitted</text>
+</svg>

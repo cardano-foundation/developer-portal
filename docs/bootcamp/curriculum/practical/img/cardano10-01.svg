@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#333333">Web3 Onboarding: Social Login to Wallet</text>
+
+  <!-- === LEFT: User + Social Login === -->
+  <!-- User circle -->
+  <circle cx="140" cy="175" r="44" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+  <!-- User icon (head) -->
+  <circle cx="140" cy="162" r="14" fill="#42A5F5"/>
+  <!-- User icon (body) -->
+  <path d="M115,195 Q115,178 140,178 Q165,178 165,195" fill="#42A5F5"/>
+  <text x="140" y="240" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">User</text>
+
+  <!-- Social Login Buttons -->
+  <!-- Google -->
+  <circle cx="100" cy="290" r="22" fill="#FFFFFF" stroke="#EA4335" stroke-width="2"/>
+  <text x="100" y="297" text-anchor="middle" font-size="16" font-weight="bold" fill="#EA4335">G</text>
+  <text x="100" y="328" text-anchor="middle" font-size="11" fill="#777">Google</text>
+
+  <!-- Discord -->
+  <circle cx="145" cy="290" r="22" fill="#FFFFFF" stroke="#5865F2" stroke-width="2"/>
+  <text x="145" y="297" text-anchor="middle" font-size="16" font-weight="bold" fill="#5865F2">D</text>
+  <text x="145" y="328" text-anchor="middle" font-size="11" fill="#777">Discord</text>
+
+  <!-- Apple -->
+  <circle cx="190" cy="290" r="22" fill="#FFFFFF" stroke="#333333" stroke-width="2"/>
+  <text x="190" y="297" text-anchor="middle" font-size="16" font-weight="bold" fill="#333333">A</text>
+  <text x="190" y="328" text-anchor="middle" font-size="11" fill="#777">Apple</text>
+
+  <!-- === ARROW 1 === -->
+  <line x1="225" y1="200" x2="310" y2="200" stroke="#90CAF9" stroke-width="2.5" marker-end="url(#arrowFlow)"/>
+  <rect x="235" y="178" width="100" height="22" rx="6" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1"/>
+  <text x="285" y="194" text-anchor="middle" font-size="12" fill="#1565C0">Authenticate</text>
+
+  <!-- === CENTER: Key Splitting === -->
+  <rect x="315" y="130" width="170" height="140" rx="16" fill="#F3E5F5" stroke="#CE93D8" stroke-width="2"/>
+  <!-- Lock icon -->
+  <text x="400" y="178" text-anchor="middle" font-size="36">&#x1F510;</text>
+  <text x="400" y="210" text-anchor="middle" font-size="13" font-weight="bold" fill="#6A1B9A">Key Splitting</text>
+  <text x="400" y="228" text-anchor="middle" font-size="11" fill="#8E24AA">(Shamir's Secret Sharing)</text>
+  <text x="400" y="254" text-anchor="middle" font-size="12" fill="#7B1FA2">Threshold: 2 of 3</text>
+
+  <!-- Key Shards below center -->
+  <rect x="325" y="290" width="48" height="36" rx="8" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="349" y="314" text-anchor="middle" font-size="18">&#x1F511;</text>
+
+  <rect x="380" y="290" width="48" height="36" rx="8" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="404" y="314" text-anchor="middle" font-size="18">&#x1F511;</text>
+
+  <rect x="435" y="290" width="48" height="36" rx="8" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="459" y="314" text-anchor="middle" font-size="18">&#x1F511;</text>
+
+  <!-- Shard labels -->
+  <text x="349" y="345" text-anchor="middle" font-size="10" fill="#7B1FA2">Device</text>
+  <text x="404" y="345" text-anchor="middle" font-size="10" fill="#7B1FA2">Auth Server</text>
+  <text x="459" y="345" text-anchor="middle" font-size="10" fill="#7B1FA2">Recovery</text>
+
+  <!-- === ARROW 2 === -->
+  <line x1="490" y1="200" x2="575" y2="200" stroke="#90CAF9" stroke-width="2.5" marker-end="url(#arrowFlow)"/>
+
+  <!-- === RIGHT: Instant Wallet === -->
+  <rect x="580" y="130" width="170" height="140" rx="16" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="2"/>
+  <!-- Wallet icon -->
+  <text x="665" y="178" text-anchor="middle" font-size="36">&#x1F4BC;</text>
+  <!-- Green checkmark -->
+  <circle cx="690" cy="155" r="12" fill="#66BB6A"/>
+  <text x="690" y="161" text-anchor="middle" font-size="14" fill="#FFFFFF" font-weight="bold">&#x2713;</text>
+
+  <text x="665" y="210" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E7D32">Instant Wallet</text>
+  <text x="665" y="230" text-anchor="middle" font-size="12" fill="#388E3C">No seed phrase needed</text>
+  <text x="665" y="250" text-anchor="middle" font-size="12" fill="#388E3C">Ready in seconds</text>
+
+  <!-- Bottom info bar -->
+  <rect x="100" y="400" width="600" height="50" rx="12" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="400" y="422" text-anchor="middle" font-size="14" fill="#E65100" font-weight="bold">Wallet-as-a-Service removes the #1 onboarding barrier</text>
+  <text x="400" y="440" text-anchor="middle" font-size="12" fill="#BF360C">Users never see private keys -- just familiar social login</text>
+
+  <!-- Arrow Marker -->
+  <defs>
+    <marker id="arrowFlow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#90CAF9"/>
+    </marker>
+  </defs>
+</svg>
