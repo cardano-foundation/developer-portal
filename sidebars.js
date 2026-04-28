@@ -163,7 +163,13 @@ module.exports = {
               {
                 type: "category",
                 label: "Evolution SDK",
+                link: {
+                  type: "doc",
+                  id: "get-started/client-sdks/typescript/evolution-sdk/overview",
+                },
                 items: [
+                  "get-started/client-sdks/typescript/evolution-sdk/common-patterns",
+                  "get-started/client-sdks/typescript/evolution-sdk/api-overview",
                   {
                     type: "category",
                     label: "Introduction",
@@ -361,6 +367,97 @@ module.exports = {
                       "get-started/client-sdks/typescript/evolution-sdk/querying/datums",
                       "get-started/client-sdks/typescript/evolution-sdk/querying/delegation",
                       "get-started/client-sdks/typescript/evolution-sdk/querying/transaction-status",
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: "Encoding",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/encoding/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/cbor",
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/bech32",
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/hex",
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/json",
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/data",
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/tschema",
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/plutus",
+                      "get-started/client-sdks/typescript/evolution-sdk/encoding/uplc",
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: "Time",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/time/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/time/slots",
+                      "get-started/client-sdks/typescript/evolution-sdk/time/posix",
+                      "get-started/client-sdks/typescript/evolution-sdk/time/validity-ranges",
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: "Devnet",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/devnet/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/devnet/getting-started",
+                      "get-started/client-sdks/typescript/evolution-sdk/devnet/configuration",
+                      "get-started/client-sdks/typescript/evolution-sdk/devnet/integration",
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: "Testing",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/testing/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/testing/unit-tests",
+                      "get-started/client-sdks/typescript/evolution-sdk/testing/integration-tests",
+                      "get-started/client-sdks/typescript/evolution-sdk/testing/emulator",
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: "Advanced",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/advanced/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/advanced/architecture",
+                      "get-started/client-sdks/typescript/evolution-sdk/advanced/custom-providers",
+                      "get-started/client-sdks/typescript/evolution-sdk/advanced/error-handling",
+                      "get-started/client-sdks/typescript/evolution-sdk/advanced/performance",
+                      "get-started/client-sdks/typescript/evolution-sdk/advanced/typescript",
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: "Internals",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/architecture/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/transaction-flow",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/coin-selection",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/redeemer-indexing",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/script-evaluation",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/unfrack-optimization",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/deferred-execution",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/devnet",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/provider-layer",
+                      "get-started/client-sdks/typescript/evolution-sdk/architecture/wallet-layer",
                     ],
                   },
                 ],
