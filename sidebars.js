@@ -206,6 +206,36 @@ module.exports = {
                       },
                     ],
                   },
+                  {
+                    type: "category",
+                    label: "Wallets",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/wallets/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/wallets/seed-phrase",
+                      "get-started/client-sdks/typescript/evolution-sdk/wallets/private-key",
+                      "get-started/client-sdks/typescript/evolution-sdk/wallets/api-wallet",
+                      "get-started/client-sdks/typescript/evolution-sdk/wallets/security",
+                      "get-started/client-sdks/typescript/evolution-sdk/wallets/message-signing",
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: "Providers",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/providers/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/providers/provider-types",
+                      "get-started/client-sdks/typescript/evolution-sdk/providers/provider-only-client",
+                      "get-started/client-sdks/typescript/evolution-sdk/providers/querying",
+                      "get-started/client-sdks/typescript/evolution-sdk/providers/submission",
+                      "get-started/client-sdks/typescript/evolution-sdk/providers/use-cases",
+                    ],
+                  },
                 ],
               },
               "get-started/client-sdks/typescript/mithril",
