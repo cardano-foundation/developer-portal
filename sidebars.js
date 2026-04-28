@@ -236,6 +236,22 @@ module.exports = {
                       "get-started/client-sdks/typescript/evolution-sdk/providers/use-cases",
                     ],
                   },
+                  {
+                    type: "category",
+                    label: "Transactions",
+                    link: {
+                      type: "doc",
+                      id: "get-started/client-sdks/typescript/evolution-sdk/transactions/overview",
+                    },
+                    items: [
+                      "get-started/client-sdks/typescript/evolution-sdk/transactions/first-transaction",
+                      "get-started/client-sdks/typescript/evolution-sdk/transactions/simple-payment",
+                      "get-started/client-sdks/typescript/evolution-sdk/transactions/multi-output",
+                      "get-started/client-sdks/typescript/evolution-sdk/transactions/chaining",
+                      "get-started/client-sdks/typescript/evolution-sdk/transactions/retry-safe",
+                      "get-started/client-sdks/typescript/evolution-sdk/transactions/airdrop",
+                    ],
+                  },
                 ],
               },
               "get-started/client-sdks/typescript/mithril",
