@@ -507,6 +507,11 @@ const redirects = [
     to: '/docs/build/smart-contracts/advanced/design-patterns/linked-list',
     from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/linked-list',
   },
+  {
+    // fix broken blog pagination: ../  from /blog/page/N/ resolves to /blog/page/
+    to: '/blog/',
+    from: '/blog/page',
+  },
 ];
 
 module.exports = redirects;
