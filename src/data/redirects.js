@@ -284,7 +284,7 @@ const redirects = [
     from: '/docs/get-started/mesh',
   },
   {
-    to: '/docs/get-started/client-sdks/typescript/evolution-sdk/get-started',
+    to: '/docs/get-started/client-sdks/typescript/evolution-sdk/overview',
     from: '/docs/get-started/evolution-sdk',
   },
   {
