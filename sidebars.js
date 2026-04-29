@@ -168,8 +168,6 @@ module.exports = {
                   id: "get-started/client-sdks/typescript/evolution-sdk/overview",
                 },
                 items: [
-                  "get-started/client-sdks/typescript/evolution-sdk/common-patterns",
-                  "get-started/client-sdks/typescript/evolution-sdk/api-overview",
                   {
                     type: "category",
                     label: "Introduction",
@@ -184,11 +182,12 @@ module.exports = {
                       "get-started/client-sdks/typescript/evolution-sdk/introduction/important-defaults",
                       "get-started/client-sdks/typescript/evolution-sdk/introduction/imports",
                       "get-started/client-sdks/typescript/evolution-sdk/introduction/platform-compatibility",
-                      "get-started/client-sdks/typescript/evolution-sdk/introduction/changelog",
                       "get-started/client-sdks/typescript/evolution-sdk/introduction/migration-from-lucid",
                       "get-started/client-sdks/typescript/evolution-sdk/introduction/community",
                     ],
                   },
+                  "get-started/client-sdks/typescript/evolution-sdk/common-patterns",
+                  "get-started/client-sdks/typescript/evolution-sdk/api-overview",
                   {
                     type: "category",
                     label: "Clients",
@@ -443,7 +442,7 @@ module.exports = {
                   },
                   {
                     type: "category",
-                    label: "Internals",
+                    label: "Architecture",
                     link: {
                       type: "doc",
                       id: "get-started/client-sdks/typescript/evolution-sdk/architecture/overview",
