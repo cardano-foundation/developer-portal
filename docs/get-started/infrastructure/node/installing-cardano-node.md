@@ -82,13 +82,13 @@ tools on your system:
   <TabItem value="ubuntu" label="Debian/Ubuntu" default>
     ```bash
     sudo apt-get update -y
-    sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libncurses-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libtool autoconf liblmdb-dev -y
+    sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libncurses-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libtool autoconf liblmdb-dev libsnappy-dev protobuf-compiler liburing-dev -y
     ```
   </TabItem>
   <TabItem value="fedora" label="Fedora, RedHat or CentOS">
     ```bash
     sudo yum update -y
-    sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf -y
+    sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf liburing-devel snappy-devel protobuf-compiler -y
     sudo yum install systemd-devel ncurses-devel ncurses-compat-libs which jq openssl-devel lmdb-devel -y
     ```
   </TabItem>
@@ -102,7 +102,7 @@ tools on your system:
      Then using homebrew install the following:
 
      ```bash
-     brew install jq libtool autoconf automake pkg-config openssl lmdb
+     brew install jq libtool autoconf automake pkg-config openssl lmdb liburing snappy protobuf
      ```
 
      You will need to install llvm in case you are using M1
