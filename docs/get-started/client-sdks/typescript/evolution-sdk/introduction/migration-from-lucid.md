@@ -101,6 +101,7 @@ const tx = await client
 ```
 
 Key differences:
+
 - `collectFrom` takes a named object instead of positional args
 - `attachSpendingValidator` → `attachScript` (one method for all script types)
 - Optional `label` field for debugging script failures
@@ -188,4 +189,4 @@ You're learning a new API for familiar concepts, not relearning Cardano itself.
 - [Getting Started](./getting-started.md) - Build your first Evolution SDK transaction
 - [Wallets](../wallets/overview.md) - Wallet types and key management
 - [Transactions](../transactions/overview.md) - Advanced transaction building
-- [API Reference](https://no-witness-labs.github.io/evolution-sdk/) - Complete API documentation
+- [API Reference](https://github.com/IntersectMBO/evolution-sdk) - Complete API documentation

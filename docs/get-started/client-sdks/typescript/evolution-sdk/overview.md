@@ -17,7 +17,7 @@ import DocCardList from '@theme/DocCardList';
 - [Why Evolution](./introduction/why-evolution.md) — Understand the philosophy and design principles behind Evolution SDK
 - [Common Patterns](./common-patterns.md) — Quick recipes for frequent tasks
 - [API Overview](./api-overview.md) — Find the right module for what you need
-- [API Reference](https://no-witness-labs.github.io/evolution-sdk/) — Complete API documentation for all modules
+- [API Reference](https://github.com/IntersectMBO/evolution-sdk) — Complete API documentation for all modules
 
 ## Core Concepts
 

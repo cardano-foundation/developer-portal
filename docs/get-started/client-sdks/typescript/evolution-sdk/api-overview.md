@@ -5,7 +5,7 @@ description: Find the right module for what you need to do
 
 # API Overview
 
-Find the right module by what you want to do. For full API docs, browse the [API Reference](https://no-witness-labs.github.io/evolution-sdk/).
+Find the right module by what you want to do. For full API docs, browse the [API Reference](https://github.com/IntersectMBO/evolution-sdk).
 
 ## Find by Task
 
@@ -32,15 +32,19 @@ Find the right module by what you want to do. For full API docs, browse the [API
 ## Module Categories
 
 ### Core Types
+
 Address, Assets, Credential, Data, TSchema, CBOR, UPLC, Transaction, UTxO, Value
 
 ### SDK
+
 Client, Provider (Blockfrost, Kupmios, Maestro, Koios), Wallet, TransactionBuilder, SignBuilder, SubmitBuilder, CoinSelection
 
 ### Domains
+
 Blueprint (codegen), COSE (message signing), Plutus (on-chain types)
 
 ### Primitives
+
 Bytes, BigInt, Coin, PolicyId, ScriptHash, KeyHash, Slot, UnixTime, and 100+ more
 
-For the complete list, browse the [API Reference](https://no-witness-labs.github.io/evolution-sdk/).
+For the complete list, browse the [API Reference](https://github.com/IntersectMBO/evolution-sdk).

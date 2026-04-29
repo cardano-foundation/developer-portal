@@ -12,7 +12,7 @@ sidebar_position: 10
 | --- | --- |
 | [GitHub Issues](https://github.com/IntersectMBO/evolution-sdk/issues) | Bug reports and feature requests |
 | [GitHub Discussions](https://github.com/IntersectMBO/evolution-sdk/discussions) | Questions, ideas, and general discussion |
-| [API Reference](https://no-witness-labs.github.io/evolution-sdk/) | Full module documentation |
+| [API Reference](https://github.com/IntersectMBO/evolution-sdk) | Full module documentation |
 
 ## Report a Bug
 
@@ -39,6 +39,7 @@ pnpm test
 ```
 
 **Before submitting a PR:**
+
 - Fork the repo and branch from `main`
 - Add tests for new code
 - Update docs if you changed APIs

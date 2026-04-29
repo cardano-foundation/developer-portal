@@ -125,7 +125,7 @@ console.log("Transaction submitted:", hash)
 - **[Wallets](../wallets/overview.md)** - Explore all wallet types and key management
 - **[Transactions](../transactions/overview.md)** - Build complex multi-output transactions
 - **[Querying](../querying/overview.md)** - Query UTxOs and blockchain state
-- **[API Reference](https://no-witness-labs.github.io/evolution-sdk/)** - Full API documentation
+- **[API Reference](https://github.com/IntersectMBO/evolution-sdk)** - Full API documentation
 
 ## Need Help?
 
