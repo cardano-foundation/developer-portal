@@ -390,6 +390,7 @@ module.exports = {
             items: [
               "build/smart-contracts/advanced/uplc",
               "build/smart-contracts/advanced/debug-cbor",
+              "build/smart-contracts/advanced/optimization",
             ],
           },
         ],
