@@ -177,7 +177,7 @@ fs.writeFileSync("src/generated/contract-types.ts", code)
 
 ## Next Steps
 
-- [Parameterized Scripts](./apply-params) — Apply parameters before using a validator
-- [TSchema](../encoding/tschema) — Understand the schema system
-- [Datums](./datums) — Attach data to script outputs
-- [Spending from Script](./spending) — Unlock funds with type-safe redeemers
+- [Parameterized Scripts](./apply-params.md) — Apply parameters before using a validator
+- [TSchema](../encoding/tschema.md) — Understand the schema system
+- [Datums](./datums.md) — Attach data to script outputs
+- [Spending from Script](./spending.md) — Unlock funds with type-safe redeemers

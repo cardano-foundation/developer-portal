@@ -268,10 +268,10 @@ Use the Data module directly when:
 - Debugging CBOR encoding issues
 - Building tooling or explorers
 
-For production smart contract integration, use [TSchema](./tschema) for type-safe schema definitions with automatic validation.
+For production smart contract integration, use [TSchema](./tschema.md) for type-safe schema definitions with automatic validation.
 
 ## Next Steps
 
-- [TSchema](./tschema) — Type-safe schema definitions with automatic validation
-- [Plutus Types](./plutus) — Pre-built types for addresses, credentials, values, and CIP-68
-- [CBOR](./cbor) — Low-level CBOR encoding and decoding
+- [TSchema](./tschema.md) — Type-safe schema definitions with automatic validation
+- [Plutus Types](./plutus.md) — Pre-built types for addresses, credentials, values, and CIP-68
+- [CBOR](./cbor.md) — Low-level CBOR encoding and decoding

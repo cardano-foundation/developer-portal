@@ -360,7 +360,7 @@ const unsignedTx = await builder.build() // Returns unsigned transaction
 
 ## Next Steps
 
-- **[Frontend/Backend Architecture](./architecture/frontend-backend)** - Deeper walkthrough of the split-client pattern
-- **[API Wallets](../wallets/api-wallet)** - CIP-30 integration details
-- **[Security](../wallets/security)** - Complete security guide
-- **[Private Key](../wallets/private-key)** - Backend automation
+- **[Frontend/Backend Architecture](./architecture/frontend-backend.md)** - Deeper walkthrough of the split-client pattern
+- **[API Wallets](../wallets/api-wallet.md)** - CIP-30 integration details
+- **[Security](../wallets/security.md)** - Complete security guide
+- **[Private Key](../wallets/private-key.md)** - Backend automation

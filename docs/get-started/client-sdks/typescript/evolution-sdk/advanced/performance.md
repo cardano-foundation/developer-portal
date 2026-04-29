@@ -82,5 +82,5 @@ This logs progress and state at each build phase, helping diagnose issues with c
 
 ## Next Steps
 
-- [Architecture](./architecture) — Build phases and pipeline
-- [Custom Providers](./custom-providers) — Provider implementation
+- [Architecture](./architecture.md) — Build phases and pipeline
+- [Custom Providers](./custom-providers.md) — Provider implementation

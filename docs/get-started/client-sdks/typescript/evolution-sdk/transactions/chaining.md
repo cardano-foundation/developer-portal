@@ -170,7 +170,7 @@ for (const tx of [tx1, tx2, tx3]) {
 ## Gotchas
 
 - **Submit in order.** Each transaction in the chain depends on outputs from the previous one. Submitting tx2 before tx1 means the node sees inputs that don't exist yet and rejects it.
-- **Not retry-safe by default.** The chain is built from a single snapshot of chain state. If tx1 fails after you've built tx2 (e.g. a network error mid-submit), you cannot safely retry just tx2 — you need to rebuild the whole chain. See [Retry-Safe Transactions](./retry-safe) for how to structure resilient pipelines.
+- **Not retry-safe by default.** The chain is built from a single snapshot of chain state. If tx1 fails after you've built tx2 (e.g. a network error mid-submit), you cannot safely retry just tx2 — you need to rebuild the whole chain. See [Retry-Safe Transactions](./retry-safe.md) for how to structure resilient pipelines.
 - **`chainResult()` is memoized.** It's computed once from the build result and cached. Calling it multiple times is free but you always get the same snapshot.
 - **The outputs in `available` are not yet on-chain.** They exist only as pre-computed UTxOs. Don't pass them to any provider call (e.g. `getUtxos`) — they won't be there yet.
 
@@ -220,6 +220,6 @@ Each `.compose(other)` copies the other builder's queued operations into the cur
 
 ## Next Steps
 
-- [Retry-Safe Transactions](./retry-safe)
-- [Multi Output](./multi-output)
-- [Simple Payment](./simple-payment)
+- [Retry-Safe Transactions](./retry-safe.md)
+- [Multi Output](./multi-output.md)
+- [Simple Payment](./simple-payment.md)

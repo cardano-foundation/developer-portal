@@ -46,6 +46,6 @@ Programs execute sequentially in append order. Each program can observe effects 
 
 ## Related Topics
 
-- [Transaction Flow](./transaction-flow) - How build, sign, submit phases enforce ordering
-- [Provider Layer](./provider-layer) - UTxO queries during program execution
-- [Wallet Layer](./wallet-layer) - Change address resolution and signing
+- [Transaction Flow](./transaction-flow.md) - How build, sign, submit phases enforce ordering
+- [Provider Layer](./provider-layer.md) - UTxO queries during program execution
+- [Wallet Layer](./wallet-layer.md) - Change address resolution and signing

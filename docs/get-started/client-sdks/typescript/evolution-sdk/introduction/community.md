@@ -48,5 +48,5 @@ pnpm test
 
 - [GitHub Repository](https://github.com/IntersectMBO/evolution-sdk)
 - [npm Package](https://www.npmjs.com/package/@evolution-sdk/evolution)
-- [Changelog](./changelog)
-- [Migration Guide](./migration-from-lucid)
+- [Changelog](./changelog.md)
+- [Migration Guide](./migration-from-lucid.md)

@@ -75,5 +75,5 @@ const tx = await client
 
 ## Next Steps
 
-- [Assets Overview](./overview) — Working with native assets
-- [Encoding](../encoding) — Data encoding formats
+- [Assets Overview](./overview.md) — Working with native assets
+- [Encoding](../encoding/overview.md) — Data encoding formats

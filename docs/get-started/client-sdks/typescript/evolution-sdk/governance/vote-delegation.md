@@ -125,6 +125,6 @@ await signed.submit()
 
 ## Next Steps
 
-- [Delegation](../staking/delegation) — Pool delegation
-- [DRep Registration](./drep-registration) — Become a DRep
-- [Voting](./voting) — How DReps cast votes
+- [Delegation](../staking/delegation.md) — Pool delegation
+- [DRep Registration](./drep-registration.md) — Become a DRep
+- [Voting](./voting.md) — How DReps cast votes

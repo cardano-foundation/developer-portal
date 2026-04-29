@@ -44,7 +44,7 @@ DevNet takes a different approach — it's a library, not a service. Genesis con
 
 The tradeoff: Yaci DevKit gives you visual tooling and broader SDK compatibility out of the box. DevNet gives you a code-first workflow where your local blockchain lives inside your test suite. Both run standard cardano-node instances, so blockchain behavior is identical.
 
-See [Configuration](./configuration) for genesis-as-code examples and [Integration](./integration) for a complete test workflow from cluster start to confirmed transaction.
+See [Configuration](./configuration.md) for genesis-as-code examples and [Integration](./integration.md) for a complete test workflow from cluster start to confirmed transaction.
 
 ## How Devnet Works
 
@@ -93,6 +93,6 @@ docker --version
 
 ## Next Steps
 
-- [Getting Started](./getting-started) — Create your first devnet cluster and run basic operations
-- [Configuration](./configuration) — Customize genesis parameters, protocol settings, and network behavior
-- [Integration](./integration) — Build complete workflows with Evolution SDK client for transactions
+- [Getting Started](./getting-started.md) — Create your first devnet cluster and run basic operations
+- [Configuration](./configuration.md) — Customize genesis parameters, protocol settings, and network behavior
+- [Integration](./integration.md) — Build complete workflows with Evolution SDK client for transactions

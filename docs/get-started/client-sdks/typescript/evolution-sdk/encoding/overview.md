@@ -39,11 +39,11 @@ graph LR
 
 ## Next Steps
 
-- [CBOR](./cbor) — Low-level CBOR encoding and decoding
-- [Bech32](./bech32) — Address encoding format
-- [Hex](./hex) — Hexadecimal encoding for bytes and hashes
-- [JSON](./json) — JSON data interchange
-- [PlutusData](./data) — On-chain data structures
-- [TSchema](./tschema) — Type-safe schema definitions
-- [Plutus Types](./plutus) — Pre-built schemas for Cardano types
-- [UPLC](./uplc) — Untyped Plutus Lambda Calculus programs
+- [CBOR](./cbor.md) — Low-level CBOR encoding and decoding
+- [Bech32](./bech32.md) — Address encoding format
+- [Hex](./hex.md) — Hexadecimal encoding for bytes and hashes
+- [JSON](./json.md) — JSON data interchange
+- [PlutusData](./data.md) — On-chain data structures
+- [TSchema](./tschema.md) — Type-safe schema definitions
+- [Plutus Types](./plutus.md) — Pre-built schemas for Cardano types
+- [UPLC](./uplc.md) — Untyped Plutus Lambda Calculus programs

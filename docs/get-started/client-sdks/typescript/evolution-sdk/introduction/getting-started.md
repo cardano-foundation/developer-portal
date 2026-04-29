@@ -19,10 +19,10 @@ This guide uses **Blockfrost** + **seed phrase** for the quickest path. If your 
 | Your Setup | Guide |
 | --- | --- |
 | **Backend / server-side** | This page (Blockfrost + seed phrase) |
-| **Frontend / dApp** | [API Wallets](../wallets/api-wallet) (CIP-30 browser wallet) |
-| **Self-hosted infra** | [Kupmios Provider](../providers/provider-types) (Ogmios + Kupo) |
-| **Local development** | [Devnet](../devnet/getting-started) (Docker-based local chain) |
-| **Multiple providers** | [Provider Types](../providers/provider-types) (compare all options) |
+| **Frontend / dApp** | [API Wallets](../wallets/api-wallet.md) (CIP-30 browser wallet) |
+| **Self-hosted infra** | [Kupmios Provider](../providers/provider-types.md) (Ogmios + Kupo) |
+| **Local development** | [Devnet](../devnet/getting-started.md) (Docker-based local chain) |
+| **Multiple providers** | [Provider Types](../providers/provider-types.md) (compare all options) |
 
 ## Key Concept: Provider + Wallet = Client
 
@@ -31,9 +31,9 @@ Before diving in, understand the two halves of a client:
 - **Provider** — reads from the blockchain (query UTxOs, protocol parameters, submit transactions). Think of it as your connection to the network.
 - **Wallet** — signs transactions (holds keys or connects to a browser extension). Without a wallet, you can build but not sign.
 
-A **signing client** has both: it can build, sign, and submit. A **read-only client** has only a provider + address: it can build unsigned transactions but cannot sign. See [Client Architecture](../clients/architecture) for full details.
+A **signing client** has both: it can build, sign, and submit. A **read-only client** has only a provider + address: it can build unsigned transactions but cannot sign. See [Client Architecture](../clients/architecture.md) for full details.
 
-This guide creates a signing client. If you're building a frontend dApp where the user's browser wallet signs, see [API Wallets](../wallets/api-wallet) instead.
+This guide creates a signing client. If you're building a frontend dApp where the user's browser wallet signs, see [API Wallets](../wallets/api-wallet.md) instead.
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ const client = Client.make(preprod)
   })
 ```
 
-See [Creating Wallets](../wallets) for all wallet types.
+See [Creating Wallets](../wallets/overview.md) for all wallet types.
 
 ### 3. Attach a Provider
 
@@ -87,7 +87,7 @@ const client = Client.make(preprod)
   })
 ```
 
-Learn more in [Clients](../clients) and [Providers](../clients/providers).
+Learn more in [Clients](../clients/overview.md) and [Providers](../clients/providers.md).
 
 ### 4. Build a Transaction
 
@@ -105,7 +105,7 @@ const tx = await client
   .build()
 ```
 
-Details in [Transactions](../transactions).
+Details in [Transactions](../transactions/overview.md).
 
 ### 5. Sign & Submit
 
@@ -119,14 +119,14 @@ console.log("Transaction submitted:", hash)
 
 ## What's Next?
 
-- **[Common Patterns](../common-patterns)** - Quick recipes for frequent tasks
-- **[API Overview](../api-overview)** - Find the right module by task
-- **[Clients](../clients)** - Connect to different blockchains and providers
-- **[Wallets](../wallets)** - Explore all wallet types and key management
-- **[Transactions](../transactions)** - Build complex multi-output transactions
-- **[Querying](../querying)** - Query UTxOs and blockchain state
+- **[Common Patterns](../common-patterns.md)** - Quick recipes for frequent tasks
+- **[API Overview](../api-overview.md)** - Find the right module by task
+- **[Clients](../clients/overview.md)** - Connect to different blockchains and providers
+- **[Wallets](../wallets/overview.md)** - Explore all wallet types and key management
+- **[Transactions](../transactions/overview.md)** - Build complex multi-output transactions
+- **[Querying](../querying/overview.md)** - Query UTxOs and blockchain state
 - **[API Reference](https://no-witness-labs.github.io/evolution-sdk/)** - Full API documentation
 
 ## Need Help?
 
-Check out [Addresses](../addresses), [Assets](../assets), and [Advanced](../advanced) for deeper topics.
+Check out [Addresses](../addresses/overview.md), [Assets](../assets/overview.md), and [Advanced](../advanced/overview.md) for deeper topics.

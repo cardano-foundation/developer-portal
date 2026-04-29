@@ -72,6 +72,6 @@ Customize the build process:
 
 ## Next Steps
 
-- [Error Handling](./error-handling) — Effect-based error patterns
-- [Performance](./performance) — Coin selection and optimization
-- [Custom Providers](./custom-providers) — Implement a provider
+- [Error Handling](./error-handling.md) — Effect-based error patterns
+- [Performance](./performance.md) — Coin selection and optimization
+- [Custom Providers](./custom-providers.md) — Implement a provider

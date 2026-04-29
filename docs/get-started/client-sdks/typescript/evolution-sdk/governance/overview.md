@@ -72,8 +72,8 @@ await signed.submit()
 
 ## Next Steps
 
-- [DRep Registration](./drep-registration) — Register, update, and deregister as a DRep
-- [Voting](./voting) — Cast votes on governance actions
-- [Proposals](./proposals) — Submit governance proposals
-- [Vote Delegation](./vote-delegation) — Delegate voting power to a DRep
-- [Committee Operations](./committee) — Authorize hot credentials and resign
+- [DRep Registration](./drep-registration.md) — Register, update, and deregister as a DRep
+- [Voting](./voting.md) — Cast votes on governance actions
+- [Proposals](./proposals.md) — Submit governance proposals
+- [Vote Delegation](./vote-delegation.md) — Delegate voting power to a DRep
+- [Committee Operations](./committee.md) — Authorize hot credentials and resign

@@ -60,6 +60,6 @@ SigningClient -> SigningTransactionBuilder
 
 ## Related Topics
 
-- [Architecture Overview](./overview) - How clients compose with wallets and providers
-- [Transaction Flow](./transaction-flow) - How wallet type affects build/sign/submit flow
-- [Deferred Execution](./deferred-execution) - Change address resolution from wallet
+- [Architecture Overview](./overview.md) - How clients compose with wallets and providers
+- [Transaction Flow](./transaction-flow.md) - How wallet type affects build/sign/submit flow
+- [Deferred Execution](./deferred-execution.md) - Change address resolution from wallet

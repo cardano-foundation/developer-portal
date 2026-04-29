@@ -16,8 +16,8 @@ Distribute tokens to dozens or hundreds of recipients efficiently. This tutorial
 ## Prerequisites
 
 - A Blockfrost API key ([get one free](https://blockfrost.io))
-- Tokens already in your wallet (or see [Minting Tokens](../smart-contracts/minting) to create them)
-- Familiarity with [multi-output transactions](./multi-output) and [transaction chaining](./chaining)
+- Tokens already in your wallet (or see [Minting Tokens](../smart-contracts/minting.md) to create them)
+- Familiarity with [multi-output transactions](./multi-output.md) and [transaction chaining](./chaining.md)
 
 ## Step 1: Define the Recipient List
 
@@ -203,7 +203,7 @@ When distributing native tokens, each output needs **more ADA** for the min UTxO
 
 ## Next Steps
 
-- [Multi-Output Transactions](./multi-output) — Basic multi-recipient patterns
-- [Transaction Chaining](./chaining) — How chainResult works
-- [Minting Tokens](../smart-contracts/minting) — Mint tokens before distributing
-- [Tutorial: Mint an NFT](../smart-contracts/mint-nft) — Mint + send in one transaction
+- [Multi-Output Transactions](./multi-output.md) — Basic multi-recipient patterns
+- [Transaction Chaining](./chaining.md) — How chainResult works
+- [Minting Tokens](../smart-contracts/minting.md) — Mint tokens before distributing
+- [Tutorial: Mint an NFT](../smart-contracts/mint-nft.md) — Mint + send in one transaction

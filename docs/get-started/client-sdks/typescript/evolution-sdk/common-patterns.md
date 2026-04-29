@@ -27,7 +27,7 @@ const tx = await client
   .newTx()
   .payToAddress({
     address: Address.fromBech32("addr_test1vrm9x2dgvdau8vckj4duc89m638t8djmluqw5pdrFollw8qd9k63"),
-    assets: Assets.fromLovelace(5_000_000n)
+    assets: Assets.fromLovelace(5_000_000n) // 5 ADA
   })
   .build()
 
@@ -35,7 +35,7 @@ const signed = await tx.sign()
 const hash = await signed.submit()
 ```
 
-**More:** [Simple Payment](./transactions/simple-payment) | [Multi-Output](./transactions/multi-output)
+**More:** [Simple Payment](./transactions/simple-payment.md) | [Multi-Output](./transactions/multi-output.md)
 
 ---
 
@@ -51,13 +51,16 @@ const client = Client.make(preprod)
   })
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
+// Get all UTxOs at your wallet address
 const utxos = await client.getWalletUtxos()
+// utxos → UTxO[] with .txHash, .outputIndex, .assets, .datum
 
+// Get UTxOs at a specific address
 const addr = Address.fromBech32("addr_test1vrm9x2dgvdau8vckj4duc89m638t8djmluqw5pdrFollw8qd9k63")
 const addrUtxos = await client.getUtxos(addr)
 ```
 
-**More:** [Querying UTxOs](./querying/utxos)
+**More:** [Querying UTxOs](./querying/utxos.md)
 
 ---
 
@@ -88,7 +91,7 @@ const signed = await tx.sign()
 await signed.submit()
 ```
 
-**More:** [Locking to Script](./smart-contracts/locking) | [Datums](./smart-contracts/datums)
+**More:** [Locking to Script](./smart-contracts/locking.md) | [Datums](./smart-contracts/datums.md)
 
 ---
 
@@ -104,8 +107,8 @@ const client = Client.make(preprod)
   })
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
-declare const scriptUtxos: UTxO.UTxO[]
-declare const validatorScript: any
+declare const scriptUtxos: UTxO.UTxO[] // from client.getUtxos(scriptAddress)
+declare const validatorScript: any // compiled Plutus script (from Aiken build or Blueprint codegen)
 
 const tx = await client
   .newTx()
@@ -120,7 +123,7 @@ const signed = await tx.sign()
 await signed.submit()
 ```
 
-**More:** [Spending from Script](./smart-contracts/spending) | [Redeemers](./smart-contracts/redeemers)
+**More:** [Spending from Script](./smart-contracts/spending.md) | [Redeemers](./smart-contracts/redeemers.md)
 
 ---
 
@@ -135,9 +138,10 @@ const applied = UPLC.applyParamsToScript(compiledScript, [
   Data.bytearray("abc123def456abc123def456abc123def456abc123def456abc123de"),
   Data.int(1735689600000n),
 ])
+// applied → double-CBOR hex string ready for transaction use
 ```
 
-**More:** [Parameterized Scripts](./smart-contracts/apply-params)
+**More:** [Parameterized Scripts](./smart-contracts/apply-params.md)
 
 ---
 
@@ -156,20 +160,23 @@ type EscrowDatum = typeof EscrowDatum.Type
 
 const Codec = Data.withSchema(EscrowDatum)
 
+// toData → PlutusData (Constr with 3 fields)
 const datum = Codec.toData({
   beneficiary: Bytes.fromHex("abc123def456abc123def456abc123def456abc123def456abc123de"),
   deadline: 1735689600000n,
   amount: 25_000_000n,
 })
 
+// toCBORHex → CBOR hex string for on-chain use
 const cbor = Codec.toCBORHex({
   beneficiary: Bytes.fromHex("abc123def456abc123def456abc123def456abc123def456abc123de"),
   deadline: 1735689600000n,
   amount: 25_000_000n,
 })
+// cbor → "d8799f4e...1a017d7840ff" (ready for datum field)
 ```
 
-**More:** [TSchema](./encoding/tschema) | [Datums](./smart-contracts/datums)
+**More:** [TSchema](./encoding/tschema.md) | [Datums](./smart-contracts/datums.md)
 
 ---
 
@@ -196,7 +203,7 @@ const signed = await tx.sign()
 await signed.submit()
 ```
 
-**More:** [Staking Registration](./staking/registration) | [Delegation](./staking/delegation)
+**More:** [Staking Registration](./staking/registration.md) | [Delegation](./staking/delegation.md)
 
 ---
 
@@ -222,7 +229,7 @@ const tx = await client
   })
   .setValidity({
     from: now,
-    to: now + 300_000n
+    to: now + 300_000n // 5 minutes
   })
   .build()
 
@@ -230,7 +237,7 @@ const signed = await tx.sign()
 await signed.submit()
 ```
 
-**More:** [Validity Ranges](./time/validity-ranges)
+**More:** [Validity Ranges](./time/validity-ranges.md)
 
 ---
 
@@ -249,9 +256,11 @@ const signed = COSE.SignData.signData(
   payload,
   privateKey
 )
+// signed.signature — CBOR-encoded COSE_Sign1
+// signed.key — CBOR-encoded COSE_Key
 ```
 
-**More:** [Message Signing](./wallets/message-signing)
+**More:** [Message Signing](./wallets/message-signing.md)
 
 ---
 
@@ -287,4 +296,4 @@ try {
 }
 ```
 
-**More:** [Error Handling](./advanced/error-handling)
+**More:** [Error Handling](./advanced/error-handling.md)

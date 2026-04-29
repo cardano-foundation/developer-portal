@@ -496,6 +496,6 @@ const utxos = await resilientProvider.getUtxos(address)
 
 Now that you understand provider use cases:
 
-- [Provider Types](./provider-types) - Choose the right provider
-- [Querying](./querying) - Master query methods
-- [Submission](./submission) - Transaction submission patterns
+- [Provider Types](./provider-types.md) - Choose the right provider
+- [Querying](./querying.md) - Master query methods
+- [Submission](./submission.md) - Transaction submission patterns

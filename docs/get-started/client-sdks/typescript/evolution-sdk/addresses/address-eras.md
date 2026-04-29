@@ -139,6 +139,6 @@ function getPaymentCredential(utxo: Utxo) {
 
 ## Next Steps
 
-- **[Address](./address)** - Simplified API for modern address types
-- **[Address Types](./address-types)** - Overview of all Cardano address types
-- **[Address Conversion](./conversion)** - Transform between Bech32, hex, and byte formats
+- **[Address](./address.md)** - Simplified API for modern address types
+- **[Address Types](./address-types/overview.md)** - Overview of all Cardano address types
+- **[Address Conversion](./conversion.md)** - Transform between Bech32, hex, and byte formats

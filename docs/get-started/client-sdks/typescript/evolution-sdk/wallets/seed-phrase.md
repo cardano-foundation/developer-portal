@@ -25,7 +25,7 @@ Mnemonics provide human-friendly backup and recovery. The same 24 words reconstr
 ## How to Secure
 
 :::warning
-**Never use seed phrase wallets in production with real funds.** Anyone with the mnemonic controls all derived keys and funds. Use [Private Key Wallets](./private-key) with a vault or [API Wallets](./api-wallet) for production.
+**Never use seed phrase wallets in production with real funds.** Anyone with the mnemonic controls all derived keys and funds. Use [Private Key Wallets](./private-key.md) with a vault or [API Wallets](./api-wallet.md) for production.
 :::
 
 - Store in environment variables
@@ -185,6 +185,6 @@ Always use environment variables. Always keep separate mnemonics per environment
 
 ## Next Steps
 
-- **[Private Key Wallets](./private-key)** - Production automation
-- **[API Wallets](./api-wallet)** - User-facing applications
-- **[Security](./security)** - Complete security guide
+- **[Private Key Wallets](./private-key.md)** - Production automation
+- **[API Wallets](./api-wallet.md)** - User-facing applications
+- **[Security](./security.md)** - Complete security guide

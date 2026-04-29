@@ -91,6 +91,6 @@ The builder automatically detects script-controlled voters and will fail if a re
 
 ## Next Steps
 
-- [DRep Registration](./drep-registration) — Register before voting
-- [Proposals](./proposals) — Submit governance actions to vote on
-- [Vote Delegation](./vote-delegation) — Delegate voting power
+- [DRep Registration](./drep-registration.md) — Register before voting
+- [Proposals](./proposals.md) — Submit governance actions to vote on
+- [Vote Delegation](./vote-delegation.md) — Delegate voting power

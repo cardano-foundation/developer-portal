@@ -104,7 +104,7 @@ try {
 
 ## Next Steps
 
-- [Use Cases](./use-cases) — Complete real-world examples
-- [Provider Types](./provider-types) — Choose the right provider
-- [Error Handling](../advanced/error-handling) — Full error type reference and debugging
-- [Retry-Safe Transactions](../transactions/retry-safe) — Builder-level retry patterns
+- [Use Cases](./use-cases.md) — Complete real-world examples
+- [Provider Types](./provider-types.md) — Choose the right provider
+- [Error Handling](../advanced/error-handling.md) — Full error type reference and debugging
+- [Retry-Safe Transactions](../transactions/retry-safe.md) — Builder-level retry patterns

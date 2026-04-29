@@ -297,6 +297,6 @@ const client =
 
 Learn more about provider capabilities:
 
-- [Querying](./querying) - Master all query methods
-- [Submission](./submission) - Transaction submission patterns
-- [Use Cases](./use-cases) - Real-world examples
+- [Querying](./querying.md) - Master all query methods
+- [Submission](./submission.md) - Transaction submission patterns
+- [Use Cases](./use-cases.md) - Real-world examples

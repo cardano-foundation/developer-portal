@@ -356,7 +356,7 @@ utxos.forEach((utxo, i) => {
 
 ## Next Steps
 
-- [Integration](./integration) — Build complete workflows using the Evolution SDK client with your funded devnet addresses
+- [Integration](./integration.md) — Build complete workflows using the Evolution SDK client with your funded devnet addresses
 
 ## Troubleshooting
 

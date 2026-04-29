@@ -53,6 +53,6 @@ TypeScript enforces: `.withBlockfrost()` requires `baseUrl` and `projectId`. `.w
 
 ## Related Topics
 
-- [Architecture Overview](./overview) - How providers attach to clients
-- [Transaction Flow](./transaction-flow) - Provider queries during build phase
-- [Deferred Execution](./deferred-execution) - Provider integration with program execution
+- [Architecture Overview](./overview.md) - How providers attach to clients
+- [Transaction Flow](./transaction-flow.md) - Provider queries during build phase
+- [Deferred Execution](./deferred-execution.md) - Provider integration with program execution

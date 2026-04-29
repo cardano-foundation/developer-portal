@@ -54,9 +54,9 @@ The Conway era introduced new delegation capabilities:
 
 ## Next Steps
 
-- [Registration](./registration) — Register stake credentials on-chain
-- [Legacy Registration](./legacy-registration) — Pre-Conway registration, withdrawal scripts, and coordinator pattern
-- [Delegation](./delegation) — Delegate to pools and DReps
-- [Withdrawal](./withdrawal) — Claim accumulated staking rewards
-- [Deregistration](./deregistration) — Remove credentials and reclaim deposit
-- [Stake Pool Operations](./pools) — Register and retire stake pools
+- [Registration](./registration.md) — Register stake credentials on-chain
+- [Legacy Registration](./legacy-registration.md) — Pre-Conway registration, withdrawal scripts, and coordinator pattern
+- [Delegation](./delegation.md) — Delegate to pools and DReps
+- [Withdrawal](./withdrawal.md) — Claim accumulated staking rewards
+- [Deregistration](./deregistration.md) — Remove credentials and reclaim deposit
+- [Stake Pool Operations](./pools.md) — Register and retire stake pools

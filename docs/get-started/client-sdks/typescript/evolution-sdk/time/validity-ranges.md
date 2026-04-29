@@ -64,6 +64,6 @@ Both are optional — you can set just one bound:
 
 ## Next Steps
 
-- [Smart Contracts](../smart-contracts/spending) — Time-locked script spending
-- [POSIX Time](./posix) — Unix timestamp utilities
-- [Slots](./slots) — Slot-based time
+- [Smart Contracts](../smart-contracts/spending.md) — Time-locked script spending
+- [POSIX Time](./posix.md) — Unix timestamp utilities
+- [Slots](./slots.md) — Slot-based time

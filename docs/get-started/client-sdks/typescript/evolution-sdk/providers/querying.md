@@ -425,5 +425,5 @@ async function getCachedProtocolParameters() {
 
 Learn about transaction submission:
 
-- [Submission](./submission) - Submit and monitor transactions
-- [Use Cases](./use-cases) - Complete real-world examples
+- [Submission](./submission.md) - Submit and monitor transactions
+- [Use Cases](./use-cases.md) - Complete real-world examples

@@ -49,6 +49,7 @@ const client = Client.make(preprod)
   })
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
+// Lock 10 ADA to a script address with an inline datum
 const tx = await client
   .newTx()
   .payToAddress({
@@ -74,14 +75,15 @@ const client = Client.make(preprod)
   })
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
-declare const scriptUtxos: UTxO.UTxO[]
-declare const validatorScript: any
+declare const scriptUtxos: UTxO.UTxO[] // from client.getUtxos(scriptAddress)
+declare const validatorScript: any // compiled Plutus script (from Aiken build or Blueprint codegen)
 
+// Spend from script with a redeemer
 const tx = await client
   .newTx()
   .collectFrom({
     inputs: scriptUtxos,
-    redeemer: Data.constr(0n, [])
+    redeemer: Data.constr(0n, []) // "Claim" action
   })
   .attachScript({ script: validatorScript })
   .build()
@@ -107,15 +109,15 @@ const hash = await signed.submit()
 
 ## Next Steps
 
-- [Datums](./datums) — Attach data to script outputs
-- [Locking to Script](./locking) — Send funds to a script address
-- [Spending from Script](./spending) — Unlock funds with redeemers
-- [Minting Tokens](./minting) — Mint and burn native tokens with minting policies
-- [Native Scripts](./native-scripts) — Time-locks, multi-sig, and simple minting without Plutus
-- [Redeemers](./redeemers) — Static, self, and batch redeemer modes
-- [Reference Scripts](./reference-scripts) — Reduce transaction size with on-chain scripts
-- [Parameterized Scripts](./apply-params) — Apply parameters to reusable validators
-- [Blueprint Codegen](./blueprint-codegen) — Generate type-safe schemas from CIP-57 blueprints
-- [Tutorial: Token Vesting](./vesting)
-- [Tutorial: Mint an NFT](./mint-nft)
-- [Tutorial: Multi-Sig Treasury](./multi-sig)
+- [Datums](./datums.md) — Attach data to script outputs
+- [Locking to Script](./locking.md) — Send funds to a script address
+- [Spending from Script](./spending.md) — Unlock funds with redeemers
+- [Minting Tokens](./minting.md) — Mint and burn native tokens with minting policies
+- [Native Scripts](./native-scripts.md) — Time-locks, multi-sig, and simple minting without Plutus
+- [Redeemers](./redeemers.md) — Static, self, and batch redeemer modes
+- [Reference Scripts](./reference-scripts.md) — Reduce transaction size with on-chain scripts
+- [Parameterized Scripts](./apply-params.md) — Apply parameters to reusable validators
+- [Blueprint Codegen](./blueprint-codegen.md) — Generate type-safe schemas from CIP-57 blueprints
+- [Tutorial: Token Vesting](./vesting.md)
+- [Tutorial: Mint an NFT](./mint-nft.md)
+- [Tutorial: Multi-Sig Treasury](./multi-sig.md)

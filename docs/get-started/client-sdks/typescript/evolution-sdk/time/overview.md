@@ -44,6 +44,6 @@ const now = BigInt(Date.now())
 
 ## Next Steps
 
-- [Slots](./slots) — Slot-based time and conversion
-- [POSIX Time](./posix) — Unix timestamp utilities
-- [Validity Ranges](./validity-ranges) — Set transaction time constraints
+- [Slots](./slots.md) — Slot-based time and conversion
+- [POSIX Time](./posix.md) — Unix timestamp utilities
+- [Validity Ranges](./validity-ranges.md) — Set transaction time constraints

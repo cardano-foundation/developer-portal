@@ -68,4 +68,4 @@ Evolution SDK is **fully typed** with:
 
 ## Questions?
 
-If your specific platform isn't listed or you have compatibility concerns, check [Advanced](../advanced) or open an issue on GitHub.
+If your specific platform isn't listed or you have compatibility concerns, check [Advanced](../advanced/overview.md) or open an issue on GitHub.

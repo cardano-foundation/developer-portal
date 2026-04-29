@@ -136,6 +136,6 @@ const client = process.env.BLOCKFROST_API_KEY
 
 ## Next Steps
 
-- [Client Basics](./client-basics) - Learn core client operations
-- [Getting Started](../introduction/getting-started) - Quick start guide
-- [Querying](../querying) - Query blockchain state
+- [Client Basics](./client-basics.md) - Learn core client operations
+- [Getting Started](../introduction/getting-started.md) - Quick start guide
+- [Querying](../querying/overview.md) - Query blockchain state

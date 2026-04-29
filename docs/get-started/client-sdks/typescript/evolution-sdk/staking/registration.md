@@ -123,6 +123,6 @@ await signed.submit()
 
 ## Next Steps
 
-- [Delegation](./delegation) — Delegate your registered stake
-- [Withdrawal](./withdrawal) — Claim accumulated rewards
-- [Deregistration](./deregistration) — Remove credential and reclaim deposit
+- [Delegation](./delegation.md) — Delegate your registered stake
+- [Withdrawal](./withdrawal.md) — Claim accumulated rewards
+- [Deregistration](./deregistration.md) — Remove credential and reclaim deposit

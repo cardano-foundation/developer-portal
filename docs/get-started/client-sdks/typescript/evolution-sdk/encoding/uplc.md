@@ -7,7 +7,7 @@ description: Working with Untyped Plutus Lambda Calculus programs
 
 UPLC (Untyped Plutus Lambda Calculus) is the low-level language that Plutus smart contracts compile to. Evolution SDK provides a complete UPLC module for parsing, constructing, encoding, and manipulating UPLC programs.
 
-Most developers interact with UPLC indirectly through `applyParamsToScript` (see [Parameterized Scripts](../smart-contracts/apply-params)). This guide covers the UPLC module in depth for advanced use cases.
+Most developers interact with UPLC indirectly through `applyParamsToScript` (see [Parameterized Scripts](../smart-contracts/apply-params.md)). This guide covers the UPLC module in depth for advanced use cases.
 
 ## Program Structure
 
@@ -116,7 +116,7 @@ const typedApplied = UPLC.applyParamsToScriptWithSchema(
 )
 ```
 
-See [Parameterized Scripts](../smart-contracts/apply-params) for a complete tutorial.
+See [Parameterized Scripts](../smart-contracts/apply-params.md) for a complete tutorial.
 
 ## Builtin Functions
 
@@ -157,7 +157,7 @@ try {
 
 ## Next Steps
 
-- [Parameterized Scripts](../smart-contracts/apply-params) — Apply parameters to validators
-- [Blueprint Codegen](../smart-contracts/blueprint-codegen) — Generate types from CIP-57 blueprints
-- [CBOR Encoding](./cbor) — Low-level CBOR operations
-- [Data Encoding](./data) — PlutusData construction
+- [Parameterized Scripts](../smart-contracts/apply-params.md) — Apply parameters to validators
+- [Blueprint Codegen](../smart-contracts/blueprint-codegen.md) — Generate types from CIP-57 blueprints
+- [CBOR Encoding](./cbor.md) — Low-level CBOR operations
+- [Data Encoding](./data.md) — PlutusData construction

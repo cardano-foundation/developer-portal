@@ -87,6 +87,6 @@ const utxos = await client.getUtxosByOutRef(refs)
 
 ## Next Steps
 
-- [Datums](./datums) — Query datum values
-- [Delegation](./delegation) — Check delegation status
-- [Transaction Status](./transaction-status) — Wait for confirmations
+- [Datums](./datums.md) — Query datum values
+- [Delegation](./delegation.md) — Check delegation status
+- [Transaction Status](./transaction-status.md) — Wait for confirmations

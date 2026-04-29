@@ -59,5 +59,5 @@ const kupmiosClient = Client.make(preprod)
 
 ## Next Steps
 
-- [Architecture](./architecture) — How providers fit into the build pipeline
-- [Providers](../providers) — Provider comparison and configuration
+- [Architecture](./architecture.md) — How providers fit into the build pipeline
+- [Providers](../providers/overview.md) — Provider comparison and configuration

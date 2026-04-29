@@ -86,5 +86,5 @@ The UTxO is included because redeemers may need output reference data, not just 
 
 ## Related Topics
 
-- [Deferred Execution](./deferred-execution) - Program storage and fresh state model
-- [Transaction Flow](./transaction-flow) - Build phases and state machine
+- [Deferred Execution](./deferred-execution.md) - Program storage and fresh state model
+- [Transaction Flow](./transaction-flow.md) - Build phases and state machine

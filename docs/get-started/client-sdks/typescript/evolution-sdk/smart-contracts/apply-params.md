@@ -138,7 +138,7 @@ Common parameters include:
 
 ## Next Steps
 
-- [Locking to Script](./locking) — Lock funds to your parameterized script
-- [Spending from Script](./spending) — Spend with redeemers
-- [Datums](./datums) — Attach state to script outputs
-- [TSchema](../encoding/tschema) — Type-safe data encoding
+- [Locking to Script](./locking.md) — Lock funds to your parameterized script
+- [Spending from Script](./spending.md) — Spend with redeemers
+- [Datums](./datums.md) — Attach state to script outputs
+- [TSchema](../encoding/tschema.md) — Type-safe data encoding

@@ -111,6 +111,6 @@ Script-controlled credentials allow multi-sig or on-chain logic to govern commit
 
 ## Next Steps
 
-- [Voting](./voting) — Cast votes on governance actions
-- [Proposals](./proposals) — Submit governance actions for the community to vote on
-- [DRep Registration](./drep-registration) — Register as a Delegated Representative
+- [Voting](./voting.md) — Cast votes on governance actions
+- [Proposals](./proposals.md) — Submit governance actions for the community to vote on
+- [DRep Registration](./drep-registration.md) — Register as a Delegated Representative

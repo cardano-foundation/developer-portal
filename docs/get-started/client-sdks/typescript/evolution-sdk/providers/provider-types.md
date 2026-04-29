@@ -345,6 +345,6 @@ const client =
 
 Now that you understand provider types, learn how to use them:
 
-- [Provider-Only Client](./provider-only-client) - Query blockchain without wallet
-- [Querying](./querying) - Master all query methods
-- [Submission](./submission) - Submit transactions and monitor confirmations
+- [Provider-Only Client](./provider-only-client.md) - Query blockchain without wallet
+- [Querying](./querying.md) - Master all query methods
+- [Submission](./submission.md) - Submit transactions and monitor confirmations

@@ -34,6 +34,6 @@ const decoded = Data.fromCBORHex(cborHex)
 
 ## Next Steps
 
-- [PlutusData](./data) — On-chain data structures
-- [TSchema](./tschema) — Type-safe schema definitions
-- [Hex](./hex) — Hex encoding for bytes
+- [PlutusData](./data.md) — On-chain data structures
+- [TSchema](./tschema.md) — Type-safe schema definitions
+- [Hex](./hex.md) — Hex encoding for bytes

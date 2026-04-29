@@ -154,6 +154,6 @@ await signed.submit()
 
 ## Next Steps
 
-- [Withdrawal](./withdrawal) — Claim accumulated rewards
-- [Vote Delegation](../governance/vote-delegation) — More on DRep delegation
-- [Registration](./registration) — Register before delegating
+- [Withdrawal](./withdrawal.md) — Claim accumulated rewards
+- [Vote Delegation](../governance/vote-delegation.md) — More on DRep delegation
+- [Registration](./registration.md) — Register before delegating

@@ -72,8 +72,8 @@ Query + Submit pre-signed?
 
 ## Next Steps
 
-- **[Client Basics](./client-basics)** - Understanding client capabilities
-- **[Provider Setup](./providers)** - Provider configuration comparison
-- **[Architecture](./architecture)** - Frontend/backend patterns
-- **[Wallets](../wallets)** - Wallet types and security
-- **[Providers](../providers)** - Provider-only client patterns
+- **[Client Basics](./client-basics.md)** - Understanding client capabilities
+- **[Provider Setup](./providers.md)** - Provider configuration comparison
+- **[Architecture](./architecture.md)** - Frontend/backend patterns
+- **[Wallets](../wallets/overview.md)** - Wallet types and security
+- **[Providers](../providers/overview.md)** - Provider-only client patterns

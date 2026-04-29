@@ -185,7 +185,7 @@ You're learning a new API for familiar concepts, not relearning Cardano itself.
 
 ## Next Steps
 
-- [Getting Started](./getting-started) - Build your first Evolution SDK transaction
-- [Wallets](../wallets) - Wallet types and key management
-- [Transactions](../transactions) - Advanced transaction building
+- [Getting Started](./getting-started.md) - Build your first Evolution SDK transaction
+- [Wallets](../wallets/overview.md) - Wallet types and key management
+- [Transactions](../transactions/overview.md) - Advanced transaction building
 - [API Reference](https://no-witness-labs.github.io/evolution-sdk/) - Complete API documentation

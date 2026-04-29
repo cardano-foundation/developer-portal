@@ -53,6 +53,6 @@ await Cluster.remove(cluster)
 
 ## Next Steps
 
-- [Devnet Getting Started](../devnet/getting-started) — Full devnet setup guide
-- [Devnet Integration](../devnet/integration) — Complete integration workflows
-- [Integration Tests](./integration-tests) — Test patterns with devnet
+- [Devnet Getting Started](../devnet/getting-started.md) — Full devnet setup guide
+- [Devnet Integration](../devnet/integration.md) — Complete integration workflows
+- [Integration Tests](./integration-tests.md) — Test patterns with devnet

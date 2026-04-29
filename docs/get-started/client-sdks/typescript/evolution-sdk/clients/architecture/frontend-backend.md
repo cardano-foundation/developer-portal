@@ -378,7 +378,7 @@ Understanding what each client type can do:
 
 ## Next Steps
 
-- **[API Wallets](../../wallets/api-wallet)** - CIP-30 browser wallet integration for frontend signing
-- **[Client Architecture](../architecture)** - Read-only wallets and backend transaction building
-- **[Wallet Types](../../wallets)** - Understand different wallet types used in clients
-- **[Security Best Practices](../../wallets/security)** - Complete security guide for wallet integration
+- **[API Wallets](../../wallets/api-wallet.md)** - CIP-30 browser wallet integration for frontend signing
+- **[Client Architecture](../architecture.md)** - Read-only wallets and backend transaction building
+- **[Wallet Types](../../wallets/overview.md)** - Understand different wallet types used in clients
+- **[Security Best Practices](../../wallets/security.md)** - Complete security guide for wallet integration

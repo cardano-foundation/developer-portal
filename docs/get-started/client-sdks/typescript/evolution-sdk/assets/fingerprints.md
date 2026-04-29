@@ -20,5 +20,5 @@ Fingerprints are for display purposes — the canonical identifier for on-chain 
 
 ## Next Steps
 
-- [Asset Units](./units) — Understanding policy IDs and asset names
-- [Metadata](./metadata) — Attach metadata to assets
+- [Asset Units](./units.md) — Understanding policy IDs and asset names
+- [Metadata](./metadata.md) — Attach metadata to assets

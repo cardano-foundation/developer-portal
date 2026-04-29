@@ -89,5 +89,5 @@ describe("Transaction Tests", () => {
 
 ## Next Steps
 
-- [Emulator](./emulator) — More on devnet as emulator
-- [Devnet](../devnet) — Devnet configuration and lifecycle
+- [Emulator](./emulator.md) — More on devnet as emulator
+- [Devnet](../devnet/overview.md) — Devnet configuration and lifecycle

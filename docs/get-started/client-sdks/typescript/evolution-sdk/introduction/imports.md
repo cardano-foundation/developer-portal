@@ -101,6 +101,6 @@ Blocking deep imports (`/plutus/Address`, `/cose/Key`) matters because it lets t
 
 ## Next Steps
 
-- [Installation](./installation)
-- [Getting Started](./getting-started)
+- [Installation](./installation.md)
+- [Getting Started](./getting-started.md)
 - [API Reference](https://no-witness-labs.github.io/evolution-sdk/)

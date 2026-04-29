@@ -16,7 +16,7 @@ Mint a unique NFT on Cardano with CIP-25 metadata — a name, image, and descrip
 ## Prerequisites
 
 - A Blockfrost API key ([get one free](https://blockfrost.io))
-- Basic familiarity with [minting tokens](./minting) and [native scripts](./native-scripts)
+- Basic familiarity with [minting tokens](./minting.md) and [native scripts](./native-scripts.md)
 
 ## Step 1: Create a Minting Policy
 
@@ -32,7 +32,7 @@ const nativeScript = new NativeScripts.NativeScript({ script: mintingPolicy })
 ```
 
 :::info
-For a **one-time mint** (true NFT uniqueness), add a time-lock to the policy. After the deadline passes, nobody can mint more tokens under this policy. See [Native Scripts](./native-scripts) for time-lock examples.
+For a **one-time mint** (true NFT uniqueness), add a time-lock to the policy. After the deadline passes, nobody can mint more tokens under this policy. See [Native Scripts](./native-scripts.md) for time-lock examples.
 :::
 
 ## Step 2: Structure CIP-25 Metadata
@@ -152,7 +152,7 @@ The builder handles fee calculation, coin selection, and change automatically.
 
 ## Next Steps
 
-- [Minting Tokens](./minting) — Plutus minting policies and burning
-- [Native Scripts](./native-scripts) — Time-locked policies for one-time mints
-- [Asset Metadata](../assets/metadata) — More metadata patterns (CIP-20 messages)
-- [Blueprint Codegen](./blueprint-codegen) — Generate types from Aiken validators
+- [Minting Tokens](./minting.md) — Plutus minting policies and burning
+- [Native Scripts](./native-scripts.md) — Time-locked policies for one-time mints
+- [Asset Metadata](../assets/metadata.md) — More metadata patterns (CIP-20 messages)
+- [Blueprint Codegen](./blueprint-codegen.md) — Generate types from Aiken validators

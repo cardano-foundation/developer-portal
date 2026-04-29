@@ -47,5 +47,5 @@ const tokenName = Text.toBytes("MyToken")
 
 ## Next Steps
 
-- [Bech32](./bech32) — Address encoding
-- [PlutusData](./data) — On-chain data structures
+- [Bech32](./bech32.md) — Address encoding
+- [PlutusData](./data.md) — On-chain data structures

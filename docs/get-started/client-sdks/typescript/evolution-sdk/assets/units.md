@@ -49,6 +49,6 @@ Every UTxO must contain a minimum amount of ADA (determined by `coinsPerUtxoByte
 
 ## Next Steps
 
-- [Assets Overview](./overview) — Creating and merging asset bundles
-- [Metadata](./metadata) — Attach metadata to transactions
-- [Simple Payment](../transactions/simple-payment) — Send native tokens
+- [Assets Overview](./overview.md) — Creating and merging asset bundles
+- [Metadata](./metadata.md) — Attach metadata to transactions
+- [Simple Payment](../transactions/simple-payment.md) — Send native tokens

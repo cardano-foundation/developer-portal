@@ -75,4 +75,4 @@ This ensures unfrack never creates invalid outputs.
 
 ## Related Topics
 
-- [Transaction Flow](./transaction-flow) - How unfrack fits into the build phase state machine
+- [Transaction Flow](./transaction-flow.md) - How unfrack fits into the build phase state machine

@@ -54,5 +54,5 @@ const fromBytes = Address.fromBytes(bytes)
 
 ## Next Steps
 
-- [Addresses](../addresses) — Address types and operations
-- [Hex](./hex) — Hex encoding for raw data
+- [Addresses](../addresses/overview.md) — Address types and operations
+- [Hex](./hex.md) — Hex encoding for raw data

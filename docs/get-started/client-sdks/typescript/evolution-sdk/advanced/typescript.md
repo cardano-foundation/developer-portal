@@ -82,6 +82,6 @@ import { Address, Assets, Data } from "@evolution-sdk/evolution"
 
 ## Next Steps
 
-- [Error Handling](./error-handling) — Effect error patterns
-- [TSchema](../encoding/tschema) — Type-safe schema definitions
-- [Architecture](./architecture) — SDK internals
+- [Error Handling](./error-handling.md) — Effect error patterns
+- [TSchema](../encoding/tschema.md) — Type-safe schema definitions
+- [Architecture](./architecture.md) — SDK internals

@@ -157,6 +157,6 @@ await signed.submit()
 
 ## Next Steps
 
-- [Voting](./voting) — Cast votes as a DRep
-- [Vote Delegation](./vote-delegation) — Delegate voting power to DReps
-- [Proposals](./proposals) — Submit governance proposals
+- [Voting](./voting.md) — Cast votes as a DRep
+- [Vote Delegation](./vote-delegation.md) — Delegate voting power to DReps
+- [Proposals](./proposals.md) — Submit governance proposals

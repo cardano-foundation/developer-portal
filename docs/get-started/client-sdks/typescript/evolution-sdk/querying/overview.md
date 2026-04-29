@@ -48,8 +48,8 @@ const addrUtxos = await client.getUtxos(addr)
 
 ## Next Steps
 
-- [UTxOs](./utxos) — Query unspent transaction outputs
-- [Protocol Parameters](./protocol-parameters) — Fetch current network parameters
-- [Datums](./datums) — Query datum values by hash
-- [Delegation](./delegation) — Check stake delegation and rewards
-- [Transaction Status](./transaction-status) — Wait for transaction confirmation
+- [UTxOs](./utxos.md) — Query unspent transaction outputs
+- [Protocol Parameters](./protocol-parameters.md) — Fetch current network parameters
+- [Datums](./datums.md) — Query datum values by hash
+- [Delegation](./delegation.md) — Check stake delegation and rewards
+- [Transaction Status](./transaction-status.md) — Wait for transaction confirmation

@@ -51,5 +51,5 @@ const now = BigInt(Date.now())
 
 ## Next Steps
 
-- [Slots](./slots) — How Unix time maps to slots
-- [Validity Ranges](./validity-ranges) — Setting time constraints on transactions
+- [Slots](./slots.md) — How Unix time maps to slots
+- [Validity Ranges](./validity-ranges.md) — Setting time constraints on transactions

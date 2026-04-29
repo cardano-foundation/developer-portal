@@ -112,5 +112,5 @@ function createCustodialAddress(
 
 ## Next Steps
 
-- **[Base Addresses](./address-types/base)** - Understanding the underlying base address format
-- **[Validation](./validation)** - Verifying address structure
+- **[Base Addresses](./address-types/base.md)** - Understanding the underlying base address format
+- **[Validation](./validation.md)** - Verifying address structure

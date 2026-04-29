@@ -16,7 +16,7 @@ Base Address = Payment Credential + Staking Credential
 **Payment Credential**: Controls who can spend UTXOs at this address
 **Staking Credential**: Controls delegation and receives staking rewards
 
-Both credentials are typically derived from the same wallet, but can come from different sources (see [Franken Addresses](../franken)).
+Both credentials are typically derived from the same wallet, but can come from different sources (see [Franken Addresses](../franken.md)).
 
 ## Construction
 
@@ -95,6 +95,6 @@ console.log("Script-based address:", bech32);
 
 ## Related
 
-- **[Enterprise Addresses](./enterprise)** - Payment credential only
-- **[Reward Addresses](./reward)** - Staking credential only
-- **[Franken Addresses](../franken)** - Addresses with credentials from different sources
+- **[Enterprise Addresses](./enterprise.md)** - Payment credential only
+- **[Reward Addresses](./reward.md)** - Staking credential only
+- **[Franken Addresses](../franken.md)** - Addresses with credentials from different sources

@@ -36,5 +36,5 @@ For Plutus V2+ contracts, inline datums are recommended as they don't require a 
 
 ## Next Steps
 
-- [UTxOs](./utxos) — Query UTxOs that may contain datums
-- [Datums](../smart-contracts/datums) — Working with datums in transactions
+- [UTxOs](./utxos.md) — Query UTxOs that may contain datums
+- [Datums](../smart-contracts/datums.md) — Working with datums in transactions

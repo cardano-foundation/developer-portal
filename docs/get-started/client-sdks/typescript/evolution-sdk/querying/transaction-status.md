@@ -46,5 +46,5 @@ On devnet with fast blocks, transactions confirm almost instantly. On mainnet or
 
 ## Next Steps
 
-- [UTxOs](./utxos) — Query UTxOs after confirmation
-- [Your First Transaction](../transactions/first-transaction) — Complete transaction workflow
+- [UTxOs](./utxos.md) — Query UTxOs after confirmation
+- [Your First Transaction](../transactions/first-transaction.md) — Complete transaction workflow

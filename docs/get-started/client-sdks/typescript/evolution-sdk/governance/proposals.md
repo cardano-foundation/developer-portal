@@ -82,5 +82,5 @@ await signed.submit()
 
 ## Next Steps
 
-- [Voting](./voting) — Vote on submitted proposals
-- [DRep Registration](./drep-registration) — Register to vote on proposals
+- [Voting](./voting.md) — Vote on submitted proposals
+- [DRep Registration](./drep-registration.md) — Register to vote on proposals

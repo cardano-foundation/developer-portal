@@ -32,8 +32,8 @@ Evolution SDK is designed to solve common pain points in Cardano development:
 
 ## Next Steps
 
-Ready to start building? Check out our [Getting Started](./getting-started) guide, or dive into specific topics:
+Ready to start building? Check out our [Getting Started](./getting-started.md) guide, or dive into specific topics:
 
-- [Set up a Client](../clients) to connect to the blockchain
-- [Create a Wallet](../wallets) for signing transactions
-- [Build Your First Transaction](../transactions/first-transaction)
+- [Set up a Client](../clients/overview.md) to connect to the blockchain
+- [Create a Wallet](../wallets/overview.md) for signing transactions
+- [Build Your First Transaction](../transactions/first-transaction.md)

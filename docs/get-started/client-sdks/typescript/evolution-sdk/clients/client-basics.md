@@ -101,6 +101,6 @@ console.log("Transaction ID:", txId)
 
 ## Next Steps
 
-- [Provider Setup Comparison](./providers) - Choose the right provider
-- [Building Transactions](../transactions/first-transaction) - Learn transaction construction
-- [Wallets](../wallets) - Explore wallet types
+- [Provider Setup Comparison](./providers.md) - Choose the right provider
+- [Building Transactions](../transactions/first-transaction.md) - Learn transaction construction
+- [Wallets](../wallets/overview.md) - Explore wallet types

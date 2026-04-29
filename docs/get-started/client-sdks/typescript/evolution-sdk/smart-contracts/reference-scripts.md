@@ -124,6 +124,6 @@ This is commonly used for:
 
 ## Next Steps
 
-- [Locking to Script](./locking) — Deploy reference scripts when locking funds
-- [Spending from Script](./spending) — Use reference scripts when spending
-- [Datums](./datums) — Data attached to script UTxOs
+- [Locking to Script](./locking.md) — Deploy reference scripts when locking funds
+- [Spending from Script](./spending.md) — Use reference scripts when spending
+- [Datums](./datums.md) — Data attached to script UTxOs

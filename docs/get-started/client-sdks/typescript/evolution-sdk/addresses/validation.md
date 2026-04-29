@@ -134,6 +134,6 @@ function validateMany(addresses: string[]): {
 
 ## Next Steps
 
-- **[Address Conversion](./conversion)** - Transform between Bech32, hex, and byte formats
-- **[Address Types](./address-types)** - Overview of all Cardano address types
-- **[Address](./address)** - Parse, validate, and convert addresses
+- **[Address Conversion](./conversion.md)** - Transform between Bech32, hex, and byte formats
+- **[Address Types](./address-types/overview.md)** - Overview of all Cardano address types
+- **[Address](./address.md)** - Parse, validate, and convert addresses

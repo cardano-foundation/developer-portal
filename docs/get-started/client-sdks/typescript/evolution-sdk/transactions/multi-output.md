@@ -72,6 +72,6 @@ This collects all wallet UTxOs and creates a single output containing all assets
 
 ## Next Steps
 
-- [Simple Payment](./simple-payment) — Single recipient payments
-- [Your First Transaction](./first-transaction) — Complete walkthrough
-- [Assets](../assets) — Working with native tokens
+- [Simple Payment](./simple-payment.md) — Single recipient payments
+- [Your First Transaction](./first-transaction.md) — Complete walkthrough
+- [Assets](../assets/overview.md) — Working with native tokens

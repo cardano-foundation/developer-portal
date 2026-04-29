@@ -492,6 +492,6 @@ export const MyDatumCodec = Data.withSchema(MyDatumSchema)
 
 ## Next Steps
 
-- [Plutus Types](./plutus) — Pre-built schemas for addresses, credentials, values, and CIP-68
-- [PlutusData](./data) — Understanding the five primitive PlutusData types
-- [Smart Contracts](../smart-contracts) — Using schemas with Plutus validators
+- [Plutus Types](./plutus.md) — Pre-built schemas for addresses, credentials, values, and CIP-68
+- [PlutusData](./data.md) — Understanding the five primitive PlutusData types
+- [Smart Contracts](../smart-contracts/overview.md) — Using schemas with Plutus validators

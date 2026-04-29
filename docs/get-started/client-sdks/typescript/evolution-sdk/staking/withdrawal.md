@@ -102,6 +102,6 @@ await signed.submit()
 
 ## Next Steps
 
-- [Deregistration](./deregistration) — Withdraw before deregistering
-- [Delegation](./delegation) — Change pool delegation
-- [Querying Delegation](../querying/delegation) — Check reward balance
+- [Deregistration](./deregistration.md) — Withdraw before deregistering
+- [Delegation](./delegation.md) — Change pool delegation
+- [Querying Delegation](../querying/delegation.md) — Check reward balance

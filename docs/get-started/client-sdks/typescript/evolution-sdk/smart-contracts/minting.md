@@ -136,7 +136,7 @@ When minting, Evolution SDK automatically:
 
 ## Next Steps
 
-- [Locking to Script](./locking) — Lock minted tokens to a script address
-- [Asset Units](../assets/units) — Understanding policy IDs and asset names
-- [Asset Metadata](../assets/metadata) — Attach CIP-25 NFT metadata
-- [Reference Scripts](./reference-scripts) — Store minting policies on-chain
+- [Locking to Script](./locking.md) — Lock minted tokens to a script address
+- [Asset Units](../assets/units.md) — Understanding policy IDs and asset names
+- [Asset Metadata](../assets/metadata.md) — Attach CIP-25 NFT metadata
+- [Reference Scripts](./reference-scripts.md) — Store minting policies on-chain

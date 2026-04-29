@@ -116,6 +116,6 @@ Handles insufficient change scenarios after MAX_ATTEMPTS exhausted. Always proce
 
 ## Related Topics
 
-- [Deferred Execution](./deferred-execution) - How program descriptions enable composition
-- [Provider Layer](./provider-layer) - Blockchain data queries during build phase
-- [Wallet Layer](./wallet-layer) - Signing capabilities and type constraints
+- [Deferred Execution](./deferred-execution.md) - How program descriptions enable composition
+- [Provider Layer](./provider-layer.md) - Blockchain data queries during build phase
+- [Wallet Layer](./wallet-layer.md) - Signing capabilities and type constraints

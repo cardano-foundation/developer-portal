@@ -95,6 +95,6 @@ Reward addresses enable separation between payment and staking operations:
 
 ## Related
 
-- **[Base Addresses](./base)** - Addresses with both payment and staking credentials
-- **[Enterprise Addresses](./enterprise)** - Payment credential only
-- **[Staking](../../staking)** - Using reward addresses for delegation and withdrawals
+- **[Base Addresses](./base.md)** - Addresses with both payment and staking credentials
+- **[Enterprise Addresses](./enterprise.md)** - Payment credential only
+- **[Staking](../../staking/overview.md)** - Using reward addresses for delegation and withdrawals

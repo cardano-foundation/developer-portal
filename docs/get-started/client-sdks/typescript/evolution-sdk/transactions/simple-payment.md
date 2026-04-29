@@ -142,7 +142,7 @@ Follow these guidelines for safe, reliable payments:
 
 ## Next Steps
 
-- [Your First Transaction](./first-transaction) - Complete walkthrough with detailed explanations
-- [Multi-Output](./multi-output) - Send to multiple recipients in one transaction
-- [Querying](../querying) - Check balances and transaction status
-- [Assets](../assets) - Working with native tokens and NFTs
+- [Your First Transaction](./first-transaction.md) - Complete walkthrough with detailed explanations
+- [Multi-Output](./multi-output.md) - Send to multiple recipients in one transaction
+- [Querying](../querying/overview.md) - Check balances and transaction status
+- [Assets](../assets/overview.md) - Working with native tokens and NFTs

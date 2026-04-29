@@ -167,6 +167,6 @@ This matches the `api.signData()` specification from CIP-30, making it compatibl
 
 ## Next Steps
 
-- [Wallets](./overview) — Wallet types and setup
-- [Private Key](./private-key) — Working with private keys
-- [API Wallet](./api-wallet) — CIP-30 browser wallet integration
+- [Wallets](./overview.md) — Wallet types and setup
+- [Private Key](./private-key.md) — Working with private keys
+- [API Wallet](./api-wallet.md) — CIP-30 browser wallet integration

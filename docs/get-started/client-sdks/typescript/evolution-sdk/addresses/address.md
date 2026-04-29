@@ -166,6 +166,6 @@ These are automatically handled when parsing existing UTXOs but should not be us
 
 ## Next Steps
 
-- [Address Validation](./validation) - Error handling and validation patterns
-- [Address Conversion](./conversion) - Transform between formats
-- [Address Construction](./construction) - Build addresses from credentials
+- [Address Validation](./validation.md) - Error handling and validation patterns
+- [Address Conversion](./conversion.md) - Transform between formats
+- [Address Construction](./construction.md) - Build addresses from credentials

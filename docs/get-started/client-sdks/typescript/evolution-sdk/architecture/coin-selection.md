@@ -93,4 +93,4 @@ When transactions require native assets (tokens, NFTs), selection must cover bot
 
 ## Related Topics
 
-- [Transaction Flow](./transaction-flow) - How coin selection integrates into the build state machine
+- [Transaction Flow](./transaction-flow.md) - How coin selection integrates into the build state machine

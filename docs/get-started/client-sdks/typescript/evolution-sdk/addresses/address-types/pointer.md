@@ -114,5 +114,5 @@ console.log("Pointer address (deprecated):", pointerAddr);
 
 ## Related
 
-- **[Base Addresses](./base)** - Standard address format with embedded stake credential
-- **[Enterprise Addresses](./enterprise)** - Payment credential only
+- **[Base Addresses](./base.md)** - Standard address format with embedded stake credential
+- **[Enterprise Addresses](./enterprise.md)** - Payment credential only

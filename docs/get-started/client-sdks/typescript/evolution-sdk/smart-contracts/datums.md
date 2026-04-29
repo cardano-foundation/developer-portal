@@ -175,7 +175,7 @@ for (const utxo of utxos) {
 
 ## Next Steps
 
-- [Locking to Script](./locking) — Send funds to a script address with datums
-- [Spending from Script](./spending) — Unlock script UTxOs with redeemers
-- [TSchema](../encoding/tschema) — Type-safe schema definitions
-- [PlutusData](../encoding/data) — Raw PlutusData construction
+- [Locking to Script](./locking.md) — Send funds to a script address with datums
+- [Spending from Script](./spending.md) — Unlock script UTxOs with redeemers
+- [TSchema](../encoding/tschema.md) — Type-safe schema definitions
+- [PlutusData](../encoding/data.md) — Raw PlutusData construction

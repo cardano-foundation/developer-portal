@@ -141,6 +141,6 @@ To update an existing pool's parameters (cost, margin, relays, metadata), submit
 
 ## Next Steps
 
-- [Stake Registration](./registration) — Register stake credentials before delegating
-- [Delegation](./delegation) — Delegate stake to a pool
-- [Governance](../governance) — Participate in on-chain governance
+- [Stake Registration](./registration.md) — Register stake credentials before delegating
+- [Delegation](./delegation.md) — Delegate stake to a pool
+- [Governance](../governance/overview.md) — Participate in on-chain governance

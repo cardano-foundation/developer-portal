@@ -171,7 +171,7 @@ const json = NativeScripts.toJSON(script)
 
 ## Next Steps
 
-- [Minting Tokens](./minting) — Mint with Plutus minting policies
-- [Locking to Script](./locking) — Lock funds with datums
-- [Spending from Script](./spending) — Unlock with redeemers
-- [Time / Slots](../time/slots) — Convert between Unix time and slots for time constraints
+- [Minting Tokens](./minting.md) — Mint with Plutus minting policies
+- [Locking to Script](./locking.md) — Lock funds with datums
+- [Spending from Script](./spending.md) — Unlock with redeemers
+- [Time / Slots](../time/slots.md) — Convert between Unix time and slots for time constraints

@@ -43,6 +43,6 @@ const combined = Assets.merge(bundle1, bundle2) // 8 ADA total
 
 ## Next Steps
 
-- [Asset Units](./units) — Understanding policy IDs and asset names
-- [Metadata](./metadata) — Attach metadata to transactions (CIP-25, CIP-20)
-- [Minting](../smart-contracts) — Mint native tokens with smart contracts
+- [Asset Units](./units.md) — Understanding policy IDs and asset names
+- [Metadata](./metadata.md) — Attach metadata to transactions (CIP-25, CIP-20)
+- [Minting](../smart-contracts/overview.md) — Mint native tokens with smart contracts

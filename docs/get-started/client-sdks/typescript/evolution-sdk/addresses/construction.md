@@ -58,6 +58,6 @@ const myAddress = await client.address()
 
 ## Next Steps
 
-- [Address Types](./address-types) — Base, enterprise, pointer, reward
-- [Address Validation](./validation) — Validate address format
-- [Address Conversion](./conversion) — Convert between formats
+- [Address Types](./address-types/overview.md) — Base, enterprise, pointer, reward
+- [Address Validation](./validation.md) — Validate address format
+- [Address Conversion](./conversion.md) — Convert between formats

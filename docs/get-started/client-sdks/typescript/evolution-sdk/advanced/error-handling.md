@@ -320,6 +320,6 @@ if (result._tag === "Left") {
 
 ## Next Steps
 
-- [Architecture](./architecture) — How errors flow through build phases
-- [TypeScript Tips](./typescript) — Type patterns with Effect
-- [UPLC](../encoding/uplc) — UPLC error debugging
+- [Architecture](./architecture.md) — How errors flow through build phases
+- [TypeScript Tips](./typescript.md) — Type patterns with Effect
+- [UPLC](../encoding/uplc.md) — UPLC error debugging

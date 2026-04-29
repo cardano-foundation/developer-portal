@@ -21,6 +21,6 @@ Evolution SDK supports multiple testing strategies — from unit tests that vali
 
 ## Next Steps
 
-- [Unit Tests](./unit-tests) — Test schemas, encoding, and address utilities
-- [Integration Tests](./integration-tests) — Test with devnet for full transaction lifecycle
-- [Emulator](./emulator) — Use devnet as a local blockchain emulator
+- [Unit Tests](./unit-tests.md) — Test schemas, encoding, and address utilities
+- [Integration Tests](./integration-tests.md) — Test with devnet for full transaction lifecycle
+- [Emulator](./emulator.md) — Use devnet as a local blockchain emulator

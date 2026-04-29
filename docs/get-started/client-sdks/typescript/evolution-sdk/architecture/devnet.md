@@ -92,6 +92,6 @@ Genesis UTxOs are calculated deterministically by hashing address bytes to produ
 
 ## Related Topics
 
-- [Devnet Getting Started](../devnet/getting-started) - Practical devnet setup
-- [Devnet Configuration](../devnet/configuration) - Genesis customization
-- [Provider Layer](./provider-layer) - How devnet integrates with provider abstraction
+- [Devnet Getting Started](../devnet/getting-started.md) - Practical devnet setup
+- [Devnet Configuration](../devnet/configuration.md) - Genesis customization
+- [Provider Layer](./provider-layer.md) - How devnet integrates with provider abstraction

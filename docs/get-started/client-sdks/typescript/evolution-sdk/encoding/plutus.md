@@ -343,7 +343,7 @@ const mintValue: Value.Value = new Map([
 
 ## Next Steps
 
-- [TSchema](./tschema) — Build custom type-safe schemas for your own data structures
-- [PlutusData](./data) — Understand the five primitive PlutusData types
-- [Smart Contracts](../smart-contracts) — Use these types with Plutus validators
-- [Transactions](../transactions) — Build transactions with addresses, values, and references
+- [TSchema](./tschema.md) — Build custom type-safe schemas for your own data structures
+- [PlutusData](./data.md) — Understand the five primitive PlutusData types
+- [Smart Contracts](../smart-contracts/overview.md) — Use these types with Plutus validators
+- [Transactions](../transactions/overview.md) — Build transactions with addresses, values, and references

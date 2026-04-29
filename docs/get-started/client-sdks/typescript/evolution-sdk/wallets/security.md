@@ -347,7 +347,7 @@ Use private key wallets for automated operations. Store keys in vault solutions 
 
 ## Next Steps
 
-- **[Client Architecture](../clients/architecture)** - Frontend/backend patterns
-- **[API Wallets](./api-wallet)** - CIP-30 integration
-- **[Private Key](./private-key)** - Vault integration
-- **[Seed Phrase](./seed-phrase)** - Development wallets
+- **[Client Architecture](../clients/architecture.md)** - Frontend/backend patterns
+- **[API Wallets](./api-wallet.md)** - CIP-30 integration
+- **[Private Key](./private-key.md)** - Vault integration
+- **[Seed Phrase](./seed-phrase.md)** - Development wallets

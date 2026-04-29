@@ -84,5 +84,5 @@ console.log("Slot 50M is at:", new Date(Number(targetTime)))
 
 ## Next Steps
 
-- [POSIX Time](./posix) — Unix timestamp utilities
-- [Validity Ranges](./validity-ranges) — Setting time constraints
+- [POSIX Time](./posix.md) — Unix timestamp utilities
+- [Validity Ranges](./validity-ranges.md) — Setting time constraints

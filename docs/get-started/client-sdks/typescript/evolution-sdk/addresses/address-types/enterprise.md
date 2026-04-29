@@ -94,5 +94,5 @@ console.log("Script enterprise address:", bech32);
 
 ## Related
 
-- **[Base Addresses](./base)** - Addresses with both payment and staking credentials
-- **[Reward Addresses](./reward)** - Staking credential only
+- **[Base Addresses](./base.md)** - Addresses with both payment and staking credentials
+- **[Reward Addresses](./reward.md)** - Staking credential only

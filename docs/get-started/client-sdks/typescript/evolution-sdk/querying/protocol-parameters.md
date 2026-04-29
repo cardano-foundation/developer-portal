@@ -69,5 +69,5 @@ const tx = await client
 
 ## Next Steps
 
-- [Transaction Status](./transaction-status) — Check confirmation status
-- [UTxOs](./utxos) — Query unspent outputs
+- [Transaction Status](./transaction-status.md) — Check confirmation status
+- [UTxOs](./utxos.md) — Query unspent outputs

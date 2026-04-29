@@ -19,7 +19,7 @@ No Plutus required — native scripts handle multi-sig natively.
 ## Prerequisites
 
 - A Blockfrost API key ([get one free](https://blockfrost.io))
-- Familiarity with [native scripts](./native-scripts)
+- Familiarity with [native scripts](./native-scripts.md)
 - 3 wallets (or 3 account indices from the same mnemonic for testing)
 
 ## Step 1: Create the Multi-Sig Script
@@ -118,7 +118,7 @@ const withdrawTxHash = await signed.submit()
 ```
 
 :::warning
-The transaction must be signed by the actual private keys of the listed signers. In a real multi-sig flow, the unsigned transaction CBOR is shared between signers, each adds their signature, then the combined transaction is submitted. See [Client Architecture](../clients/architecture) for the frontend/backend signing pattern.
+The transaction must be signed by the actual private keys of the listed signers. In a real multi-sig flow, the unsigned transaction CBOR is shared between signers, each adds their signature, then the combined transaction is submitted. See [Client Architecture](../clients/architecture.md) for the frontend/backend signing pattern.
 :::
 
 ## Variations
@@ -169,7 +169,7 @@ const timedTreasury = NativeScripts.makeScriptAll([
 
 ## Next Steps
 
-- [Native Scripts](./native-scripts) — All script types and composition
-- [Tutorial: Token Vesting](./vesting) — Time-locked release with Plutus
-- [Client Architecture](../clients/architecture) — Multi-party signing flow (frontend/backend)
-- [Spending from Script](./spending) — Required signers and debug labels
+- [Native Scripts](./native-scripts.md) — All script types and composition
+- [Tutorial: Token Vesting](./vesting.md) — Time-locked release with Plutus
+- [Client Architecture](../clients/architecture.md) — Multi-party signing flow (frontend/backend)
+- [Spending from Script](./spending.md) — Required signers and debug labels

@@ -15,7 +15,7 @@ Wallets manage private keys and prove ownership through cryptographic signatures
 
 **What wallets do**: Sign transactions, derive addresses, prove ownership of funds through cryptographic operations.
 
-**What wallets don't do**: Query blockchain, build transactions, or submit to network—those capabilities come from combining wallets with providers in [clients](../clients).
+**What wallets don't do**: Query blockchain, build transactions, or submit to network—those capabilities come from combining wallets with providers in [clients](../clients/overview.md).
 
 ## Wallet Types
 
@@ -119,7 +119,7 @@ const apiWalletConfig = { api: walletApi };
 const readOnlyWalletConfig = { address: "addr1..." };
 ```
 
-See [Clients documentation](../clients) for concrete examples that combine a provider and a wallet to build a client capable of querying and submitting transactions.
+See [Clients documentation](../clients/overview.md) for concrete examples that combine a provider and a wallet to build a client capable of querying and submitting transactions.
 
 ## Security Considerations
 
@@ -130,14 +130,14 @@ Each wallet type has different security implications:
 - **API Wallet**: Highest security, user controls all signing approvals
 - **Read-Only**: No security risk (no keys)
 
-See [Security Best Practices](./security) for detailed guidance.
+See [Security Best Practices](./security.md) for detailed guidance.
 
 ## Next Steps
 
 Explore each wallet type in detail:
 
-- **[Seed Phrase Wallets](./seed-phrase)** - Mnemonic-based signing
-- **[Private Key Wallets](./private-key)** - Direct key usage
-- **[API Wallets](./api-wallet)** - CIP-30 integration
-- **[Security](./security)** - Best practices and checklists
-- **[Clients](../clients)** - Using wallets with providers
+- **[Seed Phrase Wallets](./seed-phrase.md)** - Mnemonic-based signing
+- **[Private Key Wallets](./private-key.md)** - Direct key usage
+- **[API Wallets](./api-wallet.md)** - CIP-30 integration
+- **[Security](./security.md)** - Best practices and checklists
+- **[Clients](../clients/overview.md)** - Using wallets with providers

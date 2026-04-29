@@ -87,6 +87,6 @@ console.log("Evolution SDK loaded successfully!")
 
 ## Next Steps
 
-- [Create a wallet](../wallets)
-- [Connect a provider](../clients/providers)
-- [Build your first transaction](./getting-started)
+- [Create a wallet](../wallets/overview.md)
+- [Connect a provider](../clients/providers.md)
+- [Build your first transaction](./getting-started.md)

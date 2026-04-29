@@ -74,5 +74,5 @@ describe("Assets", () => {
 
 ## Next Steps
 
-- [Integration Tests](./integration-tests) — Test full transaction workflows
-- [Emulator](./emulator) — Use devnet for testing
+- [Integration Tests](./integration-tests.md) — Test full transaction workflows
+- [Emulator](./emulator.md) — Use devnet for testing

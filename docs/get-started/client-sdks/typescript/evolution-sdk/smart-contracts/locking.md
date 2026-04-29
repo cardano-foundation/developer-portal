@@ -181,6 +181,6 @@ await signed.submit()
 
 ## Next Steps
 
-- [Spending from Script](./spending) — Unlock the funds you locked
-- [Datums](./datums) — Datum types and construction patterns
-- [Reference Scripts](./reference-scripts) — Store scripts on-chain
+- [Spending from Script](./spending.md) — Unlock the funds you locked
+- [Datums](./datums.md) — Datum types and construction patterns
+- [Reference Scripts](./reference-scripts.md) — Store scripts on-chain

@@ -107,6 +107,6 @@ try {
 
 ## Next Steps
 
-- **[Address Validation](./validation)** - Verify address correctness and handle errors
-- **[Address Types](./address-types)** - Overview of all Cardano address types
-- **[Address](./address)** - Parse, validate, and convert addresses
+- **[Address Validation](./validation.md)** - Verify address correctness and handle errors
+- **[Address Types](./address-types/overview.md)** - Overview of all Cardano address types
+- **[Address](./address.md)** - Parse, validate, and convert addresses

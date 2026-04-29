@@ -13,20 +13,20 @@ import DocCardList from '@theme/DocCardList';
 
 ## Quick Start
 
-- [Getting Started](./introduction/getting-started) — Learn the basics and build your first transaction in minutes
-- [Why Evolution](./introduction/why-evolution) — Understand the philosophy and design principles behind Evolution SDK
-- [Common Patterns](./common-patterns) — Quick recipes for frequent tasks
-- [API Overview](./api-overview) — Find the right module for what you need
+- [Getting Started](./introduction/getting-started.md) — Learn the basics and build your first transaction in minutes
+- [Why Evolution](./introduction/why-evolution.md) — Understand the philosophy and design principles behind Evolution SDK
+- [Common Patterns](./common-patterns.md) — Quick recipes for frequent tasks
+- [API Overview](./api-overview.md) — Find the right module for what you need
 - [API Reference](https://no-witness-labs.github.io/evolution-sdk/) — Complete API documentation for all modules
 
 ## Core Concepts
 
 Learn the fundamentals of working with Evolution SDK.
 
-- [Clients](./clients) — Set up blockchain connections with providers
-- [Wallets](./wallets) — Create and manage wallets for signing
-- [Transactions](./transactions) — Build, sign, and submit transactions
-- [Querying](./querying) — Query blockchain data and UTxOs
+- [Clients](./clients/overview.md) — Set up blockchain connections with providers
+- [Wallets](./wallets/overview.md) — Create and manage wallets for signing
+- [Transactions](./transactions/overview.md) — Build, sign, and submit transactions
+- [Querying](./querying/overview.md) — Query blockchain data and UTxOs
 
 ## Features
 

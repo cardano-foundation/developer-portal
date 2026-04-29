@@ -122,4 +122,4 @@ Validators execute with transaction context: inputs, outputs, redeemers, datums.
 
 ## Related Topics
 
-- [Transaction Flow](./transaction-flow) - How script evaluation integrates into the build state machine
+- [Transaction Flow](./transaction-flow.md) - How script evaluation integrates into the build state machine

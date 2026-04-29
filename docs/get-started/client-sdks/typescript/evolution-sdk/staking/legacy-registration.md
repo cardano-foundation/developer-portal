@@ -326,7 +326,7 @@ await (await deregTx.sign()).submit()
 
 ## Next Steps
 
-- [Registration (Conway)](./registration) — Conway-era registration with deposit
-- [Delegation](./delegation) — Pool and DRep delegation options
-- [Withdrawal](./withdrawal) — Reward withdrawal patterns
-- [Deregistration](./deregistration) — Conway-era deregistration with refund
+- [Registration (Conway)](./registration.md) — Conway-era registration with deposit
+- [Delegation](./delegation.md) — Pool and DRep delegation options
+- [Withdrawal](./withdrawal.md) — Reward withdrawal patterns
+- [Deregistration](./deregistration.md) — Conway-era deregistration with refund

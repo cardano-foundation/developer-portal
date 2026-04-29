@@ -227,5 +227,5 @@ function getMapEntry(hex: string, key: bigint): CBOR.CBOR | undefined {
 
 ## Related
 
-- [Data](./data) — Plutus data encoding using the CBOR layer
-- [Plutus Types](./plutus) — Pre-built schemas for Cardano data structures
+- [Data](./data.md) — Plutus data encoding using the CBOR layer
+- [Plutus Types](./plutus.md) — Pre-built schemas for Cardano data structures

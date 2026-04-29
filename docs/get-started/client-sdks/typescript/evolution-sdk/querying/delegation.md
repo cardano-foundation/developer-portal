@@ -56,5 +56,5 @@ interface Delegation {
 
 ## Next Steps
 
-- [Staking](../staking) — Register, delegate, and withdraw
-- [Withdrawal](../staking/withdrawal) — Claim your accumulated rewards
+- [Staking](../staking/overview.md) — Register, delegate, and withdraw
+- [Withdrawal](../staking/withdrawal.md) — Claim your accumulated rewards

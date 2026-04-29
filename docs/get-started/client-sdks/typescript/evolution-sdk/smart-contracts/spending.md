@@ -141,7 +141,7 @@ await signed.submit()
 
 ## Redeemer Modes
 
-The `redeemer` parameter supports three modes for different complexity levels. See the [Redeemers](./redeemers) page for details.
+The `redeemer` parameter supports three modes for different complexity levels. See the [Redeemers](./redeemers.md) page for details.
 
 **Static** — Direct data value (most common):
 
@@ -194,7 +194,7 @@ const tx = await client
 
 ## Next Steps
 
-- [Redeemers](./redeemers) — Deep dive on static, self, and batch modes
-- [Locking to Script](./locking) — Lock funds before spending
-- [Reference Scripts](./reference-scripts) — Reduce transaction size
-- [Time](../time/validity-ranges) — Validity interval configuration
+- [Redeemers](./redeemers.md) — Deep dive on static, self, and batch modes
+- [Locking to Script](./locking.md) — Lock funds before spending
+- [Reference Scripts](./reference-scripts.md) — Reduce transaction size
+- [Time](../time/validity-ranges.md) — Validity interval configuration

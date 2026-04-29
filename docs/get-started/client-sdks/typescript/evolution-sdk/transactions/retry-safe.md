@@ -168,6 +168,6 @@ console.log("Submitted:", txHash)
 
 ## Next Steps
 
-- [Simple Payment](./simple-payment) — Basic transaction building
-- [First Transaction](./first-transaction) — Complete walkthrough
-- [Error Handling](../advanced/error-handling) — Typed errors with Effect
+- [Simple Payment](./simple-payment.md) — Basic transaction building
+- [First Transaction](./first-transaction.md) — Complete walkthrough
+- [Error Handling](../advanced/error-handling.md) — Typed errors with Effect

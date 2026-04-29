@@ -182,6 +182,6 @@ Start with static mode. Only use self or batch when your validator specifically 
 
 ## Next Steps
 
-- [Spending from Script](./spending) — Using redeemers in spend transactions
-- [Datums](./datums) — The other half of script data
-- [TSchema](../encoding/tschema) — Type-safe schema definitions
+- [Spending from Script](./spending.md) — Using redeemers in spend transactions
+- [Datums](./datums.md) — The other half of script data
+- [TSchema](../encoding/tschema.md) — Type-safe schema definitions

@@ -236,6 +236,6 @@ Always show wallet selection UI so users can choose their preferred wallet. Hand
 
 ## Next Steps
 
-- **[Client patterns](../clients/architecture)** - Frontend/backend architecture and client patterns
-- **[Security](./security)** - Complete security guide
-- **[Seed Phrase](./seed-phrase)** - Development wallets
+- **[Client patterns](../clients/architecture.md)** - Frontend/backend architecture and client patterns
+- **[Security](./security.md)** - Complete security guide
+- **[Seed Phrase](./seed-phrase.md)** - Development wallets

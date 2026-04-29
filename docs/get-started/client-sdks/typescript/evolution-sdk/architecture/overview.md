@@ -65,7 +65,7 @@ This design emerged from a common problem: shared mutable state makes builders d
 
 The benefit extends beyond safety. Programs-as-values can be inspected before running, tested without blockchain access, and composed together like building blocks. The transaction logic becomes pure data until you decide to execute it.
 
-See [Deferred Execution](./deferred-execution) for execution model and state management.
+See [Deferred Execution](./deferred-execution.md) for execution model and state management.
 
 ### 2. Separation of Concerns
 
@@ -77,7 +77,7 @@ The SDK separates three responsibilities that transaction systems often conflate
 
 **Client layer** coordinates the provider and wallet, building transactions using their capabilities. The client enforces constraints through types—you cannot sign without a signing wallet or query without a provider.
 
-See [Provider Layer](./provider-layer) and [Wallet Layer](./wallet-layer) for interface contracts and selection criteria.
+See [Provider Layer](./provider-layer.md) and [Wallet Layer](./wallet-layer.md) for interface contracts and selection criteria.
 
 ### 3. Type Safety Through Constraints
 
@@ -120,18 +120,18 @@ stateDiagram-v2
 
 ## Architecture Pages
 
-- [Transaction Flow](./transaction-flow) - Build → sign → submit phase transitions
-- [Coin Selection](./coin-selection) - UTxO selection algorithms
-- [Redeemer Indexing](./redeemer-indexing) - Deferred redeemer construction for Plutus script index optimization
-- [Script Evaluation](./script-evaluation) - Plutus validator execution and ExUnits calculation
-- [Unfrack Optimization](./unfrack-optimization) - UTxO structure optimization
-- [Deferred Execution](./deferred-execution) - Immutable builder pattern, program-as-value semantics
-- [Devnet](./devnet) - Local Cardano network orchestration
-- [Provider Layer](./provider-layer) - Blockchain access abstraction
-- [Wallet Layer](./wallet-layer) - Capability-based type system
+- [Transaction Flow](./transaction-flow.md) - Build → sign → submit phase transitions
+- [Coin Selection](./coin-selection.md) - UTxO selection algorithms
+- [Redeemer Indexing](./redeemer-indexing.md) - Deferred redeemer construction for Plutus script index optimization
+- [Script Evaluation](./script-evaluation.md) - Plutus validator execution and ExUnits calculation
+- [Unfrack Optimization](./unfrack-optimization.md) - UTxO structure optimization
+- [Deferred Execution](./deferred-execution.md) - Immutable builder pattern, program-as-value semantics
+- [Devnet](./devnet.md) - Local Cardano network orchestration
+- [Provider Layer](./provider-layer.md) - Blockchain access abstraction
+- [Wallet Layer](./wallet-layer.md) - Capability-based type system
 
 ## Related Topics
 
-- [Getting Started](../introduction/getting-started) - Practical usage examples
-- [Client Basics](../clients) - Client API and capabilities
-- [Transactions](../transactions) - Transaction building guide
+- [Getting Started](../introduction/getting-started.md) - Practical usage examples
+- [Client Basics](../clients/overview.md) - Client API and capabilities
+- [Transactions](../transactions/overview.md) - Transaction building guide

@@ -106,7 +106,7 @@ const paymentOnlyAddress = new Address.Address({
 const bech32String = Address.toBech32(stakingAddress)
 ```
 
-[Learn about the Address module →](./address)
+[Learn about the Address module →](./address.md)
 
 ## When to Use Each Pattern
 
@@ -185,9 +185,9 @@ While `Address` covers most use cases, Cardano's ledger specification defines se
 
 **For most applications**, you don't need to think about these era-specific types. The `Address` class handles them automatically.
 
-**For advanced use cases** requiring era-specific features, see the [Address Types guide →](./address-types)
+**For advanced use cases** requiring era-specific features, see the [Address Types guide →](./address-types/overview.md)
 
-"Franken addresses" are not a separate era - they're just Base addresses constructed with independent payment and stake credentials. See [Franken Addresses](./franken) for this advanced pattern.
+"Franken addresses" are not a separate era - they're just Base addresses constructed with independent payment and stake credentials. See [Franken Addresses](./franken.md) for this advanced pattern.
 
 ## Key Concepts
 
@@ -217,26 +217,26 @@ Both payment and staking credentials can be:
 
 ### Conversion
 
-Convert between formats (Bech32, hex, bytes): see [Address Conversion](./conversion).
+Convert between formats (Bech32, hex, bytes): see [Address Conversion](./conversion.md).
 
 ### Validation
 
-Verify address format and network: see [Address Validation](./validation).
+Verify address format and network: see [Address Validation](./validation.md).
 
 ## Next Steps
 
 **Core Concepts:**
-- [Address](./address) - How to parse, validate, and convert addresses
-- [Address Types](./address-types) - Comprehensive coverage of all address types
+- [Address](./address.md) - How to parse, validate, and convert addresses
+- [Address Types](./address-types/overview.md) - Comprehensive coverage of all address types
 
 **Advanced Patterns:**
-- [Franken Addresses](./franken) - Constructing addresses with split credential ownership
+- [Franken Addresses](./franken.md) - Constructing addresses with split credential ownership
 
 **Practical Guides:**
-- [Conversion](./conversion) - Transform between Bech32, hex, and bytes
-- [Validation](./validation) - Verify addresses before use
+- [Conversion](./conversion.md) - Transform between Bech32, hex, and bytes
+- [Validation](./validation.md) - Verify addresses before use
 
 **Related Topics:**
-- [Transactions](../transactions) - Sending funds to addresses
-- [Staking](../staking) - Delegation and rewards
-- [Wallets](../wallets) - Key management and address derivation
+- [Transactions](../transactions/overview.md) - Sending funds to addresses
+- [Staking](../staking/overview.md) - Delegation and rewards
+- [Wallets](../wallets/overview.md) - Key management and address derivation

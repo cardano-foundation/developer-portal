@@ -88,5 +88,5 @@ await signed.submit()
 
 ## Next Steps
 
-- [Registration](./registration) — Re-register if needed
-- [Withdrawal](./withdrawal) — Withdraw rewards before deregistering
+- [Registration](./registration.md) — Re-register if needed
+- [Withdrawal](./withdrawal.md) — Withdraw rewards before deregistering

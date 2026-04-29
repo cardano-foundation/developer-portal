@@ -256,6 +256,6 @@ Always use dedicated secret management solutions like AWS Secrets Manager or Azu
 
 ## Next Steps
 
-- **[API Wallets](./api-wallet)** - User-facing applications
-- **[Client patterns](../clients/architecture)** - Backend architecture and client wiring
-- **[Security](./security)** - Complete security guide
+- **[API Wallets](./api-wallet.md)** - User-facing applications
+- **[Client patterns](../clients/architecture.md)** - Backend architecture and client wiring
+- **[Security](./security.md)** - Complete security guide

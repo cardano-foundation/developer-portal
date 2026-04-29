@@ -183,8 +183,8 @@ runDevnetSession().catch(console.error);
 
 ## Next Steps
 
-- [Configuration](./configuration) — Customize genesis parameters, fund addresses, and modify protocol settings
-- [Integration](./integration) — Use the Evolution SDK client to query the blockchain and submit transactions
+- [Configuration](./configuration.md) — Customize genesis parameters, fund addresses, and modify protocol settings
+- [Integration](./integration.md) — Use the Evolution SDK client to query the blockchain and submit transactions
 
 ## Troubleshooting
 

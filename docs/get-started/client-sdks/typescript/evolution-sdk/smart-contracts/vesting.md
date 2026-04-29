@@ -18,7 +18,7 @@ A time-locked vesting contract where:
 
 - A compiled Plutus vesting validator (from Aiken, Plutarch, or similar)
 - A Blockfrost API key ([get one free](https://blockfrost.io))
-- Basic familiarity with [smart contracts](./overview) and [TSchema](../encoding/tschema)
+- Basic familiarity with [smart contracts](./overview.md) and [TSchema](../encoding/tschema.md)
 
 ## Step 1: Define the Vesting Datum
 
@@ -218,8 +218,8 @@ async function claimFunds() {
 
 ## Next Steps
 
-- [Locking to Script](./locking) — More locking patterns
-- [Spending from Script](./spending) — Redeemer modes and debug labels
-- [Validity Ranges](../time/validity-ranges) — Time constraint details
-- [TSchema](../encoding/tschema) — Schema definition reference
-- [Native Scripts](./native-scripts) — Time-locks without Plutus
+- [Locking to Script](./locking.md) — More locking patterns
+- [Spending from Script](./spending.md) — Redeemer modes and debug labels
+- [Validity Ranges](../time/validity-ranges.md) — Time constraint details
+- [TSchema](../encoding/tschema.md) — Schema definition reference
+- [Native Scripts](./native-scripts.md) — Time-locks without Plutus

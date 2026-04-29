@@ -135,7 +135,7 @@ catch (e: any) {
 
 ## Next Steps
 
-- [Getting Started](./getting-started) — Build your first transaction
-- [Common Patterns](../common-patterns) — Copy-paste recipes
-- [Error Handling](../advanced/error-handling) — All error types and debugging
-- [Architecture](../architecture/transaction-flow) — How the build pipeline works
+- [Getting Started](./getting-started.md) — Build your first transaction
+- [Common Patterns](../common-patterns.md) — Copy-paste recipes
+- [Error Handling](../advanced/error-handling.md) — All error types and debugging
+- [Architecture](../architecture/transaction-flow.md) — How the build pipeline works

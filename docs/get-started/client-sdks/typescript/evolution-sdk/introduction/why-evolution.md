@@ -33,8 +33,8 @@ If you're coming from Lucid, Evolution provides:
 - **More flexibility** - Swap providers and wallets without changing code
 - **Better testing** - Pure functions and dependency injection make testing easier
 
-See the [Migration Guide](./migration-from-lucid) for detailed comparisons.
+See the [Migration Guide](./migration-from-lucid.md) for detailed comparisons.
 
 ## Get Started
 
-Ready to build? Start with [Installation](./installation) or jump to [Getting Started](./getting-started).
+Ready to build? Start with [Installation](./installation.md) or jump to [Getting Started](./getting-started.md).

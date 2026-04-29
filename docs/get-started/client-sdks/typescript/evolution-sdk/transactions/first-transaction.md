@@ -111,7 +111,7 @@ You focus on what to send—Evolution SDK handles how to send it correctly.
 
 ## Next Steps
 
-- [Simple Payment](./simple-payment) - Common payment patterns and examples
-- [Multi-Output](./multi-output) - Send to multiple addresses in one transaction
-- [Wallets](../wallets) - Different wallet types and configuration
-- [Querying](../querying) - Check transaction status and balances
+- [Simple Payment](./simple-payment.md) - Common payment patterns and examples
+- [Multi-Output](./multi-output.md) - Send to multiple addresses in one transaction
+- [Wallets](../wallets/overview.md) - Different wallet types and configuration
+- [Querying](../querying/overview.md) - Check transaction status and balances

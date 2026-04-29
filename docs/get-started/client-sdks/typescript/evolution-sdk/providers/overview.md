@@ -52,7 +52,7 @@ const txHash = await client.submitTx(signedTx)
 | **Maestro**    | Hosted API     | Advanced features, analytics       |
 | **Koios**      | Community API  | Decentralized infrastructure       |
 
-See [Provider Types](./provider-types) for detailed comparison and configuration.
+See [Provider Types](./provider-types.md) for detailed comparison and configuration.
 
 ## Provider-Only Client vs Read-Only Client
 
@@ -90,4 +90,4 @@ Understanding the difference helps choose the right architecture:
 
 ## Next Steps
 
-Start with [Provider Types](./provider-types) to choose the right provider for your application, or jump to [Provider-Only Client](./provider-only-client) to begin querying the blockchain.
+Start with [Provider Types](./provider-types.md) to choose the right provider for your application, or jump to [Provider-Only Client](./provider-only-client.md) to begin querying the blockchain.
