@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Smart Contract Optimization
 
-> Sourced from the [Aiken team's optimization guide](https://aiken-lang.org/language-tour/optimizing-programs).
+> Sourced from the [Aiken team's optimization guide](https://aiken-lang.org/optimizing-programs).
 
 ## Before Optimizing
 
