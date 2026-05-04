@@ -829,6 +829,14 @@ export const BuilderTools = [
     getstarted: "https://mithril.network/doc/manual/welcome",
     tags: ["rust", "cli", "javascript", "typescript"],
   },
+  {
+    title: "ODATANO",
+    description: "ODATANO connects Enterprise systems to the Cardano blockchain via a SAP CAP- based OData V4 API, enabling secure on - chain data access, transaction building & execution.",
+    preview: require("./images/odatano.png"),
+    website: "https://github.com/ODATANO/ODATANO",
+    getstarted: "https://odatano.dev",
+    tags: ["javascript", "typescript", "http", "json"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
