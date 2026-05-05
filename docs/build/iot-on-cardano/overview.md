@@ -46,6 +46,13 @@ The material was originally produced as the **CardanoThings** course (Project Ca
 4. [Workshop 04: Cardano Ticker](./04-cardano-ticker/overview.md) - multi-screen ticker for wallet, tokens, NFTs.
 5. [Workshop 05: QR-Code Payments](./05-qr-code-payments/overview.md) - CIP-13 QR codes and on-chain payment confirmation.
 
+## Community projects
+
+Builds from the community that extend or remix what's covered in this section:
+
+- **[NMKR ESP32-Cam](https://github.com/elRaulito/IoT-NMKR-integration-Open-Source-Tutorial)** by [elRaulito](https://github.com/elRaulito) - Minting NFTs with NMKR directly from an ESP32-Cam. A drop-in alternative to the self-hosted Mesh approach in [Workshop 03](./03-input-and-write/overview.md) for builders who'd rather hand minting off to a managed service.
+- **[StarchMiner Lite](https://github.com/MadOrkestra/StarchMinerLite)** by [Mad Orkestra](https://github.com/madorkestra) - ESP32-based Starch miner. Goes potato.
+
 ## Attribution
 
 The course was authored by the **CardanoThings** team and funded by **Project Catalyst Fund 11**. Source code lives at [github.com/CardanoThings/Workshops](https://github.com/CardanoThings/Workshops); the original web version is [cardanothings.io](https://cardanothings.io).
