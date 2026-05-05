@@ -22,7 +22,7 @@ The term "Plutus" has historically caused confusion by referring to multiple com
 
 **Official Documentation:** Visit the **[Plinth User Guide](https://plutus.cardano.intersectmbo.org/docs/)** for comprehensive tutorials, language reference, and development guides.
 
-**Prerequisites:** Plinth development requires familiarity with Haskell. If you're new to Haskell, consider starting with [Learn You a Haskell](http://learnyouahaskell.com/) or the [Haskell and Crypto Mongolia 2020](https://www.youtube.com/watch?v=ctfZ6DwFiPg&list=PLJ3w5xyG4JWmBVIigNBytJhvSSfZZzfTm&index=4) course.
+**Prerequisites:** Plinth development requires familiarity with Haskell. If you're new to Haskell, consider starting with [Learn You a Haskell](https://learnyouahaskell.github.io/) or the [Haskell and Crypto Mongolia 2020](https://www.youtube.com/watch?v=ctfZ6DwFiPg&list=PLJ3w5xyG4JWmBVIigNBytJhvSSfZZzfTm&index=4) course.
 
 ## Resources
 

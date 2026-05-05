@@ -97,6 +97,6 @@ Or check via blockchain explorers that display protocol parameters.
 
 ## Next Steps
 
-- Explore [Assets & Tokens](assets) to understand native token fees and minimum UTXO requirements
+- Explore [Assets & Tokens](../assets) to understand native token fees and minimum UTXO requirements
 - See fees in action: [Minting Native Assets](/docs/build/native-tokens/minting)
 - Learn about script execution: [Smart Contracts Overview](/docs/build/smart-contracts/overview)

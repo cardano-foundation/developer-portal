@@ -147,15 +147,15 @@ For **content writers and developers** who want to work on documentation, blog p
 
 **Requirements:**
 
-- [Node.js](https://nodejs.org/en/download/) >= 18.0 (check with `node -v`)
+- [Node.js](https://nodejs.org/en/download/) >= 20.0 (check with `node -v`)
 - [Yarn](https://yarnpkg.com/en/) >= 1.20 (check with `yarn --version`)
 - On macOS: Xcode and Command Line Tools
 
 **Setup:**
 
 ```bash
-# External contributors: fork the repo first, then clone your fork
-git clone https://github.com/cardano-foundation/developer-portal.git
+# Fork the repo on GitHub, then clone your fork
+git clone https://github.com/<your-github-username>/developer-portal.git
 cd developer-portal
 yarn install
 yarn build  # Required at least once - pulls missing files
@@ -200,7 +200,7 @@ developer-portal/
 ### Troubleshooting
 
 **Node.js version error:** `[ERROR] Minimum Node.js version not met`
-**Solution:** Use Node.js >= 18.0. Use `nvm use 18` if you have multiple versions.
+**Solution:** Use Node.js >= 20.0. Use `nvm use 20` if you have multiple versions.
 
 **Sidebars loading error:** `[ERROR] Sidebars file failed to be loaded`
 **Solution:** Run `yarn build` first - this pulls missing auto-generated files.

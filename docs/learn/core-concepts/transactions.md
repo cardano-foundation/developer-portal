@@ -17,7 +17,7 @@ A transaction is a request to change the blockchain's state. On Cardano, every t
 
 Unlike account-based blockchains where you update balances, Cardano transactions explicitly list what goes in and what comes out. The total input value must equal total output value plus the fee. Nothing is left unaccounted for.
 
-This explicit structure makes transactions **deterministic**: you know exactly what will happen before you submit. For the full model of how inputs and outputs work, see the [EUTXO Model](eutxo).
+This explicit structure makes transactions **deterministic**: you know exactly what will happen before you submit. For the full model of how inputs and outputs work, see the [EUTXO Model](../eutxo).
 
 :::tip For Builders
 [Client SDKs](/docs/get-started/client-sdks/overview) handle transaction building, CBOR encoding, and fee calculation for you.
@@ -35,7 +35,7 @@ Transaction validation on Cardano uses scripts (pieces of code) that implement p
 Each transaction specifies all arguments passed to scripts during validation, including user-provided redeemers that serve different purposes depending on the script logic.
 
 :::note Script Execution Costs
-When spending from script addresses or minting tokens with smart contract policies, additional computational costs apply. These are measured in execution units (memory and CPU steps) and added to the base transaction fee. See [Transaction Fees](fees) for the complete fee structure including collateral requirements.
+When spending from script addresses or minting tokens with smart contract policies, additional computational costs apply. These are measured in execution units (memory and CPU steps) and added to the base transaction fee. See [Transaction Fees](../fees) for the complete fee structure including collateral requirements.
 :::
 
 ## Deterministic Outcomes
@@ -140,6 +140,6 @@ For most applications, waiting 6-20 confirmations provides really strong finalit
 
 ## Next Steps
 
-- Learn about [Transaction Fees](fees) and how costs are calculated
-- Understand how transactions interact with [Native Assets](assets)
+- Learn about [Transaction Fees](../fees) and how costs are calculated
+- Understand how transactions interact with [Native Assets](../assets)
 - Ready to build? See [Smart Contracts Overview](/docs/build/smart-contracts/overview) or [Minting Native Assets](/docs/build/native-tokens/minting)

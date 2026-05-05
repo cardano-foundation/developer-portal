@@ -46,15 +46,15 @@ Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pionee
 [**CF Engineering Discord**](https://discord.gg/invite/xPkQ9jskKS)
 Official [Cardano Foundation](https://cardanofoundation.org/) Engineering Discord server for technical discussions with CF engineers.
 
-## Hackathons & Challenges
+## Talent Pool & Hackathons
 
-Build, compete, and win! The Cardano ecosystem regularly hosts hackathons and developer challenges where you can showcase your skills, collaborate with other builders, and earn rewards.
+Sign up for the Cardano developer talent pool to hear about hackathons, jobs, and grants in the ecosystem.
 
-:::info Get Notified About New Challenges
+:::info Hear About New Opportunities
 
-Never miss a hackathon or developer challenge. Visit our dedicated hackathons page to learn more and sign up for notifications.
+Sign up once and we'll reach out when relevant hackathons, jobs, or grants come up.
 
-[**Explore Hackathons →**](/hackathons)
+[**Join the Talent Pool →**](/talent)
 
 :::
 

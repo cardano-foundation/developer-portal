@@ -1,82 +1,53 @@
 # Contributing to the Cardano Developer Portal
 
-First of all, thank you for taking the time to contribute!🎉👍
+Contributions generally fall into three categories: fixing content (typos, broken links, outdated information), adding developer tools to the [Builder Tools](https://developers.cardano.org/tools/) showcase, and writing new documentation or tutorials.
 
-## Quick Contributions (No Setup Required)
+For small fixes, you can always use the GitHub web editor directly on any file or click the pencil icon at the bottom on portal pages without any setup.
 
-**Fix typos, update links, small edits:**
+For anything that needs a local build, see the [local development setup](./README.md#contribute) in the README.
 
-- Use GitHub's web editor directly on any file
-- Click the pencil icon at the end of any page
-- Make your changes and submit a pull request
+## Adding a builder tool
 
-**Report issues or suggest improvements:**
+This is the most common external contribution. You'll add an image, a tool entry, and open a PR:
 
-- [Create an issue](https://github.com/cardano-foundation/developer-portal/issues)
-- [Start a discussion](https://github.com/cardano-foundation/developer-portal/discussions)
+1. Place your tool's logo or screenshot (PNG or JPG) in `src/data/builder-tools/images/`.
+2. Edit `src/data/builder-tools/tools.js` and add your entry at the **end** of the `Showcases` array:
+   ```js
+   {
+     title: "Your Tool Name",
+     description: "What it does",
+     preview: require("./images/your-tool-name.png"),
+     website: "https://your-tool.com",
+     getstarted: "https://docs.your-tool.com/getting-started", // or null
+     tags: ["relevant", "tags"],  // see tags.js for the full list
+   }
+   ```
+3. Run `yarn build` and confirm it passes with no errors.
+4. Open a pull request using the "Add Builder Tool" template. Builder tool PRs require 3 approvals.
 
-## Add Your Tool
+Don't add the `favorite` tag yourself. Check `src/data/builder-tools/tags.js` for available tags. For a full walkthrough, see the [portal contribution guide](https://developers.cardano.org/docs/portal-contribute/).
 
-### Add to Builder Tools
+## Before you open a PR
 
-- See inline instructions in [src/data/builder-tools/tools.js](https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/builder-tools/tools.js)
-- Requirements: Helps Cardano developers, stable domain, functional
-- Use the "Add Builder Tool" GitHub PR template
-
-## Local Development (Required for Tools)
-
-**Installation** (see [README.md](README.md) for full setup):
-
-```bash
-# External contributors: fork the repo first, then clone your fork
-git clone https://github.com/cardano-foundation/developer-portal.git
-cd developer-portal
-yarn install
-yarn build  # Required at least once
-yarn start  # Development server
-```
-
-**Before submitting:**
-
-- Run `yarn build` (must complete without errors)
-- Don't commit `yarn.lock` changes
-
-## Content Guidelines
-
-**Writing style:**
-
-- Use clear, simple language
-- Avoid claims like "the best", "the first", "the only"
-- Focus on what your project does, not marketing claims
-
-**Images:**
-
-- Add screenshots/logos to appropriate `/src/data/` folder
-- Use `require("./folder/image.png")` syntax
-
-## Pull Request Process
-
-1. **Use appropriate PR template** (builder tool or standard change)
-2. **Fill out the checklist** in the template
-3. **Ensure `yarn build` succeeds** without errors
-4. **Wait for review** (requires 3 approvals for tools)
+- Run `yarn build` and make sure it passes. It checks for broken links and validates builder tool entries.
+- Don't commit `yarn.lock`. It's gitignored. If you accidentally commit it, see the FAQ below.
+- Follow the [style guide](https://developers.cardano.org/docs/portal-style-guide/). Write clearly, describe what your project does, skip the marketing language.
 
 ## FAQ
 
-**Q: I accidentally committed yarn.lock changes, how do I fix it?**  
-A: First, restore the original yarn.lock using **one of these** (depending on your git setup):
+**Q: I accidentally committed yarn.lock changes, how do I fix it?**
+
+Restore the original yarn.lock using **one of these** (depending on your git setup):
 - If you created your PR branch from staging: `git checkout staging -- yarn.lock`
-- If you need it from your fork's origin: `git checkout origin/staging -- yarn.lock`  
+- If you need it from your fork's origin: `git checkout origin/staging -- yarn.lock`
 - If you need it from the upstream repo: `git checkout upstream/staging -- yarn.lock`
 
 Then commit the reversion: `git commit -m "revert yarn.lock to original state"`
 
-## Need Help?
+## Getting help
 
-- **Questions:** [GitHub Discussions](https://github.com/cardano-foundation/developer-portal/discussions)
-- **Issues:** [GitHub Issues](https://github.com/cardano-foundation/developer-portal/issues)  
-- **Developer Community:** [Cardano Forum](https://forum.cardano.org/c/developers/29)
+If you're stuck or unsure where something belongs, ask in [GitHub Discussions](https://github.com/cardano-foundation/developer-portal/discussions) or [open an issue](https://github.com/cardano-foundation/developer-portal/issues). The [Cardano Forum](https://forum.cardano.org/c/developers/29) is also a good place to float ideas.
 
 ## Code of Conduct
 
-See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - be respectful and collaborative.
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).

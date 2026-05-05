@@ -284,7 +284,7 @@ const redirects = [
     from: '/docs/get-started/mesh',
   },
   {
-    to: '/docs/get-started/client-sdks/typescript/evolution-sdk/get-started',
+    to: '/docs/get-started/client-sdks/typescript/evolution-sdk/overview',
     from: '/docs/get-started/evolution-sdk',
   },
   {
@@ -506,6 +506,16 @@ const redirects = [
   {
     to: '/docs/build/smart-contracts/advanced/design-patterns/linked-list',
     from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/linked-list',
+  },
+  {
+    // fix broken blog pagination: ../  from /blog/page/N/ resolves to /blog/page/
+    to: '/blog/',
+    from: '/blog/page',
+  },
+  {
+    // /hackathons renamed to /talent
+    to: '/talent',
+    from: '/hackathons',
   },
 ];
 

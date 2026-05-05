@@ -17,7 +17,7 @@ sources={{
     light: useBaseUrl('/img/devblog/adao-light.svg'),
     dark: useBaseUrl('/img/devblog/adao-light.svg'),
   }}
-/>](https://www.theadao.io/)
+/>
 
 **_Can you introduce yourself_**
 
@@ -60,7 +60,7 @@ We hope that, through catalyzing the proliferation of DAOs, ADAO will play a lea
 
 There are too many accomplishments, large and small, to list, but we are especially proud of the [RoundTable DApp](https://roundtable.adaodapp.xyz/), which has seen wide adoption in the community, from advanced protocol DAOs to small groups of friends pooling ada to bid on art. One community group even uses RoundTable to donate to animal shelters!
 
-We’ve also built a [Staking Portal DApp](https://staking.adaodapp.xyz/) that enables organizations to incentivize their tokenholders and saw [two proposals](https://www.lidonation.com/en/project-catalyst/group/adao) approved by Catalyst voters. The first helped us to compensate our RoundTable Developers, and the second funded further open-source development, as well as the establishment of the ADAO Foundation in Liechtenstein (currently underway).
+We’ve also built a Staking Portal DApp that enables organizations to incentivize their tokenholders and saw [two proposals](https://www.lidonation.com/en/project-catalyst/group/adao) approved by Catalyst voters. The first helped us to compensate our RoundTable Developers, and the second funded further open-source development, as well as the establishment of the ADAO Foundation in Liechtenstein (currently underway).
 
 Our proudest accomplishment would have to be the strong and growing community we’ve built at ADAO. Members come from across the globe, from diverse walks of life, all united by a passion for lending a hand to the community and tool-building necessary to enable decentralization on a global scale. Every member brings their unique story, talents and skillset, and breathes life into the DAO.
 

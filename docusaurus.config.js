@@ -105,9 +105,9 @@ module.exports = {
     // id: always change it when changing the announcement
     // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
     announcementBar: isAnnouncementActive ? {
-      id: "announcement_index10", // Any value that will identify this message + increment the number every time to be unique
+      id: "announcement_index11", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Intersect's State of Developer Experience Survey is here! <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/ey7yRJP2cP92EqrS7">Share your feedback!</a></strong>`,
+        `<strong>Join the Cardano developer talent pool and stay in the loop on upcoming hackathons. <a href="/hackathons/">Sign up here!</a></strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true

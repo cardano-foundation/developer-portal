@@ -1,5 +1,5 @@
 /* ===========================================
-   HACKATHONS PAGE
+   TALENT POOL PAGE
    =========================================== */
 
 /* ===========================================
@@ -53,104 +53,6 @@ html[data-theme="dark"] .hero {
   margin: 0 auto 2rem;
   opacity: 0.9;
   line-height: 1.6;
-}
-
-.heroCta {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-html[data-theme="light"] .primaryBtn {
-  background: #fff !important;
-  color: var(--site-color-brand-blue) !important;
-  border-color: #fff !important;
-}
-
-html[data-theme="light"] .primaryBtn:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
-}
-
-html[data-theme="dark"] .primaryBtn {
-  background: #fff !important;
-  color: #1a6b5c !important;
-  border-color: #fff !important;
-}
-
-html[data-theme="dark"] .primaryBtn:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
-}
-
-.secondaryBtn {
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.secondaryBtn:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-color: #fff !important;
-}
-
-/* ===========================================
-   BENEFITS SECTION
-   =========================================== */
-
-.benefits {
-  padding: 5rem 0;
-}
-
-.sectionTitle {
-  font-size: 1.75rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.benefitsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
-
-.benefitCard {
-  text-align: center;
-}
-
-.benefitIconWrapper {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.benefitIcon {
-  width: 32px;
-  height: 32px;
-  opacity: 0.8;
-}
-
-html[data-theme="light"] .benefitIcon {
-  filter: invert(15%) sepia(95%) saturate(2000%) hue-rotate(215deg) brightness(90%);
-}
-
-html[data-theme="dark"] .benefitIcon {
-  filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
-}
-
-.benefitCard h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.benefitCard p {
-  font-size: 0.95rem;
-  opacity: 0.7;
-  line-height: 1.5;
-  margin: 0;
 }
 
 /* ===========================================
@@ -253,6 +155,12 @@ html[data-theme="dark"] .photoPlaceholder {
   gap: 0.5rem;
 }
 
+.buttonWithIcon:hover {
+  background: var(--site-color-surface-hover) !important;
+  border-color: var(--ifm-color-primary) !important;
+  color: var(--ifm-color-primary) !important;
+}
+
 .buttonWithIcon img {
   width: 16px;
   height: 16px;
@@ -264,78 +172,6 @@ html[data-theme="light"] .buttonWithIcon img {
 
 html[data-theme="dark"] .buttonWithIcon img {
   filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
-}
-
-/* ===========================================
-   WAYS TO PARTICIPATE SECTION
-   =========================================== */
-
-.waysSection {
-  padding: 5rem 0;
-}
-
-html[data-theme="light"] .waysSection {
-  background-color: var(--site-color-brand-blue);
-  color: #fff;
-}
-
-html[data-theme="dark"] .waysSection {
-  background-color: #1a1a2e;
-  color: #fff;
-}
-
-.waysList {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.wayItem {
-  display: flex;
-  gap: 2rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid;
-}
-
-html[data-theme="light"] .wayItem {
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-html[data-theme="dark"] .wayItem {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.wayItem:last-child {
-  border-bottom: none;
-}
-
-.wayNumber {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  min-width: 80px;
-}
-
-html[data-theme="light"] .wayNumber {
-  color: #fff;
-  opacity: 0.3;
-}
-
-html[data-theme="dark"] .wayNumber {
-  color: #fff;
-  opacity: 0.25;
-}
-
-.wayContent h3 {
-  font-size: 1.35rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.wayContent p {
-  font-size: 1rem;
-  line-height: 1.6;
-  opacity: 0.85;
-  margin: 0;
 }
 
 /* ===========================================
@@ -485,10 +321,6 @@ html[data-theme="dark"] .hubspotFormWrapper {
    =========================================== */
 
 @media screen and (max-width: 996px) {
-  .benefitsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .overviewContent {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -511,15 +343,6 @@ html[data-theme="dark"] .hubspotFormWrapper {
   .resourcesImage img {
     max-width: 200px;
   }
-
-  .wayItem {
-    gap: 1.5rem;
-  }
-
-  .wayNumber {
-    font-size: 2.5rem;
-    min-width: 60px;
-  }
 }
 
 @media screen and (max-width: 576px) {
@@ -527,13 +350,7 @@ html[data-theme="dark"] .hubspotFormWrapper {
     padding: 4rem 1rem;
   }
 
-  .benefitsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .benefits,
   .overview,
-  .waysSection,
   .resources,
   .cta {
     padding: 3rem 0;
@@ -547,14 +364,5 @@ html[data-theme="dark"] .hubspotFormWrapper {
   .photoSmall .photoPlaceholder,
   .photoSmall img {
     height: 120px;
-  }
-
-  .wayItem {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .wayNumber {
-    font-size: 2rem;
   }
 }
