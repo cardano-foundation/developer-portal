@@ -821,12 +821,25 @@ module.exports = {
       },
       {
         type: "category",
-        label: "IoT on Cardano",
+        label: "Internet of Things (IoT)",
         link: {
           type: "doc",
           id: "build/iot-on-cardano/overview",
         },
         items: [
+          {
+            type: "category",
+            label: "Introductions",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/introductions/overview",
+            },
+            items: [
+              "build/iot-on-cardano/introductions/arduino",
+              "build/iot-on-cardano/introductions/esp32-d1-microcontrollers",
+              "build/iot-on-cardano/introductions/rest-apis",
+            ],
+          },
           {
             type: "category",
             label: "Workshop 01: The Basics",
@@ -908,19 +921,6 @@ module.exports = {
               "build/iot-on-cardano/hardware/aht10-temperature-humidity-sensor-i2c",
               "build/iot-on-cardano/hardware/relay-module-3v-1channel",
               "build/iot-on-cardano/hardware/ws2812b-led-ring-12",
-            ],
-          },
-          {
-            type: "category",
-            label: "Introductions",
-            link: {
-              type: "doc",
-              id: "build/iot-on-cardano/introductions/overview",
-            },
-            items: [
-              "build/iot-on-cardano/introductions/arduino",
-              "build/iot-on-cardano/introductions/esp32-d1-microcontrollers",
-              "build/iot-on-cardano/introductions/rest-apis",
             ],
           },
           "build/iot-on-cardano/troubleshooting",
