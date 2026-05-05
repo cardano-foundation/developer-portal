@@ -512,6 +512,11 @@ const redirects = [
     to: '/blog/',
     from: '/blog/page',
   },
+  {
+    // /hackathons renamed to /talent
+    to: '/talent',
+    from: '/hackathons',
+  },
 ];
 
 module.exports = redirects;
