@@ -819,6 +819,113 @@ module.exports = {
           },
         ],
       },
+      {
+        type: "category",
+        label: "IoT on Cardano",
+        link: {
+          type: "doc",
+          id: "build/iot-on-cardano/overview",
+        },
+        items: [
+          {
+            type: "category",
+            label: "Workshop 01: The Basics",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/the-basics/overview",
+            },
+            items: [
+              "build/iot-on-cardano/the-basics/01-cardano-setup",
+              "build/iot-on-cardano/the-basics/02-arduino-setup",
+              "build/iot-on-cardano/the-basics/03-api-setup",
+            ],
+          },
+          {
+            type: "category",
+            label: "Workshop 02: Read and Output",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/read-and-output/overview",
+            },
+            items: [
+              "build/iot-on-cardano/read-and-output/01-fetch-wallet-balance",
+              "build/iot-on-cardano/read-and-output/02-display-data",
+              "build/iot-on-cardano/read-and-output/03-light-up-the-tree",
+              "build/iot-on-cardano/read-and-output/04-epoch-clock",
+            ],
+          },
+          {
+            type: "category",
+            label: "Workshop 03: Input and Write",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/input-and-write/overview",
+            },
+            items: [
+              "build/iot-on-cardano/input-and-write/01-connect-and-read-sensor-data",
+              "build/iot-on-cardano/input-and-write/02-build-your-own-api",
+              "build/iot-on-cardano/input-and-write/03-mint-sensor-data-on-chain",
+            ],
+          },
+          {
+            type: "category",
+            label: "Workshop 04: Cardano Ticker",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/cardano-ticker/overview",
+            },
+            items: [
+              "build/iot-on-cardano/cardano-ticker/01-gathering-data",
+              "build/iot-on-cardano/cardano-ticker/02-building-the-ticker",
+            ],
+          },
+          {
+            type: "category",
+            label: "Workshop 05: QR-Code Payments",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/qr-code-payments/overview",
+            },
+            items: [
+              "build/iot-on-cardano/qr-code-payments/01-getting-started",
+              "build/iot-on-cardano/qr-code-payments/02-cip13-integration",
+              "build/iot-on-cardano/qr-code-payments/03-qr-code-creation",
+              "build/iot-on-cardano/qr-code-payments/04-building-the-frontend",
+              "build/iot-on-cardano/qr-code-payments/05-building-the-backend",
+            ],
+          },
+          {
+            type: "category",
+            label: "Hardware",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/hardware/overview",
+            },
+            items: [
+              "build/iot-on-cardano/hardware/cheap-yellow-display-cyd",
+              "build/iot-on-cardano/hardware/esp32-c3",
+              "build/iot-on-cardano/hardware/oled-display-sh1106-13inch-i2c",
+              "build/iot-on-cardano/hardware/aht10-temperature-humidity-sensor-i2c",
+              "build/iot-on-cardano/hardware/relay-module-3v-1channel",
+              "build/iot-on-cardano/hardware/ws2812b-led-ring-12",
+            ],
+          },
+          {
+            type: "category",
+            label: "Introductions",
+            link: {
+              type: "doc",
+              id: "build/iot-on-cardano/introductions/overview",
+            },
+            items: [
+              "build/iot-on-cardano/introductions/arduino",
+              "build/iot-on-cardano/introductions/esp32-d1-microcontrollers",
+              "build/iot-on-cardano/introductions/rest-apis",
+            ],
+          },
+          "build/iot-on-cardano/troubleshooting",
+        ],
+      },
       ],
     },
     {
