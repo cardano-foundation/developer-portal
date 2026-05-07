@@ -241,6 +241,13 @@ export const Tags = {
     icon: null,
     color: '#4267b2',
   },
+
+  security: {
+    label: "Security",
+    description: "Tools for securing keys, transactions, and signing environments",
+    icon: null,
+    color: '#c0392b',
+  },
 };
 
 export const TagList = Object.keys(Tags);
@@ -279,6 +286,7 @@ export const DomainsTags = [
   "serialization",
   "smartcontracts",
   "testing",
+  "security",
   "transactionbuilder",
   "wallet",
 ];

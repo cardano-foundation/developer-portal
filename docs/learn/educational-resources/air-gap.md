@@ -2,9 +2,88 @@
 id: air-gap
 title: Air Gap Environment
 sidebar_label: Air Gap Environment
-description: Secure your private keys on a network-free transaction host.
+description: Secure your private keys on a network-free machine — Nix bootable ISO or manual Ubuntu setup.
 image: /img/og/og-security-air-gap-environment.png
 ---
+
+An air-gapped machine is one that has never made a network connection and never will. Cold keys — pool registration keys, Constitutional Committee signing keys, any key that authorizes high-value operations — must be handled on a machine that meets this bar. If your cold key ever touches an internet-connected machine, it should be considered compromised.
+
+You have two paths to an air-gapped environment:
+
+<details>
+<summary><strong>cardano-airgap — Nix bootable ISO (recommended)</strong></summary>
+
+[cardano-airgap](https://github.com/IntersectMBO/cardano-airgap) is an IntersectMBO-maintained, Nix-built bootable ISO designed for air-gapped Cardano operations. It is already in use by many SPOs and Constitutional Committee members.
+
+## Why use it
+
+The fundamental requirement for cold key operations is that the machine handling your keys has **never touched the internet** — not during setup, not during updates, not ever. Rolling this yourself (installing Ubuntu, patching it, installing Cardano tooling) means the machine is online for at least some of that time.
+
+`cardano-airgap` eliminates that window entirely:
+
+- Built with Nix: the entire system is defined declaratively and built offline. The ISO you boot has never made a network request
+- Ships with all necessary Cardano tooling pre-installed (`cardano-cli`, key generation utilities, etc.)
+- Read-only by design: no persistent state that could be contaminated between sessions
+- Auditable: the full build is reproducible from the public source
+
+## Who should use it
+
+- **SPOs** signing pool registration certificates, voting transactions, or any operation requiring the cold key
+- **Constitutional Committee members** authorizing hot key credentials or voting
+- Any operator handling high-value keys who needs a clean, verifiable environment
+
+## Getting started
+
+Download the latest ISO release from the [cardano-airgap releases page](https://github.com/IntersectMBO/cardano-airgap/releases) on a trusted, internet-connected machine.
+
+Verify the hash of the downloaded ISO before writing it to a USB drive.
+
+Write it to a USB drive:
+
+```shell
+# Linux / macOS
+sudo dd if=cardano-airgap-*.iso of=/dev/sdX bs=4M status=progress
+
+# Or use Balena Etcher / Raspberry Pi Imager for a GUI option
+```
+
+Boot the target machine from the USB drive. From the moment it boots, the machine has never been and will never be online.
+
+## Key storage: encrypt at rest
+
+Your cold keys should **never** sit in plaintext on any storage medium — even one that stays offline.
+
+Best practices for key storage:
+
+- Store keys on a **dedicated encrypted data volume** (LUKS on Linux, or an encrypted container)
+- Use a passphrase that has never been typed on an internet-connected machine
+- Keep at least two independent encrypted backups in separate physical locations
+- Never copy keys to a non-encrypted USB drive, even temporarily
+
+The air-gapped machine is your signing environment, not permanent key storage. Transfer only what is needed for the current operation, then wipe the working copy when done.
+
+## Workflow overview
+
+The standard cold-signing workflow:
+
+1. **Online machine** — build the unsigned transaction (e.g. `vote-tx.raw`)
+2. Transfer the unsigned transaction to a USB drive (no keys on this drive)
+3. **Air-gapped machine** — mount your encrypted key volume, sign the transaction, unmount
+4. Transfer only the signed transaction (`vote-tx.signed`) back to the online machine
+5. **Online machine** — submit the signed transaction
+
+Never transfer anything from the air-gapped machine to the online machine except signed transactions and public keys.
+
+## Further reading
+
+- [cardano-airgap on GitHub](https://github.com/IntersectMBO/cardano-airgap)
+- [Secure Workflow](/docs/learn/cardano-cli/security/secure-workflow)
+- [SPO Governance — voting with your cold key](/docs/operate-a-stake-pool/governance/spo-governance)
+
+</details>
+
+<details>
+<summary><strong>Manual setup — install Ubuntu on a dedicated machine</strong></summary>
 
 "Air gap" originally meant a computer or subnetwork was surrounded by "air" — as defined by no data cable connections in or out — so it would be isolated from other computers & networks. These days it also means there are no radio-based network connections either (WiFi, Bluetooth, etc.).
 
@@ -16,7 +95,7 @@ Otherwise, generally **you need a second computer** to create this air-gapped en
 
 :::tip Linux veterans only
 
-If you don't have an extra computer, or want to try building a standalone Linux environment on a USB drive, [skip to the final section](#option-2-install-your-air-gap-environment-on-a-persistent-usb-drive).
+If you don't have an extra computer, or want to try building a standalone Linux environment on a USB drive, [skip to Option 2](#option-2-install-your-air-gap-environment-on-a-persistent-usb-drive).
 
 :::
 
@@ -48,7 +127,7 @@ We choose Ubuntu here because:
 The rest of these instructions will assume the choice of **Ubuntu** for your air gap environment OS. If installing a different variant of Linux, please remember:
 
   - When you read the term Ubuntu or show screenshots of its installer, look for equivalents on your own chosen Linux variant.
-  - There may be better choices than Ubuntu now or in the future: please feel free to share your results with others in the Cardano community, perhaps [contributing](../../../contribute/portal-contribute) your findings & procedures here on the Developer Portal.
+  - There may be better choices than Ubuntu now or in the future: please feel free to share your results with others in the Cardano community, perhaps [contributing](/contribute/portal-contribute) your findings & procedures here on the Developer Portal.
 
 ### Prepare to follow Ubuntu installation instructions
 
@@ -105,7 +184,7 @@ If your computer doesn't have a cabled connection, it is acceptable under our se
 
 #### Updates and other software
 
-![img](../../../static/img/get-started/air-gap/10-software-choices.png)
+![img](/img/get-started/air-gap/10-software-choices.png)
 
 Select **Minimal installation**, since this is the least likely to leave you with security intrusive applications and services.
 
@@ -119,7 +198,7 @@ Select **Minimal installation**, since this is the least likely to leave you wit
 
 #### Installation type
 
-![img](../../../static/img/get-started/air-gap/20-installation-type.png)
+![img](/img/get-started/air-gap/20-installation-type.png)
 
 Tick **Erase disk and install Ubuntu**.... you've already confirmed there's nothing else that needs to be kept on this computer, and that it won't have any other operating systems or working disks.
 
@@ -133,16 +212,16 @@ Before you hit **Continue**, if you've chosen to encrypt your files:
 
 ##### (optional) Set up the hard drive for encryption
 
-![img](../../../static/img/get-started/air-gap/30-encrypt-disk.png)
+![img](/img/get-started/air-gap/30-encrypt-disk.png)
 
 Hit the button below the *Erase disk* option: **Advanced Features** which will at first say *None selected*.
 
   - Tick the feature **Use LVM with the new Ubuntu installation**.
   - Tick the option below it: **Encrypt the new Ubuntu installation for security**.
 
-Don’t hit the **Continue** button unless you can verify it now says ***LVM and encryption selected*** under Advanced options:
+Don't hit the **Continue** button unless you can verify it now says ***LVM and encryption selected*** under Advanced options:
 
-![img](../../../static/img/get-started/air-gap/35-disk-encrypted.png)
+![img](/img/get-started/air-gap/35-disk-encrypted.png)
 
 Enter the password you have prepared earlier as a **volume decryption key.**
 
@@ -205,7 +284,7 @@ sudo apt upgrade
 
 This is recommended because it will give you a means of taking password-encrypted notes that can move between your air gap and computer host environments *in both directions*, so you can:
 
-  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow.md)):
+  - record transaction details from your home computer environment & Internet connected machines, for use in the air gap (as per [Secure Workflow](/docs/learn/cardano-cli/security/secure-workflow)):
       - your Cardano account balances, UTxO addresses & payment addresses
       - notes from personal files & web sites about the work you will be doing within the air gap (since you won't have Internet access there);
   - take notes in the air gap environment (problems, error messages) to copy back to your computer, since you can't upload them through the air gap.
@@ -244,7 +323,7 @@ This confirms that your system will start properly after having updated your sys
 
 Use the standard instructions here at the Developer Portal:
 
-  - **[Installing the node from source](/docs/get-started/infrastructure/node/installing-cardano-node.md)**
+  - **[Installing the node from source](/docs/get-started/infrastructure/node/installing-cardano-node)**
 
 Note this will build `cardano-node` as well as `cardano-cli`, but don't worry: you won't be running a node inside the air gap. 😜
 
@@ -277,7 +356,7 @@ Therefore, you can [find your WiFi MAC address](https://help.ubuntu.com/stable/u
 
 ### Congratulations, your air gap environment is complete!
 
-You now have a safe place you can use for your [Secure Transaction Workflow](/docs/get-started/infrastructure/cardano-cli/security/secure-workflow.md).
+You now have a safe place you can use for your [Secure Transaction Workflow](/docs/learn/cardano-cli/security/secure-workflow).
 
 ## Option 2: Install your air gap environment on a persistent USB drive
 
@@ -299,10 +378,12 @@ If this appeals to you, and you don't mind following a more complicated and erro
 This loosely documented configuration has been called the **Frankenwallet**, with separate instructions at these links which mostly follow the procedure above:
 
   - **[The Frankenwallet](https://frankenwallet.com)** - detailed external web site, including semantics for using your bootable USB environment in secure & blockchain workflow
-  - [Get Started with the Frankenwallet](/docs/operate-a-stake-pool/operator-tools/frankenwallet.md) - one-page summary here on the Developer Portal
+  - [Get Started with the Frankenwallet](/docs/learn/educational-resources/frankenwallet) - one-page summary here on the Developer Portal
 
 :::warning
 
 These instructions may be difficult or unsafe to follow unless you have experience with "dual boot" Linux installations and other custom OS & booting configurations.
 
 :::
+
+</details>
