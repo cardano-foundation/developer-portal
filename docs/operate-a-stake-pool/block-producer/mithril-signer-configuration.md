@@ -10,7 +10,7 @@ The Mithril signer is the component that signs snapshots of the blockchain state
 
 :::important
 
-The Mithril signer must **never** connect directly to the internet. In the **production** deployment (required on `mainnet`), all outbound traffic goes exclusively through the Mithril relay. See [Setting up a Mithril relay](/docs/operate-a-stake-pool/relay-configuration/mithril-relay) for more details.
+The Mithril signer must **never** connect directly to the internet. In the **production** deployment (required on `mainnet`), all outbound traffic goes exclusively through the Mithril relay. See [Relay Configuration](/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration#mithril-relay-optional-required-for-mithril-signing) for more details.
 
 :::
 

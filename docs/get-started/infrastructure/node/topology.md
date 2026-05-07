@@ -3,248 +3,188 @@ id: topology
 title: Topology
 sidebar_label: Topology
 sidebar_position: 5
-description: OVerview and configiuration of P2P topology.
+description: Overview and configuration of cardano-node topology and peer discovery.
 keywords: [Get-started, run the node, installation, networking, p2p, peer to peer, cardano-node, cardano node]
 ---
 
-The P2P topology file specifies how to obtain the _root peers_.
+The topology file tells `cardano-node` where to find peers. It specifies local roots (peers to always stay connected to), a syncing strategy (bootstrap peers or a Genesis snapshot), public roots as fallbacks, and when to switch to ledger-based peer discovery.
 
-* The term _local roots_ refers to a group of peer nodes with which a node will aim to maintain a specific number of active or 'hot' connections.
-  These hot connections play an active role in the consensus algorithm.
-  Conversely, 'warm' connections refer to those not yet actively participating in the consensus algorithm.
-  Local roots should comprise local relays, a local block-producing node, and any other peers with which the node needs to maintain a connection.
-  These connections are typically kept private.
+## Topology file reference
 
-
-* _bootstrap peers_: trusted set of peers, only used for syncing.  Optionally starting with
-  `cardano-node-10.2`, the operator has the alternative to use Ouroboros Genesis instead.
-
-
-* _public roots_: publicly known nodes (e.g. IOG relays or ledger nodes).
-  They are either read from the configuration file directly or from the chain.
-  The configured ones will be used to pass a recent snapshot of peers needed before the node caches up with the recent enough chain to construct root peers by itself.
-
-Unlike local ones, the node does not guarantee a connection with every public root.
-However, by being present in the set, it gets an opportunity to establish an outbound connection with that peer.
-
-A minimal version of this file looks like this:
+A complete topology file for mainnet using bootstrap peers (Praos mode, recommended):
 
 ```json
 {
   "localRoots": [
-      { "accessPoints": [
-            {
-              "address": "x.x.x.x",
-              "port": 3001
-            }
-          ],
-        "advertise": false,
-        "valency": 1,
-        "warmValency": 2,
-        "trustable": true,
-        "behindFirewall": false,
-        "diffusionMode": "InitiatorAndResponder"
-      }
-  ],
-  "useLedgerAfterSlot": 128908821,
-  "bootstrapPeers": [
     {
-      "address": "backbone.cardano.iog.io",
-      "port": 3001
-    },
-    {
-      "address": "backbone.mainnet.emurgornd.com",
-      "port": 3001
-    },
-    {
-      "address": "backbone.mainnet.cardanofoundation.org",
-      "port": 3001
+      "accessPoints": [
+        { "address": "x.x.x.x", "port": 3001 }
+      ],
+      "advertise": false,
+      "hotValency": 1,
+      "warmValency": 2,
+      "trustable": false,
+      "behindFirewall": false,
+      "diffusionMode": "InitiatorAndResponder"
     }
+  ],
+  "bootstrapPeers": [
+    { "address": "backbone.cardano.iog.io",               "port": 3001 },
+    { "address": "backbone.mainnet.emurgornd.com",         "port": 3001 },
+    { "address": "backbone.mainnet.cardanofoundation.org", "port": 3001 }
   ],
   "publicRoots": [
-    { "accessPoints": [
-        {
-          "address": "y.y.y.y",
-          "port": 3002
-        }
-        ],
+    {
+      "accessPoints": [
+        { "address": "y.y.y.y", "port": 3002 }
+      ],
       "advertise": false
     }
-  ]
-  "peerSnapshotFile": "path/to/big-ledger-peer-snapshot.json"
+  ],
+  "useLedgerAfterSlot": 128908821
 }
 ```
 
-### Local Roots
+For Genesis mode, replace `bootstrapPeers` with `peerSnapshotFile` — see [Ouroboros Genesis](#ouroboros-genesis) below.
 
-* `LocalRoots` are designed for peers that the node **should always keep as hot or warm**, such as its own block producer or fulfill arranged agreements with other SPOs.
+### Local roots
 
-  This means that your node will initiate contact with the node at IP `x.x.x.x` on `port 3001` and resolve the DNS domain `y.y.y.y` (provided it exists).
-  It will then try to connect with at least one of the resolved IPs.
+Local roots are peers the node **always** keeps as hot or warm connections — typically your own relays (for the block producer) or your block producer (for relays). These connections are private and not advertised to the network.
 
+| Field | Description |
+|-------|-------------|
+| `hotValency` | Number of hot (active) connections to maintain from this group. The deprecated `valency` field is an alias. |
+| `warmValency` | Number of warm connections to maintain. Defaults to `hotValency`. Recommend `hotValency + 1` so there is always a ready backup for promotion. |
+| `advertise` | Whether to share this peer's address via peer sharing. Set `false` for your block producer. |
+| `trustable` | Marks this group as a trusted source when bootstrap peers are enabled. Default `false`. |
+| `behindFirewall` | If `true`, the node will not initiate connections to these peers — they must connect in. Available since `cardano-node 10.7`. Default `false`. |
+| `diffusionMode` | `"InitiatorAndResponder"` (default) or `"InitiatorOnly"`. Available since `cardano-node 10.2`. Overrides `DiffusionMode` in `config.json` for peers in this group only. |
 
-* `hotValency` tells the node the number of connections it should attempt to select from the specified group.
-  When a DNS address is provided, valency determines the count of resolved IP addresses for which the node should maintain an active (hot) connection.
-  Note: one can also use the deprecated now `valency` field for `hotValency`.
+:::tip Block producer topology
+Your block producer must connect **only** to your own relays. Set `"useLedgerAfterSlot": -1` and `"bootstrapPeers": null` in its topology to disable all outbound peer discovery. Its `localRoots` should list only your relays.
+:::
 
+**Reloading topology without restarting:** send `SIGHUP` to the node process:
 
-* `warmValency` is an optional field, similar to `hotValency`, that informs the node about the number of peers it should maintain as warm.
-  This field is optional and defaults to the value set in the `valency` or `hotValency` field.
-  If a value is specified for `warmValency`, it should be greater than or equal to the one defined in `hotValency`; otherwise, `hotValency` will be adjusted to match this value.
-  We recommend that users set the `warmValency` value to `hotValency + 1` to ensure that at least one backup peer can be promoted to a hot connection in case of unexpected events.
-  Check [this issue](https://github.com/intersectmbo/ouroboros-network/issues/4565) for more context on this `WarmValency` option.
+```bash
+pkill -HUP cardano-node
+```
 
+This re-reads the topology file, restarts DNS resolution, and re-fetches block forging credential paths. If credential files are missing after the reload, block forging is disabled until the files are present.
 
-* The `diffusionMode` is an optional field available since `cardano-node-10.2`.
-  It can either be `"InitiatorAndResponder"` (the default value) or `"InitiatorOnly"` (similar to `DiffusionMode` in the configuration file).
-  If `"InitiatorOnly"` is set, then all local roots in this group will negotiate initiator-only diffusion mode, e.g. the TCP connection will be used as a unidirectional connection.
+### Ledger peers and public roots
 
-  The topology setting overwrites `DiffusionMode` from the configuration file for given local root peers.
-  It is meant to overwrite the diffusion mode when a node is running in `InitiatorAndResponder` mode (the default).
-  The other way is also possible, but note that when the option in the configuration file is set to `InitiatorOnly`, the node will not run the accept loop.
+`useLedgerAfterSlot` controls when the node switches to discovering peers from the ledger stake distribution. Before that slot it uses `publicRoots` (or `bootstrapPeers`, if configured). Set to `-1` to disable ledger peer discovery entirely.
 
+`publicRoots` are fallback peers used before `useLedgerAfterSlot` is reached or when ledger peers are unavailable.
 
-* The `advertise` parameter instructs a node about the acceptability of sharing addresses through *peer sharing* (which we'll explain in more detail in a subsequent section).
-  If a node has activated peer sharing, it can receive requests from other nodes seeking peers.
-  However, it will only disclose those peers for which it has both local and remote permissions.
+**Big ledger peers** are the subset of ledger peers whose pools collectively hold 90% of total stake. They are used preferentially during Genesis sync due to their stronger economic incentive to remain honest.
 
-  Local permission corresponds to the value of the advertise parameter.
-  On the other hand, 'remote permission' is tied to the `PeerSharing` value associated with the remote address, which is ascertained after the initial handshake between nodes.
+## Syncing strategy
 
-* The `behindFirewall` is an optional field (the default value is `false`).
-  If activated, the node will not attempt to initiate outbound connections to the specified peers.
-  Instead, it will wait for the peers behind a firewall to establish the connection.
-  The option is available since `cardano-node-10.7`.
+### Bootstrap peers — Praos mode (recommended for mainnet)
 
-* Local root groups shall be non-overlapping.
+Praos is the default consensus mode. In Praos mode, the node uses a fixed list of trusted relays from the founding organizations to sync before it has enough chain state to discover peers from the ledger on its own. This is the `bootstrapPeers` list.
 
+```json
+"bootstrapPeers": [
+  { "address": "backbone.cardano.iog.io",               "port": 3001 },
+  { "address": "backbone.mainnet.emurgornd.com",         "port": 3001 },
+  { "address": "backbone.mainnet.cardanofoundation.org", "port": 3001 }
+]
+```
 
-* Local roots should not be greater than the `TargetNumberOfKnownPeers`.
-  If they are, they will get clamped to the limit.
+Set `"bootstrapPeers": null` to disable. When enabled, the node requires at least one trustable peer source — either a non-empty `bootstrapPeers` list or a local root group with `"trustable": true` — or it will refuse to start.
 
+The node traces two sync states:
 
-* Read the next section for `trustablePeers` and `bootstrapPeers`.
+- **`TooOld`** — the node's chain is more than 20 minutes behind. The node disconnects from all non-trusted peers and syncs only from bootstrap peers and trustable local roots.
+- **`YoungEnough`** — the node is caught up and connects to the wider network normally.
 
+### Ouroboros Genesis — trustless sync (experimental) {#ouroboros-genesis}
 
-Your __block-producing__ node must __ONLY__ talk to your __relay nodes__, and the relay node should talk to other relay nodes in the network.
+Ouroboros Genesis is a trustless syncing protocol that supersedes bootstrap peers. It is available as an experimental feature from `cardano-node 10.2`, disabled by default, and is expected to become the mainnet default in a future release.
 
-You have the option to notify the node of any changes to the topology configuration file by sending a SIGHUP signal to the `cardano-node` process.
-This can be done, for example, with the command `pkill -HUP cardano-node`.
-Upon receiving the signal, the `cardano-node` will re-read the configuration file and restart all DNS resolutions.
+To enable Genesis mode, set in `config.json`:
 
-Please be aware that this procedure is specific to the topology configuration file, not the node configuration file.
-Additionally, the SIGHUP signal will prompt the system to re-read the block forging credentials file paths and attempt to fetch them to initiate block forging.
-If this process fails, block forging will be disabled.
-To re-enable block forging, ensure that the necessary files are present.
+```json
+"ConsensusMode": "GenesisMode"
+```
 
+Genesis mode is incompatible with bootstrap peers. When enabled it overrides the `bootstrapPeers` setting. Replace `bootstrapPeers` in your topology with a peer snapshot file:
 
+```json
+"peerSnapshotFile": "path/to/big-ledger-peer-snapshot.json"
+```
 
-### Ledger Peers / Public Roots & Big Ledger Peers
+Generate a snapshot from a fully synced node:
 
-The option `useLedgerAfterSlot` configures from which slot the node should start to use peers registered on the ledger.  Before the given slot, the node will use `PublicRoots`, unless `bootstrapPeers` are given (see below).
-If a negative value is specified a node will not use ledger peers.
-Ledger peers should be disabled for your block producing node.
+```bash
+cardano-cli query ledger-peer-snapshot --out-file big-ledger-peer-snapshot.json
+```
 
-Ledger peers are drawn from the ledger based on stake distribution.
-Big ledger peers is a similar notion.
-It is a subset of ledger peers which contains 90% of them with the largest stake.
+The snapshot contains big ledger peers at a specific slot. The node ignores the file once its own ledger state is more recent, so it is not strictly required for ongoing operation — but it should be refreshed periodically as part of regular maintenance.
 
-`PublicRoots` serve as a source of fallback peers, which are used if we are before the configured `useLedgerAfterSlot` slot (please consider using `bootstrapPeers` instead or Genesis).
+:::warning Genesis bug in 10.2–10.4
+A bug in releases 10.2, 10.3, and 10.4 makes caught-up nodes susceptible to an eclipse attack when Genesis mode is enabled. If you are running one of those versions with Genesis enabled, disable Genesis (`ConsensusMode: PraosMode` or remove the field) and restart once the node finishes syncing.
+:::
 
-### Genesis lite a.k.a Bootstrap Peers
+## Peer connection targets
 
-Bootstrap Peers is an interim solution to facilitate syncing client nodes in a P2P environment from a pool of dedicated relays belonging to the original founding organizations of the Cardano blockchain. These relays have a priviledged trusted status within the ecosystem until full decentralization is achieved following a successful rollout of the Ouroboros Genesis protocol.
-
-Bootstrap peers can be disabled by setting `bootstrapPeers: null`.
-They are enabled by providing a list of addresses.
-By default, bootstrap peers are disabled.
-
-Trustable peers comprise the bootstrap peers (see `bootstrapPeers` option in the example topology file above) and the trustable local root peers (see `trustable` option in the example topology file above).
-By default, local root peers are not trustable.
-
-For the node to be able to start and make progress when bootstrap peers are enabled, the user _must_ provide a trustable source of peers via a topology file.
-This means that the node will only start if either the bootstrap peers list is non-empty or there's a local root group that is trustable.
-Failing to configure the node with trustable peer sources will cause the node to crash with an exception.
-*_Please note_* that if the only source of trustable peers is a DNS name, the node might be unable to make progress once in the fallback state if DNS is not providing any addresses.
-
-With bootstrap peers enabled, the node will trace the following:
-
-- `TraceLedgerStateJudgmentChanged {TooOld,YoungEnough}`: If it has changed to any of these states.
-
-  - `TooOld` state means that the information the node is getting from its peers is outdated and behind at least 20 min.
-    This means there's something wrong, and the node should only connect to trusted peers (trusted peers are bootstrap peers and trustable local root peers) to sync.
-
-  - The `YoungEnough` state means the node is caught up and connects to non-trusted peers.
-
-- `TraceOnlyBootstrap`: Once the node transitions to `TooOld,` the node will disconnect from all non-trusted peers and reconnect only to trusted ones in order to sync from trusted sources.
-  This tracing message means that the node has successfully purged all non-trusted connections and is only going to connect to trusted peers.
-
-### [Ouroboros Genesis](https://iohk.io/en/blog/posts/2024/05/08/ouroboros-genesis-design-update/)
-
-Ouroboros Genesis is the upcoming consensus mechanism of trustless syncing in a meaningfully decentralized and permissionless P2P environment which is expected to supersede bootstrap peers described in the previous section. In general, it is the successor to Ouroboros Praos with which it is backwards compatible, and externally indistinguishable from in terms of behavior when the node is synced up (**WARNING**: a bug in Genesis as of the 10.2, 10.3, and 10.4 releases makes caught-up nodes susceptible to a kind of eclipse attack; intrepid users experimenting with Genesis should disable it and restart their node once it finishes syncing). Ouroboros Genesis is included as an experimental feature starting with `cardano-node 10.2`, and at the time of this writing it is disabled by default - refer to config.json file section below on instructions how to enable this by toggling a feature flag. Until Ouroboros Genesis is officially adopted by the community following a rollout period, one can configure the node to either use it or fall back on the bootstrap peers mechanism. However, if Genesis mode is enabled, it is incompatible with bootstrap peers and will disable the latter by overriding the configuration, and emit a trace of such occurrence to inform the operator to update the topology file. From the perspective of the topology file, a new entry must be added especially if a node is starting to sync from a blank or some arbitrary but significantly out-of-date state:
-
-`"peerSnapshotFile": "path/to/snapshot.json"`
-
-The file contains a snapshot of so-called big ledger peers which are the relays belonging to the largest pools, by staked ADA, registered on the ledger which cumulatively hold 90% of the total stake at some arbitrary slot number. By virtue of the value of their stake, indicating a level of vested interest in sustaining the network, they are postulated to be a proxy for honest ledger state and therefore moderate exposure to eclipse/sybil attacks. These stake pools need not be priviledged or authoritative in any sense beyond their total delegated stake, nor even necessarily be members of the founding entities. When syncing in this mode, these peers are sampled and connected with to jump-start the process. Such a snapshot file can be created manually apriori with cardano-cli from, ideally, a synced node, and may be signed and distributed with a node release in the future. Once provided, this file remains static while a node is running. The relevant cli command to manually generate a snapshot is `cardano-cli query ledger-peer-snapshot --out-file *arbitrary-file-name*`. Finally, the node will ignore this file if it's own ledger state is more recent and hence it is not strictly necessary for ongoing operation. It is however recommended to periodically update the snapshot, manually or from a latest release, as part of regular maintenance schedule.
-
-### Configuring the node to use P2P
-
-The `cardano-node`'s P2P configuration has a variety of options relating to how many connections are to be initiated, and conversely how many incoming connections can be accepted and it is vital to understand what this actually means in practice to operate a well-configured stake pool, but the provided defaults described below do provide a sensible starting point. The smallest practical network in principle is that between two hosts, and if drawn on paper, the two nodes as points, as a simplification the link between them can be viewed as a single concept when considering the network as a whole. However, to understand the P2P network at a lower level that is useful to us as relay operators, it is crucial to be aware that logically a connection should be split into a pair - its outbound and inbound legs - from *each* peer to the other most generally. An outbound from a peer/node/host is the inbound as seen from the other side, and vice versa. At any time, a node can maintain an outbound connection to its upstream peer that is not reciprocated. In such situation, the node initiating the outbound connection is the initiator, and it's upstream node is the responder. Even though the underlying TCP bearer supports bidirectional communication, in this scenario the logical communication is inherently one way where the initiator typically queries the responder, whom provides the requested information. At any time, the responder can decide to initiate its own outbound connection back to its previously downstream-only client, and in this case each one runs its initiator and responder mechanisms independently over a single channel/TCP bearer to conserve system resources. The queries from the initiator of one are served by the responder of the other side - but each side can now query the other at its own pace to get the information it wants. Furthermore in this duplex state, the original initiator can at any time decide to close its outbound leg to the other side, at which point it is now the original responder side that is merely in initiator-only mode, and the original initiator is just the responder. It is only when neither side wants to maintain an initiator/outbound leg to the other for querying that the connection is torn down and system resources are released.
-
-You can enable P2P from the configuration file; the field `EnableP2P` can be set to either `false` or `true`. When setting it to `true`, you will also need to configure the target number of _active_, _established_ and _known_ peers, together with the target number of _root_ peers.  These values control the number of outbound/initiator connections the node will try to maintain in the appropriate mode to what are collectively named our upstream peers. This is important for the node as blocks are downloaded strictly from these peers and we want to maintain sufficiently many outbound connections to both:
-- ensure we remain on the current network blockchain tip in a timely fashion to avoid short forks causing height battles and potentially losing rewards
-- to harden ourselves from potential eclipse attacks in the presence of adversarial actors and adopting their dishonest chain
-These network delays and timeliness issues arise naturally due to traffic congestion and physical limits and so all the node can do is provide mechanisms to manage them.
-
-Importantly, blocks that the node is itself serving on demand, which we ourselves have minted or are ones we relay from *our* upstream peers, or the transactions it is requesting are determined by its downstream clients on which these peer target values have no bearing on. There isn't any fine-grained way to control theses connection modes for our incoming downstream/client peers, ie. the nodes that have our node as its upstream/responder peer. It is these clients that decide for themselves if our node is either in established or active mode from their initiator perspective, but this does also impact on our resource usage, such as processor utilization, bandwidth consumption, memory footprint, or file descriptor usage. The last item is subtle and easy to overlook - the cardano-node implementation is carefully designed around minimizing file descriptor usage, but it is a limited global resource which other unrelated processes running on the host consume. Running out of file descriptors may make the node unresponsive and essentially appear stuck, requiring a manual intervention. Regardless, these are general points that apply to all software applications, and in particular to this or other blockchain node implementations.
-
-That said, there are global configurable connection limits which govern in the aggregate how many peers we are connected with before we start refusing any more connections to avoid overloading and impairing our performance. Some careful consideration must be given prior to lowering this limit manually when a particular performance metric is a concern, as at some point at the other extreme our block propagation times will suffer, which is a crucial characteristic when engaging in block production. In other words, to reap rewards, we want to have a good variety of these downstream peers dispersed around the globe such that our blocks propagate quickly to and via them such that they are adopted by the whole network as fast as possible. Furthermore, exhausting the connection limit prematurely may prevent our own tooling from connecting with the node. We of course cannot force any arbitrary downstream peers on the network to initiate their outbound leg to us (ie. have them treat our node as its responder/upstream) to improve our block propagation situation, but we can help nudge the odds in our favor by selectively adding a few other relays from around the globe as our local root peers. If our relays are registered on the ledger the effect will be similar. These peer nodes, following accepting our outbound connection to them, may in turn decide, somewhat randomly, to try to establish a connection back to us (ie. the channel is ran in initiator/responder duplex mode for bidirectional queries and responses), and if link performance is satisfactory from their perspective such that *their* outbound connection is maintained with us over the long term, *our* block propagation time is expected to improve/decrease. Another good option is to reach out to some other pool operators directly, especially when operating in sparser regions such as South America or Asia Pacific and maintain a reciprocal local root connection to each other's public relays defined in the respective topology files. Such arrangements do not adversely impact blockchain security or our own perceived anonymity/independence if these acquaintances are ***not*** marked as trustable in the topology file configuration, which is a default, and in general are mutually beneficial if uptime and bandwidth are similar, or help each other's block propagation times, as well as healthy for the network as a whole if partitions were to occur by external commission, omission, or unfortunate accident outside our control.
-
-In summary, as node operators we can specify the maximum overall number of connections we can maintain with our peers, some of which are outbound, others inbound and some of which are both. We only have a fine-grained means of controlling the number of our outbound connections to various types of peer and the mode in which they should operate. There are good reasons why the configuration is as such which is outside of the scope of this guide, but suffice to say that the complexity is not accidental but is necessary for flexibility and meeting design intent of Praos consensus protocol security guarantees which critically rely on timeliness of network communication.
-
-The default configuration values are:
+Peer targets are set in `config.json`, not in the topology file. The defaults are:
 
 ```json
 {
-  ...
-  "EnableP2P": true,
-
   "TargetNumberOfRootPeers": 60,
-
   "TargetNumberOfActivePeers": 15,
   "TargetNumberOfEstablishedPeers": 40,
   "TargetNumberOfKnownPeers": 85,
-
   "TargetNumberOfActiveBigLedgerPeers": 5,
   "TargetNumberOfEstablishedBigLedgerPeers": 10,
-  "TargetNumberOfKnownBigLedgerPeers": 15,
+  "TargetNumberOfKnownBigLedgerPeers": 15
 }
 ```
 
-Collectively, these are known as the deadline targets. Prior to Ouroboros Genesis, this was the only set of static P2P targets available to the node. When Genesis mode is enabled in the configuration file, these deadline targets are in effect strictly when the node deems itself caught up to its upstream peers, and the network is awaiting for the next block to be produced and diffused.
+These **deadline targets** apply when the node considers itself caught up. In Praos mode they are always in effect; in Genesis mode they apply once the node has synced.
 
-* `TargetNumberOfActivePeers` - the target for active ledger peers (aka hot peers); includes: local roots, ledger peers / public roots, peers from peer-sharing; excludes: big ledger peers. This ordinarily should be least the number of local root peers that are specified as hot in the topology file, otherwise the number of these connections will be clamped below the expected number. However, it is not strictly a misconfiguration and the node will run in such configuration.
-* `TargetNumberOfEstablishedPeers` - the target for established connections (the sum of warm & hot peers); includes: local roots roots, ledger peers / public roots, peers from peer-sharing; excludes big ledger peers. Same note as for active peers above applied here as well.
-* `TargetNumberOfKnownPeers` - the target for known peers (the sum of cold, warm & hot); includes: local roots, ledger peers / public roots, peers from peer-sharing; excludes big ledger peers.
+**Constraint:** `known >= established >= active >= 0` must hold for both the regular and big-ledger sets, or the node will fail to start.
 
-* `TargetNumberOfActiveBigLedgerPeers` - the target for active big ledger peers (aka hot big ledger peers).
-* `TargetNumberOfEstablishedBigLedgerPeers` - the target for established connections with big ledger peers (the sum of warm & hot big ledger peers).
-* `TargetNumberOfKnownBigLedgerPeers` - the target for known big ledger peers (the sum of cold, warm & hot big ledger peers).
+| Target | Description |
+|--------|-------------|
+| `TargetNumberOfActivePeers` | Hot connections to local roots, ledger/public root peers, and peer-sharing peers (excludes big ledger peers). Should be at least the number of hot local roots configured in the topology file. |
+| `TargetNumberOfEstablishedPeers` | Warm + hot connections (same peer set as above). |
+| `TargetNumberOfKnownPeers` | Cold + warm + hot connections (same peer set). |
+| `TargetNumberOfActive/Established/KnownBigLedgerPeers` | Same three tiers, but for big ledger peers specifically. |
+| `TargetNumberOfRootPeers` | Minimum known peers filled from local roots and ledger/public roots before peer sharing is used to fill the rest. |
 
-* `TargetNumberOfRootPeers` - a lower limit for known local roots, ledger peers / public root peers.  Anything beyond this target will be filled by peers from peer sharing, ledger / public root peers.
+When using bootstrap peers, all targets must be large enough to accommodate the full bootstrap peer list.
 
-Note, when using bootstrap-peers, feature the targets have to be large enough to accommodate all bootstrap peers.
+### Peer sharing
 
-**Custom targets must satisfy the property that # of known >= # of established >= # of active >= 0 otherwise the node will fail to start as it is a serious misconfiguration.**
+Peer sharing lets nodes exchange peer addresses with each other, helping the network self-heal and fill peer slots without relying solely on ledger-registered nodes.
 
-#### Ouroboros Genesis protocol's network specific configuration
+Enable it in `config.json`:
 
-Ouroboros Genesis is disabled by default at the time of this writing. To enable it, the node configuration file must contain
-* `"ConsensusMode": "GenesisMode"`
-or the argument `--ConsensusMode GenesisMode` must be given on command line or script when starting up the node process.
+```json
+"PeerSharing": true
+```
 
-Detailed configuration settings for Ouroboros Genesis are beyond the scope of this article; however, sensible defaults are provided and below we document the relevant networking options.
-These options are available since `cardano-node-10.2` and by default their values are as shown below:
+Peer sharing has two levels of permission before an address is disclosed:
+
+- **Node level** — `PeerSharing: true` must be set, or the node will not respond to peer requests at all.
+- **Per-peer level** — `advertise: true` must be set on a local root entry for that peer's address to be shareable. The remote node must also consent during the handshake.
+
+Both conditions must hold for an address to be shared. Set `advertise: false` for your block producer and any private infrastructure.
+
+:::note
+Peer sharing is an organic discovery mechanism on top of ledger peers and local roots — it is not a replacement for them. If your node has spare peer capacity after filling ledger and root peers, peer sharing fills the remainder up to `TargetNumberOfKnownPeers`.
+:::
+
+For good block propagation, relays benefit from connections to peers distributed globally. Consider [arranging reciprocal local root connections](https://forum.cardano.org/c/staking-delegation/156) with operators in under-represented regions (South America, Asia Pacific). Do **not** mark these peers as `trustable` — that designation is only for your own infrastructure.
+
+### Genesis sync targets
+
+These apply automatically in Genesis mode when the local ledger state is detected to be out of date:
 
 ```json
 {
@@ -256,4 +196,8 @@ These options are available since `cardano-node-10.2` and by default their value
 }
 ```
 
-Collectively, these are known as the sync targets and they are in effect automatically when the node's consensus module detects that the local ledger state is out of date vis-à-vis our upstream peers. The node then proceeds to download *and validate* blocks in bulk from some of its upstream active peers to catch up as soon as possible. As long as there is at least one honest active peer in this set, which need not be the same one(s) for the duration of the process, the Ouroboros Genesis protocol ensures that our node will successfully complete with the honest ledger state. It is important for this reason that the `SyncTargetNumberOfActiveBigLedgerPeers` is not a 'small' number. Optionally, the `SyncTargetNumberOfActivePeers` can be set such that outbound connections are also opened up to local root peers, if defined, as well as other public relays or nodes we learn about via peer sharing, if enabled. Care must be taken to ensure that these sync targets *by themselves* satisfy the inequality constraints given in the prior section, or the node will fail to start with an appropriate error message. Additionally, this latter option must not exceed `TargetNumberOfEstablishedPeers` from the *deadline* configuration set as the sole exception. Once sufficiently many blocks have been adopted and the node deems itself caught up again, the number of outbound connections will revert to the deadline set described in the previous section. If at any time during the syncing process the number of hot connections to big ledger peers drops below `MinBigLedgerPeersForTrustedState` value (which must not exceed the `SyncTargetNumberOfActivePeers` for obvious reasons), the node will pause and await until sufficiently many active outbound connections are online. This is only but one of the many safeguards in Ouroboros Genesis protocol to avoid adopting a dishonest chain during the syncing process. The blog post link in a prior section heading provides an approachable but technical deep dive for the curious operator or end user.
+During sync, the node bulk-downloads and validates blocks from big ledger peers. `SyncTargetNumberOfActiveBigLedgerPeers` should not be a small number — Ouroboros Genesis guarantees convergence to the honest chain as long as at least one active peer is honest. If active big ledger peers drop below `MinBigLedgerPeersForTrustedState`, the node pauses until enough connections are re-established.
+
+The sync targets must independently satisfy `known >= established >= active >= 0`. Additionally, `SyncTargetNumberOfActivePeers` must not exceed `TargetNumberOfEstablishedPeers` from the deadline set.
+
+Once the node deems itself caught up, it transitions back to the deadline targets.

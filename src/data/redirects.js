@@ -49,7 +49,7 @@ const redirects = [
     from: '/docs/stake-pool-course/introduction-to-cardano',
   },
   {
-    to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
+    to: '/docs/operate-a-stake-pool/monitoring/monitoring-prometheus-grafana',
     from: [
       '/docs/stake-pool-course/handbook/grafana-dashboard-tutorial',
       '/docs/stake-pool-course/handbook/grafana-loki',
@@ -72,7 +72,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions',
+    to: '/docs/learn/cardano-cli/basic-operations/simple-transactions',
     from: [
       '/docs/stake-pool-course/handbook/use-cli',
       '/docs/stake-pool-course/handbook/create-simple-transaction',
@@ -112,11 +112,11 @@ const redirects = [
     from: '/docs/operate-a-stake-pool/security/air-gap',
   },
   {
-    to: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow',
+    to: '/docs/learn/cardano-cli/security/secure-workflow',
     from: '/docs/operate-a-stake-pool/security/secure-workflow',
   },
   {
-    to: '/docs/operate-a-stake-pool/operator-tools/frankenwallet',
+    to: '/docs/learn/educational-resources/frankenwallet',
     from: '/docs/operate-a-stake-pool/frankenwallet',
   },
   {
@@ -128,11 +128,11 @@ const redirects = [
     from: '/docs/operate-a-stake-pool/hardware-requirements',
   },
   {
-    to: '/docs/operate-a-stake-pool/relay-configuration/monitoring-gLiveView',
+    to: '/docs/operate-a-stake-pool/monitoring/monitoring-overview',
     from: '/docs/operate-a-stake-pool/monitoring-gLiveView',
   },
   {
-    to: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial',
+    to: '/docs/operate-a-stake-pool/monitoring/monitoring-prometheus-grafana',
     from: '/docs/operate-a-stake-pool/grafana-dashboard-tutorial',
   },
   {
@@ -252,11 +252,11 @@ const redirects = [
     from: '/docs/operate-a-stake-pool/node-operations/running-cardano',
   },
   {
-    to: '/docs/get-started/infrastructure/node/dynamic-block-forging',
+    to: '/docs/get-started/infrastructure/node/running-cardano',
     from: '/docs/operate-a-stake-pool/node-operations/dynamic-block-forging',
   },
   {
-    to: '/docs/get-started/infrastructure/node/rts-options-node',
+    to: '/docs/get-started/infrastructure/node/running-cardano',
     from: '/docs/operate-a-stake-pool/node-operations/rts-options-node',
   },
   {
@@ -292,7 +292,7 @@ const redirects = [
     from: ['/docs/get-started/utxos', '/docs/get-started/client-sdks/typescript/utxos/overview'],
   },
   {
-    to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
+    to: '/docs/learn/cardano-cli/basic-operations/get-started',
     from: '/docs/get-started/cardano-cli',
   },
   {
@@ -304,11 +304,11 @@ const redirects = [
     from: '/docs/get-started/cardano-serialization-lib',
   },
   {
-    to: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow',
+    to: '/docs/learn/cardano-cli/security/secure-workflow',
     from: '/docs/get-started/security/secure-workflow',
   },
   {
-    to: '/docs/operate-a-stake-pool/operator-tools/frankenwallet',
+    to: '/docs/learn/educational-resources/frankenwallet',
     from: '/docs/get-started/security/frankenwallet',
   },
   {
@@ -488,7 +488,7 @@ const redirects = [
     from: '/docs/get-started/cardano-node/installing-cardano-node',
   },
   {
-    to: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started',
+    to: '/docs/learn/cardano-cli/basic-operations/get-started',
     from: '/docs/get-started/cli-operations/basic-operations',
   },
   {
@@ -517,6 +517,27 @@ const redirects = [
     to: '/talent',
     from: '/hackathons',
   },
+  // frankenwallet moved from operate-a-stake-pool/operator-tools to learn/educational-resources
+  { to: '/docs/learn/educational-resources/frankenwallet', from: '/docs/operate-a-stake-pool/operator-tools/frankenwallet' },
+  // cardano-cli docs moved from get-started/infrastructure/cardano-cli to learn/cardano-cli
+  { to: '/docs/learn/cardano-cli/basic-operations/get-started', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started' },
+  { to: '/docs/learn/cardano-cli/basic-operations/simple-transactions', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions' },
+  { to: '/docs/learn/cardano-cli/basic-operations/stake-address-registration', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/stakeaddress-registration' },
+  { to: '/docs/learn/cardano-cli/basic-operations/delegate-to-stake-pool', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/stake-address-delegation' },
+  { to: '/docs/learn/cardano-cli/basic-operations/deregister-stake-addreess', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/deregister-stake-address' },
+  { to: '/docs/learn/cardano-cli/basic-operations/withdraw-rewards', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/withdraw-rewards' },
+  { to: '/docs/learn/cardano-cli/basic-operations/treasury-donation', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/treasury-donations' },
+  { to: '/docs/learn/cardano-cli/multi-witness-transactions', from: '/docs/get-started/infrastructure/cardano-cli/multi-witness-transactions' },
+  { to: '/docs/learn/cardano-cli/security/secure-workflow', from: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow' },
+  { to: '/docs/learn/cardano-cli/governance/submit-votes', from: '/docs/get-started/infrastructure/cardano-cli/governance/voting' },
+  { to: '/docs/learn/cardano-cli/governance/gov-queries', from: '/docs/get-started/infrastructure/cardano-cli/governance/gov-queries' },
+  { to: '/docs/learn/cardano-cli/governance/create-governance-actions', from: '/docs/get-started/infrastructure/cardano-cli/governance/governance-actions' },
+  { to: '/docs/learn/cardano-cli/governance/constitutional committee', from: '/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee' },
+  { to: '/docs/learn/cardano-cli/governance/delegate to a drep', from: '/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote' },
+  { to: '/docs/learn/cardano-cli/governance/register drep', from: '/docs/get-started/infrastructure/cardano-cli/governance/register-drep' },
+  { to: '/docs/learn/cardano-cli/native-assets', from: '/docs/get-started/infrastructure/cardano-cli/native-assets/native-assets' },
+  { to: '/docs/learn/cardano-cli/simple-scripts', from: '/docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts' },
+  { to: '/docs/learn/cardano-cli/plutus-scripts', from: '/docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts' },
 ];
 
 module.exports = redirects;
