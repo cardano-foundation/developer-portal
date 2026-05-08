@@ -12,12 +12,12 @@ Cardano is a layered, formally specified blockchain. Each layer has a clear resp
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                   Applications                       │
-│        (dApps, wallets, explorers, SPO tools)        │
+│                   Applications                      │
+│        (dApps, wallets, explorers, SPO tools)       │
 ├─────────────────┬───────────────────────────────────┤
-│   cardano-cli   │  cardano-tracer  │    Mithril      │
+│   cardano-cli   │  cardano-tracer  │    Mithril     │
 ├─────────────────┴───────────────────────────────────┤
-│                   cardano-node                       │
+│                   cardano-node                      │
 │  ┌────────────┐ ┌────────────┐ ┌──────────────────┐ │
 │  │   Ledger   │ │ Consensus  │ │   Networking     │ │
 │  │ (cardano-  │ │(ouroboros- │ │ (ouroboros-      │ │
@@ -27,7 +27,7 @@ Cardano is a layered, formally specified blockchain. Each layer has a clear resp
 │  │       Scripting layer (Plutus Core)          │   │
 │  └──────────────────────────────────────────────┘   │
 ├─────────────────────────────────────────────────────┤
-│            Local chain storage (LedgerDB)            │
+│            Local chain storage (LedgerDB)           │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -139,7 +139,9 @@ Cardano has evolved through multiple ledger eras, each introducing new capabilit
 | Babbage | Reference inputs, inline datums, reference scripts |
 | Conway | On-chain governance (CIP-1694), DReps, Constitutional Committee |
 
-Each era transition is triggered by a hard fork initiation governance action — a process that requires SPO votes and DRep votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
+see also [Historical Cardano Hardforks](https://cardano.org/hardforks/)
+
+Since the Conway Era each era transition is triggered by a hard fork initiation governance action — a process that requires SPO votes and DRep votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
 
 ## Formal specifications
 
