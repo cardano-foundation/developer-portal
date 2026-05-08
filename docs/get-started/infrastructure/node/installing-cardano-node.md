@@ -9,7 +9,11 @@ image: /img/og/og-getstarted-installing-cardano-node.png
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The current stable release is **11.0.1**. Always check the [releases page](https://github.com/IntersectMBO/cardano-node/releases) for the latest version before installing.
+:::info version reference
+This document was written in May 2026 for the current stable release **11.0.1**. 
+Always check the [releases page](https://github.com/IntersectMBO/cardano-node/releases) for the latest version before installing.
+:::
+
 
 :::tip Cardano Node Course
 For a comprehensive video course on the Cardano Node and CLI as an end user, stake pool operator, and governance actor, see the [Cardano Node Course](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x2ut-Pq-hi0NFVsgKB3EddR).

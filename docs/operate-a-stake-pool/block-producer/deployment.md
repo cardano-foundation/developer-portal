@@ -6,6 +6,10 @@ description: Issue the operational certificate and securely transfer credentials
 image: ../img/og-developer-portal.png
 ---
 
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
+:::
+
 This page covers issuing the operational certificate and securely moving credentials from your air-gapped machine to the block producer. Complete [Key Generation](/docs/operate-a-stake-pool/block-producer/block-producer-keys) first.
 
 :::note Configuration management is out of scope

@@ -21,6 +21,8 @@ SPOs vote with their **cold verification key** and require **>51% of active stak
 
 SPOs **do not** vote on protocol parameter changes, treasury withdrawals, or constitutional amendments — those require DRep and CC approval.
 
+Find out more about the different roles at this dedicated [Governance Actions insight page](https://cardano.org/insights/governance-actions/).
+
 Hard-fork initiation is the most common action requiring SPO votes. When the community is ready to upgrade the network, a hard fork proposal is submitted on-chain and SPOs must cast an explicit yes vote with their cold key to signal readiness. Running the upgraded node software is also required, but does not substitute for the on-chain vote.
 
 ## Step 1 — Find active proposals
@@ -44,7 +46,7 @@ For a full governance state dump (includes vote tallies):
 cardano-cli conway query gov-state
 ```
 
-You can also browse active proposals on [Cardano GovTool](https://gov.tools) or [CardanoScan](https://cardanoscan.io/govActions).
+You can also browse active proposals on [Cardano GovTool](https://gov.tools), [CardanoScan](https://cardanoscan.io/govActions), [Adastat](https://adastat.net/governances) or [CGOV](https://app.cgov.io/).
 
 ## Step 2 — Review the proposal
 

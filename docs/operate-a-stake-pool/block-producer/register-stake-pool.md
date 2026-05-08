@@ -6,6 +6,10 @@ description: Generate your pool registration certificate and submit it to the ch
 image: ../img/og-developer-portal.png
 ---
 
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
+:::
+
 Pool registration requires:
 
 1. A metadata JSON file hosted at a public HTTPS URL

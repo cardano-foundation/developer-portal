@@ -6,6 +6,10 @@ description: Register your stake address on-chain before registering a stake poo
 image: ../img/og-developer-portal.png
 ---
 
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
+:::
+
 Before registering a pool, the stake address must be registered on-chain. This costs a deposit (currently 2 ADA on mainnet, returned when you deregister) plus transaction fees.
 
 This page assumes you have completed [Generating Wallet Keys](/docs/operate-a-stake-pool/block-producer/generating-wallet-keys) and that `CARDANO_NODE_SOCKET_PATH` and `CARDANO_NODE_NETWORK_ID` are set.

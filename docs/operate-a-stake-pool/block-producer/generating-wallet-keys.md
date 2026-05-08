@@ -6,6 +6,10 @@ description: Generate the payment and stake keys needed to register a Cardano st
 image: ../img/og-developer-portal.png
 ---
 
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
+:::
+
 A stake pool registration requires a funded wallet address. The address is a combination of a payment key (pays fees and deposits) and a stake key (receives rewards and anchors the pool registration).
 
 :::warning Mainnet key management

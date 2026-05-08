@@ -6,6 +6,10 @@ description: Generating the cold, KES, and VRF keys for a Cardano block producer
 image: ../img/og-developer-portal.png
 ---
 
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
+:::
+
 A block producer requires three key pairs and an operational certificate:
 
 | Key | Purpose | Where it lives |
