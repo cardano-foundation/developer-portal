@@ -523,18 +523,18 @@ function CTASection() {
           <p>Connect, build, and get funded</p>
         </div>
         <div className={styles.ctaRow}>
-          {/* Hackathons */}
-          <Link to={useBaseUrl("hackathons")} className={styles.ctaHackathons}>
+          {/* Talent Pool */}
+          <Link to={useBaseUrl("talent")} className={styles.ctaHackathons}>
             <img
               src={useBaseUrl("img/hackathons/hackathon.jpg")}
-              alt="Cardano hackathon event"
+              alt="Cardano developers"
               className={styles.ctaHackathonsImage}
             />
             <div className={styles.ctaHackathonsOverlay} />
             <div className={styles.ctaHackathonsContent}>
-              <h3>Hackathons</h3>
-              <p>Build, compete, and win prizes with developers worldwide</p>
-              <span className={styles.ctaHackathonsLink}>View upcoming →</span>
+              <h3>Talent Pool</h3>
+              <p>Hear about Cardano hackathons, jobs, and grants for developers</p>
+              <span className={styles.ctaHackathonsLink}>Join the pool →</span>
             </div>
           </Link>
 

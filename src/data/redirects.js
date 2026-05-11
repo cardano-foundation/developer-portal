@@ -284,7 +284,7 @@ const redirects = [
     from: '/docs/get-started/mesh',
   },
   {
-    to: '/docs/get-started/client-sdks/typescript/evolution-sdk/get-started',
+    to: '/docs/get-started/client-sdks/typescript/evolution-sdk/overview',
     from: '/docs/get-started/evolution-sdk',
   },
   {
@@ -511,6 +511,11 @@ const redirects = [
     // fix broken blog pagination: ../  from /blog/page/N/ resolves to /blog/page/
     to: '/blog/',
     from: '/blog/page',
+  },
+  {
+    // /hackathons renamed to /talent
+    to: '/talent',
+    from: '/hackathons',
   },
 ];
 

@@ -621,9 +621,9 @@ export const BuilderTools = [
     description:
       "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
     preview: require("./images/evolution-sdk.png"),
-    website: "https://no-witness-labs.github.io/evolution-sdk/",
+    website: "https://github.com/IntersectMBO/evolution-sdk",
     getstarted:
-      "https://no-witness-labs.github.io/evolution-sdk/install",
+      "https://github.com/IntersectMBO/evolution-sdkinstall",
     tags: ["typescript", "transactionbuilder"],
   },
   {
