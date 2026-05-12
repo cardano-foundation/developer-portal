@@ -168,7 +168,7 @@ function getNavbarItems(repository) {
       },
     },
     {
-      href: "https://discord.gg/2nPUa5d7DE",
+      href: "https://discord.gg/MmeqpAzKbp",
       position: "right",
       className: "header-discord-link",
       "aria-label": "Discord",
