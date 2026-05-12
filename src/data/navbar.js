@@ -171,7 +171,7 @@ function getNavbarItems(repository) {
       href: "https://discord.gg/MmeqpAzKbp",
       position: "right",
       className: "header-discord-link",
-      "aria-label": "Discord",
+      "aria-label": "Engineering and Development Discord",
     },
     {
       href: repository,
