@@ -79,7 +79,7 @@ Keys must be:
 
 [cardano-airgap](/docs/learn/educational-resources/air-gap) is a Nix-built bootable ISO maintained by IntersectMBO. It ships pre-loaded with all Cardano tooling and has **never made a network request** — not during build, not during setup, not ever. It is already the tool of choice for many SPOs and Constitutional Committee members.
 
-Alternatives: the [Frankenwallet](/docs/learn/educational-resources/frankenwallet) (encrypted bootable USB) or a [manually configured air-gapped machine](/docs/learn/educational-resources/air-gap).
+Alternatives: the [Frankenwallet](/docs/learn/educational-resources/air-gap) (encrypted bootable USB) or a [manually configured air-gapped machine](/docs/learn/educational-resources/air-gap).
 
 ### Signing workflow
 

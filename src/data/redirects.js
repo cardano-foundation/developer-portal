@@ -116,7 +116,7 @@ const redirects = [
     from: '/docs/operate-a-stake-pool/security/secure-workflow',
   },
   {
-    to: '/docs/learn/educational-resources/frankenwallet',
+    to: '/docs/learn/educational-resources/air-gap',
     from: '/docs/operate-a-stake-pool/frankenwallet',
   },
   {
@@ -308,7 +308,7 @@ const redirects = [
     from: '/docs/get-started/security/secure-workflow',
   },
   {
-    to: '/docs/learn/educational-resources/frankenwallet',
+    to: '/docs/learn/educational-resources/air-gap',
     from: '/docs/get-started/security/frankenwallet',
   },
   {
@@ -517,8 +517,8 @@ const redirects = [
     to: '/talent',
     from: '/hackathons',
   },
-  // frankenwallet moved from operate-a-stake-pool/operator-tools to learn/educational-resources
-  { to: '/docs/learn/educational-resources/frankenwallet', from: '/docs/operate-a-stake-pool/operator-tools/frankenwallet' },
+  // frankenwallet content merged into air-gap page
+  { to: '/docs/learn/educational-resources/air-gap', from: '/docs/operate-a-stake-pool/operator-tools/frankenwallet' },
   // cardano-cli docs moved from get-started/infrastructure/cardano-cli to learn/cardano-cli
   { to: '/docs/learn/cardano-cli/basic-operations/get-started', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started' },
   { to: '/docs/learn/cardano-cli/basic-operations/simple-transactions', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions' },
@@ -538,6 +538,14 @@ const redirects = [
   { to: '/docs/learn/cardano-cli/native-assets', from: '/docs/get-started/infrastructure/cardano-cli/native-assets/native-assets' },
   { to: '/docs/learn/cardano-cli/simple-scripts', from: '/docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts' },
   { to: '/docs/learn/cardano-cli/plutus-scripts', from: '/docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts' },
+  // deleted SPO docs
+  { to: '/docs/operate-a-stake-pool/', from: '/docs/operate-a-stake-pool/basics/scaling-node-operations' },
+  { to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration', from: '/docs/operate-a-stake-pool/relay-configuration/mithril-relay' },
+  { to: '/docs/operate-a-stake-pool/monitoring/monitoring-overview', from: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial' },
+  { to: '/docs/operate-a-stake-pool/monitoring/monitoring-overview', from: '/docs/operate-a-stake-pool/relay-configuration/monitoring-gLiveView' },
+  // deleted node docs
+  { to: '/docs/get-started/infrastructure/node/running-cardano', from: '/docs/get-started/infrastructure/node/dynamic-block-forging' },
+  { to: '/docs/get-started/infrastructure/node/running-cardano', from: '/docs/get-started/infrastructure/node/rts-options-node' },
 ];
 
 module.exports = redirects;
