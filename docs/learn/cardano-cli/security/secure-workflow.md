@@ -12,7 +12,7 @@ The core rule for all Cardano key operations is simple:
 Private keys — payment keys, cold keys, stake keys — must never exist on an internet-connected machine.
 :::
 
-This page describes the workflow pattern that enforces that rule: build on an online machine, sign on the air-gapped machine, submit from the online machine. The signing key never moves; only unsigned and signed transaction files cross the boundary.
+This page describes the workflow pattern that enforces that rule: build transactions on an online machine, sign on the air-gapped machine, submit from the online machine. The signing key never moves; only unsigned and signed transaction files cross the boundary.
 
 ## The three-step pattern
 
@@ -42,7 +42,7 @@ For your air-gapped environment options, see [Air Gap Environment](/docs/learn/e
 
 ## Transfer media
 
-Keep a dedicated USB drive for moving transaction files. Format it on a machine you trust, then reformat it on the air-gapped machine before first use. Use exFAT or FAT32 for compatibility between Linux and other systems.
+Keep a dedicated USB drive for moving transaction files. Format it on the air-gapped machine before first use. Use exFAT or FAT32 for compatibility between Linux and other systems.
 
 **Never put keys on this drive.** Keys live on the air-gapped machine's encrypted volume. The USB drive carries only:
 - Unsigned transaction files (`.raw`) going **in** to the air gap
@@ -73,6 +73,10 @@ Back up the `.skey` files to at least two independent encrypted locations. If th
 ### Mnemonic-based derivation
 
 Deriving keys from a mnemonic means your keys can be re-derived from the seed phrase at any time, and the keys are compatible with Daedalus, Lace, Eternl, and other Cardano wallets.
+
+:::danger
+Never store your mnemonic on a cloud server, in email, or in any internet-connected storage. Treat it with the same care as the signing keys themselves — the mnemonic is the master secret from which all keys can be re-derived.
+:::
 
 #### cardano-signer — derive keys directly to .skey/.vkey files
 

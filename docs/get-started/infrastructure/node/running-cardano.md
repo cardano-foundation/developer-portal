@@ -232,7 +232,7 @@ export CARDANO_NODE_SOCKET_PATH=/run/cardano/node.socket
 
 ## Querying the node
 
-`cardano-cli` and other tools locate the node socket via `CARDANO_NODE_SOCKET_PATH`. Setting `CARDANO_NODE_NETWORK_ID` removes the need to pass `--mainnet` or `--testnet-magic` on every command. Add both to your shell profile:
+`cardano-cli` and other tools locate the node socket via `CARDANO_NODE_SOCKET_PATH`. Setting `CARDANO_NODE_NETWORK_ID` removes the need to pass `--mainnet` or `--testnet-magic` on every command — it handles both mainnet and testnet magic automatically. Add both to your shell profile:
 
 ```bash
 export CARDANO_NODE_SOCKET_PATH=/run/cardano/node.socket   # adjust if not using the systemd setup above

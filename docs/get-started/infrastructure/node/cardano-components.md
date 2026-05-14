@@ -58,13 +58,13 @@ The consensus layer sits between the network and the ledger: it receives block c
 - **Pipelining** — requesting multiple blocks ahead of confirmation to maximize throughput
 - **Adversarial resistance** — protections against peers that are slow, malicious, or eclipse-attacking
 
-The networking layer is what distinguishes a relay from a block producer: a relay accepts external connections from any peer, while a block producer's networking is configured to connect only to its own relays.
+The networking layer handles peer topology and connection management. Both relays and block producers run the same networking code; what distinguishes them is configuration — a relay accepts external connections from any peer, while a block producer's topology is configured to connect only to its own relays (see [Network topology](#network-topology) below).
 
 ### Scripting layer
 
-[`Plutus Core`](https://github.com/IntersectMBO/plutus) is the smart contract execution engine embedded in the ledger. At its core it is a typed lambda calculus — a minimal, formally verified computation model. Smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately compile down to Plutus Core (UPLC) for on-chain execution.
+[`Plutus Core`](https://github.com/IntersectMBO/plutus) is the smart contract execution engine embedded in the ledger. At its core it is a typed lambda calculus — a minimal, formally verified computation model. Smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately compile down to Untyped Plutus Core (UPLC) for on-chain execution.
 
-Execution happens within the ledger layer during transaction validation. Every script execution is bounded by an execution unit budget (CPU steps and memory units) specified in the transaction, preventing unbounded computation.
+Execution happens within the ledger layer during transaction validation. Every script execution is bounded by an execution unit budget (CPU steps and memory units) that must be declared in the transaction. The declared budget is consumed during validation; both per-transaction and per-block execution unit limits are enforced by the protocol parameters, preventing unbounded computation.
 
 ## Supporting components
 
@@ -85,11 +85,11 @@ Execution happens within the ledger layer during transaction validation. Every s
 
 ### Mithril
 
-[Mithril](https://mithril.network) is a stake-based signature protocol that allows SPOs to collectively certify snapshots of the chain state. A new node bootstrapping from a Mithril snapshot can reach the chain tip in minutes rather than hours, without trusting any single party — the snapshot is certified by a threshold of stake. SPOs participate as Mithril signers; the Mithril aggregator collects signatures and produces certificates.
+[Mithril](https://mithril.network) is a stake-based signature protocol that allows SPOs to collectively certify snapshots of the chain state. A new node bootstrapping from a Mithril snapshot can reach the chain tip in minutes rather than hours. SPOs participate as Mithril signers; the Mithril aggregator collects signatures and produces certificates. The chain database portion of the snapshot is certified by a threshold of stake. The ledger state snapshot (ancillary data) is signed separately by IOG's ancillary key, so that portion requires trusting IOG.
 
 ### DB Sync
 
-[`cardano-db-sync`](https://github.com/IntersectMBO/cardano-db-sync) is an optional component that follows the chain and writes all block and transaction data into a PostgreSQL database. It is not required to run a node or a stake pool, but is commonly used by explorers, analytics tools, and applications that need rich SQL queries over chain data.
+[`cardano-db-sync`](https://github.com/IntersectMBO/cardano-db-sync) is an optional component that follows the chain and writes all block and transaction data into a PostgreSQL database. It is not required to run a node or a stake pool — stake pools do not normally run it — but is commonly used by explorers, analytics tools, and applications that need rich SQL queries over chain data.
 
 ## Network topology
 
@@ -107,9 +107,9 @@ Execution happens within the ledger layer during transaction validation. Every s
                     (no public IP)
 ```
 
-**Relays** accept inbound connections from any peer on the network. They propagate transactions and blocks between the broader network and your block producer. A healthy pool runs at least two relays for redundancy.
+**Relays** accept inbound connections from any peer on the network. They propagate transactions and blocks between the broader network and your block producer. A healthy pool runs at least two relays for redundancy and to support the operation of the network as a whole.
 
-**Block producers** connect only to their own relays, never to external peers. This isolates the block producer from direct external exposure. It holds the hot keys needed to forge blocks (KES key and VRF key), but the cold key that authorizes pool registration and key rotation never touches it.
+**Block producers** connect only to their own relays, never to external peers. This isolates the block producer from direct external exposure. The block producer uses the hot keys needed to forge blocks (KES key and VRF key), but the cold key that authorizes pool registration and key rotation is never used by the block producer.
 
 P2P topology is negotiated automatically since the introduction of P2P networking. Each relay maintains outbound connections to peers discovered via the P2P governor; the block producer's topology is configured to connect only to specific relay addresses.
 
@@ -141,7 +141,7 @@ Cardano has evolved through multiple ledger eras, each introducing new capabilit
 
 see also [Historical Cardano Hardforks](https://cardano.org/hardforks/)
 
-Since the Conway Era each era transition is triggered by a hard fork initiation governance action — a process that requires SPO votes and DRep votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
+Since the Conway Era each era transition is triggered by a hard fork initiation governance action — a process that requires SPO, DRep, and Constitutional Committee votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
 
 ## Formal specifications
 

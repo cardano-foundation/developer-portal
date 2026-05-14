@@ -61,7 +61,8 @@ Pre-built binaries require trusting the build pipeline. For block producers hold
 Container images for `cardano-node`, `cardano-tracer`, and `cardano-submit-api` are published to the GitHub Container Registry:
 
 ```bash
-docker pull ghcr.io/intersectmbo/cardano-node:11.0.1
+VERSION=11.0.1  # check releases page for latest
+docker pull ghcr.io/intersectmbo/cardano-node:${VERSION}
 ```
 
 See the [cardano-node packages page](https://github.com/IntersectMBO/cardano-node/pkgs/container/cardano-node) for all available tags.
@@ -69,8 +70,9 @@ See the [cardano-node packages page](https://github.com/IntersectMBO/cardano-nod
 To build and load your own image from the upstream flake instead of pulling:
 
 ```bash
+VERSION=11.0.1  # check releases page for latest
 # Build the node image (outputs a tarball)
-nix build github:IntersectMBO/cardano-node/11.0.1#dockerImage/node
+nix build github:IntersectMBO/cardano-node/${VERSION}#dockerImage/node
 # Load it into Docker
 docker load -i result
 ```
@@ -94,12 +96,14 @@ Build the statically-linked musl release tarball directly from the upstream flak
 
 **x86_64 (amd64):**
 ```bash
-nix build github:IntersectMBO/cardano-node/11.0.1#hydraJobs.x86_64-linux.musl.cardano-node-linux
+VERSION=11.0.1  # check releases page for latest
+nix build github:IntersectMBO/cardano-node/${VERSION}#hydraJobs.x86_64-linux.musl.cardano-node-linux
 ```
 
 **aarch64 (arm64):**
 ```bash
-nix build github:IntersectMBO/cardano-node/11.0.1#hydraJobs.aarch64-linux.musl.cardano-node-linux
+VERSION=11.0.1  # check releases page for latest
+nix build github:IntersectMBO/cardano-node/${VERSION}#hydraJobs.aarch64-linux.musl.cardano-node-linux
 ```
 
 Replace `11.0.1` with the version you want. `result/` will contain a tarball with the same layout as the release binaries — extract it the same way:
@@ -312,10 +316,11 @@ On some distributions the node binary links against the right `libsodium.so` but
 ### Building the node
 
 ```bash
+VERSION=11.0.1  # check releases page for latest
 cd ~/src
 git clone https://github.com/intersectmbo/cardano-node.git
 cd cardano-node
-git switch -d tags/11.0.1   # replace with your chosen version
+git switch -d tags/${VERSION}
 ```
 
 Pin the GHC version to avoid accidentally using a system-installed GHC:

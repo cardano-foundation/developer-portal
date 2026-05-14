@@ -53,14 +53,15 @@ Boot the target machine from the USB drive. From the moment it boots, the machin
 
 Your cold keys should **never** sit in plaintext on any storage medium — even one that stays offline.
 
+When booting from an ISO (such as `cardano-airgap`), the boot environment is read-only — keys are not stored on the machine. Instead, keep your keys on a **separate encrypted USB drive** that you plug in only during signing operations and store in a physically secure location (vault or safe) when not in use.
+
 Best practices for key storage:
 
-- Store keys on a **dedicated encrypted data volume** (LUKS on Linux, or an encrypted container)
+- Use a dedicated encrypted USB for keys (LUKS on Linux, or an encrypted container)
 - Use a passphrase that has never been typed on an internet-connected machine
-- Keep at least two independent encrypted backups in separate physical locations
-- Never copy keys to a non-encrypted USB drive, even temporarily
-
-The air-gapped machine is your signing environment, not permanent key storage. Transfer only what is needed for the current operation, then wipe the working copy when done.
+- Keep multiple encrypted copies on separate USB sticks — at least one copy securely offsite
+- Store copies in fireproof, physically secure locations
+- Never copy keys to an unencrypted drive, even temporarily
 
 ## Workflow overview
 
