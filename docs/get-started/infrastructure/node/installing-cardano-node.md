@@ -1,181 +1,206 @@
 ---
 id: installing-cardano-node
-title: Getting cardano-node and cardano-cli
-sidebar_label: Installing cardano-node
+title: Installing cardano-node
 sidebar_position: 2
-description: This guide shows how to build and install the cardano-node and cardano-cli from the source-code for all major Operating Systems
+description: How to get cardano-node and cardano-cli — pre-built binaries, Docker images, Nix builds, and cabal builds.
 image: /img/og/og-getstarted-installing-cardano-node.png
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-# Getting `cardano-node`
-
-Binaries for the **latest** version of the node may be downloaded from the [cardano-node GitHub Releases](https://github.com/intersectmbo/cardano-node/releases) page.
-
-Alternatively, one can build `cardano-node` from source code locally.
-
-:::tip Cardano Node Course
-For a comprehensive video course on using the Cardano Node and Cardano-CLI as an end user, stake pool operator, and governance actor, check out the [Cardano Node Course](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x2ut-Pq-hi0NFVsgKB3EddR) video series.
+:::info version reference
+This document was written in May 2026 for the current stable release **11.0.1**. 
+Always check the [releases page](https://github.com/IntersectMBO/cardano-node/releases) for the latest version before installing.
 :::
 
-## Building from source
 
-The preferred way of building `cardano-node` is via Nix, but the node is
-buildable also using standard Haskell tools after setting up the building
-environment.
+:::tip Cardano Node Course
+For a comprehensive video course on the Cardano Node and CLI as an end user, stake pool operator, and governance actor, see the [Cardano Node Course](https://www.youtube.com/playlist?list=PLNEK_Ejlx3x2ut-Pq-hi0NFVsgKB3EddR).
+:::
 
-### Hardware requirements
+## Hardware requirements
 
-To set up your platform, you will need:
+| Network | CPU Cores | Free RAM | Free storage |
+| :---: | :---: | :---: | :---: |
+| Mainnet | 2 | 24GB | 300GB minimum (500GB+ recommended — chain grows over time) |
+| Testnet | 2 | 4GB | 20GB |
 
+Stake pool block producers should run Linux. The node runs on macOS and Windows but those platforms are not used in production.
 
-| Network | CPU Cores | Free RAM | Free storage | OS for Passive Node | OS for Stake pool |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| Mainnet | 2 | 24GB | 300GB of free storage (350GB recommended for future growth) | Linux / Windows / MacOS | Linux |
-| Testnet | 2 | 4GB | 20GB | Linux / Windows / MacOS | Linux |
+## Installation
 
-### Building via Nix
+Choose whichever method fits your environment. For block producers, building from source lets you verify the binary matches the code.
 
-Having [Git](https://git-scm.com/) and [Nix](https://nixos.org/download/) installed on your system, run the following command to get a built `cardano-node`:
+---
 
-```bash
-git clone https://github.com/IntersectMBO/cardano-node
-cd cardano-node
-git tag | sort -V
-git switch -d tags/<TAGGED VERSION>
-nix build .#cardano-node
-```
+<details>
+<summary><strong>Release binaries</strong> — quickest, no build required</summary>
 
-Alternatively you can build a node without manually cloning the repository with:
+Each [GitHub release](https://github.com/IntersectMBO/cardano-node/releases) ships statically-linked tarballs for Linux amd64 and arm64, built by the same Nix musl pipeline as the Nix build below.
 
 ```bash
-nix build github:IntersectMBO/cardano-node/<TAGGED VERSION>
+VERSION=11.0.1  # check releases page for latest
+wget https://github.com/IntersectMBO/cardano-node/releases/download/${VERSION}/cardano-node-${VERSION}-linux.tar.gz
+tar -xzf cardano-node-${VERSION}-linux.tar.gz -C ~/.local/
 ```
 
-Consider setting up the IOG binary cache in order to avoid building the universe locally on your machine. See the [IOGX](https://github.com/input-output-hk/iogx/blob/main/doc/nix-setup-guide.md) template documentation for more information.
+The tarball unpacks into `bin/` and `share/` (configuration files for mainnet, preprod, and preview). Ensure `~/.local/bin` is on your `$PATH`.
 
-### Building via `cabal`
+:::note Security consideration
+Pre-built binaries require trusting the build pipeline. For block producers holding hot keys, many operators prefer building from source so they can verify the binary themselves. The Nix build below produces the same static artifacts reproducibly.
+:::
 
-To download the source code and build it, you need the following packages and
-tools on your system:
+</details>
 
-* the version control system `git`,
-* a C and C++ compiler, either `gcc` or `clang`,
-* developer libraries for:
-  * the arbitrary precision library `gmp`,
-  * the compression library `zlib`,
-  * the service manager `systemd`,
-  * the TUI library `ncurses`,
-  * the key-value database `lmdb`,
-  * the cryptographic suite `openssl`,
-* `ncurses` compatibility libraries,
-* the Haskell build tool `cabal` (`3.10.2.0` or above),
-* the GHC Haskell compiler (version `9.6.7` or above).
+---
 
-#### System libraries
+<details>
+<summary><strong>Docker / GHCR images</strong></summary>
+
+Container images for `cardano-node`, `cardano-tracer`, and `cardano-submit-api` are published to the GitHub Container Registry:
+
+```bash
+VERSION=11.0.1  # check releases page for latest
+docker pull ghcr.io/intersectmbo/cardano-node:${VERSION}
+```
+
+See the [cardano-node packages page](https://github.com/IntersectMBO/cardano-node/pkgs/container/cardano-node) for all available tags.
+
+To build and load your own image from the upstream flake instead of pulling:
+
+```bash
+VERSION=11.0.1  # check releases page for latest
+# Build the node image (outputs a tarball)
+nix build github:IntersectMBO/cardano-node/${VERSION}#dockerImage/node
+# Load it into Docker
+docker load -i result
+```
+
+:::warning Security consideration
+Docker images require trusting the build pipeline, the base image, and the container runtime. For block producers holding hot keys, many operators prefer building from source so they can verify the binary themselves — building the image yourself with `nix build` above produces a reproducible image from the same pipeline used for official releases. If you do run a containerised node, do not mount key files or any sensitive host paths into the container.
+:::
+
+</details>
+
+---
+
+<details>
+<summary><strong>Build with Nix</strong> — recommended for operators who want a verified build</summary>
+
+If you don't have Nix installed, use the [Determinate Systems installer](https://determinate.systems/posts/determinate-nix-installer/) — it enables flakes by default and handles uninstallation cleanly.
+
+**Set up the IOG binary cache before building.** Without it, Nix will compile GHC and all Haskell dependencies from scratch, which can take many hours. Follow the [IOGX Nix setup guide](https://github.com/input-output-hk/iogx/blob/main/doc/nix-setup-guide.md).
+
+Build the statically-linked musl release tarball directly from the upstream flake — no clone needed:
+
+**x86_64 (amd64):**
+```bash
+VERSION=11.0.1  # check releases page for latest
+nix build github:IntersectMBO/cardano-node/${VERSION}#hydraJobs.x86_64-linux.musl.cardano-node-linux
+```
+
+**aarch64 (arm64):**
+```bash
+VERSION=11.0.1  # check releases page for latest
+nix build github:IntersectMBO/cardano-node/${VERSION}#hydraJobs.aarch64-linux.musl.cardano-node-linux
+```
+
+Replace `11.0.1` with the version you want. `result/` will contain a tarball with the same layout as the release binaries — extract it the same way:
+
+```bash
+tar -xzf result/*.tar.gz -C ~/.local/
+```
+
+### NixOS deployments
+
+The flake exposes a `nixosModules.cardano-node` output for managing the node declaratively as a systemd service with all configuration in Nix. See [nix/nixos-module.nix](https://github.com/IntersectMBO/cardano-node/blob/master/nix/nixos-module.nix) for the available module options.
+
+</details>
+
+---
+
+<details>
+<summary><strong>Build with GHCup / cabal</strong> — for systems without Nix</summary>
+
+Building with cabal requires manually installing several C libraries that Nix would otherwise handle. Use the Nix method unless you have a specific reason not to.
+
+### System libraries
+
+Check the [cardano-node repository](https://github.com/IntersectMBO/cardano-node) for the GHC and cabal versions required by the release you're building. For **11.0.1**: GHC `9.6.7`, cabal `3.12.1.0`.
 
 <div class="tabsblock">
 <Tabs>
   <TabItem value="ubuntu" label="Debian/Ubuntu" default>
-    ```bash
-    sudo apt-get update -y
-    sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libncurses-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libtool autoconf liblmdb-dev libsnappy-dev protobuf-compiler liburing-dev -y
-    ```
-  </TabItem>
-  <TabItem value="fedora" label="Fedora, RedHat or CentOS">
-    ```bash
-    sudo yum update -y
-    sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf liburing-devel snappy-devel protobuf-compiler -y
-    sudo yum install systemd-devel ncurses-devel ncurses-compat-libs which jq openssl-devel lmdb-devel -y
-    ```
-  </TabItem>
-  <TabItem value="macos" label="MacOS">
-     You'll need the following packages and tools on your MacOS system:
 
-     * [Xcode](https://developer.apple.com/xcode) - The Apple Development IDE and SDK/Tools
-     * [Xcode Command Line Tools](https://developer.apple.com/xcode/features/), you can install it by typing `xcode-select --install` in the terminal.
-     * [Homebrew](https://brew.sh) - The Missing Package Manager for MacOS (or Linux)
-
-     Then using homebrew install the following:
-
-     ```bash
-     brew install jq libtool autoconf automake pkg-config openssl lmdb liburing snappy protobuf
-     ```
-
-     You will need to install llvm in case you are using M1
-
-     ```
-     brew install llvm@13
-     ```
-  </TabItem>
-  <TabItem value="windows" label="Windows MSYS2">
-  :::caution
-  These instructions might fall out of date unnoticed given the fact that the user base on Windows is small. If you find something is off, please submit a PR.
-  :::
-
-  Git can be installed via [chocolatey](https://community.chocolatey.org/) (via `choco install git`) or [Scoop](https://scoop.sh) (via `scoop install git`).
-
-  :::caution
-  Using [Winget](https://winget.run/) will install [Git for Windows](https://gitforwindows.org/) which might be confusing as it works in an environment separate from MSYS2. It is perfectly possible to use this git but things can become confusing.
-  :::
-
-  The rest of the libraries will be installed inside MSYS2, for whichever [environment](https://www.msys2.org/docs/environments/) you choose to use. As GHC on Windows switched to `clang` it seems acceptable to recommend using `CLANG64` environment, but others might also work.
-
-  GHCup offers installing a MSYS2 environment local to the Haskell installation, just by running the command on [GHCup's front page](https://www.haskell.org/ghcup/). It also can work with an existing system-wide [MSYS2](https://www.msys2.org/) installation if using the following command (just adding a couple of parameters to the invocation of the bootstrap script. If you installed it somewhere else than `C:\msys64` modify the parameter accordingly):
-
-  ```powershell
-  Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
-  try { & ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -Interactive -DisableCurl -ExistingMsys2Dir C:\msys64 -Msys2Env CLANG64 } catch { Write-Error $_ }
-  ```
-
-  Once an MSYS2 environment is installed we should install the following packages via `pacman` (note that you will have to prefix the `pacman` invocation with `ghcup run --mingw-path --` if using the GHCup MSYS2):
-
-  ```console
-  pacman -S autoconf autotools ca-certificates mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-gmp mingw-w64-clang-x86_64-libtool mingw-w64-clang-x86_64-libffi mingw-w64-clang-x86_64-openssl mingw-w64-clang-x86_64-zlib mingw-w64-clang-x86_64-lmdb
-  ```
+```bash
+sudo apt-get update -y
+sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libncurses-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libtool autoconf liblmdb-dev libsnappy-dev protobuf-compiler liburing-dev -y
+```
 
   </TabItem>
-</Tabs>
+  <TabItem value="fedora" label="Fedora / RHEL / CentOS">
 
-</div>
+```bash
+sudo yum update -y
+sudo yum install git gcc gcc-c++ tmux gmp-devel make tar xz wget zlib-devel libtool autoconf liburing-devel snappy-devel protobuf-compiler systemd-devel ncurses-devel ncurses-compat-libs which jq openssl-devel lmdb-devel -y
+```
 
+  </TabItem>
+  <TabItem value="macos" label="macOS">
 
-#### Installing the Haskell environment
+Install [Xcode Command Line Tools](https://developer.apple.com/xcode/features/) if you haven't already:
 
-The recommended way to install the Haskell tools is via [GHCup](https://www.haskell.org/ghcup/). Its installation script will guide you through the installation, and warn you about packages that you have to make sure are installed in the system (the ones described on the step above). Check [this page](https://www.haskell.org/ghcup/install/) for further explanation on the installation process.
+```bash
+xcode-select --install
+```
 
-:::caution
-On Windows, we discussed how to install GHCup in the step above, depending on how you want to install MSYS2.
+Install [Homebrew](https://brew.sh), then:
+
+```bash
+brew install jq libtool autoconf automake pkg-config openssl lmdb snappy protobuf
+```
+
+On Apple Silicon, also install LLVM (used by GHC as a backend):
+
+```bash
+brew install llvm
+```
+
+:::caution macOS OpenSSL location
+Homebrew installs OpenSSL in a non-standard location. If you see `setup: Can't find OpenSSL library` when building, add these symlinks:
+
+```bash
+sudo mkdir -p /usr/local/opt/openssl
+sudo ln -s /opt/homebrew/opt/openssl@3/lib /usr/local/opt/openssl/lib
+sudo ln -s /opt/homebrew/opt/openssl@3/include /usr/local/opt/openssl/include
+```
 :::
 
-Once GHCup is installed, open a new terminal (to get an updated environment) and run:
+  </TabItem>
+  <TabItem value="windows" label="Windows MSYS2">
 
-```bash
-ghcup install ghc 9.6.7 --set
-ghcup install cabal 3.12.1.0 --set
+:::caution
+Windows instructions may fall out of date. If something is off, please submit a PR.
+:::
+
+Install Git via [Chocolatey](https://community.chocolatey.org/) (`choco install git`) or [Scoop](https://scoop.sh) (`scoop install git`). Avoid Winget — it installs Git for Windows which runs in a separate environment from MSYS2 and causes confusion.
+
+GHCup can install an MSYS2 environment automatically. Run this in PowerShell:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+try { & ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -Interactive -DisableCurl -ExistingMsys2Dir C:\msys64 -Msys2Env CLANG64 } catch { Write-Error $_ }
 ```
 
-Alternatively, with `ghcup tui` you can pick the specific versions of the tools that you want to install, in particular you should have installed and set:
-- `cabal >= 3.12.1.0`
-- `GHC >= 9.6.7`
+Then install these packages in MSYS2 (prefix with `ghcup run --mingw-path --` if using GHCup's MSYS2):
 
-To check that you will use the GHCup tools (and not any other installation on the system), you can execute
-
-```bash
-which cabal
+```console
+pacman -S autoconf autotools ca-certificates mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-gmp mingw-w64-clang-x86_64-libtool mingw-w64-clang-x86_64-libffi mingw-w64-clang-x86_64-openssl mingw-w64-clang-x86_64-zlib mingw-w64-clang-x86_64-lmdb
 ```
 
-and it should return a path of this shape: `/home/<user>/.ghcup/bin/cabal`.
-
-#### Dependencies required to be at specific versions
-
-:::info
-Pre-built libraries can be downloaded from iohk-nix releases, following what is done [in the base CI Github Action](https://github.com/input-output-hk/actions/blob/latest/base/action.yml).
-
-In particular for Windows this is probably the easiest method. Note you will need to set these variables in your `.bashrc` or whatever you use to source your shell:
+:::info Pre-built C libraries for Windows
+Downloading pre-built `sodium`, `secp256k1`, and `blst` from iohk-nix releases (as done in the [base CI action](https://github.com/input-output-hk/actions/blob/latest/base/action.yml)) is easier than building them yourself on Windows. Set these in your shell profile after downloading:
 
 ```bash
 export PKG_CONFIG_PATH=/mingw64/opt/cardano/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -184,98 +209,79 @@ export PATH=/mingw64/opt/cardano/bin:$PATH
 ```
 :::
 
-Decide which version of Cardano Node you will be installing.
-A list of available tags is available at: https://github.com/IntersectMBO/cardano-node/tags.
-Set the environment variable to the tag you selected (or use `master` for the latest unstable version):
-```bash
-CARDANO_NODE_VERSION='10.3.1'
-IOHKNIX_VERSION=$(curl https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')
-echo "iohk-nix version: $IOHKNIX_VERSION"
+If you hit this linker error during `cabal build`:
 ```
-The variable `IOHKNIX_VERSION` will be used going forward to retrieve the correct versions of `sodium`, `secp256k1` and `blst`.
+ld.lld: error: undefined symbol: __local_stdio_printf_options
+```
+Comment out `extra-lib-dirs` and `extra-include-dirs` in `~/AppData/Roaming/cabal/config`. See [this issue](https://github.com/haskell/process/issues/340).
+
+  </TabItem>
+</Tabs>
+</div>
+
+### Installing GHCup, GHC, and cabal
+
+Install [GHCup](https://www.haskell.org/ghcup/) using its installer, then install the required toolchain versions:
+
+```bash
+ghcup install ghc 9.6.7 --set
+ghcup install cabal 3.12.1.0 --set
+```
+
+Verify you're using the GHCup-managed tools (not a system installation):
+
+```bash
+which cabal  # should return /home/<user>/.ghcup/bin/cabal
+```
+
+### C library dependencies
+
+Cardano requires specific versions of `sodium`, `secp256k1`, and `blst`. Determine the correct versions from the node's own lock file:
+
+```bash
+CARDANO_NODE_VERSION='11.0.1'
+IOHKNIX_VERSION=$(curl -s https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')
+```
 
 :::caution
-Make sure that `secp256k1`, `sodium` and `blst` versions match flake input version in [`iohkNix`](https://github.com/input-output-hk/iohk-nix/blob/master/flake.nix#L14) for a particular node version used.
+These three libraries must match the versions pinned in `iohkNix` for the specific node release. Wrong versions cause cryptographic failures at runtime.
 :::
 
-##### Installing "sodium"
+Create a working directory and build each library:
 
-Cardano uses a custom fork of `sodium` which exposes some internal functions
-and adds some other new functions. This fork lives in
-[https://github.com/intersectmbo/libsodium](https://github.com/intersectmbo/libsodium).
-Users need to install that custom version of `sodium` with the following steps.
-
-Create a working directory for your builds:
 ```bash
 mkdir -p ~/src
 cd ~/src
 ```
 
-Find out the correct `sodium` version for your build:
-```bash
-SODIUM_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.sodium.original.rev')
-echo "Using sodium version: $SODIUM_VERSION"
-```
+**sodium** (Cardano uses a custom fork with additional cryptographic functions):
 
-Download and install `sodium`:
 ```bash
-: ${SODIUM_VERSION:='dbb48cc'}
+SODIUM_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.sodium.original.rev')
 git clone https://github.com/intersectmbo/libsodium
-cd libsodium
-git checkout $SODIUM_VERSION
-./autogen.sh
-./configure
-make
-make check
-sudo make install
+cd libsodium && git checkout $SODIUM_VERSION
+./autogen.sh && ./configure
+make && sudo make install
+cd ~/src
 ```
 
-Add the following to your `~/.bashrc` file and source it (or re-open the terminal):
+**secp256k1**:
+
 ```bash
-export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
-```
-
-For some distributions you will also need to configure the dynamic linker.  If
-the executable is linked with the right `libsodium.so` file (which you can
-check by running `ldd`), the running binary might still use the wrong library.
-You can check this by running `pldd`. If the `pldd` shows that the running executable
-is using the wrong library, run `ldconfig`.
-
-##### Installing `secp256k1`
-
-Find out the correct `secp256k1` version:
-```bash
-SECP256K1_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.secp256k1.original.ref')
-echo "Using secp256k1 version: ${SECP256K1_VERSION}"
-```
-
-Download and install `secp256k1`:
-```bash
-: ${SECP256K1_VERSION:='v0.3.2'}
+SECP256K1_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.secp256k1.original.ref')
 git clone --depth 1 --branch ${SECP256K1_VERSION} https://github.com/bitcoin-core/secp256k1
 cd secp256k1
-./autogen.sh
-./configure --enable-module-schnorrsig --enable-experimental
-make
-make check
-sudo make install
+./autogen.sh && ./configure --enable-module-schnorrsig --enable-experimental
+make && sudo make install
+cd ~/src
 ```
 
-##### Installing `blst`
+**blst**:
 
-Find out the correct `blst` version:
 ```bash
-BLST_VERSION=$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.blst.original.ref')
-echo "Using blst version: ${BLST_VERSION}"
-```
-
-Download and install `blst` so that `cardano-base` can pick it up (assuming that `pkg-config` is installed):
-```bash
-: ${BLST_VERSION:='v0.3.11'}
+BLST_VERSION=$(curl -s https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_VERSION/flake.lock | jq -r '.nodes.blst.original.ref')
 git clone --depth 1 --branch ${BLST_VERSION} https://github.com/supranational/blst
-cd blst
-./build.sh
+cd blst && ./build.sh
 cat > libblst.pc << EOF
 prefix=/usr/local
 exec_prefix=\${prefix}
@@ -290,125 +296,76 @@ Cflags: -I\${includedir}
 Libs: -L\${libdir} -lblst
 EOF
 sudo cp libblst.pc /usr/local/lib/pkgconfig/
-sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp  /usr/local/include/
+sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp /usr/local/include/
 sudo cp libblst.a /usr/local/lib
 sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{blst.{h,hpp},blst_aux.h}}
-```
-
-#### Installing the node
-##### Downloading the source code for cardano-node
-
-Create a working directory for your builds:
-```bash
-mkdir -p ~/src
 cd ~/src
 ```
 
-Download the Cardano node sources:
+Add the library paths to your shell profile (`~/.bashrc` or `~/.zshrc`) and reload it:
+
 ```bash
+export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+```
+
+:::tip Dynamic linker
+On some distributions the node binary links against the right `libsodium.so` but the dynamic linker loads the wrong one at runtime. If you suspect this, check with `pldd` on the running process — if it shows the wrong library path, run `ldconfig`.
+:::
+
+### Building the node
+
+```bash
+VERSION=11.0.1  # check releases page for latest
+cd ~/src
 git clone https://github.com/intersectmbo/cardano-node.git
-```
-
-Change the working directory to the downloaded source code folder:
-```bash
 cd cardano-node
+git switch -d tags/${VERSION}
 ```
 
-Check out the latest version of cardano-node (choose the tag with the highest version number: ``TAGGED-VERSION``):
-```bash
-git tag | sort -V
-git switch -d tags/<TAGGED VERSION>
-```
-
-##### Configuring the build options
-
-We explicitly use the GHC version that we installed earlier.  This avoids defaulting to a system version of GHC that might be different than the one you have installed.
+Pin the GHC version to avoid accidentally using a system-installed GHC:
 
 ```bash
 echo "with-compiler: ghc-9.6.7" >> cabal.project.local
 ```
 
-You will need to run following commands on M1, those commands will set some cabal related options before building
+On Apple Silicon, add these options before building:
+
 ```bash
 echo "package trace-dispatcher" >> cabal.project.local
 echo "  ghc-options: -Wwarn" >> cabal.project.local
 echo "" >> cabal.project.local
-
 echo "package HsOpenSSL" >> cabal.project.local
 echo "  flags: -homebrew-openssl" >> cabal.project.local
 echo "" >> cabal.project.local
 ```
 
-:::caution
-
-More recent versions of MacOS seems to install openssl in a different location than expected by default. If you have installed openssl via homebrew and encounter the following build error:
-
-```bash
-Failed to build HsOpenSSL-0.11.7.2. The failure occurred during the configure
-step.
-[1 of 1] Compiling Main (...)
-Linking .../dist-newstyle/tmp/src-75805/HsOpenSSL-0.11.7.2/dist/setup/setup ...
-Configuring HsOpenSSL-0.11.7.2...
-setup: Can’t find OpenSSL library
-```
-
-You'll most likely need to add relevant symlinks as follows:
-```
-sudo mkdir -p /usr/local/opt/openssl
-sudo ln -s /opt/homebrew/opt/openssl@3/lib /usr/local/opt/openssl/lib
-sudo ln -s /opt/homebrew/opt/openssl@3/include /usr/local/opt/openssl/include
-```
-
-This is a wart of the `HsOpenSSL` library wrapper, and using classic methods such as setting `LDFLAGS` & `CPPFLAGS`, or using `--extra-include-dirs` and `--extra-lib-dirs` won't work properly.
-
-:::
-
-##### Building and installing the node
-
-Build the node and CLI with `cabal`:
-
+Build:
 
 ```bash
 cabal update
-cabal build exe:cardano-node
-cabal build cardano-cli
+cabal build exe:cardano-node cardano-cli
 ```
 
-:::caution
-On Windows, should you run into an error like this one when building:
-```
-ld.lld: error: undefined symbol: __local_stdio_printf_options
->>> referenced by libHSprocess-1.6.25.0-4d1c620770857b639d352d5e988299133f830295.a(runProcess.o):(swprintf_s)
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
-```
-
-You should comment out `extra-lib-dirs` and `extra-include-dirs` in `~/AppData/Roaming/cabal/config`. See [this ticket](https://github.com/haskell/process/issues/340) for an example.
-:::
-
-Install the newly built node and CLI commands to the `~/.local/bin` directory:
+Copy the built binaries to your `$PATH`:
 
 ```bash
 mkdir -p ~/.local/bin
 cp -p "$(cabal list-bin cardano-node)" ~/.local/bin/
 cp -p "$(cabal list-bin cardano-cli)" ~/.local/bin/
 ```
-**Note:** If cardano-cli does not build with 'cabal build all', run 'cabal build cardano-cli'.
-**Note:** `~/.local/bin` should be in the `$PATH`.
 
-Note, we avoid using `cabal install` because that method prevents the installed binaries from reporting
-the git revision with the `--version` switch.
+We copy rather than use `cabal install` because `cabal install` strips the git revision from the binary, breaking `cardano-node --version` output.
 
-Check the version that has been installed:
+Verify:
 
 ```bash
 cardano-node --version
 cardano-cli --version
 ```
 
-Repeat the above process when you need to update to a new version.
-
-**Note:** If serialization of the ledger state changed, snapshots in your `db/ledger` folder will be deleted by the node on startup. Consider backing those up before starting a new version of the node.
-
-:::tip Fast node bootstrapping with Mithril
-Standard node synchronization can take over 24 hours and is resource-intensive. Mithril certified snapshots allow you to bootstrap a node in minutes while maintaining high security. See how to [bootstrap a node using Mithril](./running-cardano.md#fast-node-bootstrapping-with-mithril).
+:::note Ledger state snapshots on upgrade
+If the ledger serialization format changed between versions, the node will delete snapshots in `db/ledger/` on first startup. Back those up before upgrading if you want to be able to roll back.
 :::
+
+</details>

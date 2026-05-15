@@ -37,14 +37,11 @@ One of the oldest Cardano developer community groups on Telegram. Good to get in
 [**CIP Biweekly Meetings**](https://discord.com/invite/Jy9YM69Ezf)  
 Join Cardano Improvement Proposal discussions every two weeks. Participate in technical standards development and ongoing Cardano protocol improvement conversations.
 
-[**Cardano Community Discord**](https://discord.gg/2nPUa5d7DE)  
+[**Engineering and Development Discord**](https://discord.gg/MmeqpAzKbp)  
 Chat with general developer community channels. Great for quick questions, community discussions, and staying up-to-date with the latest developments.
 
 [**IOG Technical Discord**](https://discord.com/invite/w6TwW9bGA6)  
 Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pioneers](/docs/build/smart-contracts/languages/plinth#resources) and technical discussions with IOG developers.
-
-[**CF Engineering Discord**](https://discord.gg/invite/xPkQ9jskKS)
-Official [Cardano Foundation](https://cardanofoundation.org/) Engineering Discord server for technical discussions with CF engineers.
 
 ## Talent Pool & Hackathons
 

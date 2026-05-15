@@ -22,59 +22,91 @@ export CARDANO_CLI=path to your executable
 export CARDANO_NODE=path to your executable
 ```
 
+## Top-level commands
+
+`cardano-testnet` has the following commands:
+
+```text
+Usage: cardano-testnet (cardano | create-env | version | help)
+
+Available options:
+  -h,--help                Show this help text
+
+Available commands:
+  cardano                  Start a testnet and keep it running until stopped
+  create-env               Create a sandbox for Cardano testnet
+  version                  Show cardano-testnet version
+  help                     Show cardano-testnet help
+```
+
 ## Options for launching a local cluster
 
 To launch a local cluster, you should use the `cardano-testnet cardano` command, whose API is as follows:
 
 ```text
-Usage: cardano-testnet cardano [--num-pool-nodes COUNT]
-  [--max-lovelace-supply WORD64]
-  [--nodeLoggingFormat LOGGING_FORMAT]
-  [--num-dreps NUMBER]
+Usage: cardano-testnet cardano 
+  [ --node-env FILEPATH [--preserve-timestamps]
+  | [--nodes SPEC[,SPEC...] | --num-pool-nodes COUNT]
+    [--max-lovelace-supply WORD64]
+    [--num-dreps NUMBER]
+    [--testnet-magic INT]
+    [--epoch-length SLOTS]
+    [--slot-length SECONDS]
+    [--active-slots-coeff DOUBLE]
+    [--params-file FILEPATH | --params-mainnet]
+    [--output-dir DIRECTORY]
+  ]
   [--enable-new-epoch-state-logging]
-  [--output-dir DIRECTORY]
-  [--testnet-magic INT]
-  [--epoch-length SLOTS]
-  [--slot-length SECONDS]
-  [--active-slots-coeff DOUBLE]
-  [--node-env FILEPATH]
-  [--update-time]
+  [--enable-grpc]
+  [--use-kes-agent]
 
-  Start a testnet
+  Start a testnet and keep it running until stopped
 
 Available options:
-  --num-pool-nodes COUNT   Number of pool nodes. Note this uses a default node
-                           configuration for all nodes.
-  --max-lovelace-supply WORD64
-                           Max lovelace supply that your testnet starts with.
-                           Ignored if a custom Shelley genesis file is passed.
-                           (default: 100000020000000)
-  --nodeLoggingFormat LOGGING_FORMAT
-                           Node logging format (json|text)
-                           (default: NodeLoggingFormatAsJson)
-  --num-dreps NUMBER       Number of delegate representatives (DReps) to
-                           generate. Ignored if a node environment is passed.
-                           (default: 3)
-  --enable-new-epoch-state-logging
-                           Enable new epoch state logging to
-                           logs/ledger-epoch-state.log
-  --output-dir DIRECTORY   Directory where to store files, sockets, and so on.
-                           It is created if it doesn't exist. If unset, a
-                           temporary directory is used.
-  --testnet-magic INT      Specify a testnet magic id. (default: 42)
-  --epoch-length SLOTS     Epoch length, in number of slots. Ignored if a node
-                           environment is passed. (default: 500)
-  --slot-length SECONDS    Slot length. Ignored if a node environment is passed.
-                           (default: 0.1)
-  --active-slots-coeff DOUBLE
-                           Active slots coefficient. Ignored if a node
-                           environment is passed. (default: 5.0e-2)
   --node-env FILEPATH      Path to the node's environment (which is generated
                            otherwise). You can generate a default environment
                            with the 'create-env' command, then modify it and
                            pass it with this argument.
-  --update-time            Update the time stamps in genesis files to current
-                           date
+  --preserve-timestamps    Do not update the time stamps in genesis files to
+                           current date.
+  --nodes SPEC[,SPEC...]   Comma-separated node specifications. SPO nodes must
+                           come before relay nodes. Each spec is a role (spo or
+                           relay) optionally followed by :node-bin=<path>. If
+                           the path contains commas, colons, double quotes, or
+                           backslashes, wrap it in double quotes and escape any
+                           literal double quotes as \" and backslashes as \\
+                           within. To prevent bash from consuming the double
+                           quotes, enclose the whole argument in single quotes.
+                           Examples: --nodes
+                           spo,spo:node-bin=/path/to/bin,relay,relay | --nodes
+                           'spo:node-bin="/path,with:commas",relay'
+  --num-pool-nodes COUNT   Number of pool nodes. Note this uses a default node
+                           configuration for all nodes.
+  --max-lovelace-supply WORD64
+                           Max lovelace supply that your testnet starts with.
+                           (default: 100000020000000)
+  --num-dreps NUMBER       Number of delegate representatives (DReps) to
+                           generate. (default: 3)
+  --testnet-magic INT      Specify a testnet magic id. (default: 42)
+  --epoch-length SLOTS     Epoch length, in number of slots. (default: 500)
+  --slot-length SECONDS    Slot length. (default: 0.1)
+  --active-slots-coeff DOUBLE
+                           Active slots coefficient. (default: 5.0e-2)
+  --params-file FILEPATH   File containing custom on-chain parameters in
+                           Blockfrost format:
+                           https://docs.blockfrost.io/#tag/cardano--epochs/GET/epochs/latest/parameters
+  --params-mainnet         Use mainnet on-chain parameters
+  --output-dir DIRECTORY   Directory where to store files, sockets, and so on.
+                           It is created if it doesn't exist. If unset, a
+                           temporary directory is used.
+  --enable-new-epoch-state-logging
+                           Enable new epoch state logging to
+                           logs/ledger-epoch-state.log
+  --enable-grpc            [EXPERIMENTAL] Enable gRPC endpoint on all of testnet
+                           nodes. The listening socket file will be the same
+                           directory as node's N2C socket.
+  --use-kes-agent          Get Praos block forging credentials from kes-agent
+                           via the default socket path
   -h,--help                Show this help text
 ```
 
@@ -86,6 +118,15 @@ cardano-testnet has two behaviors, depending on whether you want to use defaults
 
 1. Default the node configuration file, the Shelley, Alonzo, Byron, and Conway genesis files, and the topology file. In this case, don't specify `--node-env`: `cardano-testnet` will take care of generating all these files.
 2. Pass a pre-generated node sandbox environment using `--node-env`. This environment should be generated using the `cardano-testnet create-env` sub-command. In that case, `cardano-testnet` will not generate any configuration file. The specifics of the `create-env` sub-command are detailed below.
+
+### Specifying nodes
+
+There are two mutually exclusive ways to specify the nodes in the cluster:
+
+1. `--num-pool-nodes COUNT` simply specifies the number of SPO nodes. All nodes use the default `cardano-node` binary (from your `CARDANO_NODE` environment variable or PATH).
+2. `--nodes SPEC[,SPEC...]` allows fine-grained control. Each spec is a role (`spo` or `relay`), optionally followed by `:node-bin=<path>` to specify a custom `cardano-node` binary for that node. SPO nodes must come before relay nodes in the list. For example:
+   - `--nodes spo,spo,relay` starts two SPO nodes and one relay, all using the default binary.
+   - `--nodes spo,spo:node-bin=/path/to/other/bin,relay` starts two SPO nodes (the second using a custom binary) and one relay.
 
 ### The `cardano-testnet` sandbox environment
 
@@ -99,61 +140,58 @@ The structure of the directory is as follows (using bash pseudo-syntax to avoid 
 
 ```text
 ├── byron-gen-command
-│   └── genesis-keys.00{0,1,2}.key
+│   └── genesis-keys.00{0,1,2}.key
 ├── delegate-keys
-│   ├── delegate{1,2,3}
-│   │   ├── kes.{skey,vkey}
-│   │   ├── key.{skey,vkey}
-│   │   ├── opcert.{cert,counter}
-│   │   └── vrf.{skey,vkey}
-│   └── README.md
+│   ├── delegate{1,2,3}
+│   │   ├── kes.{skey,vkey}
+│   │   ├── key.{skey,vkey}
+│   │   ├── opcert.{cert,counter}
+│   │   └── vrf.{skey,vkey}
+│   └── README.md
 ├── drep-keys
-│   ├── drep{1,2,3}
-│   │   └── drep.{skey,vkey}
-│   └── README.md
+│   ├── drep{1,2,3}
+│   │   └── drep.{skey,vkey}
+│   └── README.md
 ├── genesis-keys
-│   ├── genesis{1,2,3}
-│   │   └── key.{skey,vkey}
-│   └── README.md
+│   ├── genesis{1,2,3}
+│   │   └── key.{skey,vkey}
+│   └── README.md
 ├── logs
-│   ├── node{1,2,3}
-│   │   ├── node.pid
-|   |   └── {stderr,stdout}.log
-│   ├── ledger-epoch-state-diffs.log
-│   ├── ledger-epoch-state.log
-│   ├── node-20241010121635.log
-│   └── node.log -> node-20241010121635.log
+│   └── node{1,2,3}
+│       ├── node.pid
+│       ├── stderr.log
+│       └── stdout.log
 ├── node-data
-│   ├── node{1,2,3}
-│   │   ├── db
-│   │   │   └── <node database files>
-│   │   ├── port
-│   │   └── topology.json
+│   ├── node{1,2,3}
+│   │   ├── db
+│   │   │   └── <node database files>
+│   │   ├── port
+│   │   └── topology.json
 ├── pools-keys
-│   ├── pool1
-│   │   ├── byron-delegate.key
-│   │   ├── byron-delegation.cert
-│   │   ├── cold.{skey,vkey}
-│   │   ├── kes.{skey,vkey}
-│   │   ├── opcert.{cert,counter}
-│   │   ├── staking-reward.{skey,vkey}
-│   │   └── vrf.{skey,vkey}
-│   └── README.md
+│   ├── pool1
+│   │   ├── byron-delegate.key
+│   │   ├── byron-delegation.cert
+│   │   ├── cold.{skey,vkey}
+│   │   ├── kes.{skey,vkey}
+│   │   ├── opcert.{cert,counter}
+│   │   ├── staking-reward.{skey,vkey}
+│   │   └── vrf.{skey,vkey}
+│   └── README.md
 ├── socket
-│   ├── node{1,2,3}
-│   │   └── sock
+│   ├── node{1,2,3}
+│   │   └── sock
 ├── stake-delegators
-│   ├── delegator{1,2,3}
-│   │   ├── payment.{skey,vkey}
-│   │   └── staking.{skey,vkey}
+│   ├── delegator{1,2,3}
+│   │   ├── payment.{skey,vkey}
+│   │   └── staking.{skey,vkey}
 ├── utxo-keys
-│   ├── utxo{1,2,3}
-│   │   └── utxo.{addr,skey,vkey}
-│   └── README.md
-├── {alonzo,byron,conway,shelley}-genesis.json
-├── configuration.json
-├── current-stake-pools.json
-└── module
+│   ├── utxo{1,2,3}
+│   │   └── utxo.{addr,skey,vkey}
+│   └── README.md
+├── {alonzo,byron,conway,dijkstra,shelley}-genesis.json
+├── genesis-input.dijkstra.json
+├── configuration.yaml
+└── current-stake-pools.json
 ```
 
 We draw the reader's attention to two things:
@@ -166,81 +204,76 @@ We draw the reader's attention to two things:
 `cardano-testnet` provides the option to create a sandbox environment as described above, without launching the node network itself. This allows the modification of configuration files, Genesis or otherwise. The API of the command is as follows:
 
 ```text
-Usage: cardano-testnet create-env [--num-pool-nodes COUNT]
+Usage: cardano-testnet create-env 
+  [--nodes SPEC[,SPEC...] | --num-pool-nodes COUNT]
   [--max-lovelace-supply WORD64]
-  [--nodeLoggingFormat LOGGING_FORMAT]
   [--num-dreps NUMBER]
-  [--enable-new-epoch-state-logging]
-  [--output-dir DIRECTORY]
   [--testnet-magic INT]
   [--epoch-length SLOTS]
   [--slot-length SECONDS]
   [--active-slots-coeff DOUBLE]
-  --output DIRECTORY
   [--params-file FILEPATH | --params-mainnet]
-  [--p2p-topology]
+  --output DIRECTORY
 
   Create a sandbox for Cardano testnet
 
 Available options:
+  --nodes SPEC[,SPEC...]   Comma-separated node specifications. SPO nodes must
+                           come before relay nodes. Each spec is a role (spo or
+                           relay) optionally followed by :node-bin=<path>. If
+                           the path contains commas, colons, double quotes, or
+                           backslashes, wrap it in double quotes and escape any
+                           literal double quotes as \" and backslashes as \\
+                           within. To prevent bash from consuming the double
+                           quotes, enclose the whole argument in single quotes.
+                           Examples: --nodes
+                           spo,spo:node-bin=/path/to/bin,relay,relay | --nodes
+                           'spo:node-bin="/path,with:commas",relay'
   --num-pool-nodes COUNT   Number of pool nodes. Note this uses a default node
                            configuration for all nodes.
   --max-lovelace-supply WORD64
                            Max lovelace supply that your testnet starts with.
-                           Ignored if a custom Shelley genesis file is passed.
                            (default: 100000020000000)
-  --nodeLoggingFormat LOGGING_FORMAT
-                           Node logging format (json|text)
-                           (default: NodeLoggingFormatAsJson)
   --num-dreps NUMBER       Number of delegate representatives (DReps) to
-                           generate. Ignored if a node environment is passed.
-                           (default: 3)
-  --enable-new-epoch-state-logging
-                           Enable new epoch state logging to
-                           logs/ledger-epoch-state.log
-  --output-dir DIRECTORY   Directory where to store files, sockets, and so on.
-                           It is created if it doesn't exist. If unset, a
-                           temporary directory is used.
+                           generate. (default: 3)
   --testnet-magic INT      Specify a testnet magic id. (default: 42)
-  --epoch-length SLOTS     Epoch length, in number of slots. Ignored if a node
-                           environment is passed. (default: 500)
-  --slot-length SECONDS    Slot length. Ignored if a node environment is passed.
-                           (default: 0.1)
+  --epoch-length SLOTS     Epoch length, in number of slots. (default: 500)
+  --slot-length SECONDS    Slot length. (default: 0.1)
   --active-slots-coeff DOUBLE
-                           Active slots coefficient. Ignored if a node
-                           environment is passed. (default: 5.0e-2)
-  --output DIRECTORY       Directory where to create the sandbox environment.
+                           Active slots coefficient. (default: 5.0e-2)
   --params-file FILEPATH   File containing custom on-chain parameters in
                            Blockfrost format:
                            https://docs.blockfrost.io/#tag/cardano--epochs/GET/epochs/latest/parameters
   --params-mainnet         Use mainnet on-chain parameters
-  --p2p-topology           Use P2P topology files instead of "direct" topology
-                           files
+  --output DIRECTORY       Directory where to create the sandbox environment.
   -h,--help                Show this help text
 ```
+
 If you want to run a testnet with custom parameters, we suggest the following workflow:
 
 ```bash
 rm -rf env # Ensure there is no existing sandbox environment
-cardano-testnet create-env --output env # Creates the sanbox environment in env/
+cardano-testnet create-env --output env # Creates the sandbox environment in env/
 
 # Modify the configuration files as you see fit
 
-cardano-testnet cardano --node-env env --update-time # Run the testnet on the custom environment
+cardano-testnet cardano --node-env env # Run the testnet on the custom environment
 ```
 
 Notes:
-1. The `--update-time` options tells `cardano-testnet` to update the time stamps in various Genesis files. If you take too long to modify the configuration files, omitting that option will result in a failure when trying to start the testnet.
+1. By default, `cardano-testnet cardano` updates the time stamps in genesis files to the current date. If you don't want this behavior (e.g., you have carefully set custom timestamps), use `--preserve-timestamps`.
 2. The following configuration files are safe for modifications:
-    - `env/configuration.json`: high-level configuration options for the `cardano-testnet` binary
+    - `env/configuration.yaml`: high-level configuration options for the `cardano-node` binary
     - `env/{alonzo,byron,conway,shelley}-genesis.json`: the genesis files for the testnet chain.
-    - `env/nodes/nodeN/topology.json`: topology files for individual nodes. Those can either be P2P topology files, or "direct" topology files, depending on the option `--p2p-topology`.
+    - `env/node-data/node{1,2,3}/topology.json`: topology files for individual nodes.
 
 ### Getting on-chain parameters from mainnet
 
 By default, the `create-env` sub-command generates on-chain parameters at their initial value. If you want your test network to use a different set of on-chain parameters without specifying them by hand, you can use one of the following options:
 1. Use `--params-file` to specify a set of on-chain parameters. The file must be formatted as a JSON response from this [Blockfrost endpoint](https://docs.blockfrost.io/#tag/cardano--epochs/GET/epochs/latest/parameters).
 2. Use `--params-mainnet` to get on-chain parameters similar to the current state of mainnet. Those parameters are provisioned from [this file](https://raw.githubusercontent.com/input-output-hk/cardano-parameters/refs/heads/main/mainnet/parameters.json), which is updated every epoch (i.e. every five days).
+
+These options are also available directly on the `cardano-testnet cardano` command when not using `--node-env`.
 
 ### Era-specific flags: Shelley
 
@@ -249,18 +282,14 @@ There are four flags that control values specified in the Shelley genesis file:
 ```text
   --max-lovelace-supply WORD64
                            Max lovelace supply that your testnet starts with.
-                           Ignored if a custom Shelley genesis file is passed.
                            (default: 100000020000000)
-  --epoch-length SLOTS     Epoch length, in number of slots. Ignored if a node
-                           environment is passed. (default: 500)
-  --slot-length SECONDS    Slot length. Ignored if a node environment is passed.
-                           (default: 0.1)
+  --epoch-length SLOTS     Epoch length, in number of slots. (default: 500)
+  --slot-length SECONDS    Slot length. (default: 0.1)
   --active-slots-coeff DOUBLE
-                           Active slots coefficient. Ignored if a node
-                           environment is passed. (default: 5.0e-2)
+                           Active slots coefficient. (default: 5.0e-2)
 ```
 
-Note that all of these flags are ignored when a sandbox environment is provided
+Note that all of these flags are ignored when a sandbox environment is provided via `--node-env`.
 
 ### Era-specific flags: Conway
 
@@ -268,59 +297,33 @@ There is one flag that control values that appear in the Conway genesis file and
 
 ```text
   --num-dreps NUMBER       Number of delegate representatives (DReps) to
-                           generate. Ignored if a node environment is passed.
-                           (default: 3)
+                           generate. (default: 3)
 ```
 
-Like the Shelley flags, this flag is ignored if a sandbox environment is provided.
+Like the Shelley flags, this flag is ignored if a sandbox environment is provided via `--node-env`.
 
 ### Understanding the output of `cardano-testnet`
 
 When you run `cardano-testnet`, you will see output similar to this:
 
 ```shell
-  ✗ <interactive> failed at src/Testnet/Property/Run.hs:120:7
-    after 1 test.
-    shrink path: 1:
-
-    forAll0 =
-      ━━━━ File: /tmp/nix-shell.FKrgvC/nix-shell.JlgE9b/testnet-test-8b4770fd02d979a7/current-stake-pools.json ━━━━
-      [
-          "pool1kn846yjkzkm4pr4t853eh6xgxh03ppeedw0jme7kyp6vu3zlt2q"
-      ]
-
-    forAll1 =
-      Reading file: /tmp/nix-shell.FKrgvC/nix-shell.JlgE9b/testnet-test-8b4770fd02d979a7/current-stake-pools.json
-...
-... lots of output
-...
-    forAll74 =
-      /tmp/nix-shell.FKrgvC/nix-shell.JlgE9b/testnet-test-8b4770fd02d979a7
-
-    forAll75 =
-      Workspace: /tmp/nix-shell.FKrgvC/nix-shell.JlgE9b/testnet-test-8b4770fd02d979a7
-
-    This failure can be reproduced by running:
-    > recheckAt (Seed 17228010050918130971 17168952627524325549) "1:" <property>
-  
-Please disregard the message above implying a failure.
-
-Testnet is running with config file /tmp/nix-shell.FKrgvC/nix-shell.JlgE9b/testnet-test-8b4770fd02d979a7/configuration.yaml
-Logs of the SPO node can be found at /tmp/nix-shell.FKrgvC/nix-shell.JlgE9b/testnet-test-8b4770fd02d979a7/logs/node1/stdout.log
-
-To interact with the testnet using cardano-cli, you might want to set:
-
-  export CARDANO_NODE_SOCKET_PATH=/tmp/nix-shell.FKrgvC/nix-shell.JlgE9b/testnet-test-8b4770fd02d979a7/socket/node1/sock
-  export CARDANO_NODE_NETWORK_ID=42
-
-Type CTRL-C to exit.
+Creating environment: /tmp/testnet/
+Starting testnet in environment: /tmp/testnet/
+Testnet started
+Waiting for shutdown (Ctrl+C)
 ```
 
-You can ignore the initial `✗ <interactive> failed` log. This is an artifact from the fact that cardano-testnet relies
-on a test library to run. The same applies to all `forAllX = ...` logs.
+When using `--node-env` with a pre-existing environment, the `Creating environment` line is omitted.
 
-The last few lines give you the location of the config file (hence the location of the sandbox directory, if you haven't specified it), and the logs of the SPO node.
+Once the line `Testnet started` appears, the testnet is running and building blocks.
 
-It also gives you some environment variables to export, should you want to use [cardano-cli](https://developers.cardano.org/docs/get-started/cli-operations/basic-operations/) to interact with the testnet.
+To interact with the testnet using [cardano-cli](https://developers.cardano.org/docs/get-started/cli-operations/basic-operations/), set the following environment variables (adjusting paths to match your `--output-dir`):
 
-Once the line `Testnet is running.  Type CTRL-C to exit.` appears, the testnet is running and building blocks.
+```shell
+export CARDANO_NODE_SOCKET_PATH=/tmp/testnet/socket/node1/sock
+export CARDANO_NODE_NETWORK_ID=42
+```
+
+In order to shutdown the testnet, you can press `Ctrl+C` and `cardano-testnet` will kill all the nodes that were spawned when it was started.
+
+

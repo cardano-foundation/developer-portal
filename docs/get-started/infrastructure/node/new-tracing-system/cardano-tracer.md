@@ -52,7 +52,7 @@ There are 3 such kinds of information:
 
 ## Build and run
 
-For how to build `cardano-tracer`, refer to the [New Tracing Quickstart](/docs/get-started/infrastructure/node/new-tracing-system/cardano-tracer).
+For how to build `cardano-tracer`, refer to the [New Tracing System quick start](/docs/get-started/infrastructure/node/new-tracing-system/new-tracing-system).
 
 ## Configuration
 
@@ -95,9 +95,7 @@ Tracing options that can be given based on a namespace are `severity`, `detail` 
 }
 ```
 
-For further node-side configuration explanations, refer to:
-
-[New Tracing Quickstart](/docs/get-started/infrastructure/node/new-tracing-system/cardano-tracer)
+For further node-side configuration explanations, refer to the [New Tracing System quick start](/docs/get-started/infrastructure/node/new-tracing-system/new-tracing-system).
 
 ### Distributed Scenario
 
