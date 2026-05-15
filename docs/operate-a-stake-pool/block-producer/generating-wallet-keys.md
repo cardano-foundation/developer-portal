@@ -1,124 +1,80 @@
 ---
 id: generating-wallet-keys
-title: Generating wallet keys (Faucet for tADA)
-sidebar_label: Generating wallet keys
-description: Generating wallet keys (Faucet for tADA)
+title: Generating Wallet Keys
+sidebar_label: Generating Wallet Keys
+description: Generate the payment and stake keys needed to register a Cardano stake pool.
 image: ../img/og-developer-portal.png
 ---
-Once the relay nodes in our last section are in sync with our chosen [testnet network](/docs/get-started/networks/testnets), it's time to configure one of these relays into a block producing node. In this section we will create wallet keys which are needed to register a pool and run the block producer.
 
-A wallet address is needed to pay the pool deposit, to pay transaction costs of the network, and for staking to a pool. So it's a combination of payment keys and stake keys.
-
-Let's first create a directory to store all the keys.
-
-```
-mkdir -p $HOME/cardano-testnet/keys
-cd $HOME/cardano-testnet/keys
-```
-
-:::important
-Due to security reasons, for the Mainnet these keys should be generated and stored on an [air-gapped system](/docs/learn/educational-resources/air-gap), but since we are working on a testnet, we can generate and keep them on the block producing node.
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
 :::
 
-## Generating Payment Keys
+A stake pool registration requires a funded wallet address. The address is a combination of a payment key (pays fees and deposits) and a stake key (receives rewards and anchors the pool registration).
 
-:::note
-This guide assumes you have installed `cardano-cli` into your system. If not you can refer to [Cardano CLI - Get Started](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started) guide for instructions on how to do that.
+:::warning Mainnet key management
+These pages show the raw `cardano-cli` approach, which is appropriate for testnet. For mainnet, never generate payment or stake keys on an internet-connected machine. Production options:
+
+- **[cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) with a GPG-encrypted mnemonic on an air-gapped machine** — most secure; fully offline, hardware-independent, recoverable from mnemonic
+- **Hardware wallet** (Ledger or Trezor via [cardano-hw-cli](https://github.com/vacuumlabs/cardano-hw-cli)) — keys never leave the device; convenient for signing transactions
 :::
 
-Create a new payment key pair: `payment.skey` & `payment.vkey`
+Make sure `CARDANO_NODE_SOCKET_PATH` and `CARDANO_NODE_NETWORK_ID` are set before running any `cardano-cli` commands. See [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano#querying-the-node).
 
-```
+## Generate payment keys
+
+```bash
+mkdir -p $HOME/pool-keys
+cd $HOME/pool-keys
+
 cardano-cli address key-gen \
     --verification-key-file payment.vkey \
     --signing-key-file payment.skey
 ```
 
-- `cardano-cli address key-gen`: generates a payment key-pair.
-- `--verification-key-file`: points to the path where you want to save the `vkey` file.
-- `--signing-key-file`: points to the path where you want to save the `skey` file.
+## Generate stake keys
 
-- **.vkey / Public Verification Key** : Is used to derive a Cardano wallet address, a wallet address is basically the hash string value that you share to other users to provide them a way to send ada / tAda or other assets in the Cardano blockchain into your wallet.
-- **.skey / Private Signing Key** : Is used to sign / approve transactions for your wallet. As you can imagine, it is very important to not expose this file to the public and must be kept secure.
-
-## Generating Stake Keys
-
-Create a new stake address key pair: stake.skey & stake.vkey
-
-```
+```bash
 cardano-cli stake-address key-gen \
     --verification-key-file stake.vkey \
     --signing-key-file stake.skey
 ```
 
-Create your stake address from the stake address verification key and store it in `stake.addr`:
+Build the stake address:
 
-```
+```bash
 cardano-cli stake-address build \
     --stake-verification-key-file stake.vkey \
-    --out-file stake.addr \
-    --testnet-magic 1
+    --out-file stake.addr
 ```
 
-## Generating Wallet Keys
+## Build the payment address
 
-The next step would be to generate a wallet address for the payment key `payment.vkey` which will delegate to the stake address `stake.vkey`:
+The payment address combines your payment key with your stake key so that ADA sent to it accrues rewards to your stake address:
 
-```
+```bash
 cardano-cli address build \
     --payment-verification-key-file payment.vkey \
-    --out-file payment.addr \
-    --testnet-magic 1
+    --stake-verification-key-file stake.vkey \
+    --out-file payment.addr
 ```
 
-- `cardano-cli address build` : Generates a wallet address from a vkey file.
-- `--payment-verification-key-file` : The path to the vkey file to be used for the derivation.
-- `--out-file` : The path to save the wallet address file.
-- `--testnet-magic` : The NetworkMagic of the network that where you want to use the wallet address. In this case it is 1.
+## Fund the address
 
-The `payment.addr` file contains the derived wallet address from your `vkey` file. It should look something like this:
+Query the balance:
 
-```
-addr_test1vqe09nt0rxgwn83upxuhqzs4aqrzdjqmhrh5l4g5hh4kc6qsncmku
+```bash
+cardano-cli query utxo --address $(cat payment.addr)
 ```
 
-The wallet is currently empty, so if we check its balance now:
+On testnet, use the [Cardano faucet](https://docs.cardano.org/cardano-testnet/tools/faucet) to get test ADA. Select the Pre-Production testnet and paste your `payment.addr`.
 
-```
-cardano-cli query utxo \
-    --address $(cat payment.addr)\
-    --testnet-magic 1
-```
-
-we should get something like this:
+Once funded, the balance query should show something like:
 
 ```
                            TxHash                                 TxIx        Amount
 --------------------------------------------------------------------------------------
+531f4bec36af503654c3c6fa34ecf07e5c29f67da8e2b84c8923b8c735b011c9     0        10000000000 lovelace
 ```
 
-The next step is to fund the payment address.
-
-## Testnets faucet
-
-Since the Cardano testnets are independent networks, separate from the Cardano mainnet, they require their own tokens.
-
-The faucet is a web-based service that provides test ada to users of the Cardano testnets. While these tokens have no "real world" value, they enable users to experiment with Cardano testnet features, without having to spend real ada on the Mainnet.
-
-To apply for Testnets faucet please follow the instructions on the webpage below and choose the Pre-Production Testnet.
-
-[Cardano Docs - Testnets faucet](https://docs.cardano.org/cardano-testnet/tools/faucet)
-
-Once the test ADA are transferred and you run the above query utxo again, you should see something like this:
-
-```
-                           TxHash                                 TxIx        Amount
---------------------------------------------------------------------------------------
-531f4bec36af503654c3c6fa34ecf07e5c29f67da8e2b84c8923b8c735b011c9     0        10000000000 lovelace + TxOutDatumNone
-```
-
-Now the pool wallet and stake keys are ready and we can go to the next step of creating the pool keys.
-
-## References
-
-- [CIP 19 Cardano Addresses](https://cips.cardano.org/cip/CIP-0019)
+Next: [Register your stake address](/docs/operate-a-stake-pool/block-producer/register-stake-address).

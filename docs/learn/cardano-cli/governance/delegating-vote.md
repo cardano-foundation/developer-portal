@@ -1,5 +1,5 @@
 ---
-id: delegate to a drep
+id: delegate-to-a-drep
 sidebar_label: Delegate votes to a DRep
 title: Delegate votes to a Delegated Representative (DRep)
 sidebar_position: 2
@@ -18,7 +18,7 @@ In addition to the registered DReps, the system features a couple of default vot
 ### Prerequisites
 
 * Payment keys and address with funds
-* [Registered stake address](/docs/get-started/infrastructure/cardano-cli/basic-operations/stake-address-registration)
+* [Registered stake address](/docs/learn/cardano-cli/basic-operations/stake-address-registration)
 * DRep ID (key hash or script hash) of a registered DRep.
 
 ## Generating the vote delegation certificate

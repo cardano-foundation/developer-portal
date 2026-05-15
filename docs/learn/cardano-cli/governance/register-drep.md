@@ -1,5 +1,5 @@
 ---
-id: register drep
+id: register-drep
 sidebar_label: Register as a DRep
 title: Registering as Delegated Representative (DReps)
 sidebar_position: 1

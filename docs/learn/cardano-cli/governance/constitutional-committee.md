@@ -1,5 +1,5 @@
 ---
-id: constitutional committee
+id: constitutional-committee
 sidebar_label: Constitutional committee
 title: Constitutional committee
 sidebar_position: 3

@@ -1,295 +1,177 @@
 ---
 id: register-stake-pool
-title: Registering a Pool (JSON Metadata)
+title: Registering a Pool
 sidebar_label: Registering a Pool
-description: Registering a Pool (JSON Metadata)
+description: Generate your pool registration certificate and submit it to the chain.
 image: ../img/og-developer-portal.png
 ---
 
-Registering your stake pool requires:
-
-* Create JSON file with your metadata and store it in the node and in a URL you maintain
-* Get the hash of your JSON file
-* Generate the stake pool registration certificate
-* Create a delegation certificate pledge
-* Submit the certificates to the blockchain
-
-:::note
-Generating the stake pool registration certificate and the delegation certificate requires the cold keys. So, when doing this on mainnet you may want to generate these certificates in your local machine taking the proper security measures to avoid exposing your cold keys to the internet.
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
 :::
 
-Before starting, make sure you have access to:
+Pool registration requires:
 
-| File | Content |
-| :--- | :--- |
-| `payment.vkey` | payment verification key |
-| `payment.skey` | payment signing key |
-| `stake.vkey` | staking verification key |
-| `stake.skey` | staking signing key |
-| `stake.addr` | registered stake address |
-| `payment.addr` | funded address linked to `stake` |
-| `cold.vkey` | cold verification key |
-| `cold.skey` | cold signing key |
-| `cold.counter` | issue counter |
-| `node.cert` | operational certificate |
-| `kes.vkey` | KES verification key |
-| `kes.skey` | KES signing key |
-| `vrf.vkey` | VRF verification key |
-| `vrf.skey` | VRF signing key |
-| `protocol.json` | protocol parameters file |
+1. A metadata JSON file hosted at a public HTTPS URL
+2. A pool registration certificate (signed with cold keys on the air-gapped machine)
+3. A delegation certificate (pledging your stake to your own pool)
+4. A transaction submitting both certificates
 
-## Create JSON file with your metadata
+This page assumes you have completed [Generating Wallet Keys](/docs/operate-a-stake-pool/block-producer/generating-wallet-keys), [Registering a Stake Address](/docs/operate-a-stake-pool/block-producer/register-stake-address), and [Key Generation](/docs/operate-a-stake-pool/block-producer/block-producer-keys). You will need your cold keys (`cold.vkey`, `cold.skey`), which live on your air-gapped machine.
 
-`ticker` must be between 3-9 characters in length. Characters must be A-Z and 0-9 only.
-`description` cannot exceed 255 characters in length.
+## Create pool metadata
 
-```
+```bash
 cat > poolMetaData.json << EOF
 {
-"name": "YourPoolName",
-"description": "Your pool description",
-"ticker": "PN",
-"homepage": "https://yourpoollink.com"
+  "name": "Your Pool Name",
+  "description": "Your pool description",
+  "ticker": "TICK",
+  "homepage": "https://yourpool.example.com"
 }
 EOF
 ```
 
-Calculate the hash of your metadata file. Here it's saved to `poolMetaDataHash.txt`:
+- `ticker`: 3–9 characters, A–Z and 0–9 only
+- `description`: 255 characters maximum
+- `homepage`: your pool's website
 
+Hash the file:
+
+```bash
+cardano-cli stake-pool metadata-hash \
+    --pool-metadata-file poolMetaData.json \
+    --out-file poolMetaDataHash.txt
 ```
-cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
-```
 
-## Get the hash of your JSON file
+Host `poolMetaData.json` at a public HTTPS URL with no redirects. The URL must be 64 characters or fewer. Verify the hosted file matches your local hash:
 
-Make your poolMetadata.json available as a web URL accessible on internet, ideally without  redirections. You can do so by uploading it to your website as well.
-Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
-
-```
-cardano-cli stake-pool metadata-hash --pool-metadata-file <(curl -s -L <https://REPLACE WITH YOUR METADATA_URL>)
+```bash
+cardano-cli stake-pool metadata-hash \
+    --pool-metadata-file <(curl -s -L https://YOUR_METADATA_URL)
 
 cat poolMetaDataHash.txt
 ```
 
-Both the hashes must be equal. If the hashes do no match, then the uploaded .json file likely was truncated or extra whitespace caused issues. Upload the .json again or to a different web host.
+Both hashes must be identical. If they differ, re-upload the file (extra whitespace or encoding differences are common causes).
 
-## Generate the stake pool registration certificate
+:::tip SPO identity — Calidus keys
+After registering your pool, consider registering a [Calidus key](/docs/operate-a-stake-pool/operator-tools/calidus-keys). It lets explorers (Cardanoscan, Cexplorer, AdaStat), governance tools, and APIs verify your SPO identity with a hot key — without ever touching your cold key again.
+:::
 
-Find the minimum pool cost:
+## Generate the pool registration certificate
 
+Do this on your **air-gapped machine** where `cold.skey` lives.
+
+Fetch current protocol parameters on an online node first:
+
+```bash
+cardano-cli query protocol-parameters --out-file protocol.json
+minPoolCost=$(jq -r '.minPoolCost' protocol.json)
+echo "Minimum pool cost: $minPoolCost lovelace"
 ```
-minPoolCost=$(cat protocol.json | jq -r .minPoolCost)
-echo minPoolCost: ${minPoolCost}
-```
 
-Generate the stake pool registration certificate:
+Transfer `protocol.json`, `vrf.vkey`, `stake.vkey`, and `poolMetaDataHash.txt` to the air-gapped machine, then generate the certificate:
 
-```
+```bash
 cardano-cli stake-pool registration-certificate \
     --cold-verification-key-file cold.vkey \
     --vrf-verification-key-file vrf.vkey \
-    --pool-pledge 100000000 \
+    --pool-pledge 10000000000 \
     --pool-cost 340000000 \
     --pool-margin 0.01 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
-    --testnet-magic 1 \
-    --single-host-pool-relay <dns based relay, example ~ relaynode1.yourpoolname.com>  \
-    --pool-relay-port 6000 \
-    --metadata-url <url where you uploaded poolMetaData.json> \
+    --single-host-pool-relay relay1.yourpool.example.com \
+    --pool-relay-port 3001 \
+    --metadata-url https://YOUR_METADATA_URL \
     --metadata-hash $(cat poolMetaDataHash.txt) \
     --out-file pool.cert
 ```
-:::important
-In case you have multiple relays, please substitute the `single-host-pool-relay` & `pool-relay-port` lines from above with the below code accordingly.
 
-DNS based relays, 1 entry per DNS record
-```
-    --single-host-pool-relay <relaynode1.yourpoolname.com> \
-    --pool-relay-port 6000 \
-    --single-host-pool-relay <relaynode2.yourpoolname.com> \
-    --pool-relay-port 6000 \
-```
+| Parameter | Notes |
+|-----------|-------|
+| `--pool-pledge` | Amount in lovelace you commit to keep delegated. Higher pledge improves desirability. |
+| `--pool-cost` | Fixed fee per epoch in lovelace taken before margin. Minimum is `minPoolCost` (currently 170 ADA on mainnet). |
+| `--pool-margin` | Your variable fee as a fraction (e.g. `0.01` = 1%). |
+| `--single-host-pool-relay` | DNS name of your relay. Add one `--single-host-pool-relay` + `--pool-relay-port` pair per relay. For IP-based relays use `--pool-relay-ipv4`. |
 
-SRV based relays
-```
-    --multi-host-pool-relay <relaynodes.yourpoolname.com> \
-```
-
-IP based relays, 1 entry per IP address
-```
-    --pool-relay-port 6000 \
-    --pool-relay-ipv4 <first relay node public IP> \
-    --pool-relay-port 6000 \
-    --pool-relay-ipv4 <second relay node public IP> \
+:::note Multiple relays
+Add one flag pair per relay:
+```bash
+    --single-host-pool-relay relay1.yourpool.example.com --pool-relay-port 3001 \
+    --single-host-pool-relay relay2.yourpool.example.com --pool-relay-port 3001 \
 ```
 :::
 
-| Parameter | Explanation |
-| :--- | :--- |
-| cold-verification-key-file | verification _cold_ key |
-| vrf-verification-key-file | verification _VRF_ key |
-| pool-pledge | pledge lovelace |
-| pool-cost | operational costs per epoch lovelace |
-| pool-margin | operator margin |
-| pool-reward-account-verification-key-file | verification staking key for the rewards |
-| pool-owner-staking-verification-key-file | verification staking keys for the pool owners |
-| single-host-pool-relay | relay node dns |
-| pool-relay-port | port |
-| metadata-url | url of your json file |
-| metadata-hash | the hash of pools json metadata file |
-| out-file | output file to write the certificate to |
+## Generate the delegation certificate
 
-In case an error similar to the one below appears, then the URL length needs to be reduced:
+Also on the **air-gapped machine**, create a delegation certificate that pledges your stake to your pool:
 
-```
-*--metadata-url: The provided string must have at most 64 characters, but it has 70 characters
-```
-
-and you must generate the certificate again with the new, shorter URL.
-
-## Create a delegation certificate pledge
-
-To honor your pledge, create a delegation certificate:
-
-```
+```bash
 cardano-cli stake-address delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --cold-verification-key-file cold.vkey \
     --out-file deleg.cert
 ```
 
-This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `cold.vkey`. If there are many staking keys as pool owners in the first step, we need delegation certificates for all of them.
+Transfer `pool.cert` and `deleg.cert` back to your online machine.
 
-## Submit the certificates to the blockchain
+## Submit the certificates
 
-To understand the basics of submitting a transaction on the chain, refer to [Register Stake Address](../register-stake-address).
+Query the current slot:
 
-Registering a stake pool requires a deposit. This amount is specified in the already created `protocol.json`:
-
-```
-stakePoolDeposit=$(cat protocol.json | jq -r '.stakePoolDeposit')
-echo $stakePoolDeposit
-```
-
-Let's find out how much balance is in our wallet:
-
-```
-cardano-cli query utxo \
-    --address $(cat payment.addr) \
-    --testnet-magic 1 > fullUtxo.out
-
-tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
-
-cat balance.out
-
-tx_in=""
-total_balance=0
-while read -r utxo; do
-    type=$(awk '{ print $6 }' <<< "${utxo}")
-    if [[ ${type} == 'TxOutDatumNone' ]]
-    then
-        in_addr=$(awk '{ print $1 }' <<< "${utxo}")
-        idx=$(awk '{ print $2 }' <<< "${utxo}")
-        utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
-        total_balance=$((${total_balance}+${utxo_balance}))
-        echo TxHash: ${in_addr}#${idx}
-        echo ADA: ${utxo_balance}
-        tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
-    fi
-done < balance.out
-txcnt=$(cat balance.out | wc -l)
-echo Total available ADA balance: ${total_balance}
-echo Number of UTXOs: ${txcnt}
-```
-
-You should get output similar to below:
-
-```
-Total available ADA balance: 9497237500
-Number of UTXOs: 1
-```
-
-Calculate the change for `--tx-out`. Since we don't know the exact transaction fees yet, we take 1 ada for the calculation:
-
-```
-expr UTxO BALANCE - poolDeposit - TRANSACTION FEE
-```
-
-which in our case would be 9497237500 - 500000000 - 1000000 = 8996237500
-
-```
-cardano-cli conway transaction build \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+8996237500 \
-    --change-address $(cat payment.addr) \
-    --testnet-magic 1 \
-    --certificate-file pool.cert \
-    --certificate-file deleg.cert \
-    --invalid-hereafter $(( ${currentSlot} + 1000)) \
-    --witness-override 2 \
-    --out-file tx.raw
-```
-
-would give transaction fees as output like:
-
-```
-Estimated transaction fee: Lovelace 172189
-```
-
-So now we replace the 1 ada with 172189 Lovelace in our calculation:
-
-```
-txOut=$((9497237500-${stakePoolDeposit}-172189))
-echo ${txOut}
+```bash
+currentSlot=$(cardano-cli query tip | jq -r '.slot')
 ```
 
 Build the transaction:
-```
-cardano-cli conway transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $((${currentSlot} + 1000)) \
-    --fee 172189 \
+
+```bash
+cardano-cli conway transaction build \
+    --tx-in $(cardano-cli query utxo --address $(cat payment.addr) --out-file /dev/stdout | jq -r 'keys[0]') \
+    --change-address $(cat payment.addr) \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --invalid-hereafter $(( currentSlot + 1000 )) \
+    --witness-override 3 \
     --out-file tx.raw
 ```
 
-Sign the transaction:
-```
+Sign with payment, cold, and stake keys. The cold signing key must be available — bring it from the air-gapped machine for this step only, or sign in two passes using `--signing-key-file` once per key on separate machines:
+
+```bash
 cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file cold.skey \
     --signing-key-file stake.skey \
-    --testnet-magic 1 \
     --out-file tx.signed
 ```
 
-Submit the transaction:
-```
-cardano-cli conway transaction submit \
-    --tx-file tx.signed \
-    --testnet-magic 1
+Submit:
+
+```bash
+cardano-cli conway transaction submit --tx-file tx.signed
 ```
 
-In case you took a break, you might have passed the `--invalid-hereafter` slot and would get an error. In that case you would need to submit the transaction again with it's updated value.
-Another common error message is `FeeTooSmallUTxO`, which means that the transaction fee we provided before is not enough and we need to change the fees to the new value provided with the error message and resubmit.
+## Verify registration
 
-## Verify that your stake pool registration was successful
+Get your pool ID:
 
-Get pool ID:
-```
-cardano-cli stake-pool id --cold-verification-key-file cold.vkey --output-format hex > stakepoolid.txt
+```bash
+cardano-cli stake-pool id \
+    --cold-verification-key-file cold.vkey \
+    --output-format hex \
+    > stakepoolid.txt
+
 cat stakepoolid.txt
 ```
 
-Check for the presence of your pool ID on the network, with:
-```
-cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --testnet-magic 1
+Check it has appeared on-chain:
+
+```bash
+cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt)
 ```
 
-A non-empty string returned means you're registered. Congratulations!
-
-Additionally you can check your pool on any of the PreProd explorers like [PreProd Cexplorer](https://preprod.cexplorer.io/)
+A non-empty result means registration was successful. It may take one epoch boundary to appear in tools and explorers. You can also verify on a [block explorer](/docs/get-started/networks/explorers).

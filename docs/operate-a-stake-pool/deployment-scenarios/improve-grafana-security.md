@@ -2,11 +2,26 @@
 id: improve-grafana-security
 title: Improve Grafana Security
 sidebar_label: Improve Grafana Security
-description: "Stake pool guide: Learn how to harden Grafana Security with SSL, 2FA"
+description: Secure Grafana access with an SSH tunnel, Nginx reverse proxy, and optional Google OAuth.
 image: ../img/og/og-developer-portal.png
 ---
 
-Once your Grafana Server is installed, up and running, you can drastically improve its security and accessibility by installing an SSL Reverse Proxy, and enabling 2-Factor Authentication with Google OAuth.
+By default Grafana listens on port 3000 with HTTP and local password auth. This page covers three layers of improvement: restricting access via SSH tunnel, adding TLS with an Nginx reverse proxy, and optionally replacing password auth with Google OAuth.
+
+## Option 1 — SSH tunnel (simplest, no public exposure)
+
+If only you and your team need Grafana access, the easiest hardening is to **not expose port 3000 at all** and reach it through an SSH tunnel:
+
+```bash
+# On your local machine — forward localhost:3000 to the monitoring server
+ssh -L 3000:localhost:3000 cardano-op@<monitoring-server-ip>
+```
+
+Then open `http://localhost:3000` in your browser. No certificate, no domain name, no public port required. This is the recommended approach for most operators.
+
+## Option 2 — Nginx reverse proxy with TLS
+
+If you need Grafana accessible from multiple machines or want a proper HTTPS endpoint, use Nginx as a reverse proxy with a Let’s Encrypt certificate.
 
 ## Prerequisites
 
@@ -14,9 +29,13 @@ NGINX Reverse Proxy :
 - You must have a proper domain name; and FQDN set to your grafana’s public IP address
 - You can buy a domain name basically on any hosting site like namecheap.
 
-2FA Google OAuth : 
+2FA Google OAuth (optional — see note below) :
 - You need to have your own domain mail address (and of course a secure mail server). For example, you could have "grafana@yourdomain.com"
 - You need to create a Google account with this mail address.
+
+:::note
+Google OAuth requires a custom-domain email address. If you do not have one, use Grafana's built-in user management with a strong password, combined with the SSH tunnel from Option 1, instead of OAuth.
+:::
 
 ## Nginx Reverse Proxy
 
@@ -36,14 +55,17 @@ sudo systemctl status nginx
 
 **Create Firewall Rules on your server**
 
-Ports 80 and 443 need to be opened on your Grafana server. Nginx will automatically forward any HTTP requests to HTTPS, but it’s important to have both open, in order for Certbot to renew your SSL certificate every 3 month. Here is an example with UFW : deny any incoming connections, except SSH, HTTP and HTTPS, an allow any outgoing connections. Modify to suit your needs, especially if you are running Grafana on a Stake Pool Relay server, you'll need to add Cardano Port.
-```shell
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow ssh
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw enable
+Ports 80 and 443 need to be opened on your Grafana server — 80 for Certbot’s HTTP-01 renewal challenge, 443 for HTTPS. Add them to your nftables ruleset alongside your existing SSH and Cardano ports:
+
+```bash
+# Add to the input chain in /etc/nftables.conf
+tcp dport { 80, 443 } accept
+```
+
+Then reload:
+
+```bash
+sudo nft -f /etc/nftables.conf
 ```
 
 Now you should be able to visit your server's public IP address : `http://your-ip-address` which should lead to the default Nginx page.

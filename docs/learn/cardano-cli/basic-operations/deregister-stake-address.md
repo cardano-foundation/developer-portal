@@ -1,5 +1,5 @@
 ---
-id: deregister-stake-addreess
+id: deregister-stake-address
 title: Deregister stake address
 sidebar_label: Deregister stake address
 sidebar_position: 6

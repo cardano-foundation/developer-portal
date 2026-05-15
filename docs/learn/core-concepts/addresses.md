@@ -137,6 +137,6 @@ Tools for inspecting and decoding addresses:
 
 - **[cardano-address](https://github.com/IntersectMBO/cardano-addresses)**: Inspect address components, extract key hashes
 - **[bech32](https://github.com/input-output-hk/bech32)**: Decode bech32 encoding to hex
-- **[cardano-cli](/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started)**: Generate keys, hash keys, and verify they match address credentials
+- **[cardano-cli](/docs/learn/cardano-cli/basic-operations/get-started)**: Generate keys, hash keys, and verify they match address credentials
 
 **Technical Reference**: [CIP-19: Cardano Addresses](https://cips.cardano.org/cip/CIP-19)
