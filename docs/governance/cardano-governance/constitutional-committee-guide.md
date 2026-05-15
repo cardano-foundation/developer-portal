@@ -116,7 +116,7 @@ The tools below are used to generate the credential hash that you include in the
   * **User Guide:** [Credential Manager Documentation](https://credential-manager.readthedocs.io/en/latest/)  
   * **Video Workshops:** [Credential Manager & CC Workshops Playlist from Mike Hornan](https://www.youtube.com/playlist?list=PLWYf5eQbRdbUPdt9UT-Vjhi6b840WSIWg)  
 * **Alternative Method: Native CLI:** Users can generate keys and register credentials directly using the cardano-cli. This approach can also be used to create native multi-signature credentials.  
-  * **Tutorial:** [CLI Guide for Constitutional Committee Actions](/docs/get-started/infrastructure/cardano-cli/governance/constitutional committee)
+  * **Tutorial:** [CLI Guide for Constitutional Committee Actions](/docs/learn/cardano-cli/governance/constitutional-committee)
 
 ### Testing on SanchoNet
 

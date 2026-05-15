@@ -238,6 +238,33 @@ module.exports = {
       '@docusaurus/plugin-client-redirects',
       { redirects },
     ],
+    [
+      'docusaurus-plugin-llms',
+      {
+        generateLLMsTxt: true,
+        generateLLMsFullTxt: true,
+        generateMarkdownFiles: true,
+        docsDir: 'docs',
+        includeBlog: false,
+        excludeImports: true,
+        removeDuplicateHeadings: true,
+        ignoreFiles: [
+          'portal-archived-changelog.md',
+        ],
+        includeOrder: [
+          'get-started/**',
+          'learn/**',
+          'governance/**',
+          'operate-a-stake-pool/**',
+          'community/**',
+          'contribute/**',
+          'build/**',
+        ],
+        includeUnmatchedLast: true,
+        title: 'Cardano Developer Portal',
+        description: 'Documentation for building on Cardano: getting started, core concepts, governance, stake pool operations, and community contribution.',
+      },
+    ],
   ],
 
   presets: [
