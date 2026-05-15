@@ -62,4 +62,4 @@ Keep `calidus.skey` secure — it represents your pool's online identity. Unlike
 - [CIP-151: On-Chain Registration — Stake Pools](https://cips.cardano.org/cip/CIP-0151)
 - [cardano-signer on GitHub](https://github.com/gitmachtl/cardano-signer)
 - [Calidus Pool Keys announcement (Blockfrost blog)](https://blog.blockfrost.io/calidus-pool-keys/)
-- [SPO Governance — voting with your cold key](../governance/spo-governance)
+- [SPO Governance — voting with your cold key](../../governance/spo-governance)

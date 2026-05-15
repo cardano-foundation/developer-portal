@@ -200,7 +200,7 @@ Many governance platforms, voting interfaces, and SPO-aware services need to ver
 
 Register a Calidus key once (using a cold-key signature from your air-gapped machine), then use it freely as a hot key for governance tools, explorer profiles, and dApp interactions — without the cold key ever leaving the air gap.
 
-See [Calidus Keys](../operator-tools/calidus-keys) for setup instructions.
+See [Calidus Keys](../../operator-tools/calidus-keys) for setup instructions.
 
 ## Key points
 
@@ -211,7 +211,7 @@ See [Calidus Keys](../operator-tools/calidus-keys) for setup instructions.
 
 ## Further reading
 
-- [Submitting votes (cardano-cli full reference)](../../learn/cardano-cli/governance/submit-votes)
-- [Governance queries](../../learn/cardano-cli/governance/gov-queries)
+- [Submitting votes (cardano-cli full reference)](../../../learn/cardano-cli/governance/submit-votes)
+- [Governance queries](../../../learn/cardano-cli/governance/gov-queries)
 - [CIP-1694 specification](https://cips.cardano.org/cip/CIP-1694)
 - [Cardano GovTool](https://gov.tools)

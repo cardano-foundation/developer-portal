@@ -168,7 +168,7 @@ table inet filter {
 <details>
 <summary><strong>Block producer — relays in a different datacenter (WireGuard)</strong></summary>
 
-See [section 5 — WireGuard](#5-wireguard-relay--bp-across-datacenters) for the WireGuard setup first, then use this ruleset which accepts Cardano traffic only from the WireGuard interface:
+See [section 5 — WireGuard](#5-wireguard--relay--bp-across-datacenters) for the WireGuard setup first, then use this ruleset which accepts Cardano traffic only from the WireGuard interface:
 
 ```
 #!/usr/sbin/nft -f

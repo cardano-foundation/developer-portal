@@ -245,7 +245,7 @@ The signed file is the one you upload as the governance anchor document and hash
 
 ### Calidus key registration (CIP-88v2)
 
-[Calidus keys](../../../operate-a-stake-pool/operator-tools/calidus-keys) are hot keys that prove you control a pool without exposing the cold key. Registration requires a cold-key signature, so it must be done on the air-gapped machine:
+[Calidus keys](../../../../operate-a-stake-pool/operator-tools/calidus-keys) are hot keys that prove you control a pool without exposing the cold key. Registration requires a cold-key signature, so it must be done on the air-gapped machine:
 
 ```bash
 # 1. Generate the Calidus hot key (on air-gapped machine)

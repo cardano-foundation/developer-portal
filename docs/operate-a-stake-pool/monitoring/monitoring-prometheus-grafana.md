@@ -219,7 +219,7 @@ Add Prometheus as a data source:
 
 Note the data source name you chose (e.g. `Prometheus`). You will need it when importing the dashboard.
 
-For hardening Grafana (HTTPS, disabling public registration), see [Improve Grafana Security](../deployment-scenarios/improve-grafana-security).
+For hardening Grafana (HTTPS, disabling public registration), see [Improve Grafana Security](../../deployment-scenarios/improve-grafana-security).
 
 ## Step 7 — Import the dashboard
 
@@ -249,7 +249,7 @@ After import, use the **Environment** and **Instance** dropdowns at the top of t
 - Confirm `cardano-tracer` is running: `curl http://127.0.0.1:12789/`
 - Confirm your node is connected: the tracer index page should list your node name
 - Confirm Prometheus is scraping: check `http://localhost:9090/targets`
-- Check metric names — some names changed between the old and new tracing systems. See the [metrics migration guide](../../get-started/infrastructure/node/new-tracing-system/metrics-migration) for the full rename table.
+- Check metric names — some names changed between the old and new tracing systems. See the [metrics migration guide](../../../get-started/infrastructure/node/new-tracing-system/metrics-migration) for the full rename table.
 
 **Tracer shows no connected nodes**
 
@@ -264,7 +264,7 @@ After import, use the **Environment** and **Instance** dropdowns at the top of t
 
 ## Further reading
 
-- [New Tracing System quick start](../../get-started/infrastructure/node/new-tracing-system/quick-start)
-- [cardano-tracer reference](../../get-started/infrastructure/node/new-tracing-system/cardano-tracer)
-- [Metrics migration guide](../../get-started/infrastructure/node/new-tracing-system/metrics-migration)
-- [Improve Grafana Security](../deployment-scenarios/improve-grafana-security)
+- [New Tracing System quick start](../../../get-started/infrastructure/node/new-tracing-system/new-tracing-system)
+- [cardano-tracer reference](../../../get-started/infrastructure/node/new-tracing-system/cardano-tracer)
+- [Metrics migration guide](../../../get-started/infrastructure/node/new-tracing-system/metrics-migration)
+- [Improve Grafana Security](../../deployment-scenarios/improve-grafana-security)

@@ -1,5 +1,5 @@
 ---
-id: delegate to a drep
+id: delegate-to-a-drep
 sidebar_label: Delegate votes to a DRep
 title: Delegate votes to a Delegated Representative (DRep)
 sidebar_position: 2
