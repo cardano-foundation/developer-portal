@@ -15,14 +15,11 @@ Configuration files and services are parsed and analysed by the script :
 
 **Cardano compliance**
 
-- New 9.1.0 Cardano-Node version requirement for Chang hardfork
-- Cardano-node latest version verification
+- Cardano-node version verification
 - Cardano bootstrap check
-- Environment Variables
+- Environment variables
 - Systemd cardano-node file verification and parsing
-- Cardano startup script verification and parsing
-- Node operation mode (Block Producer ? Relay ?)
-- Topology mode (p2p enabled)
+- Node operation mode (Block Producer / Relay)
 - Topology configuration file parsing and compliance checks
 - Cardano security checks (hot keys permissions, cold keys detection)
 - KES keys rotation alert
@@ -41,10 +38,7 @@ Please note that this script is only intended to help you identify configuration
 
 1- The script is 100% shell bash. It works on Linux systems.
 
-2- cardano-node up and running. You can setup a Cardano node with :
-- Coincashew guide : https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node)
-- CNODE (Guild-Operators) : https://cardano-community.github.io/guild-operators/
-- Developper Portal guide : https://developers.cardano.org/docs/operate-a-stake-pool/
+2- cardano-node up and running. See [Stake Pool Operation](/docs/operate-a-stake-pool/) for setup guides.
 
 3- Several bash commands are necessary (tput, date, grep, awk, jq). A check is performed when the script starts.
 

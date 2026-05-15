@@ -1,141 +1,89 @@
 ---
 id: block-producer-keys
-title: Generating Cardano Block producer Keys
-sidebar_label: Block Producer Keys
-description: Generating Cardano Block producer Keys (StakePool certificate generation)
+title: Key Generation
+sidebar_label: Key Generation
+description: Generating the cold, KES, and VRF keys for a Cardano block producer on an air-gapped machine.
 image: ../img/og-developer-portal.png
 ---
 
-To run a stake pool, three key pairs are needed:
+:::info version reference
+This document was written in May 2026 with reference to cardano-node and cardano-cli v11
+:::
 
-* Cold keys
-* KES keys
-* VRF keys
+A block producer requires three key pairs and an operational certificate:
 
-To understand the purpose of these keys, refer to [Cardano Key Pairs](../../basics/cardano-key-pairs).
+| Key | Purpose | Where it lives |
+|-----|---------|----------------|
+| Cold key (`cold.skey` / `cold.vkey`) | Authorizes pool registration and KES rotation | Air-gapped machine only — never transferred |
+| KES key (`kes.skey` / `kes.vkey`) | Signs blocks; rotated every ~90 days | Block producer |
+| VRF key (`vrf.skey` / `vrf.vkey`) | Proves slot leadership | Block producer |
+| Operational certificate (`node.cert`) | Binds KES key to cold key for the node | Block producer |
 
-First we change to the keys folder we created in last chapter -
+:::danger Cold key security
+The cold signing key (`cold.skey`) must be generated and used exclusively on your air-gapped machine. It must never exist on any internet-connected computer. If your cold key is compromised, an attacker can re-register your pool to their reward address.
+:::
 
+For background on what these keys do, see [Cardano Key Pairs](/docs/operate-a-stake-pool/basics/cardano-key-pairs).
 
-```
-cd $HOME/cardano-testnet/keys
-```
+## Step 1 — Generate all keys on the air-gapped machine
 
-## Generating Cold Keys
+Run all of the following on your **air-gapped machine**.
 
-Make a set of cold keys and create the cold counter file.
+### Cold keys
 
-```
+```bash
 cardano-cli node key-gen \
-    --cold-verification-key-file cold.vkey \
-    --cold-signing-key-file cold.skey \
-    --operational-certificate-issue-counter cold.counter
+  --cold-verification-key-file cold.vkey \
+  --cold-signing-key-file cold.skey \
+  --operational-certificate-issue-counter cold.counter
 ```
 
-## Generating KES Keys
+### KES keys
 
-```
+```bash
 cardano-cli node key-gen-KES \
-    --verification-key-file kes.vkey \
-    --signing-key-file kes.skey
+  --verification-key-file kes.vkey \
+  --signing-key-file kes.skey
 ```
 
-## Generating VRF Keys
+### VRF keys
 
-Make a VRF key pair.
-
-```
+```bash
 cardano-cli node key-gen-VRF \
-    --verification-key-file vrf.vkey \
-    --signing-key-file vrf.skey
+  --verification-key-file vrf.vkey \
+  --signing-key-file vrf.skey
 ```
 
-and update vrf key permissions to read-only.
+## Step 2 — Determine the current KES period
 
-```
-chmod 400 vrf.skey
-```
+The operational certificate must be issued for the correct KES period. You need the current slot number from an online node to calculate it.
 
-## StakePool operational certificate generation
+On your **online relay or another synced node**, run:
 
-Determine the number of slots per KES period from the genesis file.
-
-```
-slotsPerKESPeriod=$(cat ../shelley-genesis.json | jq -r '.slotsPerKESPeriod')
-echo slotsPerKESPeriod: ${slotsPerKESPeriod}
-
-slotNo=$(cardano-cli query tip --testnet-magic 1 | jq -r '.slot')
-echo slotNo: ${slotNo}
+```bash
+slotsPerKESPeriod=$(jq -r '.slotsPerKESPeriod' /etc/cardano/shelley-genesis.json)
+currentSlot=$(cardano-cli query tip | jq -r '.slot')
+kesPeriod=$(( currentSlot / slotsPerKESPeriod ))
+echo "Current KES period: $kesPeriod"
 ```
 
-Find `kesPeriod` by dividing the slot tip number by `slotsPerKESPeriod`.
+Transfer this number to your air-gapped machine (write it down or copy it on a USB drive).
 
-```
-kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
-echo kesPeriod: ${kesPeriod}
-startKesPeriod=${kesPeriod}
-echo startKesPeriod: ${startKesPeriod}
-```
+Next, follow [Deployment](/docs/operate-a-stake-pool/block-producer/deployment) to issue the op cert and securely copy credentials to the block producer.
 
-With this calculation, we can generate an operational certificate for the pool. Change the `{startKesPeriod}` in script from the value above accordingly.
+## KES key rotation
 
-```
-cardano-cli node issue-op-cert \
-    --kes-verification-key-file kes.vkey \
-    --cold-signing-key-file cold.skey \
-    --operational-certificate-issue-counter cold.counter \
-    --kes-period <startKesPeriod> \
-    --out-file node.cert
-```
+KES keys expire after 90 days on mainnet (62 days on preprod). When they expire the node stops minting blocks. Set a calendar reminder well before expiry.
 
-## Update Startup Script
+To rotate:
 
-If we run gLiveView now, we will see that the node is running as a Relay.
+1. Generate new KES keys on the air-gapped machine (repeat Step 1 above for KES only)
+2. Get the current KES period from an online node (Step 2 above)
+3. Follow the [Deployment — op cert and transfer](/docs/operate-a-stake-pool/block-producer/deployment) steps to issue a new cert and copy it to the block producer
+4. Send `SIGHUP` to reload credentials without a full restart: `pkill -HUP cardano-node`
 
-```
-cd ..
-./gLiveView.sh
-```
+:::caution Counter must be strictly increasing
+The `cold.counter` file tracks how many op certs have been issued. Never copy an old counter back — an op cert with a lower counter than what the chain has seen will be rejected. The counter increments automatically each time you run `issue-op-cert`.
+:::
 
-![Relay](/img/stake-pool-guide/snsky_relay.jpg)
-
-
-To update the node startup script with the new KES, VRF and Operation Certificate:
-
-```
-cat > startTestNode.sh<< EOF 
-#!/bin/bash
-# Set a variable to indicate the port where the Cardano Node listens
-PORT=6001
-# Set a variable to indicate the local IP address of the computer where Cardano Node runs
-# 0.0.0.0 listens on all local IP addresses for the computer
-HOSTADDR=0.0.0.0
-# Set a variable to indicate the file path to your topology file
-TOPOLOGY=$HOME/cardano-testnet/topology.json
-# Set a variable to indicate the folder where Cardano Node stores blockchain data
-DB_PATH=$HOME/cardano-testnet/db
-# Set a variable to indicate the path to the Cardano Node socket for Inter-process communication (IPC)
-SOCKET_PATH=$HOME/cardano-testnet/db/socket
-# Set a variable to indicate the file path to your main Cardano Node configuration file
-CONFIG=$HOME/cardano-testnet/config.json
-# Set the pool keys
-KES=$HOME/cardano-testnet/keys/kes.skey
-VRF=$HOME/cardano-testnet/keys/vrf.skey
-CERT=$HOME/cardano-testnet/keys/node.cert
-#
-# Run Cardano Node using the options that you set using variables
-#
-cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
-EOF
-```
-
-Restart the node:
-```
-sudo systemctl reload-or-restart cardano-testnode
-```
-
-After the restart, if we run gLiveView again we should see that the node has changed from Relay to Core Node:
-
-![Block Producer](/img/stake-pool-guide/snsky_producer.jpg)
-
-Now we have converted the relay node to block producing node. The next step will be to register the pool on the network.
+For a more secure KES key deployment that keeps the signing key out of persistent storage entirely, see [KES Agent](/docs/operate-a-stake-pool/block-producer/kes-agent).

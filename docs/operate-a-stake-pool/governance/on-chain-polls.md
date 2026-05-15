@@ -6,6 +6,10 @@ description: On-Chain Polls
 image: ../img/og-developer-portal.png
 ---
 
+:::warning Legacy mechanism
+On-chain polls (CIP-0094) are superseded by the full on-chain governance introduced in the Conway era (CIP-1694). For current SPO governance — including voting on hard fork initiation — see [SPO Governance (CIP-1694)](../spo-governance).
+:::
+
 In the 8.0.0 version of Cardano-node, we incorporated a new group of commands to facilitate voting among stake pool operators. An "official" poll is characterized by being endorsed with a genesis delegate key.
 
 :::important

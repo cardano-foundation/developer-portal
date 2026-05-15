@@ -112,7 +112,7 @@ Monitor your testnet transactions:
 
 ## Next steps
 
-- [Build your first transaction](/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions)
+- [Build your first transaction](/docs/learn/cardano-cli/basic-operations/simple-transactions)
 - [Mint native tokens](/docs/build/native-tokens/minting)
 - [Operate a stake pool](/docs/operate-a-stake-pool/)
 - [Integrate Cardano](/docs/build/integrate/overview)
