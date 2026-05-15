@@ -38,10 +38,10 @@ const moves = [
   ['smart-contracts/lessons.md',                                      'docs/smart-contracts/lessons.md'],
   ['docs/get-started/get-started.md',                                 'docs/get-started.md'],
   // (2) filename matches parent dir name
-  ['docs/governance/cardano-governance/cardano-governance.md',                                  'docs/governance/cardano-governance.md'],
-  ['docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts.md',              'docs/get-started/infrastructure/cardano-cli/simple-scripts.md'],
-  ['docs/get-started/infrastructure/cardano-cli/native-assets/native-assets.md',                'docs/get-started/infrastructure/cardano-cli/native-assets.md'],
-  ['docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts.md',              'docs/get-started/infrastructure/cardano-cli/plutus-scripts.md'],
+  ['docs/governance/cardano-governance/cardano-governance.md',     'docs/governance/cardano-governance.md'],
+  ['docs/learn/cardano-cli/simple-scripts/simple-scripts.md',      'docs/learn/cardano-cli/simple-scripts.md'],
+  ['docs/learn/cardano-cli/native-assets/native-assets.md',        'docs/learn/cardano-cli/native-assets.md'],
+  ['docs/learn/cardano-cli/plutus-scripts/plutus-scripts.md',      'docs/learn/cardano-cli/plutus-scripts.md'],
 ];
 
 function moveFile(fromAbs, toAbs) {
