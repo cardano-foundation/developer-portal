@@ -403,7 +403,7 @@ You can also self-host with [TxPipe Dolos](https://docs.txpipe.io/dolos), which 
 - [Blockfrost API docs](https://docs.blockfrost.io/) - endpoint reference.
 - [Maestro](https://www.gomaestro.org/) - another provider.
 - [TxPipe Dolos](https://docs.txpipe.io/dolos) - self-host a Mini Blockfrost API.
-- [ArduinoJSON Library](https://docs.arduino.cc/learn/programming/arduino-json-library) - JSON parsing in Arduino.
+- [ArduinoJSON Library](https://docs.arduino.cc/libraries/arduinojson/) - JSON parsing in Arduino.
 
 
 ---
