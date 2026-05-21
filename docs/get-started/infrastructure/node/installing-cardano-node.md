@@ -114,7 +114,7 @@ tar -xzf result/*.tar.gz -C ~/.local/
 
 ### NixOS deployments
 
-The flake exposes a `nixosModules.cardano-node` output for managing the node declaratively as a systemd service with all configuration in Nix. See [nix/nixos-module.nix](https://github.com/IntersectMBO/cardano-node/blob/master/nix/nixos-module.nix) for the available module options.
+The flake exposes a `nixosModules.cardano-node` output for managing the node declaratively as a systemd service with all configuration in Nix. See [nix/nixos/cardano-node-service.nix](https://github.com/IntersectMBO/cardano-node/blob/master/nix/nixos/cardano-node-service.nix) for the available module options.
 
 </details>
 

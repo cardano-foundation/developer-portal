@@ -623,7 +623,7 @@ export const BuilderTools = [
     preview: require("./images/evolution-sdk.png"),
     website: "https://github.com/IntersectMBO/evolution-sdk",
     getstarted:
-      "https://github.com/IntersectMBO/evolution-sdkinstall",
+      "https://intersectmbo.github.io/evolution-sdk/docs/introduction/getting-started/",
     tags: ["typescript", "transactionbuilder"],
   },
   {
@@ -673,7 +673,7 @@ export const BuilderTools = [
     preview: require("./images/weld.png"),
     website: "https://github.com/Cardano-Forge/weld/",
     getstarted:
-      "https://github.com/Cardano-Forge/weld/tree/main/documentation/",
+      "https://github.com/Cardano-Forge/weld#getting-started",
     tags: ["typescript", "wallet"],
   },
   {
