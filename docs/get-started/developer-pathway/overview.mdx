@@ -5,24 +5,26 @@ sidebar_label: Developer Pathway
 description: Visual map of typical learning and delivery journeys on Cardano, from orientation through tracks, integration, testing, and deeper specialisation.
 ---
 
-import MermaidDiagramFrame from '@site/src/components/MermaidDiagramFrame';
+import Mermaid from '@theme/Mermaid';
 import pathwayChart from '@site/src/data/developer-pathway-chart';
 
-# Cardano Developer Pathway
+## From zero to core contributor or DApp builder
 
-## From zero to core contributor or dApp builder
+The diagram below is one visual overview of typical journeys on Cardano: where you start, what to learn, the tracks you can pick (contracts, frontend, infrastructure), how it all integrates, and where deeper specialisation leads. It is **illustrative only**: many tools, courses, and links are intentionally left out so the chart stays readable.
 
-The **diagram below** is one visual overview of typical journeys on Cardano: where you start, learning and practice, tracks (contracts, frontend, infra), integration, testing, testnets, and deeper specialisations. It is **illustrative only**: we have **not** tried to list every tool, course, or link; many things are left out so the chart stays usable. **Click** a node to open a related page where we attached one; **hover** may show a short tooltip from the diagram renderer. Use the toolbar for **full screen**, **zoom** (1:1 reset, +/−), or **Ctrl/Cmd + scroll** while the pointer is over the diagram area.
+## How to read this diagram
 
----
+The chart organises the journey using four ideas. They are not strict job titles or fixed steps, just a way to keep the picture readable.
+
+- **Phase**: a broad stage of your journey (orientation, cross-cutting knowledge, intermediate projects, and shipping). Most builders move through every phase, in roughly this order.
+- **Track**: the main area you specialise in *while* moving through the phases (smart contracts, frontend, or infrastructure). You pick one as your primary focus, but you will touch the others.
+- **Ramp**: a short series of progressively harder *practice projects* used to bridge fundamentals and production work (vending machine, NFT minter, simple DEX, full-stack app).
+- **Specialisation**: deeper focus areas you can pursue *after* shipping a first mainnet project (DeFi, layer 2, NFT and gaming, governance, bridges, or core protocol).
 
 ## Full pathway diagram
 
-<MermaidDiagramFrame
-  hint="Full screen uses the whole viewport"
-  diagram={pathwayChart}
-/>
+<Mermaid value={pathwayChart} />
 
-This pathway is a planning guide, not a rigid sequence. Expect to revisit fundamentals, tooling, and integration as your dApp grows.
+This pathway is a planning guide, not a rigid sequence. Expect to revisit fundamentals, tooling, and integration as your DApp grows.
 
-Follow the links from the nodes that matter to you, then use the other **Get Started** sections (networks, infrastructure, and client SDKs) for step-by-step setup and references.
+Use the other **Get Started** sections (networks, infrastructure, and client SDKs) for step-by-step setup and references.

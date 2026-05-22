@@ -7,7 +7,8 @@
  * Concrete recommendations live in the dedicated docs pages so the
  * diagram does not need to be re-edited as the ecosystem evolves.
  */
-const pathwayChart = `flowchart TD
+const pathwayChart = `%%{init: {"flowchart": {"subGraphTitleMargin": {"top": 24, "bottom": 12}, "nodeSpacing": 40, "rankSpacing": 60}}}%%
+flowchart TD
   subgraph phase1 [Phase 1 · Orientation and entry]
     start([Where are you starting])
     beginner[Complete beginner no code yet]
@@ -28,7 +29,7 @@ const pathwayChart = `flowchart TD
 
   subgraph phase2 [Phase 2 · Cross-cutting knowledge]
     stack2026["Pick a default stack an on-chain language an off-chain SDK an API provider"]
-    noFullNode["Most dApps do not need a synced full node use an API provider"]
+    noFullNode["Most DApps do not need a synced full node use an API provider"]
     cborNote["Binary encoding CBOR in transactions datums redeemers and addresses"]
     cipPick["Key CIPs wallet connection native tokens reference scripts datums governance"]
   end
@@ -60,7 +61,7 @@ const pathwayChart = `flowchart TD
   readySpec --> pickTrack{Choose primary track}
 
   pickTrack --> trackSc[Smart contracts on-chain logic]
-  pickTrack --> trackFe[Frontend dApp UI]
+  pickTrack --> trackFe[Frontend DApp UI]
   pickTrack --> trackInfra[Infrastructure node indexers APIs SPO]
 
   trackSc --> langPick{On-chain language}
@@ -93,7 +94,7 @@ const pathwayChart = `flowchart TD
 
   walletCip --> walletOps["Connect flows errors mobile hardware light vs full node"]
 
-  walletOps --> feBuild["dApp UI tx building chain state UX"]
+  walletOps --> feBuild["DApp UI tx building chain state UX"]
 
   trackInfra --> nodeCli[Run a Cardano node and CLI]
   nodeCli --> indexerLayer[Indexer chain data and queryable store]
@@ -120,7 +121,7 @@ const pathwayChart = `flowchart TD
   debugLayer --> auditGate{External audit needed}
 
   auditGate -->|DeFi or high value| auditFirm[Engage an external audit firm]
-  auditGate -->|Simple dApp| shipTestnet
+  auditGate -->|Simple DApp| shipTestnet
 
   auditFirm --> shipTestnet
 
