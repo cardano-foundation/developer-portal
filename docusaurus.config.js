@@ -128,6 +128,11 @@ module.exports = {
       contextualSearch: true,
     },
 
+    // Google Tag Manager (use containerId GTM-… — not the gtag plugin, which expects a GA4 G-… ID)
+    googleTagManager: {
+      containerId: "GTM-5NM3NX4",
+    },
+
     // Navbar title, logo and items
     navbar: {
       hideOnScroll: false,
@@ -258,12 +263,6 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
-        },
-        gtag: {
-          // You can also use your "G-" Measurement ID here.
-          trackingID: 'GTM-5NM3NX4',
-          // Optional fields.
-          anonymizeIP: true, // Should IPs be anonymized?
         },
       },
     ],

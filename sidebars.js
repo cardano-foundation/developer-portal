@@ -9,26 +9,6 @@ module.exports = {
       },
       items: [
       {
-        type: "link",
-        label: "Networks",
-        href: "/docs/get-started/networks/overview/",
-      },
-      {
-        type: "link",
-        label: "Infrastructure",
-        href: "/docs/get-started/infrastructure/overview/",
-      },
-      {
-        type: "link",
-        label: "Client SDKs",
-        href: "/docs/get-started/client-sdks/overview/",
-      },
-      {
-        type: "link",
-        label: "Developer Pathway",
-        href: "/docs/get-started/developer-pathway/overview/",
-      },
-      {
         type: "category",
         label: "Networks",
         link: {
@@ -257,13 +237,9 @@ module.exports = {
         ],
       },
       {
-        type: "category",
+        type: "doc",
+        id: "get-started/developer-pathway/overview",
         label: "Developer Pathway",
-        link: {
-          type: "doc",
-          id: "get-started/developer-pathway/overview",
-        },
-        items: ["get-started/developer-pathway/overview"],
       },
       ],
     },
