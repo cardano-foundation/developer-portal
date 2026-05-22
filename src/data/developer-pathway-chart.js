@@ -1,6 +1,6 @@
 /**
  * Mermaid source for the Cardano Developer Pathway diagram.
- * Consumed by overview.mdx via MermaidDiagramFrame + @theme/Mermaid.
+ * Consumed by overview.mdx via the native @theme/Mermaid component.
  *
  * Node labels intentionally describe categories of work and tools
  * rather than specific products, SDKs, CIP numbers, or audit firms.
