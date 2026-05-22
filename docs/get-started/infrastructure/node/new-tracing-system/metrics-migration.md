@@ -24,6 +24,11 @@ This is a comprehensive migration guide for metrics names. When switching from l
 
 Within the new system, the names are stable; thus, migrating them is a one-time effort.
 
+The new tracing system exposes metrics in two naming variants, controlled by the `MetricsPrefix` setting in your tracer config:
+
+- **Full suffixes variant** (default) — metric names include a `_total`, `_bytes`, or similar suffix to follow Prometheus conventions. This is the variant used in the official Grafana dashboard.
+- **No suffix variant** — metric names match the legacy system more closely, useful if you are migrating existing dashboards or alert rules.
+
 ### Full suffixes variant
 
 In the legacy system, the metrics naming schema isn't fully consistent wrt. name suffixes. Hence, the new system includes several name changes to improve that, as well as be more compliant with existing standards.

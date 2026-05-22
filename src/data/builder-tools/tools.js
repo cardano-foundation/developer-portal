@@ -395,8 +395,8 @@ export const BuilderTools = [
     description: "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
     preview: require("./images/frankenwallet.png"),
     website: "https://frankenwallet.com",
-    getstarted: "/docs/operate-a-stake-pool/frankenwallet/",
-    tags: ["operatortool"],
+    getstarted: "/docs/learn/educational-resources/air-gap",
+    tags: ["security"],
   },
   {
     title: "CARP (Cardano Postgres Indexer)",

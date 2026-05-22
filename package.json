@@ -6,7 +6,7 @@
     "build-stats": "node scripts/generate-stats.js",
     "docusaurus": "docusaurus",
     "start": "yarn build-stats && docusaurus start",
-    "build": "yarn build-stats && docusaurus build",
+    "build": "yarn build-stats && docusaurus build && node scripts/fix-llms-paths.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
@@ -39,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "docusaurus-plugin-llms": "0.4.0"
   }
 }
