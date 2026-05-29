@@ -94,7 +94,14 @@ cardano-cli stake-pool registration-certificate \
 | `--pool-pledge` | Amount in lovelace you commit to keep delegated. Higher pledge improves desirability. |
 | `--pool-cost` | Fixed fee per epoch in lovelace taken before margin. Minimum is `minPoolCost` (currently 170 ADA on mainnet). |
 | `--pool-margin` | Your variable fee as a fraction (e.g. `0.01` = 1%). |
-| `--single-host-pool-relay` | DNS name of your relay. Add one `--single-host-pool-relay` + `--pool-relay-port` pair per relay. For IP-based relays use `--pool-relay-ipv4`. |
+
+### Relay address
+
+You can register your relay(s) using either the customary single host method of DNS A or AAAA records, or as multi-host corresponding to a DNS SRV record (supported since cardano-node 10.6). You can't provide both.
+
+#### Single host method
+
+To register using a domain name via a DNS A or AAAA record, use `--single-host-pool-relay DNS_NAME` + `--pool-relay-port PORT` pair per relay. For IP-based relays use `--pool-relay-ipv4`.
 
 :::note Multiple relays
 Add one flag pair per relay:
@@ -102,6 +109,28 @@ Add one flag pair per relay:
     --single-host-pool-relay relay1.yourpool.example.com --pool-relay-port 3001 \
     --single-host-pool-relay relay2.yourpool.example.com --pool-relay-port 3001 \
 ```
+:::
+
+#### Multi host method (SRV record)
+
+For added flexibility, you can provide your domain name whose DNS zone file contains SRV records per table below. To register using this method, use `--multi-host-pool-relay` option in the `cardano-cli` command above instead.
+
+This method also provides a mechanism for exposing related decentralised protocols co-deployed with a Cardano node, such as Mithril or Hydra. You only need to specify the records for the services your pool provides.
+
+| Service | Required SRV record |
+| ---      | ---    |
+| Cardano node | `_cardano._tcp` |
+| DMQ node (Mithril protocol) | `_dmq._mithril._cardano_.tcp` |
+| Mithril aggregator | `_aggregator._mithril._cardano._tcp` |
+
+:::warning[Important]
+The prefix from the second column is not part of the pool registration certificate and is not entered on the CLI. It should only be a part of your DNS record which is looked up when resolving your domain name.
+:::
+
+For eg, to specify access to your Cardano node relays, there should be a _cardano._tcp SRV entry in the DNS record for your registration domain `yourpool.example.com`. For details, see [CIP-0155](https://cips.cardano.org/cip/CIP-0155) and current SRV [registry](https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0155/registry.json).
+
+:::note
+`--pool-relay-port` is not used with this approach since your SRV record specifies which ports to use.
 :::
 
 ## Generate the delegation certificate

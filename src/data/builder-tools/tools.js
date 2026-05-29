@@ -623,7 +623,7 @@ export const BuilderTools = [
     preview: require("./images/evolution-sdk.png"),
     website: "https://github.com/IntersectMBO/evolution-sdk",
     getstarted:
-      "https://github.com/IntersectMBO/evolution-sdkinstall",
+      "https://intersectmbo.github.io/evolution-sdk/docs/introduction/getting-started/",
     tags: ["typescript", "transactionbuilder"],
   },
   {
@@ -673,7 +673,7 @@ export const BuilderTools = [
     preview: require("./images/weld.png"),
     website: "https://github.com/Cardano-Forge/weld/",
     getstarted:
-      "https://github.com/Cardano-Forge/weld/tree/main/documentation/",
+      "https://github.com/Cardano-Forge/weld#getting-started",
     tags: ["typescript", "wallet"],
   },
   {
@@ -828,6 +828,14 @@ export const BuilderTools = [
     website: "https://github.com/input-output-hk/mithril",
     getstarted: "https://mithril.network/doc/manual/welcome",
     tags: ["rust", "cli", "javascript", "typescript"],
+  },
+  {
+    title: "ODATANO",
+    description: "ODATANO connects Enterprise systems to the Cardano blockchain via a SAP CAP- based OData V4 API, enabling secure on - chain data access, transaction building & execution.",
+    preview: require("./images/odatano.png"),
+    website: "https://github.com/ODATANO/ODATANO",
+    getstarted: "https://odatano.dev",
+    tags: ["javascript", "typescript", "http", "json"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
