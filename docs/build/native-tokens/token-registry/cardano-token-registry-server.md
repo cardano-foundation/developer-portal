@@ -13,6 +13,22 @@ The Cardano Token Metadata Server provides a robust API for querying metadata as
 
 The API is accessible at `https://tokens.cardano.org` and is subject to the [API Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/API_Terms_of_Use.md). The OpenAPI documentation is available at [https://tokens.cardano.org/apidocs](https://tokens.cardano.org/apidocs), providing detailed specifications for endpoints, parameters, and response formats.
 
+## Network Environments
+
+The Cardano Foundation runs the Token Metadata Server for both **mainnet** and the **preprod** testnet, so developers can resolve metadata while building and testing before going live.
+
+| Network | API base URL | OpenAPI docs |
+| --- | --- | --- |
+| Mainnet | `https://tokens.cardano.org` | [`https://tokens.cardano.org/apidocs`](https://tokens.cardano.org/apidocs) |
+| Preprod | `https://preprod.tokens.cardano.org` | [`https://preprod.tokens.cardano.org/apidocs`](https://preprod.tokens.cardano.org/apidocs) |
+
+Both instances expose the same API v2 surface (the endpoints and parameters described below) and combine the two metadata standards in the same way:
+
+- **CIP-68 (on-chain)**: metadata is sourced directly from the chain of the corresponding network. The preprod instance reads CIP-68 reference NFTs minted on the preprod testnet.
+- **CIP-26 (off-chain)**: on mainnet, metadata comes from the [cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry) repository. On preprod, CIP-26 metadata is sourced from the [IOHK metadata-registry-testnet](https://github.com/input-output-hk/metadata-registry-testnet) repository.
+
+To query preprod metadata, use the same requests shown in this page with the `https://preprod.tokens.cardano.org` base URL.
+
 ## Key Features of API v2
 
 - **Dual Standard Support**: Retrieves metadata for tokens using CIP-26 (off-chain, stored in the Cardano Token Registry) or CIP-68 (on-chain, stored in datums).
