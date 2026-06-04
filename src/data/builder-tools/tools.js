@@ -337,9 +337,9 @@ export const BuilderTools = [
   {
     title: "Pebble",
     description: "Pebble is a strongly-typed domain-specific language (DSL) for writing Cardano smart contracts. A simple, yet rock solid, functional language with an imperative bias, targeting UPLC.",
-    preview: require("./images/plu-ts.png"),
+    preview: require("./images/pebble.png"),
     website: "https://pluts.harmoniclabs.tech/",
-    getstarted: "/docs/get-started/plu-ts/",
+    getstarted: "/docs/build/smart-contracts/languages/pebble",
     tags: ["smartcontracts", "typescript"],
   },
   {

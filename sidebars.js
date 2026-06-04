@@ -612,7 +612,7 @@ module.exports = {
               },
               "build/smart-contracts/languages/plinth",
               "build/smart-contracts/languages/opshin",
-              "build/smart-contracts/languages/plu-ts",
+              "build/smart-contracts/languages/pebble",
               "build/smart-contracts/languages/scalus",
               "build/smart-contracts/languages/marlowe",
             ],
