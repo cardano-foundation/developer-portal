@@ -774,7 +774,7 @@ export const BuilderTools = [
   },
   {
     title: "Yaci Store",
-    description: "aci Store is a modular, high-performance Cardano blockchain indexer and datastore that provides a flexible foundation for building blockchain applications. Built on top of the Yaci library, it offers both out-of-the-box functionality and extensive customization options through its plugin framework.",
+    description: "Yaci Store is a modular, high-performance Cardano blockchain indexer and datastore that provides a flexible foundation for building blockchain applications. Built on top of the Yaci library, it offers both out-of-the-box functionality and extensive customization options through its plugin framework.",
     preview: require("./images/yaci-store.png"),
     website: "https://github.com/bloxbean/yaci-store",
     getstarted: "https://store.yaci.xyz/",
