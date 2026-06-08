@@ -405,15 +405,6 @@ export const BuilderTools = [
     maintainerPick: true,
   },
   {
-    title: "Cardano Verify Datasignature",
-    description: "A lightweight typescript library to verify a cip30 datasignature.",
-    website: "https://github.com/cardano-foundation/cardano-verify-datasignature",
-    docs: null,
-    repository: "https://github.com/cardano-foundation/cardano-verify-datasignature",
-    category: "sdk",
-    properties: ["typescript"],
-  },
-  {
     title: "OpShin",
     description:
       "Opshin is a pythonic language for writing smart contracts on the Cardano blockchain. Opshin is a strict subset of Python, this means anyone who knows Python can get up to speed on Opshin pretty quickly.",
