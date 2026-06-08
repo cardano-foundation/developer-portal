@@ -3,6 +3,7 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import {
@@ -205,13 +206,22 @@ export default function ToolDetail({ slug }) {
         )}
 
         <header className={styles.header}>
-          <div
-            className={styles.iconFallback}
-            style={{ backgroundColor: avatarColor }}
-            aria-hidden
-          >
-            {tool.title.charAt(0).toUpperCase()}
-          </div>
+          {tool.icon ? (
+            <img
+              className={styles.iconImage}
+              src={useBaseUrl(tool.icon)}
+              alt=""
+              aria-hidden
+            />
+          ) : (
+            <div
+              className={styles.iconFallback}
+              style={{ backgroundColor: avatarColor }}
+              aria-hidden
+            >
+              {tool.title.charAt(0).toUpperCase()}
+            </div>
+          )}
           <div className={styles.headerText}>
             <h1 className={styles.title}>{tool.title}</h1>
           </div>

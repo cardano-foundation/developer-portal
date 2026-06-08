@@ -7,6 +7,7 @@ export function ensureBuilderToolValid(tool) {
     const validKeys = [
       "title",
       "description",
+      "icon",
       "website",
       "docs",
       "repository",

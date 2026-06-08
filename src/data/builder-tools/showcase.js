@@ -52,7 +52,7 @@ function adapt(tool) {
     category: tool.category,
     properties: tool.properties || [],
     maintainerPick: !!tool.maintainerPick,
-    icon: null,
+    icon: tool.icon ?? null,
   };
 }
 
