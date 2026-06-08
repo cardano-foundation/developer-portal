@@ -7,7 +7,6 @@ export function ensureBuilderToolValid(tool) {
     const validKeys = [
       "title",
       "description",
-      "preview",
       "website",
       "docs",
       "repository",
@@ -35,18 +34,6 @@ export function ensureBuilderToolValid(tool) {
       !(tool.website.startsWith("http://") || tool.website.startsWith("https://"))
     ) {
       throw new Error(`website does not look like a valid url: ${tool.website}`);
-    }
-  }
-
-  function checkPreview() {
-    if (
-      !tool.preview ||
-      (tool.preview instanceof String &&
-        (tool.preview.startsWith("http") || tool.preview.startsWith("//")))
-    ) {
-      throw new Error(
-        `bad image preview=[${tool.preview}]. The image must be hosted in the repo, not a remote URL.`
-      );
     }
   }
 
@@ -115,7 +102,6 @@ export function ensureBuilderToolValid(tool) {
     checkTitle();
     checkDescription();
     checkWebsite();
-    checkPreview();
     checkCategory();
     checkProperties();
     checkDocs();

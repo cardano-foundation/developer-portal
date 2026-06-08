@@ -66,14 +66,7 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
 
 **Step-by-Step Process:**
 
-1. **Prepare your tool image**
-   - Create a PNG or JPG file
-   - Name it descriptively (e.g., `your-tool-name.png`)
-
-2. **Add your image to the repository**
-   - Place it in: `src/data/builder-tools/images/your-tool-name.png`
-
-3. **Add your tool entry**
+1. **Add your tool entry**
    - Edit: `src/data/builder-tools/tools.js`
    - Add your entry to the **END** of the BuilderTools array
    - Use this format:
@@ -82,7 +75,6 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
    {
      title: "Your Tool Name",
      description: "Brief description of what your tool does",
-     preview: require("./images/your-tool-name.png"),
      category: "sdk",                // exactly ONE — see Categories in tags.js
      properties: ["typescript"],     // language + interface facets — see tags.js
      website: "https://your-tool.com",
@@ -91,7 +83,7 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
    }
    ```
 
-4. **Choose a category and properties**
+2. **Choose a category and properties**
 
    **Important:**
    - Pick exactly **one** primary `category` that best describes what the tool *is*. The 11 categories live in `src/data/builder-tools/tags.js`, each mapped to an industry-standard equivalent (e.g. `sdk` ≈ ethers/web3.py, `api` ≈ Infura/Alchemy, `indexer` ≈ The Graph).
@@ -99,11 +91,11 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
    - Open source is encouraged: set `repository` to your public repo (it adds an "Open Source" badge + a GitHub link on the tool's page). Hosted/closed services are welcome too — use `null`.
    - Do NOT set `maintainerPick` yourself (maintainers choose those).
 
-5. **Test your submission**
+3. **Test your submission**
    - Run `yarn build` (must complete without errors)
    - Check that your tool displays correctly
 
-6. **Submit your pull request**
+4. **Submit your pull request**
    - Use the "Add Builder Tool" GitHub PR template
    - Fill out the checklist in the template
 
