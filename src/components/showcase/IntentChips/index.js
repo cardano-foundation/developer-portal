@@ -12,13 +12,13 @@ import styles from "./styles.module.css";
 // Tool-flavored intents. Each maps to a single domain category. Clicking a chip
 // applies that category as a filter (and toggles off if already active).
 const INTENTS = [
-  { id: "smartcontracts", tags: ["smartcontracts"], label: "Write smart contracts" },
-  { id: "transactionbuilder", tags: ["transactionbuilder"], label: "Build transactions" },
-  { id: "provider", tags: ["provider"], label: "Query the chain" },
+  { id: "smart-contracts", tags: ["smart-contracts"], label: "Write smart contracts" },
+  { id: "sdk", tags: ["sdk"], label: "Build transactions" },
+  { id: "api", tags: ["api"], label: "Query the chain" },
   { id: "indexer", tags: ["indexer"], label: "Index on-chain data" },
-  { id: "nodeclient", tags: ["nodeclient"], label: "Run a node" },
+  { id: "node", tags: ["node"], label: "Run a node" },
   { id: "wallet", tags: ["wallet"], label: "Integrate a wallet" },
-  { id: "operatortool", tags: ["operatortool"], label: "Operate a pool" },
+  { id: "operations", tags: ["operations"], label: "Operate a pool" },
 ];
 
 function arraysEqualUnordered(a, b) {

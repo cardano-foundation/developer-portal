@@ -7,6 +7,8 @@ import {
   CategoryList,
   Properties,
   PropertyList,
+  LanguageList,
+  InterfaceList,
 } from "@site/src/data/builder-tools/showcase";
 import {
   readSearchTags,
@@ -15,8 +17,9 @@ import {
 
 import styles from "./styles.module.css";
 
-// Expandable inline filter panel. Open/closed is local component state so toggling
-// the panel does not push a URL change that re-runs every page-level location effect.
+// Expandable inline filter panel: one Category (single-select) + Language and
+// Interface property groups (multi-select). Open/closed is local state so toggling
+// the panel does not push a URL change.
 export default function AppFilterPanel() {
   const location = useLocation();
   const history = useHistory();
@@ -43,8 +46,7 @@ export default function AppFilterPanel() {
     (cat) => {
       const others = selectedTags.filter((t) => !CategoryList.includes(t));
       const nextTags = activeCategory === cat ? others : [cat, ...others];
-      const search = replaceSearchTags(location.search, nextTags);
-      history.push({ ...location, search });
+      history.push({ ...location, search: replaceSearchTags(location.search, nextTags) });
     },
     [selectedTags, activeCategory, location, history]
   );
@@ -55,18 +57,47 @@ export default function AppFilterPanel() {
       const nextTags = has
         ? selectedTags.filter((t) => t !== prop)
         : [...selectedTags, prop];
-      const search = replaceSearchTags(location.search, nextTags);
-      history.push({ ...location, search });
+      history.push({ ...location, search: replaceSearchTags(location.search, nextTags) });
     },
     [selectedTags, location, history]
   );
 
   const clearAll = useCallback(() => {
-    const search = replaceSearchTags(location.search, []);
-    history.push({ ...location, search });
+    history.push({ ...location, search: replaceSearchTags(location.search, []) });
   }, [location, history]);
 
   const buttonLabel = activeCount ? `Filter (${activeCount})` : "Filter";
+
+  function propertyGroup(heading, list) {
+    return (
+      <div className={styles.section}>
+        <h3 className={styles.heading}>{heading}</h3>
+        <ul className={styles.pillList}>
+          {list.map((prop) => {
+            const isActive = activeProperties.includes(prop);
+            const def = Properties[prop];
+            return (
+              <li key={prop}>
+                <button
+                  type="button"
+                  onClick={() => toggleProperty(prop)}
+                  className={clsx(styles.pill, isActive && styles.pillActive)}
+                  style={
+                    isActive
+                      ? { backgroundColor: def.color, borderColor: def.color }
+                      : undefined
+                  }
+                  aria-pressed={isActive}
+                >
+                  {def.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.wrap}>
@@ -82,7 +113,7 @@ export default function AppFilterPanel() {
       {open && (
         <div id="tools-filter-panel" className={styles.panel}>
           <div className={styles.section}>
-            <h3 className={styles.heading}>Categories</h3>
+            <h3 className={styles.heading}>Category</h3>
             <ul className={styles.pillList}>
               {CategoryList.map((cat) => {
                 const isActive = activeCategory === cat;
@@ -107,32 +138,8 @@ export default function AppFilterPanel() {
               })}
             </ul>
           </div>
-          <div className={styles.section}>
-            <h3 className={styles.heading}>Languages &amp; technologies</h3>
-            <ul className={styles.pillList}>
-              {PropertyList.map((prop) => {
-                const isActive = activeProperties.includes(prop);
-                const def = Properties[prop];
-                return (
-                  <li key={prop}>
-                    <button
-                      type="button"
-                      onClick={() => toggleProperty(prop)}
-                      className={clsx(styles.pill, isActive && styles.pillActive)}
-                      style={
-                        isActive
-                          ? { backgroundColor: def.color, borderColor: def.color }
-                          : undefined
-                      }
-                      aria-pressed={isActive}
-                    >
-                      {def.label}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          {propertyGroup("Language", LanguageList)}
+          {propertyGroup("Interface", InterfaceList)}
           {activeCount > 0 && (
             <button type="button" onClick={clearAll} className={styles.clearButton}>
               Clear all filters

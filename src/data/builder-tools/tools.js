@@ -35,7 +35,9 @@ export const BuilderTools = [
     preview: require("./images/cardano-cli.png"),
     website: "https://github.com/IntersectMBO/cardano-cli#overview-of-the-cardano-cli-repository",
     getstarted: null,
-    tags: ["favorite", "cli", "transactionbuilder"]
+    category: "sdk",
+    properties: [],
+    maintainerPick: true,
   },
   {
     title: "bech32",
@@ -43,7 +45,8 @@ export const BuilderTools = [
     preview: require("./images/bech32.png"),
     website: "https://github.com/IntersectMBO/bech32/#readme",
     getstarted: null,
-    tags: ["cli", "serialization"]
+    category: "sdk",
+    properties: [],
   },
   {
     title: "cardano-wallet",
@@ -51,7 +54,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-wallet.png"),
     website: "https://github.com/cardano-foundation/cardano-wallet/#overview",
     getstarted: "https://cardano-foundation.github.io/cardano-wallet/",
-    tags: ["http", "json", "wallet"]
+    category: "wallet",
+    properties: ["rest"],
   },
   {
     title: "cardano-graphql",
@@ -59,7 +63,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-graphql.png"),
     website: "https://github.com/cardano-foundation/cardano-graphql/#overview",
     getstarted: "https://github.com/cardano-foundation/cardano-graphql#getting-started",
-    tags: ["indexer", "http"]
+    category: "indexer",
+    properties: ["graphql"],
   },
   {
     title: "cardano-rosetta-java",
@@ -67,7 +72,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-rosetta-java.png"),
     website: "https://github.com/cardano-foundation/cardano-rosetta-java",
     getstarted: "https://cardano-foundation.github.io/cardano-rosetta-java/",
-    tags: ["http", "json", "java"]
+    category: "integration",
+    properties: ["rest", "java"],
   },
   {
     title: "cardano-db-sync",
@@ -75,7 +81,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-db-sync.png"),
     website: "https://github.com/IntersectMBO/cardano-db-sync#cardano-db-sync",
     getstarted: null,
-    tags: ["indexer", "sql"]
+    category: "indexer",
+    properties: [],
   },
   {
     title: "cardano-addresses",
@@ -83,7 +90,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-addresses.png"),
     website: "https://github.com/IntersectMBO/cardano-addresses#overview",
     getstarted: "https://github.com/IntersectMBO/cardano-addresses#command-line",
-    tags: ["cli", "serialization"]
+    category: "sdk",
+    properties: [],
   },
   {
     title: "Blockfrost",
@@ -91,7 +99,9 @@ export const BuilderTools = [
     preview: require("./images/blockfrost.png"),
     website: "https://blockfrost.io",
     getstarted: "/docs/get-started/blockfrost/get-started/",
-    tags: ["favorite", "http", "json", "hosted", "provider"],
+    category: "api",
+    properties: ["rest"],
+    maintainerPick: true,
   },
   {
     title: "StakePool Operator Scripts",
@@ -99,7 +109,8 @@ export const BuilderTools = [
     preview: require("./images/spo-scripts-gitmachtl.png"),
     website: "https://github.com/gitmachtl/scripts",
     getstarted: null,
-    tags: ["operatortool", "cli"],
+    category: "operations",
+    properties: [],
   },
   {
     title: "Cardano Serialization Library",
@@ -108,7 +119,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-serialization-lib.png"),
     website: "https://github.com/Emurgo/cardano-serialization-lib",
     getstarted: "/docs/get-started/cardano-serialization-lib/overview/",
-    tags: ["serialization", "rust"],
+    category: "sdk",
+    properties: ["rust"],
   },
   {
     title: "Cardano Transaction Library",
@@ -116,7 +128,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-transaction-lib.png"),
     website: "https://github.com/Plutonomicon/cardano-transaction-lib/",
     getstarted: "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
-    tags: ["purescript", "transactionbuilder"]
+    category: "sdk",
+    properties: ["purescript"],
   },
   {
     title: "Ogmios",
@@ -124,7 +137,9 @@ export const BuilderTools = [
     preview: require("./images/ogmios.png"),
     website: "https://ogmios.dev",
     getstarted: "/docs/get-started/ogmios/",
-    tags: ["favorite", "websocket", "json", "nodeclient"],
+    category: "node",
+    properties: ["websocket"],
+    maintainerPick: true,
   },
   {
     title: "Cardano Client Library",
@@ -133,7 +148,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-client-lib.png"),
     website: "https://github.com/bloxbean/cardano-client-lib",
     getstarted: null,
-    tags: ["java", "transactionbuilder"],
+    category: "sdk",
+    properties: ["java"],
   },
   {
     title: "Guild Operators Suite",
@@ -141,7 +157,9 @@ export const BuilderTools = [
     preview: require("./images/guild-operators.png"),
     website: "https://cardano-community.github.io/guild-operators/",
     getstarted: "/docs/operate-a-stake-pool/guild-ops-suite/",
-    tags: ["favorite", "operatortool"],
+    category: "operations",
+    properties: [],
+    maintainerPick: true,
   },
   {
     title: "Marlowe",
@@ -149,7 +167,8 @@ export const BuilderTools = [
     preview: require("./images/marlowe.png"),
     website: "https://marlowe-lang.org/",
     getstarted: "https://playground.marlowe-lang.org/",
-    tags: ["smartcontracts"],
+    category: "smart-contracts",
+    properties: [],
   },
   {
     title: "PyCardano",
@@ -158,7 +177,8 @@ export const BuilderTools = [
     preview: require("./images/pycardano.png"),
     website: "https://github.com/Python-Cardano/pycardano",
     getstarted: "https://pycardano.readthedocs.io/en/latest",
-    tags: ["python", "transactionbuilder"],
+    category: "sdk",
+    properties: ["python"],
   },
   {
     title: "Oura",
@@ -167,7 +187,8 @@ export const BuilderTools = [
     preview: require("./images/oura.png"),
     website: "https://github.com/txpipe/oura",
     getstarted: null,
-    tags: ["rust", "nodeclient"],
+    category: "indexer",
+    properties: ["rust"],
   },
   {
     title: "Typhonjs",
@@ -176,7 +197,8 @@ export const BuilderTools = [
     preview: require("./images/typhonjs.jpg"),
     website: "https://github.com/StricaHQ/typhonjs",
     getstarted: null,
-    tags: ["javascript", "transactionbuilder"],
+    category: "sdk",
+    properties: ["javascript"],
   },
   {
     title: "IntelliJ IDE",
@@ -185,7 +207,8 @@ export const BuilderTools = [
     preview: require("./images/IDE.png"),
     website: "https://intelliada.bloxbean.com",
     getstarted: null,
-    tags: ["java", "IDE"],
+    category: "dev-env",
+    properties: ["java"],
   },
   {
     title: "Koios",
@@ -193,7 +216,8 @@ export const BuilderTools = [
     preview: require("./images/koios.png"),
     website: "https://koios.rest",
     getstarted: "/docs/get-started/koios/",
-    tags: ["http", "json", "hosted", "provider"],
+    category: "api",
+    properties: ["rest"],
   },
   {
     title: "Pallas",
@@ -201,7 +225,8 @@ export const BuilderTools = [
     preview: require("./images/pallas.png"),
     website: "https://github.com/txpipe/pallas#readme",
     getstarted: null,
-    tags: ["rust", "serialization"]
+    category: "sdk",
+    properties: ["rust"],
   },
   {
     title: "Scrolls",
@@ -209,7 +234,8 @@ export const BuilderTools = [
     preview: require("./images/scrolls.png"),
     website: "https://github.com/txpipe/scrolls#readme",
     getstarted: null,
-    tags: ["indexer", "redis"]
+    category: "indexer",
+    properties: [],
   },
   {
     title: "Kupo",
@@ -217,7 +243,8 @@ export const BuilderTools = [
     preview: require("./images/kupo.png"),
     website: "https://github.com/CardanoSolutions/kupo#readme",
     getstarted: null,
-    tags: ["indexer", "http", "json"]
+    category: "indexer",
+    properties: ["rest"],
   },
   {
     title: "cardano-multiplatform-lib",
@@ -225,7 +252,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-multiplatform-lib.png"),
     website: "https://github.com/dcSpark/cardano-multiplatform-lib#cardano-multiplatform-lib",
     getstarted: null,
-    tags: ["rust", "serialization"]
+    category: "sdk",
+    properties: ["rust"],
   },
   {
     title: "cardano-js-sdk",
@@ -233,7 +261,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-js-sdk.png"),
     website: "https://github.com/input-output-hk/cardano-js-sdk/#readme",
     getstarted: null,
-    tags: ["transactionbuilder", "javascript"]
+    category: "sdk",
+    properties: ["javascript"],
   },
   {
     title: "Lucid",
@@ -241,7 +270,8 @@ export const BuilderTools = [
     preview: require("./images/lucid.png"),
     website: "https://github.com/Berry-Pool/lucid#readme",
     getstarted: "https://lucid.spacebudz.io/docs/getting-started/choose-wallet/",
-    tags: ["typescript", "transactionbuilder"]
+    category: "sdk",
+    properties: ["typescript"],
   },
   {
     title: "Plutarch",
@@ -249,7 +279,8 @@ export const BuilderTools = [
     preview: require("./images/plutarch.png"),
     website: "https://github.com/Plutonomicon/plutarch#plutarch",
     getstarted: null,
-    tags: ["smartcontracts", "haskell"]
+    category: "smart-contracts",
+    properties: ["haskell"],
   },
   {
     title: "gOuroboros",
@@ -257,7 +288,8 @@ export const BuilderTools = [
     preview: require("./images/gOuroboros.png"),
     website: "https://github.com/blinklabs-io/gouroboros",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
-    tags: ["golang", "nodeclient"],
+    category: "node",
+    properties: ["golang"],
   },
   {
     title: "Adder",
@@ -265,7 +297,8 @@ export const BuilderTools = [
     preview: require("./images/adder.png"),
     website: "https://github.com/blinklabs-io/adder",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/adder",
-    tags: ["cli", "golang", "nodeclient"],
+    category: "indexer",
+    properties: ["golang"],
   },
   {
     title: "Cardano Node API",
@@ -273,7 +306,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-node-api.png"),
     website: "https://github.com/blinklabs-io/cardano-node-api",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/cardano-node-api",
-    tags: ["http", "golang", "json", "websocket", "nodeclient"],
+    category: "node",
+    properties: ["rest", "golang", "websocket"],
   },
   {
     title: "HeliosLang",
@@ -281,7 +315,8 @@ export const BuilderTools = [
     preview: require("./images/helioslang.png"),
     website: "https://github.com/Hyperion-BT/Helios",
     getstarted: null,
-    tags: ["javascript", "smartcontracts"],
+    category: "smart-contracts",
+    properties: ["javascript"],
   },
   {
     title: "Pebble",
@@ -289,7 +324,8 @@ export const BuilderTools = [
     preview: require("./images/pebble.png"),
     website: "https://pluts.harmoniclabs.tech/",
     getstarted: "/docs/build/smart-contracts/languages/pebble",
-    tags: ["smartcontracts", "typescript"],
+    category: "smart-contracts",
+    properties: ["typescript"],
   },
   {
     title: "Aiken",
@@ -297,7 +333,9 @@ export const BuilderTools = [
     preview: require("./images/aiken.png"),
     website: "https://aiken-lang.org",
     getstarted: "/docs/get-started/aiken/",
-    tags: ["favorite", "smartcontracts"],
+    category: "smart-contracts",
+    properties: [],
+    maintainerPick: true,
   },
   {
     title: "Cardano Signer",
@@ -305,7 +343,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-signer.png"),
     website: "https://github.com/gitmachtl/cardano-signer",
     getstarted: null,
-    tags: ["operatortool", "cli", "json"],
+    category: "operations",
+    properties: [],
   },
   {
     title: "Mesh",
@@ -313,7 +352,9 @@ export const BuilderTools = [
     preview: require("./images/mesh.png"),
     website: "https://meshjs.dev/",
     getstarted: "/docs/get-started/mesh/overview/",
-    tags: ["favorite", "typescript", "transactionbuilder"]
+    category: "sdk",
+    properties: ["typescript"],
+    maintainerPick: true,
   },
   {
     title: "UTXOS Web3 Services",
@@ -321,7 +362,8 @@ export const BuilderTools = [
     preview: require("./images/utxos.png"),
     website: "https://utxos.dev/",
     getstarted: "/docs/get-started/utxos/overview/",
-    tags: ["hosted", "http", "wallet", "typescript"]
+    category: "api",
+    properties: ["rest", "typescript"],
   },
   {
     title: "Cardano connect with wallet",
@@ -329,7 +371,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-connect-with-wallet.png"),
     website: "https://github.com/cardano-foundation/cardano-connect-with-wallet",
     getstarted: null,
-    tags: ["typescript", "wallet"],
+    category: "wallet",
+    properties: ["typescript"],
   },
   {
     title: "Frankenwallet",
@@ -337,7 +380,8 @@ export const BuilderTools = [
     preview: require("./images/frankenwallet.png"),
     website: "https://frankenwallet.com",
     getstarted: "/docs/learn/educational-resources/air-gap",
-    tags: ["security"],
+    category: "wallet",
+    properties: [],
   },
   {
     title: "CARP (Cardano Postgres Indexer)",
@@ -345,7 +389,8 @@ export const BuilderTools = [
     preview: require("./images/carp.png"),
     website: "https://github.com/dcSpark/carp",
     getstarted: "https://dcspark.github.io/carp/docs/intro",
-    tags: ["indexer", "sql"],
+    category: "indexer",
+    properties: [],
   },
   {
     title: "Demeter.run",
@@ -353,7 +398,9 @@ export const BuilderTools = [
     preview: require("./images/demeter.png"),
     website: "https://demeter.run/",
     getstarted: null,
-    tags: ["favorite", "IDE", "hosted"],
+    category: "dev-env",
+    properties: [],
+    maintainerPick: true,
   },
   {
     title: "Cardano Verify Datasignature",
@@ -361,7 +408,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-verify-datasignature.png"),
     website: "https://github.com/cardano-foundation/cardano-verify-datasignature",
     getstarted: null,
-    tags: ["typescript"],
+    category: "sdk",
+    properties: ["typescript"],
   },
   {
     title: "OpShin",
@@ -370,7 +418,8 @@ export const BuilderTools = [
     preview: require("./images/opshin.png"),
     website: "https://github.com/OpShin/opshin",
     getstarted: "https://opshin.dev/user-manual",
-    tags: ["python", "smartcontracts"],
+    category: "smart-contracts",
+    properties: ["python"],
   },
   {
     title: "Maestro",
@@ -378,15 +427,8 @@ export const BuilderTools = [
     preview: require("./images/maestro.png"),
     website: "https://www.gomaestro.org/dapp-platform",
     getstarted: "https://docs.gomaestro.org/",
-    tags: ["http", "hosted", "provider"]
-  },
-  {
-    title: "Hydra",
-    description: "Hydra is the layer-two scalability solution for Cardano, which aims to increase the speed of transactions (low latency, high throughput) and minimize transaction cost.",
-    preview: require("./images/hydra.png"),
-    website: "https://hydra.family/head-protocol/",
-    getstarted: "https://hydra.family/head-protocol/docs/getting-started",
-    tags: ["haskell"]
+    category: "api",
+    properties: ["rest"],
   },
   {
     title: "NFTCDN",
@@ -394,7 +436,8 @@ export const BuilderTools = [
     preview: require("./images/nftcdn.png"),
     website: "https://nftcdn.io",
     getstarted: null,
-    tags: ["nft", "http", "hosted"]
+    category: "api",
+    properties: ["rest"],
   },
   {
     title: "Atlas",
@@ -403,7 +446,8 @@ export const BuilderTools = [
     preview: require("./images/atlas.jpg"),
     website: "https://atlas-app.io/",
     getstarted: null,
-    tags: ["haskell", "transactionbuilder"],
+    category: "sdk",
+    properties: ["haskell"],
   },
   {
     title: "Yaci DevKit",
@@ -411,7 +455,8 @@ export const BuilderTools = [
     preview: require("./images/yaci-devkit.png"),
     website: "https://github.com/bloxbean/yaci-devkit",
     getstarted: null,
-    tags: ["cli", "testing"]
+    category: "dev-env",
+    properties: [],
   },
   {
     title: "whisky",
@@ -419,7 +464,8 @@ export const BuilderTools = [
     preview: require("./images/whisky.png"),
     website: "https://github.com/sidan-lab/whisky",
     getstarted: "https://whisky.sidan.io/",
-    tags: ["rust", "transactionbuilder"]
+    category: "sdk",
+    properties: ["rust"],
   },
   {
     title: "UTxORPC",
@@ -427,7 +473,8 @@ export const BuilderTools = [
     preview: require("./images/u5c.png"),
     website: "https://utxorpc.org/",
     getstarted: "https://utxorpc.org/introduction",
-    tags: ["http", "json", "websocket", "provider"]
+    category: "integration",
+    properties: ["grpc"],
   },
   {
     title: "Mumak",
@@ -435,7 +482,8 @@ export const BuilderTools = [
     preview: require("./images/mumak.png"),
     website: "https://github.com/txpipe/mumak",
     getstarted: "https://github.com/txpipe/mumak/blob/main/docs/INSTALL.md",
-    tags: ["serialization", "sql"]
+    category: "indexer",
+    properties: [],
   },
   {
     title: "Argus | Cardano.Sync",
@@ -443,7 +491,8 @@ export const BuilderTools = [
     preview: require("./images/argus.png"),
     website: "https://github.com/SAIB-Inc/Cardano.Sync",
     getstarted: null,
-    tags: ["net", "indexer"]
+    category: "indexer",
+    properties: ["net"],
   },
   {
     title: "Cardano Audit Script for SPOs",
@@ -451,7 +500,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-node-audit.png"),
     website: "https://github.com/Kirael12/cardano-node-audit",
     getstarted: "/docs/operate-a-stake-pool/audit-your-node/",
-    tags: ["operatortool", "cli"]
+    category: "operations",
+    properties: [],
   },
   {
     title: "ZhuLi",
@@ -459,7 +509,8 @@ export const BuilderTools = [
     preview: require("./images/zhuli.jpg"),
     website: "https://github.com/CardanoSolutions/zhuli",
     getstarted: null,
-    tags: ["cli", "governance"]
+    category: "governance",
+    properties: [],
   },
   {
     title: "cf-java-rewards-calculation",
@@ -467,7 +518,8 @@ export const BuilderTools = [
     preview: require("./images/rewardcalc.jpg"),
     website: "https://github.com/cardano-foundation/cf-java-rewards-calculation",
     getstarted: null,
-    tags: ["java", "testing"]
+    category: "testing",
+    properties: ["java"],
   },
   {
     title: "cf-ledger-sync",
@@ -475,7 +527,8 @@ export const BuilderTools = [
     preview: require("./images/ledgersync.jpg"),
     website: "https://github.com/cardano-foundation/cf-ledger-sync",
     getstarted: null,
-    tags: ["java", "indexer"]
+    category: "indexer",
+    properties: ["java"],
   },
   {
     title: "pg_cardano",
@@ -483,7 +536,8 @@ export const BuilderTools = [
     preview: require("./images/pg_cardano.png"),
     website: "https://github.com/cardano-community/pg_cardano",
     getstarted: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
-    tags: ["serialization", "sql"]
+    category: "indexer",
+    properties: [],
   },
   {
     title: "Cardano-C",
@@ -491,7 +545,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-c.png"),
     website: "https://github.com/Biglup/cardano-c",
     getstarted: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
-    tags: ["c", "serialization"]
+    category: "sdk",
+    properties: ["c"],
   },
   {
     title: "Evolution SDK",
@@ -501,7 +556,8 @@ export const BuilderTools = [
     website: "https://github.com/IntersectMBO/evolution-sdk",
     getstarted:
       "https://intersectmbo.github.io/evolution-sdk/docs/introduction/getting-started/",
-    tags: ["typescript", "transactionbuilder"],
+    category: "sdk",
+    properties: ["typescript"],
   },
   {
     title: "Scalus",
@@ -509,7 +565,8 @@ export const BuilderTools = [
     preview: require("./images/scalus.png"),
     website: "https://scalus.org/",
     getstarted: "https://scalus.org/docs/get-started",
-    tags: ["scala", "transactionbuilder", "smartcontracts"]
+    category: "smart-contracts",
+    properties: ["scala"],
   },
   {
     title: "Lace Anatomy",
@@ -517,7 +574,8 @@ export const BuilderTools = [
     preview: require("./images/lace-anatomy.png"),
     website: "https://laceanatomy.com",
     getstarted: "https://laceanatomy.com",
-    tags: ["testing"]
+    category: "testing",
+    properties: [],
   },
   {
     title: "Gastronomy",
@@ -525,7 +583,8 @@ export const BuilderTools = [
     preview: require("./images/gastronomy.png"),
     website: "https://sundae.fi/products/gastronomy",
     getstarted: "https://github.com/SundaeSwap-finance/gastronomy",
-    tags: ["testing"]
+    category: "testing",
+    properties: [],
   },
   {
     title: "Datum Explorer",
@@ -533,7 +592,8 @@ export const BuilderTools = [
     preview: require("./images/datum-explorer.png"),
     website: "https://github.com/WingRiders/datum-explorer#readme",
     getstarted: "https://datum-explorer.wingriders.com/?schema=detect",
-    tags: ["typescript", "cli", "serialization", "hosted"]
+    category: "testing",
+    properties: ["typescript"],
   },
   {
     title: "Apollo",
@@ -541,7 +601,8 @@ export const BuilderTools = [
     preview: require("./images/apollo.png"),
     website: "https://github.com/Salvionied/apollo",
     getstarted: null,
-    tags: ["golang", "serialization"]
+    category: "sdk",
+    properties: ["golang"],
   },
   {
     title: "Weld Wallet Connector",
@@ -551,7 +612,8 @@ export const BuilderTools = [
     website: "https://github.com/Cardano-Forge/weld/",
     getstarted:
       "https://github.com/Cardano-Forge/weld#getting-started",
-    tags: ["typescript", "wallet"],
+    category: "wallet",
+    properties: ["typescript"],
   },
   {
     title: "Elm Cardano",
@@ -559,7 +621,8 @@ export const BuilderTools = [
     preview: require("./images/elm-cardano.png"),
     website: "https://github.com/elm-cardano/elm-cardano",
     getstarted: "https://elm-doc-preview.netlify.app/Cardano-TxIntent?repo=elm-cardano%2Felm-cardano&version=elm-doc-preview",
-    tags: ["elm", "transactionbuilder"],
+    category: "sdk",
+    properties: ["elm"],
   },
   {
     title: "Blaze",
@@ -567,7 +630,8 @@ export const BuilderTools = [
     preview: require("./images/blaze.png"),
     website: "https://github.com/butaneprotocol/blaze-cardano",
     getstarted: "https://blaze.butane.dev/",
-    tags: ["javascript", "transactionbuilder"],
+    category: "sdk",
+    properties: ["javascript"],
   },
   {
     title: "Kuber",
@@ -575,7 +639,8 @@ export const BuilderTools = [
     preview: require("./images/kuber.png"),
     website: "https://github.com/dQuadrant/kuber",
     getstarted: "https://kuberide.com/",
-    tags: ["haskell", "transactionbuilder"],
+    category: "sdk",
+    properties: ["haskell"],
   },
   {
     title: "Sorbet",
@@ -583,7 +648,8 @@ export const BuilderTools = [
     preview: require("./images/sorbet.png"),
     website: "https://github.com/SundaeSwap-finance/Sorbet",
     getstarted: null,
-    tags: ["typescript", "wallet"],
+    category: "testing",
+    properties: ["typescript"],
   },
   {
     title: "Cardano Dev Wallet",
@@ -591,7 +657,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-dev-wallet.png"),
     website: "https://github.com/mlabs-haskell/cardano-dev-wallet",
     getstarted: null,
-    tags: ["typescript", "wallet"],
+    category: "wallet",
+    properties: ["typescript"],
   },
   {
     title: "Bursa",
@@ -599,7 +666,8 @@ export const BuilderTools = [
     preview: require("./images/bursa.png"),
     website: "https://github.com/blinklabs-io/bursa",
     getstarted: null,
-    tags: ["golang", "wallet"],
+    category: "wallet",
+    properties: ["golang"],
   },
   {
     title: "CShell",
@@ -607,7 +675,8 @@ export const BuilderTools = [
     preview: require("./images/cshell.png"),
     website: "https://github.com/txpipe/cshell",
     getstarted: null,
-    tags: ["cli", "wallet"],
+    category: "wallet",
+    properties: [],
   },
   {
     title: "Cardano HW CLI",
@@ -615,7 +684,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-hw-cli.png"),
     website: "https://github.com/vacuumlabs/cardano-hw-cli",
     getstarted: null,
-    tags: ["cli", "wallet"],
+    category: "wallet",
+    properties: [],
   },
   {
     title: "Cardanopress",
@@ -623,7 +693,8 @@ export const BuilderTools = [
     preview: require("./images/cardanopress.png"),
     website: "https://cardanopress.io/",
     getstarted: "https://github.com/CardanoPress/cardanopress",
-    tags: ["php", "wallet"],
+    category: "integration",
+    properties: ["php"],
   },
   {
     title: "Cardano Peer Connect",
@@ -631,7 +702,8 @@ export const BuilderTools = [
     preview: require("./images/cardano-peer-connect.png"),
     website: "https://github.com/fabianbormann/cardano-peer-connect",
     getstarted: null,
-    tags: ["typescript", "wallet"],
+    category: "wallet",
+    properties: ["typescript"],
   },
   {
     title: "Yaci Store",
@@ -639,7 +711,8 @@ export const BuilderTools = [
     preview: require("./images/yaci-store.png"),
     website: "https://github.com/bloxbean/yaci-store",
     getstarted: "https://store.yaci.xyz/",
-    tags: ["indexer", "java"],
+    category: "indexer",
+    properties: ["java"],
   },
   {
     title: "Anvil API",
@@ -647,7 +720,8 @@ export const BuilderTools = [
     preview: require("./images/anvil-api.png"),
     website: "https://ada-anvil.io/services/api",
     getstarted: "https://dev.ada-anvil.io/",
-    tags: ["http", "hosted"],
+    category: "api",
+    properties: ["rest"],
   },
   {
     title: "Cometa.js",
@@ -655,7 +729,8 @@ export const BuilderTools = [
     preview: require("./images/cometa.js.png"),
     website: "https://github.com/Biglup/cometa.js",
     getstarted: "https://cometajs.readthedocs.io/en/latest",
-    tags: ["javascript", "serialization", "transactionbuilder"]
+    category: "sdk",
+    properties: ["javascript"],
   },
   {
     title: "Dingo",
@@ -663,7 +738,8 @@ export const BuilderTools = [
     preview: require("./images/dingo.png"),
     website: "https://github.com/blinklabs-io/dingo",
     getstarted: "https://pkg.go.dev/github.com/blinklabs-io/dingo",
-    tags: ["golang", "nodeclient"],
+    category: "node",
+    properties: ["golang"],
   },
   {
     title: "Mithril",
@@ -672,7 +748,8 @@ export const BuilderTools = [
     preview: require("./images/mithril.png"),
     website: "https://github.com/input-output-hk/mithril",
     getstarted: "https://mithril.network/doc/manual/welcome",
-    tags: ["rust", "cli", "javascript", "typescript"],
+    category: "node",
+    properties: ["rust", "javascript", "typescript"],
   },
   {
     title: "ODATANO",
@@ -680,7 +757,8 @@ export const BuilderTools = [
     preview: require("./images/odatano.png"),
     website: "https://github.com/ODATANO/ODATANO",
     getstarted: "https://odatano.dev",
-    tags: ["javascript", "typescript", "http", "json"],
+    category: "integration",
+    properties: ["javascript", "typescript", "rest"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
