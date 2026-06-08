@@ -11,9 +11,11 @@
  *      title: "Your Tool Name",
  *      description: "Brief description (avoid 'best/first/only' claims)",
  *      preview: require("./images/your-tool-name.png"),
+ *      category: "sdk",                 // exactly ONE — see Categories in tags.js
+ *      properties: ["typescript"],      // language + interface facets — see tags.js
  *      website: "https://your-tool.com",
- *      getstarted: "https://docs.url" OR null,
- *      tags: ["tag1", "tag2"]  // See tags.js for all available tags
+ *      repository: "https://github.com/owner/repo",  // public source repo, OR null
+ *      docs: "https://docs.url",        // docs / get-started page, OR null
  *    },
  *
  * 3. Test: Run `yarn build` (must complete without errors)
@@ -21,9 +23,12 @@
  * 4. Submit: Create PR using "Add Builder Tool" template
  *
  * Notes:
- *  - Do NOT add "favorite" tag (maintainers choose favorites)
- *  - Available tags are in ./tags.js
- *  - All fields are required (use null for getstarted if no docs)
+ *  - Pick ONE primary category that best describes what the tool IS.
+ *  - properties = the language(s) it is written in + interface (rest/graphql/grpc/websocket).
+ *  - Open source is encouraged: set `repository` to your public repo (it surfaces an
+ *    "Open Source" badge + GitHub link). Hosted/closed services are welcome too — use null.
+ *  - Do NOT set maintainerPick (maintainers choose those).
+ *  - Categories + properties are defined in ./tags.js. All fields are required (use null where noted).
  *
  * ============================================================================
  */

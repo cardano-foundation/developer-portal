@@ -75,7 +75,7 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
 
 3. **Add your tool entry**
    - Edit: `src/data/builder-tools/tools.js`
-   - Add your entry to the **END** of the Showcases array
+   - Add your entry to the **END** of the BuilderTools array
    - Use this format:
 
    ```javascript
@@ -83,18 +83,21 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
      title: "Your Tool Name",
      description: "Brief description of what your tool does",
      preview: require("./images/your-tool-name.png"),
+     category: "sdk",                // exactly ONE — see Categories in tags.js
+     properties: ["typescript"],     // language + interface facets — see tags.js
      website: "https://your-tool.com",
-     getstarted: "https://docs.your-tool.com/getting-started", // or null if no docs
-     tags: ["relevant", "tags"], // see available tags in tags.js
+     repository: "https://github.com/owner/repo", // public source repo, or null
+     docs: "https://docs.your-tool.com/getting-started", // or null if no docs
    }
    ```
 
-4. **Select appropriate tags**
+4. **Choose a category and properties**
 
    **Important:**
-   - Do NOT add the `favorite` tag yourself
-   - Check `src/data/builder-tools/tags.js` for the complete list of available tags
-   - Use multiple relevant tags to help developers find your tool
+   - Pick exactly **one** primary `category` that best describes what the tool *is*. The 11 categories live in `src/data/builder-tools/tags.js`, each mapped to an industry-standard equivalent (e.g. `sdk` ≈ ethers/web3.py, `api` ≈ Infura/Alchemy, `indexer` ≈ The Graph).
+   - `properties` = the language(s) the tool is written in, plus its interface (`rest` / `graphql` / `grpc` / `websocket`) where relevant.
+   - Open source is encouraged: set `repository` to your public repo (it adds an "Open Source" badge + a GitHub link on the tool's page). Hosted/closed services are welcome too — use `null`.
+   - Do NOT set `maintainerPick` yourself (maintainers choose those).
 
 5. **Test your submission**
    - Run `yarn build` (must complete without errors)

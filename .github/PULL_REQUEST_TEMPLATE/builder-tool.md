@@ -16,42 +16,14 @@
 
 ## Builder Tool addition
 
-<-- Provide information for every bullet in the list below. The tags you select must match the tags in your changes to tools.js -->
+<-- Provide information for every bullet below. Category + properties must match your changes to tools.js (full definitions in src/data/builder-tools/tags.js). -->
 
 * Title: *Project name*
-* Description: *Describe your project* 
-* Website:   <link_to_project>
-* Getstarted: <link_to_getstarted_page>
-* Tags:
-  * `c`
-  * `cli`
-  * `elm`
-  * `golang`
-  * `governance`
-  * `haskell`
-  * `hosted`
-  * `http`
-  * `IDE`
-  * `indexer`
-  * `java`
-  * `javascript`
-  * `json`
-  * `net`
-  * `nft`
-  * `nodeclient`
-  * `operatortool`
-  * `php`
-  * `provider`
-  * `purescript`
-  * `python`
-  * `redis`
-  * `rust`
-  * `scala`
-  * `serialization`
-  * `smartcontracts`
-  * `sql`
-  * `testing`
-  * `transactionbuilder`
-  * `typescript`
-  * `wallet`
-  * `websocket`
+* Description: *Describe your project*
+* Category (pick exactly ONE): `smart-contracts` | `sdk` | `api` | `indexer` | `node` | `wallet` | `dev-env` | `testing` | `operations` | `governance` | `integration`
+* Properties (language + interface):
+  * Language: `typescript` `javascript` `python` `rust` `haskell` `java` `net` `golang` `scala` `c` `purescript` `elm` `php`
+  * Interface: `rest` `graphql` `grpc` `websocket`
+* Website: <link to the tool's home page>
+* Repository: <link to your public source repo, or "none" for a closed/hosted service>
+* Docs: <link to docs / get-started page, or "none">
