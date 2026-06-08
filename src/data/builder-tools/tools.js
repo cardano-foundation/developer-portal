@@ -119,14 +119,6 @@ export const BuilderTools = [
     tags: ["purescript", "transactionbuilder"]
   },
   {
-    title: "cardanocli-js",
-    description: "A library that wraps the cardano-cli in JavaScript.",
-    preview: require("./images/cardanocli-js.png"),
-    website: "https://github.com/Berry-Pool/cardanocli-js",
-    getstarted: "/docs/get-started/cardanocli-js/",
-    tags: ["javascript", "cli"],
-  },
-  {
     title: "Ogmios",
     description: "Ogmios is a lightweight bridge interface (WebSocket + JSON/RPC) for cardano-node.",
     preview: require("./images/ogmios.png"),
@@ -183,15 +175,6 @@ export const BuilderTools = [
     website: "https://marlowe-lang.org/",
     getstarted: "https://playground.marlowe-lang.org/",
     tags: ["smartcontracts"],
-  },
-  {
-    title: "Automint",
-    description:
-      "A Python library that benefits the token & NFT communities. Scripts allow easy wallet management, automatic creation of unlocked and time-locked policy IDs, as well as the ability to quickly: build, sign, and submit transactions, and much more. Note: This library relies on wrapping cardano-cli.",
-    preview: require("./images/automint.png"),
-    website: "https://github.com/creativequotient/automint",
-    getstarted: null,
-    tags: ["python", "nft"],
   },
   {
     title: "PyCardano",
@@ -375,14 +358,6 @@ export const BuilderTools = [
     tags: ["hosted", "http", "wallet", "typescript"]
   },
   {
-    title: "Cardano Leader Slot",
-    description: "Lightweight and Portable Scheduled Blocks Checker for Next, Current and Previous Epochs.",
-    preview: require("./images/leader-slot.png"),
-    website: "https://github.com/QuixoteSystems/cardano-leader-slot",
-    getstarted: null,
-    tags: ["python", "operatortool", "cli"],
-  },
-  {
     title: "Cardano connect with wallet",
     description: "Useful hooks and React components to simplify the Cardano dApp integration e.g. to connect browser wallets, fetch addresses and provide signing.",
     preview: require("./images/cardano-connect-with-wallet.png"),
@@ -407,14 +382,6 @@ export const BuilderTools = [
     tags: ["indexer", "sql"],
   },
   {
-    title: "Plutip",
-    description: "Cardano tool that aims to help dApp developers with integration testing and contracts debugging using disposable private network",
-    preview: require("./images/plutip.png"),
-    website: "https://github.com/mlabs-haskell/plutip",
-    getstarted: null,
-    tags: ["haskell", "testing"],
-  },
-  {
     title: "Demeter.run",
     description: "A cloud environment with all the tools for building your dApp.",
     preview: require("./images/demeter.png"),
@@ -431,14 +398,6 @@ export const BuilderTools = [
     tags: ["typescript"],
   },
   {
-    title: "Periodic DNS resolver",
-    description: "System service to configure a DDNS address firewall rule on a BP and send a message via Telegram Bot if your relay IP address has changed. Keeps Cardano nodes connected and secure on residential ISPs with rolling public IPs.",
-    preview: require("./images/pdr_bot.png"),
-    website: "https://github.com/Fuma419/periodic-dns-resolver",
-    getstarted: null,
-    tags: ["operatortool", "cli"],
-  },
-  {
     title: "OpShin",
     description:
       "Opshin is a pythonic language for writing smart contracts on the Cardano blockchain. Opshin is a strict subset of Python, this means anyone who knows Python can get up to speed on Opshin pretty quickly.",
@@ -448,28 +407,12 @@ export const BuilderTools = [
     tags: ["python", "smartcontracts"],
   },
   {
-    title: "DCOne Crypto Webhook API",
-    description: "API for developers to receive information on changing stake balance.",
-    preview: require("./images/dconecrypto-webhook.png"),
-    website: "https://github.com/DCOneCrypto/StakeAddress-Tracking-Webhook-API",
-    getstarted: null,
-    tags: ["http"],
-  },
-  {
     title: "Maestro",
     description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
     preview: require("./images/maestro.png"),
     website: "https://www.gomaestro.org/dapp-platform",
     getstarted: "https://docs.gomaestro.org/",
     tags: ["http", "hosted", "provider"]
-  },
-  {
-    title: "potential-robot",
-    description: "A TypeScript API for test-driven development with Helios.",
-    preview: require("./images/potential-robot.png"),
-    website: "https://github.com/aleeusgr/potential-robot",
-    getstarted: null,
-    tags: ["typescript", "testing"]
   },
   {
     title: "Hydra",
@@ -495,14 +438,6 @@ export const BuilderTools = [
     website: "https://atlas-app.io/",
     getstarted: null,
     tags: ["haskell", "transactionbuilder"],
-  },
-  {
-    title: "NFT Vending Machine",
-    description: "A simple CNFT mint-and-vend machine Python library that leverages cardano-cli and Blockfrost.",
-    preview: require("./images/nft-vending-machine.png"),
-    website: "https://github.com/thaddeusdiamond/cardano-nft-vending-machine",
-    getstarted: null,
-    tags: ["python", "nft"]
   },
   {
     title: "Yaci DevKit",
