@@ -99,6 +99,19 @@
   margin-bottom: 1.75rem;
 }
 
+.osBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: color-mix(in srgb, #2ea043 16%, transparent);
+  color: color-mix(in srgb, #2ea043 88%, black);
+}
+
 .categoryPill {
   display: inline-flex;
   align-items: center;

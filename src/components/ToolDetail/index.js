@@ -24,6 +24,7 @@ function buildJsonLd(tool, categoryLabel) {
     name: tool.title,
     description: tool.description,
     url: tool.website,
+    ...(tool.repository ? { codeRepository: tool.repository } : {}),
     ...(categoryLabel ? { applicationCategory: categoryLabel } : {}),
   });
 }
@@ -217,6 +218,7 @@ export default function ToolDetail({ slug }) {
         </header>
 
         <div className={styles.tagRow}>
+          {tool.repository && <span className={styles.osBadge}>Open Source</span>}
           <TagPill tag={tool.category} def={categoryDef} />
           {tool.properties.map((p) => (
             <TagPill key={p} tag={p} def={Properties[p]} />
@@ -226,21 +228,33 @@ export default function ToolDetail({ slug }) {
         <p className={styles.description}>{tool.description}</p>
 
         <div className={styles.actions}>
-          <Link href={tool.website} className={styles.visitButton}>
-            {`Visit ${tool.title}`}
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden focusable="false">
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M7 17L17 7M9 7h8v8"
-              />
-            </svg>
-          </Link>
-          {tool.getstarted && (
-            <Link href={tool.getstarted} className={styles.secondaryButton}>
+          {tool.repository ? (
+            <Link href={tool.repository} className={styles.visitButton}>
+              <GitHubIcon size={18} />
+              View on GitHub
+            </Link>
+          ) : (
+            <Link href={tool.website} className={styles.visitButton}>
+              {`Visit ${tool.title}`}
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden focusable="false">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7 17L17 7M9 7h8v8"
+                />
+              </svg>
+            </Link>
+          )}
+          {tool.repository && tool.website && tool.website !== tool.repository && (
+            <Link href={tool.website} className={styles.secondaryButton}>
+              Visit website
+            </Link>
+          )}
+          {tool.docs && (
+            <Link href={tool.docs} className={styles.secondaryButton}>
               Get Started
             </Link>
           )}

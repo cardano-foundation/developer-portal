@@ -9,7 +9,8 @@ export function ensureBuilderToolValid(tool) {
       "description",
       "preview",
       "website",
-      "getstarted",
+      "docs",
+      "repository",
       "category",
       "properties",
       "maintainerPick",
@@ -69,22 +70,39 @@ export function ensureBuilderToolValid(tool) {
     }
   }
 
-  function checkGetStarted() {
-    if (typeof tool.getstarted === "undefined") {
+  function checkDocs() {
+    if (typeof tool.docs === "undefined") {
       throw new Error(
-        "getstarted is required. If there is no get-started page, set 'getstarted: null'."
+        "docs is required. If there is no docs/get-started page, set 'docs: null'."
       );
     }
   }
 
-  function checkOperations() {
-    const hasGs = tool.getstarted != null;
+  function checkRepository() {
+    if (typeof tool.repository === "undefined") {
+      throw new Error(
+        "repository is required. If the tool has no public source repo, set 'repository: null'."
+      );
+    }
     if (
-      hasGs &&
+      tool.repository != null &&
+      !(
+        tool.repository.startsWith("http://") ||
+        tool.repository.startsWith("https://")
+      )
+    ) {
+      throw new Error(`repository is not a valid url: ${tool.repository}`);
+    }
+  }
+
+  function checkOperations() {
+    const hasDocs = tool.docs != null;
+    if (
+      hasDocs &&
       tool.category === "operations" &&
-      typeof tool.getstarted === "string" &&
-      tool.getstarted.startsWith("/docs/") &&
-      !tool.getstarted.startsWith("/docs/operate-a-stake-pool/")
+      typeof tool.docs === "string" &&
+      tool.docs.startsWith("/docs/") &&
+      !tool.docs.startsWith("/docs/operate-a-stake-pool/")
     ) {
       throw new Error(
         "Get-started pages for operations tools should live under /docs/operate-a-stake-pool/."
@@ -100,7 +118,8 @@ export function ensureBuilderToolValid(tool) {
     checkPreview();
     checkCategory();
     checkProperties();
-    checkGetStarted();
+    checkDocs();
+    checkRepository();
     checkOperations();
   } catch (e) {
     throw new Error(
