@@ -1,0 +1,103 @@
+.wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-900);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.toggle:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+.toggleOpen {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-primary);
+}
+
+.panel {
+  position: absolute;
+  z-index: 30;
+  margin-top: 0.75rem;
+  min-width: 320px;
+  max-width: 480px;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.section {
+  margin-bottom: 1.1rem;
+}
+
+.section:last-of-type {
+  margin-bottom: 0.6rem;
+}
+
+.heading {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-700);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.pillList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-800);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.pill:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.pillActive {
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.clearButton {
+  background: transparent;
+  border: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.4rem;
+}
+
+.clearButton:hover {
+  color: var(--ifm-color-primary);
+}

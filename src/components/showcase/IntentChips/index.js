@@ -1,0 +1,80 @@
+import React, { useCallback, useMemo } from "react";
+import { useHistory, useLocation } from "@docusaurus/router";
+import clsx from "clsx";
+
+import {
+  readSearchTags,
+  replaceSearchTags,
+} from "@site/src/components/showcase/ShowcaseTagSelect";
+
+import styles from "./styles.module.css";
+
+// Tool-flavored intents. Each maps to a single domain category. Clicking a chip
+// applies that category as a filter (and toggles off if already active).
+const INTENTS = [
+  { id: "smartcontracts", tags: ["smartcontracts"], label: "Write smart contracts" },
+  { id: "transactionbuilder", tags: ["transactionbuilder"], label: "Build transactions" },
+  { id: "provider", tags: ["provider"], label: "Query the chain" },
+  { id: "indexer", tags: ["indexer"], label: "Index on-chain data" },
+  { id: "nodeclient", tags: ["nodeclient"], label: "Run a node" },
+  { id: "wallet", tags: ["wallet"], label: "Integrate a wallet" },
+  { id: "operatortool", tags: ["operatortool"], label: "Operate a pool" },
+];
+
+function arraysEqualUnordered(a, b) {
+  if (a.length !== b.length) return false;
+  const sortedA = [...a].sort();
+  const sortedB = [...b].sort();
+  return sortedA.every((v, i) => v === sortedB[i]);
+}
+
+export default function IntentChips() {
+  const location = useLocation();
+  const history = useHistory();
+
+  const activeId = useMemo(() => {
+    const currentTags = readSearchTags(location.search);
+    return INTENTS.find((i) => arraysEqualUnordered(currentTags, i.tags))?.id;
+  }, [location.search]);
+
+  const applyIntent = useCallback(
+    (intent) => {
+      const isActive = intent.id === activeId;
+      const search = replaceSearchTags(
+        location.search,
+        isActive ? [] : intent.tags
+      );
+      history.push({ ...location, search });
+    },
+    [activeId, location, history]
+  );
+
+  return (
+    <section className={styles.intentSection} aria-labelledby="tools-intent-title">
+      <div className="container">
+        <h2 id="tools-intent-title" className={styles.intentTitle}>
+          I want to
+        </h2>
+        <ul className={styles.intentList}>
+          {INTENTS.map((intent) => {
+            const isActive = intent.id === activeId;
+            return (
+              <li key={intent.id} className={styles.intentItem}>
+                <button
+                  type="button"
+                  onClick={() => applyIntent(intent)}
+                  className={clsx(styles.intentChip, {
+                    [styles.intentChipActive]: isActive,
+                  })}
+                  aria-pressed={isActive}
+                >
+                  {intent.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}

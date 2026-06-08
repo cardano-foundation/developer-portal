@@ -1,0 +1,104 @@
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+  background: var(--ifm-background-surface-color);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 150ms ease, box-shadow 150ms ease,
+    transform 150ms ease;
+  position: relative;
+}
+
+.tile:hover {
+  border-color: var(--ifm-color-emphasis-400);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+  color: inherit;
+}
+
+.tile:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.badge {
+  font-size: 0.85rem;
+}
+
+.starBadge {
+  color: #f5b301;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.rankBadge {
+  color: var(--ifm-color-emphasis-700);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.description {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-700);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.25rem;
+  font-size: 0.78rem;
+}
+
+.category,
+.property,
+.activity {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  line-height: 1.6;
+}
+
+.category {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-800);
+  font-weight: 600;
+}
+
+.property {
+  color: var(--ifm-color-emphasis-700);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.activity {
+  background: rgba(34, 134, 96, 0.12);
+  color: rgb(34, 134, 96);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}

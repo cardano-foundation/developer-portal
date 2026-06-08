@@ -1,43 +1,45 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import Head from '@docusaurus/Head';
+import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
-import ShowcaseTooltip from "@site/src/components/showcase/ShowcaseTooltip";
-import ShowcaseTagSelect, {
-  readSearchTags,
-  replaceSearchTags,
-} from "@site/src/components/showcase/ShowcaseTagSelect";
-import ShowcaseCard from "@site/src/components/showcase/ShowcaseCard/";
-import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
-import ShowcaseFilterToggle, {
-  readOperator,
-} from "@site/src/components/showcase/ShowcaseFilterToggle";
+import Link from "@docusaurus/Link";
+import { useHistory, useLocation } from "@docusaurus/router";
+import _debounce from "lodash/debounce";
 import clsx from "clsx";
 
-import ShowcaseLatestToggle, {
-  readLatestOperator,
-} from "@site/src/components/showcase/ShowcaseLatestToggle";
-
-import PortalHero from "@site/src/pages/portalhero";
-import { toggleListItem } from "@site/src/utils/jsUtils";
-import {
-  DomainsTags,
-  LanguagesOrTechnologiesTags,
-  SortedBuilderTools,
-  Tags,
-  BuilderTools
-} from "@site/src/data/builder-tools";
-import { useHistory, useLocation } from "@docusaurus/router";
-import _debounce from 'lodash/debounce';
-import styles from "./styles.module.css";
-
+import IntentChips from "@site/src/components/showcase/IntentChips";
+import PageCTA from "@site/src/components/PageCTA";
+import ShowcaseSort, {
+  readSortOption,
+  DEFAULT_SORT,
+  SORT_IDS,
+} from "@site/src/components/showcase/ShowcaseSort";
+import { readSearchTags } from "@site/src/components/showcase/ShowcaseTagSelect";
+import SiteHero from "@site/src/components/Layout/SiteHero";
+import { StarBadge } from "@site/src/components/AppTile";
+import AppTileCarousel from "@site/src/components/AppTileCarousel";
+import CategoryPanelsCarousel from "@site/src/components/CategoryPanelsCarousel";
+import AppRow from "@site/src/components/AppRow";
+import AppFilterPanel from "@site/src/components/AppFilterPanel";
+import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import Fav from "@site/src/svg/fav.svg";
+
+import {
+  SortedShowcases,
+  Showcases,
+  RECENT_APPS_COUNT,
+  Categories,
+} from "@site/src/data/builder-tools/showcase";
+import { appHasTag } from "@site/src/utils/toolStats";
+
+import styles from "./styles.module.css";
 
 const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
-const CTA = "₳dd your tool";
-const FILENAME = "builder-tools/tools.js";
+const HERO_DESCRIPTION =
+  "Discover developer tools, SDKs, and libraries for building on Cardano. Smart contracts, transactions, indexing, wallets, and more.";
 
+// NOTE: ShowcaseTagSelect imports prepareUserState from this module — keep it
+// exported as a hoisted function declaration.
 export function prepareUserState() {
   if (ExecutionEnvironment.canUseDOM) {
     return {
@@ -45,305 +47,419 @@ export function prepareUserState() {
       focusedElementId: document.activeElement?.id,
     };
   }
-
   return undefined;
 }
-
-const favoriteBuilderTools = SortedBuilderTools.filter((tool) =>
-  tool.tags.includes("favorite")
-);
-const otherBuilderTools = SortedBuilderTools.filter(
-  (tool) => !tool.tags.includes("favorite")
-);
 
 function restoreUserState(userState) {
   const { scrollTopPosition, focusedElementId } = userState ?? {
     scrollTopPosition: 0,
     focusedElementId: undefined,
   };
-
   document.getElementById(focusedElementId)?.focus();
   window.scrollTo({ top: scrollTopPosition });
 }
 
-// Filter projects based on chosen project tags, toggle operator or searchbar value
-function filterProjects(projects, selectedTags, latest, operator, searchName, unfilteredProjects) {
-  // Check if "LAST" filter is applied to decide if to filter through all projects or only last ones
-  if (latest === "LAST") {
-    projects = unfilteredProjects.slice(-10);
-  }
+// Newest tools first (insertion order, last appended = newest).
+const recentTools = [...Showcases.slice(-RECENT_APPS_COUNT)].reverse();
+const maintainerPicks = SortedShowcases.filter((t) => t.maintainerPick);
 
-  if (searchName) {
-    projects = projects.filter((project) =>
-      project.title.toLowerCase().includes(searchName.toLowerCase())
-    );
-  }
-  if (selectedTags.length === 0) {
-    return projects;
-  }
-  return projects.filter((project) => {
-    if (project.tags.length === 0) {
-      return false;
-    }
-    if (operator === "AND") {
-      return selectedTags.every((tag) => project.tags.includes(tag));
-    } else {
-      return selectedTags.some((tag) => project.tags.includes(tag));
-    }
+const isProminentCategory = (c) => Categories[c]?.prominent === true;
+const isCompactCategory = (c) => Categories[c]?.prominent === false;
+
+// Category order is derived by how many tools sit in each category (desc).
+function deriveCategoryOrder(predicate) {
+  const countByCat = {};
+  Showcases.forEach((tool) => {
+    if (!predicate(tool.category)) return;
+    countByCat[tool.category] = (countByCat[tool.category] || 0) + 1;
   });
+  return Object.keys(countByCat).sort((a, b) => countByCat[b] - countByCat[a]);
 }
 
-function useFilteredProjects() {
-  const location = useLocation();
-  const [operator, setOperator] = useState("OR");
-  const [latest, setLatest] = useState("LAST");
+const PROMINENT_CATEGORY_ORDER = deriveCategoryOrder(isProminentCategory);
+const COMPACT_CATEGORY_ORDER = deriveCategoryOrder(isCompactCategory);
 
-  // On SSR / first mount (hydration) no tag is selected
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [searchName, setSearchName] = useState(null);
-
-  // Sync tags from QS to state (delayed on purpose to avoid SSR/Client hydration mismatch)
-  useEffect(() => {
-    setSelectedTags(readSearchTags(location.search));
-    setOperator(readOperator(location.search));
-    setLatest(readLatestOperator(location.search));
-    setSearchName(readSearchName(location.search));
-    if (ExecutionEnvironment.canUseDOM && location.state) {
-      setTimeout(() => {
-        restoreUserState(location.state);
-      }, 0);
-    }
-  }, [location]);
-
-  return useMemo(
-    () =>
-      filterProjects(
-        SortedBuilderTools,
-        selectedTags,
-        latest,
-        operator,
-        searchName,
-        BuilderTools
-      ),
-    [selectedTags, latest, operator, searchName]
-  );
-}
-
-function useSelectedTags() {
-  // The search query-string is the source of truth!
-  const location = useLocation();
-  const { push } = useHistory();
-
-  // On SSR / first mount (hydration) no tag is selected
-  const [selectedTags, setSelectedTags] = useState([]);
-
-  // Update the QS value
-  const toggleTag = useCallback(
-    (tag) => {
-      const tags = readSearchTags(location.search);
-      const newTags = toggleListItem(tags, tag);
-      const newSearch = replaceSearchTags(location.search, newTags);
-      push({ ...location, search: newSearch });
-    },
-    [location, push]
-  );
-
-  return { selectedTags, toggleTag };
-}
-
-function ShowcaseHeader() {
-  return (
-    <PortalHero
-      title={TITLE}
-      description={DESCRIPTION}
-      cta={CTA}
-      filename={FILENAME}
-    />
-  );
-}
-
-function ShowcaseFilters() {
-  const filteredProjects = useFilteredProjects();
-
-  return (
-    <div className="margin-top--l margin-bottom--md container">
-      <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
-        <div>
-          <h2>Filters</h2>
-          <span>{`${filteredProjects.length} builder tool${
-            filteredProjects.length === 1 ? "" : "s"
-          }`}</span>
-        </div>
-        <ShowcaseLatestToggle />
-        <ShowcaseFilterToggle />
-      </div>
-        <h3>By domain</h3>
-        {filterBy(DomainsTags)}
-        <br/>
-        <h3>By language / technology</h3>
-        {filterBy(LanguagesOrTechnologiesTags)}
-    </div>
-  );
-}
-
-function filterBy(tags) {
-  return (<div className={styles.checkboxList}>
-    {tags.map((tag) => {
-      const { label, description, color } = Tags[tag];
-      const id = `showcase_checkbox_id_${tag}`;
-      return (
-          <div key={tag} className={styles.checkboxListItem}>
-            <ShowcaseTooltip
-              id={id}
-              text={description}
-              anchorEl="#__docusaurus"
-            >
-              <ShowcaseTagSelect
-                tag={tag}
-                id={id}
-                label={label}
-                icon={(<span
-                  className={styles.tagDot}
-                  style={{ backgroundColor: color }}/>
-                )}
-              />
-            </ShowcaseTooltip>
-          </div>
-      );
-    })}
-  </div>);
-}
-
-function ShowcaseCards() {
-  const filteredProjects = useFilteredProjects();
-
-  if (filteredProjects.length === 0) {
-    return (
-      <section className="margin-top--lg margin-bottom--xl">
-        <div className="container padding-vert--md text--center">
-          <h2>No result</h2>
-          <SearchBar />
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="margin-top--lg margin-bottom--xl">
-      {filteredProjects.length === SortedBuilderTools.length ? (
-        <>
-          <div className={styles.showcaseFavorite}>
-            <div className="container">
-              <div
-                className={clsx(
-                  "margin-bottom--md",
-                  styles.showcaseFavoriteHeader
-                )}
-              >
-                <h2 className={styles.ourFavorites}>Our favorites</h2>
-                <Fav className={styles.svgIconFavorite} size="small" />
-                <SearchBar />
-              </div>
-              <ul className={clsx("container", styles.showcaseList)}>
-                {favoriteBuilderTools.map((tool) => (
-                  <ShowcaseCard key={tool.title} showcase={tool} />
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="container margin-top--lg">
-            <h2 className={styles.showcaseHeader}>All Tools</h2>
-            <ul className={styles.showcaseList}>
-              {otherBuilderTools.map((tool) => (
-                <ShowcaseCard key={tool.title} showcase={tool} />
-              ))}
-            </ul>
-          </div>
-        </>
-      ) : (
-        <div className="container">
-          <div
-            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
-          >
-            <SearchBar />
-          </div>
-          <ul className={styles.showcaseList}>
-            {filteredProjects.map((showcase) => (
-              <ShowcaseCard key={showcase.title} showcase={showcase} />
-            ))}
-          </ul>
-        </div>
-      )}
-    </section>
-  );
-}
 const SearchNameQueryKey = "name";
 
 function readSearchName(search) {
   return new URLSearchParams(search).get(SearchNameQueryKey);
 }
 
+function sortProjects(projects, sortOption) {
+  if (sortOption === SORT_IDS.ALPHABETICAL) {
+    return [...projects].sort((a, b) => a.title.localeCompare(b.title));
+  }
+  // FEATURED: SortedShowcases order (maintainer picks first, then alphabetical).
+  return projects;
+}
+
+function filterProjects(projects, selectedTags, searchName) {
+  let result = projects;
+  if (searchName) {
+    result = result.filter((p) =>
+      p.title.toLowerCase().includes(searchName.toLowerCase())
+    );
+  }
+  if (selectedTags.length === 0) return result;
+  // OR matching: a tool matches if any selected tag is its category or property.
+  return result.filter((p) => selectedTags.some((tag) => appHasTag(p, tag)));
+}
+
+function useFilteredProjects() {
+  const location = useLocation();
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [searchName, setSearchName] = useState(null);
+  const [sortOption, setSortOption] = useState(DEFAULT_SORT);
+
+  useEffect(() => {
+    setSelectedTags(readSearchTags(location.search));
+    setSearchName(readSearchName(location.search));
+    setSortOption(readSortOption(location.search));
+    if (
+      ExecutionEnvironment.canUseDOM &&
+      location.state &&
+      !location.state.isSearch
+    ) {
+      setTimeout(() => {
+        restoreUserState(location.state);
+      }, 0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
+
+  const filtered = useMemo(
+    () =>
+      sortProjects(
+        filterProjects(SortedShowcases, selectedTags, searchName),
+        sortOption
+      ),
+    [selectedTags, searchName, sortOption]
+  );
+
+  const isUnfiltered = selectedTags.length === 0 && !searchName;
+
+  return { filtered, sortOption, isUnfiltered, selectedTags };
+}
+
+function ShowcaseHeader() {
+  return <SiteHero title={TITLE} description={HERO_DESCRIPTION} />;
+}
+
 function SearchBar() {
   const history = useHistory();
   const location = useLocation();
-  const [value, setValue] = useState(() => readSearchName(location.search) || '');
+  const [value, setValue] = useState(() => readSearchName(location.search) || "");
+  const inputRef = React.useRef(null);
 
   useEffect(() => {
-    setValue(readSearchName(location.search) || '');
-  }, [location.search]);
+    const newValue = readSearchName(location.search) || "";
+    setValue(newValue);
+    if (
+      location.state?.isSearch &&
+      inputRef.current &&
+      document.activeElement !== inputRef.current
+    ) {
+      inputRef.current.focus();
+    }
+  }, [location]);
 
   const debouncedHistoryPush = useCallback(
     _debounce((newSearchString) => {
       history.push({
         ...location,
         search: newSearchString,
-        state: prepareUserState(),
+        state: { isSearch: true },
       });
     }, 300),
-    [history, location] // Dependencies for useCallback
+    [history, location]
   );
 
+  const handleInput = (e) => {
+    const currentInputValue = e.currentTarget.value;
+    setValue(currentInputValue);
+    const newSearch = new URLSearchParams(location.search);
+    newSearch.delete(SearchNameQueryKey);
+    if (currentInputValue) {
+      newSearch.set(SearchNameQueryKey, currentInputValue);
+    }
+    debouncedHistoryPush(newSearch.toString());
+  };
+
   return (
-    <div className={styles.searchContainer}>
+    <div className={styles.searchInputWrap}>
       <input
+        ref={inputRef}
         id="searchbar"
+        className={styles.searchInput}
         placeholder="Search builder tools..."
         value={value}
-        onInput={(e) => {
-          const currentInputValue = e.currentTarget.value;
-          setValue(currentInputValue);
-          const newSearch = new URLSearchParams(location.search);
-          newSearch.delete(SearchNameQueryKey);
-          if (currentInputValue) {
-            newSearch.set(SearchNameQueryKey, currentInputValue);
-          }
-          debouncedHistoryPush(newSearch.toString());
-        }}
+        onInput={handleInput}
       />
     </div>
   );
 }
 
-// Add open graph image to builder tool page
+function SearchControls() {
+  return (
+    <section className={clsx("container", styles.controls)}>
+      <SearchBar />
+      <div className={styles.controlsRight}>
+        <AppFilterPanel />
+        <ShowcaseSort />
+      </div>
+    </section>
+  );
+}
+
+function HighlightsSection({ apps }) {
+  if (apps.length === 0) return null;
+  return (
+    <section className={clsx("container", styles.section)}>
+      <header className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>Recently added</h2>
+        <span className={styles.sectionSubtitle}>
+          The newest tools in the directory
+        </span>
+      </header>
+      <AppTileCarousel apps={apps} ariaLabel="Recently added" />
+    </section>
+  );
+}
+
+function GuidedPathsBanner() {
+  const paths = [
+    { to: "/docs/get-started/", label: "Get started" },
+    { to: "/docs/build/smart-contracts/overview", label: "Write smart contracts" },
+    { to: "/docs/build/native-tokens/overview", label: "Create native tokens" },
+    { to: "/docs/operate-a-stake-pool/", label: "Run a stake pool" },
+  ];
+  return (
+    <section className={clsx("container", styles.guidedPathsBanner)}>
+      <div className={styles.guidedPathsHeader}>
+        <h2 className={styles.guidedPathsTitle}>Guided paths</h2>
+        <span className={styles.guidedPathsSubtitle}>
+          Step-by-step on the Developer Portal
+        </span>
+      </div>
+      <ul className={styles.guidedPathChipList}>
+        {paths.map((p) => (
+          <li key={p.to}>
+            <Link to={p.to} className={styles.guidedPathChip}>
+              {p.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function CategoryBrowseSection({ categories, title, subtitle, muted = false }) {
+  if (categories.length === 0) return null;
+  return (
+    <section
+      className={clsx("container", styles.section, muted && styles.sectionMuted)}
+    >
+      <header className={styles.sectionHeader}>
+        <h2 className={clsx(styles.sectionTitle, muted && styles.sectionTitleMuted)}>
+          {title}
+        </h2>
+        <span className={styles.sectionSubtitle}>{subtitle}</span>
+      </header>
+      <CategoryPanelsCarousel categories={categories} ariaLabel={title} />
+    </section>
+  );
+}
+
+function BrowseByCategorySection() {
+  return (
+    <CategoryBrowseSection
+      categories={PROMINENT_CATEGORY_ORDER}
+      title="Browse tools by category"
+      subtitle="A taste of each category. Maintainer picks first, then a sample of the rest."
+    />
+  );
+}
+
+function MoreToolsSection() {
+  return (
+    <CategoryBrowseSection
+      categories={COMPACT_CATEGORY_ORDER}
+      title="Utilities & more"
+      subtitle="IDEs, testing, security, and operator tooling."
+      muted
+    />
+  );
+}
+
+function MaintainerPicksSection({ apps }) {
+  if (apps.length === 0) return null;
+  return (
+    <section className={clsx("container", styles.section)}>
+      <header className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>★ Maintainer picks</h2>
+        <span className={styles.sectionSubtitle}>
+          Selected by the Developer Portal maintainers
+        </span>
+      </header>
+      <AppTileCarousel
+        apps={apps}
+        ariaLabel="Maintainer picks"
+        renderBadge={() => <StarBadge />}
+      />
+    </section>
+  );
+}
+
+function AllToolsSection({ apps, sortOption, isUnfiltered, heading }) {
+  const visible = useMemo(
+    () => (isUnfiltered ? sortProjects(SortedShowcases, sortOption) : apps),
+    [isUnfiltered, sortOption, apps]
+  );
+  return (
+    <section className={clsx("container", styles.section)}>
+      <header className={clsx(styles.sectionHeader, styles.allAppsHeader)}>
+        <h2 className={styles.sectionTitle}>
+          {heading}
+          <span className={styles.countMuted}>
+            {" · "}
+            {visible.length}
+          </span>
+        </h2>
+      </header>
+      <ul className={styles.rowGrid}>
+        {visible.map((tool) => (
+          <li key={tool.slug}>
+            <AppRow app={tool} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function AllToolsReveal() {
+  const [shown, setShown] = useState(false);
+  if (shown) {
+    return (
+      <AllToolsSection
+        apps={null}
+        sortOption={SORT_IDS.ALPHABETICAL}
+        isUnfiltered={true}
+        heading={`All ${SortedShowcases.length} tools, A to Z`}
+      />
+    );
+  }
+  return (
+    <section className={clsx("container", styles.section, styles.allAppsReveal)}>
+      <button
+        type="button"
+        className={clsx("button button--secondary", styles.showAllButton)}
+        onClick={() => setShown(true)}
+      >
+        {`View all ${SortedShowcases.length} tools alphabetically`}
+      </button>
+    </section>
+  );
+}
+
+function SubmitCTA() {
+  return (
+    <PageCTA
+      title="Built a tool for Cardano?"
+      description="Add it to this page. The submission process is open and lightweight."
+      href="/docs/contribute/portal-contribute"
+      buttonText="Add your tool"
+      variant="primary"
+    />
+  );
+}
+
+function ShowcaseSections() {
+  const { filtered, sortOption, isUnfiltered, selectedTags } =
+    useFilteredProjects();
+
+  const filteredSlugs = useMemo(
+    () => new Set(filtered.map((a) => a.slug)),
+    [filtered]
+  );
+
+  const highlightApps = useMemo(
+    () =>
+      isUnfiltered
+        ? recentTools
+        : recentTools.filter((a) => filteredSlugs.has(a.slug)),
+    [filteredSlugs, isUnfiltered]
+  );
+
+  const pickApps = useMemo(
+    () =>
+      isUnfiltered
+        ? maintainerPicks
+        : maintainerPicks.filter((a) => filteredSlugs.has(a.slug)),
+    [filteredSlugs, isUnfiltered]
+  );
+
+  if (filtered.length === 0) {
+    return (
+      <section className="container margin-top--lg margin-bottom--xl text--center">
+        <h2>No result</h2>
+      </section>
+    );
+  }
+
+  const scopeLabel =
+    !isUnfiltered && selectedTags.length === 1
+      ? Categories[selectedTags[0]]?.label
+      : null;
+  const restHeading = scopeLabel ? `All ${scopeLabel}` : "All tools";
+
+  return (
+    <>
+      <HighlightsSection apps={highlightApps} />
+      {isUnfiltered && <GuidedPathsBanner />}
+      {isUnfiltered ? (
+        <BrowseByCategorySection />
+      ) : (
+        <AllToolsSection
+          apps={filtered}
+          sortOption={sortOption}
+          isUnfiltered={false}
+          heading={restHeading}
+        />
+      )}
+      <MaintainerPicksSection apps={pickApps} />
+      {isUnfiltered && <MoreToolsSection />}
+      {isUnfiltered && <AllToolsReveal />}
+      <SubmitCTA />
+    </>
+  );
+}
+
+// Open graph image for the builder tools page.
 function MetaData() {
   return (
     <Head>
-      <meta property="og:image" content="https://developers.cardano.org/img/og/og-builder-tools.png" />
-      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-builder-tools.png" />
+      <meta
+        property="og:image"
+        content="https://developers.cardano.org/img/og/og-builder-tools.png"
+      />
+      <meta
+        name="twitter:image"
+        content="https://developers.cardano.org/img/og/og-builder-tools.png"
+      />
     </Head>
-  )
+  );
 }
 
 function Showcase() {
-  const { selectedTags, toggleTag } = useSelectedTags();
-  const filteredProjects = useFilteredProjects();
-
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <MetaData/> 
+      <MetaData />
       <ShowcaseHeader />
-      <ShowcaseFilters selectedTags={selectedTags} toggleTag={toggleTag} />
-      <ShowcaseCards filteredProjects={filteredProjects} />
+      <IntentChips />
+      <SearchControls />
+      <ShowcaseSections />
       <OpenStickyButton />
     </Layout>
   );

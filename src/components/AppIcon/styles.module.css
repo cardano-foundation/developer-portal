@@ -1,0 +1,45 @@
+.appIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.appIconTile {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+}
+
+.appIconRow {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.appIconRow .fallback {
+  font-size: 1.05rem;
+}

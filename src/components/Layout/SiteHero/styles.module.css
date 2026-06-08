@@ -1,0 +1,90 @@
+.taglineContainer {
+  width: 70%;
+}
+
+@media (max-width: 768px) {
+  .taglineContainer {
+    width: 100%;
+  }
+}
+
+.backgroundBox {
+  padding-bottom: 40px;
+}
+
+.heroBannerStarburst {
+  padding: 4rem 2rem;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-image: url(/img/hero-header-starburst.svg);
+  height: 410px;
+}
+
+.heroBannerStarburst::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(315deg, #305bbd, #0035ad);
+  z-index: -1;
+}
+
+html[data-theme="dark"] .heroBannerStarburst::before {
+  background-image: linear-gradient(315deg, #244eaf, #011034);
+}
+
+html[data-theme="dark"] .heroBannerStarburst {
+  color: #ffffff;
+}
+
+.heroChildren {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The bottom V-notch. Rendered as a plain global class by SiteHero. */
+:global(.sectionCaret) polygon {
+  fill: #ffffff;
+}
+
+html[data-theme="dark"] :global(.sectionCaret) polygon {
+  fill: #1b1b1d;
+}
+
+:global(.sectionCaret) {
+  height: 30px;
+  width: 2048px;
+  position: absolute;
+  bottom: 0;
+  display: inline-block;
+  left: 50%;
+  margin: 0 0 0 -1000px;
+}
+
+@media screen and (max-width: 576px) {
+  .taglineContainer {
+    width: 100%;
+  }
+  .heroBannerStarburst {
+    padding: 2rem 1rem;
+    height: auto;
+  }
+  .backgroundBox {
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 1950px) {
+  :global(.sectionCaret) {
+    height: 45px;
+    width: 3000px;
+    margin-left: -1500px;
+  }
+}
