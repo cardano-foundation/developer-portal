@@ -25,7 +25,7 @@ function AppRow({ app, hideCategory = false }) {
   const recent = isRecent(app);
 
   return (
-    <Link href={app.website} className={styles.row}>
+    <Link to={`/tools/${app.slug}`} className={styles.row}>
       <AppIcon app={app} size="row" className={styles.icon} />
       <div className={styles.content}>
         <h4 className={styles.title}>

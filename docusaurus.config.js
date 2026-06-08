@@ -225,6 +225,7 @@ module.exports = {
     },
   },
   plugins: [
+    "./plugins/tools-routes",
     [
       "@docusaurus/plugin-ideal-image",
       {

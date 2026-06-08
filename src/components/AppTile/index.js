@@ -21,7 +21,7 @@ function AppTile({ app, badge = null }) {
   const showActivity = stats && stats.txCount > 0;
 
   return (
-    <Link href={app.website} className={styles.tile}>
+    <Link to={`/tools/${app.slug}`} className={styles.tile}>
       <div className={styles.header}>
         <AppIcon app={app} size="tile" />
         {badge && <span className={styles.badge}>{badge}</span>}
