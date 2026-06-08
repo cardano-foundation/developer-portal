@@ -760,6 +760,15 @@ export const BuilderTools = [
     category: "integration",
     properties: ["javascript", "typescript", "rest"],
   },
+  {
+    title: "Dolos",
+    description: "Dolos is a lightweight Cardano data node: a third node role (beyond block producer and relay) that follows the chain via Ouroboros and keeps an updated ledger to serve queries at a fraction of the resources. Exposes Blockfrost-compatible REST, gRPC (UTxORPC), and Ouroboros node-to-client APIs.",
+    website: "https://docs.txpipe.io/dolos",
+    docs: null,
+    repository: "https://github.com/txpipe/dolos",
+    category: "node",
+    properties: ["rust", "rest", "grpc"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
