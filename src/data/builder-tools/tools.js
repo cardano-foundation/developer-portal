@@ -603,14 +603,6 @@ export const BuilderTools = [
     tags: ["typescript", "wallet"],
   },
   {
-    title: "p2p-wallet",
-    description: "A fully p2p desktop Cardano wallet with builtin DeFi support, and a transaction builder for executing multiple actions in one transaction.",
-    preview: require("./images/p2p-wallet.png"),
-    website: "https://github.com/fallen-icarus/p2p-wallet",
-    getstarted: null,
-    tags: ["haskell", "wallet"],
-  },
-  {
     title: "Cardano Dev Wallet",
     description: "A desktop wallet for Cardano development. It allows you to test your smart contracts and transactions without having to use a full node.",
     preview: require("./images/cardano-dev-wallet.png"),
@@ -657,14 +649,6 @@ export const BuilderTools = [
     website: "https://github.com/fabianbormann/cardano-peer-connect",
     getstarted: null,
     tags: ["typescript", "wallet"],
-  },
-  {
-    title: "NMKR Studio",
-    description: "NMKR Studio is a comprehensive platform for Cardano NFT management, built with C# and .NET 8.0. The project provides a complete solution for minting, burning, and managing NFTs on the Cardano blockchain.",
-    preview: require("./images/nmkr-studio.png"),
-    website: "https://github.com/nftmakerio/NMKR-Studio",
-    getstarted: null,
-    tags: ["net", "nft"],
   },
   {
     title: "Yaci Store",
