@@ -424,6 +424,15 @@ export const BuilderTools = [
     properties: ["rest"],
   },
   {
+    title: "Hydra",
+    description: "Hydra is a layer 2 scaling protocol for Cardano using isomorphic state channels (Hydra Heads) to move transactions off-chain for fast, low-cost settlement.",
+    website: "https://hydra.family/head-protocol/",
+    docs: null,
+    repository: "https://github.com/cardano-scaling/hydra",
+    category: "node",
+    properties: ["haskell", "websocket"],
+  },
+  {
     title: "NFTCDN",
     description: "Display all Cardano NFTs effortlessly & efficiently on your website/app using the low-code & high-speed NFTCDN service.",
     website: "https://nftcdn.io",
