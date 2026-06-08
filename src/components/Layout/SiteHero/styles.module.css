@@ -17,30 +17,25 @@
   text-align: left;
   position: relative;
   overflow: hidden;
-  background-size: cover;
-  background-position: top right;
-  background-repeat: no-repeat;
-  background-image: url(/img/hero-header-starburst.svg);
   height: 410px;
-}
-
-.heroBannerStarburst::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(315deg, #305bbd, #0035ad);
-  z-index: -1;
-}
-
-html[data-theme="dark"] .heroBannerStarburst::before {
-  background-image: linear-gradient(315deg, #244eaf, #011034);
+  color: #ffffff;
+  /* Layered background: starburst SVG on top of the gradient, both on the
+   * element itself so they paint above Infima's opaque .hero--primary color
+   * (a ::before with z-index:-1 gets hidden behind it on this site). The SVG
+   * circles are #0033AD, so they only show against the lighter gradient. */
+  background-color: #0035ad;
+  background-image: url(/img/hero-header-starburst.svg),
+    linear-gradient(315deg, #305bbd, #0035ad);
+  background-repeat: no-repeat, no-repeat;
+  background-position: top right, center;
+  background-size: cover, cover;
 }
 
 html[data-theme="dark"] .heroBannerStarburst {
   color: #ffffff;
+  background-color: #011034;
+  background-image: url(/img/hero-header-starburst.svg),
+    linear-gradient(315deg, #244eaf, #011034);
 }
 
 .heroChildren {
