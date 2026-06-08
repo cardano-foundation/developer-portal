@@ -136,31 +136,6 @@ export const BuilderTools = [
     tags: ["java", "transactionbuilder"],
   },
   {
-    title: "cardano-addresses TypeScript binding",
-    description: "This is a Typescript/Javascript version of the cardano-addresses API. It includes a web demo.",
-    preview: require("./images/cardano-addresses-typescript-binding.png"),
-    website: "https://www.npmjs.com/package/cardano-addresses",
-    getstarted: null,
-    tags: ["typescript", "serialization"],
-  },
-  {
-    title: "cardano-wallet-js",
-    description: "A JavaScript SDK for Cardano Wallet with a extra functionalities. You can use it as a client for the official cardano-wallet and also to create Native Tokens and NFTs.",
-    preview: require("./images/cardano-wallet-js.png"),
-    website: "https://github.com/tango-crypto/cardano-wallet-js",
-    getstarted: "/docs/get-started/cardano-wallet-js/",
-    tags: ["javascript", "wallet"]
-  },
-  {
-    title: "CardanoSharp Wallet",
-    description:
-      "CardanoSharp Wallet is a .NET library for Creating/Managing Wallets and Building/Signing Transactions.",
-    preview: require("./images/cardanosharp.png"),
-    website: "https://www.cardanosharp.com",
-    getstarted: "/docs/get-started/cardanosharp-wallet/",
-    tags: ["net", "transactionbuilder"],
-  },
-  {
     title: "Guild Operators Suite",
     description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     preview: require("./images/guild-operators.png"),
@@ -472,14 +447,6 @@ export const BuilderTools = [
     tags: ["serialization", "sql"]
   },
   {
-    title: "Pallas.Dotnet",
-    description: "Pallas.DotNet is a .NET wrapper around the Pallas Rust library, which provides building blocks for the Cardano blockchain ecosystem. This library allows .NET developers to access the functionality of Pallas in a seamless and straightforward manner.",
-    preview: require("./images/pallas-dotnet.png"),
-    website: "https://github.com/SAIB-Inc/Pallas.Dotnet",
-    getstarted: null,
-    tags: ["net", "serialization"]
-  },
-  {
     title: "Argus | Cardano.Sync",
     description: "Argus | Cardano.Sync is a .NET library that simplifies interactions with the Cardano blockchain by providing an efficient indexing framework. ",
     preview: require("./images/argus.png"),
@@ -526,14 +493,6 @@ export const BuilderTools = [
     website: "https://github.com/cardano-foundation/cf-ledger-sync",
     getstarted: null,
     tags: ["java", "indexer"]
-  },
-  {
-    title: "CFD: Cardano Fast Deployment tool",
-    description: "CFD simplifies and accelerates Cardano software deployment, stake pool management, software updates, and secure key handling, including GPG keychain integration and automated encryption, all with minimal user effort.",
-    preview: require("./images/cfd.png"),
-    website: "https://github.com/cardano-community/cfd",
-    getstarted: null,
-    tags: ["cli", "operatortool"]
   },
   {
     title: "pg_cardano",
@@ -716,14 +675,6 @@ export const BuilderTools = [
     tags: ["indexer", "java"],
   },
   {
-    title: "Tx-Village",
-    description: "Rust/Haskell ecosystem of libraries and tools to work with Cardano smart contracts.",
-    preview: require("./images/tx-village.jpg"),
-    website: "https://mlabs-haskell.github.io/tx-village",
-    getstarted: "https://github.com/mlabs-haskell/lambda-buffers-for-cardano/tree/main/transactions/demo-tx-village",
-    tags: ["transactionbuilder", "indexer", "rust", "haskell"],
-  },
-  {
     title: "Anvil API",
     description: "Simple REST endpoints for Cardano. Mint tokens, build and submit transactions, deploy and interact with smart contracts. Start free and scale your Web3 project with robust Cardano infrastructure, developer docs, and expert support.",
     preview: require("./images/anvil-api.png"),
@@ -738,14 +689,6 @@ export const BuilderTools = [
     website: "https://github.com/Biglup/cometa.js",
     getstarted: "https://cometajs.readthedocs.io/en/latest",
     tags: ["javascript", "serialization", "transactionbuilder"]
-  },
-  {
-    title: "Cometa.py",
-    description: "Cometa.py is a high-performance Python library for Cardano, focused on rapid prototyping, scripting, and backend automation for transaction building and smart-contract workflows.",
-    preview: require("./images/cometa.py.png"),
-    website: "https://github.com/Biglup/cometa.py",
-    getstarted: "https://cometapy.readthedocs.io/en/latest",
-    tags: ["python", "serialization", "transactionbuilder"]
   },
   {
     title: "Dingo",
