@@ -188,15 +188,6 @@ export const BuilderTools = [
     tags: ["java", "IDE"],
   },
   {
-    title: "Cardano Blockchain Snapshots",
-    description:
-      "Download the latest Cardano blockchain snapshot.",
-    preview: require("./images/cardano-snapshots.png"),
-    website: "https://cSnapshots.io",
-    getstarted: null,
-    tags: ["operatortool", "hosted"],
-  },
-  {
     title: "Koios",
     description: "Elastic light/full-mode API query-layer for Cardano Blockchain.",
     preview: require("./images/koios.png"),
@@ -453,14 +444,6 @@ export const BuilderTools = [
     website: "https://github.com/SAIB-Inc/Cardano.Sync",
     getstarted: null,
     tags: ["net", "indexer"]
-  },
-  {
-    title: "NFT Playground",
-    description: "An integrated development environment for building CIP54-compliant Smart NFTs.",
-    preview: require("./images/nft-playground.png"),
-    website: "https://nft-playground.dev/",
-    getstarted: "https://nft-playground.dev/help",
-    tags: ["IDE", "hosted", "nft", "javascript"]
   },
   {
     title: "Cardano Audit Script for SPOs",
