@@ -1,10 +1,11 @@
 // ============================================================================
-// toolStats - stubbed port of cardano-org's appStats.js
+// toolStats - trimmed, stubbed port of cardano-org's appStats.js
 // ============================================================================
 // Tools are not on-chain apps, so there is no transaction data. The tx-based
 // helpers are stubbed to neutral values, which makes every tx-gated UI branch
 // (activity badges, "tracked" dot, "Most active") self-hide. The non-tx helpers
-// (recent/NEW, blurb, tag matching) are real.
+// (recent/NEW, blurb, tag matching) are real. Only the exports the tools UI
+// actually imports are kept; re-port the rest from appStats.js if ever needed.
 // ============================================================================
 
 import {
@@ -17,14 +18,8 @@ const RECENT_SLUGS = new Set(
   Showcases.slice(-RECENT_APPS_COUNT).map((s) => s.slug)
 );
 
-export const STATS_GENERATED_AT = null;
-
 export function getAppStats() {
   return null;
-}
-
-export function getTxCount() {
-  return 0;
 }
 
 export function compareByTxDesc() {
@@ -43,24 +38,8 @@ export function isRecent(app) {
   return RECENT_SLUGS.has(app.slug);
 }
 
-export function countLiveTracking() {
-  return 0;
-}
-
-export function getTopAppPerCategory() {
-  return [];
-}
-
-export function getAppAxes(app) {
-  return [app.category, ...(app.properties || [])];
-}
-
 export function appHasTag(app, tag) {
   return app.category === tag || (app.properties || []).includes(tag);
-}
-
-export function formatTxCount(num) {
-  return num.toLocaleString("en-US");
 }
 
 export function formatTxCountCompact(num) {
