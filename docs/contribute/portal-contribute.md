@@ -86,6 +86,8 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
 2. **Choose a category and properties**
 
    **Important:**
+   - **Title**: use the project's own name, styled how the project styles it (e.g. lowercase `cardano-cli`, `gOuroboros`). Do not add descriptors or parentheticals, or re-case it for uniformity.
+   - **Description**: one or two factual sentences, sentence case, ending with a period. No superlatives. Describe what the tool does and how it differs from similar tools (its language/interface), rather than restating its name.
    - Pick exactly **one** primary `category` that best describes what the tool *is*. The 11 categories live in `src/data/builder-tools/tags.js`, each mapped to an industry-standard equivalent (e.g. `sdk` ≈ ethers/web3.py, `api` ≈ Infura/Alchemy, `indexer` ≈ The Graph).
    - `properties` = the language(s) the tool is written in, plus its interface (`rest` / `graphql` / `grpc` / `websocket`) where relevant.
    - Open source is encouraged: set `repository` to your public repo (it adds an "Open Source" badge + a GitHub link on the tool's page). Hosted/closed services are welcome too — use `null`.

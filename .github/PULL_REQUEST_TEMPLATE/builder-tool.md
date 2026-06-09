@@ -17,8 +17,8 @@
 
 <-- Provide information for every bullet below. Category + properties must match your changes to tools.js (full definitions in src/data/builder-tools/tags.js). -->
 
-* Title: *Project name*
-* Description: *Describe your project*
+* Title: *The project's own name, styled how the project styles it (don't add descriptors/parentheticals or re-case it)*
+* Description: *One or two factual sentences ending with a period; no superlatives; say what it does and how it differs from similar tools*
 * Category (pick exactly ONE): `smart-contracts` | `sdk` | `api` | `indexer` | `node` | `wallet` | `dev-env` | `testing` | `operations` | `governance` | `integration`
 * Properties (language + interface):
   * Language: `typescript` `javascript` `python` `rust` `haskell` `java` `net` `golang` `scala` `c` `purescript` `elm` `php`
