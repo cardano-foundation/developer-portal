@@ -293,7 +293,7 @@ export const BuilderTools = [
   {
     title: "Lucid",
     icon: "/img/tool-icons/lucid.svg",
-    description: "The original TypeScript library for building Cardano transactions and off-chain Plutus code.",
+    description: "TypeScript library for building Cardano transactions and off-chain Plutus code.",
     website: "https://github.com/Berry-Pool/lucid#readme",
     docs: "https://lucid.spacebudz.io/docs/getting-started/choose-wallet/",
     repository: "https://github.com/spacebudz/lucid",
@@ -615,7 +615,7 @@ export const BuilderTools = [
   {
     title: "Evolution SDK",
     icon: "/img/tool-icons/evolution-sdk.jpg",
-    description: "Type-safe, pure-TypeScript Cardano transaction builder and off-chain framework (no WebAssembly), maintained under Intersect.",
+    description: "Pure-TypeScript SDK for building Cardano transactions and off-chain code, with no WebAssembly dependency, built on Effect.",
     website: "https://github.com/IntersectMBO/evolution-sdk",
     docs: "https://intersectmbo.github.io/evolution-sdk/docs/introduction/getting-started/",
     repository: "https://github.com/IntersectMBO/evolution-sdk",
