@@ -44,7 +44,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/IntersectMBO/cardano-cli",
     category: "sdk",
-    properties: [],
+    properties: ["haskell"],
     maintainerPick: true,
   },
   {
@@ -55,7 +55,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/IntersectMBO/bech32",
     category: "sdk",
-    properties: [],
+    properties: ["haskell"],
   },
   {
     title: "cardano-wallet",
@@ -65,7 +65,7 @@ export const BuilderTools = [
     docs: "https://cardano-foundation.github.io/cardano-wallet/",
     repository: "https://github.com/cardano-foundation/cardano-wallet",
     category: "wallet",
-    properties: ["rest"],
+    properties: ["rest", "haskell"],
   },
   {
     title: "cardano-graphql",
@@ -75,7 +75,7 @@ export const BuilderTools = [
     docs: "https://github.com/cardano-foundation/cardano-graphql#getting-started",
     repository: "https://github.com/cardano-foundation/cardano-graphql",
     category: "indexer",
-    properties: ["graphql"],
+    properties: ["graphql", "typescript"],
   },
   {
     title: "cardano-rosetta-java",
@@ -95,7 +95,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/IntersectMBO/cardano-db-sync",
     category: "indexer",
-    properties: [],
+    properties: ["haskell"],
   },
   {
     title: "cardano-addresses",
@@ -105,7 +105,7 @@ export const BuilderTools = [
     docs: "https://github.com/IntersectMBO/cardano-addresses#command-line",
     repository: "https://github.com/IntersectMBO/cardano-addresses",
     category: "sdk",
-    properties: [],
+    properties: ["haskell"],
   },
   {
     title: "Blockfrost",
@@ -156,7 +156,7 @@ export const BuilderTools = [
     docs: "/docs/get-started/infrastructure/api-providers/ogmios",
     repository: "https://github.com/CardanoSolutions/ogmios",
     category: "node",
-    properties: ["websocket"],
+    properties: ["websocket", "haskell"],
     maintainerPick: true,
   },
   {
@@ -258,7 +258,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/txpipe/scrolls",
     category: "indexer",
-    properties: [],
+    properties: ["rust"],
   },
   {
     title: "Kupo",
@@ -268,7 +268,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/CardanoSolutions/kupo",
     category: "indexer",
-    properties: ["rest"],
+    properties: ["rest", "haskell"],
   },
   {
     title: "cardano-multiplatform-lib",
@@ -389,7 +389,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/gitmachtl/cardano-signer",
     category: "operations",
-    properties: [],
+    properties: ["javascript"],
   },
   {
     title: "Mesh",
@@ -409,7 +409,7 @@ export const BuilderTools = [
     website: "https://utxos.dev/",
     docs: null,
     repository: null,
-    category: "api",
+    category: "wallet",
     properties: ["rest", "typescript"],
   },
   {
@@ -439,7 +439,7 @@ export const BuilderTools = [
     docs: "https://dcspark.github.io/carp/docs/intro",
     repository: "https://github.com/dcSpark/carp",
     category: "indexer",
-    properties: [],
+    properties: ["rust"],
   },
   {
     title: "Demeter",
@@ -510,7 +510,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/bloxbean/yaci-devkit",
     category: "dev-env",
-    properties: [],
+    properties: ["java"],
   },
   {
     title: "whisky",
@@ -540,7 +540,7 @@ export const BuilderTools = [
     docs: "https://github.com/txpipe/mumak/blob/main/docs/INSTALL.md",
     repository: "https://github.com/txpipe/mumak",
     category: "indexer",
-    properties: [],
+    properties: ["rust"],
   },
   {
     title: "Argus",
@@ -570,7 +570,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/CardanoSolutions/zhuli",
     category: "governance",
-    properties: [],
+    properties: ["rust"],
   },
   {
     title: "cf-java-rewards-calculation",
@@ -600,7 +600,7 @@ export const BuilderTools = [
     docs: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
     repository: "https://github.com/cardano-community/pg_cardano",
     category: "indexer",
-    properties: [],
+    properties: ["rust"],
   },
   {
     title: "Cardano-C",
@@ -640,7 +640,7 @@ export const BuilderTools = [
     docs: "https://laceanatomy.com",
     repository: "https://github.com/txpipe/laceanatomy",
     category: "testing",
-    properties: [],
+    properties: ["typescript"],
   },
   {
     title: "Gastronomy",
@@ -650,7 +650,7 @@ export const BuilderTools = [
     docs: "https://github.com/SundaeSwap-finance/gastronomy",
     repository: "https://github.com/SundaeSwap-finance/gastronomy",
     category: "testing",
-    properties: [],
+    properties: ["rust"],
   },
   {
     title: "Datum Explorer",
@@ -750,7 +750,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/txpipe/cshell",
     category: "wallet",
-    properties: [],
+    properties: ["rust"],
   },
   {
     title: "Cardano HW CLI",
@@ -760,7 +760,7 @@ export const BuilderTools = [
     docs: null,
     repository: "https://github.com/vacuumlabs/cardano-hw-cli",
     category: "wallet",
-    properties: [],
+    properties: ["typescript"],
   },
   {
     title: "Cardanopress",
