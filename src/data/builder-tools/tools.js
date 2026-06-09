@@ -302,6 +302,7 @@ export const BuilderTools = [
   },
   {
     title: "Lucid Evolution",
+    icon: "/img/tool-icons/lucid-evolution.svg",
     description: "Maintained fork of Lucid by Anastasia Labs, with added features and providers.",
     website: "https://anastasia-labs.github.io/lucid-evolution/",
     docs: "https://anastasia-labs.github.io/lucid-evolution/",
