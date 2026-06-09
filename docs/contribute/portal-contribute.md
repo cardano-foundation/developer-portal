@@ -55,14 +55,15 @@ Since everything is public, people typically pay greater attention to how well s
 
 ### Add to Builder Tools
 
-Builder tools help Cardano developers build applications. This includes SDKs, libraries, APIs, CLI tools, and other developer tools.
+Builder Tools is a curated directory, not a database. The goal is to keep it as useful as possible for any Cardano developer, which sometimes means maintainers declining a tool that works but isn't the right fit yet. The points below are what maintainers look for, not a checklist you tick to earn a spot.
 
-**Tool Requirements:**
+It's a list of things you build Cardano applications *with*: SDKs and libraries, APIs and providers, indexers and data infrastructure, node and operations tooling, wallets and connectivity, developer environments, and testing tools. End-user applications (wallets as products, dApps, DEXes, marketplaces, games) belong on [cardano.org/apps](https://cardano.org/apps/), not here.
 
-- Provides actual value to Cardano developers (SDKs, libraries, APIs, CLI tools, development services)
-- Stable domain (no temporary/test domains like random Netlify or Vercel subdomains)
-- Functional and accessible
-- Clear documentation or getting started guide
+Mostly it comes down to signal. A tool that's genuinely useful, novel, or has gained real community adoption usually carries enough signal for maintainers to recognize it and say yes. A tool that works but hasn't found meaningful adoption, or isn't yet relied on by larger projects and applications, often hasn't generated that signal. That's not a no forever; things stand the test of time, so keep iterating and traction tends to show.
+
+Cardano is a vast sea of open-source repositories that work together, and a directory listing every one-off tool would point developers in every direction at once. So if you've built something niche for a specific workflow, the strongest move is often to contribute it into one of the established repositories already serving that domain, where it reaches more developers and is maintained alongside the rest. A tool built for one specific need, even a quick one-off that does exactly what it claims, isn't always enough on its own.
+
+Open source is encouraged (set `repository`); hosted and closed services are welcome too (`repository: null`).
 
 **Step-by-Step Process:**
 
@@ -114,6 +115,29 @@ If your tool reads, serves, or indexes chain data, or runs/talks to a node, it s
 
 Rules of thumb: do you call a hosted endpoint (`api`) or run it yourself (`indexer`)? Does the tool build its own queryable data store (`indexer`) or just relay the node's protocol (`node-access`)? Is it the node itself (`node`) or something that talks to one (`node-access`)?
 
+### Curation and removal
+
+The list is curated and pruned, not append-only, so it stays useful over time. Maintainers remove a tool when it stops serving developers. What usually prompts that:
+
+- the website is down, or the source repository is archived or unreachable,
+- a long stretch (roughly two years or more) with no commits, releases, or community activity and no sign of life,
+- it's been superseded by a better-maintained tool for the same job,
+- a hosted service that's been discontinued,
+- an end-user application that belongs on [cardano.org/apps](https://cardano.org/apps/),
+- or it no longer meets a basic quality and trust bar.
+
+These are signals, not a scorecard. Maintainers weigh them with judgment and often talk through borderline cases. A removed tool can come back any time through the normal submission, which is also a good moment to refresh its information; a past listing isn't a fast-track.
+
+### Maintainer picks
+
+A few tools carry a maintainer pick (the star): a steer toward what a developer should reach for in a given area today. It's a curated call, not a popularity contest.
+
+- It leans on signals (registry downloads, recent activity, maintenance, real-world fit) weighed with judgment. Stars alone mislead; a legacy tool often out-stars its maintained successor.
+- Roughly one clear leader per category, a couple more where it's genuinely warranted, and none where nothing stands out.
+- Maintainers choose the picks, so don't set `maintainerPick` on your own submission.
+
+If you think something deserves a pick, open an issue and make the case: which category it leads, and why.
+
 ### FAQ
 
 **Q: I don't know how to use GitHub or run `yarn build`. Can I still contribute?**
@@ -140,6 +164,7 @@ A: Common reasons for rejection include:
 - **New GitHub account** - Submitter account lacks contribution history or community recognition
 - **Incomplete submission** - Missing required fields, broken links, or build errors
 - **Marketing-focused description** - Using claims like "the best," "the first," or "the only"
+- **Out of scope, or not enough signal yet** - an end-user app (belongs on cardano.org/apps), or a tool that works but hasn't yet found the adoption that earns a spot. This isn't a permanent no; tools can earn a place as they gain traction.
 
 If your submission was rejected, reviewers will typically provide specific feedback in the pull request comments.
 

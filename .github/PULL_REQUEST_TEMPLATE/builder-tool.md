@@ -24,5 +24,5 @@
   * Language: `typescript` `javascript` `python` `rust` `haskell` `java` `net` `golang` `scala` `c` `purescript` `elm` `php`
   * Interface: `rest` `graphql` `grpc` `websocket`
 * Website: <link to the tool's home page>
-* Repository: <link to your public source repo, or "none" for a closed/hosted service>
-* Docs: <link to docs / get-started page, or "none">
+* Repository: <link to your public source repo, or `null` for a closed/hosted service>
+* Docs: <link to docs / get-started page, or `null`>
