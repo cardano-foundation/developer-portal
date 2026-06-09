@@ -169,8 +169,8 @@ export const BuilderTools = [
     properties: ["java"],
   },
   {
-    title: "Guild Operators",
-    icon: "/img/tool-icons/guild-operators.jpg",
+    title: "Guild Operators Suite",
+    icon: "/img/tool-icons/guild-operators-suite.jpg",
     description: "Community toolset and guides for setting up, managing, and monitoring a Cardano stake pool.",
     website: "https://cardano-community.github.io/guild-operators/",
     docs: "/docs/operate-a-stake-pool/operator-tools/guild-ops-suite",
@@ -239,6 +239,7 @@ export const BuilderTools = [
     repository: "https://github.com/cardano-community/koios-artifacts",
     category: "api",
     properties: ["rest"],
+    maintainerPick: true,
   },
   {
     title: "Pallas",
@@ -320,6 +321,7 @@ export const BuilderTools = [
     repository: "https://github.com/Plutonomicon/plutarch-plutus",
     category: "smart-contracts",
     properties: ["haskell"],
+    maintainerPick: true,
   },
   {
     title: "gOuroboros",
@@ -370,6 +372,7 @@ export const BuilderTools = [
     repository: "https://github.com/HarmonicLabs/pebble",
     category: "smart-contracts",
     properties: ["typescript"],
+    maintainerPick: true,
   },
   {
     title: "Aiken",
@@ -412,6 +415,7 @@ export const BuilderTools = [
     repository: null,
     category: "wallet",
     properties: ["rest", "typescript"],
+    maintainerPick: true,
   },
   {
     title: "Cardano Connect with Wallet",
@@ -867,7 +871,6 @@ export const BuilderTools = [
     repository: "https://github.com/IntersectMBO/cardano-node",
     category: "node",
     properties: ["haskell"],
-    maintainerPick: true,
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
