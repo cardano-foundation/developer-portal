@@ -629,7 +629,7 @@ export const BuilderTools = [
   },
   {
     title: "Lace Anatomy",
-    icon: "/img/tool-icons/lace-anatomy.webp",
+    icon: "/img/tool-icons/lace-anatomy.png",
     description: "Renders transactions from CBOR and transaction hashes, providing a graphical representation of blockchain data for developers and analysts. Includes dissect functionality that breaks down CBOR structures for debugging and troubleshooting low-level Cardano transactions.",
     website: "https://laceanatomy.com",
     docs: "https://laceanatomy.com",
