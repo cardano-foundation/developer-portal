@@ -6,6 +6,9 @@ import {
   readSearchTags,
   replaceSearchTags,
 } from "@site/src/components/showcase/ShowcaseTagSelect";
+import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
+import InfoDot from "@site/src/components/showcase/InfoDot";
+import { Categories } from "@site/src/data/builder-tools/tags";
 
 import styles from "./styles.module.css";
 
@@ -58,18 +61,26 @@ export default function IntentChips() {
         <ul className={styles.intentList}>
           {INTENTS.map((intent) => {
             const isActive = intent.id === activeId;
+            const hint = Categories[intent.tags[0]]?.description;
             return (
               <li key={intent.id} className={styles.intentItem}>
-                <button
-                  type="button"
-                  onClick={() => applyIntent(intent)}
-                  className={clsx(styles.intentChip, {
-                    [styles.intentChipActive]: isActive,
-                  })}
-                  aria-pressed={isActive}
+                <Tooltip
+                  text={hint || ""}
+                  id={`intent_${intent.id}`}
+                  anchorEl="#__docusaurus"
                 >
-                  {intent.label}
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => applyIntent(intent)}
+                    className={clsx(styles.intentChip, {
+                      [styles.intentChipActive]: isActive,
+                    })}
+                    aria-pressed={isActive}
+                  >
+                    {intent.label}
+                    <InfoDot />
+                  </button>
+                </Tooltip>
               </li>
             );
           })}

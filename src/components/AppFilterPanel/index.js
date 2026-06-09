@@ -2,6 +2,9 @@ import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 
+import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
+import InfoDot from "@site/src/components/showcase/InfoDot";
+
 import {
   Categories,
   CategoryList,
@@ -120,19 +123,26 @@ export default function AppFilterPanel() {
                 const def = Categories[cat];
                 return (
                   <li key={cat}>
-                    <button
-                      type="button"
-                      onClick={() => setCategory(cat)}
-                      className={clsx(styles.pill, isActive && styles.pillActive)}
-                      style={
-                        isActive
-                          ? { backgroundColor: def.color, borderColor: def.color }
-                          : undefined
-                      }
-                      aria-pressed={isActive}
+                    <Tooltip
+                      text={def.description}
+                      id={`filter_cat_${cat}`}
+                      anchorEl="#__docusaurus"
                     >
-                      {def.label}
-                    </button>
+                      <button
+                        type="button"
+                        onClick={() => setCategory(cat)}
+                        className={clsx(styles.pill, isActive && styles.pillActive)}
+                        style={
+                          isActive
+                            ? { backgroundColor: def.color, borderColor: def.color }
+                            : undefined
+                        }
+                        aria-pressed={isActive}
+                      >
+                        {def.label}
+                        <InfoDot />
+                      </button>
+                    </Tooltip>
                   </li>
                 );
               })}

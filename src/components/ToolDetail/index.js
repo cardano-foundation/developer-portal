@@ -12,6 +12,8 @@ import {
   Showcases,
 } from "@site/src/data/builder-tools/showcase";
 import AppTile from "@site/src/components/AppTile";
+import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
+import InfoDot from "@site/src/components/showcase/InfoDot";
 
 import styles from "./styles.module.css";
 
@@ -41,9 +43,9 @@ function GitHubIcon({ size = 18 }) {
   );
 }
 
-function TagPill({ tag, def }) {
+function TagPill({ tag, def, info }) {
   if (!def) return null;
-  return (
+  const pill = (
     <Link
       to={`/tools?tags=${tag}`}
       className={styles.categoryPill}
@@ -55,7 +57,14 @@ function TagPill({ tag, def }) {
     >
       <span className={styles.tagDot} style={{ backgroundColor: def.color }} />
       {def.label}
+      {info && <InfoDot />}
     </Link>
+  );
+  if (!info) return pill;
+  return (
+    <Tooltip text={def.description} id={`detail_cat_${tag}`} anchorEl="#__docusaurus">
+      {pill}
+    </Tooltip>
   );
 }
 
@@ -229,7 +238,7 @@ export default function ToolDetail({ slug }) {
 
         <div className={styles.tagRow}>
           {tool.repository && <span className={styles.osBadge}>Open Source</span>}
-          <TagPill tag={tool.category} def={categoryDef} />
+          <TagPill tag={tool.category} def={categoryDef} info />
           {tool.properties.map((p) => (
             <TagPill key={p} tag={p} def={Properties[p]} />
           ))}
