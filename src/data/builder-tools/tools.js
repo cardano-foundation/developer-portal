@@ -233,7 +233,7 @@ export const BuilderTools = [
   },
   {
     title: "Koios",
-    icon: "/img/tool-icons/koios.jpeg",
+    icon: "/img/tool-icons/koios.svg",
     description: "Elastic light/full-mode API query-layer for Cardano Blockchain.",
     website: "https://koios.rest",
     docs: "/docs/get-started/infrastructure/api-providers/koios",
@@ -395,7 +395,7 @@ export const BuilderTools = [
   },
   {
     title: "UTXOS Web3 Services",
-    icon: "/img/tool-icons/utxos-web3-services.png",
+    icon: "/img/tool-icons/utxos-web3-services.jpg",
     description: "UTXOS is a suite of tools and services that aim to simplify the onboarding experience for users and businesses to adopt Cardano.",
     website: "https://utxos.dev/",
     docs: null,
@@ -415,7 +415,7 @@ export const BuilderTools = [
   },
   {
     title: "Frankenwallet",
-    icon: "/img/tool-icons/frankenwallet.jpeg",
+    icon: "/img/tool-icons/frankenwallet.jpg",
     description: "An encrypted, air-gapped Linux bootable USB drive for Cardano transaction signing, sandboxed access to files on your main computer, and storage & backup of secure assets & documents.",
     website: "https://frankenwallet.com",
     docs: "/docs/learn/educational-resources/air-gap",
@@ -608,7 +608,7 @@ export const BuilderTools = [
   },
   {
     title: "Evolution SDK",
-    icon: "/img/tool-icons/evolution-sdk.png",
+    icon: "/img/tool-icons/evolution-sdk.jpg",
     description:
       "Highly scalable, production-ready transaction builder & off-chain framework for users and dApps",
     website: "https://github.com/IntersectMBO/evolution-sdk",
@@ -639,7 +639,7 @@ export const BuilderTools = [
   },
   {
     title: "Gastronomy",
-    icon: "/img/tool-icons/gastronomy.png",
+    icon: "/img/tool-icons/gastronomy.jpg",
     description: "A powerful UPLC debugger that lets you step through UPLC execution, travel backwards in time, and map directly to smart contract source code making complex debugging simple and intuitive.",
     website: "https://sundae.fi/products/gastronomy",
     docs: "https://github.com/SundaeSwap-finance/gastronomy",
@@ -710,7 +710,7 @@ export const BuilderTools = [
   },
   {
     title: "Sorbet",
-    icon: "/img/tool-icons/sorbet.png",
+    icon: "/img/tool-icons/sorbet.jpg",
     description: "A mock wallet implementation for testing out different products as if you were the user.",
     website: "https://github.com/SundaeSwap-finance/Sorbet",
     docs: null,
@@ -750,7 +750,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano HW CLI",
-    icon: "/img/tool-icons/cardano-hw-cli.png",
+    icon: "/img/tool-icons/cardano-hw-cli.jpg",
     description: "Cardano CLI tool for hardware wallets.",
     website: "https://github.com/vacuumlabs/cardano-hw-cli",
     docs: null,
