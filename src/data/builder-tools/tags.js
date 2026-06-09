@@ -1,9 +1,9 @@
 // ============================================================================
 // Builder Tools taxonomy
 // ============================================================================
-// Industry-anchored: a tool has ONE primary `category` plus `properties` drawn
-// from two facets — Language and Interface. Categories read to any web3/software
-// developer (see the `analog` field), not Cardano jargon.
+// A tool has ONE primary `category` plus `properties` drawn from two facets —
+// Language and Interface. Categories are written to read to any web3/software
+// developer, not in Cardano jargon.
 // ============================================================================
 
 // Primary categories (each tool has exactly one). `prominent: true` leads the
@@ -12,77 +12,80 @@ export const Categories = {
   "smart-contracts": {
     label: "Smart Contracts",
     description: "Languages and frameworks for writing on-chain validators.",
-    analog: "Solidity, Move",
     color: "#FF6B6B",
     prominent: true,
   },
   sdk: {
     label: "SDKs & Libraries",
     description: "Build transactions and talk to the chain from your code.",
-    analog: "ethers, viem, web3.py, CosmJS",
     color: "#16A085",
     prominent: true,
   },
+  // --------------------------------------------------------------------------
+  // Chain data & nodes form a stack — pick the layer a tool operates at:
+  //   node         run / be a node ............. the node software itself
+  //   node-access  talk to a node .............. CLIs, RPC bridges + protocol libs over a node
+  //   indexer      self-host a queryable store . ingest chain data and serve it back
+  //   api          hosted, run nothing ......... someone else runs the above for you
+  // SDKs sit across the top: one library wrapping the node-access / indexer / api layers.
+  // --------------------------------------------------------------------------
   api: {
     label: "APIs & Providers",
-    description: "Hosted APIs for accessing the chain without running infrastructure.",
-    analog: "Infura, Alchemy",
+    description: "Hosted APIs and RPC providers for accessing the chain without running infrastructure.",
     color: "#4ECDC4",
     prominent: true,
   },
   indexer: {
     label: "Indexers & Data",
-    description: "Self-hosted indexing, querying, and data pipelines.",
-    analog: "The Graph, Ponder",
+    description: "Self-host a queryable store of chain data: indexers, data nodes, and pipelines.",
     color: "#2E3B4E",
     prominent: true,
   },
   node: {
-    label: "Nodes & Network",
-    description: "Node implementations, bridges, and protocol libraries.",
-    analog: "Geth, Reth",
+    label: "Nodes & Clients",
+    description: "Run a Cardano node, or an alternative client implementation.",
     color: "#5b8a72",
+    prominent: true,
+  },
+  "node-access": {
+    label: "Node Access & RPC",
+    description: "Connect to a node and talk to it: CLIs, RPC bridges, and protocol libraries.",
+    color: "#517fa4",
     prominent: true,
   },
   wallet: {
     label: "Wallets & Connectivity",
-    description: "Wallet backends, dApp connectors, hardware, and dev wallets.",
-    analog: "wagmi, WalletConnect",
+    description: "Wallet backends, dApp connectors, hardware signers, and programmatic wallets.",
     color: "#E1B12c",
     prominent: true,
   },
   "dev-env": {
     label: "Developer Environments",
     description: "IDEs, cloud environments, and local devnets.",
-    analog: "Remix, Hardhat, Tenderly",
     color: "#3742fa",
     prominent: false,
   },
   testing: {
     label: "Testing & Debugging",
-    description: "Inspect, decode, debug, and simulate.",
-    analog: "Tenderly debugger, forge test",
+    description: "Inspect, decode, debug, simulate, and test dApp integrations.",
     color: "#6ab04c",
     prominent: false,
   },
   operations: {
     label: "Node Operations",
     description: "Tooling for stake pool and node operators.",
-    analog: "validator / staking tooling",
     color: "#4267b2",
     prominent: false,
   },
   governance: {
     label: "Governance",
     description: "Tooling for on-chain governance and voting.",
-    analog: "DAO / governance tooling",
     color: "#673AB7",
     prominent: false,
   },
   integration: {
     label: "Integration & Middleware",
     description: "Connectors and standardized integration interfaces.",
-    analog: "middleware / interop connectors",
     color: "#9C27B0",
     prominent: false,
   },

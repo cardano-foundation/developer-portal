@@ -88,7 +88,7 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
    **Important:**
    - **Title**: use the project's own name, styled how the project styles it (e.g. lowercase `cardano-cli`, `gOuroboros`). Do not add descriptors or parentheticals, or re-case it for uniformity.
    - **Description**: one or two factual sentences, sentence case, ending with a period. No superlatives. Describe what the tool does and how it differs from similar tools (its language/interface), rather than restating its name.
-   - Pick exactly **one** primary `category` that best describes what the tool *is*. The 11 categories live in `src/data/builder-tools/tags.js`, each mapped to an industry-standard equivalent (e.g. `sdk` ≈ ethers/web3.py, `api` ≈ Infura/Alchemy, `indexer` ≈ The Graph).
+   - Pick exactly **one** primary `category` that best describes what the tool *is*. The 12 categories live in `src/data/builder-tools/tags.js`. If the tool reads, serves, or indexes chain data, or runs/talks to a node, see "How the data & node categories relate" below to pick the right layer.
    - `properties` = the language(s) the tool is written in, plus its interface (`rest` / `graphql` / `grpc` / `websocket`) where relevant.
    - Open source is encouraged: set `repository` to your public repo (it adds an "Open Source" badge + a GitHub link on the tool's page). Hosted/closed services are welcome too — use `null`.
    - Do NOT set `maintainerPick` yourself (maintainers choose those).
@@ -100,6 +100,19 @@ Builder tools help Cardano developers build applications. This includes SDKs, li
 4. **Submit your pull request**
    - Use the "Add Builder Tool" GitHub PR template
    - Fill out the checklist in the template
+
+### How the data & node categories relate
+
+If your tool reads, serves, or indexes chain data, or runs/talks to a node, it sits at one layer of a stack. Pick the layer the tool *operates at*:
+
+- **`node` (Nodes & Clients)** - the node software itself: run or be a node (a full node, an alternative client implementation, an L2 node).
+- **`node-access` (Node Access & RPC)** - talk to a node: RPC bridges and protocol libraries that expose a node you run.
+- **`indexer` (Indexers & Data)** - self-host a queryable store: ingest chain data and serve it back (full indexers, lightweight indexes, data nodes, streaming pipelines).
+- **`api` (APIs & Providers)** - hosted: a managed endpoint you call, with no infrastructure to run.
+
+`sdk` (SDKs & Libraries) sits across the top: a library that wraps the `node-access` / `indexer` / `api` layers so you build from code.
+
+Rules of thumb: do you call a hosted endpoint (`api`) or run it yourself (`indexer`)? Does the tool build its own queryable data store (`indexer`) or just relay the node's protocol (`node-access`)? Is it the node itself (`node`) or something that talks to one (`node-access`)?
 
 ### FAQ
 
