@@ -424,7 +424,6 @@ export const BuilderTools = [
   },
   {
     title: "Frankenwallet",
-    icon: "/img/tool-icons/frankenwallet.jpg",
     description: "Guide for building an encrypted, air-gapped setup for offline Cardano transaction signing and key backup.",
     website: "https://frankenwallet.com",
     docs: "/docs/learn/educational-resources/air-gap",
