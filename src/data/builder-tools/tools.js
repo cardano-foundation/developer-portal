@@ -45,7 +45,6 @@ export const BuilderTools = [
     repository: "https://github.com/IntersectMBO/cardano-cli",
     category: "sdk",
     properties: ["haskell"],
-    maintainerPick: true,
   },
   {
     title: "bech32",
@@ -96,6 +95,7 @@ export const BuilderTools = [
     repository: "https://github.com/IntersectMBO/cardano-db-sync",
     category: "indexer",
     properties: ["haskell"],
+    maintainerPick: true,
   },
   {
     title: "cardano-addresses",
@@ -199,6 +199,7 @@ export const BuilderTools = [
     repository: "https://github.com/Python-Cardano/pycardano",
     category: "sdk",
     properties: ["python"],
+    maintainerPick: true,
   },
   {
     title: "Oura",
@@ -269,6 +270,7 @@ export const BuilderTools = [
     repository: "https://github.com/CardanoSolutions/kupo",
     category: "indexer",
     properties: ["rest", "haskell"],
+    maintainerPick: true,
   },
   {
     title: "cardano-multiplatform-lib",
@@ -421,6 +423,7 @@ export const BuilderTools = [
     repository: "https://github.com/cardano-foundation/cardano-connect-with-wallet",
     category: "wallet",
     properties: ["typescript"],
+    maintainerPick: true,
   },
   {
     title: "Frankenwallet",
@@ -450,7 +453,6 @@ export const BuilderTools = [
     repository: null,
     category: "dev-env",
     properties: [],
-    maintainerPick: true,
   },
   {
     title: "OpShin",
@@ -511,6 +513,7 @@ export const BuilderTools = [
     repository: "https://github.com/bloxbean/yaci-devkit",
     category: "dev-env",
     properties: ["java"],
+    maintainerPick: true,
   },
   {
     title: "whisky",
@@ -621,6 +624,7 @@ export const BuilderTools = [
     repository: "https://github.com/IntersectMBO/evolution-sdk",
     category: "sdk",
     properties: ["typescript"],
+    maintainerPick: true,
   },
   {
     title: "Scalus",
@@ -641,6 +645,7 @@ export const BuilderTools = [
     repository: "https://github.com/txpipe/laceanatomy",
     category: "testing",
     properties: ["typescript"],
+    maintainerPick: true,
   },
   {
     title: "Gastronomy",
@@ -651,6 +656,7 @@ export const BuilderTools = [
     repository: "https://github.com/SundaeSwap-finance/gastronomy",
     category: "testing",
     properties: ["rust"],
+    maintainerPick: true,
   },
   {
     title: "Datum Explorer",
