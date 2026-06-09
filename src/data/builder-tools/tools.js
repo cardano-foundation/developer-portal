@@ -168,7 +168,7 @@ export const BuilderTools = [
   },
   {
     title: "Guild Operators Suite",
-    icon: "/img/tool-icons/guild-operators-suite.jpeg",
+    icon: "/img/tool-icons/guild-operators-suite.jpg",
     description: "A collection of tools (CNTools, gLiveView, topologyUpdater and more) to simplify typical operations to help community simplify wallet keys, pool management and interact with blockchain.",
     website: "https://cardano-community.github.io/guild-operators/",
     docs: "/docs/operate-a-stake-pool/operator-tools/guild-ops-suite",
@@ -588,7 +588,7 @@ export const BuilderTools = [
   },
   {
     title: "pg_cardano",
-    icon: "/img/tool-icons/pg-cardano.jpeg",
+    icon: "/img/tool-icons/pg-cardano.jpg",
     description: "A PostgreSQL extension providing a suite of Cardano-related tools, including cryptographic functions, address encoding/decoding, and blockchain data processing.",
     website: "https://github.com/cardano-community/pg_cardano",
     docs: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
@@ -700,7 +700,7 @@ export const BuilderTools = [
   },
   {
     title: "Kuber",
-    icon: "/img/tool-icons/kuber.jpeg",
+    icon: "/img/tool-icons/kuber.jpg",
     description: "Haskell library and API server for composing balanced Cardano transactions.",
     website: "https://github.com/dQuadrant/kuber",
     docs: "https://kuberide.com/",
