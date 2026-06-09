@@ -487,7 +487,7 @@ export const BuilderTools = [
   },
   {
     title: "Atlas",
-    icon: "/img/tool-icons/atlas.svg",
+    icon: "/img/tool-icons/atlas.png",
     description:
       "Atlas is an all-in-one, Haskell-native application backend for writing off-chain code for on-chain Plutus smart contracts.",
     website: "https://atlas-app.io/",
