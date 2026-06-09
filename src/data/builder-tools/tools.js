@@ -351,8 +351,8 @@ export const BuilderTools = [
     properties: ["rest", "golang", "websocket"],
   },
   {
-    title: "HeliosLang",
-    icon: "/img/tool-icons/helioslang.png",
+    title: "Helios",
+    icon: "/img/tool-icons/helios.png",
     description: "Smart contract DSL for Cardano with a single-file, dependency-free JavaScript compiler.",
     website: "https://github.com/Hyperion-BT/Helios",
     docs: null,
