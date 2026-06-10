@@ -5,6 +5,8 @@ description: Learn how to build applications on Cardano, end-to-end, from smart 
 
 # Hello Cardano
 
+_Adapted from [Cardano Builders](https://cardanobuilders.github.io)._
+
 This course takes you from zero to building full-stack applications on Cardano. Through 10 hands-on lessons, you will write smart contracts with [Aiken](https://aiken-lang.org/), build transactions with the [Mesh SDK](https://meshjs.dev/), and deploy working applications on the Cardano blockchain.
 
 By the end of this course, you will have practical experience with wallets, transactions, smart contract development, testing, and Layer 2 scaling.

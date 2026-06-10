@@ -5,6 +5,8 @@ description: Build the conceptual foundation you need to understand Cardano deve
 
 # Blockchain Theory
 
+_Adapted from [Cardano Builders](https://cardanobuilders.github.io)._
+
 This course gives web2 developers the conceptual foundation they need before writing their first line of blockchain code. Through 15 lessons organized in 6 modules, you will learn how blockchains work, why Cardano makes the design choices it does, and how familiar web2 concepts map to web3 equivalents.
 
 By the end of this course, you will understand UTXOs, consensus, smart contract validators, native tokens, DeFi primitives, and Cardano governance — all explained through the lens of concepts you already know: REST APIs, databases, JWT, Git, and more.

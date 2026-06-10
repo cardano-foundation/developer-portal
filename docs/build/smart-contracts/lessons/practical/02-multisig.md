@@ -20,7 +20,7 @@ In this lesson, you will:
 
 ### Download CIP30 Wallet Extension
 
-You need a browser wallet extension that supports the CIP30 standard. Choose and install one from the [Cardano developer showcase](https://developers.cardano.org/showcase/?tags=wallet).
+You need a browser wallet extension that supports the CIP30 standard. Choose and install one from the [Cardano apps directory](https://cardano.org/apps/?tags=wallet).
 
 After installing, restore the wallet using the seed phrase you created in the previous lesson.
 
