@@ -313,6 +313,16 @@ export const BuilderTools = [
     properties: ["typescript"],
   },
   {
+    title: "Plinth",
+    icon: "/img/tool-icons/intersect.png",
+    description: "Haskell-based smart contract language for Cardano, compiling to Plutus Core.",
+    website: "https://plutus.cardano.intersectmbo.org/docs/",
+    docs: "/docs/build/smart-contracts/languages/plinth",
+    repository: "https://github.com/IntersectMBO/plutus",
+    category: "smart-contracts",
+    properties: ["haskell"],
+  },
+  {
     title: "Plutarch",
     icon: "/img/tool-icons/plutonomicon.png",
     description: "Typed Haskell eDSL for writing efficient Plutus Core validators.",
