@@ -546,6 +546,16 @@ const redirects = [
   // deleted node docs
   { to: '/docs/get-started/infrastructure/node/running-cardano', from: '/docs/get-started/infrastructure/node/dynamic-block-forging' },
   { to: '/docs/get-started/infrastructure/node/running-cardano', from: '/docs/get-started/infrastructure/node/rts-options-node' },
+  // smart contract lessons moved under a Practical subsection (Theory added alongside).
+  // New URLs drop the numeric filename prefix (Docusaurus default); old URLs kept it via explicit id.
+  { to: '/docs/build/smart-contracts/lessons/practical/wallet-send-lovelace', from: '/docs/build/smart-contracts/lessons/01-hello-world' },
+  { to: '/docs/build/smart-contracts/lessons/practical/multisig', from: '/docs/build/smart-contracts/lessons/02-multisig' },
+  { to: '/docs/build/smart-contracts/lessons/practical/aiken-contracts', from: '/docs/build/smart-contracts/lessons/03-aiken-contracts' },
+  { to: '/docs/build/smart-contracts/lessons/practical/contract-testing', from: '/docs/build/smart-contracts/lessons/04-contract-testing' },
+  { to: '/docs/build/smart-contracts/lessons/practical/avoid-redundant-validation', from: '/docs/build/smart-contracts/lessons/05-avoid-redundant-validation' },
+  { to: '/docs/build/smart-contracts/lessons/practical/interpreting-blueprint', from: '/docs/build/smart-contracts/lessons/06-interpreting-blueprint' },
+  { to: '/docs/build/smart-contracts/lessons/practical/vesting', from: '/docs/build/smart-contracts/lessons/07-vesting' },
+  { to: '/docs/build/smart-contracts/lessons/practical/plutus-nft', from: '/docs/build/smart-contracts/lessons/08-plutus-nft' },
 ];
 
 module.exports = redirects;
