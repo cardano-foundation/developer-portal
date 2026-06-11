@@ -1,9 +1,9 @@
 ---
-id: plu-ts
+id: pebble
 title: Pebble
-sidebar_label: Pebble (Typecript)
+sidebar_label: Pebble (TypeScript)
 description: Pebble - A strongly-typed domain-specific language for writing Cardano smart contracts
-image: /img/plu_ts-logo.svg
+image: /img/pebble-banner.png
 ---
 
 ## Introduction

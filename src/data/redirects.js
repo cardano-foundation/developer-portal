@@ -508,6 +508,14 @@ const redirects = [
     from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/linked-list',
   },
   {
+    // plu-ts renamed to Pebble: redirect the old doc URL and the old get-started path
+    to: '/docs/build/smart-contracts/languages/pebble',
+    from: [
+      '/docs/build/smart-contracts/languages/plu-ts',
+      '/docs/get-started/plu-ts',
+    ],
+  },
+  {
     // fix broken blog pagination: ../  from /blog/page/N/ resolves to /blog/page/
     to: '/blog/',
     from: '/blog/page',

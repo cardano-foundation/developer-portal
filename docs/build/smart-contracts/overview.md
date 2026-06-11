@@ -308,7 +308,7 @@ Writing well-designed smart contracts requires you to have a solid understanding
 - [OpShin](../languages/opshin) - Pythonic programming language used for smart contracts.
 - [Scalus](../languages/scalus) - a modern unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic. Scalus works with JVM and JavaScript too.
 - [Plinth](../languages/plinth) - "Canonical" smart contract language of Cardano written in Haskell with advanced tooling. Can be used for both on-chain and off-chain.
-- [Plu-ts](../languages/plu-ts) - Typescript-embedded smart contract programming language and a transaction creation library.
+- [Pebble](../languages/pebble) - Strongly-typed domain-specific language for writing Cardano smart contracts, with a TypeScript-like syntax that compiles to UPLC.
 
 ---
 

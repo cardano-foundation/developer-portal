@@ -1,292 +1,127 @@
-// List of available tags. The tag should be singular and the label in plural. (PLEASE DO NOT ADD NEW TAGS)
-export const Tags = {
-  // ===== SPECIAL =====
-  // PLEASE DO NOT USE THIS TAG: we choose the favorite tools (process TBD)
-  favorite: {
-    label: "Favorite",
-    description:
-      "Our favorite Cardano builder tools that you must absolutely check-out.",
-    color: '#e9669e',
-  },
+// ============================================================================
+// Builder Tools taxonomy
+// ============================================================================
+// A tool has ONE primary `category` plus `properties` drawn from two facets —
+// Language and Interface. Categories are written to read to any web3/software
+// developer, not in Cardano jargon.
+// ============================================================================
 
-  // ===== PROGRAMMING LANGUAGES (alphabetical) =====
-  c: {
-    label: "C",
-    description: "Tools written in or providing bindings for C",
-    icon: null,
-    color: '#eca882',
-  },
-
-  elm: {
-    label: "Elm",
-    description: "Tools written in or providing bindings for Elm",
-    icon: null,
-    color: "#60B5CC"
-  },
-
-  golang: {
-    label: "Go",
-    description: "Tools written in or providing bindings for Go",
-    icon: null,
-    color: '#50b7e0',
-  },
-
-  haskell: {
-    label: "Haskell",
-    description: "Tools written in or providing bindings for Haskell",
-    icon: null,
-    color: "#5F5287"
-  },
-
-  java: {
-    label: "Java",
-    description: "Tools written in or providing bindings for Java",
-    icon: null,
-    color: '#d5232d',
-  },
-
-  javascript: {
-    label: "JavaScript",
-    description: "Tools written in or providing bindings for JavaScript",
-    icon: null,
-    color: '#fce300',
-  },
-
-  net: {
-    label: ".NET",
-    description: "Tools written in or providing bindings for .NET",
-    icon: null,
-    color: '#e46fd9',
-  },
-
-  php: {
-    label: "PHP",
-    description: "Tools written in or providing bindings for PHP",
-    icon: null,
-    color: "#777BB4"
-  },
-
-  purescript: {
-    label: "Purescript",
-    description: "Tools written in or providing bindings for PureScript",
-    icon: null,
-    color: '#0F9D58',
-  },
-
-  python: {
-    label: "Python",
-    description: "Tools written in or providing bindings for Python",
-    icon: null,
-    color: '#5dc942',
-  },
-
-  rust: {
-    label: "Rust",
-    description: "Tools written in or providing bindings for Rust",
-    icon: null,
-    color: '#7e6a4c',
-  },
-
-  scala: {
-    label: "Scala",
-    description: "Tools written in or providing bindings for Scala",
-    icon: null,
-    color: "#DC322F"
-  },
-
-  typescript: {
-    label: "TypeScript",
-    description: "Tools written in or providing bindings for TypeScript",
-    icon: null,
-    color: "#3178C6"
-  },
-
-  // ===== PROTOCOLS/APIs =====
-  http: {
-    label: "HTTP",
-    description: "Tools that expose an HTTP REST API",
-    icon: null,
-    color: "#7F8C8D"
-  },
-
-  websocket: {
-    label: "WebSocket",
-    description: "Tools that expose a WebSocket API for real-time streaming",
-    icon: null,
-    color: "#1DB7ff"
-  },
-
-  // ===== DATA FORMATS =====
-  json: {
-    label: "JSON",
-    description: "Tools that use JSON as their primary data format",
-    icon: null,
-    color: "#F7931E"
-  },
-
-  // ===== DATABASES =====
-  redis: {
-    label: "Redis",
-    description: "Tools that use Redis for caching or storage",
-    icon: null,
-    color: "#FD7272"
-  },
-
-  sql: {
-    label: "SQL",
-    description: "Tools backed by a SQL database (PostgreSQL, SQLite, etc.)",
-    icon: null,
-    color: "#336791"
-  },
-
-  // ===== TOOLS =====
-  cli: {
-    label: "CLI",
-    description: "Tools usable from the command line",
-    icon: null,
-    color: '#921f32',
-  },
-
-  // ===== DEVELOPMENT TOOLS =====
-  IDE: {
-    label: "IDE",
-    description: "Editor plugins and cloud development environments",
-    icon: null,
-    color: '#001eff',
-  },
-
-  smartcontracts: {
+// Primary categories (each tool has exactly one). `prominent: true` leads the
+// "Browse tools by category" section; the rest sit in the lower utilities band.
+export const Categories = {
+  "smart-contracts": {
     label: "Smart Contracts",
-    description: "Languages and platforms for writing on-chain validators",
-    icon: null,
-    color: "#FF6B6B"
+    description: "Languages and frameworks for writing on-chain validators.",
+    color: "#FF6B6B",
+    prominent: true,
   },
-
-  transactionbuilder: {
-    label: "Transaction Builder",
-    description: "Libraries for building and submitting Cardano transactions",
-    icon: null,
-    color: "#16A085"
+  sdk: {
+    label: "SDKs & Libraries",
+    description: "Build transactions and talk to the chain from your code.",
+    color: "#16A085",
+    prominent: true,
   },
-
-  serialization: {
-    label: "Serialization",
-    description: "Libraries for encoding and decoding addresses, transactions, and other Cardano data",
-    icon: null,
-    color: "#D6A2E8"
+  // --------------------------------------------------------------------------
+  // Chain data & nodes form a stack — pick the layer a tool operates at:
+  //   node         run / be a node ............. the node software itself
+  //   node-access  talk to a node .............. CLIs, RPC bridges + protocol libs over a node
+  //   indexer      self-host a queryable store . ingest chain data and serve it back
+  //   api          hosted, run nothing ......... someone else runs the above for you
+  // SDKs sit across the top: one library wrapping the node-access / indexer / api layers.
+  // --------------------------------------------------------------------------
+  api: {
+    label: "APIs & Providers",
+    description: "Hosted APIs and RPC providers for accessing the chain without running infrastructure.",
+    color: "#4ECDC4",
+    prominent: true,
   },
-
-  // ===== TESTING & QUALITY =====
-  testing: {
-    label: "Testing",
-    description: "Testing frameworks, local devnets, debuggers, and transaction inspectors",
-    icon: null,
-    color: "#B8E994"
-  },
-
-  // ===== INFRASTRUCTURE & DATA =====
   indexer: {
-    label: "Indexer",
-    description: "Services that index and query on-chain data",
-    icon: null,
-    color: '#000'
+    label: "Indexers & Data",
+    description: "Self-host a queryable store of chain data: indexers, data nodes, and pipelines.",
+    color: "#2E3B4E",
+    prominent: true,
   },
-
-  provider: {
-    label: "Provider",
-    description: "Hosted APIs for accessing blockchain data without running a node",
-    icon: null,
-    color: "#4ECDC4"
+  node: {
+    label: "Nodes & Clients",
+    description: "Run a Cardano node, or an alternative client implementation.",
+    color: "#5b8a72",
+    prominent: true,
   },
-
-  nodeclient: {
-    label: "Node Client",
-    description: "Alternative node implementations or libraries for connecting to Cardano nodes",
-    icon: null,
-    color: "#95E1D3"
+  "node-access": {
+    label: "Node Access & RPC",
+    description: "Connect to a node and talk to it: CLIs, RPC bridges, and protocol libraries.",
+    color: "#517fa4",
+    prominent: true,
   },
-
-  hosted: {
-    label: "Hosted Service",
-    description: "Managed third-party services (no self-hosting required)",
-    icon: null,
-    color: "#4a69BD"
-  },
-
-  // ===== APPLICATION DOMAINS =====
   wallet: {
-    label: "Wallet",
-    description: "Tools for wallet integration, key management, or CIP-30 connectivity",
-    icon: null,
-    color: "#E1B12c"
+    label: "Wallets & Connectivity",
+    description: "Wallet backends, dApp connectors, hardware signers, and programmatic wallets.",
+    color: "#E1B12c",
+    prominent: true,
   },
-
-  nft: {
-    label: "NFT",
-    description: "Tools for minting, managing, or querying NFTs and tokens",
-    icon: null,
-    color: '#fe6829',
+  "dev-env": {
+    label: "Developer Environments",
+    description: "IDEs, cloud environments, and local devnets.",
+    color: "#3742fa",
+    prominent: false,
   },
-
+  testing: {
+    label: "Testing & Debugging",
+    description: "Inspect, decode, debug, simulate, and test dApp integrations.",
+    color: "#6ab04c",
+    prominent: false,
+  },
+  operations: {
+    label: "Node Operations",
+    description: "Tooling for stake pool and node operators.",
+    color: "#4267b2",
+    prominent: false,
+  },
   governance: {
     label: "Governance",
-    description: "Tools for on-chain governance participation and voting",
-    icon: null,
-    color: '#673AB7',
+    description: "Tooling for on-chain governance and voting.",
+    color: "#673AB7",
+    prominent: false,
   },
-
-  operatortool: {
-    label: "Operator Tool",
-    description: "Tools for running and managing stake pools",
-    icon: null,
-    color: '#4267b2',
-  },
-
-  security: {
-    label: "Security",
-    description: "Tools for securing keys, transactions, and signing environments",
-    icon: null,
-    color: '#c0392b',
+  integration: {
+    label: "Integration & Middleware",
+    description: "Connectors and standardized integration interfaces.",
+    color: "#9C27B0",
+    prominent: false,
   },
 };
 
-export const TagList = Object.keys(Tags);
+// Properties — facet 1: Language (the implementation / familiar language).
+export const LanguageProperties = {
+  typescript: { label: "TypeScript", color: "#3178C6" },
+  javascript: { label: "JavaScript", color: "#f0c000" },
+  python: { label: "Python", color: "#5dc942" },
+  rust: { label: "Rust", color: "#7e6a4c" },
+  haskell: { label: "Haskell", color: "#5F5287" },
+  java: { label: "Java", color: "#d5232d" },
+  net: { label: ".NET", color: "#e46fd9" },
+  golang: { label: "Go", color: "#50b7e0" },
+  scala: { label: "Scala", color: "#DC322F" },
+  c: { label: "C", color: "#a37c5b" },
+  purescript: { label: "PureScript", color: "#0F9D58" },
+  elm: { label: "Elm", color: "#60B5CC" },
+  php: { label: "PHP", color: "#777BB4" },
+};
 
-export const LanguagesOrTechnologiesTags = [
-  "c",
-  "cli",
-  "elm",
-  "golang",
-  "haskell",
-  "http",
-  "java",
-  "javascript",
-  "json",
-  "net",
-  "php",
-  "purescript",
-  "python",
-  "redis",
-  "rust",
-  "scala",
-  "sql",
-  "typescript",
-  "websocket",
-];
+// Properties — facet 2: Interface (how you talk to it; mainly API/data tools).
+export const InterfaceProperties = {
+  rest: { label: "REST", color: "#7F8C8D" },
+  graphql: { label: "GraphQL", color: "#E10098" },
+  grpc: { label: "gRPC", color: "#00ADD8" },
+  websocket: { label: "WebSocket", color: "#1DB7ff" },
+};
 
-export const DomainsTags = [
-  "governance",
-  "hosted",
-  "IDE",
-  "indexer",
-  "nft",
-  "nodeclient",
-  "operatortool",
-  "provider",
-  "serialization",
-  "smartcontracts",
-  "testing",
-  "security",
-  "transactionbuilder",
-  "wallet",
-];
+export const Properties = { ...LanguageProperties, ...InterfaceProperties };
+
+// Backwards-compat union (lookup by name regardless of facet).
+export const Tags = { ...Categories, ...Properties };
+
+export const CategoryList = Object.keys(Categories);
+export const PropertyList = Object.keys(Properties);
+export const LanguageList = Object.keys(LanguageProperties);
+export const InterfaceList = Object.keys(InterfaceProperties);
