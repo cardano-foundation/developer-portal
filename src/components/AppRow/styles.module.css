@@ -44,15 +44,6 @@
   text-overflow: ellipsis;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgb(34, 134, 96);
-  display: inline-block;
-  flex-shrink: 0;
-}
-
 .pickStar {
   color: #f5b301;
   font-size: 0.95rem;
@@ -88,15 +79,6 @@
   align-items: flex-end;
   gap: 0.25rem;
   flex-shrink: 0;
-}
-
-.activity {
-  font-size: 0.78rem;
-  font-weight: 600;
-  background: rgba(34, 134, 96, 0.12);
-  color: rgb(34, 134, 96);
-  padding: 1px 8px;
-  border-radius: 999px;
 }
 
 .category {

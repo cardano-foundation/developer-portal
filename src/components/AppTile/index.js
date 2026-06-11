@@ -3,22 +3,13 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
 import { Categories, Properties } from "@site/src/data/builder-tools/showcase";
-import {
-  getAppStats,
-  isTrackable,
-  formatTxCountCompact,
-  getAppBlurb,
-} from "@site/src/utils/toolStats";
+import { getAppBlurb } from "@site/src/utils/toolStats";
 import AppIcon from "@site/src/components/AppIcon";
 
 import styles from "./styles.module.css";
 
-const ACTIVITY_UNIT = "tx";
-
 function AppTile({ app, badge = null }) {
   const categoryDef = Categories[app.category];
-  const stats = isTrackable(app) ? getAppStats(app) : null;
-  const showActivity = stats && stats.txCount > 0;
 
   return (
     <Link to={`/tools/${app.slug}`} className={styles.tile}>
@@ -29,11 +20,6 @@ function AppTile({ app, badge = null }) {
       <h3 className={styles.title}>{app.title}</h3>
       <p className={styles.description}>{getAppBlurb(app)}</p>
       <div className={styles.meta}>
-        {showActivity && (
-          <span className={styles.activity}>
-            {formatTxCountCompact(stats.txCount)} {ACTIVITY_UNIT}
-          </span>
-        )}
         {categoryDef && (
           <span className={styles.category}>{categoryDef.label}</span>
         )}

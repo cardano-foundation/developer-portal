@@ -76,8 +76,7 @@
 }
 
 .category,
-.property,
-.activity {
+.property {
   display: inline-flex;
   align-items: center;
   padding: 2px 9px;
@@ -94,11 +93,4 @@
 .property {
   color: var(--ifm-color-emphasis-700);
   border: 1px solid var(--ifm-color-emphasis-300);
-}
-
-.activity {
-  background: rgba(34, 134, 96, 0.12);
-  color: rgb(34, 134, 96);
-  font-weight: 600;
-  letter-spacing: -0.01em;
 }

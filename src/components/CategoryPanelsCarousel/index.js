@@ -5,18 +5,14 @@ import clsx from "clsx";
 
 import AppRow from "@site/src/components/AppRow";
 import { Categories, Showcases } from "@site/src/data/builder-tools/showcase";
-import { compareByTxDesc } from "@site/src/utils/toolStats";
 
 import styles from "./styles.module.css";
 
 function selectPanelApps(category, limit) {
-  // Three-tier sort: tracked tx desc (always 0 for tools), then maintainer
-  // picks, then random for some freshness. Cached below so order stays stable
-  // until the next full page load.
+  // Maintainer picks first, then random for some freshness. Cached below so
+  // order stays stable until the next full page load.
   return Showcases.filter((app) => app.category === category)
     .sort((a, b) => {
-      const txDiff = compareByTxDesc(a, b);
-      if (txDiff !== 0) return txDiff;
       if (a.maintainerPick !== b.maintainerPick) return a.maintainerPick ? -1 : 1;
       return Math.random() - 0.5;
     })

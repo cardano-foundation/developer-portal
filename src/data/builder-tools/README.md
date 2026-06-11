@@ -9,7 +9,7 @@ The `/tools` page is a port of the cardano.org/apps app-store UX, adapted to dev
 - `src/pages/tools/index.js` — the `/tools` page (hero, intents, filters, sort, category browse, picks).
 - `plugins/tools-routes/` — Docusaurus plugin that generates a static `/tools/<slug>` route per tool, rendered by `src/components/ToolDetail/`.
 - `src/components/` — the ported UI: `AppTile`, `AppRow`, `AppIcon`, `AppTileCarousel`, `CategoryPanelsCarousel`, `AppFilterPanel`, `PageCTA`, `Layout/SiteHero`, plus the filter/sort controls in `src/components/showcase/` (`IntentChips`, `ShowcaseSort`, `ShowcaseTagSelect`, `ShowcaseTooltip`, `InfoDot`).
-- `src/utils/toolStats.js` — trimmed, stubbed port of cardano-org's `appStats.js`. Tools have no on-chain tx data, so the tx helpers return neutral values and every tx-gated UI branch self-hides; the real helpers are recent/NEW, blurb, and tag matching.
+- `src/utils/toolStats.js` — shared listing helpers: recent/NEW badge, card blurb, and category/property matching for the filter panel. (cardano-org's `appStats.js` tx metrics were not ported; tools have no on-chain tx data.)
 
 ## Data flow
 
