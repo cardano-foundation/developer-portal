@@ -1,108 +1,164 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-:global(.card__image) {
-  max-height: 175px;
-  overflow: hidden;
-}
-
-.filterCheckbox {
-  margin-top: 20px;
-  justify-content: space-between;
-}
-
-.filterCheckbox,
-.checkboxList {
+.controls {
   display: flex;
-  align-items: center;
-}
-
-.filterCheckbox > div:first-child {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-}
-
-.filterCheckbox > div > * {
-  margin-bottom: 0;
-  margin-right: 8px;
-}
-
-.checkboxList {
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
-.checkboxList,
-.showcaseList {
-  padding: 0;
-  list-style: none;
+.searchInputWrap {
+  flex: 1 1 280px;
+  min-width: 200px;
+  max-width: 420px;
 }
 
-.checkboxListItem {
-  user-select: none;
-  white-space: nowrap;
-  height: 32px;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.checkboxListItem:last-child {
-  margin-right: 0;
-}
-
-.searchContainer {
-  margin-left: auto;
-}
-
-.searchContainer input {
-  height: 30px;
-  border-radius: 15px;
-  padding: 10px;
+.searchInput {
+  width: 100%;
+  height: 40px;
+  padding: 0 1rem;
+  border-radius: 999px;
   border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  font-size: 0.95rem;
 }
 
-.showcaseList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+.searchInput:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 1px;
+  border-color: var(--ifm-color-primary);
 }
 
-.showcaseFavorite {
+.controlsRight {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionSubtitle {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.sectionMuted {
+  margin-top: 3rem;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
-.showcaseFavoriteHeader {
+.sectionTitleMuted {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.allAppsReveal {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.showAllButton {
+  font-weight: 600;
+}
+
+.allAppsHeader {
+  justify-content: space-between;
+}
+
+.countMuted {
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 400;
+}
+
+.rowGrid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+}
+
+.guidedPathsBanner {
   display: flex;
   align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: var(--ifm-color-emphasis-100);
 }
 
-.showcaseFavoriteHeader > h2 {
-  margin-bottom: 0;
+.guidedPathsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
-.showcaseFavoriteHeader > svg {
-  width: 30px;
-  height: 30px;
+.guidedPathsTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-.svgIconFavoriteXs {
-  margin-left: 0.625rem;
-  font-size: 1rem;
+.guidedPathsSubtitle {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
 }
 
-.ourFavorites {
-  margin-right: 0.7rem;
+.guidedPathChipList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.tagDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-left: 8px;
+.guidedPathChip {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.guidedPathChip::after {
+  content: " →";
+  display: inline-block;
+  margin-left: 0.25rem;
+  transition: transform 150ms ease;
+}
+
+.guidedPathChip:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: underline;
+}
+
+.guidedPathChip:hover::after {
+  transform: translateX(2px);
 }

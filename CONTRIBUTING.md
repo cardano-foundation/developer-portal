@@ -1,6 +1,6 @@
 # Contributing to the Cardano Developer Portal
 
-Contributions generally fall into three categories: fixing content (typos, broken links, outdated information), adding developer tools to the [Builder Tools](https://developers.cardano.org/tools/) showcase, and writing new documentation or tutorials.
+Contributions generally fall into three categories: fixing content (typos, broken links, outdated information), adding developer tools to [Builder Tools](https://developers.cardano.org/tools/), and writing new documentation or tutorials.
 
 For small fixes, you can always use the GitHub web editor directly on any file or click the pencil icon at the bottom on portal pages without any setup.
 
@@ -8,24 +8,24 @@ For anything that needs a local build, see the [local development setup](./READM
 
 ## Adding a builder tool
 
-This is the most common external contribution. You'll add an image, a tool entry, and open a PR:
+This is the most common external contribution. You add a tool entry and open a PR:
 
-1. Place your tool's logo or screenshot (PNG or JPG) in `src/data/builder-tools/images/`.
-2. Edit `src/data/builder-tools/tools.js` and add your entry at the **end** of the `Showcases` array:
+1. Edit `src/data/builder-tools/tools.js` and add your entry at the **end** of the `BuilderTools` array:
    ```js
    {
      title: "Your Tool Name",
-     description: "What it does",
-     preview: require("./images/your-tool-name.png"),
+     description: "One or two factual sentences, no superlatives.",
+     category: "sdk",                 // exactly one, see tags.js
+     properties: ["typescript"],      // language + interface, see tags.js
      website: "https://your-tool.com",
-     getstarted: "https://docs.your-tool.com/getting-started", // or null
-     tags: ["relevant", "tags"],  // see tags.js for the full list
+     repository: "https://github.com/owner/repo", // public repo, or null
+     docs: "https://docs.your-tool.com/getting-started", // or null
    }
    ```
-3. Run `yarn build` and confirm it passes with no errors.
-4. Open a pull request using the "Add Builder Tool" template. Builder tool PRs require 3 approvals.
+2. Run `yarn build` and confirm it passes with no errors (it validates your entry).
+3. Open a pull request using the "Add Builder Tool" template. Builder tool PRs require 3 approvals.
 
-Don't add the `favorite` tag yourself. Check `src/data/builder-tools/tags.js` for available tags. For a full walkthrough, see the [portal contribution guide](https://developers.cardano.org/docs/portal-contribute/).
+Don't set `maintainerPick` yourself (maintainers choose those). Categories and properties are defined in `src/data/builder-tools/tags.js`. For the full guide, including what belongs here and how tools are curated, see the [portal contribution guide](https://developers.cardano.org/docs/portal-contribute/).
 
 ## Before you open a PR
 
