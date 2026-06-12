@@ -5,20 +5,18 @@
 // Cardano ecosystem sites (e.g. cardano.org) can consume it at build
 // time without scraping.
 //
-// Each builder tool requires exactly one image (enforced by validation.js),
-// so counting images in the directory is a reliable proxy for the tool count.
-//
 // Command: yarn build-stats
 //
 
 const fs = require('fs');
 const path = require('path');
 
-const imagesDir = path.join(__dirname, '..', 'src', 'data', 'builder-tools', 'images');
+const toolsPath = path.join(__dirname, '..', 'src', 'data', 'builder-tools', 'tools.js');
 const outputPath = path.join(__dirname, '..', 'static', 'stats.json');
 
-const count = fs.readdirSync(imagesDir)
-  .filter(f => /\.(png|jpe?g)$/i.test(f)).length;
+// One entry-level `title:` line (4-space indent) per tool; the how-to comment
+// block uses a ` * ` prefix and is not counted.
+const count = (fs.readFileSync(toolsPath, 'utf8').match(/^ {4}title: "/gm) || []).length;
 
 const stats = {
   builderToolsCount: count,
