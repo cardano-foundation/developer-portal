@@ -369,4 +369,4 @@ To support users, administrators and developers, the following documentation pro
 [Cardano Tracer Documentation]: https://github.com/intersectmbo/cardano-node/blob/master/cardano-tracer/docs/cardano-tracer.md
 [Cardano.Node.Tracing.DefaultTraceConfig]: https://github.com/intersectmbo/cardano-node/blob/master/cardano-node/src/Cardano/Node/Tracing/DefaultTraceConfig.hs
 [mainnet-config.json]: https://github.com/IntersectMBO/cardano-node/blob/master/configuration/cardano/mainnet-config.json
-[trace-dispatcher: Efficient, Simple, and Flexible Program Tracing]: https://github.com/intersectmbo/cardano-node/blob/master/trace-dispatcher/doc/trace-dispatcher.md
+[trace-dispatcher: Efficient, Simple, and Flexible Program Tracing]: https://github.com/IntersectMBO/hermod-tracing/tree/master/trace-dispatcher

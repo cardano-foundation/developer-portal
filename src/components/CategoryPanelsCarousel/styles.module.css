@@ -1,0 +1,226 @@
+.carousel {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr auto;
+  align-items: stretch;
+  column-gap: 0.5rem;
+}
+
+.scroller {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  min-width: 0;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  flex: 0 0 340px;
+  max-width: 340px;
+  scroll-snap-align: start;
+}
+
+.item > * {
+  height: 100%;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ifm-font-color-base);
+}
+
+.seeAll {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.seeAll:hover {
+  text-decoration: underline;
+  color: var(--ifm-color-primary-darker);
+}
+
+.panelList {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.panelList > li > a {
+  border: none;
+  background: transparent;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+}
+
+.panelList > li > a:hover {
+  background: var(--ifm-color-emphasis-100);
+  box-shadow: none;
+}
+
+.arrow {
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-emphasis-700);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 150ms ease, color 150ms ease, opacity 150ms ease,
+    box-shadow 150ms ease;
+  flex-shrink: 0;
+}
+
+.arrow:hover:not(:disabled) {
+  border-color: var(--ifm-color-emphasis-500);
+  color: var(--ifm-color-emphasis-900);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.arrow:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.arrow:disabled:hover {
+  border-color: var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-700);
+  box-shadow: none;
+}
+
+.dots {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .arrow {
+    display: none;
+  }
+
+  .carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .scroller {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      black 0,
+      black calc(100% - 28px),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      black 0,
+      black calc(100% - 28px),
+      transparent
+    );
+  }
+
+  .scroller.canPrev:not(.canNext) {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 28px,
+      black 100%
+    );
+    mask-image: linear-gradient(to right, transparent, black 28px, black 100%);
+  }
+
+  .scroller.canPrev.canNext {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 28px,
+      black calc(100% - 28px),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 28px,
+      black calc(100% - 28px),
+      transparent
+    );
+  }
+
+  .scroller:not(.canPrev):not(.canNext) {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .item {
+    flex: 0 0 280px;
+    max-width: 280px;
+  }
+
+  .dots {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 0.75rem;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ifm-color-emphasis-300);
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+
+  .dotActive {
+    background: var(--ifm-color-emphasis-700);
+    transform: scale(1.3);
+  }
+}

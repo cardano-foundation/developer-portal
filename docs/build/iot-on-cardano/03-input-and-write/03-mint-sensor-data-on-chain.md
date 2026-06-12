@@ -657,7 +657,7 @@ Some directions to explore:
 - Wire other sensors (light, motion) and mint when conditions trigger.
 - Build more complex apps with [Mesh SDK](https://meshjs.dev/).
 
-If running your own minting infrastructure is too much, [NMKR](https://nmkr.io/) is a paid service for NFT minting via API. There's a third-party [tutorial integrating NMKR with an ESP32 Cam](https://github.com/elRaulito/IoT-NMKR-integration-Open-Source-Tutorial).
+If running your own minting infrastructure is too much, [NMKR](https://nmkr.io/) is a paid service for NFT minting via API. There's a third-party [tutorial integrating NMKR with an ESP32 Cam](https://github.com/elRaulito/IoT-NMKR-integration-Open-Source-).
 
 If you want more, the next workshop builds a Cardano Ticker on the CYD - no soldering, no API server, all on-device.
 

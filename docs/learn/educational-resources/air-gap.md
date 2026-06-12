@@ -238,7 +238,7 @@ Confirm the installation drive, click **Install now** and **Continue**.
 
 Ubuntu will finish installing and then you'll be prompted to remove the installation media & reboot. When rebooting, you will see two things you may never have seen before:
 
-  - If you followed these recommendations to only install one single OS on one single disk, the boot menu you see (from [GRUB](https://help.ubuntu.com/community/Grub2)) will have only one choice: **Ubuntu**, with the software you just installed, which will be selected by default after a few seconds whenever the system starts.
+  - If you followed these recommendations to only install one single OS on one single disk, the boot menu you see (from [GRUB](https://www.gnu.org/software/grub/)) will have only one choice: **Ubuntu**, with the software you just installed, which will be selected by default after a few seconds whenever the system starts.
 
   - If you selected the encryption option for your Ubuntu system, you will need to enter the encryption password every time you start the system.
 

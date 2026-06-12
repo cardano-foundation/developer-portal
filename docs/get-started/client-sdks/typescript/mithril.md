@@ -65,6 +65,6 @@ console.log("Stake distribution verified:", isValid);
 
 - [GitHub repository](https://github.com/input-output-hk/mithril/tree/main/mithril-client-wasm)
 - [NPM package](https://www.npmjs.com/package/@mithril-dev/mithril-client-wasm)
-- [API documentation](https://mithril.network/rust-doc/mithril_client_wasm/index.html)
+- [API documentation](https://mithril.network/doc/manual/develop/nodes/mithril-client-library-wasm)
 - [Mithril documentation](https://mithril.network/doc/)
 - [Full examples](https://github.com/input-output-hk/mithril/tree/main/examples)

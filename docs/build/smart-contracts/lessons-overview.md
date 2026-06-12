@@ -3,30 +3,33 @@ id: lessons-overview
 slug: /smart-contracts/lessons/
 title: Smart Contract Lessons
 sidebar_label: Overview
-description: Step-by-step lessons for building smart contracts on Cardano.
+description: Two Cardano development tracks, blockchain theory for web2 developers and hands-on smart contract building.
 image: /img/og/og-developer-portal.png
 ---
 
-## Learn by Doing
+## Overview
 
-This series of hands-on lessons will guide you through building on Cardano, from your first transaction to complex multi-validator contracts. Each lesson builds on the previous one, providing practical experience with real-world development.
+There are two tracks. **Theory** explains how Cardano works for developers coming from web2: blockchains, the eUTXO model, smart contracts, native tokens, and governance. **Practical** is hands-on coding: Aiken contracts, transactions with the Mesh SDK, and deploying applications.
 
-## What You'll Learn
+## What's covered
 
-Throughout these lessons, you'll:
+Theory:
 
-- Build transactions and interact with the Cardano blockchain
-- Create and test Aiken smart contracts
-- Understand contract optimization and best practices
-- Implement complex multi-validator systems
+- Blockchains, consensus, and the eUTXO model
+- Wallets, keys, addresses, and transactions
+- Smart contract validators, native tokens, and DeFi
+- Developer infrastructure, security, and governance
 
-## Lesson Path
+Practical:
 
-The lessons are designed to be completed in order, starting with basic concepts and progressing to advanced topics. Each lesson includes hands-on exercises and complete code examples.
+- Building transactions with the Mesh SDK
+- Writing and testing Aiken contracts
+- Optimization patterns and reading Plutus blueprints
+- Multi-validator contracts, Hydra, and wallet-as-a-service
 
----
+## Where to start
 
-## Start Learning
+If you're new to blockchain, start with Theory. If you already know the concepts, go straight to Practical. Both are meant to be followed in order.
 
 import DocCardList from '@theme/DocCardList';
 

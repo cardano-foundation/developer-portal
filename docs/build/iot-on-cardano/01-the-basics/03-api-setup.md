@@ -23,7 +23,7 @@ The response includes the current epoch number, the absolute slot, the epoch slo
 
 ## Fetching data in Arduino
 
-We use the [HTTPS Client](https://www.arduino.cc/reference/en/libraries/https-client/) library to make the request and the [ArduinoJSON](https://www.arduino.cc/reference/en/libraries/arduinojson/) library to parse the response.
+We use the [HTTP Client](https://github.com/espressif/arduino-esp32/tree/master/libraries/HTTPClient) library to make the request and the [ArduinoJSON](https://www.arduino.cc/reference/en/libraries/arduinojson/) library to parse the response.
 
 ### Install ArduinoJSON
 

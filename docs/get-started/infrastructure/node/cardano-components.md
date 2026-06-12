@@ -70,7 +70,7 @@ Execution happens within the ledger layer during transaction validation. Every s
 
 ### cardano-cli
 
-[`cardano-cli`](https://github.com/IntersectMBO/cardano-node/tree/master/cardano-cli) is the command-line interface for interacting with a running `cardano-node`. It connects to the node via a local Unix socket and provides commands for:
+[`cardano-cli`](https://github.com/IntersectMBO/cardano-cli) is the command-line interface for interacting with a running `cardano-node`. It connects to the node via a local Unix socket and provides commands for:
 
 - Building, signing, and submitting transactions
 - Querying chain state (UTxOs, protocol parameters, governance state)

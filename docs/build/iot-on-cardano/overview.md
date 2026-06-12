@@ -50,7 +50,7 @@ The material was originally produced as the **CardanoThings** course (Project Ca
 
 Builds from the community that extend or remix what's covered in this section:
 
-- **[NMKR ESP32-Cam](https://github.com/elRaulito/IoT-NMKR-integration-Open-Source-Tutorial)** by [elRaulito](https://github.com/elRaulito) - Minting NFTs with NMKR directly from an ESP32-Cam. A drop-in alternative to the self-hosted Mesh approach in [Workshop 03](./03-input-and-write/overview.md) for builders who'd rather hand minting off to a managed service.
+- **[NMKR ESP32-Cam](https://github.com/elRaulito/IoT-NMKR-integration-Open-Source-)** by [elRaulito](https://github.com/elRaulito) - Minting NFTs with NMKR directly from an ESP32-Cam. A drop-in alternative to the self-hosted Mesh approach in [Workshop 03](./03-input-and-write/overview.md) for builders who'd rather hand minting off to a managed service.
 - **[StarchMiner Lite](https://github.com/MadOrkestra/StarchMinerLite)** by [Mad Orkestra](https://github.com/madorkestra) - ESP32-based Starch miner. Goes potato.
 
 ## Attribution

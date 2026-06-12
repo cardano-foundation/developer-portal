@@ -1,0 +1,50 @@
+.cta {
+  padding: 2.5rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.ctaPrimary {
+  background: var(--ifm-color-emphasis-100);
+  padding: 3rem 0;
+  border-top: 0;
+}
+
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.ctaPrimary .title {
+  font-size: 1.75rem;
+}
+
+.description {
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+.ctaPrimary .description {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.buttonRow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}

@@ -56,7 +56,7 @@ test baseline() {
 
 ### Using `Fuzzer`
 
-Fuzzers constitutes a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/stdlib/cardano/fuzz.html). For example:
+Fuzzers constitutes a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/fuzz/cardano/fuzz.html). For example:
 
 ```aiken
 use aiken/fuzz

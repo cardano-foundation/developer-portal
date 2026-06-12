@@ -445,7 +445,7 @@ You can now poll on-chain data and render it on a screen. From here, try other K
 
 - [TFT_eSPI on GitHub](https://github.com/Bodmer/TFT_eSPI) - the library.
 - [Adafruit GFX Graphics Library](https://learn.adafruit.com/adafruit-gfx-graphics-library) - TFT_eSPI builds on this.
-- [Arduino TFT_eSPI Reference](https://www.arduino.cc/reference/en/libraries/tft-espi/) - Arduino's library docs.
+- [Arduino TFT_eSPI Reference](https://docs.arduino.cc/libraries/tft_espi/) - Arduino's library docs.
 - [ESP32-Cheap-Yellow-Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display) - community resources for the CYD.
 - [LVGL](https://github.com/lvgl/lvgl) - much more featureful UI library if you outgrow TFT_eSPI.
 
