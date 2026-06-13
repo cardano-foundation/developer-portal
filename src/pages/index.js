@@ -11,37 +11,37 @@ import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 const sdks = [
   {
     name: "TypeScript",
-    targetUrl: "docs/get-started/client-sdks/typescript/overview",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/typescript-original.svg",
   },
   {
     name: "Python",
-    targetUrl: "docs/get-started/client-sdks/python/pycardano",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/python-original.svg",
   },
   {
     name: "Rust",
-    targetUrl: "docs/get-started/client-sdks/rust/pallas",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/rust-original.svg",
   },
   {
     name: "Go",
-    targetUrl: "docs/get-started/client-sdks/go/apollo",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/go-original.svg",
   },
   {
     name: "Java",
-    targetUrl: "docs/get-started/client-sdks/java/cardano-client-lib",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/java-original.svg",
   },
   {
     name: "C#",
-    targetUrl: "docs/get-started/client-sdks/csharp/chrysalis",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/csharp-original.svg",
   },
   {
     name: "Swift",
-    targetUrl: "docs/get-started/client-sdks/swift/cardanokit",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/swift-original.svg",
   },
 ];
@@ -100,7 +100,7 @@ function BentoSection() {
 
           {/* Native Tokens */}
           <Link
-            to={useBaseUrl("docs/build/native-tokens/overview")}
+            to={useBaseUrl("docs/native-tokens/overview")}
             className={clsx(styles.bentoCard, styles.bentoMedium)}
           >
             <img

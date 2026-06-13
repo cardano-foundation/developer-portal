@@ -6,6 +6,45 @@
  * (testnets.cardano.org, developer.cardano.org). Both are needed.
  */
 const redirects = [
+  // Module 2 (How Value Works): old Learn > Core Concepts paths moved to /docs/value/*
+  {
+    to: '/docs/value/overview',
+    from: '/docs/learn/core-concepts/',
+  },
+  {
+    to: '/docs/value/eutxo',
+    from: '/docs/learn/core-concepts/eutxo',
+  },
+  {
+    to: '/docs/value/addresses',
+    from: '/docs/learn/core-concepts/addresses',
+  },
+  {
+    to: '/docs/value/transactions',
+    from: '/docs/learn/core-concepts/transactions',
+  },
+  {
+    to: '/docs/value/fees',
+    from: '/docs/learn/core-concepts/fees',
+  },
+  {
+    to: '/docs/native-tokens/overview',
+    from: '/docs/learn/core-concepts/assets',
+  },
+  // Module 1 (Cardano Foundations): Ethereum guide relocated out of Learn > Educational Resources
+  {
+    to: '/docs/foundations/cardano-for-ethereum-developers',
+    from: '/docs/learn/educational-resources/ethereum-developers',
+  },
+  // Module 3 (Setup & First Transaction): network setup pages consolidated into first-steps
+  {
+    to: '/docs/first-steps/networks-and-test-ada',
+    from: [
+      '/docs/get-started/networks/overview',
+      '/docs/get-started/networks/testnets',
+      '/docs/get-started/networks/explorers',
+    ],
+  },
   {
     // redirect old showcase path to cardano.org/apps since it moved there
     to: 'https://cardano.org/apps/',
@@ -45,7 +84,7 @@ const redirects = [
     ]
   },
   {
-    to: '/docs/learn/core-concepts/',
+    to: '/docs/value/overview',
     from: '/docs/stake-pool-course/introduction-to-cardano',
   },
   {
@@ -72,7 +111,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/learn/cardano-cli/basic-operations/simple-transactions',
+    to: '/docs/first-steps/transaction-building',
     from: [
       '/docs/stake-pool-course/handbook/use-cli',
       '/docs/stake-pool-course/handbook/create-simple-transaction',
@@ -80,7 +119,7 @@ const redirects = [
     ]
   },
   {
-    to: '/docs/learn/core-concepts/',
+    to: '/docs/value/overview',
     from: '/docs/stake-pool-course/handbook/utxo-model',
   },
   {
@@ -168,27 +207,27 @@ const redirects = [
     from: '/docs/get-started/funding',
   },
   {
-    to: '/docs/learn/core-concepts/',
+    to: '/docs/value/overview',
     from: ['/docs/get-started/technical-concepts/', '/docs/get-started/technical-concepts/overview'],
   },
   {
-    to: '/docs/learn/core-concepts/eutxo',
+    to: '/docs/value/eutxo',
     from: '/docs/get-started/technical-concepts/eutxo',
   },
   {
-    to: '/docs/learn/core-concepts/transactions',
+    to: '/docs/value/transactions',
     from: '/docs/get-started/technical-concepts/transactions',
   },
   {
-    to: '/docs/learn/core-concepts/addresses',
+    to: '/docs/value/addresses',
     from: '/docs/get-started/technical-concepts/addresses',
   },
   {
-    to: '/docs/learn/core-concepts/fees',
+    to: '/docs/value/fees',
     from: '/docs/get-started/technical-concepts/fees',
   },
   {
-    to: '/docs/learn/core-concepts/assets',
+    to: '/docs/native-tokens/overview',
     from: '/docs/get-started/technical-concepts/assets',
   },
   {
@@ -196,15 +235,15 @@ const redirects = [
     from: '/docs/get-started/security/air-gap',
   },
   {
-    to: '/docs/get-started/networks/overview',
+    to: '/docs/first-steps/networks-and-test-ada',
     from: '/docs/get-started/networks-overview',
   },
   {
-    to: '/docs/get-started/networks/testnets',
+    to: '/docs/first-steps/networks-and-test-ada',
     from: '/docs/get-started/testnets-and-devnets',
   },
   {
-    to: '/docs/get-started/networks/testnets',
+    to: '/docs/first-steps/networks-and-test-ada',
     from: '/docs/integrate-cardano/testnet-faucet',
   },
   {
@@ -264,27 +303,27 @@ const redirects = [
     from: '/docs/operate-a-stake-pool/node-operations/topology',
   },
   {
-    to: '/docs/get-started/client-sdks/overview',
+    to: '/docs/first-steps/choose-your-tools',
     from: '/docs/get-started/high-level-sdks-overview',
   },
   {
-    to: '/docs/get-started/client-sdks/typescript/overview',
+    to: '/docs/first-steps/choose-your-tools',
     from: '/docs/get-started/typescript-sdks',
   },
   {
-    to: '/docs/get-started/client-sdks/python/pycardano',
+    to: '/docs/first-steps/choose-your-tools',
     from: '/docs/get-started/pycardano',
   },
   {
-    to: '/docs/get-started/client-sdks/csharp/chrysalis',
+    to: '/docs/first-steps/choose-your-tools',
     from: '/docs/get-started/cardanosharp-wallet',
   },
   {
-    to: '/docs/get-started/client-sdks/typescript/mesh/overview',
+    to: '/docs/first-steps/choose-your-tools',
     from: '/docs/get-started/mesh',
   },
   {
-    to: '/docs/get-started/client-sdks/typescript/evolution-sdk/overview',
+    to: '/docs/first-steps/choose-your-tools',
     from: '/docs/get-started/evolution-sdk',
   },
   {
@@ -292,7 +331,7 @@ const redirects = [
     from: ['/docs/get-started/utxos', '/docs/get-started/client-sdks/typescript/utxos/overview'],
   },
   {
-    to: '/docs/learn/cardano-cli/basic-operations/get-started',
+    to: '/docs/first-steps/your-first-transaction',
     from: '/docs/get-started/cardano-cli',
   },
   {
@@ -300,7 +339,7 @@ const redirects = [
     from: '/docs/get-started/cardano-wallet',
   },
   {
-    to: '/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview',
+    to: '/docs/first-steps/choose-your-tools',
     from: '/docs/get-started/cardano-serialization-lib',
   },
   {
@@ -392,20 +431,20 @@ const redirects = [
     from: '/docs/integrate-cardano/ai-agents',
   },
   {
-    to: '/docs/build/native-tokens/overview',
-    from: ['/docs/native-tokens/', '/docs/native-tokens/overview'],
+    to: '/docs/native-tokens/overview',
+    from: ['/docs/native-tokens/', '/docs/build/native-tokens/overview', '/docs/build/native-tokens'],
   },
   {
-    to: '/docs/build/native-tokens/minting',
-    from: '/docs/native-tokens/minting',
+    to: '/docs/native-tokens/mint-fungible',
+    from: ['/docs/native-tokens/minting', '/docs/build/native-tokens/minting'],
   },
   {
-    to: '/docs/build/native-tokens/minting-nfts',
-    from: '/docs/native-tokens/minting-nfts',
+    to: '/docs/native-tokens/mint-nft',
+    from: ['/docs/native-tokens/minting-nfts', '/docs/build/native-tokens/minting-nfts'],
   },
   {
-    to: '/docs/build/native-tokens/authenticated-products',
-    from: '/docs/native-tokens/authenticated-products',
+    to: '/docs/native-tokens/authenticated-products',
+    from: ['/docs/build/native-tokens/authenticated-products'],
   },
   {
     to: '/docs/build/native-tokens/cardano-token-registry',
@@ -477,7 +516,7 @@ const redirects = [
     from: '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/invariant0-blog/4-token-security',
   },
   {
-    to: '/docs/get-started/networks/testnets',
+    to: '/docs/first-steps/networks-and-test-ada',
     from: [
       '/docs/get-started/networks/testnets/overview',
       '/docs/get-started/networks/testnets/testnet-faucet',
@@ -488,7 +527,7 @@ const redirects = [
     from: '/docs/get-started/cardano-node/installing-cardano-node',
   },
   {
-    to: '/docs/learn/cardano-cli/basic-operations/get-started',
+    to: '/docs/first-steps/your-first-transaction',
     from: '/docs/get-started/cli-operations/basic-operations',
   },
   {
@@ -528,14 +567,15 @@ const redirects = [
   // frankenwallet content merged into air-gap page
   { to: '/docs/learn/educational-resources/air-gap', from: '/docs/operate-a-stake-pool/operator-tools/frankenwallet' },
   // cardano-cli docs moved from get-started/infrastructure/cardano-cli to learn/cardano-cli
-  { to: '/docs/learn/cardano-cli/basic-operations/get-started', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started' },
-  { to: '/docs/learn/cardano-cli/basic-operations/simple-transactions', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions' },
-  { to: '/docs/learn/cardano-cli/basic-operations/stake-address-registration', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/stakeaddress-registration' },
-  { to: '/docs/learn/cardano-cli/basic-operations/delegate-to-stake-pool', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/stake-address-delegation' },
-  { to: '/docs/learn/cardano-cli/basic-operations/deregister-stake-address', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/deregister-stake-address' },
-  { to: '/docs/learn/cardano-cli/basic-operations/withdraw-rewards', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/withdraw-rewards' },
-  { to: '/docs/learn/cardano-cli/basic-operations/treasury-donation', from: '/docs/get-started/infrastructure/cardano-cli/basic-operations/treasury-donations' },
-  { to: '/docs/learn/cardano-cli/multi-witness-transactions', from: '/docs/get-started/infrastructure/cardano-cli/multi-witness-transactions' },
+  { to: '/docs/first-steps/your-first-transaction', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/get-started', '/docs/learn/cardano-cli/basic-operations/get-started'] },
+  { to: '/docs/first-steps/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/simple-transactions', '/docs/learn/cardano-cli/basic-operations/simple-transactions'] },
+  // cardano-cli stake ops dissolved into the staking topic (concept + Evolution/Mesh/cli tabs)
+  { to: '/docs/build/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/stakeaddress-registration', '/docs/learn/cardano-cli/basic-operations/stake-address-registration'] },
+  { to: '/docs/build/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/stake-address-delegation', '/docs/learn/cardano-cli/basic-operations/delegate-to-stake-pool'] },
+  { to: '/docs/build/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/deregister-stake-address', '/docs/learn/cardano-cli/basic-operations/deregister-stake-address'] },
+  { to: '/docs/build/staking-governance/staking', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/withdraw-rewards', '/docs/learn/cardano-cli/basic-operations/withdraw-rewards'] },
+  { to: '/docs/first-steps/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/treasury-donations', '/docs/learn/cardano-cli/basic-operations/treasury-donation'] },
+  { to: '/docs/first-steps/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/multi-witness-transactions', '/docs/learn/cardano-cli/multi-witness-transactions'] },
   { to: '/docs/learn/cardano-cli/security/secure-workflow', from: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow' },
   { to: '/docs/learn/cardano-cli/governance/submit-votes', from: '/docs/get-started/infrastructure/cardano-cli/governance/voting' },
   { to: '/docs/learn/cardano-cli/governance/gov-queries', from: '/docs/get-started/infrastructure/cardano-cli/governance/gov-queries' },
@@ -543,9 +583,9 @@ const redirects = [
   { to: '/docs/learn/cardano-cli/governance/constitutional-committee', from: '/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee' },
   { to: '/docs/learn/cardano-cli/governance/delegate-to-a-drep', from: '/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote' },
   { to: '/docs/learn/cardano-cli/governance/register-drep', from: '/docs/get-started/infrastructure/cardano-cli/governance/register-drep' },
-  { to: '/docs/learn/cardano-cli/native-assets', from: '/docs/get-started/infrastructure/cardano-cli/native-assets/native-assets' },
-  { to: '/docs/learn/cardano-cli/simple-scripts', from: '/docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts' },
-  { to: '/docs/learn/cardano-cli/plutus-scripts', from: '/docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts' },
+  { to: '/docs/native-tokens/mint-fungible', from: ['/docs/get-started/infrastructure/cardano-cli/native-assets/native-assets', '/docs/learn/cardano-cli/native-assets'] },
+  { to: '/docs/build/smart-contracts/write-a-validator', from: ['/docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts', '/docs/learn/cardano-cli/simple-scripts'] },
+  { to: '/docs/build/smart-contracts/lock-and-spend', from: ['/docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts', '/docs/learn/cardano-cli/plutus-scripts'] },
   // deleted SPO docs
   { to: '/docs/operate-a-stake-pool/', from: '/docs/operate-a-stake-pool/basics/scaling-node-operations' },
   { to: '/docs/operate-a-stake-pool/relay-configuration/relay-node-configuration', from: '/docs/operate-a-stake-pool/relay-configuration/mithril-relay' },
@@ -554,16 +594,49 @@ const redirects = [
   // deleted node docs
   { to: '/docs/get-started/infrastructure/node/running-cardano', from: '/docs/get-started/infrastructure/node/dynamic-block-forging' },
   { to: '/docs/get-started/infrastructure/node/running-cardano', from: '/docs/get-started/infrastructure/node/rts-options-node' },
-  // smart contract lessons moved under a Practical subsection (Theory added alongside).
-  // New URLs drop the numeric filename prefix (Docusaurus default); old URLs kept it via explicit id.
-  { to: '/docs/build/smart-contracts/lessons/practical/wallet-send-lovelace', from: '/docs/build/smart-contracts/lessons/01-hello-world' },
-  { to: '/docs/build/smart-contracts/lessons/practical/multisig', from: '/docs/build/smart-contracts/lessons/02-multisig' },
-  { to: '/docs/build/smart-contracts/lessons/practical/aiken-contracts', from: '/docs/build/smart-contracts/lessons/03-aiken-contracts' },
-  { to: '/docs/build/smart-contracts/lessons/practical/contract-testing', from: '/docs/build/smart-contracts/lessons/04-contract-testing' },
-  { to: '/docs/build/smart-contracts/lessons/practical/avoid-redundant-validation', from: '/docs/build/smart-contracts/lessons/05-avoid-redundant-validation' },
-  { to: '/docs/build/smart-contracts/lessons/practical/interpreting-blueprint', from: '/docs/build/smart-contracts/lessons/06-interpreting-blueprint' },
-  { to: '/docs/build/smart-contracts/lessons/practical/vesting', from: '/docs/build/smart-contracts/lessons/07-vesting' },
-  { to: '/docs/build/smart-contracts/lessons/practical/plutus-nft', from: '/docs/build/smart-contracts/lessons/08-plutus-nft' },
+  // Lessons course dissolved into the module curriculum (theory + practical fully harvested).
+  // Each old lesson URL redirects to its canonical module home. URLs dropped the numeric
+  // filename prefix (Docusaurus default), so the `from` paths below are un-numbered.
+  // Course + track landings:
+  { to: '/docs/build/smart-contracts/overview', from: '/docs/smart-contracts/lessons' },
+  { to: '/docs/foundations/overview', from: '/docs/build/smart-contracts/lessons/theory-overview' },
+  { to: '/docs/first-steps/overview', from: '/docs/build/smart-contracts/lessons/practical-overview' },
+  // Theory track:
+  { to: '/docs/foundations/what-is-a-blockchain', from: '/docs/build/smart-contracts/lessons/theory/what-is-blockchain' },
+  { to: '/docs/foundations/cryptographic-primitives', from: '/docs/build/smart-contracts/lessons/theory/cryptographic-primitives' },
+  { to: '/docs/foundations/consensus-and-ouroboros', from: '/docs/build/smart-contracts/lessons/theory/consensus-mechanisms' },
+  { to: '/docs/value/eutxo', from: '/docs/build/smart-contracts/lessons/theory/utxo-model' },
+  { to: '/docs/value/wallets-and-keys', from: '/docs/build/smart-contracts/lessons/theory/wallets-keys-addresses' },
+  { to: '/docs/value/transactions', from: '/docs/build/smart-contracts/lessons/theory/transactions' },
+  { to: '/docs/build/smart-contracts/overview', from: '/docs/build/smart-contracts/lessons/theory/smart-contracts' },
+  { to: '/docs/build/smart-contracts/choose-a-language', from: '/docs/build/smart-contracts/lessons/theory/smart-contract-languages' },
+  { to: '/docs/build/smart-contracts/datum-redeemer-context', from: '/docs/build/smart-contracts/lessons/theory/datum-redeemer-context' },
+  { to: '/docs/native-tokens/overview', from: '/docs/build/smart-contracts/lessons/theory/native-tokens' },
+  { to: '/docs/build/integrate/defi', from: '/docs/build/smart-contracts/lessons/theory/defi-concepts' },
+  { to: '/docs/build/staking-governance/staking', from: '/docs/build/smart-contracts/lessons/theory/stake-pools-delegation' },
+  { to: '/docs/build/scaling/infrastructure', from: '/docs/build/smart-contracts/lessons/theory/developer-infrastructure' },
+  { to: '/docs/build/smart-contracts/security', from: '/docs/build/smart-contracts/lessons/theory/blockchain-security' },
+  { to: '/docs/build/staking-governance/governance', from: '/docs/build/smart-contracts/lessons/theory/cardano-governance' },
+  // Practical track:
+  { to: '/docs/first-steps/your-first-transaction', from: '/docs/build/smart-contracts/lessons/practical/wallet-send-lovelace' },
+  { to: '/docs/build/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/practical/multisig' },
+  { to: '/docs/build/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/practical/aiken-contracts' },
+  { to: '/docs/build/smart-contracts/testing', from: '/docs/build/smart-contracts/lessons/practical/contract-testing' },
+  { to: '/docs/build/smart-contracts/advanced/design-patterns/stake-validator', from: '/docs/build/smart-contracts/lessons/practical/avoid-redundant-validation' },
+  { to: '/docs/build/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/practical/interpreting-blueprint' },
+  { to: '/docs/build/smart-contracts/lock-and-spend', from: '/docs/build/smart-contracts/lessons/practical/vesting' },
+  { to: '/docs/build/smart-contracts/example-contracts', from: '/docs/build/smart-contracts/lessons/practical/plutus-nft' },
+  { to: '/docs/build/scaling/hydra', from: '/docs/build/smart-contracts/lessons/practical/hydra' },
+  { to: '/docs/build/integrate/connect-a-wallet', from: '/docs/build/smart-contracts/lessons/practical/web3-services' },
+  // Legacy flat lesson URLs (pre theory/practical split) -> module homes:
+  { to: '/docs/first-steps/your-first-transaction', from: '/docs/build/smart-contracts/lessons/01-hello-world' },
+  { to: '/docs/build/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/02-multisig' },
+  { to: '/docs/build/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/03-aiken-contracts' },
+  { to: '/docs/build/smart-contracts/testing', from: '/docs/build/smart-contracts/lessons/04-contract-testing' },
+  { to: '/docs/build/smart-contracts/advanced/design-patterns/stake-validator', from: '/docs/build/smart-contracts/lessons/05-avoid-redundant-validation' },
+  { to: '/docs/build/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/06-interpreting-blueprint' },
+  { to: '/docs/build/smart-contracts/lock-and-spend', from: '/docs/build/smart-contracts/lessons/07-vesting' },
+  { to: '/docs/build/smart-contracts/example-contracts', from: '/docs/build/smart-contracts/lessons/08-plutus-nft' },
 ];
 
 module.exports = redirects;

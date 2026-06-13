@@ -93,7 +93,7 @@ function ResourcesSection() {
                 <img src={useBaseUrl("img/icons/book-solid.svg")} alt="" />
                 Get Started
               </Link>
-              <Link to="/docs/get-started/client-sdks/overview" className={styles.resourceLink}>
+              <Link to="/docs/first-steps/choose-your-tools" className={styles.resourceLink}>
                 <img src={useBaseUrl("img/icons/code-solid.svg")} alt="" />
                 Client SDKs
               </Link>

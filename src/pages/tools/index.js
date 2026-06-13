@@ -230,7 +230,7 @@ function GuidedPathsBanner() {
   const paths = [
     { to: "/docs/get-started/", label: "Get started" },
     { to: "/docs/build/smart-contracts/overview", label: "Write smart contracts" },
-    { to: "/docs/build/native-tokens/overview", label: "Create native tokens" },
+    { to: "/docs/native-tokens/overview", label: "Create native tokens" },
     { to: "/docs/operate-a-stake-pool/", label: "Run a stake pool" },
   ];
   return (

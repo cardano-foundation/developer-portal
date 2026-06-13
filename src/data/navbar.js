@@ -13,8 +13,8 @@ function getNavbarItems(repository) {
       position: 'left',
       items: [
         {to: "/docs/get-started/", label: "Getting Started"},
-        {to: "/docs/learn/core-concepts/", label: "Core Concepts"},
-        {to: "/docs/get-started/client-sdks/overview", label: "Client SDKs"},
+        {to: "/docs/value/overview", label: "Core Concepts"},
+        {to: "/docs/first-steps/choose-your-tools", label: "SDKs"},
         {to: "/docs/build/smart-contracts/overview", label: "Smart Contracts"},
         {to: "/docs/build/integrate/overview", label: "Integration"},
         {to: "/tools/", label: "Builder Tools"},
@@ -31,8 +31,8 @@ function getNavbarItems(repository) {
             icon: 'book-solid',
             items: [
               {to: '/docs/get-started/', label: 'Getting Started', description: 'Begin your Cardano development journey', icon: 'arrow-down-to-line-solid'},
-              {to: '/docs/learn/core-concepts/', label: 'Core Concepts', description: 'Understand the fundamentals', icon: 'book-solid'},
-              {to: '/docs/get-started/client-sdks/overview', label: 'Client SDKs', description: 'Libraries for TypeScript, Python, Java, Rust, and more', icon: 'code-solid'},
+              {to: '/docs/value/overview', label: 'Core Concepts', description: 'Understand the fundamentals', icon: 'book-solid'},
+              {to: '/docs/first-steps/choose-your-tools', label: 'SDKs', description: 'Pick an SDK and a provider for your language', icon: 'code-solid'},
               {to: '/docs/get-started/infrastructure/overview', label: 'Infrastructure', description: 'Cardano Node, CLI, APIs and tooling', icon: 'plug-solid'},
             ],
           },
@@ -41,7 +41,7 @@ function getNavbarItems(repository) {
             icon: 'code-solid',
             items: [
               {to: '/docs/build/smart-contracts/overview', label: 'Smart Contracts', description: 'Write and deploy smart contracts', icon: 'scroll-solid'},
-              {to: '/docs/build/native-tokens/overview', label: 'Native Tokens', description: 'Create and manage tokens', icon: 'coins-solid'},
+              {to: '/docs/native-tokens/overview', label: 'Native Tokens', description: 'Create and manage tokens', icon: 'coins-solid'},
               {to: '/docs/build/integrate/overview', label: 'Integration', description: 'Payments, wallets, and oracles', icon: 'link-solid'},
               {to: '/docs/build/transaction-metadata/overview', label: 'Transaction Metadata', description: 'Attach data to transactions', icon: 'shapes-solid'},
             ],
