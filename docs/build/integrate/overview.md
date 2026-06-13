@@ -1,39 +1,48 @@
 ---
 id: overview
-title: Integrate Cardano
+title: DeFi & Integrations
 sidebar_label: Overview
-description: How to integrate Cardano into existing websites and services.
+description: Connect Cardano to your application — wallets, payments, oracles, and AI agents — and build DeFi protocols on the eUTXO model.
 image: /img/og/og-developer-portal.png
---- 
-
+---
 
 ![Integrate Cardano](/img/card-integrate-cardano-title.svg)
 
-## Introduction
+This module is about meeting users where they are: connecting Cardano to web apps, services, and protocols. Whether you're adding a "connect wallet" button, accepting ADA payments, feeding real-world prices into a contract, or building a full DeFi protocol, the building blocks live here.
 
-Here we show you how to integrate Cardano into existing websites and services.
+## Build a dApp
 
-## Integration Components
+The front-end path most applications follow:
 
-- [Overview](/docs/get-started/infrastructure/node/cardano-components) of the different Cardano components.
-- [cardano-node](https://github.com/IntersectMBO/cardano-node) is the top level for the node and aggregates the other components from other packages: consensus, ledger and networking, with configuration, CLI, logging and monitoring.
-- [cardano-wallet](https://github.com/cardano-foundation/cardano-wallet) helps you manage ada. You can use it to send and receive payments on the Cardano blockchain via a http and cli interface.
-- [cardano-db-sync](https://github.com/IntersectMBO/cardano-db-sync) follows the Cardano chain and takes information from the chain and an internally maintained copy of ledger state. Data is then extracted from the chain and inserted into a PostgreSQL database.
-- [cardano-graphql](https://github.com/cardano-foundation/cardano-graphql) a cross-platform, typed, and queryable API for Cardano.
-- [cardano-rosetta](https://github.com/cardano-foundation/cardano-rosetta-java) a multi-platform implementation of [Mesh API](https://github.com/coinbase/mesh-specifications) for Cardano, targeting the version defined in the [API docs](https://cardano-foundation.github.io/cardano-rosetta-java/api).
-- [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) provides mnemonic (backup phrase) creation, and conversion of a mnemonic to seed for wallet restoration, and address derivation functionalities.
+- **[Connect a wallet](/docs/build/integrate/connect-a-wallet)** — let users link their browser wallet (CIP-30). The starting point for any dApp.
+- **[Sign in with wallet](/docs/build/integrate/wallet-authentication/overview)** — passwordless authentication by proving wallet ownership (CIP-8 message signing).
+- **[Listen for payments](/docs/build/integrate/payments/listening-for-payments/overview)** — detect and confirm ADA arriving at an address.
 
-## Tutorials
+For building and submitting the transactions behind these flows, see [your first transaction](/docs/first-steps/your-first-transaction) and [lock and spend](/docs/build/smart-contracts/lock-and-spend).
 
-- [Listening for ada payments](../payments/listening-for-payments/overview) - learn different approaches to detect and confirm ada payments in your applications.
-- [Testnet Faucet](/docs/get-started/networks/testnets) - a service that provides test ada (tAda) to users of the Cardano testnets.
-- [Sample queries](https://iohk.zendesk.com/hc/en-us/articles/4402395914009-Sample-cardano-rosetta-queries) for cardano-rosetta.
-- [Sample queries](https://iohk.zendesk.com/hc/en-us/articles/900000906566-Sample-cardano-graphql-queries) for cardano-graphql.
+## Build DeFi
 
----
+- **[DeFi on Cardano](/docs/build/integrate/defi)** — DEXes, AMMs, liquidity pools, impermanent loss, and the eUTXO-specific patterns (order batching, pool sharding) that make DeFi work here.
+- **[Oracles](/docs/build/integrate/oracles/overview)** — bring real-world data (prices, events) on-chain; the infrastructure DeFi depends on.
 
-## Explore More
+## AI agents
 
-import DocCardList from '@theme/DocCardList';
+- **[AI agents on Cardano](/docs/build/integrate/ai-agents/overview)** — autonomous agents that hold wallets, make payments, and log decisions on-chain, including the [Masumi](/docs/build/integrate/ai-agents/masumi) agent economy.
 
-<DocCardList />
+## Exchanges & infrastructure
+
+For exchanges, custodians, and back-end services that integrate at a lower level:
+
+- **[Exchange integrations](/docs/build/integrate/exchange-integrations)** — accounting, address management, and transaction handling for custodial platforms.
+- Lower-level components for custom integrations:
+  - [cardano-node](https://github.com/IntersectMBO/cardano-node) — the node, aggregating consensus, ledger, and networking.
+  - [cardano-db-sync](https://github.com/IntersectMBO/cardano-db-sync) — follows the chain and writes it into PostgreSQL for querying.
+  - [cardano-graphql](https://github.com/cardano-foundation/cardano-graphql) — a typed, queryable API for Cardano.
+  - [cardano-rosetta](https://github.com/cardano-foundation/cardano-rosetta-java) — a Cardano implementation of the Mesh (Rosetta) exchange-integration API.
+  - [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses) — mnemonic creation, seed conversion, and address derivation.
+  - See also the [Cardano components overview](/docs/get-started/infrastructure/node/cardano-components).
+
+## What's next
+
+- New to dApps? Start with [Connect a wallet](/docs/build/integrate/connect-a-wallet).
+- Building a protocol? Read [DeFi on Cardano](/docs/build/integrate/defi), then [Oracles](/docs/build/integrate/oracles/overview).

@@ -6,7 +6,11 @@ description: Low-level implementation of wallet authentication using Cardano Ser
 image: /img/og/og-developer-portal.png
 ---
 
-This guide provides a low-level implementation of wallet-based authentication using the [Cardano Serialization Library](/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview) and [Cardano Message Signing](https://www.npmjs.com/package/@emurgo/cardano-message-signing-nodejs) libraries. This approach gives you direct control over COSE signature parsing and verification.
+This guide provides a low-level implementation of wallet-based authentication using the [Cardano Serialization Library](https://github.com/Emurgo/cardano-serialization-lib) and [Cardano Message Signing](https://www.npmjs.com/package/@emurgo/cardano-message-signing-nodejs) libraries. This approach gives you direct control over COSE signature parsing and verification.
+
+:::caution Legacy approach
+CSL is a low-level serialization library and is no longer the recommended path for most applications. For new projects, prefer the higher-level SDKs: the [Mesh](/docs/build/integrate/wallet-authentication/mesh) authentication guide, or Evolution SDK's [message signing](/docs/build/integrate/wallet-authentication/overview#signing-and-verifying-with-evolution-sdk). This page is kept as a reference for teams that need manual COSE control.
+:::
 
 ## Overview
 
@@ -83,7 +87,7 @@ loadCsl();
 ...
 ```
 
-With the above lines, we just made available to the rest of our script, the [Buffer](https://www.npmjs.com/package/buffer) package and the [Cardano Serialization Library](/docs/get-started/client-sdks/low-level/cardano-serialization-lib/overview). Also, we just declared the top-level variable `wallet` there for convenience later. We will set its value in the following steps.
+With the above lines, we just made available to the rest of our script, the [Buffer](https://www.npmjs.com/package/buffer) package and the [Cardano Serialization Library](https://github.com/Emurgo/cardano-serialization-lib). Also, we just declared the top-level variable `wallet` there for convenience later. We will set its value in the following steps.
 
 Now, let's make the `authenticate` function actually do some things:
 

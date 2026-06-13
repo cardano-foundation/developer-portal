@@ -41,6 +41,41 @@ You'll typically use the staking address (also called reward address) as the use
 Never accept the same nonce twice. After each verification attempt, you must rotate the nonce to maintain security.
 :::
 
+## Signing and verifying with Evolution SDK
+
+In the browser, the user's CIP-30 wallet produces the signature — `await wallet.signData(address, payload)` after you [connect the wallet](/docs/build/integrate/connect-a-wallet). On the backend, you verify it. Evolution implements the CIP-8 standard with COSE (CBOR Object Signing and Encryption):
+
+```typescript
+import { COSE, PrivateKey, Address } from "@evolution-sdk/evolution"
+
+declare const privateKey: PrivateKey.PrivateKey
+declare const myAddress: Address.Address
+
+// Sign a payload (e.g. the nonce) — when you hold the key, such as a backend-held
+// wallet or in tests; in a dApp the user's CIP-30 wallet does this step.
+const payload = COSE.Utils.fromText("login-nonce-abc123")
+const signedMessage = COSE.SignData.signData(Address.toHex(myAddress), payload, privateKey)
+```
+
+```typescript
+import { COSE, Address, KeyHash } from "@evolution-sdk/evolution"
+
+declare const expectedAddress: Address.Address
+declare const expectedKeyHash: KeyHash.KeyHash
+declare const signedMessage: COSE.SignData.SignedMessage
+
+// Backend: verify the signature against the nonce and the expected signer
+const payload = COSE.Utils.fromText("login-nonce-abc123")
+const isValid = COSE.SignData.verifyData(
+  Address.toHex(expectedAddress),
+  KeyHash.toHex(expectedKeyHash),
+  payload,
+  signedMessage
+)
+```
+
+Verification confirms the payload matches, the signer address and key hash are as expected, and the Ed25519 signature is valid — so only the key holder could have produced it. `COSE.Utils` converts payloads to/from text and hex (`fromText`/`toText`/`fromHex`/`toHex`), and the SDK also exposes the low-level `COSE.Sign1` / `COSE.Key` / `COSE.Header` structures for advanced use. Mesh and the lower-level [Cardano Serialization Lib](/docs/build/integrate/wallet-authentication/cardano-serialization-lib) cover the same flow.
+
 ## Use Cases
 
 There are many scenarios where wallet-based authentication is useful. You can use it for passwordless login where wallet ownership serves as the user's identity. It's also commonly used for whitelist verification, where you need to confirm users own specific wallet or stake addresses before granting access.
