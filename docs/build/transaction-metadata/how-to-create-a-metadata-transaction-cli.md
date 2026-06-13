@@ -7,7 +7,7 @@ image: /img/og/og-developer-portal.png
 ---
 
 :::note
-This guide assumes that you have a basic understanding of `cardano-wallet` and `cardano-cli`, how to use it and that you have installed it into your system. Otherwise, we recommend reading [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node), [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano), [Get started with Cardano CLI](/docs/learn/cardano-cli/basic-operations/get-started) and [Using cardano-wallet](/docs/get-started/infrastructure/cardano-wallet/using-cardano-wallet) guides first.
+This guide assumes that you have a basic understanding of `cardano-wallet` and `cardano-cli`, how to use it and that you have installed it into your system. Otherwise, we recommend reading [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node), [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano), [Get started with Cardano CLI](/docs/first-steps/your-first-transaction) and [Using cardano-wallet](/docs/get-started/infrastructure/cardano-wallet/using-cardano-wallet) guides first.
 
 This guide also assumes that you have `cardano-node` and `cardano-wallet` running in the background and connected to one of the `testnet` networks.
 :::
@@ -33,7 +33,7 @@ cardano-cli address build \
 --testnet-magic 1097911063
 ```
 
-Now that you have a **wallet address**, you can now request some `tAda` funds from the [Testnet Faucet](/docs/get-started/networks/testnets). 
+Now that you have a **wallet address**, you can now request some `tAda` funds from the [Testnet Faucet](/docs/first-steps/networks-and-test-ada). 
 
 Once you have some funds, we can now create the sample metadata that we want to store into the blockchain.
 

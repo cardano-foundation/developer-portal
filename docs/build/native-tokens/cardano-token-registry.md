@@ -70,7 +70,7 @@ Use of the `https://tokens.cardano.org/metadata` API is subject to the [API Term
 ## How to prepare an entry for the token registry
 
 ### Prerequisites
-To register native token mappings, it is recommended to have pre-existing knowledge about Cardano native assets. Start by reading through the [minting a new native asset](minting.md) example.  
+To register native token mappings, it is recommended to have pre-existing knowledge about Cardano native assets. Start by reading through the [minting a new native asset](/docs/native-tokens/mint-fungible) example.  
 
 After creating a Cardano native asset, you will need the following to proceed with the steps to generate a mapping for the registry:     
 

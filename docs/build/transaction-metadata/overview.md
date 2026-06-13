@@ -122,6 +122,36 @@ We invite developers to experiment using **Cardano Transaction Metadata** and co
 
 ---
 
+## Attaching metadata in code
+
+Metadata attaches to a transaction under a numeric **label**. Common standardized labels:
+
+| Label | CIP | Purpose |
+|---|---|---|
+| `674` | CIP-20 | Transaction messages / comments |
+| `721` | CIP-25 | NFT metadata |
+| `777` | CIP-27 | Royalties |
+
+With Evolution, chain `attachMetadata` onto the transaction (the label is a `bigint`):
+
+```typescript
+import { Address, Assets, TransactionMetadatum, preprod, Client } from "@evolution-sdk/evolution"
+
+const client = Client.make(preprod)
+  .withBlockfrost({ baseUrl: "https://cardano-preprod.blockfrost.io/api/v0", projectId: process.env.BLOCKFROST_API_KEY! })
+  .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
+
+declare const message: TransactionMetadatum.TransactionMetadatum
+
+const tx = await client
+  .newTx()
+  .payToAddress({ address: Address.fromBech32("addr_test1..."), assets: Assets.fromLovelace(2_000_000n) })
+  .attachMetadata({ label: 674n, metadata: message })     // CIP-20 message
+  .build()
+```
+
+Chain multiple `attachMetadata` calls for different labels (e.g. a `674n` message plus `721n` NFT metadata). Minting an NFT with CIP-25 (`721n`) metadata is shown end to end in [Mint an NFT](/docs/native-tokens/mint-nft). The Mesh and cardano-cli equivalents are in the tutorials below.
+
 ## Tutorials and Resources
 
 import DocCardList from '@theme/DocCardList';

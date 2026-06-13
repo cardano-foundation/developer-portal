@@ -7,7 +7,7 @@ description: "How to prepare a token metadata entry for the Cardano Token Regist
 ---
 ## Pre-Requisites
 
-To register native token mappings, it is recommended to have pre-existing knowledge about Cardano native assets. Start by reading through the [developer guide on Native Assets](https://developers.cardano.org/docs/build/native-tokens/minting/).    
+To register native token mappings, it is recommended to have pre-existing knowledge about Cardano native assets. Start by reading through the [developer guide on Native Assets](https://developers.cardano.org/docs/native-tokens/mint-fungible/).    
 
 After creating a Cardano native asset you will need the following to proceed with the steps to generate a mapping for the registry:     
 
