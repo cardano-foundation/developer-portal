@@ -1,6 +1,6 @@
 ---
-id: ethereum-developers
-title: Guide for Ethereum Developers
+id: cardano-for-ethereum-developers
+title: Cardano for Ethereum Developers
 sidebar_label: For Ethereum Developers
 description: A complete guide to Cardano development for developers coming from Ethereum.
 ---
@@ -13,9 +13,9 @@ This guide covers the key differences between Ethereum and Cardano development. 
 
 When developing on Cardano, the most significant difference you will encounter is the account model design. Understanding why Cardano's model was designed differently helps make sense of everything else.
 
-Unlike Ethereum, Cardano is designed around the **[Extended UTxO (eUTxO) model](/docs/learn/core-concepts/eutxo)** rather than an account-based model. On Ethereum, each address maintains a balance stored in global state. Transactions update these balances directly, and smart contracts hold and modify their own storage.
+Unlike Ethereum, Cardano is designed around the **[Extended UTxO (eUTxO) model](/docs/value/eutxo)** rather than an account-based model. On Ethereum, each address maintains a balance stored in global state. Transactions update these balances directly, and smart contracts hold and modify their own storage.
 
-![eUTxO vs Account Model](../core-concepts/img/eutxo-vs-account-model.jpg)
+![eUTxO vs Account Model](../value/img/eutxo-vs-account-model.jpg)
 
 On Cardano, there is no global mutable contract storage like on Ethereum. Instead, both value and application state are carried in discrete Unspent Transaction Outputs (UTxOs). While the ledger itself maintains global state (such as the UTxO set, protocol parameters, and staking state), smart contracts do not read from or write to shared storage. Everything a validator is allowed to reason about must be provided explicitly by the transaction through its inputs and outputs.
 
@@ -157,7 +157,7 @@ With the model clear, let's look at how transactions actually work.
 
 A Cardano transaction transforms UTxOs: it spends existing ones and creates new ones.
 
-![UTxO Transaction Flow](../core-concepts/img/utxo-transaction-flow.png)
+![UTxO Transaction Flow](../value/img/utxo-transaction-flow.png)
 
 The key components:
 
@@ -186,7 +186,7 @@ To enforce "action X only after date Y," store Y in the datum and check that the
 
 Another significant difference from Ethereum is composition. On Ethereum, a transaction has a single entry point and composition is typically expressed through internal contract calls (routers, aggregators, multicalls). On Cardano, a single transaction can spend from multiple script addresses and mint tokens under multiple policies. Each validator runs independently; all must pass, and the entire transaction succeeds or fails atomically. No router contracts are required.
 
-In the UTxO model, the [transaction](/docs/learn/core-concepts/transactions) itself is the **local state**. Every input, every output, every signature, every piece of data the validator needs is contained within the transaction. There's no querying external state and as a result there are no surprises from concurrent modifications. When a validator runs, it receives this complete local state as context. For example, the transaction's `extra_signatories` field lists every verification key hash that signed it. The validator can inspect all inputs being spent, all outputs being created, and all metadata attached. Given the same transaction inputs and outputs, a validator will always produce the same result because everything it needs is self-contained.
+In the UTxO model, the [transaction](/docs/value/transactions) itself is the **local state**. Every input, every output, every signature, every piece of data the validator needs is contained within the transaction. There's no querying external state and as a result there are no surprises from concurrent modifications. When a validator runs, it receives this complete local state as context. For example, the transaction's `extra_signatories` field lists every verification key hash that signed it. The validator can inspect all inputs being spent, all outputs being created, and all metadata attached. Given the same transaction inputs and outputs, a validator will always produce the same result because everything it needs is self-contained.
 
 ## How Do Fees Work on Cardano?
 
@@ -302,7 +302,7 @@ The `valid_before` function checks that the transaction's validity interval ends
 
 On Ethereum, tokens are smart contracts. Creating an ERC-20 means deploying a contract, and every transfer is a contract call that costs gas. The `approve` + `transferFrom` pattern is necessary for dApps to spend your tokens.
 
-On Cardano, [native tokens](/docs/learn/core-concepts/assets) are built into the ledger itself. Remember that UTxOs are the fundamental unit that all network logic applies to. Each UTxO can carry multiple values: ADA plus any number of [native tokens](/docs/build/native-tokens/overview). When you spend a UTxO, you're moving all the value it contains in one atomic operation. This means transferring tokens is no different from transferring ADA. There's no `approve` pattern, no separate contract calls, no extra gas. A single transaction can move ADA and dozens of different tokens across multiple UTxOs, all with the same predictable fee.
+On Cardano, [native tokens](/docs/native-tokens/overview) are built into the ledger itself. Remember that UTxOs are the fundamental unit that all network logic applies to. Each UTxO can carry multiple values: ADA plus any number of [native tokens](/docs/native-tokens/overview). When you spend a UTxO, you're moving all the value it contains in one atomic operation. This means transferring tokens is no different from transferring ADA. There's no `approve` pattern, no separate contract calls, no extra gas. A single transaction can move ADA and dozens of different tokens across multiple UTxOs, all with the same predictable fee.
 
 ### Native Scripts
 
@@ -568,7 +568,7 @@ Alternatives include [OpShin](/docs/build/smart-contracts/languages/opshin) (Pyt
 |----------|---------|
 | Hardhat | [Aiken CLI](https://aiken-lang.org/installation-instructions) (`aiken build`, `aiken check`) |
 | Remix | [Aiken Playground](https://play.aiken-lang.org) |
-| Web3.js, ethers.js | [Client SDKs](/docs/get-started/client-sdks/overview) like **Mesh SDK** (TypeScript) |
+| Web3.js, ethers.js | [Client SDKs](/docs/first-steps/choose-your-tools) like **Mesh SDK** (TypeScript) |
 | Ganache, Foundry | [Local development networks](/docs/get-started/infrastructure/api-providers/overview) like [Yaci DevKit](https://devkit.yaci.xyz/) |
 | Infura, Alchemy | [API Providers](/docs/get-started/infrastructure/api-providers/overview) like [Blockfrost](https://blockfrost.dev/), [Maestro](https://www.gomaestro.org/), [Koios](https://koios.rest/) |
 | Etherscan | [Explorers](https://explorer.cardano.org/) |
@@ -576,15 +576,15 @@ Alternatives include [OpShin](/docs/build/smart-contracts/languages/opshin) (Pyt
 
 ### Client SDKs
 
-Client SDKs handle transaction building, wallet integration, UTxO selection, and fee calculation. They're equivalent to ethers.js or web3.js but for Cardano. See the full [Client SDKs documentation](/docs/get-started/client-sdks/overview) for detailed guides.
+Client SDKs handle transaction building, wallet integration, UTxO selection, and fee calculation. They're equivalent to ethers.js or web3.js but for Cardano. See the full [Client SDKs documentation](/docs/first-steps/choose-your-tools) for detailed guides.
 
 | Language | SDK |
 |----------|-----|
-| TypeScript | [Typescript SDKs](/docs/get-started/client-sdks/typescript/overview)|
-| Python | [PyCardano](/docs/get-started/client-sdks/python/pycardano) |
-| Rust | [Pallas](/docs/get-started/client-sdks/rust/pallas) |
-| Go | [Apollo](/docs/get-started/client-sdks/go/apollo) |
-| C# | [Chrysalis](/docs/get-started/client-sdks/csharp/chrysalis) |
+| TypeScript | [Typescript SDKs](/docs/first-steps/choose-your-tools)|
+| Python | [PyCardano](/tools/?tags=sdk) |
+| Rust | [Pallas](/tools/?tags=sdk) |
+| Go | [Apollo](/tools/?tags=sdk) |
+| C# | [Chrysalis](/tools/?tags=sdk) |
 
 ### Development Workflow
 
@@ -733,8 +733,8 @@ This is just one of many eUTxO-specific patterns. The documentation covers these
 ## Next Steps
 
 1. **Learn Aiken**: Start with [aiken-lang.org](https://aiken-lang.org) for the language guide and tutorials. Check out the [Aiken Standard Library](https://aiken-lang.github.io/stdlib/) for more to help you build your validator.
-2. **Hands-on Lessons**: Work through [Smart Contract Lessons](/docs/smart-contracts/lessons/) for practical insights
-3. **Set Up Off-chain**: Use [Client SDKs](/docs/get-started/client-sdks/overview) for transaction building
-4. **Get Test ADA**: Use the [testnet faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) to get tADA for [Preview or Preprod testnets](/docs/get-started/networks/testnets)
-5. **Explore Core Concepts**: Read about the [eUTxO Model](/docs/learn/core-concepts/eutxo) for deeper understanding
+2. **Write a validator**: Work through [Write a Validator](/docs/build/smart-contracts/write-a-validator) for hands-on on-chain building
+3. **Set Up Off-chain**: Use [Client SDKs](/docs/first-steps/choose-your-tools) for transaction building
+4. **Get Test ADA**: Use the [testnet faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) to get tADA for [Preview or Preprod testnets](/docs/first-steps/networks-and-test-ada)
+5. **Explore Core Concepts**: Read about the [eUTxO Model](/docs/value/eutxo) for deeper understanding
 6. **Join the Community**: Connect via the [Developer Community](/docs/community/cardano-developer-community)
