@@ -9,7 +9,7 @@ This guide covers running `cardano-node` as a passive (non-block-producing) node
 
 ## Networks and configuration files
 
-Cardano runs on three public networks. See [Networks](/docs/get-started/networks/overview) for a full description of each. Download the configuration files for the network you want to run:
+Cardano runs on three public networks. See [Networks](/docs/first-steps/networks-and-test-ada) for a full description of each. Download the configuration files for the network you want to run:
 
 **Mainnet** (NetworkMagic: `764824073`)
 ```bash
@@ -260,7 +260,7 @@ cardano-cli query tip
 Do not submit transactions until `syncProgress` is `"100.00"`.
 :::
 
-Cross-reference the block number against a [public explorer](/docs/get-started/networks/explorers).
+Cross-reference the block number against a [public explorer](/docs/first-steps/networks-and-test-ada).
 
 <details>
 <summary><strong>Advanced — RTS options</strong></summary>

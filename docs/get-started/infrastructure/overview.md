@@ -6,7 +6,7 @@ description: Choose how to connect to Cardano - API providers, cloud platform, o
 image: /img/og/og-developer-portal.png
 ---
 
-After choosing your [network](/docs/get-started/networks/overview), select infrastructure to connect your application to Cardano.
+After choosing your [network](/docs/first-steps/networks-and-test-ada), select infrastructure to connect your application to Cardano.
 
 ## Choosing infrastructure
 
@@ -80,7 +80,7 @@ Use your own node to:
 
 **Trade-offs**: Server costs, DevOps resources, maintenance overhead
 
-**Learn more**: [Cardano node setup](/docs/get-started/infrastructure/node/cardano-components) and [cardano-cli](/docs/learn/cardano-cli/basic-operations/get-started); [bootstrapping a node with Mithril](https://mithril.network/doc/manual/getting-started/bootstrap-cardano-node) within 30 minutes.
+**Learn more**: [Cardano node setup](/docs/get-started/infrastructure/node/cardano-components) and [cardano-cli](/docs/first-steps/your-first-transaction); [bootstrapping a node with Mithril](https://mithril.network/doc/manual/getting-started/bootstrap-cardano-node) within 30 minutes.
 
 ## Next steps
 

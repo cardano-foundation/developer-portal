@@ -180,7 +180,7 @@ Copy `tx.signed` to the USB drive. Unmount and remove the drive.
 cardano-cli conway transaction submit --tx-file tx.signed
 ```
 
-Verify on a [block explorer](/docs/get-started/networks/explorers).
+Verify on a [block explorer](/docs/first-steps/networks-and-test-ada).
 
 ## Cold key operations
 
