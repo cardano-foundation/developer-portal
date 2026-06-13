@@ -8,6 +8,8 @@ image: /img/og/og-developer-portal.png
 
 Development networks run locally on your machine, giving you full control over blockchain state, network parameters, and block production without internet dependency or testnet tokens.
 
+> Writing automated tests for your transaction-building code? The Evolution SDK also ships an **in-process devnet emulator** you spin up and tear down inside a test suite — see [Smart Contracts → Testing](/docs/build/smart-contracts/testing#testing-your-off-chain-code). The standalone networks below are better when you want a persistent chain to point a frontend or `cardano-cli` at.
+
 ## Choosing a development network
 
 | Feature | Yaci DevKit | cardano-testnet |
@@ -57,4 +59,4 @@ Once your application is stable, move to public testnets for production-like tes
 
 - **Quick start**: [Set up Yaci DevKit](/docs/get-started/networks/development-networks/yaci-devkit) with Docker Compose
 - **Advanced setup**: [Build cardano-testnet](/docs/get-started/networks/development-networks/cardano-testnet) for custom configurations
-- **Test on public networks**: [Use testnets](/docs/get-started/networks/testnets) for pre-production validation
+- **Test on public networks**: [Use testnets](/docs/first-steps/networks-and-test-ada) for pre-production validation

@@ -11,7 +11,7 @@ A relay node accepts connections from the network and forwards blocks and transa
 Before continuing, complete [Installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) and download your network's configuration files as described in [Running cardano-node](/docs/get-started/infrastructure/node/running-cardano).
 
 :::tip Test on preprod first
-Run through the full setup on the [Pre-Production testnet](/docs/get-started/networks/testnets) before touching mainnet. Swap `mainnet` for `preprod` in every path and URL below.
+Run through the full setup on the [Pre-Production testnet](/docs/first-steps/networks-and-test-ada) before touching mainnet. Swap `mainnet` for `preprod` in every path and URL below.
 :::
 
 ## Relay topology

@@ -46,7 +46,7 @@ The block producer holds your hot KES and VRF keys and mints blocks. Your cold k
 A few things that catch new operators off guard:
 
 - **You need a second machine for cold key operations.** This is not optional. If your cold key is on an internet-connected machine, your pool is at risk. See [Air Gap Environment](/docs/learn/educational-resources/air-gap) for setup options.
-- **Test on a testnet first.** The [Preview or Pre-Production testnets](../get-started/networks/testnets) let you run through the full registration flow without spending real ADA.
+- **Test on a testnet first.** The [Preview or Pre-Production testnets](../first-steps/networks-and-test-ada) let you run through the full registration flow without spending real ADA.
 - **Pool registration costs a deposit.** Currently 500 ADA, returned when you retire the pool.
 - **KES keys must be rotated** before they expire (~90 days on mainnet). Missing rotation means your node stops minting blocks.
 

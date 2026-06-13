@@ -203,4 +203,4 @@ Check it has appeared on-chain:
 cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt)
 ```
 
-A non-empty result means registration was successful. It may take one epoch boundary to appear in tools and explorers. You can also verify on a [block explorer](/docs/get-started/networks/explorers).
+A non-empty result means registration was successful. It may take one epoch boundary to appear in tools and explorers. You can also verify on a [block explorer](/docs/first-steps/networks-and-test-ada).
