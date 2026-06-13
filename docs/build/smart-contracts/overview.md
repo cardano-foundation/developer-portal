@@ -14,7 +14,7 @@ Smart contracts are digital agreements defined in code that automate and enforce
 
 ## Introduction
 
-Smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/learn/core-concepts/eutxo) model.
+Smart contracts on Cardano work a bit differently from how they do on other blockchains. The key to understanding smart contracts is to first understand the [eUTXO](/docs/value/eutxo) model.
 
 Smart contracts are validator scripts that you write to validate the movement of UTXOs locked in your contract's address. You will lock UTXOs at the address of your script and then the UTXOs can only ever be spent/moved if your script allows the transaction spending it to do so.
 
@@ -29,10 +29,13 @@ The most important mental shift when coming to Cardano from other blockchains: *
 A Cardano smart contract cannot:
 
 - "Send tokens" to another address
-- "Call another contract"
+- "Call another contract" imperatively
 - Initiate any action on its own
+- Make network requests or read external data directly
+- Generate random numbers
+- Loop indefinitely (execution budgets enforce termination)
 
-Instead, smart contracts **validate** that transactions do the things you want them to do. Users propose transactions, and contracts either approve or reject them based on the validation logic you define.
+Instead, smart contracts **validate** that transactions do the things you want them to do. Users propose transactions, and contracts either approve or reject them based on the validation logic you define. These limitations are features, not bugs: they make validators **deterministic** — the same inputs always produce the same result — which is the foundation of Cardano's predictability guarantees.
 
 ### Components
 
@@ -42,6 +45,10 @@ Smart contracts consist of on-chain and off-chain components:
 - **Off-chain component**: Applications that construct valid transactions according to the contract rules. These can be built in any language and handle user interfaces, data fetching, and transaction building.
 
 The off-chain component is equally critical - it's responsible for creating transactions that the on-chain validator will approve.
+
+:::tip The lawyer and the judge
+Think of off-chain code as the **lawyer drafting a contract** and on-chain code as the **judge reviewing it**. The lawyer does the creative, complex work of figuring out what the agreement should look like; the judge simply checks whether it complies with the rules. This separation is why on-chain execution stays cheap (the chain only runs validation, not construction), why off-chain code can be written in any language, and why you can test the two halves independently.
+:::
 
 ### On-Chain (Validator scripts)
 
@@ -108,6 +115,10 @@ Consider the analogy of a simple function: `f(x) = x * a + b`
 
 ### The Three Script Arguments
 
+:::tip Deep dive
+This is the quick tour. The canonical, in-depth reference for all three arguments — the full transaction context, the `ScriptPurpose`, inline-vs-hash datums, and the design patterns they enable — is **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context)**.
+:::
+
 #### Datum: Contract State
 
 Data attached to UTXOs and is immutable. Datums carry contract state between transactions, enabling complex state machines by preserving information that subsequent transactions can read and modify. When someone sends UTxOs to a script address, they attach the datum to define the conditions under which the UTxO can be spent. Datum are the extension to the UTxO model and, in a way, stand for the "e" in eUTxO. Unlike the Bitcoin UTxO model, which lacks datums and thus has limited capabilities, the extended UTxO model provides capabilities comparable to an account-based model while maintaining a safer approach to transactions by avoiding global state mutations.
@@ -120,32 +131,9 @@ Data provided by users with the transaction for script execution when spending U
 
 #### Script Context: Transaction Information
 
-Logic in smart contracts involves making validations about certain properties of the transaction, including inputs, outputs, signatures, fees, and other transaction properties. This allows scripts to make assertions about transaction structure, participants, timing, and other properties.
+Logic in smart contracts involves making validations about properties of the transaction — inputs, outputs, signatures, fees, minting, validity range, and more. This lets a script make assertions about the whole transaction's structure, participants, and timing, not just the single UTXO it guards. It is what makes a validator expressive despite being "just" a boolean function.
 
-**Available Context Properties:**
-
-| Property                                                                                 | Description                                                                                                                             |
-| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **inputs**                                                                               | List of transaction inputs being spent in the transaction. In the UTXO model, every transaction produces outputs, which in turn become inputs for future transactions. |
-| **reference_inputs**                                                                     | Inputs used for reference only, not spent                                                                                               |
-| **outputs**                                                                              | New outputs created by the transaction. These are the new UTXOs created by the transaction                                              |
-| **fee**                                                                                  | Transaction fee in Lovelace. This value is predictable and depends on the transaction size. Fees can often be optimized.                                                                                  |
-| **minted value**                                                                         | This is the value of tokens being minted or burned in the transaction                                                                   |
-| **certificates**                                                                         | Certificates for delegation, pool operations (register/deregister stake key), governance roles, etc.                                    |
-| **withdrawals**                                                                          | Stake reward withdrawals as credential-lovelace pairs                                                                                   |
-| **validity_range**                                                                       | Time range in which the transaction is valid.                                                                                           |
-| **signatories**                                                                          | A list of hashes representing who signed the transaction.                                                                               |
-| **redeemers**                                                                            | Script purpose and redeemer pairs for script execution. These are a list of redeemers used by the contracts executed in the transaction |
-| **datums**                                                                               | Dictionary mapping data hashes to datum data                                                                                            |
-| **id**                                                                                   | Transaction identification (hash) that is unique for each transaction                                                                   |
-| **votes**                                                                                | Governance votes as voter-vote pairs (Conway era)                                                                                       |
-| **proposal_procedures**                                                                  | Governance proposals (Conway era)                                                                                                       |
-| **current_treasury_amount**                                                              | Current treasury amount (optional)                                                                                                      |
-| **treasury_donation**                                                                    | Treasury donation amount (optional)                                                                                                     |
-
-:::note Transaction Context Representation
-This is a representation of a transaction as seen by on-chain scripts, and not the 1:1 translation of the transaction as seen by the ledger. The underlying ledger uses a different structure with numeric field keys as defined in the [Conway CDDL specification](https://github.com/IntersectMBO/cardano-ledger/blob/master/eras/conway/impl/cddl/data/conway.cddl). In particular, on-chain scripts can't see inputs locked by bootstrap addresses, outputs to bootstrap addresses, or transaction metadata.
-:::
+The full set of context properties, the `ScriptPurpose`, and the common checks validators run against them live in **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context#what-does-the-scriptcontext-provide)**.
 
 ### Script Addresses
 
@@ -297,22 +285,41 @@ These features work together to make Cardano smart contracts more practical and 
 
 ## Programming languages
 
-Cardano introduced smart contracts in 2021 and supports the development and deployment of smart contracts using multiple different languages.
+Cardano supports writing validators in several languages, all of which compile to the same on-chain bytecode (UPLC). For most new projects, **[Aiken](/docs/build/smart-contracts/languages/aiken/overview)** is the recommended starting point.
 
-:::tip
-Writing well-designed smart contracts requires you to have a solid understanding of how Cardano works in general. So, make sure that everything on this page makes sense before you start creating contracts. Many topics are described in more detail on the [Technical Concepts](/docs/learn/core-concepts/) page as well.
+:::tip Pick the right language
+See **[Choose a language](/docs/build/smart-contracts/choose-a-language)** for the full comparison and decision guide. In short:
+
+- **[Aiken](/docs/build/smart-contracts/languages/aiken/overview)** — purpose-built for Cardano, Rust-like syntax, fast compilation, small output, built-in testing. The default recommendation.
+- **[Plinth](/docs/build/smart-contracts/languages/plinth)** — the "canonical" Haskell language; shares code between on-chain and off-chain.
+- **[Plutarch](/docs/build/smart-contracts/languages/plutarch/overview)** — maximum performance, close to writing UPLC by hand.
+- **[OpShin](/docs/build/smart-contracts/languages/opshin)** — a subset of Python.
+- **[Scalus](/docs/build/smart-contracts/languages/scalus)** — Scala 3 for on-chain and off-chain.
+- **[Pebble](/docs/build/smart-contracts/languages/pebble)** — a TypeScript-like DSL.
+- **[Marlowe](/docs/build/smart-contracts/languages/marlowe)** — a non-Turing-complete DSL for financial contracts.
 :::
 
-- [Aiken](../languages/aiken/overview) - Most popular smart contract language on Cardano written in Rust like syntax. Specifically designed for on-chain validators only and embraces/treats UTxO model as a first citizen: a language & toolchain favouring developer experience.
-- [Plutarch](https://github.com/Plutonomicon/plutarch-plutus) - With Plutarch, you have much more fine gained control of the Plutus Core you generate, without giving up any type information. Not for the faint hearted as it is close to writing UPLC by hand, but will almost always yield highest performance.
-- [OpShin](../languages/opshin) - Pythonic programming language used for smart contracts.
-- [Scalus](../languages/scalus) - a modern unified development platform for building Cardano DApps using Scala 3 for both on-chain smart contracts and off-chain logic. Scalus works with JVM and JavaScript too.
-- [Plinth](../languages/plinth) - "Canonical" smart contract language of Cardano written in Haskell with advanced tooling. Can be used for both on-chain and off-chain.
-- [Pebble](../languages/pebble) - Strongly-typed domain-specific language for writing Cardano smart contracts, with a TypeScript-like syntax that compiles to UPLC.
+## Key takeaways
+
+- **Smart contracts are validators, not programs.** They check whether a transaction is allowed; they do not perform its logic themselves.
+- **On-chain code validates; off-chain code constructs.** This separation keeps on-chain execution cheap and lets you write off-chain code in any language and test the two halves independently.
+- **Determinism is Cardano's superpower.** You know a transaction's outcome before submitting it, eliminating wasted fees, front-running, and MEV.
+- **Script addresses lock UTXOs under programmable rules,** replacing private-key authorization with arbitrary validation logic.
+- **The eUTXO model extends UTXOs** with datums, redeemers, and script context — enabling full smart contract functionality while preserving determinism and parallelism.
+
+## What's next
+
+This module builds up from here:
+
+1. **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context)** — the three arguments every validator receives, in depth.
+2. **[Choose a language](/docs/build/smart-contracts/choose-a-language)** — pick how you'll write validators (Aiken-first).
+3. **[Lock and spend](/docs/build/smart-contracts/lock-and-spend)** — build the off-chain transactions that interact with a contract.
+4. **[Testing](/docs/build/smart-contracts/testing)** — verify validators with mock transactions before you deploy.
+5. **[Security](/docs/build/smart-contracts/security)** — the attack classes to defend against.
 
 ---
 
-## Explore Smart Contract Topics
+## Explore all smart contract topics
 
 import DocCardList from '@theme/DocCardList';
 
