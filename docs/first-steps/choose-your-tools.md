@@ -13,17 +13,12 @@ You make two choices before building: a **library (SDK)** that builds, signs, an
 
 ## Pick an SDK
 
-Choose by your language. For TypeScript, the two actively-recommended SDKs are **Evolution** and **Mesh**; the rest of this curriculum's hands-on tabs use them.
+An SDK is a library in your own language. Which one you use is up to you and your stack. Browse the full set, by language and by what each one does, in [**Builder Tools**](/tools/?tags=sdk).
 
-| Language | Recommended | Notes |
-|---|---|---|
-| **TypeScript / JavaScript** | **Evolution SDK** (recommended), **Mesh SDK** | Evolution is the modern, type-safe default; Mesh is a strong alternative with a large guide ecosystem |
+Some starting points:
 
-Building in another language? Cardano has community SDKs for **Python, Rust, Go, Java, C#, Swift**, and more, plus low-level serialization libraries. Browse them by language and filter by what they do in [**Builder Tools**](/tools/?tags=sdk).
-
-:::tip Why Evolution first?
-Evolution SDK is a modern, type-safe TypeScript library, the next generation of Cardano developer experience, with first-class provider support and clean error handling. Mesh is an excellent alternative, especially if you want its ready-made guides and React components. You can't go wrong with either.
-:::
+- **TypeScript / JavaScript**: **Evolution** and **Mesh** are two widely used, actively maintained options. This curriculum's hands-on tabs use them so you can copy and run the examples, but the concepts apply to any SDK.
+- **Other languages**: Cardano has community SDKs for **Python, Rust, Go, Java, C#, Swift**, and more, plus low-level serialization libraries. Find them in [Builder Tools](/tools/?tags=sdk).
 
 ## Install it
 
@@ -55,19 +50,26 @@ Other languages: `pip install pycardano`, `cargo add whisky`, `go get github.com
 
 ## Get a provider
 
-A **provider** runs the node infrastructure and exposes the chain through an API, so you can query UTXOs and submit transactions without running your own node. For getting started, **Blockfrost** is the fastest path (hosted, free tier, ~5 minutes):
+A **provider** runs the node infrastructure and exposes the chain through an API, so you can query UTXOs and submit transactions without running your own node. You have several options:
+
+- **Blockfrost**: hosted REST API with a free tier
+- **Koios**: community-run, no key required for basic use
+- **Maestro**: hosted, with extended analytics and history
+- **Kupmios** (self-hosted Ogmios + Kupo): full control and data sovereignty
+
+Compare them in [Query the chain › choosing a provider](/docs/first-steps/query-the-chain#choosing-a-provider), browse the full list with their capabilities in [Builder Tools](/tools/?tags=api), and see the [API providers reference](/docs/get-started/infrastructure/api-providers/overview) and [Demeter](/docs/get-started/infrastructure/demeter) for managed infrastructure.
+
+A hosted provider is the quickest way to start. With Blockfrost, for example:
 
 1. Sign up at [blockfrost.io](https://blockfrost.io/).
 2. Create a project and select your network (**Preprod** for this guide).
 3. Copy the project ID (your API key; it starts with `preprod`).
-4. Store it in an env var, never commit it or ship it in client-side code:
+4. Store it in an env var, and never commit it or ship it in client-side code:
 
    ```bash
    # .env
    BLOCKFROST_API_KEY=preprod_xxxxxxxxxxateofyourprojectid
    ```
-
-Other providers (for production or self-hosting): **Kupmios** (self-hosted Ogmios + Kupo), **Maestro** (hosted, advanced analytics), **Koios** (community-run, no key). Compare them in [Query the chain › choosing a provider](/docs/first-steps/query-the-chain#choosing-a-provider), and see [API providers](/docs/get-started/infrastructure/api-providers/overview) and [Demeter](/docs/get-started/infrastructure/demeter) for managed infrastructure.
 
 ## Next steps
 

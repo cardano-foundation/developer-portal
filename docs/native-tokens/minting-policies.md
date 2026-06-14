@@ -2,7 +2,7 @@
 id: minting-policies
 title: Minting Policies
 sidebar_label: Minting policies
-description: How minting policies control who can create and burn native tokens, from simple signature scripts to Plutus one-shot policies.
+description: How minting policies control who can create and burn native tokens, from simple signature scripts to programmable smart contract policies.
 image: /img/og/og-developer-portal.png
 ---
 
@@ -18,7 +18,7 @@ minting_policy(redeemer, scriptContext) -> Bool
 
 Positive quantities mint, negative quantities burn. The policy can allow one and forbid the other, or apply different rules to each.
 
-## Native script policies (no Plutus)
+## Native script policies (no smart contract needed)
 
 The simplest policies use Cardano's native script language, just signatures and time:
 
@@ -39,19 +39,19 @@ The simplest policies use Cardano's native script language, just signatures and 
 
 Time-locks matter because once the window closes, **no one** can ever mint more under that policy, a provably fixed supply. This is the standard way to lock an NFT or a capped collection.
 
-## Plutus policies
+## Smart contract policies
 
-When you need logic beyond signatures and time, the policy is a Plutus/Aiken validator:
+When you need logic beyond signatures and time, the policy is a smart contract (a validator written in Plutus or Aiken):
 
 - **One-shot**: requires a specific UTXO as input. Since a UTXO can be spent only once, the policy can succeed only once in history, the canonical way to guarantee true NFT uniqueness.
 - **Parameterized**: compile-time parameters bake into the script, producing a distinct policy ID per configuration.
 - **Multi-action**: the redeemer selects an action (mint / burn / init) and the script validates each differently.
 
-Writing Plutus minting policies is covered in the [Smart Contracts](/docs/build/smart-contracts/overview) section.
+Writing smart contract minting policies is covered in the [Smart Contracts](/docs/build/smart-contracts/overview) section.
 
-## Native or Plutus?
+## Native script or smart contract?
 
-| Use a native script when | Use Plutus when |
+| Use a native script when | Use a smart contract when |
 |---|---|
 | Fixed issuer and/or fixed supply by deadline | Uniqueness must be guaranteed by protocol (one-shot) |
 | Simple multisig issuance | Minting depends on on-chain state (oracles, other UTXOs) |
@@ -61,7 +61,7 @@ Writing Plutus minting policies is covered in the [Smart Contracts](/docs/build/
 
 - The policy script's hash is the policy ID; rules are bound to the token forever.
 - Native scripts cover signatures and time-locks, including provably fixed supply.
-- Plutus policies add one-shot uniqueness, parameterization, and multi-action logic.
+- Smart contract policies add one-shot uniqueness, parameterization, and multi-action logic.
 
 ## Next steps
 

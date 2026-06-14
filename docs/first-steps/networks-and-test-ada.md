@@ -17,6 +17,8 @@ Before you build anything, pick a network and get some test ADA. You never need 
 | **Preview** | `2` | Test upcoming features (hard-forks 4+ weeks before mainnet) | Test ADA |
 | **Local devnet** | custom | Fast offline iteration, CI, custom scenarios | Test ADA |
 
+Network magic is the identifier each network advertises during the node handshake. Mainnet's `764824073` is a fixed historical value; the public testnets use small numbers.
+
 **Use Preprod** for most development: it behaves like mainnet. Use **Preview** to try features before they reach mainnet. There is also **SanchoNet** for governance testing ([sancho.network](https://sancho.network)).
 
 :::important
@@ -69,10 +71,7 @@ All environments are listed in the [Cardano Operations Book](https://book.world.
 
 ## Develop locally (optional)
 
-For offline, deterministic iteration you can run a local network instead of a public testnet:
-
-- **[Yaci DevKit](/docs/get-started/networks/development-networks/yaci-devkit)**: quick Docker/NPM setup with a built-in indexer, viewer, and Provider-compatible API
-- **[cardano-testnet](/docs/get-started/networks/development-networks/cardano-testnet)**: custom local clusters with configurable genesis and protocol parameters
+For offline, deterministic iteration you can run a local network instead of a public testnet. See [Local development networks](/docs/get-started/networks/development-networks/overview) for the options (Yaci DevKit and cardano-testnet) and how to set them up.
 
 ## Next steps
 

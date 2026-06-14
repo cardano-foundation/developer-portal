@@ -73,7 +73,7 @@ Ouroboros is Cardano's consensus protocol and the first Proof of Stake protocol 
 |---|---|---|
 | Ouroboros Classic | Research | First provably secure PoS |
 | Ouroboros BFT | Byron restart | Simplified BFT for the Byron-to-Shelley transition |
-| Ouroboros Praos | Shelley (current) | VRF for private leader selection; semi-synchronous model |
+| Ouroboros Praos | Shelley | VRF for private leader selection; semi-synchronous model |
 | Ouroboros Genesis | In development | Secure bootstrapping from genesis, no trusted checkpoints |
 | Ouroboros Leios | Research | Input endorsers for much higher throughput |
 

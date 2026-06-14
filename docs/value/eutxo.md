@@ -126,7 +126,7 @@ The scope of information available to a script is the key difference between the
 - **Ethereum (account):** scripts can read and modify the entire global state. Powerful, but it introduces unpredictability and a large security surface.
 - **Cardano (eUTXO):** scripts see all inputs and outputs of the specific transaction plus its context, but not arbitrary global state. This middle ground was mathematically researched to provide expressive power comparable to the account model while keeping stronger security guarantees.
 
-Plutus and Aiken validators are **pure functions**: given the same datum, redeemer, and context, they always return the same result. That purity buys you:
+Smart contract validators (written in Plutus or Aiken) are **pure functions**: given the same datum, redeemer, and context, they always return the same result. That purity buys you:
 
 - **Tractable security analysis.** You can reason about a script from the transaction alone, not the entire unpredictable chain state.
 - **Fail-fast validation.** You can run the exact validation locally before submitting. If an input is already spent, it fails off-chain and costs you nothing.

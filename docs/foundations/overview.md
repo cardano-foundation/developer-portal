@@ -8,7 +8,7 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 This is the conceptual bedrock for building on Cardano. It explains what a blockchain actually is, the cryptography that secures it, how Cardano reaches agreement through Ouroboros, and how the platform differs from account-based chains like Ethereum. You don't need all of it before you start building, but if you are new to Cardano (or new to blockchains), it pays for itself quickly.
 
-For the broader "what is Cardano and why build here" pitch (the origin story, the research foundation, what you can ship), see the [Get Started overview](/docs/get-started/). This module is the technical grounding underneath it.
+For the broader introduction to what Cardano is and why you would build here (the origin story, the research foundation, what you can ship), see the [Get Started overview](/docs/get-started/). This module is the technical grounding underneath it.
 
 ## Recommended reading order
 

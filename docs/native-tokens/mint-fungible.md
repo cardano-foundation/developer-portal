@@ -38,7 +38,7 @@ const client = Client.make(preprod)
   })
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
-declare const mintingPolicy: any   // native or Plutus, see Minting policies
+declare const mintingPolicy: any   // native script or smart contract, see Minting policies
 
 const policyId = "7edb7a2d9fbc4d2a68e4c9e9d3d7a5c8f2d1e9f8a7b6c5d4e3f2a1b0"
 const assetName = "4d79546f6b656e"          // "MyToken" in hex

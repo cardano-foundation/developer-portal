@@ -188,4 +188,4 @@ An NFT derives value from guaranteed scarcity. A **time-locked policy** (the `be
 
 - [Mint a fungible token](/docs/native-tokens/mint-fungible): the same flow with quantity greater than 1
 - [Token metadata & registry](/docs/native-tokens/metadata-registry): CIP-25 vs CIP-68, royalties (CIP-27)
-- Advanced: [Smart Contracts](/docs/build/smart-contracts/overview) for a Plutus one-shot NFT policy
+- Advanced: [Smart Contracts](/docs/build/smart-contracts/overview) for a smart contract one-shot NFT policy
