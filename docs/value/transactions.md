@@ -154,14 +154,7 @@ Inputs are sorted lexicographically by `(tx_id, index)`, not the order you speci
 
 ## Web2 analogy
 
-| Cardano | Web2 equivalent |
-|---|---|
-| A transaction | An HTTP request: construct, authenticate (sign), submit, await confirmation, asynchronous |
-| Inputs/outputs (atomic) | A database transaction with ACID guarantees: all-or-nothing |
-| Fees | API rate-limiting / usage-based pricing: prevents abuse, pays operators |
-| `invalid_hereafter` (TTL) | A request timeout or a JWT `exp` claim |
-| CBOR | Protocol Buffers / MessagePack instead of JSON: compact, deterministic |
-| Metadata | Custom HTTP headers: travels alongside, does not change core processing |
+Submitting a transaction is like making an HTTP request: you construct it, authenticate it by signing, submit it, and await confirmation, all asynchronously. The difference that matters is atomicity. A transaction's inputs and outputs apply with database-style ACID guarantees, so the whole thing succeeds or none of it does, with no partial state left behind.
 
 ## Key takeaways
 

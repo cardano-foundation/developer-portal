@@ -155,15 +155,7 @@ Epoch N boundary: calculate and distribute rewards, take a new snapshot,
 
 ## Web2 analogy
 
-| Consensus concept | Web2 equivalent | Key difference |
-|---|---|---|
-| Slot leader election | Raft leader election | Raft nodes are trusted; slot leaders are untrusted and verified |
-| Epoch structure | Cron intervals | Protocol-enforced, not administratively scheduled |
-| Stake-weighted voting | Weighted load balancing | Stake is economic commitment, not capacity |
-| Chain selection | DNS eventual consistency | Chain selection is deterministic |
-| Finality (~20 blocks) | Database replication lag | About security guarantees, not just freshness |
-
-**The Raft/Paxos analogy expands well.** Raft elects a leader who sequences writes; leader election maps to slot-leader selection, log entries to blocks, term to epoch, heartbeats to block propagation. The critical difference: Raft assumes honest nodes (crash fault tolerance); Ouroboros assumes some are malicious (Byzantine fault tolerance), which is why it needs VRFs, stake-weighted election, and formal proofs.
+The closest analogy is Raft or Paxos. Raft elects a leader who sequences writes: leader election maps to slot-leader selection, log entries to blocks, the term to an epoch, and heartbeats to block propagation. The critical difference is the threat model. Raft assumes honest nodes (it only tolerates crashes), while Ouroboros assumes some nodes are malicious (Byzantine fault tolerance), which is why it needs VRFs, stake-weighted election, and a formal security proof.
 
 ## Key takeaways
 

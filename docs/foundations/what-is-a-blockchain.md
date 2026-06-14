@@ -122,18 +122,7 @@ After a few more blocks are added on top, the transaction is considered final wi
 
 ## Web2 analogy
 
-| Blockchain concept | Web2 equivalent | Key difference |
-|---|---|---|
-| Distributed ledger | Replicated database (Postgres + read replicas) | No single primary; all nodes are equal peers |
-| Block | Write-ahead-log batch | Blocks are cryptographically linked and immutable |
-| Chain of hashes | Git commit history | Git allows rebase/force-push; blockchain does not |
-| Node | Application server | Permissionless; anyone can run one |
-| Mempool | Message queue (RabbitMQ, SQS) | Local to each node; not guaranteed ordering |
-| Consensus | Leader election (Raft/Paxos) | Tolerates malicious actors, not just crashes |
-| Immutability | Append-only event log (Kafka) | Cryptographically enforced across all participants |
-| Smart contract | Serverless function (Lambda) | Once deployed, no one can modify or delete it |
-
-**The Git analogy is especially powerful.** A blockchain is like a Git repo where every commit references its parent, the history is append-only (no force-push, no rebase), every developer has a full clone, and merging (consensus) happens by protocol rather than human decision.
+A blockchain is like a Git repository: every commit references its parent, the history is append-only (no force-push, no rebase), every developer keeps a full clone, and merging happens by protocol (consensus) rather than human decision. The difference that matters is that no participant can rewrite history at all, because thousands of independent nodes enforce the rules instead of one trusted server.
 
 ## Key takeaways
 

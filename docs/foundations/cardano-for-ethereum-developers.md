@@ -716,19 +716,12 @@ This is just one of many eUTxO-specific patterns. The documentation covers these
 
 ## Quick Reference: Ethereum to Cardano
 
-| Ethereum | Cardano |
-|----------|---------|
-| Contract storage | **Datum** (optional data attached to UTxOs) |
-| Function parameters | **Redeemer** (user-provided action data) |
-| `msg.sender` | Check `tx.extra_signatories` |
-| `msg.value` | Examine input/output values explicitly |
-| `require(condition)` | Aiken's `expect` assertions |
-| `modifier onlyOwner` | `key_signed(signers, owner)` |
-| `mapping(addr => uint)` | One UTxO per entry (datum holds the value) |
-| `constructor` | Parameterized script (baked in at compile time) |
-| Events | Transaction metadata or off-chain indexing |
-| View functions | Query UTxOs directly via API |
-| ABI | **[Blueprint](https://cips.cardano.org/cip/CIP-0057)** (`plutus.json`) |
+A few Solidity habits carry over, but the ones that matter are not one-to-one:
+
+- **There is no contract storage.** Solidity keeps mutable state inside the contract; Cardano attaches immutable data (a **datum**) to a UTxO. You never update a datum in place, you consume the UTxO and create a new one with the new value, so a `mapping(addr => uint)` becomes one UTxO per entry rather than a single mutable map.
+- **There is no `msg.sender` or `msg.value`.** A validator inspects the transaction itself: check `tx.extra_signatories` for who signed, and read input and output values explicitly.
+- **Logic moves from runtime to build time.** A `constructor` becomes a parameterized script whose parameters are baked in at compile time. `require(condition)` becomes Aiken's `expect`, and `modifier onlyOwner` becomes an explicit `key_signed(signers, owner)` check.
+- **The interface is a blueprint, not an ABI.** Tools read [`plutus.json`](https://cips.cardano.org/cip/CIP-0057) the way they read an ABI. Instead of view functions and events, you query UTxOs directly through a provider and use transaction metadata or an indexer for event-style history.
 
 ## Next Steps
 

@@ -516,6 +516,18 @@ Use this code to embed YouTube videos:
 
 ## Tables
 
+### When to use a table
+
+Use a table only as a lookup: something a reader scans to find a specific value (CLI flags, parameters, endpoints, protocol versions, thresholds, key inventories). If a reader would read it top to bottom like a paragraph, write a paragraph.
+
+Do not put these in a table:
+
+- Analogy or "in Web2 this is X" concept maps. One useful analogy belongs in a sentence.
+- Comparisons that need caveats to be true. A grid hides the nuance and tends to overclaim; explain the trade-off in prose.
+- Anything that just restates the text next to it.
+
+### Formatting
+
 Colons can be used to align columns:
 
 ```text

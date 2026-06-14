@@ -170,15 +170,7 @@ Never bundle a mnemonic or private key into frontend code, and never commit one.
 
 ## Web2 analogy
 
-| Cardano | Web2 equivalent | Key difference |
-|---|---|---|
-| Private key | SSH private key / JWT signing key | Directly controls money, not just server access |
-| Mnemonic seed phrase | Master password in a password manager | Deterministically generates all keys, not just unlocks a vault |
-| HD derivation | Password manager deriving a credential per site | A mathematical tree from one secret |
-| CIP-30 connector | OAuth 2.0 / "Sign in with Google" | App gets signatures, never the raw credential |
-| Hardware wallet | HSM / YubiKey | Signs on-device in tamper-resistant hardware |
-
-**The SSH analogy is the closest:** you already generate an `ed25519` key pair, keep the private key local, share the public key, and prove possession by signing. Cardano keys work identically, except you authenticate to the whole network and gain the ability to move value.
+The closest analogy is SSH. You already generate an `ed25519` key pair, keep the private key local, share the public key, and prove possession by signing. Cardano keys work identically, except you authenticate to the whole network and gain the ability to move value, so losing the key costs more than losing server access. One more parallel worth knowing: a CIP-30 wallet connector is like "Sign in with Google" (OAuth), where the dApp receives the signatures it asks for but never sees your raw private key.
 
 ## Key takeaways
 

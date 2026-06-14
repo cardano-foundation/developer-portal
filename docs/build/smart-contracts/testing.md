@@ -195,15 +195,7 @@ The pattern scales cleanly: when you add a validation condition to the contract,
 
 ## How it maps to web2 testing
 
-| Aiken testing | Web2 equivalent | What it does |
-|---|---|---|
-| `aiken check` | `npm test` / `bun test` | Discovers and runs all `test` functions. |
-| `mocktail_tx()` + builder chain | Test fixture factory / request builder | Constructs a fake transaction like a mock HTTP request. |
-| `ContinueCountingTest` struct | Parameterized test config | A struct of booleans, like `test.each()` in Jest or table-driven tests in Go. |
-| Boolean toggles | Feature flags in fixtures | Each boolean includes/excludes one piece, isolating one failure per test. |
-| `test ... fail` | `expect(...).toThrow()` | Marks a test as expected to fail. |
-| `expect` | `assert` / runtime type check | Pattern-matches and crashes on shape mismatch. |
-| `?` operator | Debug logging on assertion failure | Appends the failed variable's name to the error trace. |
+If you have written web2 tests, the workflow is familiar. `aiken check` discovers and runs every `test` function the way `npm test` or `bun test` does. You build a fake transaction with `mocktail_tx()` and a builder chain, much like assembling a request from a fixture factory. A `test ... fail` marks a test you expect to fail, like `expect(...).toThrow()`, and the boolean-toggle struct shown above plays the role of `test.each()` or table-driven tests, flipping one condition at a time so each test isolates a single failure.
 
 ## Testing your off-chain code
 

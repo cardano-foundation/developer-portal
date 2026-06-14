@@ -111,18 +111,7 @@ await hydraProvider.fanout();  // distributes final balances back to L1 -> "Head
 
 ## Web2 mental model
 
-| Hydra concept | Web2 equivalent | Why |
-|---|---|---|
-| Hydra Head | Private database / cache layer | A temporary, fast environment shared by known participants |
-| Layer 1 (Cardano) | Main database (PostgreSQL) | The authoritative, durable store of record |
-| Layer 2 (inside Head) | In-memory cache (Redis) | Fast reads/writes with no per-operation cost |
-| Commit funds | Load data into cache | Move state from the durable store into the fast layer |
-| Fanout | Flush cache to main DB | Persist the final state back to the source of truth |
-| Contestation period | Conflict-resolution window | Grace period to detect inconsistencies before finalizing |
-| WebSocket API | Real-time event stream (Socket.io) | The node pushes `HeadIsOpen`, `TxValid`, `SnapshotConfirmed` |
-| Snapshots | Cache checkpoints | Agreed-upon states all participants sign |
-
-The key mental model: you pay a Layer 1 cost to open and close the Head (like provisioning and decommissioning a cache cluster), but everything inside is fast and free.
+Think of a Hydra Head as a Redis cache in front of a Postgres database. Layer 1 is the durable source of record, and the Head is a fast, temporary layer shared by a known set of participants. Committing funds loads state into that fast layer, the participants transact there with no per-operation cost, and fanout flushes the agreed final state back to Layer 1, with the contestation period acting as a grace window to catch a disagreement before it finalizes. The trade-off is the same as a cache cluster: you pay a Layer 1 cost to open and close the Head, but everything inside is fast and free.
 
 ## Next steps
 

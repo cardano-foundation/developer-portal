@@ -102,34 +102,15 @@ For display, **CIP-14 asset fingerprints** give a short checksummed `asset1...` 
 
 ## Native tokens vs Ethereum ERC-20/721
 
-| Feature | ERC-20/721 (Ethereum) | Native tokens (Cardano) |
-|---|---|---|
-| Implementation | Smart contract code | Built into the ledger |
-| Transfer | Contract function call | Native ledger transaction |
-| Contract needed to transfer? | Yes | No |
-| Many token types in one transfer? | No | Yes |
-| Transfer fees | Variable gas + execution | Fixed transaction fee |
-| Transfer can fail in logic? | Yes | No (ledger rule) |
-| Non-fungible support | Separate ERC-721 | Same mechanism as fungible |
-| Minting control | Contract logic | Minting policy script |
+On Ethereum, a token is a smart contract, so every transfer is a contract call that costs gas and can revert in the contract's logic. On Cardano, a token is part of the ledger. Minting and burning are governed by a policy script, but once minted, tokens move in ordinary transactions with no script execution, so a plain transfer cannot fail in contract logic the way an ERC-20 transfer can. One transaction can carry many token types at once, fungible and non-fungible tokens use the same mechanism, and you pay the normal transaction fee rather than variable gas.
 
-Trade-offs to know: there is **no built-in transfer logic** (blacklists, transfer fees) at the protocol level; that requires locking tokens at a script address. And there are **no built-in decimals**, on-chain quantities are integers, so a 6-decimal token is minted in micro-units and displayed with decimals via a CIP-26 registration.
+The flip side is that there is no built-in transfer logic. Behavior like blacklists or transfer fees requires locking the tokens at a script address, and at that point spending them is subject to validation just like an ERC-20 transfer. There are also no built-in decimals: on-chain quantities are integers, so a 6-decimal token is minted in micro-units and displayed with decimals via a CIP-26 registration.
 
 ## Token lifecycle
 
 Native tokens move through: policy design, then policy creation (the script hash becomes the policy ID), then minting (positive quantity), then circulation (ordinary transfers, no scripts), then optional smart-contract interaction, and finally burning (negative quantity).
 
 ![Native token lifecycle](/img/multiasset-lifecycle.png)
-
-## Web2 analogy
-
-| Concept | Web2 equivalent |
-|---|---|
-| Policy ID + Asset Name | Composite DB key `(product_id, variant_sku)` |
-| Minting policy | API permission / OAuth scope (who may create, under what conditions) |
-| Time-locked policy | API key with an expiration date |
-| Token bundle | A shopping cart with items from many vendors, checked out atomically |
-| Min-ADA | A storage quota: holding data costs a minimum resource allocation |
 
 ## Key takeaways
 

@@ -192,14 +192,7 @@ From the blueprint, tools generate type-safe off-chain code, the same way you'd 
 
 ## Web2 analogy
 
-| Cardano | Web2 | Why |
-|---|---|---|
-| Validator | Route middleware / auth guard | A pure function that returns allow or deny; it doesn't mutate state |
-| Datum | Database row | Data attached to a UTXO; "locking" funds is like writing a row |
-| Redeemer | API request body | What the user submits; the validator branches on it (`MintToken` vs `BurnToken`) |
-| Policy ID | API key scope | A hash identifying a minting policy; tokens under different policies are distinct |
-| Native script | Declarative policy engine | `all`/`any`/`atLeast` of conditions, no general computation, an AND/OR rule set |
-| Blueprint (`plutus.json`) | OpenAPI spec | The single source of truth describing the contract's interface |
+A validator is like route middleware or an auth guard: a pure function that returns allow or deny without mutating state. The pieces around it map cleanly too. A redeemer is the request body the user submits, and the validator branches on it (`MintToken` vs `BurnToken`). The blueprint (`plutus.json`) is the contract's OpenAPI spec, the single source of truth that tools read to generate a typed client.
 
 ## Key takeaway
 

@@ -144,16 +144,7 @@ Used for NFT metadata (CIP-25 / CIP-68), governance proposals, and audit trails.
 
 ## Web2 analogy
 
-| Primitive | Web2 equivalent | Key difference |
-|---|---|---|
-| Blake2b hashing | bcrypt/argon2 | Blockchain hashing is for integrity, not secrecy; it needs to be fast |
-| Transaction ID (hash) | Git commit SHA | Content determines identity |
-| Merkle tree | Git tree objects / BitTorrent | Consensus-critical and publicly verifiable |
-| Merkle proof | Certificate Transparency logs | Prove inclusion without revealing the whole set |
-| Ed25519 signature | JWT ES256 signing | A node verifies; here the whole network verifies |
-| VRF | Server-side RNG | A VRF is verifiable by anyone; `Math.random()` is not |
-
-**The JWT analogy is instructive.** A JWT signs a payload with a private key; anyone with the public key verifies it; modifying the payload invalidates the signature. A Cardano transaction is the same, except verification happens on thousands of independent nodes rather than one server.
+The closest analogy is a JWT. A JWT signs a payload with a private key, anyone with the public key verifies it, and modifying the payload invalidates the signature. A Cardano transaction works the same way, except verification happens on thousands of independent nodes rather than one server. Two related ideas carry over: a transaction ID is a content hash, so the content determines its identity the way a Git commit SHA does, and a VRF is a random value anyone can verify, which a server-side `Math.random()` can never be.
 
 ## Key takeaways
 
