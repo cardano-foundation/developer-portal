@@ -70,12 +70,12 @@ This is the canonical reference for collateral; the [transaction lifecycle](/doc
 
 ## UTXO fragmentation and fees
 
-Because fees scale with transaction size, **how your wallet's value is spread across UTXOs affects what you pay**. A wallet holding one large UTXO spends cheaply (one input); the same balance split across many tiny UTXOs needs many inputs to cover the same amount — a larger transaction, and a larger fee. This is **fragmentation**.
+Because fees scale with transaction size, **how your wallet's value is spread across UTXOs affects what you pay**. A wallet holding one large UTXO spends cheaply (one input); the same balance split across many tiny UTXOs needs many inputs to cover the same amount: a larger transaction, and a larger fee. This is **fragmentation**.
 
 It's a real tuning axis, not just theory:
 
-- **Consolidation** — periodically combining many small UTXOs into one (a self-payment) lowers the cost of future transactions. The tradeoff is spending flexibility and parallelism: separate UTXOs let you build independent transactions at the same time without contention.
-- **Native tokens amplify it** — token-bearing UTXOs are larger and each carries [min-ADA](/docs/native-tokens/overview#the-minimum-ada-requirement), so a fragmented token wallet is both bigger and ties up more ADA.
+- **Consolidation**: periodically combining many small UTXOs into one (a self-payment) lowers the cost of future transactions. The tradeoff is spending flexibility and parallelism: separate UTXOs let you build independent transactions at the same time without contention.
+- **Native tokens amplify it**: token-bearing UTXOs are larger and each carries [min-ADA](/docs/native-tokens/overview#the-minimum-ada-requirement), so a fragmented token wallet is both bigger and ties up more ADA.
 - **Coin selection** decides which UTXOs to spend; SDKs default to largest-first to minimize input count. See [transaction building](/docs/first-steps/transaction-building#coin-selection).
 
 ## Web2 analogy

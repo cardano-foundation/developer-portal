@@ -2,7 +2,7 @@
 id: staking
 title: Staking
 sidebar_label: Staking
-description: Cardano's non-custodial delegation model and how to register, delegate, withdraw rewards, query stake, and run a pool programmatically — with Evolution, Mesh, and cardano-cli.
+description: Cardano's non-custodial delegation model and how to register, delegate, withdraw rewards, query stake, and run a pool programmatically, with Evolution, Mesh, and cardano-cli.
 image: /img/og/og-developer-portal.png
 ---
 
@@ -11,19 +11,19 @@ import TabItem from '@theme/TabItem';
 
 Staking is how ADA holders earn rewards by backing the network's security: they delegate their stake to a pool, and the pool produces blocks proportional to the stake delegated to it. From a developer's point of view, this is something your wallet or dApp can offer with a few certificate types on top of an ordinary transaction.
 
-This page is about **delegating to pools and managing rewards from an application** — and, for tooling builders, registering pools programmatically. Running a pool as infrastructure (relays, block producers, KES keys, monitoring) is a separate discipline with its own section: [Operate a Stake Pool](/docs/operate-a-stake-pool/).
+This page is about **delegating to pools and managing rewards from an application**, and, for tooling builders, registering pools programmatically. Running a pool as infrastructure (relays, block producers, KES keys, monitoring) is a separate discipline with its own section: [Operate a Stake Pool](/docs/operate-a-stake-pool/).
 
 ## What makes Cardano staking different
 
 Cardano's delegation is **non-custodial**, which is a strong selling point to surface in your UI:
 
 - **Your ADA never leaves your wallet.** You issue an on-chain certificate that counts your stake toward a pool; you keep full spending control.
-- **No lock-up.** Your ADA stays liquid — spendable at any time.
+- **No lock-up.** Your ADA stays liquid, spendable at any time.
 - **No minimum.** Any amount can be delegated.
-- **No slashing.** Delegated ADA is never at risk. If a pool underperforms, you simply miss rewards for that epoch — you never lose principal. (Contrast Ethereum, where validators can be slashed.)
+- **No slashing.** Delegated ADA is never at risk. If a pool underperforms, you simply miss rewards for that epoch. You never lose principal. (Contrast Ethereum, where validators can be slashed.)
 - **Automatic re-delegation.** Add more ADA to the wallet and it's included from the next snapshot.
 
-The stake credential is separate from the payment credential — delegating doesn't move funds, it just assigns the staking rights attached to your address. See [Addresses](/docs/value/addresses) for how payment and delegation credentials combine.
+The stake credential is separate from the payment credential. Delegating doesn't move funds, it just assigns the staking rights attached to your address. See [Addresses](/docs/value/addresses) for how payment and delegation credentials combine.
 
 ## How rewards and timing work
 
@@ -39,7 +39,7 @@ Epoch N+4    rewards distributed to your reward address
 
 After this initial delay (~15–20 days), rewards arrive every epoch (~5 days) as long as the pool produces blocks. Two things worth showing users:
 
-- **Saturation.** Each pool has a saturation point (total stake ÷ the `k` protocol parameter). Past it, rewards *per ADA* drop — a built-in nudge toward smaller pools and decentralization.
+- **Saturation.** Each pool has a saturation point (total stake ÷ the `k` protocol parameter). Past it, rewards *per ADA* drop, a built-in nudge toward smaller pools and decentralization.
 - **Performance.** A pool that misses assigned blocks earns fewer rewards, which flows through to delegators.
 
 The deeper consensus mechanics (epochs, slots, VRF leader selection, the reward formula) are in [Consensus & Ouroboros](/docs/foundations/consensus-and-ouroboros).
@@ -57,11 +57,11 @@ flowchart LR
   D --> X["Deregister &<br/>reclaim deposit"]
 ```
 
-1. **Register** — create the stake credential on-chain (a small refundable deposit).
-2. **Delegate** — assign the stake to a pool (and, separately, [a DRep for voting](/docs/build/staking-governance/governance#delegate-your-vote)).
-3. **Earn** — rewards accrue to the reward address each epoch.
-4. **Withdraw** — claim accumulated rewards into the wallet.
-5. **Deregister** — optional; remove the credential and reclaim the deposit.
+1. **Register**: create the stake credential on-chain (a small refundable deposit).
+2. **Delegate**: assign the stake to a pool (and, separately, [a DRep for voting](/docs/build/staking-governance/governance#delegate-your-vote)).
+3. **Earn**: rewards accrue to the reward address each epoch.
+4. **Withdraw**: claim accumulated rewards into the wallet.
+5. **Deregister**: optional; remove the credential and reclaim the deposit.
 
 ## Before you start
 
@@ -117,7 +117,7 @@ const tx = await client
   .delegateToPool({ stakeCredential, poolKeyHash })
   .build()
 
-// Legacy certificates (no deposit) — use registerStakeLegacy() instead
+// Legacy certificates (no deposit), use registerStakeLegacy() instead
 const legacyTx = await client
   .newTx()
   .registerStakeLegacy({ stakeCredential })
@@ -196,7 +196,7 @@ The `--witness-override 2` flag tells `build` to budget for two signatures (paym
 
 ## Withdraw rewards
 
-Rewards accumulate to the reward address each epoch and must be **explicitly withdrawn**. You always withdraw the entire balance — partial withdrawals aren't allowed.
+Rewards accumulate to the reward address each epoch and must be **explicitly withdrawn**. You always withdraw the entire balance. Partial withdrawals aren't allowed.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -245,7 +245,7 @@ In Mesh, build a withdrawal with the reward address and balance on the `MeshTxBu
 
 ## Query delegation and rewards
 
-Read which pool a stake credential is delegated to and how many rewards have accrued — to show status in a UI, or to decide how much to withdraw.
+Read which pool a stake credential is delegated to and how many rewards have accrued, to show status in a UI, or to decide how much to withdraw.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -285,7 +285,7 @@ An empty array (`[]`) means the stake address isn't registered.
 
 ## Deregister and reclaim the deposit
 
-Deregistering removes the stake credential and refunds the registration deposit. **Withdraw rewards first** — rewards are lost after deregistration. The best practice is to do both in the same transaction.
+Deregistering removes the stake credential and refunds the registration deposit. **Withdraw rewards first**. Rewards are lost after deregistration. The best practice is to do both in the same transaction.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -381,7 +381,7 @@ const tx = await client
   .build()
 ```
 
-The most important use isn't earning rewards — it's the **withdraw-zero coordinator pattern**. A zero-amount withdrawal triggers a stake validator that runs *once for the whole transaction*, letting it enforce global invariants across many script inputs far more cheaply than re-running a spending validator per input:
+The most important use isn't earning rewards. It's the **withdraw-zero coordinator pattern**. A zero-amount withdrawal triggers a stake validator that runs *once for the whole transaction*, letting it enforce global invariants across many script inputs far more cheaply than re-running a spending validator per input:
 
 ```typescript
 const tx = await client
@@ -400,9 +400,9 @@ This is the basis of the [Stake Validator design pattern](/docs/build/smart-cont
 
 ## Operate a pool programmatically
 
-Most pool operators run a pool from the command line ([Operate a Stake Pool](/docs/operate-a-stake-pool/) is the full discipline — relays, block producers, KES keys, monitoring). But if you're building pool-management *tooling*, Evolution can register and retire pools from code.
+Most pool operators run a pool from the command line ([Operate a Stake Pool](/docs/operate-a-stake-pool/) is the full discipline: relays, block producers, KES keys, monitoring). But if you're building pool-management *tooling*, Evolution can register and retire pools from code.
 
-`registerPool` takes the full pool parameters — operator key, VRF key, pledge, cost, margin, reward account, owners, relays, and optional metadata:
+`registerPool` takes the full pool parameters: operator key, VRF key, pledge, cost, margin, reward account, owners, relays, and optional metadata:
 
 ```typescript
 import {
@@ -440,6 +440,6 @@ Staking from an application is **ordinary transaction building with certificates
 
 ## Next steps
 
-- [Governance](/docs/build/staking-governance/governance) — the other delegation stake credentials carry
-- [Your first transaction](/docs/first-steps/your-first-transaction) — the build → sign → submit flow these certificates ride on
-- [Operate a Stake Pool](/docs/operate-a-stake-pool/) — if you want to *run* a pool rather than delegate to one or build tooling
+- [Governance](/docs/build/staking-governance/governance), the other delegation stake credentials carry
+- [Your first transaction](/docs/first-steps/your-first-transaction), the build → sign → submit flow these certificates ride on
+- [Operate a Stake Pool](/docs/operate-a-stake-pool/), if you want to *run* a pool rather than delegate to one or build tooling

@@ -1,15 +1,15 @@
-# Builder Tools — how the code fits together
+# Builder Tools: how the code fits together
 
 The `/tools` page is a port of the cardano.org/apps app-store UX, adapted to developer tools. This note maps where everything lives and the contracts that keep it working.
 
 ## Feature map
 
-- `src/data/builder-tools/` — the data layer: `tools.js` (the catalog), `tags.js` (taxonomy: categories + language/interface properties), `validation.js` (build-time checks), `showcase.js` (adapter, see below).
-- `src/data/builder-tools.js` — entry point: imports the catalog, validates every entry at build time, exports the sorted list.
-- `src/pages/tools/index.js` — the `/tools` page (hero, intents, filters, sort, category browse, picks).
-- `plugins/tools-routes/` — Docusaurus plugin that generates a static `/tools/<slug>` route per tool, rendered by `src/components/ToolDetail/`.
-- `src/components/` — the ported UI: `AppTile`, `AppRow`, `AppIcon`, `AppTileCarousel`, `CategoryPanelsCarousel`, `AppFilterPanel`, `PageCTA`, `Layout/SiteHero`, plus the filter/sort controls in `src/components/showcase/` (`IntentChips`, `ShowcaseSort`, `ShowcaseTagSelect`, `ShowcaseTooltip`, `InfoDot`).
-- `src/utils/toolStats.js` — shared listing helpers: recent/NEW badge, card blurb, and category/property matching for the filter panel. (cardano-org's `appStats.js` tx metrics were not ported; tools have no on-chain tx data.)
+- `src/data/builder-tools/`, the data layer: `tools.js` (the catalog), `tags.js` (taxonomy: categories + language/interface properties), `validation.js` (build-time checks), `showcase.js` (adapter, see below).
+- `src/data/builder-tools.js`, entry point: imports the catalog, validates every entry at build time, exports the sorted list.
+- `src/pages/tools/index.js`, the `/tools` page (hero, intents, filters, sort, category browse, picks).
+- `plugins/tools-routes/`, Docusaurus plugin that generates a static `/tools/<slug>` route per tool, rendered by `src/components/ToolDetail/`.
+- `src/components/`, the ported UI: `AppTile`, `AppRow`, `AppIcon`, `AppTileCarousel`, `CategoryPanelsCarousel`, `AppFilterPanel`, `PageCTA`, `Layout/SiteHero`, plus the filter/sort controls in `src/components/showcase/` (`IntentChips`, `ShowcaseSort`, `ShowcaseTagSelect`, `ShowcaseTooltip`, `InfoDot`).
+- `src/utils/toolStats.js`, shared listing helpers: recent/NEW badge, card blurb, and category/property matching for the filter panel. (cardano-org's `appStats.js` tx metrics were not ported; tools have no on-chain tx data.)
 
 ## Data flow
 

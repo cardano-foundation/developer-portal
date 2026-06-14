@@ -8,8 +8,8 @@
  *    {
  *      title: "Your Tool Name",
  *      description: "Brief description (avoid 'best/first/only' claims)",
- *      category: "sdk",                 // exactly ONE — see Categories in tags.js
- *      properties: ["typescript"],      // language + interface facets — see tags.js
+ *      category: "sdk",                 // exactly ONE, see Categories in tags.js
+ *      properties: ["typescript"],      // language + interface facets, see tags.js
  *      website: "https://your-tool.com",
  *      repository: "https://github.com/owner/repo",  // public source repo, OR null
  *      docs: "https://docs.url",        // docs / get-started page, OR null

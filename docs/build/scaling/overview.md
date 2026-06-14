@@ -2,7 +2,7 @@
 id: overview
 title: Scaling & Production
 sidebar_label: Overview
-description: How Cardano scales — at Layer 1, with Hydra at Layer 2, and with Mithril for light clients — and how to take a dApp from working on testnet to running in production.
+description: How Cardano scales, at Layer 1, with Hydra at Layer 2, and with Mithril for light clients, and how to take a dApp from working on testnet to running in production.
 image: /img/og/og-developer-portal.png
 ---
 
@@ -10,7 +10,7 @@ This module answers two questions every serious project reaches: **how does Card
 
 ## How Cardano scales
 
-Scaling isn't one thing — Cardano scales at several layers, and the right approach depends on your workload.
+Scaling isn't one thing. Cardano scales at several layers, and the right approach depends on your workload.
 
 ### Layer 1: the base chain
 
@@ -18,11 +18,11 @@ The base chain has bounded capacity per block, so on Layer 1 you scale by **usin
 
 ### Layer 2: Hydra
 
-When you need **near-instant, near-free, high-frequency** transactions — gaming, micropayments, real-time interactions — you move them off the base chain into a [Hydra](/docs/build/scaling/hydra) Head: a state channel where a known set of participants transact thousands of times per second, settling back to Layer 1 only to open and close. You pay L1 cost once to open and once to close; everything inside is fast and free.
+When you need **near-instant, near-free, high-frequency** transactions, gaming, micropayments, real-time interactions, you move them off the base chain into a [Hydra](/docs/build/scaling/hydra) Head: a state channel where a known set of participants transact thousands of times per second, settling back to Layer 1 only to open and close. You pay L1 cost once to open and once to close; everything inside is fast and free.
 
 ### Light clients: Mithril
 
-Not all scaling is about transaction throughput — some is about **not needing a full node**. [Mithril](/docs/build/scaling/mithril) lets applications verify chain data with cryptographic proofs backed by the collective stake of pool operators, enabling fast node bootstrap (minutes instead of days) and trustless light clients that run in the browser.
+Not all scaling is about transaction throughput. Some is about **not needing a full node**. [Mithril](/docs/build/scaling/mithril) lets applications verify chain data with cryptographic proofs backed by the collective stake of pool operators, enabling fast node bootstrap (minutes instead of days) and trustless light clients that run in the browser.
 
 | Need | Reach for |
 |---|---|
@@ -35,13 +35,13 @@ Not all scaling is about transaction throughput — some is about **not needing 
 
 Working on testnet is not the same as running in production. Two pages cover the rest:
 
-- **[Going to production](/docs/build/scaling/going-to-production)** — the checklist before you ship to mainnet: testing, security, reliable transactions, optimization, and key safety.
-- **[Production infrastructure](/docs/build/scaling/infrastructure)** — the stack that serves your dApp the chain: managed APIs vs running your own node, indexers, and how to choose.
+- **[Going to production](/docs/build/scaling/going-to-production)**: the checklist before you ship to mainnet: testing, security, reliable transactions, optimization, and key safety.
+- **[Production infrastructure](/docs/build/scaling/infrastructure)**: the stack that serves your dApp the chain: managed APIs vs running your own node, indexers, and how to choose.
 
 ## Next steps
 
-- [Hydra](/docs/build/scaling/hydra) — build on Cardano's Layer 2
-- [Going to production](/docs/build/scaling/going-to-production) — ship to mainnet with confidence
+- [Hydra](/docs/build/scaling/hydra): build on Cardano's Layer 2
+- [Going to production](/docs/build/scaling/going-to-production): ship to mainnet with confidence
 
 ---
 

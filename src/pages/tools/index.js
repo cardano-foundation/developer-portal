@@ -38,7 +38,7 @@ const DESCRIPTION = "Tools to help you build on Cardano";
 const HERO_DESCRIPTION =
   "Discover developer tools, SDKs, and libraries for building on Cardano. Smart contracts, transactions, indexing, wallets, and more.";
 
-// NOTE: ShowcaseTagSelect imports prepareUserState from this module — keep it
+// NOTE: ShowcaseTagSelect imports prepareUserState from this module. Keep it
 // exported as a hoisted function declaration.
 export function prepareUserState() {
   if (ExecutionEnvironment.canUseDOM) {

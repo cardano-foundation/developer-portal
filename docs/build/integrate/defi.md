@@ -2,24 +2,24 @@
 id: defi
 title: DeFi on Cardano
 sidebar_label: DeFi on Cardano
-description: The core DeFi primitives — DEXes, AMMs, liquidity pools, impermanent loss — and how Cardano's eUTXO model changes how you build them, with order batching, pool sharding, and determinism.
+description: The core DeFi primitives, DEXes, AMMs, liquidity pools, impermanent loss, and how Cardano's eUTXO model changes how you build them, with order batching, pool sharding, and determinism.
 image: /img/og/og-developer-portal.png
 ---
 
 Decentralized finance (DeFi) replaces traditional financial intermediaries with smart contract protocols, enabling permissionless trading, lending, and yield generation directly on-chain. For web2 developers, DeFi introduces a paradigm where financial logic lives on-chain, composable like microservices but trustless and permissionless.
 
-This page covers the core DeFi primitives and — more importantly — the specific design challenges and solutions that arise when you build them on Cardano's [eUTXO model](/docs/value/eutxo). The mechanics differ enough from Ethereum that copying an EVM design rarely works directly.
+This page covers the core DeFi primitives and, more importantly, the specific design challenges and solutions that arise when you build them on Cardano's [eUTXO model](/docs/value/eutxo). The mechanics differ enough from Ethereum that copying an EVM design rarely works directly.
 
 ## The DeFi landscape
 
 DeFi protocols replace intermediaries (banks, brokerages, clearinghouses) with deterministic smart contracts. Each intermediary removed eliminates a fee, reduces latency, and removes a trust requirement. The ecosystem spans several categories:
 
-- **Decentralized exchanges (DEXes)** — trade tokens without a centralized order book
-- **Lending and borrowing** — supply assets to earn yield; borrow against collateral
-- **Stablecoins** — tokens pegged to fiat through algorithmic or collateral-backed mechanisms
-- **Yield aggregators** — automatically optimize returns across protocols
-- **Synthetic assets** — on-chain representations of real-world assets
-- **Insurance** — decentralized coverage against smart contract failures
+- **Decentralized exchanges (DEXes)**: trade tokens without a centralized order book
+- **Lending and borrowing**: supply assets to earn yield; borrow against collateral
+- **Stablecoins**: tokens pegged to fiat through algorithmic or collateral-backed mechanisms
+- **Yield aggregators**: automatically optimize returns across protocols
+- **Synthetic assets**: on-chain representations of real-world assets
+- **Insurance**: decentralized coverage against smart contract failures
 
 On Cardano this includes protocols like Minswap, SundaeSwap, and WingRiders (DEXes), Liqwid and Lenfi (lending), Djed and iUSD (stablecoins), and Optim Finance (yield optimization). Each works within the constraints and advantages of eUTXO, which leads to distinctive architectural patterns.
 
@@ -83,9 +83,9 @@ graph LR
 
 The constant product formula is not the only option:
 
-- **Constant sum (x + y = k)** — zero slippage, but can be fully drained of one asset. Rare in practice.
-- **StableSwap (Curve)** — a hybrid optimized for assets that trade near 1:1 (stablecoin pairs); low slippage for balanced trades.
-- **Concentrated liquidity** — LPs specify price ranges, concentrating capital where it's most useful. High capital efficiency, more complexity.
+- **Constant sum (x + y = k)**: zero slippage, but can be fully drained of one asset. Rare in practice.
+- **StableSwap (Curve)**: a hybrid optimized for assets that trade near 1:1 (stablecoin pairs); low slippage for balanced trades.
+- **Concentrated liquidity**: LPs specify price ranges, concentrating capital where it's most useful. High capital efficiency, more complexity.
 
 On Cardano, Minswap uses a constant product AMM with a stableswap variant for stable pairs; SundaeSwap also uses a constant product model.
 
@@ -107,7 +107,7 @@ graph TD
     style LPT fill:#9C27B0,color:#fff
 ```
 
-When an LP withdraws, they burn their LP tokens for a proportional share of the pool, which now includes accumulated fees. That fee accrual is how LPs earn yield. (LP tokens are ordinary [native tokens](/docs/native-tokens/overview) — minted by the pool's policy.)
+When an LP withdraws, they burn their LP tokens for a proportional share of the pool, which now includes accumulated fees. That fee accrual is how LPs earn yield. (LP tokens are ordinary [native tokens](/docs/native-tokens/overview), minted by the pool's policy.)
 
 ### Impermanent loss
 
@@ -125,9 +125,9 @@ It's "impermanent" because if the price returns to the original ratio, the loss 
 
 ## Oracles: DeFi's data dependency
 
-DeFi protocols need real-world data — prices for swaps and liquidations, rates for lending. Smart contracts can't query APIs, so **oracles** post verified data on-chain as datums that contracts read via reference inputs. A compromised oracle can make a lending protocol liquidate incorrectly or a stablecoin lose its peg, which makes oracles one of DeFi's most critical and most vulnerable components.
+DeFi protocols need real-world data: prices for swaps and liquidations, rates for lending. Smart contracts can't query APIs, so **oracles** post verified data on-chain as datums that contracts read via reference inputs. A compromised oracle can make a lending protocol liquidate incorrectly or a stablecoin lose its peg, which makes oracles one of DeFi's most critical and most vulnerable components.
 
-Cardano's reference inputs ([CIP-31](https://cips.cardano.org/cip/CIP-31)) let many transactions read the same oracle UTXO in parallel without contention — a structural advantage for DeFi. The full picture (the oracle problem, multi-oracle validation, and the Charli3 / Orcfax / Pyth providers) is on the **[Oracles](/docs/build/integrate/oracles/overview)** page.
+Cardano's reference inputs ([CIP-31](https://cips.cardano.org/cip/CIP-31)) let many transactions read the same oracle UTXO in parallel without contention, a structural advantage for DeFi. The full picture (the oracle problem, multi-oracle validation, and the Charli3 / Orcfax / Pyth providers) is on the **[Oracles](/docs/build/integrate/oracles/overview)** page.
 
 ## The eUTXO design challenge
 
@@ -200,38 +200,38 @@ Composability lets you combine multiple DeFi protocols in a single atomic transa
 3. Provide liquidity to a different pool
 4. Mint an NFT receipt
 
-All atomically — if any step fails, the entire transaction is invalid and no state changes. This is what makes DeFi protocols behave like stackable building blocks.
+All atomically: if any step fails, the entire transaction is invalid and no state changes. This is what makes DeFi protocols behave like stackable building blocks.
 
 ## Why flash loans are absent
 
-Flash loans on Ethereum let users borrow with no collateral as long as they repay within the same transaction. Cardano's eUTXO model prevents this because each transaction must balance its inputs and outputs **at construction time** — you cannot "borrow" assets mid-transaction. The EVM can check repayment at the end of sequential execution; a Cardano transaction must be fully defined before submission.
+Flash loans on Ethereum let users borrow with no collateral as long as they repay within the same transaction. Cardano's eUTXO model prevents this because each transaction must balance its inputs and outputs **at construction time**. You cannot "borrow" assets mid-transaction. The EVM can check repayment at the end of sequential execution; a Cardano transaction must be fully defined before submission.
 
 This is a security advantage: flash loans have been used to manipulate prices and drain DeFi protocols in a single Ethereum transaction. Cardano's model makes those attack vectors much harder.
 
 ## Yield farming and liquidity mining
 
-Yield farming strategically deploys capital across protocols to maximize returns; liquidity mining specifically distributes governance tokens to LPs as extra incentive beyond trading fees. On Cardano this includes providing DEX liquidity (earning fees plus protocol tokens like MIN), lending on platforms like Liqwid, staking LP tokens in farms, and liquidity bootstrapping events. Yields are not magic — they come from trading fees (real activity), token emissions (inflationary, may not hold value), and protocol revenue. Understanding the source of a yield is essential to evaluating its risk. For a production-grade implementation, see the [yield-farming](/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming) reference.
+Yield farming strategically deploys capital across protocols to maximize returns; liquidity mining specifically distributes governance tokens to LPs as extra incentive beyond trading fees. On Cardano this includes providing DEX liquidity (earning fees plus protocol tokens like MIN), lending on platforms like Liqwid, staking LP tokens in farms, and liquidity bootstrapping events. Yields are not magic: they come from trading fees (real activity), token emissions (inflationary, may not hold value), and protocol revenue. Understanding the source of a yield is essential to evaluating its risk. For a production-grade implementation, see the [yield-farming](/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming) reference.
 
 ## Web2 analogy
 
-- **DEXes are stock-exchange matching engines** — except the matching logic is public, anyone can be a market maker, and there's no broker between you and the market.
+- **DEXes are stock-exchange matching engines**, except the matching logic is public, anyone can be a market maker, and there's no broker between you and the market.
 - **Liquidity pools are connection pools.** A connection pool keeps pre-established DB connections many requests share; a liquidity pool keeps reserves many traders swap against. Size it wrong and you get congestion (high slippage) or underutilization (low LP returns).
-- **Oracles are API aggregators.** Like querying five price APIs, discarding outliers, and taking the median — but solved for trustlessness.
-- **Order batching is batch processing in a message queue.** A consumer (batcher) collects messages (orders), processes them in bulk, and writes results back — SQS + Lambda, with atomicity.
+- **Oracles are API aggregators.** Like querying five price APIs, discarding outliers, and taking the median, but solved for trustlessness.
+- **Order batching is batch processing in a message queue.** A consumer (batcher) collects messages (orders), processes them in bulk, and writes results back: SQS + Lambda, with atomicity.
 - **Impermanent loss is the cost of a cache under write-heavy load.** You pre-allocate liquidity to serve trades efficiently, but if prices move fast, rebalancing costs exceed the benefit.
-- **Composability is Unix pipes** — `grep | sort | uniq`, except every stage either fully succeeds or fully rolls back.
+- **Composability is Unix pipes**: `grep | sort | uniq`, except every stage either fully succeeds or fully rolls back.
 
 ## Key takeaways
 
 - **AMMs replace order books** with formulas (like constant product) that price assets from pool reserves, enabling permissionless trading.
-- **LPs earn fees but face impermanent loss** — a hidden cost when the pooled price ratio diverges from the deposit ratio.
+- **LPs earn fees but face impermanent loss**: a hidden cost when the pooled price ratio diverges from the deposit ratio.
 - **Oracles bridge the on-chain/off-chain gap** but introduce trust assumptions; reference inputs let many transactions read them in parallel.
 - **eUTXO requires DeFi-specific patterns** (order batching, pool sharding) for concurrency, but pays you back with determinism and front-running resistance.
 - **Composability makes protocols interoperable building blocks**, enabling complex operations in single atomic transactions.
 
 ## Next steps
 
-- [Connect a wallet](/docs/build/integrate/connect-a-wallet) — let users interact with your protocol from the browser
-- [Oracles](/docs/build/integrate/oracles/overview) — the price-feed infrastructure DeFi depends on
-- [Smart contract security](/docs/build/smart-contracts/security) — the attack classes (double satisfaction, contention) that hit DeFi hardest
-- [Example contracts](/docs/build/smart-contracts/example-contracts) — escrow, swap, and production-grade dApp implementations
+- [Connect a wallet](/docs/build/integrate/connect-a-wallet): let users interact with your protocol from the browser
+- [Oracles](/docs/build/integrate/oracles/overview): the price-feed infrastructure DeFi depends on
+- [Smart contract security](/docs/build/smart-contracts/security): the attack classes (double satisfaction, contention) that hit DeFi hardest
+- [Example contracts](/docs/build/smart-contracts/example-contracts): escrow, swap, and production-grade dApp implementations

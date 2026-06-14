@@ -35,7 +35,7 @@ A Cardano smart contract cannot:
 - Generate random numbers
 - Loop indefinitely (execution budgets enforce termination)
 
-Instead, smart contracts **validate** that transactions do the things you want them to do. Users propose transactions, and contracts either approve or reject them based on the validation logic you define. These limitations are features, not bugs: they make validators **deterministic** — the same inputs always produce the same result — which is the foundation of Cardano's predictability guarantees.
+Instead, smart contracts **validate** that transactions do the things you want them to do. Users propose transactions, and contracts either approve or reject them based on the validation logic you define. These limitations are features, not bugs: they make validators **deterministic** (the same inputs always produce the same result), which is the foundation of Cardano's predictability guarantees.
 
 ### Components
 
@@ -116,7 +116,7 @@ Consider the analogy of a simple function: `f(x) = x * a + b`
 ### The Three Script Arguments
 
 :::tip Deep dive
-This is the quick tour. The canonical, in-depth reference for all three arguments — the full transaction context, the `ScriptPurpose`, inline-vs-hash datums, and the design patterns they enable — is **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context)**.
+This is the quick tour. The canonical, in-depth reference for all three arguments, the full transaction context, the `ScriptPurpose`, inline-vs-hash datums, and the design patterns they enable, is **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context)**.
 :::
 
 #### Datum: Contract State
@@ -131,7 +131,7 @@ Data provided by users with the transaction for script execution when spending U
 
 #### Script Context: Transaction Information
 
-Logic in smart contracts involves making validations about properties of the transaction — inputs, outputs, signatures, fees, minting, validity range, and more. This lets a script make assertions about the whole transaction's structure, participants, and timing, not just the single UTXO it guards. It is what makes a validator expressive despite being "just" a boolean function.
+Logic in smart contracts involves making validations about properties of the transaction: inputs, outputs, signatures, fees, minting, validity range, and more. This lets a script make assertions about the whole transaction's structure, participants, and timing, not just the single UTXO it guards. It is what makes a validator expressive despite being "just" a boolean function.
 
 The full set of context properties, the `ScriptPurpose`, and the common checks validators run against them live in **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context#what-does-the-scriptcontext-provide)**.
 
@@ -290,13 +290,13 @@ Cardano supports writing validators in several languages, all of which compile t
 :::tip Pick the right language
 See **[Choose a language](/docs/build/smart-contracts/choose-a-language)** for the full comparison and decision guide. In short:
 
-- **[Aiken](/docs/build/smart-contracts/languages/aiken/overview)** — purpose-built for Cardano, Rust-like syntax, fast compilation, small output, built-in testing. The default recommendation.
-- **[Plinth](/docs/build/smart-contracts/languages/plinth)** — the "canonical" Haskell language; shares code between on-chain and off-chain.
-- **[Plutarch](/docs/build/smart-contracts/languages/plutarch/overview)** — maximum performance, close to writing UPLC by hand.
-- **[OpShin](/docs/build/smart-contracts/languages/opshin)** — a subset of Python.
-- **[Scalus](/docs/build/smart-contracts/languages/scalus)** — Scala 3 for on-chain and off-chain.
-- **[Pebble](/docs/build/smart-contracts/languages/pebble)** — a TypeScript-like DSL.
-- **[Marlowe](/docs/build/smart-contracts/languages/marlowe)** — a non-Turing-complete DSL for financial contracts.
+- **[Aiken](/docs/build/smart-contracts/languages/aiken/overview)**: purpose-built for Cardano, Rust-like syntax, fast compilation, small output, built-in testing. The default recommendation.
+- **[Plinth](/docs/build/smart-contracts/languages/plinth)**: the "canonical" Haskell language; shares code between on-chain and off-chain.
+- **[Plutarch](/docs/build/smart-contracts/languages/plutarch/overview)**: maximum performance, close to writing UPLC by hand.
+- **[OpShin](/docs/build/smart-contracts/languages/opshin)**: a subset of Python.
+- **[Scalus](/docs/build/smart-contracts/languages/scalus)**: Scala 3 for on-chain and off-chain.
+- **[Pebble](/docs/build/smart-contracts/languages/pebble)**: a TypeScript-like DSL.
+- **[Marlowe](/docs/build/smart-contracts/languages/marlowe)**: a non-Turing-complete DSL for financial contracts.
 :::
 
 ## Key takeaways
@@ -305,17 +305,17 @@ See **[Choose a language](/docs/build/smart-contracts/choose-a-language)** for t
 - **On-chain code validates; off-chain code constructs.** This separation keeps on-chain execution cheap and lets you write off-chain code in any language and test the two halves independently.
 - **Determinism is Cardano's superpower.** You know a transaction's outcome before submitting it, eliminating wasted fees, front-running, and MEV.
 - **Script addresses lock UTXOs under programmable rules,** replacing private-key authorization with arbitrary validation logic.
-- **The eUTXO model extends UTXOs** with datums, redeemers, and script context — enabling full smart contract functionality while preserving determinism and parallelism.
+- **The eUTXO model extends UTXOs** with datums, redeemers, and script context, enabling full smart contract functionality while preserving determinism and parallelism.
 
 ## What's next
 
 This module builds up from here:
 
-1. **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context)** — the three arguments every validator receives, in depth.
-2. **[Choose a language](/docs/build/smart-contracts/choose-a-language)** — pick how you'll write validators (Aiken-first).
-3. **[Lock and spend](/docs/build/smart-contracts/lock-and-spend)** — build the off-chain transactions that interact with a contract.
-4. **[Testing](/docs/build/smart-contracts/testing)** — verify validators with mock transactions before you deploy.
-5. **[Security](/docs/build/smart-contracts/security)** — the attack classes to defend against.
+1. **[Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context)**: the three arguments every validator receives, in depth.
+2. **[Choose a language](/docs/build/smart-contracts/choose-a-language)**: pick how you'll write validators (Aiken-first).
+3. **[Lock and spend](/docs/build/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
+4. **[Testing](/docs/build/smart-contracts/testing)**: verify validators with mock transactions before you deploy.
+5. **[Security](/docs/build/smart-contracts/security)**: the attack classes to defend against.
 
 ---
 

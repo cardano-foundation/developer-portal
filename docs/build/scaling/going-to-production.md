@@ -2,36 +2,36 @@
 id: going-to-production
 title: Going to Production
 sidebar_label: Going to production
-description: A checklist for taking a Cardano dApp from working on testnet to running on mainnet — testing, security, reliable transactions, optimization, and infrastructure.
+description: "A checklist for taking a Cardano dApp from working on testnet to running on mainnet: testing, security, reliable transactions, optimization, and infrastructure."
 image: /img/og/og-developer-portal.png
 ---
 
-Working on a testnet is not the same as being production-ready. Mainnet has real value, real users, and **irreversible** transactions. This page is a checklist for the jump — each item links to the canonical guide for that concern, so treat it as a map rather than a tutorial.
+Working on a testnet is not the same as being production-ready. Mainnet has real value, real users, and **irreversible** transactions. This page is a checklist for the jump: each item links to the canonical guide for that concern, so treat it as a map rather than a tutorial.
 
 ## 1. Test thoroughly
 
-- **On-chain validators** — your validators are pure functions, so test them exhaustively with mock transactions. See [Testing](/docs/build/smart-contracts/testing), and use the fuzzer for property-based coverage ([Optimization](/docs/build/smart-contracts/advanced/optimization)).
-- **Off-chain code** — test transaction building and submission too. Evolution ships unit tests, an emulator, and devnet integration tests ([Testing your off-chain code](/docs/build/smart-contracts/testing#testing-your-off-chain-code)).
-- **Rehearse on Preprod** — Preprod mirrors mainnet (same protocol parameters and epoch length). Do a full dry run of your user flow there before mainnet. See [Networks & test ADA](/docs/first-steps/networks-and-test-ada). Mainnet transactions cannot be reversed, so the burn-in happens here.
+- **On-chain validators**: your validators are pure functions, so test them exhaustively with mock transactions. See [Testing](/docs/build/smart-contracts/testing), and use the fuzzer for property-based coverage ([Optimization](/docs/build/smart-contracts/advanced/optimization)).
+- **Off-chain code**: test transaction building and submission too. Evolution ships unit tests, an emulator, and devnet integration tests ([Testing your off-chain code](/docs/build/smart-contracts/testing#testing-your-off-chain-code)).
+- **Rehearse on Preprod**: Preprod mirrors mainnet (same protocol parameters and epoch length). Do a full dry run of your user flow there before mainnet. See [Networks & test ADA](/docs/first-steps/networks-and-test-ada). Mainnet transactions cannot be reversed, so the burn-in happens here.
 
 ## 2. Secure it
 
-- **Guard the vulnerability classes** — datum hijacking, double satisfaction, token forgery, resource exhaustion. See [Smart contract security](/docs/build/smart-contracts/security), and sharpen your eye on the [CTF](/docs/build/smart-contracts/advanced/security/ctf).
-- **Get an audit** — for any contract holding meaningful value, a professional audit is standard practice before mainnet. Testing finds the bugs you thought of; audits find the ones you didn't.
-- **Keep keys and secrets safe** — the frontend should only sign; build and submit on a backend ([frontend signs, backend submits](/docs/build/integrate/connect-a-wallet#frontend-signs-backend-builds-and-submits)). Never ship provider API keys in client-side code. Review [key & wallet security](/docs/value/wallets-and-keys#working-with-wallets-in-code).
+- **Guard the vulnerability classes**: datum hijacking, double satisfaction, token forgery, resource exhaustion. See [Smart contract security](/docs/build/smart-contracts/security), and sharpen your eye on the [CTF](/docs/build/smart-contracts/advanced/security/ctf).
+- **Get an audit**: for any contract holding meaningful value, a professional audit is standard practice before mainnet. Testing finds the bugs you thought of; audits find the ones you didn't.
+- **Keep keys and secrets safe**: the frontend should only sign; build and submit on a backend ([frontend signs, backend submits](/docs/build/integrate/connect-a-wallet#frontend-signs-backend-builds-and-submits)). Never ship provider API keys in client-side code. Review [key & wallet security](/docs/value/wallets-and-keys#working-with-wallets-in-code).
 
 ## 3. Make transactions reliable
 
 The most common production failure mode is a transaction rejected because an input was already spent or an indexer lagged.
 
-- **Retry safely** — structure build → sign → submit so retries re-read chain state instead of replaying a stale UTxO. See [resilient submission](/docs/first-steps/transaction-building#resilient-submission-retry-safe).
-- **Chain multi-step flows** — build dependent transactions up front without waiting for confirmation between steps. See [transaction chaining](/docs/first-steps/transaction-building#chaining-transactions).
-- **Handle errors structurally** — distinguish recoverable (stale input, provider hiccup) from terminal (insufficient funds) failures. See [Error handling](https://github.com/IntersectMBO/evolution-sdk).
+- **Retry safely**: structure build → sign → submit so retries re-read chain state instead of replaying a stale UTxO. See [resilient submission](/docs/first-steps/transaction-building#resilient-submission-retry-safe).
+- **Chain multi-step flows**: build dependent transactions up front without waiting for confirmation between steps. See [transaction chaining](/docs/first-steps/transaction-building#chaining-transactions).
+- **Handle errors structurally**: distinguish recoverable (stale input, provider hiccup) from terminal (insufficient funds) failures. See [Error handling](https://github.com/IntersectMBO/evolution-sdk).
 
 ## 4. Optimize
 
-- **On-chain cost (ExUnits)** — smaller, faster validators mean lower fees and more headroom under the per-transaction and per-block limits. See [Optimization](/docs/build/smart-contracts/advanced/optimization) and the [execution-cost model](/docs/build/smart-contracts/choose-a-language#what-you-pay-for-execution-costs).
-- **Off-chain efficiency** — coin selection and change management affect transaction size and UTxO fragmentation. See [Performance](https://github.com/IntersectMBO/evolution-sdk).
+- **On-chain cost (ExUnits)**: smaller, faster validators mean lower fees and more headroom under the per-transaction and per-block limits. See [Optimization](/docs/build/smart-contracts/advanced/optimization) and the [execution-cost model](/docs/build/smart-contracts/choose-a-language#what-you-pay-for-execution-costs).
+- **Off-chain efficiency**: coin selection and change management affect transaction size and UTxO fragmentation. See [Performance](https://github.com/IntersectMBO/evolution-sdk).
 
 ## 5. Choose your infrastructure
 
@@ -41,8 +41,8 @@ Decide how your dApp will read and submit to the chain: a managed API (fastest t
 
 Production also means users who may not have a wallet or any ADA. Lower the barrier:
 
-- **Wallet-as-a-Service** — let users create a non-custodial wallet with social login ([connect a wallet](/docs/build/integrate/connect-a-wallet#no-browser-extension-wallet-as-a-service)).
-- **Transaction sponsorship** — pay fees on behalf of users so they can transact before holding ADA ([sponsorship](/docs/build/integrate/wallet-authentication/utxos/sponsorship)).
+- **Wallet-as-a-Service**: let users create a non-custodial wallet with social login ([connect a wallet](/docs/build/integrate/connect-a-wallet#no-browser-extension-wallet-as-a-service)).
+- **Transaction sponsorship**: pay fees on behalf of users so they can transact before holding ADA ([sponsorship](/docs/build/integrate/wallet-authentication/utxos/sponsorship)).
 
 ## Checklist
 
@@ -56,5 +56,5 @@ Production also means users who may not have a wallet or any ADA. Lower the barr
 
 ## Next steps
 
-- [Production infrastructure](/docs/build/scaling/infrastructure) — pick and run your stack
-- [Scaling overview](/docs/build/scaling/overview) — if production load needs Hydra or batching
+- [Production infrastructure](/docs/build/scaling/infrastructure): pick and run your stack
+- [Scaling overview](/docs/build/scaling/overview): if production load needs Hydra or batching

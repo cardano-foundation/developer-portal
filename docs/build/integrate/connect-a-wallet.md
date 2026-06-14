@@ -2,14 +2,14 @@
 id: connect-a-wallet
 title: Connect a Wallet
 sidebar_label: Connect a wallet
-description: Connect a browser wallet to your dApp with CIP-30 — request addresses, UTXOs, and signatures while keys stay on the user's device, with Evolution and Mesh.
+description: "Connect a browser wallet to your dApp with CIP-30: request addresses, UTXOs, and signatures while keys stay on the user's device, with Evolution and Mesh."
 image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Connecting a wallet is the front door to almost every dApp: a swap, an NFT mint, a vote, or signing in all start here. On Cardano, browser wallets expose a standard interface called **[CIP-30](https://cips.cardano.org/cip/CIP-0030)** — the dApp-wallet connector. Your app requests access, then asks the wallet for the user's addresses, UTXOs, and signatures. **The keys never leave the user's device**; the wallet prompts the user to approve each signature.
+Connecting a wallet is the front door to almost every dApp: a swap, an NFT mint, a vote, or signing in all start here. On Cardano, browser wallets expose a standard interface called **[CIP-30](https://cips.cardano.org/cip/CIP-0030)**, the dApp-wallet connector. Your app requests access, then asks the wallet for the user's addresses, UTXOs, and signatures. **The keys never leave the user's device**; the wallet prompts the user to approve each signature.
 
 This page is about the **browser wallet** (the user's CIP-30 extension or hardware wallet). To create a wallet from a mnemonic or private key in backend code, see [Keys & Wallets › working with wallets in code](/docs/value/wallets-and-keys#working-with-wallets-in-code).
 
@@ -20,9 +20,9 @@ Once a user grants access, the wallet API lets you:
 - Read the user's **addresses** (used, unused, change, and reward/stake address)
 - List the wallet's **UTXOs** and **balance**
 - Request a **transaction signature** (the user approves in their wallet)
-- Request a **data signature** ([CIP-8](https://cips.cardano.org/cip/CIP-0008)) to prove ownership — the basis of [sign-in with wallet](/docs/build/integrate/wallet-authentication/overview)
+- Request a **data signature** ([CIP-8](https://cips.cardano.org/cip/CIP-0008)) to prove ownership, the basis of [sign-in with wallet](/docs/build/integrate/wallet-authentication/overview)
 
-Wallets that implement CIP-30 include **Eternl**, **Lace**, **Flint**, **Typhon**, **Vespr**, and others. Hardware wallets (**Ledger**, **Trezor**) work through these browser extensions — the extension talks to the device, and your code is identical either way.
+Wallets that implement CIP-30 include **Eternl**, **Lace**, **Flint**, **Typhon**, **Vespr**, and others. Hardware wallets (**Ledger**, **Trezor**) work through these browser extensions. The extension talks to the device, and your code is identical either way.
 
 ## Connect
 
@@ -50,7 +50,7 @@ const address = Address.toBech32(await client.address())
 console.log("Connected:", address)
 ```
 
-`.withCip30()` gives you signing capability without provider-backed submission on its own — frontend flows still rely on a backend (or a provider-backed client) to broadcast the signed transaction. That's the architecture below.
+`.withCip30()` gives you signing capability without provider-backed submission on its own. Frontend flows still rely on a backend (or a provider-backed client) to broadcast the signed transaction. That's the architecture below.
 
 </TabItem>
 <TabItem value="mesh" label="Mesh">
@@ -70,7 +70,7 @@ const balance = await wallet.getBalance()
 const utxos = await wallet.getUtxos()
 ```
 
-`BrowserWallet` also exposes `getUsedAddresses`, `getRewardAddresses`, `getNetworkId`, `signTx`, `signData`, `submitTx`, and the CIP-95 governance methods (`getPubDRepKey`, `getRegisteredPubStakeKeys`). In React, Mesh ships a ready-made `<CardanoWallet />` connect button and hooks (`useWallet`, `useAddress`) — see [Mesh React](https://meshjs.dev/react). Full API: [meshjs.dev](https://meshjs.dev/apis/wallets/browserwallet).
+`BrowserWallet` also exposes `getUsedAddresses`, `getRewardAddresses`, `getNetworkId`, `signTx`, `signData`, `submitTx`, and the CIP-95 governance methods (`getPubDRepKey`, `getRegisteredPubStakeKeys`). In React, Mesh ships a ready-made `<CardanoWallet />` connect button and hooks (`useWallet`, `useAddress`). See [Mesh React](https://meshjs.dev/react). Full API: [meshjs.dev](https://meshjs.dev/apis/wallets/browserwallet).
 
 </TabItem>
 </Tabs>
@@ -90,7 +90,7 @@ flowchart LR
 
 1. Frontend connects the wallet (above) and sends the **user's address** to your backend.
 2. Backend builds the transaction (it has the provider) and returns the **unsigned CBOR**.
-3. Frontend calls `signTx` — the wallet prompts the user — and merges the witness into the transaction.
+3. Frontend calls `signTx` (the wallet prompts the user) and merges the witness into the transaction.
 4. Frontend hands the **signed CBOR** back to the backend, which submits it through the provider.
 
 The frontend half, end to end (Evolution):
@@ -101,7 +101,7 @@ import { Transaction, TransactionWitnessSet, mainnet, Client } from "@evolution-
 declare const cardano: any
 
 async function signOnFrontend(unsignedTxCbor: string) {
-  // Connect (signing only — no provider on the client)
+  // Connect (signing only, no provider on the client)
   const walletApi = await cardano.eternl.enable()
   const client = Client.make(mainnet).withCip30(walletApi)
 
@@ -153,7 +153,7 @@ async function connect(walletName: string) {
 
 ## Derivation paths
 
-Wallets and hardware devices follow Cardano's [BIP-32 / CIP-1852](/docs/value/wallets-and-keys) derivation paths. You rarely set these yourself — the wallet manages them — but it helps to recognize the shape:
+Wallets and hardware devices follow Cardano's [BIP-32 / CIP-1852](/docs/value/wallets-and-keys) derivation paths. You rarely set these yourself (the wallet manages them) but it helps to recognize the shape:
 
 | Path | Account | Role | Use |
 |---|---|---|---|
@@ -170,7 +170,7 @@ Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** le
 
 ## Next steps
 
-- [Sign in with wallet](/docs/build/integrate/wallet-authentication/overview) — passwordless authentication with CIP-8 message signing
-- [Keys & Wallets](/docs/value/wallets-and-keys) — the key model behind wallets, and creating wallets in backend code
-- [Detect incoming payments](/docs/build/integrate/payments/listening-for-payments/overview) — confirm ADA payments to an address
-- [DeFi on Cardano](/docs/build/integrate/defi) — what users do once they're connected
+- [Sign in with wallet](/docs/build/integrate/wallet-authentication/overview): passwordless authentication with CIP-8 message signing
+- [Keys & Wallets](/docs/value/wallets-and-keys): the key model behind wallets, and creating wallets in backend code
+- [Detect incoming payments](/docs/build/integrate/payments/listening-for-payments/overview): confirm ADA payments to an address
+- [DeFi on Cardano](/docs/build/integrate/defi): what users do once they're connected

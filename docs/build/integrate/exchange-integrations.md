@@ -24,7 +24,7 @@ In this model, each transaction consists of inputs and outputs, where inputs rep
 - [**cardano-rosetta-java**](https://github.com/cardano-foundation/cardano-rosetta-java): Cardano Rosetta Java is a lightweight Java implementation of the Coinbase Mesh API (formerly Rosetta) for the Cardano blockchain. This implementation follows the [Mesh API specification](https://github.com/coinbase/mesh-specifications) and is compatible with the [Mesh CLI](https://github.com/coinbase/mesh-cli), while including specific extensions to accommodate Cardano's unique features. _(Recommended for exchanges)_
   - Employs standardized APIs commonly used across blockchain platforms, promoting ease of understanding and implementation.
   - Handles tracking, building, and submitting transactions, providing all functionality needed for exchange operations.
-  - All-in-one package with Cardano node, Submit API, Mesh API, and Yaci-Store indexer with Postgres database—streamlining your Cardano integration workflow.
+  - All-in-one package with Cardano node, Submit API, Mesh API, and Yaci-Store indexer with Postgres database, streamlining your Cardano integration workflow.
 
 :::note
 Rosetta specification does not include transaction signing capabilities. This is done  in a separate offline service for best security practices using any signing libraries available. See example using [CSL](https://github.com/Emurgo/cardano-serialization-lib/blob/master/doc/getting-started/singing_rosetta_tx.ts).  

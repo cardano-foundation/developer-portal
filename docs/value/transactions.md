@@ -77,7 +77,7 @@ const slot = Time.unixTimeToSlot(now, SlotConfig.SLOT_CONFIG_NETWORK.Preprod)
 const time = Time.slotToUnixTime(50_000_000n, SlotConfig.SLOT_CONFIG_NETWORK.Mainnet)
 ```
 
-Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/build/smart-contracts/testing#testing-your-off-chain-code)) and a genesis `zeroTime`/`zeroSlot` — the SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
+Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/build/smart-contracts/testing#testing-your-off-chain-code)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
 
 ## Reference inputs and reference scripts
 

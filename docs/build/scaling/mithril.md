@@ -12,11 +12,11 @@ This unlocks two things that matter for scaling and production.
 
 ## Fast node bootstrap
 
-Syncing a `cardano-node` from genesis takes many hours to days. With Mithril, a node can **download and verify a certified database snapshot** and be ready in minutes instead. The verification is what makes this safe: the snapshot is only accepted if it matches a certificate signed by enough stake. This is the recommended way to stand up a node — see [installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) and [production infrastructure](/docs/build/scaling/infrastructure).
+Syncing a `cardano-node` from genesis takes many hours to days. With Mithril, a node can **download and verify a certified database snapshot** and be ready in minutes instead. The verification is what makes this safe: the snapshot is only accepted if it matches a certificate signed by enough stake. This is the recommended way to stand up a node, see [installing cardano-node](/docs/get-started/infrastructure/node/installing-cardano-node) and [production infrastructure](/docs/build/scaling/infrastructure).
 
 ## Trustless light clients
 
-Applications can verify chain data — **transactions** and **stake distributions** — with cryptographic proofs, instead of trusting an API to tell them the truth. The TypeScript client runs in the browser via WebAssembly, so even a web app can verify a transaction against a Mithril certificate without a backend node.
+Applications can verify chain data, **transactions** and **stake distributions**, with cryptographic proofs, instead of trusting an API to tell them the truth. The TypeScript client runs in the browser via WebAssembly, so even a web app can verify a transaction against a Mithril certificate without a backend node.
 
 ```javascript
 import initMithrilClient, { MithrilClient } from "@mithril-dev/mithril-client-wasm";
@@ -62,5 +62,5 @@ If you operate a stake pool, running a Mithril signer contributes to the certifi
 
 ## Next steps
 
-- [Production infrastructure](/docs/build/scaling/infrastructure) — where fast bootstrap fits in your stack
-- [Mithril documentation](https://mithril.network/doc/) — the full protocol, networks, and node references
+- [Production infrastructure](/docs/build/scaling/infrastructure): where fast bootstrap fits in your stack
+- [Mithril documentation](https://mithril.network/doc/): the full protocol, networks, and node references

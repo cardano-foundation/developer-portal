@@ -2,7 +2,7 @@
 id: hydra
 title: "Hydra: Layer 2 Scaling"
 sidebar_label: Hydra
-description: Hydra is Cardano's Layer 2 — a state channel where a known set of participants transact thousands of times per second with zero fees, settling back to Layer 1 only to open and close.
+description: Hydra is Cardano's Layer 2, a state channel where a known set of participants transact thousands of times per second with zero fees, settling back to Layer 1 only to open and close.
 image: /img/og/og-developer-portal.png
 ---
 
@@ -16,11 +16,11 @@ Inside a Hydra Head, transactions use the same format as Cardano Layer 1. **Fees
 
 A Hydra Head is a state channel with a defined lifecycle:
 
-1. **Initialize** — participants agree to open a Head on Layer 1.
-2. **Commit** — each participant locks funds from Layer 1 into the Head.
-3. **Transact** — process unlimited transactions instantly off-chain.
-4. **Close** — submit the final agreed-upon state back to Layer 1.
-5. **Fanout** — distribute funds on Layer 1 according to the final state.
+1. **Initialize**: participants agree to open a Head on Layer 1.
+2. **Commit**: each participant locks funds from Layer 1 into the Head.
+3. **Transact**: process unlimited transactions instantly off-chain.
+4. **Close**: submit the final agreed-upon state back to Layer 1.
+5. **Fanout**: distribute funds on Layer 1 according to the final state.
 
 ```mermaid
 graph LR
@@ -39,10 +39,10 @@ Every participant must agree on each transition, similar to a consensus protocol
 
 Hydra is ideal for:
 
-- **High-frequency transactions** — gaming, micropayments, real-time applications.
-- **Cost-sensitive applications** — batch many transactions off-chain; only pay L1 fees to open and close.
-- **Private transactions** — keep details off-chain until settlement.
-- **Interactive multi-party protocols** — rapid state updates among a known group.
+- **High-frequency transactions**: gaming, micropayments, real-time applications.
+- **Cost-sensitive applications**: batch many transactions off-chain; only pay L1 fees to open and close.
+- **Private transactions**: keep details off-chain until settlement.
+- **Interactive multi-party protocols**: rapid state updates among a known group.
 
 It is not a fit for open, anonymous, low-frequency interactions: a Head is among a **fixed, known set of participants**, and every participant must sign every snapshot.
 
@@ -53,7 +53,7 @@ The off-chain flow uses `@meshsdk/hydra`. The condensed happy path is below; the
 ### Prerequisites
 
 - A synced `cardano-node` with `cardano-cli` (preprod), and the `hydra-node` binary ([install](https://hydra.family/head-protocol/docs/getting-started/installation)).
-- Test ADA per participant ([faucet](/docs/first-steps/networks-and-test-ada#get-test-ada)) — for L1 node fees and funds to commit.
+- Test ADA per participant ([faucet](/docs/first-steps/networks-and-test-ada#get-test-ada)), for L1 node fees and funds to commit.
 - Each participant generates **Cardano keys** (L1 identity/fees) and **Hydra keys** (snapshot signing), then starts a `hydra-node` peered with the others. Inside the Head, protocol parameters set all fee fields to zero.
 
 ### Connect, initialize, commit
@@ -126,5 +126,5 @@ The key mental model: you pay a Layer 1 cost to open and close the Head (like pr
 
 ## Next steps
 
-- [Going to production](/docs/build/scaling/going-to-production) — reliability and security before mainnet
-- [Hydra protocol docs](https://hydra.family/head-protocol/) and [MeshJS Hydra](https://meshjs.dev/hydra) — the full protocol and SDK reference
+- [Going to production](/docs/build/scaling/going-to-production): reliability and security before mainnet
+- [Hydra protocol docs](https://hydra.family/head-protocol/) and [MeshJS Hydra](https://meshjs.dev/hydra): the full protocol and SDK reference

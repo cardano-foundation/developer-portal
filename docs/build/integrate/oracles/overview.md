@@ -207,7 +207,7 @@ Consider these factors when selecting an oracle for your Cardano application:
 | **[Orcfax](/docs/build/integrate/oracles/orcfax)** | Heartbeat + on-demand | Auditability ("trust but verify", Arweave audit logs); CNT feeds via virtual liquidity pooling | Mainnet + testnet |
 | **[Pyth](/docs/build/integrate/oracles/pyth)** | Pull (zero-withdrawal) | Sub-second high-frequency feeds; verified on-chain via an Aiken library | Mainnet (Beta) |
 
-No provider is universally "best" — choose by your latency needs (Pyth for high-frequency), auditability requirements (Orcfax), and how you want to consume data (Charli3's flexible push/pull). Contracts can also read **multiple** oracles and reconcile them on-chain, as shown above.
+No provider is universally "best". Choose by your latency needs (Pyth for high-frequency), auditability requirements (Orcfax), and how you want to consume data (Charli3's flexible push/pull). Contracts can also read **multiple** oracles and reconcile them on-chain, as shown above.
 
 ---
 

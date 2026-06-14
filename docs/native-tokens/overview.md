@@ -78,7 +78,7 @@ This page is the canonical reference for min-ADA, token bundles, and fungibility
 
 ## Working with assets in code
 
-In the SDKs, a token amount is an **asset bundle** — lovelace plus zero or more native tokens keyed by `policyId + assetNameHex`. The Evolution `Assets` module builds and combines them:
+In the SDKs, a token amount is an **asset bundle**: lovelace plus zero or more native tokens keyed by `policyId + assetNameHex`. The Evolution `Assets` module builds and combines them:
 
 ```typescript
 import { Assets } from "@evolution-sdk/evolution"
@@ -96,7 +96,7 @@ const total = Assets.merge(ada, bundle)
 
 `policyId` is 56 hex chars (28 bytes); `assetNameHex` is the hex-encoded asset name (empty `""` is valid). The builder enforces [min-ADA](#the-minimum-ada-requirement) on every token-bearing output automatically.
 
-For display, **CIP-14 asset fingerprints** give a short checksummed `asset1...` identifier derived from the policy ID + asset name — use it in UIs, but the canonical on-chain identifier stays `policyId + assetName`.
+For display, **CIP-14 asset fingerprints** give a short checksummed `asset1...` identifier derived from the policy ID + asset name. Use it in UIs, but the canonical on-chain identifier stays `policyId + assetName`.
 
 > **Mesh** represents amounts as `{ unit, quantity }` entries (`unit` is `policyId + assetNameHex`, or `"lovelace"`); see [meshjs.dev](https://meshjs.dev/apis/transaction).
 

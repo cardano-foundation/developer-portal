@@ -2,21 +2,21 @@
 id: lock-and-spend
 title: Lock and Spend
 sidebar_label: Lock and spend
-description: The two halves of every smart contract interaction — lock funds at a script address with a datum, then spend them by providing a redeemer that satisfies the validator.
+description: "The two halves of every smart contract interaction: lock funds at a script address with a datum, then spend them by providing a redeemer that satisfies the validator."
 image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Every smart contract interaction has two halves: you **lock** funds at a script address (sending value with a datum attached), and later you **spend** them (consuming the UTXO by providing a redeemer the validator accepts). This is the off-chain work — your validator just says yes or no; this page is how you build the transactions it judges.
+Every smart contract interaction has two halves: you **lock** funds at a script address (sending value with a datum attached), and later you **spend** them (consuming the UTXO by providing a redeemer the validator accepts). This is the off-chain work. Your validator just says yes or no; this page is how you build the transactions it judges.
 
 Pick your tool below. The SDK tabs use the same Evolution and Mesh setup as [Your first transaction](/docs/first-steps/your-first-transaction).
 
 ## Before you start
 
 - A **compiled validator** and its [blueprint](/docs/build/smart-contracts/choose-a-language#blueprints-the-contracts-interface) (`plutus.json`). If you don't have one yet, [choose a language](/docs/build/smart-contracts/choose-a-language) and write one.
-- A **tool + provider key** — the tabs use Blockfrost on Preprod ([choose your tools](/docs/first-steps/choose-your-tools)).
+- A **tool + provider key**: the tabs use Blockfrost on Preprod ([choose your tools](/docs/first-steps/choose-your-tools)).
 - **Test ADA** in a wallet you control ([faucet](/docs/first-steps/networks-and-test-ada#get-test-ada)).
 - Background, if you want it: [Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context) explains what the datum and redeemer below actually are.
 
@@ -106,7 +106,7 @@ Derive the script address from the compiled validator with `cardano-cli address 
 
 ## Spend funds
 
-Spending means consuming a UTXO locked at the script address by providing a **redeemer** — the data your validator checks to authorize the spend. Because a Plutus script runs, the transaction also needs **collateral**: ADA-only UTXOs the node consumes only if the script fails phase-2 validation (see [the overview](/docs/build/smart-contracts/overview#collateral-and-script-execution)). The SDKs select collateral for you.
+Spending means consuming a UTXO locked at the script address by providing a **redeemer**: the data your validator checks to authorize the spend. Because a Plutus script runs, the transaction also needs **collateral**: ADA-only UTXOs the node consumes only if the script fails phase-2 validation (see [the overview](/docs/build/smart-contracts/overview#collateral-and-script-execution)). The SDKs select collateral for you.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -178,14 +178,14 @@ cardano-cli latest transaction build \
   --out-file tx.raw
 ```
 
-Then `sign` and `submit` as usual. Pass the wrong redeemer and `build` fails up front with the script's own error message — a quick way to sanity-check validator logic before submitting.
+Then `sign` and `submit` as usual. Pass the wrong redeemer and `build` fails up front with the script's own error message, a quick way to sanity-check validator logic before submitting.
 
 </TabItem>
 </Tabs>
 
 ## Reference scripts
 
-Including a multi-kilobyte validator in every spend transaction is wasteful. A **reference script** (Plutus V2+) stores the script once in a UTXO; later transactions point at that UTXO with `readFrom` instead of attaching the script — much smaller transactions and lower fees.
+Including a multi-kilobyte validator in every spend transaction is wasteful. A **reference script** (Plutus V2+) stores the script once in a UTXO; later transactions point at that UTXO with `readFrom` instead of attaching the script: much smaller transactions and lower fees.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -200,7 +200,7 @@ const deploy = await client
   .build()
 await (await deploy.sign()).submit()
 
-// 2. Spend by referencing it — no attachScript, the node reads the script from the referenced UTXO
+// 2. Spend by referencing it: no attachScript, the node reads the script from the referenced UTXO
 declare const scriptUtxos: UTxO.UTxO[]
 declare const referenceScriptUtxo: UTxO.UTxO
 const spend = await client
@@ -218,11 +218,11 @@ Reference the deployed UTXO with `.spendingTxInReference(txHash, index)` instead
 </TabItem>
 </Tabs>
 
-`readFrom` also reads a UTXO **without consuming it** — the same mechanism oracles use to expose price data and contracts use to read shared configuration (a reference input can carry a datum, not just a script). Reach for a reference script once a script is used across more than a few transactions; the one-time deploy cost pays for itself quickly.
+`readFrom` also reads a UTXO **without consuming it**, the same mechanism oracles use to expose price data and contracts use to read shared configuration (a reference input can carry a datum, not just a script). Reach for a reference script once a script is used across more than a few transactions; the one-time deploy cost pays for itself quickly.
 
 ## Parameterized scripts
 
-A parameterized validator leaves values like an owner key or a deadline as compile-time holes, so one validator serves many deployments — each set of parameters produces a distinct script (and address). Apply the parameters off-chain before use:
+A parameterized validator leaves values like an owner key or a deadline as compile-time holes, so one validator serves many deployments: each set of parameters produces a distinct script (and address). Apply the parameters off-chain before use:
 
 ```typescript
 import { Bytes, Data, TSchema, UPLC } from "@evolution-sdk/evolution"
@@ -244,7 +244,7 @@ const appliedTyped = UPLC.applyParamsToScriptWithSchema(
 )
 ```
 
-The applied script is what you attach (or deploy as a reference script). Use parameters for per-deployment config (owner, deadline, token policy, oracle address); use **datum fields** instead for state that changes per transaction. `applyParamsToScript` defaults to Aiken-compatible CBOR — pass `CBOR.CML_DATA_DEFAULT_OPTIONS` for CML-compiled scripts.
+The applied script is what you attach (or deploy as a reference script). Use parameters for per-deployment config (owner, deadline, token policy, oracle address); use **datum fields** instead for state that changes per transaction. `applyParamsToScript` defaults to Aiken-compatible CBOR: pass `CBOR.CML_DATA_DEFAULT_OPTIONS` for CML-compiled scripts.
 
 ## A complete example: vesting
 
@@ -255,7 +255,7 @@ The lock-then-spend shape above becomes a real contract when the datum carries m
 
 ## Next steps
 
-- [Testing](/docs/build/smart-contracts/testing) — test the validator before you deploy it
-- [Security](/docs/build/smart-contracts/advanced/security/overview) — the vulnerabilities to guard against when spending logic gets real
-- [Example contracts](/docs/build/smart-contracts/example-contracts) — escrow, marketplace, swap, and more
+- [Testing](/docs/build/smart-contracts/testing): test the validator before you deploy it
+- [Security](/docs/build/smart-contracts/advanced/security/overview): the vulnerabilities to guard against when spending logic gets real
+- [Example contracts](/docs/build/smart-contracts/example-contracts): escrow, marketplace, swap, and more
 - Reference: [example contracts](/docs/build/smart-contracts/example-contracts) and the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract)

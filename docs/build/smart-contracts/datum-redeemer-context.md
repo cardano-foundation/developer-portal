@@ -2,7 +2,7 @@
 id: datum-redeemer-context
 title: Datum, Redeemer, and ScriptContext
 sidebar_label: Datum, redeemer & context
-description: The three arguments every Cardano validator receives — datum as state, redeemer as action, and ScriptContext as the transaction environment.
+description: "The three arguments every Cardano validator receives: datum as state, redeemer as action, and ScriptContext as the transaction environment."
 image: /img/og/og-developer-portal.png
 ---
 
@@ -29,7 +29,7 @@ flowchart LR
 
 1. **Datum**: data associated with the UTXO being spent. It is the "state" locked at the script address.
 2. **Redeemer**: data supplied by whoever is trying to spend the UTXO. It is the "action" they want to take.
-3. **ScriptContext**: a comprehensive snapshot of the entire transaction — all inputs, outputs, signatures, minting, and more. It is the "environment" the validation happens in.
+3. **ScriptContext**: a comprehensive snapshot of the entire transaction: all inputs, outputs, signatures, minting, and more. It is the "environment" the validation happens in.
 
 Let's take each in turn.
 
@@ -78,7 +78,7 @@ flowchart LR
     TX --> VAL{{"Validator checks:\nnew_counter == old_counter + 1"}}
 ```
 
-This pattern — consume a UTXO and recreate it with updated state — is the fundamental mechanism for state management on Cardano. It is called the **continuing-output pattern**, because the script address continues to hold a UTXO, just with new data.
+This pattern, consume a UTXO and recreate it with updated state, is the fundamental mechanism for state management on Cardano. It is called the **continuing-output pattern**, because the script address continues to hold a UTXO, just with new data.
 
 ### Datum hash vs inline datum
 
@@ -88,7 +88,7 @@ Cardano historically stored datums in two ways, and the evolution matters:
 
 - To spend a UTXO, you needed to know the full datum, not just its hash.
 - The datum had to be included in the spending transaction, increasing its size and fees.
-- If you lost track of the datum, the UTXO became effectively unspendable — funds locked forever.
+- If you lost track of the datum, the UTXO became effectively unspendable, funds locked forever.
 
 **Inline datum (post-Vasil, [CIP-32](https://cips.cardano.org/cip/CIP-32))**: datums can be stored directly ("inline") in the UTXO. This means:
 
@@ -117,19 +117,19 @@ Use inline datums for virtually all new development. Datum hashes still work for
 
 ## How does the redeemer represent actions?
 
-The redeemer is data provided by the transaction attempting to spend a UTXO, telling the validator what action the spender wants to perform. Its structure is entirely defined by the validator — the protocol imposes no requirements — and it commonly takes the form of tagged action constructors so a single validator can support multiple distinct operations.
+The redeemer is data provided by the transaction attempting to spend a UTXO, telling the validator what action the spender wants to perform. Its structure is entirely defined by the validator (the protocol imposes no requirements) and it commonly takes the form of tagged action constructors so a single validator can support multiple distinct operations.
 
 ### What can a redeemer contain?
 
 Any `PlutusData` value. Common patterns:
 
-**Simple values** — a password, a secret, a number:
+**Simple values**, a password, a secret, a number:
 
 ```text
 Redeemer = ByteString   -- the secret that hashes to the datum
 ```
 
-**Action tags** — an enumeration of which action the spender wants:
+**Action tags**, an enumeration of which action the spender wants:
 
 ```text
 Redeemer =
@@ -139,7 +139,7 @@ Redeemer =
   | Update { new_price: Integer }
 ```
 
-**Proof data** — evidence that the spender is authorized:
+**Proof data**, evidence that the spender is authorized:
 
 ```text
 Redeemer = MerkleProof {
@@ -181,7 +181,7 @@ Datums, redeemers, and script parameters are all the same thing under the hood: 
 |---|---|---|
 | **Integer** | `bigint` | amounts, indices, timestamps, deadlines |
 | **ByteArray** | bytes | hashes, addresses, policy IDs, asset names |
-| **Constructor** | a tag (`index`) + ordered fields | variants / tagged unions — the shape of most datums and redeemers |
+| **Constructor** | a tag (`index`) + ordered fields | variants / tagged unions, the shape of most datums and redeemers |
 | **Map** | key → value pairs | metadata, key-value state |
 | **List** | ordered values | arrays |
 
@@ -213,7 +213,7 @@ const datum = Codec.toData({ beneficiary: "abc1...23de", deadline: 1735689600000
 // Codec.toCBORHex(...) / Codec.fromData(...) round-trip too
 ```
 
-Every Plutus Data value serializes to **CBOR** — the binary format the ledger stores — so `Data.toCBORHex` / `Data.fromCBORHex` convert when you need raw hex (e.g. a `cardano-cli` datum file). The [CIP-57 blueprint](/docs/build/smart-contracts/write-a-validator#from-validator-to-blueprint) your validator compiles to describes these schemas so tools can generate the codecs for you.
+Every Plutus Data value serializes to **CBOR**, the binary format the ledger stores, so `Data.toCBORHex` / `Data.fromCBORHex` convert when you need raw hex (e.g. a `cardano-cli` datum file). The [CIP-57 blueprint](/docs/build/smart-contracts/write-a-validator#from-validator-to-blueprint) your validator compiles to describes these schemas so tools can generate the codecs for you.
 
 ## What does the ScriptContext provide?
 
@@ -261,32 +261,32 @@ ScriptPurpose =
 
 The ScriptContext is where most of the interesting logic happens. The most common checks:
 
-**Signature verification** — "Is the transaction signed by the expected key?"
+**Signature verification**: "Is the transaction signed by the expected key?"
 
 ```text
 list.has(ctx.transaction.signatories, datum.owner)
 ```
 
-**Output inspection** — "Does the transaction create the correct outputs?"
+**Output inspection**: "Does the transaction create the correct outputs?"
 
 ```text
 expect Some(output) = find_output_to(ctx.transaction.outputs, beneficiary_address)
 output.value >= expected_amount
 ```
 
-**Time-range checking** — "Is the transaction within the allowed window?"
+**Time-range checking**: "Is the transaction within the allowed window?"
 
 ```text
 valid_range_start(ctx.transaction.valid_range) > datum.deadline
 ```
 
-**Minting inspection** — "Are the correct tokens being minted?"
+**Minting inspection**: "Are the correct tokens being minted?"
 
 ```text
 quantity_of(ctx.transaction.mint, own_policy_id, token_name) == 1
 ```
 
-**Input counting** — "Are the right UTXOs being consumed or referenced?"
+**Input counting**: "Are the right UTXOs being consumed or referenced?"
 
 ```text
 list.any(ctx.transaction.reference_inputs, fn(input) {
@@ -347,7 +347,7 @@ Use a specific UTXO as input to guarantee uniqueness. Since each UTXO can be spe
 
 ### Withdraw-zero trick
 
-A spending validator delegates its logic to a staking validator by requiring a zero-ADA withdrawal from a staking script. The staking validator runs **once** for the whole transaction, while a spending validator runs **once per input** — so this is more efficient when a transaction spends many UTXOs from the same script. See [Stake Validator](/docs/build/smart-contracts/advanced/design-patterns/stake-validator) for the full pattern.
+A spending validator delegates its logic to a staking validator by requiring a zero-ADA withdrawal from a staking script. The staking validator runs **once** for the whole transaction, while a spending validator runs **once per input**, so this is more efficient when a transaction spends many UTXOs from the same script. See [Stake Validator](/docs/build/smart-contracts/advanced/design-patterns/stake-validator) for the full pattern.
 
 ### Beacon / pointer token
 
@@ -404,7 +404,7 @@ Signatures: Bob's signature
 1. Is the transaction signed by `datum.beneficiary` (Bob)? Check `signatories`.
 2. Has the deadline passed? Check that `datum.deadline` is before the start of `valid_range`.
 
-Both hold, so the validator returns `True` and the transaction is included. If Eve tries to claim early with a validity interval starting before the deadline, the time check returns `False`, the transaction is rejected, and Eve pays nothing — it never made it on-chain.
+Both hold, so the validator returns `True` and the transaction is included. If Eve tries to claim early with a validity interval starting before the deadline, the time check returns `False`, the transaction is rejected, and Eve pays nothing. It never made it on-chain.
 
 You can build exactly this flow with an SDK on the [Lock and Spend](/docs/build/smart-contracts/lock-and-spend) page.
 
@@ -412,10 +412,10 @@ You can build exactly this flow with an SDK on the [Lock and Spend](/docs/build/
 
 - **Datum is a database row.** It holds structured state for a specific record (the UTXO). Updating state is like DELETE-then-INSERT (consume the old UTXO, create a new one). The validator is the constraint or trigger that checks the update is valid.
 - **Redeemer is an API request body.** Like the JSON body of a POST/PUT, it says what action the client wants and carries the data to do it. `{ "action": "bid", "amount": 500 }` is exactly a `Bid { amount: 500 }` redeemer.
-- **ScriptContext is the request context / middleware.** Like the full HTTP request available to Express or Django middleware — headers (signatures), body (redeemer, inputs), the response being built (outputs), auth (signatories), timing (validity interval). A validator can inspect any aspect of the transaction to decide.
-- **Inline datums are embedded documents (MongoDB).** Moving from datum hashes to inline datums is like moving from a foreign key to embedding the full document — the data is right there, self-contained.
+- **ScriptContext is the request context / middleware.** Like the full HTTP request available to Express or Django middleware: headers (signatures), body (redeemer, inputs), the response being built (outputs), auth (signatories), timing (validity interval). A validator can inspect any aspect of the transaction to decide.
+- **Inline datums are embedded documents (MongoDB).** Moving from datum hashes to inline datums is like moving from a foreign key to embedding the full document. The data is right there, self-contained.
 - **Reference scripts are a shared library on a CDN.** Instead of every transaction bundling the validator, they all reference the same on-chain copy: smaller payloads, single-source updates.
-- **State machines are workflow engines.** Each state (datum) has valid transitions (redeemers), and the engine (validator) enforces the rules — like AWS Step Functions or a Redux reducer.
+- **State machines are workflow engines.** Each state (datum) has valid transitions (redeemers), and the engine (validator) enforces the rules, like AWS Step Functions or a Redux reducer.
 
 ## Key takeaways
 
@@ -428,5 +428,5 @@ You can build exactly this flow with an SDK on the [Lock and Spend](/docs/build/
 ## Next steps
 
 - [Choose a language](/docs/build/smart-contracts/choose-a-language) to write your validator
-- [Lock and spend](/docs/build/smart-contracts/lock-and-spend) — build the off-chain transactions with an SDK
-- [Design Patterns](/docs/build/smart-contracts/advanced/design-patterns/overview) — production-grade implementations of the patterns above
+- [Lock and spend](/docs/build/smart-contracts/lock-and-spend): build the off-chain transactions with an SDK
+- [Design Patterns](/docs/build/smart-contracts/advanced/design-patterns/overview): production-grade implementations of the patterns above

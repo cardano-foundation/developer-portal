@@ -96,7 +96,7 @@ Wallets can also sign arbitrary messages (CIP-8 / COSE) to prove address ownersh
 
 ## Working with wallets in code
 
-For a **browser dApp**, you don't manage keys at all — you connect the user's CIP-30 wallet (above), covered in [Connect a wallet](/docs/build/integrate/connect-a-wallet). For **backend services, scripts, and tests**, you create a wallet from a mnemonic, a private key, or just an address (read-only). The SDK handles the BIP-32/CIP-1852 derivation described above.
+For a **browser dApp**, you don't manage keys at all: you connect the user's CIP-30 wallet (above), covered in [Connect a wallet](/docs/build/integrate/connect-a-wallet). For **backend services, scripts, and tests**, you create a wallet from a mnemonic, a private key, or just an address (read-only). The SDK handles the BIP-32/CIP-1852 derivation described above.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -114,14 +114,14 @@ const seedClient = Client.make(preprod)
 const keyClient = Client.make(preprod)
   .withPrivateKey({ paymentKey: process.env.PAYMENT_SIGNING_KEY! })
 
-// Read-only — observe an address, no signing (backend tx-building, monitoring)
+// Read-only, observe an address, no signing (backend tx-building, monitoring)
 const watchClient = Client.make(preprod)
   .withAddress({ address: "addr1..." })
 
 const address = await seedClient.address()
 ```
 
-Generate a fresh mnemonic with `PrivateKey.generateMnemonic()`. Switch networks by changing the network parameter (`preprod` → `mainnet`) — use a different mnemonic per environment.
+Generate a fresh mnemonic with `PrivateKey.generateMnemonic()`. Switch networks by changing the network parameter (`preprod` → `mainnet`); use a different mnemonic per environment.
 
 </TabItem>
 <TabItem value="mesh" label="Mesh">
@@ -148,7 +148,7 @@ const wallet = new MeshWallet({
 </TabItem>
 </Tabs>
 
-The four wallet types map to four security models — pick the weakest that fits the job:
+The four wallet types map to four security models: pick the weakest that fits the job:
 
 | Type | Has keys | Can sign | Where keys live | Use for |
 |---|---|---|---|---|

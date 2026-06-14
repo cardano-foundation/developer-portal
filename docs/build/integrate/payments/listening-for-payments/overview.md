@@ -38,11 +38,11 @@ The basic payment detection flow:
 
 There are three ways to detect payments, from the fastest to set up to the most self-hosted:
 
-- **[Point of sale (Blockfrost)](/docs/build/integrate/payments/listening-for-payments/point-of-sale)** — **recommended.** A production-ready React app that queries the chain through the Blockfrost API, with no infrastructure to run. The fastest path to accepting payments.
+- **[Point of sale (Blockfrost)](/docs/build/integrate/payments/listening-for-payments/point-of-sale)**: **recommended.** A production-ready React app that queries the chain through the Blockfrost API, with no infrastructure to run. The fastest path to accepting payments.
 
 For teams that run their own infrastructure:
 
-- **[cardano-wallet](/docs/build/integrate/payments/listening-for-payments/cardano-wallet)** — monitor addresses through the cardano-wallet REST API (requires a running node + wallet service).
-- **[cardano-cli](/docs/build/integrate/payments/listening-for-payments/cardano-cli)** — query UTXOs directly with `cardano-cli` (requires a running node; the lowest-level, most operationally heavy option).
+- **[cardano-wallet](/docs/build/integrate/payments/listening-for-payments/cardano-wallet)**: monitor addresses through the cardano-wallet REST API (requires a running node + wallet service).
+- **[cardano-cli](/docs/build/integrate/payments/listening-for-payments/cardano-cli)**: query UTXOs directly with `cardano-cli` (requires a running node; the lowest-level, most operationally heavy option).
 
 If you're not sure, start with the Blockfrost point-of-sale guide.
