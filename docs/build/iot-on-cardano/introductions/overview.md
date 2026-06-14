@@ -12,7 +12,7 @@ If you're new to embedded development or web APIs, here are quick primers on the
 - **[ESP32 / D1 Microcontrollers](./esp32-d1-microcontrollers.md)** - the boards you'll run them on.
 - **[REST APIs](./rest-apis.md)** - how the workshops talk to Cardano data providers like Koios, Blockfrost, and Maestro.
 
-For Cardano itself, see the [developer portal's Learn → Core Concepts](/docs/value/overview) section.
+For Cardano itself, see the [Core Concepts](/docs/value/overview) section.
 
 ---
 

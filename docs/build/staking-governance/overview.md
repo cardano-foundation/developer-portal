@@ -26,11 +26,3 @@ This page is about *building* staking and governance features, not operating a p
 
 - [Staking](/docs/build/staking-governance/staking), start here if you're adding delegation or rewards
 - [Governance](/docs/build/staking-governance/governance), add DRep registration, vote delegation, or voting
-
----
-
-## Explore this module
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />

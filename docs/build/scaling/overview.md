@@ -37,11 +37,3 @@ Working on testnet is not the same as running in production. Two pages cover the
 
 - [Hydra](/docs/build/scaling/hydra): build on Cardano's Layer 2
 - [Going to production](/docs/build/scaling/going-to-production): ship to mainnet with confidence
-
----
-
-## Explore this module
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />

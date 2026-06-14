@@ -173,11 +173,3 @@ This module builds up from here:
 3. **[Lock and spend](/docs/build/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
 4. **[Testing](/docs/build/smart-contracts/testing)**: verify validators with mock transactions before you deploy.
 5. **[Security](/docs/build/smart-contracts/security)**: the attack classes to defend against.
-
----
-
-## Explore all smart contract topics
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
