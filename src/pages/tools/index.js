@@ -28,8 +28,10 @@ import {
   Showcases,
   RECENT_APPS_COUNT,
   Categories,
+  CategoryList,
+  LanguageList,
+  InterfaceList,
 } from "@site/src/data/builder-tools/showcase";
-import { appHasTag } from "@site/src/utils/toolStats";
 
 import styles from "./styles.module.css";
 
@@ -101,8 +103,20 @@ function filterProjects(projects, selectedTags, searchName) {
     );
   }
   if (selectedTags.length === 0) return result;
-  // OR matching: a tool matches if any selected tag is its category or property.
-  return result.filter((p) => selectedTags.some((tag) => appHasTag(p, tag)));
+
+  // Faceted matching: AND across groups (category / language / interface),
+  // OR within a group. Category=SDK + Language=TypeScript returns SDKs that use TypeScript.
+  const category = selectedTags.find((t) => CategoryList.includes(t));
+  const languages = selectedTags.filter((t) => LanguageList.includes(t));
+  const interfaces = selectedTags.filter((t) => InterfaceList.includes(t));
+
+  return result.filter((p) => {
+    if (category && p.category !== category) return false;
+    const props = p.properties || [];
+    if (languages.length && !languages.some((l) => props.includes(l))) return false;
+    if (interfaces.length && !interfaces.some((i) => props.includes(i))) return false;
+    return true;
+  });
 }
 
 function useFilteredProjects() {
@@ -201,13 +215,15 @@ function SearchBar() {
 
 function SearchControls() {
   return (
-    <section className={clsx("container", styles.controls)}>
-      <SearchBar />
-      <div className={styles.controlsRight}>
-        <AppFilterPanel />
-        <ShowcaseSort />
-      </div>
-    </section>
+    <div className={styles.controlsSticky}>
+      <section className={clsx("container", styles.controls)}>
+        <SearchBar />
+        <div className={styles.controlsRight}>
+          <AppFilterPanel />
+          <ShowcaseSort />
+        </div>
+      </section>
+    </div>
   );
 }
 
