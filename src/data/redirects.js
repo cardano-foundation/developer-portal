@@ -387,8 +387,8 @@ const redirects = [
     from: ['/docs/integrate-cardano/user-wallet-authentication/mesh', '/docs/build/integrate/user-wallet-authentication/mesh'],
   },
   {
-    to: '/docs/build/integrate/wallet-authentication/cardano-serialization-lib',
-    from: ['/docs/integrate-cardano/user-wallet-authentication/cardano-serialization-lib', '/docs/build/integrate/user-wallet-authentication/cardano-serialization-lib'],
+    to: '/docs/build/integrate/wallet-authentication/overview',
+    from: ['/docs/build/integrate/wallet-authentication/cardano-serialization-lib', '/docs/integrate-cardano/user-wallet-authentication/cardano-serialization-lib', '/docs/build/integrate/user-wallet-authentication/cardano-serialization-lib'],
   },
   {
     to: '/docs/build/integrate/wallet-authentication/utxos/overview',
@@ -451,24 +451,24 @@ const redirects = [
     from: '/docs/native-tokens/cardano-token-registry',
   },
   {
-    to: '/docs/build/transaction-metadata/overview',
-    from: ['/docs/transaction-metadata/', '/docs/transaction-metadata/overview'],
+    to: '/docs/first-steps/transaction-building',
+    from: ['/docs/build/transaction-metadata/overview', '/docs/transaction-metadata/', '/docs/transaction-metadata/overview'],
   },
   {
-    to: '/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-cli',
-    from: '/docs/transaction-metadata/how-to-create-a-metadata-transaction-cli',
+    to: '/docs/first-steps/transaction-building',
+    from: ['/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-cli', '/docs/transaction-metadata/how-to-create-a-metadata-transaction-cli'],
   },
   {
-    to: '/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-wallet',
-    from: '/docs/transaction-metadata/how-to-create-a-metadata-transaction-wallet',
+    to: '/docs/first-steps/transaction-building',
+    from: ['/docs/build/transaction-metadata/how-to-create-a-metadata-transaction-wallet', '/docs/transaction-metadata/how-to-create-a-metadata-transaction-wallet'],
   },
   {
-    to: '/docs/build/transaction-metadata/retrieving-metadata',
-    from: '/docs/transaction-metadata/retrieving-metadata',
+    to: '/docs/first-steps/transaction-building',
+    from: ['/docs/build/transaction-metadata/retrieving-metadata', '/docs/transaction-metadata/retrieving-metadata'],
   },
   {
-    to: '/docs/build/transaction-metadata/mesh',
-    from: '/docs/transaction-metadata/mesh',
+    to: '/docs/first-steps/transaction-building',
+    from: ['/docs/build/transaction-metadata/mesh', '/docs/transaction-metadata/mesh'],
   },
   {
     to: '/docs/build/smart-contracts/overview',
