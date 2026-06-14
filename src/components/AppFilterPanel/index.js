@@ -49,7 +49,7 @@ export default function AppFilterPanel() {
     (cat) => {
       const others = selectedTags.filter((t) => !CategoryList.includes(t));
       const nextTags = activeCategory === cat ? others : [cat, ...others];
-      history.push({ ...location, search: replaceSearchTags(location.search, nextTags) });
+      history.replace({ ...location, search: replaceSearchTags(location.search, nextTags) });
     },
     [selectedTags, activeCategory, location, history]
   );
@@ -60,13 +60,13 @@ export default function AppFilterPanel() {
       const nextTags = has
         ? selectedTags.filter((t) => t !== prop)
         : [...selectedTags, prop];
-      history.push({ ...location, search: replaceSearchTags(location.search, nextTags) });
+      history.replace({ ...location, search: replaceSearchTags(location.search, nextTags) });
     },
     [selectedTags, location, history]
   );
 
   const clearAll = useCallback(() => {
-    history.push({ ...location, search: replaceSearchTags(location.search, []) });
+    history.replace({ ...location, search: replaceSearchTags(location.search, []) });
   }, [location, history]);
 
   const buttonLabel = activeCount ? `Filter (${activeCount})` : "Filter";

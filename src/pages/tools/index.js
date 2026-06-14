@@ -215,13 +215,15 @@ function SearchBar() {
 
 function SearchControls() {
   return (
-    <section className={clsx("container", styles.controls)}>
-      <SearchBar />
-      <div className={styles.controlsRight}>
-        <AppFilterPanel />
-        <ShowcaseSort />
-      </div>
-    </section>
+    <div className={styles.controlsSticky}>
+      <section className={clsx("container", styles.controls)}>
+        <SearchBar />
+        <div className={styles.controlsRight}>
+          <AppFilterPanel />
+          <ShowcaseSort />
+        </div>
+      </section>
+    </div>
   );
 }
 

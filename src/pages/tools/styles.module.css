@@ -1,3 +1,10 @@
+.controlsSticky {
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  z-index: 50;
+  background: var(--ifm-background-color);
+}
+
 .controls {
   display: flex;
   gap: 0.75rem;

@@ -47,7 +47,7 @@ export default function IntentChips() {
         location.search,
         isActive ? [] : intent.tags
       );
-      history.push({ ...location, search });
+      history.replace({ ...location, search });
     },
     [activeId, location, history]
   );

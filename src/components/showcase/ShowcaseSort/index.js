@@ -37,7 +37,7 @@ export default function ShowcaseSort() {
       } else {
         next.set(SortQueryStringKey, e.target.value);
       }
-      history.push({ ...location, search: next.toString() });
+      history.replace({ ...location, search: next.toString() });
     },
     [location, history]
   );
