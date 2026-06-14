@@ -115,15 +115,7 @@ P2P topology is negotiated automatically since the introduction of P2P networkin
 
 ## Ouroboros consensus
 
-Cardano uses the **Ouroboros Praos** proof-of-stake consensus protocol (and its successor Leios, currently in research). The key concepts:
-
-**Slots and epochs** — Time is divided into slots (1 second each) and epochs (5 days, 432,000 slots on mainnet). Each epoch, a leadership schedule is computed for the entire epoch — every slot has a probability of having a slot leader, weighted by stake.
-
-**Slot leaders** — A slot leader is a stake pool selected to produce the block for that slot. Selection is determined by a verifiable random function (VRF): each pool evaluates the VRF with its key and the epoch nonce, and if the output falls below a threshold proportional to their stake, they are the slot leader for that slot. This is private until the block is produced.
-
-**Chain selection** — When competing chains exist (e.g. two pools produce blocks for the same slot), the node follows the longest valid chain. Ouroboros provides a formal proof that an adversary controlling less than 50% of stake cannot produce a longer chain than the honest network in the long run.
-
-**KES keys** — Block production requires signing each block with a Key Evolving Signature (KES) key. KES keys evolve forward in time — a compromised old key cannot be used to re-sign past blocks. KES keys must be rotated before they expire (approximately every 90 days on mainnet); missing rotation causes the node to stop producing blocks.
+The consensus layer runs **Ouroboros Praos**, Cardano's proof-of-stake protocol: time is divided into slots and epochs, stake-weighted slot leaders are chosen privately by a VRF, and nodes follow the longest valid chain. [Consensus & Ouroboros](/docs/foundations/consensus-and-ouroboros) covers the protocol in full, including slot-leader election, chain selection, finality, and the forward-secure KES keys that block producers sign with.
 
 ## Cardano eras
 
@@ -139,7 +131,7 @@ Cardano has evolved through multiple ledger eras, each introducing new capabilit
 | Babbage | Reference inputs, inline datums, reference scripts |
 | Conway | On-chain governance (CIP-1694), DReps, Constitutional Committee |
 
-see also [Historical Cardano Hardforks](https://cardano.org/hardforks/)
+For how the Ouroboros protocol itself evolved across these eras, see [Consensus & Ouroboros](/docs/foundations/consensus-and-ouroboros#how-has-ouroboros-evolved). See also [Historical Cardano Hardforks](https://cardano.org/hardforks/).
 
 Since the Conway Era each era transition is triggered by a hard fork initiation governance action — a process that requires SPO, DRep, and Constitutional Committee votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
 
