@@ -2,11 +2,11 @@
 id: write-a-validator
 title: Write a Validator
 sidebar_label: Write a validator
-description: Author the on-chain code — Aiken validator types (minting, spending, withdrawing), what a validator sees in the transaction, native scripts for multisig, and the blueprint that bridges to off-chain.
+description: "Author the on-chain code: Aiken validator types (minting, spending, withdrawing), what a validator sees in the transaction, native scripts for multisig, and the blueprint that bridges to off-chain."
 image: /img/og/og-developer-portal.png
 ---
 
-You've [picked a language](/docs/build/smart-contracts/choose-a-language) (Aiken, for most people). Now you write the on-chain code: the validator. Remember the mental model — a validator is a **gatekeeper** that receives a transaction and returns `True` or `False`. It never moves funds or mutates state; it only decides whether a transaction is allowed.
+You've [picked a language](/docs/build/smart-contracts/choose-a-language) (Aiken, for most people). Now you write the on-chain code: the validator. Remember the mental model: a validator is a **gatekeeper** that receives a transaction and returns `True` or `False`. It never moves funds or mutates state; it only decides whether a transaction is allowed.
 
 This page covers writing validators in Aiken, the simpler native-script alternative for multisig and time-locks, and the blueprint that connects your validator to off-chain code. The deep treatment of the three arguments a validator receives is in [Datum, redeemer & context](/docs/build/smart-contracts/datum-redeemer-context); here we focus on authoring.
 
@@ -16,11 +16,11 @@ This page covers writing validators in Aiken, the simpler native-script alternat
 
 Building validators means reasoning about transactions. A validator can inspect the whole `Transaction` it's validating (the full type is in the [Aiken stdlib](https://aiken-lang.github.io/stdlib/cardano/transaction.html)). The fields you'll use most:
 
-- **inputs / outputs** — UTXOs being spent, and UTXOs being created. Check that an input spends from a specific address or asset, or that an output sends a specific value to a specific address.
-- **reference_inputs** — inputs read but not spent (e.g. reading an oracle datum without consuming it).
-- **mint** — assets being minted or burned.
-- **extra_signatories** — public key hashes that signed; enforce "must be signed by X".
-- **validity_range** — the slot range the transaction is valid for; the basis of time locks.
+- **inputs / outputs**: UTXOs being spent, and UTXOs being created. Check that an input spends from a specific address or asset, or that an output sends a specific value to a specific address.
+- **reference_inputs**: inputs read but not spent (e.g. reading an oracle datum without consuming it).
+- **mint**: assets being minted or burned.
+- **extra_signatories**: public key hashes that signed; enforce "must be signed by X".
+- **validity_range**: the slot range the transaction is valid for; the basis of time locks.
 
 ## The three validator types
 
@@ -29,9 +29,9 @@ Most validators are one of three types, distinguished by what triggers them:
 ```mermaid
 flowchart TD
     TX["Submitted transaction"]
-    TX -->|"mints or burns under this policy"| MINT["mint — minting validator"]
-    TX -->|"spends a UTXO at the script address"| SPEND["spend — spending validator"]
-    TX -->|"withdraws rewards from the script stake address"| WITHDRAW["withdraw — withdrawal validator"]
+    TX -->|"mints or burns under this policy"| MINT["mint: minting validator"]
+    TX -->|"spends a UTXO at the script address"| SPEND["spend: spending validator"]
+    TX -->|"withdraws rewards from the script stake address"| WITHDRAW["withdraw: withdrawal validator"]
     MINT --> R["returns True / False"]
     SPEND --> R
     WITHDRAW --> R
@@ -41,7 +41,7 @@ flowchart TD
 
 Runs when a transaction mints or burns tokens under the validator's policy. The simplest possible one:
 
-```rs
+```aiken
 use cardano/assets.{PolicyId}
 use cardano/transaction.{Transaction, placeholder}
 
@@ -62,7 +62,7 @@ test test_always_succeed_minting_policy() {
 
 The validator's hash is the **policy ID** of the tokens it controls. Make it useful by adding a parameter (the owner's key) and a redeemer (which action), so minting requires the owner's signature before a deadline, and burning is always allowed:
 
-```rs
+```aiken
 pub type MyRedeemer {
   MintToken
   BurnToken
@@ -92,7 +92,7 @@ Helpers like `key_signed`, `valid_before`, and `check_policy_only_burn` come fro
 
 Runs when a transaction spends a UTXO sitting at the validator's script address. It receives the UTXO's **datum**, a **redeemer**, the output reference, and the transaction. This one only allows a spend when a specific oracle token is present in the reference inputs (the state-thread / beacon-token pattern):
 
-```rs
+```aiken
 pub type Datum {
   oracle_nft: PolicyId,
 }
@@ -117,9 +117,9 @@ validator hello_world {
 
 ### Withdrawal validator
 
-Runs when a transaction withdraws from the script's reward account. Withdrawal validators must be **registered** on-chain first (the `publish` handler validates registration/deregistration). Their main use isn't staking — it's the **withdraw-zero trick**, where a spending validator delegates its logic to a withdrawal validator that runs once for the whole transaction instead of once per input. That optimization is the [Stake Validator](/docs/build/smart-contracts/advanced/design-patterns/stake-validator) pattern.
+Runs when a transaction withdraws from the script's reward account. Withdrawal validators must be **registered** on-chain first (the `publish` handler validates registration/deregistration). Their main use isn't staking. It's the **withdraw-zero trick**, where a spending validator delegates its logic to a withdrawal validator that runs once for the whole transaction instead of once per input. That optimization is the [Stake Validator](/docs/build/smart-contracts/advanced/design-patterns/stake-validator) pattern.
 
-```rs
+```aiken
 validator always_succeed(_key_hash: VerificationKeyHash) {
   withdraw(_redeemer: Data, _credential: Credential, _tx: Transaction) {
     True
@@ -137,7 +137,7 @@ validator always_succeed(_key_hash: VerificationKeyHash) {
 
 ## Native scripts: multisig and time-locks without Plutus
 
-Not every rule needs a Plutus validator. **Native scripts** are Cardano's simpler, non-Turing-complete scripting — perfect for **multi-signature** and **time-locks** — and they cost no script-execution fees. They combine a few primitives: `sig` (a required key), `before` / `after` (slot bounds), and `all` / `any` / `atLeast` (logical combinations).
+Not every rule needs a Plutus validator. **Native scripts** are Cardano's simpler, non-Turing-complete scripting, perfect for **multi-signature** and **time-locks**, and they cost no script-execution fees. They combine a few primitives: `sig` (a required key), `before` / `after` (slot bounds), and `all` / `any` / `atLeast` (logical combinations).
 
 A native script that requires the owner's signature and only allows minting before a slot:
 
@@ -156,7 +156,7 @@ const forgingScript = ForgeScript.fromNativeScript(nativeScript)
 
 **Multisig** is just a native script with multiple `sig` entries under `all` (everyone must sign) or `atLeast` (k-of-n). Each required party signs the *same* transaction with a **partial signature** (`wallet.signTx(tx, true)`); once all required signatures are attached, the transaction is valid. A common shape: a backend wallet partially signs, then the user's browser wallet partially signs, then it's submitted.
 
-With **cardano-cli** the script is the same JSON — `{"type":"all","scripts":[{"type":"sig","keyHash":"..."},{"type":"after","slot":1000}]}` — supporting `sig`, `before`, `after`, `all`, `any`, and `atLeast`. Build its address with `cardano-cli address build --payment-script-file policy.json`, then spend by collecting one witness per signer plus the script witness and assembling them:
+With **cardano-cli** the script is the same JSON, `{"type":"all","scripts":[{"type":"sig","keyHash":"..."},{"type":"after","slot":1000}]}`, supporting `sig`, `before`, `after`, `all`, `any`, and `atLeast`. Build its address with `cardano-cli address build --payment-script-file policy.json`, then spend by collecting one witness per signer plus the script witness and assembling them:
 
 ```bash
 cardano-cli latest transaction witness --tx-body-file tx.body --script-file policy.json --out-file script.wit
@@ -170,11 +170,11 @@ For attaching native scripts off-chain, see [Lock and spend](/docs/build/smart-c
 
 ## From validator to blueprint
 
-When you run `aiken build`, the compiler produces a **[CIP-57](https://cips.cardano.org/cip/CIP-57) blueprint** at `plutus.json` — the bridge between your on-chain code and off-chain applications. Think of it as the OpenAPI spec for your contract. It has three parts:
+When you run `aiken build`, the compiler produces a **[CIP-57](https://cips.cardano.org/cip/CIP-57) blueprint** at `plutus.json`, the bridge between your on-chain code and off-chain applications. Think of it as the OpenAPI spec for your contract. It has three parts:
 
-- **`preamble`** — metadata, including the `plutusVersion` (e.g. `v3`) that off-chain libraries must target.
-- **`validators`** — each validator's `title`, datum/redeemer/parameter schemas, `compiledCode` (hex CBOR), and `hash` (its on-chain address identifier).
-- **`definitions`** — reusable type schemas referenced by validators (via `$ref`, exactly like JSON Schema).
+- **`preamble`**: metadata, including the `plutusVersion` (e.g. `v3`) that off-chain libraries must target.
+- **`validators`**: each validator's `title`, datum/redeemer/parameter schemas, `compiledCode` (hex CBOR), and `hash` (its on-chain address identifier).
+- **`definitions`**: reusable type schemas referenced by validators (via `$ref`, exactly like JSON Schema).
 
 ```json
 {
@@ -188,7 +188,7 @@ When you run `aiken build`, the compiler produces a **[CIP-57](https://cips.card
 }
 ```
 
-From the blueprint, tools generate type-safe off-chain code — the same way you'd generate an API client from an OpenAPI spec. Evolution's blueprint codegen and Mesh both read `plutus.json` to produce a typed client. See the blueprint section of [Choose a language](/docs/build/smart-contracts/choose-a-language#blueprints-the-contracts-interface).
+From the blueprint, tools generate type-safe off-chain code, the same way you'd generate an API client from an OpenAPI spec. Evolution's blueprint codegen and Mesh both read `plutus.json` to produce a typed client. See the blueprint section of [Choose a language](/docs/build/smart-contracts/choose-a-language#blueprints-the-contracts-interface).
 
 ## Web2 analogy
 
@@ -198,16 +198,16 @@ From the blueprint, tools generate type-safe off-chain code — the same way you
 | Datum | Database row | Data attached to a UTXO; "locking" funds is like writing a row |
 | Redeemer | API request body | What the user submits; the validator branches on it (`MintToken` vs `BurnToken`) |
 | Policy ID | API key scope | A hash identifying a minting policy; tokens under different policies are distinct |
-| Native script | Declarative policy engine | `all`/`any`/`atLeast` of conditions, no general computation — an AND/OR rule set |
+| Native script | Declarative policy engine | `all`/`any`/`atLeast` of conditions, no general computation, an AND/OR rule set |
 | Blueprint (`plutus.json`) | OpenAPI spec | The single source of truth describing the contract's interface |
 
 ## Key takeaway
 
-Every validator is a **pure function**: it receives transaction context and returns `True` or `False`. No side effects, no storage writes, no network calls. The runtime only applies state changes if the validator approves — fundamentally different from a web2 backend that both validates and mutates.
+Every validator is a **pure function**: it receives transaction context and returns `True` or `False`. No side effects, no storage writes, no network calls. The runtime only applies state changes if the validator approves, fundamentally different from a web2 backend that both validates and mutates.
 
 ## Next steps
 
-- [Lock and spend](/docs/build/smart-contracts/lock-and-spend) — interact with your validator from off-chain code
-- [Testing](/docs/build/smart-contracts/testing) — test validators with mock transactions before deploying
-- [Security](/docs/build/smart-contracts/security) — the vulnerability classes to guard against
-- [Example contracts](/docs/build/smart-contracts/example-contracts) — full validators to read, including the oracle-NFT minting machine
+- [Lock and spend](/docs/build/smart-contracts/lock-and-spend): interact with your validator from off-chain code
+- [Testing](/docs/build/smart-contracts/testing): test validators with mock transactions before deploying
+- [Security](/docs/build/smart-contracts/security): the vulnerability classes to guard against
+- [Example contracts](/docs/build/smart-contracts/example-contracts): full validators to read, including the oracle-NFT minting machine

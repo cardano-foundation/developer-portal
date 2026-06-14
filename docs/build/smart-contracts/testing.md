@@ -6,7 +6,7 @@ description: Test Aiken validators with mock transactions, the mocktail library,
 image: /img/og/og-developer-portal.png
 ---
 
-Because a Cardano validator is a [pure function](/docs/build/smart-contracts/overview#smart-contracts-are-validators-not-actors) — `f(datum, redeemer, context) -> Bool` — it is unusually easy to test. There is no network, no global state, no deployment required: you hand the function some mock data and assert the result. And because deployed validators are immutable and guard real value, testing is not optional.
+Because a Cardano validator is a [pure function](/docs/build/smart-contracts/overview#smart-contracts-are-validators-not-actors), `f(datum, redeemer, context) -> Bool`, it is unusually easy to test. There is no network, no global state, no deployment required: you hand the function some mock data and assert the result. And because deployed validators are immutable and guard real value, testing is not optional.
 
 This page covers on-chain testing in [Aiken](/docs/build/smart-contracts/choose-a-language), which ships a test runner in the toolchain. The same ideas apply to other languages.
 
@@ -16,25 +16,25 @@ This page covers on-chain testing in [Aiken](/docs/build/smart-contracts/choose-
 
 Define test functions with the `test` keyword, then run `aiken check` from the project root to execute every test it finds. A test passes when it returns `True`:
 
-```rs
+```aiken
 test always_true() {
   True
 }
 ```
 
-`aiken check` is the Aiken equivalent of `npm test` — it discovers and runs all `test` functions in the project.
+`aiken check` is the Aiken equivalent of `npm test`: it discovers and runs all `test` functions in the project.
 
 Three keywords do most of the work:
 
-- **`expect`** enforces an exact pattern match on a value and crashes if the shape doesn't match — like a runtime schema check. For example, if `inputs_with_policy(reference_inputs, oracle_nft)` returns a list that should contain exactly one item, `expect [oracle_ref_input] = ...` safely destructures it.
+- **`expect`** enforces an exact pattern match on a value and crashes if the shape doesn't match, like a runtime schema check. For example, if `inputs_with_policy(reference_inputs, oracle_nft)` returns a list that should contain exactly one item, `expect [oracle_ref_input] = ...` safely destructures it.
 - **The `?` operator** is a tracing operator: when a validator fails, it reports which condition was `False`. Writing `is_app_owner_signed?` means a failure prints `is_app_owner_signed?`, pointing you straight at the broken check.
-- **`test ... fail`** marks a test as *expected to fail*. It passes only if the validator crashes or returns `False` — the equivalent of `expect(...).toThrow()`.
+- **`test ... fail`** marks a test as *expected to fail*. It passes only if the validator crashes or returns `False`, the equivalent of `expect(...).toThrow()`.
 
 ## A contract to test
 
-Take a withdrawal validator with two user actions — `ContinueCounting` (verify the owner signed, the app hasn't expired, and the count incremented by one) and `StopCounting` (verify the owner signed and the state-thread token is burned):
+Take a withdrawal validator with two user actions, `ContinueCounting` (verify the owner signed, the app hasn't expired, and the count incremented by one) and `StopCounting` (verify the owner signed and the state-thread token is burned):
 
-```rs
+```aiken
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Address, Credential}
 use cardano/assets.{PolicyId, without_lovelace}
@@ -105,7 +105,7 @@ The validator reads the oracle config from a reference input, finds the state-th
 
 Building all the required Aiken types by hand is tedious. The `mocktail` module (from the `vodka` library) provides builders: start with `mocktail_tx()` for an empty transaction, chain modifier functions to add the pieces your test needs, and finish with `complete()`.
 
-```rs
+```aiken
 fn mock_continue_counting_tx() -> Transaction {
   mocktail_tx()
     |> ref_tx_in(True, mock_tx_hash(0), 0, mock_oracle_value, mock_oracle_address)
@@ -133,14 +133,14 @@ This is a test fixture factory: you build a fake transaction the same way you'd 
 
 ## The boolean-toggle pattern
 
-The real power comes from the boolean parameter on each builder method, which includes or excludes a piece of the transaction. Define a struct of booleans — one per validation condition — and the success test sets them all `True`, while each failure test flips exactly one to `False`. This isolates a single failure mode per test, the way you'd write one web2 test each for "missing auth header", "expired token", "malformed body".
+The real power comes from the boolean parameter on each builder method, which includes or excludes a piece of the transaction. Define a struct of booleans, one per validation condition, and the success test sets them all `True`, while each failure test flips exactly one to `False`. This isolates a single failure mode per test, the way you'd write one web2 test each for "missing auth header", "expired token", "malformed body".
 
 ```mermaid
 flowchart TD
     TC["ContinueCountingTest struct\n(one bool per condition)"] --> BASE["mocktail_tx()"]
-    BASE -->|"is_ref_input_presented"| REF["ref_tx_in() — oracle reference"]
-    REF -->|"is_thread_input_presented"| TXI["tx_in() — state thread input"]
-    TXI -->|"is_thread_output_presented"| TXO["tx_out() — state thread output"]
+    BASE -->|"is_ref_input_presented"| REF["ref_tx_in(): oracle reference"]
+    REF -->|"is_thread_input_presented"| TXI["tx_in(): state thread input"]
+    TXI -->|"is_thread_output_presented"| TXO["tx_out(): state thread output"]
     TXO -->|"is_count_added"| DAT["datum: count 0 or 1"]
     DAT -->|"is_app_owner_signed"| SIG["required_signer_hash()"]
     SIG -->|"is_tx_not_expired"| EXP["invalid_hereafter()"]
@@ -148,7 +148,7 @@ flowchart TD
     DONE --> VAL["withdraw() -> True / False"]
 ```
 
-```rs
+```aiken
 type ContinueCountingTest {
   is_ref_input_presented: Bool,
   is_thread_input_presented: Bool,
@@ -178,7 +178,7 @@ fn mock_continue_counting_tx(test_case: ContinueCountingTest) -> Transaction {
 
 The success test sets every field `True`. Each failure test flips one:
 
-```rs
+```aiken
 test fail_continue_counting_no_ref_input() fail {
   let test_case = ContinueCountingTest {
     is_ref_input_presented: False,   // the only difference
@@ -207,11 +207,11 @@ The pattern scales cleanly: when you add a validation condition to the contract,
 
 ## Testing your off-chain code
 
-Your validator isn't the only thing that needs tests — the transaction-building code that locks, spends, and mints deserves them too. Evolution ships a **local devnet emulator**: a real Cardano node with Kupo and Ogmios in Docker, millisecond blocks, and pre-funded genesis addresses, so you can run the full build → sign → submit → confirm lifecycle offline with no faucet. Three layers, fastest first:
+Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too. Evolution ships a **local devnet emulator**: a real Cardano node with Kupo and Ogmios in Docker, millisecond blocks, and pre-funded genesis addresses, so you can run the full build → sign → submit → confirm lifecycle offline with no faucet. Three layers, fastest first:
 
 | Layer | Speed | Tests |
 |---|---|---|
-| **Unit** | fast | schema/datum encoding, address parsing — pure functions, no chain |
+| **Unit** | fast | schema/datum encoding, address parsing: pure functions, no chain |
 | **Integration** | slower | the full transaction lifecycle against the emulator |
 | **Emulator (devnet)** | medium | end-to-end workflows with no external testnet |
 
@@ -244,7 +244,7 @@ beforeAll(async () => {
 afterAll(async () => { await Cluster.stop(cluster); await Cluster.remove(cluster) }, 60_000)
 
 it("submits a payment", async () => {
-  // genesis UTXOs aren't Kupo-indexed — pass them explicitly on the first transaction
+  // genesis UTXOs aren't Kupo-indexed, pass them explicitly on the first transaction
   const genesisUtxos = await Genesis.calculateUtxosFromConfig(genesisConfig)
   const tx = await client
     .newTx()
@@ -257,7 +257,7 @@ it("submits a payment", async () => {
 
 The emulator beats a public testnet for tests: millisecond confirmations, fresh isolated state per run, no faucet, works offline. The two gotchas are the generous startup timeout and that genesis UTXOs must be passed via `build({ availableUtxos })` until they're spent (after which outputs are indexed normally).
 
-For a **standalone local network** outside your test suite — a persistent chain you can point a frontend or `cardano-cli` at, with an indexer and a Blockfrost-compatible API — see [Local Development Networks](/docs/get-started/networks/development-networks/overview) (Yaci DevKit and cardano-testnet).
+For a **standalone local network** outside your test suite, a persistent chain you can point a frontend or `cardano-cli` at, with an indexer and a Blockfrost-compatible API, see [Local Development Networks](/docs/get-started/networks/development-networks/overview) (Yaci DevKit and cardano-testnet).
 
 ## Beyond unit tests
 
@@ -266,6 +266,6 @@ For a **standalone local network** outside your test suite — a persistent chai
 
 ## Next steps
 
-- [Security](/docs/build/smart-contracts/advanced/security/overview) — the vulnerability classes your tests should target
-- [Lock and spend](/docs/build/smart-contracts/lock-and-spend) — exercise the validator end to end
-- [Example contracts](/docs/build/smart-contracts/example-contracts) — read tested, production-grade validators
+- [Security](/docs/build/smart-contracts/advanced/security/overview): the vulnerability classes your tests should target
+- [Lock and spend](/docs/build/smart-contracts/lock-and-spend): exercise the validator end to end
+- [Example contracts](/docs/build/smart-contracts/example-contracts): read tested, production-grade validators

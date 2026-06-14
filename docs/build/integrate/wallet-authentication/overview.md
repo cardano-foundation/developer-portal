@@ -43,7 +43,7 @@ Never accept the same nonce twice. After each verification attempt, you must rot
 
 ## Signing and verifying with Evolution SDK
 
-In the browser, the user's CIP-30 wallet produces the signature — `await wallet.signData(address, payload)` after you [connect the wallet](/docs/build/integrate/connect-a-wallet). On the backend, you verify it. Evolution implements the CIP-8 standard with COSE (CBOR Object Signing and Encryption):
+In the browser, the user's CIP-30 wallet produces the signature: `await wallet.signData(address, payload)` after you [connect the wallet](/docs/build/integrate/connect-a-wallet). On the backend, you verify it. Evolution implements the CIP-8 standard with COSE (CBOR Object Signing and Encryption):
 
 ```typescript
 import { COSE, PrivateKey, Address } from "@evolution-sdk/evolution"
@@ -51,7 +51,7 @@ import { COSE, PrivateKey, Address } from "@evolution-sdk/evolution"
 declare const privateKey: PrivateKey.PrivateKey
 declare const myAddress: Address.Address
 
-// Sign a payload (e.g. the nonce) — when you hold the key, such as a backend-held
+// Sign a payload (e.g. the nonce), when you hold the key, such as a backend-held
 // wallet or in tests; in a dApp the user's CIP-30 wallet does this step.
 const payload = COSE.Utils.fromText("login-nonce-abc123")
 const signedMessage = COSE.SignData.signData(Address.toHex(myAddress), payload, privateKey)
@@ -74,7 +74,7 @@ const isValid = COSE.SignData.verifyData(
 )
 ```
 
-Verification confirms the payload matches, the signer address and key hash are as expected, and the Ed25519 signature is valid — so only the key holder could have produced it. `COSE.Utils` converts payloads to/from text and hex (`fromText`/`toText`/`fromHex`/`toHex`), and the SDK also exposes the low-level `COSE.Sign1` / `COSE.Key` / `COSE.Header` structures for advanced use. Mesh and the lower-level [Cardano Serialization Lib](/docs/build/integrate/wallet-authentication/cardano-serialization-lib) cover the same flow.
+Verification confirms the payload matches, the signer address and key hash are as expected, and the Ed25519 signature is valid, so only the key holder could have produced it. `COSE.Utils` converts payloads to/from text and hex (`fromText`/`toText`/`fromHex`/`toHex`), and the SDK also exposes the low-level `COSE.Sign1` / `COSE.Key` / `COSE.Header` structures for advanced use. The [Mesh](/docs/build/integrate/wallet-authentication/mesh) guide covers the same flow with a higher-level API.
 
 ## Use Cases
 
