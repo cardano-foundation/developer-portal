@@ -53,7 +53,7 @@ CIP-68 stores metadata in an inline datum on a **reference NFT**, which means it
 
 CIP-26 is an off-chain registry where projects register human-readable info for a token, name, ticker, **decimals**, and logo, that wallets and explorers use to display it correctly. Because on-chain quantities are always integers, decimals are purely a display convention registered here (for example, an on-chain `1000000` shown as `1.000000`).
 
-See the [Cardano Token Registry](/docs/build/native-tokens/token-registry/cardano-token-registry-overview) for how to prepare and submit an entry, and the [CIP-26](/docs/build/native-tokens/token-registry/cardano-token-registry-cip26) and [CIP-68](/docs/build/native-tokens/token-registry/cardano-token-registry-cip68) details.
+See the [Token Registry](/docs/native-tokens/token-registry/overview) for how to prepare and submit an entry, and how CIP-26 compares to on-chain CIP-68.
 
 ## CIP-27: royalties
 

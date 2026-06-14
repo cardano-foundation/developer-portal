@@ -447,8 +447,12 @@ const redirects = [
     from: ['/docs/build/native-tokens/authenticated-products'],
   },
   {
-    to: '/docs/build/native-tokens/cardano-token-registry',
-    from: '/docs/native-tokens/cardano-token-registry',
+    to: '/docs/native-tokens/token-registry/overview',
+    from: ['/docs/native-tokens/cardano-token-registry', '/docs/build/native-tokens/cardano-token-registry', '/docs/build/native-tokens/token-registry/cardano-token-registry-overview', '/docs/build/native-tokens/token-registry/cardano-token-registry-cip26', '/docs/build/native-tokens/token-registry/cardano-token-registry-cip68'],
+  },
+  {
+    to: '/docs/native-tokens/token-registry/metadata-server',
+    from: ['/docs/build/native-tokens/token-registry/cardano-token-registry-server'],
   },
   {
     to: '/docs/first-steps/transaction-building',
