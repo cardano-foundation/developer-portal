@@ -1,3 +1,5 @@
+/* Sticky so the controls stay visible when applying a filter collapses the
+   page height (the browse -> filtered layout swap clamps scroll toward top). */
 .controlsSticky {
   position: sticky;
   top: var(--ifm-navbar-height);
