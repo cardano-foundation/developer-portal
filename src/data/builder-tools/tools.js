@@ -882,6 +882,16 @@ export const BuilderTools = [
     category: "node",
     properties: ["haskell"],
   },
+  {
+    title: "CardanoKit",
+    icon: "/img/tool-icons/cardano-kit.png",
+    description: "Swift library for building Cardano wallets and signing transactions in iOS and macOS apps, with HD wallet and address support built on the Cardano Serialization Library.",
+    website: "https://github.com/TokeoPay/CardanoKit#readme",
+    docs: null,
+    repository: "https://github.com/TokeoPay/CardanoKit",
+    category: "sdk",
+    properties: ["swift"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file

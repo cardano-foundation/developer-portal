@@ -106,6 +106,7 @@ export const LanguageProperties = {
   purescript: { label: "PureScript", color: "#0F9D58" },
   elm: { label: "Elm", color: "#60B5CC" },
   php: { label: "PHP", color: "#777BB4" },
+  swift: { label: "Swift", color: "#F05138" },
 };
 
 // Properties — facet 2: Interface (how you talk to it; mainly API/data tools).
