@@ -259,8 +259,8 @@ const redirects = [
     from: '/docs/get-started/cardano-testnet',
   },
   {
-    to: '/docs/get-started/infrastructure/overview',
-    from: '/docs/get-started/choose-your-approach',
+    to: '/docs/build/scaling/infrastructure',
+    from: ['/docs/get-started/infrastructure/overview', '/docs/get-started/choose-your-approach'],
   },
   {
     to: '/docs/get-started/infrastructure/api-providers/overview',

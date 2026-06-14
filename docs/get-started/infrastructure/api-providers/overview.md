@@ -77,4 +77,4 @@ WebSocket-based JSON-RPC API providing low-level protocol access. Use Ogmios to:
 - **Get started quickly**: [Set up Blockfrost](/docs/get-started/infrastructure/api-providers/blockfrost/get-started) for immediate API access
 - **Explore alternatives**: [Try Koios](/docs/get-started/infrastructure/api-providers/koios) for community-driven infrastructure
 - **Advanced access**: [Use Ogmios](/docs/get-started/infrastructure/api-providers/ogmios) for protocol-level queries
-- **Compare options**: [View all infrastructure approaches](/docs/get-started/infrastructure/overview)
+- **Compare options**: [View all infrastructure approaches](/docs/build/scaling/infrastructure)

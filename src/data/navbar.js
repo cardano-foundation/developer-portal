@@ -33,7 +33,7 @@ function getNavbarItems(repository) {
               {to: '/docs/get-started/', label: 'Getting Started', description: 'Begin your Cardano development journey', icon: 'arrow-down-to-line-solid'},
               {to: '/docs/value/overview', label: 'Core Concepts', description: 'Understand the fundamentals', icon: 'book-solid'},
               {to: '/docs/first-steps/choose-your-tools', label: 'SDKs', description: 'Pick an SDK and a provider for your language', icon: 'code-solid'},
-              {to: '/docs/get-started/infrastructure/overview', label: 'Infrastructure', description: 'Cardano Node, CLI, APIs and tooling', icon: 'plug-solid'},
+              {to: '/docs/build/scaling/infrastructure', label: 'Infrastructure', description: 'Cardano Node, CLI, APIs and tooling', icon: 'plug-solid'},
             ],
           },
           {

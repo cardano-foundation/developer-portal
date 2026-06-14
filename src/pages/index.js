@@ -385,7 +385,7 @@ function DeveloperSection() {
 
           {/* Infrastructure */}
           <Link
-            to={useBaseUrl("docs/get-started/infrastructure/overview")}
+            to={useBaseUrl("docs/build/scaling/infrastructure")}
             className={styles.devLinkCard}
           >
             <div className={styles.devLinkIcon}>

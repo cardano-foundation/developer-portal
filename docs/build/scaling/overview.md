@@ -2,7 +2,7 @@
 id: overview
 title: Scaling & Production
 sidebar_label: Overview
-description: How Cardano scales, at Layer 1, with Hydra at Layer 2, and with Mithril for light clients, and how to take a dApp from working on testnet to running in production.
+description: How Cardano scales, at Layer 1 and with Hydra at Layer 2, and how to take a dApp from working on testnet to running in production.
 image: /img/og/og-developer-portal.png
 ---
 
@@ -20,15 +20,10 @@ The base chain has bounded capacity per block, so on Layer 1 you scale by **usin
 
 When you need **near-instant, near-free, high-frequency** transactions, gaming, micropayments, real-time interactions, you move them off the base chain into a [Hydra](/docs/build/scaling/hydra) Head: a state channel where a known set of participants transact thousands of times per second, settling back to Layer 1 only to open and close. You pay L1 cost once to open and once to close; everything inside is fast and free.
 
-### Light clients: Mithril
-
-Not all scaling is about transaction throughput. Some is about **not needing a full node**. [Mithril](/docs/build/scaling/mithril) lets applications verify chain data with cryptographic proofs backed by the collective stake of pool operators, enabling fast node bootstrap (minutes instead of days) and trustless light clients that run in the browser.
-
 | Need | Reach for |
 |---|---|
 | More throughput against shared state on L1 | [Order batching / pool sharding](/docs/build/integrate/defi#the-eutxo-design-challenge) |
 | Instant, free, high-frequency transactions among known parties | [Hydra (Layer 2)](/docs/build/scaling/hydra) |
-| Fast sync / trustless light client without a full node | [Mithril](/docs/build/scaling/mithril) |
 | Higher base-layer throughput (future) | Ouroboros Leios ([roadmap](/docs/foundations/consensus-and-ouroboros)) |
 
 ## Taking a dApp to production
