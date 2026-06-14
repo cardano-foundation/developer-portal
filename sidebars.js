@@ -88,6 +88,7 @@ module.exports = {
         "build/smart-contracts/write-a-validator",
         "build/smart-contracts/lock-and-spend",
         "build/smart-contracts/testing",
+        "build/smart-contracts/formal-verification",
         {
           type: "category",
           label: "Languages",
