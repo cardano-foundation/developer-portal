@@ -19,13 +19,13 @@ Each module builds on the last, taking you from understanding Cardano to shippin
 
 | # | Module | What you'll learn |
 |---|---|---|
-| 1 | **[Cardano Fundamentals](/docs/foundations/overview)** | What a blockchain is, cryptography, Ouroboros consensus, the platform's architecture, and the eUTXO ledger (addresses, wallets and keys, transactions, fees) |
+| 1 | **[Learn the Fundamentals](/docs/foundations/overview)** | What a blockchain is, cryptography, Ouroboros consensus, the platform's architecture, and the eUTXO ledger (addresses, wallets and keys, transactions, fees) |
 | 2 | **[Start Building](/docs/first-steps/overview)** | Pick your tools, get test ADA, build/sign/submit transactions, attach metadata, and query the chain |
-| 3 | **[Native Tokens & NFTs](/docs/native-tokens/overview)** | Mint fungible tokens and NFTs (native, no smart contract required) |
-| 4 | **[Smart Contracts](/docs/build/smart-contracts/overview)** | Validators, datum/redeemer/context, writing and testing on-chain code, design patterns, and security |
-| 5 | **[Build a dApp](/docs/build/integrate/connect-a-wallet)** | Build DeFi on the eUTXO model, connect a browser wallet (CIP-30), authenticate users, and bring real-world data on-chain with oracles |
-| 6 | **[Staking & Governance](/docs/build/staking-governance/overview)** | Delegate stake, claim rewards, and integrate CIP-1694 governance in your app |
-| 7 | **[Going to Production](/docs/build/scaling/going-to-production)** | A pre-mainnet checklist, scaling (Hydra, Mithril), infrastructure and providers, and secure key handling |
+| 3 | **[Mint Tokens & NFTs](/docs/native-tokens/overview)** | Mint fungible tokens and NFTs (native, no smart contract required) |
+| 4 | **[Write Smart Contracts](/docs/build/smart-contracts/overview)** | Validators, datum/redeemer/context, writing and testing on-chain code, design patterns, and security |
+| 5 | **[Build a dApp](/docs/build/integrate/overview)** | Build DeFi on the eUTXO model, connect a browser wallet (CIP-30), authenticate users, and bring real-world data on-chain with oracles |
+| 6 | **[Add Staking & Governance](/docs/build/staking-governance/overview)** | Delegate stake, claim rewards, and integrate CIP-1694 governance in your app |
+| 7 | **[Ship to Production](/docs/build/scaling/overview)** | A pre-mainnet checklist, scaling (Hydra, Mithril), infrastructure and providers, and secure key handling |
 
 When you're ready to build something specific, the **Integrations** guides cover [Payments](/docs/build/integrate/payments/listening-for-payments/overview), [AI Agents](/docs/build/integrate/ai-agents/overview), and [Internet of Things](/docs/build/iot-on-cardano/), and there's a dedicated [Exchange Integrations](/docs/build/integrate/exchange-integrations) track for custodial platforms.
 

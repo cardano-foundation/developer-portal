@@ -7,7 +7,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Module 1: Cardano Fundamentals",
+      label: "Module 1: Learn the Fundamentals",
       link: {
         type: "doc",
         id: "foundations/overview",
@@ -52,7 +52,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Module 3: Native Tokens & NFTs",
+      label: "Module 3: Mint Tokens & NFTs",
       link: {
         type: "doc",
         id: "native-tokens/overview",
@@ -77,7 +77,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Module 4: Smart Contracts",
+      label: "Module 4: Write Smart Contracts",
       link: {
         type: "doc",
         id: "build/smart-contracts/overview",
@@ -211,9 +211,10 @@ module.exports = {
       label: "Module 5: Build a dApp",
       link: {
         type: "doc",
-        id: "build/integrate/connect-a-wallet",
+        id: "build/integrate/overview",
       },
       items: [
+        "build/integrate/connect-a-wallet",
         "build/integrate/defi",
         {
           type: "category",
@@ -253,7 +254,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Module 6: Staking & Governance",
+      label: "Module 6: Add Staking & Governance",
       link: {
         type: "doc",
         id: "build/staking-governance/overview",
@@ -265,21 +266,14 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Module 7: Going to Production",
+      label: "Module 7: Ship to Production",
       link: {
         type: "doc",
-        id: "build/scaling/going-to-production",
+        id: "build/scaling/overview",
       },
       items: [
-        {
-          type: "category",
-          label: "Scaling",
-          link: {
-            type: "doc",
-            id: "build/scaling/overview",
-          },
-          items: ["build/scaling/hydra"],
-        },
+        "build/scaling/going-to-production",
+        "build/scaling/hydra",
         "build/scaling/infrastructure",
         {
           type: "category",
@@ -461,12 +455,12 @@ module.exports = {
             "build/iot-on-cardano/troubleshooting",
           ],
         },
+        {
+          type: "doc",
+          id: "build/integrate/exchange-integrations",
+          label: "Exchange Integrations",
+        },
       ],
-    },
-    {
-      type: "doc",
-      id: "build/integrate/exchange-integrations",
-      label: "Exchange Integrations",
     },
     {
       type: "category",
