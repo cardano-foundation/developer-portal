@@ -69,6 +69,11 @@ function Hero() {
               From the first transaction to the production dApp and everything in
               between. Docs, tools, and SDKs for everything Cardano.
             </p>
+            <div className={styles.heroActions}>
+              <Link to={useBaseUrl("docs/get-started/")} className={styles.heroCta}>
+                Start Here →
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -126,9 +131,9 @@ function BentoSection() {
               className={styles.bentoThirdImage}
             />
             <div className={styles.bentoThirdContent}>
-              <h3>Get Started</h3>
-              <p>New to Cardano? Start here with guides, tutorials, and everything you need.</p>
-              <span className={styles.bentoLink}>Begin journey →</span>
+              <h3>Start Here</h3>
+              <p>The 7-module path from zero to shipping, fundamentals through production.</p>
+              <span className={styles.bentoLink}>Start the curriculum →</span>
             </div>
           </Link>
 
