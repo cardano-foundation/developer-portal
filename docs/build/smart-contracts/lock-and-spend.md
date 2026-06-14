@@ -106,7 +106,7 @@ Derive the script address from the compiled validator with `cardano-cli address 
 
 ## Spend funds
 
-Spending means consuming a UTXO locked at the script address by providing a **redeemer**: the data your validator checks to authorize the spend. Because a Plutus script runs, the transaction also needs **collateral**: ADA-only UTXOs the node consumes only if the script fails phase-2 validation (see [the overview](/docs/build/smart-contracts/overview#collateral-and-script-execution)). The SDKs select collateral for you.
+Spending means consuming a UTXO locked at the script address by providing a **redeemer**: the data your validator checks to authorize the spend. Because a Plutus script runs, the transaction also needs **collateral** (see [Collateral](#collateral) below). The SDKs select it for you.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -182,6 +182,12 @@ Then `sign` and `submit` as usual. Pass the wrong redeemer and `build` fails up 
 
 </TabItem>
 </Tabs>
+
+### Collateral
+
+A transaction that runs a Plutus script is validated in two phases: phase 1 checks structure (inputs exist, signatures, balancing), and phase 2 runs the scripts. **Collateral** is a set of ADA-only UTXOs the node consumes only if a script fails phase 2. A transaction that succeeds never loses its collateral, so honest users are safe, while flooding the network with failing scripts becomes expensive.
+
+The SDKs pick collateral automatically from your wallet's ADA-only UTXOs; with cardano-cli you mark it explicitly with `--tx-in-collateral`. Keep a few pure-ADA UTXOs around for this. With [CIP-40](https://cips.cardano.org/cip/CIP-40) any excess is returned to a collateral-change address.
 
 ## Reference scripts
 
