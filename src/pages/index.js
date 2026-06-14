@@ -151,7 +151,7 @@ function BentoSection() {
 
           {/* Transaction Metadata */}
           <Link
-            to={useBaseUrl("docs/build/transaction-metadata/overview")}
+            to={useBaseUrl("docs/first-steps/transaction-building#transaction-metadata")}
             className={clsx(styles.bentoCard, styles.bentoThird)}
           >
             <img

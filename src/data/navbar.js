@@ -43,7 +43,7 @@ function getNavbarItems(repository) {
               {to: '/docs/build/smart-contracts/overview', label: 'Smart Contracts', description: 'Write and deploy smart contracts', icon: 'scroll-solid'},
               {to: '/docs/native-tokens/overview', label: 'Native Tokens', description: 'Create and manage tokens', icon: 'coins-solid'},
               {to: '/docs/build/integrate/overview', label: 'Integration', description: 'Payments, wallets, and oracles', icon: 'link-solid'},
-              {to: '/docs/build/transaction-metadata/overview', label: 'Transaction Metadata', description: 'Attach data to transactions', icon: 'shapes-solid'},
+              {to: '/docs/first-steps/transaction-building#transaction-metadata', label: 'Transaction Metadata', description: 'Attach data to transactions', icon: 'shapes-solid'},
             ],
           },
           {

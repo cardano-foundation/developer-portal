@@ -2,14 +2,14 @@
 id: transaction-building
 title: Transaction Building
 sidebar_label: Transaction building
-description: Go beyond a simple payment — multiple outputs, coin selection, batching and airdrops, transaction chaining, resilient submission, and redeemer indexing, with Evolution and Mesh.
+description: "Go beyond a simple payment: multiple outputs, coin selection, batching and airdrops, transaction chaining, resilient submission, and redeemer indexing, with Evolution and Mesh."
 image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Your first transaction](/docs/first-steps/your-first-transaction) showed the core loop: **build → sign → submit**. This page goes deeper — paying many recipients at once, understanding how the builder picks inputs and fees, distributing tokens to hundreds of addresses, chaining dependent transactions, and surviving the indexer lag that trips up most first real deployments.
+[Your first transaction](/docs/first-steps/your-first-transaction) showed the core loop: **build → sign → submit**. This page goes deeper: paying many recipients at once, understanding how the builder picks inputs and fees, distributing tokens to hundreds of addresses, chaining dependent transactions, and surviving the indexer lag that trips up most first real deployments.
 
 The conceptual model (UTXOs, inputs, outputs, fees, validity) is in [Transactions](/docs/value/transactions); this page is the build-side how-to.
 
@@ -17,27 +17,27 @@ The conceptual model (UTXOs, inputs, outputs, fees, validity) is in [Transaction
 
 When you call `.build()`, a high-level SDK does several things so you don't have to. Understanding the phases helps when something doesn't balance:
 
-1. **Coin selection** — picks UTXOs from your wallet to cover the outputs + fee (see below).
-2. **Collateral** — for script transactions only, sets aside pure-ADA UTXOs to cover a failed script.
-3. **Change** — returns the leftover (inputs − outputs − fee) to your change address, respecting the min-ADA per UTXO.
-4. **Fee calculation** — sizes the fee from the final transaction, iterating because change and fee affect each other.
-5. **Script evaluation** — for script transactions, runs the validators to compute execution-unit costs, which feed back into the fee.
+1. **Coin selection**: picks UTXOs from your wallet to cover the outputs + fee (see below).
+2. **Collateral**: for script transactions only, sets aside pure-ADA UTXOs to cover a failed script.
+3. **Change**: returns the leftover (inputs − outputs − fee) to your change address, respecting the min-ADA per UTXO.
+4. **Fee calculation**: sizes the fee from the final transaction, iterating because change and fee affect each other.
+5. **Script evaluation**: for script transactions, runs the validators to compute execution-unit costs, which feed back into the fee.
 
-The result is an unsigned transaction. `.sign()` adds witnesses; `.submit()` broadcasts it. A read-only wallet can `.build()` but not `.sign()` — that's the [frontend signs, backend builds](/docs/build/integrate/connect-a-wallet#frontend-signs-backend-builds-and-submits) split.
+The result is an unsigned transaction. `.sign()` adds witnesses; `.submit()` broadcasts it. A read-only wallet can `.build()` but not `.sign()`. That's the [frontend signs, backend builds](/docs/build/integrate/connect-a-wallet#frontend-signs-backend-builds-and-submits) split.
 
 ## Coin selection
 
 Coin selection decides **which** UTXOs to spend. Evolution uses **largest-first**: sort the wallet's UTXOs by ADA descending, then take from the top until the outputs and fee are covered. Fewer, larger inputs mean a smaller transaction and a lower fee than many small ones.
 
 - It tracks every required asset (lovelace and each native token) and stops as soon as all are covered.
-- It's deterministic — the same wallet state always selects the same inputs.
+- It's deterministic. The same wallet state always selects the same inputs.
 - If you pass explicit inputs (`collectFrom`), selection only kicks in to cover any shortfall.
 
 For privacy or fee-optimal strategies you can supply a custom selection function, but largest-first is the right default for most apps.
 
 ## Multiple outputs
 
-Pay several recipients in **one** transaction — one fee instead of many. Chain output calls on the builder:
+Pay several recipients in **one** transaction, one fee instead of many. Chain output calls on the builder:
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -56,7 +56,7 @@ const signed = await tx.sign()
 await signed.submit()
 ```
 
-To drain a wallet to a single address, use `.sendAll({ to })` — it collects every UTXO into one output minus fees.
+To drain a wallet to a single address, use `.sendAll({ to })`. It collects every UTXO into one output minus fees.
 
 </TabItem>
 <TabItem value="mesh" label="Mesh">
@@ -79,7 +79,82 @@ await wallet.submitTx(signedTx)
 </TabItem>
 </Tabs>
 
-With cardano-cli, pass multiple `--tx-out` flags to one `transaction build` — see [Building with cardano-cli](#building-with-cardano-cli) below.
+With cardano-cli, pass multiple `--tx-out` flags to one `transaction build`. See [Building with cardano-cli](#building-with-cardano-cli) below.
+
+## Transaction metadata
+
+Any transaction can carry **metadata**: structured data stored permanently on-chain under a numeric **label**. It is used for transaction messages, NFT properties, certifications, timestamps, and supply-chain records. Metadata is stored as compact binary (CBOR), and the schema is deliberately simple: top-level keys are integers (0 to 2^64 − 1), and values are integers, UTF-8 strings (max 64 bytes), bytestrings, lists, or maps. Floats, booleans, and nulls must be encoded as one of those.
+
+Common standardized labels:
+
+| Label | CIP | Purpose |
+|---|---|---|
+| `674` | CIP-20 | Transaction messages / comments |
+| `721` | CIP-25 | NFT metadata |
+| `777` | CIP-27 | Royalties |
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+Chain `attachMetadata` onto the transaction (the label is a `bigint`):
+
+```typescript
+import { Address, Assets, TransactionMetadatum } from "@evolution-sdk/evolution"
+
+declare const message: TransactionMetadatum.TransactionMetadatum
+
+const tx = await client
+  .newTx()
+  .payToAddress({ address: Address.fromBech32("addr_test1..."), assets: Assets.fromLovelace(2_000_000n) })
+  .attachMetadata({ label: 674n, metadata: message })     // CIP-20 message
+  .build()
+```
+
+Chain multiple `attachMetadata` calls for different labels (e.g. a `674n` message plus `721n` NFT metadata).
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+Add metadata with `metadataValue(label, metadata)` on the builder. This example attaches a CIP-20 (`674`) message:
+
+```typescript
+import { MeshTxBuilder } from "@meshsdk/core"
+
+const txBuilder = new MeshTxBuilder({ fetcher: provider })
+const unsignedTx = await txBuilder
+  .changeAddress(await wallet.getChangeAddress())
+  .metadataValue(674, { msg: ["Invoice-No: 1234567890"] })   // CIP-20 message
+  .selectUtxosFrom(await wallet.getUtxos())
+  .complete()
+```
+
+Use any label with your own structure for custom application data (e.g. `metadataValue(1337, { name: "hello world", completed: 0 })`).
+
+</TabItem>
+<TabItem value="cardano-cli" label="cardano-cli">
+
+Put the metadata in a JSON file:
+
+```json
+{
+  "674": { "msg": ["Invoice-No: 1234567890"] }
+}
+```
+
+Reference it with `--metadata-json-file` when you build the transaction body (works with both `transaction build` and `build-raw`):
+
+```bash
+cardano-cli latest transaction build \
+  --tx-in <TxHash>#<TxIx> \
+  --change-address $(< payment.addr) \
+  --metadata-json-file metadata.json \
+  --out-file tx.raw
+```
+
+</TabItem>
+</Tabs>
+
+Metadata is public: any provider can read it back. With Blockfrost, fetch every transaction carrying a label via `GET /metadata/txs/labels/{label}`, and a block explorer shows a transaction's metadata in its UI. Minting an NFT with CIP-25 (`721`) metadata is shown end to end in [Mint an NFT](/docs/native-tokens/mint-nft).
 
 ## Batching and airdrops
 
@@ -113,11 +188,11 @@ for (let i = 0; i < batches.length; i++) {
 }
 ```
 
-For **native-token** airdrops, give each output enough ADA for the min-UTXO (tokens enlarge the UTXO — 2+ ADA per output is a safe floor; the builder computes the exact minimum). Waiting for each batch is simple but slow; the next two sections remove the wait.
+For **native-token** airdrops, give each output enough ADA for the min-UTXO (tokens enlarge the UTXO. 2+ ADA per output is a safe floor; the builder computes the exact minimum). Waiting for each batch is simple but slow; the next two sections remove the wait.
 
 ## Chaining transactions
 
-Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet — a 10–30 s wait per step. **Chaining** removes it: after `.build()`, `chainResult()` returns the UTXOs you still hold **plus** this transaction's new outputs, already tagged with its pre-computed hash. Feed that into the next `.build()`:
+Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10–30 s wait per step. **Chaining** removes it: after `.build()`, `chainResult()` returns the UTXOs you still hold **plus** this transaction's new outputs, already tagged with its pre-computed hash. Feed that into the next `.build()`:
 
 ```typescript
 import { Address, Assets } from "@evolution-sdk/evolution"
@@ -136,27 +211,27 @@ const tx2 = await client
   .payToAddress({ address: bob, assets: Assets.fromLovelace(2_000_000n) })
   .build({ availableUtxos: tx1.chainResult().available })
 
-// Submit in order — the node rejects tx2 if tx1 hasn't arrived yet
+// Submit in order. The node rejects tx2 if tx1 hasn't arrived yet
 await (await tx1.sign()).submit()
 await (await tx2.sign()).submit()
 ```
 
 :::warning Submit in order
-Each chained transaction spends an output of the previous one. If tx2 reaches the node before tx1, the node sees inputs that don't exist and rejects it. A sequential loop guarantees ordering. The `available` outputs are **not on-chain yet** — don't pass them to a provider query.
+Each chained transaction spends an output of the previous one. If tx2 reaches the node before tx1, the node sees inputs that don't exist and rejects it. A sequential loop guarantees ordering. The `available` outputs are **not on-chain yet**. Don't pass them to a provider query.
 :::
 
 You can also merge reusable builder fragments with `.compose(otherBuilder)` (e.g. a payment fragment + a validity fragment) into one transaction.
 
 ## Resilient submission (retry-safe)
 
-The single most common production bug: you submit a transaction, then immediately build the next one — but your provider's UTXO set hasn't caught up, so it still shows the **already-spent** inputs as available. The node rejects the new transaction with `BadInputsUTxO`. This isn't a bug; it's block propagation (10–30 s, longer under load).
+The single most common production bug: you submit a transaction, then immediately build the next one, but your provider's UTXO set hasn't caught up, so it still shows the **already-spent** inputs as available. The node rejects the new transaction with `BadInputsUTxO`. This isn't a bug; it's block propagation (10–30 s, longer under load).
 
 The fix: **read all chain state inside the retryable action**, not before it. Each retry re-queries UTXOs/datums/script state fresh, so it works from the latest view:
 
 ```typescript
 import { Assets } from "@evolution-sdk/evolution"
 
-// The action fetches everything it needs at call time — safe to retry
+// The action fetches everything it needs at call time, safe to retry
 async function sendPayment() {
   const tx = await client
     .newTx()
@@ -179,11 +254,11 @@ async function withRetry<T>(action: () => Promise<T>, retries = 3, delayMs = 300
 const txHash = await withRetry(sendPayment)
 ```
 
-Querying chain state **outside** the action and passing it in defeats the retry — the same stale snapshot is reused every time. When collecting from a script address, fetch the script UTXOs inside the action too. With Effect, wrap the whole `Effect.gen` pipeline and apply `Effect.retry(Schedule.recurs(3)...)`, optionally narrowing to `err.message.includes("BadInputsUTxO")`. Retrying won't fix genuinely insufficient funds — check balances first.
+Querying chain state **outside** the action and passing it in defeats the retry. The same stale snapshot is reused every time. When collecting from a script address, fetch the script UTXOs inside the action too. With Effect, wrap the whole `Effect.gen` pipeline and apply `Effect.retry(Schedule.recurs(3)...)`, optionally narrowing to `err.message.includes("BadInputsUTxO")`. Retrying won't fix genuinely insufficient funds. Check balances first.
 
 ## Redeemer indexing
 
-Plutus validators can receive **input indices** in their redeemer for O(1) lookup instead of scanning every input on-chain (execution units are expensive). The catch: Cardano sorts inputs canonically by `(txHash, outputIndex)`, and coin selection adds wallet UTXOs *after* you specify script inputs — shifting every index. So the indices aren't known until the build is complete.
+Plutus validators can receive **input indices** in their redeemer for O(1) lookup instead of scanning every input on-chain (execution units are expensive). The catch: Cardano sorts inputs canonically by `(txHash, outputIndex)`, and coin selection adds wallet UTXOs *after* you specify script inputs, shifting every index. So the indices aren't known until the build is complete.
 
 Evolution solves this by **deferring redeemer construction**: you provide a redeemer *function*, and the builder calls it after coin selection has finalized and sorted the inputs. Three modes:
 
@@ -191,7 +266,7 @@ Evolution solves this by **deferring redeemer construction**: you provide a rede
 |---|---|---|
 | **Batch** | all indexed inputs → one redeemer | a stake-validator coordinator that validates many contract inputs at once |
 | **Self** | called once per script UTXO, with its own index | a spend validator that looks up its own input |
-| **Static** | no indices — data used directly | a redeemer that doesn't depend on order |
+| **Static** | no indices, data used directly | a redeemer that doesn't depend on order |
 
 This is what powers the [withdraw-zero coordinator pattern](/docs/build/staking-governance/staking#script-controlled-stake-and-the-coordinator-pattern): the [Stake Validator design pattern](/docs/build/smart-contracts/advanced/design-patterns/stake-validator) runs business logic once for the whole transaction. See [Lock and spend](/docs/build/smart-contracts/lock-and-spend) for spending from scripts and [Write a validator](/docs/build/smart-contracts/write-a-validator) for the on-chain side.
 
@@ -199,9 +274,9 @@ This is what powers the [withdraw-zero coordinator pattern](/docs/build/staking-
 
 The SDKs above wrap what cardano-cli makes explicit. The CLI offers three build commands:
 
-- **`transaction build`** — automatic fee and change, but needs a running node (it reads protocol parameters live). The everyday choice.
-- **`transaction build-raw`** — fully offline; *you* calculate the fee and balance the transaction by hand. Used for air-gapped signing and reproducible builds.
-- **`transaction build-estimate`** — estimates size and fee offline without balancing for you.
+- **`transaction build`**: automatic fee and change, but needs a running node (it reads protocol parameters live). The everyday choice.
+- **`transaction build-raw`**: fully offline; *you* calculate the fee and balance the transaction by hand. Used for air-gapped signing and reproducible builds.
+- **`transaction build-estimate`**: estimates size and fee offline without balancing for you.
 
 ### Automatic build
 
@@ -218,7 +293,7 @@ cardano-cli latest transaction build \
 
 ### Manual build (`build-raw`)
 
-Offline, in four steps — query parameters, draft with a zero fee, compute the fee, then rebuild with the real fee and change:
+Offline, in four steps, query parameters, draft with a zero fee, compute the fee, then rebuild with the real fee and change:
 
 ```bash
 # 1. Protocol parameters (needs a node, once)
@@ -244,11 +319,11 @@ cardano-cli latest transaction build-raw \
   --fee 173993 --protocol-params-file pparams.json --out-file tx.raw
 ```
 
-`--witness-count` is how many signatures the transaction will carry — it affects the fee. Inspect any draft with `cardano-cli debug transaction view --tx-body-file tx.draft`.
+`--witness-count` is how many signatures the transaction will carry. It affects the fee. Inspect any draft with `cardano-cli debug transaction view --tx-body-file tx.draft`.
 
 ### Multi-witness (inputs from several keys)
 
-To spend UTXOs owned by *different* keys in one transaction — combining two wallets, or a multisig — list each `--tx-in`, set `--witness-count` to the number of signers, and pass every `--signing-key-file` at sign time:
+To spend UTXOs owned by *different* keys in one transaction (combining two wallets, or a multisig) list each `--tx-in`, set `--witness-count` to the number of signers, and pass every `--signing-key-file` at sign time:
 
 ```bash
 cardano-cli latest transaction build-raw \
@@ -263,10 +338,10 @@ cardano-cli latest transaction sign \
   --out-file tx.signed
 ```
 
-Then `submit` as usual. Parse CLI output with `jq` for scripted workflows — e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
+Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
 
 ## Next steps
 
-- [Lock and spend](/docs/build/smart-contracts/lock-and-spend) — build transactions that interact with validators
-- [Mint native tokens and NFTs](/docs/native-tokens/overview) — outputs that carry new assets
-- [Going to production](/docs/build/scaling/going-to-production) — the reliability checklist before mainnet
+- [Lock and spend](/docs/build/smart-contracts/lock-and-spend), build transactions that interact with validators
+- [Mint native tokens and NFTs](/docs/native-tokens/overview), outputs that carry new assets
+- [Going to production](/docs/build/scaling/going-to-production), the reliability checklist before mainnet
