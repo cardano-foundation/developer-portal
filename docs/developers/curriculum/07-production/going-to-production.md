@@ -42,7 +42,7 @@ Decide how your dApp will read and submit to the chain: a managed API (fastest t
 Production also means users who may not have a wallet or any ADA. Lower the barrier:
 
 - **Wallet-as-a-Service**: let users create a non-custodial wallet with social login ([connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet#no-browser-extension-wallet-as-a-service)).
-- **Transaction sponsorship**: pay fees on behalf of users so they can transact before holding ADA ([sponsorship](/docs/developers/curriculum/dapps/wallet-authentication/utxos/sponsorship)).
+- **Transaction sponsorship**: pay fees on behalf of users so they can transact before holding ADA ([sponsorship](https://docs.utxos.dev/sponsor)).
 
 ## Checklist
 

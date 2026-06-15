@@ -1,21 +1,24 @@
 ---
 id: overview
 title: Authenticating users with their Cardano wallet
-sidebar_label: Overview
-description: Learn how to authenticate users on the web with their Cardano wallet through cryptographic message signing.
+sidebar_label: Wallet Authentication
+description: Authenticate users on the web with their Cardano wallet through message signing, with Mesh or Evolution, a hosted service, or zero-knowledge login.
 image: /img/og/og-developer-portal.png
 ---
 
-Wallet-based authentication lets users prove they own a Cardano wallet by cryptographically signing a message. This approach provides passwordless authentication using blockchain identity, which is more secure than traditional password-based systems.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## How It Works
+Wallet-based authentication lets users prove they own a Cardano wallet by cryptographically signing a message. This is passwordless authentication backed by blockchain identity, more secure than password-based systems and with nothing for you to store but a public address.
+
+## How it works
 
 The authentication process uses message signing as described in [CIP-8](https://cips.cardano.org/cip/CIP-0008) with [CIP-30](https://cips.cardano.org/cip/CIP-0030)-compatible wallets:
 
-1. **User connects wallet** - The application requests access to the user's wallet
-2. **Backend generates nonce** - A unique random string is created for this authentication attempt
-3. **User signs nonce** - The wallet prompts the user to sign the nonce with their private key
-4. **Backend verifies signature** - The signature is cryptographically verified to prove wallet ownership
+1. **User connects wallet** - the application requests access to the user's wallet
+2. **Backend generates nonce** - a unique random string is created for this authentication attempt
+3. **User signs nonce** - the wallet prompts the user to sign the nonce with their private key
+4. **Backend verifies signature** - the signature is cryptographically verified to prove wallet ownership
 
 ```mermaid
 graph LR
@@ -33,17 +36,22 @@ graph LR
     style G fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-The backend generates a unique random string (called a **nonce**, or "number used once") for each authentication attempt. This nonce is critical for security because it prevents replay attacks where someone tries to reuse an old signature. The user's wallet signs this nonce with their private key, and the backend verifies the signature to prove wallet ownership. Because only the private key holder can create a valid signature, this proves the user controls that wallet. Any tampering with the message invalidates the signature completely.
+The **nonce** ("number used once") is a unique random string the backend generates for each attempt. It prevents replay attacks: because the user signs that specific nonce with their private key, an old signature cannot be reused. Only the private key holder can produce a valid signature, and any tampering with the message invalidates it.
 
-You'll typically use the staking address (also called reward address) as the user's identifier in your application. Unlike payment addresses which can change frequently, the staking address remains constant for a wallet. This means you can reliably track users across sessions even if they generate new payment addresses. The staking address can be derived from any payment address in the wallet, making it easy to obtain.
+Use the **staking address** (reward address) as the user's identifier. Unlike payment addresses, which change frequently, the staking address stays constant for a wallet, so you can track users across sessions reliably. It can be derived from any payment address in the wallet.
 
 :::warning
-Never accept the same nonce twice. After each verification attempt, you must rotate the nonce to maintain security.
+Never accept the same nonce twice. After each verification attempt, rotate the nonce to maintain security.
 :::
 
-## Signing and verifying with Evolution SDK
+## Implement it yourself
 
-In the browser, the user's CIP-30 wallet produces the signature: `await wallet.signData(address, payload)` after you [connect the wallet](/docs/developers/curriculum/dapps/connect-a-wallet). On the backend, you verify it. Evolution implements the CIP-8 standard with COSE (CBOR Object Signing and Encryption):
+In the browser, the user's CIP-30 wallet signs the backend-issued nonce with `signData` after you [connect the wallet](/docs/developers/curriculum/dapps/connect-a-wallet); your backend then verifies it. Both SDKs implement CIP-8 message signing, so pick whichever your stack already uses.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution">
+
+Evolution implements CIP-8 with COSE (CBOR Object Signing and Encryption):
 
 ```typescript
 import { COSE, PrivateKey, Address } from "@evolution-sdk/evolution"
@@ -51,7 +59,7 @@ import { COSE, PrivateKey, Address } from "@evolution-sdk/evolution"
 declare const privateKey: PrivateKey.PrivateKey
 declare const myAddress: Address.Address
 
-// Sign a payload (e.g. the nonce), when you hold the key, such as a backend-held
+// Sign a payload (e.g. the nonce) when you hold the key, such as a backend-held
 // wallet or in tests; in a dApp the user's CIP-30 wallet does this step.
 const payload = COSE.Utils.fromText("login-nonce-abc123")
 const signedMessage = COSE.SignData.signData(Address.toHex(myAddress), payload, privateKey)
@@ -74,11 +82,62 @@ const isValid = COSE.SignData.verifyData(
 )
 ```
 
-Verification confirms the payload matches, the signer address and key hash are as expected, and the Ed25519 signature is valid, so only the key holder could have produced it. `COSE.Utils` converts payloads to/from text and hex (`fromText`/`toText`/`fromHex`/`toHex`), and the SDK also exposes the low-level `COSE.Sign1` / `COSE.Key` / `COSE.Header` structures for advanced use. The [Mesh](/docs/developers/curriculum/dapps/wallet-authentication/mesh) guide covers the same flow with a higher-level API.
+Verification confirms the payload matches, the signer address and key hash are as expected, and the Ed25519 signature is valid. `COSE.Utils` converts payloads to and from text and hex (`fromText`/`toText`/`fromHex`/`toHex`), and the SDK exposes the low-level `COSE.Sign1` / `COSE.Key` / `COSE.Header` structures for advanced use.
 
-## Use Cases
+</TabItem>
+<TabItem value="mesh" label="Mesh">
 
-There are many scenarios where wallet-based authentication is useful. You can use it for passwordless login where wallet ownership serves as the user's identity. It's also commonly used for whitelist verification, where you need to confirm users own specific wallet or stake addresses before granting access.
+Mesh wraps the same flow in high-level helpers. Install it:
 
-Token-gated content is another popular use case. Restrict access to holders of specific native tokens, such as providing exclusive content to NFT holders. You might also use it to authenticate wallet owners when they claim token rewards, or to verify user approval for off-chain actions like in-game trading.
+```bash
+npm install @meshsdk/core @meshsdk/react
+```
 
+On the client, get the staking address, request a nonce, sign it, and send the signature back:
+
+```tsx
+import { useWallet } from "@meshsdk/react";
+
+const { wallet } = useWallet();
+const userAddress = (await wallet.getUsedAddresses())[0];
+const nonce = await backendGetNonce(userAddress);        // your REST call
+const signature = await wallet.signData(nonce, userAddress);
+await backendVerifySignature(userAddress, signature);    // your REST call
+```
+
+On the backend, issue a nonce with `generateNonce`, then verify with `checkSignature`:
+
+```ts
+import { generateNonce, checkSignature } from "@meshsdk/core";
+
+function backendGetNonce(userAddress) {
+  const nonce = generateNonce("Sign in to our app: ");
+  // store the nonce against userAddress, then return it
+  return nonce;
+}
+
+function backendVerifySignature(userAddress, signature) {
+  // load the stored nonce for userAddress
+  const ok = checkSignature(nonce, signature, userAddress);
+  // rotate the nonce, then issue a session or JWT if ok
+}
+```
+
+Mesh's `<CardanoWallet label="Sign In with Cardano" onConnected={...} />` React component gives you a ready-made connect-and-sign button.
+
+</TabItem>
+</Tabs>
+
+## Hosted sign-in as a service
+
+Not every user has a browser wallet installed. [UTXOS](https://utxos.dev) offers sign-in as a hosted service: users create a non-custodial wallet through social login, so onboarding needs no extension or seed phrase. Keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time, so neither UTXOS nor your app can access them. The same platform can also sponsor transaction fees, letting users transact before they hold any ADA. See the [UTXOS documentation](https://docs.utxos.dev) to integrate it.
+
+## Zero-knowledge login
+
+:::info In active development
+[zkLogin for Cardano](https://github.com/eryxcoop/zklogin-aiken) lets users authenticate with an existing account (such as Google) and control funds through zero-knowledge proofs, without exposing their identity on-chain. It pairs Aiken validators that gate spending from a zkLogin address with Circom circuits that verify the proof. It runs on the preprod testnet today, with known limitations (for example, no oracle yet for rotating the identity provider's public keys). Track progress at the [zklogin-aiken repository](https://github.com/eryxcoop/zklogin-aiken).
+:::
+
+## Use cases
+
+Wallet-based authentication fits many scenarios: passwordless login where wallet ownership is the identity, whitelist verification (confirming a user controls a specific wallet or stake address), token-gated content (access for holders of a given native token or NFT), authenticating reward claims, and verifying approval for off-chain actions like in-game trading.

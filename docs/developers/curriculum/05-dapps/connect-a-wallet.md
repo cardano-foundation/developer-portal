@@ -166,7 +166,7 @@ Wallets and hardware devices follow Cardano's [BIP-32 / CIP-1852](/docs/develope
 
 ## No browser extension? Wallet as a Service
 
-Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [UTXOS Web3 Services](/docs/developers/curriculum/dapps/wallet-authentication/utxos/overview), which also supports [transaction sponsorship](/docs/developers/curriculum/dapps/wallet-authentication/utxos/sponsorship) so users can transact without holding ADA for fees first.
+Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [UTXOS Web3 Services](/docs/developers/curriculum/dapps/wallet-authentication/overview#hosted-sign-in-as-a-service), which also supports [transaction sponsorship](https://docs.utxos.dev/sponsor) so users can transact without holding ADA for fees first.
 
 ## Next steps
 

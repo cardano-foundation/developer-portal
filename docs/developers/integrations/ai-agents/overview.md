@@ -1,12 +1,14 @@
 ---
 id: overview
-title: AI Agents on Cardano
+title: AI on Cardano
 sidebar_label: Overview
 description: Learn how to integrate AI agents with Cardano blockchain for autonomous on-chain interactions.
 image: /img/og/og-developer-portal.png
 ---
 
 ## Introduction
+
+AI intersects Cardano development in two ways. As a **development aid**, AI coding assistants help you write contracts and transactions faster, see [AI-assisted development](/docs/developers/integrations/ai-agents/ai-assisted-development). As **autonomous agents**, AI systems act on-chain directly, which is the focus of the rest of this page.
 
 AI agents on Cardano enable autonomous systems to interact directly with the blockchain. These agents can execute transactions, monitor on-chain events, and make decisions based on chain state without human intervention.
 
