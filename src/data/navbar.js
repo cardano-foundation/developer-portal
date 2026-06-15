@@ -45,39 +45,26 @@ function getNavbarItems(repository) {
       },
     },
     {
-      // Validators mega menu
+      // Operators mega menu
       type: 'dropdown',
-      label: 'Validators',
+      label: 'Operators',
       position: 'left',
       items: [
         {to: '/docs/operators/', label: 'Overview'},
-        {to: '/docs/operators/basics/hardware-requirements', label: 'Before You Start'},
-        {to: '/docs/operators/relay-configuration/relay-node-configuration', label: 'Configure'},
-        {to: '/docs/operators/block-producer/register-stake-pool', label: 'Register Your Pool'},
-        {to: '/docs/operators/monitoring/monitoring-overview', label: 'Monitor'},
-        {to: '/docs/operators/deployment-scenarios/hardening-server', label: 'Security & Hardening'},
-        {to: '/docs/operators/governance/spo-governance', label: 'Governance'},
+        {to: '/docs/operators/basics/consensus-staking', label: 'Handbook'},
+        {to: '/docs/operators/operator-tools/guild-ops-suite', label: 'Operator Tools'},
       ],
       mega: true,
       customProps: {
-        columnCount: 2,
+        columnCount: 1,
         columns: [
           {
-            title: 'Getting Started',
+            title: 'Run a Stake Pool',
             icon: 'book-solid',
             items: [
-              {to: '/docs/operators/', label: 'Overview', description: 'Start operating a stake pool', icon: 'book-solid'},
-              {to: '/docs/operators/basics/hardware-requirements', label: 'Before You Start', description: 'Requirements, networking, and key types', icon: 'microscope-solid'},
-              {to: '/docs/developers/curriculum/production/node/installing-cardano-node', label: 'Installation', description: 'Install cardano-node and cardano-cli', icon: 'arrow-down-to-line-solid'},
-              {to: '/docs/operators/relay-configuration/relay-node-configuration', label: 'Configure', description: 'Set up relay and block producer nodes', icon: 'plug-solid'},
-            ],
-          },
-          {
-            items: [
-              {to: '/docs/operators/block-producer/register-stake-pool', label: 'Register Your Pool', description: 'Generate keys and submit your pool certificate', icon: 'building-solid'},
-              {to: '/docs/operators/monitoring/monitoring-overview', label: 'Monitor', description: 'Track node health and block production', icon: 'chart-line-solid'},
-              {to: '/docs/operators/deployment-scenarios/hardening-server', label: 'Security & Hardening', description: 'Harden your servers and secure your keys', icon: 'shield-solid'},
-              {to: '/docs/operators/governance/spo-governance', label: 'Governance', description: 'Your role in on-chain governance', icon: 'users-solid'},
+              {to: '/docs/operators/', label: 'Overview', description: 'What it takes to run a stake pool', icon: 'book-solid'},
+              {to: '/docs/operators/basics/consensus-staking', label: 'Handbook', description: 'Step by step from setup to governance', icon: 'building-solid'},
+              {to: '/docs/operators/operator-tools/guild-ops-suite', label: 'Operator Tools', description: 'Guild Ops, Calidus keys, and Mithril', icon: 'wrench-solid'},
             ],
           },
         ],

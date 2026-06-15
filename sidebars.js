@@ -512,77 +512,84 @@ module.exports = {
     "operators/overview",
     {
       type: "category",
-      label: "1. Before You Start",
+      label: "Handbook",
+      collapsed: false,
       items: [
-        "operators/basics/consensus-staking",
-        "operators/basics/hardware-requirements",
-        "operators/basics/stake-pool-networking",
-        "operators/basics/cardano-key-pairs",
-      ],
-    },
-    {
-      type: "doc",
-      id: "developers/curriculum/production/node/installing-cardano-node",
-      label: "2. Installation",
-    },
-    {
-      type: "category",
-      label: "3. Configure",
-      items: [
-        "developers/curriculum/production/node/topology",
-        "operators/relay-configuration/relay-node-configuration",
-        {
-          type: "category",
-          label: "Block Producer",
-          items: [
-            "operators/block-producer/block-producer-keys",
-            "operators/block-producer/deployment",
-            "operators/block-producer/mithril-signer-configuration",
-            "operators/block-producer/kes-agent",
-          ],
-        },
-      ],
-    },
-    {
-      type: "doc",
-      id: "developers/curriculum/production/node/running-cardano",
-      label: "4. Run",
-    },
-    {
-      type: "category",
-      label: "5. Register Your Pool",
-      items: [
-        "operators/block-producer/generating-wallet-keys",
-        "operators/block-producer/register-stake-address",
-        "operators/block-producer/register-stake-pool",
-      ],
-    },
-    {
-      type: "category",
-      label: "6. Monitor",
-      items: [
-        "operators/monitoring/monitoring-overview",
-        "operators/monitoring/monitoring-prometheus-grafana",
-        "operators/monitoring/monitoring-openblockperf",
-      ],
-    },
-    {
-      type: "category",
-      label: "7. Security & Hardening",
-      items: [
-        "operators/security/secure-workflow",
-        "operators/deployment-scenarios/hardening-server",
-        "operators/deployment-scenarios/improve-grafana-security",
-        "operators/deployment-scenarios/audit-your-node",
-      ],
-    },
-    {
-      type: "category",
-      label: "8. Governance",
-      items: [
-        "operators/governance/spo-governance",
-        "operators/operator-tools/calidus-keys",
-        "operators/governance/on-chain-polls",
+      {
+        type: "category",
+        label: "1. Before You Start",
+        items: [
+          "operators/basics/consensus-staking",
+          "operators/basics/hardware-requirements",
+          "operators/basics/stake-pool-networking",
+          "operators/basics/cardano-key-pairs",
+        ],
+      },
+      {
+        type: "doc",
+        id: "developers/curriculum/production/node/installing-cardano-node",
+        label: "2. Installation",
+      },
+      {
+        type: "category",
+        label: "3. Configure",
+        items: [
+          "developers/curriculum/production/node/topology",
+          "operators/relay-configuration/relay-node-configuration",
+          {
+            type: "category",
+            label: "Block Producer",
+            items: [
+              "operators/block-producer/block-producer-keys",
+              "operators/block-producer/deployment",
+              "operators/block-producer/mithril-signer-configuration",
+              "operators/block-producer/kes-agent",
+            ],
+          },
+        ],
+      },
+      {
+        type: "doc",
+        id: "developers/curriculum/production/node/running-cardano",
+        label: "4. Run",
+      },
+      {
+        type: "category",
+        label: "5. Register Your Pool",
+        items: [
+          "operators/block-producer/generating-wallet-keys",
+          "operators/block-producer/register-stake-address",
+          "operators/block-producer/register-stake-pool",
+        ],
+      },
+      {
+        type: "category",
+        label: "6. Monitor",
+        items: [
+          "operators/monitoring/monitoring-overview",
+          "operators/monitoring/monitoring-prometheus-grafana",
+          "operators/monitoring/monitoring-openblockperf",
+        ],
+      },
+      {
+        type: "category",
+        label: "7. Security & Hardening",
+        items: [
+          "operators/security/secure-workflow",
+          "operators/deployment-scenarios/hardening-server",
+          "operators/deployment-scenarios/improve-grafana-security",
+          "operators/deployment-scenarios/audit-your-node",
+        ],
+      },
+      {
+        type: "category",
+        label: "8. Governance",
+        items: [
+          "operators/governance/spo-governance",
+          "operators/operator-tools/calidus-keys",
+          "operators/governance/on-chain-polls",
+        ],
+      },
       ],
     },
     {
