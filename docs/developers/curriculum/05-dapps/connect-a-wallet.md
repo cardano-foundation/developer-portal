@@ -22,7 +22,7 @@ Once a user grants access, the wallet API lets you:
 - Request a **transaction signature** (the user approves in their wallet)
 - Request a **data signature** ([CIP-8](https://cips.cardano.org/cip/CIP-0008)) to prove ownership, the basis of [sign-in with wallet](/docs/developers/curriculum/dapps/wallet-authentication/overview)
 
-Wallets that implement CIP-30 include **Eternl**, **Lace**, **Flint**, **Typhon**, **Vespr**, and others. Hardware wallets (**Ledger**, **Trezor**) work through these browser extensions. The extension talks to the device, and your code is identical either way.
+Most Cardano browser wallets implement CIP-30, and hardware wallets work through them via a browser extension. The extension talks to the device, and your code is identical either way. For the current set of wallets, see [cardano.org/apps](https://cardano.org/apps).
 
 ## Connect
 

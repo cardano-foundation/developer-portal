@@ -72,7 +72,7 @@ Back up the `.skey` files to at least two independent encrypted locations. If th
 
 ### Mnemonic-based derivation
 
-Deriving keys from a mnemonic means your keys can be re-derived from the seed phrase at any time, and the keys are compatible with Daedalus, Lace, Eternl, and other Cardano wallets.
+Deriving keys from a mnemonic means your keys can be re-derived from the seed phrase at any time, and the keys are compatible with standard Cardano wallets.
 
 :::danger
 Never store your mnemonic on a cloud server, in email, or in any internet-connected storage. Treat it with the same care as the signing keys themselves — the mnemonic is the master secret from which all keys can be re-derived.
@@ -135,7 +135,7 @@ cardano-address address payment --network-tag mainnet < addr.xvk \
     | cardano-address address delegation $(cat stake.xvk) > base.addr
 ```
 
-The resulting `base.addr` is identical to the address that Daedalus/Lace would show for account 0, address 0 when restoring the same mnemonic.
+The resulting `base.addr` is identical to the address a standard wallet would show for account 0, address 0 when restoring the same mnemonic.
 
 ## Payment transaction
 

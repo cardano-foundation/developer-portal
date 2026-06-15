@@ -34,7 +34,7 @@ stake1vpu5vlrf4xkxv2qpwngf6cjhtw542ayty80v8dyr49rf5egfu2p0u
 
 A payment credential comes in two forms:
 
-- **Verification key hash**: the Blake2b-224 hash of an Ed25519 public key. Regular wallets (Lace, Eternl, Yoroi) use this. To spend, you provide the public key and a signature.
+- **Verification key hash**: the Blake2b-224 hash of an Ed25519 public key. Regular wallets use this. To spend, you provide the public key and a signature.
 - **Script hash**: the Blake2b-224 hash of a Plutus or native script. Smart contracts, DEX pools, and escrows use this. To spend, you provide the script and satisfy its validation logic.
 
 :::tip Addresses hold hashes, not keys

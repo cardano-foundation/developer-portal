@@ -21,7 +21,11 @@ DeFi protocols replace intermediaries (banks, brokerages, clearinghouses) with d
 - **Synthetic assets**: on-chain representations of real-world assets
 - **Insurance**: decentralized coverage against smart contract failures
 
-On Cardano this includes protocols like Minswap, SundaeSwap, and WingRiders (DEXes), Liqwid and Lenfi (lending), Djed and iUSD (stablecoins), and Optim Finance (yield optimization). Each works within the constraints and advantages of eUTXO, which leads to distinctive architectural patterns.
+On Cardano this spans DEXes, lending and borrowing protocols, stablecoins, and yield optimizers. For the current set of live protocols, see [cardano.org/apps](https://cardano.org/apps). Each works within the constraints and advantages of eUTXO, which leads to distinctive architectural patterns.
+
+:::tip Where Cardano DeFi stands
+For a snapshot of which primitives Cardano already has, partly has, and is still missing, see the [Cardano DeFi map](https://cardanodefi.space/). DeFi composes, so the gaps are open opportunities: ship a missing piece and it snaps into everything already there.
+:::
 
 ## Decentralized exchanges (DEXes)
 
@@ -44,7 +48,7 @@ Traditional Order Book:
 +------------------------------------------+
 ```
 
-On-chain order books are expensive because every placement, cancellation, and modification is a transaction. Some Cardano DEXes (like Genius Yield) do implement on-chain order books, representing each order as a distinct UTXO. But the dominant model in DeFi is the **Automated Market Maker (AMM)**.
+On-chain order books are expensive because every placement, cancellation, and modification is a transaction. Some Cardano DEXes do implement on-chain order books, representing each order as a distinct UTXO. But the dominant model in DeFi is the **Automated Market Maker (AMM)**.
 
 ### How AMMs work
 
@@ -58,21 +62,21 @@ x * y = k
   k = a constant (must remain the same after every trade)
 ```
 
-A concrete example. A pool holds 10,000 ADA and 5,000 DJED, so `k = 50,000,000`. A trader buys DJED with 1,000 ADA:
+A concrete example. A pool holds 10,000 ADA and 5,000 USDx, so `k = 50,000,000`. A trader buys USDx with 1,000 ADA:
 
 ```text
 New ADA in pool:   10,000 + 1,000 = 11,000
-New DJED in pool:  k / new_x = 50,000,000 / 11,000 = 4,545.45
-DJED received:     5,000 - 4,545.45 = 454.55 DJED
-Effective price:   1,000 ADA / 454.55 DJED = 2.20 ADA per DJED
+New USDx in pool:  k / new_x = 50,000,000 / 11,000 = 4,545.45
+USDx received:     5,000 - 4,545.45 = 454.55 USDx
+Effective price:   1,000 ADA / 454.55 USDx = 2.20 ADA per USDx
 ```
 
-The trader received ~454.55 DJED instead of the 500 expected at the initial 2 ADA/DJED rate. This difference is **slippage**, and it grows with larger trades relative to pool size: the curve moves the price more dramatically as you drain one side.
+The trader received ~454.55 USDx instead of the 500 expected at the initial 2 ADA/USDx rate. This difference is **slippage**, and it grows with larger trades relative to pool size: the curve moves the price more dramatically as you drain one side.
 
 ```mermaid
 graph LR
-    A[User deposits 1,000 ADA] --> B[AMM Pool\n11,000 ADA / 4,545 DJED]
-    B --> C[User receives 454.55 DJED]
+    A[User deposits 1,000 ADA] --> B[AMM Pool\n11,000 ADA / 4,545 USDx]
+    B --> C[User receives 454.55 USDx]
     B --> D[k remains 50,000,000]
     style A fill:#4CAF50,color:#fff
     style C fill:#2196F3,color:#fff
@@ -87,7 +91,7 @@ The constant product formula is not the only option:
 - **StableSwap (Curve)**: a hybrid optimized for assets that trade near 1:1 (stablecoin pairs); low slippage for balanced trades.
 - **Concentrated liquidity**: LPs specify price ranges, concentrating capital where it's most useful. High capital efficiency, more complexity.
 
-On Cardano, Minswap uses a constant product AMM with a stableswap variant for stable pairs; SundaeSwap also uses a constant product model.
+On Cardano, DEXes typically use a constant product AMM, often with a stableswap variant for stable pairs.
 
 ## Liquidity pools and providers
 
@@ -95,7 +99,7 @@ Liquidity pools hold paired token reserves that traders swap against. **Liquidit
 
 ```mermaid
 graph TD
-    LP[Liquidity Provider] -->|Deposits ADA + DJED| Pool[Liquidity Pool\nADA / DJED]
+    LP[Liquidity Provider] -->|Deposits ADA + USDx| Pool[Liquidity Pool\nADA / USDx]
     Pool -->|Issues| LPT[LP Tokens]
     LPT --> LP
     Trader[Trader] -->|Swaps + pays 0.3% fee| Pool
@@ -114,9 +118,9 @@ When an LP withdraws, they burn their LP tokens for a proportional share of the 
 Impermanent loss (IL) is the difference in value between holding tokens in an AMM pool versus simply holding them in a wallet. When the price ratio of pooled assets diverges from the deposit ratio, the AMM's constant rebalancing leaves LPs holding less of the appreciating asset than they would have by holding outright.
 
 ```text
-Initial deposit:  1,000 ADA + 500 DJED (at 2 ADA per DJED)
-If held (no LP):  1,000 ADA (now worth 2x) + 500 DJED = 3,000 equivalent
-As LP after ADA doubles: ~707 ADA + ~707 DJED = ~2,828 equivalent
+Initial deposit:  1,000 ADA + 500 USDx (at 2 ADA per USDx)
+If held (no LP):  1,000 ADA (now worth 2x) + 500 USDx = 3,000 equivalent
+As LP after ADA doubles: ~707 ADA + ~707 USDx = ~2,828 equivalent
 
 Impermanent loss: ~5.7%
 ```
@@ -139,9 +143,9 @@ In an account model, a contract holds a single mutable state and the chain resol
 
 ```text
 Block N:
-  User A wants to swap ADA to DJED  --+
-  User B wants to swap ADA to DJED  --+--> Only ONE can spend the pool UTXO
-  User C wants to swap DJED to ADA  --+
+  User A wants to swap ADA to USDx  --+
+  User B wants to swap ADA to USDx  --+--> Only ONE can spend the pool UTXO
+  User C wants to swap USDx to ADA  --+
 
   Result: two transactions fail with "UTXO already spent"
 ```
@@ -150,18 +154,18 @@ This is not a bug; it's a fundamental property of the model. Two patterns addres
 
 ### Order batching
 
-The most common pattern. Instead of interacting with the pool directly, users submit **order UTXOs** expressing intent ("swap 100 ADA for DJED, max 2% slippage"). A **batcher** (or scooper) collects many orders and executes them against the pool in a single transaction.
+The most common pattern. Instead of interacting with the pool directly, users submit **order UTXOs** expressing intent ("swap 100 ADA for USDx, max 2% slippage"). A **batcher** (or scooper) collects many orders and executes them against the pool in a single transaction.
 
 ```mermaid
 graph TD
-    U1[User 1: Swap ADA to DJED] --> B[Batcher / Scooper]
-    U2[User 2: Swap DJED to ADA] --> B
-    U3[User 3: Swap ADA to DJED] --> B
+    U1[User 1: Swap ADA to USDx] --> B[Batcher / Scooper]
+    U2[User 2: Swap USDx to ADA] --> B
+    U3[User 3: Swap ADA to USDx] --> B
     B --> TX[Single Transaction]
     TX --> Pool[Updated Pool UTXO]
-    TX --> R1[Result: DJED to User 1]
+    TX --> R1[Result: USDx to User 1]
     TX --> R2[Result: ADA to User 2]
-    TX --> R3[Result: DJED to User 3]
+    TX --> R3[Result: USDx to User 3]
     style B fill:#FF9800,color:#fff
     style TX fill:#4CAF50,color:#fff
     style Pool fill:#2196F3,color:#fff
@@ -174,12 +178,12 @@ Orders process atomically, contention drops, and the batcher can optimize execut
 Another approach splits the pool across multiple UTXOs, each holding a portion of the liquidity, so several transactions execute concurrently against different shards.
 
 ```text
-Instead of one pool UTXO with 100,000 ADA / 50,000 DJED:
+Instead of one pool UTXO with 100,000 ADA / 50,000 USDx:
 
 +----------------+  +----------------+  +----------------+
 | Pool Shard 1   |  | Pool Shard 2   |  | Pool Shard 3   |
 | 33,333 ADA     |  | 33,333 ADA     |  | 33,334 ADA     |
-| 16,667 DJED    |  | 16,667 DJED    |  | 16,666 DJED    |
+| 16,667 USDx    |  | 16,667 USDx    |  | 16,666 USDx    |
 +----------------+  +----------------+  +----------------+
 
 Three users can now swap concurrently against different shards.
@@ -210,7 +214,7 @@ This is a security advantage: flash loans have been used to manipulate prices an
 
 ## Yield farming and liquidity mining
 
-Yield farming strategically deploys capital across protocols to maximize returns; liquidity mining specifically distributes governance tokens to LPs as extra incentive beyond trading fees. On Cardano this includes providing DEX liquidity (earning fees plus protocol tokens like MIN), lending on platforms like Liqwid, staking LP tokens in farms, and liquidity bootstrapping events. Yields are not magic: they come from trading fees (real activity), token emissions (inflationary, may not hold value), and protocol revenue. Understanding the source of a yield is essential to evaluating its risk. For a production-grade implementation, see the [yield-farming](/docs/developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming) reference.
+Yield farming strategically deploys capital across protocols to maximize returns; liquidity mining specifically distributes governance tokens to LPs as extra incentive beyond trading fees. On Cardano this includes providing DEX liquidity (earning fees plus extra protocol tokens), lending on lending platforms, staking LP tokens in farms, and liquidity bootstrapping events. Yields are not magic: they come from trading fees (real activity), token emissions (inflationary, may not hold value), and protocol revenue. Understanding the source of a yield is essential to evaluating its risk. For a production-grade implementation, see the [yield-farming](/docs/developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming) reference.
 
 ## Web2 analogy
 
@@ -231,6 +235,7 @@ Yield farming strategically deploys capital across protocols to maximize returns
 
 ## Next steps
 
+- [DeFi Kernel](/docs/developers/curriculum/dapps/defi-kernel): the open standard for sharing one chain-wide order book across protocols
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): let users interact with your protocol from the browser
 - [Oracles](/docs/developers/curriculum/dapps/oracles/overview): the price-feed infrastructure DeFi depends on
 - [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the attack classes (double satisfaction, contention) that hit DeFi hardest

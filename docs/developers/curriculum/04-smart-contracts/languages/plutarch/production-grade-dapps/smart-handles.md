@@ -21,7 +21,7 @@ This is not limited to swaps of course. For instance, sending funds to
 `@offer-spacebudz` (which resolves to a router smart contract for SpaceBudz
 collection offers) could create a collection offer for SpaceBudz.
 
-The example here uses Smart Handles for swapping any token pairs through Minswap
+The example here uses Smart Handles for swapping any token pairs through a DEX
 exchange.
 
 :::info
@@ -156,4 +156,4 @@ There are 2 packages available for working with smart handles instances:
 
 Head over to the [off-chain SDK of smart handles](https://github.com/Anastasia-Labs/smart-handles-offchain) to
 learn how to define your instance's off-chain, or look
-through [an example with Minswap V1](https://github.com/Anastasia-Labs/smart-handles-offchain/tree/main/example).
+through [a worked example](https://github.com/Anastasia-Labs/smart-handles-offchain/tree/main/example).

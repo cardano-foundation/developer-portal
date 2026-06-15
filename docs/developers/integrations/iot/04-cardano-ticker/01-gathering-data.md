@@ -24,7 +24,7 @@ The next sections add token prices and NFT floors on top.
 
 ## Fetching from MinSwap
 
-[MinSwap](https://minswap.org/) is a leading DEX on Cardano. It exposes an endpoint to fetch all tokens (and prices) for a wallet address:
+[MinSwap](https://minswap.org/) is a DEX on Cardano. It exposes an endpoint to fetch all tokens (and prices) for a wallet address:
 
 ```
 https://monorepo-mainnet-prod.minswap.org/v1/portfolio/tokens?address=[WALLETADDRESS]&only_minswap=true&filter_small_value=false
@@ -89,7 +89,7 @@ You get NFTs in the wallet, tokens, USD price per token, amounts, 24h USD change
 
 ## Fetching from JPG.store (no longer)
 
-[JPG.store](https://www.jpg.store/) is the largest NFT marketplace on Cardano. Unfortunately they've locked down their API since this workshop was written - no public or paid endpoints are available anymore.
+[JPG.store](https://www.jpg.store/) is an NFT marketplace on Cardano. Unfortunately they've locked down their API since this workshop was written - no public or paid endpoints are available anymore.
 
 ## Cexplorer.io for NFT floors
 

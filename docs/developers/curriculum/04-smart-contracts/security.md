@@ -70,14 +70,14 @@ Attack:
 Occurs when a single output satisfies the conditions of *multiple* validators in the same transaction, letting an attacker fulfill two scripts' requirements with one output instead of two.
 
 ```text
-Script A (DEX pool):  "valid if an output contains 100 DJED"
-Script B (lending):   "valid if an output contains 100 DJED"
+Script A (DEX pool):  "valid if an output contains 100 USDx"
+Script B (lending):   "valid if an output contains 100 USDx"
 
 Attacker's transaction:
   Inputs:  DEX pool UTXO (A), lending pool UTXO (B)
-  Outputs: ONE output with 100 DJED
+  Outputs: ONE output with 100 USDx
 
-  Both A and B see the 100 DJED output and consider themselves satisfied,
+  Both A and B see the 100 USDx output and consider themselves satisfied,
   but only one output exists. The attacker pays once for two obligations.
 ```
 

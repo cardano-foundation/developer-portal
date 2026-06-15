@@ -209,7 +209,7 @@ Script UTXO at a DEX: { price: 100, liquidity: 10000 }
 The community solves this with a few well-established patterns:
 
 1. **UTXO fan-out.** Split state across many UTXOs instead of one, so many users transact in parallel against different UTXOs.
-2. **Batching (order-book pattern).** Users submit orders as their own UTXOs; a batcher consumes many orders plus the protocol's state UTXO in a single transaction. This is how most Cardano DEXes work (SundaeSwap, Minswap, WingRiders).
+2. **Batching (order-book pattern).** Users submit orders as their own UTXOs; a batcher consumes many orders plus the protocol's state UTXO in a single transaction. This is how most Cardano DEXes work.
 3. **Reference inputs.** A transaction can read a UTXO without consuming it, so many transactions can read the same oracle or config UTXO simultaneously with no contention.
 4. **Reference scripts.** Script code can live in a UTXO and be referenced instead of included in every transaction, cutting size and cost.
 

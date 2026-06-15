@@ -36,8 +36,8 @@ You will need a testnet address first, which your wallet or SDK generates ([Keys
 
 ### Testnet wallets
 
-- **Light wallets**: [Lace](https://www.lace.io/), [Eternl](https://eternl.io/), [Yoroi Nightly](https://chromewebstore.google.com/detail/yoroi-nightly/poonlenmfdfbjfeeballhiibknlknepo) (Preview/Preprod/Sancho), [Typhon](https://testnet.typhonwallet.io/) (Preprod)
-- **Hardware**: [Ledger](https://www.ledger.com/) (Preview/Preprod)
+- **Light wallets**: most Cardano browser and mobile wallets support the testnets. Switch the network to Preview or Preprod in settings, and browse wallets at [cardano.org/apps](https://cardano.org/apps).
+- **Hardware**: supported through a browser wallet extension on Preview and Preprod.
 - **Programmatic**: SDKs (see [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools)) or the [cardano-wallet](/docs/developers/integrations/payments/listening-for-payments/cardano-wallet) HTTP API
 
 ## Block explorers

@@ -78,7 +78,7 @@ A wallet is software that stores your keys, scans the chain for UTXOs at your ad
 | Wallet type | Examples | Trade-off |
 |---|---|---|
 | **Full-node** | Daedalus | Maximum trustlessness; downloads the whole chain |
-| **Light** | Eternl, Lace, Yoroi, Typhon | Fast; relies on a backend for chain data (signing stays local) |
+| **Light** | Browser and mobile wallets | Fast; relies on a backend for chain data (signing stays local) |
 | **Hardware** | Ledger, Trezor | Keys never leave a secure device; strongest theft protection |
 | **Browser extension** | (implements CIP-30) | The standard way dApps connect to users |
 
