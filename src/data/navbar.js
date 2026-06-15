@@ -17,7 +17,6 @@ function getNavbarItems(repository) {
         {to: "/docs/community/cardano-developer-community/", label: "Community"},
         {to: "/docs/community/funding/", label: "Grants & Funding"},
         {to: "/talent/", label: "Talent Pool"},
-        {to: "/blog/", label: "Dev Blog"},
       ],
       mega: true,
       customProps: {
@@ -38,7 +37,6 @@ function getNavbarItems(repository) {
               {to: '/docs/community/cardano-developer-community', label: 'Community', description: 'Connect with other developers', icon: 'people-group-solid'},
               {to: '/docs/community/funding', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'handshake-solid'},
               {to: '/talent', label: 'Talent Pool', description: 'Join the developer network', icon: 'code-solid'},
-              {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book-solid'},
             ],
           },
         ],
