@@ -487,8 +487,8 @@ const redirects = [
     from: '/docs/portal-style-guide',
   },
   {
-    to: '/docs/community/careers',
-    from: '/docs/careers',
+    to: '/docs/community/cardano-developer-community',
+    from: ['/docs/careers', '/docs/community/careers'],
   },
   // Smart Contract Vulnerabilities → Security section redirects
   {

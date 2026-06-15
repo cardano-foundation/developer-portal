@@ -486,7 +486,6 @@ module.exports = {
       items: [
         "community/cardano-developer-community",
         "community/funding",
-        "community/careers",
         {
           type: "link",
           label: "Talent Pool",

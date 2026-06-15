@@ -198,7 +198,7 @@ module.exports = {
           items: [
             {
               label: "Careers on Cardano",
-              to: "docs/community/careers",
+              to: "docs/community/cardano-developer-community#jobs-and-careers",
             },
             {
               label: "Cardano Enterprise",

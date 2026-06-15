@@ -55,6 +55,14 @@ Sign up once and we'll reach out when relevant hackathons, jobs, or grants come 
 
 :::
 
+## Jobs and careers
+
+Many teams across the ecosystem hire remotely. To find roles and the organizations behind them:
+
+- [Browse Cardano ecosystem entities](https://cardano.org/entities) to see who is building, across DeFi, NFTs, gaming, identity, and more.
+- [Cardano Foundation careers](https://cardanofoundation.org/careers), [EMURGO careers](https://emurgo.io/careers/), and [Input Output careers](https://apply.workable.com/io-global/) for roles at the founding entities.
+- Sign up for the [Talent Pool](/talent) to hear about jobs as they come up.
+
 ## Developer Surveys
 
 An annual survey to assess the state of the Cardano developer ecosystem was conducted. This survey comes as part of our commitment to both empower the Cardano community and foster the open source maturity of the Cardano ecosystem.
