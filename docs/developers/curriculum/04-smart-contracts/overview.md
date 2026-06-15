@@ -154,7 +154,7 @@ A validator's rules cannot be changed after deployment, and the compiled code ca
 
 ## Choose a language
 
-Validators can be written in several languages that all compile to the same on-chain bytecode (UPLC). For most new projects, **[Aiken](/docs/developers/curriculum/smart-contracts/languages/aiken/overview)** is the recommended starting point. See **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)** for the full comparison (Aiken, Plinth, Plutarch, OpShin, Scalus, Pebble, Marlowe).
+Validators can be written in several languages that all compile to the same on-chain bytecode (UPLC). For most new projects, **[Aiken](https://aiken-lang.org)** is the recommended starting point. See **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)** for the full comparison (Aiken, Plinth, Plutarch, OpShin, Scalus, Pebble, Marlowe).
 
 ## Key takeaways
 

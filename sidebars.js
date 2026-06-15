@@ -95,54 +95,6 @@ module.exports = {
             "developers/curriculum/smart-contracts/formal-verification",
             {
               type: "category",
-              label: "Languages",
-              items: [
-                "developers/curriculum/smart-contracts/languages/aiken/overview",
-                {
-                  type: "category",
-                  label: "Plutarch (Haskell)",
-                  link: {
-                    type: "doc",
-                    id: "developers/curriculum/smart-contracts/languages/plutarch/overview",
-                  },
-                  items: [
-                    {
-                      type: "category",
-                      label: "Advanced Data Structures",
-                      items: [
-                        "developers/curriculum/smart-contracts/languages/plutarch/advanced-data-structures/merkle-tree",
-                        "developers/curriculum/smart-contracts/languages/plutarch/advanced-data-structures/trie",
-                      ],
-                    },
-                    {
-                      type: "category",
-                      label: "Production Grade DApps",
-                      link: {
-                        type: "doc",
-                        id: "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/overview",
-                      },
-                      items: [
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/nix-environments",
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/bridge-template",
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/linear-vesting",
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/merkle-tree",
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming",
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/single-asset-staking",
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/smart-handles",
-                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/direct-offer",
-                      ],
-                    },
-                  ],
-                },
-                "developers/curriculum/smart-contracts/languages/plinth",
-                "developers/curriculum/smart-contracts/languages/opshin",
-                "developers/curriculum/smart-contracts/languages/pebble",
-                "developers/curriculum/smart-contracts/languages/scalus",
-                "developers/curriculum/smart-contracts/languages/marlowe",
-              ],
-            },
-            {
-              type: "category",
               label: "Design Patterns",
               link: {
                 type: "doc",

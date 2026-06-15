@@ -551,11 +551,48 @@ const redirects = [
     from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/linked-list',
   },
   {
-    // plu-ts renamed to Pebble: redirect the old doc URL and the old get-started path
-    to: '/docs/developers/curriculum/smart-contracts/languages/pebble',
+    // Per-language pages dissolved into the Choose a Language hub; per-language depth now lives in each project's official docs
+    to: '/docs/developers/curriculum/smart-contracts/choose-a-language',
     from: [
+      '/docs/build/smart-contracts/languages/aiken/overview',
+      '/docs/build/smart-contracts/languages/plutarch/overview',
+      '/docs/build/smart-contracts/languages/plinth',
+      '/docs/build/smart-contracts/languages/opshin',
+      '/docs/build/smart-contracts/languages/scalus',
+      '/docs/build/smart-contracts/languages/marlowe',
+      '/docs/build/smart-contracts/languages/pebble',
       '/docs/build/smart-contracts/languages/plu-ts',
       '/docs/get-started/plu-ts',
+    ],
+  },
+  {
+    // Plutarch data structures collapsed into the agnostic Design Patterns pages
+    to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/merkle-tree',
+    from: [
+      '/docs/build/smart-contracts/languages/plutarch/advanced-data-structures/merkle-tree',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/merkle-tree',
+    ],
+  },
+  {
+    to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/trie',
+    from: '/docs/build/smart-contracts/languages/plutarch/advanced-data-structures/trie',
+  },
+  {
+    to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list',
+    from: '/docs/build/smart-contracts/languages/plutarch/advanced-data-structures/linked-list',
+  },
+  {
+    // Plutarch production-grade dApps distilled into the DeFi application patterns section
+    to: '/docs/developers/curriculum/dapps/defi',
+    from: [
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/overview',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/nix-environments',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/bridge-template',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/linear-vesting',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/single-asset-staking',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/smart-handles',
+      '/docs/build/smart-contracts/languages/plutarch/production-grade-dapps/direct-offer',
     ],
   },
   {

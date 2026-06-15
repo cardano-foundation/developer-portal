@@ -25,7 +25,7 @@ Smart contracts on Cardano follow the same model. Validators (Cardano's term for
 
 ### Counter Example
 
-To make the contrast concrete, let's look at a counter implemented in Solidity on Ethereum and the same counter implemented in [Aiken](/docs/developers/curriculum/smart-contracts/languages/aiken/overview) on Cardano.
+To make the contrast concrete, let's look at a counter implemented in Solidity on Ethereum and the same counter implemented in [Aiken](/docs/developers/curriculum/smart-contracts/choose-a-language) on Cardano.
 
 #### Ethereum Counter Smart Contract
 
@@ -101,7 +101,7 @@ The transaction:
 3. Creates a new UTxO at the same address with the updated datum (output)
 
 :::note Helper functions
-The validator below uses helper functions like `find_continuing_output` and `get_datum`. These are not built into Aiken, but are common patterns you implement or import from [utility libraries](/docs/developers/curriculum/smart-contracts/languages/aiken/overview#common-utilitieshelpers).
+The validator below uses helper functions like `find_continuing_output` and `get_datum`. These are not built into Aiken, but are common patterns you implement or import from [utility libraries](https://packages.aiken-lang.org/).
 :::
 
 Here's the validator:
@@ -215,7 +215,7 @@ function increment() public onlyOwner {
 }
 ```
 
-On Cardano, we would check if the defined owner signed the transaction. The `key_signed` [helper function](/docs/developers/curriculum/smart-contracts/languages/aiken/overview#common-utilitieshelpers) checks whether a specific key hash appears in `tx.extra_signatories`, the list of keys that signed this transaction:
+On Cardano, we would check if the defined owner signed the transaction. The `key_signed` [helper function](https://packages.aiken-lang.org/) checks whether a specific key hash appears in `tx.extra_signatories`, the list of keys that signed this transaction:
 
 ```aiken
 validator counter_with_owner(owner: VerificationKeyHash) {
@@ -560,7 +560,7 @@ Ready to start building? Here's the tooling landscape.
 
 Ethereum developers primarily use Solidity. On Cardano, currently the [most popular language](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2025/#what-do-you-use-or-plan-to-use-for-writing-plutus-script-validators-smart-contracts) is **Aiken**: a purpose-built language with Rust-like syntax, strong static typing, and excellent tooling. Aiken compiles directly to UPLC (Untyped Plutus Core), Cardano's native bytecode.
 
-Alternatives include [OpShin](/docs/developers/curriculum/smart-contracts/languages/opshin) (Python syntax), [Scalus](/docs/developers/curriculum/smart-contracts/languages/scalus) (Scala), [Pebble](https://pluts.harmoniclabs.tech/) (TypeScript DSL). See the [Smart Contracts overview](/docs/developers/curriculum/smart-contracts/overview) for the full list.
+Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](https://scalus.org) (Scala), [Pebble](https://pluts.harmoniclabs.tech/) (TypeScript DSL). See the [Smart Contracts overview](/docs/developers/curriculum/smart-contracts/overview) for the full list.
 
 ### Tools
 

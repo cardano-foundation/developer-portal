@@ -214,7 +214,19 @@ This is a security advantage: flash loans have been used to manipulate prices an
 
 ## Yield farming and liquidity mining
 
-Yield farming strategically deploys capital across protocols to maximize returns; liquidity mining specifically distributes governance tokens to LPs as extra incentive beyond trading fees. On Cardano this includes providing DEX liquidity (earning fees plus extra protocol tokens), lending on lending platforms, staking LP tokens in farms, and liquidity bootstrapping events. Yields are not magic: they come from trading fees (real activity), token emissions (inflationary, may not hold value), and protocol revenue. Understanding the source of a yield is essential to evaluating its risk. For a production-grade implementation, see the [yield-farming](/docs/developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming) reference.
+Yield farming strategically deploys capital across protocols to maximize returns; liquidity mining specifically distributes governance tokens to LPs as extra incentive beyond trading fees. On Cardano this includes providing DEX liquidity (earning fees plus extra protocol tokens), lending on lending platforms, staking LP tokens in farms, and liquidity bootstrapping events. Yields are not magic: they come from trading fees (real activity), token emissions (inflationary, may not hold value), and protocol revenue. Understanding the source of a yield is essential to evaluating its risk.
+
+## DeFi application patterns
+
+The primitives above (AMMs, oracles, order batching, composability) combine into the common building blocks of a DeFi app. Each of these is language-agnostic and composes the on-chain techniques from [Design Patterns](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview):
+
+- **Reward accrual and claiming.** Distribute rewards proportionally to stake or LP share. Snapshots or time-locks stop last-minute gaming, and many claims are settled in batches using the [linked-list fold](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list) and a [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) for transaction-level checks.
+- **Token vesting.** Lock tokens and release them on a datum-defined schedule (a cliff, then linear release). Unlock conditions are enforced against the transaction's [validity interval](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time), and each partial claim updates the remaining balance in the datum. Guard the claim against [double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction).
+- **P2P offers and atomic swaps.** Represent each offer as its own UTXO carrying the maker's terms (offered asset, asked asset, expiry). A taker spends it directly, or an off-chain matcher fills many offers in one transaction, pairing inputs to outputs with [UTXO indexers](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers).
+- **Routing and aggregation.** Off-chain routers compute the best path across pools and submit a single transaction the validators check atomically. The on-chain side leans on the same order-batching and indexing patterns, so no centralized frontend has to be trusted.
+- **Cross-chain bridges.** Lock assets on the source chain and mint wrapped equivalents on the target (burn-to-unlock in reverse), with a multisig guardian set attesting to each transfer. Bridges depend on off-chain infrastructure and trust assumptions beyond a single chain, so treat them as their own design problem.
+
+For production-grade, open-source reference implementations of these patterns, see [Anastasia Labs' dApp repositories](https://github.com/Anastasia-Labs).
 
 ## Web2 analogy
 

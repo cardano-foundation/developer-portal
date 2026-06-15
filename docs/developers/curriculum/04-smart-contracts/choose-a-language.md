@@ -39,7 +39,7 @@ The practical consequence: **your language choice does not change what's possibl
 
 ## Recommended: Aiken
 
-[Aiken](/docs/developers/curriculum/smart-contracts/languages/aiken/overview) is a language purpose-built for Cardano validators, with syntax borrowed from Rust, Elm, and Gleam. It has become the most popular choice for new development, and it's where we point newcomers.
+[Aiken](https://aiken-lang.org) is a language purpose-built for Cardano validators, with syntax borrowed from Rust, Elm, and Gleam. It has become the most popular choice for new development, and it's where we point newcomers.
 
 Why Aiken:
 
@@ -52,19 +52,37 @@ Why Aiken:
 
 If you have no strong reason to pick something else, start with Aiken.
 
+## Getting started with Aiken
+
+Install Aiken with `aikup`, its official version manager:
+
+```bash
+npm install -g @aiken-lang/aikup   # or: brew install aiken-lang/tap/aikup
+aikup                              # installs the latest Aiken
+```
+
+See [other install methods](https://aiken-lang.org/installation-instructions) for Homebrew and the standalone script. Aiken ships a single toolchain: Language Server support across the major editors, a built-in test runner that reports CPU and memory costs (see [Testing](/docs/developers/curriculum/smart-contracts/testing)), and a compiler that emits a CIP-57 Plutus blueprint on every build.
+
+To go deeper:
+
+- [aiken-lang.org](https://aiken-lang.org) for the language tour, guides, and standard library
+- [I Can Aiken](https://book.io/book/i-can-aiken/), an open book from the Cardano Foundation Academy
+- [Aiken video course](https://www.youtube.com/playlist?list=PLCuyQuWCJVQ1Zz9ySRMH_J6EymxhnZ0Hu), a multi-part walkthrough
+- [Awesome Aiken](https://github.com/aiken-lang/awesome-aiken) for community projects and reusable libraries
+
 ## When to choose something else
 
 Cardano's language diversity is a strength: because UPLC is a clean compilation target, many languages can target it (much as Rust, Go, and C++ all target WebAssembly). Pick by your team's existing expertise.
 
 | Language | Best for | Notes |
 |---|---|---|
-| **[Aiken](/docs/developers/curriculum/smart-contracts/languages/aiken/overview)** | Most new projects | Purpose-built, fast, small output, built-in tests. The default recommendation. |
-| **[Plinth](/docs/developers/curriculum/smart-contracts/languages/plinth)** (Plutus Tx) | Haskell teams | The "canonical" language; full Haskell power, on- and off-chain code sharing, mature tooling. Steeper learning curve and larger scripts. |
-| **[Plutarch](/docs/developers/curriculum/smart-contracts/languages/plutarch/overview)** | Maximum performance | Fine-grained control close to writing UPLC by hand; almost always the highest performance. Not for the faint-hearted. |
-| **[OpShin](/docs/developers/curriculum/smart-contracts/languages/opshin)** | Python teams | Write validators in a subset of valid Python; pairs with PyCardano. |
-| **[Scalus](/docs/developers/curriculum/smart-contracts/languages/scalus)** | JVM / Scala teams | Scala 3 for both on-chain and off-chain; works with the JVM and JavaScript. |
-| **[Pebble](/docs/developers/curriculum/smart-contracts/languages/pebble)** | TypeScript-familiar teams | Strongly-typed, TypeScript-like syntax that compiles to UPLC. |
-| **[Marlowe](/docs/developers/curriculum/smart-contracts/languages/marlowe)** | Financial contracts | A domain-specific language, intentionally **not** Turing-complete, guaranteeing termination; has a visual playground. |
+| **[Aiken](https://aiken-lang.org)** | Most new projects | Purpose-built, fast, small output, built-in tests. The default recommendation. |
+| **[Plinth](https://plutus.cardano.intersectmbo.org/docs/)** (Plutus Tx) | Haskell teams | The "canonical" language; full Haskell power, on- and off-chain code sharing, mature tooling. Steeper learning curve and larger scripts. |
+| **[Plutarch](https://github.com/Plutonomicon/plutarch-plutus)** | Maximum performance | Fine-grained control close to writing UPLC by hand; almost always the highest performance. Not for the faint-hearted. |
+| **[OpShin](https://opshin.dev)** | Python teams | Write validators in a subset of valid Python; pairs with PyCardano. |
+| **[Scalus](https://scalus.org)** | JVM / Scala teams | Scala 3 for both on-chain and off-chain; works with the JVM and JavaScript. |
+| **[Pebble](https://github.com/HarmonicLabs/pebble)** | TypeScript-familiar teams | Strongly-typed, TypeScript-like syntax that compiles to UPLC. |
+| **[Marlowe](https://marlowe-lang.org)** | Financial contracts | A domain-specific language, intentionally **not** Turing-complete, guaranteeing termination; has a visual playground. |
 
 ### A note on Plutus Tx (Plinth)
 
