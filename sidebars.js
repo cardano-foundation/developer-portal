@@ -287,19 +287,7 @@ module.exports = {
           type: "category",
           label: "Payments",
           items: [
-            {
-              type: "category",
-              label: "Listening for Payments",
-              link: {
-                type: "doc",
-                id: "developers/integrations/payments/listening-for-payments/overview",
-              },
-              items: [
-                "developers/integrations/payments/listening-for-payments/point-of-sale",
-                "developers/integrations/payments/listening-for-payments/cardano-cli",
-                "developers/integrations/payments/listening-for-payments/cardano-wallet",
-              ],
-            },
+            "developers/integrations/payments/listening-for-payments/overview",
             "developers/integrations/payments/x402-standard",
           ],
         },

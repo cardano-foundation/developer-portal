@@ -363,16 +363,25 @@ const redirects = [
     from: '/docs/integrate-cardano/listening-for-payments/overview',
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/cardano-cli',
+    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
     from: '/docs/integrate-cardano/listening-for-payments/cardano-cli',
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/cardano-wallet',
+    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
     from: '/docs/integrate-cardano/listening-for-payments/cardano-wallet',
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/point-of-sale',
+    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
     from: '/docs/integrate-cardano/listening-for-payments/point-of-sale',
+  },
+  {
+    // Listening for Payments consolidated into one page; per-method guides folded into tabs
+    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
+    from: [
+      '/docs/build/integrate/payments/listening-for-payments/point-of-sale',
+      '/docs/build/integrate/payments/listening-for-payments/cardano-cli',
+      '/docs/build/integrate/payments/listening-for-payments/cardano-wallet',
+    ],
   },
   {
     to: '/docs/developers/integrations/payments/x402-standard',
