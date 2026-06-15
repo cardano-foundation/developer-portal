@@ -70,7 +70,7 @@ function Hero() {
               between. Docs, tools, and SDKs for everything Cardano.
             </p>
             <div className={styles.heroActions}>
-              <Link to={useBaseUrl("docs/get-started/")} className={styles.heroCta}>
+              <Link to={useBaseUrl("docs/developers/")} className={styles.heroCta}>
                 Start Here →
               </Link>
             </div>
@@ -88,7 +88,7 @@ function BentoSection() {
         <div className={styles.bentoGrid}>
           {/* Smart Contracts */}
           <Link
-            to={useBaseUrl("docs/build/smart-contracts/overview")}
+            to={useBaseUrl("docs/developers/curriculum/smart-contracts/overview")}
             className={clsx(styles.bentoCard, styles.bentoLarge)}
           >
             <div className={styles.bentoCardContent}>
@@ -105,7 +105,7 @@ function BentoSection() {
 
           {/* Native Tokens */}
           <Link
-            to={useBaseUrl("docs/native-tokens/overview")}
+            to={useBaseUrl("docs/developers/curriculum/native-tokens/overview")}
             className={clsx(styles.bentoCard, styles.bentoMedium)}
           >
             <img
@@ -122,7 +122,7 @@ function BentoSection() {
 
           {/* Get Started */}
           <Link
-            to={useBaseUrl("docs/get-started/")}
+            to={useBaseUrl("docs/developers/")}
             className={clsx(styles.bentoCard, styles.bentoThird, styles.bentoAccent)}
           >
             <img
@@ -139,7 +139,7 @@ function BentoSection() {
 
           {/* Integrate Payments */}
           <Link
-            to={useBaseUrl("docs/build/integrate/overview")}
+            to={useBaseUrl("docs/developers/curriculum/dapps/overview")}
             className={clsx(styles.bentoCard, styles.bentoThird)}
           >
             <img
@@ -156,7 +156,7 @@ function BentoSection() {
 
           {/* Transaction Metadata */}
           <Link
-            to={useBaseUrl("docs/first-steps/transaction-building#transaction-metadata")}
+            to={useBaseUrl("docs/developers/curriculum/start-building/transaction-building#transaction-metadata")}
             className={clsx(styles.bentoCard, styles.bentoThird)}
           >
             <img
@@ -173,7 +173,7 @@ function BentoSection() {
 
           {/* Stake Pools */}
           <Link
-            to={useBaseUrl("docs/operate-a-stake-pool/")}
+            to={useBaseUrl("docs/operators/")}
             className={clsx(styles.bentoCard, styles.bentoHalf)}
           >
             <img
@@ -390,7 +390,7 @@ function DeveloperSection() {
 
           {/* Infrastructure */}
           <Link
-            to={useBaseUrl("docs/build/scaling/infrastructure")}
+            to={useBaseUrl("docs/developers/curriculum/production/infrastructure")}
             className={styles.devLinkCard}
           >
             <div className={styles.devLinkIcon}>
@@ -462,13 +462,13 @@ function SmartContractsSection() {
               <h3>Smart Contracts</h3>
               <p>Design patterns, examples, and security best practices</p>
               <div className={styles.scLearnLinks}>
-                <Link to={useBaseUrl("docs/build/smart-contracts/advanced/design-patterns/overview")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview")}>
                   Patterns
                 </Link>
-                <Link to={useBaseUrl("docs/build/smart-contracts/example-contracts")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/example-contracts")}>
                   Examples
                 </Link>
-                <Link to={useBaseUrl("docs/build/smart-contracts/advanced/security/overview")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/overview")}>
                   Security
                 </Link>
               </div>
@@ -497,7 +497,7 @@ function SmartContractsSection() {
 
           {/* CTF */}
           <Link
-            to={useBaseUrl("docs/build/smart-contracts/advanced/security/ctf")}
+            to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/ctf")}
             className={styles.scCTFCard}
           >
             <img

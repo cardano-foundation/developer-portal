@@ -2,328 +2,335 @@ module.exports = {
   developerSidebar: [
     {
       type: "doc",
-      id: "get-started/overview",
+      id: "developers/overview",
       label: "Start Here",
     },
     {
       type: "category",
-      label: "Module 1: Learn the Fundamentals",
-      link: {
-        type: "doc",
-        id: "foundations/overview",
-      },
+      label: "Curriculum",
+      collapsed: false,
       items: [
-        "foundations/what-is-a-blockchain",
-        "foundations/cryptographic-primitives",
-        "foundations/consensus-and-ouroboros",
         {
           type: "category",
-          label: "Core Concepts",
+          label: "Module 1: Learn the Fundamentals",
           link: {
             type: "doc",
-            id: "value/overview",
+            id: "developers/curriculum/fundamentals/overview",
           },
           items: [
-            "value/eutxo",
-            "value/addresses",
-            "value/wallets-and-keys",
-            "value/transactions",
-            "value/fees",
-          ],
-        },
-        "get-started/infrastructure/node/cardano-components",
-        "foundations/cardano-for-ethereum-developers",
-      ],
-    },
-    {
-      type: "category",
-      label: "Module 2: Start Building",
-      link: {
-        type: "doc",
-        id: "first-steps/overview",
-      },
-      items: [
-        "first-steps/networks-and-test-ada",
-        "first-steps/choose-your-tools",
-        "first-steps/your-first-transaction",
-        "first-steps/transaction-building",
-        "first-steps/query-the-chain",
-      ],
-    },
-    {
-      type: "category",
-      label: "Module 3: Mint Tokens & NFTs",
-      link: {
-        type: "doc",
-        id: "native-tokens/overview",
-      },
-      items: [
-        "native-tokens/minting-policies",
-        "native-tokens/mint-fungible",
-        "native-tokens/mint-nft",
-        "native-tokens/metadata-registry",
-        "native-tokens/authenticated-products",
-        {
-          type: "category",
-          label: "Token Registry",
-          items: [
-            "native-tokens/token-registry/overview",
-            "native-tokens/token-registry/register-an-entry",
-            "native-tokens/token-registry/metadata-server",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Module 4: Write Smart Contracts",
-      link: {
-        type: "doc",
-        id: "build/smart-contracts/overview",
-      },
-      items: [
-        "build/smart-contracts/datum-redeemer-context",
-        "build/smart-contracts/choose-a-language",
-        "build/smart-contracts/write-a-validator",
-        "build/smart-contracts/lock-and-spend",
-        "build/smart-contracts/testing",
-        "build/smart-contracts/formal-verification",
-        {
-          type: "category",
-          label: "Languages",
-          items: [
-            "build/smart-contracts/languages/aiken/overview",
+            "developers/curriculum/fundamentals/what-is-a-blockchain",
+            "developers/curriculum/fundamentals/cryptographic-primitives",
+            "developers/curriculum/fundamentals/consensus-and-ouroboros",
             {
               type: "category",
-              label: "Plutarch (Haskell)",
+              label: "Core Concepts",
               link: {
                 type: "doc",
-                id: "build/smart-contracts/languages/plutarch/overview",
+                id: "developers/curriculum/fundamentals/core-concepts/overview",
+              },
+              items: [
+                "developers/curriculum/fundamentals/core-concepts/eutxo",
+                "developers/curriculum/fundamentals/core-concepts/addresses",
+                "developers/curriculum/fundamentals/core-concepts/wallets-and-keys",
+                "developers/curriculum/fundamentals/core-concepts/transactions",
+                "developers/curriculum/fundamentals/core-concepts/fees",
+              ],
+            },
+            "developers/curriculum/fundamentals/cardano-components",
+            "developers/curriculum/fundamentals/cardano-for-ethereum-developers",
+          ],
+        },
+        {
+          type: "category",
+          label: "Module 2: Start Building",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/start-building/overview",
+          },
+          items: [
+            "developers/curriculum/start-building/networks-and-test-ada",
+            "developers/curriculum/start-building/choose-your-tools",
+            "developers/curriculum/start-building/your-first-transaction",
+            "developers/curriculum/start-building/transaction-building",
+            "developers/curriculum/start-building/query-the-chain",
+          ],
+        },
+        {
+          type: "category",
+          label: "Module 3: Mint Tokens & NFTs",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/native-tokens/overview",
+          },
+          items: [
+            "developers/curriculum/native-tokens/minting-policies",
+            "developers/curriculum/native-tokens/mint-fungible",
+            "developers/curriculum/native-tokens/mint-nft",
+            "developers/curriculum/native-tokens/metadata-registry",
+            "developers/curriculum/native-tokens/authenticated-products",
+            {
+              type: "category",
+              label: "Token Registry",
+              items: [
+                "developers/curriculum/native-tokens/token-registry/overview",
+                "developers/curriculum/native-tokens/token-registry/register-an-entry",
+                "developers/curriculum/native-tokens/token-registry/metadata-server",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Module 4: Write Smart Contracts",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/smart-contracts/overview",
+          },
+          items: [
+            "developers/curriculum/smart-contracts/datum-redeemer-context",
+            "developers/curriculum/smart-contracts/choose-a-language",
+            "developers/curriculum/smart-contracts/write-a-validator",
+            "developers/curriculum/smart-contracts/lock-and-spend",
+            "developers/curriculum/smart-contracts/testing",
+            "developers/curriculum/smart-contracts/formal-verification",
+            {
+              type: "category",
+              label: "Languages",
+              items: [
+                "developers/curriculum/smart-contracts/languages/aiken/overview",
+                {
+                  type: "category",
+                  label: "Plutarch (Haskell)",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/smart-contracts/languages/plutarch/overview",
+                  },
+                  items: [
+                    {
+                      type: "category",
+                      label: "Advanced Data Structures",
+                      items: [
+                        "developers/curriculum/smart-contracts/languages/plutarch/advanced-data-structures/merkle-tree",
+                        "developers/curriculum/smart-contracts/languages/plutarch/advanced-data-structures/trie",
+                      ],
+                    },
+                    {
+                      type: "category",
+                      label: "Production Grade DApps",
+                      link: {
+                        type: "doc",
+                        id: "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/overview",
+                      },
+                      items: [
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/nix-environments",
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/bridge-template",
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/linear-vesting",
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/merkle-tree",
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming",
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/single-asset-staking",
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/smart-handles",
+                        "developers/curriculum/smart-contracts/languages/plutarch/production-grade-dapps/direct-offer",
+                      ],
+                    },
+                  ],
+                },
+                "developers/curriculum/smart-contracts/languages/plinth",
+                "developers/curriculum/smart-contracts/languages/opshin",
+                "developers/curriculum/smart-contracts/languages/pebble",
+                "developers/curriculum/smart-contracts/languages/scalus",
+                "developers/curriculum/smart-contracts/languages/marlowe",
+              ],
+            },
+            {
+              type: "category",
+              label: "Design Patterns",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/smart-contracts/advanced/design-patterns/overview",
+              },
+              items: [
+                "developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator",
+                "developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers",
+                "developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter",
+                "developers/curriculum/smart-contracts/advanced/design-patterns/validity-range-normalization",
+                "developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator",
+                "developers/curriculum/smart-contracts/advanced/design-patterns/parameter-validation",
+                "developers/curriculum/smart-contracts/advanced/design-patterns/linked-list",
+                {
+                  type: "category",
+                  label: "Data Structures",
+                  items: [
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/merkle-tree",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/trie",
+                  ],
+                },
+              ],
+            },
+            "developers/curriculum/smart-contracts/example-contracts",
+            {
+              type: "category",
+              label: "Smart Contract Security",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/smart-contracts/security",
+              },
+              items: [
+                "developers/curriculum/smart-contracts/advanced/security/overview",
+                {
+                  type: "category",
+                  label: "Vulnerabilities",
+                  items: [
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/time-handling",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/token-security",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-value",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-datum",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-inputs",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/other-redeemer",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/other-token-name",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/arbitrary-datum",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/cheap-spam",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/locked-value",
+                  ],
+                },
+                "developers/curriculum/smart-contracts/advanced/security/ctf",
+              ],
+            },
+            {
+              type: "category",
+              label: "Advanced",
+              items: [
+                "developers/curriculum/smart-contracts/advanced/uplc",
+                "developers/curriculum/smart-contracts/advanced/debug-cbor",
+                "developers/curriculum/smart-contracts/advanced/optimization",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Module 5: Build a dApp",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/dapps/overview",
+          },
+          items: [
+            "developers/curriculum/dapps/connect-a-wallet",
+            "developers/curriculum/dapps/defi",
+            {
+              type: "category",
+              label: "Wallet Authentication",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/wallet-authentication/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/wallet-authentication/mesh",
+                {
+                  type: "category",
+                  label: "UTXOS Web3 Services",
+                  items: [
+                    {
+                      type: "autogenerated",
+                      dirName: "developers/curriculum/05-dapps/wallet-authentication/utxos",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Oracles",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/oracles/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/oracles/charli3",
+                "developers/curriculum/dapps/oracles/orcfax",
+                "developers/curriculum/dapps/oracles/pyth",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Module 6: Add Staking & Governance",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/staking-governance/overview",
+          },
+          items: [
+            "developers/curriculum/staking-governance/staking",
+            "developers/curriculum/staking-governance/governance",
+            {
+              type: "category",
+              label: "Governance via cardano-cli",
+              items: [
+                "developers/curriculum/staking-governance/cardano-cli/register-drep",
+                "developers/curriculum/staking-governance/cardano-cli/delegate-to-a-drep",
+                "developers/curriculum/staking-governance/cardano-cli/submit-votes",
+                "developers/curriculum/staking-governance/cardano-cli/create-governance-actions",
+                "developers/curriculum/staking-governance/cardano-cli/constitutional-committee",
+                "developers/curriculum/staking-governance/cardano-cli/gov-queries",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Module 7: Ship to Production",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/production/overview",
+          },
+          items: [
+            "developers/curriculum/production/going-to-production",
+            "developers/curriculum/production/hydra",
+            "developers/curriculum/production/infrastructure",
+            {
+              type: "category",
+              label: "API Providers",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/production/api-providers/overview",
               },
               items: [
                 {
                   type: "category",
-                  label: "Advanced Data Structures",
+                  label: "Blockfrost",
                   items: [
-                    "build/smart-contracts/languages/plutarch/advanced-data-structures/merkle-tree",
-                    "build/smart-contracts/languages/plutarch/advanced-data-structures/trie",
+                    {
+                      type: "autogenerated",
+                      dirName:
+                        "developers/curriculum/07-production/api-providers/blockfrost",
+                    },
                   ],
                 },
-                {
-                  type: "category",
-                  label: "Production Grade DApps",
-                  link: {
-                    type: "doc",
-                    id: "build/smart-contracts/languages/plutarch/production-grade-dapps/overview",
-                  },
-                  items: [
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/nix-environments",
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/bridge-template",
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/linear-vesting",
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/merkle-tree",
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/yield-farming",
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/single-asset-staking",
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/smart-handles",
-                    "build/smart-contracts/languages/plutarch/production-grade-dapps/direct-offer",
-                  ],
-                },
+                "developers/curriculum/production/api-providers/koios",
+                "developers/curriculum/production/api-providers/ogmios",
               ],
             },
-            "build/smart-contracts/languages/plinth",
-            "build/smart-contracts/languages/opshin",
-            "build/smart-contracts/languages/pebble",
-            "build/smart-contracts/languages/scalus",
-            "build/smart-contracts/languages/marlowe",
-          ],
-        },
-        {
-          type: "category",
-          label: "Design Patterns",
-          link: {
-            type: "doc",
-            id: "build/smart-contracts/advanced/design-patterns/overview",
-          },
-          items: [
-            "build/smart-contracts/advanced/design-patterns/stake-validator",
-            "build/smart-contracts/advanced/design-patterns/utxo-indexers",
-            "build/smart-contracts/advanced/design-patterns/tx-level-minter",
-            "build/smart-contracts/advanced/design-patterns/validity-range-normalization",
-            "build/smart-contracts/advanced/design-patterns/merkelized-validator",
-            "build/smart-contracts/advanced/design-patterns/parameter-validation",
-            "build/smart-contracts/advanced/design-patterns/linked-list",
+            "developers/curriculum/production/run-your-own-node",
             {
               type: "category",
-              label: "Data Structures",
+              label: "Local Development Networks",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/production/development-networks/overview",
+              },
               items: [
-                "build/smart-contracts/advanced/design-patterns/merkle-tree",
-                "build/smart-contracts/advanced/design-patterns/trie",
+                "developers/curriculum/production/development-networks/yaci-devkit",
+                "developers/curriculum/production/development-networks/cardano-testnet",
               ],
             },
+            "developers/curriculum/production/demeter",
+            "operators/security/air-gap",
           ],
         },
-        "build/smart-contracts/example-contracts",
-        {
-          type: "category",
-          label: "Smart Contract Security",
-          link: {
-            type: "doc",
-            id: "build/smart-contracts/security",
-          },
-          items: [
-            "build/smart-contracts/advanced/security/overview",
-            {
-              type: "category",
-              label: "Vulnerabilities",
-              items: [
-                "build/smart-contracts/advanced/security/vulnerabilities/double-satisfaction",
-                "build/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication",
-                "build/smart-contracts/advanced/security/vulnerabilities/time-handling",
-                "build/smart-contracts/advanced/security/vulnerabilities/token-security",
-                "build/smart-contracts/advanced/security/vulnerabilities/unbounded-value",
-                "build/smart-contracts/advanced/security/vulnerabilities/unbounded-datum",
-                "build/smart-contracts/advanced/security/vulnerabilities/unbounded-inputs",
-                "build/smart-contracts/advanced/security/vulnerabilities/other-redeemer",
-                "build/smart-contracts/advanced/security/vulnerabilities/other-token-name",
-                "build/smart-contracts/advanced/security/vulnerabilities/arbitrary-datum",
-                "build/smart-contracts/advanced/security/vulnerabilities/utxo-contention",
-                "build/smart-contracts/advanced/security/vulnerabilities/cheap-spam",
-                "build/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control",
-                "build/smart-contracts/advanced/security/vulnerabilities/locked-value",
-              ],
-            },
-            "build/smart-contracts/advanced/security/ctf",
-          ],
-        },
-        {
-          type: "category",
-          label: "Advanced",
-          items: [
-            "build/smart-contracts/advanced/uplc",
-            "build/smart-contracts/advanced/debug-cbor",
-            "build/smart-contracts/advanced/optimization",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Module 5: Build a dApp",
-      link: {
-        type: "doc",
-        id: "build/integrate/overview",
-      },
-      items: [
-        "build/integrate/connect-a-wallet",
-        "build/integrate/defi",
-        {
-          type: "category",
-          label: "Wallet Authentication",
-          link: {
-            type: "doc",
-            id: "build/integrate/wallet-authentication/overview",
-          },
-          items: [
-            "build/integrate/wallet-authentication/mesh",
-            {
-              type: "category",
-              label: "UTXOS Web3 Services",
-              items: [
-                {
-                  type: "autogenerated",
-                  dirName: "build/integrate/wallet-authentication/utxos",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Oracles",
-          link: {
-            type: "doc",
-            id: "build/integrate/oracles/overview",
-          },
-          items: [
-            "build/integrate/oracles/charli3",
-            "build/integrate/oracles/orcfax",
-            "build/integrate/oracles/pyth",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Module 6: Add Staking & Governance",
-      link: {
-        type: "doc",
-        id: "build/staking-governance/overview",
-      },
-      items: [
-        "build/staking-governance/staking",
-        "build/staking-governance/governance",
-        {
-          type: "category",
-          label: "Governance via cardano-cli",
-          items: [
-            "build/staking-governance/cardano-cli/register-drep",
-            "build/staking-governance/cardano-cli/delegate-to-a-drep",
-            "build/staking-governance/cardano-cli/submit-votes",
-            "build/staking-governance/cardano-cli/create-governance-actions",
-            "build/staking-governance/cardano-cli/constitutional-committee",
-            "build/staking-governance/cardano-cli/gov-queries",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Module 7: Ship to Production",
-      link: {
-        type: "doc",
-        id: "build/scaling/overview",
-      },
-      items: [
-        "build/scaling/going-to-production",
-        "build/scaling/hydra",
-        "build/scaling/infrastructure",
-        {
-          type: "category",
-          label: "API Providers",
-          link: {
-            type: "doc",
-            id: "get-started/infrastructure/api-providers/overview",
-          },
-          items: [
-            {
-              type: "category",
-              label: "Blockfrost",
-              items: [
-                {
-                  type: "autogenerated",
-                  dirName:
-                    "get-started/infrastructure/api-providers/blockfrost",
-                },
-              ],
-            },
-            "get-started/infrastructure/api-providers/koios",
-            "get-started/infrastructure/api-providers/ogmios",
-          ],
-        },
-        "build/scaling/run-your-own-node",
-        {
-          type: "category",
-          label: "Local Development Networks",
-          link: {
-            type: "doc",
-            id: "get-started/networks/development-networks/overview",
-          },
-          items: [
-            "get-started/networks/development-networks/yaci-devkit",
-            "get-started/networks/development-networks/cardano-testnet",
-          ],
-        },
-        "get-started/infrastructure/demeter",
-        "learn/educational-resources/air-gap",
       ],
     },
     {
@@ -339,15 +346,15 @@ module.exports = {
               label: "Listening for Payments",
               link: {
                 type: "doc",
-                id: "build/integrate/payments/listening-for-payments/overview",
+                id: "developers/integrations/payments/listening-for-payments/overview",
               },
               items: [
-                "build/integrate/payments/listening-for-payments/point-of-sale",
-                "build/integrate/payments/listening-for-payments/cardano-cli",
-                "build/integrate/payments/listening-for-payments/cardano-wallet",
+                "developers/integrations/payments/listening-for-payments/point-of-sale",
+                "developers/integrations/payments/listening-for-payments/cardano-cli",
+                "developers/integrations/payments/listening-for-payments/cardano-wallet",
               ],
             },
-            "build/integrate/payments/x402-standard",
+            "developers/integrations/payments/x402-standard",
           ],
         },
         {
@@ -355,16 +362,16 @@ module.exports = {
           label: "AI Agents",
           link: {
             type: "doc",
-            id: "build/integrate/ai-agents/overview",
+            id: "developers/integrations/ai-agents/overview",
           },
-          items: ["build/integrate/ai-agents/masumi"],
+          items: ["developers/integrations/ai-agents/masumi"],
         },
         {
           type: "category",
           label: "Internet of Things",
           link: {
             type: "doc",
-            id: "build/iot-on-cardano/overview",
+            id: "developers/integrations/iot/overview",
           },
           items: [
             {
@@ -372,12 +379,12 @@ module.exports = {
               label: "Introductions",
               link: {
                 type: "doc",
-                id: "build/iot-on-cardano/introductions/overview",
+                id: "developers/integrations/iot/introductions/overview",
               },
               items: [
-                "build/iot-on-cardano/introductions/arduino",
-                "build/iot-on-cardano/introductions/esp32-d1-microcontrollers",
-                "build/iot-on-cardano/introductions/rest-apis",
+                "developers/integrations/iot/introductions/arduino",
+                "developers/integrations/iot/introductions/esp32-d1-microcontrollers",
+                "developers/integrations/iot/introductions/rest-apis",
               ],
             },
             {
@@ -385,12 +392,12 @@ module.exports = {
               label: "Workshop 01: The Basics",
               link: {
                 type: "doc",
-                id: "build/iot-on-cardano/the-basics/overview",
+                id: "developers/integrations/iot/the-basics/overview",
               },
               items: [
-                "build/iot-on-cardano/the-basics/01-cardano-setup",
-                "build/iot-on-cardano/the-basics/02-arduino-setup",
-                "build/iot-on-cardano/the-basics/03-api-setup",
+                "developers/integrations/iot/the-basics/01-cardano-setup",
+                "developers/integrations/iot/the-basics/02-arduino-setup",
+                "developers/integrations/iot/the-basics/03-api-setup",
               ],
             },
             {
@@ -398,13 +405,13 @@ module.exports = {
               label: "Workshop 02: Read and Output",
               link: {
                 type: "doc",
-                id: "build/iot-on-cardano/read-and-output/overview",
+                id: "developers/integrations/iot/read-and-output/overview",
               },
               items: [
-                "build/iot-on-cardano/read-and-output/01-fetch-wallet-balance",
-                "build/iot-on-cardano/read-and-output/02-display-data",
-                "build/iot-on-cardano/read-and-output/03-light-up-the-tree",
-                "build/iot-on-cardano/read-and-output/04-epoch-clock",
+                "developers/integrations/iot/read-and-output/01-fetch-wallet-balance",
+                "developers/integrations/iot/read-and-output/02-display-data",
+                "developers/integrations/iot/read-and-output/03-light-up-the-tree",
+                "developers/integrations/iot/read-and-output/04-epoch-clock",
               ],
             },
             {
@@ -412,12 +419,12 @@ module.exports = {
               label: "Workshop 03: Input and Write",
               link: {
                 type: "doc",
-                id: "build/iot-on-cardano/input-and-write/overview",
+                id: "developers/integrations/iot/input-and-write/overview",
               },
               items: [
-                "build/iot-on-cardano/input-and-write/01-connect-and-read-sensor-data",
-                "build/iot-on-cardano/input-and-write/02-build-your-own-api",
-                "build/iot-on-cardano/input-and-write/03-mint-sensor-data-on-chain",
+                "developers/integrations/iot/input-and-write/01-connect-and-read-sensor-data",
+                "developers/integrations/iot/input-and-write/02-build-your-own-api",
+                "developers/integrations/iot/input-and-write/03-mint-sensor-data-on-chain",
               ],
             },
             {
@@ -425,11 +432,11 @@ module.exports = {
               label: "Workshop 04: Cardano Ticker",
               link: {
                 type: "doc",
-                id: "build/iot-on-cardano/cardano-ticker/overview",
+                id: "developers/integrations/iot/cardano-ticker/overview",
               },
               items: [
-                "build/iot-on-cardano/cardano-ticker/01-gathering-data",
-                "build/iot-on-cardano/cardano-ticker/02-building-the-ticker",
+                "developers/integrations/iot/cardano-ticker/01-gathering-data",
+                "developers/integrations/iot/cardano-ticker/02-building-the-ticker",
               ],
             },
             {
@@ -437,14 +444,14 @@ module.exports = {
               label: "Workshop 05: QR-Code Payments",
               link: {
                 type: "doc",
-                id: "build/iot-on-cardano/qr-code-payments/overview",
+                id: "developers/integrations/iot/qr-code-payments/overview",
               },
               items: [
-                "build/iot-on-cardano/qr-code-payments/01-getting-started",
-                "build/iot-on-cardano/qr-code-payments/02-cip13-integration",
-                "build/iot-on-cardano/qr-code-payments/03-qr-code-creation",
-                "build/iot-on-cardano/qr-code-payments/04-building-the-frontend",
-                "build/iot-on-cardano/qr-code-payments/05-building-the-backend",
+                "developers/integrations/iot/qr-code-payments/01-getting-started",
+                "developers/integrations/iot/qr-code-payments/02-cip13-integration",
+                "developers/integrations/iot/qr-code-payments/03-qr-code-creation",
+                "developers/integrations/iot/qr-code-payments/04-building-the-frontend",
+                "developers/integrations/iot/qr-code-payments/05-building-the-backend",
               ],
             },
             {
@@ -452,23 +459,23 @@ module.exports = {
               label: "Hardware",
               link: {
                 type: "doc",
-                id: "build/iot-on-cardano/hardware/overview",
+                id: "developers/integrations/iot/hardware/overview",
               },
               items: [
-                "build/iot-on-cardano/hardware/cheap-yellow-display-cyd",
-                "build/iot-on-cardano/hardware/esp32-c3",
-                "build/iot-on-cardano/hardware/oled-display-sh1106-13inch-i2c",
-                "build/iot-on-cardano/hardware/aht10-temperature-humidity-sensor-i2c",
-                "build/iot-on-cardano/hardware/relay-module-3v-1channel",
-                "build/iot-on-cardano/hardware/ws2812b-led-ring-12",
+                "developers/integrations/iot/hardware/cheap-yellow-display-cyd",
+                "developers/integrations/iot/hardware/esp32-c3",
+                "developers/integrations/iot/hardware/oled-display-sh1106-13inch-i2c",
+                "developers/integrations/iot/hardware/aht10-temperature-humidity-sensor-i2c",
+                "developers/integrations/iot/hardware/relay-module-3v-1channel",
+                "developers/integrations/iot/hardware/ws2812b-led-ring-12",
               ],
             },
-            "build/iot-on-cardano/troubleshooting",
+            "developers/integrations/iot/troubleshooting",
           ],
         },
         {
           type: "doc",
-          id: "build/integrate/exchange-integrations",
+          id: "developers/integrations/exchange-integrations",
           label: "Exchange Integrations",
         },
       ],
@@ -502,89 +509,89 @@ module.exports = {
     },
   ],
 
-  networkSidebar: [
-    "operate-a-stake-pool/overview",
+  operatorsSidebar: [
+    "operators/overview",
     {
       type: "category",
       label: "1. Before You Start",
       items: [
-        "operate-a-stake-pool/basics/consensus-staking",
-        "operate-a-stake-pool/basics/hardware-requirements",
-        "operate-a-stake-pool/basics/stake-pool-networking",
-        "operate-a-stake-pool/basics/cardano-key-pairs",
+        "operators/basics/consensus-staking",
+        "operators/basics/hardware-requirements",
+        "operators/basics/stake-pool-networking",
+        "operators/basics/cardano-key-pairs",
       ],
     },
     {
       type: "doc",
-      id: "get-started/infrastructure/node/installing-cardano-node",
+      id: "developers/curriculum/production/node/installing-cardano-node",
       label: "2. Installation",
     },
     {
       type: "category",
       label: "3. Configure",
       items: [
-        "get-started/infrastructure/node/topology",
-        "operate-a-stake-pool/relay-configuration/relay-node-configuration",
+        "developers/curriculum/production/node/topology",
+        "operators/relay-configuration/relay-node-configuration",
         {
           type: "category",
           label: "Block Producer",
           items: [
-            "operate-a-stake-pool/block-producer/block-producer-keys",
-            "operate-a-stake-pool/block-producer/deployment",
-            "operate-a-stake-pool/block-producer/mithril-signer-configuration",
-            "operate-a-stake-pool/block-producer/kes-agent",
+            "operators/block-producer/block-producer-keys",
+            "operators/block-producer/deployment",
+            "operators/block-producer/mithril-signer-configuration",
+            "operators/block-producer/kes-agent",
           ],
         },
       ],
     },
     {
       type: "doc",
-      id: "get-started/infrastructure/node/running-cardano",
+      id: "developers/curriculum/production/node/running-cardano",
       label: "4. Run",
     },
     {
       type: "category",
       label: "5. Register Your Pool",
       items: [
-        "operate-a-stake-pool/block-producer/generating-wallet-keys",
-        "operate-a-stake-pool/block-producer/register-stake-address",
-        "operate-a-stake-pool/block-producer/register-stake-pool",
+        "operators/block-producer/generating-wallet-keys",
+        "operators/block-producer/register-stake-address",
+        "operators/block-producer/register-stake-pool",
       ],
     },
     {
       type: "category",
       label: "6. Monitor",
       items: [
-        "operate-a-stake-pool/monitoring/monitoring-overview",
-        "operate-a-stake-pool/monitoring/monitoring-prometheus-grafana",
-        "operate-a-stake-pool/monitoring/monitoring-openblockperf",
+        "operators/monitoring/monitoring-overview",
+        "operators/monitoring/monitoring-prometheus-grafana",
+        "operators/monitoring/monitoring-openblockperf",
       ],
     },
     {
       type: "category",
       label: "7. Security & Hardening",
       items: [
-        "learn/cardano-cli/security/secure-workflow",
-        "operate-a-stake-pool/deployment-scenarios/hardening-server",
-        "operate-a-stake-pool/deployment-scenarios/improve-grafana-security",
-        "operate-a-stake-pool/deployment-scenarios/audit-your-node",
+        "operators/security/secure-workflow",
+        "operators/deployment-scenarios/hardening-server",
+        "operators/deployment-scenarios/improve-grafana-security",
+        "operators/deployment-scenarios/audit-your-node",
       ],
     },
     {
       type: "category",
       label: "8. Governance",
       items: [
-        "operate-a-stake-pool/governance/spo-governance",
-        "operate-a-stake-pool/operator-tools/calidus-keys",
-        "operate-a-stake-pool/governance/on-chain-polls",
+        "operators/governance/spo-governance",
+        "operators/operator-tools/calidus-keys",
+        "operators/governance/on-chain-polls",
       ],
     },
     {
       type: "category",
       label: "Operator Tools",
       items: [
-        "operate-a-stake-pool/operator-tools/guild-ops-suite",
-        "build/scaling/mithril",
+        "operators/operator-tools/guild-ops-suite",
+        "developers/curriculum/production/mithril",
       ],
     },
     {

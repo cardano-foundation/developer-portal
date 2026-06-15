@@ -228,10 +228,10 @@ function HighlightsSection({ apps }) {
 
 function GuidedPathsBanner() {
   const paths = [
-    { to: "/docs/get-started/", label: "Get started" },
-    { to: "/docs/build/smart-contracts/overview", label: "Write smart contracts" },
-    { to: "/docs/native-tokens/overview", label: "Create native tokens" },
-    { to: "/docs/operate-a-stake-pool/", label: "Run a stake pool" },
+    { to: "/docs/developers/", label: "Get started" },
+    { to: "/docs/developers/curriculum/smart-contracts/overview", label: "Write smart contracts" },
+    { to: "/docs/developers/curriculum/native-tokens/overview", label: "Create native tokens" },
+    { to: "/docs/operators/", label: "Run a stake pool" },
   ];
   return (
     <section className={clsx("container", styles.guidedPathsBanner)}>

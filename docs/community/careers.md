@@ -40,6 +40,6 @@ Many Cardano projects are open source and welcome contributions from developers:
 
 Get started building on Cardano and showcase your skills:
 
-- Follow our [Getting Started guides](/docs/get-started/)
-- Learn about [Smart Contract development](/docs/build/smart-contracts/overview)
+- Follow our [Getting Started guides](/docs/developers/)
+- Learn about [Smart Contract development](/docs/developers/curriculum/smart-contracts/overview)
 - Join the [Cardano Stack Exchange](https://cardano.stackexchange.com) to help others and demonstrate your expertise

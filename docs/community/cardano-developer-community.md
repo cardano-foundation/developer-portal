@@ -41,7 +41,7 @@ Join Cardano Improvement Proposal discussions every two weeks. Participate in te
 Chat with general developer community channels. Great for quick questions, community discussions, and staying up-to-date with the latest developments.
 
 [**IOG Technical Discord**](https://discord.com/invite/w6TwW9bGA6)  
-Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pioneers](/docs/build/smart-contracts/languages/plinth#resources) and technical discussions with IOG developers.
+Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pioneers](/docs/developers/curriculum/smart-contracts/languages/plinth#resources) and technical discussions with IOG developers.
 
 ## Talent Pool & Hackathons
 

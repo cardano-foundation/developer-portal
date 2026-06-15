@@ -28,8 +28,8 @@ const BUILD = path.join(ROOT, 'build');
 // broken upstream.
 const moves = [
   // (1) slug: frontmatter
-  ['docs/operate-a-stake-pool/operate-a-stake-pool.md',               'docs/operate-a-stake-pool.md'],
-  ['docs/get-started/get-started.md',                                 'docs/get-started.md'],
+  ['docs/operators/operators.md',   'docs/operators.md'],
+  ['docs/developers/developers.md', 'docs/developers.md'],
 ];
 
 function moveFile(fromAbs, toAbs) {
