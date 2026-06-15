@@ -261,6 +261,18 @@ module.exports = {
       items: [
         "build/staking-governance/staking",
         "build/staking-governance/governance",
+        {
+          type: "category",
+          label: "Governance via cardano-cli",
+          items: [
+            "build/staking-governance/cardano-cli/register-drep",
+            "build/staking-governance/cardano-cli/delegate-to-a-drep",
+            "build/staking-governance/cardano-cli/submit-votes",
+            "build/staking-governance/cardano-cli/create-governance-actions",
+            "build/staking-governance/cardano-cli/constitutional-committee",
+            "build/staking-governance/cardano-cli/gov-queries",
+          ],
+        },
       ],
     },
     {
@@ -472,46 +484,6 @@ module.exports = {
           type: "link",
           label: "Talent Pool",
           href: "/talent",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Contributing to Developer Portal",
-      items: [
-        "contribute/portal-contribute",
-        "contribute/portal-style-guide",
-        {
-          type: "link",
-          label: "Contributors",
-          href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
-        },
-      ],
-    },
-  ],
-
-  governanceSidebar: [
-    {
-      type: "category",
-      label: "Participate in Governance",
-      link: {
-        type: "doc",
-        id: "governance/overview",
-      },
-      items: [
-        {
-          type: "category",
-          label: "Cardano Governance",
-          link: {
-            type: "doc",
-            id: "governance/cardano-governance/overview",
-          },
-          items: [
-            "governance/cardano-governance/cardano-governance",
-            "governance/cardano-governance/governance-actions",
-            "governance/cardano-governance/submitting-governance-actions",
-            "governance/cardano-governance/constitutional-committee-guide",
-          ],
         },
       ],
     },

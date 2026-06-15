@@ -29,14 +29,7 @@ const BUILD = path.join(ROOT, 'build');
 const moves = [
   // (1) slug: frontmatter
   ['docs/operate-a-stake-pool/operate-a-stake-pool.md',               'docs/operate-a-stake-pool.md'],
-  ['docs/governance/governance.md',                                   'docs/governance.md'],
-  ['governance/cardano-governance/governance-model.md',               'docs/governance/cardano-governance/governance-model.md'],
-  ['governance/cardano-governance/submitting-governance-actions.md',  'docs/governance/cardano-governance/submitting-governance-actions.md'],
-  ['governance/cardano-governance/constitutional-committee-guide.md', 'docs/governance/cardano-governance/constitutional-committee-guide.md'],
-  ['governance/cardano-governance/governance-actions.md',             'docs/governance/cardano-governance/governance-actions.md'],
   ['docs/get-started/get-started.md',                                 'docs/get-started.md'],
-  // (2) filename matches parent dir name
-  ['docs/governance/cardano-governance/cardano-governance.md',     'docs/governance/cardano-governance.md'],
 ];
 
 function moveFile(fromAbs, toAbs) {

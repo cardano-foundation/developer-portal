@@ -56,8 +56,8 @@ const redirects = [
     from: '/docs/get-started/smart-contracts-signpost',
   },
   {
-    // redirect the old funding category overview to the new governance category
-    to: '/docs/governance/',
+    // the old funding category overview now points to the funding page
+    to: '/docs/community/funding',
     from: '/docs/fund-your-project/',
   },
   {
@@ -581,12 +581,16 @@ const redirects = [
   { to: '/docs/first-steps/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/basic-operations/treasury-donations', '/docs/learn/cardano-cli/basic-operations/treasury-donation'] },
   { to: '/docs/first-steps/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/multi-witness-transactions', '/docs/learn/cardano-cli/multi-witness-transactions'] },
   { to: '/docs/learn/cardano-cli/security/secure-workflow', from: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow' },
-  { to: '/docs/learn/cardano-cli/governance/submit-votes', from: '/docs/get-started/infrastructure/cardano-cli/governance/voting' },
-  { to: '/docs/learn/cardano-cli/governance/gov-queries', from: '/docs/get-started/infrastructure/cardano-cli/governance/gov-queries' },
-  { to: '/docs/learn/cardano-cli/governance/create-governance-actions', from: '/docs/get-started/infrastructure/cardano-cli/governance/governance-actions' },
-  { to: '/docs/learn/cardano-cli/governance/constitutional-committee', from: '/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee' },
-  { to: '/docs/learn/cardano-cli/governance/delegate-to-a-drep', from: '/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote' },
-  { to: '/docs/learn/cardano-cli/governance/register-drep', from: '/docs/get-started/infrastructure/cardano-cli/governance/register-drep' },
+  // cardano-cli governance guides moved from the legacy learn/ bucket into Module 6
+  { to: '/docs/build/staking-governance/cardano-cli/submit-votes', from: ['/docs/get-started/infrastructure/cardano-cli/governance/voting', '/docs/learn/cardano-cli/governance/submit-votes'] },
+  { to: '/docs/build/staking-governance/cardano-cli/gov-queries', from: ['/docs/get-started/infrastructure/cardano-cli/governance/gov-queries', '/docs/learn/cardano-cli/governance/gov-queries'] },
+  { to: '/docs/build/staking-governance/cardano-cli/create-governance-actions', from: ['/docs/get-started/infrastructure/cardano-cli/governance/governance-actions', '/docs/learn/cardano-cli/governance/create-governance-actions'] },
+  { to: '/docs/build/staking-governance/cardano-cli/constitutional-committee', from: ['/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee', '/docs/learn/cardano-cli/governance/constitutional-committee'] },
+  { to: '/docs/build/staking-governance/cardano-cli/delegate-to-a-drep', from: ['/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote', '/docs/learn/cardano-cli/governance/delegate-to-a-drep'] },
+  { to: '/docs/build/staking-governance/cardano-cli/register-drep', from: ['/docs/get-started/infrastructure/cardano-cli/governance/register-drep', '/docs/learn/cardano-cli/governance/register-drep'] },
+  // the standalone governance section was folded into the developer curriculum (Module 6); participation now lives at cardano.org/governance
+  { to: '/docs/build/staking-governance/overview', from: '/docs/governance/' },
+  { to: '/docs/build/staking-governance/governance', from: ['/docs/governance/overview', '/docs/governance/cardano-governance/overview', '/docs/governance/cardano-governance/cardano-governance', '/docs/governance/cardano-governance/governance-actions', '/docs/governance/cardano-governance/submitting-governance-actions', '/docs/governance/cardano-governance/constitutional-committee-guide'] },
   { to: '/docs/native-tokens/mint-fungible', from: ['/docs/get-started/infrastructure/cardano-cli/native-assets/native-assets', '/docs/learn/cardano-cli/native-assets'] },
   { to: '/docs/build/smart-contracts/write-a-validator', from: ['/docs/get-started/infrastructure/cardano-cli/simple-scripts/simple-scripts', '/docs/learn/cardano-cli/simple-scripts'] },
   { to: '/docs/build/smart-contracts/lock-and-spend', from: ['/docs/get-started/infrastructure/cardano-cli/plutus-scripts/plutus-scripts', '/docs/learn/cardano-cli/plutus-scripts'] },

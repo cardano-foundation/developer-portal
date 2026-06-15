@@ -190,7 +190,7 @@ function BentoSection() {
 
           {/* Governance */}
           <Link
-            to={useBaseUrl("docs/governance/")}
+            to="https://cardano.org/governance"
             className={clsx(styles.bentoCard, styles.bentoHalf)}
           >
             <img

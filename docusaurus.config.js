@@ -255,7 +255,6 @@ module.exports = {
         includeOrder: [
           'get-started/**',
           'learn/**',
-          'governance/**',
           'operate-a-stake-pool/**',
           'community/**',
           'contribute/**',

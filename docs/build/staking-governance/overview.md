@@ -12,7 +12,7 @@ This module is the **developer slice**: how to integrate staking and governance 
 
 :::note Not covered here
 - **Running a stake pool** (relays, block producers, KES keys, pool registration, monitoring) is a separate discipline with its own section: [Operate a Stake Pool](/docs/operate-a-stake-pool/).
-- **Participating in governance** as an ADA holder, DRep, or committee member (browsing actions, the constitution, submitting actions as a human) lives in the [Governance](/docs/governance/) section.
+- **Participating in governance** as an ADA holder, DRep, or committee member (delegating your vote, browsing actions, the constitution, submitting actions as a human) lives on the participant hub at [cardano.org/governance](https://cardano.org/governance).
 
 This page is about *building* staking and governance features, not operating a pool or participating by hand.
 :::

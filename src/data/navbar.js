@@ -93,6 +93,7 @@ function getNavbarItems(repository) {
         {href: "https://cardanoupdates.com/", label: "Developer Activity"},
         {href: "https://cardanofoundation.org/academy", label: "Academy"},
         {href: "https://cips.cardano.org/", label: "CIPs"},
+        {href: "https://cardano.org/governance", label: "Governance"},
       ],
       mega: true,
       customProps: {
@@ -112,41 +113,7 @@ function getNavbarItems(repository) {
               {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Track ecosystem-wide development progress', icon: 'chart-line-solid'},
               {href: 'https://cardanofoundation.org/academy', label: 'Cardano Academy', description: 'Learn about Cardano', icon: 'book-solid'},
               {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll-solid'},
-            ],
-          },
-        ],
-      },
-    },
-    {
-      // Governance mega menu
-      type: 'dropdown',
-      label: 'Governance',
-      position: 'left',
-      items: [
-        {to: '/docs/governance/', label: 'Participate in Governance'},
-        {to: '/docs/governance/cardano-governance/governance-actions', label: 'Governance Actions'},
-        {to: '/docs/governance/cardano-governance/submitting-governance-actions', label: 'Submitting Actions'},
-        {to: '/docs/governance/cardano-governance/constitutional-committee-guide', label: 'Constitutional Committee'},
-      ],
-      mega: true,
-      customProps: {
-        columnCount: 2,
-        columns: [
-          {
-            title: 'Overview',
-            icon: 'users-solid',
-            items: [
-              {to: '/docs/governance/', label: 'Participate in Governance', description: 'Shape Cardano\'s future', icon: 'users-solid'},
-              {to: '/docs/governance/cardano-governance/governance-model', label: 'Cardano Governance', description: 'How governance works', icon: 'scroll-solid'},
-            ],
-          },
-          {
-            title: 'Advanced',
-            icon: 'scroll-solid',
-            items: [
-              {to: '/docs/governance/cardano-governance/governance-actions', label: 'Governance Actions', description: 'Types of governance actions', icon: 'shapes-solid'},
-              {to: '/docs/governance/cardano-governance/submitting-governance-actions', label: 'Submitting Actions', description: 'How to submit proposals', icon: 'arrow-down-to-line-solid'},
-              {to: '/docs/governance/cardano-governance/constitutional-committee-guide', label: 'Constitutional Committee', description: 'CC member guide', icon: 'shield-solid'},
+              {href: 'https://cardano.org/governance', label: 'Governance', description: 'Delegate your vote, become a DRep, read the constitution', icon: 'users-solid'},
             ],
           },
         ],

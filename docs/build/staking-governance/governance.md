@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 Cardano's on-chain governance ([CIP-1694](https://cips.cardano.org/cip/CIP-1694), the Voltaire era) lets ADA holders propose, vote on, and enact protocol changes. For developers, the key fact is that **governance actions are ordinary on-chain transactions**: DRep registration, vote delegation, and votes use the same wallets, providers, and transaction builders you already use, with a few extra certificate and procedure types.
 
-This page is the developer integration view. Participating in governance as a person, browsing actions, reading the constitution, the deep cardano-cli ceremonies for authoring actions or running a committee seat, lives in the separate [Governance](/docs/governance/) section, which this page links out to where relevant.
+This page is the developer integration view: how to build governance features (DRep registration, vote delegation, voting, and proposing) into a dApp or wallet with the SDKs and cardano-cli. Taking part in governance as a person, delegating your vote in a wallet, browsing actions, and reading the constitution, lives on the participant hub at [cardano.org/governance](https://cardano.org/governance), which this page links out to where relevant.
 
 ## Why governance matters to developers
 
@@ -30,7 +30,7 @@ CIP-1694 distributes power across three bodies as checks and balances:
 - **Delegated Representatives (DReps)**: the primary voice of ADA holders; anyone can register as a DRep or delegate their vote to one.
 - **Stake Pool Operators (SPOs)**: vote on specific action types (notably hard forks and certain parameters).
 
-Different action types require different combinations of these bodies. The full model, thresholds, and constitution are covered in the [Governance](/docs/governance/) section.
+Different action types require different combinations of these bodies, with the [thresholds and lifecycle](#ratification-and-lifecycle) below. The constitution and the broader participant model live at [cardano.org/governance](https://cardano.org/governance).
 
 ## The seven governance action types
 
@@ -45,6 +45,33 @@ Different action types require different combinations of these bodies. The full 
 | Info action (non-binding) | - | Yes | Yes |
 
 `*` SPOs vote on specific parameter groups only. Each type has its own voting thresholds (themselves governance-controlled).
+
+## Ratification and lifecycle
+
+Each action type is ratified by meeting a different mix of voting thresholds across the three bodies. The fractions below are the Conway defaults (themselves governance-controlled, set in the [Conway genesis](https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json)); a dash means that body does not vote on that type.
+
+| Governance action | CC | DReps | SPOs |
+|---|---|---|---|
+| Motion of no-confidence | - | 0.67 | 0.51 |
+| Update committee / threshold (normal) | - | 0.67 | 0.51 |
+| Update committee / threshold (no-confidence) | - | 0.60 | 0.51 |
+| New constitution or guardrails script | 2/3 | 0.75 | - |
+| Hard-fork initiation | 2/3 | 0.60 | 0.51 |
+| Protocol parameters (network / economic / technical) | 2/3 | 0.67 | - |
+| Protocol parameters (governance group) | 2/3 | 0.75 | - |
+| Treasury withdrawal | 2/3 | 0.67 | - |
+| Info (non-binding) | 2/3 | 1 | 1 |
+
+Changing a **security-relevant** protocol parameter (block and transaction sizes, fees, `utxoCostPerByte`, `govActionDeposit`, and similar) needs an extra SPO vote at 0.51, even for groups SPOs do not normally vote on.
+
+A proposed action then runs a fixed lifecycle, which is what your tooling reads when it shows an action's status:
+
+1. **Live for `govActionLifetime` epochs** (6 on mainnet); bodies vote during this window.
+2. **Ratified** once it meets the thresholds for its type, and added to the enactment set at the epoch boundary.
+3. **Enacted** at the next epoch boundary, when the change takes effect.
+4. **Expired** if it never reaches its thresholds within its lifetime.
+
+Most action types also carry a pointer to the last enacted action of the same kind, so an action ratifies against the state it was proposed against (treasury withdrawals and info actions are exempt). The deposit is returned to the proposer's reward account once the action leaves the live state.
 
 ## Before you start
 
@@ -61,7 +88,7 @@ const client = Client.make(preprod)
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 ```
 
-Mesh snippets assume a connected `wallet` and a `txBuilder`. Every operation below is **also available in [cardano-cli](/docs/learn/cardano-cli/governance/register-drep)**: the cli covers the deep ceremonies (key-based vs multisig vs Plutus DReps, authoring each action type, committee cold/hot keys), linked from each section.
+Mesh snippets assume a connected `wallet` and a `txBuilder`. Every operation below is **also available in [cardano-cli](/docs/build/staking-governance/cardano-cli/register-drep)**: the cli covers the deep ceremonies (key-based vs multisig vs Plutus DReps, authoring each action type, committee cold/hot keys), linked from each section.
 
 ## Register as a DRep
 
@@ -107,7 +134,7 @@ See the [Mesh governance guide](https://meshjs.dev/apis/txbuilder/governance).
 </TabItem>
 </Tabs>
 
-For the cardano-cli flow, including key-based, multisig (simple-script), and Plutus-script DReps, see [Register as a DRep](/docs/learn/cardano-cli/governance/register-drep).
+For the cardano-cli flow, including key-based, multisig (simple-script), and Plutus-script DReps, see [Register as a DRep](/docs/build/staking-governance/cardano-cli/register-drep).
 
 ## Delegate your vote
 
@@ -154,7 +181,7 @@ await wallet.submitTx(signedTx)
 </TabItem>
 </Tabs>
 
-cardano-cli: a `vote-delegation-certificate` with `--drep-key-hash`, `--drep-script-hash`, `--always-abstain`, or `--always-no-confidence`, see [Delegate votes to a DRep](/docs/learn/cardano-cli/governance/delegate-to-a-drep).
+cardano-cli: a `vote-delegation-certificate` with `--drep-key-hash`, `--drep-script-hash`, `--always-abstain`, or `--always-no-confidence`, see [Delegate votes to a DRep](/docs/build/staking-governance/cardano-cli/delegate-to-a-drep).
 
 ## Vote on an action
 
@@ -212,7 +239,7 @@ await wallet.submitTx(signedTx)
 </TabItem>
 </Tabs>
 
-cardano-cli: build a vote file with `governance vote create` (`--yes/--no/--abstain`, the action id, and your DRep / CC-hot / SPO-cold key), then submit it with `--vote-file`, see [Submitting votes](/docs/learn/cardano-cli/governance/submit-votes).
+cardano-cli: build a vote file with `governance vote create` (`--yes/--no/--abstain`, the action id, and your DRep / CC-hot / SPO-cold key), then submit it with `--vote-file`, see [Submitting votes](/docs/build/staking-governance/cardano-cli/submit-votes).
 
 ## Submit a proposal
 
@@ -242,7 +269,7 @@ Chain multiple `.propose(...)` calls to submit several actions in one transactio
 </TabItem>
 </Tabs>
 
-Authoring each action type (treasury withdrawal, parameter update with the guardrails script, constitution update, committee changes, no-confidence, hard fork, info) is detailed for cardano-cli in [Submitting governance actions](/docs/learn/cardano-cli/governance/create-governance-actions).
+Authoring each action type (treasury withdrawal, parameter update with the guardrails script, constitution update, committee changes, no-confidence, hard fork, info) is detailed for cardano-cli in [Submitting governance actions](/docs/build/staking-governance/cardano-cli/create-governance-actions).
 
 ## Committee operations
 
@@ -268,11 +295,11 @@ const resignTx = await client.newTx().resignCommitteeCold({ coldCredential, anch
 </TabItem>
 </Tabs>
 
-For the cardano-cli key ceremonies (key-based and multisig cold/hot keys, the authorization certificate), see [Constitutional committee](/docs/learn/cardano-cli/governance/constitutional-committee).
+For the cardano-cli key ceremonies (key-based and multisig cold/hot keys, the authorization certificate), see [Constitutional committee](/docs/build/staking-governance/cardano-cli/constitutional-committee).
 
 ## Query governance state
 
-To show proposals, DRep info, voting power, or committee state in a UI, query the chain. With cardano-cli, `query gov-state`, `query proposals`, `query drep-state`, `query drep-stake-distribution`, and `query committee-state` cover it, see [Governance queries](/docs/learn/cardano-cli/governance/gov-queries). API providers (Blockfrost, Koios, Maestro) expose the same data over HTTP; see the [API providers](/docs/get-started/infrastructure/api-providers/overview) reference.
+To show proposals, DRep info, voting power, or committee state in a UI, query the chain. With cardano-cli, `query gov-state`, `query proposals`, `query drep-state`, `query drep-stake-distribution`, and `query committee-state` cover it, see [Governance queries](/docs/build/staking-governance/cardano-cli/gov-queries). API providers (Blockfrost, Koios, Maestro) expose the same data over HTTP; see the [API providers](/docs/get-started/infrastructure/api-providers/overview) reference.
 
 ## Browser wallet APIs (CIP-95)
 
@@ -292,4 +319,5 @@ Plutus V3 added governance **script purposes**: a validator can run as a `Voting
 ## Next steps
 
 - [Staking](/docs/build/staking-governance/staking), the other delegation stake credentials carry
-- [Governance section](/docs/governance/), the full participant-facing model, constitution, and action lifecycle
+- [Governance via cardano-cli](/docs/build/staking-governance/cardano-cli/register-drep), the deep CLI ceremonies for DReps, votes, actions, and committee keys
+- [cardano.org/governance](https://cardano.org/governance), the participant hub: delegate your vote, become a DRep, and read the constitution
