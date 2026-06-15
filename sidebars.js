@@ -203,18 +203,6 @@ module.exports = {
           items: [
             "developers/curriculum/staking-governance/staking",
             "developers/curriculum/staking-governance/governance",
-            {
-              type: "category",
-              label: "Governance via cardano-cli",
-              items: [
-                "developers/curriculum/staking-governance/cardano-cli/register-drep",
-                "developers/curriculum/staking-governance/cardano-cli/delegate-to-a-drep",
-                "developers/curriculum/staking-governance/cardano-cli/submit-votes",
-                "developers/curriculum/staking-governance/cardano-cli/create-governance-actions",
-                "developers/curriculum/staking-governance/cardano-cli/constitutional-committee",
-                "developers/curriculum/staking-governance/cardano-cli/gov-queries",
-              ],
-            },
           ],
         },
         {

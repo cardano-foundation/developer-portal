@@ -633,12 +633,12 @@ const redirects = [
   { to: '/docs/developers/curriculum/start-building/transaction-building', from: ['/docs/get-started/infrastructure/cardano-cli/multi-witness-transactions', '/docs/learn/cardano-cli/multi-witness-transactions'] },
   { to: '/docs/operators/security/secure-workflow', from: '/docs/get-started/infrastructure/cardano-cli/security/secure-workflow' },
   // cardano-cli governance guides moved from the legacy learn/ bucket into Module 6
-  { to: '/docs/developers/curriculum/staking-governance/cardano-cli/submit-votes', from: ['/docs/get-started/infrastructure/cardano-cli/governance/voting', '/docs/learn/cardano-cli/governance/submit-votes'] },
-  { to: '/docs/developers/curriculum/staking-governance/cardano-cli/gov-queries', from: ['/docs/get-started/infrastructure/cardano-cli/governance/gov-queries', '/docs/learn/cardano-cli/governance/gov-queries'] },
-  { to: '/docs/developers/curriculum/staking-governance/cardano-cli/create-governance-actions', from: ['/docs/get-started/infrastructure/cardano-cli/governance/governance-actions', '/docs/learn/cardano-cli/governance/create-governance-actions'] },
-  { to: '/docs/developers/curriculum/staking-governance/cardano-cli/constitutional-committee', from: ['/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee', '/docs/learn/cardano-cli/governance/constitutional-committee'] },
-  { to: '/docs/developers/curriculum/staking-governance/cardano-cli/delegate-to-a-drep', from: ['/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote', '/docs/learn/cardano-cli/governance/delegate-to-a-drep'] },
-  { to: '/docs/developers/curriculum/staking-governance/cardano-cli/register-drep', from: ['/docs/get-started/infrastructure/cardano-cli/governance/register-drep', '/docs/learn/cardano-cli/governance/register-drep'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/voting', '/docs/learn/cardano-cli/governance/submit-votes'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/gov-queries', '/docs/learn/cardano-cli/governance/gov-queries'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/governance-actions', '/docs/learn/cardano-cli/governance/create-governance-actions'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/constitutional-committee', '/docs/learn/cardano-cli/governance/constitutional-committee'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/delegating-vote', '/docs/learn/cardano-cli/governance/delegate-to-a-drep'] },
+  { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/get-started/infrastructure/cardano-cli/governance/register-drep', '/docs/learn/cardano-cli/governance/register-drep'] },
   // the standalone governance section was folded into the developer curriculum (Module 6); participation now lives at cardano.org/governance
   { to: '/docs/developers/curriculum/staking-governance/overview', from: '/docs/governance/' },
   { to: '/docs/developers/curriculum/staking-governance/governance', from: ['/docs/governance/overview', '/docs/governance/cardano-governance/overview', '/docs/governance/cardano-governance/cardano-governance', '/docs/governance/cardano-governance/governance-actions', '/docs/governance/cardano-governance/submitting-governance-actions', '/docs/governance/cardano-governance/constitutional-committee-guide'] },

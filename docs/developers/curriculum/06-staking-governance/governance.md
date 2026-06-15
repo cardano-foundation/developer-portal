@@ -88,7 +88,7 @@ const client = Client.make(preprod)
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 ```
 
-Mesh snippets assume a connected `wallet` and a `txBuilder`. Every operation below is **also available in [cardano-cli](/docs/developers/curriculum/staking-governance/cardano-cli/register-drep)**: the cli covers the deep ceremonies (key-based vs multisig vs Plutus DReps, authoring each action type, committee cold/hot keys), linked from each section.
+Mesh snippets assume a connected `wallet` and a `txBuilder`. Each operation below also has a **cardano-cli** tab with the key-based flow, and the deeper cli ceremonies (script and Plutus DReps, authoring each action type, committee key management) continue inline beneath the relevant sections.
 
 ## Register as a DRep
 
@@ -132,9 +132,78 @@ await wallet.submitTx(signedTx)
 See the [Mesh governance guide](https://meshjs.dev/apis/txbuilder/governance).
 
 </TabItem>
+<TabItem value="cli" label="cardano-cli">
+
+Generate the DRep key pair:
+
+```bash
+cardano-cli latest governance drep key-gen \
+  --verification-key-file drep.vkey \
+  --signing-key-file drep.skey
+```
+
+Build the registration certificate with the deposit (query `dRepDeposit` from the protocol parameters; 500000000 lovelace here) and an optional metadata anchor:
+
+```bash
+cardano-cli latest governance drep registration-certificate \
+  --drep-verification-key-file drep.vkey \
+  --key-reg-deposit-amt 500000000 \
+  --drep-metadata-url https://example.com/drep.jsonld \
+  --drep-metadata-hash a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de \
+  --out-file drep-reg.cert
+```
+
+Build the transaction (`--witness-override 2` covers the payment and DRep signatures), sign with both keys, and submit:
+
+```bash
+cardano-cli latest transaction build \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
+  --certificate-file drep-reg.cert \
+  --witness-override 2 \
+  --out-file tx.raw
+
+cardano-cli latest transaction sign \
+  --tx-body-file tx.raw \
+  --signing-key-file payment.skey \
+  --signing-key-file drep.skey \
+  --out-file tx.signed
+
+cardano-cli latest transaction submit --tx-file tx.signed
+```
+
+</TabItem>
 </Tabs>
 
-For the cardano-cli flow, including key-based, multisig (simple-script), and Plutus-script DReps, see [Register as a DRep](/docs/developers/curriculum/staking-governance/cardano-cli/register-drep).
+### Script-based and Plutus DReps
+
+A DRep credential can also be a script hash instead of a key hash. The flow mirrors the key-based path, but the DRep ID is the hash of the script and the transaction carries a witness (multisig) or a redeemer (Plutus) instead of a plain DRep key signature.
+
+For a **simple-script (multisig) DRep**, write a native script (for example `type: atLeast` over the members' DRep key hashes), hash it for the DRep ID, and register against that script hash:
+
+```bash
+cardano-cli hash script --script-file drep-multisig.json --out-file drep-multisig.id
+
+cardano-cli latest governance drep registration-certificate \
+  --drep-script-hash "$(< drep-multisig.id)" \
+  --key-reg-deposit-amt 500000000 \
+  --out-file drep-multisig-reg.cert
+```
+
+Build with `--certificate-script-file drep-multisig.json`, then collect one `transaction witness` per member and combine them with `transaction assemble`. A **Plutus-script DRep** registers the same way (`--drep-script-hash` from `cardano-cli hash script` on the `.plutus` file), but the transaction supplies collateral and a redeemer rather than script witnesses:
+
+```bash
+cardano-cli latest transaction build \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --tx-in-collateral $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --certificate-file drep.cert \
+  --certificate-script-file drep.plutus \
+  --certificate-redeemer-value {} \
+  --change-address $(< payment.addr) \
+  --out-file tx.raw
+```
+
+Only the payment key signs; script validity comes from the redeemer, not a DRep key signature.
 
 ## Delegate your vote
 
@@ -179,9 +248,38 @@ await wallet.submitTx(signedTx)
 ```
 
 </TabItem>
-</Tabs>
+<TabItem value="cli" label="cardano-cli">
 
-cardano-cli: a `vote-delegation-certificate` with `--drep-key-hash`, `--drep-script-hash`, `--always-abstain`, or `--always-no-confidence`, see [Delegate votes to a DRep](/docs/developers/curriculum/staking-governance/cardano-cli/delegate-to-a-drep).
+Create the vote-delegation certificate from your stake key. Target a registered DRep with `--drep-key-hash` (or `--drep-script-hash`), or pick `--always-abstain` / `--always-no-confidence`:
+
+```bash
+cardano-cli latest stake-address vote-delegation-certificate \
+  --stake-verification-key-file stake.vkey \
+  --drep-key-hash $(< drep.id) \
+  --out-file vote-deleg.cert
+```
+
+Build, sign with the payment and stake keys, and submit:
+
+```bash
+cardano-cli latest transaction build \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
+  --certificate-file vote-deleg.cert \
+  --witness-override 2 \
+  --out-file tx.raw
+
+cardano-cli latest transaction sign \
+  --tx-body-file tx.raw \
+  --signing-key-file payment.skey \
+  --signing-key-file stake.skey \
+  --out-file tx.signed
+
+cardano-cli latest transaction submit --tx-file tx.signed
+```
+
+</TabItem>
+</Tabs>
 
 ## Vote on an action
 
@@ -237,9 +335,40 @@ await wallet.submitTx(signedTx)
 ```
 
 </TabItem>
-</Tabs>
+<TabItem value="cli" label="cardano-cli">
 
-cardano-cli: build a vote file with `governance vote create` (`--yes/--no/--abstain`, the action id, and your DRep / CC-hot / SPO-cold key), then submit it with `--vote-file`, see [Submitting votes](/docs/developers/curriculum/staking-governance/cardano-cli/submit-votes).
+Create the vote file, choosing `--yes`, `--no`, or `--abstain` and the governance action id (tx id + index). Sign as a DRep (`--drep-verification-key-file`), a CC member (`--cc-hot-verification-key-file`), or an SPO (`--cold-verification-key-file`):
+
+```bash
+cardano-cli latest governance vote create \
+  --yes \
+  --governance-action-tx-id "df58f714c0765f3489afb6909384a16c31d600695be7e86ff9c59cf2e8a48c79" \
+  --governance-action-index 0 \
+  --drep-verification-key-file drep.vkey \
+  --out-file action.vote
+```
+
+Include the vote in a transaction with `--vote-file`, sign with the matching credential plus the payment key, and submit:
+
+```bash
+cardano-cli latest transaction build \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
+  --vote-file action.vote \
+  --witness-override 2 \
+  --out-file vote-tx.raw
+
+cardano-cli latest transaction sign \
+  --tx-body-file vote-tx.raw \
+  --signing-key-file drep.skey \
+  --signing-key-file payment.skey \
+  --out-file vote-tx.signed
+
+cardano-cli latest transaction submit --tx-file vote-tx.signed
+```
+
+</TabItem>
+</Tabs>
 
 ## Submit a proposal
 
@@ -267,9 +396,48 @@ await signed.submit()
 Chain multiple `.propose(...)` calls to submit several actions in one transaction. The deposit is deducted automatically during balancing.
 
 </TabItem>
+<TabItem value="cli" label="cardano-cli">
+
+Authoring an action produces a proposal: a deposit, a deposit-return stake credential, an [anchor](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108) (URL + hash), and the action itself. Hash the anchor, create the action (treasury withdrawal shown), then build, sign, and submit:
+
+```bash
+cardano-cli hash anchor-data --file-text treasury-withdrawal.jsonld
+
+cardano-cli latest governance action create-treasury-withdrawal \
+  --testnet \
+  --governance-action-deposit $(cardano-cli latest query gov-state | jq -r '.currentPParams.govActionDeposit') \
+  --deposit-return-stake-verification-key-file stake.vkey \
+  --anchor-url https://example.com/treasury-withdrawal.jsonld \
+  --anchor-data-hash 311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4 \
+  --funds-receiving-stake-verification-key-file stake.vkey \
+  --constitution-script-hash fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64 \
+  --transfer 50000000000 \
+  --out-file treasury.action
+
+cardano-cli latest transaction build \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
+  --proposal-file treasury.action \
+  --out-file tx.raw
+# then transaction sign + submit as in the sections above
+```
+
+Treasury-withdrawal and protocol-parameter actions also reference the guardrails script: add `--proposal-script-file guardrails-script.plutus`, `--tx-in-collateral`, and `--proposal-redeemer-value {}` to the build.
+
+</TabItem>
 </Tabs>
 
-Authoring each action type (treasury withdrawal, parameter update with the guardrails script, constitution update, committee changes, no-confidence, hard fork, info) is detailed for cardano-cli in [Submitting governance actions](/docs/developers/curriculum/staking-governance/cardano-cli/create-governance-actions).
+### Authoring each action type
+
+Every action takes `--governance-action-deposit`, `--deposit-return-stake-verification-key-file`, `--anchor-url`, `--anchor-data-hash`, and `--out-file`. Types that share state (committee, constitution, hard fork, protocol parameters) also need `--prev-governance-action-tx-id` and `--prev-governance-action-index` once a prior action of that type was enacted; treasury withdrawals and info actions never do.
+
+- **Treasury withdrawal** (`create-treasury-withdrawal`): adds `--funds-receiving-stake-verification-key-file`, `--transfer <lovelace>`, and `--constitution-script-hash`.
+- **Protocol-parameter update** (`create-protocol-parameters-update`): the parameter flags being changed, plus `--constitution-script-hash`.
+- **Constitution / guardrails** (`create-constitution`): `--constitution-url`, `--constitution-hash`, and `--constitution-script-hash`.
+- **Update committee** (`governance action update-committee`): `--add-cc-cold-verification-key-hash <hash>` paired with `--epoch <expiry>`, `--remove-cc-cold-verification-key-hash <hash>`, and `--threshold <fraction>`.
+- **No confidence** (`create-no-confidence`): the common flags plus the previous committee-action reference.
+- **Hard fork** (`create-hard-fork`): initiates a protocol upgrade.
+- **Info** (`create-info`): common flags only, with no on-chain effect.
 
 ## Committee operations
 
@@ -293,13 +461,56 @@ const resignTx = await client.newTx().resignCommitteeCold({ coldCredential, anch
 ```
 
 </TabItem>
-</Tabs>
+<TabItem value="cli" label="cardano-cli">
 
-For the cardano-cli key ceremonies (key-based and multisig cold/hot keys, the authorization certificate), see [Constitutional committee](/docs/developers/curriculum/staking-governance/cardano-cli/constitutional-committee).
+A member holds a **cold** credential (offline, the on-chain identity) and a **hot** credential (signs votes); an authorization certificate links them, and a new one overrides the previous.
+
+```bash
+# cold key pair + its hash (what an update-committee action references)
+cardano-cli latest governance committee key-gen-cold \
+  --cold-verification-key-file cc-cold.vkey \
+  --cold-signing-key-file cc-cold.skey
+cardano-cli latest governance committee key-hash \
+  --verification-key-file cc-cold.vkey > cc-key.hash
+
+# hot key pair
+cardano-cli latest governance committee key-gen-hot \
+  --verification-key-file cc-hot.vkey \
+  --signing-key-file cc-hot.skey
+
+# authorize the hot credential
+cardano-cli latest governance committee create-hot-key-authorization-certificate \
+  --cold-verification-key-file cc-cold.vkey \
+  --hot-verification-key-file cc-hot.vkey \
+  --out-file cc-authorization.cert
+```
+
+Submit the certificate in a transaction signed by the payment and cold keys. To step down, submit a resignation certificate the same way:
+
+```bash
+cardano-cli latest governance committee create-cold-key-resignation-certificate \
+  --cold-verification-key-file cc-cold.vkey \
+  --out-file cc-resign.cert
+```
+
+Script-based members use `--cold-script-hash` / `--hot-script-hash` instead of the key files.
+
+</TabItem>
+</Tabs>
 
 ## Query governance state
 
-To show proposals, DRep info, voting power, or committee state in a UI, query the chain. With cardano-cli, `query gov-state`, `query proposals`, `query drep-state`, `query drep-stake-distribution`, and `query committee-state` cover it, see [Governance queries](/docs/developers/curriculum/staking-governance/cardano-cli/gov-queries). API providers (Blockfrost, Koios, Maestro) expose the same data over HTTP; see the [API providers](/docs/developers/curriculum/production/api-providers/overview) reference.
+To show proposals, DRep info, voting power, or committee state in a UI, query your node:
+
+```bash
+cardano-cli latest query gov-state                           # committee, constitution, params, proposals
+cardano-cli latest query drep-state --all-dreps              # DRep registration: deposit, expiry, anchor
+cardano-cli latest query drep-stake-distribution --all-dreps # voting power per DRep
+cardano-cli latest query committee-state                     # members, hot-key auth, expiry, threshold
+cardano-cli latest query proposals --all-proposals           # actions eligible for ratification
+```
+
+`query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. API providers (Blockfrost, Koios, Maestro) expose the same data over HTTP; see the [API providers](/docs/developers/curriculum/production/api-providers/overview) reference.
 
 ## Browser wallet APIs (CIP-95)
 
@@ -319,5 +530,4 @@ Plutus V3 added governance **script purposes**: a validator can run as a `Voting
 ## Next steps
 
 - [Staking](/docs/developers/curriculum/staking-governance/staking), the other delegation stake credentials carry
-- [Governance via cardano-cli](/docs/developers/curriculum/staking-governance/cardano-cli/register-drep), the deep CLI ceremonies for DReps, votes, actions, and committee keys
 - [cardano.org/governance](https://cardano.org/governance), the participant hub: delegate your vote, become a DRep, and read the constitution
