@@ -105,6 +105,43 @@ For the full list of options run `cardano-node run --help`.
 
 Block producers can pass `--start-as-non-producing-node` alongside their credential flags to start without minting blocks immediately. Sending `SIGHUP` later (`pkill -HUP cardano-node`) triggers the node to read the credential files and begin forging. This is useful for bringing up a standby block producer safely before cutting over to it.
 
+## Choosing a ledger backend
+
+`cardano-node` keeps the ledger's UTxO set in one of two backends, selected by the `LedgerDB` block in `config.json` — not by a command-line flag. The `cardano-node run` command is identical for both.
+
+- **In-memory** (default) — the whole UTxO set is held in RAM. Fastest at runtime, highest memory footprint. Selected by `"Backend": "V2InMemory"` in the `LedgerDB` block — the value the official network configs ship with.
+- **LSM on-disk** — the UTxO set is stored on disk in an LSM-tree. Dramatically lower memory footprint, with some I/O overhead.
+
+You can switch between backends without resyncing the chain by converting your existing ledger snapshot with [`snapshot-converter`](/docs/get-started/infrastructure/node/snapshot-converter).
+
+### Running on LSM
+
+To start on the LSM backend, two things must be true:
+
+1. **The latest snapshot in `db/ledger/` is in LSM format**, with its LSM database directory available outside `db/ledger/`. If the node was previously on the in-memory backend, convert the latest snapshot first with [`snapshot-converter`](/docs/get-started/infrastructure/node/snapshot-converter).
+2. **Use the `V2LSM` backend in `config.json`:**
+
+   ```json
+   "LedgerDB": {
+     "Backend": "V2LSM",
+     "SnapshotInterval": 4320,
+     "NumOfDiskSnapshots": 2,
+     "QueryBatchSize": 100000,
+     "FlushFrequency": 100
+   }
+   ```
+
+Then start the node exactly as above — it reads the backend choice from `config.json`.
+
+:::note Switching backends
+The backend is set in `config.json`, not on the command line. To switch between in-memory and LSM:
+
+1. Convert the latest snapshot in `db/ledger/` to the target format with [`snapshot-converter`](/docs/get-started/infrastructure/node/snapshot-converter).
+2. Leave only that converted snapshot in `db/ledger/`, so the node loads the one matching your selected backend.
+3. Set `LedgerDB.Backend` in `config.json` to match — `V2InMemory` or `V2LSM`. The official network configs already include a `LedgerDB` block, so change the `Backend` value rather than adding or removing the block.
+4. Restart the node.
+:::
+
 ## Running as a systemd service
 
 For production use, run `cardano-node` under systemd so it restarts automatically on failure or reboot.

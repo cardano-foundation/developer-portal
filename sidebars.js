@@ -72,6 +72,7 @@ module.exports = {
                 items: [
                   "get-started/infrastructure/node/installing-cardano-node",
                   "get-started/infrastructure/node/running-cardano",
+                  "get-started/infrastructure/node/snapshot-converter",
                   "get-started/infrastructure/node/topology",
                 ],
               },
