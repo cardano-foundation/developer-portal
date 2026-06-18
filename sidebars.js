@@ -50,6 +50,7 @@ module.exports = {
           items: [
             "developers/curriculum/start-building/networks-and-test-ada",
             "developers/curriculum/start-building/choose-your-tools",
+            "developers/curriculum/start-building/ai-assisted-development",
             "developers/curriculum/start-building/your-first-transaction",
             "developers/curriculum/start-building/transaction-building",
             "developers/curriculum/start-building/query-the-chain",
@@ -287,7 +288,6 @@ module.exports = {
             id: "developers/integrations/ai-agents/overview",
           },
           items: [
-            "developers/integrations/ai-agents/ai-assisted-development",
             "developers/integrations/ai-agents/masumi",
           ],
         },

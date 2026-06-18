@@ -13,6 +13,10 @@ Welcome to the Cardano Developer Portal. This is the place to learn how to build
 
 > Looking for a wallet rather than building? Head to [Cardano Apps](https://cardano.org/apps/). Everything here covers what you can do **today** on **mainnet**.
 
+:::tip Building with an AI assistant?
+Give it current Cardano context first so it answers from today's APIs, not stale training data: [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development).
+:::
+
 ## The curriculum
 
 Each module builds on the last, taking you from understanding Cardano to shipping and running a real application.

@@ -1,10 +1,12 @@
 ---
 id: ai-assisted-development
-title: AI-assisted development
-sidebar_label: AI-assisted development
+title: Set up your AI assistant
+sidebar_label: Set up your AI assistant
 description: Use AI coding assistants to build on Cardano with current, authoritative context instead of stale training data.
 image: /img/og/og-developer-portal.png
 ---
+
+If you build with an AI coding assistant, this is a quick, optional setup step worth doing now: it pays off across every module that follows.
 
 AI coding assistants are fast, but their training data on Cardano drifts: APIs change, libraries get renamed, and patterns evolve faster than models are retrained. The fix is to give your assistant current, authoritative context.
 
@@ -27,3 +29,7 @@ Its scope is the developer toolchain (SDKs, validator libraries, design patterns
 ```
 
 Then run `/cardano-context` once per project to wire the directive into your `CLAUDE.md`. For other agents, clone the repo and symlink the skills into your project's `.agents/skills` directory. See the [repository](https://github.com/cardano-foundation/cardano-dev-skills) for the full list of skills and setup details.
+
+## Next steps
+
+- [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): build, sign, and submit a payment on testnet, then read it back from the chain
