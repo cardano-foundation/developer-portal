@@ -213,7 +213,7 @@ function BentoSection() {
 function DeveloperSection() {
   const [copied, setCopied] = React.useState(false);
   const [copied2, setCopied2] = React.useState(false);
-  const command = "npx meshjs your-app-name";
+  const command = "/plugin marketplace add cardano-foundation/cardano-dev-skills";
   const command2 = "yaci-devkit up";
 
   const copyCommand = () => {
@@ -239,12 +239,11 @@ function DeveloperSection() {
           {/* Quickstart */}
           <div className={styles.devQuickstartCard}>
             <div className={styles.quickstartLeft}>
-              <span className={styles.quickstartBadge}>Quickstart</span>
-              <span className={styles.quickstartText}>Bootstrap a dApp in seconds</span>
+              <span className={styles.quickstartBadge}>Claude Code</span>
+              <span className={styles.quickstartText}>Current Cardano context for your AI assistant</span>
             </div>
             <div className={styles.quickstartRight}>
               <div className={styles.cliMockup}>
-                <span className={styles.cliPrompt}>$</span>
                 <code>{command}</code>
                 <button
                   className={styles.copyBtn}
@@ -258,9 +257,9 @@ function DeveloperSection() {
                   )}
                 </button>
               </div>
-              <a href="https://meshjs.dev/" target="_blank" rel="noopener noreferrer" className={styles.quickstartDocBtn} aria-label="MeshJS Docs">
+              <Link to={useBaseUrl("docs/developers/curriculum/start-building/ai-assisted-development")} className={styles.quickstartDocBtn} aria-label="Set up your AI assistant">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.quickstartDocIcon}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              </a>
+              </Link>
             </div>
           </div>
 
