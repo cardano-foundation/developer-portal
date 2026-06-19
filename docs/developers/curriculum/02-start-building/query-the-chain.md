@@ -146,8 +146,6 @@ const confirmed = await client.awaitTx(txHash, 3000)
 
 Delegation queries underpin the [staking](/docs/developers/curriculum/staking-governance/staking) UI; `awaitTx` is the confirmation step after [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction).
 
-> **Mesh:** queries go through the provider object you create (e.g. `new BlockfrostProvider(key)`), `fetchAddressUTxOs`, `fetchProtocolParameters`, `fetchUTxOs`, and friends. See the [Mesh providers reference](https://meshjs.dev/providers).
-
 ## Submitting transactions
 
 A provider also broadcasts signed transactions and can evaluate script costs before you submit:
@@ -176,9 +174,22 @@ Common rejection reasons from the node:
 
 `BadInputsUTxO` from indexer lag is the classic one. Handle it with the [retry-safe pattern](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe), which re-reads chain state on every attempt.
 
-## With cardano-cli
+## Other SDKs and the CLI
+
+The examples above use Evolution. The same reads are available from Mesh and directly from a running node:
+
+<Tabs groupId="sdk">
+<TabItem value="mesh" label="Mesh">
+
+Queries go through the provider object you create (e.g. `new BlockfrostProvider(key)`): `fetchAddressUTxOs`, `fetchProtocolParameters`, `fetchUTxOs`, and friends. See the [Mesh providers reference](https://meshjs.dev/providers).
+
+</TabItem>
+<TabItem value="cardano-cli" label="cardano-cli">
 
 A running node answers the same queries directly: `cardano-cli query utxo --address <addr>`, `cardano-cli query protocol-parameters`, `cardano-cli query tip`, and `cardano-cli query stake-address-info`. See the [cardano-cli reference](/docs/developers/curriculum/start-building/transaction-building#building-with-cardano-cli).
+
+</TabItem>
+</Tabs>
 
 ## Next steps
 

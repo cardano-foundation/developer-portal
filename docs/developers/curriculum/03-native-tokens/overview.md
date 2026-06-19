@@ -6,6 +6,9 @@ description: How Cardano's multi-asset ledger handles native tokens and NFTs as 
 image: /img/og/og-developer-portal.png
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 A Cardano native token is a custom asset the ledger tracks directly, alongside ADA, without a smart contract for basic transfers. Where Ethereum needs an ERC-20 or ERC-721 contract per token, Cardano treats your token the same way it treats ADA: it lives in UTXOs and moves through ordinary transactions.
 
 :::note Quick summary
@@ -78,7 +81,12 @@ This page is the canonical reference for min-ADA, token bundles, and fungibility
 
 ## Working with assets in code
 
-In the SDKs, a token amount is an **asset bundle**: lovelace plus zero or more native tokens keyed by `policyId + assetNameHex`. The Evolution `Assets` module builds and combines them:
+In the SDKs, a token amount is an **asset bundle**: lovelace plus zero or more native tokens keyed by `policyId + assetNameHex`.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+The `Assets` module builds and combines bundles:
 
 ```typescript
 import { Assets } from "@evolution-sdk/evolution"
@@ -96,9 +104,24 @@ const total = Assets.merge(ada, bundle)
 
 `policyId` is 56 hex chars (28 bytes); `assetNameHex` is the hex-encoded asset name (empty `""` is valid). The builder enforces [min-ADA](#the-minimum-ada-requirement) on every token-bearing output automatically.
 
-For display, **CIP-14 asset fingerprints** give a short checksummed `asset1...` identifier derived from the policy ID + asset name. Use it in UIs, but the canonical on-chain identifier stays `policyId + assetName`.
+</TabItem>
+<TabItem value="mesh" label="Mesh">
 
-> **Mesh** represents amounts as `{ unit, quantity }` entries (`unit` is `policyId + assetNameHex`, or `"lovelace"`); see [meshjs.dev](https://meshjs.dev/apis/transaction).
+Mesh represents a bundle as an array of `{ unit, quantity }` entries, where `unit` is `policyId + assetNameHex` (or `"lovelace"`) and `quantity` is a string:
+
+```typescript
+const bundle = [
+  { unit: "lovelace", quantity: "2000000" },          // min-ADA travels with the token
+  { unit: policyId + assetNameHex, quantity: "100" },
+];
+```
+
+See the [Mesh transaction reference](https://meshjs.dev/apis/transaction).
+
+</TabItem>
+</Tabs>
+
+For display, **CIP-14 asset fingerprints** give a short checksummed `asset1...` identifier derived from the policy ID + asset name. Use it in UIs, but the canonical on-chain identifier stays `policyId + assetName`.
 
 ## Native tokens vs Ethereum ERC-20/721
 

@@ -502,6 +502,24 @@ You can also switch multiple tabs at the same time based on user input:
 <TabItem value="linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
 
+## SDK and CLI examples
+
+When the same operation appears in more than one SDK (Evolution, Mesh) or in an SDK versus `cardano-cli`, put the variants in a `<Tabs groupId="sdk">` block so the reader's choice persists across the whole page. A page may stay single-SDK in its prose and worked examples, but parallel copy-runnable alternatives belong in tabs, not in a stray `> **Mesh:**` blockquote or a "With cardano-cli" section bolted onto the end.
+
+```jsx
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+  // Evolution example
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+  // Mesh example
+</TabItem>
+<TabItem value="cardano-cli" label="cardano-cli">
+  // cardano-cli example
+</TabItem>
+</Tabs>
+```
+
 ## Video embedding
 
 Use this code to embed YouTube videos:
