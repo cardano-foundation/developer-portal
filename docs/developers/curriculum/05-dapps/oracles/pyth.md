@@ -16,7 +16,7 @@ Pyth Pro on Cardano is currently in Beta. The API may change before release.
 
 On Cardano, price updates are verified through a **zero-withdrawal** from the Pyth withdraw script. Your validator calls `pyth.get_updates` to read verified updates directly from the transaction being validated. The Pyth script handles signature verification so your contract doesn't have to.
 
-## What Pyth Provides
+## What Pyth provides
 
 **Pyth Pro (Lazer)**: Sub-second, high-frequency price feeds via a pull-based model. You subscribe to a websocket or fetch the latest price and include the signed update in your transaction.
 
@@ -24,7 +24,7 @@ On Cardano, price updates are verified through a **zero-withdrawal** from the Py
 
 **Off-chain TypeScript SDK**: The [`@pythnetwork/pyth-lazer-sdk`](https://www.npmjs.com/package/@pythnetwork/pyth-lazer-sdk) provides websocket streaming and one-shot fetching of signed price updates.
 
-## Integration Guide
+## Integration guide
 
 Integrating Pyth Pro into a Cardano smart contract is a three-step process:
 
@@ -140,11 +140,11 @@ const digest = await builtTx.signAndSubmit();
 The zero-withdrawal and your consuming validator must be in the **same transaction**. `pyth.get_updates` reads the withdrawal redeemer directly from the transaction being validated.
 :::
 
-## Network Support
+## Network support
 
 Pyth Pro on Cardano is currently in Beta.
 
-## Additional Resources
+## Additional resources
 
 - [Pyth Pro Price Feed IDs](https://docs.pyth.network/price-feeds/pro/price-feed-ids): complete list of supported feeds
 - [Contract sources](https://github.com/pyth-network/pyth-crosschain/tree/main/lazer/contracts/cardano): Aiken contracts and off-chain SDK

@@ -131,7 +131,7 @@ It's "impermanent" because if the price returns to the original ratio, the loss 
 
 DeFi protocols need real-world data: prices for swaps and liquidations, rates for lending. Smart contracts can't query APIs, so **oracles** post verified data on-chain as datums that contracts read via reference inputs. A compromised oracle can make a lending protocol liquidate incorrectly or a stablecoin lose its peg, which makes oracles one of DeFi's most critical and most vulnerable components.
 
-Cardano's reference inputs ([CIP-31](https://cips.cardano.org/cip/CIP-31)) let many transactions read the same oracle UTXO in parallel without contention, a structural advantage for DeFi. The full picture (the oracle problem, multi-oracle validation, and the Charli3 / Orcfax / Pyth providers) is on the **[Oracles](/docs/developers/curriculum/dapps/oracles/overview)** page.
+Cardano's reference inputs ([CIP-31](https://cips.cardano.org/cip/CIP-31)) let many transactions read the same oracle UTXO in parallel without contention, a structural advantage for DeFi. The full picture (the oracle problem, multi-oracle validation, and integrating Pyth, the recommended oracle) is on the **[Oracles](/docs/developers/curriculum/dapps/oracles/overview)** page.
 
 ## The eUTXO design challenge
 

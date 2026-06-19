@@ -187,8 +187,6 @@ module.exports = {
                 id: "developers/curriculum/dapps/oracles/overview",
               },
               items: [
-                "developers/curriculum/dapps/oracles/charli3",
-                "developers/curriculum/dapps/oracles/orcfax",
                 "developers/curriculum/dapps/oracles/pyth",
               ],
             },

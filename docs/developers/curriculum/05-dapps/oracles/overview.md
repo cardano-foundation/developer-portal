@@ -6,7 +6,7 @@ description: Learn about oracle services that bring real-world data to Cardano s
 image: /img/og/og-developer-portal.png
 ---
 
-## What are Oracles?
+## What are oracles?
 
 Oracles connect blockchains with external data sources, bridging the gap between on-chain smart contracts and off-chain information. They fetch, verify, and deliver real-world data to smart contracts in a format they can use.
 
@@ -33,7 +33,7 @@ graph TD
 
 Blockchains are deterministic systems where they can only see data within their own ledger. Oracles solve this limitation by bringing external data on-chain.
 
-## Why Oracles Matter
+## Why oracles matter
 
 Smart contracts execute conditional logic: when event X happens, trigger action Y. Their code runs on a decentralized network, producing the same result every time. This "trustless" quality comes from cryptographic proofs and distributed consensus and no need for a trusted third party.
 
@@ -47,13 +47,13 @@ Common oracle use cases:
 - **Cross-Chain Data**: Bridge contracts need information from other blockchains
 - **Supply Chain & IoT**: Tracking requires sensor data, GPS coordinates, shipment verification
 
-## The Oracle Problem
+## The oracle problem
 
 The "oracle problem" refers to a fundamental challenge: how can smart contracts trust external data to be authentic and accurate?
 
 DeFi alone is critically dependent on oracle-provided data. But there are many opportunities for false data to slip into the collection, validation, and publication pipeline. This creates a lucrative attack vector, bad actors can trigger large payouts from smart contracts by feeding them false information.
 
-### Key Challenges
+### Key challenges
 
 **Single Point of Failure**: An oracle that pulls from just one data source creates a critical vulnerability. If that source is hacked or malfunctions, every smart contract using that oracle is affected.
 
@@ -63,11 +63,11 @@ DeFi alone is critically dependent on oracle-provided data. But there are many o
 
 **Consensus vs. Authenticity**: Decentralized oracle pools might achieve consensus, all nodes agree on the data but that doesn't guarantee the underlying data source is authentic or accurate. Agreement on bad data is still bad data.
 
-## Oracles on Cardano's eUTXO Model
+## Oracles on Cardano's eUTXO model
 
 Cardano's Extended UTXO (eUTXO) model offers unique advantages for oracle implementations. A functional oracle system on Cardano requires three components: diverse data sources, a computation platform to validate accuracy, and network participants to transfer data on-chain.
 
-### Reference Inputs
+### Reference inputs
 
 The Vasil hard fork introduced reference inputs, UTXOs that transactions can read without consuming them. This eliminates a major bottleneck for oracles:
 
@@ -84,7 +84,7 @@ graph TD
     style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-### Multi-Oracle Validation
+### Multi-oracle validation
 
 Smart contracts can reference UTXOs from multiple oracle providers simultaneously, performing on-chain reconciliation. The script reads values from different oracles and verifies they fall within an acceptable deviation threshold:
 
@@ -106,11 +106,11 @@ graph LR
 
 This on-chain check provides a trustless, programmatic guarantee against single oracle network failure or attack. Even if one oracle is compromised, the deviation check catches the problem.
 
-## Publication Models
+## Publication models
 
 Oracles use different publication models depending on the use case:
 
-### Push Model
+### Push model
 
 Data is published continuously at regular intervals. Smart contracts read whatever's most recent. Updates happen:
 
@@ -130,7 +130,7 @@ graph LR
     style E fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-### Pull Model
+### Pull model
 
 Data is fetched only when requested. A smart contract or user asks for data, and the oracle responds (just-in-time delivery).
 
@@ -146,7 +146,7 @@ graph LR
     style E fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-## Security Considerations
+## Security considerations
 
 Oracle security matters because smart contracts depend on accurate external data. Here's how oracles protect against bad data:
 
@@ -168,27 +168,27 @@ graph TD
     style J fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-### Data Source Diversity
+### Data source diversity
 
 Multiple independent data sources verify accuracy and reduce vulnerability. If one source is compromised or fails, others catch the problem. Aggregating diverse sources helps identify outliers and produces more reliable values.
 
-### Decentralized Validation
+### Decentralized validation
 
 Multiple independent validator nodes collect and verify data before publication. This reduces single points of failure and makes it harder for attackers to manipulate feeds they'd need to compromise multiple nodes.
 
-### Cryptographic Verification
+### Cryptographic verification
 
 Oracles use cryptographic signatures, tokens, or NFTs to prove data authenticity. Smart contracts verify these proofs before accepting oracle data as valid input.
 
-### Transparency and Auditability
+### Transparency and auditability
 
 Audit trails document how data was collected, validated, and published. This transparency lets you verify oracle operations and hold providers accountable.
 
-### Outlier Detection
+### Outlier detection
 
 Statistical methods identify and exclude anomalous data that deviates significantly from expected ranges, preventing manipulation or errors from affecting outputs.
 
-## Choosing an Oracle Provider
+## Choosing an oracle
 
 Consider these factors when selecting an oracle for your Cardano application:
 
@@ -199,20 +199,8 @@ Consider these factors when selecting an oracle for your Cardano application:
 - How hard is it to integrate?
 - What are the fees for consuming oracle data?
 
-### Cardano oracle providers at a glance
+### Recommended: Pyth
 
-| Provider | Model | Notable for | Network |
-|---|---|---|---|
-| **[Charli3](/docs/developers/curriculum/dapps/oracles/charli3)** | Push + on-demand (ODV) | Native Cardano oracle; standardized CBOR datum; flexible push/pull | Mainnet + preprod |
-| **[Orcfax](/docs/developers/curriculum/dapps/oracles/orcfax)** | Heartbeat + on-demand | Auditability ("trust but verify", Arweave audit logs); CNT feeds via virtual liquidity pooling | Mainnet + testnet |
-| **[Pyth](/docs/developers/curriculum/dapps/oracles/pyth)** | Pull (zero-withdrawal) | Sub-second high-frequency feeds; verified on-chain via an Aiken library | Mainnet (Beta) |
+For most Cardano applications, **[Pyth](/docs/developers/curriculum/dapps/oracles/pyth)** is the recommended oracle. It is an industry-grade network delivering sub-second, high-frequency price feeds through a pull-based model, with on-chain verification handled by an Aiken library, so your contract reads verified updates directly from the transaction it validates.
 
-No provider is universally "best". Choose by your latency needs (Pyth for high-frequency), auditability requirements (Orcfax), and how you want to consume data (Charli3's flexible push/pull). Contracts can also read **multiple** oracles and reconcile them on-chain, as shown above.
-
----
-
-## Example Oracle Providers
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+Contracts can also read **multiple** oracle feeds and reconcile them on-chain, as shown above, so a single feed failing or being manipulated does not compromise the result. See the [Pyth integration guide](/docs/developers/curriculum/dapps/oracles/pyth) to wire it into your validator and off-chain code.
