@@ -3,7 +3,7 @@ id: open-source
 sidebar_position: 6
 title: Blockfrost Open Source
 sidebar_label: Open Source
-description: Open Source
+description: Blockfrost's backend, SDKs, and OpenAPI specs are open source. Learn how to run your own instance from source or with Docker.
 ---
 
 Blockfrost [backend](https://github.com/blockfrost/blockfrost-backend-ryo), SDKs, [OpenAPI specifications](https://github.com/blockfrost/openapi) and other tooling is open-source and maintained with the support of Cardano community. Participation is always welcome and encouraged.

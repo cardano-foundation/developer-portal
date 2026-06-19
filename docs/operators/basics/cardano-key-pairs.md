@@ -2,7 +2,7 @@
 id: cardano-key-pairs
 title: Cardano Key Pairs
 sidebar_label: Cardano Key Pairs
-description: Learn about Cardano key pairs.
+description: The ed25519 key pairs behind Cardano (.vkey and .skey files), what each is for, and best practices for keeping private keys safe.
 image: /img/og/og-developer-portal.png
 ---
 

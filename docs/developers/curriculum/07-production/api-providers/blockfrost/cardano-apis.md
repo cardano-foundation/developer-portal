@@ -3,7 +3,7 @@ id: cardano-api
 sidebar_position: 3
 title: Cardano API
 sidebar_label: Cardano API
-description: Blockfrost Cardano API
+description: Access Cardano mainnet and testnets (preview, preprod) through the Blockfrost API, with per-network endpoints and project IDs.
 ---
 
 Blockfrost's primary objective is to offer API access to the Cardano ecosystem, including not only the mainnet network, but also various testnet networks such as preview and preprod.

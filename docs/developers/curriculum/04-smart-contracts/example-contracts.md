@@ -2,7 +2,7 @@
 id: example-contracts
 title: Example Contracts
 sidebar_label: Example Contracts
-description: Example Contracts
+description: A catalog of open-source Cardano smart contracts with live demos and end-to-end source, from Hello World to escrow and marketplaces.
 ---
 
 Here's a list of open-source smart contracts, complete with live demos and end-to-end source code.

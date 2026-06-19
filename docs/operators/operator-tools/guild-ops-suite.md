@@ -2,7 +2,7 @@
 id: guild-ops-suite
 title: Get Started with Guild Operators Tools
 sidebar_label: Guild Operators Suite
-description: Get Started with Guild Operators Tools
+description: Get started with the Guild Operators suite (CNTools, gLiveView, and more) for setting up, managing, and monitoring a stake pool.
 image: /img/og/og-developer-portal.png
 ---
 
