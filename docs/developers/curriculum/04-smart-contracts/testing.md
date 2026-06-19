@@ -199,13 +199,7 @@ If you have written web2 tests, the workflow is familiar. `aiken check` discover
 
 ## Testing your off-chain code
 
-Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too. Evolution ships a **local devnet emulator**: a real Cardano node with Kupo and Ogmios in Docker, millisecond blocks, and pre-funded genesis addresses, so you can run the full build → sign → submit → confirm lifecycle offline with no faucet. Three layers, fastest first:
-
-| Layer | Speed | Tests |
-|---|---|---|
-| **Unit** | fast | schema/datum encoding, address parsing: pure functions, no chain |
-| **Integration** | slower | the full transaction lifecycle against the emulator |
-| **Emulator (devnet)** | medium | end-to-end workflows with no external testnet |
+Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too. Evolution ships a **local devnet emulator**: a real Cardano node with Kupo and Ogmios in Docker, millisecond blocks, and pre-funded genesis addresses, so you can run the full build → sign → submit → confirm lifecycle offline with no faucet. Two kinds of test cover it. **Unit tests** exercise the pure parts (datum and schema encoding, address parsing) with no chain at all. **Integration tests** drive the whole lifecycle against the emulator, as below.
 
 A typical integration test spins the cluster up once, funds a test wallet from genesis, and asserts on confirmation:
 
@@ -248,6 +242,8 @@ it("submits a payment", async () => {
 ```
 
 The emulator beats a public testnet for tests: millisecond confirmations, fresh isolated state per run, no faucet, works offline. The two gotchas are the generous startup timeout and that genesis UTXOs must be passed via `build({ availableUtxos })` until they're spent (after which outputs are indexed normally).
+
+The example above covers the essentials; for the full devnet reference — genesis configuration, protocol parameters, and cluster lifecycle — see the [Evolution SDK devnet docs](https://intersectmbo.github.io/evolution-sdk/docs/devnet/getting-started/).
 
 For a **standalone local network** outside your test suite, a persistent chain you can point a frontend or `cardano-cli` at, with an indexer and a Blockfrost-compatible API, see [Local Development Networks](/docs/developers/curriculum/production/development-networks/overview) (Yaci DevKit and cardano-testnet).
 

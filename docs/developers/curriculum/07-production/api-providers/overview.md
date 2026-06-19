@@ -34,43 +34,15 @@ graph LR
 
 ## Choosing a provider
 
-| Provider | API Type | Key Features | Networks |
-|----------|----------|--------------|----------|
-| **[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost/overview)** | REST | Simple REST API, webhooks, fast integration | Mainnet, Preprod, Preview |
-| **[Koios](/docs/developers/curriculum/production/api-providers/koios)** | REST, GraphQL | Community-driven, decentralized, open source | Mainnet, Preprod, Preview |
-| **[Ogmios](/docs/developers/curriculum/production/api-providers/ogmios)** | WebSocket, JSON-RPC | Low-level protocol access, real-time queries | All networks (requires node) |
+You reach the chain either through a **managed provider** that runs the node and indexer for you, or by **self-hosting** and querying your own node directly.
 
-### Blockfrost
+| Provider | API | Access |
+|---|---|---|
+| **[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost/overview)** | REST | Managed, API key (free tier) |
+| **[Koios](/docs/developers/curriculum/production/api-providers/koios)** | REST, GraphQL | Community-run, key optional |
+| **[Ogmios](/docs/developers/curriculum/production/api-providers/ogmios)** | WebSocket, JSON-RPC | Self-hosted, needs your own node |
 
-Hosted REST API with simple endpoints for querying blockchain data. Use Blockfrost to:
-
-- Integrate quickly with REST endpoints
-- Subscribe to blockchain events via webhooks
-- Build with extensive SDK support
-
-**Learn more**: [Blockfrost documentation](/docs/developers/curriculum/production/api-providers/blockfrost/overview)
-
-### Koios
-
-Community-run REST and GraphQL API with decentralized infrastructure. Use Koios to:
-
-- Query via REST or GraphQL endpoints
-- Access open-source, community-maintained service
-- Connect without registration requirements
-
-**Learn more**: [Koios documentation](/docs/developers/curriculum/production/api-providers/koios)
-
-### Ogmios
-
-WebSocket-based JSON-RPC API providing low-level protocol access. Use Ogmios to:
-
-- Query blockchain state in real-time
-- Access protocol-level details
-- Build custom indexing solutions
-
-**Note**: Ogmios requires cardano-node (self-hosted or via [Demeter](/docs/developers/curriculum/production/demeter))
-
-**Learn more**: [Ogmios documentation](/docs/developers/curriculum/production/api-providers/ogmios)
+Blockfrost is the quickest way to start. Koios is a community-run alternative that needs no key for basic use. Ogmios isn't a hosted service: it's a lightweight bridge to a cardano-node you run yourself, usually paired with Kupo for indexing (the "Kupmios" stack) or available hosted through [Demeter](/docs/developers/curriculum/production/demeter), for low-level real-time access and full data sovereignty. For the wider managed-versus-self-hosted picture, including Maestro, see [production infrastructure](/docs/developers/curriculum/production/infrastructure).
 
 ## Next steps
 

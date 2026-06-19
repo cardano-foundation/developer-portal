@@ -8,7 +8,7 @@ image: /img/og/og-developer-portal.png
 
 Development networks run locally on your machine, giving you full control over blockchain state, network parameters, and block production without internet dependency or testnet tokens.
 
-> Writing automated tests for your transaction-building code? The Evolution SDK also ships an **in-process devnet emulator** you spin up and tear down inside a test suite — see [Smart Contracts → Testing](/docs/developers/curriculum/smart-contracts/testing#testing-your-off-chain-code). The standalone networks below are better when you want a persistent chain to point a frontend or `cardano-cli` at.
+> Writing automated tests for your transaction-building code? The Evolution SDK also ships an **in-process devnet emulator** you spin up and tear down inside a test suite — see [Smart Contracts → Testing](/docs/developers/curriculum/smart-contracts/testing#testing-your-off-chain-code) or the [Evolution SDK devnet docs](https://intersectmbo.github.io/evolution-sdk/docs/devnet/getting-started/). The standalone networks below are better when you want a persistent chain to point a frontend or `cardano-cli` at.
 
 ## Choosing a development network
 
@@ -20,40 +20,15 @@ Development networks run locally on your machine, giving you full control over b
 
 ### Yaci DevKit
 
-Quick-start development environment with built-in indexer, transaction viewer, and Provider API compatibility.
-
-Use Yaci DevKit to:
-- Get started quickly with Docker Compose
-- Test integrations requiring Blockfrost API compatibility
-- Access blockchain data through lightweight indexer
-- Develop with Ogmios and Kupo integration
-- Run in CI/CD pipelines (NPM package)
-
-**Learn more**: [Yaci DevKit guide](/docs/developers/curriculum/production/development-networks/yaci-devkit)
+Quick-start environment with a built-in indexer, transaction viewer, and Blockfrost-compatible Provider API, the fastest way to get a local chain for integration testing. Ships as Docker Compose or an NPM package for CI. **Learn more**: [Yaci DevKit guide](/docs/developers/curriculum/production/development-networks/yaci-devkit)
 
 ### cardano-testnet
 
-Lightweight local cluster from cardano-node with full customization over genesis files and network parameters.
-
-Use cardano-testnet to:
-- Customize genesis files and on-chain parameters
-- Test protocol-level behavior
-- Create specific network scenarios
-- Match mainnet parameters exactly
-- Control epoch length, slot timing, and stake distribution
-
-**Learn more**: [cardano-testnet guide](/docs/developers/curriculum/production/development-networks/cardano-testnet)
+A local cluster straight from cardano-node, with full control over genesis files and protocol parameters, epoch length, slot timing, and stake distribution. Use it for protocol-level testing and scenarios that must match mainnet parameters exactly. **Learn more**: [cardano-testnet guide](/docs/developers/curriculum/production/development-networks/cardano-testnet)
 
 ## When to use development networks
 
-Development networks are ideal when you need:
-- Fast iteration without waiting for testnet block confirmations
-- Deterministic blockchain state for testing
-- Offline development without internet dependency
-- Custom network parameters or genesis configuration
-- Automated testing in CI/CD pipelines
-
-Once your application is stable, move to public testnets for production-like testing before mainnet deployment.
+Reach for a local network when you need fast iteration without testnet confirmation times, deterministic and isolated state, offline development, or custom genesis parameters, including in CI. Once your application is stable, move to public testnets for production-like testing before mainnet deployment.
 
 ## Next steps
 
