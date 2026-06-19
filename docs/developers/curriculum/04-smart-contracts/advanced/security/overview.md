@@ -1,13 +1,13 @@
 ---
 id: overview
-title: Smart Contract Security
-sidebar_label: Overview
-description: Common Cardano smart contract vulnerabilities - a reference database for dApp developers.
+title: Vulnerability reference
+sidebar_label: Vulnerability reference
+description: A reference catalog of common Cardano smart contract vulnerabilities, each linking to a deep dive, for developers building and auditing validators.
 ---
 
-A standardized database of common Cardano smart contract vulnerabilities. Use this as a reference when building and auditing dApps.
+A catalog of common Cardano smart contract vulnerabilities, each linking to a deep dive. Use it as a reference when building and auditing dApps. For the conceptual overview, what the eUTXO model protects you from and the patterns that keep validators safe, start with [Smart Contract Security](/docs/developers/curriculum/smart-contracts/security).
 
-## Vulnerability Database
+## Vulnerability catalog
 
 | Vulnerability | Identifier | Description |
 |---------------|------------|-------------|
@@ -26,13 +26,13 @@ A standardized database of common Cardano smart contract vulnerabilities. Use th
 | [Insufficient Staking Control](../vulnerabilities/insufficient-staking-control) | `insufficient-staking-control` | Missing staking credential checks allow reward redirection |
 | [Locked Value](../vulnerabilities/locked-value) | `locked-value` | Permanent value locking - consider economic tradeoffs |
 
-## Learn By Doing
+## Practice
 
-**[Cardano CTF](../ctf)** - Interactive security game where you exploit vulnerable contracts.
+Attack these yourself in the **[Cardano CTF](../ctf)**, an interactive security game where you exploit vulnerable contracts.
 
 ## Sources
 
-Content for reference:
+Reference material:
 - **[MLabs](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)** - Formal vulnerability framework
 - **[Invariant0](https://medium.com/@invariant0)** - In-depth security analysis
 - **[Mesh](https://github.com/MeshJS/mesh)** - Code examples

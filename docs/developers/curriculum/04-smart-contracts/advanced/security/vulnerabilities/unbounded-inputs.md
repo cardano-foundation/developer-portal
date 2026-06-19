@@ -21,7 +21,7 @@ The protocol reaches a state where too many UTxOs are supposed to be consumed si
 - Protocol halting
 
 **Further explanation:**
-Let us illustrate this issue by considering the case of a faucet where users are allowed to claim 100 ADA in each transaction. A naive implementation could look like the following:
+Consider the case of a faucet where users are allowed to claim 100 ADA in each transaction. A naive implementation could look like the following:
 
 ```rust
 vulnValidator _ _ ctx =

@@ -21,7 +21,7 @@ A transaction can successfully avoid some checks by spending a UTxO or minting a
 By-passing checks
 
 **Further explanation:**
-Let us say that we have a simple staking protocol that allows users to lock a certain amount of token X and later on receive an ADA reward, which increases based on the amount of time tokens have been locked. This protocol consists of two validators, `globalValidator` and `positionsValidator`. The `globalValidator`'s mission is to lock an NFT that carries as datum the global state of the pool (e.g. how much token X has been staked in aggregate by all participants) as well as the rewards pool (ADA to be distributed to stakers) and the `positionsValidator`'s mission is to lock one UTxO per each participant, holding the user's bag of token X and carrying as datum a timestamp stating when was the last time that the position was updated.
+Suppose a simple staking protocol that allows users to lock a certain amount of token X and later on receive an ADA reward, which increases based on the amount of time tokens have been locked. This protocol consists of two validators, `globalValidator` and `positionsValidator`. The `globalValidator`'s mission is to lock an NFT that carries as datum the global state of the pool (e.g. how much token X has been staked in aggregate by all participants) as well as the rewards pool (ADA to be distributed to stakers) and the `positionsValidator`'s mission is to lock one UTxO per each participant, holding the user's bag of token X and carrying as datum a timestamp stating when was the last time that the position was updated.
 
 To interact with the protocol, users can either open a position or update their position.
 

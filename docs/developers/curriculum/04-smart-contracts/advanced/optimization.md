@@ -7,17 +7,15 @@ description: Optimization techniques and benchmarking workflow for Aiken smart c
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Smart Contract Optimization
-
 > Sourced from the [Aiken team's optimization guide](https://aiken-lang.org/optimizing-programs).
 
-## Before Optimizing
+## Before optimizing
 
 Optimizing code can be counter-intuitive, especially in the context of smart contracts. The virtual machine and its associated cost models can be sometimes confusing and move in ways that one fails to anticipate.
 
 Hence, before doing any optimisation work it is primordial to setup some baseline benchmarks. Those benchmarks shall cover simple and complex scenarios alike, to easily identify the impact of changes. Sometimes, a change may introduce a one-time cost that slightly increases a simple case while making a more complex scenario significantly better.
 
-### Writing Baseline Benchmarks
+### Writing baseline benchmarks
 
 A good strategy for writing baseline benchmarks is to write a simple _test_ executing one or more validator from a pre-constructed context and redeemer. This allows to get an overview that is as close as possible to a "real scenario" with a "real transaction".
 
@@ -101,7 +99,7 @@ const transaction = Transaction {
 }
 ```
 
-### The Standard Library: Good or Bad?
+### The standard library: good or bad?
 
 Let's cover one last point before we dive in: the standard library. Should you use it? Most certainly yes. Will it harm the performances of your program? To some extend, yes. The standard library is **reasonably well optimised**, yet it is tuned for **correctness** and **ease of use**. Its main goal is to get you started and to be convenient.
 
@@ -117,9 +115,9 @@ There are few functions from the standard library that you particularly want to 
 
 You almost certainly never want to use any of those in validators.
 
-## Optimization Techniques
+## Optimization techniques
 
-### Fail Fast
+### Fail fast
 
 On-chain code isn't about error handling. If something is wrong: fail. `Option` is _rarely_ something you want to use.
 
@@ -146,7 +144,7 @@ On-chain code isn't about error handling. If something is wrong: fail. `Option` 
 </Tabs>
 
 
-### Use Simple(r) Structures
+### Use simple(r) structures
 
 Unless it's coming from the _outside world_ (i.e. datum or redeemer), avoid constructing large records. Aiken is a language which operates directly on encoded objects (a.k.a. `Data`). This is handy when objects have been pre-constructed ahead of the script execution as it the case for datum, redeemers or the transaction itself.
 
@@ -221,7 +219,7 @@ In particular, if you can avoid it, do not construct `Value` and prefer `Dict` o
 `Dict` preserves two important invariants: their keys are in ascending orders and contain no duplicate. If you do not rely on these invariants, you can safely go down to `Pairs`
 
 
-### Use Fast Recursion for Infaillible Searches
+### Use fast recursion for infaillible searches
 
 This is a more specific version of the fail fast stategy that applies to _'infaillible searches'_. This happens when looking for specific elements within a collection without any possible error recovery: if not present, then it's an error and the entire validator must fail.
 
@@ -266,7 +264,7 @@ Such a scenario is actually quite common in validators, especially when dealing 
   </TabItem>
 </Tabs>
 
-### Favor Binary Searches Over Linear Searches
+### Favor binary searches over linear searches
 
 It is quite common to have chains of multiple conditions which, when written in the most naive way can result in unnecessary evaluations. When conditions are somewhat equiprobable (i.e. there's no clear unbalance that one may be satisfied way more often than others), it may be useful to restructure and nest certain if/then/else to perform a binary search.
 
@@ -339,7 +337,7 @@ The _do_ example, however, arranges the conditions to reduce the amount of evalu
 
 Morover, the binary search has the benefit of being more **predictable**. In the previous example, it does not only average to 3 conditions evaluations, but it always evaluate 3 conditions per pass. Unlike the _don't_ example, which sometimes evaluate one condition, sometimes three, sometimes seven, etc...
 
-### Put Cheap and Likely Checks First
+### Put cheap and likely checks first
 
 When chaining conditions with `and` or `or`, order matters. Aiken short-circuits boolean operators, which means that the first satisfied branch of an `or` avoids evaluating the others, and the first failing branch of an `and` stops the rest.
 
@@ -371,7 +369,7 @@ or {
 
 In this example, comparing credentials is a direct and predictable check. Inspecting the value to determine whether a specific NFT is present is more involved. Since the first condition may already be sufficient to decide the whole expression, putting it first gives the runtime more opportunities to stop early.
 
-### Defer Distinctions Until They Matter
+### Defer distinctions until they matter
 
 Another common source of unnecessary work comes from splitting terminal cases too early. When several branches eventually collapse into a smaller number of "real" outcomes, it is often better to test the broader condition first and refine only when necessary.
 
@@ -435,7 +433,7 @@ test baseline() {
 
 This is a small transformation, but it matters in tight recursive loops and in code that executes frequently over large structures.
 
-### Prefer `Data` Equality Over Manual Structural Comparisons
+### Prefer `Data` equality over manual structural comparisons
 
 Aiken programs operate over encoded `Data`, and comparing `Data` values directly is often surprisingly efficient. If two values are expected to match structurally, a raw equality check is almost always cheaper than reconstructing that logic manually.
 
@@ -478,7 +476,7 @@ expect and {
 
 This is often much cheaper than re-computing full semantic comparisons over complete `Value` structures.
 
-### Use Backpassing When Returning More Than One Value
+### Use backpassing when returning more than one value
 
 Returning large tuples or records is convenient, but it also means constructing intermediary values only to immediately destructure them again. In hot paths, that overhead can become noticeable.
 
@@ -543,7 +541,7 @@ test baseline_backpassing() {
 
 This style becomes even more useful in recursive code and stateful folds. It is also the reason helpers such as `list.foldl2` and `list.foldr2` are so valuable: they allow you to accumulate multiple pieces of state without repeatedly packaging and unpackaging them.
 
-### If Backpassing Is Not an Option, Prefer `Pair` Over 2-tuples
+### If backpassing is not an option, prefer `Pair` over 2-tuples
 
 When you need to return exactly two values and backpassing would make the code less readable, `Pair<a, b>` is often slightly preferable to `(a, b)`.
 
@@ -556,7 +554,7 @@ But `Pair` integrates more naturally with dictionaries and pairs-based APIs, so 
 
 This is not usually a game-changing optimisation, but it is a good default when dealing with key-value shaped data.
 
-### Avoid Re-traversals
+### Avoid re-traversals
 
 Traversing the same collection multiple times is one of the easiest ways to accumulate avoidable costs. In validators, collections are often not that large, but repeated passes still add up quickly.
 
@@ -618,7 +616,7 @@ test baseline() {
 
 The exact shape of the fold depends on the situation, but the principle remains the same: if you already have the element in hand, do as much useful work with it as possible before moving on.
 
-### Validate While Iterating
+### Validate while iterating
 
 The same principle applies to validation. If your goal is merely to ensure that all matching elements satisfy some property, it is often unnecessary to first extract them into a separate list.
 
@@ -661,7 +659,7 @@ test baseline() {
 
 This form avoids building an intermediate list and often short-circuits earlier.
 
-### Build Local Caches
+### Build local caches
 
 Aiken functions are first-class and cheap enough to make small local caches a practical optimisation technique. When you repeatedly test membership against the same collection, you can pre-build a closure that captures the known elements.
 
@@ -727,7 +725,7 @@ Conceptually, this transforms the collection into a small decision chain that ca
 
 This is particularly nice when the source collection is static for the whole validator execution, but queried many times.
 
-### Unroll Recursions
+### Unroll recursions
 
 When a recursive function advances one step at a time, its convergence can sometimes be improved by manually unrolling the first few steps. This reduces the number of recursive calls needed in the common case.
 
@@ -777,7 +775,7 @@ test baseline() {
 
 This sort of transformation is most useful for small, performance-critical helpers that get called repeatedly.
 
-### Write Tail-Recursive Functions
+### Write tail-recursive functions
 
 The Plutus VM usually behaves better with tail-recursive functions, especially when working with bytes and accumulators. So when you can express a function as a loop with an explicit accumulator, prefer that form.
 
@@ -835,7 +833,7 @@ This pattern is especially relevant for:
 * numeric loops.
 
 
-### Lean More on ByteArrays
+### Lean more on ByteArrays
 
 Byte arrays are extremely cheap compared to richer structured data. So, when cost is absolutely critical, one option is to give up some of the convenience of structured encodings and operate directly on bytes.
 
@@ -872,7 +870,7 @@ This comes with obvious trade-offs:
 
 So it should only be used when the savings are worth the loss in readability and maintainability.
 
-### Replace Expensive Computations With Lookups
+### Replace expensive computations with lookups
 
 A recurring optimisation theme is that computation is often more expensive than lookup. If a function operates on a bounded domain, it may be possible to precompute all results and store them in a compact lookup structure.
 
@@ -941,7 +939,7 @@ test baseline() {
 
 Notice how the small cases are handled via direct byte array lookup instead of repeated multiplication. That same idea can often be applied for small operations on integers. Even multiple array lookups (for values larger than 255 for example) may sometimes be worth considering!
 
-### Use Merkle Patricia Forestry for Larger Registries
+### Use Merkle Patricia Forestry for larger registries
 
 For larger lookup spaces, plain byte arrays are no longer enough. This is where [Merkle Patricia Forestry](https://github.com/aiken-lang/merkle-patricia-forestry) can become useful: it lets you represent arbitrarily large key-value registries with very cheap membership checks on-chain.
 
@@ -968,7 +966,7 @@ The general pattern is:
 
 This is especially attractive for deterministic but expensive (>1% of the total execution budget) functions over bounded domains.
 
-### Don't Compute, Verify
+### Don't compute, verify
 
 This brings us to a broader principle: validators do not always need to perform a computation from scratch. Very often, it is enough to verify that a value provided by the transaction is correct.
 
@@ -995,7 +993,7 @@ Redeemers are perfect for this. They can carry precomputed candidate values, wit
 
 This is **one of the most important optimisation patterns** in on-chain programming: move work off-chain whenever correctness can still be verified cheaply on-chain.
 
-### Leverage Ledger Invariants
+### Leverage ledger invariants
 
 A final optimisation technique is not really about code shape, but about knowing the ledger well enough to rely on its guarantees.
 
@@ -1015,7 +1013,7 @@ If you know a structure is already sorted, you can merge or compare it linearly 
 
 The most effective optimisations are often not "clever code tricks", but code that aligns tightly with invariants already guaranteed by the ledger.
 
-## Closing Thoughts
+## Summary
 
 Most optimisation work in Aiken follows a few recurring themes:
 

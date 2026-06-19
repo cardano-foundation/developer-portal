@@ -10,9 +10,9 @@ aliases: ["Multiple Satisfaction"]
 
 Cardano smart contracts are very different from the ones on Ethereum. To represent its blockchain, Cardano uses the Unspent Transaction Output (UTxO) model. A simplification is that the blockchain is a list of unspent transactions, and the only thing we can do is spend them (though since the Vasil fork, we can also reference inputs without spending them).
 
-A transaction can be seen as a change of some already existing UTxOs into some new UTxOs. Each UTxO has some rules attached to it that detail what transaction can spend it. Cardano blockchain only validates a transaction if it follows rules for every single of its inputs. There are some additional rules imposed by the Cardano blockchain — for example, the sum of Ada on inputs and outputs must match (except for the fees which we will omit for simplicity).
+A transaction can be seen as a change of some already existing UTxOs into some new UTxOs. Each UTxO has some rules attached to it that detail what transaction can spend it. Cardano blockchain only validates a transaction if it follows rules for every single of its inputs. There are some additional rules imposed by the Cardano blockchain — for example, the sum of Ada on inputs and outputs must match (except for the fees, which are omitted here for simplicity).
 
-This model is pretty simple to understand if we disregard smart contracts. For usual UTxOs, there are explicit rules on how to spend them. The most common rule is the public-key hash UTxO — the transaction that spends it needs to be signed by a corresponding private key. This can be seen in the next image:
+This model is pretty simple to understand if you disregard smart contracts. For usual UTxOs, there are explicit rules on how to spend them. The most common rule is the public-key hash UTxO — the transaction that spends it needs to be signed by a corresponding private key. This can be seen in the next image:
 
 ![DS-1](../img/ds-1.png)
 
@@ -23,16 +23,16 @@ Cardano brings an extension to this UTxO model in the form of smart contracts. W
 1) Validated transaction — the validator can check anything about the transaction being validated including inputs, outputs, or minted tokens.
 2) Datum of the validated UTxO — this is some data attached to the UTxO that validators can use. The datum can represent the address of the owner, the price of the sold NFT, or more complex structures.
 3) UTxO redeemer — this is just any data that the spender can attach to the transaction. For example, if the smart contract can perform multiple actions, it's common to insert the name of the action we want to perform inside the redeemer.
-Nothing else comes into the validation process. If we want multiple smart contracts to interact, they all need to be included as inputs for the transaction in which they interact.
+Nothing else comes into the validation process. For multiple smart contracts to interact, they all need to be included as inputs for the transaction in which they interact.
 
-Let us introduce a simple smart contract that will be used in all of the following examples — smart contract BuyNFT. The purpose of the contract is to sell an NFT to any buyer who is willing to pay the price to the seller. From this purpose, we see that the datum of the smart contract can be viewed as a pair of:
+Consider a simple smart contract that will be used in all of the following examples — smart contract BuyNFT. The purpose of the contract is to sell an NFT to any buyer who is willing to pay the price to the seller. From this purpose, the datum of the smart contract can be viewed as a pair of:
 
 The seller of the NFT — an address, the contract needs to know who the buyer should pay.
 The price to pay — an integer, the contract needs to know how much the buyer should pay.
-Having the datum defined as pair of price and seller, we can write a simple validation rule for our smart contract:
+With the datum defined as a pair of price and seller, you can write a simple validation rule for the smart contract:
 
 At least price ADA went to the address seller.
-More formally, the validator of BuyNFT checks that the transaction spending it contains an output UTxO to the address seller with the value of at least price ADA. We will say that a transaction that follows this rule satisfies the contract.
+More formally, the validator of BuyNFT checks that the transaction spending it contains an output UTxO to the address seller with the value of at least price ADA. A transaction that follows this rule satisfies the contract.
 
 ![DS-2](../img/ds-2.png)
 
@@ -40,7 +40,7 @@ The BuyNFT UtxO can only be spent if 100ADA goes to Alice.
 
 A small detail to notice is that the contract doesn't force anything on the NFT or what should be done with it. It doesn't need to, as the only thing that Alice is interested in is getting the money when Eve spends the BuyNFT UTxO. What Eve does with the NFT doesn't need to be specified in the contract. On the other hand, if Alice creates the BuyNFT contract and doesn't put any NFT into it, Eve can see that the contract is empty and does not spend the BuyNFT UTxO.
 
-## The Double Satisfaction
+## The double satisfaction
 
 The classic double satisfaction vulnerability stems from using multiple contracts in the same transaction when they do not expect it. Each contract's validator validates the transaction independently and they all must be satisfied for the transaction to be validated by the blockchain.
 
@@ -56,7 +56,7 @@ However, because each validator validates the transaction independently of the s
 
 Both validators see the same output UTxO with 120 ADA going to Alice so they are satisfied.
 
-So by paying just 120 ADA, Eve could buy both NFTs. We call this vulnerability double satisfaction because Eve satisfies two conditions where she should have satisfied only one.
+So by paying just 120 ADA, Eve could buy both NFTs. This vulnerability is called double satisfaction because Eve satisfies two conditions where she should have satisfied only one.
 
 ## Forbidding multiple script inputs
 
@@ -75,14 +75,14 @@ This is where Bob starts to understand that the problem he's dealing with is mor
 
 This might seem like an overkill, but actually, it's still not enough.
 
-## Minting policies & Rewarding scripts
+## Minting policies and rewarding scripts
 
-We did not yet mention two other types of smart contracts on Cardano.
+Two other types of smart contracts on Cardano remain to be mentioned.
 
 - Minting policies — these are validators tied to specific tokens (for example, to an NFT). Anytime these tokens are minted or burned, the validator must verify the transaction.
 - Stake validators — validators tied to a staking credential. For now, the most important use case is that such a validator must be successful if relevant staking rewards are withdrawn in a transaction.
 
-The workings of minting policies is very similar to the validators shown in the previous blog, except for a few minor changes (e.g. the minting policies do not contain any datum). We can write complex rules about the transaction. Only transactions fulfilling the rules in a minting policy can mint tokens. For example, Alice makes a minting policy that allows anyone who sends her 100 Ada to mint a single AToken. At the same time, she uses BuyNFT to sell some of her NFTs. The reader should now know exactly where this is going;
+The workings of minting policies are very similar to the validators shown earlier, except for a few minor changes (e.g. the minting policies do not contain any datum). You can write complex rules about the transaction. Only transactions fulfilling the rules in a minting policy can mint tokens. For example, Alice makes a minting policy that allows anyone who sends her 100 Ada to mint a single AToken. At the same time, she uses BuyNFT to sell some of her NFTs. By now you should know exactly where this is going;
 
 ![DS-6](../img/ds-6.png)
 
@@ -107,7 +107,7 @@ There is yet another variant of double satisfaction in this script. If Bob decid
 ![DS-8](../img/ds-8.png)
 Eve pays only 90 Ada for the NFT which should cost her 100 Ada.
 
-This is, strictly speaking, not a double satisfaction as the exploit does not satisfy two scripts. But the principle of the attack is so similar that we feel this is the best place to mention it. A simple way to prevent this attack is to compute how much Ada should go to which address by summing the different datum fields, and then comparing the result with how much Ada actually goes there. In this case, we would compute that at least 100 Ada should go to Bob and Eve's malicious attempt would fail.
+This is, strictly speaking, not a double satisfaction as the exploit does not satisfy two scripts. But the principle of the attack is so similar that it belongs here. A simple way to prevent this attack is to compute how much Ada should go to which address by summing the different datum fields, and then comparing the result with how much Ada actually goes there. In this case, the computation would require that at least 100 Ada go to Bob, and Eve's malicious attempt would fail.
 
 ## Remediation
 
@@ -116,7 +116,7 @@ In general, scripts that expect a payment to be made should:
 Ban all other scripts from the transaction inputs.
 Ban all staking withdrawals.
 Ban the minting of all tokens in the transaction.
-As you can see, this is very restricting for the scripts. In many cases, we need multiple smart contracts to interact. Some other ways include:
+As you can see, this is very restricting for the scripts. In many cases, multiple smart contracts need to interact. Some other ways include:
 
 Ordering of the inputs and the outputs. The first input's validator only checks the first corresponding output, the second only checks the second, etc. This prevents double satisfaction as each script checks its output independently.
 TxT pattern — the whole validation logic is offloaded from the input validators to the minting policy of a single token. The double satisfaction is more easily prevented because the minting policy is the single point that validates the whole transaction. It can pair the inputs and outputs in any way necessary. Read more about the TxT pattern here.
@@ -126,11 +126,11 @@ However, no amount of prevention can ensure safe interaction of multiple scripts
 ![DS-9](../img/ds-9.png)
 Both scripts check double satisfaction differently so they can both be satisfied.
 
-Until a solution is standardized, any interaction between multiple Cardano smart contracts is either forbidden or possibly vulnerable. For now, users can also help prevent double satisfaction themselves by using a unique address for each usage of the script. If Alice did so, Eve could never have exploited the contract as there would never have been two contracts expecting payment to the same address in the first place. This is, however, not always possible in this simple form — for example, when we want to chain an output of a script to be an input into another.
+Until a solution is standardized, any interaction between multiple Cardano smart contracts is either forbidden or possibly vulnerable. For now, users can also help prevent double satisfaction themselves by using a unique address for each usage of the script. If Alice did so, Eve could never have exploited the contract as there would never have been two contracts expecting payment to the same address in the first place. This is, however, not always possible in this simple form — for example, when chaining an output of a script to be an input into another.
 
 ---
 
-## Formal Framework
+## Formal framework
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
 
@@ -164,7 +164,7 @@ The above validator ensures that tokens held by a consumed UTxO ('own input') ar
 
 Although the logic is correct when considering validation for each UTxO in isolation, things can go wrong when consuming multiple UTxOs from the same script in the same transaction.
 
-For instance, let us consider the the case where there are two outputs at vulnValidator holding the same values:
+For instance, consider the case where there are two outputs at vulnValidator holding the same values:
 
 Output A - TxOut ($FOO x 1 + $ADA x 2)
 Output B - TxOut ($FOO x 1 + $ADA x 2)
@@ -177,6 +177,6 @@ Finally, to be completely protected against multiple satisfaction attacks, it sh
 
 ---
 
-## Code Examples
+## Code examples
 
 - [Mesh: Double Satisfaction Example](https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src/swap/double-satisfaction)

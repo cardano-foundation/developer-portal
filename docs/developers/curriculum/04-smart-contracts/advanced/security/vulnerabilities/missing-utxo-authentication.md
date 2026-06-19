@@ -24,7 +24,7 @@ Unauthorised protocol actions
 **Further explanation:**
 This vulnerability can easily be illustrated by using oracles as an example.
 
-Let us imagine that we have a protocol that relies on information about the real world to allow or disallow certain actions. For instance, an insurance company could allow spending from a pool of funds if some natural disaster such as an earthquake or a hurricane had hit a certain region in the last 30 days. In order for the validator locking the funds (`insuranceVal`) to know whether such a natural disaster has occurred, it relies on the information given by an oracle.
+Imagine a protocol that relies on information about the real world to allow or disallow certain actions. For instance, an insurance company could allow spending from a pool of funds if some natural disaster such as an earthquake or a hurricane had hit a certain region in the last 30 days. In order for the validator locking the funds (`insuranceVal`) to know whether such a natural disaster has occurred, it relies on the information given by an oracle.
 
 The way the oracle provides the information is by locking in the oracle validator (`oracleVal`) a UTxO carrying as datum the latest date when a natural disaster happened in a certain region.
 
@@ -36,13 +36,9 @@ In order to prevent this, the legit UTxO in `oracleVal` that holds the real info
 
 ---
 
-## In-Depth Analysis: Trust No UTxO
+## In-depth analysis: trust no UTxO
 
-> Following sections can be found also at this [blog](https://medium.com/@invariant0/cardano-vulnerabilities-3-trust-no-utxo-b252650ac2b9)
-
-We'll go over a vulnerability where an attacker can create a script UTxO in an invalid state and use it for attacks. This vulnerability is common, often easily preventable for small contracts but as contracts grow in complexity, the vulnerability becomes way more difficult to prevent.
-
-The vulnerability is commonly seen in multi-step contracts. As an example, we will show a simple voting contract that a DAO (decentralized autonomous organization) can use.
+The same vulnerability is commonly seen in multi-step contracts, where an attacker creates a script UTxO in an invalid state and uses it for attacks. It is often easily preventable for small contracts, but as contracts grow in complexity it becomes much more difficult to prevent. As an example, consider a simple voting contract that a DAO (decentralized autonomous organization) can use.
 
 ### Voting example
 
@@ -92,16 +88,16 @@ Once a client implements validity tokens in their protocol, we can try to find w
 
 In practice, it is often possible to somehow steal the token. It's especially tricky to prevent it entirely in complex multi-step contracts with multiple different validity tokens. In each step, we need to verify that the validity tokens goes into the intended script outputs. If there is at least one place in the code where this verification contains a mistake, an attacker can use that to steal one of the tokens.
 
-One complex example we have seen in practice was a double satisfaction between the validity token minting policy and a validator's validation branch. We can demonstrate the idea on a modified version of our DAO contract.
+A complex example seen in practice was a double satisfaction between the validity token minting policy and a validator's validation branch. The idea can be demonstrated on a modified version of the DAO contract.
 
 Let's add the possibility to retract a vote. To do this, the voter must have already voted. Secondly, the voter must sign the retracting transaction.
 
 Note that if there was only one voter, retracting his vote would return the voting contract to the valid initial state — the same one it was in when the proposal was created, thus possibly allowing the mint of a fresh new validation token:
 
 ![TNU-5](../img/tnu-5.png)
-Eve abuses the fact that by retracting her vote she creates a contract in the valid initial state, allowing her to mint an additional validity token. A similar example was seen in one of our audits.
+Eve abuses the fact that by retracting her vote she creates a contract in the valid initial state, allowing her to mint an additional validity token. A similar example has been seen in audits.
 
-Because both the voting validator and the validity token minting policy expect the validity token to be in the resulting voting UTxO, putting it there satisfies both conditions — as a reader of our series should already know, this is also called a double satisfaction.
+Because both the voting validator and the validity token minting policy expect the validity token to be in the resulting voting UTxO, putting it there satisfies both conditions — this is also called a double satisfaction.
 
 The full attack chain Eve uses to get her proposal passed is as follows:
 
@@ -115,4 +111,4 @@ As an exercise you can try to come up with an additional check to prevent this v
 
 ### Conclusion
 
-In this blog, we have shown a Cardano vulnerability stemming from the fact that a UTxO can be created by anyone. Cardano developers must think about this when designing their smart contracts and use appropriate mitigation strategies. Validity tokens are used a lot in practice. As stealing them often results in critical severity findings, we put special care into brainstorming complex attacks that lead to stealing such tokens in our work as auditors. Many examples of such attacks can be found in our [public reports' archive](https://github.com/vacuumlabs/audits). For an open source example, check our [Agora report](https://github.com/vacuumlabs/audits/blob/master/reports/liqwid-agora-v1.pdf), issue AGO-001: Stake state token can be taken away.
+This vulnerability stems from the fact that a UTxO can be created by anyone. Cardano developers must account for this when designing their smart contracts and use appropriate mitigation strategies. Validity tokens are used a lot in practice, and stealing them often results in critical severity findings. For an open source example illustrating the issue, see the [Agora report](https://github.com/vacuumlabs/audits/blob/master/reports/liqwid-agora-v1.pdf), issue AGO-001: Stake state token can be taken away.

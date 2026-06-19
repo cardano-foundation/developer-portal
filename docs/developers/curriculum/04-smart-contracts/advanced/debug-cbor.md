@@ -2,7 +2,7 @@
 id: debug-cbor
 title: Debugging CBOR
 sidebar_label: Debugging CBOR
-description: Under the hood of Cardano transactions
+description: Read and debug the low-level CBOR encoding of Cardano transactions to troubleshoot Plutus scripts and validation failures.
 ---
 
 ## Introduction
@@ -20,7 +20,7 @@ The first thing to know about the specification, is that transactions are define
 
 As Cardano has passed through different eras, the specification is splitted into several documents, one for each era, describing incrementally the modifications and additions that each era introduced. For each era there is also as part of the specification a text file that precisely defines the CBOR schema used for blocks and transactions. For this, the CDDL (Concise Data Definition Language) format is used, a notational convention defined in [RFC 8610](https://www.rfc-editor.org/rfc/rfc8610) that is used to describe CBOR data structures.
 
-In this post, we will concentrate on the Conway era specification, the one that introduced all the smart contract functionality through Plutus.
+This page covers the Conway era specification, the one that introduced all the smart contract functionality through Plutus.
 
 ## A simple smart contract
 
@@ -94,7 +94,7 @@ transaction =
   ]
 ```
 
-Here, we can see that transactions are comprised of four parts. The two main parts of a transaction are its body and its witness set. In this article we focus on these parts, and ignore the other two, just saying that the third one has to do with transaction validity, and the fourth one is where the metadata goes, among other things.
+Note that transactions are comprised of four parts. The two main parts of a transaction are its body and its witness set. This page focuses on these parts and ignores the other two, just saying that the third one has to do with transaction validity, and the fourth one is where the metadata goes, among other things.
 
 ### The transaction body
 
@@ -153,7 +153,7 @@ In our example, two inputs are present:
 
 So, the first input is the UTxO corresponding to the first output of transaction [A1D13B…](https://explorer.cardano.org/transaction?id=a1d13b016fd106784482d2b2e1c85330090b3c27464d2163f752ad42730a2867&network=preprod), and the second one corresponds to the second output of transaction [A51F7E…](https://explorer.cardano.org/transaction?id=a51f7e6ec66f1db366f2a7ad63b8041b51b269cebd5d52a140f6c5b7e069dfb7&network=preprod ). As we will see next, one of them corresponds to the smart contract, and the other one is used to pay for the transaction fees.
 
-#### Inputs Information
+#### Inputs information
 
 To be able to understand and debug our transaction, it is important to know the information about the inputs, not present in the transaction itself. The information is comprised of these three components:
 
@@ -179,7 +179,7 @@ From this information, it is clear that the first input is used to pay for the t
 
 #### The ordering of the inputs
 
-In the CDDL specification it can be seen that the inputs are in a set, not a list. Why a set? Well, Cardano doesn’t allow us to choose how to order the inputs. The ordering we use in the serialized raw transaction is completely ignored. Instead, the specifications assumes that the inputs are ordered lexicographically in the pair (transaction_id, index).
+In the CDDL specification you can see that the inputs are in a set, not a list. Why a set? Well, Cardano doesn’t allow us to choose how to order the inputs. The ordering we use in the serialized raw transaction is completely ignored. Instead, the specifications assumes that the inputs are ordered lexicographically in the pair (transaction_id, index).
 
 This is important, because in the redeemers we will use indexes to refer to positions in the list of inputs following this ordering criteria. We will talk about this later.
 
@@ -329,7 +329,7 @@ Answer True or False to the following assertions:
 - Every transaction with script inputs needs a collateral.
 - No transaction with no script inputs needs a collateral.
 
-## Runtime CBOR Debugging with Aiken
+## Runtime CBOR debugging with Aiken
 
 While the previous sections focused on analyzing transactions at the blockchain and understanding what is CBOR and how to interpret it, developers need to debug CBOR data during smart contract development. This section covers techniques for inspecting individual values and data structures as you build and test your contracts.
 
@@ -337,7 +337,7 @@ While the previous sections focused on analyzing transactions at the blockchain 
 You can read more at [Aiken - CBOR diagostic](https://aiken-lang.org/language-tour/troubleshooting#cbor-diagnostic) section.
 :::
 
-### CBOR Diagnostics in Aiken
+### CBOR diagnostics in Aiken
 
 When developing smart contracts with Aiken, compiled programs lose type information and variable names, making runtime inspection challenging. However, Aiken provides the `cbor.diagnostic()` function to inspect values at runtime using CBOR diagnostic notation - a human-readable representation of binary CBOR data.
 
@@ -349,7 +349,7 @@ pub fn diagnostic(data: Data) -> String
 
 CBOR diagnostics use a JSON-like syntax that can represent binary data. For example, the serialized bytes `83010203` appear as `[1, 2, 3]` in diagnostic notation.
 
-### CBOR Diagnostic Syntax Reference
+### CBOR diagnostic syntax reference
 
 | Type | Examples |
 |------|----------|
@@ -361,7 +361,7 @@ CBOR diagnostics use a JSON-like syntax that can represent binary data. For exam
 
 **Tags** are particularly important for custom types on-chain. Aiken uses tag 121 for the first constructor of a data type, 122 for the second, and so forth. The tagged content represents the constructor's fields as a list.
 
-### Practical Examples
+### Practical examples
 
 Here are examples showing how Aiken values translate to CBOR diagnostics:
 
@@ -382,7 +382,7 @@ cbor.diagnostic(Some(42)) == @"121([_ 42])"  // First constructor
 cbor.diagnostic(None) == @"122([])"          // Second constructor
 ```
 
-### Testing Datum and Redeemer Representations
+### Testing datum and redeemer representations
 
 You can use CBOR diagnostics to verify the exact binary representation of your data structures:
 
@@ -400,7 +400,7 @@ test my_datum_representation() {
 
 This diagnostic output can then be converted to raw CBOR using tools like [cbor.me](https://cbor.me) for use in transaction building.
 
-### Integration with Transaction Analysis
+### Integration with transaction analysis
 
 The diagnostic output from development tools directly corresponds to what you'll see in transaction CBOR:
 
