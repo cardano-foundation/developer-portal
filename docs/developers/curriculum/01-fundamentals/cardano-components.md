@@ -131,7 +131,7 @@ Cardano has evolved through multiple ledger eras, each introducing new capabilit
 | Babbage | Reference inputs, inline datums, reference scripts |
 | Conway | On-chain governance (CIP-1694), DReps, Constitutional Committee |
 
-For how the Ouroboros protocol itself evolved across these eras, see [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-has-ouroboros-evolved). See also [Historical Cardano Hardforks](https://cardano.org/hardforks/).
+For the full history of these era transitions, see [Historical Cardano Hardforks](https://cardano.org/hardforks/).
 
 Since the Conway Era each era transition is triggered by a hard fork initiation governance action — a process that requires SPO, DRep, and Constitutional Committee votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
 
