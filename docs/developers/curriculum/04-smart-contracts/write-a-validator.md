@@ -12,15 +12,9 @@ This page covers writing validators in Aiken, the simpler native-script alternat
 
 > Runnable source: [examples/bootcamp/03-aiken-contracts](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp/03-aiken-contracts). Install Aiken from [aiken-lang.org](https://aiken-lang.org/installation-instructions); scaffold a project with `npx meshjs <name>` and pick the Aiken template.
 
-## What a validator sees: the transaction
+## What a validator sees
 
-Building validators means reasoning about transactions. A validator can inspect the whole `Transaction` it's validating (the full type is in the [Aiken stdlib](https://aiken-lang.github.io/stdlib/cardano/transaction.html)). The fields you'll use most:
-
-- **inputs / outputs**: UTXOs being spent, and UTXOs being created. Check that an input spends from a specific address or asset, or that an output sends a specific value to a specific address.
-- **reference_inputs**: inputs read but not spent (e.g. reading an oracle datum without consuming it).
-- **mint**: assets being minted or burned.
-- **extra_signatories**: public key hashes that signed; enforce "must be signed by X".
-- **validity_range**: the slot range the transaction is valid for; the basis of time locks.
+Building validators means reasoning about transactions. A validator can inspect the whole `Transaction` it's validating (the full type is in the [Aiken stdlib](https://aiken-lang.github.io/stdlib/cardano/transaction.html)): its `inputs` and `outputs`, `reference_inputs`, `mint`, `extra_signatories`, and `validity_range`. For what each field means, see the [field breakdown in Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#the-transaction-as-the-validator-sees-it); the examples below show how you read them in Aiken.
 
 ## The three validator types
 

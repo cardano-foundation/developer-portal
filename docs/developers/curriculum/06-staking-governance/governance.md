@@ -36,10 +36,10 @@ Different action types require different combinations of these bodies, with the 
 
 | Action | CC | DReps | SPOs |
 |---|---|---|---|
-| No confidence | - | Yes | Yes |
-| New committee / threshold | - | Yes | Yes |
-| Constitution update | Yes | Yes | - |
-| Hard fork initiation | Yes | Yes | Yes |
+| Motion of no-confidence | - | Yes | Yes |
+| Update committee / threshold | - | Yes | Yes |
+| New constitution or guardrails script | Yes | Yes | - |
+| Hard-fork initiation | Yes | Yes | Yes |
 | Protocol parameter change | Yes | Yes | * |
 | Treasury withdrawal | Yes | Yes | - |
 | Info action (non-binding) | - | Yes | Yes |
@@ -60,7 +60,7 @@ Each action type is ratified by meeting a different mix of voting thresholds acr
 | Protocol parameters (network / economic / technical) | 2/3 | 0.67 | - |
 | Protocol parameters (governance group) | 2/3 | 0.75 | - |
 | Treasury withdrawal | 2/3 | 0.67 | - |
-| Info (non-binding) | 2/3 | 1 | 1 |
+| Info action (non-binding) | 2/3 | 1 | 1 |
 
 Changing a **security-relevant** protocol parameter (block and transaction sizes, fees, `utxoCostPerByte`, `govActionDeposit`, and similar) needs an extra SPO vote at 0.51, even for groups SPOs do not normally vote on.
 
@@ -208,6 +208,8 @@ Only the payment key signs; script validity comes from the redeemer, not a DRep 
 ## Delegate your vote
 
 Voting power delegation is **separate from and independent of stake delegation**. You can delegate stake to one pool and your vote to a different DRep, and change either without affecting the other. There are also two built-in options for holders who don't want to pick a DRep: **Abstain** (not counted) and **No Confidence** (counts against the committee). In the Conway era, every holder must choose a governance delegation to remain eligible for staking rewards.
+
+Both delegations attach to your **stake credential**, the part of your address separate from the payment credential. See [Addresses](/docs/developers/curriculum/fundamentals/core-concepts/addresses) for how the two combine.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>

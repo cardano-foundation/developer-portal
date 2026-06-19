@@ -19,7 +19,7 @@ Cardano's delegation is **non-custodial**, which is a strong selling point to su
 
 - **Your ADA never leaves your wallet.** You issue an on-chain certificate that counts your stake toward a pool; you keep full spending control.
 - **No lock-up.** Your ADA stays liquid, spendable at any time.
-- **No minimum.** Any amount can be delegated.
+- **No minimum to delegate.** Any amount counts toward the pool. Registering your stake key the first time costs a refundable 2 ADA deposit, returned when you deregister.
 - **No slashing.** Delegated ADA is never at risk. If a pool underperforms, you simply miss rewards for that epoch. You never lose principal. (Contrast Ethereum, where validators can be slashed.)
 - **Automatic re-delegation.** Add more ADA to the wallet and it's included from the next snapshot.
 
