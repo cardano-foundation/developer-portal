@@ -25,7 +25,7 @@ Each module builds on the last, taking you from understanding Cardano to shippin
 |---|---|---|
 | 1 | **[Learn the Fundamentals](/docs/developers/curriculum/fundamentals/overview)** | What a blockchain is, cryptography, Ouroboros consensus, the platform's architecture, and the eUTXO ledger (addresses, wallets and keys, transactions, fees) |
 | 2 | **[Start Building](/docs/developers/curriculum/start-building/overview)** | Pick your tools, get test ADA, build/sign/submit transactions, attach metadata, and query the chain |
-| 3 | **[Mint Tokens & NFTs](/docs/developers/curriculum/native-tokens/overview)** | Mint fungible tokens and NFTs (native, no smart contract required) |
+| 3 | **[Mint Tokens & NFTs](/docs/developers/curriculum/native-tokens/overview)** | Mint fungible tokens and NFTs |
 | 4 | **[Write Smart Contracts](/docs/developers/curriculum/smart-contracts/overview)** | Validators, datum/redeemer/context, writing and testing on-chain code, design patterns, and security |
 | 5 | **[Build a dApp](/docs/developers/curriculum/dapps/overview)** | Build DeFi on the eUTXO model, connect a browser wallet (CIP-30), authenticate users, and bring real-world data on-chain with oracles |
 | 6 | **[Add Staking & Governance](/docs/developers/curriculum/staking-governance/overview)** | Delegate stake, claim rewards, and integrate CIP-1694 governance in your app |

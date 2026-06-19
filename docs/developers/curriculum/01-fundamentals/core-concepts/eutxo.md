@@ -186,15 +186,6 @@ eUTXO model (Cardano):
   -> the outcome is predictable; either the expected result or nothing
 ```
 
-Concretely, this gives developers:
-
-- **No surprise fees.** You know the exact fee before submitting. (See [Transaction Fees](/docs/developers/curriculum/fundamentals/core-concepts/fees) for the formula.)
-- **No front-running.** Other transactions can only cause yours to fail, never to execute with a different result.
-- **Off-chain validation.** You can run the same checks locally that the chain will run.
-- **Free failures where it matters.** A transaction that fails structural (phase-1) validation costs nothing.
-- **ZK compatibility.** Because outcomes are deterministic against known state, you can compute off-chain and verify a proof on-chain without re-execution. Account-based global state mutating between proof generation and verification makes this much harder.
-- **Privacy by default.** Best practice is a fresh address per payment, so your balance is spread across discrete UTXOs rather than consolidated in one account that links your whole history.
-
 ## How does concurrency work in eUTXO?
 
 Concurrency in eUTXO is explicit, because two transactions cannot consume the same UTXO at once; only one wins and the other fails.
@@ -206,10 +197,10 @@ Script UTXO at a DEX: { price: 100, liquidity: 10000 }
   -> only ONE can succeed; the other references a spent UTXO
 ```
 
-The community solves this with a few well-established patterns:
+There are a few patterns to handle concurrency:
 
 1. **UTXO fan-out.** Split state across many UTXOs instead of one, so many users transact in parallel against different UTXOs.
-2. **Batching (order-book pattern).** Users submit orders as their own UTXOs; a batcher consumes many orders plus the protocol's state UTXO in a single transaction. This is how most Cardano DEXes work.
+2. **Batching (order-book pattern).** Users submit orders as their own UTXOs; a batcher consumes many orders plus the protocol's state UTXO in a single transaction.
 3. **Reference inputs.** A transaction can read a UTXO without consuming it, so many transactions can read the same oracle or config UTXO simultaneously with no contention.
 4. **Reference scripts.** Script code can live in a UTXO and be referenced instead of included in every transaction, cutting size and cost.
 
@@ -240,7 +231,6 @@ Neither model is objectively better; they make different trade-offs.
 | Smart contract state | Mutable storage slots | Datum attached to UTXOs |
 | Parallelism | Limited by shared state | Natural (different UTXOs) |
 | Determinism | State may change before execution | Inputs are specific UTXOs |
-| Validation | Execute to find the result | Validate off-chain with certainty |
 | Wallet complexity | Simple (read balance) | Manage a UTXO set |
 | Fee predictability | Approximate (gas estimation) | Exact |
 | Native tokens | ERC-20 contracts | Protocol-level, no contract needed |

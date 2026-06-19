@@ -56,28 +56,14 @@ If you hold 1% of staked tokens, you produce about 1% of blocks. The security mo
 
 | Property | Proof of Work | Proof of Stake (Cardano) |
 |---|---|---|
-| Resource consumed | Electricity + hardware | Staked cryptocurrency |
-| Block producer selection | First to solve the puzzle | Protocol selects by stake |
-| Energy efficiency | Very low (by design) | Very high (99.9%+ reduction) |
+| Block producer selection | First to solve the puzzle | Protocol probabilistically selects by stake |
+| Energy efficiency | Low | High |
 | Hardware | Specialized ASICs | Standard servers |
 | Attack cost | 51% of hash power | 51% of staked ADA |
-| Finality | Probabilistic (~60 min) | Probabilistic (~5-10 min on Cardano) |
 
 ## What is Cardano's Ouroboros protocol?
 
 Ouroboros is Cardano's consensus protocol and the first Proof of Stake protocol with a rigorous, peer-reviewed security proof (Kiayias, Russell, David, Oliynykov, CRYPTO 2017). It divides time into epochs and slots, uses VRFs for private slot-leader election, and is provably secure as long as honest participants control the majority of staked ADA.
-
-### How has Ouroboros evolved?
-
-| Version | Era | Key innovation |
-|---|---|---|
-| Ouroboros Classic | Research | First provably secure PoS |
-| Ouroboros BFT | Byron restart | Simplified BFT for the Byron-to-Shelley transition |
-| Ouroboros Praos | Shelley | VRF for private leader selection; semi-synchronous model |
-| Ouroboros Genesis | In development | Secure bootstrapping from genesis, no trusted checkpoints |
-| Ouroboros Leios | Research | Input endorsers for much higher throughput |
-
-Mainnet runs **Ouroboros Praos**.
 
 ### How do epochs and slots structure time?
 
