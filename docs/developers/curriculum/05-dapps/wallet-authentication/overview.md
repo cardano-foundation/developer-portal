@@ -11,6 +11,8 @@ import TabItem from '@theme/TabItem';
 
 Wallet-based authentication lets users prove they own a Cardano wallet by cryptographically signing a message. This is passwordless authentication backed by blockchain identity, more secure than password-based systems and with nothing for you to store but a public address.
 
+It is distinct from [connecting a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): connecting reads the user's addresses and UTXOs and lets them sign transactions, whereas authentication only has them sign a nonce to prove ownership, with no transaction and nothing transferred.
+
 ## How it works
 
 The authentication process uses message signing as described in [CIP-8](https://cips.cardano.org/cip/CIP-0008) with [CIP-30](https://cips.cardano.org/cip/CIP-0030)-compatible wallets:
