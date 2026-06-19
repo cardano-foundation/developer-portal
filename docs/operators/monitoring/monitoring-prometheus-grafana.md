@@ -249,7 +249,7 @@ After import, use the **Environment** and **Instance** dropdowns at the top of t
 - Confirm `cardano-tracer` is running: `curl http://127.0.0.1:12789/`
 - Confirm your node is connected: the tracer index page should list your node name
 - Confirm Prometheus is scraping: check `http://localhost:9090/targets`
-- Check metric names — some names changed between the old and new tracing systems. See the [metrics migration guide](/docs/developers/curriculum/production/node/new-tracing-system/metrics-migration) for the full rename table.
+- Check metric names — some names changed between the old and new tracing systems. See the [metrics migration guide](/docs/operators/monitoring/new-tracing-system/metrics-migration) for the full rename table.
 
 **Tracer shows no connected nodes**
 
@@ -264,7 +264,7 @@ After import, use the **Environment** and **Instance** dropdowns at the top of t
 
 ## Further reading
 
-- [New Tracing System quick start](/docs/developers/curriculum/production/node/new-tracing-system/new-tracing-system)
-- [cardano-tracer reference](/docs/developers/curriculum/production/node/new-tracing-system/cardano-tracer)
-- [Metrics migration guide](/docs/developers/curriculum/production/node/new-tracing-system/metrics-migration)
+- [New Tracing System quick start](/docs/operators/monitoring/new-tracing-system/new-tracing-system)
+- [cardano-tracer reference](/docs/operators/monitoring/new-tracing-system/cardano-tracer)
+- [Metrics migration guide](/docs/operators/monitoring/new-tracing-system/metrics-migration)
 - [Improve Grafana Security](../../deployment-scenarios/improve-grafana-security)

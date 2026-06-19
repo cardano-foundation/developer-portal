@@ -2,7 +2,6 @@
 id: new-tracing-system
 title: Quick start
 sidebar_label: Quick start
-sidebar_position: 1
 description: How to configure and use the new tracing system
 keywords: [Tracing, cardano-tracer, trace-dispatch, new tracing system, monitoring, cardano node]
 ---

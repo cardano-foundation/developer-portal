@@ -51,7 +51,7 @@ For production monitoring you need metrics persistence, dashboards, and alerting
 
 This stack persists locally observable metrics over time, lets you set alert thresholds (KES expiry window, peer count floor, disk usage ceiling), and gives you historical views to diagnose incidents after the fact.
 
-See [Prometheus and Grafana setup](/docs/operators/monitoring/monitoring-prometheus-grafana) for the full guide. For a deep dive into tracing configuration — backends, namespaces, severity filters, and `cardano-tracer` options — see the [New Tracing System reference](/docs/developers/curriculum/production/node/new-tracing-system/new-tracing-system).
+See [Prometheus and Grafana setup](/docs/operators/monitoring/monitoring-prometheus-grafana) for the full guide. For a deep dive into tracing configuration — backends, namespaces, severity filters, and `cardano-tracer` options — see the [New Tracing System reference](/docs/operators/monitoring/new-tracing-system/new-tracing-system).
 
 ## Global Network Monitoring - openBlockPerf
 

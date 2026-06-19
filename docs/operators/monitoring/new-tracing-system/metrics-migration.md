@@ -2,8 +2,7 @@
 id: metrics-migration
 title: Metrics migration guide
 sidebar_label: Metrics migration
-sidebar_position: 3
-description: Migrating metrics names.
+description: Migrate metric names from Cardano node's legacy logging to the new tracing system, covering renamed, removed, and added metrics.
 keywords: [Tracing, metrics, cardano-tracer, trace-dispatch, new tracing system, monitoring, cardano node]
 ---
 

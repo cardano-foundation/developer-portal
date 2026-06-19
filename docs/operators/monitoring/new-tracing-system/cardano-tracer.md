@@ -2,8 +2,7 @@
 id: cardano-tracer
 title: Cardano Tracer
 sidebar_label: Cardano tracer
-sidebar_position: 2
-description: Using cardano tracer.
+description: cardano-tracer is the logging and monitoring service that collects and handles telemetry from one or more Cardano nodes.
 keywords: [Tracing, cardano-tracer, trace-dispatch, new tracing system, monitoring, cardano node]
 ---
 
@@ -52,7 +51,7 @@ There are 3 such kinds of information:
 
 ## Build and run
 
-For how to build `cardano-tracer`, refer to the [New Tracing System quick start](/docs/developers/curriculum/production/node/new-tracing-system/new-tracing-system).
+For how to build `cardano-tracer`, refer to the [New Tracing System quick start](/docs/operators/monitoring/new-tracing-system/new-tracing-system).
 
 ## Configuration
 
@@ -95,7 +94,7 @@ Tracing options that can be given based on a namespace are `severity`, `detail` 
 }
 ```
 
-For further node-side configuration explanations, refer to the [New Tracing System quick start](/docs/developers/curriculum/production/node/new-tracing-system/new-tracing-system).
+For further node-side configuration explanations, refer to the [New Tracing System quick start](/docs/operators/monitoring/new-tracing-system/new-tracing-system).
 
 ### Distributed Scenario
 
