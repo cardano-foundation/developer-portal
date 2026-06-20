@@ -421,11 +421,11 @@ const redirects = [
     from: '/docs/integrate-cardano/oracles-overview',
   },
   {
-    to: '/docs/developers/curriculum/dapps/oracles/charli3',
+    to: '/docs/developers/curriculum/dapps/oracles/overview',
     from: '/docs/integrate-cardano/charli3',
   },
   {
-    to: '/docs/developers/curriculum/dapps/oracles/orcfax',
+    to: '/docs/developers/curriculum/dapps/oracles/overview',
     from: '/docs/integrate-cardano/orcfax',
   },
   {
