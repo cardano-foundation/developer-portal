@@ -96,19 +96,7 @@ A **provider-only** client is all you need to read the chain, a block explorer, 
 
 ## Querying chain data
 
-You'll read a handful of things off the chain, each a single query through the client:
-
-| Read | Returns |
-|---|---|
-| UTXOs at any address | a list of UTXOs |
-| Your wallet's UTXOs | a list of UTXOs |
-| UTXOs at an address holding a specific asset | a list of UTXOs |
-| The single UTXO holding an NFT | one UTXO |
-| UTXOs by output reference | a list of UTXOs |
-| A datum by its hash | the datum |
-| Current network parameters | fees, limits, deposits, Plutus costs |
-| Stake delegation and rewards | the pool and reward balance |
-| Wait for a transaction to confirm | done or not |
+You'll read a handful of things off the chain, each a single query through the client.
 
 ### UTXOs and balances
 
@@ -215,23 +203,6 @@ Common rejection reasons from the node:
 | Network timeout | Provider unreachable | Yes: retry after a delay |
 
 `BadInputsUTxO` from indexer lag is the classic one. Handle it with the [retry-safe pattern](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe), which re-reads chain state on every attempt.
-
-## Other SDKs and the CLI
-
-The examples above use Evolution. The same reads are available from Mesh and directly from a running node:
-
-<Tabs groupId="sdk">
-<TabItem value="mesh" label="Mesh">
-
-Queries go through the provider object you create (e.g. `new BlockfrostProvider(key)`): `fetchAddressUTxOs`, `fetchProtocolParameters`, `fetchUTxOs`, and friends. See the [Mesh providers reference](https://meshjs.dev/providers).
-
-</TabItem>
-<TabItem value="cardano-cli" label="cardano-cli">
-
-A running node answers the same queries directly: `cardano-cli query utxo --address <addr>`, `cardano-cli query protocol-parameters`, `cardano-cli query tip`, and `cardano-cli query stake-address-info`. See the [cardano-cli reference](/docs/developers/curriculum/start-building/transaction-building#building-with-cardano-cli).
-
-</TabItem>
-</Tabs>
 
 ## Next steps
 

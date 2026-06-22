@@ -115,7 +115,7 @@ cardano-cli latest transaction sign \
 cardano-cli latest transaction submit --tx-file tx.signed
 ```
 
-For the offline `build-raw` flow with manual fee calculation and multi-witness transactions, see [Transaction building](/docs/developers/curriculum/start-building/transaction-building#building-with-cardano-cli).
+For the offline `build-raw` flow with manual fee calculation, and spending from several keys, see [Offline builds](/docs/developers/curriculum/start-building/transaction-building#offline-builds-air-gapped).
 
 </TabItem>
 </Tabs>

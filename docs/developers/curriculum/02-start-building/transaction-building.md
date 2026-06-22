@@ -94,7 +94,7 @@ cardano-cli latest transaction build \
   --out-file tx.raw
 ```
 
-Sign and submit as in [Building with cardano-cli](#building-with-cardano-cli) below.
+Sign and submit as in [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction#send-ada).
 
 </TabItem>
 </Tabs>
@@ -306,30 +306,12 @@ SDKs solve this by **deferring redeemer construction**: you provide a redeemer *
 
 This is what powers the [withdraw-zero coordinator pattern](/docs/developers/curriculum/staking-governance/staking#script-controlled-stake-and-the-coordinator-pattern): the [Stake Validator design pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) runs business logic once for the whole transaction. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) for spending from scripts and [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for the on-chain side.
 
-## Building with cardano-cli
+## Offline builds (air-gapped)
 
-The SDKs above wrap what cardano-cli makes explicit. The CLI offers three build commands:
+SDKs build a transaction against a live provider. `cardano-cli` can also build one **fully offline**, where you calculate the fee and balance the transaction yourself, for air-gapped signing and reproducible builds. Of its three build commands, `transaction build` is the everyday node-connected one, `build-raw` is the offline one, and `build-estimate` sizes a fee offline without balancing.
 
-- **`transaction build`**: automatic fee and change, but needs a running node (it reads protocol parameters live). The everyday choice.
-- **`transaction build-raw`**: fully offline; *you* calculate the fee and balance the transaction by hand. Used for air-gapped signing and reproducible builds.
-- **`transaction build-estimate`**: estimates size and fee offline without balancing for you.
-
-### Automatic build
-
-```bash
-cardano-cli latest transaction build \
-  --tx-in <TxHash>#<TxIx> \
-  --tx-out "$(< payment2.addr)+500000000" \   # pay 500 ADA; repeat --tx-out per recipient
-  --change-address $(< payment.addr) \        # leftover (incl. fee balancing) returns here
-  --out-file tx.raw
-# Estimated transaction fee: Lovelace 167041
-```
-
-`--change-address` balances the transaction automatically; add a `--tx-out` per recipient to pay many in one fee.
-
-### Manual build (`build-raw`)
-
-Offline, in four steps, query parameters, draft with a zero fee, compute the fee, then rebuild with the real fee and change:
+<Tabs groupId="sdk">
+<TabItem value="cardano-cli" label="cardano-cli" default>
 
 ```bash
 # 1. Protocol parameters (needs a node, once)
@@ -355,11 +337,17 @@ cardano-cli latest transaction build-raw \
   --fee 173993 --protocol-params-file pparams.json --out-file tx.raw
 ```
 
+</TabItem>
+</Tabs>
+
 `--witness-count` is how many signatures the transaction will carry. It affects the fee. Inspect any draft with `cardano-cli debug transaction view --tx-body-file tx.draft`.
 
-### Multi-witness (inputs from several keys)
+## Spending from several keys
 
-To spend UTXOs owned by *different* keys in one transaction (combining two wallets, or a multisig) list each `--tx-in`, set `--witness-count` to the number of signers, and pass every `--signing-key-file` at sign time:
+To spend UTXOs owned by *different* keys in one transaction (combining two wallets, or a multisig), list each `--tx-in`, set the witness count to the number of signers, and pass every signing key at sign time.
+
+<Tabs groupId="sdk">
+<TabItem value="cardano-cli" label="cardano-cli" default>
 
 ```bash
 cardano-cli latest transaction build-raw \
@@ -373,6 +361,9 @@ cardano-cli latest transaction sign \
   --signing-key-file payment2.skey \
   --out-file tx.signed
 ```
+
+</TabItem>
+</Tabs>
 
 Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
 

@@ -217,11 +217,6 @@ const spend = await client
 ```
 
 </TabItem>
-<TabItem value="mesh" label="Mesh">
-
-Reference the deployed UTXO with `.spendingTxInReference(txHash, index)` instead of `.txInScript(scriptCbor)` in the spend (see the [Spend funds](#spend-funds) Mesh tab above).
-
-</TabItem>
 </Tabs>
 
 `readFrom` also reads a UTXO **without consuming it**, the same mechanism oracles use to expose price data and contracts use to read shared configuration (a reference input can carry a datum, not just a script). Reach for a reference script once a script is used across more than a few transactions; the one-time deploy cost pays for itself quickly.

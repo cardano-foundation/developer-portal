@@ -6,6 +6,9 @@ description: "Author the on-chain code: Aiken validator types (minting, spending
 image: /img/og/og-developer-portal.png
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 You've [picked a language](/docs/developers/curriculum/smart-contracts/choose-a-language) (Aiken, for most people). Now you write the on-chain code: the validator. Remember the mental model: a validator is a **gatekeeper** that receives a transaction and returns `True` or `False`. It never moves funds or mutates state; it only decides whether a transaction is allowed.
 
 This page covers writing validators in Aiken, the simpler native-script alternative for multisig and time-locks, and the blueprint that connects your validator to off-chain code. The deep treatment of the three arguments a validator receives is in [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context); here we focus on authoring.
@@ -137,6 +140,9 @@ Not every rule needs a Plutus validator. **Native scripts** are Cardano's simple
 
 A native script that requires the owner's signature and only allows minting before a slot:
 
+<Tabs groupId="sdk">
+<TabItem value="mesh" label="Mesh" default>
+
 ```ts
 import { ForgeScript, NativeScript } from "@meshsdk/core"
 
@@ -152,13 +158,19 @@ const forgingScript = ForgeScript.fromNativeScript(nativeScript)
 
 **Multisig** is just a native script with multiple `sig` entries under `all` (everyone must sign) or `atLeast` (k-of-n). Each required party signs the *same* transaction with a **partial signature** (`wallet.signTx(tx, true)`); once all required signatures are attached, the transaction is valid. A common shape: a backend wallet partially signs, then the user's browser wallet partially signs, then it's submitted.
 
-With **cardano-cli** the script is the same JSON, `{"type":"all","scripts":[{"type":"sig","keyHash":"..."},{"type":"after","slot":1000}]}`, supporting `sig`, `before`, `after`, `all`, `any`, and `atLeast`. Build its address with `cardano-cli address build --payment-script-file policy.json`, then spend by collecting one witness per signer plus the script witness and assembling them:
+</TabItem>
+<TabItem value="cardano-cli" label="cardano-cli">
+
+The script is the same JSON, `{"type":"all","scripts":[{"type":"sig","keyHash":"..."},{"type":"after","slot":1000}]}`, supporting `sig`, `before`, `after`, `all`, `any`, and `atLeast`. Build its address with `cardano-cli address build --payment-script-file policy.json`, then spend by collecting one witness per signer plus the script witness and assembling them:
 
 ```bash
 cardano-cli latest transaction witness --tx-body-file tx.body --script-file policy.json --out-file script.wit
 cardano-cli latest transaction witness --tx-body-file tx.body --signing-key-file key1.skey --out-file key1.wit
 cardano-cli latest transaction assemble --tx-body-file tx.body --witness-file script.wit --witness-file key1.wit --out-file tx.signed
 ```
+
+</TabItem>
+</Tabs>
 
 A time-locked script must be paired with a matching validity interval: an `after: N` script needs `--invalid-before` ≥ N, a `before: N` script needs `--invalid-hereafter` ≤ N (funds left past a `before` slot are locked forever).
 
