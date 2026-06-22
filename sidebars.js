@@ -85,7 +85,19 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Module 4: Write Smart Contracts",
+          label: "Module 4: Staking & Governance",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/staking-governance/overview",
+          },
+          items: [
+            "developers/curriculum/staking-governance/staking",
+            "developers/curriculum/staking-governance/governance",
+          ],
+        },
+        {
+          type: "category",
+          label: "Module 5: Write Smart Contracts",
           link: {
             type: "doc",
             id: "developers/curriculum/smart-contracts/overview",
@@ -168,7 +180,7 @@ module.exports = {
         },
         {
           type: "category",
-          label: "Module 5: Build a dApp",
+          label: "Module 6: Build a dApp",
           link: {
             type: "doc",
             id: "developers/curriculum/dapps/overview",
@@ -190,18 +202,6 @@ module.exports = {
                 "developers/curriculum/dapps/oracles/pyth",
               ],
             },
-          ],
-        },
-        {
-          type: "category",
-          label: "Module 6: Add Staking & Governance",
-          link: {
-            type: "doc",
-            id: "developers/curriculum/staking-governance/overview",
-          },
-          items: [
-            "developers/curriculum/staking-governance/staking",
-            "developers/curriculum/staking-governance/governance",
           ],
         },
         {
