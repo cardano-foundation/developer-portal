@@ -111,7 +111,7 @@ export const BuilderTools = [
     icon: "/img/tool-icons/blockfrost.png",
     description: "Hosted REST API for reading the Cardano chain and submitting transactions, with an IPFS gateway.",
     website: "https://blockfrost.io",
-    docs: "/docs/developers/curriculum/production/api-providers/blockfrost/overview",
+    docs: "/docs/developers/curriculum/production/api-providers/blockfrost",
     repository: null,
     category: "api",
     properties: ["rest"],

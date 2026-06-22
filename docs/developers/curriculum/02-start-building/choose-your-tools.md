@@ -50,7 +50,7 @@ Other languages: `pip install pycardano`, `cargo add whisky`, `go get github.com
 
 ## Get a provider
 
-A **provider** runs the node infrastructure and exposes the chain through an API, so you can query UTXOs and submit transactions without running your own node. You have several options:
+Your SDK doesn't reach the chain on its own. It sits on top of a **provider**, which runs the node infrastructure and exposes the chain through an API, so you can query UTXOs and submit transactions without running your own node. The full path is: your code → SDK → provider → node → chain. You have several options:
 
 - **Blockfrost**: hosted REST API with a free tier
 - **Koios**: community-run, no key required for basic use

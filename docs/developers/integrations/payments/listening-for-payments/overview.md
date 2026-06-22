@@ -30,7 +30,7 @@ The only thing that differs between methods is *how you read the chain*: a hoste
 <Tabs groupId="method">
 <TabItem value="blockfrost" label="Blockfrost">
 
-[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost/overview) serves chain data over HTTP, so there is no node to run. Query the address total and poll until the received sum covers the expected amount:
+[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost) serves chain data over HTTP, so there is no node to run. Query the address total and poll until the received sum covers the expected amount:
 
 ```js
 const PROJECT_ID = process.env.BLOCKFROST_API_KEY;

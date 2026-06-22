@@ -221,21 +221,7 @@ module.exports = {
                 id: "developers/curriculum/production/api-providers/overview",
               },
               items: [
-                {
-                  type: "category",
-                  label: "Blockfrost",
-                  link: {
-                    type: "doc",
-                    id: "developers/curriculum/production/api-providers/blockfrost/overview",
-                  },
-                  items: [
-                    "developers/curriculum/production/api-providers/blockfrost/get-started",
-                    "developers/curriculum/production/api-providers/blockfrost/cardano-api",
-                    "developers/curriculum/production/api-providers/blockfrost/others-api",
-                    "developers/curriculum/production/api-providers/blockfrost/secure-webhooks",
-                    "developers/curriculum/production/api-providers/blockfrost/open-source",
-                  ],
-                },
+                "developers/curriculum/production/api-providers/blockfrost",
                 "developers/curriculum/production/api-providers/koios",
                 "developers/curriculum/production/api-providers/ogmios",
               ],

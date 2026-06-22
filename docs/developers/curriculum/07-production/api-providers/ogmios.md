@@ -6,10 +6,15 @@ description: WebSocket JSON-RPC bridge interface for cardano-node providing low-
 image: /img/og/og-getstarted-ogmios.png
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [Ogmios](https://ogmios.dev) is a lightweight WebSocket bridge interface for cardano-node, providing JSON/RPC access to [Ouroboros mini-protocols](https://github.com/IntersectMBO/ouroboros-network/tree/master/docs/network-spec).
 
+Because Ogmios speaks the node's low-level protocols rather than a high-level REST API, an SDK usually pairs it with [Kupo](https://github.com/CardanoSolutions/kupo) for indexing. Together they form the **Kupmios** stack: the self-hosted backend an SDK targets when you run your own node. You run it yourself, or use it hosted through [Demeter](/docs/developers/curriculum/production/demeter).
+
 :::note
-For higher-level abstractions, consider [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost/overview), [Koios](/docs/developers/curriculum/production/api-providers/koios), or [cardano-graphql](https://github.com/cardano-foundation/cardano-graphql).
+For a higher-level, hosted alternative, consider [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost) or [Koios](/docs/developers/curriculum/production/api-providers/koios).
 :::
 
 ## Installation
@@ -33,9 +38,6 @@ Access the dashboard at [localhost:1337](http://localhost:1337) for real-time ru
 ## Query Metrics
 
 The dashboard uses JSON responses from the health endpoint:
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs
 defaultValue="curl"
