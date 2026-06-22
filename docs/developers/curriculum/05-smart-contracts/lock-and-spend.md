@@ -230,6 +230,9 @@ Reference the deployed UTXO with `.spendingTxInReference(txHash, index)` instead
 
 A parameterized validator leaves values like an owner key or a deadline as compile-time holes, so one validator serves many deployments: each set of parameters produces a distinct script (and address). Apply the parameters off-chain before use:
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Bytes, Data, TSchema, UPLC } from "@evolution-sdk/evolution"
 
@@ -249,6 +252,9 @@ const appliedTyped = UPLC.applyParamsToScriptWithSchema(
   (v) => v,
 )
 ```
+
+</TabItem>
+</Tabs>
 
 The applied script is what you attach (or deploy as a reference script). Use parameters for per-deployment config (owner, deadline, token policy, oracle address); use **datum fields** instead for state that changes per transaction. `applyParamsToScript` defaults to Aiken-compatible CBOR: pass `CBOR.CML_DATA_DEFAULT_OPTIONS` for CML-compiled scripts.
 

@@ -65,7 +65,10 @@ flowchart LR
 
 ## Before you start
 
-The snippets below set up a client once and then reuse it. With **Evolution**, build a client from a provider and a wallet:
+The snippets below set up a client once and then reuse it: build it from a provider and a wallet.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { preprod, Client } from "@evolution-sdk/evolution"
@@ -80,6 +83,9 @@ const client = Client.make(preprod)
 const address = await client.address()
 const stakeCredential = address.stakingCredential!
 ```
+
+</TabItem>
+</Tabs>
 
 With **Mesh**, you have a connected `wallet` and a `provider`; staking certificates act on the wallet's reward address. With **cardano-cli**, you need `payment.skey`/`payment.addr` and a registered stake key pair (`stake.vkey`/`stake.skey`); operations that touch the stake credential are signed by both keys.
 
@@ -335,6 +341,9 @@ cardano-cli latest transaction submit --tx-file tx.signed
 
 Conway-era Cardano has a second, **independent** delegation: governance voting power. You can delegate stake to one pool and your vote to a different DRep, and change either without affecting the other. The full DRep flow lives in [Governance](/docs/developers/curriculum/staking-governance/governance#delegate-your-vote), but because both are stake-credential certificates, you can combine them in a single transaction:
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Credential, DRep } from "@evolution-sdk/evolution"
 
@@ -353,11 +362,17 @@ const tx = await client
   .build()
 ```
 
+</TabItem>
+</Tabs>
+
 Already registered? Use `delegateToPoolAndDRep({ stakeCredential, poolKeyHash, drep })`. The DRep can also be `DRep.alwaysAbstain()` or `DRep.alwaysNoConfidence()`.
 
 ## Script-controlled stake and the coordinator pattern
 
 A stake credential can be controlled by a Plutus script instead of a key. Every staking operation accepts a `redeemer` and an attached script for this case:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Credential, Data } from "@evolution-sdk/evolution"
@@ -377,7 +392,13 @@ const tx = await client
   .build()
 ```
 
+</TabItem>
+</Tabs>
+
 The most important use isn't earning rewards. It's the **withdraw-zero coordinator pattern**. A zero-amount withdrawal triggers a stake validator that runs *once for the whole transaction*, letting it enforce global invariants across many script inputs far more cheaply than re-running a spending validator per input:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 const tx = await client
@@ -392,13 +413,19 @@ const tx = await client
   .build()
 ```
 
+</TabItem>
+</Tabs>
+
 This is the basis of the [Stake Validator design pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) used by many DeFi protocols. Withdrawal validators must be registered on-chain first; see [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for the on-chain side.
 
 ## Operate a pool programmatically
 
-Most pool operators run a pool from the command line ([Operate a Stake Pool](/docs/operators/) is the full discipline: relays, block producers, KES keys, monitoring). But if you're building pool-management *tooling*, Evolution can register and retire pools from code.
+Most pool operators run a pool from the command line ([Operate a Stake Pool](/docs/operators/) is the full discipline: relays, block producers, KES keys, monitoring). But if you're building pool-management *tooling*, you can register and retire pools from code.
 
 `registerPool` takes the full pool parameters: operator key, VRF key, pledge, cost, margin, reward account, owners, relays, and optional metadata:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import {
@@ -427,6 +454,9 @@ const tx = await client.newTx().registerPool({ poolParams }).build()
 const signed = await tx.sign()
 await signed.submit()
 ```
+
+</TabItem>
+</Tabs>
 
 Resubmitting `registerPool` with the same operator key updates an existing pool. To retire, announce a future epoch with `retirePool({ poolKeyHash, epoch: retirementEpoch })`; the pool deposit is refunded to the reward account after retirement. Pool metadata must follow the [CIP-6 standard](https://cips.cardano.org/cip/CIP-0006).
 

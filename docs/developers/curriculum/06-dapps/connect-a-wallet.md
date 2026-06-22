@@ -93,7 +93,10 @@ flowchart LR
 3. Frontend calls `signTx` (the wallet prompts the user) and merges the witness into the transaction.
 4. Frontend hands the **signed CBOR** back to the backend, which submits it through the provider.
 
-The frontend half, end to end (Evolution):
+The frontend half, end to end:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Transaction, TransactionWitnessSet, mainnet, Client } from "@evolution-sdk/evolution"
@@ -124,6 +127,9 @@ async function signOnFrontend(unsignedTxCbor: string) {
   return txHash
 }
 ```
+
+</TabItem>
+</Tabs>
 
 For the backend (building and submitting with a provider), see [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) and [lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend).
 

@@ -6,6 +6,9 @@ description: "The three arguments every Cardano validator receives: datum as sta
 image: /img/og/og-developer-portal.png
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Every Cardano validator receives exactly three arguments: the **datum** (state locked at a script address), the **redeemer** (action submitted by the spender), and the **ScriptContext** (a complete snapshot of the transaction being validated). Together these three give a validator everything it needs to decide whether a UTXO can be spent.
 
 If the [overview](/docs/developers/curriculum/smart-contracts/overview) gave you the mental model (validators validate, they don't act), this page is the data model that makes it work. We dissect each argument, look at how datums are stored on-chain, see what reference scripts buy you, and survey the design patterns that fall out of this three-argument architecture.
@@ -194,7 +197,10 @@ Datums, redeemers, and script parameters are all the same thing under the hood: 
 | **Map** | key → value pairs | metadata, key-value state |
 | **List** | ordered values | arrays |
 
-A **Constructor** is the workhorse: index `0` with fields models a record (a vesting datum is "constr 0 with `[beneficiary, deadline]`"); different indices model an enum (a redeemer that's `Claim` = constr 0, `Cancel` = constr 1). In Evolution:
+A **Constructor** is the workhorse: index `0` with fields models a record (a vesting datum is "constr 0 with `[beneficiary, deadline]`"); different indices model an enum (a redeemer that's `Claim` = constr 0, `Cancel` = constr 1):
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Bytes, Data } from "@evolution-sdk/evolution"
@@ -210,7 +216,13 @@ const claim = Data.constr(0n, [])
 const cancel = Data.constr(1n, [])
 ```
 
+</TabItem>
+</Tabs>
+
 Writing raw `Data.constr` is error-prone for real contracts. **`TSchema`** defines the shape once and gives a type-safe codec, so the off-chain types match the on-chain definitions in your validator:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Data, TSchema } from "@evolution-sdk/evolution"
@@ -221,6 +233,9 @@ const Codec = Data.withSchema(VestingDatum)
 const datum = Codec.toData({ beneficiary: "abc1...23de", deadline: 1735689600000n })
 // Codec.toCBORHex(...) / Codec.fromData(...) round-trip too
 ```
+
+</TabItem>
+</Tabs>
 
 Every Plutus Data value serializes to **CBOR**, the binary format the ledger stores, so `Data.toCBORHex` / `Data.fromCBORHex` convert when you need raw hex (e.g. a `cardano-cli` datum file). The [CIP-57 blueprint](/docs/developers/curriculum/smart-contracts/write-a-validator#from-validator-to-blueprint) your validator compiles to describes these schemas so tools can generate the codecs for you.
 
