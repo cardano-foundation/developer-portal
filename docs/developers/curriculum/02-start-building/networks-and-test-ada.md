@@ -50,28 +50,11 @@ Inspect your transactions, addresses, and blocks at [explorer.cardano.org](https
 | Preprod | [explorer.cardano.org/preprod](https://explorer.cardano.org/preprod) |
 | Preview | [explorer.cardano.org/preview](https://explorer.cardano.org/preview) |
 
-## Using cardano-cli? Set your network
-
-The CLI selects a network via an environment variable:
-
-```bash
-export CARDANO_NODE_NETWORK_ID=2      # 1 = preprod, 2 = preview, 4 = sanchonet, "mainnet" = mainnet
-export CARDANO_NODE_SOCKET_PATH=~/node.socket
-```
-
-If you run your own node, download the network's config and genesis files (example for preprod):
-
-```bash
-curl -O -J "https://book.world.dev.cardano.org/environments/preprod/{config,topology,byron-genesis,shelley-genesis,alonzo-genesis,conway-genesis}.json"
-```
-
-All environments are listed in the [Cardano Operations Book](https://book.world.dev.cardano.org/environments.html). Running a node is optional for app development, most developers use a [provider](/docs/developers/curriculum/start-building/choose-your-tools#get-a-provider) instead.
-
 ## Develop locally (optional)
 
 For offline, deterministic iteration you can run a local network instead of a public testnet. See [Local development networks](/docs/developers/curriculum/production/development-networks) for the options (Yaci DevKit and cardano-testnet) and how to set them up.
 
 ## Next steps
 
-- [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools): pick an SDK and get a provider key
-- [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): build, sign, and submit
+- [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): now build, sign, and submit one
+- [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development): optionally give your AI coding assistant current Cardano context first

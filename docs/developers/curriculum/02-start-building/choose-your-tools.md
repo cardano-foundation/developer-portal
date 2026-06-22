@@ -73,5 +73,6 @@ A hosted provider is the quickest way to start. With Blockfrost, for example:
 
 ## Next steps
 
+- [Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada): pick a network and get free test ADA to build with
 - [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development): optionally give your AI coding assistant current Cardano context before you start writing code
 - [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): wire the SDK and provider together and send ADA

@@ -10,8 +10,8 @@ This is the hands-on on-ramp. By the end you will have a working environment, yo
 
 ## The path
 
-1. **[Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada)**: pick a network, get free test ADA from the faucet, and find an explorer
-2. **[Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools)**: pick an SDK for your language and get a provider key
+1. **[Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools)**: pick an SDK for your language and get a provider key
+2. **[Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada)**: pick a network, get free test ADA from the faucet, and find an explorer
 3. **[Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development)**: optionally give your AI coding assistant current Cardano context before you start writing code
 4. **[Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction)**: build, sign, and submit a payment, then read it back from the chain
 
