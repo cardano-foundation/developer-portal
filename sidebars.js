@@ -357,11 +357,6 @@ module.exports = {
             "developers/integrations/iot/troubleshooting",
           ],
         },
-        {
-          type: "doc",
-          id: "developers/integrations/exchange-integrations",
-          label: "Exchange Integrations",
-        },
       ],
     },
     {

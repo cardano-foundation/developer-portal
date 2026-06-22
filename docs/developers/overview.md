@@ -29,7 +29,7 @@ Each module builds on the last, taking you from understanding Cardano to shippin
 | 6 | **[Build a dApp](/docs/developers/curriculum/dapps/overview)** | Build DeFi on the eUTXO model, connect a browser wallet (CIP-30), authenticate users, and bring real-world data on-chain with oracles |
 | 7 | **[Ship to Production](/docs/developers/curriculum/production/overview)** | A pre-mainnet checklist, scaling (Hydra, Mithril), infrastructure and providers, and secure key handling |
 
-When you're ready to build something specific, the **Integrations** guides cover [Payments](/docs/developers/curriculum/dapps/listen-for-payments), [AI Agents](/docs/developers/curriculum/dapps/ai-agents/overview), and [Internet of Things](/docs/developers/integrations/iot/), and there's a dedicated [Exchange Integrations](/docs/developers/integrations/exchange-integrations) track for custodial platforms.
+When you're ready to build something specific, the **Integrations** guides cover [Payments](/docs/developers/curriculum/dapps/listen-for-payments), [AI Agents](/docs/developers/curriculum/dapps/ai-agents/overview), and [Internet of Things](/docs/developers/integrations/iot/), and there's a dedicated [Exchange Integrations](/docs/developers/exchange-integrations) track for custodial platforms.
 
 ## Where to start
 

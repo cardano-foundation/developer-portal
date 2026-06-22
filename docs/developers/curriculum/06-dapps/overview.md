@@ -33,7 +33,7 @@ For building and submitting the transactions behind these flows, see [your first
 
 For exchanges, custodians, and back-end services that integrate at a lower level:
 
-- **[Exchange integrations](/docs/developers/integrations/exchange-integrations)**: accounting, address management, and transaction handling for custodial platforms.
+- **[Exchange integrations](/docs/developers/exchange-integrations)**: accounting, address management, and transaction handling for custodial platforms.
 - Lower-level components for custom integrations:
   - [cardano-node](https://github.com/IntersectMBO/cardano-node): the node, aggregating consensus, ledger, and networking.
   - [cardano-db-sync](https://github.com/IntersectMBO/cardano-db-sync): follows the chain and writes it into PostgreSQL for querying.

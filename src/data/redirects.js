@@ -429,7 +429,7 @@ const redirects = [
     from: '/docs/integrate-cardano/orcfax',
   },
   {
-    to: '/docs/developers/integrations/exchange-integrations',
+    to: '/docs/developers/exchange-integrations',
     from: '/docs/integrate-cardano/exchange-integrations',
   },
   {
@@ -1001,7 +1001,7 @@ const redirects = [
   { to: '/docs/developers/curriculum/start-building/networks-and-test-ada', from: '/docs/get-started/networks/development-networks/overview' },
   { to: '/docs/developers/curriculum/dapps/ai-agents/masumi', from: '/docs/build/integrate/ai-agents/masumi' },
   { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/build/integrate/ai-agents/overview' },
-  { to: '/docs/developers/integrations/exchange-integrations', from: '/docs/build/integrate/exchange-integrations' },
+  { to: '/docs/developers/exchange-integrations', from: '/docs/build/integrate/exchange-integrations' },
   { to: '/docs/developers/curriculum/dapps/listen-for-payments', from: '/docs/build/integrate/payments/listening-for-payments/overview' },
   { to: '/docs/developers/curriculum/dapps/listen-for-payments', from: '/docs/build/integrate/payments/x402-standard' },
   { to: '/docs/operators/basics/cardano-key-pairs', from: '/docs/operate-a-stake-pool/basics/cardano-key-pairs' },
