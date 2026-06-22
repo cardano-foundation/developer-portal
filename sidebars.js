@@ -133,7 +133,7 @@ module.exports = {
                 },
               ],
             },
-            "developers/curriculum/smart-contracts/example-contracts",
+            "developers/curriculum/smart-contracts/contracts-library",
             {
               type: "category",
               label: "Smart Contract Security",

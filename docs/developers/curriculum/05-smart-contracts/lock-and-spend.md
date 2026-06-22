@@ -264,5 +264,5 @@ The lock-then-spend shape above becomes a real contract when the datum carries m
 
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): test the validator before you deploy it
 - [Security](/docs/developers/curriculum/smart-contracts/advanced/security/overview): the vulnerabilities to guard against when spending logic gets real
-- [Example contracts](/docs/developers/curriculum/smart-contracts/example-contracts): escrow, marketplace, swap, and more
-- Reference: [example contracts](/docs/developers/curriculum/smart-contracts/example-contracts) and the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract)
+- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): escrow, marketplace, swap, and more
+- Reference: [contract library](/docs/developers/curriculum/smart-contracts/contracts-library) and the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract)

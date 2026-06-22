@@ -112,4 +112,4 @@ Blueprints are what let your off-chain code interact with a contract without rea
 
 - [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): write the off-chain transactions that interact with your validator
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): test Aiken validators with mock transactions
-- [Example contracts](/docs/developers/curriculum/smart-contracts/example-contracts): real validators to read and learn from
+- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): real validators to read and learn from

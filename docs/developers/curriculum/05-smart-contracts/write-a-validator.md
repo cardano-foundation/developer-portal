@@ -207,4 +207,4 @@ Every validator is a **pure function**: it receives transaction context and retu
 - [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): interact with your validator from off-chain code
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): test validators with mock transactions before deploying
 - [Security](/docs/developers/curriculum/smart-contracts/security): the vulnerability classes to guard against
-- [Example contracts](/docs/developers/curriculum/smart-contracts/example-contracts): full validators to read, including the oracle-NFT minting machine
+- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): full validators to read, including the oracle-NFT minting machine
