@@ -114,6 +114,65 @@ Use a dedicated wallet per order, or derive fresh addresses, so balances map cle
 A transaction in the mempool can still be rolled back. Cardano produces a block roughly every 20 seconds, so for anything valuable, wait several blocks (a few minutes) before treating a payment as final; the larger the amount, the deeper you should wait.
 :::
 
+## Requesting a payment
+
+Detection is the receiver's half. The sender's half is **requesting the payment**: from your dApp, the user's connected wallet builds a transfer to your address, signs it, and submits it. Together they close the loop, the user pays and you detect it.
+
+The simplest case is a plain transfer, where the user pays out of their own wallet with no app key or logic involved. Once they have [connected a wallet](/docs/developers/curriculum/dapps/connect-a-wallet), a "pay" button builds a single `payToAddress`, the wallet prompts for a signature, and you submit:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+import { Assets, Client, preprod } from "@evolution-sdk/evolution"
+
+// walletApi = await window.cardano.<name>.enable() from connecting the wallet
+declare const walletApi: any
+
+// A Signing Client: a provider for params + submission, the connected wallet for signing
+const client = Client.make(preprod)
+  .withBlockfrost({ baseUrl: "https://cardano-preprod.blockfrost.io/api/v0", projectId: process.env.BLOCKFROST_API_KEY! })
+  .withCip30(walletApi)
+
+const tx = await client
+  .newTx()
+  .payToAddress({ address: "addr_test1...", assets: Assets.fromLovelace(10_000_000n) })  // pay 10 ADA
+  .build()
+const txHash = await (await tx.sign()).submit()   // wallet prompts the user, then submit
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```tsx
+import { useWallet } from "@meshsdk/react"
+import { MeshTxBuilder } from "@meshsdk/core"
+
+function PayButton({ recipient, lovelace }) {
+  const { wallet, connected } = useWallet()
+
+  async function pay() {
+    const unsignedTx = await new MeshTxBuilder()
+      .txOut(recipient, [{ unit: "lovelace", quantity: lovelace }])
+      .changeAddress(await wallet.getChangeAddress())   // browser wallet: bech32 string
+      .selectUtxosFrom(await wallet.getUtxos())          // browser wallet: UTxO list
+      .complete()
+    const signedTx = await wallet.signTx(unsignedTx)     // wallet prompts the user
+    await wallet.submitTx(signedTx)                       // submits through the wallet, no API key
+  }
+
+  return <button onClick={pay} disabled={!connected}>Pay {Number(lovelace) / 1_000_000} ADA</button>
+}
+```
+
+</TabItem>
+</Tabs>
+
+Show the amount and recipient before prompting, and handle the wallet's rejection and loading states. Two things decide where the build belongs:
+
+- **Provider keys.** The Evolution flow submits through a provider, so its key lives wherever the client runs; in the browser that key is exposed. Mesh's browser wallet submits through the wallet itself, so a plain transfer needs no key client-side. For anything beyond a trivial transfer, prefer building server-side.
+- **App-controlled transactions.** The moment your app contributes its own inputs, a minting policy, or a co-signature, the build moves to the backend and the user only partial-signs. That is the [sponsored and multi-party](/docs/developers/curriculum/dapps/sponsored-transactions) pattern, and the reason [connecting a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) recommends the frontend only sign.
+
 ## Use cases
 
 E-commerce checkout, payment gateways, donation platforms, subscription billing, event ticketing, in-app purchases, and vending or IoT machines: anywhere you fulfill something only after ada arrives.

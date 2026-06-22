@@ -32,6 +32,15 @@ graph LR
 
 A provider runs the node (which syncs the chain), an indexer (which makes the node's data queryable), and an API layer that serves it to your SDK over HTTP or WebSocket. A **managed** provider runs all of this for you; **self-hosting** means running it yourself.
 
+## A provider is an interface, not just a service
+
+The diagram above is the *service* side. Inside your SDK a provider is also an **interface**: a small contract the SDK calls, with two halves.
+
+- A **read** side: fetch a UTXO set, protocol parameters, and account or asset info (Mesh names this `IFetcher`; Evolution exposes the same reads through its provider).
+- A **write** side: submit a signed transaction (Mesh's `ISubmitter`).
+
+Because the SDK only depends on that contract, anything that implements it is a valid provider. The three below are hosted or self-hosted implementations, but you can implement the contract yourself to point at a private indexer, your own node, a GraphQL source, or even an in-memory fixture for tests. Two pages already do exactly this: the [failover and cache wrapper](/docs/developers/curriculum/production/going-to-production) that composes several providers behind one interface, and the [offline fetcher](/docs/developers/curriculum/production/development-networks) that serves fixed UTXOs to a test suite with no network at all.
+
 ## The providers
 
 To **choose** a provider for your SDK, see [Choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider). For the wider **managed-versus-self-hosted** decision, including Maestro, see [production infrastructure](/docs/developers/curriculum/production/infrastructure). The three documented here:

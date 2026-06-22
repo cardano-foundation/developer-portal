@@ -48,12 +48,13 @@ module.exports = {
             id: "developers/curriculum/start-building/overview",
           },
           items: [
-            "developers/curriculum/start-building/networks-and-test-ada",
             "developers/curriculum/start-building/choose-your-tools",
+            "developers/curriculum/start-building/networks-and-test-ada",
             "developers/curriculum/start-building/ai-assisted-development",
             "developers/curriculum/start-building/your-first-transaction",
             "developers/curriculum/start-building/transaction-building",
             "developers/curriculum/start-building/query-the-chain",
+            "developers/curriculum/start-building/transaction-failures",
           ],
         },
         {
@@ -192,6 +193,7 @@ module.exports = {
             "developers/curriculum/dapps/connect-a-wallet",
             "developers/curriculum/dapps/wallet-authentication",
             "developers/curriculum/dapps/listen-for-payments",
+            "developers/curriculum/dapps/sponsored-transactions",
             "developers/curriculum/dapps/defi",
             {
               type: "category",
