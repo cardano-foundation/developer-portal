@@ -67,20 +67,19 @@ module.exports = {
             "developers/curriculum/native-tokens/minting-policies",
             "developers/curriculum/native-tokens/mint-fungible",
             "developers/curriculum/native-tokens/mint-nft",
-            "developers/curriculum/native-tokens/metadata-registry",
-            "developers/curriculum/native-tokens/authenticated-products",
             {
               type: "category",
-              label: "Token Registry",
+              label: "Token metadata & registry",
               link: {
                 type: "doc",
-                id: "developers/curriculum/native-tokens/token-registry/overview",
+                id: "developers/curriculum/native-tokens/metadata-registry",
               },
               items: [
                 "developers/curriculum/native-tokens/token-registry/register-an-entry",
                 "developers/curriculum/native-tokens/token-registry/metadata-server",
               ],
             },
+            "developers/curriculum/native-tokens/authenticated-products",
           ],
         },
         {

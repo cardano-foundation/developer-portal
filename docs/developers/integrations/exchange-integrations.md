@@ -49,7 +49,7 @@ Cardano Wallet is currently in maintenance-only mode. The Cardano Foundation is 
 
 - [**cardano-node**](https://github.com/IntersectMBO/cardano-node): The core component for participating in the Cardano decentralized blockchain.
 
-- [**Cardano token registry**](/docs/developers/curriculum/native-tokens/token-registry/overview): Register and query off-chain token metadata for native assets on Cardano.
+- [**Cardano token registry**](/docs/developers/curriculum/native-tokens/metadata-registry): Register and query off-chain token metadata for native assets on Cardano.
 
 ## Wallet Management
 

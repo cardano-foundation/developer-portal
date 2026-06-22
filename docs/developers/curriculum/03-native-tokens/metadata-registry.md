@@ -51,9 +51,25 @@ CIP-68 stores metadata in an inline datum on a **reference NFT**, which means it
 
 ## CIP-26: the off-chain registry (fungible tokens)
 
-CIP-26 is an off-chain registry where projects register human-readable info for a token, name, ticker, **decimals**, and logo, that wallets and explorers use to display it correctly. Because on-chain quantities are always integers, decimals are purely a display convention registered here (for example, an on-chain `1000000` shown as `1.000000`).
+CIP-26 is an **off-chain registry** where projects publish human-readable info for a token, name, ticker, **decimals**, and logo, that wallets and explorers read to display it. The metadata lives in a public GitHub repo, [cardano-foundation/cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry), and is served over a REST API at `https://tokens.cardano.org`.
 
-See the [Token Registry](/docs/developers/curriculum/native-tokens/token-registry/overview) for how to prepare and submit an entry, and how CIP-26 compares to on-chain CIP-68.
+Registration is **optional** and independent of on-chain activity; your tokens work with or without an entry. The field that matters most is **`decimals`**: on-chain quantities are always integers, so without a registered decimals value a wallet can't know that `1000000` of your token should display as `1.0`.
+
+### CIP-26 (off-chain) or CIP-68 (on-chain)?
+
+Both publish token metadata; the difference is where it lives and how it updates:
+
+| | CIP-26 (registry) | CIP-68 (on-chain datum) |
+| --- | --- | --- |
+| Where metadata lives | Off-chain GitHub registry | On-chain, in a reference NFT datum |
+| Cost | Free, no on-chain footprint | Extra UTXO and transaction cost |
+| Updating | New pull request, human-reviewed | An on-chain transaction you control |
+| Readable by contracts | No | Yes, via reference inputs |
+| Live after a change | Hours to days (review + re-sync) | Immediately, once on-chain |
+
+Reach for **CIP-26** for static metadata on a fungible token (a stablecoin's ticker and decimals): free, simple, widely supported. Reach for **CIP-68** when metadata must change or a contract must read it on-chain. They aren't exclusive, the [Token Metadata Server](/docs/developers/curriculum/native-tokens/token-registry/metadata-server) serves both and falls back per field.
+
+To publish an entry, see [Register an entry](/docs/developers/curriculum/native-tokens/token-registry/register-an-entry); to query it, see the [Token Metadata Server](/docs/developers/curriculum/native-tokens/token-registry/metadata-server).
 
 ## CIP-27: royalties
 
