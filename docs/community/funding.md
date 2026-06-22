@@ -36,10 +36,20 @@ If you maintain an open-source repository the ecosystem relies on, Intersect's [
 
 Good fit for maintainers of established libraries and tools, rather than one-off builds.
 
+## Accelerators
+
+Accelerators take early-stage teams through a fixed-term, cohort-based program of mentorship, technical and go-to-market support, and investor access, usually with a milestone contribution or investment attached rather than a grant you keep.
+
+[Orion Fund](https://orion.draperdragon.com/) is an $80M ecosystem fund run by Draper Dragon, with the Cardano Foundation as constitutional administrator. It backs Cardano-native and Cardano-integrated companies from acceleration stage through Series A, focuses on real-world assets and institutional DeFi, and develops founders through Draper University's residencies. It is the largest accelerator initiative in the ecosystem.
+
+The Cardano Foundation's [Cardano Accelerator Program](https://cardanofoundation.org/venture-hub/cardano-accelerator-program), part of its Venture Hub, runs themed cohorts of early-stage startups through technical sessions, go-to-market and regulatory guidance, and mentorship, from an in-person kickoff week to a Demo Day in front of investors. Each team receives a milestone contribution alongside hands-on support.
+
+Good fit for startups ready to raise and scale, not just prototype, and able to commit to an intensive cohort.
+
 ## Other paths worth watching
 
 - **Hackathons and bounties.** Prize money, bounties, and follow-on grants come around regularly. Join the [Talent Pool](/talent) to hear about them as they open.
-- **Founding entities and accelerators.** The [Cardano Foundation](https://cardanofoundation.org), [EMURGO](https://emurgo.io), and various regional hubs run their own programs from time to time.
+- **Founding entities.** The [Cardano Foundation](https://cardanofoundation.org), [EMURGO](https://emurgo.io), and various regional hubs run their own programs from time to time.
 - **Grassroots pools and DAOs.** Community-run funding comes and goes. Ask in the [developer community](/docs/community/cardano-developer-community) what is active right now.
 
 Not sure where to start? The [developer community](/docs/community/cardano-developer-community) is the fastest way to find out what is currently funding work like yours.
