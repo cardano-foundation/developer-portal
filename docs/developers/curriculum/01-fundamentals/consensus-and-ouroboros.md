@@ -8,6 +8,8 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 A consensus mechanism is the protocol-level rule set that lets thousands of independent nodes agree on a single canonical chain without any central coordinator. We have established that a blockchain is a distributed ledger and that [cryptographic primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) secure individual transactions and blocks. This page answers the remaining question: when multiple nodes each propose a different block at the same time, how does the network decide which one becomes part of the chain?
 
+If you have used Raft or Paxos, the shape is familiar: a leader is elected to sequence writes, which maps to slot-leader selection, log entries to blocks, the term to an epoch, and heartbeats to block propagation. The critical difference is the threat model: Raft assumes honest nodes and only tolerates crashes, while Ouroboros assumes some nodes are malicious (Byzantine fault tolerance), which is why it needs VRFs, stake-weighted election, and a formal security proof.
+
 ## Why is consensus hard in distributed systems?
 
 Consensus is hard because distributed nodes have different views of pending transactions, face network latency, may go offline, and some may act maliciously, yet they must all agree on a single truth without a central coordinator.
@@ -138,10 +140,6 @@ Epoch N boundary: calculate and distribute rewards, take a new snapshot,
 - **Nothing-at-stake**: produce blocks on many forks for free. Defense: Ouroboros's VRF election and formal proof make it unprofitable.
 - **Long-range attack**: build an alternative chain from far in the past. Defense: the 2-epoch snapshot delay limits it; Ouroboros Genesis solves it fully.
 - **Grinding**: manipulate the election randomness. Defense: the epoch nonce derives from many VRF outputs.
-
-## Web2 analogy
-
-The closest analogy is Raft or Paxos. Raft elects a leader who sequences writes: leader election maps to slot-leader selection, log entries to blocks, the term to an epoch, and heartbeats to block propagation. The critical difference is the threat model. Raft assumes honest nodes (it only tolerates crashes), while Ouroboros assumes some nodes are malicious (Byzantine fault tolerance), which is why it needs VRFs, stake-weighted election, and a formal security proof.
 
 ## Key takeaways
 

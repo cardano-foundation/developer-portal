@@ -8,6 +8,8 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 A transaction is a signed data structure that consumes existing UTXOs as inputs and produces new UTXOs as outputs. Every transfer of value, every mint, and every smart-contract interaction begins and ends with one. Cardano transactions are explicit and deterministic: they list exactly what goes in and what comes out, so you know the outcome before you submit.
 
+If you have made HTTP requests, the lifecycle is familiar: you construct a transaction, authenticate it by signing, submit it, and await confirmation, all asynchronously. The difference that matters is atomicity: a transaction's inputs and outputs apply with database-style ACID guarantees, so the whole thing succeeds or none of it does, with no partial state left behind.
+
 ## Anatomy of a transaction
 
 Every transaction consists of inputs, outputs, a fee, and witnesses; it can optionally include metadata, validity intervals, minting, and certificates.
@@ -151,10 +153,6 @@ Inputs are sorted lexicographically by `(tx_id, index)`, not the order you speci
 - **Minting**: create or burn native tokens via the `mint` field. See [What are native tokens](/docs/developers/curriculum/native-tokens/overview).
 - **Min-UTXO**: every output must carry a minimum amount of ADA. See [the min-ADA requirement](/docs/developers/curriculum/native-tokens/overview#the-minimum-ada-requirement).
 - **Datums** for smart-contract outputs. See [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview).
-
-## Web2 analogy
-
-Submitting a transaction is like making an HTTP request: you construct it, authenticate it by signing, submit it, and await confirmation, all asynchronously. The difference that matters is atomicity. A transaction's inputs and outputs apply with database-style ACID guarantees, so the whole thing succeeds or none of it does, with no partial state left behind.
 
 ## Key takeaways
 

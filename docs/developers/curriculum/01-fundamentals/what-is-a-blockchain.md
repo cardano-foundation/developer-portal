@@ -8,6 +8,8 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 A blockchain is a distributed, append-only data structure that lets multiple participants agree on shared state without a central authority. It chains together cryptographically linked blocks of transactions, producing an immutable ledger that no single party controls. This page builds a precise mental model of what a blockchain actually is, why it was invented, and how Cardano's design choices matter to you as a developer.
 
+If you have used Git, the shape is familiar: every commit references its parent, history is append-only (no force-push, no rebase), every developer keeps a full clone, and merging happens by protocol (consensus) rather than human decision. The difference that matters is that no participant can rewrite history at all, because thousands of independent nodes enforce the rules instead of one trusted server.
+
 ## What problem do blockchains solve?
 
 Blockchains solve the trust problem: they let participants who do not trust each other agree on a shared ledger of truth without any single party in control. Traditional systems centralize trust in one entity (a bank, a platform, a server operator), and that centralization introduces vulnerabilities.
@@ -119,10 +121,6 @@ After a few more blocks are added on top, the transaction is considered final wi
 **"Everything should be on the blockchain."** On-chain storage is expensive and slow. Store only what needs to be verifiable and immutable on-chain; use off-chain storage (IPFS, databases) for the rest, with on-chain hashes as anchors.
 
 **"Blockchains are anonymous."** Cardano is **pseudonymous**, not anonymous. Transactions and addresses are public; usage patterns can be analyzed. Never assume transactions are private.
-
-## Web2 analogy
-
-A blockchain is like a Git repository: every commit references its parent, the history is append-only (no force-push, no rebase), every developer keeps a full clone, and merging happens by protocol (consensus) rather than human decision. The difference that matters is that no participant can rewrite history at all, because thousands of independent nodes enforce the rules instead of one trusted server.
 
 ## Key takeaways
 

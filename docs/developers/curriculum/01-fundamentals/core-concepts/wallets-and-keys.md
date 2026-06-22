@@ -11,6 +11,8 @@ import TabItem from '@theme/TabItem';
 
 Keys and wallets are the identity and access layer of Cardano. A seed phrase generates a tree of key pairs, public keys are hashed into the [address](/docs/developers/curriculum/fundamentals/core-concepts/addresses) credentials that lock UTXOs, and wallet software manages it all so users can send, receive, and stake. Whoever holds the private key controls the funds, there is no password reset.
 
+If you have used SSH, the model will feel familiar: you already generate an `ed25519` key pair, keep the private key local, share the public key, and prove possession by signing. Cardano keys work the same way, except you authenticate to the whole network and can move value, so losing the key costs more than losing server access. A CIP-30 wallet connector, meanwhile, is like "Sign in with Google" (OAuth): the dApp receives the signatures it asks for but never sees your raw private key.
+
 ## What is a key pair?
 
 A key pair is a private key (32 bytes of entropy) and its public key (derived via Ed25519, the same algorithm as SSH `ed25519` keys).
@@ -167,10 +169,6 @@ Never bundle a mnemonic or private key into frontend code, and never commit one.
 - **Key isolation**: hardware wallets keep keys in a secure element; extensions encrypt with a spending password.
 - **Address hygiene**: let the wallet generate fresh addresses; reuse links your history.
 - **Verify on-device**: confirm transaction details on the hardware wallet screen, not just the app.
-
-## Web2 analogy
-
-The closest analogy is SSH. You already generate an `ed25519` key pair, keep the private key local, share the public key, and prove possession by signing. Cardano keys work identically, except you authenticate to the whole network and gain the ability to move value, so losing the key costs more than losing server access. One more parallel worth knowing: a CIP-30 wallet connector is like "Sign in with Google" (OAuth), where the dApp receives the signatures it asks for but never sees your raw private key.
 
 ## Key takeaways
 

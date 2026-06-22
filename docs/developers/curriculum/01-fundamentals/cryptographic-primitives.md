@@ -8,6 +8,8 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 Cryptographic primitives are mathematical functions with special properties that make it computationally infeasible to cheat, and they form the security foundation of every blockchain transaction. [Earlier](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) we described blockchain properties like immutability and tamper-evidence; this page reveals the concrete tools that enforce them: hash functions, Merkle trees, and digital signatures. You will understand not just what these primitives do, but why Cardano chose specific algorithms (Blake2b, Ed25519).
 
+If you have worked with JWTs, the model will feel familiar: a JWT signs a payload with a private key, anyone with the public key verifies it, and modifying the payload invalidates the signature. A Cardano transaction works the same way, except verification happens on thousands of independent nodes rather than one server. Two related ideas carry over: a transaction ID is a content hash, so the content determines its identity the way a Git commit SHA does; and a VRF is a random value anyone can verify, which a server-side `Math.random()` can never be.
+
 ## What is a cryptographic hash function?
 
 A cryptographic hash function takes an input of any size and produces a fixed-size output (the "hash" or "digest") such that the same input always produces the same output, but even a tiny change in input produces a completely different hash. It is the most fundamental building block in blockchain security.
@@ -141,10 +143,6 @@ Anyone verifies: blake2b_256(downloaded_file) == on_chain_hash
 ```
 
 Used for NFT metadata (CIP-25 / CIP-68), governance proposals, and audit trails.
-
-## Web2 analogy
-
-The closest analogy is a JWT. A JWT signs a payload with a private key, anyone with the public key verifies it, and modifying the payload invalidates the signature. A Cardano transaction works the same way, except verification happens on thousands of independent nodes rather than one server. Two related ideas carry over: a transaction ID is a content hash, so the content determines its identity the way a Git commit SHA does, and a VRF is a random value anyone can verify, which a server-side `Math.random()` can never be.
 
 ## Key takeaways
 

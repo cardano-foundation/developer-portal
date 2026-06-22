@@ -6,7 +6,7 @@ description: Cardano address structure, address types, and how payment and deleg
 image: /img/og/og-getstarted-technical-concepts.png
 ---
 
-An address is where value lives on Cardano. Before you can follow how transactions move value or how the [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) works, you need to know what an address actually encodes: who can spend funds held there, and who controls their stake.
+An address is where value lives on Cardano: a public identifier others use to send you funds, much like an email address. Unlike one, it is self-sovereign (tied to keys you control, not a service provider) and bakes in its own spending rules and stake settings rather than being just a destination. Before you can follow how transactions move value or how the [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) works, you need to know what an address actually encodes: who can spend funds held there, and who controls their stake.
 
 ## Address structure
 
@@ -131,10 +131,6 @@ const address = new Address.Address({
 :::tip Always validate the network
 Checking the network discriminant before using an address in a transaction is the cheapest guard against sending mainnet funds to a testnet address (and vice versa). Legacy Byron and pointer formats are still parsed automatically when reading existing UTXOs, but shouldn't be used for new addresses.
 :::
-
-## Web2 analogy
-
-An address is like an **email address**: a public identifier others use to send you value. The difference is that it is self-sovereign (tied to keys you control, not a service provider), and it bakes in *spending rules* (the payment credential) and *stake settings* (the delegation credential) rather than just being a destination.
 
 ## Tools
 

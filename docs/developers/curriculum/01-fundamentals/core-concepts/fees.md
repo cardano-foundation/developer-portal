@@ -8,6 +8,8 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 Transaction fees on Cardano are deterministic and predictable. They are calculated from a simple linear formula based on transaction size (plus script execution cost), so you can compute the exact fee before submitting, with no auctions and no gas-price spikes.
 
+If you have used a metered cloud API, fees will feel familiar: just as an API charges per request and throttles abuse, Cardano charges per transaction by size and complexity, pricing both bandwidth (size) and compute (ExUnits). Collateral works like a pre-authorized hold or security deposit: if your script crashes and consumes node resources, the deposit covers it; if everything succeeds, you keep it.
+
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/lpSIpPWp7H8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
 ## Why fees exist
@@ -77,10 +79,6 @@ It's a real tuning axis, not just theory:
 - **Consolidation**: periodically combining many small UTXOs into one (a self-payment) lowers the cost of future transactions. The tradeoff is spending flexibility and parallelism: separate UTXOs let you build independent transactions at the same time without contention.
 - **Native tokens amplify it**: token-bearing UTXOs are larger and each carries [min-ADA](/docs/developers/curriculum/native-tokens/overview#the-minimum-ada-requirement), so a fragmented token wallet is both bigger and ties up more ADA.
 - **Coin selection** decides which UTXOs to spend; SDKs default to largest-first to minimize input count. See [transaction building](/docs/developers/curriculum/start-building/transaction-building#coin-selection).
-
-## Web2 analogy
-
-Fees work like **API rate-limiting plus usage-based pricing**: just as a cloud API charges per request and throttles abuse, Cardano charges per transaction by size and complexity, pricing both bandwidth (size) and compute (ExUnits) fairly. Collateral is like a **pre-authorized hold / security deposit**: if your script "crashes" and consumes node resources, the deposit covers it; if everything succeeds, you keep it.
 
 ## Key takeaways
 

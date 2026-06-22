@@ -8,6 +8,8 @@ image: /img/og/og-getstarted-technical-concepts.png
 
 The Extended UTXO (eUTXO) model is how Cardano tracks who owns what. It records value as discrete, immutable "coins" (unspent transaction outputs) rather than mutable account balances, and it extends that idea with datums, redeemers, and script context so smart contracts can run while transactions stay deterministic and parallelizable.
 
+If you have used event sourcing or CQRS, eUTXO will feel natural: state is derived from an immutable log, you never modify past events, and new state is created by appending. Here, state is the set of unspent outputs, you never modify a UTXO, and new state comes from consuming and producing outputs. (It is no coincidence that Cardano's contract languages are functional: transactions behave like pure functions, same inputs, same outputs.) The one piece without a clean web2 parallel is change: you spend a UTXO whole and receive the remainder as a new output, the way you hand over a 50 and get 20 back, rather than decrementing a balance.
+
 :::note Quick summary
 Cardano tracks value as discrete UTXOs, not account balances. Each transaction consumes existing UTXOs and creates new ones. Smart contracts validate whether a UTXO can be spent; they never act on their own. The payoff is determinism: you know exactly what a transaction will do before you submit it.
 :::
@@ -244,10 +246,6 @@ A framework for developers coming from account-based or web2 backgrounds:
 3. **Transactions are atomic functions.** Inputs in, outputs out, no side effects. If any part fails, none of it applies.
 4. **Concurrency is UTXO selection, not locking.** If someone already spent the UTXO you wanted, you retry with different inputs.
 5. **Scripts validate, they do not execute.** A validator checks that a proposed transition is legal; the builder constructs the transition.
-
-## Web2 analogy
-
-The strongest analogy is event sourcing. In event sourcing, state is derived from an immutable log: you never modify past events, and new state is created by appending. eUTXO is the same, where state is the set of unspent outputs, you never modify a UTXO, and new state comes from consuming and producing outputs. If you have used event sourcing or CQRS, eUTXO will feel natural. (It is no coincidence that Cardano's contract languages are functional; transactions behave like pure functions, same inputs, same outputs.) The one piece without a clean web2 parallel is change: you spend a UTXO whole and receive the remainder as a new output, the way you hand over a 50 and get 20 back, rather than decrementing a balance.
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/bfofA4MM0QE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture fullscreen"></iframe>
 
