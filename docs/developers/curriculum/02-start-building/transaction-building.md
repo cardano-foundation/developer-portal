@@ -15,7 +15,7 @@ The conceptual model (UTXOs, inputs, outputs, fees, validity) is in [Transaction
 
 ## How the builder works
 
-When you call `.build()`, a high-level SDK does several things so you don't have to. Understanding the phases helps when something doesn't balance:
+When you build a transaction, a high-level SDK does several things so you don't have to. Understanding the phases helps when something doesn't balance:
 
 1. **Coin selection**: picks UTXOs from your wallet to cover the outputs + fee (see below).
 2. **Collateral**: for script transactions only, sets aside pure-ADA UTXOs to cover a failed script.
@@ -23,17 +23,21 @@ When you call `.build()`, a high-level SDK does several things so you don't have
 4. **Fee calculation**: sizes the fee from the final transaction, iterating because change and fee affect each other.
 5. **Script evaluation**: for script transactions, runs the validators to compute execution-unit costs, which feed back into the fee.
 
-The result is an unsigned transaction. `.sign()` adds witnesses; `.submit()` broadcasts it. A read-only wallet can `.build()` but not `.sign()`. That's the [frontend signs, backend builds](/docs/developers/curriculum/dapps/connect-a-wallet#frontend-signs-backend-builds-and-submits) split.
+The result is an unsigned transaction. Signing adds the witnesses; submitting broadcasts it. A read-only wallet can build a transaction but not sign one. That's the [frontend signs, backend builds](/docs/developers/curriculum/dapps/connect-a-wallet#frontend-signs-backend-builds-and-submits) split.
 
 ## Coin selection
 
-Coin selection decides **which** UTXOs to spend. Evolution uses **largest-first**: sort the wallet's UTXOs by ADA descending, then take from the top until the outputs and fee are covered. Fewer, larger inputs mean a smaller transaction and a lower fee than many small ones.
+Coin selection decides **which** UTXOs to spend. The usual default is **largest-first**: sort the wallet's UTXOs by ADA descending, then take from the top until the outputs and fee are covered. Fewer, larger inputs mean a smaller transaction and a lower fee than many small ones.
 
 - It tracks every required asset (lovelace and each native token) and stops as soon as all are covered.
 - It's deterministic. The same wallet state always selects the same inputs.
-- If you pass explicit inputs (`collectFrom`), selection only kicks in to cover any shortfall.
+- If you pass explicit inputs yourself, selection only kicks in to cover any shortfall.
 
 For privacy or fee-optimal strategies you can supply a custom selection function, but largest-first is the right default for most apps.
+
+:::info Going deeper
+Coin selection is an active research area. For a formal treatment of UTXO-based selection algorithms and their trade-offs, see this [Cardano research paper on UTXO-based coin selection](https://cardano.org/news/2024-05-23-research-paper-utxo-based-coin-select/).
+:::
 
 ## Multiple outputs
 
@@ -173,6 +177,9 @@ const batches = chunk(recipients, BATCH_SIZE)
 
 Then submit each batch, waiting for confirmation before the next:
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Assets } from "@evolution-sdk/evolution"
 
@@ -188,11 +195,17 @@ for (let i = 0; i < batches.length; i++) {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 For **native-token** airdrops, give each output enough ADA for the min-UTXO (tokens enlarge the UTXO. 2+ ADA per output is a safe floor; the builder computes the exact minimum). Waiting for each batch is simple but slow; the next two sections remove the wait.
 
 ## Chaining transactions
 
-Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10–30 s wait per step. **Chaining** removes it: after `.build()`, `chainResult()` returns the UTXOs you still hold **plus** this transaction's new outputs, already tagged with its pre-computed hash. Feed that into the next `.build()`:
+Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10–30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Address, Assets } from "@evolution-sdk/evolution"
@@ -216,6 +229,9 @@ await (await tx1.sign()).submit()
 await (await tx2.sign()).submit()
 ```
 
+</TabItem>
+</Tabs>
+
 :::warning Submit in order
 Each chained transaction spends an output of the previous one. If tx2 reaches the node before tx1, the node sees inputs that don't exist and rejects it. A sequential loop guarantees ordering. The `available` outputs are **not on-chain yet**. Don't pass them to a provider query.
 :::
@@ -227,6 +243,9 @@ You can also merge reusable builder fragments with `.compose(otherBuilder)` (e.g
 The single most common production bug: you submit a transaction, then immediately build the next one, but your provider's UTXO set hasn't caught up, so it still shows the **already-spent** inputs as available. The node rejects the new transaction with `BadInputsUTxO`. This isn't a bug; it's block propagation (10–30 s, longer under load).
 
 The fix: **read all chain state inside the retryable action**, not before it. Each retry re-queries UTXOs/datums/script state fresh, so it works from the latest view:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Assets } from "@evolution-sdk/evolution"
@@ -254,13 +273,16 @@ async function withRetry<T>(action: () => Promise<T>, retries = 3, delayMs = 300
 const txHash = await withRetry(sendPayment)
 ```
 
+</TabItem>
+</Tabs>
+
 Querying chain state **outside** the action and passing it in defeats the retry. The same stale snapshot is reused every time. When collecting from a script address, fetch the script UTXOs inside the action too. With Effect, wrap the whole `Effect.gen` pipeline and apply `Effect.retry(Schedule.recurs(3)...)`, optionally narrowing to `err.message.includes("BadInputsUTxO")`. Retrying won't fix genuinely insufficient funds. Check balances first.
 
 ## Redeemer indexing
 
 Plutus validators can receive **input indices** in their redeemer for O(1) lookup instead of scanning every input on-chain (execution units are expensive). The catch: Cardano sorts inputs canonically by `(txHash, outputIndex)`, and coin selection adds wallet UTXOs *after* you specify script inputs, shifting every index. So the indices aren't known until the build is complete.
 
-Evolution solves this by **deferring redeemer construction**: you provide a redeemer *function*, and the builder calls it after coin selection has finalized and sorted the inputs. Three modes:
+SDKs solve this by **deferring redeemer construction**: you provide a redeemer *function*, and the builder calls it after coin selection has finalized and sorted the inputs. Three modes:
 
 | Mode | The function receives | Use case |
 |---|---|---|

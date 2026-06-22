@@ -6,6 +6,9 @@ description: The anatomy of a Cardano transaction, its lifecycle, validity inter
 image: /img/og/og-getstarted-technical-concepts.png
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 A transaction is a signed data structure that consumes existing UTXOs as inputs and produces new UTXOs as outputs. Every transfer of value, every mint, and every smart-contract interaction begins and ends with one. Cardano transactions are explicit and deterministic: they list exactly what goes in and what comes out, so you know the outcome before you submit.
 
 If you have made HTTP requests, the lifecycle is familiar: you construct a transaction, authenticate it by signing, submit it, and await confirmation, all asynchronously. The difference that matters is atomicity: a transaction's inputs and outputs apply with database-style ACID guarantees, so the whole thing succeeds or none of it does, with no partial state left behind.
@@ -63,6 +66,9 @@ These are checked in phase-1, before scripts run, so a validator can safely assu
 
 In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range:
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Time, SlotConfig } from "@evolution-sdk/evolution"
 
@@ -78,6 +84,9 @@ const tx = await client
 const slot = Time.unixTimeToSlot(now, SlotConfig.SLOT_CONFIG_NETWORK.Preprod)
 const time = Time.slotToUnixTime(50_000_000n, SlotConfig.SLOT_CONFIG_NETWORK.Mainnet)
 ```
+
+</TabItem>
+</Tabs>
 
 Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/smart-contracts/testing#testing-your-off-chain-code)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
 

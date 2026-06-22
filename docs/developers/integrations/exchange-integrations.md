@@ -16,8 +16,7 @@ For tailored support, real-time updates, and integration queries, connect with t
 
 ## Understanding Cardano's Accounting Model
 
-Cardano utilizes the Extended UTXO (eUTXO) model for its accounting system, which extends the UTXO design to support multi-assets and smart contracts.
-In this model, each transaction consists of inputs and outputs, where inputs represent unspent outputs from previous transactions. This ensures that all assets recorded on the ledger are represented as unspent outputs, enabling efficient and secure transaction processing.
+Cardano uses the **Extended UTXO (eUTXO)** model: value lives in discrete unspent outputs (UTXOs) that transactions consume and create, rather than in a mutable account balance. [The eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) explains it in full. For an exchange, the implication to internalize early is that a customer's funds are a *set of UTXOs*, not a single number, so deposit tracking, coin selection, and withdrawal batching all operate at the UTXO level. The components below implement that.
 
 ## Integration Components
 

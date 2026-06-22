@@ -26,6 +26,9 @@ A provider is the data source your SDK talks to. Most SDKs support several behin
 
 Configure one when you make the client:
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { mainnet, Client } from "@evolution-sdk/evolution"
 
@@ -51,7 +54,13 @@ const maestro = Client.make(mainnet).withMaestro({
 const koios = Client.make(mainnet).withKoios({ baseUrl: "https://api.koios.rest/api/v1" })
 ```
 
+</TabItem>
+</Tabs>
+
 Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass API keys via headers:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 const client = Client.make(mainnet).withKupmios({
@@ -63,6 +72,9 @@ const client = Client.make(mainnet).withKupmios({
   }
 })
 ```
+
+</TabItem>
+</Tabs>
 
 Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself (Blockfrost projects, running your own node + Kupo + Ogmios, Demeter), see the [API providers reference](/docs/developers/curriculum/production/api-providers/overview) and [production infrastructure](/docs/developers/curriculum/production/infrastructure).
 
@@ -84,21 +96,24 @@ A **provider-only** client is all you need to read the chain, a block explorer, 
 
 ## Querying chain data
 
-Every query runs through the client. The full set:
+You'll read a handful of things off the chain, each a single query through the client:
 
-| Method | Returns | Description |
-|---|---|---|
-| `getUtxos(address)` | `UTxO[]` | UTXOs at any address |
-| `getWalletUtxos()` | `UTxO[]` | Your wallet's UTXOs |
-| `getUtxosWithUnit(address, unit)` | `UTxO[]` | UTXOs at an address holding an asset |
-| `getUtxoByUnit(unit)` | `UTxO` | The single UTXO holding an NFT |
-| `getUtxosByOutRef(refs)` | `UTxO[]` | UTXOs by output reference |
-| `getDatum(hash)` | `Data` | A datum by its hash |
-| `getProtocolParameters()` | `ProtocolParameters` | Current network parameters |
-| `getDelegation(rewardAddress)` | `Delegation` | Stake delegation + rewards |
-| `awaitTx(hash, checkInterval?)` | `boolean` | Wait for a transaction to confirm |
+| Read | Returns |
+|---|---|
+| UTXOs at any address | a list of UTXOs |
+| Your wallet's UTXOs | a list of UTXOs |
+| UTXOs at an address holding a specific asset | a list of UTXOs |
+| The single UTXO holding an NFT | one UTXO |
+| UTXOs by output reference | a list of UTXOs |
+| A datum by its hash | the datum |
+| Current network parameters | fees, limits, deposits, Plutus costs |
+| Stake delegation and rewards | the pool and reward balance |
+| Wait for a transaction to confirm | done or not |
 
 ### UTXOs and balances
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Address } from "@evolution-sdk/evolution"
@@ -115,13 +130,22 @@ const withToken = await client.getUtxosWithUnit(Address.fromBech32("addr_test1..
 const nftUtxo = await client.getUtxoByUnit(unit)   // unit = policyId + assetNameHex
 ```
 
+</TabItem>
+</Tabs>
+
 ### Datums
 
 A UTXO with an **inline datum** carries it directly. A UTXO with a **datum hash** needs a lookup:
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 const datum = await client.getDatum(datumHash)
 ```
+
+</TabItem>
+</Tabs>
 
 Inline datums (Plutus V2+) avoid the extra round-trip. Prefer them when designing contracts. See [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context).
 
@@ -129,12 +153,21 @@ Inline datums (Plutus V2+) avoid the extra round-trip. Prefer them when designin
 
 The builder fetches these automatically, but you can read them, fees, size limits, deposits, Plutus costs:
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 const params = await client.getProtocolParameters()
 console.log(params.minFeeA, params.maxTxSize, params.keyDeposit, params.coinsPerUtxoByte)
 ```
 
+</TabItem>
+</Tabs>
+
 ### Delegation and confirmation
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 // Which pool a reward address delegates to, and its reward balance
@@ -144,11 +177,17 @@ const delegation = await client.getDelegation(rewardAddress)   // { poolId, rewa
 const confirmed = await client.awaitTx(txHash, 3000)
 ```
 
+</TabItem>
+</Tabs>
+
 Delegation queries underpin the [staking](/docs/developers/curriculum/staking-governance/staking) UI; `awaitTx` is the confirmation step after [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction).
 
 ## Submitting transactions
 
 A provider also broadcasts signed transactions and can evaluate script costs before you submit:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Transaction } from "@evolution-sdk/evolution"
@@ -161,6 +200,9 @@ const confirmed = await client.awaitTx(txHash)
 // Estimate script execution units before submitting
 const redeemers = await client.evaluateTx(Transaction.fromCBORHex(unsignedTxCbor))
 ```
+
+</TabItem>
+</Tabs>
 
 Common rejection reasons from the node:
 

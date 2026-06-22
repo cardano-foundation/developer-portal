@@ -6,6 +6,9 @@ description: Cardano address structure, address types, and how payment and deleg
 image: /img/og/og-getstarted-technical-concepts.png
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 An address is where value lives on Cardano: a public identifier others use to send you funds, much like an email address. Unlike one, it is self-sovereign (tied to keys you control, not a service provider) and bakes in its own spending rules and stake settings rather than being just a destination. Before you can follow how transactions move value or how the [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) works, you need to know what an address actually encodes: who can spend funds held there, and who controls their stake.
 
 ## Address structure
@@ -86,6 +89,9 @@ Whatever tool you reach for, the same handful of operations come up once an addr
 - **Convert** between Bech32, hex, and bytes for storage, display, or transaction building.
 - **Build** an address from raw credentials. This is the rare case: in a dApp you usually *get* the user's address from the [wallet connector](/docs/developers/curriculum/dapps/connect-a-wallet) rather than constructing one.
 
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Address } from "@evolution-sdk/evolution"
 
@@ -113,7 +119,13 @@ const bytes = Address.toBytes(address)   // 57 bytes for a base address, 29 for 
 const bech32 = Address.toBech32(address)
 ```
 
+</TabItem>
+</Tabs>
+
 Building one from raw credentials (the rare case above) looks like:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Address, KeyHash } from "@evolution-sdk/evolution"
@@ -127,6 +139,9 @@ const address = new Address.Address({
   stakingCredential: new KeyHash.KeyHash({ hash: stakeKeyHash }),   // omit for an enterprise address
 })
 ```
+
+</TabItem>
+</Tabs>
 
 :::tip Always validate the network
 Checking the network discriminant before using an address in a transaction is the cheapest guard against sending mainnet funds to a testnet address (and vice versa). Legacy Byron and pointer formats are still parsed automatically when reading existing UTXOs, but shouldn't be used for new addresses.
