@@ -8,7 +8,7 @@ image: ../img/og-developer-portal.png
 
 A relay node accepts connections from the network and forwards blocks and transactions to your block producer. It has a public IP address; your block producer does not.
 
-Before continuing, complete [Installing cardano-node](/docs/developers/curriculum/production/node/installing-cardano-node) and download your network's configuration files as described in [Running cardano-node](/docs/developers/curriculum/production/node/running-cardano).
+Before continuing, complete [Installing cardano-node](/docs/operators/node/installing-cardano-node) and download your network's configuration files as described in [Running cardano-node](/docs/operators/node/running-cardano).
 
 :::tip Test on preprod first
 Run through the full setup on the [Pre-Production testnet](/docs/developers/curriculum/start-building/networks-and-test-ada) before touching mainnet. Swap `mainnet` for `preprod` in every path and URL below.
@@ -58,7 +58,7 @@ Key points:
 - **`useLedgerAfterSlot`** should match the value in the official `topology.json` for your network. Do not set it to `-1` on a relay.
 - For preprod, use the bootstrap peers and `useLedgerAfterSlot` value from the [downloaded preprod topology](https://book.play.dev.cardano.org/environments/preprod/topology.json).
 
-See [Topology](/docs/developers/curriculum/production/node/topology) for full field documentation, Genesis mode configuration, and peer connection targets.
+See [Topology](/docs/operators/node/topology) for full field documentation, Genesis mode configuration, and peer connection targets.
 
 ## Mithril relay (optional, required for Mithril signing)
 

@@ -40,7 +40,7 @@ cardano-node (mainnet), rough requirements:
   Uptime:    must stay running to serve queries
 ```
 
-Run your own node when you can't afford to trust a third party (high-security apps), when you operate an indexer, or when you're a stake pool operator. Speed up the initial sync with a certified [Mithril](/docs/developers/curriculum/production/mithril) snapshot. See [Run your own node](/docs/developers/curriculum/production/run-your-own-node) for the developer quick-path (install, run, query) and the handoff to the operator curriculum.
+Run your own node when you can't afford to trust a third party (high-security apps), when you operate an indexer, or when you're a stake pool operator. Speed up the initial sync with a certified [Mithril](/docs/operators/operator-tools/mithril) snapshot. See [Run your own node](/docs/developers/curriculum/production/run-your-own-node) for the developer quick-path (install, run, query) and the handoff to the operator curriculum.
 
 For most application developers, a **managed API** removes that overhead. The full comparison lives in the [API providers reference](/docs/developers/curriculum/production/api-providers/overview); in short:
 

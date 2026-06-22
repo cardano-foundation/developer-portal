@@ -151,4 +151,4 @@ The formal specs are public:
 
 - [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) — how Cardano's transaction model differs from account-based chains
 - [Consensus & Staking](/docs/operators/basics/consensus-staking) — staking and block production from an operator's perspective
-- [Installing cardano-node](/docs/developers/curriculum/production/node/installing-cardano-node) — get the software running
+- [Installing cardano-node](/docs/operators/node/installing-cardano-node) — get the software running

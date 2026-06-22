@@ -41,7 +41,7 @@ npm install @meshsdk/core
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
 
-`cardano-cli` ships with the node. Install it from the [cardano-node releases](/docs/developers/curriculum/production/node/installing-cardano-node), or skip local setup entirely by using a provider with an SDK.
+`cardano-cli` ships with the node. Install it from the [cardano-node releases](/docs/operators/node/installing-cardano-node), or skip local setup entirely by using a provider with an SDK.
 
 </TabItem>
 </Tabs>

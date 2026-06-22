@@ -19,7 +19,7 @@ These pages show the raw `cardano-cli` approach, which is appropriate for testne
 - **Hardware wallet** (Ledger or Trezor via [cardano-hw-cli](https://github.com/vacuumlabs/cardano-hw-cli)) — keys never leave the device; convenient for signing transactions
 :::
 
-Make sure `CARDANO_NODE_SOCKET_PATH` and `CARDANO_NODE_NETWORK_ID` are set before running any `cardano-cli` commands. See [Running cardano-node](/docs/developers/curriculum/production/node/running-cardano#querying-the-node).
+Make sure `CARDANO_NODE_SOCKET_PATH` and `CARDANO_NODE_NETWORK_ID` are set before running any `cardano-cli` commands. See [Running cardano-node](/docs/operators/node/running-cardano#querying-the-node).
 
 ## Generate payment keys
 

@@ -351,7 +351,7 @@ sudo sysctl -p /etc/sysctl.d/99-cardano.conf
 
 ## 8. systemd unit hardening
 
-The systemd service files in [Running cardano-node](/docs/developers/curriculum/production/node/running-cardano) already run the node as a dedicated `cardano` user with a `RuntimeDirectory`. Add these directives to the `[Service]` section for defense-in-depth:
+The systemd service files in [Running cardano-node](/docs/operators/node/running-cardano) already run the node as a dedicated `cardano` user with a `RuntimeDirectory`. Add these directives to the `[Service]` section for defense-in-depth:
 
 ```ini
 NoNewPrivileges=yes

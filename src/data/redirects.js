@@ -100,11 +100,11 @@ const redirects = [
     from: '/docs/stake-pool-course/handbook/setup-firewall',
   },
   {
-    to: '/docs/developers/curriculum/production/node/installing-cardano-node',
+    to: '/docs/operators/node/installing-cardano-node',
     from: '/docs/stake-pool-course/handbook/install-cardano-node-written',
   },
   {
-    to: '/docs/developers/curriculum/production/node/running-cardano',
+    to: '/docs/operators/node/running-cardano',
     from: [
       '/docs/stake-pool-course/handbook/run-cardano-node-handbook',
       '/docs/get-started/cardano-node/running-cardano',
@@ -283,23 +283,23 @@ const redirects = [
     from: '/docs/operate-a-stake-pool/node-operations/cardano-components',
   },
   {
-    to: '/docs/developers/curriculum/production/node/installing-cardano-node',
+    to: '/docs/operators/node/installing-cardano-node',
     from: '/docs/operate-a-stake-pool/node-operations/installing-cardano-node',
   },
   {
-    to: '/docs/developers/curriculum/production/node/running-cardano',
+    to: '/docs/operators/node/running-cardano',
     from: '/docs/operate-a-stake-pool/node-operations/running-cardano',
   },
   {
-    to: '/docs/developers/curriculum/production/node/running-cardano',
+    to: '/docs/operators/node/running-cardano',
     from: '/docs/operate-a-stake-pool/node-operations/dynamic-block-forging',
   },
   {
-    to: '/docs/developers/curriculum/production/node/running-cardano',
+    to: '/docs/operators/node/running-cardano',
     from: '/docs/operate-a-stake-pool/node-operations/rts-options-node',
   },
   {
-    to: '/docs/developers/curriculum/production/node/topology',
+    to: '/docs/operators/node/topology',
     from: '/docs/operate-a-stake-pool/node-operations/topology',
   },
   {
@@ -541,7 +541,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/curriculum/production/node/installing-cardano-node',
+    to: '/docs/operators/node/installing-cardano-node',
     from: '/docs/get-started/cardano-node/installing-cardano-node',
   },
   {
@@ -651,8 +651,8 @@ const redirects = [
   { to: '/docs/operators/monitoring/monitoring-overview', from: '/docs/operate-a-stake-pool/relay-configuration/grafana-dashboard-tutorial' },
   { to: '/docs/operators/monitoring/monitoring-overview', from: '/docs/operate-a-stake-pool/relay-configuration/monitoring-gLiveView' },
   // deleted node docs
-  { to: '/docs/developers/curriculum/production/node/running-cardano', from: '/docs/get-started/infrastructure/node/dynamic-block-forging' },
-  { to: '/docs/developers/curriculum/production/node/running-cardano', from: '/docs/get-started/infrastructure/node/rts-options-node' },
+  { to: '/docs/operators/node/running-cardano', from: '/docs/get-started/infrastructure/node/dynamic-block-forging' },
+  { to: '/docs/operators/node/running-cardano', from: '/docs/get-started/infrastructure/node/rts-options-node' },
   // Lessons course dissolved into the module curriculum (theory + practical fully harvested).
   // Each old lesson URL redirects to its canonical module home. URLs dropped the numeric
   // filename prefix (Docusaurus default), so the `from` paths below are un-numbered.

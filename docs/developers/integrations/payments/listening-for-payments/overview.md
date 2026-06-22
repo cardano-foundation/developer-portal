@@ -60,7 +60,7 @@ For a complete point-of-sale app with a React UI, QR codes, and live USD/ADA con
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
 
-If you run your own [node](/docs/developers/curriculum/production/node/installing-cardano-node), query the address UTXOs directly and sum their lovelace, no third-party API involved:
+If you run your own [node](/docs/operators/node/installing-cardano-node), query the address UTXOs directly and sum their lovelace, no third-party API involved:
 
 ```bash
 cardano-cli query utxo --address "$(cat payment.addr)" --testnet-magic 1 --output-json

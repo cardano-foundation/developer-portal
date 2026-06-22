@@ -444,14 +444,14 @@ module.exports = {
       },
       {
         type: "doc",
-        id: "developers/curriculum/production/node/installing-cardano-node",
+        id: "operators/node/installing-cardano-node",
         label: "2. Installation",
       },
       {
         type: "category",
         label: "3. Configure",
         items: [
-          "developers/curriculum/production/node/topology",
+          "operators/node/topology",
           "operators/relay-configuration/relay-node-configuration",
           {
             type: "category",
@@ -467,7 +467,7 @@ module.exports = {
       },
       {
         type: "doc",
-        id: "developers/curriculum/production/node/running-cardano",
+        id: "operators/node/running-cardano",
         label: "4. Run",
       },
       {
@@ -524,7 +524,7 @@ module.exports = {
       label: "Operator Tools",
       items: [
         "operators/operator-tools/guild-ops-suite",
-        "developers/curriculum/production/mithril",
+        "operators/operator-tools/mithril",
       ],
     },
     {

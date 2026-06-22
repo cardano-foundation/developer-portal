@@ -12,9 +12,9 @@ Applications can reach the chain through a [provider](/docs/developers/curriculu
 
 For development or a read-and-submit backend, a passive (non-block-producing) node is enough:
 
-1. **Install** the node from the release binaries: [Installing cardano-node](/docs/developers/curriculum/production/node/installing-cardano-node).
-2. **Run** it against your network and let it sync. Mithril makes the initial sync minutes rather than hours: [Running cardano-node](/docs/developers/curriculum/production/node/running-cardano).
-3. **Query** it with cardano-cli over the node socket: [querying the node](/docs/developers/curriculum/production/node/running-cardano#querying-the-node).
+1. **Install** the node from the release binaries: [Installing cardano-node](/docs/operators/node/installing-cardano-node).
+2. **Run** it against your network and let it sync. Mithril makes the initial sync minutes rather than hours: [Running cardano-node](/docs/operators/node/running-cardano).
+3. **Query** it with cardano-cli over the node socket: [querying the node](/docs/operators/node/running-cardano#querying-the-node).
 
 From there you can pair the node with an indexer (Kupo, db-sync) and a query layer (Ogmios), or just use cardano-cli. See [Production infrastructure](/docs/developers/curriculum/production/infrastructure) for the full stack and the managed alternatives.
 

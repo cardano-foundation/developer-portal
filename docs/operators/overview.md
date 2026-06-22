@@ -16,9 +16,9 @@ This section walks you through the full lifecycle in order. Follow the steps seq
 | Step | What you'll do |
 |------|---------------|
 | [1. Before You Start](basics/hardware-requirements) | Understand the requirements, the networking model, the key types, and set up your air-gapped signing machine |
-| [2. Install](/docs/developers/curriculum/production/node/installing-cardano-node) | Install `cardano-node` and `cardano-cli` |
+| [2. Install](/docs/operators/node/installing-cardano-node) | Install `cardano-node` and `cardano-cli` |
 | [3. Configure](relay-configuration/relay-node-configuration) | Set up your relay and block producer topology, configure Mithril |
-| [4. Run](/docs/developers/curriculum/production/node/running-cardano) | Start your nodes and verify they sync |
+| [4. Run](/docs/operators/node/running-cardano) | Start your nodes and verify they sync |
 | [5. Register Your Pool](block-producer/generating-wallet-keys) | Generate keys, register your stake address, submit your pool certificate |
 | [6. Monitor](monitoring/monitoring-overview) | Monitor node health, block production, and KES expiry |
 | [7. Security & Hardening](deployment-scenarios/hardening-server) | Harden your servers, secure your key workflow, audit your setup |
