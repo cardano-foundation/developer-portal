@@ -10,21 +10,17 @@ Cardano is a layered, formally specified blockchain. Its architecture is **four 
 
 ## The four layers
 
-```
-                    Applications
-            your dApp, wallets, explorers
-                         │
-          reached through CLIs, SDKs, and APIs
-                         │
-   ┌──────────────────────────────────────────────────┐
-   │   A Cardano node    (reference: cardano-node)     │
-   │                                                    │
-   │   Ledger       the rules: UTXOs, scripts,          │
-   │                protocol parameters, governance     │
-   │   Consensus    Ouroboros: which block comes next   │
-   │   Networking   propagating blocks and transactions │
-   │   Scripting    on-chain computation (Plutus Core)  │
-   └──────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    APP["Applications<br/>your dApp, wallets, explorers"]
+    APP -->|"CLIs, SDKs, and APIs"| LEDGER
+    subgraph NODE["A Cardano node (cardano-node)"]
+        direction TB
+        LEDGER["Ledger · the rules<br/>UTXOs, scripts, protocol parameters, governance"]
+        CONSENSUS["Consensus · Ouroboros<br/>which block comes next"]
+        NETWORK["Networking<br/>propagating blocks and transactions"]
+        SCRIPT["Scripting<br/>on-chain computation (Plutus Core)"]
+    end
 ```
 
 These four layers are the architecture. They are defined in formal specifications independently of any implementation, so every Cardano node has the same four. [`cardano-node`](https://github.com/IntersectMBO/cardano-node) (Haskell) is the reference implementation almost everyone runs: it bundles the layers into one process that keeps a copy of the chain, validates blocks and transactions, takes part in consensus, and talks to other nodes. Relays, block producers, and full-node wallets all run it. You don't drive these layers directly; you reach the chain through CLIs, SDKs, and APIs (see [Production infrastructure](/docs/developers/curriculum/production/infrastructure) for the developer stack).
@@ -104,7 +100,7 @@ What distinguishes Cardano's engineering approach is that each layer is specifie
 
 The formal specs are public:
 - [Cardano Ledger Specifications](https://github.com/IntersectMBO/cardano-ledger#cardano-ledger)
-- [Ouroboros papers](https://iohk.io/en/research/library/) — the academic papers underpinning the consensus protocol
+- [Ouroboros papers](https://cardano.org/research/) — the academic papers underpinning the consensus protocol
 
 ## Further reading
 
