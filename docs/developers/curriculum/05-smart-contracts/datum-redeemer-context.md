@@ -236,10 +236,7 @@ const cancel = mConStr1([])
 </TabItem>
 </Tabs>
 
-Writing raw `Data.constr` is error-prone for real contracts. **`TSchema`** defines the shape once and gives a type-safe codec, so the off-chain types match the on-chain definitions in your validator:
-
-<Tabs groupId="sdk">
-<TabItem value="evolution" label="Evolution" default>
+Writing raw `Data.constr` is error-prone for real contracts. Evolution's **`TSchema`** defines the shape once and gives a type-safe codec, so the off-chain types match the on-chain definitions in your validator:
 
 ```typescript
 import { Data, TSchema, Bytes } from "@evolution-sdk/evolution"
@@ -251,8 +248,7 @@ const datum = Codec.toData({ beneficiary: Bytes.fromHex("abc1...23de"), deadline
 // Codec.toCBORHex(...) / Codec.fromData(...) round-trip too
 ```
 
-</TabItem>
-</Tabs>
+Mesh has no equivalent typed codec: you build the same datum with the raw `mConStr` constructors shown above, keeping field order and types aligned with your validator by hand.
 
 ### Sum-type redeemers (Claim / Cancel / Update)
 

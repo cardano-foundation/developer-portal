@@ -78,10 +78,7 @@ In Mesh the read methods live on the **provider** (an `IFetcher`/`ISubmitter`), 
 </TabItem>
 </Tabs>
 
-Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass API keys via headers:
-
-<Tabs groupId="sdk">
-<TabItem value="evolution" label="Evolution" default>
+Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass the API keys through the connection. With Evolution that is the `headers` option on `withKupmios`:
 
 ```typescript
 const client = Client.make(mainnet).withKupmios({
@@ -94,8 +91,7 @@ const client = Client.make(mainnet).withKupmios({
 })
 ```
 
-</TabItem>
-</Tabs>
+Mesh has no single Kupmios provider; pair `OgmiosProvider` with Kupo and pass the Demeter keys through each provider's connection options.
 
 Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself (Blockfrost projects, running your own node + Kupo + Ogmios, Demeter), see the [API providers reference](/docs/developers/curriculum/production/api-providers/overview) and [production infrastructure](/docs/developers/curriculum/production/infrastructure).
 
@@ -121,25 +117,50 @@ You'll read a handful of things off the chain, each a single query through the c
 
 ### Off-chain helpers you'll reach for
 
-Querying gives you raw chain data; turning addresses, datums, and assets into the hashes and identifiers your code needs is the other half. Both SDKs ship a family of pure helpers for this, so you can call them in a backend without a provider:
+Querying gives you raw chain data; turning addresses, datums, and assets into the hashes and identifiers your code needs is the other half. Both SDKs ship the same family of pure helpers for this, so you can call them in a backend without a provider. The calls differ in name, not in what they return:
 
-| Operation | Mesh (`@meshsdk/core`) | Evolution (`@evolution-sdk/evolution`) |
-|---|---|---|
-| Parse an address to credentials | `deserializeAddress(bech32)` → `{ pubKeyHash, scriptHash, stakeCredentialHash }` | `Address.getAddressDetails(bech32)` → `{ paymentCredential, stakingCredential, networkId }` |
-| Payment key hash from an address | `resolvePaymentKeyHash(address)` | `Address.getPaymentCredential(address)` |
-| Parse a unit into policy + name | slice `policyId + assetNameHex` | `Unit.fromUnit(unit)` → `{ policyId, assetName, label }` |
-| Slot for a network at a time | `resolveSlotNo("preprod", ms?)` | `Time.unixTimeToSlot(ms, slotConfig)` / `Time.getSlotAt(offsetMs, network)` |
-| CIP-14 asset fingerprint | `resolveFingerprint(policyId, assetNameHex)` | compute from policy + name (no one-call helper) |
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
-// Mesh
-import { deserializeAddress } from "@meshsdk/core"
-const { pubKeyHash } = deserializeAddress("addr_test1...")
+import { Address, Unit, Time } from "@evolution-sdk/evolution"
 
-// Evolution
-import { Address } from "@evolution-sdk/evolution"
-const { paymentCredential } = Address.getAddressDetails("addr_test1...")
+// Address -> credentials
+const { paymentCredential, stakingCredential, networkId } = Address.getAddressDetails("addr_test1...")
+const payment = Address.getPaymentCredential("addr_test1...")     // payment credential only
+
+// Unit -> policy id + asset name
+const { policyId, assetName, label } = Unit.fromUnit(unit)
+
+// Time -> slot for a network
+const slot = Time.unixTimeToSlot(Date.now(), slotConfig)
+
+// CIP-14 fingerprint: compute from policy + name (no one-call helper)
 ```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { deserializeAddress, resolvePaymentKeyHash, resolveSlotNo, resolveFingerprint } from "@meshsdk/core"
+
+// Address -> credentials
+const { pubKeyHash, scriptHash, stakeCredentialHash } = deserializeAddress("addr_test1...")
+const paymentKeyHash = resolvePaymentKeyHash("addr_test1...")     // payment key hash only
+
+// Unit -> policy id + asset name (slice; unit = policyId + assetNameHex)
+const policyId = unit.slice(0, 56)
+const assetNameHex = unit.slice(56)
+
+// Time -> slot for a network
+const slot = resolveSlotNo("preprod")
+
+// CIP-14 fingerprint
+const fingerprint = resolveFingerprint(policyId, assetNameHex)
+```
+
+</TabItem>
+</Tabs>
 
 Mesh additionally ships one-call helpers like `resolveDataHash` (datum hash), `serializeNativeScript`, and `resolveScriptHashDRepId`; in Evolution you reach the same results through its `Data`, `NativeScripts`, and credential modules. Either way these are pure (network-aware only for slot conversion), so they belong in a backend without a provider.
 
@@ -184,19 +205,33 @@ const holders = await provider.fetchAssetAddresses(unit)
 
 ### Datums
 
-A UTXO with an **inline datum** carries it directly. A UTXO with a **datum hash** needs a lookup:
+A UTXO with an **inline datum** carries it directly, on the UTXO you already fetched. A UTXO with only a **datum hash** needs a separate lookup to recover the datum behind it:
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
 
 ```typescript
+// Inline datum: already attached to the fetched UTXO
+const utxos = await client.getUtxos(scriptAddress)
+const inline = utxos[0].datumOption          // present when the output carries an inline datum
+
+// Datum hash: resolve the datum behind it through the provider
 const datum = await client.getDatum(datumHash)
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+// Inline datum: Mesh returns it directly on each fetched UTXO
+const utxos = await provider.fetchAddressUTxOs(scriptAddress)
+const inline = utxos[0].output.plutusData    // the inline datum (CBOR hex), when present
 ```
 
 </TabItem>
 </Tabs>
 
-Inline datums (Plutus V2+) avoid the extra round-trip. Prefer them when designing contracts. See [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context). Mesh returns inline datums directly on each fetched UTXO and has no separate datum-hash lookup, another reason to prefer inline datums.
+Inline datums (Plutus V2+) avoid the extra round-trip. Prefer them when designing contracts. See [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context). Mesh reads inline datums straight off the fetched UTXO and has no separate datum-hash lookup, so for a hash-only UTXO you supply the datum off-chain when you spend it, another reason to prefer inline datums.
 
 ### Protocol parameters
 
@@ -340,4 +375,5 @@ Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned i
 
 - [Transaction building](/docs/developers/curriculum/start-building/transaction-building), use what you query to build and submit
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet), read a user's UTXOs and address in the browser
+- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library), inspect real contracts' UTXOs and datums with what you just learned
 - [Production infrastructure](/docs/developers/curriculum/production/infrastructure), run your own provider stack at scale

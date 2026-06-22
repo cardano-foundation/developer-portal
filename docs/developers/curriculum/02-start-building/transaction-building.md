@@ -176,7 +176,7 @@ Metadata is public: any provider can read it back. With Blockfrost, fetch every 
 
 ## Batching and airdrops
 
-A single transaction has a **max size (~16 KB)**. Each output adds ~60–100 bytes, so you fit roughly **20–30 ADA-only recipients** per transaction (fewer if outputs carry native tokens). To pay hundreds of recipients, chunk the list into transaction-sized batches:
+A single transaction has a **max size (~16 KB)**. Each output adds ~60-100 bytes, so you fit roughly **20-30 ADA-only recipients** per transaction (fewer if outputs carry native tokens). To pay hundreds of recipients, chunk the list into transaction-sized batches:
 
 ```typescript
 function chunk<T>(array: T[], size: number): T[][] {
@@ -210,16 +210,34 @@ for (let i = 0; i < batches.length; i++) {
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder } from "@meshsdk/core"
+
+for (let i = 0; i < batches.length; i++) {
+  let builder = new MeshTxBuilder({ fetcher: provider })
+  for (const r of batches[i]) {
+    builder = builder.txOut(r.address, [{ unit: "lovelace", quantity: r.lovelace.toString() }])
+  }
+  const unsignedTx = await builder
+    .changeAddress(await wallet.getChangeAddressBech32())
+    .selectUtxosFrom(await wallet.getUtxosMesh())
+    .complete()
+  const txHash = await wallet.submitTx(await wallet.signTx(unsignedTx))
+  await new Promise<void>((resolve) => provider.onTxConfirmed(txHash, resolve))   // wait before the next batch
+  console.log(`Batch ${i + 1}/${batches.length} confirmed:`, txHash)
+}
+```
+
+</TabItem>
 </Tabs>
 
 For **native-token** airdrops, give each output enough ADA for the min-UTXO (tokens enlarge the UTXO. 2+ ADA per output is a safe floor; the builder computes the exact minimum). Waiting for each batch is simple but slow; the next two sections remove the wait.
 
 ## Chaining transactions
 
-Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10–30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2:
-
-<Tabs groupId="sdk">
-<TabItem value="evolution" label="Evolution" default>
+Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. With Evolution:
 
 ```typescript
 import { Address, Assets } from "@evolution-sdk/evolution"
@@ -243,36 +261,19 @@ await (await tx1.sign()).submit()
 await (await tx2.sign()).submit()
 ```
 
-</TabItem>
-</Tabs>
-
 :::warning Submit in order
 Each chained transaction spends an output of the previous one. If tx2 reaches the node before tx1, the node sees inputs that don't exist and rejects it. A sequential loop guarantees ordering. The `available` outputs are **not on-chain yet**. Don't pass them to a provider query.
 :::
 
-You can also merge reusable builder fragments with `.compose(otherBuilder)` (e.g. a payment fragment + a validity fragment) into one transaction.
+Mesh has no built-in chain-tracking equivalent to Evolution's `chainResult().available`. To chain with Mesh you thread the previous transaction's outputs forward yourself, adding each as an explicit input on the next build with `.txIn(txHash, index, amount, address)` and tracking those unconfirmed UTXOs in your own code. You can also merge reusable Evolution builder fragments with `.compose(otherBuilder)` (e.g. a payment fragment + a validity fragment) into one transaction.
 
 ## Resilient submission (retry-safe)
 
-The single most common production bug: you submit a transaction, then immediately build the next one, but your provider's UTXO set hasn't caught up, so it still shows the **already-spent** inputs as available. The node rejects the new transaction with `BadInputsUTxO`. This isn't a bug; it's block propagation (10–30 s, longer under load).
+The single most common production bug: you submit a transaction, then immediately build the next one, but your provider's UTXO set hasn't caught up, so it still shows the **already-spent** inputs as available. The node rejects the new transaction with `BadInputsUTxO`. This isn't a bug; it's block propagation (10-30 s, longer under load).
 
-The fix: **read all chain state inside the retryable action**, not before it. Each retry re-queries UTXOs/datums/script state fresh, so it works from the latest view:
-
-<Tabs groupId="sdk">
-<TabItem value="evolution" label="Evolution" default>
+The fix: **read all chain state inside the retryable action**, not before it. Each retry re-queries UTXOs/datums/script state fresh, so it works from the latest view. The retry harness itself is plain TypeScript; only the build differs per SDK:
 
 ```typescript
-import { Assets } from "@evolution-sdk/evolution"
-
-// The action fetches everything it needs at call time, safe to retry
-async function sendPayment() {
-  const tx = await client
-    .newTx()
-    .payToAddress({ address: recipient, assets: Assets.fromLovelace(2_000_000n) })
-    .build()
-  return (await tx.sign()).submit()
-}
-
 async function withRetry<T>(action: () => Promise<T>, retries = 3, delayMs = 3000): Promise<T> {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try { return await action() }
@@ -282,6 +283,41 @@ async function withRetry<T>(action: () => Promise<T>, retries = 3, delayMs = 300
     }
   }
   throw new Error("unreachable")
+}
+```
+
+The action fetches everything it needs at call time, so each attempt builds from fresh state:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+import { Assets } from "@evolution-sdk/evolution"
+
+async function sendPayment() {
+  const tx = await client
+    .newTx()
+    .payToAddress({ address: recipient, assets: Assets.fromLovelace(2_000_000n) })
+    .build()
+  return (await tx.sign()).submit()
+}
+
+const txHash = await withRetry(sendPayment)
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder } from "@meshsdk/core"
+
+async function sendPayment() {
+  const unsignedTx = await new MeshTxBuilder({ fetcher: provider })
+    .txOut(recipient, [{ unit: "lovelace", quantity: "2000000" }])
+    .changeAddress(await wallet.getChangeAddressBech32())
+    .selectUtxosFrom(await wallet.getUtxosMesh())
+    .complete()
+  return wallet.submitTx(await wallet.signTx(unsignedTx))
 }
 
 const txHash = await withRetry(sendPayment)

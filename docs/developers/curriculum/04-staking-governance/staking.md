@@ -65,7 +65,7 @@ flowchart LR
 
 ## Before you start
 
-The snippets below set up a client once and then reuse it: build it from a provider and a wallet.
+The snippets below set up a provider and a wallet once and reuse them; each transaction uses a fresh builder.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -81,13 +81,35 @@ const client = Client.make(preprod)
   .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
 
 const address = await client.address()
-const stakeCredential = address.stakingCredential!
+const stakeCredential = address.stakingCredential!   // staking certificates act on this
 ```
 
 </TabItem>
-</Tabs>
+<TabItem value="mesh" label="Mesh">
 
-With **Mesh**, you have a connected `wallet` and a `provider`; staking certificates act on the wallet's reward address. With **cardano-cli**, you need `payment.skey`/`payment.addr` and a registered stake key pair (`stake.vkey`/`stake.skey`); operations that touch the stake credential are signed by both keys.
+```typescript
+import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core"
+import { MeshCardanoHeadlessWallet, AddressType } from "@meshsdk/wallet"
+
+const provider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY!)
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+  networkId: 0,                          // 0 = preprod/preview testnet
+  walletAddressType: AddressType.Base,
+  fetcher: provider,
+  submitter: provider,
+  mnemonic: process.env.WALLET_MNEMONIC!.split(" "),
+})
+// staking certificates act on the wallet's reward address;
+// each operation builds with a fresh new MeshTxBuilder({ fetcher: provider })
+```
+
+</TabItem>
+<TabItem value="cli" label="cardano-cli">
+
+You need `payment.skey` / `payment.addr` plus a registered stake key pair (`stake.vkey` / `stake.skey`). Operations that touch the stake credential are signed by both keys.
+
+</TabItem>
+</Tabs>
 
 ## Register and delegate
 
@@ -432,16 +454,64 @@ const tx = await client
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder, deserializePoolId } from "@meshsdk/core"
+
+const rewardAddress = (await wallet.getRewardAddresses())[0]
+const poolIdHash = deserializePoolId("pool1...")
+const dRepId = "drep1..."   // or { type: "AlwaysAbstain" } / { type: "AlwaysNoConfidence" }
+
+// Register + delegate stake + delegate vote, chained in one transaction
+const txBuilder = new MeshTxBuilder({ fetcher: provider })
+const unsignedTx = await txBuilder
+  .registerStakeCertificate(rewardAddress)               // first time only
+  .delegateStakeCertificate(rewardAddress, poolIdHash)   // stake -> pool
+  .voteDelegationCertificate({ dRepId }, rewardAddress)  // vote -> DRep
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .complete()
+
+const signedTx = await wallet.signTx(unsignedTx)
+await wallet.submitTx(signedTx)
+```
+
+</TabItem>
+<TabItem value="cli" label="cardano-cli">
+
+```bash
+# stake -> pool
+cardano-cli latest stake-address stake-delegation-certificate \
+  --stake-verification-key-file stake.vkey \
+  --stake-pool-id pool1... \
+  --out-file deleg.cert
+
+# vote -> DRep
+cardano-cli latest stake-address vote-delegation-certificate \
+  --stake-verification-key-file stake.vkey \
+  --drep-key-hash $(< drep.id) \
+  --out-file vote-deleg.cert
+
+# build both certificates into one transaction
+cardano-cli latest transaction build \
+  --tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]') \
+  --change-address $(< payment.addr) \
+  --certificate-file deleg.cert \
+  --certificate-file vote-deleg.cert \
+  --witness-override 2 \
+  --out-file tx.raw
+# sign with payment.skey + stake.skey, then submit
+```
+
+</TabItem>
 </Tabs>
 
-Already registered? Use `delegateToPoolAndDRep({ stakeCredential, poolKeyHash, drep })`. The DRep can also be `DRep.alwaysAbstain()` or `DRep.alwaysNoConfidence()`.
+Already registered? Drop the registration step: Evolution `delegateToPoolAndDRep({ stakeCredential, poolKeyHash, drep })`, Mesh just the two delegation certificates. The DRep can also be an abstain or no-confidence option (`DRep.alwaysAbstain()` / `DRep.alwaysNoConfidence()` in Evolution).
 
 ## Script-controlled stake and the coordinator pattern
 
-A stake credential can be controlled by a Plutus script instead of a key. Every staking operation accepts a `redeemer` and an attached script for this case:
-
-<Tabs groupId="sdk">
-<TabItem value="evolution" label="Evolution" default>
+A stake credential can be controlled by a Plutus script instead of a key. In Evolution every staking operation accepts a `redeemer` and an attached script for this case:
 
 ```typescript
 import { Credential, Data } from "@evolution-sdk/evolution"
@@ -461,10 +531,9 @@ const tx = await client
   .build()
 ```
 
-</TabItem>
-</Tabs>
+Mesh's builder takes a redeemer on a script **withdrawal** (the coordinator trigger below) but not on a stake **delegation** certificate, so script-controlled delegation is Evolution or cardano-cli only.
 
-The most important use isn't earning rewards. It's the **withdraw-zero coordinator pattern**. A zero-amount withdrawal triggers a stake validator that runs *once for the whole transaction*, letting it enforce global invariants across many script inputs far more cheaply than re-running a spending validator per input:
+The most important use isn't earning rewards. It's the **withdraw-zero coordinator pattern**, the smart-contract principle of [avoiding redundant validation](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview#avoid-redundant-validation) applied through staking. A zero-amount withdrawal triggers a stake validator that runs *once for the whole transaction*, letting it enforce global invariants across many script inputs far more cheaply than re-running a spending validator per input:
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -483,6 +552,31 @@ const tx = await client
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder, mConStr0 } from "@meshsdk/core"
+
+declare const scriptRewardAddress: string   // reward address derived from the stake script hash
+declare const stakeScriptCbor: string
+
+const collateral = await wallet.getCollateralMesh()
+
+const unsignedTx = await new MeshTxBuilder({ fetcher: provider })
+  .withdrawalPlutusScriptV3()
+  .withdrawal(scriptRewardAddress, "0")        // zero-amount withdrawal triggers the validator
+  .withdrawalScript(stakeScriptCbor)
+  .withdrawalRedeemerValue(mConStr0([]))
+  .txInCollateral(collateral[0].input.txHash, collateral[0].input.outputIndex)
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete()
+
+const signedTx = await wallet.signTx(unsignedTx)
+await wallet.submitTx(signedTx)
+```
+
+</TabItem>
 </Tabs>
 
 This is the basis of the [Stake Validator design pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) used by many DeFi protocols. Withdrawal validators must be registered on-chain first; see [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for the on-chain side.
@@ -491,10 +585,7 @@ This is the basis of the [Stake Validator design pattern](/docs/developers/curri
 
 Most pool operators run a pool from the command line ([Operate a Stake Pool](/docs/operators/) is the full discipline: relays, block producers, KES keys, monitoring). But if you're building pool-management *tooling*, you can register and retire pools from code.
 
-`registerPool` takes the full pool parameters: operator key, VRF key, pledge, cost, margin, reward account, owners, relays, and optional metadata:
-
-<Tabs groupId="sdk">
-<TabItem value="evolution" label="Evolution" default>
+`registerPool` takes the full pool parameters: operator key, VRF key, pledge, cost, margin, reward account, owners, relays, and optional metadata. With Evolution:
 
 ```typescript
 import {
@@ -524,8 +615,7 @@ const signed = await tx.sign()
 await signed.submit()
 ```
 
-</TabItem>
-</Tabs>
+Mesh's transaction builder has no pool-registration or retirement helpers, so programmatic pool management is Evolution or cardano-cli only.
 
 Resubmitting `registerPool` with the same operator key updates an existing pool. To retire, announce a future epoch with `retirePool({ poolKeyHash, epoch: retirementEpoch })`; the pool deposit is refunded to the reward account after retirement. Pool metadata must follow the [CIP-6 standard](https://cips.cardano.org/cip/CIP-0006).
 

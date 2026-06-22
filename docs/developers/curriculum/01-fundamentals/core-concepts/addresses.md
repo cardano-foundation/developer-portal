@@ -160,6 +160,22 @@ const address = new Address.Address({
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { pubKeyAddress, serializeAddressObj } from "@meshsdk/core"
+
+declare const paymentKeyHash: string   // 28-byte hash, hex
+declare const stakeKeyHash: string     // 28-byte hash, hex
+
+// Build the address object from raw credentials (omit the stake hash for an enterprise address)
+const addressObj = pubKeyAddress(paymentKeyHash, stakeKeyHash)
+
+// Serialize to bech32 (networkId: 0 = testnet, 1 = mainnet)
+const address = serializeAddressObj(addressObj, 1)
+```
+
+</TabItem>
 </Tabs>
 
 :::tip Always validate the network

@@ -75,26 +75,7 @@ Most action types also carry a pointer to the last enacted action of the same ki
 
 ## Before you start
 
-The snippets below assume a client set up once from a provider and a wallet (same as for [staking](/docs/developers/curriculum/staking-governance/staking#before-you-start)):
-
-<Tabs groupId="sdk">
-<TabItem value="evolution" label="Evolution" default>
-
-```typescript
-import { preprod, Client } from "@evolution-sdk/evolution"
-
-const client = Client.make(preprod)
-  .withBlockfrost({
-    baseUrl: "https://cardano-preprod.blockfrost.io/api/v0",
-    projectId: process.env.BLOCKFROST_API_KEY!
-  })
-  .withSeed({ mnemonic: process.env.WALLET_MNEMONIC!, accountIndex: 0 })
-```
-
-</TabItem>
-</Tabs>
-
-Mesh snippets assume a connected `wallet` and a `txBuilder`. Each operation below also has a **cardano-cli** tab with the key-based flow, and the deeper cli ceremonies (script and Plutus DReps, authoring each action type, committee key management) continue inline beneath the relevant sections.
+The SDK snippets assume the same provider and wallet setup as [staking](/docs/developers/curriculum/staking-governance/staking#before-you-start): an Evolution `client`, or a Mesh `provider` and `wallet` with a fresh `MeshTxBuilder` per transaction. Each operation below also has a **cardano-cli** tab with the key-based flow, and the deeper cli ceremonies (script and Plutus DReps, authoring each action type, committee key management) continue inline beneath the relevant sections.
 
 ## Register as a DRep
 

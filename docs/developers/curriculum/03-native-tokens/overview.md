@@ -107,16 +107,26 @@ const total = Assets.merge(ada, bundle)
 </TabItem>
 <TabItem value="mesh" label="Mesh">
 
-Mesh represents a bundle as an array of `{ unit, quantity }` entries, where `unit` is `policyId + assetNameHex` (or `"lovelace"`) and `quantity` is a string:
+Mesh keys a bundle by `unit` (`policyId + assetNameHex`, or `"lovelace"`) with string quantities. `MeshValue` builds and combines them:
 
 ```typescript
-const bundle = [
-  { unit: "lovelace", quantity: "2000000" },          // min-ADA travels with the token
-  { unit: policyId + assetNameHex, quantity: "100" },
-];
+import { MeshValue } from "@meshsdk/core"
+
+// ADA only (string lovelace; 1 ADA = 1,000,000 lovelace)
+const ada = MeshValue.fromAssets([{ unit: "lovelace", quantity: "5000000" }])
+
+// ADA + a native token: unit is policyId + assetNameHex
+const bundle = MeshValue.fromAssets([{ unit: "lovelace", quantity: "2000000" }]) // min-ADA travels with the token
+bundle.addAsset({ unit: policyId + assetNameHex, quantity: "100" })
+
+// Combine bundles
+const total = ada.merge(bundle)
+
+// Back to the `{ unit, quantity }[]` the builder consumes
+const assets = total.toAssets()
 ```
 
-See the [Mesh transaction reference](https://meshjs.dev/apis/transaction).
+`assetNameHex` is the hex-encoded asset name (empty `""` is valid). The builder enforces [min-ADA](#the-minimum-ada-requirement) on every token-bearing output automatically.
 
 </TabItem>
 </Tabs>

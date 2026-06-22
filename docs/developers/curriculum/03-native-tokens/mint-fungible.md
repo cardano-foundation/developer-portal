@@ -151,29 +151,12 @@ await (await tx.sign()).submit()
 <TabItem value="mesh" label="Mesh">
 
 ```javascript
-import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex, BlockfrostProvider } from '@meshsdk/core';
-import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
-
-const provider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY!);
-const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
-  networkId: 0,                          // 0 = preprod/preview testnet
-  walletAddressType: AddressType.Base,
-  fetcher: provider,
-  submitter: provider,
-  mnemonic: process.env.WALLET_MNEMONIC!.split(" "),
-});
-
-const changeAddress = await wallet.getChangeAddressBech32();
-const forgingScript = ForgeScript.withOneSignature(changeAddress);   // same policy that minted
-
-const policyId = resolveScriptHash(forgingScript);
-const tokenName = "MeshToken";
-
+// same imports, provider, wallet, forgingScript, policyId, and tokenName as "Mint it" above
 const txBuilder = new MeshTxBuilder({ fetcher: provider });
 const unsignedTx = await txBuilder
   .mint("-500", policyId, stringToHex(tokenName))   // negative quantity burns
-  .mintingScript(forgingScript)
-  .changeAddress(changeAddress)
+  .mintingScript(forgingScript)                     // same policy that minted
+  .changeAddress(await wallet.getChangeAddressBech32())
   .selectUtxosFrom(await wallet.getUtxosMesh())
   .complete();
 
@@ -201,3 +184,4 @@ cardano-cli conway transaction build-raw \
 
 - [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft): quantity 1, plus CIP-25 metadata and a time-lock
 - [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry): give your token a name, ticker, and decimals
+- [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): lock tokens at a script address to build escrows, swaps, or token sales
