@@ -51,12 +51,13 @@ This script connects to Preprod, sets up your wallet, builds and signs a minting
 ```javascript
 // Import Mesh SDK components needed for minting NFTs
 // KoiosProvider: Connects to Cardano blockchain to read and submit data
-// MeshWallet: Represents your wallet and handles signing transactions
+// MeshCardanoHeadlessWallet: Represents your wallet and handles signing transactions
 // MeshTxBuilder: Builds blockchain transactions step by step
 // ForgeScript: Creates the policy script that controls who can mint NFTs
 // resolveScriptHash: Converts the policy script into a Policy ID
 // stringToHex: Converts text names into hexadecimal format for blockchain
-import { KoiosProvider, MeshWallet } from '@meshsdk/core';
+import { KoiosProvider } from '@meshsdk/core';
+import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
 import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex } from '@meshsdk/core';
 
 // Step 1: Set up the blockchain provider
@@ -72,28 +73,23 @@ const mnemonic = ["word1", "word2", "word3", "word4", "word5", "word6", "word7",
 
 // Step 3: Create your wallet instance
 // This wallet will be used to sign transactions and interact with the blockchain
-const wallet = new MeshWallet({
-	networkId: 0,        // 0 = testnet (Preprod), 1 = mainnet
-	fetcher: provider,   // Provider for reading blockchain data (like your balance)
-	submitter: provider, // Provider for sending transactions to the network
-	key: {
-		type: 'mnemonic',  // We're using a mnemonic phrase (12 or 24 words)
-		words: mnemonic    // Your wallet's mnemonic words
-	}
+// fromMnemonic is async and builds a ready-to-use wallet - no separate init needed
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+	networkId: 0,                        // 0 = testnet (Preprod), 1 = mainnet
+	walletAddressType: AddressType.Base,
+	fetcher: provider,                   // Provider for reading blockchain data (like your balance)
+	submitter: provider,                 // Provider for sending transactions to the network
+	mnemonic                             // Your wallet's mnemonic words
 });
-
-// Step 4: Initialize the wallet
-// This loads your wallet's information from the blockchain
-await wallet.init();
 
 // Step 5: Get your wallet's UTXOs (Unspent Transaction Outputs)
 // UTXOs are like coins in your wallet - they represent available funds
 // We need these to pay for the transaction fees
-const utxos = await wallet.getUtxos();
+const utxos = await wallet.getUtxosMesh();
 
 // Step 6: Get your change address
 // This is your wallet address where any leftover funds will be sent back
-const changeAddress = await wallet.getChangeAddress();
+const changeAddress = await wallet.getChangeAddressBech32();
 
 // Step 7: Create a forging script (minting policy)
 // This script defines who can mint NFTs from this collection
@@ -194,7 +190,8 @@ Matching `package.json`:
 		"burn": "node burn-nft.js"
 	},
 	"dependencies": {
-		"@meshsdk/core": "^1.7.0"
+		"@meshsdk/core": "^1.7.0",
+		"@meshsdk/wallet": "^1.7.0"
 	}
 }
 
@@ -374,7 +371,8 @@ Replace the previous server with one that mints an NFT per POST.
 // Import required Node.js packages
 import express from 'express';
 import cors from 'cors';
-import { KoiosProvider, MeshWallet, MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex } from '@meshsdk/core';
+import { KoiosProvider, MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex } from '@meshsdk/core';
+import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
 
 // Create Express application instance
 const app = express();
@@ -391,14 +389,12 @@ const provider = new KoiosProvider('preprod');
 // NEVER share your mnemonic with anyone or commit it to GitHub!
 const mnemonic = ["word1", "word2", "word3", "word4", "word5", "word6", "word7", "word8", "word9", "word10", "word11", "word12"];
 
-const wallet = new MeshWallet({
-    networkId: 0,  // 0 = testnet
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+    networkId: 0,                        // 0 = testnet (Preprod), 1 = mainnet
+    walletAddressType: AddressType.Base,
     fetcher: provider,
     submitter: provider,
-    key: {
-        type: 'mnemonic',
-        words: mnemonic
-    }
+    mnemonic
 });
 
 // Middleware: Enable CORS to allow requests from different origins
@@ -425,8 +421,8 @@ app.post('/data', async (req, res) => {
         console.log('Received sensor data:', { temperature, humidity, timestamp });
 
         // Get wallet UTXOs and change address
-        const utxos = await wallet.getUtxos();
-        const changeAddress = await wallet.getChangeAddress();
+        const utxos = await wallet.getUtxosMesh();
+        const changeAddress = await wallet.getChangeAddressBech32();
         
         // Create forging script for minting
         // This creates a simple policy that allows minting from the wallet address
@@ -525,7 +521,8 @@ Matching `package.json`:
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "@meshsdk/core": "^1.7.0"
+    "@meshsdk/core": "^1.7.0",
+    "@meshsdk/wallet": "^1.7.0"
   }
 }
 
@@ -533,7 +530,7 @@ Matching `package.json`:
 
 **Setup:**
 
-1. `npm install express cors @meshsdk/core`.
+1. `npm install express cors @meshsdk/core @meshsdk/wallet`.
 2. Replace the mnemonic array with your testnet mnemonic.
 3. `node server.js`.
 4. Make sure the Arduino sketch points at this server's IP and port 3000.
@@ -561,7 +558,8 @@ Sometimes you want to destroy an NFT - clean up test mints, retire a series, etc
 
 ```javascript
 // Import Mesh SDK components needed for burning NFTs
-import { KoiosProvider, MeshWallet } from '@meshsdk/core';
+import { KoiosProvider } from '@meshsdk/core';
+import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
 import { MeshTxBuilder, ForgeScript, resolveScriptHash, stringToHex } from '@meshsdk/core';
 
 // IMPORTANT: Replace these words with your actual wallet mnemonic phrase
@@ -575,26 +573,21 @@ const tokenName = ""; // Replace with your token name, e.g., "SensorData_1705312
 // Initialize Koios provider for Preprod Testnet
 const provider = new KoiosProvider('preprod');
 
-// Create MeshWallet instance
-// This wallet will be used to interact with the Cardano blockchain
-const wallet = new MeshWallet({
-	networkId: 0,  // 0 = testnet (Preprod), 1 = mainnet
-	fetcher: provider,  // Provider for fetching blockchain data
-	submitter: provider,  // Provider for submitting transactions
-	key: {
-		type: 'mnemonic',  // Wallet key type: mnemonic phrase
-		words: mnemonic  // Array of mnemonic words
-	}
+// Create the wallet instance
+// fromMnemonic is async and builds a ready-to-use wallet - no separate init needed
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+	networkId: 0,                        // 0 = testnet (Preprod), 1 = mainnet
+	walletAddressType: AddressType.Base,
+	fetcher: provider,                   // Provider for fetching blockchain data
+	submitter: provider,                 // Provider for submitting transactions
+	mnemonic                             // Array of mnemonic words
 });
 
-// Initialize the wallet to load its information from the blockchain
-await wallet.init();
-
 // Get wallet UTXOs (Unspent Transaction Outputs) - these are like coins in your wallet
-const utxos = await wallet.getUtxos();
+const utxos = await wallet.getUtxosMesh();
 
 // Get the change address where any leftover funds will be sent back
-const changeAddress = await wallet.getChangeAddress();
+const changeAddress = await wallet.getChangeAddressBech32();
 
 // Create forging script for the policy
 // This must match the policy used when minting the NFT

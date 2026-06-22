@@ -63,8 +63,8 @@ import { MeshTxBuilder, serializePlutusScript } from "@meshsdk/core";
 
 const { address: scriptAddress } = serializePlutusScript(script); // script: PlutusScript
 
-const utxos = await wallet.getUtxos();
-const changeAddress = await wallet.getChangeAddress();
+const utxos = await wallet.getUtxosMesh();
+const changeAddress = await wallet.getChangeAddressBech32();
 
 const txBuilder = new MeshTxBuilder({ fetcher: provider });
 const unsignedTx = await txBuilder
@@ -138,8 +138,10 @@ Evolution handles script evaluation, redeemer indexing, and collateral automatic
 <TabItem value="mesh" label="Mesh">
 
 ```typescript
-const collateral = await wallet.getCollateral();
-const changeAddress = await wallet.getChangeAddress();
+import { MeshTxBuilder, mConStr0 } from "@meshsdk/core";
+
+const collateral = await wallet.getCollateralMesh();
+const changeAddress = await wallet.getChangeAddressBech32();
 
 const txBuilder = new MeshTxBuilder({ fetcher: provider });
 const unsignedTx = await txBuilder
@@ -153,7 +155,7 @@ const unsignedTx = await txBuilder
     collateral[0].input.outputIndex,
   )
   .changeAddress(changeAddress)
-  .selectUtxosFrom(await wallet.getUtxos())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
   .complete();
 
 const signedTx = await wallet.signTx(unsignedTx);

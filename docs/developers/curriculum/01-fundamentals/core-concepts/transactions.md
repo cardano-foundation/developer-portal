@@ -86,6 +86,25 @@ const time = Time.slotToUnixTime(50_000_000n, SlotConfig.SLOT_CONFIG_NETWORK.Mai
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { resolveSlotNo } from "@meshsdk/core"
+
+// Convert a wall-clock window to on-chain slots for the network
+const lowerSlot = resolveSlotNo("preprod", Date.now())                  // valid from now
+const upperSlot = resolveSlotNo("preprod", Date.now() + 300_000)        // expires in 5 minutes
+
+const unsignedTx = await txBuilder
+  .txOut(recipient, [{ unit: "lovelace", quantity: "2000000" }])
+  .invalidBefore(Number(lowerSlot))      // lower bound; optional
+  .invalidHereafter(Number(upperSlot))   // upper bound (TTL); optional
+  .changeAddress(changeAddress)
+  .selectUtxosFrom(utxos)
+  .complete()
+```
+
+</TabItem>
 </Tabs>
 
 Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/production/development-networks)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.

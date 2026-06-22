@@ -141,7 +141,47 @@ Not every rule needs a Plutus validator. **Native scripts** are Cardano's simple
 A native script that requires the owner's signature and only allows minting before a slot:
 
 <Tabs groupId="sdk">
-<TabItem value="mesh" label="Mesh" default>
+<TabItem value="evolution" label="Evolution" default>
+
+```ts
+import { NativeScripts, Bytes } from "@evolution-sdk/evolution"
+
+// Owner must sign AND the transaction must be before slot 99999999
+const nativeScript = NativeScripts.makeScriptAll([
+  NativeScripts.makeScriptPubKey(Bytes.fromHex(keyHash)),
+  NativeScripts.makeInvalidHereafter(99999999n),
+])
+
+// Wrap for the builder, then attach with .attachScript({ script })
+const script = new NativeScripts.NativeScript({ script: nativeScript })
+```
+
+For **multisig**, swap the combinator: `makeScriptAll([...])` (everyone signs), `makeScriptAny([...])` (any one), or `makeScriptNOfK(2n, [...])` (k-of-n). A 2-of-3 treasury, then spend through it:
+
+```ts
+import { NativeScripts, Bytes } from "@evolution-sdk/evolution"
+
+// 2-of-3: any two of the three keys must sign
+const treasuryScript = NativeScripts.makeScriptNOfK(2n, [
+  NativeScripts.makeScriptPubKey(Bytes.fromHex(h1)),
+  NativeScripts.makeScriptPubKey(Bytes.fromHex(h2)),
+  NativeScripts.makeScriptPubKey(Bytes.fromHex(h3)),
+])
+
+// Spend: attach the script, add the two approving signers, build
+const tx = await client
+  .newTx()
+  .collectFrom({ inputs: treasuryUtxos })
+  .attachScript({ script: treasuryScript })
+  .addSigner({ keyHash: new KeyHash.KeyHash({ hash: Bytes.fromHex(h1) }) })
+  .addSigner({ keyHash: new KeyHash.KeyHash({ hash: Bytes.fromHex(h2) }) })
+  .build()
+```
+
+In a real flow the unsigned CBOR is shared between signers, each partial-signs, and the combined transaction is submitted. No redeemer or collateral needed.
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
 
 ```ts
 import { ForgeScript, NativeScript } from "@meshsdk/core"
@@ -196,7 +236,57 @@ When you run `aiken build`, the compiler produces a **[CIP-57](https://cips.card
 }
 ```
 
-From the blueprint, tools generate type-safe off-chain code, the same way you'd generate an API client from an OpenAPI spec. Evolution's blueprint codegen and Mesh both read `plutus.json` to produce a typed client. See the blueprint section of [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language#blueprints-the-contracts-interface).
+From the blueprint, tools generate type-safe off-chain code, the same way you'd generate an API client from an OpenAPI spec. Evolution's blueprint codegen and Mesh both read `plutus.json` to produce a typed client:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+Evolution's codegen emits a `.ts` file of `TSchema` definitions plus validator metadata (hashes, parameter schemas) you import and use with `Data.withSchema`:
+
+```ts
+import { Blueprint, Data } from "@evolution-sdk/evolution"
+import * as fs from "fs"
+
+// Build step: turn plutus.json into typed schemas
+const blueprint = JSON.parse(fs.readFileSync("plutus.json", "utf-8"))
+const code = Blueprint.Codegen.generateTypeScript(blueprint, {
+  optionStyle: "NullOr",   // "NullOr" | "UndefinedOr" | "Union"
+  unionStyle: "Variant",   // "Variant" | "Struct" | "TaggedStruct"
+})
+fs.writeFileSync("src/contract-types.ts", code)
+
+// In your app: import the generated schema, wrap it in a codec
+import { MyRedeemer } from "./contract-types"
+const RedeemerCodec = Data.withSchema(MyRedeemer)
+const redeemer = RedeemerCodec.toData({ MintToken: {} }) // type error if the shape is wrong
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+Mesh ships blueprint helper classes (`SpendingBlueprint`, `MintingBlueprint`, `WithdrawalBlueprint` from `@meshsdk/core`) that take the `compiledCode` and hand back the script hash, CBOR, and address:
+
+```ts
+import { SpendingBlueprint } from "@meshsdk/core"
+import blueprint from "./plutus.json"
+
+const compiledCode = blueprint.validators[0].compiledCode
+
+// V3 script, networkId 0 (testnet)
+const spending = new SpendingBlueprint("V3", 0)
+spending.paramScript(compiledCode, [], "Mesh") // or .noParamScript(compiledCode) when there are no params
+
+const scriptHash = spending.hash
+const scriptCbor = spending.cbor
+const scriptAddress = spending.address
+```
+
+`MintingBlueprint("V3")` exposes the policy ID as `.hash`; `WithdrawalBlueprint("V3", networkId)` gives the reward address. Pass parameters as the second arg of `paramScript` (Mesh data types like `mPubKeyAddress` when the third arg is `"Mesh"`).
+
+</TabItem>
+</Tabs>
+
+See the blueprint section of [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language#blueprints-the-contracts-interface).
 
 ## Key takeaway
 

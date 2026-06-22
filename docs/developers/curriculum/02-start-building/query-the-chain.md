@@ -2,7 +2,7 @@
 id: query-the-chain
 title: Query the Chain
 sidebar_label: Query the chain
-description: Read Cardano on-chain data (UTXOs, balances, datums, protocol parameters, delegation, and transaction status) through a provider, with Evolution and cardano-cli.
+description: Read Cardano on-chain data (UTXOs, balances, datums, protocol parameters, delegation, and transaction status) through a provider, with Evolution and Mesh.
 image: /img/og/og-developer-portal.png
 ---
 
@@ -55,6 +55,27 @@ const koios = Client.make(mainnet).withKoios({ baseUrl: "https://api.koios.rest/
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { BlockfrostProvider, KoiosProvider, MaestroProvider, OgmiosProvider } from "@meshsdk/core"
+
+// Blockfrost (hosted), network auto-detected from the key prefix
+const bf = new BlockfrostProvider(process.env.BLOCKFROST_PROJECT_ID!)
+
+// Koios (community), pass the network
+const koios = new KoiosProvider("mainnet")
+
+// Maestro (hosted)
+const maestro = new MaestroProvider({ network: "Mainnet", apiKey: process.env.MAESTRO_API_KEY! })
+
+// Ogmios (self-hosted; Mesh has no single "Kupmios", pair it with Kupo for indexed reads)
+const ogmios = new OgmiosProvider("ws://localhost:1337")
+```
+
+In Mesh the read methods live on the **provider** (an `IFetcher`/`ISubmitter`), not on a unified client. You pass the provider to `MeshTxBuilder` and the wallet, and call its `fetch*` methods directly.
+
+</TabItem>
 </Tabs>
 
 Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass API keys via headers:
@@ -98,6 +119,30 @@ A **provider-only** client is all you need to read the chain, a block explorer, 
 
 You'll read a handful of things off the chain, each a single query through the client.
 
+### Off-chain helpers you'll reach for
+
+Querying gives you raw chain data; turning addresses, datums, and assets into the hashes and identifiers your code needs is the other half. Both SDKs ship a family of pure helpers for this, so you can call them in a backend without a provider:
+
+| Operation | Mesh (`@meshsdk/core`) | Evolution (`@evolution-sdk/evolution`) |
+|---|---|---|
+| Parse an address to credentials | `deserializeAddress(bech32)` → `{ pubKeyHash, scriptHash, stakeCredentialHash }` | `Address.getAddressDetails(bech32)` → `{ paymentCredential, stakingCredential, networkId }` |
+| Payment key hash from an address | `resolvePaymentKeyHash(address)` | `Address.getPaymentCredential(address)` |
+| Parse a unit into policy + name | slice `policyId + assetNameHex` | `Unit.fromUnit(unit)` → `{ policyId, assetName, label }` |
+| Slot for a network at a time | `resolveSlotNo("preprod", ms?)` | `Time.unixTimeToSlot(ms, slotConfig)` / `Time.getSlotAt(offsetMs, network)` |
+| CIP-14 asset fingerprint | `resolveFingerprint(policyId, assetNameHex)` | compute from policy + name (no one-call helper) |
+
+```typescript
+// Mesh
+import { deserializeAddress } from "@meshsdk/core"
+const { pubKeyHash } = deserializeAddress("addr_test1...")
+
+// Evolution
+import { Address } from "@evolution-sdk/evolution"
+const { paymentCredential } = Address.getAddressDetails("addr_test1...")
+```
+
+Mesh additionally ships one-call helpers like `resolveDataHash` (datum hash), `serializeNativeScript`, and `resolveScriptHashDRepId`; in Evolution you reach the same results through its `Data`, `NativeScripts`, and credential modules. Either way these are pure (network-aware only for slot conversion), so they belong in a backend without a provider.
+
 ### UTXOs and balances
 
 <Tabs groupId="sdk">
@@ -119,6 +164,22 @@ const nftUtxo = await client.getUtxoByUnit(unit)   // unit = policyId + assetNam
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+// Any address (pass a unit as the second argument to filter by asset)
+const utxos = await provider.fetchAddressUTxOs("addr_test1...")
+
+// Your wallet, and its total ADA
+const mine = await wallet.getUtxosMesh()
+const balance = (await wallet.getBalanceMesh()).find((a) => a.unit === "lovelace")?.quantity ?? "0"
+
+// UTXOs holding a specific asset, or the addresses holding an NFT
+const withToken = await provider.fetchAddressUTxOs("addr_test1...", unit)   // unit = policyId + assetNameHex
+const holders = await provider.fetchAssetAddresses(unit)
+```
+
+</TabItem>
 </Tabs>
 
 ### Datums
@@ -135,7 +196,7 @@ const datum = await client.getDatum(datumHash)
 </TabItem>
 </Tabs>
 
-Inline datums (Plutus V2+) avoid the extra round-trip. Prefer them when designing contracts. See [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context).
+Inline datums (Plutus V2+) avoid the extra round-trip. Prefer them when designing contracts. See [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context). Mesh returns inline datums directly on each fetched UTXO and has no separate datum-hash lookup, another reason to prefer inline datums.
 
 ### Protocol parameters
 
@@ -147,6 +208,13 @@ The builder fetches these automatically, but you can read them, fees, size limit
 ```typescript
 const params = await client.getProtocolParameters()
 console.log(params.minFeeA, params.maxTxSize, params.keyDeposit, params.coinsPerUtxoByte)
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+const params = await provider.fetchProtocolParameters()
 ```
 
 </TabItem>
@@ -163,6 +231,17 @@ const delegation = await client.getDelegation(rewardAddress)   // { poolId, rewa
 
 // Wait for a submitted transaction to appear on-chain (poll every 3s)
 const confirmed = await client.awaitTx(txHash, 3000)
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+// Delegation and reward balance for a stake address
+const info = await provider.fetchAccountInfo(rewardAddress)   // { active, poolId, balance, rewards, ... }
+
+// Call back once a submitted transaction is on-chain
+provider.onTxConfirmed(txHash, () => console.log("confirmed"))
 ```
 
 </TabItem>
@@ -190,6 +269,18 @@ const redeemers = await client.evaluateTx(Transaction.fromCBORHex(unsignedTxCbor
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+// Submit signed CBOR (e.g. returned from a frontend wallet)
+const txHash = await provider.submitTx(signedTxCbor)
+provider.onTxConfirmed(txHash, () => console.log("confirmed"))
+
+// Estimate script execution units before submitting
+const redeemers = await provider.evaluateTx(unsignedTxCbor)
+```
+
+</TabItem>
 </Tabs>
 
 Common rejection reasons from the node:
@@ -203,6 +294,47 @@ Common rejection reasons from the node:
 | Network timeout | Provider unreachable | Yes: retry after a delay |
 
 `BadInputsUTxO` from indexer lag is the classic one. Handle it with the [retry-safe pattern](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe), which re-reads chain state on every attempt.
+
+## Inspect a transaction
+
+Sometimes you have a transaction in hand (one you built, or one you pulled from the chain) and you want to read it back: its inputs, outputs, fee, mint, and validity interval. Both SDKs decode transaction CBOR into an inspectable structure.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+Evolution decodes CBOR straight into typed transaction objects:
+
+```typescript
+import { Transaction, TransactionBody } from "@evolution-sdk/evolution"
+
+const tx = Transaction.fromCBORHex(txHex)          // the whole transaction
+const body = TransactionBody.fromCBORHex(bodyHex)  // or just the body
+// read inputs, outputs, fee, mint, and the validity interval off the decoded body
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+Mesh's `TxParser` turns CBOR into a `MeshTxBuilderBody`. It needs a serializer (`CSLSerializer` from `@meshsdk/core-csl`) and, optionally, a fetcher so it can pull the input UTXO data the CBOR only references by hash:
+
+```typescript
+import { BlockfrostProvider, TxParser } from "@meshsdk/core"
+import { CSLSerializer } from "@meshsdk/core-csl"
+
+const fetcher = new BlockfrostProvider(process.env.BLOCKFROST_PROJECT_ID!)
+const txParser = new TxParser(new CSLSerializer(), fetcher)
+
+// txHex from building, or fetcher.fetchTxInfo(txHash).tx.cborHex from chain
+const body = await txParser.parse(txHex)   // pass providedUtxos as 2nd arg if no fetcher
+
+console.log("inputs:", body.inputs.length, "outputs:", body.outputs.length)
+console.log("fee:", body.fee, "mints:", body.mints?.length ?? 0)
+```
+
+Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Testing without a chain](/docs/developers/curriculum/production/development-networks#testing-without-a-chain)).
+
+</TabItem>
+</Tabs>
 
 ## Next steps
 

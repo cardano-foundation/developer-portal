@@ -30,6 +30,31 @@ Its scope is the developer toolchain (SDKs, validator libraries, design patterns
 
 Then run `/cardano-context` once per project to wire the directive into your `CLAUDE.md`. For other agents, clone the repo and symlink the skills into your project's `.agents/skills` directory. See the [repository](https://github.com/cardano-foundation/cardano-dev-skills) for the full list of skills and setup details.
 
+## Layer Mesh's AI context on top
+
+Cardano Dev Skills covers the toolchain broadly. Once you've settled on Mesh, you can layer Mesh's own AI context on top to go deep on the Mesh API: correct method ordering, transaction patterns, and Aiken-to-MeshTxBuilder mapping.
+
+**Mesh Agent Skills** ship deep knowledge of the SDK across three skills: `mesh-transaction` (MeshTxBuilder, minting, Plutus spending, staking, governance, Aiken integration), `mesh-wallet` (browser and headless wallets, CIP-30, CIP-8 signing), and `mesh-core-cst` (CBOR serialization, Plutus data conversion, `applyParamsToScript`). The CLI auto-detects your installed AI tools and drops the skills in the right place:
+
+```bash
+npx skills add MeshJS/skills
+```
+
+**Mesh MCP server** gives your assistant real-time access to Mesh docs and code generation in VS Code, Cursor, or Claude Desktop. With the `claude` CLI:
+
+```bash
+claude mcp add-json mesh-mcp '{
+  "command": "npx",
+  "args": ["-y", "meshjs-mcp"],
+  "env": {
+    "API_KEY": "your-api-key",
+    "MODEL": "your-preferred-model"
+  }
+}'
+```
+
+**llms.txt** is the universal option: paste `https://meshjs.dev/llms.txt` into any assistant (Cursor's doc sources, Windsurf, ChatGPT, Claude) for a single, current file of the full Mesh API and examples.
+
 ## Next steps
 
 - [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): build, sign, and submit a payment on testnet, then read it back from the chain

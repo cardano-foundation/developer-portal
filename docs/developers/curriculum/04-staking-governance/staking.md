@@ -37,7 +37,7 @@ Epoch N+3    rewards calculated
 Epoch N+4    rewards distributed to your reward address
 ```
 
-After this initial delay (~15–20 days), rewards arrive every epoch (~5 days) as long as the pool produces blocks. Two things worth showing users:
+After this initial delay (~15 to 20 days), rewards arrive every epoch (~5 days) as long as the pool produces blocks. Two things worth showing users:
 
 - **Saturation.** Each pool has a saturation point (total stake ÷ the `k` protocol parameter). Past it, rewards *per ADA* drop, a built-in nudge toward smaller pools and decentralization.
 - **Performance.** A pool that misses assigned blocks earns fewer rewards, which flows through to delegators.
@@ -137,8 +137,8 @@ The deposit (currently 2 ADA) is fetched from protocol parameters automatically.
 ```typescript
 import { MeshTxBuilder, deserializePoolId } from "@meshsdk/core"
 
-const utxos = await wallet.getUtxos()
-const changeAddress = await wallet.getChangeAddress()
+const utxos = await wallet.getUtxosMesh()
+const changeAddress = await wallet.getChangeAddressBech32()
 const rewardAddress = (await wallet.getRewardAddresses())[0]
 const poolIdHash = deserializePoolId("pool1...")
 
@@ -219,6 +219,32 @@ await signed.submit()
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder } from "@meshsdk/core"
+
+const utxos = await wallet.getUtxosMesh()
+const changeAddress = await wallet.getChangeAddressBech32()
+const rewardAddress = (await wallet.getRewardAddresses())[0]
+
+// The full reward balance, from the provider
+const { rewards } = await provider.fetchAccountInfo(rewardAddress)
+
+const txBuilder = new MeshTxBuilder({ fetcher: provider })
+const unsignedTx = await txBuilder
+  .withdrawal(rewardAddress, rewards)
+  .selectUtxosFrom(utxos)
+  .changeAddress(changeAddress)
+  .complete()
+
+const signedTx = await wallet.signTx(unsignedTx)
+await wallet.submitTx(signedTx)
+```
+
+`withdrawal` takes the lovelace amount as a string; pass the whole `rewards` balance.
+
+</TabItem>
 <TabItem value="cli" label="cardano-cli">
 
 ```shell
@@ -260,6 +286,22 @@ console.log("Rewards:", delegation.rewards) // lovelace
 ```
 
 To query an arbitrary reward address instead of the wallet's, use `client.getDelegation(rewardAddress)`. Both return `{ poolId, rewards }`.
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+const rewardAddress = (await wallet.getRewardAddresses())[0]
+
+const info = await provider.fetchAccountInfo(rewardAddress)
+
+console.log("Registered:", info.active)  // false if not registered
+console.log("Pool:", info.poolId)        // delegated pool
+console.log("Rewards:", info.rewards)    // lovelace, available to withdraw
+console.log("Balance:", info.balance)    // total controlled stake
+```
+
+`fetchAccountInfo` returns `{ active, poolId, balance, rewards, withdrawals }`.
 
 </TabItem>
 <TabItem value="cli" label="cardano-cli">
@@ -306,6 +348,33 @@ await signed.submit()
 ```
 
 Use `deregisterStakeLegacy({ stakeCredential })` if you registered with the legacy certificate.
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder } from "@meshsdk/core"
+
+const utxos = await wallet.getUtxosMesh()
+const changeAddress = await wallet.getChangeAddressBech32()
+const rewardAddress = (await wallet.getRewardAddresses())[0]
+
+// Withdraw the last rewards and deregister in one transaction
+const { rewards } = await provider.fetchAccountInfo(rewardAddress)
+
+const txBuilder = new MeshTxBuilder({ fetcher: provider })
+const unsignedTx = await txBuilder
+  .withdrawal(rewardAddress, rewards)
+  .deregisterStakeCertificate(rewardAddress)
+  .selectUtxosFrom(utxos)
+  .changeAddress(changeAddress)
+  .complete()
+
+const signedTx = await wallet.signTx(unsignedTx)
+await wallet.submitTx(signedTx)
+```
+
+`deregisterStakeCertificate` reclaims the deposit; pairing it with `withdrawal` in the same transaction avoids losing accrued rewards.
 
 </TabItem>
 <TabItem value="cli" label="cardano-cli">

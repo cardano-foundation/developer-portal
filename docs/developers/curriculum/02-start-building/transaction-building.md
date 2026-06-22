@@ -72,8 +72,8 @@ const txBuilder = new MeshTxBuilder({ fetcher: provider })
 const unsignedTx = await txBuilder
   .txOut("addr_test1...", [{ unit: "lovelace", quantity: "5000000" }])
   .txOut("addr_test1...", [{ unit: "lovelace", quantity: "3000000" }])
-  .changeAddress(await wallet.getChangeAddress())
-  .selectUtxosFrom(await wallet.getUtxos())
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
   .complete()
 
 const signedTx = await wallet.signTx(unsignedTx)
@@ -140,9 +140,9 @@ import { MeshTxBuilder } from "@meshsdk/core"
 
 const txBuilder = new MeshTxBuilder({ fetcher: provider })
 const unsignedTx = await txBuilder
-  .changeAddress(await wallet.getChangeAddress())
+  .changeAddress(await wallet.getChangeAddressBech32())
   .metadataValue(674, { msg: ["Invoice-No: 1234567890"] })   // CIP-20 message
-  .selectUtxosFrom(await wallet.getUtxos())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
   .complete()
 ```
 

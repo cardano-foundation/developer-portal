@@ -41,6 +41,16 @@ A standalone network is a process you run and point your application at. Two are
 
 Run it with Docker Compose, a standalone CLI zip (Linux x64, macOS arm64), or the NPM package, which is handy in CI. Each path is a few commands: follow the [Docker](https://devkit.yaci.xyz/getting-started/docker), [zip](https://devkit.yaci.xyz/getting-started/zip), or [NPM](https://devkit.yaci.xyz/getting-started/npm) setup guide, and see the [CLI commands](https://devkit.yaci.xyz/commands) reference. Best for integration testing and SDK development.
 
+Both SDKs drive a running Yaci devnet from code. Mesh has a first-class `YaciProvider` (`new YaciProvider("http://localhost:8080/api/v1/")`, or no argument for [Mesh's hosted devnet](https://cloud.meshjs.dev/yaci)); pass an admin URL and it can fund addresses and read devnet config programmatically (`addressTopup`, `getDevnetInfo`). Because Yaci's Store API is **Blockfrost-compatible**, Evolution points its Blockfrost provider straight at it:
+
+```typescript
+// Mesh
+const provider = new YaciProvider("http://localhost:8080/api/v1/")
+
+// Evolution (Yaci's API speaks Blockfrost)
+const client = Client.make(preprod).withBlockfrost({ baseUrl: "http://localhost:8080/api/v1", projectId: "" })
+```
+
 ### cardano-testnet
 
 [cardano-testnet](https://github.com/IntersectMBO/cardano-node) is cardano-node's own local-cluster tool. It hands you full control over genesis files, protocol parameters, epoch length, slot timing, and stake distribution, so it is the choice for protocol-level testing and scenarios that must match mainnet parameters exactly.
@@ -85,13 +95,13 @@ Evolution ships a devnet emulator in `@evolution-sdk/devnet`. A typical integrat
 ```typescript
 import { describe, it, beforeAll, afterAll, expect } from "vitest"
 import { Cluster, Config, Genesis } from "@evolution-sdk/devnet"
-import { Address, Assets, preprod, Client } from "@evolution-sdk/evolution"
+import { Address, Assets, Client } from "@evolution-sdk/evolution"
 
 let cluster: Cluster.Cluster, client: Client.SigningClient, genesisConfig: any
 
 beforeAll(async () => {
   const mnemonic = "test test test ... sauce"
-  const addressHex = Address.toHex(await Client.make(preprod).withSeed({ mnemonic, accountIndex: 0 }).address())
+  const addressHex = Address.toHex(Address.fromSeed(mnemonic, { accountIndex: 0, networkId: 0 }))
   genesisConfig = { ...Config.DEFAULT_SHELLEY_GENESIS, slotLength: 0.02, initialFunds: { [addressHex]: 10_000_000_000_000 } }
   cluster = await Cluster.make({
     clusterName: "test-suite",                 // make this unique to avoid port clashes in parallel runs
@@ -101,7 +111,7 @@ beforeAll(async () => {
     ogmios: { enabled: true, port: 1337 },
   })
   await Cluster.start(cluster)
-  client = Client.make(preprod)
+  client = Client.make(Cluster.getChain(cluster))
     .withKupmios({ kupoUrl: "http://localhost:1442", ogmiosUrl: "http://localhost:1337" })
     .withSeed({ mnemonic, accountIndex: 0 })
 }, 180_000)   // cluster startup needs a generous timeout
@@ -123,9 +133,99 @@ it("submits a payment", async () => {
 Two gotchas: give cluster startup a generous timeout, and pass genesis UTXOs explicitly via `build({ availableUtxos })` until they are first spent (after which outputs are indexed normally). For the full devnet reference, including genesis configuration, protocol parameters, and the cluster lifecycle, see the [Evolution SDK devnet docs](https://intersectmbo.github.io/evolution-sdk/docs/devnet/getting-started/).
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+Mesh has no in-process node cluster like Evolution's. For **integration tests** it drives a real local chain through a [Yaci devnet](#yaci-devkit) (via `YaciProvider`, above); for **unit tests** it uses in-memory mocks that need no chain at all, covered in [Testing without a chain](#testing-without-a-chain) below.
+
+</TabItem>
 </Tabs>
 
-Mesh and other SDKs are adding similar in-process devnet capabilities. As they land they slot in as additional tabs here, so this is a natural place to contribute.
+## Testing without a chain
+
+Not every test needs a network. Testing your off-chain code without a node splits into three jobs: **mock the data source** so a builder has UTXOs and parameters to work with, **compute script execution budgets** offline, and **assert the shape** of the transaction you built. All three run in milliseconds in CI.
+
+Mesh ships a dedicated tool for each, below. Evolution covers the same ground differently: pure encoding round-trips through its schema codecs (`Codec.toCBORHex` / `fromCBORHex`, no node) for unit tests, plus the in-process [devnet](#programmatic-devnets) above for anything that needs a real chain. It has no in-memory mock-provider or transaction-assertion analog. (For testing the validator itself, on-chain, see [Testing](/docs/developers/curriculum/smart-contracts/testing).)
+
+### Mock the data source (OfflineFetcher)
+
+`OfflineFetcher` is an in-memory provider you populate with fixtures, then build and query against exactly like a real one. Construct it with a network, seed it with `addUTxOs([...])`, `addProtocolParameters({...})`, and `addAccount(...)`, and pass it anywhere a provider goes:
+
+```typescript
+import { OfflineFetcher, MeshTxBuilder } from "@meshsdk/core";
+import { MeshCardanoHeadlessWallet, AddressType } from "@meshsdk/wallet";
+
+const fetcher = new OfflineFetcher("preprod");
+fetcher.addProtocolParameters({ minFeeA: 44, minFeeB: 155381 /* ... */ });
+fetcher.addUTxOs([
+  {
+    input: { txHash: "abc123...", outputIndex: 0 },
+    output: { address: "addr_test1...", amount: [{ unit: "lovelace", quantity: "100000000" }] },
+  },
+]);
+
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+  networkId: 0,
+  walletAddressType: AddressType.Base,
+  fetcher,
+  mnemonic: ["test", "test", /* ...24 words */],
+});
+
+const tx = await new MeshTxBuilder({ fetcher })
+  .txOut("addr_test1...", [{ unit: "lovelace", quantity: "5000000" }])
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete();
+```
+
+Persist a populated fetcher with `fetcher.toJSON()` and rebuild it with `OfflineFetcher.fromJSON(json)`, so a fixture is a checked-in file, not setup code.
+
+### Evaluate script budgets offline (OfflineEvaluator)
+
+`OfflineEvaluator` computes Plutus execution units offline. Pair it with an `OfflineFetcher` that holds the script UTxO and collateral, then call `evaluateTx(txCbor)`. It returns one budget per redeemer:
+
+```typescript
+import { OfflineEvaluator } from "@meshsdk/core-csl";
+import { OfflineFetcher, MeshTxBuilder } from "@meshsdk/core";
+
+const fetcher = new OfflineFetcher("preprod");
+// ... addUTxOs (script UTxO + collateral), addProtocolParameters
+
+const evaluator = new OfflineEvaluator(fetcher, "preprod");
+
+const unsignedTx = await new MeshTxBuilder({ fetcher, evaluator })
+  .spendingPlutusScript("V3")
+  // ... build the spend
+  .complete();
+
+const costs = await evaluator.evaluateTx(unsignedTx);
+// [{ index: 0, tag: "SPEND", budget: { mem: 508703, steps: 164980381 } }]
+```
+
+The same mock supplies both data and budgets, so script tests run with no node and assert on `mem`/`steps` in CI.
+
+### Assert the shape of a built tx (TxTester)
+
+`TxTester` checks what a transaction *is* without submitting it. Parse a tx with `TxParser`, call `toTester()`, then chain filters and assertions and read the verdict with `success()` / `errors()`:
+
+```typescript
+import { TxParser, MeshValue } from "@meshsdk/core";
+import { CSLSerializer } from "@meshsdk/core-csl";
+
+const txParser = new TxParser(new CSLSerializer(), fetcher);
+await txParser.parse(txHex, utxos);
+const txTester = txParser.toTester();
+
+txTester
+  .outputsAt("addr_test1qz...")
+  .outputsValue(MeshValue.fromAssets([{ unit: "lovelace", quantity: "5000000" }]));
+txTester.tokenMinted(policyId, "MeshToken", 1);
+txTester.validAfter(now).validBefore(now + 60 * 60 * 1000);
+txTester.keySigned(keyHash);
+
+console.log(txTester.success(), txTester.errors());
+```
+
+You assert that your *builder* produced the outputs, mint, validity window, and signers you intended, without submitting anything.
 
 ## When to use a local network
 

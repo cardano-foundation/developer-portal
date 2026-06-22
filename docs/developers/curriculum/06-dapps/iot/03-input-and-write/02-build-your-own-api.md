@@ -186,7 +186,7 @@ Data is in memory - it disappears on restart. In production, use a database.
 Now bring [Mesh SDK](https://meshjs.dev/) in to interact with the chain.
 
 ```bash
-npm install @meshsdk/core
+npm install @meshsdk/core @meshsdk/wallet
 ```
 
 No API key required - Koios is free. If you hit rate limits, sign up for the free tier at [koios.rest](https://koios.rest/). Use `'preprod'` for testnet, `'api'` for mainnet.
@@ -199,7 +199,8 @@ A standalone script - initialise a wallet from a mnemonic, fetch balance, log it
 
 ```javascript
 // Import Mesh SDK components
-import { KoiosProvider, MeshWallet } from '@meshsdk/core';
+import { KoiosProvider } from '@meshsdk/core';
+import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
 
 // Initialize Koios provider for Preprod Testnet
 // Koios is free to use and doesn't require an API key
@@ -212,16 +213,15 @@ const provider = new KoiosProvider('preprod');
 // Replace with your actual 12 or 24 word mnemonic phrase from your testnet wallet
 const mnemonic = ["word1", "word2", "word3", "word4", "word5", "word6", "word7", "word8", "word9", "word10", "word11", "word12"];
 
-// Create MeshWallet instance
+// Create MeshCardanoHeadlessWallet instance
 // This wallet will be used to interact with the Cardano blockchain
-const wallet = new MeshWallet({
+// fromMnemonic is async (no separate init() step needed)
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
 	networkId: 0,  // 0 = testnet (Preprod), 1 = mainnet
+	walletAddressType: AddressType.Base,
 	fetcher: provider,  // Provider for fetching blockchain data
 	submitter: provider,  // Provider for submitting transactions
-	key: {
-		type: 'mnemonic',  // Wallet key type: mnemonic phrase
-		words: mnemonic  // Array of mnemonic words
-	}
+	mnemonic  // Array of mnemonic words
 });
 
 // Function to fetch and log wallet balance
@@ -229,13 +229,13 @@ async function fetchWalletBalance() {
 	try {
 		// Get wallet address
 		// The change address is the address where change from transactions is sent
-		const address = await wallet.getChangeAddress();
+		const address = await wallet.getChangeAddressBech32();
 		console.log('Wallet Address:', address);
 		
 		// Get wallet balance using Mesh's built-in method
 		// Returns an array of assets: [{ unit: 'lovelace', quantity: '...' }, ...]
 		// The first item is always lovelace (ADA), followed by any native tokens
-		const balanceArray = await wallet.getBalance();
+		const balanceArray = await wallet.getBalanceMesh();
 		
 		// Extract lovelace from the balance array
 		// Find the item with unit 'lovelace' and get its quantity
@@ -276,7 +276,8 @@ Now use [`MeshTxBuilder`](https://meshjs.dev/apis/txbuilder/basics) to send tADA
 
 ```javascript
 // Import Mesh SDK components
-import { KoiosProvider, MeshWallet, MeshTxBuilder } from '@meshsdk/core';
+import { KoiosProvider, MeshTxBuilder } from '@meshsdk/core';
+import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
 
 // Initialize Koios provider for Preprod Testnet
 // Koios is free to use and doesn't require an API key
@@ -289,16 +290,15 @@ const provider = new KoiosProvider('preprod');
 // Replace with your actual 12 or 24 word mnemonic phrase from your testnet wallet
 const mnemonic = ["word1", "word2", "word3", "word4", "word5", "word6", "word7", "word8", "word9", "word10", "word11", "word12"];
 
-// Create MeshWallet instance
+// Create MeshCardanoHeadlessWallet instance
 // This wallet will be used to create and sign transactions
-const wallet = new MeshWallet({
+// fromMnemonic is async (no separate init() step needed)
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
 	networkId: 0,  // 0 = testnet (Preprod), 1 = mainnet
+	walletAddressType: AddressType.Base,
 	fetcher: provider,  // Provider for fetching blockchain data
 	submitter: provider,  // Provider for submitting transactions
-	key: {
-		type: 'mnemonic',  // Wallet key type: mnemonic phrase
-		words: mnemonic  // Array of mnemonic words
-	}
+	mnemonic  // Array of mnemonic words
 });
 
 // Function to create and submit a transaction with metadata
@@ -332,11 +332,11 @@ async function sendTransaction() {
 		
 		// Get wallet UTXOs (Unspent Transaction Outputs)
 		// UTXOs represent available funds in your wallet that can be spent
-		const utxos = await wallet.getUtxos();
+		const utxos = await wallet.getUtxosMesh();
 		
 		// Get change address
 		// This is where any remaining funds (after transaction amount and fees) will be sent
-		const changeAddress = await wallet.getChangeAddress();
+		const changeAddress = await wallet.getChangeAddressBech32();
 		
 		// Initialize MeshTxBuilder
 		// MeshTxBuilder provides low-level APIs for building transactions with fine-grained control
@@ -393,7 +393,7 @@ Preprod-only.
 
 :::warning
 - Use only testnet addresses (`addr_test1...`) for development.
-- Each transaction needs a small fee (~0.17–0.2 ADA).
+- Each transaction needs a small fee (~0.17 to 0.2 ADA).
 - Submitted transactions can't be reversed - verify before sending.
 - Confirmation can take a few seconds to minutes.
 :::
@@ -406,7 +406,8 @@ Combine Express + Mesh + Koios into one server. `GET /wallet` returns wallet inf
 // Import required Node.js packages
 import express from 'express';
 import cors from 'cors';
-import { KoiosProvider, MeshWallet, MeshTxBuilder } from '@meshsdk/core';
+import { KoiosProvider, MeshTxBuilder } from '@meshsdk/core';
+import { MeshCardanoHeadlessWallet, AddressType } from '@meshsdk/wallet';
 
 // Create Express application instance
 const app = express();
@@ -426,16 +427,15 @@ const provider = new KoiosProvider(
 // Replace with your actual 12 or 24 word mnemonic phrase from your testnet wallet
 const mnemonic = ["word1", "word2", "word3", "word4", "word5", "word6", "word7", "word8", "word9", "word10", "word11", "word12"];
 
-// Create MeshWallet instance
+// Create MeshCardanoHeadlessWallet instance
 // This wallet will be used to interact with the Cardano blockchain
-const wallet = new MeshWallet({
+// fromMnemonic is async (no separate init() step needed)
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
 	networkId: 0,  // 0 = testnet (Preprod), 1 = mainnet
+	walletAddressType: AddressType.Base,
 	fetcher: provider,  // Provider for fetching blockchain data
 	submitter: provider,  // Provider for submitting transactions
-	key: {
-		type: 'mnemonic',  // Wallet key type: mnemonic phrase
-		words: mnemonic  // Array of mnemonic words
-	}
+	mnemonic  // Array of mnemonic words
 });
 
 // Middleware: Enable CORS to allow requests from different origins
@@ -452,12 +452,12 @@ app.get('/wallet', async (req, res) => {
 	try {
 		// Get wallet address
 		// The change address is the address where change from transactions is sent
-		const address = await wallet.getChangeAddress();
+		const address = await wallet.getChangeAddressBech32();
 		
 		// Get wallet balance using Mesh's built-in method
 		// Returns an array of assets: [{ unit: 'lovelace', quantity: '...' }, ...]
 		// The first item is always lovelace (ADA)
-		const balanceArray = await wallet.getBalance();
+		const balanceArray = await wallet.getBalanceMesh();
 		
 		// Extract lovelace from the balance array
 		// Find the item with unit 'lovelace' and get its quantity
@@ -527,11 +527,11 @@ app.post('/data', async (req, res) => {
 
 		// Get wallet UTXOs (Unspent Transaction Outputs)
 		// UTXOs represent available funds in your wallet that can be spent
-		const utxos = await wallet.getUtxos();
+		const utxos = await wallet.getUtxosMesh();
 		
 		// Get change address
 		// This is where any remaining funds (after transaction amount and fees) will be sent
-		const changeAddress = await wallet.getChangeAddress();
+		const changeAddress = await wallet.getChangeAddressBech32();
 		
 		// Initialize MeshTxBuilder
 		// MeshTxBuilder provides low-level APIs for building transactions
@@ -605,7 +605,8 @@ Matching `package.json`:
 	"dependencies": {
 		"express": "^4.18.2",
 		"cors": "^2.8.5",
-		"@meshsdk/core": "^1.7.0"
+		"@meshsdk/core": "^1.7.0",
+		"@meshsdk/wallet": "^1.7.0"
 	}
 }
 

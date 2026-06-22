@@ -53,21 +53,23 @@ The builder selects UTXOs, calculates the fee, and adds a change output for you.
 <TabItem value="mesh" label="Mesh">
 
 ```typescript
-import { BlockfrostProvider, MeshTxBuilder, MeshWallet } from "@meshsdk/core";
+import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core";
+import { MeshCardanoHeadlessWallet, AddressType } from "@meshsdk/wallet";
 
 // Provider + wallet (from your mnemonic)
 const provider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY!);
 
-const wallet = new MeshWallet({
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
   networkId: 0, // 0 = preprod testnet
+  walletAddressType: AddressType.Base,
   fetcher: provider,
   submitter: provider,
-  key: { type: "mnemonic", words: ["your", "mnemonic", "...", "here"] },
+  mnemonic: process.env.WALLET_MNEMONIC!.split(" "),
 });
 
 // Build -> sign -> submit
-const utxos = await wallet.getUtxos();
-const changeAddress = await wallet.getChangeAddress();
+const utxos = await wallet.getUtxosMesh();
+const changeAddress = await wallet.getChangeAddressBech32();
 
 const txBuilder = new MeshTxBuilder({ fetcher: provider });
 const unsignedTx = await txBuilder
@@ -76,12 +78,12 @@ const unsignedTx = await txBuilder
   .selectUtxosFrom(utxos)
   .complete();
 
-const signedTx = await wallet.signTx(unsignedTx);
+const signedTx = await wallet.signTx(unsignedTx, false);
 const txHash = await wallet.submitTx(signedTx);
 console.log("Transaction hash:", txHash);
 ```
 
-`MeshWallet.brew()` generates a fresh mnemonic if you need one. See [Keys & Wallets](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys#working-with-wallets-in-code) for creating wallets in code with either SDK.
+`MeshCardanoHeadlessWallet.brew()` generates a fresh mnemonic if you need one. See [Keys & Wallets](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys#working-with-wallets-in-code) for creating wallets in code with either SDK.
 
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
@@ -145,11 +147,14 @@ console.log("Confirmed:", confirmed)
 
 ```typescript
 // List the wallet's UTXOs
-const utxos = await wallet.getUtxos();
+const utxos = await wallet.getUtxosMesh();
 console.log(utxos);
+
+// Call back once the transaction is confirmed on-chain
+provider.onTxConfirmed(txHash, () => console.log("Confirmed"));
 ```
 
-Mesh has no built-in confirmation poll, check the transaction hash on an [explorer](/docs/developers/curriculum/start-building/networks-and-test-ada#block-explorers), or query the provider until it appears.
+`provider.onTxConfirmed(txHash, cb)` polls the provider and fires the callback once the transaction lands; you can also paste the hash into an [explorer](/docs/developers/curriculum/start-building/networks-and-test-ada#block-explorers).
 
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">

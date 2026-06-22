@@ -217,6 +217,23 @@ const cancel = Data.constr(1n, [])
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { mConStr0, mConStr1 } from "@meshsdk/core"
+
+// A vesting datum: constructor 0 with { beneficiary, deadline }
+const datum = mConStr0([
+  "abc1...23de",     // beneficiary key hash (ByteString, hex)
+  1735689600000n,    // deadline (Integer)
+])
+
+// A redeemer enum: Claim / Cancel (index picks the constructor)
+const claim = mConStr0([])
+const cancel = mConStr1([])
+```
+
+</TabItem>
 </Tabs>
 
 Writing raw `Data.constr` is error-prone for real contracts. **`TSchema`** defines the shape once and gives a type-safe codec, so the off-chain types match the on-chain definitions in your validator:
@@ -225,19 +242,112 @@ Writing raw `Data.constr` is error-prone for real contracts. **`TSchema`** defin
 <TabItem value="evolution" label="Evolution" default>
 
 ```typescript
-import { Data, TSchema } from "@evolution-sdk/evolution"
+import { Data, TSchema, Bytes } from "@evolution-sdk/evolution"
 
 const VestingDatum = TSchema.Struct({ beneficiary: TSchema.ByteArray, deadline: TSchema.Integer })
 const Codec = Data.withSchema(VestingDatum)
 
-const datum = Codec.toData({ beneficiary: "abc1...23de", deadline: 1735689600000n })
+const datum = Codec.toData({ beneficiary: Bytes.fromHex("abc1...23de"), deadline: 1735689600000n })
 // Codec.toCBORHex(...) / Codec.fromData(...) round-trip too
 ```
 
 </TabItem>
 </Tabs>
 
-Every Plutus Data value serializes to **CBOR**, the binary format the ledger stores, so `Data.toCBORHex` / `Data.fromCBORHex` convert when you need raw hex (e.g. a `cardano-cli` datum file). The [CIP-57 blueprint](/docs/developers/curriculum/smart-contracts/write-a-validator#from-validator-to-blueprint) your validator compiles to describes these schemas so tools can generate the codecs for you.
+### Sum-type redeemers (Claim / Cancel / Update)
+
+The multi-action validator above pattern-matches on a redeemer with several constructors. Off-chain you build that sum type the same way: a `TSchema.Variant` in Evolution, or the constructor-index shorthands in Mesh. Each variant maps to a constructor index, and the index must match the order in your validator's type.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+import { Data, TSchema, Bytes } from "@evolution-sdk/evolution"
+
+// Claim = constr 0, Cancel = constr 1, Update = constr 2
+const Redeemer = TSchema.Variant({
+  Claim: {},
+  Cancel: {},
+  Update: { new_beneficiary: TSchema.ByteArray, new_deadline: TSchema.Integer },
+})
+const Codec = Data.withSchema(Redeemer)
+
+const claim = Codec.toData({ Claim: {} })
+const update = Codec.toData({ Update: { new_beneficiary: Bytes.fromHex("def4...56ab"), new_deadline: 1735776000000n } })
+```
+
+`TSchema` also gives you `Map`, `Array`, `Tuple`, and `NullOr`/`UndefinedOr` for the rest of a datum's shape. For the structures you reach for constantly, the `@evolution-sdk/evolution/plutus` barrel ships pre-built, validator-matching schemas: `Address`, `Credential`, `Value`, `OutputReference`, and `CIP68Metadata`. Import and compose them rather than hand-rolling the encoding.
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { mConStr0, mConStr1, mConStr2 } from "@meshsdk/core"
+
+// The constructor index picks the action (must match the validator's enum order)
+const claim = mConStr0([])                                  // Claim
+const cancel = mConStr1([])                                 // Cancel
+const update = mConStr2(["def4...56ab", 1735776000000n])    // Update(new_beneficiary, new_deadline)
+```
+
+</TabItem>
+</Tabs>
+
+### Datums and redeemers that carry a Value
+
+When a datum or redeemer holds a multi-asset value (a DEX order, locked escrow funds), both SDKs give you value helpers so you don't assemble nested asset maps by hand. In Mesh, `MeshValue` does the arithmetic:
+
+```typescript
+import { MeshValue } from "@meshsdk/core"
+
+// Build, add, and merge values
+const offered = MeshValue.fromAssets([{ unit: "lovelace", quantity: "5000000" }])
+offered.addAsset({ unit: "policyId...assetName", quantity: "100" })
+
+const required = MeshValue.fromAssets([{ unit: "lovelace", quantity: "3000000" }])
+offered.geq(required)          // true: covers what the swap needs
+offered.merge(required)        // combine two values
+const datumValue = offered.toData()   // → Mesh Data (nested Maps) for the datum field
+```
+
+Evolution's equivalent is the `Value` schema from `@evolution-sdk/evolution/plutus`, a `Map` of policy → asset name → quantity that you drop straight into a `TSchema.Struct`.
+
+### Serialization round-trip
+
+Every Plutus Data value serializes to **CBOR**, the binary format the ledger stores. When you need the raw hex (a `cardano-cli` datum file, a value read back from the chain), round-trip through these:
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+import { Bytes, Data, Address } from "@evolution-sdk/evolution"
+
+const hex = Data.toCBORHex(datum)     // PlutusData → CBOR hex
+const back = Data.fromCBORHex(hex)    // CBOR hex → PlutusData
+
+const bytes = Bytes.fromHex(hex)      // hex string ↔ Uint8Array
+const asHex = Bytes.toHex(bytes)
+
+Address.fromBech32("addr1...")        // bech32 ↔ Address (addr_test1.../addr1...)
+Address.toBech32(addr)
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { deserializeDatum } from "@meshsdk/core"
+
+// CBOR hex (read off-chain or from a UTXO) → { constructor, fields }
+const datum = deserializeDatum(cborHex)
+// On the encode side, the tx builder serializes a JSON/Mesh datum for you:
+//   txBuilder.txOutInlineDatumValue(mConStr0([...]), "Mesh")
+```
+
+</TabItem>
+</Tabs>
+
+The [CIP-57 blueprint](/docs/developers/curriculum/smart-contracts/write-a-validator#from-validator-to-blueprint) your validator compiles to describes these schemas so tools can generate the codecs for you.
 
 ## What does the ScriptContext provide?
 
@@ -255,7 +365,7 @@ These are the properties a validator can inspect through the context. This is a 
 | **fee** | Transaction fee in lovelace. Predictable, and depends on transaction size. |
 | **mint** | The value of tokens being minted or burned. |
 | **certificates** | Certificates for delegation, pool operations, governance roles, etc. |
-| **withdrawals** | Stake reward withdrawals as credential–lovelace pairs. |
+| **withdrawals** | Stake reward withdrawals as credential-lovelace pairs. |
 | **validity_range** | The time range in which the transaction is valid. |
 | **signatories** | Hashes representing who signed the transaction. |
 | **redeemers** | Script-purpose and redeemer pairs for the scripts executed in the transaction. |

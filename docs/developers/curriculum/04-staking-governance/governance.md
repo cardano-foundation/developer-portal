@@ -121,21 +121,26 @@ Update metadata with `updateDRep({ drepCredential, anchor })` and step down with
 <TabItem value="mesh" label="Mesh">
 
 ```typescript
+import { hashDrepAnchor } from "@meshsdk/core"
+
 const dRep = await wallet.getDRep()
-const anchorUrl = "" // optional metadata anchor
-const anchorHash = await getMeshJsonHash(anchorUrl)
+
+// Optional CIP-119 metadata describing the DRep, hashed and anchored on-chain
+const anchorUrl = "https://example.com/drep.jsonld"
+const anchorMetadata = { /* CIP-119 metadata object */ }
+const anchorDataHash = hashDrepAnchor(anchorMetadata)   // hashes the metadata, not the URL
 
 txBuilder
-  .drepRegistrationCertificate(dRep.dRepIDCip105, { anchorUrl, anchorDataHash: anchorHash })
-  .selectUtxosFrom(await wallet.getUtxos())
-  .changeAddress(await wallet.getChangeAddress())
+  .drepRegistrationCertificate(dRep.dRepIDCip105, { anchorUrl, anchorDataHash })
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .changeAddress(await wallet.getChangeAddressBech32())
 
 const unsignedTx = await txBuilder.complete()
 const signedTx = await wallet.signTx(unsignedTx)
 await wallet.submitTx(signedTx)
 ```
 
-See the [Mesh governance guide](https://meshjs.dev/apis/txbuilder/governance).
+Update metadata with `drepUpdateCertificate(dRepId, { anchorUrl, anchorDataHash })` and step down with `drepDeregistrationCertificate(dRepId)` (the deposit is refunded). See the [Mesh governance guide](https://meshjs.dev/apis/txbuilder/governance).
 
 </TabItem>
 <TabItem value="cli" label="cardano-cli">
@@ -249,12 +254,13 @@ To register stake and delegate the vote in one step, use `registerAndDelegateTo(
 <TabItem value="mesh" label="Mesh">
 
 ```typescript
+const dRepId = "drep1..."   // a registered DRep (or use { type: "AlwaysAbstain" } / { type: "AlwaysNoConfidence" })
 const rewardAddress = (await wallet.getRewardAddresses())[0]
 
 txBuilder
   .voteDelegationCertificate({ dRepId }, rewardAddress)
-  .selectUtxosFrom(await wallet.getUtxos())
-  .changeAddress(await wallet.getChangeAddress())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .changeAddress(await wallet.getChangeAddressBech32())
 
 const unsignedTx = await txBuilder.complete()
 const signedTx = await wallet.signTx(unsignedTx)
@@ -339,9 +345,10 @@ txBuilder
     { type: "DRep", drepId: dRep.dRepIDCip105 },
     { txHash: "aff2909f...c0867cc", txIndex: 0 }, // the governance action id
     { voteKind: "Yes" },
+    // optional rationale: { anchorUrl, anchorDataHash }
   )
-  .selectUtxosFrom(await wallet.getUtxos())
-  .changeAddress(await wallet.getChangeAddress())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .changeAddress(await wallet.getChangeAddressBech32())
 
 const unsignedTx = await txBuilder.complete()
 const signedTx = await wallet.signTx(unsignedTx)
@@ -410,6 +417,29 @@ await signed.submit()
 Chain multiple `.propose(...)` calls to submit several actions in one transaction. The deposit is deducted automatically during balancing.
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+const rewardAddress = (await wallet.getRewardAddresses())[0]
+
+txBuilder
+  .proposal(
+    { kind: "InfoAction", action: {} },                       // the governance action
+    { anchorUrl: "https://example.com/proposal.jsonld",        // CIP-108 metadata
+      anchorDataHash: "a1b1c2d3e4f5..." },
+    rewardAddress,                                             // deposit-return reward account
+  )
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .changeAddress(await wallet.getChangeAddressBech32())
+
+const unsignedTx = await txBuilder.complete()
+const signedTx = await wallet.signTx(unsignedTx)
+await wallet.submitTx(signedTx)
+```
+
+`governanceAction` is a discriminated union: swap `InfoAction` for `TreasuryWithdrawalsAction`, `ParameterChangeAction`, `NoConfidenceAction`, `UpdateCommitteeAction`, `NewConstitutionAction`, or `HardForkInitiationAction` (the chaining types take a `govActionId` of the last enacted action of that kind). The deposit defaults to `govActionDeposit`; pass a fourth argument to override. For a Plutus-script proposal, add `proposalScript(cbor, "V3")` and `proposalRedeemerValue(redeemer)`.
+
+</TabItem>
 <TabItem value="cli" label="cardano-cli">
 
 Authoring an action produces a proposal: a deposit, a deposit-return stake credential, an [anchor](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108) (URL + hash), and the action itself. Hash the anchor, create the action (treasury withdrawal shown), then build, sign, and submit:
@@ -456,6 +486,8 @@ Every action takes `--governance-action-deposit`, `--deposit-return-stake-verifi
 ## Committee operations
 
 Constitutional Committee members use a **cold/hot credential model**: the cold credential identifies the seat and stays offline; an authorized hot credential does the day-to-day voting. If the hot key is compromised, authorize a new one (it overrides the old); if the cold key is compromised, the only recourse is to resign.
+
+Mesh's transaction builder exposes no committee-certificate helpers, so use Evolution or cardano-cli for these.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>

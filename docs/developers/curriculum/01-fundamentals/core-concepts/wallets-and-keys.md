@@ -128,23 +128,22 @@ Generate a fresh mnemonic with `PrivateKey.generateMnemonic()`. Switch networks 
 </TabItem>
 <TabItem value="mesh" label="Mesh">
 
-Mesh's `MeshWallet` loads from a mnemonic, CLI keys, a private key, or an address:
+Mesh's `MeshCardanoHeadlessWallet` loads from a mnemonic, a root key, or explicit credential sources:
 
 ```typescript
-import { MeshWallet } from "@meshsdk/core"
+import { MeshCardanoHeadlessWallet, AddressType } from "@meshsdk/wallet"
 
 // Generate a fresh mnemonic
-const mnemonic = MeshWallet.brew()
+const mnemonic = MeshCardanoHeadlessWallet.brew()
 
-const wallet = new MeshWallet({
-  networkId: 0,                    // 0 = testnet, 1 = mainnet
+const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
+  networkId: 0,                        // 0 = testnet, 1 = mainnet
+  walletAddressType: AddressType.Base,
   fetcher: blockchainProvider,
   submitter: blockchainProvider,
-  key: {
-    type: "mnemonic",             // or "root" (bech32 xprv), "cli" (payment/stake hex), "address" (read-only)
-    words: process.env.WALLET_MNEMONIC!.split(" "),
-  },
+  mnemonic: process.env.WALLET_MNEMONIC!.split(" "),
 })
+// other factories: fromBip32Root (bech32 xprv), fromBip32RootHex, fromCredentialSources (read-only / advanced)
 ```
 
 </TabItem>

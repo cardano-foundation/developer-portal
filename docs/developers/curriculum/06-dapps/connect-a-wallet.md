@@ -56,18 +56,18 @@ console.log("Connected:", address)
 <TabItem value="mesh" label="Mesh">
 
 ```typescript
-import { BrowserWallet } from "@meshsdk/core"
+import { MeshCardanoBrowserWallet } from "@meshsdk/wallet"
 
 // 1. Discover installed CIP-30 wallets
-const wallets = BrowserWallet.getInstalledWallets()
+const wallets = MeshCardanoBrowserWallet.getInstalledWallets()
 
 // 2. User picks one; request access (prompts the user)
-const wallet = await BrowserWallet.enable("eternl")
+const wallet = await MeshCardanoBrowserWallet.enable("eternl")
 
-// 3. Read state
-const changeAddress = await wallet.getChangeAddress()
-const balance = await wallet.getBalance()
-const utxos = await wallet.getUtxos()
+// 3. Read state (Mesh-format helpers; base getUtxos()/getChangeAddress() return CBOR/hex)
+const changeAddress = await wallet.getChangeAddressBech32()
+const balance = await wallet.getBalanceMesh()
+const utxos = await wallet.getUtxosMesh()
 ```
 
 In React, Mesh also ships a ready-made `<CardanoWallet />` connect button and a `useWallet` hook; see [Mesh React](https://meshjs.dev/react).
@@ -129,6 +129,31 @@ async function signOnFrontend(unsignedTxCbor: string) {
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshCardanoBrowserWallet } from "@meshsdk/wallet"
+
+async function signOnFrontend(unsignedTxCbor: string) {
+  // Connect (signing only)
+  const wallet = await MeshCardanoBrowserWallet.enable("eternl")
+
+  // User approves; signTxReturnFullTx merges the witness and returns the full signed tx
+  // (pass true as the second argument for partial / multi-sig signing)
+  const signedTxCbor = await wallet.signTxReturnFullTx(unsignedTxCbor, false)
+
+  // Hand the signed CBOR back to the backend to submit through its provider
+  const { txHash } = await fetch("/api/submit-tx", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ signedTxCbor })
+  }).then((r) => r.json()) as { txHash: string }
+
+  return txHash
+}
+```
+
+</TabItem>
 </Tabs>
 
 For the backend (building and submitting with a provider), see [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) and [lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend).
@@ -173,6 +198,79 @@ Wallets and hardware devices follow Cardano's [BIP-32 / CIP-1852](/docs/develope
 ## No browser extension? Wallet as a Service
 
 Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [UTXOS Web3 Services](/docs/developers/curriculum/dapps/wallet-authentication#hosted-sign-in-as-a-service), which also supports [transaction sponsorship](https://docs.utxos.dev/sponsor) so users can transact without holding ADA for fees first.
+
+## Framework integration (React & Svelte)
+
+Connecting a wallet in a frontend is the same CIP-30 flow shown above; a framework just needs somewhere to hold the connection state and a button to trigger it. How much you hand-roll depends on the SDK: **Mesh** ships ready-made React and Svelte packages (a connect button, hooks, reactive state), while **Evolution** has no UI package and stays framework-agnostic, so you wire the raw CIP-30 flow from [Connect](#connect) into your own hook, store, or context. The Mesh convenience path:
+
+### React
+
+Wrap your app once in `<MeshProvider>` and import the stylesheet, then drop the pre-built button in:
+
+```tsx
+// app root (pages/_app.tsx or app/layout.tsx)
+import "@meshsdk/react/styles.css"
+import { MeshProvider } from "@meshsdk/react"
+
+export default function App({ Component, pageProps }) {
+  return (
+    <MeshProvider>
+      <Component {...pageProps} />
+    </MeshProvider>
+  )
+}
+```
+
+```tsx
+import { CardanoWallet } from "@meshsdk/react"
+
+// persist remembers the wallet choice and auto-connects on return;
+// onConnected fires once connected; label and isDark style the button
+<CardanoWallet label="Connect" isDark persist onConnected={() => {}} />
+```
+
+`<CardanoWallet />` renders the wallet-selection modal and connection flow for you. From any component under the provider, the hooks read live wallet state:
+
+| Hook | Returns |
+|---|---|
+| `useWallet()` | `{ wallet, connected, connecting, name, state, connect, disconnect, error }`, the instance plus connect/disconnect and a `"NOT_CONNECTED" \| "CONNECTING" \| "CONNECTED"` state |
+| `useWalletList()` | installed CIP-30 wallets as `{ name, icon, version }[]`, for a custom selector |
+| `useAddress()` | the connected bech32 address (`accountId` arg, default `0`) |
+| `useAssets()` | every asset across the wallet's UTXOs as `{ unit, quantity }[]` |
+| `useLovelace()` | the ADA balance in lovelace, as a string |
+| `useNetwork()` | network ID: `0` = testnet, `1` = mainnet |
+
+### Svelte
+
+Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Instead of hooks, you read the reactive `BrowserWalletState` runes, accessed directly inside an `$effect` so reactivity isn't lost:
+
+```svelte
+<script lang="ts">
+  import { CardanoWallet, BrowserWalletState } from "@meshsdk/svelte"
+
+  $effect(() => {
+    if (BrowserWalletState.wallet) {
+      BrowserWalletState.wallet.getChangeAddress().then((addr) => {
+        console.log("Connected:", addr)
+      })
+    }
+  })
+</script>
+
+{#if BrowserWalletState.connected}
+  <p>Connected to {BrowserWalletState.name}</p>
+{:else}
+  <CardanoWallet />
+{/if}
+```
+
+`BrowserWalletState` exposes `wallet`, `connected`, `name`, and `connecting`. Read its properties directly (don't destructure) or you lose reactivity.
+
+Without these packages (Evolution, or a framework Mesh doesn't ship for) the concept is unchanged and the code is short: call `cardano[name].enable()` on a button click, stash the returned wallet API or `client` in a `useState`/`useContext` (React) or a store (Svelte), and read from it. Same CIP-30 surface, just without the pre-built widget.
+
+:::warning "Buffer is not defined"
+Mesh uses Node built-ins (`Buffer`, `crypto`, `stream`), and modern bundlers no longer polyfill them, so your first browser build can fail with `Uncaught ReferenceError: Buffer is not defined`. The fix depends on the bundler: for **Next.js / Webpack 5**, add `node-polyfill-webpack-plugin`; for **Vite / SvelteKit**, add `rollup-plugin-polyfill-node`. This trips up most beginners on the first build, not on a wallet bug.
+:::
 
 ## Next steps
 

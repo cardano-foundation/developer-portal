@@ -197,9 +197,9 @@ If you have written web2 tests, the workflow is familiar. `aiken check` discover
 
 ## Testing your off-chain code
 
-Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too, and it splits into two kinds of test. **Unit tests** exercise the pure parts (datum and schema encoding, address parsing) with no chain at all. **Integration tests** drive the whole build → sign → submit → confirm lifecycle against a [local development network](/docs/developers/curriculum/production/development-networks): you spin a programmatic devnet up inside the test suite, fund a wallet from genesis, submit, and assert on confirmation, with millisecond confirmations and fresh isolated state per run, all offline and with no faucet.
+Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too, and it splits into two kinds of test. **Unit tests** exercise the pure parts (datum and schema encoding, address parsing, the shape of the tx you build) with no chain at all. **Integration tests** drive the whole build → sign → submit → confirm lifecycle against a [local development network](/docs/developers/curriculum/production/development-networks): you spin a programmatic devnet up inside the test suite, fund a wallet from genesis, submit, and assert on confirmation, with millisecond confirmations and fresh isolated state per run, all offline and with no faucet.
 
-For the worked example and the SDKs that provide an in-process emulator, see [Programmatic devnets](/docs/developers/curriculum/production/development-networks#programmatic-devnets).
+Both live with the local-environment tooling rather than here: see [Testing without a chain](/docs/developers/curriculum/production/development-networks#testing-without-a-chain) for the in-memory tools (`OfflineFetcher`, `OfflineEvaluator`, `TxTester`) that build, evaluate, and assert on a transaction with no node, and [Programmatic devnets](/docs/developers/curriculum/production/development-networks#programmatic-devnets) for the integration-test setup against a real local chain.
 
 ## Beyond unit tests
 

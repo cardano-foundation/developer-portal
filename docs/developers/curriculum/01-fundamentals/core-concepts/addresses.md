@@ -120,6 +120,25 @@ const bech32 = Address.toBech32(address)
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { deserializeAddress, resolvePaymentKeyHash } from "@meshsdk/core"
+
+// Parse and inspect: pull the credentials out of a Bech32 address
+const { pubKeyHash, scriptHash, stakeCredentialHash } = deserializeAddress("addr1...")
+
+// Payment credential: a key hash (regular wallet) or a script hash (contract)
+const isScript = scriptHash !== undefined
+
+// Base vs enterprise: a base address carries a stake credential, enterprise doesn't
+const hasStake = stakeCredentialHash !== undefined
+
+// Shorthand when you only need the payment key hash
+const keyHash = resolvePaymentKeyHash("addr1...")
+```
+
+</TabItem>
 </Tabs>
 
 Building one from raw credentials (the rare case above) looks like:
