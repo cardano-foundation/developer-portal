@@ -385,4 +385,5 @@ const txHash = await wallet.submitTx(signedTx);
 
 - [Mint a fungible token](/docs/developers/curriculum/native-tokens/mint-fungible): the same flow with quantity greater than 1
 - [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry): CIP-25 vs CIP-68, royalties (CIP-27)
-- Advanced: [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview) for a smart contract one-shot NFT policy
+- Advanced: the smart contract [one-shot NFT policy](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) for protocol-guaranteed uniqueness
+- [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): lock your NFT at a script address for sales, swaps, or escrow

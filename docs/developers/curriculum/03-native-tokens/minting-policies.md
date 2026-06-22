@@ -47,7 +47,7 @@ When you need logic beyond signatures and time, the policy is a smart contract (
 - **Parameterized**: compile-time parameters bake into the script, producing a distinct policy ID per configuration.
 - **Multi-action**: the redeemer selects an action (mint / burn / init) and the script validates each differently.
 
-Writing smart contract minting policies is covered in the [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview) section.
+Writing smart contract minting policies, including the [one-shot pattern](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) for provable uniqueness, is covered in [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator).
 
 ## Native script or smart contract?
 

@@ -219,6 +219,36 @@ const spend = await client
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder, mConStr0 } from "@meshsdk/core"
+
+// 1. Deploy: park the script in a UTXO with .txOutReferenceScript
+const deployTx = await new MeshTxBuilder({ fetcher: provider })
+  .txOut(await wallet.getChangeAddressBech32(), [{ unit: "lovelace", quantity: "10000000" }])
+  .txOutReferenceScript(scriptCbor, "V3")            // makes it a reference script
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete()
+const deployTxHash = await wallet.submitTx(await wallet.signTx(deployTx))
+
+// 2. Spend by referencing it: .spendingTxInReference instead of .txInScript
+const collateral = await wallet.getCollateralMesh()
+const spendTx = await new MeshTxBuilder({ fetcher: provider })
+  .spendingPlutusScriptV3()
+  .txIn(scriptUtxo.input.txHash, scriptUtxo.input.outputIndex)
+  .txInInlineDatumPresent()
+  .txInRedeemerValue(mConStr0([]))
+  .spendingTxInReference(deployTxHash, 0)            // node reads the script from the deployed UTXO
+  .txInCollateral(collateral[0].input.txHash, collateral[0].input.outputIndex)
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete()
+await wallet.submitTx(await wallet.signTx(spendTx))
+```
+
+</TabItem>
 </Tabs>
 
 `readFrom` also reads a UTXO **without consuming it**, the same mechanism oracles use to expose price data and contracts use to read shared configuration (a reference input can carry a datum, not just a script). Reach for a reference script once a script is used across more than a few transactions; the one-time deploy cost pays for itself quickly.
@@ -251,16 +281,116 @@ const appliedTyped = UPLC.applyParamsToScriptWithSchema(
 ```
 
 </TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { applyParamsToScript, serializePlutusScript } from "@meshsdk/core"
+
+declare const compiledScript: string   // the parameterized script from `aiken build`
+
+// Apply params in the order of the script's lambda bindings (raw Mesh data values)
+const applied = applyParamsToScript(compiledScript, [
+  "abc123def456abc123def456abc123def456abc123def456abc123de",   // owner (ByteString, hex)
+  1735689600000n,                                               // deadline (Integer)
+])
+
+// Address of the parameterized script
+const { address: scriptAddress } = serializePlutusScript({ code: applied, version: "V3" })
+```
+
+Mesh has no typed-schema equivalent to Evolution's `TSchema`: parameters are raw values applied in binding order, so you ensure their types and order match the script yourself.
+
+</TabItem>
 </Tabs>
 
 The applied script is what you attach (or deploy as a reference script). Use parameters for per-deployment config (owner, deadline, token policy, oracle address); use **datum fields** instead for state that changes per transaction. `applyParamsToScript` defaults to Aiken-compatible CBOR: pass `CBOR.CML_DATA_DEFAULT_OPTIONS` for CML-compiled scripts.
 
 ## A complete example: vesting
 
-The lock-then-spend shape above becomes a real contract when the datum carries meaningful state and the validator enforces a rule. A **vesting** contract is the canonical first example: lock funds with a `{ beneficiary, deadline }` datum, and the validator only allows the spend if the transaction is signed by the beneficiary and its validity interval starts after the deadline.
+The lock-then-spend shape above becomes a real contract when the datum carries meaningful state and the validator enforces a rule. A **vesting** contract is the canonical first example: lock funds with a `{ beneficiary, deadline }` datum, and the validator allows the spend only when the transaction is signed by the beneficiary and its validity interval starts after the deadline. The on-chain validator (logic and tests) is walked through in [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#putting-it-together-a-vesting-example); here is the off-chain flow end to end.
 
-- The on-chain side (the validator logic and tests) is walked through in [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#putting-it-together-a-vesting-example).
-- The off-chain side is the [lock](#lock-funds) and [spend](#spend-funds) flows above, with the validator deployed as a [parameterized script](#parameterized-scripts) carrying the beneficiary and deadline.
+It is two transactions: **lock** the funds with the datum, then **claim** them after the deadline. The claim is the interesting half: a validator cannot read the wall clock, so you set the transaction's validity interval to start *after* the deadline, and the ledger's guarantee that the transaction really was in that window is what proves to the validator that the deadline has passed.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+import { Address, Assets, Bytes, Data, InlineDatum, KeyHash, TSchema, type UTxO } from "@evolution-sdk/evolution"
+
+// reuse the client from the lock step; vestingScript is your compiled validator
+declare const vestingScript: any
+const VestingDatum = TSchema.Struct({ beneficiary: TSchema.ByteArray, deadline: TSchema.Integer })
+const Codec = Data.withSchema(VestingDatum)
+
+const scriptAddress = Address.fromBech32("addr_test1w...")              // the vesting script's address
+const beneficiary = Bytes.fromHex("abc123def456abc123def456abc123def456abc123def456abc123de") // key hash, 28 bytes
+const deadline = BigInt(new Date("2025-12-31T23:59:59Z").getTime())    // POSIX time, ms
+
+// 1. LOCK: send 50 ADA with the { beneficiary, deadline } datum
+const lock = await client
+  .newTx()
+  .payToAddress({
+    address: scriptAddress,
+    assets: Assets.fromLovelace(50_000_000n),
+    datum: new InlineDatum.InlineDatum({ data: Codec.toData({ beneficiary, deadline }) }),
+  })
+  .build()
+await (await lock.sign()).submit()
+
+// 2. CLAIM (after the deadline): beneficiary signs, validity starts past the deadline
+declare const vestingUtxos: UTxO.UTxO[]   // from client.getUtxos(scriptAddress)
+const now = BigInt(Date.now())            // must be > deadline
+const claim = await client
+  .newTx()
+  .collectFrom({ inputs: vestingUtxos, redeemer: Data.constr(0n, []) })   // Claim
+  .attachScript({ script: vestingScript })
+  .addSigner({ keyHash: new KeyHash.KeyHash({ hash: beneficiary }) })
+  .setValidity({ from: now, to: now + 300_000n })                        // proves the deadline has passed
+  .build()
+await (await claim.sign()).submit()
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder, serializePlutusScript, mConStr0, resolveSlotNo } from "@meshsdk/core"
+
+// vestingScriptCbor is your compiled validator; beneficiaryHash is the 28-byte key hash (hex)
+const { address: scriptAddress } = serializePlutusScript({ code: vestingScriptCbor, version: "V3" })
+const deadline = new Date("2025-12-31T23:59:59Z").getTime()   // POSIX time, ms
+
+// 1. LOCK: send 50 ADA with the { beneficiary, deadline } datum
+const lock = await new MeshTxBuilder({ fetcher: provider })
+  .txOut(scriptAddress, [{ unit: "lovelace", quantity: "50000000" }])
+  .txOutInlineDatumValue(mConStr0([beneficiaryHash, deadline]))
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete()
+await wallet.submitTx(await wallet.signTx(lock))
+
+// 2. CLAIM (after the deadline): beneficiary signs, validity starts past the deadline
+const collateral = await wallet.getCollateralMesh()
+const deadlineSlot = resolveSlotNo("preprod", deadline)       // POSIX ms -> slot
+const claim = await new MeshTxBuilder({ fetcher: provider })
+  .spendingPlutusScriptV3()
+  .txIn(vestingUtxo.input.txHash, vestingUtxo.input.outputIndex)
+  .txInInlineDatumPresent()
+  .txInRedeemerValue(mConStr0([]))                            // Claim
+  .txInScript(vestingScriptCbor)
+  .requiredSignerHash(beneficiaryHash)                        // beneficiary must sign
+  .invalidBefore(deadlineSlot)                                // validity starts past the deadline
+  .txInCollateral(collateral[0].input.txHash, collateral[0].input.outputIndex)
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete()
+await wallet.submitTx(await wallet.signTx(claim))
+```
+
+</TabItem>
+</Tabs>
+
+Submit the claim before the deadline and the ledger rejects it up front, so the funds stay locked until the time genuinely passes. Once a vesting validator is used more than a few times, deploy it once as a [reference script](#reference-scripts) so each claim transaction stays small.
 
 ## Next steps
 

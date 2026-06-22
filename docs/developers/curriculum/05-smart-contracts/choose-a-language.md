@@ -106,7 +106,7 @@ This is the concrete reason "smaller, faster scripts" matters, and why Aiken's e
 
 Whatever language you choose, the compiled output is described by a **[CIP-57](https://cips.cardano.org/cip/CIP-57) Plutus Blueprint**: a machine-readable JSON document listing the validators, their datum/redeemer schemas, the type definitions, and the compiled code. Think of it as the ABI for a Cardano contract.
 
-Blueprints are what let your off-chain code interact with a contract without reading its source: tools can generate TypeScript, Python, or Rust types directly from the blueprint, and different off-chain frameworks can all consume the same format. Aiken generates a blueprint automatically as part of its build. To turn one into type-safe off-chain code, see [Write a validator › from validator to blueprint](/docs/developers/curriculum/smart-contracts/write-a-validator#from-validator-to-blueprint).
+Blueprints are what let your off-chain code interact with a contract without reading its source: tools can generate TypeScript, Python, or Rust types directly from the blueprint, and different off-chain frameworks can all consume the same format. Aiken generates a blueprint automatically as part of its build. To turn one into type-safe off-chain code, see [Write a validator › from validator to blueprint](/docs/developers/curriculum/smart-contracts/write-a-validator#from-validator-to-blueprint); to read one field by field yourself, see [Reading a blueprint by hand](/docs/developers/curriculum/smart-contracts/write-a-validator#reading-a-blueprint-by-hand).
 
 ## Next steps
 

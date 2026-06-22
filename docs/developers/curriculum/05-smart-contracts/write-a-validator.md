@@ -87,6 +87,30 @@ validator minting_policy(owner_vkey: VerificationKeyHash, minting_deadline: Int)
 
 Helpers like `key_signed`, `valid_before`, and `check_policy_only_burn` come from the [vodka](https://github.com/sidan-lab/vodka) library. Minting policies are also covered, with off-chain minting, in [Native tokens > Minting policies](/docs/developers/curriculum/native-tokens/minting-policies).
 
+#### One-shot policies
+
+The owner-signature policy above can mint repeatedly. For a true NFT you want a policy that can succeed **exactly once in history**. The trick is to parameterize the policy by a specific UTXO and require that UTXO to be spent when minting. Because a UTXO can be consumed only once, the policy can fire only once:
+
+```aiken
+use aiken/collection/list
+use cardano/assets.{PolicyId}
+use cardano/transaction.{Input, OutputReference, Transaction}
+
+validator one_shot(utxo_ref: OutputReference) {
+  mint(_redeemer: Data, _policy_id: PolicyId, tx: Transaction) {
+    // Succeeds only if the parameter UTXO is spent in this transaction.
+    // That UTXO can be consumed once, so this policy can mint once.
+    list.any(tx.inputs, fn(input: Input) { input.output_reference == utxo_ref })
+  }
+
+  else(_) {
+    fail @"unsupported purpose"
+  }
+}
+```
+
+Off-chain you pick any UTXO from your wallet, apply it as the parameter (which bakes in a unique policy ID, see [parameterized scripts](/docs/developers/curriculum/smart-contracts/lock-and-spend#parameterized-scripts)), and spend that same UTXO in the minting transaction. This is the protocol-guaranteed uniqueness that native time-locks cannot give you, and the foundation of the multi-validator [NFT minting machine](/docs/developers/curriculum/smart-contracts/contracts-library) that auto-increments token names from on-chain state.
+
 ### Spending validator
 
 Runs when a transaction spends a UTXO sitting at the validator's script address. It receives the UTXO's **datum**, a **redeemer**, the output reference, and the transaction. This one only allows a spend when a specific oracle token is present in the reference inputs (the state-thread / beacon-token pattern):
@@ -116,7 +140,7 @@ validator hello_world {
 
 ### Withdrawal validator
 
-Runs when a transaction withdraws from the script's reward account. Withdrawal validators must be **registered** on-chain first (the `publish` handler validates registration/deregistration). Their main use isn't staking. It's the **withdraw-zero trick**, where a spending validator delegates its logic to a withdrawal validator that runs once for the whole transaction instead of once per input. That optimization is the [Stake Validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) pattern.
+Runs when a transaction withdraws from the script's reward account. Withdrawal validators must be **registered** on-chain first (the `publish` handler validates registration/deregistration). Their main use isn't staking. It's the **withdraw-zero trick**, where a spending validator delegates its logic to a withdrawal validator that runs once for the whole transaction instead of once per input. That is the principle of [avoiding redundant validation](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview#avoid-redundant-validation), implemented as the [Stake Validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) pattern.
 
 ```aiken
 validator always_succeed(_key_hash: VerificationKeyHash) {
@@ -287,6 +311,17 @@ const scriptAddress = spending.address
 </Tabs>
 
 See the blueprint section of [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language#blueprints-the-contracts-interface).
+
+### Reading a blueprint by hand
+
+Codegen covers the common case, but you should be able to read a `plutus.json` directly: when you adopt a language with no generator, debug a type mismatch, or just want to understand what a tool handed you. Trace it top-down:
+
+- **`preamble.plutusVersion`** is the script version (`v3` here). Off-chain you must build the script as that exact version (`"V3"` in your SDK); it fixes the cost model and the available builtins.
+- **Each `validators[]` entry** is named `<module>.<validator>.<purpose>` (here `mint.minting_policy.mint`). Its `hash` is the on-chain identifier: the **policy ID** for a `mint` validator, the script-address payment credential for a `spend` one. The `compiledCode` is the CBOR you wrap to get that address.
+- **A `$ref` is a pointer.** A `redeemer.schema` of `{ "$ref": "#/definitions/MyRedeemer" }` means "resolve `MyRedeemer` under `definitions`." Follow it; refs nest, so a field can itself be a `$ref`.
+- **A sum type is an `anyOf`.** Each entry is one constructor, with an `index` (its on-chain tag) and positional `fields`. So `MyRedeemer` with `MintToken` at `index: 0` and `BurnToken` at `index: 1` tells you exactly how to build the redeemer by hand: `MintToken` is constructor 0 with no fields, `BurnToken` is constructor 1. That is precisely what you pass as `mConStr0([])` (Mesh) or `Constr 0 []` (raw) when no generated codec is doing it for you.
+
+Read it that way (preamble, then a validator, then the schemas it names, then the definitions those point at) and a blueprint is a complete, language-agnostic description of how to talk to the contract.
 
 ## Key takeaway
 
