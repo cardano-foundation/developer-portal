@@ -81,9 +81,23 @@ await wallet.submitTx(signedTx)
 ```
 
 </TabItem>
-</Tabs>
+<TabItem value="cardano-cli" label="cardano-cli">
 
-With cardano-cli, pass multiple `--tx-out` flags to one `transaction build`. See [Building with cardano-cli](#building-with-cardano-cli) below.
+```bash
+# Each --tx-out is one recipient; one fee covers the whole transaction
+cardano-cli latest transaction build \
+  --tx-in <TxHash>#<TxIx> \
+  --tx-out "addr_test1...+5000000" \
+  --tx-out "addr_test1...+3000000" \
+  --tx-out "addr_test1...+2000000" \
+  --change-address $(< payment.addr) \
+  --out-file tx.raw
+```
+
+Sign and submit as in [Building with cardano-cli](#building-with-cardano-cli) below.
+
+</TabItem>
+</Tabs>
 
 ## Transaction metadata
 
