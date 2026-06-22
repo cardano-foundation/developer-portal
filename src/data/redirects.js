@@ -852,7 +852,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/integrations/iot/',
+    to: '/docs/developers/curriculum/dapps/iot/',
     from: [
       '/docs/build/iot-on-cardano/cardano-ticker/building-the-ticker',
       '/docs/build/iot-on-cardano/cardano-ticker/gathering-data',
@@ -891,6 +891,14 @@ const redirects = [
       '/docs/build/iot-on-cardano/troubleshooting',
     ],
   },
+  { to: '/docs/developers/curriculum/dapps/iot/', from: '/docs/developers/integrations/iot/' },
+  { to: '/docs/developers/curriculum/dapps/iot/the-basics/', from: '/docs/developers/integrations/iot/the-basics/' },
+  { to: '/docs/developers/curriculum/dapps/iot/read-and-output/', from: '/docs/developers/integrations/iot/read-and-output/' },
+  { to: '/docs/developers/curriculum/dapps/iot/input-and-write/', from: '/docs/developers/integrations/iot/input-and-write/' },
+  { to: '/docs/developers/curriculum/dapps/iot/cardano-ticker/', from: '/docs/developers/integrations/iot/cardano-ticker/' },
+  { to: '/docs/developers/curriculum/dapps/iot/qr-code-payments/', from: '/docs/developers/integrations/iot/qr-code-payments/' },
+  { to: '/docs/developers/curriculum/dapps/iot/introductions/', from: '/docs/developers/integrations/iot/introductions/' },
+  { to: '/docs/developers/curriculum/dapps/iot/hardware/', from: '/docs/developers/integrations/iot/hardware/' },
   {
     to: '/docs/developers/curriculum/native-tokens/overview',
     from: [

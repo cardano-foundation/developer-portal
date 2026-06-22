@@ -21,9 +21,9 @@ It rotates between screens every 10 seconds. Data updates periodically - wallet 
 
 If you've finished the previous workshops, you already know most of this. The project combines:
 
-- WiFi connectivity from [Workshop 02 - Fetch Wallet Balance](/docs/developers/integrations/iot/read-and-output/01-fetch-wallet-balance).
-- Display techniques from [Workshop 02 - Display Data](/docs/developers/integrations/iot/read-and-output/02-display-data).
-- API fetching from [Workshop 02 - Fetch Wallet Balance](/docs/developers/integrations/iot/read-and-output/01-fetch-wallet-balance) and [Workshop 03 - Connect and Read Sensor Data](/docs/developers/integrations/iot/input-and-write/01-connect-and-read-sensor-data).
+- WiFi connectivity from [Workshop 02 - Fetch Wallet Balance](/docs/developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance).
+- Display techniques from [Workshop 02 - Display Data](/docs/developers/curriculum/dapps/iot/read-and-output/02-display-data).
+- API fetching from [Workshop 02 - Fetch Wallet Balance](/docs/developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance) and [Workshop 03 - Connect and Read Sensor Data](/docs/developers/curriculum/dapps/iot/input-and-write/01-connect-and-read-sensor-data).
 
 :::info Mainnet data
 This workshop uses mainnet data; the examples use the CardanoThings.io wallet.
@@ -41,7 +41,7 @@ Before the code, point the project at your wallet and APIs.
 
 This stores Cardano addresses and API endpoints. Edit it with your own:
 
-- **`stakeAddress`** - your stake address (`stake1...`). Used for Koios wallet-balance lookups (you learned about stake addresses in [Workshop 02](/docs/developers/integrations/iot/read-and-output/01-fetch-wallet-balance)).
+- **`stakeAddress`** - your stake address (`stake1...`). Used for Koios wallet-balance lookups (you learned about stake addresses in [Workshop 02](/docs/developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance)).
 - **`walletAddress`** - your payment address (`addr1...`). Used by MinSwap for tokens and NFTs.
 - **`cexplorerApiKey`** - your Cexplorer.io API key from the previous lesson.
 
@@ -178,7 +178,7 @@ Stored separately so it can be `.gitignore`d. Copy `secrets.h.example` to `secre
 
 The WiFi manager handles connection and auto-reconnect. The data fetcher organises every API call from the previous lesson (Koios + MinSwap + Cexplorer) into one reusable module - fetches periodically, stores results for the screens to read.
 
-Both modules use the same techniques as [Workshop 02](/docs/developers/integrations/iot/read-and-output/01-fetch-wallet-balance), just packaged. The data fetcher rate-limits (wallet every 1 minute; tokens / NFTs every 10 minutes) and exposes getters like `getWalletBalance()` and `getToken(i)` that screen files use.
+Both modules use the same techniques as [Workshop 02](/docs/developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance), just packaged. The data fetcher rate-limits (wallet every 1 minute; tokens / NFTs every 10 minutes) and exposes getters like `getWalletBalance()` and `getToken(i)` that screen files use.
 
 `wifi_manager.cpp`:
 
@@ -1191,7 +1191,7 @@ NFTInfo getNFT(int index);
 
 After the start screen ("CardanoTicker") on boot, the ticker rotates between four data screens every 10 seconds: wallet, tokens, NFTs, status.
 
-The wallet screen shows your ADA balance prominently - same idea as the wallet display from [Workshop 02](/docs/developers/integrations/iot/read-and-output/02-display-data).
+The wallet screen shows your ADA balance prominently - same idea as the wallet display from [Workshop 02](/docs/developers/curriculum/dapps/iot/read-and-output/02-display-data).
 
 It shows:
 

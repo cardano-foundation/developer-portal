@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/input-and-write/
+slug: /developers/curriculum/dapps/iot/input-and-write/
 title: "Workshop 03: Input and Write"
 sidebar_label: Overview
 description: Read an AHT10 sensor on the ESP32, build a Node.js + Mesh SDK API, and put sensor data on-chain as transaction metadata and as NFTs.

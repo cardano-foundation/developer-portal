@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/
+slug: /developers/curriculum/dapps/iot/
 title: Internet of Things (IoT) on Cardano
 sidebar_label: Internet of Things (IoT)
 description: Build microcontroller projects that read from and write to the Cardano blockchain. A five-workshop course from wallet setup to a working QR-code payment terminal.

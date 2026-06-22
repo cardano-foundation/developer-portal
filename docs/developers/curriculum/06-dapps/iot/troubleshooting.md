@@ -20,7 +20,7 @@ Check WiFi credentials and confirm the ESP32-C3 is on the same network as your c
 
   This sets the WiFi transmit power to 8.5 dBm and resolves connectivity issues specific to the C3.
 
-See also: the WiFi sketch in [Workshop 01: Arduino Setup](/docs/developers/integrations/iot/the-basics/02-arduino-setup) which already includes this workaround.
+See also: the WiFi sketch in [Workshop 01: Arduino Setup](/docs/developers/curriculum/dapps/iot/the-basics/02-arduino-setup) which already includes this workaround.
 
 ## My code won't upload to my ESP32 CYD
 
@@ -39,14 +39,14 @@ Most I2C problems boil down to one of:
 - **Wrong I2C address** for the device. Different sensors use different addresses (AHT10 = `0x38`, SH1106 OLED = `0x3C` or `0x3D`).
 - **Missing pull-up resistors** on SDA / SCL. Most breakout boards include them; if yours doesn't, add 4.7 kΩ – 10 kΩ between each line and VCC.
 
-If you don't know the I2C address of your device, run the **I2C scanner sketch** included in [Workshop 03: Connect and Read Sensor Data](/docs/developers/integrations/iot/input-and-write/01-connect-and-read-sensor-data) - it enumerates every device responding on the bus.
+If you don't know the I2C address of your device, run the **I2C scanner sketch** included in [Workshop 03: Connect and Read Sensor Data](/docs/developers/curriculum/dapps/iot/input-and-write/01-connect-and-read-sensor-data) - it enumerates every device responding on the bus.
 
 ## My board is not detected by the Arduino IDE
 
 Check, in order:
 
 1. **Right board selected** (`Tools → Board → ...`).
-2. **ESP32 board package installed** (`Tools → Board → Boards Manager` → search "esp32" → install). See [Arduino Setup](/docs/developers/integrations/iot/the-basics/02-arduino-setup) for the full setup.
+2. **ESP32 board package installed** (`Tools → Board → Boards Manager` → search "esp32" → install). See [Arduino Setup](/docs/developers/curriculum/dapps/iot/the-basics/02-arduino-setup) for the full setup.
 3. **CH340 driver installed** if using the CYD. See [SparkFun's CH340 install guide](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) or the [Adafruit CH9102 guide](https://learn.adafruit.com/how-to-install-drivers-for-wch-usb-to-serial-chips-ch9102f-ch9102/overview) for similar chips.
 4. **Different USB cable** (data, not charge-only).
 

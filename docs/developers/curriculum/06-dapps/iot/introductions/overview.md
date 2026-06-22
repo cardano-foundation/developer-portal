@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/introductions/
+slug: /developers/curriculum/dapps/iot/introductions/
 title: Introductions
 sidebar_label: Overview
 description: Quick primers on the non-Cardano building blocks used in this section - Arduino, ESP32 / D1 microcontrollers, and REST APIs.

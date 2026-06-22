@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/hardware/
+slug: /developers/curriculum/dapps/iot/hardware/
 title: Hardware Reference
 sidebar_label: Overview
 description: Hardware components used across the IoT-on-Cardano workshops - boards, sensors, displays, relays, and where to source them.

@@ -213,6 +213,113 @@ module.exports = {
                 "developers/curriculum/dapps/ai-agents/masumi",
               ],
             },
+        {
+          type: "category",
+          label: "Internet of Things",
+          link: {
+            type: "doc",
+            id: "developers/curriculum/dapps/iot/overview",
+          },
+          items: [
+            {
+              type: "category",
+              label: "Introductions",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/iot/introductions/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/iot/introductions/arduino",
+                "developers/curriculum/dapps/iot/introductions/esp32-d1-microcontrollers",
+                "developers/curriculum/dapps/iot/introductions/rest-apis",
+              ],
+            },
+            {
+              type: "category",
+              label: "Workshop 01: The Basics",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/iot/the-basics/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/iot/the-basics/01-cardano-setup",
+                "developers/curriculum/dapps/iot/the-basics/02-arduino-setup",
+                "developers/curriculum/dapps/iot/the-basics/03-api-setup",
+              ],
+            },
+            {
+              type: "category",
+              label: "Workshop 02: Read and Output",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/iot/read-and-output/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance",
+                "developers/curriculum/dapps/iot/read-and-output/02-display-data",
+                "developers/curriculum/dapps/iot/read-and-output/03-light-up-the-tree",
+                "developers/curriculum/dapps/iot/read-and-output/04-epoch-clock",
+              ],
+            },
+            {
+              type: "category",
+              label: "Workshop 03: Input and Write",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/iot/input-and-write/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/iot/input-and-write/01-connect-and-read-sensor-data",
+                "developers/curriculum/dapps/iot/input-and-write/02-build-your-own-api",
+                "developers/curriculum/dapps/iot/input-and-write/03-mint-sensor-data-on-chain",
+              ],
+            },
+            {
+              type: "category",
+              label: "Workshop 04: Cardano Ticker",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/iot/cardano-ticker/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/iot/cardano-ticker/01-gathering-data",
+                "developers/curriculum/dapps/iot/cardano-ticker/02-building-the-ticker",
+              ],
+            },
+            {
+              type: "category",
+              label: "Workshop 05: QR-Code Payments",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/iot/qr-code-payments/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/iot/qr-code-payments/01-getting-started",
+                "developers/curriculum/dapps/iot/qr-code-payments/02-cip13-integration",
+                "developers/curriculum/dapps/iot/qr-code-payments/03-qr-code-creation",
+                "developers/curriculum/dapps/iot/qr-code-payments/04-building-the-frontend",
+                "developers/curriculum/dapps/iot/qr-code-payments/05-building-the-backend",
+              ],
+            },
+            {
+              type: "category",
+              label: "Hardware",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/iot/hardware/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/iot/hardware/cheap-yellow-display-cyd",
+                "developers/curriculum/dapps/iot/hardware/esp32-c3",
+                "developers/curriculum/dapps/iot/hardware/oled-display-sh1106-13inch-i2c",
+                "developers/curriculum/dapps/iot/hardware/aht10-temperature-humidity-sensor-i2c",
+                "developers/curriculum/dapps/iot/hardware/relay-module-3v-1channel",
+                "developers/curriculum/dapps/iot/hardware/ws2812b-led-ring-12",
+              ],
+            },
+            "developers/curriculum/dapps/iot/troubleshooting",
+          ],
+        },
           ],
         },
         {
@@ -242,119 +349,6 @@ module.exports = {
             "developers/curriculum/production/development-networks",
             "developers/curriculum/production/demeter",
             "developers/curriculum/production/hydra",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Integrations",
-      items: [
-        {
-          type: "category",
-          label: "Internet of Things",
-          link: {
-            type: "doc",
-            id: "developers/integrations/iot/overview",
-          },
-          items: [
-            {
-              type: "category",
-              label: "Introductions",
-              link: {
-                type: "doc",
-                id: "developers/integrations/iot/introductions/overview",
-              },
-              items: [
-                "developers/integrations/iot/introductions/arduino",
-                "developers/integrations/iot/introductions/esp32-d1-microcontrollers",
-                "developers/integrations/iot/introductions/rest-apis",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 01: The Basics",
-              link: {
-                type: "doc",
-                id: "developers/integrations/iot/the-basics/overview",
-              },
-              items: [
-                "developers/integrations/iot/the-basics/01-cardano-setup",
-                "developers/integrations/iot/the-basics/02-arduino-setup",
-                "developers/integrations/iot/the-basics/03-api-setup",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 02: Read and Output",
-              link: {
-                type: "doc",
-                id: "developers/integrations/iot/read-and-output/overview",
-              },
-              items: [
-                "developers/integrations/iot/read-and-output/01-fetch-wallet-balance",
-                "developers/integrations/iot/read-and-output/02-display-data",
-                "developers/integrations/iot/read-and-output/03-light-up-the-tree",
-                "developers/integrations/iot/read-and-output/04-epoch-clock",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 03: Input and Write",
-              link: {
-                type: "doc",
-                id: "developers/integrations/iot/input-and-write/overview",
-              },
-              items: [
-                "developers/integrations/iot/input-and-write/01-connect-and-read-sensor-data",
-                "developers/integrations/iot/input-and-write/02-build-your-own-api",
-                "developers/integrations/iot/input-and-write/03-mint-sensor-data-on-chain",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 04: Cardano Ticker",
-              link: {
-                type: "doc",
-                id: "developers/integrations/iot/cardano-ticker/overview",
-              },
-              items: [
-                "developers/integrations/iot/cardano-ticker/01-gathering-data",
-                "developers/integrations/iot/cardano-ticker/02-building-the-ticker",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 05: QR-Code Payments",
-              link: {
-                type: "doc",
-                id: "developers/integrations/iot/qr-code-payments/overview",
-              },
-              items: [
-                "developers/integrations/iot/qr-code-payments/01-getting-started",
-                "developers/integrations/iot/qr-code-payments/02-cip13-integration",
-                "developers/integrations/iot/qr-code-payments/03-qr-code-creation",
-                "developers/integrations/iot/qr-code-payments/04-building-the-frontend",
-                "developers/integrations/iot/qr-code-payments/05-building-the-backend",
-              ],
-            },
-            {
-              type: "category",
-              label: "Hardware",
-              link: {
-                type: "doc",
-                id: "developers/integrations/iot/hardware/overview",
-              },
-              items: [
-                "developers/integrations/iot/hardware/cheap-yellow-display-cyd",
-                "developers/integrations/iot/hardware/esp32-c3",
-                "developers/integrations/iot/hardware/oled-display-sh1106-13inch-i2c",
-                "developers/integrations/iot/hardware/aht10-temperature-humidity-sensor-i2c",
-                "developers/integrations/iot/hardware/relay-module-3v-1channel",
-                "developers/integrations/iot/hardware/ws2812b-led-ring-12",
-              ],
-            },
-            "developers/integrations/iot/troubleshooting",
           ],
         },
       ],

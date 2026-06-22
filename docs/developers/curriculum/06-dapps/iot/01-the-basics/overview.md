@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/the-basics/
+slug: /developers/curriculum/dapps/iot/the-basics/
 title: "Workshop 01: The Basics"
 sidebar_label: Overview
 description: Set up a Preprod Cardano wallet, install the Arduino IDE, prepare your microcontroller, and make your first API call to Koios.

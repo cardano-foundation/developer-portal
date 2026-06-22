@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/read-and-output/
+slug: /developers/curriculum/dapps/iot/read-and-output/
 title: "Workshop 02: Read and Output"
 sidebar_label: Overview
 description: Fetch on-chain data on a schedule and use it to drive a TFT display, an external relay, and an LED ring that visualises epoch progress.

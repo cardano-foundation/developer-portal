@@ -13,7 +13,7 @@ You already know how easy CIP-13 makes payment links. The next step is rendering
 
 ## Installing required libraries
 
-Two libraries needed: **QRcodeDisplay** (the core QR generator) and **QRcode_eSPI** (the TFT_eSPI adapter). Install both - `QRcode_eSPI` depends on `QRcodeDisplay`. You should already have TFT_eSPI installed and configured from [Workshop 02](/docs/developers/integrations/iot/read-and-output/02-display-data).
+Two libraries needed: **QRcodeDisplay** (the core QR generator) and **QRcode_eSPI** (the TFT_eSPI adapter). Install both - `QRcode_eSPI` depends on `QRcodeDisplay`. You should already have TFT_eSPI installed and configured from [Workshop 02](/docs/developers/curriculum/dapps/iot/read-and-output/02-display-data).
 
 ### Step 1: Install QRcodeDisplay
 

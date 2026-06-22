@@ -5,7 +5,7 @@ sidebar_label: AHT10 Sensor (I2C)
 description: High-precision digital temperature and humidity sensor from Aosong with I2C interface - used in Workshop 03 to read environmental data and put it on-chain.
 ---
 
-A high-precision digital **temperature and humidity sensor** from Aosong with an I2C interface. Used in [Workshop 03 - Connect and Read Sensor Data](/docs/developers/integrations/iot/input-and-write/01-connect-and-read-sensor-data) to read environmental data and post it on-chain as transaction metadata or NFTs.
+A high-precision digital **temperature and humidity sensor** from Aosong with an I2C interface. Used in [Workshop 03 - Connect and Read Sensor Data](/docs/developers/curriculum/dapps/iot/input-and-write/01-connect-and-read-sensor-data) to read environmental data and post it on-chain as transaction metadata or NFTs.
 
 ![AHT10 sensor](./img/aht10.webp)
 

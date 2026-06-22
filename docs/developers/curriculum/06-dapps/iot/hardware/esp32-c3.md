@@ -25,7 +25,7 @@ The **ESP32-C3** is a cost-effective, RISC-V based microcontroller with WiFi and
 
 :::info ESP32-C3 quirks worth knowing
 - **No 5 GHz WiFi** - Connects only to 2.4 GHz networks.
-- **WiFi power workaround.** The Super Mini variant often needs `WiFi.setTxPower(WIFI_POWER_8_5dBm);` to connect reliably. See [Troubleshooting](/docs/developers/integrations/iot/troubleshooting) for the full note.
+- **WiFi power workaround.** The Super Mini variant often needs `WiFi.setTxPower(WIFI_POWER_8_5dBm);` to connect reliably. See [Troubleshooting](/docs/developers/curriculum/dapps/iot/troubleshooting) for the full note.
 - **Default I2C pins** are `SDA = GPIO 8`, `SCL = GPIO 9`.
 :::
 

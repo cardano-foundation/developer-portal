@@ -17,7 +17,7 @@ Now that the webserver runs, build the UI. The flow:
 - The backend polls Koios for the transaction; on confirmation it updates the request's status and shows a confirmation on the TFT.
 
 :::info Re-uploading data
-The `data/` directory must be re-uploaded to LittleFS every time you change the frontend. See [Getting Started](/docs/developers/integrations/iot/qr-code-payments/01-getting-started#uploading-files-to-littlefs) for the procedure.
+The `data/` directory must be re-uploaded to LittleFS every time you change the frontend. See [Getting Started](/docs/developers/curriculum/dapps/iot/qr-code-payments/01-getting-started#uploading-files-to-littlefs) for the procedure.
 :::
 
 ## Project structure

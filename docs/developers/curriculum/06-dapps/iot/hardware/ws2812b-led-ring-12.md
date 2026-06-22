@@ -5,7 +5,7 @@ sidebar_label: WS2812B LED Ring (12)
 description: Circular RGB LED ring using 12 WS2812B addressable LEDs - used to build the Epoch Clock in Workshop 02.
 ---
 
-A circular **WS2812B LED ring with 12 individually addressable RGB LEDs** (NeoPixel-compatible). Each LED gives 24-bit colour control and the ring is daisy-chainable. Used in [Workshop 02 - Epoch Clock](/docs/developers/integrations/iot/read-and-output/04-epoch-clock).
+A circular **WS2812B LED ring with 12 individually addressable RGB LEDs** (NeoPixel-compatible). Each LED gives 24-bit colour control and the ring is daisy-chainable. Used in [Workshop 02 - Epoch Clock](/docs/developers/curriculum/dapps/iot/read-and-output/04-epoch-clock).
 
 ![WS2812B ring top](./img/led-ring-01.webp)
 ![WS2812B ring back](./img/led-ring-02.webp)
@@ -23,7 +23,7 @@ A circular **WS2812B LED ring with 12 individually addressable RGB LEDs** (NeoPi
 - Perfect for circular displays and progress indicators
 
 :::danger Current draw warning
-At full white, each LED can draw up to **60 mA**. A 12-LED ring at full white can draw **720 mA** - more than most USB ports can supply. Run at low brightness when on USB power, or use an external 5V supply rated for ≥ 1 A. Full safety guidance is in [Workshop 02 - Epoch Clock](/docs/developers/integrations/iot/read-and-output/04-epoch-clock).
+At full white, each LED can draw up to **60 mA**. A 12-LED ring at full white can draw **720 mA** - more than most USB ports can supply. Run at low brightness when on USB power, or use an external 5V supply rated for ≥ 1 A. Full safety guidance is in [Workshop 02 - Epoch Clock](/docs/developers/curriculum/dapps/iot/read-and-output/04-epoch-clock).
 :::
 
 ## Resources

@@ -21,7 +21,7 @@ The **ESP8266** was released by Espressif in 2014 as a WiFi-enabled microcontrol
 - **Integrated antennas** - on-board antennas for wireless, with the option for external ones.
 - **Community ecosystem** - extensive libraries, tutorials, and community support.
 
-The workshops in this section default to the **ESP32-C3** - see the [ESP32-C3 hardware page](/docs/developers/integrations/iot/hardware/esp32-c3) for the specific variant used and known quirks.
+The workshops in this section default to the **ESP32-C3** - see the [ESP32-C3 hardware page](/docs/developers/curriculum/dapps/iot/hardware/esp32-c3) for the specific variant used and known quirks.
 
 ## Resources
 

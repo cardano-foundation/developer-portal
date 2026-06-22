@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/cardano-ticker/
+slug: /developers/curriculum/dapps/iot/cardano-ticker/
 title: "Workshop 04: Cardano Ticker"
 sidebar_label: Overview
 description: Build a multi-screen Cardano ticker on a TFT display showing wallet balance, token prices from MinSwap, and NFT floors from Cexplorer.

@@ -25,9 +25,9 @@ REST was introduced by Roy Thomas Fielding in his 2000 doctoral dissertation at 
 
 ## How it shows up in this section
 
-- `GET https://preprod.koios.rest/api/v1/tip` - chain tip endpoint, used in [Workshop 01: API Setup](/docs/developers/integrations/iot/the-basics/03-api-setup).
-- `POST /account_info` - wallet balance lookup, used in [Workshop 02: Fetch Wallet Balance](/docs/developers/integrations/iot/read-and-output/01-fetch-wallet-balance).
-- `POST /address_utxos` - UTxO listing, used in [Workshop 05: Building the Backend](/docs/developers/integrations/iot/qr-code-payments/05-building-the-backend).
+- `GET https://preprod.koios.rest/api/v1/tip` - chain tip endpoint, used in [Workshop 01: API Setup](/docs/developers/curriculum/dapps/iot/the-basics/03-api-setup).
+- `POST /account_info` - wallet balance lookup, used in [Workshop 02: Fetch Wallet Balance](/docs/developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance).
+- `POST /address_utxos` - UTxO listing, used in [Workshop 05: Building the Backend](/docs/developers/curriculum/dapps/iot/qr-code-payments/05-building-the-backend).
 
 All return JSON. The microcontroller parses the JSON with [ArduinoJson](https://arduinojson.org/) and reacts.
 

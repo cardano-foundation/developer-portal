@@ -1,6 +1,6 @@
 ---
 id: overview
-slug: /developers/integrations/iot/qr-code-payments/
+slug: /developers/curriculum/dapps/iot/qr-code-payments/
 title: "Workshop 05: QR-Code Payments"
 sidebar_label: Overview
 description: Build a CIP-13 QR-code payment terminal on the ESP32 - a webserver hosts the UI, the TFT shows the QR, and Koios confirms the payment on-chain.

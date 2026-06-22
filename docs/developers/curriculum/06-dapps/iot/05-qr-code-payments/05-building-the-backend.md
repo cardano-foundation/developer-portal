@@ -9,7 +9,7 @@ The capstone for the IoT-on-Cardano course: the backend that ties the frontend, 
 
 ## Before we start
 
-Create a second Cardano wallet so you can pay from one and listen on the other. You already know how to create a wallet from [Workshop 01](/docs/developers/integrations/iot/the-basics/01-cardano-setup).
+Create a second Cardano wallet so you can pay from one and listen on the other. You already know how to create a wallet from [Workshop 01](/docs/developers/curriculum/dapps/iot/the-basics/01-cardano-setup).
 
 :::warning CIP-13 mobile wallet support
 As of writing, no mobile wallet correctly attaches the exact lovelace amount on a CIP-13 payment URI. To exercise the on-chain confirmation flow, send the exact lovelace amount manually with a desktop wallet. Track progress in the [CIP-0013 spec](https://cips.cardano.org/cip/CIP-0013).

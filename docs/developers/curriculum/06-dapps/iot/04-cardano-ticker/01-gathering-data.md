@@ -15,8 +15,8 @@ The endpoints below are for educational use. Some are not officially supported b
 
 You already know several ways to fetch wallet data from earlier in this section:
 
-- [Koios](/docs/developers/integrations/iot/read-and-output/01-fetch-wallet-balance) or [Blockfrost](/docs/developers/integrations/iot/read-and-output/01-fetch-wallet-balance) - Workshop 02.
-- Mesh SDK - [Workshop 03: Build your own API](/docs/developers/integrations/iot/input-and-write/02-build-your-own-api).
+- [Koios](/docs/developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance) or [Blockfrost](/docs/developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance) - Workshop 02.
+- Mesh SDK - [Workshop 03: Build your own API](/docs/developers/curriculum/dapps/iot/input-and-write/02-build-your-own-api).
 - On-chain explorers like [CardanoScan](https://cardanoscan.io/), [Cexplorer](https://cexplorer.io/), [Adastat](https://adastat.net/), [pool.pm](https://pool.pm/) - paste your address.
 - Wallet extensions - [Yoroi](https://yoroi-wallet.com/), [Eternl](https://eternl.io/), [Vespr](https://vespr.xyz/), [Begin](https://begin.is/).
 
