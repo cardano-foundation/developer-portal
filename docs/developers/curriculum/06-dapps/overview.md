@@ -27,7 +27,7 @@ For building and submitting the transactions behind these flows, see [your first
 
 ## AI agents
 
-- **[AI agents on Cardano](/docs/developers/integrations/ai-agents/overview)**: autonomous agents that hold wallets, make payments, and log decisions on-chain, including the [Masumi](/docs/developers/integrations/ai-agents/masumi) agent economy.
+- **[AI agents on Cardano](/docs/developers/curriculum/dapps/ai-agents/overview)**: autonomous agents that hold wallets, make payments, and log decisions on-chain, including the [Masumi](/docs/developers/curriculum/dapps/ai-agents/masumi) agent economy.
 
 ## Exchanges & infrastructure
 

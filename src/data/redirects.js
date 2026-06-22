@@ -409,11 +409,11 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/integrations/ai-agents/overview',
+    to: '/docs/developers/curriculum/dapps/ai-agents/overview',
     from: '/docs/integrate-cardano/ai-agents/overview',
   },
   {
-    to: '/docs/developers/integrations/ai-agents/masumi',
+    to: '/docs/developers/curriculum/dapps/ai-agents/masumi',
     from: '/docs/integrate-cardano/ai-agents/masumi',
   },
   {
@@ -441,7 +441,7 @@ const redirects = [
     from: ['/docs/integrate-cardano/user-wallet-authentication', '/docs/build/integrate/user-wallet-authentication'],
   },
   {
-    to: '/docs/developers/integrations/ai-agents/overview',
+    to: '/docs/developers/curriculum/dapps/ai-agents/overview',
     from: '/docs/integrate-cardano/ai-agents',
   },
   {
@@ -999,8 +999,8 @@ const redirects = [
   { to: '/docs/developers/curriculum/smart-contracts/advanced/uplc', from: '/docs/build/smart-contracts/advanced/uplc' },
   { to: '/docs/developers/curriculum/smart-contracts/example-contracts', from: '/docs/build/smart-contracts/example-contracts' },
   { to: '/docs/developers/curriculum/start-building/networks-and-test-ada', from: '/docs/get-started/networks/development-networks/overview' },
-  { to: '/docs/developers/integrations/ai-agents/masumi', from: '/docs/build/integrate/ai-agents/masumi' },
-  { to: '/docs/developers/integrations/ai-agents/overview', from: '/docs/build/integrate/ai-agents/overview' },
+  { to: '/docs/developers/curriculum/dapps/ai-agents/masumi', from: '/docs/build/integrate/ai-agents/masumi' },
+  { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/build/integrate/ai-agents/overview' },
   { to: '/docs/developers/integrations/exchange-integrations', from: '/docs/build/integrate/exchange-integrations' },
   { to: '/docs/developers/integrations/payments/listening-for-payments/overview', from: '/docs/build/integrate/payments/listening-for-payments/overview' },
   { to: '/docs/developers/integrations/payments/x402-standard', from: '/docs/build/integrate/payments/x402-standard' },

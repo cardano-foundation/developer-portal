@@ -201,6 +201,17 @@ module.exports = {
                 "developers/curriculum/dapps/oracles/pyth",
               ],
             },
+            {
+              type: "category",
+              label: "AI Agents",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/dapps/ai-agents/overview",
+              },
+              items: [
+                "developers/curriculum/dapps/ai-agents/masumi",
+              ],
+            },
           ],
         },
         {
@@ -244,17 +255,6 @@ module.exports = {
           items: [
             "developers/integrations/payments/listening-for-payments/overview",
             "developers/integrations/payments/x402-standard",
-          ],
-        },
-        {
-          type: "category",
-          label: "AI",
-          link: {
-            type: "doc",
-            id: "developers/integrations/ai-agents/overview",
-          },
-          items: [
-            "developers/integrations/ai-agents/masumi",
           ],
         },
         {
