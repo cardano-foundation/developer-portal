@@ -81,7 +81,6 @@ function getNavbarItems(repository) {
         {to: "blog/", label: "Dev Blog"},
         {href: "https://www.addevent.com/calendar/TG807216", label: "Developer Office Hours"},
         {href: "https://cardanoupdates.com/", label: "Developer Activity"},
-        {href: "https://cardanofoundation.org/academy", label: "Academy"},
         {href: "https://cips.cardano.org/", label: "CIPs"},
       ],
       mega: true,
@@ -101,7 +100,6 @@ function getNavbarItems(repository) {
             icon: 'link-solid',
             items: [
               {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Track ecosystem-wide development progress', icon: 'chart-line-solid'},
-              {href: 'https://cardanofoundation.org/academy', label: 'Cardano Academy', description: 'Learn about Cardano', icon: 'book-solid'},
               {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll-solid'},
             ],
           },
