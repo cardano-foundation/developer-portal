@@ -83,7 +83,6 @@ function getNavbarItems(repository) {
         {href: "https://cardanoupdates.com/", label: "Developer Activity"},
         {href: "https://cardanofoundation.org/academy", label: "Academy"},
         {href: "https://cips.cardano.org/", label: "CIPs"},
-        {href: "https://cardano.org/governance", label: "Governance"},
       ],
       mega: true,
       customProps: {
@@ -104,7 +103,6 @@ function getNavbarItems(repository) {
               {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Track ecosystem-wide development progress', icon: 'chart-line-solid'},
               {href: 'https://cardanofoundation.org/academy', label: 'Cardano Academy', description: 'Learn about Cardano', icon: 'book-solid'},
               {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll-solid'},
-              {href: 'https://cardano.org/governance', label: 'Governance', description: 'Delegate your vote, become a DRep, read the constitution', icon: 'users-solid'},
             ],
           },
         ],
