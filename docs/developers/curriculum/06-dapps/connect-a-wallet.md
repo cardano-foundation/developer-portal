@@ -20,7 +20,7 @@ Once a user grants access, the wallet API lets you:
 - Read the user's **addresses** (used, unused, change, and reward/stake address)
 - List the wallet's **UTXOs** and **balance**
 - Request a **transaction signature** (the user approves in their wallet)
-- Request a **data signature** ([CIP-8](https://cips.cardano.org/cip/CIP-0008)) to prove ownership, the basis of [sign-in with wallet](/docs/developers/curriculum/dapps/wallet-authentication/overview)
+- Request a **data signature** ([CIP-8](https://cips.cardano.org/cip/CIP-0008)) to prove ownership, the basis of [sign-in with wallet](/docs/developers/curriculum/dapps/wallet-authentication)
 
 Most Cardano browser wallets implement CIP-30, and hardware wallets work through them via a browser extension. The extension talks to the device, and your code is identical either way. For the current set of wallets, see [cardano.org/apps](https://cardano.org/apps).
 
@@ -172,11 +172,11 @@ Wallets and hardware devices follow Cardano's [BIP-32 / CIP-1852](/docs/develope
 
 ## No browser extension? Wallet as a Service
 
-Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [UTXOS Web3 Services](/docs/developers/curriculum/dapps/wallet-authentication/overview#hosted-sign-in-as-a-service), which also supports [transaction sponsorship](https://docs.utxos.dev/sponsor) so users can transact without holding ADA for fees first.
+Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [UTXOS Web3 Services](/docs/developers/curriculum/dapps/wallet-authentication#hosted-sign-in-as-a-service), which also supports [transaction sponsorship](https://docs.utxos.dev/sponsor) so users can transact without holding ADA for fees first.
 
 ## Next steps
 
-- [Sign in with wallet](/docs/developers/curriculum/dapps/wallet-authentication/overview): passwordless authentication with CIP-8 message signing
+- [Sign in with wallet](/docs/developers/curriculum/dapps/wallet-authentication): passwordless authentication with CIP-8 message signing
 - [Keys & Wallets](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys): the key model behind wallets, and creating wallets in backend code
 - [Detect incoming payments](/docs/developers/integrations/payments/listening-for-payments/overview): confirm ADA payments to an address
 - [DeFi on Cardano](/docs/developers/curriculum/dapps/defi): what users do once they're connected

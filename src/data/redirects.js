@@ -327,7 +327,7 @@ const redirects = [
     from: '/docs/get-started/evolution-sdk',
   },
   {
-    to: '/docs/developers/curriculum/dapps/wallet-authentication/overview',
+    to: '/docs/developers/curriculum/dapps/wallet-authentication',
     from: ['/docs/get-started/utxos', '/docs/get-started/client-sdks/typescript/utxos/overview'],
   },
   {
@@ -388,19 +388,19 @@ const redirects = [
     from: '/docs/integrate-cardano/x402-standard',
   },
   {
-    to: '/docs/developers/curriculum/dapps/wallet-authentication/overview',
+    to: '/docs/developers/curriculum/dapps/wallet-authentication',
     from: ['/docs/integrate-cardano/user-wallet-authentication/overview', '/docs/build/integrate/user-wallet-authentication/overview'],
   },
   {
-    to: '/docs/developers/curriculum/dapps/wallet-authentication/overview',
+    to: '/docs/developers/curriculum/dapps/wallet-authentication',
     from: ['/docs/integrate-cardano/user-wallet-authentication/mesh', '/docs/build/integrate/user-wallet-authentication/mesh', '/docs/build/integrate/wallet-authentication/mesh'],
   },
   {
-    to: '/docs/developers/curriculum/dapps/wallet-authentication/overview',
+    to: '/docs/developers/curriculum/dapps/wallet-authentication',
     from: ['/docs/build/integrate/wallet-authentication/cardano-serialization-lib', '/docs/integrate-cardano/user-wallet-authentication/cardano-serialization-lib', '/docs/build/integrate/user-wallet-authentication/cardano-serialization-lib'],
   },
   {
-    to: '/docs/developers/curriculum/dapps/wallet-authentication/overview',
+    to: '/docs/developers/curriculum/dapps/wallet-authentication',
     from: [
       '/docs/build/integrate/user-wallet-authentication/utxos/overview',
       '/docs/build/integrate/wallet-authentication/utxos/overview',
@@ -437,7 +437,7 @@ const redirects = [
     from: '/docs/integrate-cardano/listening-for-payments',
   },
   {
-    to: '/docs/developers/curriculum/dapps/wallet-authentication/overview',
+    to: '/docs/developers/curriculum/dapps/wallet-authentication',
     from: ['/docs/integrate-cardano/user-wallet-authentication', '/docs/build/integrate/user-wallet-authentication'],
   },
   {
@@ -931,7 +931,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/curriculum/dapps/wallet-authentication/overview',
+    to: '/docs/developers/curriculum/dapps/wallet-authentication',
     from: [
       '/docs/build/integrate/wallet-authentication/overview',
       '/docs/build/integrate/wallet-authentication/utxos/tx-sponsor',

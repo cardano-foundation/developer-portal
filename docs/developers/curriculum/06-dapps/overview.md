@@ -15,7 +15,7 @@ This module is about meeting users where they are: connecting Cardano to web app
 The front-end path most applications follow:
 
 - **[Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet)**: let users link their browser wallet (CIP-30). The starting point for any dApp.
-- **[Sign in with wallet](/docs/developers/curriculum/dapps/wallet-authentication/overview)**: passwordless authentication by proving wallet ownership (CIP-8 message signing).
+- **[Sign in with wallet](/docs/developers/curriculum/dapps/wallet-authentication)**: passwordless authentication by proving wallet ownership (CIP-8 message signing).
 - **[Listen for payments](/docs/developers/integrations/payments/listening-for-payments/overview)**: detect and confirm ADA arriving at an address.
 
 For building and submitting the transactions behind these flows, see [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) and [lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend).

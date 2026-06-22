@@ -1,5 +1,5 @@
 ---
-id: overview
+id: wallet-authentication
 title: Authenticating users with their Cardano wallet
 sidebar_label: Wallet Authentication
 description: Authenticate users on the web with their Cardano wallet through message signing, with Mesh or Evolution, a hosted service, or zero-knowledge login.

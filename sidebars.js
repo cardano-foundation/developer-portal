@@ -187,7 +187,7 @@ module.exports = {
           items: [
             "developers/curriculum/dapps/scaffolding",
             "developers/curriculum/dapps/connect-a-wallet",
-            "developers/curriculum/dapps/wallet-authentication/overview",
+            "developers/curriculum/dapps/wallet-authentication",
             "developers/curriculum/dapps/defi",
             "developers/curriculum/dapps/defi-kernel",
             {

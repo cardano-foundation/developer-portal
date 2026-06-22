@@ -94,7 +94,7 @@ const utxos  = await wallet.getUtxos()
 const signed = await wallet.signTx(unsignedTx)   // user approves in the wallet
 ```
 
-Wallets can also sign arbitrary messages (CIP-8 / COSE) to prove address ownership without submitting a transaction, the basis for wallet login. For implementations, see [Wallet authentication](/docs/developers/curriculum/dapps/wallet-authentication/overview).
+Wallets can also sign arbitrary messages (CIP-8 / COSE) to prove address ownership without submitting a transaction, the basis for wallet login. For implementations, see [Wallet authentication](/docs/developers/curriculum/dapps/wallet-authentication).
 
 ## Working with wallets in code
 
