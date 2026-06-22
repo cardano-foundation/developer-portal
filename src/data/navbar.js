@@ -14,6 +14,7 @@ function getNavbarItems(repository) {
       items: [
         {to: "/docs/developers/", label: "Start Here"},
         {to: "/tools/", label: "Builder Tools"},
+        {to: "/docs/developers/exchange-integrations", label: "Exchange Integration"},
         {to: "/docs/community/cardano-developer-community/", label: "Community"},
         {to: "/docs/community/funding/", label: "Grants & Funding"},
         {to: "/talent/", label: "Talent Pool"},
@@ -28,6 +29,7 @@ function getNavbarItems(repository) {
             items: [
               {to: '/docs/developers/', label: 'Start Here', description: 'The 7-module developer curriculum, zero to shipping', icon: 'book-solid'},
               {to: '/tools', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'wrench-solid'},
+              {to: '/docs/developers/exchange-integrations', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration for exchanges', icon: 'building-solid'},
             ],
           },
           {
