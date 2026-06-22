@@ -59,7 +59,7 @@ These are checked in phase-1, before scripts run, so a validator can safely assu
 
 ### Setting validity in code
 
-In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range. With Evolution, `setValidity` takes Unix milliseconds:
+In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range:
 
 ```typescript
 import { Time, SlotConfig } from "@evolution-sdk/evolution"

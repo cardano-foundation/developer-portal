@@ -152,7 +152,7 @@ More general variations of this test include the cases where the extra value is 
 **Further explanation:**
 A common coding pattern that introduces such a vulnerability can be observed in the following excerpt:
 
-```rust
+```haskell
 vulnValidator __ ctx =
   traceIfFalse "Must continue tokens" (txOutValue ownInput == txOutValue ownOutput)
   where

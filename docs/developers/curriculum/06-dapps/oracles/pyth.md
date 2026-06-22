@@ -10,6 +10,8 @@ image: /img/og/og-developer-portal.png
 Pyth Pro on Cardano is currently in Beta. The API may change before release.
 :::
 
+Pyth is the production price oracle this curriculum recommends. If oracles are new to you, [Oracles](/docs/developers/curriculum/dapps/oracles/overview) covers the general problem of getting off-chain data on-chain and the pull-based model Cardano contracts use to read it.
+
 ## What is Pyth?
 
 [Pyth](https://pyth.network) is a high-frequency oracle network that delivers real-time price data across multiple blockchains. [Pyth Pro (Lazer)](https://docs.pyth.network/price-feeds/pro) provides sub-second price feeds using a pull-based model: consumers fetch signed updates off-chain and verify them on-chain.

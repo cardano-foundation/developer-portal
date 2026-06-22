@@ -38,7 +38,7 @@ graph LR
     style G fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-The **nonce** ("number used once") is a unique random string the backend generates for each attempt. It prevents replay attacks: because the user signs that specific nonce with their private key, an old signature cannot be reused. Only the private key holder can produce a valid signature, and any tampering with the message invalidates it.
+The **nonce** ("number used once") is a unique random string the backend generates for each attempt. It prevents replay attacks: because the user signs that specific nonce with their private key, an old signature cannot be reused. Only the private key holder can produce a valid signature, and any tampering with the message invalidates it. CIP-8 wraps that signature in the COSE (CBOR Object Signing and Encryption) format, which CIP-30 wallets and the SDKs all produce and verify.
 
 Use the **staking address** (reward address) as the user's identifier. Unlike payment addresses, which change frequently, the staking address stays constant for a wallet, so you can track users across sessions reliably. It can be derived from any payment address in the wallet.
 
@@ -52,8 +52,6 @@ In the browser, the user's CIP-30 wallet signs the backend-issued nonce with `si
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution">
-
-Evolution implements CIP-8 with COSE (CBOR Object Signing and Encryption):
 
 ```typescript
 import { COSE, PrivateKey, Address } from "@evolution-sdk/evolution"

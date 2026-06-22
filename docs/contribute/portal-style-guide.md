@@ -502,20 +502,30 @@ You can also switch multiple tabs at the same time based on user input:
 <TabItem value="linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
 
-## SDK and CLI examples
+## Concepts, code, and tools
 
-When the same operation appears in more than one SDK (Evolution, Mesh) or in an SDK versus `cardano-cli`, put the variants in a `<Tabs groupId="sdk">` block so the reader's choice persists across the whole page. A page may stay single-SDK in its prose and worked examples, but parallel copy-runnable alternatives belong in tabs, not in a stray `> **Mesh:**` blockquote or a "With cardano-cli" section bolted onto the end.
+Most pages teach a concept and then show it in code. Keep those two jobs separate, and in that order.
+
+**Explain the concept tool-agnostically first.** A reader should grasp what something is and why it works that way with zero knowledge of any SDK or CLI. Never teach a concept *through* a tool: walking the reader through one SDK's method calls explains that SDK, not the concept. If the only material you have is tool-specific (a single SDK's API surface), extract the general truth from it and write *that* as the concept.
+
+**Then show code as illustration, baked in beneath.** Code is welcome and valued; it shows the reader what touching the network actually looks like. But it sits under the explanation as an example, not as the teaching itself. The concept should still stand if you mentally delete every code block.
+
+**Keep the prose lean.** Don't announce code ("here's how you do it in the SDK:"). The heading, the `import` line, and the tab label already say what it is. Don't add balancer asides ("the other SDK also exposes equivalent helpers...") to even things out. Let the code and the tabs speak.
+
+**Show only the examples you're confident in.** When the same operation appears in more than one tool (two SDKs, or an SDK versus the CLI), put the variants in a `<Tabs groupId="sdk">` block so the reader's choice persists across the page. Present only the tools you can show well, with a clean, copy-runnable example. Don't pad a tab in for symmetry, and don't keep a link-only stub ("see the other tool's docs") sitting beside two full examples. A page may stay single-tool, and that is fine. A missing tool is an honest gap for a contributor to fill, not something to paper over.
+
+Parallel alternatives belong in tabs, never in a stray blockquote or a bolted-on "with the CLI" section. Use a shared `groupId="sdk"` and the same tab `value`s on every page so a reader's pick syncs across the whole portal:
 
 ```jsx
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
-  // Evolution example
+  // first SDK example
 </TabItem>
 <TabItem value="mesh" label="Mesh">
-  // Mesh example
+  // second SDK example
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
-  // cardano-cli example
+  // CLI example
 </TabItem>
 </Tabs>
 ```

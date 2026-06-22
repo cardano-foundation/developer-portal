@@ -70,7 +70,7 @@ const balance = await wallet.getBalance()
 const utxos = await wallet.getUtxos()
 ```
 
-`BrowserWallet` also exposes `getUsedAddresses`, `getRewardAddresses`, `getNetworkId`, `signTx`, `signData`, `submitTx`, and the CIP-95 governance methods (`getPubDRepKey`, `getRegisteredPubStakeKeys`). In React, Mesh ships a ready-made `<CardanoWallet />` connect button and hooks (`useWallet`, `useAddress`). See [Mesh React](https://meshjs.dev/react). Full API: [meshjs.dev](https://meshjs.dev/apis/wallets/browserwallet).
+In React, Mesh also ships a ready-made `<CardanoWallet />` connect button and a `useWallet` hook; see [Mesh React](https://meshjs.dev/react).
 
 </TabItem>
 </Tabs>

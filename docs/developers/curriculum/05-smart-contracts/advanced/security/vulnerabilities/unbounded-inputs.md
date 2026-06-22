@@ -23,7 +23,7 @@ The protocol reaches a state where too many UTxOs are supposed to be consumed si
 **Further explanation:**
 Consider the case of a faucet where users are allowed to claim 100 ADA in each transaction. A naive implementation could look like the following:
 
-```rust
+```haskell
 vulnValidator _ _ ctx =
   traceIfFalse "Must return change to script" $ contOutputsValue == (inputsOwnAddressValue - (singleton "" "" 100000000))
   where
