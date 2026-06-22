@@ -42,15 +42,13 @@ You will need a testnet address first, which your wallet or SDK generates ([Keys
 
 ## Block explorers
 
-Inspect your transactions, addresses, and blocks:
+Inspect your transactions, addresses, and blocks at [explorer.cardano.org](https://explorer.cardano.org/), which aggregates the major Cardano explorers and supports deeplinks. Pick the URL for your network:
 
-| Explorer | Mainnet | Preprod | Preview |
-|---|---|---|---|
-| [Cexplorer](https://cexplorer.io) | cexplorer.io | preprod.cexplorer.io | preview.cexplorer.io |
-| [Cardanoscan](https://cardanoscan.io) | cardanoscan.io | preprod.cardanoscan.io | preview.cardanoscan.io |
-| [Adastat](https://adastat.net) | adastat.net | preprod.adastat.net | preview.adastat.net |
-
-[explorer.cardano.org](https://explorer.cardano.org/) links to all of them and supports deeplinks.
+| Network | Explorer |
+|---|---|
+| Mainnet | [explorer.cardano.org](https://explorer.cardano.org/) |
+| Preprod | [explorer.cardano.org/preprod](https://explorer.cardano.org/preprod) |
+| Preview | [explorer.cardano.org/preview](https://explorer.cardano.org/preview) |
 
 ## Using cardano-cli? Set your network
 
