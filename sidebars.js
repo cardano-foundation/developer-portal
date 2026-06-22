@@ -188,6 +188,7 @@ module.exports = {
             "developers/curriculum/dapps/scaffolding",
             "developers/curriculum/dapps/connect-a-wallet",
             "developers/curriculum/dapps/wallet-authentication",
+            "developers/curriculum/dapps/listen-for-payments",
             "developers/curriculum/dapps/defi",
             "developers/curriculum/dapps/defi-kernel",
             {
@@ -249,14 +250,6 @@ module.exports = {
       type: "category",
       label: "Integrations",
       items: [
-        {
-          type: "category",
-          label: "Payments",
-          items: [
-            "developers/integrations/payments/listening-for-payments/overview",
-            "developers/integrations/payments/x402-standard",
-          ],
-        },
         {
           type: "category",
           label: "Internet of Things",

@@ -359,24 +359,24 @@ const redirects = [
     from: ['/docs/integrate-cardano/', '/docs/integrate-cardano/overview'],
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
+    to: '/docs/developers/curriculum/dapps/listen-for-payments',
     from: '/docs/integrate-cardano/listening-for-payments/overview',
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
+    to: '/docs/developers/curriculum/dapps/listen-for-payments',
     from: '/docs/integrate-cardano/listening-for-payments/cardano-cli',
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
+    to: '/docs/developers/curriculum/dapps/listen-for-payments',
     from: '/docs/integrate-cardano/listening-for-payments/cardano-wallet',
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
+    to: '/docs/developers/curriculum/dapps/listen-for-payments',
     from: '/docs/integrate-cardano/listening-for-payments/point-of-sale',
   },
   {
     // Listening for Payments consolidated into one page; per-method guides folded into tabs
-    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
+    to: '/docs/developers/curriculum/dapps/listen-for-payments',
     from: [
       '/docs/build/integrate/payments/listening-for-payments/point-of-sale',
       '/docs/build/integrate/payments/listening-for-payments/cardano-cli',
@@ -384,7 +384,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/integrations/payments/x402-standard',
+    to: '/docs/developers/curriculum/dapps/listen-for-payments',
     from: '/docs/integrate-cardano/x402-standard',
   },
   {
@@ -433,7 +433,7 @@ const redirects = [
     from: '/docs/integrate-cardano/exchange-integrations',
   },
   {
-    to: '/docs/developers/integrations/payments/listening-for-payments/overview',
+    to: '/docs/developers/curriculum/dapps/listen-for-payments',
     from: '/docs/integrate-cardano/listening-for-payments',
   },
   {
@@ -1002,8 +1002,8 @@ const redirects = [
   { to: '/docs/developers/curriculum/dapps/ai-agents/masumi', from: '/docs/build/integrate/ai-agents/masumi' },
   { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/build/integrate/ai-agents/overview' },
   { to: '/docs/developers/integrations/exchange-integrations', from: '/docs/build/integrate/exchange-integrations' },
-  { to: '/docs/developers/integrations/payments/listening-for-payments/overview', from: '/docs/build/integrate/payments/listening-for-payments/overview' },
-  { to: '/docs/developers/integrations/payments/x402-standard', from: '/docs/build/integrate/payments/x402-standard' },
+  { to: '/docs/developers/curriculum/dapps/listen-for-payments', from: '/docs/build/integrate/payments/listening-for-payments/overview' },
+  { to: '/docs/developers/curriculum/dapps/listen-for-payments', from: '/docs/build/integrate/payments/x402-standard' },
   { to: '/docs/operators/basics/cardano-key-pairs', from: '/docs/operate-a-stake-pool/basics/cardano-key-pairs' },
   { to: '/docs/operators/basics/consensus-staking', from: '/docs/operate-a-stake-pool/basics/consensus-staking' },
   { to: '/docs/operators/basics/hardware-requirements', from: '/docs/operate-a-stake-pool/basics/hardware-requirements' },

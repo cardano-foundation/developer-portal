@@ -1,7 +1,7 @@
 ---
-id: overview
+id: listen-for-payments
 title: Listening for ada payments
-sidebar_label: Listening for Payments
+sidebar_label: Listen for payments
 description: Detect and confirm ada payments in your application, using Blockfrost, cardano-cli, or cardano-wallet.
 image: /img/og/og-developer-portal.png
 ---
@@ -24,6 +24,8 @@ Every method follows the same loop:
 ![Payment flow](/img/integrate-cardano/ada-online-shop.png)
 
 The only thing that differs between methods is *how you read the chain*: a hosted API, your own node via cardano-cli, or a cardano-wallet service. Start with Blockfrost unless you already run your own infrastructure.
+
+Cardano's read APIs don't push events, so every method here **polls** on an interval. In production you can replace the loop with a provider **webhook** (for example [Blockfrost webhooks](https://blockfrost.dev/docs/start-building/webhooks/)) that calls your backend when a matching transaction lands.
 
 ## Detecting a payment
 
@@ -109,7 +111,7 @@ Use a dedicated wallet per order, or derive fresh addresses, so balances map cle
 </Tabs>
 
 :::tip Wait for confirmations
-A transaction in the mempool can still be rolled back. For anything valuable, wait a few blocks before treating a payment as final.
+A transaction in the mempool can still be rolled back. Cardano produces a block roughly every 20 seconds, so for anything valuable, wait several blocks (a few minutes) before treating a payment as final; the larger the amount, the deeper you should wait.
 :::
 
 ## Use cases

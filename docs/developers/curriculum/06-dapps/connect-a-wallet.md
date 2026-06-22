@@ -178,5 +178,5 @@ Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** le
 
 - [Sign in with wallet](/docs/developers/curriculum/dapps/wallet-authentication): passwordless authentication with CIP-8 message signing
 - [Keys & Wallets](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys): the key model behind wallets, and creating wallets in backend code
-- [Detect incoming payments](/docs/developers/integrations/payments/listening-for-payments/overview): confirm ADA payments to an address
+- [Detect incoming payments](/docs/developers/curriculum/dapps/listen-for-payments): confirm ADA payments to an address
 - [DeFi on Cardano](/docs/developers/curriculum/dapps/defi): what users do once they're connected
