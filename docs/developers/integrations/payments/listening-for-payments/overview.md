@@ -28,7 +28,7 @@ The only thing that differs between methods is *how you read the chain*: a hoste
 ## Detecting a payment
 
 <Tabs groupId="method">
-<TabItem value="blockfrost" label="Blockfrost (recommended)">
+<TabItem value="blockfrost" label="Blockfrost">
 
 [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost/overview) serves chain data over HTTP, so there is no node to run. Query the address total and poll until the received sum covers the expected amount:
 
