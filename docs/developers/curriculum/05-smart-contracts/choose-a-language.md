@@ -100,7 +100,7 @@ Every script declares its budget up front, and there are per-transaction and per
 1. **Feasibility**: a validator that exceeds the per-transaction limit simply can't be used; you must optimize or restructure.
 2. **Cost**: higher ExUnits mean higher fees for your users, and a transaction that eats more of the per-block budget leaves room for fewer others.
 
-This is the concrete reason "smaller, faster scripts" matters, and why Aiken's efficient output is a practical advantage. For tuning, see [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization).
+This is the concrete reason "smaller, faster scripts" matters, and why Aiken's efficient output is a practical advantage. For tuning your own validator, see [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization); to compare how different compilers' UPLC output actually performs on shared benchmarks, see [UPLC-CAPE](https://github.com/IntersectMBO/UPLC-CAPE), an IntersectMBO framework that measures CPU units, memory units, and script size across compilers and publishes [live reports](https://intersectmbo.github.io/UPLC-CAPE/).
 
 ## Blueprints: the contract's interface
 
