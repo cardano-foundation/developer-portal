@@ -187,6 +187,9 @@ A DRep credential can also be a script hash instead of a key hash. The flow mirr
 
 For a **simple-script (multisig) DRep**, write a native script (for example `type: atLeast` over the members' DRep key hashes), hash it for the DRep ID, and register against that script hash:
 
+<Tabs groupId="sdk">
+<TabItem value="cli" label="cardano-cli" default>
+
 ```bash
 cardano-cli hash script --script-file drep-multisig.json --out-file drep-multisig.id
 
@@ -210,6 +213,9 @@ cardano-cli latest transaction build \
 ```
 
 Only the payment key signs; script validity comes from the redeemer, not a DRep key signature.
+
+</TabItem>
+</Tabs>
 
 ## Delegate your vote
 

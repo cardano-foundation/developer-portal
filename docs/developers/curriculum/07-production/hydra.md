@@ -6,6 +6,9 @@ description: Hydra is Cardano's Layer 2, a state channel where a known set of pa
 image: /img/og/og-developer-portal.png
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Hydra is a Layer 2 scaling solution for Cardano that enables near-instant, low-cost transactions between participants. It operates as a **state channel**: a temporary off-chain ledger where a known set of parties transact thousands of times per second while keeping the security guarantees of the Cardano main chain (Layer 1).
 
 Inside a Hydra Head, transactions use the same format as Cardano Layer 1. **Fees are zero**, confirmation is instant (limited only by network latency between participants), and all parties must agree on every state transition.
@@ -60,6 +63,9 @@ The off-chain flow uses `@meshsdk/hydra`. The condensed happy path is below; the
 
 ### Connect, initialize, commit
 
+<Tabs groupId="sdk">
+<TabItem value="mesh" label="Mesh" default>
+
 ```ts
 import { HydraProvider, HydraInstance } from "@meshsdk/hydra";
 import { BlockfrostProvider } from "@meshsdk/core";
@@ -77,9 +83,15 @@ const signedCommit = await wallet.signTx(commitTx, true, false); // partial sign
 await wallet.submitTx(signedCommit);                              // -> "HeadIsOpen" once all commit
 ```
 
+</TabItem>
+</Tabs>
+
 ### Transact on Layer 2
 
 Once the Head is open, build with `MeshTxBuilder` using `isHydra: true` and the Head's (zero-fee) protocol parameters. `submitTx` goes to the Head, not Layer 1:
+
+<Tabs groupId="sdk">
+<TabItem value="mesh" label="Mesh" default>
 
 ```ts
 import { MeshTxBuilder } from "@meshsdk/core";
@@ -99,15 +111,24 @@ const signedTx = await wallet.signTx(unsignedTx, false);
 await hydraProvider.submitTx(signedTx);   // instant, zero-fee; emits "TxValid" / "SnapshotConfirmed"
 ```
 
+</TabItem>
+</Tabs>
+
 Submit as many transactions as you need; each confirmed one updates the shared state via a new signed snapshot.
 
 ### Close and fanout
+
+<Tabs groupId="sdk">
+<TabItem value="mesh" label="Mesh" default>
 
 ```ts
 await hydraProvider.close();   // posts the latest snapshot to L1, starts the contestation period
 // on "ReadyToFanout":
 await hydraProvider.fanout();  // distributes final balances back to L1 -> "HeadIsFinalized"
 ```
+
+</TabItem>
+</Tabs>
 
 `close()` posts the final state on-chain and opens a contestation window (any participant can dispute with a newer snapshot). After it passes, `fanout()` returns funds to their Layer 1 addresses.
 
