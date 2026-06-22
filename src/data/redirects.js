@@ -506,8 +506,9 @@ const redirects = [
   },
   // Smart Contract Vulnerabilities → Security section redirects
   {
-    to: '/docs/developers/curriculum/smart-contracts/advanced/security/overview',
+    to: '/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview',
     from: [
+      '/docs/developers/curriculum/smart-contracts/advanced/security/overview',
       '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/overview',
       '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/mlabs-common-vulnerabilities/overview',
       '/docs/build/smart-contracts/advanced/smart-contract-vulnerabilities/mesh-bad-contracts/overview',
@@ -989,7 +990,8 @@ const redirects = [
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/validity-range-normalization', from: '/docs/build/smart-contracts/advanced/design-patterns/validity-range-normalization' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/optimization', from: '/docs/build/smart-contracts/advanced/optimization' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/security/ctf', from: '/docs/build/smart-contracts/advanced/security/ctf' },
-  { to: '/docs/developers/curriculum/smart-contracts/advanced/security/overview', from: '/docs/build/smart-contracts/advanced/security/overview' },
+  { to: '/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview', from: '/docs/build/smart-contracts/advanced/security/overview' },
+  { to: '/docs/developers/curriculum/smart-contracts/advanced/security/formal-verification', from: '/docs/developers/curriculum/smart-contracts/formal-verification' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/arbitrary-datum', from: '/docs/build/smart-contracts/advanced/security/vulnerabilities/arbitrary-datum' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/cheap-spam', from: '/docs/build/smart-contracts/advanced/security/vulnerabilities/cheap-spam' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction', from: '/docs/build/smart-contracts/advanced/security/vulnerabilities/double-satisfaction' },

@@ -467,7 +467,7 @@ function SmartContractsSection() {
                 <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/contracts-library")}>
                   Examples
                 </Link>
-                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/overview")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview")}>
                   Security
                 </Link>
               </div>

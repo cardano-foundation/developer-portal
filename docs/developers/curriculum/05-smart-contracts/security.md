@@ -55,7 +55,7 @@ On Ethereum, tokens are smart contracts (ERC-20), and every token contract is it
 
 ## Vulnerabilities you still have to guard against
 
-The platform removes some attacks; the rest are your responsibility. These are the big ones, each has a deep-dive in the [vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/overview).
+The platform removes some attacks; the rest are your responsibility. These are the big ones, each has a deep-dive in the [vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview).
 
 ### Datum hijacking
 
@@ -140,6 +140,6 @@ Defense in depth, from cheapest to strongest:
 
 ## Next steps
 
-- [Vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/overview): the full catalog with deep-dives
+- [Vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview): the full catalog with deep-dives
 - [Smart Contract CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf): practice exploiting and fixing vulnerable validators
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): build the test suite that catches these before deployment

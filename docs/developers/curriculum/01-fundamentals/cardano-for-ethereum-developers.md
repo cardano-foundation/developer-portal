@@ -686,7 +686,7 @@ Ethereum's `mapping(address => uint)` has no direct equivalent. Instead, you use
 
 ### Smart Contract Security
 
-The eUTxO model has its own security considerations that differ from account-based systems. [Smart Contract Vulnerabilities](/docs/developers/curriculum/smart-contracts/advanced/security/overview) serves as a reference for common issues and mitigations.
+The eUTxO model has its own security considerations that differ from account-based systems. [Smart Contract Vulnerabilities](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview) serves as a reference for common issues and mitigations.
 
 **Example: Double Satisfaction**
 

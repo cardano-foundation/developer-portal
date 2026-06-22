@@ -107,32 +107,6 @@ module.exports = {
             "developers/curriculum/smart-contracts/write-a-validator",
             "developers/curriculum/smart-contracts/lock-and-spend",
             "developers/curriculum/smart-contracts/testing",
-            "developers/curriculum/smart-contracts/formal-verification",
-            {
-              type: "category",
-              label: "Design Patterns",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/smart-contracts/advanced/design-patterns/overview",
-              },
-              items: [
-                "developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator",
-                "developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers",
-                "developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter",
-                "developers/curriculum/smart-contracts/advanced/design-patterns/validity-range-normalization",
-                "developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator",
-                "developers/curriculum/smart-contracts/advanced/design-patterns/parameter-validation",
-                "developers/curriculum/smart-contracts/advanced/design-patterns/linked-list",
-                {
-                  type: "category",
-                  label: "Data Structures",
-                  items: [
-                    "developers/curriculum/smart-contracts/advanced/design-patterns/merkle-tree",
-                    "developers/curriculum/smart-contracts/advanced/design-patterns/trie",
-                  ],
-                },
-              ],
-            },
             "developers/curriculum/smart-contracts/contracts-library",
             {
               type: "category",
@@ -142,10 +116,13 @@ module.exports = {
                 id: "developers/curriculum/smart-contracts/security",
               },
               items: [
-                "developers/curriculum/smart-contracts/advanced/security/overview",
                 {
                   type: "category",
                   label: "Vulnerabilities",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview",
+                  },
                   items: [
                     "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction",
                     "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication",
@@ -164,12 +141,38 @@ module.exports = {
                   ],
                 },
                 "developers/curriculum/smart-contracts/advanced/security/ctf",
+                "developers/curriculum/smart-contracts/advanced/security/formal-verification",
               ],
             },
             {
               type: "category",
               label: "Advanced",
               items: [
+                {
+                  type: "category",
+                  label: "Design Patterns",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/smart-contracts/advanced/design-patterns/overview",
+                  },
+                  items: [
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/validity-range-normalization",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/parameter-validation",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/linked-list",
+                    {
+                      type: "category",
+                      label: "Data Structures",
+                      items: [
+                        "developers/curriculum/smart-contracts/advanced/design-patterns/merkle-tree",
+                        "developers/curriculum/smart-contracts/advanced/design-patterns/trie",
+                      ],
+                    },
+                  ],
+                },
                 "developers/curriculum/smart-contracts/advanced/uplc",
                 "developers/curriculum/smart-contracts/advanced/debug-cbor",
                 "developers/curriculum/smart-contracts/advanced/optimization",

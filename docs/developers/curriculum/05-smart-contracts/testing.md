@@ -208,6 +208,6 @@ For the worked example and the SDKs that provide an in-process emulator, see [Pr
 
 ## Next steps
 
-- [Security](/docs/developers/curriculum/smart-contracts/advanced/security/overview): the vulnerability classes your tests should target
+- [Security](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview): the vulnerability classes your tests should target
 - [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): exercise the validator end to end
 - [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): read tested, production-grade validators
