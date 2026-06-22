@@ -88,7 +88,7 @@ const time = Time.slotToUnixTime(50_000_000n, SlotConfig.SLOT_CONFIG_NETWORK.Mai
 </TabItem>
 </Tabs>
 
-Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/smart-contracts/testing#testing-your-off-chain-code)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
+Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/production/development-networks)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
 
 ## Reference inputs and reference scripts
 

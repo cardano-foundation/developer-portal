@@ -197,53 +197,9 @@ If you have written web2 tests, the workflow is familiar. `aiken check` discover
 
 ## Testing your off-chain code
 
-Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too. Evolution ships a **local devnet emulator**: a real Cardano node with Kupo and Ogmios in Docker, millisecond blocks, and pre-funded genesis addresses, so you can run the full build → sign → submit → confirm lifecycle offline with no faucet. Two kinds of test cover it. **Unit tests** exercise the pure parts (datum and schema encoding, address parsing) with no chain at all. **Integration tests** drive the whole lifecycle against the emulator, as below.
+Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too, and it splits into two kinds of test. **Unit tests** exercise the pure parts (datum and schema encoding, address parsing) with no chain at all. **Integration tests** drive the whole build → sign → submit → confirm lifecycle against a [local development network](/docs/developers/curriculum/production/development-networks): you spin a programmatic devnet up inside the test suite, fund a wallet from genesis, submit, and assert on confirmation, with millisecond confirmations and fresh isolated state per run, all offline and with no faucet.
 
-A typical integration test spins the cluster up once, funds a test wallet from genesis, and asserts on confirmation:
-
-```typescript
-import { describe, it, beforeAll, afterAll, expect } from "vitest"
-import { Cluster, Config, Genesis } from "@evolution-sdk/devnet"
-import { Address, Assets, preprod, Client } from "@evolution-sdk/evolution"
-
-let cluster: Cluster.Cluster, client: Client.SigningClient, genesisConfig: any
-
-beforeAll(async () => {
-  const mnemonic = "test test test ... sauce"
-  const addressHex = Address.toHex(await Client.make(preprod).withSeed({ mnemonic, accountIndex: 0 }).address())
-  genesisConfig = { ...Config.DEFAULT_SHELLEY_GENESIS, slotLength: 0.02, initialFunds: { [addressHex]: 10_000_000_000_000 } }
-  cluster = await Cluster.make({
-    clusterName: "test-suite",                 // make this unique to avoid port clashes in parallel runs
-    ports: { node: 3001, submit: 3002 },
-    shelleyGenesis: genesisConfig,
-    kupo: { enabled: true, port: 1442 },
-    ogmios: { enabled: true, port: 1337 },
-  })
-  await Cluster.start(cluster)
-  client = Client.make(preprod)
-    .withKupmios({ kupoUrl: "http://localhost:1442", ogmiosUrl: "http://localhost:1337" })
-    .withSeed({ mnemonic, accountIndex: 0 })
-}, 180_000)   // cluster startup needs a generous timeout
-
-afterAll(async () => { await Cluster.stop(cluster); await Cluster.remove(cluster) }, 60_000)
-
-it("submits a payment", async () => {
-  // genesis UTXOs aren't Kupo-indexed, pass them explicitly on the first transaction
-  const genesisUtxos = await Genesis.calculateUtxosFromConfig(genesisConfig)
-  const tx = await client
-    .newTx()
-    .payToAddress({ address: Address.fromBech32("addr_test1..."), assets: Assets.fromLovelace(5_000_000n) })
-    .build({ availableUtxos: genesisUtxos })
-  const txHash = await (await tx.sign()).submit()
-  expect(await client.awaitTx(txHash, 1000)).toBe(true)
-})
-```
-
-The emulator beats a public testnet for tests: millisecond confirmations, fresh isolated state per run, no faucet, works offline. The two gotchas are the generous startup timeout and that genesis UTXOs must be passed via `build({ availableUtxos })` until they're spent (after which outputs are indexed normally).
-
-The example above covers the essentials; for the full devnet reference — genesis configuration, protocol parameters, and cluster lifecycle — see the [Evolution SDK devnet docs](https://intersectmbo.github.io/evolution-sdk/docs/devnet/getting-started/).
-
-For a **standalone local network** outside your test suite, a persistent chain you can point a frontend or `cardano-cli` at, with an indexer and a Blockfrost-compatible API, see [Local Development Networks](/docs/developers/curriculum/production/development-networks/overview) (Yaci DevKit and cardano-testnet).
+For the worked example and the SDKs that provide an in-process emulator, see [Programmatic devnets](/docs/developers/curriculum/production/development-networks#programmatic-devnets).
 
 ## Beyond unit tests
 

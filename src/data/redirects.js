@@ -247,15 +247,15 @@ const redirects = [
     from: '/docs/integrate-cardano/testnet-faucet',
   },
   {
-    to: '/docs/developers/curriculum/production/development-networks/overview',
+    to: '/docs/developers/curriculum/production/development-networks',
     from: '/docs/get-started/development-networks',
   },
   {
-    to: '/docs/developers/curriculum/production/development-networks/yaci-devkit',
+    to: '/docs/developers/curriculum/production/development-networks',
     from: '/docs/get-started/yaci-devkit',
   },
   {
-    to: '/docs/developers/curriculum/production/development-networks/cardano-testnet',
+    to: '/docs/developers/curriculum/production/development-networks',
     from: '/docs/get-started/cardano-testnet',
   },
   {
@@ -966,8 +966,8 @@ const redirects = [
   { to: '/docs/developers/curriculum/production/api-providers/ogmios', from: '/docs/get-started/infrastructure/api-providers/ogmios' },
   { to: '/docs/developers/curriculum/production/api-providers/overview', from: '/docs/get-started/infrastructure/api-providers/overview' },
   { to: '/docs/developers/curriculum/production/demeter', from: '/docs/get-started/infrastructure/demeter' },
-  { to: '/docs/developers/curriculum/production/development-networks/cardano-testnet', from: '/docs/get-started/networks/development-networks/cardano-testnet' },
-  { to: '/docs/developers/curriculum/production/development-networks/yaci-devkit', from: '/docs/get-started/networks/development-networks/yaci-devkit' },
+  { to: '/docs/developers/curriculum/production/development-networks', from: '/docs/get-started/networks/development-networks/cardano-testnet' },
+  { to: '/docs/developers/curriculum/production/development-networks', from: '/docs/get-started/networks/development-networks/yaci-devkit' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/debug-cbor', from: '/docs/build/smart-contracts/advanced/debug-cbor' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list', from: '/docs/build/smart-contracts/advanced/design-patterns/linked-list' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator', from: '/docs/build/smart-contracts/advanced/design-patterns/merkelized-validator' },

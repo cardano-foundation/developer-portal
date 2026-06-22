@@ -96,7 +96,7 @@ graph LR
     style Mainnet fill:#4CAF50,color:#fff
 ```
 
-**Preview** receives protocol upgrades first (1-day epochs), best for testing new features. **Preprod** mirrors mainnet (5-day epochs, same parameters), the final rehearsal before mainnet. For the fastest loop, run a **local devnet** (Yaci DevKit or cardano-testnet, see [local development networks](/docs/developers/curriculum/production/development-networks/overview)). Get test ADA and explorer links from [Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada).
+**Preview** receives protocol upgrades first (1-day epochs), best for testing new features. **Preprod** mirrors mainnet (5-day epochs, same parameters), the final rehearsal before mainnet. For the fastest loop, run a **local devnet** (Yaci DevKit or cardano-testnet, see [local development networks](/docs/developers/curriculum/production/development-networks)). Get test ADA and explorer links from [Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada).
 
 ## Choosing your stack
 

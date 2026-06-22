@@ -241,18 +241,7 @@ module.exports = {
               ],
             },
             "developers/curriculum/production/run-your-own-node",
-            {
-              type: "category",
-              label: "Local Development Networks",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/production/development-networks/overview",
-              },
-              items: [
-                "developers/curriculum/production/development-networks/yaci-devkit",
-                "developers/curriculum/production/development-networks/cardano-testnet",
-              ],
-            },
+            "developers/curriculum/production/development-networks",
             "developers/curriculum/production/demeter",
             "developers/curriculum/production/hydra",
           ],
