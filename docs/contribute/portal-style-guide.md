@@ -530,6 +530,16 @@ Parallel alternatives belong in tabs, never in a stray blockquote or a bolted-on
 </Tabs>
 ```
 
+## Explaining a system or component
+
+When a page maps a system, a protocol, or a multi-part component, a few habits keep it readable as the content gets dense:
+
+- **Lead with a diagram.** Show the shape before the prose, so the reader has a frame to hang the details on.
+- **Keep sections the same weight.** A predictable rhythm makes dense material scannable; avoid a twenty-line section sitting next to a two-line one.
+- **For each part, say what it is, why it matters, and where it sits**, in that order. Position in the system is as important as the definition.
+- **Name the concrete component, but separate the concept from its implementation.** "The consensus layer, implemented by `ouroboros-consensus`" is clearer than treating the package as the concept, and it stays true across implementations.
+- **Define a part by what it does NOT do.** "The ledger does not know about the network" draws the boundary, which is often exactly what a reader is unsure about.
+
 ## Video embedding
 
 Use this code to embed YouTube videos:

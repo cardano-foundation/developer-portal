@@ -51,10 +51,10 @@ Use Demeter when you:
 - Prefer pay-as-you-go over self-hosting
 - Build applications or prototypes requiring full service access
 
-For complete infrastructure control or stake pool operations, [run your own node](/docs/developers/curriculum/fundamentals/cardano-components) instead.
+For complete infrastructure control or stake pool operations, [run your own node](/docs/developers/curriculum/production/run-your-own-node) instead.
 
 ## Getting started
 
 Visit [demeter.run](https://demeter.run) to create an account. See their [documentation](https://docs.demeter.run) for service setup and integration guides.
 
-**Compare with**: [API Providers](/docs/developers/curriculum/production/api-providers/overview) or [Running your own node](/docs/developers/curriculum/fundamentals/cardano-components)
+**Compare with**: [API Providers](/docs/developers/curriculum/production/api-providers/overview) or [Running your own node](/docs/developers/curriculum/production/run-your-own-node)

@@ -2,56 +2,50 @@
 id: cardano-components
 title: Cardano Architecture
 sidebar_label: Cardano Architecture
-description: How Cardano is structured — the node internals, supporting tools, network topology, and consensus model.
+description: The four layers that make up Cardano (ledger, consensus, networking, scripting), the reference node that implements them, and the eras the chain has moved through.
 image: /img/og/og-getstarted-cardano-components.png
 ---
 
-Cardano is a layered, formally specified blockchain. Each layer has a clear responsibility, and the boundaries between them are defined in mathematical specifications before a line of code is written. This page explains how those layers fit together, what software implements them, and how the network is organized.
+Cardano is a layered, formally specified blockchain. Its architecture is **four layers**, each with one responsibility and a boundary defined in a mathematical specification before any code is written: the **ledger** (the rules), **consensus** (agreeing which block comes next), **networking** (moving blocks and transactions between nodes), and **scripting** (on-chain computation). Those layers are the architecture, defined independently of how anyone builds them, so every Cardano node shares the same four. The reference implementation almost everyone runs is `cardano-node`, and this page uses it to make each layer concrete.
 
-## The software stack
+## The four layers
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                   Applications                      │
-│        (dApps, wallets, explorers, SPO tools)       │
-├─────────────────┬───────────────────────────────────┤
-│   cardano-cli   │  cardano-tracer  │    Mithril     │
-├─────────────────┴───────────────────────────────────┤
-│                   cardano-node                      │
-│  ┌────────────┐ ┌────────────┐ ┌──────────────────┐ │
-│  │   Ledger   │ │ Consensus  │ │   Networking     │ │
-│  │ (cardano-  │ │(ouroboros- │ │ (ouroboros-      │ │
-│  │  ledger)   │ │ consensus) │ │  network)        │ │
-│  └────────────┘ └────────────┘ └──────────────────┘ │
-│  ┌──────────────────────────────────────────────┐   │
-│  │       Scripting layer (Plutus Core)          │   │
-│  └──────────────────────────────────────────────┘   │
-├─────────────────────────────────────────────────────┤
-│            Local chain storage (LedgerDB)           │
-└─────────────────────────────────────────────────────┘
+                    Applications
+            your dApp, wallets, explorers
+                         │
+          reached through CLIs, SDKs, and APIs
+                         │
+   ┌──────────────────────────────────────────────────┐
+   │   A Cardano node    (reference: cardano-node)     │
+   │                                                    │
+   │   Ledger       the rules: UTXOs, scripts,          │
+   │                protocol parameters, governance     │
+   │   Consensus    Ouroboros: which block comes next   │
+   │   Networking   propagating blocks and transactions │
+   │   Scripting    on-chain computation (Plutus Core)  │
+   └──────────────────────────────────────────────────┘
 ```
 
-## cardano-node
+These four layers are the architecture. They are defined in formal specifications independently of any implementation, so every Cardano node has the same four. [`cardano-node`](https://github.com/IntersectMBO/cardano-node) (Haskell) is the reference implementation almost everyone runs: it bundles the layers into one process that keeps a copy of the chain, validates blocks and transactions, takes part in consensus, and talks to other nodes. Relays, block producers, and full-node wallets all run it. You don't drive these layers directly; you reach the chain through CLIs, SDKs, and APIs (see [Production infrastructure](/docs/developers/curriculum/production/infrastructure) for the developer stack).
 
-[`cardano-node`](https://github.com/IntersectMBO/cardano-node) is the core process. It maintains a copy of the chain, validates blocks and transactions, participates in the consensus protocol, and communicates with other nodes on the network. Every participant in the Cardano network — relays, block producers, and full-node wallets — runs `cardano-node`.
-
-The node is composed of four internal layers:
+Each layer is specified and implemented as its own package:
 
 ### Ledger layer
 
-[`cardano-ledger`](https://github.com/IntersectMBO/cardano-ledger) implements the rules of the blockchain: what a valid transaction looks like, how UTXOs are created and consumed, how protocol parameters change, how governance actions are ratified. It is derived directly from formal specifications written in a mathematical notation and machine-checked for correctness.
+The ledger is the rules of the blockchain: what a valid transaction looks like, how UTXOs are created and consumed, how protocol parameters change, how governance actions are ratified. It is derived directly from formal specifications written in a mathematical notation and machine-checked for correctness (reference implementation: [`cardano-ledger`](https://github.com/IntersectMBO/cardano-ledger)).
 
 The ledger does not know about the network or consensus — it is purely a set of state transition rules. Given a current ledger state and a block, it either accepts the block and produces a new state, or rejects it with a specific rule violation.
 
 ### Consensus layer
 
-[`ouroboros-consensus`](https://github.com/IntersectMBO/ouroboros-consensus) implements the Ouroboros family of proof-of-stake protocols. It decides which chain a node considers valid when competing chains exist, handles chain selection under forks, and manages the Hard Fork Combinator — the mechanism that allows Cardano to transition between protocol eras without a disruptive network split.
+The consensus layer runs the Ouroboros family of proof-of-stake protocols. It decides which chain a node considers valid when competing chains exist, handles chain selection under forks, and manages the Hard Fork Combinator, the mechanism that lets Cardano transition between protocol eras without a disruptive network split (reference implementation: [`ouroboros-consensus`](https://github.com/IntersectMBO/ouroboros-consensus)).
 
 The consensus layer sits between the network and the ledger: it receives block candidates from peers, asks the ledger to validate them, and uses the Ouroboros rules to decide which chain to follow.
 
 ### Networking layer
 
-[`ouroboros-network`](https://github.com/IntersectMBO/ouroboros-network) is a typed, multiplexed peer-to-peer networking stack purpose-built for proof-of-stake blockchains. It handles:
+The networking layer is a typed, multiplexed peer-to-peer stack purpose-built for proof-of-stake blockchains (reference implementation: [`ouroboros-network`](https://github.com/IntersectMBO/ouroboros-network)). It handles:
 
 - **Peer discovery and selection** — finding and maintaining connections to peers via P2P topology negotiation
 - **Mini-protocols** — typed request/response protocols for chain sync, block fetch, transaction submission, and local queries
@@ -62,56 +56,21 @@ The networking layer handles peer topology and connection management. Both relay
 
 ### Scripting layer
 
-[`Plutus Core`](https://github.com/IntersectMBO/plutus) is the smart contract execution engine embedded in the ledger. At its core it is a typed lambda calculus — a minimal, formally verified computation model. Smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately compile down to Untyped Plutus Core (UPLC) for on-chain execution.
+The scripting layer is the smart-contract execution engine embedded in the ledger. At its core it is a typed lambda calculus, a minimal formally-verified computation model; smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately compile down to Untyped Plutus Core (UPLC) for on-chain execution (reference implementation: [Plutus Core](https://github.com/IntersectMBO/plutus)).
 
 Execution happens within the ledger layer during transaction validation. Every script execution is bounded by an execution unit budget (CPU steps and memory units) that must be declared in the transaction. The declared budget is consumed during validation; both per-transaction and per-block execution unit limits are enforced by the protocol parameters, preventing unbounded computation.
 
-## Supporting components
+## Tooling around the node
 
-### cardano-cli
+[`cardano-cli`](https://github.com/IntersectMBO/cardano-cli) is the command-line interface to a running node. It connects over a local socket to build, sign, and submit transactions, query chain state (UTXOs, protocol parameters, governance state), and manage keys and certificates. It is not a daemon; it runs a command against the node and exits.
 
-[`cardano-cli`](https://github.com/IntersectMBO/cardano-cli) is the command-line interface for interacting with a running `cardano-node`. It connects to the node via a local Unix socket and provides commands for:
-
-- Building, signing, and submitting transactions
-- Querying chain state (UTxOs, protocol parameters, governance state)
-- Managing keys and certificates
-- Pool registration and governance operations
-
-`cardano-cli` is not a daemon — it runs, executes a command against the node, and exits.
-
-### cardano-tracer
-
-[`cardano-tracer`](https://github.com/IntersectMBO/cardano-node/tree/master/cardano-tracer) is a standalone service that collects trace messages and metrics from one or more nodes. The node forwards structured log events and EKG metrics to the tracer over a socket connection; the tracer handles log storage, rotation, and exposes a Prometheus metrics endpoint. This separation keeps the node focused on consensus and block production, not log management.
-
-### Mithril
-
-[Mithril](https://mithril.network) is a stake-based signature protocol that allows SPOs to collectively certify snapshots of the chain state. A new node bootstrapping from a Mithril snapshot can reach the chain tip in minutes rather than hours. SPOs participate as Mithril signers; the Mithril aggregator collects signatures and produces certificates. The chain database portion of the snapshot is certified by a threshold of stake. The ledger state snapshot (ancillary data) is signed separately by IOG's ancillary key, so that portion requires trusting IOG.
-
-### DB Sync
-
-[`cardano-db-sync`](https://github.com/IntersectMBO/cardano-db-sync) is an optional component that follows the chain and writes all block and transaction data into a PostgreSQL database. It is not required to run a node or a stake pool — stake pools do not normally run it — but is commonly used by explorers, analytics tools, and applications that need rich SQL queries over chain data.
+A few other components sit *around* the node rather than inside it: **cardano-tracer** collects the node's logs and Prometheus metrics, **[Mithril](/docs/operators/operator-tools/mithril)** lets a fresh node bootstrap to the chain tip in minutes from a stake-certified snapshot, and **[cardano-db-sync](/docs/developers/curriculum/production/infrastructure#chain-indexers)** indexes the whole chain into PostgreSQL for rich SQL queries. These are operational and indexing concerns, documented where you would actually reach for them.
 
 ## Network topology
 
-```
-                        Internet
-                           │
-            ┌──────────────┼──────────────┐
-            │              │              │
-         Relay 1        Relay 2        Relay N
-       (public IP)    (public IP)    (public IP)
-            │              │              │
-            └──────────────┼──────────────┘
-                           │
-                    Block Producer
-                    (no public IP)
-```
+The network is made of two kinds of node. **Relays** are public-facing: they accept connections from any peer and propagate blocks and transactions. **Block producers** forge new blocks and stay isolated behind their own relays, never exposed directly to the network. P2P topology is negotiated automatically, so nodes discover and maintain peers without hand-maintained lists.
 
-**Relays** accept inbound connections from any peer on the network. They propagate transactions and blocks between the broader network and your block producer. A healthy pool runs at least two relays for redundancy and to support the operation of the network as a whole.
-
-**Block producers** connect only to their own relays, never to external peers. This isolates the block producer from direct external exposure. The block producer uses the hot keys needed to forge blocks (KES key and VRF key), but the cold key that authorizes pool registration and key rotation is never used by the block producer.
-
-P2P topology is negotiated automatically since the introduction of P2P networking. Each relay maintains outbound connections to peers discovered via the P2P governor; the block producer's topology is configured to connect only to specific relay addresses.
+Running this topology, hardening a block producer, and managing its keys are operator concerns. See [Network topology](/docs/operators/node/topology) in the operator curriculum for the configuration detail.
 
 ## Ouroboros consensus
 
@@ -149,6 +108,7 @@ The formal specs are public:
 
 ## Further reading
 
-- [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) — how Cardano's transaction model differs from account-based chains
-- [Consensus & Staking](/docs/operators/basics/consensus-staking) — staking and block production from an operator's perspective
-- [Installing cardano-node](/docs/operators/node/installing-cardano-node) — get the software running
+- [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros): how the consensus layer chooses blocks, in depth
+- [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): how the ledger layer tracks ownership
+- [Production infrastructure](/docs/developers/curriculum/production/infrastructure): the developer stack you reach the chain through
+- [Run your own node](/docs/developers/curriculum/production/run-your-own-node): install and run cardano-node yourself

@@ -19,6 +19,7 @@ module.exports = {
           },
           items: [
             "developers/curriculum/fundamentals/what-is-a-blockchain",
+            "developers/curriculum/fundamentals/cardano-components",
             "developers/curriculum/fundamentals/cryptographic-primitives",
             "developers/curriculum/fundamentals/consensus-and-ouroboros",
             {
@@ -36,7 +37,6 @@ module.exports = {
                 "developers/curriculum/fundamentals/core-concepts/fees",
               ],
             },
-            "developers/curriculum/fundamentals/cardano-components",
             "developers/curriculum/fundamentals/cardano-for-ethereum-developers",
           ],
         },
