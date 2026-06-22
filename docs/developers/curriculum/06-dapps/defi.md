@@ -8,7 +8,7 @@ image: /img/og/og-developer-portal.png
 
 Decentralized finance (DeFi) replaces traditional financial intermediaries with smart contract protocols, enabling permissionless trading, lending, and yield generation directly on-chain. For web2 developers, DeFi introduces a paradigm where financial logic lives on-chain, composable like microservices but trustless and permissionless.
 
-This page covers the core DeFi primitives and, more importantly, the specific design challenges and solutions that arise when you build them on Cardano's [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo). The mechanics differ enough from Ethereum that copying an EVM design rarely works directly.
+This page covers the core DeFi primitives and, more importantly, the specific design challenges and solutions that arise when you build them on Cardano's [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo). The mechanics differ enough from Ethereum that copying an EVM design rarely works directly. To see what is already running, browse Cardano's live DeFi apps at [cardano.org/apps](https://cardano.org/apps).
 
 If you build web services, the primitives map onto familiar ones:
 
@@ -30,7 +30,7 @@ DeFi protocols replace intermediaries (banks, brokerages, clearinghouses) with d
 - **Synthetic assets**: on-chain representations of real-world assets
 - **Insurance**: decentralized coverage against smart contract failures
 
-On Cardano this spans DEXes, lending and borrowing protocols, stablecoins, and yield optimizers. For the current set of live protocols, see [cardano.org/apps](https://cardano.org/apps). Each works within the constraints and advantages of eUTXO, which leads to distinctive architectural patterns.
+On Cardano this spans DEXes, lending and borrowing protocols, stablecoins, and yield optimizers. Each works within the constraints and advantages of eUTXO, which leads to distinctive architectural patterns.
 
 :::tip Where Cardano DeFi stands
 For a snapshot of which primitives Cardano already has, partly has, and is still missing, see the [Cardano DeFi map](https://cardanodefi.space/). DeFi composes, so the gaps are open opportunities: ship a missing piece and it snaps into everything already there.
@@ -215,6 +215,18 @@ Composability lets you combine multiple DeFi protocols in a single atomic transa
 
 All atomically: if any step fails, the entire transaction is invalid and no state changes. This is what makes DeFi protocols behave like stackable building blocks.
 
+### DeFi Kernel: a shared standard
+
+Composability works best when protocols agree on a common substrate. [DeFi Kernel](https://defikernel.org/) is an open community standard for exactly that: a single order book the size of the whole chain, where any participant can write an order and any participant can fill it, with no batcher, administrator, or permission required. It is not a DEX or a lending protocol but the neutral layer those can sit on, the way the Linux kernel is for operating systems, so they share one liquidity pool instead of each bootstrapping their own.
+
+A contract is DeFi-Kernel-compatible if it satisfies three properties, with no committee, whitelist, or token gate:
+
+- **Permissionless.** Users sign and submit their own transactions directly to a node. No off-chain operator sits between intent and settlement, so no one can censor a fill or front-run a maker.
+- **Composable.** Every compatible contract publishes its datum schema in the open, so any other contract or wallet can read it and chain transactions across protocols in one signature.
+- **Discoverable.** Orders must be findable by anyone running a node, through beacon tokens, deterministic addresses, or another on-chain tagging mechanism. The UTxO set itself is the order book, with no central indexer to trust.
+
+Conform to the rules and your contract inherits the ecosystem's liquidity, users, and tooling on day one instead of starting from zero. The standard, the brief, and a live registry of compatible contracts (DEX, lending, options, and synthetics) live at [defikernel.org](https://defikernel.org/); to make a contract discoverable, open a pull request against the [DeFi Kernel Registry](https://github.com/DeFiKernel-Cardano/DeFi-Kernel-Registry-for-Cardano) with your script hashes and datum schema.
+
 ## Why flash loans are absent
 
 Flash loans on Ethereum let users borrow with no collateral as long as they repay within the same transaction. Cardano's eUTXO model prevents this because each transaction must balance its inputs and outputs **at construction time**. You cannot "borrow" assets mid-transaction. The EVM can check repayment at the end of sequential execution; a Cardano transaction must be fully defined before submission.
@@ -247,7 +259,6 @@ For production-grade, open-source reference implementations of these patterns, s
 
 ## Next steps
 
-- [DeFi Kernel](/docs/developers/curriculum/dapps/defi-kernel): the open standard for sharing one chain-wide order book across protocols
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): let users interact with your protocol from the browser
 - [Oracles](/docs/developers/curriculum/dapps/oracles/overview): the price-feed infrastructure DeFi depends on
 - [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the attack classes (double satisfaction, contention) that hit DeFi hardest

@@ -193,7 +193,6 @@ module.exports = {
             "developers/curriculum/dapps/wallet-authentication",
             "developers/curriculum/dapps/listen-for-payments",
             "developers/curriculum/dapps/defi",
-            "developers/curriculum/dapps/defi-kernel",
             {
               type: "category",
               label: "Oracles",
