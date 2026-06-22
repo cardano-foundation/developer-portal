@@ -193,8 +193,6 @@ test fail_continue_counting_no_ref_input() fail {
 
 The pattern scales cleanly: when you add a validation condition to the contract, you add one boolean to the struct, set it `True` in the success test, and write one new failure test with it `False`.
 
-## How it maps to web2 testing
-
 If you have written web2 tests, the workflow is familiar. `aiken check` discovers and runs every `test` function the way `npm test` or `bun test` does. You build a fake transaction with `mocktail_tx()` and a builder chain, much like assembling a request from a fixture factory. A `test ... fail` marks a test you expect to fail, like `expect(...).toThrow()`, and the boolean-toggle struct shown above plays the role of `test.each()` or table-driven tests, flipping one condition at a time so each test isolates a single failure.
 
 ## Testing your off-chain code

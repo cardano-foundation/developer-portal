@@ -10,6 +10,8 @@ Hydra is a Layer 2 scaling solution for Cardano that enables near-instant, low-c
 
 Inside a Hydra Head, transactions use the same format as Cardano Layer 1. **Fees are zero**, confirmation is instant (limited only by network latency between participants), and all parties must agree on every state transition.
 
+If you have put a Redis cache in front of a Postgres database, the model is familiar: Layer 1 is the durable source of record, and the Head is the fast, temporary layer shared by a known set of participants. Committing funds loads state into that fast layer, the participants transact there with no per-operation cost, and fanout flushes the agreed final state back to Layer 1, with the contestation period acting as a grace window to catch a disagreement before it finalizes. The trade-off is the same as a cache cluster: you pay a Layer 1 cost to open and close the Head, but everything inside is fast and free.
+
 > Runnable end-to-end example (two participants on preprod): [examples/bootcamp/09-hydra](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp/09-hydra).
 
 ## How a Hydra Head works
@@ -108,10 +110,6 @@ await hydraProvider.fanout();  // distributes final balances back to L1 -> "Head
 ```
 
 `close()` posts the final state on-chain and opens a contestation window (any participant can dispute with a newer snapshot). After it passes, `fanout()` returns funds to their Layer 1 addresses.
-
-## Web2 mental model
-
-Think of a Hydra Head as a Redis cache in front of a Postgres database. Layer 1 is the durable source of record, and the Head is a fast, temporary layer shared by a known set of participants. Committing funds loads state into that fast layer, the participants transact there with no per-operation cost, and fanout flushes the agreed final state back to Layer 1, with the contestation period acting as a grace window to catch a disagreement before it finalizes. The trade-off is the same as a cache cluster: you pay a Layer 1 cost to open and close the Head, but everything inside is fast and free.
 
 ## Next steps
 

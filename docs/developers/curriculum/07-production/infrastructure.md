@@ -8,6 +8,14 @@ image: /img/og/og-developer-portal.png
 
 Every application needs more than business logic: databases, APIs, hosting, monitoring, and staging environments. Cardano is no different. This page maps the developer infrastructure stack, from running your own full node to using managed API services, and helps you choose based on your needs for decentralization, performance, cost, and convenience.
 
+If you have run web infrastructure, the stack maps onto things you know:
+
+- **cardano-node is running your own database server**: full control, full operational commitment (backups, updates, monitoring).
+- **Blockfrost / Koios / Maestro are managed database services**: the Cardano equivalent of RDS, PlanetScale, or Supabase. Trade some control for operational simplicity.
+- **Ogmios is a database driver**: it translates the node's wire protocol into a developer-friendly interface, like `pg` for PostgreSQL.
+- **Indexers are materialized views / read replicas**: db-sync is a full materialized view of the chain; Kupo is a targeted one for the UTXOs you care about.
+- **Testnets are staging environments**, and the **faucet is Stripe test mode**: valueless ADA to exercise your flows.
+
 ## The stack
 
 The Cardano developer stack has five layers. Each serves a distinct purpose, and you pick your stack per layer.
@@ -111,14 +119,6 @@ graph TD
     Q -->|Enterprise SLA| MA[Maestro dedicated]
     style Q fill:#FF9800,color:#fff
 ```
-
-## Web2 analogy
-
-- **cardano-node is running your own database server**: full control, full operational commitment (backups, updates, monitoring).
-- **Blockfrost / Koios / Maestro are managed database services**: the Cardano equivalent of RDS, PlanetScale, or Supabase. Trade some control for operational simplicity.
-- **Ogmios is a database driver**: it translates the node's wire protocol into a developer-friendly interface, like `pg` for PostgreSQL.
-- **Indexers are materialized views / read replicas**: db-sync is a full materialized view of the chain; Kupo is a targeted one for the UTXOs you care about.
-- **Testnets are staging environments**, and the **faucet is Stripe test mode**: valueless ADA to exercise your flows.
 
 ## Key takeaways
 

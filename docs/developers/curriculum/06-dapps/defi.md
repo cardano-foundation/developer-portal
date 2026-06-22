@@ -10,6 +10,15 @@ Decentralized finance (DeFi) replaces traditional financial intermediaries with 
 
 This page covers the core DeFi primitives and, more importantly, the specific design challenges and solutions that arise when you build them on Cardano's [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo). The mechanics differ enough from Ethereum that copying an EVM design rarely works directly.
 
+If you build web services, the primitives map onto familiar ones:
+
+- **DEXes are stock-exchange matching engines**, except the matching logic is public, anyone can be a market maker, and there's no broker between you and the market.
+- **Liquidity pools are connection pools.** A connection pool keeps pre-established DB connections many requests share; a liquidity pool keeps reserves many traders swap against. Size it wrong and you get congestion (high slippage) or underutilization (low LP returns).
+- **Oracles are API aggregators.** Like querying five price APIs, discarding outliers, and taking the median, but solved for trustlessness.
+- **Order batching is batch processing in a message queue.** A consumer (batcher) collects messages (orders), processes them in bulk, and writes results back: SQS + Lambda, with atomicity.
+- **Impermanent loss is the cost of a cache under write-heavy load.** You pre-allocate liquidity to serve trades efficiently, but if prices move fast, rebalancing costs exceed the benefit.
+- **Composability is Unix pipes**: `grep | sort | uniq`, except every stage either fully succeeds or fully rolls back.
+
 ## The DeFi landscape
 
 DeFi protocols replace intermediaries (banks, brokerages, clearinghouses) with deterministic smart contracts. Each intermediary removed eliminates a fee, reduces latency, and removes a trust requirement. The ecosystem spans several categories:
@@ -227,15 +236,6 @@ The primitives above (AMMs, oracles, order batching, composability) combine into
 - **Cross-chain bridges.** Lock assets on the source chain and mint wrapped equivalents on the target (burn-to-unlock in reverse), with a multisig guardian set attesting to each transfer. Bridges depend on off-chain infrastructure and trust assumptions beyond a single chain, so treat them as their own design problem.
 
 For production-grade, open-source reference implementations of these patterns, see [Anastasia Labs' dApp repositories](https://github.com/Anastasia-Labs).
-
-## Web2 analogy
-
-- **DEXes are stock-exchange matching engines**, except the matching logic is public, anyone can be a market maker, and there's no broker between you and the market.
-- **Liquidity pools are connection pools.** A connection pool keeps pre-established DB connections many requests share; a liquidity pool keeps reserves many traders swap against. Size it wrong and you get congestion (high slippage) or underutilization (low LP returns).
-- **Oracles are API aggregators.** Like querying five price APIs, discarding outliers, and taking the median, but solved for trustlessness.
-- **Order batching is batch processing in a message queue.** A consumer (batcher) collects messages (orders), processes them in bulk, and writes results back: SQS + Lambda, with atomicity.
-- **Impermanent loss is the cost of a cache under write-heavy load.** You pre-allocate liquidity to serve trades efficiently, but if prices move fast, rebalancing costs exceed the benefit.
-- **Composability is Unix pipes**: `grep | sort | uniq`, except every stage either fully succeeds or fully rolls back.
 
 ## Key takeaways
 

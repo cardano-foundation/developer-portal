@@ -12,6 +12,14 @@ The good news: Cardano's [eUTXO model](/docs/developers/curriculum/fundamentals/
 
 > Network-level threats (51%, long-range, eclipse attacks) target consensus, not your contract. Cardano's Ouroboros protocol defends against those. See [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros). The rest of this page is about application-level security.
 
+Your security instincts transfer directly:
+
+- **Reentrancy is like CSRF**: an action triggered at an unexpected point because origin/state wasn't verified. Cardano eliminates it structurally, the way `SameSite` cookies and CSRF tokens address it on the web.
+- **Datum hijacking is like SQL injection**: manipulated input data changes the meaning of an operation. Both are prevented by validating all data at the boundary; never trust that it's well-formed or authorized.
+- **Double satisfaction is like IDOR (insecure direct object reference)**: referencing someone else's resource to satisfy your own check. Prevention requires ensuring the resource you validate actually belongs to you.
+- **Audits are like penetration testing**: you'd pen-test a web app before launch; you audit a contract before mainnet. The irreversibility makes it even more critical.
+- **Formal verification is type systems on steroids**: not just "is this a number?" but "can this balance ever go negative?", proven for all inputs.
+
 ## What the eUTXO model protects you from
 
 ### Reentrancy is impossible
@@ -122,16 +130,6 @@ Defense in depth, from cheapest to strongest:
 - **Property-based testing** generates thousands of random inputs against invariants like "no transaction can extract more value than was deposited" or "only the owner can withdraw", catching edge cases you'd never enumerate by hand.
 - **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. The major Cardano protocols all undergo multiple audit rounds before launch.
 - **Formal verification** uses mathematical proof that a property holds for *all* inputs. Cardano's own ledger specification is formalized in Agda, and the Haskell/Aiken ecosystem is well-suited to these rigorous techniques.
-
-## Web2 analogy
-
-Your security instincts transfer directly:
-
-- **Reentrancy is like CSRF**: an action triggered at an unexpected point because origin/state wasn't verified. Cardano eliminates it structurally, the way `SameSite` cookies and CSRF tokens address it on the web.
-- **Datum hijacking is like SQL injection**: manipulated input data changes the meaning of an operation. Both are prevented by validating all data at the boundary; never trust that it's well-formed or authorized.
-- **Double satisfaction is like IDOR (insecure direct object reference)**: referencing someone else's resource to satisfy your own check. Prevention requires ensuring the resource you validate actually belongs to you.
-- **Audits are like penetration testing**: you'd pen-test a web app before launch; you audit a contract before mainnet. The irreversibility makes it even more critical.
-- **Formal verification is type systems on steroids**: not just "is this a number?" but "can this balance ever go negative?", proven for all inputs.
 
 ## Key takeaways
 

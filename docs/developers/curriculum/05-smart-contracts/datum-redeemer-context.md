@@ -10,6 +10,15 @@ Every Cardano validator receives exactly three arguments: the **datum** (state l
 
 If the [overview](/docs/developers/curriculum/smart-contracts/overview) gave you the mental model (validators validate, they don't act), this page is the data model that makes it work. We dissect each argument, look at how datums are stored on-chain, see what reference scripts buy you, and survey the design patterns that fall out of this three-argument architecture.
 
+If you build web back-ends, the moving parts map cleanly onto things you already know:
+
+- **Datum is a database row.** It holds structured state for a specific record (the UTXO). Updating state is like DELETE-then-INSERT (consume the old UTXO, create a new one). The validator is the constraint or trigger that checks the update is valid.
+- **Redeemer is an API request body.** Like the JSON body of a POST/PUT, it says what action the client wants and carries the data to do it. `{ "action": "bid", "amount": 500 }` is exactly a `Bid { amount: 500 }` redeemer.
+- **ScriptContext is the request context / middleware.** Like the full HTTP request available to Express or Django middleware: headers (signatures), body (redeemer, inputs), the response being built (outputs), auth (signatories), timing (validity interval). A validator can inspect any aspect of the transaction to decide.
+- **Inline datums are embedded documents (MongoDB).** Moving from datum hashes to inline datums is like moving from a foreign key to embedding the full document. The data is right there, self-contained.
+- **Reference scripts are a shared library on a CDN.** Instead of every transaction bundling the validator, they all reference the same on-chain copy: smaller payloads, single-source updates.
+- **State machines are workflow engines.** Each state (datum) has valid transitions (redeemers), and the engine (validator) enforces the rules, like AWS Step Functions or a Redux reducer.
+
 ## What are the three arguments?
 
 When a transaction tries to spend a UTXO sitting at a script address, the node invokes the validator with three arguments and reads back a single boolean:
@@ -407,15 +416,6 @@ Signatures: Bob's signature
 Both hold, so the validator returns `True` and the transaction is included. If Eve tries to claim early with a validity interval starting before the deadline, the time check returns `False`, the transaction is rejected, and Eve pays nothing. It never made it on-chain.
 
 You can build exactly this flow with an SDK on the [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) page.
-
-## Web2 analogy
-
-- **Datum is a database row.** It holds structured state for a specific record (the UTXO). Updating state is like DELETE-then-INSERT (consume the old UTXO, create a new one). The validator is the constraint or trigger that checks the update is valid.
-- **Redeemer is an API request body.** Like the JSON body of a POST/PUT, it says what action the client wants and carries the data to do it. `{ "action": "bid", "amount": 500 }` is exactly a `Bid { amount: 500 }` redeemer.
-- **ScriptContext is the request context / middleware.** Like the full HTTP request available to Express or Django middleware: headers (signatures), body (redeemer, inputs), the response being built (outputs), auth (signatories), timing (validity interval). A validator can inspect any aspect of the transaction to decide.
-- **Inline datums are embedded documents (MongoDB).** Moving from datum hashes to inline datums is like moving from a foreign key to embedding the full document. The data is right there, self-contained.
-- **Reference scripts are a shared library on a CDN.** Instead of every transaction bundling the validator, they all reference the same on-chain copy: smaller payloads, single-source updates.
-- **State machines are workflow engines.** Each state (datum) has valid transitions (redeemers), and the engine (validator) enforces the rules, like AWS Step Functions or a Redux reducer.
 
 ## Key takeaways
 

@@ -10,6 +10,8 @@ You've [picked a language](/docs/developers/curriculum/smart-contracts/choose-a-
 
 This page covers writing validators in Aiken, the simpler native-script alternative for multisig and time-locks, and the blueprint that connects your validator to off-chain code. The deep treatment of the three arguments a validator receives is in [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context); here we focus on authoring.
 
+If you have written web middleware, this is familiar: a validator is like route middleware or an auth guard, a pure function that returns allow or deny without mutating state. The redeemer is the request body it branches on (`MintToken` vs `BurnToken`), and the blueprint (`plutus.json`) is the contract's OpenAPI spec that tools read to generate a typed client.
+
 > Runnable source: [examples/bootcamp/03-aiken-contracts](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp/03-aiken-contracts). Install Aiken from [aiken-lang.org](https://aiken-lang.org/installation-instructions); scaffold a project with `npx meshjs <name>` and pick the Aiken template.
 
 ## What a validator sees
@@ -183,10 +185,6 @@ When you run `aiken build`, the compiler produces a **[CIP-57](https://cips.card
 ```
 
 From the blueprint, tools generate type-safe off-chain code, the same way you'd generate an API client from an OpenAPI spec. Evolution's blueprint codegen and Mesh both read `plutus.json` to produce a typed client. See the blueprint section of [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language#blueprints-the-contracts-interface).
-
-## Web2 analogy
-
-A validator is like route middleware or an auth guard: a pure function that returns allow or deny without mutating state. The pieces around it map cleanly too. A redeemer is the request body the user submits, and the validator branches on it (`MintToken` vs `BurnToken`). The blueprint (`plutus.json`) is the contract's OpenAPI spec, the single source of truth that tools read to generate a typed client.
 
 ## Key takeaway
 
