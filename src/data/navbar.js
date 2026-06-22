@@ -14,8 +14,8 @@ function getNavbarItems(repository) {
       items: [
         {to: "/docs/developers/", label: "Start Here"},
         {to: "/tools/", label: "Builder Tools"},
+        {to: "/docs/developers/curriculum/start-building/ai-assisted-development", label: "Cardano Dev Skills"},
         {to: "/docs/developers/exchange-integrations", label: "Exchange Integration"},
-        {to: "/docs/developers/curriculum/dapps/iot/", label: "IoT Workshop"},
         {to: "/docs/community/cardano-developer-community/", label: "Community"},
         {to: "/docs/community/funding/", label: "Grants & Funding"},
         {to: "/talent/", label: "Talent Pool"},
@@ -30,8 +30,8 @@ function getNavbarItems(repository) {
             items: [
               {to: '/docs/developers/', label: 'Start Here', description: 'The 7-module developer curriculum, zero to shipping', icon: 'book-solid'},
               {to: '/tools', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'wrench-solid'},
+              {to: '/docs/developers/curriculum/start-building/ai-assisted-development', label: 'Cardano Dev Skills', description: 'Give your AI coding assistant current, authoritative Cardano context', icon: 'plug-solid'},
               {to: '/docs/developers/exchange-integrations', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration for exchanges', icon: 'building-solid'},
-              {to: '/docs/developers/curriculum/dapps/iot/', label: 'IoT Workshop', description: 'Build Cardano-connected embedded devices, hands-on', icon: 'code-solid'},
             ],
           },
           {
