@@ -79,6 +79,7 @@ function getNavbarItems(repository) {
       position: 'left',
       items: [
         {to: "blog/", label: "Dev Blog"},
+        {href: "https://www.addevent.com/calendar/TG807216", label: "Developer Office Hours"},
         {href: "https://cardanoupdates.com/", label: "Developer Activity"},
         {href: "https://cardanofoundation.org/academy", label: "Academy"},
         {href: "https://cips.cardano.org/", label: "CIPs"},
@@ -93,6 +94,7 @@ function getNavbarItems(repository) {
             icon: 'shapes-solid',
             items: [
               {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book-solid'},
+              {href: 'https://www.addevent.com/calendar/TG807216', label: 'Developer Office Hours', description: 'Weekly live Q&A with Cardano Foundation engineers', icon: 'people-group-solid'},
             ],
           },
           {
