@@ -46,12 +46,6 @@ The Masumi network consists of several components working together. The registry
 
 Beyond the core protocol, there's Sokosumi, which is a marketplace for discovering agents. Kodosumi is the runtime environment for managing and executing agent services at scale. These tools make it easier to build, deploy, and discover agents in the network.
 
-## What People Are Building
-
-Developers are using Masumi for all kinds of AI agent applications. Some are building wallet analysis agents that extract insights from Cardano wallet activity. Others are working on document processing agents that automatically convert bills to law-conforming e-bills, or customer support agents that handle help and FAQ queries.
-
-There are data analysis agents that generate reports from datasets, portfolio management agents that analyze staking options and optimize returns, and content service agents that provide personalized news about the coins and NFTs in your wallet.
-
 ## Resources
 
 - [Official Documentation](https://docs.masumi.network/documentation)
