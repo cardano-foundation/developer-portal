@@ -28,15 +28,13 @@ This section walks you through the full lifecycle in order. Follow the steps seq
 
 A minimal stake pool has three machines:
 
-```
-Internet
-   │
-   ├── Relay node 1  (public IP, accepts peer connections)
-   ├── Relay node 2  (public IP, for redundancy)
-   │
-   └── Block producer  (no public IP, connected only to your relays)
-
-Air-gapped machine  (never online — used only for cold key operations)
+```mermaid
+flowchart TD
+    NET["Internet"] --> R1["Relay node 1<br/>public IP, accepts peer connections"]
+    NET --> R2["Relay node 2<br/>public IP, for redundancy"]
+    R1 --> BP["Block producer<br/>no public IP, connected only to your relays"]
+    R2 --> BP
+    AG["Air-gapped machine<br/>never online, cold-key operations only"]
 ```
 
 The block producer holds your hot KES and VRF keys and mints blocks. Your cold key — the one that authorizes pool registration and rotation — stays on the air-gapped machine and never touches any networked computer.

@@ -16,11 +16,9 @@ This page describes the workflow pattern that enforces that rule: build transact
 
 ## The three-step pattern
 
-```
-Online machine          Air-gapped machine       Online machine
-─────────────          ─────────────────        ─────────────
-query + build   ──►    review + sign     ──►    submit
-(unsigned tx)          (signed tx)
+```mermaid
+flowchart LR
+    A["Online machine<br/>query + build<br/>(unsigned tx)"] --> B["Air-gapped machine<br/>review + sign<br/>(signed tx)"] --> C["Online machine<br/>submit"]
 ```
 
 1. **Build** — on your online node, query the chain and build an unsigned transaction. No key required.

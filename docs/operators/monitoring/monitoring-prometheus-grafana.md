@@ -14,13 +14,12 @@ This guide covers **Node 10.2 and later**, which uses the new tracing system by 
 
 ## Architecture
 
-```
-  relay-1 ──┐
-             │  (Unix socket over SSH tunnel)
-  relay-2 ──┼──► cardano-tracer ──► Prometheus ──► Grafana
-             │        │
-  block-producer ─────┘        exposes /metrics
-                                per node
+```mermaid
+flowchart LR
+    R1["relay-1"] -->|"Unix socket over SSH tunnel"| TRACER
+    R2["relay-2"] --> TRACER
+    BP["block-producer"] --> TRACER
+    TRACER["cardano-tracer<br/>exposes /metrics per node"] --> PROM["Prometheus"] --> GRAF["Grafana"]
 ```
 
 `cardano-tracer` acts as an aggregator: one process collects traces and metrics from all your nodes, and exposes them via a single Prometheus HTTP endpoint. Prometheus scrapes that endpoint, and Grafana queries Prometheus.

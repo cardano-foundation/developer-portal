@@ -100,19 +100,23 @@ For further node-side configuration explanations, refer to the [New Tracing Syst
 
 This is an example with 3 nodes and one `cardano-tracer`:
 
-```
-machine A            machine B            machine C
-+-----------------+  +-----------------+  +-----------------+
-| node 1          |  | node 2          |  | node 3          |
-+-----------------+  +-----------------+  +-----------------+
-                ^             ^             ^
-                 \            |            /
-                  \           |           /
-                   v          v          v
-                   +---------------------+
-                   | cardano-tracer      |
-                   +---------------------+
-                   machine D
+```mermaid
+flowchart TD
+    subgraph MA["machine A"]
+        N1["node 1"]
+    end
+    subgraph MB["machine B"]
+        N2["node 2"]
+    end
+    subgraph MC["machine C"]
+        N3["node 3"]
+    end
+    subgraph MD["machine D"]
+        T["cardano-tracer"]
+    end
+    N1 --> T
+    N2 --> T
+    N3 --> T
 ```
 
 The minimalistic configuration file for `cardano-tracer` would be:
@@ -136,59 +140,55 @@ The minimalistic configuration file for `cardano-tracer` would be:
 
 The `network` field specifies the way how `cardano-tracer` will be connected to your nodes. Here you see `AcceptAt` tag, which means that `cardano-tracer` works as a server: it _accepts_ network connections by listening the local socket `/tmp/forwarder.sock`. Your nodes work as clients: they _initiate_ network connections using their local sockets. It can be shown like this:
 
-```
-machine A                 machine B                 machine C
-+----------------------+  +----------------------+  +----------------------+
-| node 1               |  | node 2               |  | node 3               |
-|      \               |  |      \               |  |      \               |
-|       v              |  |       v              |  |       v              |
-|  /tmp/forwarder.sock |  |  /tmp/forwarder.sock |  |  /tmp/forwarder.sock |
-+----------------------+  +----------------------+  +----------------------+
-
-
-
-
-
-                          +---------------------+
-                          | /tmp/forwarder.sock |
-                          |      ^              |
-                          |       \             |
-                          |      cardano-tracer |
-                          +---------------------+
-                          machine D
+```mermaid
+flowchart TD
+    subgraph MA["machine A"]
+        N1["node 1"] --> S1["/tmp/forwarder.sock"]
+    end
+    subgraph MB["machine B"]
+        N2["node 2"] --> S2["/tmp/forwarder.sock"]
+    end
+    subgraph MC["machine C"]
+        N3["node 3"] --> S3["/tmp/forwarder.sock"]
+    end
+    subgraph MD["machine D"]
+        T["cardano-tracer"] --> SD["/tmp/forwarder.sock"]
+    end
 ```
 
 To establish the real network connections between your machines, you need SSH forwarding:
 
-```
-machine A                 machine B                 machine C
-+----------------------+  +----------------------+  +----------------------+
-| node 1               |  | node 2               |  | node 3               |
-|      \               |  |      \               |  |      \               |
-|       v              |  |       v              |  |       v              |
-|  /tmp/forwarder.sock |  |  /tmp/forwarder.sock |  |  /tmp/forwarder.sock |
-+----------------------+  +----------------------+  +----------------------+
-                       ^             ^              ^
-                        \            |             /
-                        SSH         SSH           SSH
-                          \          |           /
-                           v         v          v
-                          +---------------------+
-                          | /tmp/forwarder.sock |
-                          |      ^              |
-                          |       \             |
-                          |      cardano-tracer |
-                          +---------------------+
-                          machine D
+```mermaid
+flowchart TD
+    subgraph MA["machine A"]
+        N1["node 1"] --> S1["/tmp/forwarder.sock"]
+    end
+    subgraph MB["machine B"]
+        N2["node 2"] --> S2["/tmp/forwarder.sock"]
+    end
+    subgraph MC["machine C"]
+        N3["node 3"] --> S3["/tmp/forwarder.sock"]
+    end
+    subgraph MD["machine D"]
+        T["cardano-tracer"] --> SD["/tmp/forwarder.sock"]
+    end
+    S1 -->|"SSH"| SD
+    S2 -->|"SSH"| SD
+    S3 -->|"SSH"| SD
 ```
 
 The idea of SSH forwarding is simple: we do not connect directly to the process but to their network endpoints instead. You can think of it as a network channel from the local socket on one machine to the local socket on another machine:
 
-```
-machine A                                            machine D
-+----------------------------------+                 +------------------------------------------+
-| node 1 --> /tmp/forwarder.sock <-|---SSH channel---|-> /tmp/forwarder.sock <-- cardano-tracer |
-+----------------------------------+                 +------------------------------------------+
+```mermaid
+flowchart LR
+    subgraph MA["machine A"]
+        N1["node 1"] --> S1["/tmp/forwarder.sock"]
+    end
+    subgraph MD["machine D"]
+        SD["/tmp/forwarder.sock"]
+        T["cardano-tracer"] --> SD
+    end
+    S1 <-->|"SSH channel"| SD
 ```
 
 Neither your nodes nor `cardano-tracer` know anything SSH, they only know about their local sockets. Using SSH forwarding mechanism they work together between machines. Since you already have your SSH credentials the connection between your nodes and `cardano-tracer` will be secure.
