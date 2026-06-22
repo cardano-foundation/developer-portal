@@ -78,7 +78,13 @@ For most applications the linking is acceptable; only privacy-critical apps need
 
 ## Working with addresses in code
 
-A quick reference for handling addresses with the Evolution SDK: parsing, checking the network, inspecting credentials, converting formats, and building one from credentials. In a dApp you usually *get* the user's address from the [wallet connector](/docs/developers/curriculum/dapps/connect-a-wallet); these helpers are for validating and inspecting it.
+Whatever tool you reach for, the same handful of operations come up once an address enters your application:
+
+- **Parse** an address from its encodings (Bech32, hex, or raw bytes) into a structured value.
+- **Check the network** before using it. An address's header marks it mainnet or testnet; rejecting a mismatch up front prevents a costly class of mistakes (see the tip below).
+- **Inspect the credentials**: whether the payment credential is a key hash or a script hash, and whether a delegation credential is present (a base address) or absent (enterprise).
+- **Convert** between Bech32, hex, and bytes for storage, display, or transaction building.
+- **Build** an address from raw credentials. This is the rare case: in a dApp you usually *get* the user's address from the [wallet connector](/docs/developers/curriculum/dapps/connect-a-wallet) rather than constructing one.
 
 ```typescript
 import { Address } from "@evolution-sdk/evolution"
@@ -107,7 +113,7 @@ const bytes = Address.toBytes(address)   // 57 bytes for a base address, 29 for 
 const bech32 = Address.toBech32(address)
 ```
 
-Build an address from raw credentials (advanced, usually the wallet or SDK does this for you):
+Building one from raw credentials (the rare case above) looks like:
 
 ```typescript
 import { Address, KeyHash } from "@evolution-sdk/evolution"
@@ -123,7 +129,7 @@ const address = new Address.Address({
 ```
 
 :::tip Always validate the network
-Checking `networkId` before using an address in a transaction is the cheapest guard against sending mainnet funds to a testnet address (and vice versa). Legacy Byron/pointer formats are parsed automatically when reading existing UTXOs but shouldn't be used for new addresses. Mesh exposes equivalent helpers (`resolvePaymentKeyHash`, `resolveStakeKeyHash`, `deserializeAddress`); see [meshjs.dev](https://meshjs.dev/apis/resolvers).
+Checking the network discriminant before using an address in a transaction is the cheapest guard against sending mainnet funds to a testnet address (and vice versa). Legacy Byron and pointer formats are still parsed automatically when reading existing UTXOs, but shouldn't be used for new addresses.
 :::
 
 ## Web2 analogy

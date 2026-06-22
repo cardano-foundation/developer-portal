@@ -85,12 +85,10 @@ With **Mesh**, you have a connected `wallet` and a `provider`; staking certifica
 
 ## Register and delegate
 
-Delegating for the first time needs two certificates: register the stake credential (a small refundable deposit), then delegate it to a pool. Both go in one transaction.
+Delegating for the first time means two things: registering the stake credential (a small refundable deposit) and delegating it to a pool. The Conway era added a combined certificate that does both in one step and saves a certificate fee, so either way it's a single transaction.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
-
-The Conway era added a combined certificate that registers and delegates in one step, saving a certificate fee:
 
 ```typescript
 import { Credential } from "@evolution-sdk/evolution"
@@ -240,8 +238,6 @@ cardano-cli latest transaction submit --tx-file tx.signed
 
 </TabItem>
 </Tabs>
-
-In Mesh, build a withdrawal with the reward address and balance on the `MeshTxBuilder`; see the [Mesh transaction APIs](https://meshjs.dev/apis/txbuilder/staking).
 
 ## Query delegation and rewards
 
