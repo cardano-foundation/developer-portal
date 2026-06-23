@@ -178,6 +178,7 @@ module.exports = {
                 "developers/curriculum/smart-contracts/advanced/uplc",
                 "developers/curriculum/smart-contracts/advanced/debug-cbor",
                 "developers/curriculum/smart-contracts/advanced/optimization",
+                "developers/curriculum/smart-contracts/advanced/zero-knowledge",
               ],
             },
           ],
