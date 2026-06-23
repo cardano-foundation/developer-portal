@@ -56,6 +56,19 @@ const txHash = await wallet.submitTx(await wallet.signTx(unsignedTx))
 
 See `src/pages/index.tsx` for the full flow with the balance display, the send form, and error states.
 
+## Build configuration
+
+`next.config.ts` and the `overrides` block in `package.json` are not boilerplate; they are required to
+build Mesh under Next.js today:
+
+- **Node polyfills.** Mesh uses Node built-ins (`Buffer`, `crypto`, `stream`). `next.config.ts` adds
+  `node-polyfill-webpack-plugin` and strips the `node:` scheme (the plugin alone does not cover
+  `node:`-prefixed imports).
+- **libsodium override.** A current Mesh release transitively pulls `libsodium-wrappers-sumo@0.7.x`,
+  whose ESM build is broken, so `next build` fails with `Can't resolve './libsodium-sumo.mjs'`. The
+  `"overrides": { "libsodium-wrappers-sumo": "^0.8.4" }` pin fixes it. This is temporary, until Mesh
+  ships the upstream fix (`@cardano-sdk/crypto@0.4.6+`).
+
 ## Scripts
 
 - `npm run dev` starts the dev server.

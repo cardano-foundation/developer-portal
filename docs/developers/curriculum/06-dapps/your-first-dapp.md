@@ -165,6 +165,8 @@ Each template wraps this in a form with input handling and error states; see `sr
 
 Start the dev server, open the app, connect a wallet on a testnet, and send some test ADA from the [faucet](/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada). You have a working dApp: it reads the chain, builds a transaction, and submits one through a real wallet.
 
+The templates ship the bundler configuration each SDK needs. If you build a Mesh app from scratch instead, see [Building for the browser](/docs/developers/curriculum/dapps/connect-a-wallet#building-for-the-browser) for the polyfill and `libsodium` setup that a production build requires.
+
 ## Where it goes next
 
 - **On-chain logic.** Lock funds at a validator and spend them: [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend), and the runnable [bootcamp examples](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp).

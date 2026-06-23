@@ -268,9 +268,14 @@ Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Inste
 
 Without these packages (Evolution, or a framework Mesh doesn't ship for) the concept is unchanged and the code is short: call `cardano[name].enable()` on a button click, stash the returned wallet API or `client` in a `useState`/`useContext` (React) or a store (Svelte), and read from it. Same CIP-30 surface, just without the pre-built widget.
 
-:::warning "Buffer is not defined"
-Mesh uses Node built-ins (`Buffer`, `crypto`, `stream`), and modern bundlers no longer polyfill them, so your first browser build can fail with `Uncaught ReferenceError: Buffer is not defined`. The fix depends on the bundler: for **Next.js / Webpack 5**, add `node-polyfill-webpack-plugin`; for **Vite / SvelteKit**, add `rollup-plugin-polyfill-node`. This trips up most beginners on the first build, not on a wallet bug.
-:::
+## Building for the browser
+
+Mesh uses Node built-ins (`Buffer`, `crypto`, `stream`) that modern bundlers no longer polyfill, so your first browser build can fail. This trips up most people on the first build; it is not a wallet bug. Under Next.js / Webpack 5, two fixes are needed (Vite / SvelteKit use the equivalent `rollup-plugin-polyfill-node`):
+
+- **Polyfill the Node built-ins.** Add [`node-polyfill-webpack-plugin`](https://www.npmjs.com/package/node-polyfill-webpack-plugin) in `next.config`, and also strip the `node:` scheme with a `NormalModuleReplacementPlugin` over `/^node:/`. The plugin alone does not cover `node:`-prefixed imports, so without the strip the build still fails with `UnhandledSchemeError: ... node:buffer`.
+- **Pin a working libsodium.** A current Mesh release transitively pulls `libsodium-wrappers-sumo@0.7.x`, whose ESM build is broken, so `next build` fails with `Can't resolve './libsodium-sumo.mjs'`. Add `"overrides": { "libsodium-wrappers-sumo": "^0.8.4" }` to your `package.json`. This is a temporary workaround until Mesh ships the upstream fix (`@cardano-sdk/crypto@0.4.6+` already pins the corrected libsodium).
+
+The [mesh-nextjs-template](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs-template) ships the complete, build-verified configuration; copy its `next.config.ts` and the `overrides` block.
 
 ## Next steps
 
