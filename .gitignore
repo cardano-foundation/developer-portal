@@ -29,6 +29,9 @@ yarn-error.log*
 
 # JS / TS Examples
 **/node_modules
+# Example templates ship without a lockfile (a fresh install picks current deps)
+examples/templates/*/package-lock.json
+examples/templates/*/pnpm-lock.yaml
 
 # vscode
 .vscode
