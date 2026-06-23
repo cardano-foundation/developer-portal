@@ -1,7 +1,7 @@
 ---
 id: cardano-for-ethereum-developers
 title: Cardano for Ethereum Developers
-sidebar_label: For Ethereum Developers
+sidebar_label: For Ethereum developers
 description: A complete guide to Cardano development for developers coming from Ethereum.
 ---
 

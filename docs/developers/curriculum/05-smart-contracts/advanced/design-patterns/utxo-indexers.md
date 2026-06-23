@@ -1,7 +1,7 @@
 ---
 id: utxo-indexers
 title: UTxO Indexers
-sidebar_label: UTxO Indexers
+sidebar_label: UTxO indexers
 description: Efficient input-output mapping with O(1) lookups using redeemer indexing
 ---
 

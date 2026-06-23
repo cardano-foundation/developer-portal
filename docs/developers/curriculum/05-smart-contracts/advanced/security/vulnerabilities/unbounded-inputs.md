@@ -1,7 +1,7 @@
 ---
 id: unbounded-inputs
 title: Unbounded Inputs
-sidebar_label: Unbounded Inputs
+sidebar_label: Unbounded inputs
 description: "How unbounded inputs enable denial-of-service attacks through excessive resource consumption."
 ---
 

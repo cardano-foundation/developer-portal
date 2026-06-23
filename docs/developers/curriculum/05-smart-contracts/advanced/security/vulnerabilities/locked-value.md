@@ -1,7 +1,7 @@
 ---
 id: locked-value
 title: Locked Value
-sidebar_label: Locked Value
+sidebar_label: Locked value
 description: "How the locked value vulnerability permanently locks funds in a UTxO with no recovery path."
 ---
 

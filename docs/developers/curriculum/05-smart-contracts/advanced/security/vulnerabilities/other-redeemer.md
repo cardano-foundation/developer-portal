@@ -1,7 +1,7 @@
 ---
 id: other-redeemer
 title: Other Redeemer
-sidebar_label: Other Redeemer
+sidebar_label: Other redeemer
 description: "How the other redeemer vulnerability allows attackers to bypass intended smart contract logic."
 ---
 

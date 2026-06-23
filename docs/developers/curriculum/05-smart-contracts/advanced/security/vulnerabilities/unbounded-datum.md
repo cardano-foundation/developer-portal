@@ -1,7 +1,7 @@
 ---
 id: unbounded-datum
 title: Unbounded Datum
-sidebar_label: Unbounded Datum
+sidebar_label: Unbounded datum
 description: "How unbounded datums increase transaction costs and can block smart contract operations."
 ---
 

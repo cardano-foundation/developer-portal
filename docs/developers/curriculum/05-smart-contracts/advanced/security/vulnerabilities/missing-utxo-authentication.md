@@ -1,7 +1,7 @@
 ---
 id: missing-utxo-authentication
 title: Missing UTxO Authentication
-sidebar_label: Missing UTxO Authentication
+sidebar_label: Missing UTxO authentication
 description: A vulnerability where an attacker can create a script UTxO in an invalid state and use it for attacks. This vulnerability is common in multi-step contracts and becomes more difficult to prevent as contracts grow in complexity.
 aliases: ["Trust No UTxO"]
 ---

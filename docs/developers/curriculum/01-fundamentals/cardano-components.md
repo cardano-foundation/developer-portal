@@ -1,7 +1,7 @@
 ---
 id: cardano-components
 title: Cardano Architecture
-sidebar_label: Cardano Architecture
+sidebar_label: Cardano architecture
 description: The four layers that make up Cardano (ledger, consensus, networking, scripting), the reference node that implements them, and the eras the chain has moved through.
 image: /img/og/og-getstarted-cardano-components.png
 ---

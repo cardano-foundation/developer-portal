@@ -1,7 +1,7 @@
 ---
 id: eutxo
 title: The Extended UTXO Model
-sidebar_label: eUTXO Model
+sidebar_label: eUTXO model
 description: How Cardano tracks ownership with the Extended UTXO (eUTXO) model, how it differs from account-based chains, and how to think in eUTXO as a developer.
 image: /img/og/og-getstarted-technical-concepts.png
 ---

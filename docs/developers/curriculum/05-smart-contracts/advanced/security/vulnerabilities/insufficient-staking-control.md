@@ -1,7 +1,7 @@
 ---
 id: insufficient-staking-control
 title: Insufficient Staking Control
-sidebar_label: Insufficient Staking Control
+sidebar_label: Insufficient staking control
 description: "How insufficient staking control allows unauthorized staking operations or reward theft in smart contracts."
 ---
 

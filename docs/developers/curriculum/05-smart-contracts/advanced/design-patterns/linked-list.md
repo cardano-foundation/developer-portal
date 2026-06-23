@@ -1,7 +1,7 @@
 ---
 id: linked-list
 title: Linked List
-sidebar_label: Linked List
+sidebar_label: Linked list
 description: On-chain linked list for storing arbitrarily large collections across UTxOs
 ---
 

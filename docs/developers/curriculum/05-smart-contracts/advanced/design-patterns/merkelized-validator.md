@@ -1,7 +1,7 @@
 ---
 id: merkelized-validator
 title: Merkelized Validator
-sidebar_label: Merkelized Validator
+sidebar_label: Merkelized validator
 description: Delegate logic to external withdrawal scripts to stay within size limits
 ---
 

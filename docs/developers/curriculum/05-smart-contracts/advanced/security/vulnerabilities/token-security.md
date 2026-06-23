@@ -1,7 +1,7 @@
 ---
 id: token-security
 title: Token Security
-sidebar_label: Token Security
+sidebar_label: Token security
 description: Native tokens are an essential part of the Cardano blockchain representing value that can be created and traded. Understanding token security is crucial for smart contract developers.
 ---
 

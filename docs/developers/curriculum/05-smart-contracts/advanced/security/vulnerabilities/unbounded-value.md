@@ -1,7 +1,7 @@
 ---
 id: unbounded-value
 title: Unbounded Value
-sidebar_label: Unbounded Value
+sidebar_label: Unbounded value
 description: "How unbounded values can disrupt smart contract logic by sending unexpected token amounts."
 ---
 

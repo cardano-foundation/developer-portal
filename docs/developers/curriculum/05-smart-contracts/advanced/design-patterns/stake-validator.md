@@ -1,7 +1,7 @@
 ---
 id: stake-validator
 title: Stake Validator Pattern
-sidebar_label: Stake Validator
+sidebar_label: Stake validator
 description: Delegate computations to staking scripts using the "withdraw zero trick" for optimized validation
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: merkle-tree
 title: Merkle Tree
-sidebar_label: Merkle Tree
+sidebar_label: Merkle tree
 description: A Merkle tree structure designed following the Aiken methodology.
 ---
 

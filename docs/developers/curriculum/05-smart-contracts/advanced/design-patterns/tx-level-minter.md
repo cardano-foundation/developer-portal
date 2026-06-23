@@ -1,7 +1,7 @@
 ---
 id: tx-level-minter
 title: Transaction-Level Minting
-sidebar_label: Transaction-Level Minting
+sidebar_label: Transaction-level minting
 description: Transaction level validation using minting policies for efficient batch processing of smart contract UTxOs
 ---
 

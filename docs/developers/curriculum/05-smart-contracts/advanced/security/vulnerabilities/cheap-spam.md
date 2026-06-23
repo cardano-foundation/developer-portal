@@ -1,7 +1,7 @@
 ---
 id: cheap-spam
 title: Cheap Spam
-sidebar_label: Cheap Spam
+sidebar_label: Cheap spam
 description: "How cheap spam attacks flood a smart contract with low-cost transactions to degrade performance."
 ---
 

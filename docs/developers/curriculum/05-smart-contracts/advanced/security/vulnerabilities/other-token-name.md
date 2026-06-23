@@ -1,7 +1,7 @@
 ---
 id: other-token-name
 title: Other Token Name
-sidebar_label: Other Token Name
+sidebar_label: Other token name
 description: "How the other token name vulnerability allows unauthorized token minting through unvalidated policy scripts."
 aliases: ["Infinite Mint"]
 ---

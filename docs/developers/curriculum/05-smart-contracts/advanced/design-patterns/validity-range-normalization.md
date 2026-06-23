@@ -1,7 +1,7 @@
 ---
 id: validity-range-normalization
 title: Validity Range Normalization
-sidebar_label: Validity Range Normalization
+sidebar_label: Validity range normalization
 description: Validators, at runtime, are intentionally deprived of direct access to the current time. Instead, they are equipped with information solely about the validity range of a transaction.
 ---
 

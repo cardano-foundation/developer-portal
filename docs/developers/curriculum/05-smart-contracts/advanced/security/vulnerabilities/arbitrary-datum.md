@@ -1,7 +1,7 @@
 ---
 id: arbitrary-datum
 title: Arbitrary Datum
-sidebar_label: Arbitrary Datum
+sidebar_label: Arbitrary datum
 description: "How the arbitrary datum vulnerability allows unexpected datum values to bypass smart contract validation."
 ---
 

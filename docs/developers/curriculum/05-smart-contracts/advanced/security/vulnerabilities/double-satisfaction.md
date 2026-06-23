@@ -1,7 +1,7 @@
 ---
 id: double-satisfaction
 title: Double Satisfaction
-sidebar_label: Double Satisfaction
+sidebar_label: Double satisfaction
 description: Classic double satisfaction vulnerability stems from using multiple contracts in the same transaction when they do not expect it. Each contract's validator validates the transaction independently and they all must be satisfied for the transaction to be validated by the blockchain.
 aliases: ["Multiple Satisfaction"]
 ---

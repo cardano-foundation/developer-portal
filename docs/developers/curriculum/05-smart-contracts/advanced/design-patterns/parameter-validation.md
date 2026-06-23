@@ -1,7 +1,7 @@
 ---
 id: parameter-validation
 title: On-Chain Parameter Validation
-sidebar_label: On-Chain Parameter Validation
+sidebar_label: On-chain parameter validation
 description: Check that a script hash is an instantiation of a unparameterised script.
 ---
 

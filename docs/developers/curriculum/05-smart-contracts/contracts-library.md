@@ -1,7 +1,7 @@
 ---
 id: contracts-library
 title: Contract Library
-sidebar_label: Contract Library
+sidebar_label: Contract library
 description: A catalog of open-source Cardano smart contracts with live demos and end-to-end source, from Hello World to escrow and marketplaces.
 ---
 

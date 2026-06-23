@@ -1,7 +1,7 @@
 ---
 id: utxo-contention
 title: UTxO Contention
-sidebar_label: UTxO Contention
+sidebar_label: UTxO contention
 description: "How UTxO contention causes transaction failures when multiple transactions compete for the same UTxO."
 ---
 

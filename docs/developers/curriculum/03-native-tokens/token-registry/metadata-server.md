@@ -1,7 +1,7 @@
 ---
 id: metadata-server
 title: Token Metadata Server
-sidebar_label: Metadata Server
+sidebar_label: Metadata server
 description: Query human-readable metadata for Cardano native assets over the Token Metadata Server REST API (v2), covering both CIP-26 and CIP-68.
 image: /img/og/og-developer-portal.png
 ---

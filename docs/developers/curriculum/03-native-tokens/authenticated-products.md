@@ -1,7 +1,7 @@
 ---
 id: authenticated-products
 title: Authenticated Products on Cardano Store
-sidebar_label: Authenticated Products
+sidebar_label: Authenticated products
 description: How Cardano verifies physical product authenticity with NFC chips and NFTs, using the Cardano Store POC Hoodie as a worked example.
 image: /img/og/og-developer-portal.png
 ---
