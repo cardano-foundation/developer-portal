@@ -146,6 +146,21 @@ graph LR
     style E fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
+### Who publishes, and what that guarantees
+
+The push/pull split is also a **trust choice**, not just a question of timing.
+
+In a **push** design, the oracle network writes the price on-chain itself, into a UTXO your contract reads as a reference input. The value is produced and published independently of the protocol that consumes it, so a protocol cannot quietly substitute a different number: it never touches the publication step.
+
+In a **pull** design, the oracle signs the price off-chain and whoever builds the transaction submits it on-chain, where a validator checks that signature before accepting the value. This is the model Cardano's recommended oracle, [Pyth](/docs/developers/curriculum/dapps/oracles/pyth), uses, and it is a standard, sound pattern: the signature is what makes it trustless. Verifying several oracle signatures instead of one raises the bar further, but the shape is the same.
+
+Be precise, though, about what that signature does and does not cover:
+
+- **Integrity is guaranteed.** A forged or altered price will not verify. No one can feed your contract a number the oracle did not sign.
+- **Liveness and timing are not.** Whoever assembles the transaction decides whether and when to include an update, so a pull feed can be withheld, delayed, or posted only when it suits the submitter, and the signature check alone will not catch that. Enforce a freshness window yourself (Pyth exposes `timestamp_us` for exactly this), and where reuse matters, post the verified price into a public oracle UTXO that any contract can reference, so the feed stays composable instead of staying locked inside one protocol's transaction.
+
+This is also why the [multi-oracle reconciliation](#multi-oracle-validation) above is worth the effort: reading and cross-checking more than one feed on-chain protects you when any single feed is stale, withheld, or wrong.
+
 ## Security considerations
 
 Oracle security matters because smart contracts depend on accurate external data. Here's how oracles protect against bad data:

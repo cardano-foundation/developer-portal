@@ -69,7 +69,7 @@ fn read_ada_usd_price(pyth_id: PolicyId, self: Transaction) -> Rational {
 Each `PriceUpdate` includes `timestamp_us`, `channel_id`, and a list of `feeds`. Each `Feed` includes fields such as `feed_id`, `price`, `best_bid_price`, `best_ask_price`, `exponent`, `confidence`, `ema_price`, and `feed_update_timestamp`.
 
 :::warning
-The Pyth withdraw script verifies signature validity but does **not** enforce freshness. If your contract requires a validity window, you need to enforce it directly by checking the `timestamp_us` field.
+The Pyth withdraw script verifies signature validity but does **not** enforce freshness. A valid signature proves the price is genuinely Pyth's (integrity); it does not prove the update is recent, or that one was posted at all (liveness). If your contract requires a validity window, enforce it directly by checking the `timestamp_us` field. See [who publishes, and what that guarantees](/docs/developers/curriculum/dapps/oracles/overview#who-publishes-and-what-that-guarantees) for the trust model behind this.
 :::
 
 :::warning
