@@ -81,6 +81,7 @@ module.exports = {
               ],
             },
             "developers/curriculum/native-tokens/authenticated-products",
+            "developers/curriculum/native-tokens/programmable-tokens",
           ],
         },
         {
