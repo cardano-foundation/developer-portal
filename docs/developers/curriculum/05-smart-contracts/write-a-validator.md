@@ -160,7 +160,7 @@ validator always_succeed(_key_hash: VerificationKeyHash) {
 
 ## Native scripts: multisig and time-locks without Plutus
 
-Not every rule needs a Plutus validator. **Native scripts** are Cardano's simpler, non-Turing-complete scripting, perfect for **multi-signature** and **time-locks**, and they cost no script-execution fees. They combine a few primitives: `sig` (a required key), `before` / `after` (slot bounds), and `all` / `any` / `atLeast` (logical combinations).
+Not every rule needs a Plutus validator. **Native scripts** are Cardano's simpler, non-Turing-complete scripting, perfect for **multi-signature** and **time-locks**, and they cost no script-execution fees. They combine a few primitives: `sig` (a required key), `before` / `after` (slot bounds), and `all` / `any` / `atLeast` (logical combinations). A multisig native script makes a **shared treasury**: anyone can send funds *to* its address, but moving them *out* requires the k-of-n signatures the script encodes.
 
 A native script that requires the owner's signature and only allows minting before a slot:
 
