@@ -8,16 +8,26 @@ image: /img/og/og-developer-portal.png
 
 ## Introduction
 
-Setting up a dApp means wiring together an on-chain language, an off-chain library, a frontend, and a local devnet. Scaffolding does that wiring for you, so you start from a runnable project instead of a blank directory.
+Setting up a dApp means wiring together an on-chain language, an off-chain library, a frontend, and a local devnet. Scaffolding does that wiring for you, so you start from a runnable project instead of a blank directory. These are the starting points; [Build your first dApp](/docs/developers/curriculum/dapps/your-first-dapp) walks one through end to end.
 
-## Starter templates
+## dApp templates
 
-Templates you can clone today:
+Two minimal, runnable dApp starters, one per SDK, each doing the same thing: connect a wallet, show the balance, and send ADA. Start a project from one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new directory):
 
-- [Mesh Aiken template](https://github.com/MeshJS/mesh-aiken-template): a full-stack starter pairing the Mesh SDK off-chain with Aiken on-chain, ready to build on.
-- [Evolution SDK Vite and React example](https://github.com/IntersectMBO/evolution-sdk/tree/main/examples/with-vite-react): a frontend starter that wires the Evolution SDK into a Vite and React app.
+```bash
+# Evolution + Vite + React
+npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/evolution-vite-react my-app
 
-See [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools) for how these libraries compare.
+# Mesh + Next.js
+npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs-template my-app
+```
+
+Then `cd my-app`, `npm install`, set your Blockfrost key in the env file, and `npm run dev`. Browse the source first if you prefer: [evolution-vite-react](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/evolution-vite-react) and [mesh-nextjs-template](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs-template). The [Your first dApp](/docs/developers/curriculum/dapps/your-first-dapp) walkthrough explains the code each one wires together. See [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools) for how the SDKs compare.
+
+## More starters
+
+- [Mesh Aiken template](https://github.com/MeshJS/mesh-aiken-template): a full-stack starter pairing the Mesh SDK off-chain with Aiken on-chain, when you want a contract from the start.
+- The [bootcamp examples](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp) are runnable projects for specific lessons (multisig, vesting, NFTs, Hydra, and more).
 
 ## cardano-init
 

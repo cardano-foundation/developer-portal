@@ -14,11 +14,12 @@ This module is about meeting users where they are: connecting Cardano to web app
 
 The front-end path most applications follow:
 
+- **[Your first dApp](/docs/developers/curriculum/dapps/your-first-dapp)**: start here to assemble a working dApp end to end (scaffold, connect, read balance, send), from a runnable Evolution or Mesh template.
 - **[Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet)**: let users link their browser wallet (CIP-30). The starting point for any dApp.
 - **[Sign in with wallet](/docs/developers/curriculum/dapps/wallet-authentication)**: passwordless authentication by proving wallet ownership (CIP-8 message signing).
 - **[Listen for payments](/docs/developers/curriculum/dapps/listen-for-payments)**: detect and confirm ADA arriving at an address.
 
-For building and submitting the transactions behind these flows, see [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) and [lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend).
+For building and submitting the transactions behind these flows, see [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) and [lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend). The same building blocks are what an [autonomous agent](/docs/developers/curriculum/dapps/ai-agents/overview) drives when it holds a wallet and acts without a human in the loop.
 
 ## Build DeFi
 

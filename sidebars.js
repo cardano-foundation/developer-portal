@@ -190,6 +190,7 @@ module.exports = {
           },
           items: [
             "developers/curriculum/dapps/scaffolding",
+            "developers/curriculum/dapps/your-first-dapp",
             "developers/curriculum/dapps/connect-a-wallet",
             "developers/curriculum/dapps/wallet-authentication",
             "developers/curriculum/dapps/listen-for-payments",
