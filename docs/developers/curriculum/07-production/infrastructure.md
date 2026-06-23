@@ -77,7 +77,7 @@ Transaction submission options:
 
 Indexers follow the chain and store it in formats your app can query, something the raw node doesn't do:
 
-- **cardano-db-sync**: the comprehensive IOG indexer; populates PostgreSQL (40+ tables) for full historical SQL. Heavy: ~150+ GB and a 2–3 day initial sync. Best for explorers and analytics.
+- **cardano-db-sync**: the comprehensive IOG indexer; populates PostgreSQL (40+ tables) for full historical SQL. Heavy: ~150+ GB and a 2-3 day initial sync. Best for explorers and analytics.
 - **Kupo**: a lightweight indexer that tracks only UTXOs matching patterns you configure (by address, policy ID, etc.). Fast sync (hours), low resources, datum resolution. Ideal for dApp backends.
 - **Scrolls / Oura** (TxPipe): event pipelines: Scrolls reduces chain data into stores like Redis or Elasticsearch; Oura streams on-chain events to Kafka, webhooks, or files for reactive, event-driven systems.
 

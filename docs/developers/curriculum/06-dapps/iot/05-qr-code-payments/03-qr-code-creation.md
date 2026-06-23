@@ -115,7 +115,7 @@ void loop() {
 > Source: [`Workshop-05/examples/qr-code-basics/qr-code-basics.ino`](https://github.com/CardanoThings/Workshops/blob/main/Workshop-05/examples/qr-code-basics/qr-code-basics.ino)
 
 :::info Sprites and memory
-Sprites are off-screen RAM buffers - they prevent flicker and let you position before display. They're not free though: a 200×200 sprite eats ~80 KB (200 × 200 × 2 bytes per pixel). The ESP32 typically has 200–300 KB free, so be mindful. If you hit out-of-memory errors, reduce `qrSize`.
+Sprites are off-screen RAM buffers - they prevent flicker and let you position before display. They're not free though: a 200×200 sprite eats ~80 KB (200 × 200 × 2 bytes per pixel). The ESP32 typically has 200-300 KB free, so be mindful. If you hit out-of-memory errors, reduce `qrSize`.
 :::
 
 ## Next steps

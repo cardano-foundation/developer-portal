@@ -1,6 +1,6 @@
 ---
 id: overview
-title: DeFi & Integrations
+title: Build a dApp
 sidebar_label: Overview
 description: Connect Cardano to your application (wallets, payments, oracles, and AI agents) and build DeFi protocols on the eUTXO model.
 image: /img/og/og-developer-portal.png
@@ -43,7 +43,6 @@ For exchanges, custodians, and back-end services that integrate at a lower level
   - [cardano-addresses](https://github.com/IntersectMBO/cardano-addresses): mnemonic creation, seed conversion, and address derivation.
   - See also the [Cardano components overview](/docs/developers/curriculum/fundamentals/cardano-components).
 
-## What's next
-
+## Next steps
 - New to dApps? Start with [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet).
 - Building a protocol? Read [DeFi on Cardano](/docs/developers/curriculum/dapps/defi), then [Oracles](/docs/developers/curriculum/dapps/oracles/overview).

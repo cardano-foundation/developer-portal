@@ -587,8 +587,7 @@ window.refreshTransactions = loadTransactions;
 
 > Source: [`data/transactionList.js`](https://github.com/CardanoThings/Workshops/blob/main/Workshop-05/examples/cardano-pos/data/transactionList.js)
 
-## What's next?
-
+## Next steps
 Frontend's done - you can upload `data/` to the microcontroller, but it can't actually create payment requests yet because the backend doesn't exist. That comes next.
 
 Things you could add later: a confirmation screen, different styling, direct links to [CardanoScan](https://cardanoscan.io/) for transaction hashes.

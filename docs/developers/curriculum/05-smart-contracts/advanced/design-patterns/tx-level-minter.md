@@ -9,7 +9,7 @@ description: Transaction level validation using minting policies for efficient b
 
 When crafting transactions to process a single script (smart contract) UTxO, enforcing spending
 requirements seems straightforward. However, in high-throughput applications, a more efficient
-approach is desired – allowing the processing (spending) of these script UTxOs in a "batch."
+approach is desired, allowing the processing (spending) of these script UTxOs in a "batch."
 Unfortunately, invoking the validator script for each input UTxO in a transaction repeats
 pre-processing steps, making it less optimal. To overcome this, the technique of "transaction level
 validation" is employed.

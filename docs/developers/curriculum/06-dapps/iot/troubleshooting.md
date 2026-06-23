@@ -37,7 +37,7 @@ Most I2C problems boil down to one of:
 
 - **Wrong SDA / SCL pins** in your code (check your board's actual I2C pins - for the ESP32-C3 the defaults are GPIO 8 / GPIO 9).
 - **Wrong I2C address** for the device. Different sensors use different addresses (AHT10 = `0x38`, SH1106 OLED = `0x3C` or `0x3D`).
-- **Missing pull-up resistors** on SDA / SCL. Most breakout boards include them; if yours doesn't, add 4.7 kΩ – 10 kΩ between each line and VCC.
+- **Missing pull-up resistors** on SDA / SCL. Most breakout boards include them; if yours doesn't, add 4.7 kΩ - 10 kΩ between each line and VCC.
 
 If you don't know the I2C address of your device, run the **I2C scanner sketch** included in [Workshop 03: Connect and Read Sensor Data](/docs/developers/curriculum/dapps/iot/input-and-write/01-connect-and-read-sensor-data) - it enumerates every device responding on the bus.
 

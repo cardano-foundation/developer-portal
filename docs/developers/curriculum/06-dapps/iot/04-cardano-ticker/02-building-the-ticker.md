@@ -2136,8 +2136,7 @@ You should already have all of these from previous workshops:
 - **HTTPClient** - built into ESP32.
 :::
 
-## What's next?
-
+## Next steps
 Some directions:
 
 - Special effects when your balance changes.

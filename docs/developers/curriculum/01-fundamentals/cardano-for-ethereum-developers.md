@@ -723,8 +723,7 @@ A few Solidity habits carry over, but the ones that matter are not one-to-one:
 - **Logic moves from runtime to build time.** A `constructor` becomes a parameterized script whose parameters are baked in at compile time. `require(condition)` becomes Aiken's `expect`, and `modifier onlyOwner` becomes an explicit `key_signed(signers, owner)` check.
 - **The interface is a blueprint, not an ABI.** Tools read [`plutus.json`](https://cips.cardano.org/cip/CIP-0057) the way they read an ABI. Instead of view functions and events, you query UTxOs directly through a provider and use transaction metadata or an indexer for event-style history.
 
-## Next Steps
-
+## Next steps
 1. **Learn Aiken**: Start with [aiken-lang.org](https://aiken-lang.org) for the language guide and tutorials. Check out the [Aiken Standard Library](https://aiken-lang.github.io/stdlib/) for more to help you build your validator.
 2. **Write a validator**: Work through [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for hands-on on-chain building
 3. **Set Up Off-chain**: Use [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) for transaction building

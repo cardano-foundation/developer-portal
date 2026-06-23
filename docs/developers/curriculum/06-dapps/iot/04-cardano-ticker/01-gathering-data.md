@@ -158,8 +158,7 @@ For production tickers, two paid options worth considering:
 - **[TapTools](https://www.taptools.io/)** - a Cardano analytics platform with detailed token, portfolio, and market data; tiered pricing. [API docs](https://openapi.taptools.io/).
 - **[Charli3](https://charli3.io/)** - a Cardano oracle / API provider with historical and live token prices, free + paid tiers. [Token API](https://charli3.io/api).
 
-## What's next?
-
+## Next steps
 You now have all the data the ticker needs. The next lesson assembles it into a multi-screen TFT display.
 
 ## Further Resources

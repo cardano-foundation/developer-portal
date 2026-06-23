@@ -164,8 +164,7 @@ Validators can be written in several languages that all compile to the same on-c
 - **Script addresses lock UTXOs under code,** replacing key-based authorization with arbitrary rules.
 - **The eUTXO model extends UTXOs** with datums, redeemers, and context, enabling full contract logic while preserving determinism and parallelism.
 
-## What's next
-
+## Next steps
 This module builds up from here:
 
 1. **[Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context)**: the three arguments every validator receives, in depth.

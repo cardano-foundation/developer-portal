@@ -149,6 +149,5 @@ Epoch N boundary: calculate and distribute rewards, take a new snapshot,
 - Time is **epochs (5 days) and slots (1 second)**; snapshots, nonces, and rewards happen at epoch boundaries.
 - Cardano's incentive design makes **decentralization an emergent economic equilibrium**, not an enforced rule.
 
-## What's next
-
+## Next steps
 Now that you know how blocks are produced and the network agrees, the next step is what is actually inside those blocks: Cardano's Extended UTXO model. See [the eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo).

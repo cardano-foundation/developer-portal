@@ -19,7 +19,7 @@ Wire up your first sensor - an AHT10 temperature and humidity sensor over I2C - 
 The AHT10 is a high-precision digital temperature and humidity sensor from Aosong. Compared to basic sensors like the DHT-22, it's more accurate, lower-power, and factory-calibrated.
 
 - Temperature: -40°C to +85°C, ±0.3°C.
-- Humidity: 0–100% RH, ±2% RH.
+- Humidity: 0-100% RH, ±2% RH.
 - I2C interface (only two wires for data).
 - 3.3V (compatible with ESP32).
 - Fast response, no calibration needed.
@@ -35,7 +35,7 @@ The module typically has four pins:
 3. **SDA** → GPIO 8 (standard SDA on ESP32).
 4. **SCL** → GPIO 9 (standard SCL on ESP32).
 
-I2C needs pull-up resistors (4.7 kΩ – 10 kΩ) on SDA and SCL. Most AHT10 breakout modules include them. If yours doesn't, add them externally between the data/clock pins and VCC.
+I2C needs pull-up resistors (4.7 kΩ - 10 kΩ) on SDA and SCL. Most AHT10 breakout modules include them. If yours doesn't, add them externally between the data/clock pins and VCC.
 
 :::info ESP32-C3 pinout reference
 Need a pinout reference for wiring? See the interactive ESP32-C3 pinout at [cardanothings.io](https://cardanothings.io), the official [ESP32-C3 datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf), or your board's specific schematic. Common pin protocols on the C3: **SPI** uses MOSI / MISO / SCK / SS-CS; **I2C** uses SDA / SCL (typically GPIO 8 / 9); **UART** uses TX / RX.
@@ -117,7 +117,7 @@ Don't know what address your sensor uses? Run the I2C scanner sketch below to en
 <details>
 <summary>**Reference: I2C device scanner sketch**</summary>
 
-A small utility that scans every I2C address (0x00–0x7F) and prints which ones respond. Useful any time you don't know your sensor's or display's address, or when an I2C device isn't behaving and you want to confirm the chip is actually on the bus.
+A small utility that scans every I2C address (0x00-0x7F) and prints which ones respond. Useful any time you don't know your sensor's or display's address, or when an I2C device isn't behaving and you want to confirm the chip is actually on the bus.
 
 No extra libraries needed - uses the built-in `Wire` library.
 

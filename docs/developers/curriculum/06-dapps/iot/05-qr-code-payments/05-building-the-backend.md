@@ -947,8 +947,7 @@ Backend's done. Upload `data/` and the [complete code](https://github.com/Cardan
 You'll need to send the exact lovelace amount manually from a desktop wallet - mobile wallets don't yet honour CIP-13 exact amounts.
 :::
 
-## What's next?
-
+## Next steps
 This is the end of the course. Some directions:
 
 - A screensaver when no payment is pending.

@@ -31,7 +31,7 @@ Each layer is specified and implemented as its own package:
 
 The ledger is the rules of the blockchain: what a valid transaction looks like, how UTXOs are created and consumed, how protocol parameters change, how governance actions are ratified. It is derived directly from formal specifications written in a mathematical notation and machine-checked for correctness (reference implementation: [`cardano-ledger`](https://github.com/IntersectMBO/cardano-ledger)).
 
-The ledger does not know about the network or consensus — it is purely a set of state transition rules. Given a current ledger state and a block, it either accepts the block and produces a new state, or rejects it with a specific rule violation.
+The ledger does not know about the network or consensus, it is purely a set of state transition rules. Given a current ledger state and a block, it either accepts the block and produces a new state, or rejects it with a specific rule violation.
 
 ### Consensus layer
 
@@ -43,12 +43,12 @@ The consensus layer sits between the network and the ledger: it receives block c
 
 The networking layer is a typed, multiplexed peer-to-peer stack purpose-built for proof-of-stake blockchains (reference implementation: [`ouroboros-network`](https://github.com/IntersectMBO/ouroboros-network)). It handles:
 
-- **Peer discovery and selection** — finding and maintaining connections to peers via P2P topology negotiation
-- **Mini-protocols** — typed request/response protocols for chain sync, block fetch, transaction submission, and local queries
-- **Pipelining** — requesting multiple blocks ahead of confirmation to maximize throughput
-- **Adversarial resistance** — protections against peers that are slow, malicious, or eclipse-attacking
+- **Peer discovery and selection**, finding and maintaining connections to peers via P2P topology negotiation
+- **Mini-protocols**, typed request/response protocols for chain sync, block fetch, transaction submission, and local queries
+- **Pipelining**, requesting multiple blocks ahead of confirmation to maximize throughput
+- **Adversarial resistance**, protections against peers that are slow, malicious, or eclipse-attacking
 
-The networking layer handles peer topology and connection management. Both relays and block producers run the same networking code; what distinguishes them is configuration — a relay accepts external connections from any peer, while a block producer's topology is configured to connect only to its own relays (see [Network topology](#network-topology) below).
+The networking layer handles peer topology and connection management. Both relays and block producers run the same networking code; what distinguishes them is configuration, a relay accepts external connections from any peer, while a block producer's topology is configured to connect only to its own relays (see [Network topology](#network-topology) below).
 
 ### Scripting layer
 
@@ -88,7 +88,7 @@ Cardano has evolved through multiple ledger eras, each introducing new capabilit
 
 For the full history of these era transitions, see [Historical Cardano Hardforks](https://cardano.org/hardforks/).
 
-Since the Conway Era each era transition is triggered by a hard fork initiation governance action — a process that requires SPO, DRep, and Constitutional Committee votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
+Since the Conway Era each era transition is triggered by a hard fork initiation governance action, a process that requires SPO, DRep, and Constitutional Committee votes to ratify. The Hard Fork Combinator in the consensus layer handles the transition transparently, without requiring a separate node binary per era.
 
 ## Formal specifications
 
@@ -100,7 +100,7 @@ What distinguishes Cardano's engineering approach is that each layer is specifie
 
 The formal specs are public:
 - [Cardano Ledger Specifications](https://github.com/IntersectMBO/cardano-ledger#cardano-ledger)
-- [Ouroboros papers](https://cardano.org/research/) — the academic papers underpinning the consensus protocol
+- [Ouroboros papers](https://cardano.org/research/), the academic papers underpinning the consensus protocol
 
 ## Further reading
 

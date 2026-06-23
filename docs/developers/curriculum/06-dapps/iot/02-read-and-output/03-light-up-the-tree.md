@@ -303,8 +303,7 @@ Address: `addr_test1qpvla0l6zgkl4ufzur0wal0uny5lyqsg4rw7g6gxj08lzacth0hnd66lz6uq
 Preprod-only.
 :::
 
-## What's next?
-
+## Next steps
 You now have the building blocks for blockchain-driven actuation. A few directions:
 
 - **Automated fountains.** Trigger when a specific transaction arrives.

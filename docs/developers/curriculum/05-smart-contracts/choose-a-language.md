@@ -1,7 +1,7 @@
 ---
 id: choose-a-language
 title: Choose a Smart Contract Language
-sidebar_label: Choose a language
+sidebar_label: Choose a smart contract language
 description: Pick a language for writing Cardano validators. Every language compiles to the same on-chain bytecode (UPLC), so the choice is about ergonomics, and Aiken is the recommended starting point.
 image: /img/og/og-developer-portal.png
 ---

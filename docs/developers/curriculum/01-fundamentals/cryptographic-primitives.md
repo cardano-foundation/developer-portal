@@ -151,6 +151,5 @@ Used for NFT metadata (CIP-25 / CIP-68), governance proposals, and audit trails.
 - **Digital signatures** (Ed25519) prove a transaction was authorized by the private-key holder; deterministic signing removes a whole class of bugs.
 - **Together** they create layered security: signatures authorize, Merkle trees organize, hash chains make history immutable.
 
-## What's next
-
+## Next steps
 You now understand the security of individual blocks and transactions. But who decides which block comes next, and how do thousands of nodes agree? See [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros).

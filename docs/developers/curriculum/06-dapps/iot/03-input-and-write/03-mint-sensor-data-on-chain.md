@@ -641,8 +641,7 @@ Set `tokenName` to the exact name of the NFT you want to burn (case-sensitive). 
 - **From an explorer** - view your transaction on [CardanoScan](https://preprod.cardanoscan.io/) and check the asset details.
 :::
 
-## What's next?
-
+## Next steps
 Some directions to explore:
 
 - Mint NFTs hourly, daily, or only on threshold crossings (e.g. temperature > X).

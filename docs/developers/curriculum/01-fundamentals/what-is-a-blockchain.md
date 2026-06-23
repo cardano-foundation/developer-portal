@@ -130,6 +130,5 @@ After a few more blocks are added on top, the transaction is considered final wi
 - Immutability is a feature: auditability and trust without a trusted intermediary. You INSERT, you never UPDATE.
 - Cardano's eUTXO model, native tokens, and on-chain governance are the design choices that most affect how you build.
 
-## What's next
-
+## Next steps
 Now that you know what a blockchain is, the next page explores the cryptographic building blocks that make it work: hash functions, Merkle trees, and digital signatures. See [Cryptographic Primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives).

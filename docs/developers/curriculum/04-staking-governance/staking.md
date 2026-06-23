@@ -619,8 +619,7 @@ Mesh's transaction builder has no pool-registration or retirement helpers, so pr
 
 Resubmitting `registerPool` with the same operator key updates an existing pool. To retire, announce a future epoch with `retirePool({ poolKeyHash, epoch: retirementEpoch })`; the pool deposit is refunded to the reward account after retirement. Pool metadata must follow the [CIP-6 standard](https://cips.cardano.org/cip/CIP-0006).
 
-## Key takeaway
-
+## Key takeaways
 Staking from an application is **ordinary transaction building with certificates**: register, delegate, withdraw, deregister. The ADA never leaves the user's control, there's no slashing, and stake delegation is fully independent of governance vote delegation. Reach for script-controlled stake (the withdraw-zero coordinator) when a contract needs to validate a whole transaction at once.
 
 ## Next steps

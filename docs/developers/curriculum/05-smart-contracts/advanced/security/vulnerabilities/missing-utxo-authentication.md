@@ -42,7 +42,7 @@ The same vulnerability is commonly seen in multi-step contracts, where an attack
 
 ### Voting example
 
-The protocol is implemented using two contracts — the voting contract and the DAO contract. Let's break these contracts down.
+The protocol is implemented using two contracts, the voting contract and the DAO contract. Let's break these contracts down.
 
 In the voting contract, everyone votes by signing a transaction where their vote is added to a list kept in the datum. Multiple participants vote on the same proposal across multiple transactions, adding their names one at a time. In the example transaction below, we can see Eve voting for a new proposal by signing the transaction and adding her name to the list.
 
@@ -73,7 +73,7 @@ Assuming multi-step contracts, the validation logic itself cannot verify that al
 
 To generally remediate this vulnerability, we need to be able to verify the initial state of a given contract and that all state transitions were done correctly. Verifying a state transition is simple in the Cardano model by using validators which always check whether the next state can be reached from the previous state.
 
-To verify that the initial state was correct, we use validity tokens — also sometimes called state (thread) tokens. These tokens are minted by a minting policy and we can allow them to be minted only in transactions that create a new valid proposal at the voting address. We can see an example in the following transaction:
+To verify that the initial state was correct, we use validity tokens, also sometimes called state (thread) tokens. These tokens are minted by a minting policy and we can allow them to be minted only in transactions that create a new valid proposal at the voting address. We can see an example in the following transaction:
 
 ![TNU-4](../img/tnu-4.png)
 A validity token can be minted as we create a voting UTxO in a valid initial state.
@@ -92,12 +92,12 @@ A complex example seen in practice was a double satisfaction between the validit
 
 Let's add the possibility to retract a vote. To do this, the voter must have already voted. Secondly, the voter must sign the retracting transaction.
 
-Note that if there was only one voter, retracting his vote would return the voting contract to the valid initial state — the same one it was in when the proposal was created, thus possibly allowing the mint of a fresh new validation token:
+Note that if there was only one voter, retracting his vote would return the voting contract to the valid initial state, the same one it was in when the proposal was created, thus possibly allowing the mint of a fresh new validation token:
 
 ![TNU-5](../img/tnu-5.png)
 Eve abuses the fact that by retracting her vote she creates a contract in the valid initial state, allowing her to mint an additional validity token. A similar example has been seen in audits.
 
-Because both the voting validator and the validity token minting policy expect the validity token to be in the resulting voting UTxO, putting it there satisfies both conditions — this is also called a double satisfaction.
+Because both the voting validator and the validity token minting policy expect the validity token to be in the resulting voting UTxO, putting it there satisfies both conditions, this is also called a double satisfaction.
 
 The full attack chain Eve uses to get her proposal passed is as follows:
 

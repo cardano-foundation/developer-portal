@@ -1,4 +1,5 @@
 ---
+id: optimization
 title: Smart Contract Optimization
 sidebar_label: Contract Optimization
 description: Optimization techniques and benchmarking workflow for Aiken smart contracts.

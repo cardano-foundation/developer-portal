@@ -35,7 +35,7 @@ We use a WS2812 (NeoPixel) ring - addressable RGB LEDs in a circle, each individ
 Current facts:
 - Each LED can draw up to 60 mA at full white.
 - A 12-LED ring at full white can draw **720 mA**.
-- USB ports usually deliver 500 mA – 1 A. Insufficient for full brightness.
+- USB ports usually deliver 500 mA - 1 A. Insufficient for full brightness.
 - Exceeding ratings can damage your ESP32, USB port, or supply.
 
 Safety:
@@ -332,8 +332,7 @@ void updateWalkingLED() {
 
 Update `LED_PIN` and WiFi credentials. Upload, and you should see LEDs progressively light around the ring as the chain moves through the epoch.
 
-## What's next?
-
+## Next steps
 You've finished Workshop 02 - you can fetch chain data, render it, and drive physical hardware off it. Some extensions:
 
 - **Visual variations** - clockwise / anti-clockwise / alternating; animations on new blocks.

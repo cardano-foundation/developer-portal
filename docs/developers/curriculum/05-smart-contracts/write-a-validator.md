@@ -323,8 +323,7 @@ Codegen covers the common case, but you should be able to read a `plutus.json` d
 
 Read it that way (preamble, then a validator, then the schemas it names, then the definitions those point at) and a blueprint is a complete, language-agnostic description of how to talk to the contract.
 
-## Key takeaway
-
+## Key takeaways
 Every validator is a **pure function**: it receives transaction context and returns `True` or `False`. No side effects, no storage writes, no network calls. The runtime only applies state changes if the validator approves, fundamentally different from a web2 backend that both validates and mutates.
 
 ## Next steps

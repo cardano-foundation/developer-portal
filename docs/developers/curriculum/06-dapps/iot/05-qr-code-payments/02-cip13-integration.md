@@ -70,8 +70,7 @@ This workshop uses Yoroi Mobile, which supports CIP-13 payment URIs. Install Yor
 Wallet support varies. Test with the wallets your users actually use. Check the wallet's docs for the latest CIP support status.
 :::
 
-## What's next?
-
+## Next steps
 Now that you can construct payment URIs, the next lesson renders one as a QR code on the TFT - scannable by a mobile wallet to send tADA.
 
 ## Further Resources

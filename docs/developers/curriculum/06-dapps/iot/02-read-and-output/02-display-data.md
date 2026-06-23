@@ -52,7 +52,7 @@ GPIO 8 / 9 are the default I2C pins on the ESP32-C3. If your board differs, adju
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define OLED_RESET -1
-#define SCREEN_ADDRESS 0x3C  // or 0x3D — use the I2C scanner if unsure
+#define SCREEN_ADDRESS 0x3C  // or 0x3D, use the I2C scanner if unsure
 
 #define I2C_SDA 8
 #define I2C_SCL 9
@@ -190,7 +190,7 @@ If you see "Hello World!" on a blue screen, you're good. If you see corrupted gr
 ### Understanding the code
 
 - **`tft.init()`** - initialises the display.
-- **`tft.setRotation(1)`** - landscape orientation. Values 0–3 rotate by 90° each.
+- **`tft.setRotation(1)`** - landscape orientation. Values 0-3 rotate by 90° each.
 - **`tft.invertDisplay(true)`** - some CYDs have inverted colours; without this, blue may show as yellow.
 - **`tft.fillScreen(TFT_BLUE)`** - fills the screen with a colour constant.
 - **`tft.setTextColor(fg, bg)`** - text colour and background.
@@ -437,8 +437,7 @@ void updateTimestamp() {
 
 Replace WiFi credentials and your stake address before uploading. You should see your tADA balance update every minute and the timestamp tick every second.
 
-## What's next?
-
+## Next steps
 You can now poll on-chain data and render it on a screen. From here, try other Koios endpoints, or build alternative visualisations on the same hardware. The next lessons in this workshop add hardware actuation: a relay (drive a real light bulb) and an LED ring (an Epoch Clock).
 
 ## Further Resources

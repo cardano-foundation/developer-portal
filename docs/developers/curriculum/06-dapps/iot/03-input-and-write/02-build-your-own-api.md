@@ -623,8 +623,7 @@ Matching `package.json`:
 Make sure your wallet has enough tADA for transaction amounts plus fees (~0.2 ADA per tx). Transactions are irreversible.
 :::
 
-## What's next?
-
+## Next steps
 You now have a working API that takes sensor data and stores it on-chain as metadata. The next lesson upgrades this so each sensor reading becomes an **NFT** instead of just metadata - a unique on-chain digital item that can be collected, traded, displayed.
 
 ## Further Resources

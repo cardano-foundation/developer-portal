@@ -28,7 +28,7 @@ fee = a * size(tx) + b
 - **`b`**: fixed base fee on every transaction (currently 155,381 lovelace).
 - **`size(tx)`**: serialized transaction size in bytes.
 
-A typical simple transfer costs roughly **0.17–0.20 ADA**. Transactions with native tokens, metadata, or many outputs are larger and cost more; smart-contract transactions add execution fees on top.
+A typical simple transfer costs roughly **0.17-0.20 ADA**. Transactions with native tokens, metadata, or many outputs are larger and cost more; smart-contract transactions add execution fees on top.
 
 Both parameters serve a purpose: `a` covers the resource cost of processing and storing larger transactions, while `b` is a base security layer, a minimum cost regardless of size that makes flooding the network with tiny transactions prohibitively expensive.
 
@@ -63,7 +63,7 @@ Transactions that execute scripts must provide **collateral**: ADA-only UTXOs th
 Rules:
 
 - Must contain **only ADA** (no native tokens).
-- Must cover the potential script cost (typically 150–200% of expected fees).
+- Must cover the potential script cost (typically 150-200% of expected fees).
 - **Returned untouched** if the transaction succeeds.
 - **Consumed only** if phase-2 validation fails.
 - **Collateral return (CIP-40):** since Vasil, a transaction can specify a collateral return address so only the required amount is taken, not the entire UTXO.

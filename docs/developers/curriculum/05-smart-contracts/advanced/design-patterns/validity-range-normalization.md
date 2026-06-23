@@ -14,7 +14,7 @@ sets it apart from other blockchains. Specifically, validators, at runtime, are 
 deprived of direct access to the current time. Instead, they are equipped with information solely
 about the validity range of a transaction. This design choice guarantees that a transaction is only
 admitted to the chain within its designated validity range. Consequently, smart contracts can
-implement checks based on the current time, while maintaining computational purity—wherein functions
+implement checks based on the current time, while maintaining computational purity, wherein functions
 exhibit mathematical purity devoid of side-causes or side-effects.
 
 ## The Problem

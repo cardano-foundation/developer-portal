@@ -25,7 +25,7 @@ The list distinguishes between two kinds of elements:
 - **Root**: The first element of the linked list, holding `root_data`
 - **Node**: Any other element, holding `node_data`
 
-Each element's NFT asset name encodes its identity — the root uses a configurable `RootKey`, while nodes use a `NodeKeyPrefix` concatenated with their unique `NodeKey`.
+Each element's NFT asset name encodes its identity, the root uses a configurable `RootKey`, while nodes use a `NodeKeyPrefix` concatenated with their unique `NodeKey`.
 
 ### Insertion
 
@@ -59,7 +59,7 @@ NFTs serve as robust and unique pointers within the list. Their uniqueness is en
 
 ## Aiken Implementation
 
-The API handles all linked list structural validations internally — pointer updates, key ordering, NFT minting/burning, and element authentication. Your contract only needs to provide application-specific validations through callback functions (`additional_validations`).
+The API handles all linked list structural validations internally, pointer updates, key ordering, NFT minting/burning, and element authentication. Your contract only needs to provide application-specific validations through callback functions (`additional_validations`).
 
 This is why the API does not expose granular helper functions, and only provides functions that perform primary linked list operations (e.g. `init`, `insert_ascending`, etc.). A good rule of thumb: if a validation is related to the linked list structure itself, the library has already taken care of it.
 
@@ -86,7 +86,7 @@ pub type ElementData<root_data, node_data> {
 pub type RootKey = AssetName
 
 /// Key for linked list nodes (at least 1 byte, at most
-/// (32 - NodeKeyPrefixLength) bytes). Keys should be unique — the
+/// (32 - NodeKeyPrefixLength) bytes). Keys should be unique, the
 /// recommended approach is to use the hash of an input's output
 /// reference. If you need duplicate keys, proceed with extreme
 /// caution as linked list integrity can break without other means

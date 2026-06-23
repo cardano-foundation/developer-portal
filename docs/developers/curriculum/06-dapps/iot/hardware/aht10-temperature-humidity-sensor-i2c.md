@@ -13,10 +13,10 @@ A high-precision digital **temperature and humidity sensor** from Aosong with an
 
 - Temperature: -40°C to +85°C
   - Accuracy ±0.3°C (typical), resolution 0.01°C
-- Humidity: 0–100% RH
+- Humidity: 0-100% RH
   - Accuracy ±2% RH (typical), resolution 0.024% RH
 - I2C interface (SDA, SCL)
-- Operating voltage: 1.8V – 6.0V (3.3V recommended)
+- Operating voltage: 1.8V - 6.0V (3.3V recommended)
 - Low power consumption
 - **Factory calibrated** - no user calibration needed
 - Fast response time
