@@ -21,7 +21,7 @@ out, and it leaves future options open (see below) without committing to any of 
   (`01-wallet-send-lovelace` through `10-web3-services`). Each folder backs a lesson in the docs
   and runs on its own.
 - `templates/`: runnable dApp starter templates, one per SDK (`evolution-vite-react`,
-  `mesh-nextjs-template`). Each is the same minimal app, connect a wallet, show the balance, send ADA,
+  `mesh-nextjs`). Each is the same minimal app, connect a wallet, show the balance, send ADA,
   and backs the [Build your first dApp](https://developers.cardano.org/docs/developers/curriculum/dapps/your-first-dapp)
   walkthrough. Start a project from one with `giget` (see Direction below).
 

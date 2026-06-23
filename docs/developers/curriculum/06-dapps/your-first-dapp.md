@@ -53,14 +53,14 @@ npm run dev            # http://localhost:5173
 <TabItem value="mesh" label="Mesh">
 
 ```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs-template my-app
+npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs my-app
 cd my-app
 npm install
 cp .env.example .env.local   # set NEXT_PUBLIC_BLOCKFROST_API_KEY
 npm run dev                  # http://localhost:3000
 ```
 
-[Browse the template on GitHub](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs-template). It is Next.js. Mesh ships React components and hooks, so the connect button and wallet state come built in.
+[Browse the template on GitHub](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs). It is Next.js. Mesh ships React components and hooks, so the connect button and wallet state come built in.
 
 </TabItem>
 </Tabs>

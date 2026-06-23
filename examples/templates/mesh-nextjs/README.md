@@ -7,7 +7,7 @@ This is a template from the [Cardano Developer Portal](https://developers.cardan
 project from it with:
 
 ```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs-template my-app
+npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs my-app
 ```
 
 ## What it does

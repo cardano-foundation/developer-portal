@@ -1,5 +1,5 @@
 {
-  "name": "mesh-nextjs-template",
+  "name": "mesh-nextjs",
   "description": "A Cardano dApp starter: connect a wallet, show balance, and send ADA, built with Next.js and Mesh.",
   "author": "MeshJS",
   "license": "Apache-2.0",

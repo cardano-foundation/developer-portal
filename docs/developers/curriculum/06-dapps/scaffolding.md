@@ -19,10 +19,10 @@ Two minimal, runnable dApp starters, one per SDK, each doing the same thing: con
 npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/evolution-vite-react my-app
 
 # Mesh + Next.js
-npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs-template my-app
+npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-nextjs my-app
 ```
 
-Then `cd my-app`, `npm install`, set a free [Blockfrost](https://blockfrost.io) key in the env file, and `npm run dev`. Browse the source first if you prefer: [evolution-vite-react](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/evolution-vite-react) and [mesh-nextjs-template](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs-template).
+Then `cd my-app`, `npm install`, set a free [Blockfrost](https://blockfrost.io) key in the env file, and `npm run dev`. Browse the source first if you prefer: [evolution-vite-react](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/evolution-vite-react) and [mesh-nextjs](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs).
 
 :::tip Walk one through step by step
 [Build your first dApp](/docs/developers/curriculum/dapps/your-first-dapp) takes one of these templates from scaffold to a working wallet payment, explaining each piece (connect, read the balance, send ADA) in even Evolution and Mesh tabs.

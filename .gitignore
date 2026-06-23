@@ -32,6 +32,9 @@ yarn-error.log*
 # Example templates ship without a lockfile (a fresh install picks current deps)
 examples/templates/*/package-lock.json
 examples/templates/*/pnpm-lock.yaml
+# Template build output (Next.js / Vite)
+examples/templates/*/.next
+examples/templates/*/dist
 
 # vscode
 .vscode
