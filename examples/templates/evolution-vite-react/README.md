@@ -60,6 +60,20 @@ const hash = TransactionHash.toHex(await (await tx.sign()).submit())
 See `src/components/TransactionBuilder.tsx` for the full flow with input handling and error states, and
 `src/components/WalletConnect.tsx` for the wallet connection.
 
+## Build configuration
+
+The `optimizeDeps` block in `vite.config.ts` is not boilerplate; it controls how Vite serves the
+Evolution SDK in development:
+
+- **Evolution stays unbundled.** `exclude: ["@evolution-sdk/evolution"]` keeps the SDK served as
+  source, matching the upstream Evolution example, so Vite's dependency pre-bundling does not have to
+  process it.
+- **`@scure/bip39` is pre-bundled.** Because Evolution is excluded, its transitive `@scure/bip39` is
+  served raw, and that package ships `sourceMappingURL` comments without the `.map` files, so Vite
+  logs a harmless `Failed to load source map` warning on every transform. Listing it in `include`
+  pre-bundles just that package through esbuild, which drops the dangling comments and silences the
+  noise. Cosmetic only; the app runs the same without it.
+
 ## Scripts
 
 - `npm run dev` starts the dev server.
