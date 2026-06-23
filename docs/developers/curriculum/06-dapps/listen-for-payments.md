@@ -29,35 +29,58 @@ Cardano's read APIs don't push events, so every method here **polls** on an inte
 
 ## Detecting a payment
 
-<Tabs groupId="method">
-<TabItem value="blockfrost" label="Blockfrost">
+Generate a fresh payment address per order, then poll it: read the address's UTXOs, sum the lovelace, and compare to what you expect. The same loop works through either SDK's provider, or with cardano-cli against your own node.
 
-[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost) serves chain data over HTTP, so there is no node to run. Query the address total and poll until the received sum covers the expected amount:
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
-```js
-const PROJECT_ID = process.env.BLOCKFROST_API_KEY;
-const BASE = "https://cardano-preprod.blockfrost.io/api/v0"; // preview and mainnet hosts differ
-const expectedLovelace = 1_000_000n;
+```typescript
+import { Address, Client, preprod } from "@evolution-sdk/evolution"
 
-async function receivedLovelace(address) {
-  const res = await fetch(`${BASE}/addresses/${address}/total`, {
-    headers: { project_id: PROJECT_ID },
-  });
-  const data = await res.json();
-  const lovelace = data.received_sum?.find((a) => a.unit === "lovelace");
-  return BigInt(lovelace?.quantity ?? 0);
+const client = Client.make(preprod).withBlockfrost({
+  baseUrl: "https://cardano-preprod.blockfrost.io/api/v0",
+  projectId: process.env.BLOCKFROST_API_KEY!,
+})
+const expectedLovelace = 1_000_000n
+
+async function receivedLovelace(address: string) {
+  const utxos = await client.getUtxos(Address.fromBech32(address))
+  return utxos.reduce((sum, utxo) => sum + (utxo.assets.lovelace ?? 0n), 0n)
 }
 
 // poll every few seconds until paid
 const timer = setInterval(async () => {
   if ((await receivedLovelace(address)) >= expectedLovelace) {
-    clearInterval(timer);
+    clearInterval(timer)
     // payment confirmed: fulfill the order
   }
-}, 3000);
+}, 3000)
 ```
 
-For a complete point-of-sale app with a React UI, QR codes, and live USD/ADA conversion built on this approach, fork the [Cardano POS starter](https://github.com/fill-the-fill/cardano-pos-starting-point).
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { BlockfrostProvider } from "@meshsdk/core"
+
+const provider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY!)
+const expectedLovelace = 1_000_000n
+
+async function receivedLovelace(address: string) {
+  const utxos = await provider.fetchAddressUTxOs(address)
+  return utxos.reduce((sum, u) => {
+    const lovelace = u.output.amount.find((a) => a.unit === "lovelace")?.quantity ?? "0"
+    return sum + BigInt(lovelace)
+  }, 0n)
+}
+
+const timer = setInterval(async () => {
+  if ((await receivedLovelace(address)) >= expectedLovelace) {
+    clearInterval(timer)
+    // payment confirmed: fulfill the order
+  }
+}, 3000)
+```
 
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
@@ -69,46 +92,22 @@ cardano-cli query utxo --address "$(cat payment.addr)" --testnet-magic 1 --outpu
 ```
 
 ```js
-import { execSync } from "node:child_process";
+import { execSync } from "node:child_process"
 
-const expectedLovelace = 1_000_000n;
+const expectedLovelace = 1_000_000n
 
 function receivedLovelace(addr) {
-  const out = execSync(
-    `cardano-cli query utxo --address ${addr} --testnet-magic 1 --output-json`,
-  );
-  const utxos = JSON.parse(out.toString());
-  return Object.values(utxos).reduce(
-    (sum, u) => sum + BigInt(u.value.lovelace),
-    0n,
-  );
+  const out = execSync(`cardano-cli query utxo --address ${addr} --testnet-magic 1 --output-json`)
+  const utxos = JSON.parse(out.toString())
+  return Object.values(utxos).reduce((sum, u) => sum + BigInt(u.value.lovelace), 0n)
 }
 // poll receivedLovelace(addr) on an interval and compare to expectedLovelace
 ```
 
-This is the lowest-level option: you run and sync the node yourself.
-
-</TabItem>
-<TabItem value="cardano-wallet" label="cardano-wallet">
-
-If you run a [cardano-wallet](https://github.com/cardano-foundation/cardano-wallet) service alongside a node, read the wallet balance over its REST API (default port `8090`):
-
-```js
-const walletId = "101b3814d6977de4b58c9dedc67b87c63a4f36dd";
-const expectedLovelace = 1_000_000n;
-
-async function balanceLovelace() {
-  const res = await fetch(`http://localhost:8090/v2/wallets/${walletId}`);
-  const wallet = await res.json();
-  return BigInt(wallet.balance.total.quantity);
-}
-// poll balanceLovelace() on an interval and compare to expectedLovelace
-```
-
-Use a dedicated wallet per order, or derive fresh addresses, so balances map cleanly to payments.
-
 </TabItem>
 </Tabs>
+
+For a complete point-of-sale app with a React UI, QR codes, and live USD/ADA conversion, fork the [Cardano POS starter](https://github.com/fill-the-fill/cardano-pos-starting-point).
 
 :::tip Wait for confirmations
 A transaction in the mempool can still be rolled back. Cardano produces a block roughly every 20 seconds, so for anything valuable, wait several blocks (a few minutes) before treating a payment as final; the larger the amount, the deeper you should wait.
