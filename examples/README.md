@@ -20,6 +20,10 @@ out, and it leaves future options open (see below) without committing to any of 
 - `bootcamp/`: companion code for the bootcamp lessons, one folder per lesson
   (`01-wallet-send-lovelace` through `10-web3-services`). Each folder backs a lesson in the docs
   and runs on its own.
+- `templates/`: runnable dApp starter templates, one per SDK (`evolution-vite-react`,
+  `mesh-nextjs-template`). Each is the same minimal app, connect a wallet, show the balance, send ADA,
+  and backs the [Build your first dApp](https://developers.cardano.org/docs/developers/curriculum/dapps/your-first-dapp)
+  walkthrough. Start a project from one with `giget` (see Direction below).
 
 More categories will be added over time.
 
@@ -29,11 +33,11 @@ This folder is intended to grow into the home for practical, runnable material f
 developers:
 
 - Workshop materials referenced by content in the portal.
-- Starter templates for common stacks, such as a Next.js app with wallet connection and a basic
-  transaction using a client SDK like Evolution, or an x402 starter.
+- More starter templates for common stacks (the first two, Evolution + Vite and Mesh + Next.js, are in
+  `templates/`); for example an x402 starter, or other client SDKs and frameworks.
 - A curated catalog of canonical get-started projects, surfaced the same way as builder tools.
 
-Templates would live as self-contained subdirectories (for example `examples/templates/<name>/`).
+Templates live as self-contained subdirectories (for example `examples/templates/<name>/`).
 A project is started from one with `giget` or `degit`, which fetch a single subdirectory from a
 repository:
 

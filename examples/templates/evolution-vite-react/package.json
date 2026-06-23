@@ -1,0 +1,29 @@
+{
+  "name": "evolution-vite-react",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "type-check": "tsc --noEmit",
+    "preview": "vite preview",
+    "test": "echo \"No tests specified for Vite React example\" && exit 0"
+  },
+  "dependencies": {
+    "@cardano-foundation/cardano-connect-with-wallet": "^0.2.9",
+    "@cardano-foundation/cardano-connect-with-wallet-core": "^0.2.5",
+    "@evolution-sdk/evolution": "^0.5.9",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@tailwindcss/postcss": "^4.1.7",
+    "@vitejs/plugin-react": "^6.0.1",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.0"
+  }
+}
