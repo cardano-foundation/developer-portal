@@ -20,9 +20,9 @@ Four steps. The data layer that powers the gallery lives in `src/data/templates/
    pass. If it needs build-config workarounds, document them in the template's own README, the way
    `evolution-vite-react` and `mesh-nextjs` do.
 2. **Register it.** Append an entry to `src/data/templates/templates.js` (field reference below).
-3. **Extend the taxonomy if needed.** If your `framework`, `sdk`, `wallet`, or a use case is not
-   already in `src/data/templates/tags.js`, add it there first. The build validation lists the
-   allowed values if you miss this.
+3. **Extend the taxonomy if needed.** If your `framework`, `sdk`, or `wallet` is not already in
+   `src/data/templates/tags.js`, add it there first. The build validation lists the allowed values if
+   you miss this.
 4. **Validate.** Run `yarn build`. A fail-fast check catches missing or invalid fields and points at
    the problem. Then eyeball `/templates` and `/templates/<name>`.
 
@@ -40,14 +40,13 @@ You never hardcode the slug, the scaffold command, or the GitHub link. All three
   framework: "nextjs",                              // one id from Frameworks (tags.js)
   sdk: "mesh",                                       // one id from Sdks (tags.js)
   wallet: "mesh",                                    // one id from Wallets (tags.js)
-  useCases: ["starter", "payments"],                // one or more ids from UseCases (tags.js)
 
   // Optional
   maintainerPick: true,                             // omit for false; picks sort first and get a badge
 }
 ```
 
-- `framework`, `sdk`, `wallet`, and `useCases` must use ids that exist in `tags.js`. The gallery's
+- `framework`, `sdk`, and `wallet` must use ids that exist in `tags.js`. The gallery's
   filters are built from that taxonomy.
 - `maintainerPick` marks a curated, featured template. Leave it off for community submissions unless a
   maintainer is featuring it.

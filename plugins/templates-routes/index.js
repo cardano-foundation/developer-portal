@@ -25,7 +25,14 @@ module.exports = function templatesRoutesPlugin(context) {
         context.siteDir,
         "src/data/templates/templates.js"
       );
-      const source = fs.readFileSync(templatesPath, "utf8");
+      let source;
+      try {
+        source = fs.readFileSync(templatesPath, "utf8");
+      } catch (e) {
+        throw new Error(
+          `templates-routes: could not read src/data/templates/templates.js (${e.message})`
+        );
+      }
       // Entry repoPaths only: line-leading horizontal whitespace + `repoPath: "..."`.
       // The how-to comment block uses ` * ` line prefixes and won't match.
       const repoPathRegex = /^[^\S\n]*repoPath:\s*"((?:[^"\\]|\\.)*)"/gm;

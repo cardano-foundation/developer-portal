@@ -8,11 +8,9 @@
 import { sortBy } from "@site/src/utils/jsUtils";
 import { Templates } from "./templates/templates";
 import {
-  UseCases,
   Frameworks,
   Sdks,
   Wallets,
-  UseCaseList,
   FrameworkList,
   SdkList,
   WalletList,
@@ -33,11 +31,9 @@ Templates.forEach(ensureTemplateValid);
 export const SortedTemplates = sortTemplates();
 export {
   Templates,
-  UseCases,
   Frameworks,
   Sdks,
   Wallets,
-  UseCaseList,
   FrameworkList,
   SdkList,
   WalletList,

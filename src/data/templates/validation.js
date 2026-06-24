@@ -1,5 +1,5 @@
 import { difference } from "@site/src/utils/jsUtils";
-import { UseCaseList, FrameworkList, SdkList, WalletList } from "./tags";
+import { FrameworkList, SdkList, WalletList } from "./tags";
 
 // Fail-fast on common errors (runs at build via src/data/templates.js).
 export function ensureTemplateValid(template) {
@@ -11,7 +11,6 @@ export function ensureTemplateValid(template) {
       "framework",
       "sdk",
       "wallet",
-      "useCases",
       "maintainerPick",
     ];
     const unknownKeys = difference(Object.keys(template), validKeys);
@@ -30,16 +29,6 @@ export function ensureTemplateValid(template) {
     }
   }
 
-  function checkUseCases() {
-    if (!Array.isArray(template.useCases) || template.useCases.length === 0) {
-      throw new Error("useCases must be a non-empty array");
-    }
-    const unknown = difference(template.useCases, UseCaseList);
-    if (unknown.length > 0) {
-      throw new Error(`unknown useCases=[${unknown.join(", ")}]. Available: ${UseCaseList.join(", ")}`);
-    }
-  }
-
   function checkRepoPath() {
     if (!template.repoPath.startsWith("examples/templates/")) {
       throw new Error(`repoPath should point at examples/templates/<name>: ${template.repoPath}`);
@@ -53,7 +42,6 @@ export function ensureTemplateValid(template) {
     checkEnum("framework", FrameworkList);
     checkEnum("sdk", SdkList);
     checkEnum("wallet", WalletList);
-    checkUseCases();
   } catch (e) {
     throw new Error(`Template with title=${template.title} contains errors:\n${e.message}`);
   }

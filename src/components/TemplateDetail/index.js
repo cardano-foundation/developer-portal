@@ -151,7 +151,12 @@ export default function TemplateDetail({ slug }) {
                 Set the env values from the template README, then start building.
               </li>
             </ol>
-            <Link href={template.githubUrl} className={styles.readmeLink}>
+            <Link
+              href={template.githubUrl}
+              className={styles.readmeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <GitHubIcon size={16} />
               Read the template README on GitHub
             </Link>
@@ -161,7 +166,12 @@ export default function TemplateDetail({ slug }) {
             <MetaRow label="Framework" value={Frameworks[template.framework]?.label} />
             <MetaRow label="SDK" value={Sdks[template.sdk]?.label} />
             <MetaRow label="Wallet" value={Wallets[template.wallet]?.label} />
-            <Link href={template.githubUrl} className={styles.sourceButton}>
+            <Link
+              href={template.githubUrl}
+              className={styles.sourceButton}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <GitHubIcon size={18} />
               View source on GitHub
             </Link>

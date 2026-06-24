@@ -10,31 +10,24 @@
 import {
   Templates,
   SortedTemplates,
-  UseCases,
   Frameworks,
   Sdks,
   Wallets,
-  UseCaseList,
   FrameworkList,
   SdkList,
   WalletList,
 } from "@site/src/data/templates";
 
 export {
-  UseCases,
   Frameworks,
   Sdks,
   Wallets,
-  UseCaseList,
   FrameworkList,
   SdkList,
   WalletList,
 };
 
 const REPO = "cardano-foundation/developer-portal";
-
-// "NEW" badge + "Recently added" use the last N entries in insertion order.
-export const RECENT_TEMPLATES_COUNT = 4;
 
 // Slug = the examples/templates/<name> directory. MUST byte-match slugFor() in
 // plugins/templates-routes/index.js so detail routes line up.

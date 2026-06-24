@@ -179,10 +179,6 @@
   font-size: 0.9rem;
 }
 
-.metaRowBadges {
-  align-items: flex-start;
-}
-
 .metaLabel {
   color: var(--ifm-color-emphasis-600);
   font-weight: 500;
@@ -193,24 +189,6 @@
   color: var(--ifm-color-emphasis-900);
   font-weight: 600;
   text-align: right;
-}
-
-.badgeList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  justify-content: flex-end;
-}
-
-.useCaseBadge {
-  font-size: 0.68rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 0.15rem 0.45rem;
-  border-radius: 6px;
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-700);
 }
 
 .sourceButton {
