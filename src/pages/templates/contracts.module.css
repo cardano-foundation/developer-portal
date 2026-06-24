@@ -1,0 +1,273 @@
+.page {
+  padding-top: 2.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.header {
+  margin-bottom: 2.25rem;
+}
+
+.pageTitle {
+  margin: 0 0 0.6rem;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.pageSubtitle {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
+  max-width: 640px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Filter sidebar: search at top, then checkbox groups */
+.sidebar {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sidebarTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.clearButton {
+  background: transparent;
+  border: 0;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.clearButton:hover {
+  color: var(--ifm-color-primary);
+}
+
+.searchInput {
+  width: 100%;
+  height: 40px;
+  padding: 0 0.9rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  font-size: 0.92rem;
+}
+
+.searchInput::placeholder {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.searchInput:focus-visible {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+}
+
+.filterSection {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.filterSection:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.filterHeading {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.checkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-800);
+  cursor: pointer;
+}
+
+.checkRow input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--ifm-color-primary);
+  cursor: pointer;
+}
+
+.checkRow:hover {
+  color: var(--ifm-color-emphasis-1000);
+}
+
+.contribute {
+  display: block;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  font-size: 0.88rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.contribute:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* Results */
+.results {
+  min-width: 0;
+}
+
+.resultsHeader {
+  margin-bottom: 1.25rem;
+}
+
+.resultsCount {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2.5rem 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Card (clean, flat) */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  padding: 1.25rem 1.35rem 1.35rem;
+}
+
+.cardTitle {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Language chip rows */
+.chipGroup {
+  margin: 0 0 0.6rem;
+}
+
+.chipLabel {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-color-emphasis-100);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+  line-height: 1.4;
+}
+
+.chipMuted {
+  border-style: dashed;
+  color: var(--ifm-color-emphasis-600);
+  background: transparent;
+}
+
+/* Links row at the bottom of a card */
+.cardLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cardLinkAlt {
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}

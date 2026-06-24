@@ -5,6 +5,7 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
+import TemplatesTabs from "@site/src/components/TemplatesTabs";
 import {
   SortedTemplateShowcases,
   Frameworks,
@@ -143,11 +144,9 @@ export default function Templates() {
           </p>
           <p className={styles.crossLink}>
             Looking for a contract pattern (escrow, vesting, swap)? See the{" "}
-            <Link to="/docs/developers/curriculum/smart-contracts/contracts-library">
-              contract library
-            </Link>
-            .
+            <Link to="/templates/contracts">contract library</Link>.
           </p>
+          <TemplatesTabs />
         </header>
 
         <div className={styles.layout}>
