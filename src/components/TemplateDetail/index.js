@@ -7,7 +7,6 @@ import clsx from "clsx";
 
 import {
   TemplateShowcases,
-  UseCases,
   Frameworks,
   Sdks,
   Wallets,
@@ -188,18 +187,6 @@ export default function TemplateDetail({ slug }) {
             <MetaRow label="Framework" value={Frameworks[template.framework]?.label} />
             <MetaRow label="SDK" value={Sdks[template.sdk]?.label} />
             <MetaRow label="Wallet" value={Wallets[template.wallet]?.label} />
-            {template.useCases?.length > 0 && (
-              <div className={clsx(styles.metaRow, styles.metaRowBadges)}>
-                <span className={styles.metaLabel}>Use cases</span>
-                <span className={styles.badgeList}>
-                  {template.useCases.map((u) => (
-                    <span key={u} className={styles.useCaseBadge}>
-                      {UseCases[u]?.label ?? u}
-                    </span>
-                  ))}
-                </span>
-              </div>
-            )}
             <Link href={template.githubUrl} className={styles.sourceButton}>
               <GitHubIcon size={18} />
               View source on GitHub

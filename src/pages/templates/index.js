@@ -7,11 +7,9 @@ import clsx from "clsx";
 
 import {
   SortedTemplateShowcases,
-  UseCases,
   Frameworks,
   Sdks,
   Wallets,
-  UseCaseList,
   FrameworkList,
   SdkList,
   WalletList,
@@ -57,9 +55,6 @@ function filterTemplates(templates, selected, search) {
   const term = search.trim().toLowerCase();
   return templates.filter((t) => {
     if (term && !`${t.title} ${t.description}`.toLowerCase().includes(term)) {
-      return false;
-    }
-    if (selected.useCases.length && !t.useCases.some((u) => selected.useCases.includes(u))) {
       return false;
     }
     if (selected.frameworks.length && !selected.frameworks.includes(t.framework)) return false;
@@ -109,7 +104,6 @@ function TemplateCard({ template }) {
 export default function Templates() {
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState({
-    useCases: [],
     frameworks: [],
     sdks: [],
     wallets: [],
@@ -125,13 +119,9 @@ export default function Templates() {
     });
 
   const activeCount =
-    selected.useCases.length +
-    selected.frameworks.length +
-    selected.sdks.length +
-    selected.wallets.length;
+    selected.frameworks.length + selected.sdks.length + selected.wallets.length;
 
-  const clearAll = () =>
-    setSelected({ useCases: [], frameworks: [], sdks: [], wallets: [] });
+  const clearAll = () => setSelected({ frameworks: [], sdks: [], wallets: [] });
 
   const filtered = useMemo(
     () => filterTemplates(SortedTemplateShowcases, selected, search),
@@ -150,6 +140,13 @@ export default function Templates() {
           <p className={styles.pageSubtitle}>
             Start from a working dApp. Scaffold a wallet-connected starter and
             ship from there.
+          </p>
+          <p className={styles.crossLink}>
+            Looking for a contract pattern (escrow, vesting, swap)? See the{" "}
+            <Link to="/docs/developers/curriculum/smart-contracts/contracts-library">
+              contract library
+            </Link>
+            .
           </p>
         </header>
 
@@ -173,13 +170,6 @@ export default function Templates() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               aria-label="Search templates"
-            />
-            <FilterSection
-              heading="Use cases"
-              list={UseCaseList}
-              taxonomy={UseCases}
-              selected={selected.useCases}
-              onToggle={toggle("useCases")}
             />
             <FilterSection
               heading="Frameworks"

@@ -23,6 +23,12 @@
   max-width: 620px;
 }
 
+.crossLink {
+  margin: 0.6rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
 .layout {
   display: grid;
   grid-template-columns: 240px 1fr;
