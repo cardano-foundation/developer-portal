@@ -23,12 +23,6 @@
   max-width: 620px;
 }
 
-.crossLink {
-  margin: 0.6rem 0 0;
-  font-size: 0.95rem;
-  color: var(--ifm-color-emphasis-600);
-}
-
 .layout {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -188,65 +182,71 @@
   height: 100%;
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 12px;
-  overflow: hidden;
   background: var(--ifm-background-surface-color);
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 150ms ease;
-}
-
-.card:hover {
-  text-decoration: none;
-  color: inherit;
-  border-color: var(--ifm-color-emphasis-400);
-}
-
-.cardThumb {
-  aspect-ratio: 16 / 9;
-  background: var(--ifm-color-emphasis-100);
-  overflow: hidden;
-}
-
-.cardImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.cardBody {
-  padding: 1rem 1.1rem 1.15rem;
+  padding: 1.25rem 1.35rem 1.35rem;
 }
 
 .cardTitle {
-  margin: 0 0 0.3rem;
-  font-size: 1.1rem;
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
   font-weight: 700;
   line-height: 1.3;
 }
 
-.cardStack {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--ifm-color-emphasis-600);
+.cardDescription {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
 }
 
-/* Simple placeholder for missing screenshots */
-.thumbFallback {
+/* Chip rows */
+.chipGroup {
+  margin: 0 0 0.6rem;
+}
+
+.chipLabel {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.chips {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, #1a2c5e 0%, #2f4dad 100%);
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
-.thumbFallbackLabel {
-  color: #fff;
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-color-emphasis-100);
+  font-size: 0.78rem;
   font-weight: 600;
-  font-size: 1rem;
-  text-align: center;
+  color: var(--ifm-color-emphasis-800);
+  line-height: 1.4;
+}
+
+.cardLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
 }
 
 @media (max-width: 768px) {

@@ -7,7 +7,6 @@ export function ensureTemplateValid(template) {
     const validKeys = [
       "title",
       "description",
-      "screenshot",
       "repoPath",
       "framework",
       "sdk",

@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
@@ -21,35 +20,20 @@ import styles from "./styles.module.css";
 const TITLE = "Cardano dApp Templates";
 const DESCRIPTION = "Runnable dApp starters you can scaffold in one command";
 
-// Render the screenshot, or a simple placeholder on a missing/broken src. Real
-// previews dropped into static/img/template-previews/ display automatically.
-function TemplateImage({ template, className }) {
-  const src = useBaseUrl(template.screenshot || "");
-  const [errored, setErrored] = useState(false);
-  const showFallback = !template.screenshot || errored;
-
-  if (showFallback) {
-    return (
-      <div className={clsx(className, styles.thumbFallback)} aria-hidden>
-        <span className={styles.thumbFallbackLabel}>{template.title}</span>
-      </div>
-    );
-  }
+function ChipRow({ label, ids, taxonomy }) {
+  if (!ids.length) return null;
   return (
-    <img
-      src={src}
-      alt=""
-      className={className}
-      loading="lazy"
-      onError={() => setErrored(true)}
-    />
+    <div className={styles.chipGroup}>
+      <span className={styles.chipLabel}>{label}</span>
+      <div className={styles.chips}>
+        {ids.map((id) => (
+          <span key={id} className={styles.chip}>
+            {taxonomy[id]?.label ?? id}
+          </span>
+        ))}
+      </div>
+    </div>
   );
-}
-
-function stackLine(template) {
-  return [Frameworks[template.framework]?.label, Sdks[template.sdk]?.label]
-    .filter(Boolean)
-    .join(" · ");
 }
 
 function filterTemplates(templates, selected, search) {
@@ -88,17 +72,19 @@ function FilterSection({ heading, list, taxonomy, selected, onToggle }) {
 }
 
 function TemplateCard({ template }) {
-  const stack = stackLine(template);
   return (
-    <Link to={`/templates/${template.slug}`} className={styles.card}>
-      <div className={styles.cardThumb}>
-        <TemplateImage template={template} className={styles.cardImage} />
+    <div className={styles.card}>
+      <h2 className={styles.cardTitle}>{template.title}</h2>
+      <p className={styles.cardDescription}>{template.description}</p>
+      <ChipRow label="Framework" ids={[template.framework]} taxonomy={Frameworks} />
+      <ChipRow label="SDK" ids={[template.sdk]} taxonomy={Sdks} />
+      <ChipRow label="Wallet" ids={[template.wallet]} taxonomy={Wallets} />
+      <div className={styles.cardLinks}>
+        <Link className={styles.cardLink} to={`/templates/${template.slug}`}>
+          Use this template
+        </Link>
       </div>
-      <div className={styles.cardBody}>
-        <h2 className={styles.cardTitle}>{template.title}</h2>
-        {stack && <p className={styles.cardStack}>{stack}</p>}
-      </div>
-    </Link>
+    </div>
   );
 }
 
@@ -141,10 +127,6 @@ export default function Templates() {
           <p className={styles.pageSubtitle}>
             Start from a working dApp. Scaffold a wallet-connected starter and
             ship from there.
-          </p>
-          <p className={styles.crossLink}>
-            Looking for a contract pattern (escrow, vesting, swap)? See the{" "}
-            <Link to="/templates/contracts">contract library</Link>.
           </p>
           <TemplatesTabs />
         </header>

@@ -15,7 +15,6 @@
 //   sdk            (required) one id from Sdks (tags.js)
 //   wallet         (required) one id from Wallets (tags.js)
 //   useCases       (required) one or more ids from UseCases (tags.js)
-//   screenshot     (optional) "/img/template-previews/<name>.png"; placeholder if omitted
 //   maintainerPick (optional) boolean; picks sort first and get a badge
 //
 // Last-inserted entries read as the newest.
@@ -26,7 +25,6 @@ export const Templates = [
     title: "Evolution + Vite + React",
     description:
       "Connect a wallet, read the balance, and send ADA. A Vite + React starter built on the Evolution SDK.",
-    screenshot: "/img/template-previews/evolution-vite-react.png",
     repoPath: "examples/templates/evolution-vite-react",
     framework: "vite-react",
     sdk: "evolution",
@@ -38,7 +36,6 @@ export const Templates = [
     title: "Mesh + Next.js",
     description:
       "Connect a wallet, read the balance, and send ADA. A Next.js starter built on Mesh.",
-    screenshot: "/img/template-previews/mesh-nextjs.png",
     repoPath: "examples/templates/mesh-nextjs",
     framework: "nextjs",
     sdk: "mesh",

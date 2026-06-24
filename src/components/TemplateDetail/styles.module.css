@@ -16,33 +16,6 @@
   color: var(--ifm-color-primary);
 }
 
-/* Hero: a capped banner, not a giant block */
-.hero {
-  display: block;
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  background: var(--ifm-color-emphasis-100);
-}
-
-.heroFallback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  background: linear-gradient(135deg, #1a2c5e 0%, #2f4dad 100%);
-}
-
-.heroFallbackLabel {
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.01em;
-  text-align: center;
-}
-
 .header {
   margin: 1.4rem 0 0;
 }
