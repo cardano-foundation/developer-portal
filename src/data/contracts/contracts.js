@@ -4,16 +4,21 @@
 // Each entry is a use case with one or more on-chain and off-chain
 // implementations. Append an entry to add a contract. Validation runs at build
 // (this file -> validation.js) and fail-fasts on missing or invalid fields.
+// Full contributor guide + provenance: src/data/contracts/README.md.
+//
+// Most entries mirror the Cardano Foundation monitoring repo (MONITORING_BASE
+// below); a chip means an implementation EXISTS there, not that it passes CI.
 //
 // Fields:
 //   title        (required) display name
-//   slug         (required) stable key; the source directory name where it applies
+//   slug         (required) stable, explicit, unique key (NOT derived)
 //   description  (required) one plain sentence
 //   category     (required) one id from Categories (tags.js)
 //   onchain      array of ids from OnchainLangs (tags.js); may be empty
 //   offchain     array of ids from OffchainLangs (tags.js); may be empty
 //   repoUrl      (required) where to view the implementations
-//   altSources   (optional) [{ label, url }] for extra source locations
+//   altSources   (optional) [{ label, url }] extra sources, e.g.
+//                  [{ label: "MeshJS", url: "https://meshjs.dev/smart-contracts/escrow" }]
 //   reference    (optional) boolean; a written reference with no published code
 // ============================================================================
 
