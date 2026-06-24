@@ -5,6 +5,8 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
+import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
+import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
 import {
   SortedContractShowcases,
   OnchainLangs,
@@ -15,9 +17,9 @@ import {
   CategoryList,
 } from "@site/src/data/contracts/showcase";
 
-import styles from "./contracts.module.css";
+import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
 
-const TITLE = "Cardano contract library";
+const TITLE = "Cardano Contracts Library";
 const DESCRIPTION =
   "Reference smart contracts by use case, with their on-chain and off-chain implementations.";
 
@@ -49,44 +51,6 @@ function filterContracts(contracts, selected, search) {
   });
 }
 
-function FilterSection({ heading, list, taxonomy, selected, onToggle }) {
-  return (
-    <div className={styles.filterSection}>
-      <h3 className={styles.filterHeading}>{heading}</h3>
-      <ul className={styles.checkList}>
-        {list.map((id) => (
-          <li key={id}>
-            <label className={styles.checkRow}>
-              <input
-                type="checkbox"
-                checked={selected.includes(id)}
-                onChange={() => onToggle(id)}
-              />
-              <span>{taxonomy[id]?.label ?? id}</span>
-            </label>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function ChipRow({ label, langIds, taxonomy }) {
-  if (!langIds.length) return null;
-  return (
-    <div className={styles.chipGroup}>
-      <span className={styles.chipLabel}>{label}</span>
-      <div className={styles.chips}>
-        {langIds.map((id) => (
-          <span key={id} className={styles.chip}>
-            {taxonomy[id]?.label ?? id}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function ContractCard({ contract }) {
   const isReference = Boolean(contract.reference);
   return (
@@ -104,12 +68,12 @@ function ContractCard({ contract }) {
         <>
           <ChipRow
             label="On-chain"
-            langIds={contract.onchain}
+            ids={contract.onchain}
             taxonomy={OnchainLangs}
           />
           <ChipRow
             label="Off-chain"
-            langIds={contract.offchain}
+            ids={contract.offchain}
             taxonomy={OffchainLangs}
           />
         </>
@@ -117,7 +81,7 @@ function ContractCard({ contract }) {
 
       <div className={styles.cardLinks}>
         <Link
-          className={styles.cardLink}
+          className={clsx(styles.cardLink, styles.cardCta, styles.cardCtaExternal)}
           href={contract.repoUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -202,6 +166,15 @@ export default function Contracts() {
               onChange={(e) => setSearch(e.target.value)}
               aria-label="Search contracts"
             />
+            <a
+              className={styles.contributeButton}
+              href="https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span aria-hidden="true">+</span>
+              Contribute a contract
+            </a>
             <FilterSection
               heading="Category"
               list={CategoryList}
@@ -223,14 +196,6 @@ export default function Contracts() {
               selected={selected.offchain}
               onToggle={toggle("offchain")}
             />
-            <a
-              className={styles.contribute}
-              href="https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Contribute a contract
-            </a>
           </aside>
 
           <section className={styles.results}>

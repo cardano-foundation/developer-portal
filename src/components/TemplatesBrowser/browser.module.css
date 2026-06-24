@@ -1,3 +1,12 @@
+/* ===========================================================================
+   Shared styles for the /templates browser (app starters + contracts).
+   Both src/pages/templates/index.js and contracts.js import this as their only
+   stylesheet, as do the shared FilterSection and ChipRow components. The two
+   pages differ only in content, not layout, so the CSS lives here once. The CTA
+   arrow glyph is picked per card with the cardCtaInternal / cardCtaExternal
+   modifier; chipMuted and cardLinkAlt are used by the contracts cards only.
+   =========================================================================== */
+
 .page {
   padding-top: 2.5rem;
   padding-bottom: 4.5rem;
@@ -83,6 +92,32 @@
   border-color: var(--ifm-color-primary);
 }
 
+/* Contribute call to action: an outline button below the search input */
+.contributeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  background: transparent;
+  color: var(--ifm-color-emphasis-800);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+}
+
+.contributeButton:hover {
+  border-color: var(--ifm-color-emphasis-700);
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-900);
+  text-decoration: none;
+}
+
 .filterSection {
   padding: 1.25rem 0;
   border-top: 1px solid var(--ifm-color-emphasis-200);
@@ -129,19 +164,6 @@
   color: var(--ifm-color-emphasis-1000);
 }
 
-.contribute {
-  display: block;
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-  font-size: 0.88rem;
-  color: var(--ifm-color-emphasis-700);
-}
-
-.contribute:hover {
-  color: var(--ifm-color-primary);
-}
-
 /* Results */
 .results {
   min-width: 0;
@@ -184,6 +206,12 @@
   border-radius: 12px;
   background: var(--ifm-background-surface-color);
   padding: 1.25rem 1.35rem 1.35rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-emphasis-400);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .cardTitle {
@@ -200,7 +228,7 @@
   color: var(--ifm-color-emphasis-700);
 }
 
-/* Language chip rows */
+/* Chip rows */
 .chipGroup {
   margin: 0 0 0.6rem;
 }
@@ -234,6 +262,7 @@
   line-height: 1.4;
 }
 
+/* Muted chip: used for "Reference" contracts that have no published code */
 .chipMuted {
   border-style: dashed;
   color: var(--ifm-color-emphasis-600);
@@ -256,9 +285,37 @@
   align-items: center;
 }
 
+/* Secondary "alt source" links sit quieter next to the primary CTA */
 .cardLinkAlt {
   color: var(--ifm-color-emphasis-600);
   font-weight: 500;
+}
+
+/* Primary action: brand-colored with a trailing arrow that nudges on hover.
+   The glyph is set by a modifier: internal nav uses a forward arrow, external
+   (leaves-the-site) links use an up-right arrow. */
+.cardCta {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.cardCta::after {
+  display: inline-block;
+  margin-left: 0.25rem;
+  transition: transform 150ms ease;
+}
+
+.cardCtaInternal::after {
+  content: "\2192";
+}
+
+.cardCtaExternal::after {
+  content: "\2197";
+}
+
+.card:hover .cardCta::after,
+.cardCta:hover::after {
+  transform: translateX(2px);
 }
 
 @media (max-width: 768px) {

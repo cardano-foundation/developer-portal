@@ -5,6 +5,8 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
+import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
+import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
 import {
   SortedTemplateShowcases,
   Frameworks,
@@ -15,26 +17,10 @@ import {
   WalletList,
 } from "@site/src/data/templates/showcase";
 
-import styles from "./styles.module.css";
+import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
 
 const TITLE = "Cardano dApp Templates";
 const DESCRIPTION = "Runnable dApp starters you can scaffold in one command";
-
-function ChipRow({ label, ids, taxonomy }) {
-  if (!ids.length) return null;
-  return (
-    <div className={styles.chipGroup}>
-      <span className={styles.chipLabel}>{label}</span>
-      <div className={styles.chips}>
-        {ids.map((id) => (
-          <span key={id} className={styles.chip}>
-            {taxonomy[id]?.label ?? id}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function filterTemplates(templates, selected, search) {
   const term = search.trim().toLowerCase();
@@ -49,28 +35,6 @@ function filterTemplates(templates, selected, search) {
   });
 }
 
-function FilterSection({ heading, list, taxonomy, selected, onToggle }) {
-  return (
-    <div className={styles.filterSection}>
-      <h3 className={styles.filterHeading}>{heading}</h3>
-      <ul className={styles.checkList}>
-        {list.map((id) => (
-          <li key={id}>
-            <label className={styles.checkRow}>
-              <input
-                type="checkbox"
-                checked={selected.includes(id)}
-                onChange={() => onToggle(id)}
-              />
-              <span>{taxonomy[id]?.label ?? id}</span>
-            </label>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 function TemplateCard({ template }) {
   return (
     <div className={styles.card}>
@@ -80,7 +44,10 @@ function TemplateCard({ template }) {
       <ChipRow label="SDK" ids={[template.sdk]} taxonomy={Sdks} />
       <ChipRow label="Wallet" ids={[template.wallet]} taxonomy={Wallets} />
       <div className={styles.cardLinks}>
-        <Link className={styles.cardLink} to={`/templates/${template.slug}`}>
+        <Link
+          className={clsx(styles.cardLink, styles.cardCta, styles.cardCtaInternal)}
+          to={`/templates/${template.slug}`}
+        >
           Use this template
         </Link>
       </div>
@@ -152,6 +119,15 @@ export default function Templates() {
               onChange={(e) => setSearch(e.target.value)}
               aria-label="Search templates"
             />
+            <a
+              className={styles.contributeButton}
+              href="https://github.com/cardano-foundation/developer-portal/blob/staging/examples/templates/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span aria-hidden="true">+</span>
+              Contribute a template
+            </a>
             <FilterSection
               heading="Frameworks"
               list={FrameworkList}
@@ -173,14 +149,6 @@ export default function Templates() {
               selected={selected.wallets}
               onToggle={toggle("wallets")}
             />
-            <a
-              className={styles.contribute}
-              href="https://github.com/cardano-foundation/developer-portal/blob/staging/examples/templates/README.md"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Contribute a template
-            </a>
           </aside>
 
           <section className={styles.results}>
