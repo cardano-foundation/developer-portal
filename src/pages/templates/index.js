@@ -38,16 +38,15 @@ function filterTemplates(templates, selected, search) {
 function TemplateCard({ template }) {
   return (
     <div className={styles.card}>
-      <h2 className={styles.cardTitle}>{template.title}</h2>
+      <h2 className={styles.cardTitle}>
+        <Link className={styles.cardTitleLink} to={`/templates/${template.slug}`}>
+          {template.title}
+        </Link>
+      </h2>
       <p className={styles.cardDescription}>{template.description}</p>
       <ChipRow label="Framework" ids={[template.framework]} taxonomy={Frameworks} />
       <ChipRow label="SDK" ids={[template.sdk]} taxonomy={Sdks} />
       <ChipRow label="Wallet" ids={[template.wallet]} taxonomy={Wallets} />
-      <div className={styles.cardMeta}>
-        <Link className={styles.cardCta} to={`/templates/${template.slug}`}>
-          Use this template
-        </Link>
-      </div>
     </div>
   );
 }
