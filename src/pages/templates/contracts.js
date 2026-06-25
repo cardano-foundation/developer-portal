@@ -7,6 +7,7 @@ import clsx from "clsx";
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
 import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
 import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
+import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
 import {
   SortedContractShowcases,
   OnchainLangs,
@@ -51,11 +52,31 @@ function filterContracts(contracts, selected, search) {
   });
 }
 
+// Whether the primary source link points at GitHub (controls the title icon).
+function isGitHubUrl(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "") === "github.com";
+  } catch (e) {
+    return false;
+  }
+}
+
 function ContractCard({ contract }) {
   const isReference = Boolean(contract.reference);
+  const onGitHub = isGitHubUrl(contract.repoUrl);
   return (
     <div className={styles.card}>
-      <h2 className={styles.cardTitle}>{contract.title}</h2>
+      <h2 className={styles.cardTitle}>
+        <Link
+          className={styles.cardTitleLink}
+          href={contract.repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {contract.title}
+          {onGitHub && <GitHubIcon size={15} />}
+        </Link>
+      </h2>
       <p className={styles.cardDescription}>{contract.description}</p>
 
       {isReference ? (
@@ -79,27 +100,21 @@ function ContractCard({ contract }) {
         </>
       )}
 
-      <div className={styles.cardLinks}>
-        <Link
-          className={clsx(styles.cardLink, styles.cardCta, styles.cardCtaExternal)}
-          href={contract.repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View implementations
-        </Link>
-        {(contract.altSources || []).map((src) => (
-          <Link
-            key={src.url}
-            className={clsx(styles.cardLink, styles.cardLinkAlt)}
-            href={src.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {src.label}
-          </Link>
-        ))}
-      </div>
+      {(contract.altSources || []).length > 0 && (
+        <div className={styles.cardMeta}>
+          {contract.altSources.map((src) => (
+            <Link
+              key={src.url}
+              className={styles.cardLinkAlt}
+              href={src.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {src.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

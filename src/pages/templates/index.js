@@ -43,11 +43,8 @@ function TemplateCard({ template }) {
       <ChipRow label="Framework" ids={[template.framework]} taxonomy={Frameworks} />
       <ChipRow label="SDK" ids={[template.sdk]} taxonomy={Sdks} />
       <ChipRow label="Wallet" ids={[template.wallet]} taxonomy={Wallets} />
-      <div className={styles.cardLinks}>
-        <Link
-          className={clsx(styles.cardLink, styles.cardCta, styles.cardCtaInternal)}
-          to={`/templates/${template.slug}`}
-        >
+      <div className={styles.cardMeta}>
+        <Link className={styles.cardCta} to={`/templates/${template.slug}`}>
           Use this template
         </Link>
       </div>

@@ -269,8 +269,28 @@
   background: transparent;
 }
 
-/* Links row at the bottom of a card */
-.cardLinks {
+/* The title links to its source; on contract cards a small GitHub mark sits
+   next to the name. */
+.cardTitleLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardTitleLink:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.cardTitleLink svg {
+  flex: none;
+  opacity: 0.65;
+}
+
+/* Bottom links row: alt sources (contracts) and the starter CTA */
+.cardMeta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1rem;
@@ -280,37 +300,30 @@
   font-weight: 600;
 }
 
-.cardLink {
+/* Secondary alt-source links sit quieter, with a leaves-the-site arrow */
+.cardLinkAlt {
   display: inline-flex;
   align-items: center;
-}
-
-/* Secondary "alt source" links sit quieter next to the primary CTA */
-.cardLinkAlt {
   color: var(--ifm-color-emphasis-600);
   font-weight: 500;
 }
 
-/* Primary action: brand-colored with a trailing arrow that nudges on hover.
-   The glyph is set by a modifier: internal nav uses a forward arrow, external
-   (leaves-the-site) links use an up-right arrow. */
+.cardLinkAlt::after {
+  content: "\2197";
+  margin-left: 0.2rem;
+}
+
+/* Starter CTA: brand-colored with a forward arrow that nudges on hover */
 .cardCta {
   color: var(--ifm-color-primary);
   font-weight: 600;
 }
 
 .cardCta::after {
+  content: "\2192";
   display: inline-block;
   margin-left: 0.25rem;
   transition: transform 150ms ease;
-}
-
-.cardCtaInternal::after {
-  content: "\2192";
-}
-
-.cardCtaExternal::after {
-  content: "\2197";
 }
 
 .card:hover .cardCta::after,
