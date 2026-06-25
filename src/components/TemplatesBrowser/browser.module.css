@@ -92,7 +92,7 @@
   border-color: var(--ifm-color-primary);
 }
 
-/* Contribute call to action: an outline button below the search input */
+/* Contribute call to action: a solid brand-blue button below the search input */
 .contributeButton {
   display: flex;
   align-items: center;
@@ -102,19 +102,19 @@
   margin-bottom: 1.5rem;
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
-  border: 1px solid var(--ifm-color-emphasis-400);
-  background: transparent;
-  color: var(--ifm-color-emphasis-800);
+  border: 1px solid var(--ifm-color-primary);
+  background: var(--ifm-color-primary);
+  color: #fff;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+  transition: border-color 150ms ease, background 150ms ease;
 }
 
 .contributeButton:hover {
-  border-color: var(--ifm-color-emphasis-700);
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
+  border-color: var(--ifm-color-primary-dark);
+  background: var(--ifm-color-primary-dark);
+  color: #fff;
   text-decoration: none;
 }
 
