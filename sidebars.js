@@ -109,7 +109,7 @@ module.exports = {
             "developers/curriculum/smart-contracts/write-a-validator",
             "developers/curriculum/smart-contracts/lock-and-spend",
             "developers/curriculum/smart-contracts/testing",
-            "developers/curriculum/smart-contracts/contracts-library",
+            { type: "link", label: "Contract library", href: "/templates/contracts" },
             {
               type: "category",
               label: "Smart Contract Security",

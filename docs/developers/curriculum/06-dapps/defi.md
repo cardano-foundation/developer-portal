@@ -262,4 +262,4 @@ For production-grade, open-source reference implementations of these patterns, s
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): let users interact with your protocol from the browser
 - [Oracles](/docs/developers/curriculum/dapps/oracles/overview): the price-feed infrastructure DeFi depends on
 - [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the attack classes (double satisfaction, contention) that hit DeFi hardest
-- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): escrow, swap, and production-grade dApp implementations
+- [Contract library](/templates/contracts): escrow, swap, and production-grade dApp implementations
