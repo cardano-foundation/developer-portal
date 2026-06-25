@@ -129,6 +129,44 @@ html[data-theme="dark"] .heroSubtitle {
   color: rgba(255, 255, 255, 0.7);
 }
 
+.heroActions {
+  margin-top: 1.75rem;
+}
+
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+}
+
+html[data-theme="light"] .heroCta {
+  background: var(--site-color-brand-blue);
+  color: #fff;
+}
+
+html[data-theme="dark"] .heroCta {
+  background: var(--site-color-brand-teal);
+  color: #fff;
+}
+
+.heroCta:hover {
+  transform: translateY(-2px);
+}
+
+html[data-theme="light"] .heroCta:hover {
+  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.2);
+}
+
+html[data-theme="dark"] .heroCta:hover {
+  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.2);
+}
+
 @media screen and (max-width: 996px) {
   .heroBackgroundImage {
     object-position: center right;

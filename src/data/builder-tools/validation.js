@@ -90,10 +90,10 @@ export function ensureBuilderToolValid(tool) {
       tool.category === "operations" &&
       typeof tool.docs === "string" &&
       tool.docs.startsWith("/docs/") &&
-      !tool.docs.startsWith("/docs/operate-a-stake-pool/")
+      !tool.docs.startsWith("/docs/operators/")
     ) {
       throw new Error(
-        "Get-started pages for operations tools should live under /docs/operate-a-stake-pool/."
+        "Get-started pages for operations tools should live under /docs/operators/."
       );
     }
   }

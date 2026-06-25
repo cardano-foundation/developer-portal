@@ -100,7 +100,7 @@ function ShareButton({ title }) {
         clearTimeout(timerRef.current);
         timerRef.current = setTimeout(() => setCopied(false), 1500);
       } catch {
-        // clipboard blocked — fail silently
+        // clipboard blocked: fail silently
       }
     }
   };
@@ -169,7 +169,7 @@ export default function ToolDetail({ slug }) {
       ? `${repository}/edit/${branch}/src/data/builder-tools/tools.js`
       : repository;
 
-  const pageTitle = `${tool.title} — Cardano builder tool`;
+  const pageTitle = `${tool.title}, Cardano builder tool`;
   const pageDescription = tool.description;
 
   return (

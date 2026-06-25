@@ -198,7 +198,7 @@ module.exports = {
           items: [
             {
               label: "Careers on Cardano",
-              to: "docs/community/careers",
+              to: "docs/community/cardano-developer-community#jobs-and-careers",
             },
             {
               label: "Cardano Enterprise",
@@ -253,13 +253,10 @@ module.exports = {
           'portal-archived-changelog.md',
         ],
         includeOrder: [
-          'get-started/**',
-          'learn/**',
-          'governance/**',
-          'operate-a-stake-pool/**',
+          'developers/**',
+          'operators/**',
           'community/**',
           'contribute/**',
-          'build/**',
         ],
         includeUnmatchedLast: true,
         title: 'Cardano Developer Portal',

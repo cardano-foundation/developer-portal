@@ -41,7 +41,7 @@ Join Cardano Improvement Proposal discussions every two weeks. Participate in te
 Chat with general developer community channels. Great for quick questions, community discussions, and staying up-to-date with the latest developments.
 
 [**IOG Technical Discord**](https://discord.com/invite/w6TwW9bGA6)  
-Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pioneers](/docs/build/smart-contracts/languages/plinth#resources) and technical discussions with IOG developers.
+Official [Input Output](https://iohk.io/) Discord server. Home to [Plutus Pioneers](https://github.com/input-output-hk/plutus-pioneer-program) and technical discussions with IOG developers.
 
 ## Talent Pool & Hackathons
 
@@ -54,6 +54,14 @@ Sign up once and we'll reach out when relevant hackathons, jobs, or grants come 
 [**Join the Talent Pool →**](/talent)
 
 :::
+
+## Jobs and careers
+
+Many teams across the ecosystem hire remotely. To find roles and the organizations behind them:
+
+- [Browse Cardano ecosystem entities](https://cardano.org/entities) to see who is building, across DeFi, NFTs, gaming, identity, and more.
+- [Cardano Foundation careers](https://cardanofoundation.org/careers), [EMURGO careers](https://emurgo.io/careers/), and [Input Output careers](https://apply.workable.com/io-global/) for roles at the founding entities.
+- Sign up for the [Talent Pool](/talent) to hear about jobs as they come up.
 
 ## Developer Surveys
 
