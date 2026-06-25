@@ -109,7 +109,15 @@ export default function TemplateDetail({ slug }) {
 
         <header className={styles.header}>
           {template.maintainerPick && (
-            <span className={styles.pickBadge}>★ Maintainer pick</span>
+            <span className={styles.pickBadge}>
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden focusable="false">
+                <path
+                  fill="currentColor"
+                  d="M12 2.5l2.9 6.5 7.1.8-5.3 4.9 1.5 7-6.2-3.6L5.8 21.7l1.5-7L2 9.8l7.1-.8z"
+                />
+              </svg>
+              Maintainer pick
+            </span>
           )}
           <h1 className={styles.title}>{template.title}</h1>
         </header>

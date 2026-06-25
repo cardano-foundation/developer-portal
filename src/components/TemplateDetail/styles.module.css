@@ -23,15 +23,23 @@
 .pickBadge {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  color: #d99e00;
-  font-size: 0.8rem;
+  gap: 0.5rem;
+  background: var(--ifm-color-emphasis-1000, #0b0d10);
+  color: #fff;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.pickBadge svg {
+  color: #fbbf24;
 }
 
 [data-theme="dark"] .pickBadge {
-  color: #fbbf24;
+  background: #1c1f24;
+  border: 1px solid var(--ifm-color-emphasis-300);
 }
 
 .title {
