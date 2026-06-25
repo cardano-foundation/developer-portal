@@ -12,7 +12,6 @@ export function ensureContractValid(contract) {
       "onchain",
       "offchain",
       "repoUrl",
-      "altSources",
       "reference",
     ];
     const unknownKeys = difference(Object.keys(contract), validKeys);
@@ -49,25 +48,12 @@ export function ensureContractValid(contract) {
     }
   }
 
-  function checkAltSources() {
-    if (contract.altSources === undefined) return;
-    if (!Array.isArray(contract.altSources)) {
-      throw new Error("altSources must be an array");
-    }
-    contract.altSources.forEach((src) => {
-      if (!src || !src.label || !src.url) {
-        throw new Error("each altSource needs a label and a url");
-      }
-    });
-  }
-
   try {
     checkFields();
     ["title", "slug", "description", "repoUrl"].forEach(checkRequired);
     checkCategory();
     checkLangs("onchain", OnchainList);
     checkLangs("offchain", OffchainList);
-    checkAltSources();
   } catch (e) {
     throw new Error(`Contract with title=${contract.title} contains errors:\n${e.message}`);
   }

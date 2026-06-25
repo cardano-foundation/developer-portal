@@ -74,9 +74,12 @@ function ContractCard({ contract }) {
           rel="noopener noreferrer"
         >
           {contract.title}
-          {onGitHub && <GitHubIcon size={15} />}
+          {onGitHub && <GitHubIcon size={16} />}
         </Link>
       </h2>
+      {contract.source && (
+        <p className={styles.cardSource}>via {contract.source}</p>
+      )}
       <p className={styles.cardDescription}>{contract.description}</p>
 
       {isReference ? (
@@ -98,22 +101,6 @@ function ContractCard({ contract }) {
             taxonomy={OffchainLangs}
           />
         </>
-      )}
-
-      {(contract.altSources || []).length > 0 && (
-        <div className={styles.cardMeta}>
-          {contract.altSources.map((src) => (
-            <Link
-              key={src.url}
-              className={styles.cardLinkAlt}
-              href={src.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {src.label}
-            </Link>
-          ))}
-        </div>
       )}
     </div>
   );

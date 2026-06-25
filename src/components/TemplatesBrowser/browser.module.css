@@ -2,9 +2,9 @@
    Shared styles for the /templates browser (app starters + contracts).
    Both src/pages/templates/index.js and contracts.js import this as their only
    stylesheet, as do the shared FilterSection and ChipRow components. The two
-   pages differ only in content, not layout, so the CSS lives here once. The CTA
-   arrow glyph is picked per card with the cardCtaInternal / cardCtaExternal
-   modifier; chipMuted and cardLinkAlt are used by the contracts cards only.
+   pages differ only in content, not layout, so the CSS lives here once. The card
+   title links to its destination (cardTitleLink); chipMuted (the reference chip)
+   and cardSource (the "via <source>" line) are used by the contracts cards only.
    =========================================================================== */
 
 .page {
@@ -228,6 +228,14 @@
   color: var(--ifm-color-emphasis-700);
 }
 
+/* "via <source>" provenance line under a contract card title */
+.cardSource {
+  margin: -0.1rem 0 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-500);
+}
+
 /* Chip rows */
 .chipGroup {
   margin: 0 0 0.6rem;
@@ -269,12 +277,14 @@
   background: transparent;
 }
 
-/* The title links to its source; on contract cards a small GitHub mark sits
-   next to the name. */
+/* The title links to its source; on contract cards a GitHub mark is pinned to
+   the top-right of the title row. */
 .cardTitleLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
   color: inherit;
   text-decoration: none;
 }
@@ -286,49 +296,8 @@
 
 .cardTitleLink svg {
   flex: none;
-  opacity: 0.65;
-}
-
-/* Bottom links row: alt sources (contracts) and the starter CTA */
-.cardMeta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1rem;
-  margin-top: auto;
-  padding-top: 1rem;
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-
-/* Secondary alt-source links sit quieter, with a leaves-the-site arrow */
-.cardLinkAlt {
-  display: inline-flex;
-  align-items: center;
-  color: var(--ifm-color-emphasis-600);
-  font-weight: 500;
-}
-
-.cardLinkAlt::after {
-  content: "\2197";
-  margin-left: 0.2rem;
-}
-
-/* Starter CTA: brand-colored with a forward arrow that nudges on hover */
-.cardCta {
-  color: var(--ifm-color-primary);
-  font-weight: 600;
-}
-
-.cardCta::after {
-  content: "\2192";
-  display: inline-block;
-  margin-left: 0.25rem;
-  transition: transform 150ms ease;
-}
-
-.card:hover .cardCta::after,
-.cardCta:hover::after {
-  transform: translateX(2px);
+  margin-top: 0.2rem;
+  opacity: 0.55;
 }
 
 @media (max-width: 768px) {

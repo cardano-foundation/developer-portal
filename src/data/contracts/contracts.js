@@ -1,13 +1,16 @@
 // ============================================================================
 // Reference smart contracts surfaced at /templates/contracts
 // ============================================================================
-// Each entry is a use case with one or more on-chain and off-chain
-// implementations. Append an entry to add a contract. Validation runs at build
-// (this file -> validation.js) and fail-fasts on missing or invalid fields.
+// Each entry is one codebase for a use case. When a use case has independent
+// codebases (e.g. the CF monitoring escrow and MeshJS's escrow), each is its own
+// entry; the card tells them apart with a "via <source>" label derived from the
+// repo owner (see showcase.js). Append an entry to add a contract. Validation
+// runs at build (this file -> validation.js) and fail-fasts on bad fields.
 // Full contributor guide + provenance: src/data/contracts/README.md.
 //
 // Most entries mirror the Cardano Foundation monitoring repo (MONITORING_BASE
-// below); a chip means an implementation EXISTS there, not that it passes CI.
+// below); a chip means that implementation exists at the entry's repoUrl, not
+// that it currently passes CI.
 //
 // Fields:
 //   title        (required) display name
@@ -16,14 +19,17 @@
 //   category     (required) one id from Categories (tags.js)
 //   onchain      array of ids from OnchainLangs (tags.js); may be empty
 //   offchain     array of ids from OffchainLangs (tags.js); may be empty
-//   repoUrl      (required) where to view the implementations
-//   altSources   (optional) [{ label, url }] extra sources, e.g.
-//                  [{ label: "MeshJS", url: "https://meshjs.dev/smart-contracts/escrow" }]
+//   repoUrl      (required) the single canonical link for this codebase
 //   reference    (optional) boolean; a written reference with no published code
 // ============================================================================
 
 const MONITORING_BASE =
   "https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring/tree/main";
+
+// MeshJS ships its contract library as source directories; link straight to the
+// per-contract folder so the card lands on the code (and shows the GitHub mark).
+const MESH_CONTRACT_BASE =
+  "https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src";
 
 export const Contracts = [
   {
@@ -113,7 +119,16 @@ export const Contracts = [
     onchain: ["aiken"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     repoUrl: `${MONITORING_BASE}/escrow`,
-    altSources: [{ label: "MeshJS", url: "https://meshjs.dev/smart-contracts/escrow" }],
+  },
+  {
+    title: "Escrow",
+    slug: "escrow-meshjs",
+    description:
+      "Hold assets from two parties until both sign off, then complete or cancel the exchange.",
+    category: "payments",
+    onchain: ["aiken"],
+    offchain: ["meshjs"],
+    repoUrl: `${MESH_CONTRACT_BASE}/escrow`,
   },
   {
     title: "Factory",
@@ -154,7 +169,16 @@ export const Contracts = [
     onchain: ["aiken", "scalus"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     repoUrl: `${MONITORING_BASE}/payment-splitter`,
-    altSources: [{ label: "MeshJS", url: "https://meshjs.dev/smart-contracts/payment-splitter" }],
+  },
+  {
+    title: "Payment splitter",
+    slug: "payment-splitter-meshjs",
+    description:
+      "Distribute locked funds equally among a fixed list of known payees.",
+    category: "payments",
+    onchain: ["aiken"],
+    offchain: ["meshjs"],
+    repoUrl: `${MESH_CONTRACT_BASE}/payment-splitter`,
   },
   {
     title: "Price bet",
@@ -235,7 +259,16 @@ export const Contracts = [
     onchain: ["aiken"],
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     repoUrl: `${MONITORING_BASE}/vesting`,
-    altSources: [{ label: "MeshJS", url: "https://meshjs.dev/smart-contracts/vesting" }],
+  },
+  {
+    title: "Vesting",
+    slug: "vesting-meshjs",
+    description:
+      "Lock funds for a period and let the beneficiary withdraw them once the lockup elapses.",
+    category: "payments",
+    onchain: ["aiken"],
+    offchain: ["meshjs"],
+    repoUrl: `${MESH_CONTRACT_BASE}/vesting`,
   },
   // MeshJS smart-contract library
   {
@@ -246,7 +279,7 @@ export const Contracts = [
     category: "basics",
     onchain: ["aiken"],
     offchain: ["meshjs"],
-    repoUrl: "https://meshjs.dev/smart-contracts/hello-world",
+    repoUrl: `${MESH_CONTRACT_BASE}/hello-world`,
   },
   {
     title: "Marketplace",
@@ -255,7 +288,7 @@ export const Contracts = [
     category: "tokens",
     onchain: ["aiken"],
     offchain: ["meshjs"],
-    repoUrl: "https://meshjs.dev/smart-contracts/marketplace",
+    repoUrl: `${MESH_CONTRACT_BASE}/marketplace`,
   },
   {
     title: "Swap",
@@ -264,7 +297,7 @@ export const Contracts = [
     category: "defi",
     onchain: ["aiken"],
     offchain: ["meshjs"],
-    repoUrl: "https://meshjs.dev/smart-contracts/swap",
+    repoUrl: `${MESH_CONTRACT_BASE}/swap`,
   },
   {
     title: "Giftcard",
@@ -273,7 +306,7 @@ export const Contracts = [
     category: "tokens",
     onchain: ["aiken"],
     offchain: ["meshjs"],
-    repoUrl: "https://meshjs.dev/smart-contracts/giftcard",
+    repoUrl: `${MESH_CONTRACT_BASE}/giftcard`,
   },
   {
     title: "NFT minting machine",
@@ -282,7 +315,7 @@ export const Contracts = [
     category: "tokens",
     onchain: ["aiken"],
     offchain: ["meshjs"],
-    repoUrl: "https://meshjs.dev/smart-contracts/plutus-nft",
+    repoUrl: `${MESH_CONTRACT_BASE}/plutus-nft`,
   },
   {
     title: "Content ownership",
@@ -291,7 +324,27 @@ export const Contracts = [
     category: "data",
     onchain: ["aiken"],
     offchain: ["meshjs"],
-    repoUrl: "https://meshjs.dev/smart-contracts/content-ownership",
+    repoUrl: `${MESH_CONTRACT_BASE}/content-ownership`,
+  },
+  {
+    title: "Asteria",
+    slug: "asteria",
+    description:
+      "A competitive on-chain game where NFT ships burn fuel tokens to move across a grid and race to a central reward.",
+    category: "tokens",
+    onchain: ["aiken"],
+    offchain: ["meshjs"],
+    repoUrl: `${MESH_CONTRACT_BASE}/asteria`,
+  },
+  {
+    title: "Royalties",
+    slug: "royalties",
+    description:
+      "Enforce creator royalty payments on NFT sales using the CIP-102 royalty datum standard.",
+    category: "tokens",
+    onchain: ["aiken"],
+    offchain: ["meshjs"],
+    repoUrl: `${MESH_CONTRACT_BASE}/royalties`,
   },
   // Anastasia Labs
   {
@@ -300,11 +353,8 @@ export const Contracts = [
     description: "Collective fund management requiring multiple approvals.",
     category: "access",
     onchain: ["aiken"],
-    offchain: ["typescript"],
+    offchain: ["evolution"],
     repoUrl: "https://github.com/Anastasia-Labs/aiken-upgradable-multisig",
-    altSources: [
-      { label: "Off-chain", url: "https://github.com/Anastasia-Labs/aiken-multisig-offchain" },
-    ],
   },
   {
     title: "Payment subscription",
@@ -313,10 +363,7 @@ export const Contracts = [
       "Automated recurring payments between subscribers and merchants.",
     category: "payments",
     onchain: ["aiken"],
-    offchain: ["typescript"],
+    offchain: ["evolution"],
     repoUrl: "https://github.com/Anastasia-Labs/payment-subscription",
-    altSources: [
-      { label: "Off-chain", url: "https://github.com/Anastasia-Labs/payment-subscription-offchain" },
-    ],
   },
 ];

@@ -20,7 +20,6 @@ export const OffchainLangs = {
   pycardano: { label: "PyCardano" },
   ccl: { label: "CCL Java" },
   blaze: { label: "Blaze" },
-  typescript: { label: "TypeScript" },
 };
 
 // Use-case category (exactly one per contract).
