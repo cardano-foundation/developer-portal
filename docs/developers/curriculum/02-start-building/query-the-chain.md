@@ -375,5 +375,5 @@ Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned i
 
 - [Transaction building](/docs/developers/curriculum/start-building/transaction-building), use what you query to build and submit
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet), read a user's UTXOs and address in the browser
-- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library), inspect real contracts' UTXOs and datums with what you just learned
+- [Contract library](/templates/contracts), inspect real contracts' UTXOs and datums with what you just learned
 - [Production infrastructure](/docs/developers/curriculum/production/infrastructure), run your own provider stack at scale

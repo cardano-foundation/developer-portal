@@ -210,4 +210,4 @@ Both live with the local-environment tooling rather than here: see [Testing with
 
 - [Security](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview): the vulnerability classes your tests should target
 - [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): exercise the validator end to end
-- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): read tested, production-grade validators
+- [Contract library](/templates/contracts): read tested, production-grade validators

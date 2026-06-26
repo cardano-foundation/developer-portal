@@ -247,7 +247,7 @@ The primitives above (AMMs, oracles, order batching, composability) combine into
 - **Routing and aggregation.** Off-chain routers compute the best path across pools and submit a single transaction the validators check atomically. The on-chain side leans on the same order-batching and indexing patterns, so no centralized frontend has to be trusted.
 - **Cross-chain bridges.** Lock assets on the source chain and mint wrapped equivalents on the target (burn-to-unlock in reverse), with a multisig guardian set attesting to each transfer. Bridges depend on off-chain infrastructure and trust assumptions beyond a single chain, so treat them as their own design problem.
 
-For production-grade, open-source reference implementations of these patterns, see [Anastasia Labs' dApp repositories](https://github.com/Anastasia-Labs).
+For production-grade, open-source references of these patterns, see [Anastasia Labs' dApp repositories](https://github.com/Anastasia-Labs/production-grade-dapps).
 
 ## Key takeaways
 
@@ -262,4 +262,4 @@ For production-grade, open-source reference implementations of these patterns, s
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): let users interact with your protocol from the browser
 - [Oracles](/docs/developers/curriculum/dapps/oracles/overview): the price-feed infrastructure DeFi depends on
 - [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the attack classes (double satisfaction, contention) that hit DeFi hardest
-- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): escrow, swap, and production-grade dApp implementations
+- [Contract library](/templates/contracts): escrow, swap, and production-grade dApp implementations
