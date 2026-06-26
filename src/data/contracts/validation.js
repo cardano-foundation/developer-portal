@@ -13,6 +13,7 @@ export function ensureContractValid(contract) {
       "offchain",
       "repoUrl",
       "reference",
+      "source",
     ];
     const unknownKeys = difference(Object.keys(contract), validKeys);
     if (unknownKeys.length > 0) {

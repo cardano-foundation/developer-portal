@@ -35,8 +35,12 @@ implementation currently passes its tests; for that, see the upstream repo's own
 Most entries mirror the Cardano Foundation
 [cardano-template-and-ecosystem-monitoring](https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring)
 repo, which implements the most common use cases across many on-chain and off-chain frameworks. Others point
-at MeshJS or Anastasia Labs. Each codebase is its own entry, and the "via <source>" label on the card is
-derived from the repo owner (see `SOURCE_LABELS` in `showcase.js`). The same off-chain SDK can honestly
+at MeshJS, Anastasia Labs, or a curated set of production dApps from the
+[awesome-aiken](https://github.com/aiken-lang/awesome-aiken) list (SundaeSwap, Minswap, Jpg Store, Nebula,
+Lenfi and more), for which we reference the on-chain Aiken side, so they carry no off-chain chip. Each
+codebase is its own entry, and the "via <source>" label on the card names the source it was aggregated
+from (see `SOURCES` in `showcase.js`): the CF monitoring use-cases repo, the MeshJS library, Anastasia Labs,
+or the awesome-aiken directory. The same off-chain SDK can honestly
 appear on more than one card: the monitoring repo ships a MeshJS escrow AND MeshJS's own library has one, so
 both cards list MeshJS. This page is a curated index over those sources, not a mirror of their code. To add a
 new implementation, contribute it upstream first, then reflect it here.
@@ -44,10 +48,13 @@ new implementation, contribute it upstream first, then reflect it here.
 ## Adding a contract
 
 1. **Add the entry.** Append to `src/data/contracts/contracts.js` (field reference in the header there).
-2. **Extend the taxonomy if needed.** If your `category`, on-chain, or off-chain language is not already in
+2. **Set its source.** Contracts from the CF monitoring repo, MeshJS, or Anastasia are detected from the
+   repoUrl automatically. For anything else (e.g. an awesome-aiken project), set `source` to a `SOURCES` id
+   from `showcase.js`. The build fails with a clear message if a contract's source cannot be resolved.
+3. **Extend the taxonomy if needed.** If your `category`, on-chain, or off-chain language is not already in
    `src/data/contracts/tags.js`, add it there first. The build validation lists the allowed values if you
    miss this.
-3. **Validate.** Run `yarn build`. A fail-fast check catches missing or invalid fields and points at the
+4. **Validate.** Run `yarn build`. A fail-fast check catches missing or invalid fields and points at the
    problem. Then eyeball `/templates/contracts`.
 
 Unlike the app-starter templates (whose slug is derived from the project folder), a contract `slug` is set
@@ -79,7 +86,15 @@ slug (e.g. `escrow-meshjs`); the source label keeps the cards apart.
 - Mark `reference: true` for a use case that is a written specification with no runnable code yet. The card
   shows a muted "Reference" chip and you may omit `onchain` / `offchain`.
 
+## Adding a source
+
+Sources are the few catalogs this page aggregates from (the avatars in the header strip). To add one, add an
+entry to `SOURCES` in `src/data/contracts/showcase.js` with a `label` and a `url` (the avatar is taken from
+the url owner's GitHub avatar), then add its contracts with that `source` id. Keep the set small and curated.
+
 ## What belongs here
 
-A curated index of canonical, maintained use-case implementations. Point at the established source; do not
-fork code into the portal. Anything better suited to its own repository belongs there.
+A curated index that aggregates from a few open-source sources; it does not host code, each card links out.
+The best way to get a contract listed is to land it in one of those sources upstream (for example, open a PR
+on [awesome-aiken](https://github.com/aiken-lang/awesome-aiken)), or propose a new source. Point at the
+established source; do not fork code into the portal.

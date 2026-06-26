@@ -10,6 +10,7 @@ import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
 import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
 import {
   SortedContractShowcases,
+  ContractSources,
   OnchainLangs,
   OffchainLangs,
   Categories,
@@ -22,7 +23,7 @@ import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
 
 const TITLE = "Cardano Contracts Library";
 const DESCRIPTION =
-  "Reference smart contracts by use case, with their on-chain and off-chain implementations.";
+  "A curated, open index of reference smart contracts from across the Cardano ecosystem, organized by use case.";
 
 function filterContracts(contracts, selected, search) {
   const term = search.trim().toLowerCase();
@@ -61,6 +62,43 @@ function isGitHubUrl(url) {
   }
 }
 
+// A row of the upstream projects this page aggregates, framing it as a curated
+// index rather than a first-party catalog. Avatars link to each GitHub org.
+function SourcesStrip() {
+  const MAX = 3;
+  const shown = ContractSources.slice(0, MAX);
+  const overflow = ContractSources.length - shown.length;
+  return (
+    <div className={styles.sources}>
+      <div className={styles.avatarStack}>
+        {shown.map((s) => (
+          <a
+            key={s.id}
+            className={styles.avatar}
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={s.label}
+          >
+            <img src={s.avatar} alt={s.label} width={28} height={28} />
+          </a>
+        ))}
+      </div>
+      {overflow > 0 && (
+        <span
+          className={styles.sourcesMore}
+          title={ContractSources.slice(MAX).map((s) => s.label).join(", ")}
+        >
+          +{overflow} more {overflow === 1 ? "source" : "sources"}
+        </span>
+      )}
+      <span className={styles.sourcesLabel}>
+        {SortedContractShowcases.length} contracts
+      </span>
+    </div>
+  );
+}
+
 function ContractCard({ contract }) {
   const isReference = Boolean(contract.reference);
   const onGitHub = isGitHubUrl(contract.repoUrl);
@@ -77,9 +115,7 @@ function ContractCard({ contract }) {
           {onGitHub && <GitHubIcon size={16} />}
         </Link>
       </h2>
-      {contract.source && (
-        <p className={styles.cardSource}>via {contract.source}</p>
-      )}
+      <p className={styles.cardSource}>via {contract.source}</p>
       <p className={styles.cardDescription}>{contract.description}</p>
 
       {isReference ? (
@@ -145,6 +181,7 @@ export default function Contracts() {
           <h1 className={styles.pageTitle}>{TITLE}</h1>
           <p className={styles.pageSubtitle}>{DESCRIPTION}</p>
           <TemplatesTabs />
+          <SourcesStrip />
         </header>
 
         <div className={styles.layout}>
@@ -170,12 +207,12 @@ export default function Contracts() {
             />
             <a
               className={styles.contributeButton}
-              href="https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring"
+              href="https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/contracts/README.md"
               target="_blank"
               rel="noopener noreferrer"
             >
               <span aria-hidden="true">+</span>
-              Contribute a contract
+              Contribute a source
             </a>
             <FilterSection
               heading="Category"
@@ -201,12 +238,14 @@ export default function Contracts() {
           </aside>
 
           <section className={styles.results}>
-            <div className={styles.resultsHeader}>
-              <span className={styles.resultsCount}>
-                {filtered.length}{" "}
-                {filtered.length === 1 ? "contract" : "contracts"}
-              </span>
-            </div>
+            {(activeCount > 0 || search.trim().length > 0) && (
+              <div className={styles.resultsHeader}>
+                <span className={styles.resultsCount}>
+                  {filtered.length}{" "}
+                  {filtered.length === 1 ? "contract" : "contracts"}
+                </span>
+              </div>
+            )}
             {filtered.length === 0 ? (
               <div className={styles.empty}>
                 <p>No contracts match these filters.</p>

@@ -29,6 +29,7 @@ export const Categories = {
   tokens: { label: "Tokens & NFTs" },
   defi: { label: "DeFi" },
   identity: { label: "Identity" },
+  privacy: { label: "Privacy" },
   data: { label: "Data" },
   access: { label: "Access & upgrades" },
 };

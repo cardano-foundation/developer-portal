@@ -3,9 +3,10 @@
 // ============================================================================
 // Each entry is one codebase for a use case. When a use case has independent
 // codebases (e.g. the CF monitoring escrow and MeshJS's escrow), each is its own
-// entry; the card tells them apart with a "via <source>" label derived from the
-// repo owner (see showcase.js). Append an entry to add a contract. Validation
-// runs at build (this file -> validation.js) and fail-fasts on bad fields.
+// entry; the card tells them apart with a "via <source>" label naming the
+// source it was aggregated from (see SOURCES in showcase.js). Append an entry to
+// add a contract. Validation runs at build (this file -> validation.js) and
+// fail-fasts on bad fields.
 // Full contributor guide + provenance: src/data/contracts/README.md.
 //
 // Most entries mirror the Cardano Foundation monitoring repo (MONITORING_BASE
@@ -20,6 +21,9 @@
 //   onchain      array of ids from OnchainLangs (tags.js); may be empty
 //   offchain     array of ids from OffchainLangs (tags.js); may be empty
 //   repoUrl      (required) the single canonical link for this codebase
+//   source       (optional) source id from SOURCES (showcase.js); only when the
+//                  repo is not an auto-detected catalog (CF monitoring / MeshJS /
+//                  Anastasia), e.g. "awesome-aiken"
 //   reference    (optional) boolean; a written reference with no published code
 // ============================================================================
 
@@ -365,5 +369,110 @@ export const Contracts = [
     onchain: ["aiken"],
     offchain: ["evolution"],
     repoUrl: "https://github.com/Anastasia-Labs/payment-subscription",
+  },
+  // awesome-aiken: production dApps from github.com/aiken-lang/awesome-aiken,
+  // referenced on the on-chain Aiken side (no off-chain chip). source is set
+  // explicitly because these repos are not one of the auto-detected catalogs.
+  {
+    title: "SundaeSwap V3",
+    slug: "sundaeswap-v3",
+    description: "An automated market maker decentralized exchange.",
+    category: "defi",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/SundaeSwap-finance/sundae-contracts",
+  },
+  {
+    title: "Minswap V2",
+    slug: "minswap-v2",
+    description: "An automated market maker decentralized exchange.",
+    category: "defi",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/minswap/minswap-dex-v2",
+  },
+  {
+    title: "Minswap Stableswap",
+    slug: "minswap-stableswap",
+    description: "A stableswap exchange for price-pegged assets.",
+    category: "defi",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/minswap/minswap-stableswap",
+  },
+  {
+    title: "Lenfi",
+    slug: "lenfi",
+    description: "A lending and borrowing protocol.",
+    category: "defi",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/lenfiLabs/lenfi-smart-contracts",
+  },
+  {
+    title: "SundaeSwap Yield Farming v2",
+    slug: "sundae-yield-v2",
+    description: "Yield farming reward-distribution contracts.",
+    category: "defi",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/SundaeSwap-finance/sundae-yield-v2/tree/main/contracts/freezer",
+  },
+  {
+    title: "Jpg Store",
+    slug: "jpg-store",
+    description: "An NFT marketplace.",
+    category: "tokens",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/jpg-store/contracts-v3",
+  },
+  {
+    title: "Nebula",
+    slug: "nebula",
+    description:
+      "An NFT marketplace contract with a chain indexer and event listener for individual projects.",
+    category: "tokens",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/spacebudz/nebula/tree/main/contract/src/nebula",
+  },
+  {
+    title: "Projected NFT Whirlpool",
+    slug: "projected-nft-whirlpool",
+    description:
+      "A protocol that lets NFTs from other ecosystems be used in games while keeping custody.",
+    category: "tokens",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/PaimaStudios/projected-nft-whirlpool/tree/main/cardano",
+  },
+  {
+    title: "Seedelf",
+    slug: "seedelf",
+    description: "A stealth wallet that hides the recipient of a payment.",
+    category: "privacy",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/logical-mechanism/Seedelf-Wallet/tree/main/seedelf-contracts",
+  },
+  {
+    title: "ENCOINS",
+    slug: "encoins",
+    description: "An NFT-based private transactions protocol.",
+    category: "privacy",
+    onchain: ["aiken"],
+    offchain: [],
+    source: "awesome-aiken",
+    repoUrl: "https://github.com/encryptedcoins/encoins-core-aiken",
   },
 ];
