@@ -137,8 +137,7 @@ export default function TemplateDetail({ slug }) {
             <h2 className={styles.sectionHeading}>Get started</h2>
             <ol className={styles.steps}>
               <li>
-                Open a terminal in the folder where you keep your projects and run
-                this. It copies the template into a new <code>my-app</code> folder:
+                Scaffold the project into a new <code>my-app</code> folder:
                 <CodeBlock code={template.command} />
               </li>
               <li>

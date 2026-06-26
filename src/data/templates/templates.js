@@ -21,7 +21,7 @@
 
 export const Templates = [
   {
-    title: "Evolution + Vite + React",
+    title: "Evolution",
     description:
       "Connect a wallet, read the balance, and send ADA. A Vite + React starter built on the Evolution SDK.",
     repoPath: "examples/templates/evolution-vite-react",
@@ -31,7 +31,7 @@ export const Templates = [
     maintainerPick: true,
   },
   {
-    title: "Mesh + Next.js",
+    title: "Mesh",
     description:
       "Connect a wallet, read the balance, and send ADA. A Next.js starter built on Mesh.",
     repoPath: "examples/templates/mesh-nextjs",
