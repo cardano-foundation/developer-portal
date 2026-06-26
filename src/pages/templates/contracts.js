@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
@@ -190,8 +191,18 @@ export default function Contracts() {
       </Head>
       <main className={clsx("container", styles.page)}>
         <header className={styles.header}>
-          <h1 className={styles.pageTitle}>{TITLE}</h1>
-          <p className={styles.pageSubtitle}>{DESCRIPTION}</p>
+          <div className={styles.headerIntro}>
+            <div className={styles.headerText}>
+              <h1 className={styles.pageTitle}>{TITLE}</h1>
+              <p className={styles.pageSubtitle}>{DESCRIPTION}</p>
+            </div>
+            <img
+              className={styles.headerArt}
+              src={useBaseUrl("img/card-smart-contracts.svg")}
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
           <TemplatesTabs />
           <SourcesStrip />
         </header>

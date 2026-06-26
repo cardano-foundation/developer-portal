@@ -16,6 +16,27 @@
   margin-bottom: 2.25rem;
 }
 
+/* Header intro: title + subtitle on the left, a small decorative illustration on
+   the right. Tabs and the sources strip stay full-width below. Art hides on
+   narrow screens. */
+.headerIntro {
+  display: flex;
+  align-items: center;
+  gap: 20rem;
+}
+
+.headerArt {
+  flex: none;
+  width: clamp(150px, 18vw, 190px);
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .headerArt {
+    display: none;
+  }
+}
+
 .pageTitle {
   margin: 0 0 0.6rem;
   font-size: clamp(2rem, 5vw, 2.75rem);

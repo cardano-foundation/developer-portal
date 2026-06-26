@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
@@ -86,11 +87,21 @@ export default function Templates() {
       </Head>
       <main className={clsx("container", styles.page)}>
         <header className={styles.header}>
-          <h1 className={styles.pageTitle}>{TITLE}</h1>
-          <p className={styles.pageSubtitle}>
-            Start from a working dApp. Scaffold a wallet-connected starter and
-            ship from there.
-          </p>
+          <div className={styles.headerIntro}>
+            <div className={styles.headerText}>
+              <h1 className={styles.pageTitle}>{TITLE}</h1>
+              <p className={styles.pageSubtitle}>
+                Start from a working dApp. Scaffold a wallet-connected starter and
+                ship from there.
+              </p>
+            </div>
+            <img
+              className={styles.headerArt}
+              src={useBaseUrl("img/card-get-started.svg")}
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
           <TemplatesTabs />
         </header>
 
