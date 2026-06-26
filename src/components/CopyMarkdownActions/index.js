@@ -1,7 +1,7 @@
 // "Copy page" dropdown shown in the docs breadcrumb row.
 // The raw .md files are generated at build time by docusaurus-plugin-llms
-// (and relocated by scripts/fix-llms-paths.js); this only consumes them —
-// no markdown is generated client-side.
+// (and relocated by scripts/fix-llms-paths.js); this only consumes them.
+// No markdown is generated client-side.
 import React, {useEffect, useRef, useState} from 'react';
 import {useLocation} from '@docusaurus/router';
 
@@ -72,7 +72,7 @@ function ChevronIcon({open}) {
 
 export default function CopyMarkdownActions() {
   // useLocation (not useDoc) so this component is safe to render outside a
-  // DocProvider — DocBreadcrumbs is also used by generated category index
+  // DocProvider. DocBreadcrumbs is also used by generated category index
   // pages, which have no DocProvider and would make useDoc() throw.
   const {pathname} = useLocation();
   // The .md sibling lives at the current route with the trailing slash

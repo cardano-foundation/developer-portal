@@ -40,7 +40,7 @@ const DESCRIPTION = "Tools to help you build on Cardano";
 const HERO_DESCRIPTION =
   "Discover developer tools, SDKs, and libraries for building on Cardano. Smart contracts, transactions, indexing, wallets, and more.";
 
-// NOTE: ShowcaseTagSelect imports prepareUserState from this module — keep it
+// NOTE: ShowcaseTagSelect imports prepareUserState from this module. Keep it
 // exported as a hoisted function declaration.
 export function prepareUserState() {
   if (ExecutionEnvironment.canUseDOM) {
@@ -244,10 +244,10 @@ function HighlightsSection({ apps }) {
 
 function GuidedPathsBanner() {
   const paths = [
-    { to: "/docs/get-started/", label: "Get started" },
-    { to: "/docs/build/smart-contracts/overview", label: "Write smart contracts" },
-    { to: "/docs/build/native-tokens/overview", label: "Create native tokens" },
-    { to: "/docs/operate-a-stake-pool/", label: "Run a stake pool" },
+    { to: "/docs/developers/", label: "Get started" },
+    { to: "/docs/developers/curriculum/smart-contracts/overview", label: "Write smart contracts" },
+    { to: "/docs/developers/curriculum/native-tokens/overview", label: "Create native tokens" },
+    { to: "/docs/operators/", label: "Run a stake pool" },
   ];
   return (
     <section className={clsx("container", styles.guidedPathsBanner)}>

@@ -11,37 +11,37 @@ import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 const sdks = [
   {
     name: "TypeScript",
-    targetUrl: "docs/get-started/client-sdks/typescript/overview",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/typescript-original.svg",
   },
   {
     name: "Python",
-    targetUrl: "docs/get-started/client-sdks/python/pycardano",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/python-original.svg",
   },
   {
     name: "Rust",
-    targetUrl: "docs/get-started/client-sdks/rust/pallas",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/rust-original.svg",
   },
   {
     name: "Go",
-    targetUrl: "docs/get-started/client-sdks/go/apollo",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/go-original.svg",
   },
   {
     name: "Java",
-    targetUrl: "docs/get-started/client-sdks/java/cardano-client-lib",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/java-original.svg",
   },
   {
     name: "C#",
-    targetUrl: "docs/get-started/client-sdks/csharp/chrysalis",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/csharp-original.svg",
   },
   {
     name: "Swift",
-    targetUrl: "docs/get-started/client-sdks/swift/cardanokit",
+    targetUrl: "tools/?tags=sdk",
     icon: "img/icons/swift-original.svg",
   },
 ];
@@ -69,6 +69,11 @@ function Hero() {
               From the first transaction to the production dApp and everything in
               between. Docs, tools, and SDKs for everything Cardano.
             </p>
+            <div className={styles.heroActions}>
+              <Link to={useBaseUrl("docs/developers/")} className={styles.heroCta}>
+                Start Here →
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -83,7 +88,7 @@ function BentoSection() {
         <div className={styles.bentoGrid}>
           {/* Smart Contracts */}
           <Link
-            to={useBaseUrl("docs/build/smart-contracts/overview")}
+            to={useBaseUrl("docs/developers/curriculum/smart-contracts/overview")}
             className={clsx(styles.bentoCard, styles.bentoLarge)}
           >
             <div className={styles.bentoCardContent}>
@@ -100,7 +105,7 @@ function BentoSection() {
 
           {/* Native Tokens */}
           <Link
-            to={useBaseUrl("docs/build/native-tokens/overview")}
+            to={useBaseUrl("docs/developers/curriculum/native-tokens/overview")}
             className={clsx(styles.bentoCard, styles.bentoMedium)}
           >
             <img
@@ -117,7 +122,7 @@ function BentoSection() {
 
           {/* Get Started */}
           <Link
-            to={useBaseUrl("docs/get-started/")}
+            to={useBaseUrl("docs/developers/")}
             className={clsx(styles.bentoCard, styles.bentoThird, styles.bentoAccent)}
           >
             <img
@@ -126,15 +131,15 @@ function BentoSection() {
               className={styles.bentoThirdImage}
             />
             <div className={styles.bentoThirdContent}>
-              <h3>Get Started</h3>
-              <p>New to Cardano? Start here with guides, tutorials, and everything you need.</p>
-              <span className={styles.bentoLink}>Begin journey →</span>
+              <h3>Start Here</h3>
+              <p>The 7-module path from zero to shipping, fundamentals through production.</p>
+              <span className={styles.bentoLink}>Start the curriculum →</span>
             </div>
           </Link>
 
           {/* Integrate Payments */}
           <Link
-            to={useBaseUrl("docs/build/integrate/overview")}
+            to={useBaseUrl("docs/developers/curriculum/dapps/overview")}
             className={clsx(styles.bentoCard, styles.bentoThird)}
           >
             <img
@@ -151,7 +156,7 @@ function BentoSection() {
 
           {/* Transaction Metadata */}
           <Link
-            to={useBaseUrl("docs/build/transaction-metadata/overview")}
+            to={useBaseUrl("docs/developers/curriculum/start-building/transaction-building#transaction-metadata")}
             className={clsx(styles.bentoCard, styles.bentoThird)}
           >
             <img
@@ -168,7 +173,7 @@ function BentoSection() {
 
           {/* Stake Pools */}
           <Link
-            to={useBaseUrl("docs/operate-a-stake-pool/")}
+            to={useBaseUrl("docs/operators/")}
             className={clsx(styles.bentoCard, styles.bentoHalf)}
           >
             <img
@@ -185,7 +190,7 @@ function BentoSection() {
 
           {/* Governance */}
           <Link
-            to={useBaseUrl("docs/governance/")}
+            to="https://cardano.org/governance"
             className={clsx(styles.bentoCard, styles.bentoHalf)}
           >
             <img
@@ -208,7 +213,7 @@ function BentoSection() {
 function DeveloperSection() {
   const [copied, setCopied] = React.useState(false);
   const [copied2, setCopied2] = React.useState(false);
-  const command = "npx meshjs your-app-name";
+  const command = "/plugin marketplace add cardano-foundation/cardano-dev-skills";
   const command2 = "yaci-devkit up";
 
   const copyCommand = () => {
@@ -234,12 +239,11 @@ function DeveloperSection() {
           {/* Quickstart */}
           <div className={styles.devQuickstartCard}>
             <div className={styles.quickstartLeft}>
-              <span className={styles.quickstartBadge}>Quickstart</span>
-              <span className={styles.quickstartText}>Bootstrap a dApp in seconds</span>
+              <span className={styles.quickstartBadge}>Claude Code</span>
+              <span className={styles.quickstartText}>Current Cardano context for your AI assistant</span>
             </div>
             <div className={styles.quickstartRight}>
               <div className={styles.cliMockup}>
-                <span className={styles.cliPrompt}>$</span>
                 <code>{command}</code>
                 <button
                   className={styles.copyBtn}
@@ -253,9 +257,9 @@ function DeveloperSection() {
                   )}
                 </button>
               </div>
-              <a href="https://meshjs.dev/" target="_blank" rel="noopener noreferrer" className={styles.quickstartDocBtn} aria-label="MeshJS Docs">
+              <Link to={useBaseUrl("docs/developers/curriculum/start-building/ai-assisted-development")} className={styles.quickstartDocBtn} aria-label="Set up your AI assistant">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.quickstartDocIcon}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -385,7 +389,7 @@ function DeveloperSection() {
 
           {/* Infrastructure */}
           <Link
-            to={useBaseUrl("docs/get-started/infrastructure/overview")}
+            to={useBaseUrl("docs/developers/curriculum/production/infrastructure")}
             className={styles.devLinkCard}
           >
             <div className={styles.devLinkIcon}>
@@ -457,13 +461,13 @@ function SmartContractsSection() {
               <h3>Smart Contracts</h3>
               <p>Design patterns, examples, and security best practices</p>
               <div className={styles.scLearnLinks}>
-                <Link to={useBaseUrl("docs/build/smart-contracts/advanced/design-patterns/overview")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview")}>
                   Patterns
                 </Link>
-                <Link to={useBaseUrl("docs/build/smart-contracts/example-contracts")}>
+                <Link to={useBaseUrl("templates/contracts")}>
                   Examples
                 </Link>
-                <Link to={useBaseUrl("docs/build/smart-contracts/advanced/security/overview")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview")}>
                   Security
                 </Link>
               </div>
@@ -492,7 +496,7 @@ function SmartContractsSection() {
 
           {/* CTF */}
           <Link
-            to={useBaseUrl("docs/build/smart-contracts/advanced/security/ctf")}
+            to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/ctf")}
             className={styles.scCTFCard}
           >
             <img

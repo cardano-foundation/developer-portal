@@ -1,7 +1,7 @@
 // ============================================================================
 // Builder Tools taxonomy
 // ============================================================================
-// A tool has ONE primary `category` plus `properties` drawn from two facets —
+// A tool has ONE primary `category` plus `properties` drawn from two facets:
 // Language and Interface. Categories are written to read to any web3/software
 // developer, not in Cardano jargon.
 // ============================================================================
@@ -22,7 +22,7 @@ export const Categories = {
     prominent: true,
   },
   // --------------------------------------------------------------------------
-  // Chain data & nodes form a stack — pick the layer a tool operates at:
+  // Chain data & nodes form a stack: pick the layer a tool operates at:
   //   node         run / be a node ............. the node software itself
   //   node-access  talk to a node .............. CLIs, RPC bridges + protocol libs over a node
   //   indexer      self-host a queryable store . ingest chain data and serve it back
@@ -91,7 +91,7 @@ export const Categories = {
   },
 };
 
-// Properties — facet 1: Language (the implementation / familiar language).
+// Properties, facet 1: Language (the implementation / familiar language).
 export const LanguageProperties = {
   typescript: { label: "TypeScript", color: "#3178C6" },
   javascript: { label: "JavaScript", color: "#f0c000" },
@@ -109,7 +109,7 @@ export const LanguageProperties = {
   swift: { label: "Swift", color: "#F05138" },
 };
 
-// Properties — facet 2: Interface (how you talk to it; mainly API/data tools).
+// Properties, facet 2: Interface (how you talk to it; mainly API/data tools).
 export const InterfaceProperties = {
   rest: { label: "REST", color: "#7F8C8D" },
   graphql: { label: "GraphQL", color: "#E10098" },

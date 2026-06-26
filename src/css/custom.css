@@ -254,6 +254,16 @@ div#faucetcontainer {
 }
 
 /* Dynamic width based on column count */
+.navbar__item--mega[data-column-count="1"] .megaMenuPanel {
+  width: min(340px, calc(100vw - 48px));
+  max-width: 340px;
+  min-width: 280px;
+}
+
+.navbar__item--mega[data-column-count="1"] .megaMenuInner {
+  grid-template-columns: minmax(240px, 1fr);
+}
+
 .navbar__item--mega[data-column-count="2"] .megaMenuPanel {
   width: min(600px, calc(100vw - 48px));
   max-width: 600px;

@@ -28,20 +28,8 @@ const BUILD = path.join(ROOT, 'build');
 // broken upstream.
 const moves = [
   // (1) slug: frontmatter
-  ['learn/core-concepts.md',                                          'docs/learn/core-concepts.md'],
-  ['docs/operate-a-stake-pool/operate-a-stake-pool.md',               'docs/operate-a-stake-pool.md'],
-  ['docs/governance/governance.md',                                   'docs/governance.md'],
-  ['governance/cardano-governance/governance-model.md',               'docs/governance/cardano-governance/governance-model.md'],
-  ['governance/cardano-governance/submitting-governance-actions.md',  'docs/governance/cardano-governance/submitting-governance-actions.md'],
-  ['governance/cardano-governance/constitutional-committee-guide.md', 'docs/governance/cardano-governance/constitutional-committee-guide.md'],
-  ['governance/cardano-governance/governance-actions.md',             'docs/governance/cardano-governance/governance-actions.md'],
-  ['smart-contracts/lessons.md',                                      'docs/smart-contracts/lessons.md'],
-  ['docs/get-started/get-started.md',                                 'docs/get-started.md'],
-  // (2) filename matches parent dir name
-  ['docs/governance/cardano-governance/cardano-governance.md',     'docs/governance/cardano-governance.md'],
-  ['docs/learn/cardano-cli/simple-scripts/simple-scripts.md',      'docs/learn/cardano-cli/simple-scripts.md'],
-  ['docs/learn/cardano-cli/native-assets/native-assets.md',        'docs/learn/cardano-cli/native-assets.md'],
-  ['docs/learn/cardano-cli/plutus-scripts/plutus-scripts.md',      'docs/learn/cardano-cli/plutus-scripts.md'],
+  ['docs/operators/operators.md',   'docs/operators.md'],
+  ['docs/developers/developers.md', 'docs/developers.md'],
 ];
 
 function moveFile(fromAbs, toAbs) {

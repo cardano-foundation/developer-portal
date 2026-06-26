@@ -63,7 +63,7 @@ export default function NotFoundContent({ className }) {
         <Link className="button button--primary button--lg" to="/">
           Go to Homepage
         </Link>
-        <Link className="button button--secondary button--lg" to="/docs/get-started/">
+        <Link className="button button--secondary button--lg" to="/docs/developers/">
           Browse Documentation
         </Link>
       </div>

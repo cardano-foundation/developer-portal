@@ -3,7 +3,7 @@ import clsx from "clsx";
 import styles from "./styles.module.css";
 
 // Small decorative "info" glyph signalling that a hover/focus tooltip is
-// available on the element it sits in. Purely presentational — the tooltip
+// available on the element it sits in. Purely presentational. The tooltip
 // itself comes from a wrapping <Tooltip> (ShowcaseTooltip). aria-hidden so it
 // is not announced; the tooltip text is exposed via aria-describedby instead.
 export default function InfoDot({ className }) {
