@@ -109,7 +109,7 @@ validator one_shot(utxo_ref: OutputReference) {
 }
 ```
 
-Off-chain you pick any UTXO from your wallet, apply it as the parameter (which bakes in a unique policy ID, see [parameterized scripts](/docs/developers/curriculum/smart-contracts/lock-and-spend#parameterized-scripts)), and spend that same UTXO in the minting transaction. This is the protocol-guaranteed uniqueness that native time-locks cannot give you, and the foundation of the multi-validator [NFT minting machine](/docs/developers/curriculum/smart-contracts/contracts-library) that auto-increments token names from on-chain state.
+Off-chain you pick any UTXO from your wallet, apply it as the parameter (which bakes in a unique policy ID, see [parameterized scripts](/docs/developers/curriculum/smart-contracts/lock-and-spend#parameterized-scripts)), and spend that same UTXO in the minting transaction. This is the protocol-guaranteed uniqueness that native time-locks cannot give you, and the foundation of the multi-validator [NFT minting machine](/templates/contracts) that auto-increments token names from on-chain state.
 
 ### Spending validator
 
@@ -331,4 +331,4 @@ Every validator is a **pure function**: it receives transaction context and retu
 - [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): interact with your validator from off-chain code
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): test validators with mock transactions before deploying
 - [Security](/docs/developers/curriculum/smart-contracts/security): the vulnerability classes to guard against
-- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): full validators to read, including the oracle-NFT minting machine
+- [Contract library](/templates/contracts): full validators to read, including the oracle-NFT minting machine
