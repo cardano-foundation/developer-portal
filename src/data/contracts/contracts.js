@@ -266,16 +266,6 @@ export const Contracts = [
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/vesting`,
   },
-  {
-    title: "Vesting",
-    description:
-      "Lock funds for a period and let the beneficiary withdraw them once the lockup elapses.",
-    category: "payments",
-    onchain: ["aiken"],
-    offchain: ["meshjs"],
-    source: "meshjs",
-    repoUrl: `${MESH_CONTRACT_BASE}/vesting`,
-  },
   // MeshJS smart-contract library
   {
     title: "Hello World",
