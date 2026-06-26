@@ -127,16 +127,6 @@ export const Contracts = [
     repoUrl: `${MONITORING_BASE}/escrow`,
   },
   {
-    title: "Escrow",
-    description:
-      "Hold assets from two parties until both sign off, then complete or cancel the exchange.",
-    category: "payments",
-    onchain: ["aiken"],
-    offchain: ["meshjs"],
-    source: "meshjs",
-    repoUrl: `${MESH_CONTRACT_BASE}/escrow`,
-  },
-  {
     title: "Factory",
     description:
       "Deterministically create and track many product contracts from a single factory instance using a marker NFT and on-chain registry.",
@@ -175,16 +165,6 @@ export const Contracts = [
     offchain: ["ccl", "evolution", "meshjs", "pycardano"],
     source: "monitoring",
     repoUrl: `${MONITORING_BASE}/payment-splitter`,
-  },
-  {
-    title: "Payment splitter",
-    description:
-      "Distribute locked funds equally among a fixed list of known payees.",
-    category: "payments",
-    onchain: ["aiken"],
-    offchain: ["meshjs"],
-    source: "meshjs",
-    repoUrl: `${MESH_CONTRACT_BASE}/payment-splitter`,
   },
   {
     title: "Price bet",
