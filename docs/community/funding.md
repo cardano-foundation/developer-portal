@@ -1,151 +1,55 @@
 ---
 id: funding
-title: Get funding for your project on Cardano
+title: Funding and grants
 sidebar_label: Funding
-description: Comprehensive guide to funding opportunities for Cardano developers and builders
+description: Ways to fund your project on Cardano, from community grants to the on-chain treasury and open-source maintenance.
 image: /img/og/og-developer-portal.png
 ---
 
-Cardano offers one of the most comprehensive and decentralized funding ecosystems in blockchain. From grassroots innovation to large-scale infrastructure, find the right funding path for your project.
+Cardano funds builders through several independent channels. They change over time. Rounds open and close, programs move between stewards, and new ones appear, so treat this as a map of the landscape and follow each link for the current status. There is no single right door. Pick the avenues that fit what you are building and how far along you are.
 
-## Funding Options
+## Project Catalyst
 
-### Project Catalyst
+[Project Catalyst](https://projectcatalyst.io/) is Cardano's community innovation fund. Builders submit proposals, ada holders vote, and funded projects deliver against milestones. It has distributed over $150M across thousands of proposals since it began.
 
-Project Catalyst is one of the world's largest decentralized grant programs, having distributed over **+$150M** across **+2000** funded proposals through community voting.
+Catalyst is moving stewardship to the Cardano Foundation, and rounds can pause between funds while that settles. Check the [Catalyst site](https://projectcatalyst.io/) for whether a round is open and what the current process looks like before you plan around it.
 
-Visit the official [Project Catalyst website](https://projectcatalyst.io/) to explore current funding opportunities and active campaigns.
+Good fit for new ideas, prototypes, and community-facing projects that can rally voter support.
 
-#### How It Works
+## On-chain treasury
 
-Project Catalyst operates in three phases:
+Cardano's treasury is governed on-chain under [CIP-1694](https://cips.cardano.org/cip/CIP-1694). Anyone can submit a treasury withdrawal as a governance action, which [DReps](https://cardano.org/governance) and the Constitutional Committee then vote on. This is the route for larger, ecosystem-level work with clear community benefit.
 
-1) Community responds to challenges with ideas. Brainstorming leads to conceptualization, feedback, and finalized proposals.
+Draft and submit an action with [GovTool](https://gov.tools), and see [staking and governance](/docs/developers/curriculum/staking-governance/governance) for how the process works under the hood. Organizations like [Intersect](https://www.intersectmbo.org/) and [PRAGMA](https://pragma.builders) often help coordinate due diligence and disbursement for approved proposals.
 
-2) Participants vote on proposals they wish to see funded.
+Good fit for mature projects, shared infrastructure, and protocol-level improvements.
 
-3) Selected projects receive milestone-based funding with community reviewer feedback loop and progress reports.
+## Intersect grants
 
-#### How to Participate
+[Intersect](https://www.intersectmbo.org/grants) administers grants and contracts for work that keeps the network running and growing, from core infrastructure to tooling. Members can apply for funding tied to specific initiatives. See [Intersect's funding opportunities](https://www.intersectmbo.org/grants) for what is currently open.
 
-| Role | What You Do | How to Get Started |
-|------|-------------|-------------------|
-| **Proposers** | Submit innovative ideas for community funding | Create account on [Project Catalyst platform](https://projectcatalyst.io/) during active campaigns |
-| **Community Reviewers** | Evaluate and provide feedback on proposals | Join as incentivized reviewer to ensure proposal quality |
-| **Voters (Ada Holders)** | Decide which proposals receive funding | Download Catalyst app ([iOS](https://apps.apple.com/kg/app/catalyst-voting/id1517473397) \| [Android](https://play.google.com/store/apps/details?id=io.iohk.vitvoting&gl=US)) |
-| **Milestone Reviewers** | Track funded project progress and deliverables | Review Statement of Milestones and Proof of Achievement as incentivized role |
+Good fit for infrastructure, tooling, and continuity work the ecosystem depends on.
 
-#### Why Participate?
+## Maintainer Retainer Program
 
-- Build better, faster, and cheaper through community empowerment
-- Connect with collaborators and form impactful project teams  
-- Improve proposals through constructive community feedback
-- Access ada grants for your innovative ideas
+If you maintain an open-source repository the ecosystem relies on, Intersect's [Maintainer Retainer Program](https://opensourcecommittee.docs.intersectmbo.org/about/paid-open-source-model-posm/maintainer-retainer) provides recurring funding so critical projects stay secure and actively maintained. It is part of Intersect's Paid Open Source Model, with Core and Community Maintainer roles, overseen by the Open Source and Technical Steering Committees.
 
-#### Resources
+Good fit for maintainers of established libraries and tools, rather than one-off builds.
 
-- **Documentation:** [Project Catalyst Knowledge Base](https://docs.projectcatalyst.io/)
-- **Community:** [Discord](https://discord.gg/GUeYabmP4r) | [Telegram](https://t.me/cardanocatalyst) | [Cardano Forum](https://forum.cardano.org)
-- **Browse Projects:** [Catalyst Website](https://projectcatalyst.io/search)
+## Accelerators
 
----
+Accelerators take early-stage teams through a fixed-term, cohort-based program of mentorship, technical and go-to-market support, and investor access, usually with a milestone contribution or investment attached rather than a grant you keep.
 
-### Cardano Builder DAO
+[Orion Fund](https://orion.draperdragon.com/) is an $80M ecosystem fund run by Draper Dragon, with the Cardano Foundation as constitutional administrator. It backs Cardano-native and Cardano-integrated companies from acceleration stage through Series A, focuses on real-world assets and institutional DeFi, and develops founders through Draper University's residencies. It is the largest accelerator initiative in the ecosystem.
 
-**Cardano Builder DAO** is a smart contract-governed funding mechanism that supports high-potential projects with demonstrated traction and measurable impact.
+The Cardano Foundation's [Cardano Accelerator Program](https://cardanofoundation.org/venture-hub/cardano-accelerator-program), part of its Venture Hub, runs themed cohorts of early-stage startups through technical sessions, go-to-market and regulatory guidance, and mentorship, from an in-person kickoff week to a Demo Day in front of investors. Each team receives a milestone contribution alongside hands-on support.
 
-- More than 50 established Cardano projects vote on funding decisions
-- Projects must track KPIs like on-chain activity, users, and TVL
-- Predictable 6-month funding rounds for project planning
-- Funded through Cardano Treasury withdrawals with full transparency
+Good fit for startups ready to raise and scale, not just prototype, and able to commit to an intensive cohort.
 
-**When to Consider:**
+## Other paths worth watching
 
-- Functional dApp with existing user base seeking growth funding
-- Project with measurable on-chain activity and metrics
-- Team ready for accountability through KPI reporting
-- Need for structured funding between Catalyst grants and large Treasury proposals
+- **Hackathons and bounties.** Prize money, bounties, and follow-on grants come around regularly. Join the [Talent Pool](/talent) to hear about them as they open.
+- **Founding entities.** The [Cardano Foundation](https://cardanofoundation.org), [EMURGO](https://emurgo.io), and various regional hubs run their own programs from time to time.
+- **Grassroots pools and DAOs.** Community-run funding comes and goes. Ask in the [developer community](/docs/community/cardano-developer-community) what is active right now.
 
-Learn more at [Cardano Builder DAO](https://buildingoncardano.io/).
-
----
-
-### Treasury Withdrawals
-
-For mature projects with proven impact, Cardano's on-chain governance enables **Treasury withdrawals**. Ada funding proposals voted on by the community.
-
-**When to Consider:**
-
-- Established project with proven product-market fit
-- Significant ecosystem impact and utilization
-- Large-scale infrastructure or protocol improvements
-- Community-wide benefit and long-term value
-
-Anyone can submit treasury withdrawal proposals, which require approval from **DReps** (Delegated Representatives) and the **Constitutional Committee** through Cardano's governance system. Organizations like [Intersect](https://www.intersectmbo.org/) and [PRAGMA](https://pragma.builders) can serve as administrators to help coordinate due diligence, contracting, and disbursements for approved proposals.
-
-Learn more about [Treasury withdrawals](../../governance/cardano-governance/governance-actions).
-
----
-
-## Your Funding Journey
-
-Cardano's funding ecosystem creates a natural progression for projects. Here's how to navigate it:
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs
-  defaultValue="catalyst"
-  values={[
-    {label: 'Bootstrap (Catalyst)', value: 'catalyst'},
-    {label: 'Prove Value (DAOs)', value: 'daos'},
-    {label: 'Scale Bigger (Treasury)', value: 'treasury'},
-  ]}>
-
-<TabItem value="catalyst">
-
-**For:** New ideas, MVPs, proof-of-concepts  
-**Funding:** $5K-$500K through community voting  
-
-**Your next steps:**
-
-- Check when the [next fund](https://projectcatalyst.io/) is accepting proposals
-- Browse successful proposals in your category for inspiration
-- Draft your idea in few clear sentences
-- Connect with the community on [Discord](https://discord.gg/GUeYabmP4r) for feedback
-
-</TabItem>
-
-<TabItem value="daos">
-
-**For:** Functional dApps with existing users seeking growth funding  
-**Funding:** Based on demonstrated traction and KPIs  
-**Timeline:** Predictable 6-month funding rounds
-
-**Your next steps:**
-
-- Track your on-chain activity, user metrics, and TVL
-- Prepare measurable impact data and growth projections
-- Learn more at [buildingoncardano.io](https://buildingoncardano.io/)
-
-</TabItem>
-
-<TabItem value="treasury">
-
-**For:** Established projects with proven ecosystem impact, or high impact new ecosystem players  
-**Funding:** Multi-million ada through on-chain governance  
-**Timeline:** 12+ month proposal and approval process
-
-**Your next steps:**
-
-- Document significant ecosystem impact and community benefit
-- Prepare for DRep and Constitutional Committee review
-- Learn about the [Treasury withdrawal process](../../governance/cardano-governance/governance-actions)
-
-</TabItem>
-
-</Tabs>
-
-:::tip Need Help?
-Join the [Cardano Developer Community](../cardano-developer-community) for support, feedback, and collaboration opportunities.
-:::
+Not sure where to start? The [developer community](/docs/community/cardano-developer-community) is the fastest way to find out what is currently funding work like yours.

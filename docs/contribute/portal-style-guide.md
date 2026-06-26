@@ -502,6 +502,44 @@ You can also switch multiple tabs at the same time based on user input:
 <TabItem value="linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
 
+## Concepts, code, and tools
+
+Most pages teach a concept and then show it in code. Keep those two jobs separate, and in that order.
+
+**Explain the concept tool-agnostically first.** A reader should grasp what something is and why it works that way with zero knowledge of any SDK or CLI. Never teach a concept *through* a tool: walking the reader through one SDK's method calls explains that SDK, not the concept. If the only material you have is tool-specific (a single SDK's API surface), extract the general truth from it and write *that* as the concept.
+
+**Then show code as illustration, baked in beneath.** Code is welcome and valued; it shows the reader what touching the network actually looks like. But it sits under the explanation as an example, not as the teaching itself. The concept should still stand if you mentally delete every code block.
+
+**Keep the prose lean.** Don't announce code ("here's how you do it in the SDK:"). The heading, the `import` line, and the tab label already say what it is. Don't add balancer asides ("the other SDK also exposes equivalent helpers...") to even things out. Let the code and the tabs speak.
+
+**Show only the examples you're confident in.** When the same operation appears in more than one tool (two SDKs, or an SDK versus the CLI), put the variants in a `<Tabs groupId="sdk">` block so the reader's choice persists across the page. Present only the tools you can show well, with a clean, copy-runnable example. Don't pad a tab in for symmetry, and don't keep a link-only stub ("see the other tool's docs") sitting beside two full examples. A page may stay single-tool, and that is fine. A missing tool is an honest gap for a contributor to fill, not something to paper over.
+
+Parallel alternatives belong in tabs, never in a stray blockquote or a bolted-on "with the CLI" section. Use a shared `groupId="sdk"` and the same tab `value`s on every page so a reader's pick syncs across the whole portal:
+
+```jsx
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+  // first SDK example
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+  // second SDK example
+</TabItem>
+<TabItem value="cardano-cli" label="cardano-cli">
+  // CLI example
+</TabItem>
+</Tabs>
+```
+
+## Explaining a system or component
+
+When a page maps a system, a protocol, or a multi-part component, a few habits keep it readable as the content gets dense:
+
+- **Lead with a diagram.** Show the shape before the prose, so the reader has a frame to hang the details on.
+- **Keep sections the same weight.** A predictable rhythm makes dense material scannable; avoid a twenty-line section sitting next to a two-line one.
+- **For each part, say what it is, why it matters, and where it sits**, in that order. Position in the system is as important as the definition.
+- **Name the concrete component, but separate the concept from its implementation.** "The consensus layer, implemented by `ouroboros-consensus`" is clearer than treating the package as the concept, and it stays true across implementations.
+- **Define a part by what it does NOT do.** "The ledger does not know about the network" draws the boundary, which is often exactly what a reader is unsure about.
+
 ## Video embedding
 
 Use this code to embed YouTube videos:
@@ -515,6 +553,18 @@ Use this code to embed YouTube videos:
 ---
 
 ## Tables
+
+### When to use a table
+
+Use a table only as a lookup: something a reader scans to find a specific value (CLI flags, parameters, endpoints, protocol versions, thresholds, key inventories). If a reader would read it top to bottom like a paragraph, write a paragraph.
+
+Do not put these in a table:
+
+- Analogy or "in Web2 this is X" concept maps. One useful analogy belongs in a sentence.
+- Comparisons that need caveats to be true. A grid hides the nuance and tends to overclaim; explain the trade-off in prose.
+- Anything that just restates the text next to it.
+
+### Formatting
 
 Colons can be used to align columns:
 

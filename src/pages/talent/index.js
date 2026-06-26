@@ -89,15 +89,15 @@ function ResourcesSection() {
               and builder tools.
             </p>
             <div className={styles.resourceLinks}>
-              <Link to="/docs/get-started/" className={styles.resourceLink}>
+              <Link to="/docs/developers/" className={styles.resourceLink}>
                 <img src={useBaseUrl("img/icons/book-solid.svg")} alt="" />
                 Get Started
               </Link>
-              <Link to="/docs/get-started/client-sdks/overview" className={styles.resourceLink}>
+              <Link to="/docs/developers/curriculum/start-building/choose-your-tools" className={styles.resourceLink}>
                 <img src={useBaseUrl("img/icons/code-solid.svg")} alt="" />
                 Client SDKs
               </Link>
-              <Link to="/docs/build/smart-contracts/overview" className={styles.resourceLink}>
+              <Link to="/docs/developers/curriculum/smart-contracts/overview" className={styles.resourceLink}>
                 <img src={useBaseUrl("img/icons/scroll-solid.svg")} alt="" />
                 Smart Contracts
               </Link>
