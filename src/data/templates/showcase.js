@@ -56,3 +56,17 @@ function adapt(template) {
 // `SortedTemplateShowcases` is maintainer-picks-first then alphabetical.
 export const TemplateShowcases = Templates.map(adapt);
 export const SortedTemplateShowcases = SortedTemplates.map(adapt);
+
+// Slugs are React keys and detail-route ids (they must match slugFor() in
+// plugins/templates-routes); a folder-basename collision would silently drop a
+// route, so fail the build instead of shipping a 404. Mirrors the slug-uniqueness
+// guard in src/data/contracts.js.
+const templateSlugs = TemplateShowcases.map((t) => t.slug);
+const duplicateTemplateSlug = templateSlugs.find(
+  (slug, i) => templateSlugs.indexOf(slug) !== i
+);
+if (duplicateTemplateSlug) {
+  throw new Error(
+    `Duplicate template slug "${duplicateTemplateSlug}"; template folder basenames must be unique.`
+  );
+}

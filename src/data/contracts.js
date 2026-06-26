@@ -25,13 +25,13 @@ function sortContracts() {
 // Validate all contracts at build time.
 Contracts.forEach(ensureContractValid);
 
-// Slugs are React keys and stable ids (the split cards rely on them); enforce
-// uniqueness at build so a collision fails loudly instead of silently.
-const slugs = Contracts.map((c) => c.slug);
-const duplicateSlug = slugs.find((slug, i) => slugs.indexOf(slug) !== i);
-if (duplicateSlug) {
+// repoUrl is each card's React key; enforce uniqueness at build so a duplicate
+// (the same codebase listed twice) fails loudly instead of silently.
+const repoUrls = Contracts.map((c) => c.repoUrl);
+const duplicateRepoUrl = repoUrls.find((url, i) => repoUrls.indexOf(url) !== i);
+if (duplicateRepoUrl) {
   throw new Error(
-    `Duplicate contract slug "${duplicateSlug}" in contracts.js; slugs must be unique.`
+    `Duplicate contract repoUrl "${duplicateRepoUrl}" in contracts.js; each entry must link to a distinct repo.`
   );
 }
 

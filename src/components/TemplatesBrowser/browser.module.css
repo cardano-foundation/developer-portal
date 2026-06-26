@@ -47,22 +47,19 @@
 }
 
 .avatar {
+  display: inline-flex;
+  overflow: hidden;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 2px solid var(--ifm-background-color);
   margin-left: -9px;
   background: var(--ifm-color-emphasis-200);
+  transition: transform 120ms ease;
 }
 
 .avatar:first-child {
   margin-left: 0;
-}
-
-.avatar {
-  display: inline-flex;
-  overflow: hidden;
-  transition: transform 120ms ease;
 }
 
 .avatar:hover {
@@ -77,10 +74,18 @@
   display: block;
 }
 
+/* "+N more source(s)": same resting look as before, now a link to the
+   contributor guide (color/underline only on hover). */
 .sourcesMore {
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--ifm-color-emphasis-600);
+  text-decoration: none;
+}
+
+.sourcesMore:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: underline;
 }
 
 .sourcesLabel {

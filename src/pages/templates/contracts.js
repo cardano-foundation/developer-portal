@@ -23,7 +23,7 @@ import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
 
 const TITLE = "Cardano Contracts Library";
 const DESCRIPTION =
-  "A curated, open index of reference smart contracts from across the Cardano ecosystem, organized by use case.";
+  "A curated aggregator of reference smart contracts from across Cardano. We index proven work from other open sources and link straight to each contract's own repo, organized by use case.";
 
 function filterContracts(contracts, selected, search) {
   const term = search.trim().toLowerCase();
@@ -62,11 +62,19 @@ function isGitHubUrl(url) {
   }
 }
 
+// Where contributors learn to add a contract (the contracts data-layer guide).
+const CONTRIBUTE_DOC =
+  "https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/contracts/README.md";
+
+// How many source avatars to show before folding the rest into "+N more".
+const MAX_SOURCE_AVATARS = 3;
+
 // A row of the upstream projects this page aggregates, framing it as a curated
-// index rather than a first-party catalog. Avatars link to each GitHub org.
+// index rather than a first-party catalog. Avatars link to each GitHub org; the
+// "+N more source(s)" link points at the contributor guide so anyone can propose
+// another source.
 function SourcesStrip() {
-  const MAX = 3;
-  const shown = ContractSources.slice(0, MAX);
+  const shown = ContractSources.slice(0, MAX_SOURCE_AVATARS);
   const overflow = ContractSources.length - shown.length;
   return (
     <div className={styles.sources}>
@@ -81,17 +89,20 @@ function SourcesStrip() {
             rel="noopener noreferrer"
             title={s.label}
           >
-            <img src={s.avatar} alt={s.label} width={28} height={28} />
+            <img src={s.avatar} alt={s.label} />
           </a>
         ))}
       </div>
       {overflow > 0 && (
-        <span
+        <a
           className={styles.sourcesMore}
-          title={ContractSources.slice(MAX).map((s) => s.label).join(", ")}
+          href={CONTRIBUTE_DOC}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={ContractSources.slice(MAX_SOURCE_AVATARS).map((s) => s.label).join(", ")}
         >
           +{overflow} more {overflow === 1 ? "source" : "sources"}
-        </span>
+        </a>
       )}
       <span className={styles.sourcesLabel}>
         {SortedContractShowcases.length} contracts
@@ -116,7 +127,7 @@ function ContractCard({ contract }) {
           {onGitHub && <GitHubIcon size={16} />}
         </Link>
       </h2>
-      <p className={styles.cardSource}>via {contract.source}</p>
+      <p className={styles.cardSource}>via {contract.credit}</p>
       <p className={styles.cardDescription}>{contract.description}</p>
 
       {isReference ? (
@@ -208,12 +219,12 @@ export default function Contracts() {
             />
             <a
               className={styles.contributeButton}
-              href="https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/contracts/README.md"
+              href={CONTRIBUTE_DOC}
               target="_blank"
               rel="noopener noreferrer"
             >
               <span aria-hidden="true">+</span>
-              Contribute a source
+              Contribute a contract
             </a>
             <FilterSection
               heading="Category"
@@ -263,7 +274,7 @@ export default function Contracts() {
             ) : (
               <ul className={styles.grid}>
                 {filtered.map((contract) => (
-                  <li key={contract.slug}>
+                  <li key={contract.repoUrl}>
                     <ContractCard contract={contract} />
                   </li>
                 ))}
