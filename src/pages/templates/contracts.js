@@ -70,6 +70,7 @@ function SourcesStrip() {
   const overflow = ContractSources.length - shown.length;
   return (
     <div className={styles.sources}>
+      <span className={styles.sourcesLabel}>Aggregated from</span>
       <div className={styles.avatarStack}>
         {shown.map((s) => (
           <a
