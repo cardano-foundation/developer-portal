@@ -18,28 +18,40 @@
 // repoUrl = the project's own repo, e.g. Minswap). Add or propose a source here.
 //
 // Declaration order is the strip's editorial order (which avatars represent the
-// page), NOT a ranking by count. MeshJS is deliberately last: its GitHub mark is
-// near-invisible on a light background, so it folds into the "+N more" overflow.
+// page), NOT a ranking by count. The first MAX_SOURCE_AVATARS sources render as
+// local-icon avatars (see `icon`); the rest fold into the "+N more" overflow.
+// We self-host the icons under /img/... rather than hot-linking GitHub avatars,
+// which the deployed portal's Content-Security-Policy (netlify.toml `img-src`)
+// blocks. Anastasia Labs is deliberately last because we don't host a logo for
+// it, so it lives in the text-only overflow and needs no `icon`.
 // ============================================================================
 
 export const SOURCES = {
   monitoring: {
     label: "CF monitoring",
     url: "https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring",
-  },
-  anastasia: {
-    label: "Anastasia Labs",
-    url: "https://github.com/Anastasia-Labs",
+    icon: "/img/tool-icons/cardano-foundation.png",
   },
   awesomeAiken: {
     label: "awesome-aiken",
     url: "https://github.com/aiken-lang/awesome-aiken",
+    icon: "/img/tool-icons/aiken.png",
   },
   meshjs: {
     label: "MeshJS",
     url: "https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src",
+    icon: "/img/tool-icons/mesh.png",
+  },
+  // Overflow-only (no icon): folds into the "+N more" link, not shown as an avatar.
+  anastasia: {
+    label: "Anastasia Labs",
+    url: "https://github.com/Anastasia-Labs",
   },
 };
+
+// How many sources show as avatars before the rest fold into "+N more". Single
+// source of truth, shared by the page (rendering) and showcase.js (validation).
+export const MAX_SOURCE_AVATARS = 3;
 
 // Valid `source` ids. validation.js checks a contract's `source` against this
 // when one is set (a standalone contract may omit it).

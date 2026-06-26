@@ -17,7 +17,7 @@ import {
   OffchainList,
   CategoryList,
 } from "@site/src/data/contracts";
-import { SOURCES } from "./sources";
+import { SOURCES, MAX_SOURCE_AVATARS } from "./sources";
 
 export {
   OnchainLangs,
@@ -26,17 +26,8 @@ export {
   OnchainList,
   OffchainList,
   CategoryList,
+  MAX_SOURCE_AVATARS,
 };
-
-// The strip avatar is the GitHub avatar of the url's owner (first path segment).
-function avatarFor(url) {
-  try {
-    const owner = new URL(url).pathname.split("/").filter(Boolean)[0];
-    return `https://github.com/${owner}.png?size=96`;
-  } catch (e) {
-    return null;
-  }
-}
 
 // Standalone contracts (no `source`) are credited by their repo owner, taken
 // straight from the repoUrl (no display-name overrides; none are needed yet).
@@ -48,19 +39,10 @@ function makerLabelFor(url) {
   }
 }
 
-// A source url that can't yield an avatar would render a broken strip image
-// silently; fail the build instead. Runs at module load (production build).
-for (const [id, source] of Object.entries(SOURCES)) {
-  if (!avatarFor(source.url)) {
-    throw new Error(
-      `SOURCES["${id}"]: url "${source.url}" does not resolve to a GitHub avatar.`
-    );
-  }
-}
-
 // Distinct sources present, in SOURCES declaration (editorial) order. Powers the
 // header strip; the first few show as avatars, the rest fold into the count.
 // Only contracts with a source are counted; standalone ones (no source) are skipped.
+// `avatar` is the source's self-hosted local icon (null for overflow-only sources).
 export const ContractSources = (() => {
   const counts = new Map();
   for (const contract of Contracts) {
@@ -75,9 +57,22 @@ export const ContractSources = (() => {
       count: counts.get(id),
       label: SOURCES[id].label,
       url: SOURCES[id].url,
-      avatar: avatarFor(SOURCES[id].url),
+      avatar: SOURCES[id].icon || null,
     }));
 })();
+
+// A source shown as an avatar but missing a local icon would render a broken
+// strip image silently; fail the build instead. Only the first MAX_SOURCE_AVATARS
+// render as avatars — the rest fold into the text-only "+N more" overflow.
+// Runs at module load (production build).
+for (const source of ContractSources.slice(0, MAX_SOURCE_AVATARS)) {
+  if (!source.avatar) {
+    throw new Error(
+      `ContractSources["${source.id}"] is shown in the avatar strip but has no local icon. ` +
+        `Add an \`icon\` in sources.js or move it past the first ${MAX_SOURCE_AVATARS}.`
+    );
+  }
+}
 
 function adapt(contract) {
   return {

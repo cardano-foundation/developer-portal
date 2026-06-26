@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import useBaseUrl, { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import TemplatesTabs from "@site/src/components/TemplatesTabs";
@@ -12,6 +12,7 @@ import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
 import {
   SortedContractShowcases,
   ContractSources,
+  MAX_SOURCE_AVATARS,
   OnchainLangs,
   OffchainLangs,
   Categories,
@@ -67,14 +68,13 @@ function isGitHubUrl(url) {
 const CONTRIBUTE_DOC =
   "https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/contracts/README.md";
 
-// How many source avatars to show before folding the rest into "+N more".
-const MAX_SOURCE_AVATARS = 3;
-
 // A row of the upstream projects this page aggregates, framing it as a curated
-// index rather than a first-party catalog. Avatars link to each GitHub org; the
+// index rather than a first-party catalog. Avatars link to each GitHub org and use
+// self-hosted local icons (MAX_SOURCE_AVATARS lives in the data layer); the
 // "+N more source(s)" link points at the contributor guide so anyone can propose
 // another source.
 function SourcesStrip() {
+  const { withBaseUrl } = useBaseUrlUtils();
   const shown = ContractSources.slice(0, MAX_SOURCE_AVATARS);
   const overflow = ContractSources.length - shown.length;
   return (
@@ -90,7 +90,7 @@ function SourcesStrip() {
             rel="noopener noreferrer"
             title={s.label}
           >
-            <img src={s.avatar} alt={s.label} />
+            <img src={withBaseUrl(s.avatar)} alt={s.label} />
           </a>
         ))}
       </div>
