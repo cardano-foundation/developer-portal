@@ -396,5 +396,5 @@ Submit the claim before the deadline and the ledger rejects it up front, so the 
 
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): test the validator before you deploy it
 - [Security](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview): the vulnerabilities to guard against when spending logic gets real
-- [Contract library](/docs/developers/curriculum/smart-contracts/contracts-library): escrow, marketplace, swap, and more
-- Reference: [contract library](/docs/developers/curriculum/smart-contracts/contracts-library) and the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract)
+- [Contract library](/templates/contracts): escrow, marketplace, swap, and more
+- Reference: [contract library](/templates/contracts) and the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract)

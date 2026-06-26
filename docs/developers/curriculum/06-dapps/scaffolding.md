@@ -12,7 +12,7 @@ Setting up a dApp means wiring together an on-chain language, an off-chain libra
 
 ## dApp templates
 
-Two minimal, runnable dApp starters, one per SDK, each doing the same thing: connect a wallet, show the balance, and send ADA. Start a project from one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new directory):
+Two minimal, runnable dApp starters, one per SDK, each doing the same thing: connect a wallet, show the balance, and send ADA. Browse them in the [templates gallery](/templates), or start a project from one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new directory):
 
 ```bash
 # Evolution + Vite + React

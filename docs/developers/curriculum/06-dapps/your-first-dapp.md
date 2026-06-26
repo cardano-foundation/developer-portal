@@ -34,7 +34,7 @@ On-chain logic (a validator) is an optional fifth block you layer on later. The 
 
 ## Start from a template
 
-Each SDK has a runnable starter in this repo. Scaffold one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new project), then install and run.
+Each SDK has a runnable starter, browsable in the [templates gallery](/templates): [Evolution + Vite + React](/templates/evolution-vite-react) and [Mesh + Next.js](/templates/mesh-nextjs). Scaffold one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new project), then install and run.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
