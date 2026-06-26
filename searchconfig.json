@@ -1,5 +1,8 @@
 {
   "index_name": "developer-portal",
+  "start_urls": [
+    "https://developers.cardano.org/"
+  ],
   "sitemap_urls": [
     "https://developers.cardano.org/sitemap.xml"
   ],
