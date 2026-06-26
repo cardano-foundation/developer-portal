@@ -36,8 +36,8 @@ Most entries mirror the Cardano Foundation
 [cardano-template-and-ecosystem-monitoring](https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring)
 repo, which implements the most common use cases across many on-chain and off-chain frameworks. Others point
 at MeshJS, Anastasia Labs, or a curated set of production dApps from the
-[awesome-aiken](https://github.com/aiken-lang/awesome-aiken) list (SundaeSwap, Minswap, Jpg Store, Nebula,
-Lenfi and more), for which we reference the on-chain Aiken side, so they carry no off-chain chip. Each
+[awesome-aiken](https://github.com/aiken-lang/awesome-aiken) list (SundaeSwap, Minswap, Jpg Store, Nebula
+and more), for which we reference the on-chain Aiken side, so they carry no off-chain chip. Each
 codebase is its own entry, and the "via <source>" label on the card names the source it was aggregated
 from (see `SOURCES` in `showcase.js`): the CF monitoring use-cases repo, the MeshJS library, Anastasia Labs,
 or the awesome-aiken directory. The same off-chain SDK can honestly

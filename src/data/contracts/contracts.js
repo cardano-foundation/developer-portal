@@ -404,16 +404,6 @@ export const Contracts = [
     repoUrl: "https://github.com/minswap/minswap-stableswap",
   },
   {
-    title: "Lenfi",
-    slug: "lenfi",
-    description: "A lending and borrowing protocol.",
-    category: "defi",
-    onchain: ["aiken"],
-    offchain: [],
-    source: "awesome-aiken",
-    repoUrl: "https://github.com/lenfiLabs/lenfi-smart-contracts",
-  },
-  {
     title: "SundaeSwap Yield Farming v2",
     slug: "sundae-yield-v2",
     description: "Yield farming reward-distribution contracts.",
