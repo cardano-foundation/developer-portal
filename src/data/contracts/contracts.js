@@ -333,16 +333,6 @@ export const Contracts = [
     repoUrl: `${MESH_CONTRACT_BASE}/content-ownership`,
   },
   {
-    title: "Asteria",
-    description:
-      "A competitive on-chain game where NFT ships burn fuel tokens to move across a grid and race to a central reward.",
-    category: "tokens",
-    onchain: ["aiken"],
-    offchain: ["meshjs"],
-    source: "meshjs",
-    repoUrl: `${MESH_CONTRACT_BASE}/asteria`,
-  },
-  {
     title: "Royalties",
     description:
       "Enforce creator royalty payments on NFT sales using the CIP-102 royalty datum standard.",
