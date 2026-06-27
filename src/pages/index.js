@@ -239,7 +239,7 @@ function DeveloperSection() {
           {/* Quickstart */}
           <div className={styles.devQuickstartCard}>
             <div className={styles.quickstartLeft}>
-              <span className={styles.quickstartBadge}>Claude Code</span>
+              <span className={styles.quickstartBadge}>AI agents</span>
               <span className={styles.quickstartText}>Current Cardano context for your AI assistant</span>
             </div>
             <div className={styles.quickstartRight}>
