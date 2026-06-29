@@ -11,37 +11,37 @@ import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
 const sdks = [
   {
     name: "TypeScript",
-    targetUrl: "tools/?tags=sdk",
+    targetUrl: "tools/?tags=sdk&tags=typescript",
     icon: "img/icons/typescript-original.svg",
   },
   {
     name: "Python",
-    targetUrl: "tools/?tags=sdk",
+    targetUrl: "tools/?tags=sdk&tags=python",
     icon: "img/icons/python-original.svg",
   },
   {
     name: "Rust",
-    targetUrl: "tools/?tags=sdk",
+    targetUrl: "tools/?tags=sdk&tags=rust",
     icon: "img/icons/rust-original.svg",
   },
   {
     name: "Go",
-    targetUrl: "tools/?tags=sdk",
+    targetUrl: "tools/?tags=sdk&tags=golang",
     icon: "img/icons/go-original.svg",
   },
   {
     name: "Java",
-    targetUrl: "tools/?tags=sdk",
+    targetUrl: "tools/?tags=sdk&tags=java",
     icon: "img/icons/java-original.svg",
   },
   {
-    name: "C#",
-    targetUrl: "tools/?tags=sdk",
-    icon: "img/icons/csharp-original.svg",
+    name: "C",
+    targetUrl: "tools/?tags=sdk&tags=c",
+    icon: "img/icons/c-original.svg",
   },
   {
     name: "Swift",
-    targetUrl: "tools/?tags=sdk",
+    targetUrl: "tools/?tags=sdk&tags=swift",
     icon: "img/icons/swift-original.svg",
   },
 ];
@@ -239,7 +239,7 @@ function DeveloperSection() {
           {/* Quickstart */}
           <div className={styles.devQuickstartCard}>
             <div className={styles.quickstartLeft}>
-              <span className={styles.quickstartBadge}>Claude Code</span>
+              <span className={styles.quickstartBadge}>AI agents</span>
               <span className={styles.quickstartText}>Current Cardano context for your AI assistant</span>
             </div>
             <div className={styles.quickstartRight}>
