@@ -40,17 +40,17 @@ The material was originally produced as the **CardanoThings** course (Project Ca
 
 ## Workshops
 
-1. [Workshop 01: The Basics](./01-the-basics/overview.md) - wallet, IDE, first API call.
-2. [Workshop 02: Read and Output](./02-read-and-output/overview.md) - fetch, display, control hardware from chain data.
-3. [Workshop 03: Input and Write](./03-input-and-write/overview.md) - sensor data on-chain, NFT minting from a microcontroller.
-4. [Workshop 04: Cardano Ticker](./04-cardano-ticker/overview.md) - multi-screen ticker for wallet, tokens, NFTs.
-5. [Workshop 05: QR-Code Payments](./05-qr-code-payments/overview.md) - CIP-13 QR codes and on-chain payment confirmation.
+1. [Workshop 01: The Basics](./the-basics/overview.md) - wallet, IDE, first API call.
+2. [Workshop 02: Read and Output](./read-and-output/overview.md) - fetch, display, control hardware from chain data.
+3. [Workshop 03: Input and Write](./input-and-write/overview.md) - sensor data on-chain, NFT minting from a microcontroller.
+4. [Workshop 04: Cardano Ticker](./cardano-ticker/overview.md) - multi-screen ticker for wallet, tokens, NFTs.
+5. [Workshop 05: QR-Code Payments](./qr-code-payments/overview.md) - CIP-13 QR codes and on-chain payment confirmation.
 
 ## Community projects
 
 Builds from the community that extend or remix what's covered in this section:
 
-- **[NMKR ESP32-Cam](https://github.com/elRaulito/IoT-NMKR-integration-Open-Source-)** by [elRaulito](https://github.com/elRaulito) - Minting NFTs with NMKR directly from an ESP32-Cam. A drop-in alternative to the self-hosted Mesh approach in [Workshop 03](./03-input-and-write/overview.md) for builders who'd rather hand minting off to a managed service.
+- **[NMKR ESP32-Cam](https://github.com/elRaulito/IoT-NMKR-integration-Open-Source-)** by [elRaulito](https://github.com/elRaulito) - Minting NFTs with NMKR directly from an ESP32-Cam. A drop-in alternative to the self-hosted Mesh approach in [Workshop 03](./input-and-write/overview.md) for builders who'd rather hand minting off to a managed service.
 - **[StarchMiner Lite](https://github.com/MadOrkestra/StarchMinerLite)** by [Mad Orkestra](https://github.com/madorkestra) - ESP32-based Starch miner. Goes potato.
 
 ## Attribution
