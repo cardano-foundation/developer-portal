@@ -140,6 +140,8 @@ Mesh has no in-process node cluster like Evolution's. For **integration tests** 
 </TabItem>
 </Tabs>
 
+Beyond the SDKs, IntersectMBO maintains the [cardano-node-emulator](https://github.com/IntersectMBO/cardano-node-emulator) for developers working directly in Haskell or PlutusTx. It takes the same in-process approach, emulating the ledger inside a Haskell program with no node to run, for fast, deterministic contract tests. It is Haskell-only and built from source; see the repository for setup.
+
 ## Testing without a chain
 
 Not every test needs a network. Testing your off-chain code without a node splits into three jobs: **mock the data source** so a builder has UTXOs and parameters to work with, **compute script execution budgets** offline, and **assert the shape** of the transaction you built. All three run in milliseconds in CI.
