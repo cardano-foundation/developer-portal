@@ -89,6 +89,12 @@ export const Categories = {
     color: "#9C27B0",
     prominent: false,
   },
+  oracle: {
+    label: "Oracles & Data Feeds",
+    description: "On-chain price feeds and external data sources for smart contracts.",
+    color: "#E67E22",
+    prominent: false,
+  },
 };
 
 // Properties, facet 1: Language (the implementation / familiar language).
