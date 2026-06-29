@@ -168,6 +168,7 @@ Never bundle a mnemonic or private key into frontend code, and never commit one.
 - **Key isolation**: hardware wallets keep keys in a secure element; extensions encrypt with a spending password.
 - **Address hygiene**: let the wallet generate fresh addresses; reuse links your history.
 - **Verify on-device**: confirm transaction details on the hardware wallet screen, not just the app.
+- **Cold-key custody**: for keys that sign high-value or governance transactions, keep them off internet-connected machines. See the operator guides on [air-gapped signing](/docs/operators/security/air-gap) and the [secure transaction workflow](/docs/operators/security/secure-workflow).
 
 ## Key takeaways
 
