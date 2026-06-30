@@ -4,7 +4,7 @@ Contributions generally fall into three categories: fixing content (typos, broke
 
 For small fixes, you can always use the GitHub web editor directly on any file or click the pencil icon at the bottom on portal pages without any setup.
 
-For anything that needs a local build, see the [local development setup](./README.md#contribute) in the README.
+For anything that needs a local build, see the [local development setup](./README.md#local-development-setup) in the README.
 
 ## Adding a builder tool
 
@@ -25,13 +25,13 @@ This is the most common external contribution. You add a tool entry and open a P
 2. Run `yarn build` and confirm it passes with no errors (it validates your entry).
 3. Open a pull request using the "Add Builder Tool" template. Builder tool PRs require 3 approvals.
 
-Don't set `maintainerPick` yourself (maintainers choose those). Categories and properties are defined in `src/data/builder-tools/tags.js`. For the full guide, including what belongs here and how tools are curated, see the [portal contribution guide](https://developers.cardano.org/docs/portal-contribute/).
+Don't set `maintainerPick` yourself (maintainers choose those). Categories and properties are defined in `src/data/builder-tools/tags.js`. For the full guide, including what belongs here and how tools are curated, see the [portal contribution guide](https://developers.cardano.org/docs/contribute/portal-contribute/).
 
 ## Before you open a PR
 
 - Run `yarn build` and make sure it passes. It checks for broken links and validates builder tool entries.
-- Don't commit `yarn.lock`. It's gitignored. If you accidentally commit it, see the FAQ below.
-- Follow the [style guide](https://developers.cardano.org/docs/portal-style-guide/). Write clearly, describe what your project does, skip the marketing language.
+- Don't include `yarn.lock` changes in your PR. We pin it as a baseline; if some slipped in, see the FAQ below.
+- Follow the [style guide](https://developers.cardano.org/docs/contribute/portal-style-guide/). Write clearly, describe what your project does, skip the marketing language.
 
 ## FAQ
 

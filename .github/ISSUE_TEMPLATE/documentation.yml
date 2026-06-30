@@ -12,7 +12,7 @@ body:
     attributes:
       label: Page or section
       description: Which page, path, or section needs an update?
-      placeholder: contributor-beginner/docs/tutorial-basics/directive-kickoff.md
+      placeholder: https://developers.cardano.org/docs/developers/
     validations:
       required: true
 

@@ -35,7 +35,7 @@ yarn build           # also validates builder tools and links
 yarn start           # dev server on localhost:3000
 ```
 
-Requires [Node.js](https://nodejs.org/) 20+ and [Yarn](https://classic.yarnpkg.com/) 1.20+. Built with [Docusaurus](https://docusaurus.io/).
+Requires [Node.js](https://nodejs.org/) 22 (see `.nvmrc`) and [Yarn](https://classic.yarnpkg.com/) 1.20+. Built with [Docusaurus](https://docusaurus.io/).
 
 All pull requests should target the `staging` branch. Changes are merged from `staging` into `main` for production periodically by the maintainers.
 
