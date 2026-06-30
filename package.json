@@ -1,7 +1,14 @@
 {
-  "name": "devportal",
+  "name": "cardano-developer-portal",
   "version": "0.0.0",
   "private": true,
+  "description": "Source for developers.cardano.org: documentation, the developer curriculum, and curated builder tools for building on Cardano.",
+  "homepage": "https://developers.cardano.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cardano-foundation/developer-portal.git"
+  },
+  "license": "MIT",
   "scripts": {
     "build-stats": "node scripts/generate-stats.js",
     "docusaurus": "docusaurus",
