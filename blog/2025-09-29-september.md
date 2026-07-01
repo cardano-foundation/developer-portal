@@ -4,7 +4,7 @@ title: "IAGON Interview"
 authors: [denicio]
 tags: [interview]
 description: "In this interview, Navjit Dhaliwal, founder and CEO of IAGON, explains how the platform provides decentralized storage and computing solutions that put data control back in the hands of users. Navjit shares that IAGON was initially built on Ethereum, but due to high gas fees, scalability issues, and security concerns, he chose Cardano for its research-driven approach, low costs, and strong decentralization. He highlights real-world applications with enterprises such as Hamburg Volksbank and the U.S. legal firm CloudCourt, showing how data sovereignty and secure storage make a tangible difference. Using clear analogies, he illustrates how decentralized storage turns a single vulnerable “lake” into many protected “frozen lakes” and how decentralized computing turns idle machines into a global supercomputer. Curious to see how IAGON is reshaping data management? Let’s dive in!"
-image: https://developers.cardano.org/img/og/og-blog-iagon.png
+image: https://developers.cardano.org/img/og/blog/iagon.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';

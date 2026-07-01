@@ -4,7 +4,7 @@ title: "Cardano Developer Portal launch"
 authors: [cf]
 tags: [nft, nfta]
 description: "Finally here: the Cardano developer portal! Accepting all builds."
-image: https://developers.cardano.org/img/og/og-blog-launch.png
+image: https://developers.cardano.org/img/og/blog/launch.png
 ---
 
 ![title image](/img/blog/devblog/developer-portal-launch.jpeg)

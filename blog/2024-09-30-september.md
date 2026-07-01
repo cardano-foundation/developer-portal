@@ -4,7 +4,7 @@ title: "nucast.io Interview"
 authors: [denicio]
 tags: [interview, intellectual-property]
 description: "In this interview, Sricharan Ganta, Founder & CEO of Nucast, shares insights into the transformative journey of his company, which focuses on empowering individuals with true ownership of their digital content. With a commitment to decentralization, Nucast addresses the challenges posed by centralized entities that control digital assets. Sricharan discusses the innovative solutions Nucast is developing on the Cardano blockchain, including a range of decentralized applications (dApps) that enhance digital property rights. He also reflects on the community's growth, successful partnerships, and exciting initiatives like the Cardano Hackathon and the upcoming Cardano Summit. Join us as we explore the future of Nucast and its impact on the digital media landscape."
-image: https://developers.cardano.org/img/og/og-blog-nucast.png
+image: https://developers.cardano.org/img/og/blog/nucast.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';

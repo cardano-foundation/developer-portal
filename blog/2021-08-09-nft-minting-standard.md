@@ -4,7 +4,7 @@ title: "How we minted the NFTAs, and why we went for this standard"
 authors: [cf]
 tags: [nft, nfta]
 description: "How we minted the NFTAs, and why we went for this standard."
-image: https://developers.cardano.org/img/og/og-blog-nftas.png
+image: https://developers.cardano.org/img/og/blog/nftas.png
 ---
 
 ![title image](/img/blog/devblog/nfta.jpg)
