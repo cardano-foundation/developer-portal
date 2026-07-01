@@ -123,9 +123,6 @@ function card(title, eyebrow) {
                     letterSpacing: 4,
                     color: LAVENDER,
                     marginBottom: 26,
-                    // letterSpacing adds a leading gap before the first glyph; pull the
-                    // eyebrow back so it sits flush-left with the title below it.
-                    marginLeft: -8,
                   },
                   children: eyebrow,
                 },
