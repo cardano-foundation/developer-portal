@@ -44,8 +44,9 @@ This file gives AI coding agents (and their operators) the context to contribute
 ---
 
 ## Quickstart
+[Fork the repo](https://github.com/cardano-foundation/developer-portal/fork), then:
 ```sh
-git clone https://github.com/<your-username>/developer-portal.git
+git clone https://github.com/<your-github-username>/developer-portal.git
 cd developer-portal
 yarn install
 yarn start          # dev server on localhost:3000
