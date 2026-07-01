@@ -6,7 +6,7 @@
 
 ## Checklist
 
- <-- Please fill the boxes with [x] before submitting a pull request --> 
+ <!-- Please fill the boxes with [x] before submitting a pull request --> 
 
 - [ ] I have read the [Contributing Guidelines](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md).
 - [ ] I have read the [Builder Tool Requirements](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md#adding-a-builder-tool)
@@ -15,7 +15,7 @@
 
 ## Builder Tool addition
 
-<-- Provide information for every bullet below. Category + properties must match your changes to tools.js (full definitions in src/data/builder-tools/tags.js). -->
+<!-- Provide information for every bullet below. Category + properties must match your changes to tools.js (full definitions in src/data/builder-tools/tags.js). -->
 
 * Title: *The project's own name, styled how the project styles it (don't add descriptors/parentheticals or re-case it)*
 * Description: *One or two factual sentences ending with a period; no superlatives; say what it does and how it differs from similar tools*
