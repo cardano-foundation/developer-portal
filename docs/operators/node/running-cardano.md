@@ -3,7 +3,6 @@ id: running-cardano
 title: How to run cardano-node
 sidebar_position: 3
 description: This guide will explain and show you how to run the cardano-node and components on your system.
-image: /img/og/og-getstarted-running-cardano-node.png
 ---
 This guide covers running `cardano-node` as a passive (non-block-producing) node and querying the chain with `cardano-cli`. If you haven't installed the node yet, see [Installing cardano-node](/docs/operators/node/installing-cardano-node) first. For running a stake pool, see [Stake Pool Operation](/docs/operators/).
 

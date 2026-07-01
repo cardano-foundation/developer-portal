@@ -3,7 +3,6 @@ id: cryptographic-primitives
 title: Cryptographic Primitives
 sidebar_label: Cryptographic primitives
 description: The mathematical building blocks of blockchain security, from hash functions and Merkle trees to digital signatures.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 Cryptographic primitives are mathematical functions with special properties that make it computationally infeasible to cheat, and they form the security foundation of every blockchain transaction. [Earlier](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) we described blockchain properties like immutability and tamper-evidence; this page reveals the concrete tools that enforce them: hash functions, Merkle trees, and digital signatures. You will understand not just what these primitives do, but why Cardano chose specific algorithms (Blake2b, Ed25519).

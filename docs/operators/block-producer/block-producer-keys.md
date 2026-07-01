@@ -3,7 +3,6 @@ id: block-producer-keys
 title: Key Generation
 sidebar_label: Key Generation
 description: Generating the cold, KES, and VRF keys for a Cardano block producer on an air-gapped machine.
-image: ../img/og-developer-portal.png
 ---
 
 :::info version reference

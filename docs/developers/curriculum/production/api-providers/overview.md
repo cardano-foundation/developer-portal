@@ -3,7 +3,6 @@ id: overview
 title: API Providers
 sidebar_label: Overview
 description: The providers that power your SDK, how they work, and a reference for Blockfrost, Koios, and Ogmios.
-image: /img/og/og-developer-portal.png
 ---
 
 Your SDK does not talk to the chain directly. It talks to a **provider**: a service that runs a cardano-node and an indexer and exposes them through an API, so your app can read data and submit transactions without operating any infrastructure. You met providers when you [chose your tools](/docs/developers/curriculum/start-building/choose-your-tools#get-a-provider) and used one to [query the chain](/docs/developers/curriculum/start-building/query-the-chain). This section is the reference for the providers themselves: what each offers and how to run it.

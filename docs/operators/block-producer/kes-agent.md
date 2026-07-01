@@ -3,7 +3,6 @@ id: kes-agent
 title: KES Agent
 sidebar_label: KES Agent
 description: Run the KES agent to keep your KES signing key out of persistent storage and achieve forward secrecy on your block producer.
-image: ../img/og-developer-portal.png
 ---
 
 By default, `cardano-node` reads the KES signing key directly from disk. The KES agent is a separate process that holds the signing key in mlocked RAM instead — it never touches persistent storage. When the agent evolves the key at the start of each KES period, the previous evolution is deleted from memory. An attacker who later compromises the host cannot recover past signing keys.

@@ -3,7 +3,6 @@ id: overview
 title: Staking & Governance
 sidebar_label: Overview
 description: "The developer's view of staking and governance on Cardano: how a dApp delegates stake, claims rewards, registers a DRep, and votes, all as ordinary transactions."
-image: /img/og/og-developer-portal.png
 ---
 
 Staking and governance are two things your users do on Cardano, and a dApp can build all of it. Delegating stake, claiming rewards, registering as a DRep, delegating a vote, and voting on governance actions are **ordinary on-chain transactions**, the same build → sign → submit flow you already know, with a few extra certificate types.

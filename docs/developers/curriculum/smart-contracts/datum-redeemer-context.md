@@ -3,7 +3,6 @@ id: datum-redeemer-context
 title: Datum, Redeemer, and ScriptContext
 sidebar_label: Datum, redeemer & context
 description: "The three arguments every Cardano validator receives: datum as state, redeemer as action, and ScriptContext as the transaction environment."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

@@ -3,7 +3,6 @@ id: formal-verification
 title: Formal Verification
 sidebar_label: Formal verification
 description: Formal verification for Cardano smart contracts, proving correctness with tools like Blaster.
-image: /img/og/og-developer-portal.png
 ---
 
 ## Introduction

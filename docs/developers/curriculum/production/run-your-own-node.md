@@ -3,7 +3,6 @@ id: run-your-own-node
 title: Run Your Own Node
 sidebar_label: Run your own node
 description: When and how a developer runs a Cardano node for direct chain access, and where to go for full production node operation.
-image: /img/og/og-developer-portal.png
 ---
 
 Applications can reach the chain through a [provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider) and never choose to run a node. You run your own when you want no third-party dependency, full privacy, no rate limits, or complete control, at the cost of operating the infrastructure yourself.

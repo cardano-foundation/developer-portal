@@ -3,7 +3,6 @@ id: cardano-components
 title: Cardano Architecture
 sidebar_label: Cardano architecture
 description: The four layers that make up Cardano (ledger, consensus, networking, scripting), the reference node that implements them, and the eras the chain has moved through.
-image: /img/og/og-getstarted-cardano-components.png
 ---
 
 Cardano is a layered, formally specified blockchain. Its architecture is **four layers**, each with one responsibility and a boundary defined in a mathematical specification before any code is written: the **ledger** (the rules), **consensus** (agreeing which block comes next), **networking** (moving blocks and transactions between nodes), and **scripting** (on-chain computation). Those layers are the architecture, defined independently of how anyone builds them, so every Cardano node shares the same four. The reference implementation almost everyone runs is `cardano-node`, and this page uses it to make each layer concrete.
