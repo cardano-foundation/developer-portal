@@ -108,7 +108,7 @@ module.exports = {
     announcementBar: isAnnouncementActive ? {
       id: "announcement_index11", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Join the Cardano developer talent pool and stay in the loop on upcoming hackathons. <a href="/hackathons/">Sign up here!</a></strong>`,
+        `<strong>Join the Cardano developer talent pool and stay in the loop on upcoming hackathons. <a href="/talent/">Sign up here!</a></strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
