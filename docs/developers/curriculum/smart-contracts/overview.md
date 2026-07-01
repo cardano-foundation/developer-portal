@@ -5,7 +5,7 @@ sidebar_label: Overview
 description: How smart contracts work on Cardano, validators that approve or reject transactions on the eUTXO model.
 ---
 
-![Smart Contracts](/img/card-smart-contracts-title.svg)
+![Smart Contracts](./img/card-smart-contracts-title.svg)
 
 ## What are smart contracts?
 
