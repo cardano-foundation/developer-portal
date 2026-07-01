@@ -3,7 +3,6 @@ id: overview
 title: AI agents on Cardano
 sidebar_label: Overview
 description: Autonomous AI agents that hold a wallet, transact, and prove their identity on Cardano, with Masumi as the agent-economy protocol.
-image: /img/og/og-developer-portal.png
 ---
 
 This section is about **autonomous agents**: AI systems that act on-chain themselves, holding a wallet and sending transactions without a human in the loop. If instead you want AI to help you *write* Cardano code, see [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development).

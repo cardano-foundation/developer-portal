@@ -3,7 +3,6 @@ id: portal-contribute
 title: How to contribute to the developer portal
 sidebar_label: How to contribute
 description: How to contribute to the Cardano developer portal.
-image: /img/og/og-developer-portal.png
 ---
 
 We wanted to build a developer portal as open and inclusive as Cardano - a portal in the hands of the Cardano community that can be constantly evolved by it.

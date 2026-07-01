@@ -3,7 +3,6 @@ id: minting-policies
 title: Minting Policies
 sidebar_label: Minting policies
 description: How minting policies control who can create and burn native tokens, from simple signature scripts to programmable smart contract policies.
-image: /img/og/og-developer-portal.png
 ---
 
 A minting policy is the rule set that controls who can mint or burn a token, when, and how many. The policy is a script; its hash becomes the token's [Policy ID](/docs/developers/curriculum/native-tokens/overview#how-tokens-are-identified), so the rules are permanently bound to the token's identity.

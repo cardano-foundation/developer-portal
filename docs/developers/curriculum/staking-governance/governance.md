@@ -3,7 +3,6 @@ id: governance
 title: Governance
 sidebar_label: Governance
 description: What Cardano's CIP-1694 on-chain governance means for developers, and how to register a DRep, delegate voting power, vote, propose, and manage committee credentials, with Evolution, Mesh, CIP-95, and cardano-cli.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

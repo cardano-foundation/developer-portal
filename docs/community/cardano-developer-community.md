@@ -3,7 +3,6 @@ id: cardano-developer-community
 title: Get Started in the Cardano Developer Community
 sidebar_label: Developer Community
 description: Get Started in the Cardano Developer Community.
-image: /img/og/og-getstarted-developer-community.png
 --- 
 
 Thousands of Cardano developers and enthusiasts gather across these online communities to share knowledge, discuss technical developments, get support, and collaborate on building the future of Cardano.

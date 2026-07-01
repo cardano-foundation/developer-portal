@@ -3,7 +3,6 @@ id: air-gap
 title: Air Gap Environment
 sidebar_label: Air Gap Environment
 description: Secure your private keys on a network-free machine — Nix bootable ISO or manual Ubuntu setup.
-image: /img/og/og-security-air-gap-environment.png
 ---
 
 An air-gapped machine is one that has never made a network connection and never will. Cold keys — pool registration keys, Constitutional Committee signing keys, any key that authorizes high-value operations — must be handled on a machine that meets this bar. If your cold key ever touches an internet-connected machine, it should be considered compromised.

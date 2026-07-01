@@ -3,7 +3,6 @@ id: addresses
 title: Addresses
 sidebar_label: Addresses
 description: Cardano address structure, address types, and how payment and delegation credentials work.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 import Tabs from '@theme/Tabs';

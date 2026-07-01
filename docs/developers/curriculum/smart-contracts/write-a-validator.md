@@ -3,7 +3,6 @@ id: write-a-validator
 title: Write a Validator
 sidebar_label: Write a validator
 description: "Author the on-chain code: Aiken validator types (minting, spending, withdrawing), what a validator sees in the transaction, native scripts for multisig, and the blueprint that bridges to off-chain."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

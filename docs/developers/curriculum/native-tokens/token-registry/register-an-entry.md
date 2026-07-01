@@ -3,7 +3,6 @@ id: register-an-entry
 title: Register an entry
 sidebar_label: Register an entry
 description: Prepare, submit, update, and remove a Cardano Token Registry (CIP-26) metadata entry with token-metadata-creator.
-image: /img/og/og-developer-portal.png
 ---
 
 This guide covers the full lifecycle of a **CIP-26** registry entry: preparing it with `token-metadata-creator`, submitting it as a pull request, and later updating or removing it. For what the registry is and when to use it instead of CIP-68, see [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry).

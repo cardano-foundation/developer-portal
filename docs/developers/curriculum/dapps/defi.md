@@ -3,7 +3,6 @@ id: defi
 title: DeFi on Cardano
 sidebar_label: DeFi on Cardano
 description: The core DeFi primitives, DEXes, AMMs, liquidity pools, impermanent loss, and how Cardano's eUTXO model changes how you build them, with order batching, pool sharding, and determinism.
-image: /img/og/og-developer-portal.png
 ---
 
 Decentralized finance (DeFi) replaces traditional financial intermediaries with smart contract protocols, enabling permissionless trading, lending, and yield generation directly on-chain. For web2 developers, DeFi introduces a paradigm where financial logic lives on-chain, composable like microservices but trustless and permissionless.

@@ -3,7 +3,6 @@ id: cardano-key-pairs
 title: Cardano Key Pairs
 sidebar_label: Cardano Key Pairs
 description: The ed25519 key pairs behind Cardano (.vkey and .skey files), what each is for, and best practices for keeping private keys safe.
-image: /img/og/og-developer-portal.png
 ---
 
 It's critical to understand the numerous cryptographic key pairs connected with Cardano, as well as the purpose of each key pair and best practices for securing those keys, before you start working with it. Every ambitious Cardano developer and stake pool operator should get a complete grasp of these key pairs, as well as the ramifications of a single secret (private) key being hacked. Any Cardano developer or stake pool operator must learn how to manage, safeguard, and store private keys in order to succeed.

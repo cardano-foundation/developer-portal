@@ -3,7 +3,6 @@ id: blockfrost
 title: Blockfrost
 sidebar_label: Blockfrost
 description: Blockfrost is a hosted REST API provider for Cardano. Create a project, get an API key, and make your first request.
-image: /img/og/og-getstarted-blockfrost.png
 ---
 
 import Tabs from '@theme/Tabs';

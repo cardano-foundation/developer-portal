@@ -3,7 +3,6 @@ id: zero-knowledge
 title: Zero-Knowledge Proofs
 sidebar_label: Zero-knowledge proofs
 description: Zero-knowledge proofs on Cardano, verifying succinct proofs on-chain with the BLS12-381 Plutus builtins.
-image: /img/og/og-developer-portal.png
 ---
 
 ## Introduction

@@ -3,7 +3,6 @@ id: infrastructure
 title: Production Infrastructure
 sidebar_label: Infrastructure
 description: The Cardano developer stack, from managed APIs to your own node and indexers, and how to choose the right infrastructure for a production dApp.
-image: /img/og/og-developer-portal.png
 ---
 
 Every application needs more than business logic: databases, APIs, hosting, monitoring, and staging environments. Cardano is no different. This page maps the developer infrastructure stack, from running your own full node to using managed API services, and helps you choose based on your needs for decentralization, performance, cost, and convenience.
