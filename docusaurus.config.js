@@ -210,7 +210,7 @@ module.exports = {
               href: "https://www.cardanofoundation.org",
             },
             {
-              label: "Development Updates",
+              label: "Developer Activity",
               href: "https://cardanoupdates.com",
             },
             {

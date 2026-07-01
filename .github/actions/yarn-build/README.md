@@ -1,28 +1,23 @@
 # Build Yarn Action
 
-This github actions provides arbirary actions for the yarn cli command.
-The main reason for writing this was that i needed to add a fix for gits
-safe directory thing, see entrypoint.sh.
+This GitHub Action provides arbitrary actions for the yarn CLI command.
+The main reason for writing this was to add a fix for git's safe.directory
+check; see entrypoint.sh.
 
-The code mostly is taken from https://github.com/Borales/actions-yarn
-but simplified. Mostly removed the npm auth token stuff, which we wont need
-in the near future. And then the original action might have a fix for
-the git safedir issue built in so we might want to remove this action
-alltogether.
+The code is mostly taken from https://github.com/Borales/actions-yarn but
+simplified. It removes the npm auth-token handling, which we don't need. The
+original action may now have that safe.directory fix built in, so we might
+want to remove this action altogether.
 
+To use this action:
 
-To use this action
-    name: CI
-    on: [push]
-    jobs:
-        build:
-            name: Test
-            runs-on: ubuntu-latest
-            steps:
-                - uses: actions/checkout@v2
-                - uses: ./.github/actions/yarn-build
-                  with:
-                    cmd: install   # will run `yarn install` command
-                - uses: ./.github/actions/yarn-build
-                  with:
-                    cmd: build # will run `yarn build` command
+```yaml
+steps:
+  - uses: actions/checkout@v7
+  - uses: ./.github/actions/yarn-build
+    with:
+      cmd: install   # runs `yarn install`
+  - uses: ./.github/actions/yarn-build
+    with:
+      cmd: build     # runs `yarn build`
+```
