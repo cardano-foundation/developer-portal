@@ -1,19 +1,15 @@
-# Yarn Build action
+# Build Yarn Action
 
-Composite Docker action that runs a single `yarn` command (for example `install` or `build`) in CI.
+This GitHub Action provides arbitrary actions for the yarn CLI command.
+The main reason for writing this was to add a fix for git's safe.directory
+check; see entrypoint.sh.
 
-It exists to work around git's `safe.directory` ownership check on the Actions runner before
-invoking yarn; see `entrypoint.sh`. Adapted from
-[Borales/actions-yarn](https://github.com/Borales/actions-yarn) and trimmed to what this repo
-needs (the npm auth-token handling was removed).
+The code is mostly taken from https://github.com/Borales/actions-yarn but
+simplified. It removes the npm auth-token handling, which we don't need. The
+original action may now have that safe.directory fix built in, so we might
+want to remove this action altogether.
 
-## Inputs
-
-| Input | Required | Description |
-| ----- | -------- | ----------- |
-| `cmd` | yes      | The yarn command to run, e.g. `install` or `build`. |
-
-## Usage
+To use this action:
 
 ```yaml
 steps:
