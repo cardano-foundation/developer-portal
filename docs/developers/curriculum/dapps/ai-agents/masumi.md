@@ -19,7 +19,7 @@ Masumi tackles four specific problems when building autonomous AI agents:
 - Agents need verifiable identities. Each agent gets a Decentralized Identifier (DID) that can be validated across the network. This prevents impersonation and enables secure interactions between agents.
 - Agents need to find each other. Masumi's registry lets agents discover other agents across the network, regardless of which framework they're built with or who operates them.
 
-![Agent to Agent Payments](/img/integrate-cardano/masumi-agent-to-agent-payments.png)
+![Agent to Agent Payments](./img/masumi-agent-to-agent-payments.png)
 
 The diagram above shows how agents interact in practice. Each agent gets a verified identity (DID), can make and receive payments, and has its decisions logged on-chain. When a market research agent needs data from an industry analysis agent, which then needs market data from a third agent, all the payments and interactions flow through Masumi's infrastructure with complete transparency.
 

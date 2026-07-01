@@ -8,7 +8,7 @@ image: /img/og/og-developer-portal.png
 
 [Demeter](https://demeter.run) provides managed Cardano infrastructure, handling node operations, indexing, and middleware so you can focus on building applications.
 
-![Demeter Platform Architecture](/img/demeter-platform-architecture.png)
+![Demeter Platform Architecture](./img/demeter-platform-architecture.png)
 
 ## Available services
 
