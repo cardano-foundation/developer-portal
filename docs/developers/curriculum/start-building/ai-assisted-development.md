@@ -3,7 +3,6 @@ id: ai-assisted-development
 title: Set up your AI assistant
 sidebar_label: Set up your AI assistant
 description: Use AI coding assistants to build on Cardano with current, authoritative context instead of stale training data.
-image: /img/og/og-developer-portal.png
 ---
 
 If you build with an AI coding assistant, this is a quick, optional setup step worth doing now: it pays off across every module that follows.

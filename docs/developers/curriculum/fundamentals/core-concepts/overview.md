@@ -3,7 +3,6 @@ id: overview
 title: Core Concepts
 sidebar_label: Overview
 description: The technical foundations of Cardano value, the eUTXO model, addresses, keys and wallets, transactions, and fees.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 These pages cover how value is represented, owned, moved, and priced on Cardano. They are the foundation everything else builds on. You don't need to read all of it before you start building, most build guides link back here when a concept becomes relevant, but if you are new to Cardano, reading it in order pays off.

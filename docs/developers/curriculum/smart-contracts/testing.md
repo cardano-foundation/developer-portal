@@ -3,7 +3,6 @@ id: testing
 title: Testing Validators
 sidebar_label: Testing
 description: Test Aiken validators with mock transactions, the mocktail library, and the boolean-toggle pattern for systematically covering failure cases.
-image: /img/og/og-developer-portal.png
 ---
 
 Because a Cardano validator is a [pure function](/docs/developers/curriculum/smart-contracts/overview#smart-contracts-are-validators-not-actors), `f(datum, redeemer, context) -> Bool`, it is unusually easy to test. There is no network, no global state, no deployment required: you hand the function some mock data and assert the result. And because deployed validators are immutable and guard real value, testing is not optional.

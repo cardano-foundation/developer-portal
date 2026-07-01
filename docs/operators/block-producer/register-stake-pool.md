@@ -3,7 +3,6 @@ id: register-stake-pool
 title: Registering a Pool
 sidebar_label: Registering a Pool
 description: Generate your pool registration certificate and submit it to the chain.
-image: ../img/og-developer-portal.png
 ---
 
 :::info version reference

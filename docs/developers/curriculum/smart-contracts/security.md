@@ -3,7 +3,6 @@ id: security
 title: Smart Contract Security
 sidebar_label: Security
 description: How Cardano's eUTXO model neutralizes whole classes of attacks, the vulnerabilities you still have to guard against, and the patterns that keep validators safe.
-image: /img/og/og-developer-portal.png
 ---
 
 Smart contract bugs are uniquely dangerous: deployed validators are immutable (or very hard to change) and they often guard significant value, so a single vulnerability can mean irreversible loss of funds. For web2 developers, the shift is stark: a bug here isn't an embarrassing hotfix, it's a permanent financial loss in an adversarial environment where anyone in the world can attempt the exploit.

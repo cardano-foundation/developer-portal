@@ -3,7 +3,6 @@ id: metadata-registry
 title: Token Metadata & Registry
 sidebar_label: Token metadata & registry
 description: Cardano token metadata standards, CIP-25 and CIP-68 for NFTs, CIP-26 off-chain registry, and CIP-27 royalties.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

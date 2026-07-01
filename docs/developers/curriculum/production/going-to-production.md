@@ -3,7 +3,6 @@ id: going-to-production
 title: Going to Production
 sidebar_label: Going to production
 description: "A checklist for taking a Cardano dApp from working on testnet to running on mainnet: testing, security, reliable transactions, optimization, and infrastructure."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

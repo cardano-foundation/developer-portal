@@ -3,7 +3,6 @@ id: choose-your-tools
 title: Choose Your Tools
 sidebar_label: Choose your tools
 description: Pick a Cardano SDK for your language and get a provider key, the two choices you make before building.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

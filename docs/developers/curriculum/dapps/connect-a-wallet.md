@@ -3,7 +3,6 @@ id: connect-a-wallet
 title: Connect a Wallet
 sidebar_label: Connect a wallet
 description: "Connect a browser wallet to your dApp with CIP-30: request addresses, UTXOs, and signatures while keys stay on the user's device, with Evolution and Mesh."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

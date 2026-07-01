@@ -3,7 +3,6 @@ id: development-networks
 title: Local Development Networks
 sidebar_label: Local development networks
 description: Run a Cardano network on your own machine, either a standalone cluster you point a frontend at or a programmatic devnet you spin up inside a test suite.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

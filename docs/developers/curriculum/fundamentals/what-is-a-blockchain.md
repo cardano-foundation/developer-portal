@@ -3,7 +3,6 @@ id: what-is-a-blockchain
 title: What Is a Blockchain?
 sidebar_label: What is a blockchain?
 description: The fundamental architecture of blockchain technology, from distributed ledgers to the trust problem blockchains solve.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 A blockchain is a distributed, append-only data structure that lets multiple participants agree on shared state without a central authority. It chains together cryptographically linked blocks of transactions, producing an immutable ledger that no single party controls. This page builds a precise mental model of what a blockchain actually is, why it was invented, and how Cardano's design choices matter to you as a developer.

@@ -3,7 +3,6 @@ id: consensus-and-ouroboros
 title: Consensus & Ouroboros
 sidebar_label: Consensus & Ouroboros
 description: How distributed networks agree on a single truth, from Proof of Work to Cardano's Ouroboros Proof of Stake protocol.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 A consensus mechanism is the protocol-level rule set that lets thousands of independent nodes agree on a single canonical chain without any central coordinator. We have established that a blockchain is a distributed ledger and that [cryptographic primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) secure individual transactions and blocks. This page answers the remaining question: when multiple nodes each propose a different block at the same time, how does the network decide which one becomes part of the chain?
