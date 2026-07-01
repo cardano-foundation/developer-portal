@@ -20,7 +20,7 @@ Every method follows the same loop:
 4. **Compare the received amount** against what you expect.
 5. **Fulfill** once the payment confirms.
 
-![Payment flow](/img/integrate-cardano/ada-online-shop.png)
+![Payment flow](./img/ada-online-shop.png)
 
 The only thing that differs between methods is *how you read the chain*: a hosted API, your own node via cardano-cli, or a cardano-wallet service. Start with Blockfrost unless you already run your own infrastructure.
 

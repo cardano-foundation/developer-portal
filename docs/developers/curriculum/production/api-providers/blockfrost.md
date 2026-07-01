@@ -14,13 +14,13 @@ import TabItem from '@theme/TabItem';
 
 Create a free account at [blockfrost.io](https://blockfrost.io/auth/signin).
 
-![Blockfrost.io landing page](/img/get-started/blockfrost/getting-started-1_frontend_landing.png)
+![Blockfrost.io landing page](./img/getting-started-1_frontend_landing.png)
 
 After signing in, create a project: click **+ ADD PROJECT**, name it, select the network (mainnet, preprod, or preview), and **SAVE**. Each project is scoped to one network and gets its own `project_id`, which is your API key.
 
-![Add Blockfrost project](/img/get-started/blockfrost/getting-started-2_add_project.png)
+![Add Blockfrost project](./img/getting-started-2_add_project.png)
 
-![Get Blockfrost project_id](/img/get-started/blockfrost/getting-started-3_get_api_key.png)
+![Get Blockfrost project_id](./img/getting-started-3_get_api_key.png)
 
 :::warning
 Keep your `project_id` secret. Never commit it or embed it in client-side code. Store it in an environment variable on your backend so it cannot leak to users.

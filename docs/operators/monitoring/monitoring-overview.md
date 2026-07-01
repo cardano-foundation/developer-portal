@@ -25,7 +25,7 @@ Running a stake pool means being on-call for a live system. A node that silently
 
 [gLiveView](https://cardano-community.github.io/guild-operators/Scripts/gliveview/) is a bash script from the [Guild Operators](https://cardano-community.github.io/guild-operators/) community that gives you a live terminal dashboard of your node's current state. It connects to the node's local metrics endpoint, detects whether the node is a relay or block producer, and adjusts its output accordingly.
 
-![gLiveView dashboard showing node metrics, peer connections, and block production status](/img/get-started/guild-ops-suite/guild_gliveview.png)
+![gLiveView dashboard showing node metrics, peer connections, and block production status](./img/guild_gliveview.png)
 
 **gLiveView is good for:**
 - Quickly checking node health without leaving the command line

@@ -142,7 +142,7 @@ The flip side is that there is no built-in transfer logic. Behavior like blackli
 
 Native tokens move through: policy design, then policy creation (the script hash becomes the policy ID), then minting (positive quantity), then circulation (ordinary transfers, no scripts), then optional smart-contract interaction, and finally burning (negative quantity).
 
-![Native token lifecycle](/img/multiasset-lifecycle.png)
+![Native token lifecycle](./img/multiasset-lifecycle.png)
 
 ## Key takeaways
 

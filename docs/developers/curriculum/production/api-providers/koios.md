@@ -15,7 +15,7 @@ Access the full API documentation at [api.koios.rest](https://api.koios.rest). K
 
 Each endpoint provides sample curl commands you can execute directly from your browser for testing.
 
-![Koios API documentation](/img/get-started/koios/1-usage.png)
+![Koios API documentation](./img/1-usage.png)
 
 ### Rate Limits
 

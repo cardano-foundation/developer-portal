@@ -32,7 +32,7 @@ For source builds or non-Docker installation, see [ogmios.dev/getting-started](h
 
 Access the dashboard at [localhost:1337](http://localhost:1337) for real-time runtime metrics visualization.
 
-![Ogmios Dashboard](/img/get-started/ogmios/1-dashboard.gif)
+![Ogmios Dashboard](./img/1-dashboard.gif)
 
 ## Query Metrics
 
