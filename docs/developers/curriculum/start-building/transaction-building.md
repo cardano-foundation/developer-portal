@@ -3,7 +3,6 @@ id: transaction-building
 title: Transaction Building
 sidebar_label: Transaction building
 description: "Go beyond a simple payment: multiple outputs, coin selection, batching and airdrops, transaction chaining, resilient submission, and redeemer indexing, with Evolution and Mesh."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

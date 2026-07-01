@@ -3,7 +3,6 @@ id: on-chain-polls
 title: On-Chain Polls
 sidebar_label: On-Chain Polls
 description: How stake pool operators voted via on-chain polls (CIP-0094), a legacy mechanism now superseded by Conway-era governance.
-image: ../img/og-developer-portal.png
 ---
 
 :::warning Legacy mechanism

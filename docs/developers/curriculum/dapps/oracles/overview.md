@@ -3,7 +3,6 @@ id: overview
 title: Oracles on Cardano
 sidebar_label: Overview
 description: Learn about oracle services that bring real-world data to Cardano smart contracts.
-image: /img/og/og-developer-portal.png
 ---
 
 ## What are oracles?

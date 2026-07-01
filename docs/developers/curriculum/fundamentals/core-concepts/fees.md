@@ -3,7 +3,6 @@ id: fees
 title: Transaction Fees
 sidebar_label: Transaction fees
 description: Cardano's deterministic fee formula, script execution costs, and collateral.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 Transaction fees on Cardano are deterministic and predictable. They are calculated from a simple linear formula based on transaction size (plus script execution cost), so you can compute the exact fee before submitting, with no auctions and no gas-price spikes.

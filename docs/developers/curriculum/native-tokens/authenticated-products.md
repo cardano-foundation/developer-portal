@@ -3,7 +3,6 @@ id: authenticated-products
 title: Authenticated Products on Cardano Store
 sidebar_label: Authenticated products
 description: How Cardano verifies physical product authenticity with NFC chips and NFTs, using the Cardano Store POC Hoodie as a worked example.
-image: /img/og/og-developer-portal.png
 ---
 
 The recently opened [Cardano Store](https://store.cardano.org/) offers sustainably produced promotional items and innovative products. The latter category in particular offers blockchain enthusiasts products and product prototypes that connect the physical world with the virtual world using blockchain technology. The first product of that kind is the [POC Hoodie](https://store.cardano.org/products/hoodie), which is equipped with an NFC chip that can be used to verify the authenticity of the hoodie based on the unique possibilities of the Cardano blockchain. A similar approach was already used in summer 2023 with the [Lacrosse World Cup Jersey](https://cardanofoundation.org/en/news/technical-collaboration-with-epoch-sports-merchandise/) showcase. While the revised approach of the POC Hoodie offers some improvements, particularly in the area of security, it is not the end of the development process.

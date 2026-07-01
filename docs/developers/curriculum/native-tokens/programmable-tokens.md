@@ -3,7 +3,6 @@ id: programmable-tokens
 title: Programmable Tokens
 sidebar_label: Programmable tokens
 description: Native tokens that run validation logic on every transfer, mint, and burn, enabling compliance rules like freeze, seize, and KYC-gating without a hard fork.
-image: /img/og/og-developer-portal.png
 ---
 
 A plain [native token](/docs/developers/curriculum/native-tokens/overview) has no built-in transfer logic. Once minted, it moves through ordinary transactions with no script execution, which is exactly what makes it cheap and safe, but it also means you cannot enforce rules on who holds it or how it moves. **Programmable tokens** ([CIP-113](https://github.com/cardano-foundation/CIPs/pull/444)) add that missing layer: validation logic that runs on every transfer, mint, and burn.

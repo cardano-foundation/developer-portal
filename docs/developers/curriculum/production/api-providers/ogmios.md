@@ -3,7 +3,6 @@ id: ogmios
 title: Ogmios
 sidebar_label: Ogmios
 description: WebSocket JSON-RPC bridge interface for cardano-node providing low-level protocol access.
-image: /img/og/og-getstarted-ogmios.png
 ---
 
 import Tabs from '@theme/Tabs';

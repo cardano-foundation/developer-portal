@@ -3,7 +3,6 @@ id: overview
 title: Scaling & Production
 sidebar_label: Overview
 description: How Cardano scales, at Layer 1 and with Hydra at Layer 2, and how to take a dApp from working on testnet to running in production.
-image: /img/og/og-developer-portal.png
 ---
 
 This module answers two questions every serious project reaches: **how does Cardano scale**, and **how do I take my dApp to production**. The first is about throughput and architecture; the second is about reliability, security, and infrastructure. Both build on everything in the earlier modules.

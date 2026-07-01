@@ -3,7 +3,6 @@ id: monitoring-overview
 title: Monitoring Overview
 sidebar_label: Overview
 description: Monitoring approaches for Cardano stake pool operators — what to watch, real-time CLI tools, and a full observability stack.
-image: ../img/og/og-developer-portal.png
 ---
 
 Running a stake pool means being on-call for a live system. A node that silently falls behind the chain, misses its slot, or has expiring KES keys will cost you and your delegators rewards. Good monitoring catches these problems before they become expensive.

@@ -3,7 +3,6 @@ id: demeter
 title: Demeter
 sidebar_label: Demeter
 description: Cloud-based Cardano infrastructure platform with managed nodes, indexers, and RPC services.
-image: /img/og/og-developer-portal.png
 ---
 
 [Demeter](https://demeter.run) provides managed Cardano infrastructure, handling node operations, indexing, and middleware so you can focus on building applications.

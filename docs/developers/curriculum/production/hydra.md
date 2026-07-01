@@ -3,7 +3,6 @@ id: hydra
 title: "Hydra: Layer 2 Scaling"
 sidebar_label: Hydra
 description: Hydra is Cardano's Layer 2, a state channel where a known set of participants transact thousands of times per second with zero fees, settling back to Layer 1 only to open and close.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

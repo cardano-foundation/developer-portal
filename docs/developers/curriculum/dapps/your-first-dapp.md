@@ -3,7 +3,6 @@ id: your-first-dapp
 title: Build your first dApp
 sidebar_label: Your first dApp
 description: "Assemble a working Cardano dApp end to end: scaffold, connect a wallet, read the balance, and send ADA, with runnable Evolution and Mesh templates."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

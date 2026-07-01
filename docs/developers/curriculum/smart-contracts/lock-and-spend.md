@@ -3,7 +3,6 @@ id: lock-and-spend
 title: Lock and Spend
 sidebar_label: Lock and spend
 description: "The two halves of every smart contract interaction: lock funds at a script address with a datum, then spend them by providing a redeemer that satisfies the validator."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

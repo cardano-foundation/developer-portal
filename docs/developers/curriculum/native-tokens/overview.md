@@ -3,7 +3,6 @@ id: overview
 title: What Are Native Tokens
 sidebar_label: What are native tokens
 description: How Cardano's multi-asset ledger handles native tokens and NFTs as first-class citizens alongside ADA.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

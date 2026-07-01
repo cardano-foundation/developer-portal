@@ -3,7 +3,6 @@ id: sponsored-transactions
 title: Sponsored and multi-party transactions
 sidebar_label: Sponsored transactions
 description: "Separate who builds, who signs, and who pays for a transaction: co-sign across a server and a browser wallet with CIP-30 partial signing, and sponsor fees so users transact without holding ADA."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

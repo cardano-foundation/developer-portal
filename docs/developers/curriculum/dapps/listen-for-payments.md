@@ -3,7 +3,6 @@ id: listen-for-payments
 title: Listening for ada payments
 sidebar_label: Listen for payments
 description: Detect and confirm ada payments in your application, using Blockfrost, cardano-cli, or cardano-wallet.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

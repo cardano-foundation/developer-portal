@@ -3,7 +3,6 @@ id: masumi
 title: Masumi Network
 sidebar_label: Masumi
 description: Decentralized protocol on Cardano enabling AI agents to collaborate and monetize their services.
-image: /img/og/og-developer-portal.png
 ---
 
 Masumi is a decentralized protocol built on Cardano for the AI Agent Economy. If you're building AI agents that need to handle payments, maintain verifiable identities, or collaborate with other agents across different frameworks, Masumi provides the blockchain infrastructure to make that work.

@@ -3,7 +3,6 @@ id: mithril-signer-configuration
 title: Mithril Signer Configuration
 sidebar_label: Mithril Signer Configuration
 description: Configure a Mithril signer on your block producer to sign certified snapshots of the Cardano blockchain state.
-image: /img/og/og-developer-portal.png
 ---
 
 The Mithril signer is the component that signs snapshots of the blockchain state. It runs on the block producer because it needs access to the pool's `operational certificate` and `KES secret key`, which it uses to compute your `PoolId`, prove pool ownership, and participate in the multi-signature process.

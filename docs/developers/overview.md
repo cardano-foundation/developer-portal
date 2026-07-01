@@ -4,7 +4,6 @@ slug: /developers/
 title: Welcome to the Cardano Developer Portal
 sidebar_label: Start Here
 description: Start here. The Cardano Developer Portal is a hands-on curriculum that takes you from blockchain fundamentals to production dApps.
-image: /img/og/og-getstarted-overview.png
 ---
 
 ![Cardano Get Started](/img/card-get-started-title.svg)
