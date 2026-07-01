@@ -51,15 +51,18 @@ function walk(dir) {
   return out;
 }
 
-// Pull `title:` out of the frontmatter block. Titles that contain a colon are
-// quoted in frontmatter, so strip surrounding quotes.
+// The page title for the headline: prefer frontmatter `title:`, else fall back to
+// the first H1 (how Docusaurus itself derives a title when frontmatter omits one).
+// Titles that contain a colon are quoted in frontmatter, so strip surrounding quotes.
 function readTitle(file) {
   const src = fs.readFileSync(file, 'utf8');
   const fm = src.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!fm) return null;
-  const line = fm[1].match(/^title:\s*(.+)$/m);
-  if (!line) return null;
-  return line[1].trim().replace(/^["']|["']$/g, '');
+  if (fm) {
+    const line = fm[1].match(/^title:\s*(.+)$/m);
+    if (line) return line[1].trim().replace(/^["']|["']$/g, '');
+  }
+  const h1 = src.match(/^#\s+(.+)$/m);
+  return h1 ? h1[1].trim() : null;
 }
 
 // Section label for the eyebrow, from the doc's path under docs/. Curriculum pages
@@ -72,7 +75,9 @@ function eyebrowFor(rel) {
   if (seg[0] === 'developers' && seg[1] === 'curriculum') {
     key = seg.length > 3 ? seg[2] : 'curriculum';
   } else {
-    key = seg.length > 2 ? seg[1] : seg[0];
+    // Nested docs show their sub-section (seg[1]); flat docs show their top-level
+    // folder, or the filename (minus .md) for a doc sitting directly under docs/.
+    key = seg.length > 2 ? seg[1] : seg[0].replace(/\.md$/, '');
   }
   const special = { dapps: 'dApps', iot: 'IoT' };
   return special[key] ?? key.replace(/-/g, ' ').toUpperCase();
@@ -177,7 +182,10 @@ async function main() {
       .jpeg({ quality: 90 })
       .toFile(outPath);
 
-    manifest[path.relative(ROOT, file)] = '/img/og/docs/' + outRel.split(path.sep).join('/');
+    // Key by forward-slash repo-relative path so the swizzle's lookup (which uses
+    // the forward-slash source path) matches on every OS, not just POSIX.
+    manifest[path.relative(ROOT, file).split(path.sep).join('/')] =
+      '/img/og/docs/' + outRel.split(path.sep).join('/');
     made++;
   }
 
