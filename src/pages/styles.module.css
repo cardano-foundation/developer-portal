@@ -1903,12 +1903,12 @@ html[data-theme="dark"] .officeHoursBtnSecondary:hover {
 }
 
 html[data-theme="light"] .heroBanner {
-  background-image: url(/img/dev-portal-hero-light.webp);
+  background-image: url(/img/home/dev-portal-hero-light.webp);
   background-color: var(--site-color-brand-blue);
 }
 
 html[data-theme="dark"] .heroBanner {
-  background-image: url(/img/dev-portal-hero-dark.webp);
+  background-image: url(/img/home/dev-portal-hero-dark.webp);
   background-color: var(--site-color-brand-teal-dark);
 }
 

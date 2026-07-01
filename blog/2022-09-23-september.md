@@ -14,8 +14,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 style={{width: '300px'}}
 alt="ADAO"
 sources={{
-    light: useBaseUrl('/img/devblog/adao-light.svg'),
-    dark: useBaseUrl('/img/devblog/adao-light.svg'),
+    light: useBaseUrl('/img/blog/devblog/adao-light.svg'),
+    dark: useBaseUrl('/img/blog/devblog/adao-light.svg'),
   }}
 />
 

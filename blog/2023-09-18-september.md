@@ -15,8 +15,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 style={{width: '300px'}}
 alt="Adastat.net"
 sources={{
-    light: useBaseUrl('/img/devblog/adastat-light.svg'),
-    dark: useBaseUrl('/img/devblog/adastat-dark.svg'),
+    light: useBaseUrl('/img/blog/devblog/adastat-light.svg'),
+    dark: useBaseUrl('/img/blog/devblog/adastat-dark.svg'),
   }}
 />](https://adastat.net/)
 

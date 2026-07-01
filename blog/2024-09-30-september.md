@@ -14,8 +14,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 style={{width: '300px'}}
 alt="https://app.nucast.io/"
 sources={{
-    light: useBaseUrl('/img/devblog/nucast-light.svg'),
-    dark: useBaseUrl('/img/devblog/nucast-light.svg'),
+    light: useBaseUrl('/img/blog/devblog/nucast-light.svg'),
+    dark: useBaseUrl('/img/blog/devblog/nucast-light.svg'),
   }}
 />](https://app.nucast.io/)
 

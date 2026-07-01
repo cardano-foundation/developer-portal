@@ -13,8 +13,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
  [<ThemedImage
 alt="title image"
 sources={{
-    light: useBaseUrl('/img/devblog/nowpayments-white.png'),
-    dark: useBaseUrl('/img/devblog/nowpayments-dark.png'),
+    light: useBaseUrl('/img/blog/devblog/nowpayments-white.png'),
+    dark: useBaseUrl('/img/blog/devblog/nowpayments-dark.png'),
   }}
 />](https://nowpayments.io)
 

@@ -14,8 +14,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 style={{width: '300px'}}
 alt="https://iagon.com/about-us"
 sources={{
-    light: useBaseUrl('/img/devblog/iagon-dark.svg'),
-    dark: useBaseUrl('/img/devblog/iagon-light.svg'),
+    light: useBaseUrl('/img/blog/devblog/iagon-dark.svg'),
+    dark: useBaseUrl('/img/blog/devblog/iagon-light.svg'),
   }}
 />](https://iagon.com/about-us)
 

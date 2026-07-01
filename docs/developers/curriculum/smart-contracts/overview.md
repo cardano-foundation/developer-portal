@@ -6,7 +6,7 @@ description: How smart contracts work on Cardano, validators that approve or rej
 image: /img/og/og-developer-portal.png
 ---
 
-![Smart Contracts](/img/card-smart-contracts-title.svg)
+![Smart Contracts](./img/card-smart-contracts-title.svg)
 
 ## What are smart contracts?
 

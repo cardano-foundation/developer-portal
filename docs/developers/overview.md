@@ -7,7 +7,7 @@ description: Start here. The Cardano Developer Portal is a hands-on curriculum t
 image: /img/og/og-getstarted-overview.png
 ---
 
-![Cardano Get Started](/img/card-get-started-title.svg)
+![Cardano Get Started](./img/card-get-started-title.svg)
 
 Welcome to the Cardano Developer Portal. This is the place to learn how to build on Cardano, organized as a **curriculum** of seven modules that build on each other, from first principles to production. Work through them in order, or jump to whatever you need.
 

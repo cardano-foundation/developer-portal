@@ -7,7 +7,7 @@ description: "Finally here: the Cardano developer portal! Accepting all builds."
 image: https://developers.cardano.org/img/og/og-blog-launch.png
 ---
 
-![title image](/img/devblog/developer-portal-launch.jpeg)
+![title image](/img/blog/devblog/developer-portal-launch.jpeg)
 
 **Dear Cardano community,**
 
@@ -37,4 +37,4 @@ Click [here](https://cardanofoundation.org/nfta/) to view full list of NFTAs.
 
 Dear Community, good things come to those who wait. We know it took a while, but we sincerely hope it will be worth the wait. We’re looking forward to your contributions, constructive criticisms and, hopefully, thumbs-ups as we keep building towards the social and financial infrastructure of the future with you.
 
-![title image](/img/devblog/developer-portal-launch.jpeg)
+![title image](/img/blog/devblog/developer-portal-launch.jpeg)
