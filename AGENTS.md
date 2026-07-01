@@ -68,7 +68,7 @@ See `package.json` > `scripts` for the rest.
 ## Common tasks
 - **Add a builder tool:** append an entry to the end of the `BuilderTools` array in `src/data/builder-tools/tools.js`; pick exactly one `category` and the `properties` (language and interface) from `src/data/builder-tools/tags.js`; run `yarn build`; open a PR with the **Add Builder Tool** template. These PRs require **3 approvals**. Do not set `maintainerPick` (maintainers choose those).
 - **Edit or add a doc:** files live under `docs/…`. Use relative links to other docs and canonical paths (`/docs/contribute/…`, not redirect aliases). `yarn build` catches broken links.
-- **Add a redirect:** add an entry to `src/data/redirects.js`, following the style of existing entries. The site uses `trailingSlash: true`; verify the redirect resolves after `yarn build`.
+- **Add a redirect:** for internal path moves, add an entry to `src/data/redirects.js` (client-side, via `@docusaurus/plugin-client-redirects`), following the style of existing entries. External-domain routing (for example `testnets.cardano.org`) lives in `netlify.toml` instead. The site uses `trailingSlash: true`; verify the redirect resolves after `yarn build`.
 - **Add an image:** put it under `static/img/` and reference it as `/img/…`. External image hosts are blocked by the CSP (see guardrails).
 
 ---
