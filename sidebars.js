@@ -143,6 +143,7 @@ module.exports = {
                   ],
                 },
                 "developers/curriculum/smart-contracts/advanced/security/ctf",
+                "developers/curriculum/smart-contracts/advanced/security/audits",
                 "developers/curriculum/smart-contracts/advanced/security/formal-verification",
               ],
             },
