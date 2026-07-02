@@ -23,8 +23,13 @@ A catalog of common Cardano smart contract vulnerabilities, each linking to a de
 | [Arbitrary Datum](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/arbitrary-datum) | `arbitrary-datum` | Not validating datum when locking allows invalid data causing spend failures |
 | [UTxO Contention](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention) | `utxo-contention` | Shared global state creates contention when multiple users access same UTxO |
 | [Cheap Spam](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/cheap-spam) | `cheap-spam` | Low-cost spam actions stall legitimate protocol operations |
-| [Insufficient Staking Control](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control) | `insufficient-staking-control` | Missing staking credential checks allow reward redirection |
+| [Insufficient Staking Control](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control) | `insufficient-staking-control` | Missing staking credential checks allow reward redirection, franken addresses, and stake-key spoofing |
+| [Signature Domain Separation](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/signature-domain-separation) | `signature-domain-separation` | Off-chain signatures without a domain separator or nonce replay across protocols or repeatedly |
+| [Certificate Deregistration](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/certificate-deregistration) | `certificate-deregistration` | An unguarded staking-script certificate path lets anyone deregister the credential and halt a withdraw-zero protocol |
+| [Missed Input](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missed-input) | `missed-input` | A redeemer index not bound to the spent input lets an unvalidated input slip past a global validator |
 | [Locked Value](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/locked-value) | `locked-value` | Permanent value locking - consider economic tradeoffs |
+| [Hash Grinding](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/hash-grinding) | `hash-grinding` | Author-influenced on-chain hashes are grindable, biasing placement or selection (advanced) |
+| [Evaluation Order](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/evaluation-order) | `evaluation-order` | Short-circuiting boolean operators can skip a required check or a deferred failure (advanced) |
 
 ## Practice
 
