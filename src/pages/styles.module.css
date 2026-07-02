@@ -966,7 +966,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 }
 
 html[data-theme="light"] .smartContracts {
-  background: var(--site-color-surface);
+  background: #fff;
 }
 
 html[data-theme="dark"] .smartContracts {
@@ -1295,7 +1295,7 @@ html[data-theme="dark"] .scLearnOverlay {
 }
 
 html[data-theme="light"] .cta {
-  background: var(--site-color-surface);
+  background: #fff;
 }
 
 html[data-theme="dark"] .cta {
