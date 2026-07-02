@@ -54,26 +54,23 @@ function Hero() {
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
         <img
-          src={useBaseUrl("img/home/hero-smart-contracts.jpeg")}
-          alt="Cardano developer portal"
+          src={useBaseUrl("img/home/hero-background.webp")}
+          alt=""
           className={styles.heroBackgroundImage}
         />
         <div className={styles.heroOverlay} />
       </div>
-      <div className={styles.heroGlow} />
       <div className="container">
         <div className={styles.heroContent}>
-          <div className={styles.heroCard}>
-            <h1 className={styles.heroTitle}> Developer Resources</h1>
-            <p className={styles.heroSubtitle}>
-              From the first transaction to the production dApp and everything in
-              between. Docs, tools, and SDKs for everything Cardano.
-            </p>
-            <div className={styles.heroActions}>
-              <Link to={useBaseUrl("docs/developers/")} className={styles.heroCta}>
-                Start Here →
-              </Link>
-            </div>
+          <h1 className={styles.heroTitle}>Developer Portal</h1>
+          <p className={styles.heroSubtitle}>
+            From the first transaction to the production dApp and everything in
+            between. Docs, tools, and SDKs for everything Cardano.
+          </p>
+          <div className={styles.heroActions}>
+            <Link to={useBaseUrl("docs/developers/")} className={styles.heroCta}>
+              Start Here
+            </Link>
           </div>
         </div>
       </div>
