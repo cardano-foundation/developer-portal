@@ -18,6 +18,7 @@ Some starting points:
 
 - **TypeScript / JavaScript**: **Evolution** and **Mesh** are two widely used, actively maintained options. This curriculum's hands-on tabs use them so you can copy and run the examples, but the concepts apply to any SDK.
 - **Other languages**: Cardano has community SDKs for **Python, Rust, Go, Java, C#, Swift**, and more, plus low-level serialization libraries. Find them in [Builder Tools](/tools/?tags=sdk).
+- **A different paradigm**: instead of chaining builder calls, you can describe a transaction declaratively and generate typed clients from the spec. See [declarative transactions](/docs/developers/curriculum/start-building/transaction-building#declarative-transactions).
 
 ## Install it
 
