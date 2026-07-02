@@ -350,6 +350,7 @@ module.exports = {
                 "developers/curriculum/production/api-providers/blockfrost",
                 "developers/curriculum/production/api-providers/koios",
                 "developers/curriculum/production/api-providers/ogmios",
+                "developers/curriculum/production/api-providers/dolos",
               ],
             },
             "developers/curriculum/production/run-your-own-node",

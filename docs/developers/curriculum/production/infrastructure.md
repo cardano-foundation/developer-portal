@@ -80,6 +80,8 @@ Indexers follow the chain and store it in formats your app can query, something 
 - **Kupo**: a lightweight indexer that tracks only UTXOs matching patterns you configure (by address, policy ID, etc.). Fast sync (hours), low resources, datum resolution. Ideal for dApp backends.
 - **Scrolls / Oura** (TxPipe): event pipelines: Scrolls reduces chain data into stores like Redis or Elasticsearch; Oura streams on-chain events to Kafka, webhooks, or files for reactive, event-driven systems.
 
+A fourth option collapses the layers instead of adding one: a **data node**. [Dolos](/docs/developers/curriculum/production/api-providers/dolos) is a single process that syncs the ledger directly from relays and serves Blockfrost-compatible, Kupo-compatible, gRPC, and node-to-client APIs from embedded storage, replacing the node + indexer + API stack for read-and-submit backends at a few GB of RAM. The trade-off: it trusts the relays it syncs from rather than validating trustlessly, and it cannot produce blocks.
+
 ## Testnets are your staging environments
 
 Mirror the staging progression you already use in web2:
@@ -105,6 +107,7 @@ Common patterns:
 |---|---|---|
 | Hobby / learning | Blockfrost free tier + Preview | Zero infra to manage, fast iteration |
 | Production dApp backend | Kupo + Ogmios + cardano-node (self-hosted), or Maestro (managed) + Preprod staging | Fast UTXO queries at your script addresses, full control or managed reliability |
+| Self-hosted backend, minimal ops | Dolos data node | One process serving a local Blockfrost-compatible API, no separate node or database |
 | Block explorer / analytics | db-sync + PostgreSQL + node | Comprehensive historical SQL |
 | Event-driven app | Oura + Kafka/Redis + Blockfrost | React to on-chain events in near real-time |
 | Enterprise / high-throughput | Maestro dedicated + multiple nodes + Scrolls | SLAs, dedicated infra, custom indexing |
@@ -113,6 +116,7 @@ Common patterns:
 graph TD
     Q{What do you need?} -->|Simple queries, learning| BF[Blockfrost free tier]
     Q -->|Production dApp| KO[Kupo + Ogmios + node]
+    Q -->|Self-hosted, low footprint| DO[Dolos data node]
     Q -->|Full historical data| DB[db-sync + PostgreSQL]
     Q -->|Real-time events| OU[Oura + Kafka/Redis]
     Q -->|Enterprise SLA| MA[Maestro dedicated]
@@ -123,7 +127,7 @@ graph TD
 
 - **Running your own node is the sovereign, trustless option** but carries real ops overhead, unnecessary for most app developers, and a Mithril snapshot makes the sync fast when you do.
 - **Managed APIs (Blockfrost, Koios, Maestro) trade control for convenience**, like managed databases.
-- **Indexers turn raw chain data into queryable formats**: db-sync for full SQL, Kupo for lightweight UTXO tracking, Scrolls/Oura for event pipelines.
+- **Indexers turn raw chain data into queryable formats**: db-sync for full SQL, Kupo for lightweight UTXO tracking, Scrolls/Oura for event pipelines, and a Dolos data node when you want the whole read stack in one process.
 - **Use testnets as staging**: Preview to iterate, Preprod to rehearse, local devnets for the fastest loop.
 - **Choose per layer, by your needs**: most teams combine approaches (managed APIs in dev, self-hosted or dedicated in production).
 
