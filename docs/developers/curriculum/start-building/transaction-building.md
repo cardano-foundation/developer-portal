@@ -171,7 +171,7 @@ cardano-cli latest transaction build \
 </TabItem>
 </Tabs>
 
-Metadata is public: any provider can read it back. With Blockfrost, fetch every transaction carrying a label via `GET /metadata/txs/labels/{label}`, and a block explorer shows a transaction's metadata in its UI. Minting an NFT with CIP-25 (`721`) metadata is shown end to end in [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft).
+Metadata is public: any provider can read it back. With Blockfrost, fetch every transaction carrying a label via `GET /metadata/txs/labels/{label}`, and a block explorer shows a transaction's metadata in its UI. To maintain your own index of a label, [a Yaci Store plugin](/docs/developers/curriculum/production/indexing-and-analytics#index-exactly-what-you-need-plugins) can filter for it at indexing time. Minting an NFT with CIP-25 (`721`) metadata is shown end to end in [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft).
 
 ## Batching and airdrops
 
