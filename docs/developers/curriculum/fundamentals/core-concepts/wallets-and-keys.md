@@ -33,16 +33,34 @@ verify(msg, sig, public) -> true/false
 
 One key per address creates real problems: transactions become trivially linkable, managing hundreds of unrelated keys is error-prone, backups are impractical, and a compromised key cannot be rotated. The fix is **Hierarchical Deterministic (HD) wallets**.
 
+The next three sections walk the pipeline an HD wallet runs when it is created: random entropy is encoded as a mnemonic you back up, stretched into a root key, grown into a tree of derived keys, and hashed into addresses.
+
+```mermaid
+flowchart LR
+    E[Entropy<br/>128 / 256 bits] -->|"BIP-39"| M[Mnemonic<br/>15 / 24 words]
+    E -->|"CIP-3 Icarus<br/>PBKDF2"| R[Root key]
+    R -->|"CIP-1852<br/>m/1852'/1815'/0'"| D[Derived keys<br/>payment + staking]
+    D -->|"CIP-19<br/>Blake2b-224 + Bech32"| A[Address<br/>addr1...]
+
+    style E fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style M fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style R fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style D fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+```
+
+Note that the mnemonic is a branch, not a step: both the words and the root key are derived from the same entropy, which is why the phrase alone can always rebuild the whole tree.
+
 ## Seed phrases (BIP-39)
 
-A mnemonic seed phrase is a human-readable encoding of random entropy as words from a standard 2048-word list (Cardano wallets use 15 or 24 words). This single phrase deterministically regenerates your entire key tree, so it is the only backup you need.
+A mnemonic seed phrase is a human-readable encoding of random entropy as words from a standard 2048-word list (Cardano wallets use 15 or 24 words). A checksum is folded into the words, so a mistyped or misplaced word is caught at recovery instead of silently restoring the wrong wallet. This single phrase deterministically regenerates your entire key tree, so it is the only backup you need.
 
 ```
 24 words = 256 bits of entropy = 2^256 possible phrases (~10^77).
-Brute-forcing one is not impractical; it is physically impossible.
+Brute-forcing one is not just impractical; it is physically impossible.
 ```
 
-The phrase is stretched into a 512-bit root key via PBKDF2. An optional passphrase (a "25th word") produces a completely different wallet from the same words.
+Cardano wallets follow the Icarus standard ([CIP-3](https://cips.cardano.org/cip/CIP-3)): the phrase's underlying entropy runs through PBKDF2-HMAC-SHA512 (4,096 rounds, deliberately slow to make brute-forcing expensive) to produce a 96-byte Ed25519 extended root key. An optional passphrase (a "25th word") produces a completely different wallet from the same words.
 
 ## HD derivation (BIP-32 / CIP-1852)
 

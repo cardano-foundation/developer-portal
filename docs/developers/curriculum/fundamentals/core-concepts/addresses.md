@@ -25,6 +25,24 @@ A Cardano (Shelley-era) address has two or three parts:
 - **Payment credential** defines the spending condition: who can spend funds at this address.
 - **Delegation credential** (optional) controls stake delegation and reward withdrawal.
 
+The credentials are not keys but 28-byte Blake2b-224 hashes, of the public keys your wallet derived (see [Keys & Wallets](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys)) or of scripts:
+
+```mermaid
+flowchart LR
+    P[Payment key<br/>public] -->|"Blake2b-224"| PC[Payment credential<br/>28-byte hash]
+    S[Staking key<br/>public] -->|"Blake2b-224"| DC[Delegation credential<br/>28-byte hash]
+    H[Header<br/>type + network] --> A[Base address<br/>addr1...]
+    PC --> A
+    DC --> A
+
+    style P fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style S fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style H fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style PC fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style DC fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+```
+
 Addresses are **Bech32**-encoded with human-readable prefixes: `addr` (mainnet), `addr_test` (testnet), `stake` (reward addresses).
 
 ```
