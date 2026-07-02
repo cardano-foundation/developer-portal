@@ -12,8 +12,8 @@ const DESCRIPTION = "A notification list for Cardano hackathons, jobs, and grant
 function MetaData() {
   return (
     <Head>
-      <meta property="og:image" content="https://developers.cardano.org/img/og/og-developer-portal.png" />
-      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-developer-portal.png" />
+      <meta property="og:image" content="https://developers.cardano.org/img/og/og-developer-portal.jpg" />
+      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-developer-portal.jpg" />
     </Head>
   );
 }
