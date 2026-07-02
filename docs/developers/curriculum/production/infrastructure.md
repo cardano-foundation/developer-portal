@@ -64,6 +64,8 @@ Between the raw node and high-level APIs sit two translators:
 - **Ogmios**: exposes the node's binary mini-protocols as WebSocket JSON: chain-sync (stream blocks), transaction submission, state queries, and mempool monitoring. Ideal for custom indexers and real-time chain following.
 - **cardano-submit-api**: a minimal HTTP service that accepts a serialized transaction and submits it to a local node.
 
+Both are translations of the node's own wire protocol, which you can also speak directly; see [the network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol).
+
 ```text
 Transaction submission options:
   cardano-cli           local, CLI:        cardano-cli transaction submit --tx-file signed.tx
