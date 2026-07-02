@@ -17,9 +17,10 @@ SPOs vote with their **cold verification key** and require **>51% of active stak
 | Motion of no-confidence | 51% | Removes the current CC |
 | Update committee / threshold | 51% | Adds, removes, or reweights CC members |
 | Hard-fork initiation | 51% | Triggers a protocol upgrade |
+| Protocol parameter changes relevant to security:<br>maxBlockBodySize<br>maxTxSize<br>maxBlockHeaderSize<br>maxValueSize<br>maxBlockExecutionUnits<br>txFeePerByte<br>txFeeFixed<br>utxoCostPerByte<br>govActionDeposit<br>minFeeRefScriptCostPerByte | 51% | Changes a protocol parameter |
 | Info | 100% | Advisory only — no on-chain effect |
 
-SPOs **do not** vote on protocol parameter changes, treasury withdrawals, or constitutional amendments — those require DRep and CC approval.
+SPOs **do not** vote on treasury withdrawals, constitutional amendments or protocol parameter changes NOT listed above — those require DRep and CC approval.
 
 Find out more about the different roles at this dedicated [Governance Actions insight page](https://cardano.org/insights/governance-actions/).
 
