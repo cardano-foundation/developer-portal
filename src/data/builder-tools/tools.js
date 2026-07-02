@@ -492,7 +492,7 @@ export const BuilderTools = [
     icon: "/img/tools/hydra.png",
     description: "Layer 2 scaling protocol for Cardano using isomorphic state channels (Hydra Heads) to move transactions off-chain.",
     website: "https://hydra.family/head-protocol/",
-    docs: "https://hydra.family/head-protocol/docs/",
+    docs: "https://hydra.family/head-protocol/",
     repository: "https://github.com/cardano-scaling/hydra",
     category: "node",
     properties: ["haskell", "websocket"],
