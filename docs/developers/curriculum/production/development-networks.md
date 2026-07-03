@@ -32,7 +32,7 @@ A standalone network is a process you run and point your application at. Two are
 
 [Yaci DevKit](https://devkit.yaci.xyz/introduction) is the quickest way to get a local chain for app development. It launches a customizable devnet in minutes and bundles everything an SDK needs:
 
-- **Yaci Store**: a lightweight indexer for fast blockchain queries.
+- **Yaci Store**: a lightweight indexer for fast blockchain queries (also a standalone production indexer, see [Indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics)).
 - **Yaci Viewer**: a browser UI for exploring transactions and blocks.
 - **Ogmios and Kupo**: built in.
 - **Blockfrost-compatible API**: point an SDK's Blockfrost provider straight at your local chain.
