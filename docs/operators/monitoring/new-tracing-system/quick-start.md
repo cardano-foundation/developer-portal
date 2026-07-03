@@ -283,7 +283,7 @@ Please make sure to enable the `PrometheusSimple` backend **if and only if** you
 
 #### 5. Example: tracing Ouroboros Genesis sync
 
-To debug a Genesis-mode sync (a node stuck in `PreSyncing` or `Syncing`), raise the Genesis component namespaces to `Debug`. They are silent at the default `Notice` severity:
+To debug a Genesis-mode sync (a node stuck in `PreSyncing` or `Syncing`), raise the Genesis component namespaces to `Debug`. The GSM transition events already appear at the default `Notice` severity; the CSJ jump events and per-peer BlockFetch decisions are `Info` or `Debug` and stay hidden until you raise them:
 
 ```yaml
 Consensus.GSM:               { severity: Debug }
