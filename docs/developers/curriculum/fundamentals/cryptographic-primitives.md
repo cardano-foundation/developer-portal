@@ -132,6 +132,12 @@ No single primitive does the job alone: hashes provide integrity and binding, Me
 
 A VRF combines a signature with a random number generator: given a private key and an input, it produces a random output that is unpredictable without the private key, plus a proof anyone can verify with the public key. In Cardano's Ouroboros protocol, the slot number is the input and a pool's VRF key decides whether it "wins" the right to produce a block, making block-producer selection both random and verifiable. This is covered in depth in [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros).
 
+## What are zero-knowledge proofs?
+
+Every primitive above proves something by *showing* something: a signature shows the public key, a Merkle proof shows the sibling hashes, a hash pre-image shows the secret itself. A **zero-knowledge proof** breaks that pattern: it convinces a verifier that a statement is true while revealing nothing else. The classic example is proving a predicate rather than the data, "this person is over 18" without the birthdate, "this account is solvent" without the balance, "I know the password" without the password.
+
+A zero-knowledge proof system guarantees **completeness** (an honest prover can always convince the verifier), **soundness** (a dishonest prover practically never can), and **zero-knowledge** (the verifier learns nothing beyond the statement itself). Since the Chang upgrade, Plutus has built-in operations for the BLS12-381 curve, which let a smart contract verify such proofs on-chain in a single script execution. How that works, and what people are building with it, is covered in [Zero-knowledge proofs](/docs/developers/curriculum/smart-contracts/advanced/zero-knowledge) once you reach the smart contract module.
+
 ## How does hashing secure off-chain data?
 
 A common pattern stores the hash of large data on-chain while keeping the full data off-chain, giving verifiability without bloating the chain:
@@ -149,6 +155,7 @@ Used for NFT metadata (CIP-25 / CIP-68), governance proposals, and audit trails.
 - **Merkle trees** enable logarithmic-time verification of a transaction within a block and make light clients possible.
 - **Digital signatures** (Ed25519) prove a transaction was authorized by the private-key holder; deterministic signing removes a whole class of bugs.
 - **Together** they create layered security: signatures authorize, Merkle trees organize, hash chains make history immutable.
+- **Zero-knowledge proofs** go one step further: they prove a statement is true without revealing the data behind it, and Cardano can verify them on-chain.
 
 ## Next steps
 You now understand the security of individual blocks and transactions. But who decides which block comes next, and how do thousands of nodes agree? See [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros).

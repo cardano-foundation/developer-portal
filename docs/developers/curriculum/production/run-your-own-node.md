@@ -17,6 +17,10 @@ For development or a read-and-submit backend, a passive (non-block-producing) no
 
 From there you can pair the node with an indexer (Kupo, db-sync) and a query layer (Ogmios), or just use cardano-cli. See [Production infrastructure](/docs/developers/curriculum/production/infrastructure) for the full stack and the managed alternatives.
 
+## The lighter middle path: a data node
+
+Between a managed provider and a full node sits a third option. A data node like [Dolos](/docs/developers/curriculum/production/api-providers/dolos) syncs the ledger from relays in a single process, runs in a few GB of RAM, and serves Blockfrost-compatible, Kupo-compatible, and gRPC APIs directly, so your SDK points at your own infrastructure without you operating a node, an indexer, and a database. Two caveats: it trusts the relays it syncs from (a full node validates trustlessly), and it cannot produce blocks. For a read-and-submit backend that is usually the right trade.
+
 ## Running in production
 
 Operating a node as real infrastructure (peer topology, monitoring, hardening, high availability, and, if you run a stake pool, registration and block production) is an operations discipline of its own. The **[Operate a Stake Pool](/docs/operators/)** curriculum covers it end to end: installation, configuration and topology, running, registration, monitoring with Prometheus and Grafana, and security hardening. A developer standing up a node for queries does not need most of it, but it is the place to go when you do.

@@ -171,7 +171,7 @@ cardano-cli latest transaction build \
 </TabItem>
 </Tabs>
 
-Metadata is public: any provider can read it back. With Blockfrost, fetch every transaction carrying a label via `GET /metadata/txs/labels/{label}`, and a block explorer shows a transaction's metadata in its UI. Minting an NFT with CIP-25 (`721`) metadata is shown end to end in [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft).
+Metadata is public: any provider can read it back. With Blockfrost, fetch every transaction carrying a label via `GET /metadata/txs/labels/{label}`, and a block explorer shows a transaction's metadata in its UI. To maintain your own index of a label, [a Yaci Store plugin](/docs/developers/curriculum/production/indexing-and-analytics#index-exactly-what-you-need-plugins) can filter for it at indexing time. Minting an NFT with CIP-25 (`721`) metadata is shown end to end in [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft).
 
 ## Batching and airdrops
 
@@ -236,7 +236,7 @@ For **native-token** airdrops, give each output enough ADA for the min-UTXO (tok
 
 ## Chaining transactions
 
-Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. With Evolution:
+Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. For the concept beneath this, why an unconfirmed output is safe to spend and where chaining fits among Cardano's scaling options, see [transaction chaining](/docs/developers/curriculum/production/transaction-chaining). With Evolution:
 
 ```typescript
 import { Address, Assets } from "@evolution-sdk/evolution"
@@ -401,6 +401,53 @@ cardano-cli latest transaction sign \
 </Tabs>
 
 Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
+
+## Declarative transactions
+
+Everything on this page states *how* to assemble a transaction: pick inputs, add outputs, attach metadata, compute the change. An emerging alternative flips the model: you describe *what* must be true of the transaction, and a resolver works out the rest at runtime. The most developed take on this for Cardano is [Tx3](https://docs.txpipe.io/tx3), a small declarative language that treats a transaction as a reusable, parameterized template:
+
+```text title="buy_product.tx3"
+party Buyer;
+party Seller;
+
+asset Product = 0x6b9b69."STUFF";
+
+fn total_price(quantity: Int) -> AnyAsset {
+  let unit_price = Ada(5000000);
+  unit_price * quantity
+}
+
+tx buy_product(quantity: Int) {
+  input payment {
+    from: Buyer,
+    min_amount: total_price(quantity) + fees,
+  }
+
+  mint {
+    amount: Product(quantity),
+    redeemer: (),
+  }
+
+  output {
+    to: Buyer,
+    amount: payment - total_price(quantity) - fees + Product(quantity),
+  }
+
+  output {
+    to: Seller,
+    amount: total_price(quantity),
+  }
+}
+```
+
+Read it against the builder model above:
+
+- **Parties are roles, not addresses.** `Buyer` and `Seller` are placeholders bound to real addresses at resolution, so the same spec runs against any wallet and any deployment.
+- **Assets are named and typed.** `Product` wraps the policy ID and asset name once; everything after refers to it by name instead of a raw hex pair.
+- **Inputs are constraints, not UTXO references.** `payment` states its conditions (it must come from the Buyer and cover the price plus fees), and the resolver performs the coin selection you read about at the top of this page.
+- **Balancing is checked up front.** Minting sits in the same declaration, the asset math is type-checked at compile time, and fees and change are computed for you, so a transaction that doesn't balance never reaches submission.
+
+From a spec like this, the toolchain generates typed clients for TypeScript, Rust, Go, and Python, and a resolver materializes, signs, and submits the concrete transaction over a wire protocol (TRP). Your application code calls `buy_product(3)` instead of chaining builder calls. The project is young and its APIs still moving, but the paradigm is worth knowing as you design off-chain code: it is the same shift that constraint-based coin selection already made for inputs, applied to the whole transaction. See the [Tx3 documentation](https://docs.txpipe.io/tx3) and [repository](https://github.com/tx3-lang/tx3).
 
 ## Next steps
 
