@@ -347,6 +347,7 @@ module.exports = {
           items: [
             "developers/curriculum/production/going-to-production",
             "developers/curriculum/production/infrastructure",
+            "developers/curriculum/production/indexing-and-analytics",
             {
               type: "category",
               label: "API Providers",

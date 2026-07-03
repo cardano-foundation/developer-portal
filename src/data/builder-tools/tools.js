@@ -803,7 +803,7 @@ export const BuilderTools = [
   {
     title: "Yaci Store",
     icon: "/img/tools/yaci-store.svg",
-    description: "Modular Java indexer for Cardano with pluggable stores you enable as needed, exposing Blockfrost-compatible REST APIs.",
+    description: "Modular Java indexer for Cardano with pluggable stores you enable as needed, plugin-based filtering, Blockfrost-compatible REST APIs, and Parquet analytics exports.",
     website: "https://github.com/bloxbean/yaci-store",
     docs: "https://store.yaci.xyz/",
     repository: "https://github.com/bloxbean/yaci-store",
