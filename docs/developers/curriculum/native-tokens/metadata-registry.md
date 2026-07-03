@@ -48,7 +48,7 @@ CIP-68 stores metadata in an inline datum on a **reference NFT**, which means it
 | Simplicity matters | A contract must read the metadata on-chain |
 | Standard collectibles or art | Dynamic NFTs, evolving game assets |
 
-## CIP-26: the off-chain registry (fungible tokens)
+## CIP-26: the off-chain metadata registry
 
 CIP-26 is an **off-chain registry** where projects publish human-readable info for a token, name, ticker, **decimals**, and logo, that wallets and explorers read to display it. The metadata lives in a public GitHub repo, [cardano-foundation/cardano-token-registry](https://github.com/cardano-foundation/cardano-token-registry), and is served over a REST API at `https://tokens.cardano.org`.
 

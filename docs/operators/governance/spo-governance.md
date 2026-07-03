@@ -19,11 +19,11 @@ SPOs vote with their **cold verification key** and require **>51% of active stak
 | Hard-fork initiation | 51% | Triggers a protocol upgrade |
 | Info | 100% | Advisory only — no on-chain effect |
 
-SPOs **do not** vote on protocol parameter changes, treasury withdrawals, or constitutional amendments — those require DRep and CC approval.
+SPOs **do not** vote on treasury withdrawals or constitutional amendments; those require DRep and CC approval. They also do not vote on most protocol-parameter changes, with one exception: the security-relevant parameters (block and transaction sizes, `maxBlockExecutionUnits`, fee parameters, `utxoCostPerByte`, `govActionDeposit`, and similar) need an additional SPO vote to change.
 
 Find out more about the different roles at this dedicated [Governance Actions insight page](https://cardano.org/insights/governance-actions/).
 
-Hard-fork initiation is the most common action requiring SPO votes. When the community is ready to upgrade the network, a hard fork proposal is submitted on-chain and SPOs must cast an explicit yes vote with their cold key to signal readiness. Running the upgraded node software is also required, but does not substitute for the on-chain vote.
+Hard-fork initiation is the most common action requiring SPO votes. When the community is ready to upgrade the network, a hard fork proposal is submitted on-chain and SPOs cast an explicit on-chain vote (Yes, No, or Abstain) with their cold key; a Yes signals readiness. Running the upgraded node software is also required, but does not substitute for the on-chain vote.
 
 ## Step 1 — Find active proposals
 
@@ -156,7 +156,7 @@ By default, an SPO who does not vote on a proposal has their stake counted again
 If you do not intend to follow governance closely, you can change this behaviour by delegating your reward account to the `alwaysAbstain` DRep. This removes your stake from both the numerator and denominator of the ratification calculation, turning your non-participation into a genuine abstain rather than an implicit no.
 
 :::warning Hard-fork votes still require an explicit on-chain vote
-Hard-fork initiation requires SPOs to cast an explicit yes vote with their cold key — the `alwaysAbstain` delegation does not cover it. If you delegate to `alwaysAbstain` and do not vote on a hard-fork proposal, your stake counts as a no vote on that action.
+Hard-fork initiation requires SPOs to cast an explicit on-chain vote (Yes, No, or Abstain) with their cold key; the `alwaysAbstain` delegation does not cover it. If you delegate to `alwaysAbstain` and do not vote on a hard-fork proposal, your stake counts as a no vote on that action.
 :::
 
 This delegation must be made with the **reward account stake key** — the key registered as `--pool-reward-account-verification-key-file` in your pool registration certificate. Delegating owner stake keys changes the DRep delegation for the stake associated with your pledge, but has no effect on the pool's governance default behaviour.
