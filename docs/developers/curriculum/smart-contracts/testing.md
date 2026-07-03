@@ -203,7 +203,7 @@ Both live with the local-environment tooling rather than here: see [Testing with
 ## Beyond unit tests
 
 - **Property-based testing.** Instead of fixed cases, define properties that must always hold ("no transaction can extract more value than was deposited", "only the owner can withdraw") and let the framework generate thousands of random inputs to find violations. Aiken's fuzzer supports this; it catches edge cases manual tests miss. See [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) for fuzzer-driven fixtures and benchmarking.
-- **Audits.** For any contract holding significant value, a professional audit is standard practice. Testing finds the bugs you thought of; audits find the ones you didn't.
+- **Audits.** For any contract holding significant value, a professional audit is standard practice. Testing finds the bugs you thought of; audits find the ones you didn't. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare for one.
 
 ## Next steps
 

@@ -418,4 +418,13 @@ export const Contracts = [
     source: "awesomeAiken",
     repoUrl: "https://github.com/encryptedcoins/encoins-core-aiken",
   },
+  {
+    title: "zkLogin",
+    description:
+      "Authenticate with an existing OpenID account and control funds through zero-knowledge proofs verified on-chain, without seed phrases.",
+    category: "identity",
+    onchain: ["aiken"],
+    offchain: [],
+    repoUrl: "https://github.com/eryxcoop/zklogin-aiken",
+  },
 ];

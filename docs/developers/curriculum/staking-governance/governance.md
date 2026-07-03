@@ -204,7 +204,7 @@ Only the payment key signs; script validity comes from the redeemer, not a DRep 
 
 ## Delegate your vote
 
-Voting power delegation is **separate from and independent of stake delegation**. You can delegate stake to one pool and your vote to a different DRep, and change either without affecting the other. There are also two built-in options for holders who don't want to pick a DRep: **Abstain** (not counted) and **No Confidence** (counts against the committee). In the Conway era, every holder must choose a governance delegation to remain eligible for staking rewards.
+Voting power delegation is **separate from and independent of stake delegation**. You can delegate stake to one pool and your vote to a different DRep, and change either without affecting the other. There are also two built-in options for holders who don't want to pick a DRep: **Abstain** (not counted) and **No Confidence** (counts against the committee). In the Conway era, staking rewards keep accruing, but you cannot withdraw them until your stake credential has delegated its vote, to a DRep or to a predefined option (Abstain or No Confidence).
 
 Both delegations attach to your **stake credential**, the part of your address separate from the payment credential. See [Addresses](/docs/developers/curriculum/fundamentals/core-concepts/addresses) for how the two combine.
 
