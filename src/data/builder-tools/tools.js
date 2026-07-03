@@ -927,7 +927,7 @@ export const BuilderTools = [
     icon: "/img/tools/vtechcom.png",
     description: "TypeScript SDK for building wallet apps on Hydra, with Head lifecycle management, transaction building inside a Head, and WASM bindings for browser and Node.",
     website: "https://hydrasdk.com",
-    docs: "https://hydrasdk.com",
+    docs: "https://sdk.hydrawallet.app/getting-started",
     repository: "https://github.com/Vtechcom/hydra-sdk",
     category: "sdk",
     properties: ["typescript"],
