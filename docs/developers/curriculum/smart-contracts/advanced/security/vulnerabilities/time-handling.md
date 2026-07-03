@@ -54,6 +54,8 @@ Time diagram of loan repayment
 
 The blue dot on 18.3. represents the moment when a lending UTxO is created. The lender specifies the loan duration as three days. On 20.3. a borrower accepts this loan, locks the collateral and has to note the date when the loan needs to be repaid as the current day plus 3 days. After that, if the loan is still not repaid, the lender can take the collateral.
 
+Time attacks come in two directions, and both reduce to picking the wrong bound of the validity interval. Proving "now is **after** a deadline" (an expiry, a vesting date, a loan's end) needs the **lower** bound; leaning on the upper bound instead lets an attacker widen it and act early, unlocking vested funds before they are due. Proving "now is **before** a deadline" needs the **upper** bound; leaning on the lower bound lets an attacker widen it downward and execute something that has already expired. The lending example below shows both.
+
 This section focuses purely on the time handling. There are two transactions in which the current timestamp must be considered in the smart contract validation logic:
 
 1) When a borrower accepts the loan, he needs to write the time when the loan ends into the datum. To do this, he should take the "current time" and add the loan duration from the loan properties. The script needs to check that this is done properly.
@@ -96,4 +98,4 @@ A direct consequence of this is that some of the attacks on the time-related sma
 
 Ultimately, relying on this is not recommended as the length of this period may change without any notice. From the smart contract security point of view, you can not take the upper bound of the validity interval for the current time!
 
-For a practical hands-on experience, try to solve the Cardano [CTF](https://github.com/vacuumlabs/cardano-ctf) tasks. The second task vesting requires a player to perform an attack similar to the one described above. For a deeper dive into this topic, see two blogs from IOG, [1](https://iohk.io/en/blog/posts/2022/12/07/time-handling-on-cardano-part-1-about-ouroboros-and-the-importance-of-determinism/) and [2](https://iohk.io/en/blog/posts/2022/12/08/time-handling-on-cardano-part-2-use-cases/).
+For a practical hands-on experience, try to solve the Cardano [CTF](https://github.com/Invariant-0/cardano-ctf) tasks. The vesting task requires a player to perform an attack similar to the one described above. For a deeper dive into this topic, see two blogs from IOG, [1](https://iohk.io/en/blog/posts/2022/12/07/time-handling-on-cardano-part-1-about-ouroboros-and-the-importance-of-determinism/) and [2](https://iohk.io/en/blog/posts/2022/12/08/time-handling-on-cardano-part-2-use-cases/).
