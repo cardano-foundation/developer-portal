@@ -148,6 +148,7 @@ module.exports = {
                   ],
                 },
                 "developers/curriculum/smart-contracts/advanced/security/ctf",
+                "developers/curriculum/smart-contracts/advanced/security/audits",
                 "developers/curriculum/smart-contracts/advanced/security/formal-verification",
               ],
             },
@@ -212,6 +213,7 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/oracles/pyth",
+                "developers/curriculum/dapps/oracles/randomness",
               ],
             },
             {
@@ -223,6 +225,7 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/ai-agents/masumi",
+                "developers/curriculum/dapps/ai-agents/mcp",
               ],
             },
         {
@@ -360,6 +363,7 @@ module.exports = {
             "developers/curriculum/production/run-your-own-node",
             "developers/curriculum/production/development-networks",
             "developers/curriculum/production/demeter",
+            "developers/curriculum/production/transaction-chaining",
             "developers/curriculum/production/hydra",
           ],
         },
