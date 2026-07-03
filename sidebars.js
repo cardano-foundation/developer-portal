@@ -357,6 +357,7 @@ module.exports = {
             "developers/curriculum/production/run-your-own-node",
             "developers/curriculum/production/development-networks",
             "developers/curriculum/production/demeter",
+            "developers/curriculum/production/transaction-chaining",
             "developers/curriculum/production/hydra",
           ],
         },
