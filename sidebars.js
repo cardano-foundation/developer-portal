@@ -218,6 +218,7 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/ai-agents/masumi",
+                "developers/curriculum/dapps/ai-agents/mcp",
               ],
             },
         {
