@@ -892,6 +892,26 @@ export const BuilderTools = [
     category: "sdk",
     properties: ["swift"],
   },
+  {
+    title: "gnark-cardano",
+    icon: "/img/tools/logical-mechanism.png",
+    description: "Pipeline for writing Groth16 zero-knowledge circuits in Go with gnark and verifying them on-chain with a generic Aiken verifier.",
+    website: "https://github.com/logical-mechanism/Peace-Protocol/tree/main/public/gnark-cardano",
+    docs: null,
+    repository: "https://github.com/logical-mechanism/Peace-Protocol",
+    category: "smart-contracts",
+    properties: ["golang", "python"],
+  },
+  {
+    title: "plutus-halo2-verifier-gen",
+    icon: "/img/tools/input-output.png",
+    description: "Generates on-chain verifiers in Plinth or Aiken from a Rust Halo2 circuit, so its zero-knowledge proofs can be verified inside Cardano validators.",
+    website: "https://github.com/input-output-hk/plutus-halo2-verifier-gen",
+    docs: null,
+    repository: "https://github.com/input-output-hk/plutus-halo2-verifier-gen",
+    category: "smart-contracts",
+    properties: ["rust", "haskell"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
