@@ -236,7 +236,7 @@ For **native-token** airdrops, give each output enough ADA for the min-UTXO (tok
 
 ## Chaining transactions
 
-Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. With Evolution:
+Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. For the concept beneath this, why an unconfirmed output is safe to spend and where chaining fits among Cardano's scaling options, see [transaction chaining](/docs/developers/curriculum/production/transaction-chaining). With Evolution:
 
 ```typescript
 import { Address, Assets } from "@evolution-sdk/evolution"

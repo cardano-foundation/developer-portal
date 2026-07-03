@@ -157,6 +157,42 @@ validator always_succeed(_key_hash: VerificationKeyHash) {
 }
 ```
 
+## One validator, many purposes, one hash
+
+The three types above are not mutually exclusive. A single `validator` block can define more than one handler, and they compile to **one script with one hash**. That hash is at once the **minting policy ID** (for the `mint` handler) and the **payment credential of the script address** (for the `spend` handler): the policy and the address are two faces of the same script.
+
+```aiken
+validator protocol {
+  // Mints the state NFT, only into a valid initial config
+  mint(_redeemer: Data, _policy_id: PolicyId, _tx: Transaction) {
+    todo
+  }
+
+  // Governs every later update of that config UTXO
+  spend(_datum: Option<Data>, _redeemer: Data, _input: OutputReference, _tx: Transaction) {
+    todo
+  }
+
+  else(_) {
+    fail @"unsupported purpose"
+  }
+}
+```
+
+```mermaid
+flowchart TB
+    V["validator protocol<br/>one script, hash = H"]
+    V -->|"mint handler"| P["Policy ID = H<br/>mints the state NFT"]
+    V -->|"spend handler"| S["Script credential = H<br/>guards the config UTXO"]
+    style V fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style P fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style S fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+```
+
+Because both handlers share the hash, each can name the other by it, with no circular parameter to resolve first. The `mint` handler can require that the NFT it creates lands at its own script address, and the `spend` handler can require that same NFT be present in the UTXO it guards. That mutual reference is the backbone of the [on-chain configuration](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#on-chain-configuration) pattern, and the same shared-hash idea drives [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter) for [efficient batch validation](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview#avoid-redundant-validation).
+
+One script serving several purposes was possible under Plutus V1 and V2 as well; Plutus V3 and Aiken's multi-handler syntax make it first-class and add the Conway governance purposes (`vote`, `propose`).
+
 ## Native scripts: multisig and time-locks without Plutus
 
 Not every rule needs a Plutus validator. **Native scripts** are Cardano's simpler, non-Turing-complete scripting, perfect for **multi-signature** and **time-locks**, and they cost no script-execution fees. They combine a few primitives: `sig` (a required key), `before` / `after` (slot bounds), and `all` / `any` / `atLeast` (logical combinations). A multisig native script makes a **shared treasury**: anyone can send funds *to* its address, but moving them *out* requires the k-of-n signatures the script encodes.
