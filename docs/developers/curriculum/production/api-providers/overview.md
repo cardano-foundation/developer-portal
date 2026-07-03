@@ -47,7 +47,7 @@ To **choose** a provider for your SDK, see [Choosing a provider](/docs/developer
 | Provider | API | Access |
 | --- | --- | --- |
 | **[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost)** | REST | Managed, API key (free tier) |
-| **[Koios](/docs/developers/curriculum/production/api-providers/koios)** | REST, GraphQL | Community-run or self-hosted, key optional |
+| **[Koios](/docs/developers/curriculum/production/api-providers/koios)** | REST | Community-run or self-hosted, key optional |
 | **[Ogmios](/docs/developers/curriculum/production/api-providers/ogmios)** | WebSocket, JSON-RPC | Self-hosted against your own node (paired with Kupo as the "Kupmios" stack), or hosted via [Demeter](/docs/developers/curriculum/production/demeter) |
 | **[Dolos](/docs/developers/curriculum/production/api-providers/dolos)** | REST (Blockfrost-compatible), gRPC, node-to-client | Self-hosted data node, a single process with no separate cardano-node |
 
