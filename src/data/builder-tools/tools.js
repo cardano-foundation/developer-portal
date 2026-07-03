@@ -895,9 +895,9 @@ export const BuilderTools = [
   {
     title: "gnark-cardano",
     icon: "/img/tools/logical-mechanism.png",
-    description: "Pipeline for writing Groth16 zero-knowledge circuits in Go with gnark and verifying them on-chain with a generic Aiken verifier, automating trusted setup, proof generation, datum conversion, and Aiken test generation.",
-    website: "https://github.com/logical-mechanism/Peace-Protocol/tree/dev/public/gnark-cardano#gnark-cardano",
-    docs: "https://github.com/logical-mechanism/Peace-Protocol/tree/dev/public/gnark-cardano#gnark-cardano",
+    description: "Pipeline for writing Groth16 zero-knowledge circuits in Go with gnark and verifying them on-chain with a generic Aiken verifier.",
+    website: "https://github.com/logical-mechanism/Peace-Protocol/tree/main/public/gnark-cardano",
+    docs: null,
     repository: "https://github.com/logical-mechanism/Peace-Protocol",
     category: "smart-contracts",
     properties: ["golang", "python"],
@@ -905,8 +905,8 @@ export const BuilderTools = [
   {
     title: "plutus-halo2-verifier-gen",
     icon: "/img/tools/input-output.png",
-    description: "Generates on-chain verifiers in Plinth or Aiken from a Rust Halo2 circuit, so Halo2/KZG zero-knowledge proofs can be verified inside Cardano validators via the BLS12-381 builtins.",
-    website: "https://iohk.io/en/blog/posts/2025/08/26/unlocking-zero-knowledge-proofs-for-cardano-the-halo2-plutus-verifier/",
+    description: "Generates on-chain verifiers in Plinth or Aiken from a Rust Halo2 circuit, so its zero-knowledge proofs can be verified inside Cardano validators.",
+    website: "https://github.com/input-output-hk/plutus-halo2-verifier-gen",
     docs: null,
     repository: "https://github.com/input-output-hk/plutus-halo2-verifier-gen",
     category: "smart-contracts",
