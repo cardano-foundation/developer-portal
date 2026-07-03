@@ -873,6 +873,16 @@ export const BuilderTools = [
     maintainerPick: true,
   },
   {
+    title: "Tx3",
+    icon: "/img/tools/txpipe.png",
+    description: "Declarative language for describing UTxO transactions as reusable templates, with typed client generation for TypeScript, Rust, Go, and Python.",
+    website: "https://docs.txpipe.io/tx3",
+    docs: "https://docs.txpipe.io/tx3",
+    repository: "https://github.com/tx3-lang/tx3",
+    category: "sdk",
+    properties: ["rust", "typescript", "python", "golang"],
+  },
+  {
     title: "cardano-node",
     icon: "/img/tools/intersect.png",
     description: "The Cardano node maintained by IntersectMBO: validates the chain, produces blocks, and serves the node-to-node and node-to-client protocols.",

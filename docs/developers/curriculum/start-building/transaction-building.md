@@ -402,6 +402,53 @@ cardano-cli latest transaction sign \
 
 Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
 
+## Declarative transactions
+
+Everything on this page states *how* to assemble a transaction: pick inputs, add outputs, attach metadata, compute the change. An emerging alternative flips the model: you describe *what* must be true of the transaction, and a resolver works out the rest at runtime. The most developed take on this for Cardano is [Tx3](https://docs.txpipe.io/tx3), a small declarative language that treats a transaction as a reusable, parameterized template:
+
+```text title="buy_product.tx3"
+party Buyer;
+party Seller;
+
+asset Product = 0x6b9b69."STUFF";
+
+fn total_price(quantity: Int) -> AnyAsset {
+  let unit_price = Ada(5000000);
+  unit_price * quantity
+}
+
+tx buy_product(quantity: Int) {
+  input payment {
+    from: Buyer,
+    min_amount: total_price(quantity) + fees,
+  }
+
+  mint {
+    amount: Product(quantity),
+    redeemer: (),
+  }
+
+  output {
+    to: Buyer,
+    amount: payment - total_price(quantity) - fees + Product(quantity),
+  }
+
+  output {
+    to: Seller,
+    amount: total_price(quantity),
+  }
+}
+```
+
+Read it against the builder model above:
+
+- **Parties are roles, not addresses.** `Buyer` and `Seller` are placeholders bound to real addresses at resolution, so the same spec runs against any wallet and any deployment.
+- **Assets are named and typed.** `Product` wraps the policy ID and asset name once; everything after refers to it by name instead of a raw hex pair.
+- **Inputs are constraints, not UTXO references.** `payment` states its conditions (it must come from the Buyer and cover the price plus fees), and the resolver performs the coin selection you read about at the top of this page.
+- **Balancing is checked up front.** Minting sits in the same declaration, the asset math is type-checked at compile time, and fees and change are computed for you, so a transaction that doesn't balance never reaches submission.
+
+From a spec like this, the toolchain generates typed clients for TypeScript, Rust, Go, and Python, and a resolver materializes, signs, and submits the concrete transaction over a wire protocol (TRP). Your application code calls `buy_product(3)` instead of chaining builder calls. The project is young and its APIs still moving, but the paradigm is worth knowing as you design off-chain code: it is the same shift that constraint-based coin selection already made for inputs, applied to the whole transaction. See the [Tx3 documentation](https://docs.txpipe.io/tx3) and [repository](https://github.com/tx3-lang/tx3).
+
 ## Next steps
 
 - [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend), build transactions that interact with validators
