@@ -89,7 +89,7 @@ The stake used for election is a **snapshot from two epochs ago**. This delay st
 
 ### How does chain selection handle forks?
 
-When multiple valid chains exist, nodes follow the **longest chain rule** (with recent chain density as a tiebreaker in Praos). Blocks on abandoned forks are discarded and their transactions return to the mempool, which is why transactions need a few confirmations before they are settled.
+When multiple valid chains exist, nodes follow the **longest chain rule**, and Praos breaks equal-length ties by the block's leader VRF value. (The recent-chain-density rule is a feature of Ouroboros Genesis, which lets newly joining nodes bootstrap safely.) Blocks on abandoned forks are discarded and their transactions return to the mempool, which is why transactions need a few confirmations before they are settled.
 
 ### Block diffusion and the security parameter k
 

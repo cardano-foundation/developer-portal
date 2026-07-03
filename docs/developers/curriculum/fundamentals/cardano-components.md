@@ -77,7 +77,7 @@ Cardano has evolved through multiple ledger eras, each introducing new capabilit
 
 | Era | Key addition |
 |-----|-------------|
-| Byron | Initial PoS chain |
+| Byron | Federated launch (Ouroboros BFT) |
 | Shelley | Decentralized block production, staking |
 | Allegra | Token locking |
 | Mary | Native tokens and NFTs |
