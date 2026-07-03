@@ -47,7 +47,7 @@ The networking layer is a typed, multiplexed peer-to-peer stack purpose-built fo
 - **Pipelining**, requesting multiple blocks ahead of confirmation to maximize throughput
 - **Adversarial resistance**, protections against peers that are slow, malicious, or eclipse-attacking
 
-The networking layer handles peer topology and connection management. Both relays and block producers run the same networking code; what distinguishes them is configuration, a relay accepts external connections from any peer, while a block producer's topology is configured to connect only to its own relays (see [Network topology](#network-topology) below).
+The networking layer handles peer topology and connection management. Both relays and block producers run the same networking code; what distinguishes them is configuration, a relay accepts external connections from any peer, while a block producer's topology is configured to connect only to its own relays (see [Network topology](#network-topology) below). The wire protocol itself is not reserved for nodes: any client can speak it, see [the network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol).
 
 ### Scripting layer
 
@@ -77,7 +77,7 @@ Cardano has evolved through multiple ledger eras, each introducing new capabilit
 
 | Era | Key addition |
 |-----|-------------|
-| Byron | Initial PoS chain |
+| Byron | Federated launch (Ouroboros BFT) |
 | Shelley | Decentralized block production, staking |
 | Allegra | Token locking |
 | Mary | Native tokens and NFTs |

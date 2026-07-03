@@ -24,7 +24,7 @@ graph TD
     App[Your application\nweb app, mobile app, CLI] --> TX[Transaction building\nEvolution, Mesh, cardano-cli]
     TX --> API[Chain query / submission\nBlockfrost, Koios, Maestro]
     API --> NI[Node interface\nOgmios, cardano-submit-api]
-    NI --> IDX[Chain indexers\nKupo, db-sync, Scrolls, Oura]
+    NI --> IDX[Chain indexers\nKupo, db-sync, Yaci Store, Oura]
     IDX --> Node[cardano-node\nfull chain copy, validation, consensus]
     style App fill:#9C27B0,color:#fff
     style TX fill:#2196F3,color:#fff
@@ -64,6 +64,8 @@ Between the raw node and high-level APIs sit two translators:
 - **Ogmios**: exposes the node's binary mini-protocols as WebSocket JSON: chain-sync (stream blocks), transaction submission, state queries, and mempool monitoring. Ideal for custom indexers and real-time chain following.
 - **cardano-submit-api**: a minimal HTTP service that accepts a serialized transaction and submits it to a local node.
 
+Both are translations of the node's own wire protocol, which you can also speak directly; see [the network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol).
+
 ```text
 Transaction submission options:
   cardano-cli           local, CLI:        cardano-cli transaction submit --tx-file signed.tx
@@ -79,6 +81,7 @@ Indexers follow the chain and store it in formats your app can query, something 
 - **cardano-db-sync**: the comprehensive IOG indexer; populates PostgreSQL (40+ tables) for full historical SQL. Heavy: ~150+ GB and a 2-3 day initial sync. Best for explorers and analytics.
 - **Kupo**: a lightweight indexer that tracks only UTXOs matching patterns you configure (by address, policy ID, etc.). Fast sync (hours), low resources, datum resolution. Ideal for dApp backends.
 - **Scrolls / Oura** (TxPipe): event pipelines: Scrolls reduces chain data into stores like Redis or Elasticsearch; Oura streams on-chain events to Kafka, webhooks, or files for reactive, event-driven systems.
+- **Yaci Store** (BloxBean): a modular Java indexer where you enable only the stores you need (blocks, UTXOs, metadata, staking, governance), with plugin-based filtering and Blockfrost-compatible REST on top of your own database. See [Indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics).
 
 ## Testnets are your staging environments
 
