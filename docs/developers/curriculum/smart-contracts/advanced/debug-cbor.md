@@ -20,7 +20,7 @@ The first thing to know about the specification, is that transactions are define
 
 As Cardano has passed through different eras, the specification is splitted into several documents, one for each era, describing incrementally the modifications and additions that each era introduced. For each era there is also as part of the specification a text file that precisely defines the CBOR schema used for blocks and transactions. For this, the CDDL (Concise Data Definition Language) format is used, a notational convention defined in [RFC 8610](https://www.rfc-editor.org/rfc/rfc8610) that is used to describe CBOR data structures.
 
-This page covers the Conway era specification, the one that introduced all the smart contract functionality through Plutus.
+This page covers the Conway era specification, the current ledger era. Smart contract support through Plutus was introduced earlier, in the Alonzo era; Conway added Cardano's on-chain governance.
 
 ## A simple smart contract
 
@@ -191,7 +191,7 @@ Transaction outputs (field 1) are a bit more complex than inputs, as they are ne
 transaction_output =  [ address  , amount : value  , ? datum_hash : $hash32 ]
 ```
 
-The components are: the raw value of the address where the UTxO is paid to, the value it will contain and an optional datum hash it can also carry. The datum hash can be used to encode data in the UTxO, and was introduced in Conway to store “state” information for script UTxOs. While not forbidden, datum hashes are rarely used in wallet UTxOs.
+The components are: the raw value of the address where the UTxO is paid to, the value it will contain and an optional datum hash it can also carry. The datum hash can be used to encode data in the UTxO, and was introduced in Alonzo to store “state” information for script UTxOs (Babbage later added inline datums, CIP-32). While not forbidden, datum hashes are rarely used in wallet UTxOs.
 
 In the example we have two outputs:
 
@@ -298,13 +298,13 @@ redeemers =
 
 So, a redeemer is a 4-uple with the following components:
 
-- tag: It specifies the type of redeemer, and has four possible values. Value 0 is used for spending a script UTxO, value 1 for minting/burning with a Plutus minting policy. Don’t worry about values 2 and 3 as they has to do with staking.
+- tag: It specifies the type of redeemer. In the Conway era there are six values: 0 spend (a script UTxO), 1 mint (minting/burning with a Plutus policy), 2 cert (certificates), 3 reward (stake reward withdrawals), 4 vote (governance votes), and 5 propose (governance proposals). This example uses tags 0 and 1.
 
 - index: It is an integer with a different meaning depending on the tag. For the spending tag (value 0), the index refers to the position in the inputs list after ordering it lexicographically according to the TxId and TxIdx. For the minting tag (value 1), the index refers to the position in the lexicographically ordered list of policy IDs present in the minting field.
 
 - data: This is arbitrary data that is passed as a parameter to the script. Most times this data is what is actually called the “redeemer”, instead of the complete 4-uple.
 
-- ex_units: The budget for the script execution in memory and CPU units. These numbers are used to compute the fee and must be higher or equal to the actual units used by the script execution. Execution units are computed according to the cost model, part of the protocol parameters of the Cardano blockchain. There is also a limit of the total memory and CPU units that all redeemers of a transaction can use. Also defined in the protocol parameters, Alonzo started with limits of 10.000 million units for CPU, and 10 million units for memory. However it was soon noticed that the memory limit was too low and was later raised to 16 million units. Execution units and their limits are a big issue in Cardano, as they impose important restrictions to smart contracts and developers must pay special attention to on-chain code optimization.
+- ex_units: The budget for the script execution in memory and CPU units. These numbers are used to compute the fee and must be higher or equal to the actual units used by the script execution. Execution units are computed according to the cost model, part of the protocol parameters of the Cardano blockchain. There is also a limit of the total memory and CPU units that all redeemers of a transaction can use. Also defined in the protocol parameters, Alonzo started with limits of 10,000,000,000 steps for CPU and 10,000,000 units for memory. The per-transaction memory limit has since been raised in stages to the current mainnet value of 16,500,000 (steps remain 10,000,000,000). Execution units and their limits are a big issue in Cardano, as they impose important restrictions to smart contracts and developers must pay special attention to on-chain code optimization.
 
 In our example, we have only one redeemer for spending the script UTxO that is the first input according to the lexicographic order:
 
