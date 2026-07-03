@@ -45,6 +45,7 @@ Common oracle use cases:
 - **Sports & Betting**: Game scores trigger payouts in prediction markets
 - **Cross-Chain Data**: Bridge contracts need information from other blockchains
 - **Supply Chain & IoT**: Tracking requires sensor data, GPS coordinates, shipment verification
+- **Randomness**: Raffles, lotteries, and games need a verifiable random draw, which a validator cannot generate itself. See [On-chain randomness](/docs/developers/curriculum/dapps/oracles/randomness)
 
 ## The oracle problem
 

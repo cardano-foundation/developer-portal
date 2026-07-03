@@ -62,7 +62,7 @@ Transactions that execute scripts must provide **collateral**: ADA-only UTXOs th
 Rules:
 
 - Must contain **only ADA** (no native tokens).
-- Must cover the potential script cost (typically 150-200% of expected fees).
+- Must be at least 150% of the transaction fee (the `collateralPercentage` protocol parameter, currently 150).
 - **Returned untouched** if the transaction succeeds.
 - **Consumed only** if phase-2 validation fails.
 - **Collateral return (CIP-40):** since Vasil, a transaction can specify a collateral return address so only the required amount is taken, not the entire UTXO.
