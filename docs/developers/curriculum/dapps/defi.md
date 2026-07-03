@@ -199,6 +199,10 @@ Three users can now swap concurrently against different shards.
 
 The trade-off is keeping pricing consistent across shards and higher slippage per shard (each holds less liquidity). The flip side of contention is covered as a vulnerability in [UTXO contention](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention).
 
+### Transaction chaining
+
+A third approach removes the wait rather than the contention. Because validation is [deterministic](/docs/developers/curriculum/smart-contracts/overview#deterministic-validation), a transaction's id, and so its outputs, are known the moment it is built, before it is confirmed. That lets each interaction build on the previous one's not-yet-settled output, forming a chain ordered by its on-chain input dependencies instead of by an off-chain batcher. Protocols use it to keep a batching pipeline moving without waiting on confirmations, and wallets use it to let a user spend change still sitting in the mempool. The concept and its trade-offs are in [transaction chaining](/docs/developers/curriculum/production/transaction-chaining); the build-side code is in [chaining transactions](/docs/developers/curriculum/start-building/transaction-building#chaining-transactions).
+
 ### Determinism: the compensating advantage
 
 Concurrency is a challenge, but eUTXO's [determinism](/docs/developers/curriculum/smart-contracts/overview#deterministic-validation) is a powerful advantage for DeFi. On Ethereum a transaction can pass local simulation but fail on-chain because another transaction changed state first (the basis of MEV). On Cardano, if a transaction validates locally it produces the exact same result on-chain, assuming its inputs haven't been spent. This also makes Cardano structurally resistant to **front-running**: validators can't insert their own transactions ahead of yours to manipulate price, because every transaction specifies its exact inputs and outputs.
