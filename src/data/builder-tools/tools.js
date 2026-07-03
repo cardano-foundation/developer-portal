@@ -492,7 +492,7 @@ export const BuilderTools = [
     icon: "/img/tools/hydra.png",
     description: "Layer 2 scaling protocol for Cardano using isomorphic state channels (Hydra Heads) to move transactions off-chain.",
     website: "https://hydra.family/head-protocol/",
-    docs: null,
+    docs: "https://hydra.family/head-protocol/",
     repository: "https://github.com/cardano-scaling/hydra",
     category: "node",
     properties: ["haskell", "websocket"],
@@ -911,6 +911,16 @@ export const BuilderTools = [
     repository: "https://github.com/input-output-hk/plutus-halo2-verifier-gen",
     category: "smart-contracts",
     properties: ["rust", "haskell"],
+  },
+  {
+    title: "hydra-sdk",
+    icon: "/img/tools/vtechcom.png",
+    description: "TypeScript SDK for building wallet apps on Hydra, with Head lifecycle management, transaction building inside a Head, and WASM bindings for browser and Node.",
+    website: "https://hydrasdk.com",
+    docs: "https://hydrasdk.com",
+    repository: "https://github.com/Vtechcom/hydra-sdk",
+    category: "sdk",
+    properties: ["typescript"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
