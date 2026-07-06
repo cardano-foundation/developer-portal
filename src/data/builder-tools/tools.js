@@ -936,7 +936,7 @@ export const BuilderTools = [
     title: "Cardano on BigQuery",
     description: "Full Cardano mainnet dataset on Google BigQuery, updated hourly, verified each epoch, and queryable with standard SQL.",
     category: "api",
-    icon: "/img/tool-icons/bca.png",
+    icon: "/img/tools/bca.png",
     properties: [],
     website: "https://www.blockchain-applied.com/bca-cardano-on-bigquery/",
     repository: "https://github.com/Blockchain-Data-Analytics/Cardano_on_BigQuery",
