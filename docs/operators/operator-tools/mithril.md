@@ -3,7 +3,6 @@ id: mithril
 title: "Mithril: Fast Bootstrap & Light Clients"
 sidebar_label: Mithril
 description: Mithril is a stake-based multi-signature protocol that certifies Cardano data, enabling fast node bootstrap and trustless light clients that verify the chain without running a full node.
-image: /img/og/og-developer-portal.png
 ---
 
 Mithril is a **stake-based multi-signature protocol** that provides lightweight certification of Cardano blockchain data. Stake pool operators collectively sign snapshots of the chain state, and an aggregator combines those signatures into a certificate that anyone can verify cryptographically. The result: you can trust certified data backed by a large fraction of total stake **without running and syncing a full node yourself**.

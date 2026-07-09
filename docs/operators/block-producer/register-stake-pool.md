@@ -3,7 +3,6 @@ id: register-stake-pool
 title: Registering a Pool
 sidebar_label: Registering a Pool
 description: Generate your pool registration certificate and submit it to the chain.
-image: ../img/og-developer-portal.png
 ---
 
 :::info version reference
@@ -138,7 +137,7 @@ For eg, to specify access to your Cardano node relays, there should be a _cardan
 Also on the **air-gapped machine**, create a delegation certificate that pledges your stake to your pool:
 
 ```bash
-cardano-cli stake-address delegation-certificate \
+cardano-cli latest stake-address stake-delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --cold-verification-key-file cold.vkey \
     --out-file deleg.cert

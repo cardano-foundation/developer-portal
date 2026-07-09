@@ -3,7 +3,6 @@ id: improve-grafana-security
 title: Improve Grafana Security
 sidebar_label: Improve Grafana Security
 description: Secure Grafana access with an SSH tunnel, Nginx reverse proxy, and optional Google OAuth.
-image: ../img/og/og-developer-portal.png
 ---
 
 By default Grafana listens on port 3000 with HTTP and local password auth. This page covers three layers of improvement: restricting access via SSH tunnel, adding TLS with an Nginx reverse proxy, and optionally replacing password auth with Google OAuth.

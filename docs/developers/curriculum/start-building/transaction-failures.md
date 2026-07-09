@@ -3,7 +3,6 @@ id: transaction-failures
 title: When transactions fail
 sidebar_label: Transaction failures
 description: Why Cardano transactions fail, the two-phase validation model, build-time versus submit-time errors, and which failures are retryable.
-image: /img/og/og-developer-portal.png
 ---
 
 Transactions fail, and on Cardano they fail in a small number of well-defined ways. The useful question is never just "what went wrong" but **where** and **why**: a failure caught while you build is different from one the node rejects, and a transient race is different from a logic error. Knowing which you are looking at tells you whether to retry, rebuild, or fix. This page is the map; each class links to the page that treats it in depth.

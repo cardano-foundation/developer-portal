@@ -3,7 +3,6 @@ id: pyth
 title: Pyth
 sidebar_label: Pyth
 description: High-frequency oracle providing real-time price feeds to Cardano smart contracts via Pyth Pro.
-image: /img/og/og-developer-portal.png
 ---
 
 :::caution Beta

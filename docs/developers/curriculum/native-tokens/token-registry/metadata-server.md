@@ -3,7 +3,6 @@ id: metadata-server
 title: Token Metadata Server
 sidebar_label: Metadata server
 description: Query human-readable metadata for Cardano native assets over the Token Metadata Server REST API (v2), covering both CIP-26 and CIP-68.
-image: /img/og/og-developer-portal.png
 ---
 
 The **Token Metadata Server** is the read API for token metadata. Wallets, explorers, and dApps query it to turn an on-chain asset ID into a human-readable name, ticker, decimals, and logo. API v2 serves both **CIP-26** (the off-chain [registry](/docs/developers/curriculum/native-tokens/metadata-registry)) and **CIP-68** (on-chain datum) metadata through one interface, so a caller does not need to know which standard a token uses.

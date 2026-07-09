@@ -3,7 +3,6 @@ id: mint-fungible
 title: Mint a Fungible Token
 sidebar_label: Mint a fungible token
 description: Mint and burn a fungible native token on Cardano with Evolution, Mesh, or cardano-cli.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

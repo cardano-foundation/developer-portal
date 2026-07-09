@@ -3,10 +3,9 @@ id: overview
 title: Smart Contracts
 sidebar_label: Overview
 description: How smart contracts work on Cardano, validators that approve or reject transactions on the eUTXO model.
-image: /img/og/og-developer-portal.png
 ---
 
-![Smart Contracts](/img/card-smart-contracts-title.svg)
+![Smart Contracts](./img/card-smart-contracts-title.svg)
 
 ## What are smart contracts?
 
@@ -112,7 +111,7 @@ Because phase-2 work is real, a script transaction also carries **collateral**: 
 
 ### Deterministic validation
 
-Validation depends only on the transaction and its context, never on live network state. That determinism lets you compute a transaction's outcome and its exact cost before you submit it, unlike chains where gas and ordering shift under load.
+Validation depends only on the transaction and its context, never on live network state. That determinism lets you compute a transaction's outcome and its exact cost before you submit it, unlike chains where gas and ordering shift under load. It also means a validator cannot generate randomness; getting a verifiable random number despite that is its own topic, covered in [on-chain randomness](/docs/developers/curriculum/dapps/oracles/randomness).
 
 ## The contract lifecycle
 

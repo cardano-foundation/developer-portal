@@ -2,8 +2,7 @@
 id: sponsored-transactions
 title: Sponsored and multi-party transactions
 sidebar_label: Sponsored transactions
-description: "Separate who builds, who signs, and who pays for a transaction: co-sign across a server and a browser wallet with CIP-30 partial signing, and sponsor fees so users transact without holding ADA."
-image: /img/og/og-developer-portal.png
+description: "Separate who builds, who signs, and who pays for a transaction: co-sign across a server and a browser wallet with CIP-30 partial signing, and sponsor fees (the gasless pattern) so users transact without holding ADA."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -94,9 +93,13 @@ The same shape covers any shared-control transaction: a 2-of-3 treasury where ea
 
 ## Fee sponsorship
 
-Sponsorship is the same mechanism with one change: the **inputs that cover the fee come from a sponsor, not the user**. A new user who holds zero ADA can still act, because your sponsor wallet supplies the fee (and any collateral), while the user only signs for the part that genuinely needs their key, authorizing a required-signer check, say, or spending a token they already hold. Both parties partial-sign; the sponsor's wallet provides the fee inputs and the change address.
+Sponsorship is the same mechanism with one change: the **inputs that cover the fee come from a sponsor, not the user**. Because a transaction must [balance exactly](/docs/developers/curriculum/fundamentals/core-concepts/transactions#the-balancing-equation), inputs equal outputs plus fee, whoever adds the extra input and takes the change back is the one who pays. A new user who holds zero ADA can still act: your sponsor wallet supplies the fee (and, for a script transaction, the [collateral](/docs/developers/curriculum/fundamentals/core-concepts/fees#collateral)), while the user only signs for the part that genuinely needs their key, authorizing a required-signer check, say, or spending a token they already hold. Both parties partial-sign; the sponsor's wallet provides the fee inputs and the change address.
 
 This removes the hardest step in onboarding, "go buy ADA before you can do anything," and is why sponsorship usually pairs with a wallet the user did not have to install. Hosted wallet services take it further: they create a non-custodial wallet through social login and sponsor the user's first transactions, so there is no extension and no seed phrase to start. See the note on hosted sign-in and sponsorship in [Wallet authentication](/docs/developers/curriculum/dapps/wallet-authentication#hosted-sign-in-as-a-service).
+
+:::note "Gasless" means someone else pays, not a different fee token
+Developers coming from other chains call this a **gasless** transaction or a **meta-transaction**. Cardano has no gas: fees are always paid in ADA and are [fixed by the transaction's size and script cost](/docs/developers/curriculum/fundamentals/core-concepts/fees#the-fee-formula), so "gasless" here means only that a third party supplies that ADA. It works today with the partial signing shown above, no special protocol feature required. Paying a fee in a **native token** instead of ADA is a separate idea (**Babel fees**) that depends on ledger changes still in development, so do not design around it yet.
+:::
 
 ## Security
 
@@ -106,6 +109,8 @@ Co-signing means the user authorizes a transaction your server built, so the tru
 - **The user must be able to inspect what they sign.** Show the amounts, recipients, and assets before prompting. A wallet displays the transaction, but your UI sets the expectation.
 - **Protect the server key.** The application wallet's mnemonic stays server-side and never reaches the client; treat a leak as a full compromise of whatever that key controls.
 - **Validate the user's inputs** before building, and assume their UTXOs may be spent by the time you submit. Show a clear retry rather than a cryptic failure.
+- **Gate and rate-limit a sponsorship endpoint.** A sponsor service spends your own ADA on every request. Without a whitelist, a token-holding requirement, authentication, or rate limiting, anyone can drain it by spamming requests, so decide who qualifies and cap how often.
+- **Confirm you only pay the fee.** Before the sponsor signs, check that its net contribution equals the transaction fee exactly and that any of its own tokens return to it, so a crafted transaction cannot make the sponsor overpay or leak its assets.
 
 ## Next steps
 

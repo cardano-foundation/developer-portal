@@ -3,7 +3,6 @@ id: transactions
 title: Transactions
 sidebar_label: Transactions
 description: The anatomy of a Cardano transaction, its lifecycle, validity intervals, reference inputs, and CBOR serialization.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 import Tabs from '@theme/Tabs';

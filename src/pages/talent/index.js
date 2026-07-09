@@ -12,8 +12,8 @@ const DESCRIPTION = "A notification list for Cardano hackathons, jobs, and grant
 function MetaData() {
   return (
     <Head>
-      <meta property="og:image" content="https://developers.cardano.org/img/og/og-developer-portal.png" />
-      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-developer-portal.png" />
+      <meta property="og:image" content="https://developers.cardano.org/img/og/og-developer-portal.jpg" />
+      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-developer-portal.jpg" />
     </Head>
   );
 }
@@ -41,13 +41,13 @@ function OverviewSection() {
         <div className={styles.overviewContent}>
           <div className={styles.photoGrid}>
             <div className={styles.photoLarge}>
-              <img src={useBaseUrl("img/hackathons/hackathon.jpg")} alt="Cardano developers at a hackathon" />
+              <img src={useBaseUrl("img/home/hackathons/hackathon.jpg")} alt="Cardano developers at a hackathon" />
             </div>
             <div className={styles.photoSmall}>
-              <img src={useBaseUrl("img/hackathons/builders.jpg")} alt="Developers collaborating" />
+              <img src={useBaseUrl("img/home/hackathons/builders.jpg")} alt="Developers collaborating" />
             </div>
             <div className={styles.photoSmall}>
-              <img src={useBaseUrl("img/hackathons/community.jpg")} alt="Cardano developers collaborating" />
+              <img src={useBaseUrl("img/home/hackathons/community.jpg")} alt="Cardano developers collaborating" />
             </div>
           </div>
           <div className={styles.overviewText}>
@@ -77,7 +77,7 @@ function OverviewSection() {
 }
 
 function ResourcesSection() {
-  const imgUrl = useBaseUrl("img/card-get-started.svg");
+  const imgUrl = useBaseUrl("img/home/card-get-started.svg");
   return (
     <section className={styles.resources}>
       <div className="container">
