@@ -3,7 +3,6 @@ id: eutxo
 title: The Extended UTXO Model
 sidebar_label: eUTXO model
 description: How Cardano tracks ownership with the Extended UTXO (eUTXO) model, how it differs from account-based chains, and how to think in eUTXO as a developer.
-image: /img/og/og-getstarted-technical-concepts.png
 ---
 
 The Extended UTXO (eUTXO) model is how Cardano tracks who owns what. It records value as discrete, immutable "coins" (unspent transaction outputs) rather than mutable account balances, and it extends that idea with datums, redeemers, and script context so smart contracts can run while transactions stay deterministic and parallelizable.

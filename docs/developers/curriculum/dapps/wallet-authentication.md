@@ -3,7 +3,6 @@ id: wallet-authentication
 title: Authenticating users with their Cardano wallet
 sidebar_label: Wallet authentication
 description: Authenticate users on the web with their Cardano wallet through message signing, with Mesh or Evolution, a hosted service, or zero-knowledge login.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';
@@ -135,7 +134,7 @@ Not every user has a browser wallet installed. [UTXOS](https://utxos.dev) offers
 ## Zero-knowledge login
 
 :::info In active development
-[zkLogin for Cardano](https://github.com/eryxcoop/zklogin-aiken) lets users authenticate with an existing account (such as Google) and control funds through zero-knowledge proofs, without exposing their identity on-chain. It pairs Aiken validators that gate spending from a zkLogin address with Circom circuits that verify the proof. It runs on the preprod testnet today, with known limitations (for example, no oracle yet for rotating the identity provider's public keys). Track progress at the [zklogin-aiken repository](https://github.com/eryxcoop/zklogin-aiken).
+[zkLogin for Cardano](https://github.com/eryxcoop/zklogin-aiken) lets users authenticate with an existing account (such as Google) and control funds through zero-knowledge proofs, without exposing their identity on-chain. A Circom circuit verifies the provider's signed identity token and binds it to an **ephemeral session key**, so the Aiken validator checks one proof and the session key signs transactions from there; a user-chosen salt keeps the web identity unlinkable to the on-chain address. It runs on the preprod testnet today as an unaudited proof of concept, with known limitations (proof generation runs on a backend, and there is no oracle yet for rotating the identity provider's public keys). Track progress at the [zklogin-aiken repository](https://github.com/eryxcoop/zklogin-aiken), and see [Zero-knowledge proofs](/docs/developers/curriculum/smart-contracts/advanced/zero-knowledge) for how on-chain verification works.
 :::
 
 ## Use cases

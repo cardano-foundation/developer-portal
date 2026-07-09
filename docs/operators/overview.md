@@ -4,7 +4,6 @@ slug: /operators/
 title: Operate a Stake Pool
 sidebar_label: Overview
 description: Everything you need to set up and run a Cardano stake pool.
-image: /img/og/og-developer-portal.png
 ---
 
 A Cardano stake pool is the infrastructure that produces blocks on behalf of delegators. Running one means operating live servers, managing sensitive cryptographic keys, and participating in network governance. It is not a set-and-forget task.

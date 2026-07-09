@@ -7,8 +7,8 @@ keywords: [monitoring, blockperf, global, network, propagation, cardano ]
 ---
 
 import Image from "@theme/IdealImage";
-import obpf_layers from '@site/static/img/stake-pool-guide/openBlockperf_layer-benefits.png';
-import obpf_gantt from '@site/static/img/stake-pool-guide/openBlockperf_block-propagation-gantt-diagram.png';
+import obpf_layers from './img/openBlockperf_layer-benefits.png';
+import obpf_gantt from './img/openBlockperf_block-propagation-gantt-diagram.png';
 
 
 ## Why global monitoring?

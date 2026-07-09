@@ -116,7 +116,7 @@ module.exports = {
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "img/og/og-developer-portal.png",
+    image: "img/og/og-developer-portal.jpg",
     metadata: [
       { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, stake pool, Web3" },
     ],
@@ -135,8 +135,8 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/cardano-black.svg",
-        srcDark: "img/cardano-white.svg",
+        src: "img/brand/cardano-black.svg",
+        srcDark: "img/brand/cardano-white.svg",
       },
 
       items: getNavbarItems(repository),

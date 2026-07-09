@@ -3,7 +3,6 @@ id: installing-cardano-node
 title: Installing cardano-node
 sidebar_position: 2
 description: How to get cardano-node and cardano-cli — pre-built binaries, Docker images, Nix builds, and cabal builds.
-image: /img/og/og-getstarted-installing-cardano-node.png
 ---
 
 import Tabs from '@theme/Tabs';

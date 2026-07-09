@@ -3,7 +3,6 @@ id: your-first-transaction
 title: Your First Transaction
 sidebar_label: Your first transaction
 description: Build, sign, and submit your first Cardano transaction on testnet with Evolution, Mesh, or cardano-cli, then read it back from the chain.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

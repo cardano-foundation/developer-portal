@@ -6,11 +6,15 @@
 
 .hero {
   position: relative;
+  /* Match the background image's ratio so cover shows its full height at any
+     width (it only ever trims the navy side-padding, never the arch/circle).
+     min-height stays a floor for narrow/mobile viewports. */
+  aspect-ratio: 3024 / 1080;
   min-height: 65vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--site-color-brand-blue);
+  background: #05091c;
 }
 
 .heroBackground {
@@ -22,48 +26,20 @@
 .heroBackgroundImage {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
-  transform: translateX(310px);
+  object-fit: cover;
+  object-position: center;
 }
 
-html[data-theme="dark"] .heroBackgroundImage {
-  filter: brightness(0.85) saturate(1.1);
-}
-
+/* Centered scrim so the cream text reads over the arch, fading out before the
+   bottom so the brand circle stays bright */
 .heroOverlay {
   position: absolute;
   inset: 0;
-}
-
-.heroGlow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-  top: 50%;
-  left: 15%;
-  transform: translate(-50%, -50%);
-  opacity: 0.4;
-}
-
-html[data-theme="light"] .heroGlow {
   background: radial-gradient(
-    circle,
-    rgba(68, 187, 164, 0.3) 0%,
-    rgba(0, 51, 173, 0.1) 40%,
-    transparent 70%
-  );
-}
-
-html[data-theme="dark"] .heroGlow {
-  background: radial-gradient(
-    circle,
-    rgba(68, 187, 164, 0.25) 0%,
-    rgba(68, 187, 164, 0.08) 40%,
-    transparent 70%
+    ellipse 60% 62% at 50% 42%,
+    rgba(3, 6, 20, 0.62) 0%,
+    rgba(3, 6, 20, 0.3) 55%,
+    rgba(3, 6, 20, 0) 80%
   );
 }
 
@@ -71,62 +47,32 @@ html[data-theme="dark"] .heroGlow {
   position: relative;
   z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   min-height: 45vh;
-}
-
-.heroCard {
-  max-width: 480px;
-  padding: 2.75rem 3rem;
-  border-radius: 28px;
-  backdrop-filter: blur(24px);
-}
-
-html[data-theme="light"] .heroCard {
-  background: rgba(255, 255, 255, 0.97);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.08),
-    0 24px 80px rgba(0, 51, 173, 0.15),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-}
-
-html[data-theme="dark"] .heroCard {
-  background: rgba(20, 22, 30, 0.92);
-  border: 1px solid rgba(68, 187, 164, 0.15);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.2),
-    0 24px 80px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  max-width: 48rem;
+  margin: 0 auto;
 }
 
 .heroTitle {
-  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.03;
   letter-spacing: -0.03em;
   margin: 0 0 1.25rem;
-}
-
-html[data-theme="light"] .heroTitle {
-  color: #000;
-}
-
-html[data-theme="dark"] .heroTitle {
-  color: #fff;
+  color: #fffaf3;
+  text-shadow: 0 2px 24px rgba(0, 3, 10, 0.6);
 }
 
 .heroSubtitle {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.15rem;
+  line-height: 1.6;
   margin: 0;
-}
-
-html[data-theme="light"] .heroSubtitle {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .heroSubtitle {
-  color: rgba(255, 255, 255, 0.7);
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 2px 16px rgba(0, 3, 10, 0.5);
 }
 
 .heroActions {
@@ -137,46 +83,19 @@ html[data-theme="dark"] .heroSubtitle {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
   text-decoration: none !important;
+  background: #fffaf3;
+  color: #0b1020;
   transition: all 0.25s ease;
-}
-
-html[data-theme="light"] .heroCta {
-  background: var(--site-color-brand-blue);
-  color: #fff;
-}
-
-html[data-theme="dark"] .heroCta {
-  background: var(--site-color-brand-teal);
-  color: #fff;
 }
 
 .heroCta:hover {
   transform: translateY(-2px);
-}
-
-html[data-theme="light"] .heroCta:hover {
-  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.2);
-}
-
-html[data-theme="dark"] .heroCta:hover {
-  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.2);
-}
-
-@media screen and (max-width: 996px) {
-  .heroBackgroundImage {
-    object-position: center right;
-  }
-
-  .heroGlow {
-    left: 25%;
-    width: 400px;
-    height: 400px;
-  }
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 @media screen and (max-width: 768px) {
@@ -186,21 +105,6 @@ html[data-theme="dark"] .heroCta:hover {
 
   .heroContent {
     min-height: 40vh;
-  }
-
-  .heroCard {
-    padding: 2rem 1.75rem;
-    margin: 0;
-    border-radius: 20px;
-  }
-
-  .heroBackgroundImage {
-    object-position: center;
-    transform: none;
-  }
-
-  .heroGlow {
-    display: none;
   }
 }
 
@@ -1062,7 +966,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 }
 
 html[data-theme="light"] .smartContracts {
-  background: var(--site-color-surface);
+  background: #fff;
 }
 
 html[data-theme="dark"] .smartContracts {
@@ -1391,7 +1295,7 @@ html[data-theme="dark"] .scLearnOverlay {
 }
 
 html[data-theme="light"] .cta {
-  background: var(--site-color-surface);
+  background: #fff;
 }
 
 html[data-theme="dark"] .cta {
@@ -1903,12 +1807,12 @@ html[data-theme="dark"] .officeHoursBtnSecondary:hover {
 }
 
 html[data-theme="light"] .heroBanner {
-  background-image: url(/img/dev-portal-hero-light.webp);
+  background-image: url(/img/home/dev-portal-hero-light.webp);
   background-color: var(--site-color-brand-blue);
 }
 
 html[data-theme="dark"] .heroBanner {
-  background-image: url(/img/dev-portal-hero-dark.webp);
+  background-image: url(/img/home/dev-portal-hero-dark.webp);
   background-color: var(--site-color-brand-teal-dark);
 }
 

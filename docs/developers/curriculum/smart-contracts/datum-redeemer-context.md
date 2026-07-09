@@ -3,7 +3,6 @@ id: datum-redeemer-context
 title: Datum, Redeemer, and ScriptContext
 sidebar_label: Datum, redeemer & context
 description: "The three arguments every Cardano validator receives: datum as state, redeemer as action, and ScriptContext as the transaction environment."
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';
@@ -482,6 +481,10 @@ A spending validator delegates its logic to a staking validator by requiring a z
 ### Beacon / pointer token
 
 A beacon token is a unique native token held at a script address alongside a datum. It acts as a pointer that makes the UTXO easy to find: query the chain for the token, and you immediately locate the right UTXO among potentially thousands at the same address.
+
+### On-chain configuration
+
+Compose a beacon token with a reference input and you get the pattern most production protocols reach for first: a single **config UTXO** whose datum holds the protocol's mutable settings, a swap fee, an admin key, a treasury address. A unique [state NFT](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) marks the canonical UTXO so a look-alike cannot be substituted (the failure mode is [missing UTXO authentication](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication)), the whole protocol reads it as a [reference input](/docs/developers/curriculum/fundamentals/core-concepts/transactions#reference-inputs-and-reference-scripts) so any number of transactions read the same settings in parallel without consuming them, and an admin credential in the datum gates updates: an admin key checked as a required signer, or any other credential by requiring it to authorize the transaction. Updating is an ordinary [continuing-output](#the-continuing-output-pattern) spend, consume the config UTXO and recreate it with new values, and the mint and spend rules usually live in [one validator that shares a single hash](/docs/developers/curriculum/smart-contracts/write-a-validator#one-validator-many-purposes-one-hash). The one-time transaction that first mints the NFT into the initial config is often called bootstrapping. This is protocol-level configuration, distinct from the network's own protocol parameters.
 
 ## How reference scripts (CIP-33) reduce costs
 
