@@ -339,27 +339,31 @@ function DeveloperSection() {
                 <span className={styles.codeKeyword}>await</span>{" "}
                 <span className={styles.codeVariable}>txBuilder</span>
                 <br />
-                {"  "}.
-                <span className={styles.codeFunction}>newTx</span>()
-                <br />
-                {"  "}.
+                {"  "}.
                 <span className={styles.codeFunction}>payToAddress</span>(
                 <span className={styles.codeVariable}>address</span>,{" "}
                 <span className={styles.codeFunction}>lovelace</span>(
                 <span className={styles.codeVariable}>2_000_000n</span>))
                 <br />
-                {"  "}.
+                {"  "}.
                 <span className={styles.codeFunction}>build</span>();
                 <br />
                 <br />
                 <span className={styles.codeComment}>// Sign and submit</span>
                 <br />
                 <span className={styles.codeKeyword}>const</span>{" "}
+                <span className={styles.codeVariable}>signedTx</span> ={" "}
+                <span className={styles.codeKeyword}>await</span>{" "}
+                <span className={styles.codeVariable}>wallet</span>.
+                <span className={styles.codeFunction}>sign</span>(
+                <span className={styles.codeVariable}>tx</span>);
+                <br />
+                <span className={styles.codeKeyword}>const</span>{" "}
                 <span className={styles.codeVariable}>txHash</span> ={" "}
                 <span className={styles.codeKeyword}>await</span>{" "}
                 <span className={styles.codeVariable}>wallet</span>.
-                <span className={styles.codeFunction}>sign</span>().
-                <span className={styles.codeFunction}>submit</span>();
+                <span className={styles.codeFunction}>submit</span>(
+                <span className={styles.codeVariable}>signedTx</span>);
               </code>
             </div>
           </div>
