@@ -952,6 +952,16 @@ export const BuilderTools = [
     repository: "https://github.com/Blockchain-Data-Analytics/Cardano_on_BigQuery",
     docs: null,
   },
+  {
+    title: "CardanoVSC",
+    icon: "/img/tool-icons/cardanovsc.png",
+    description: "VS Code extension for Cardano smart contract development, with Haskell and Plutus syntax highlighting, code completion, on-chain queries via Blockfrost and CardanoScan, and script-address generation from compiled Plutus contracts.",
+    website: "https://marketplace.visualstudio.com/items?itemName=AIQUANT-TECHNOLOGIES.cardanovsc",
+    docs: null,
+    repository: "https://github.com/AIQUANT-Tech/CardanoVSC",
+    category: "dev-env",
+    properties: ["haskell"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
