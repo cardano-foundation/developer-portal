@@ -17,9 +17,6 @@ out, and it leaves future options open (see below) without committing to any of 
 
 ## What's here
 
-- `bootcamp/`: companion code for the bootcamp lessons, one folder per lesson
-  (`01-wallet-send-lovelace` through `10-web3-services`). Each folder backs a lesson in the docs
-  and runs on its own.
 - `templates/`: runnable dApp starter templates, one per SDK (`evolution-vite-react`,
   `mesh-nextjs`). Each is the same minimal app, connect a wallet, show the balance, send ADA,
   and backs the [Build your first dApp](https://developers.cardano.org/docs/developers/curriculum/dapps/your-first-dapp)
@@ -53,8 +50,7 @@ Hosting templates in this repo is the zero-setup starting point. The tradeoff is
 `degit` download the whole-repo tarball to extract one subdirectory, and template versioning, CI,
 and contributions share the docs repo. If that cost grows, or templates need independent releases
 or their own build checks (see issue #1738), they can move to a dedicated
-`cardano-foundation/templates` repo using the same command with a different path. The bootcamp
-examples stay here regardless, since they are documentation companions rather than templates.
+`cardano-foundation/templates` repo using the same command with a different path.
 
 ## Curation
 

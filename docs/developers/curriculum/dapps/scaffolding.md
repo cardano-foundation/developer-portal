@@ -32,7 +32,6 @@ See [Choose your tools](/docs/developers/curriculum/start-building/choose-your-t
 ## More starters
 
 - [Mesh Aiken template](https://github.com/MeshJS/mesh-aiken-template): a full-stack starter pairing the Mesh SDK off-chain with Aiken on-chain, when you want a contract from the start.
-- The [bootcamp examples](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp) are runnable projects for specific lessons (multisig, vesting, NFTs, Hydra, and more).
 
 ## cardano-init
 

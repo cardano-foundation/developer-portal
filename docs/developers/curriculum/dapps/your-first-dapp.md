@@ -167,7 +167,7 @@ Start the dev server, open the app, connect a wallet on a testnet, and send some
 The templates ship the bundler configuration each SDK needs. If you build a Mesh app from scratch instead, see [Building for the browser](/docs/developers/curriculum/dapps/connect-a-wallet#building-for-the-browser) for the polyfill and `libsodium` setup that a production build requires.
 
 ## Next steps
-- **On-chain logic.** Lock funds at a validator and spend them: [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend), and the runnable [bootcamp examples](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp).
+- **On-chain logic.** Lock funds at a validator and spend them: [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend).
 - **Detect payments.** The receiver side of the loop: [Listen for payments](/docs/developers/curriculum/dapps/listen-for-payments).
 - **Toward autonomous dApps.** These same building blocks, wallet, provider, transaction builder, are what an [autonomous agent](/docs/developers/curriculum/dapps/ai-agents/overview) drives when it holds a wallet and acts without a human in the loop. The agent economy adds identity, discovery, and payments on top ([Masumi](/docs/developers/curriculum/dapps/ai-agents/masumi); machine-payment rails like x402 are emerging). A clean, composable dApp is the foundation an agent builds on.
 

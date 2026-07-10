@@ -14,7 +14,7 @@ This page covers writing validators in Aiken, the simpler native-script alternat
 
 If you have written web middleware, this is familiar: a validator is like route middleware or an auth guard, a pure function that returns allow or deny without mutating state. The redeemer is the request body it branches on (`MintToken` vs `BurnToken`), and the blueprint (`plutus.json`) is the contract's OpenAPI spec that tools read to generate a typed client.
 
-> Runnable source: [examples/bootcamp/03-aiken-contracts](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp/03-aiken-contracts). Install Aiken from [aiken-lang.org](https://aiken-lang.org/installation-instructions); scaffold a project with `npx meshjs <name>` and pick the Aiken template.
+> Install Aiken from [aiken-lang.org](https://aiken-lang.org/installation-instructions); scaffold a project with `npx meshjs <name>` and pick the Aiken template.
 
 ## What a validator sees
 
