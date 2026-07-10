@@ -3,7 +3,6 @@ id: block-producer-keys
 title: Key Generation
 sidebar_label: Key Generation
 description: Generating the cold, KES, and VRF keys for a Cardano block producer on an air-gapped machine.
-image: ../img/og-developer-portal.png
 ---
 
 :::info version reference
@@ -73,7 +72,7 @@ Next, follow [Deployment](/docs/operators/block-producer/deployment) to issue th
 
 ## KES key rotation
 
-KES keys expire after 90 days on mainnet (62 days on preprod). When they expire the node stops minting blocks. Set a calendar reminder well before expiry.
+KES keys expire after about 90 days on both mainnet and preprod, which share the same KES parameters (62 evolutions of 36 hours each). When they expire the node stops minting blocks. Set a calendar reminder well before expiry.
 
 To rotate:
 

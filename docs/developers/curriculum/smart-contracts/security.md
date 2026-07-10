@@ -3,7 +3,6 @@ id: security
 title: Smart Contract Security
 sidebar_label: Security
 description: How Cardano's eUTXO model neutralizes whole classes of attacks, the vulnerabilities you still have to guard against, and the patterns that keep validators safe.
-image: /img/og/og-developer-portal.png
 ---
 
 Smart contract bugs are uniquely dangerous: deployed validators are immutable (or very hard to change) and they often guard significant value, so a single vulnerability can mean irreversible loss of funds. For web2 developers, the shift is stark: a bug here isn't an embarrassing hotfix, it's a permanent financial loss in an adversarial environment where anyone in the world can attempt the exploit.
@@ -128,7 +127,7 @@ Defense in depth, from cheapest to strongest:
 
 - **Unit tests** find the bugs you thought of. See [Testing](/docs/developers/curriculum/smart-contracts/testing).
 - **Property-based testing** generates thousands of random inputs against invariants like "no transaction can extract more value than was deposited" or "only the owner can withdraw", catching edge cases you'd never enumerate by hand.
-- **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. The major Cardano protocols all undergo multiple audit rounds before launch.
+- **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. The major Cardano protocols all undergo multiple audit rounds before launch. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare.
 - **Formal verification** uses mathematical proof that a property holds for *all* inputs. Cardano's own ledger specification is formalized in Agda, and the Haskell/Aiken ecosystem is well-suited to these rigorous techniques.
 
 ## Key takeaways

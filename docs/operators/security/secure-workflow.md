@@ -3,7 +3,6 @@ id: secure-workflow
 title: Secure Transaction Workflow
 sidebar_label: Secure Transaction Workflow
 description: Sign transactions and cold-key operations on an air-gapped machine — keeping private keys off the internet.
-image: /img/og/og-security-secure-transaction-workflow.png
 ---
 
 The core rule for all Cardano key operations is simple:

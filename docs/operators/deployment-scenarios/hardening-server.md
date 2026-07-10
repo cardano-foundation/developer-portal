@@ -3,7 +3,6 @@ id: hardening-server
 title: Hardening the server
 sidebar_label: Hardening the server
 description: Secure a Cardano stake pool server — SSH, nftables, WireGuard, fail2ban, and systemd hardening.
-image: ../img/og/og-developer-portal.png
 ---
 
 This guide covers the baseline security hardening for a Cardano stake pool server running Ubuntu 22.04 LTS. Apply it to each machine in your setup: relays, block producer, and monitoring host.

@@ -3,7 +3,6 @@ id: query-the-chain
 title: Query the Chain
 sidebar_label: Query the chain
 description: Read Cardano on-chain data (UTXOs, balances, datums, protocol parameters, delegation, and transaction status) through a provider, with Evolution and Mesh.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

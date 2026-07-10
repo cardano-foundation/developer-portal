@@ -18,9 +18,11 @@ export default function DropdownNavbarItem({mobile = false, ...props}) {
     props.customProps &&
     Array.isArray(props.customProps.columns);
 
-  // On mobile or when not marked as mega, fall back to the original behavior
+  // On mobile or when not marked as mega, fall back to the original behavior.
+  // Strip mega-specific props so they don't leak onto DOM elements.
   if (!mega || isMobile) {
-    return <OriginalDropdownNavbarItem mobile={mobile} {...props} />;
+    const {customProps, mega: _mega, ...passthroughProps} = props;
+    return <OriginalDropdownNavbarItem mobile={mobile} {...passthroughProps} />;
   }
 
   const columns = props.customProps.columns;

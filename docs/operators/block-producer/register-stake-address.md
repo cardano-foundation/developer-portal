@@ -3,7 +3,6 @@ id: register-stake-address
 title: Registering a Stake Address
 sidebar_label: Registering a Stake Address
 description: Register your stake address on-chain before registering a stake pool.
-image: ../img/og-developer-portal.png
 ---
 
 :::info version reference

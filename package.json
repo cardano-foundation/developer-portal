@@ -1,25 +1,33 @@
 {
-  "name": "devportal",
+  "name": "cardano-developer-portal",
   "version": "0.0.0",
   "private": true,
+  "description": "Source for developers.cardano.org: documentation, the developer curriculum, and curated builder tools for building on Cardano.",
+  "homepage": "https://developers.cardano.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cardano-foundation/developer-portal.git"
+  },
+  "license": "MIT",
   "scripts": {
     "build-stats": "node scripts/generate-stats.js",
+    "build-og": "node scripts/generate-og.js",
     "docusaurus": "docusaurus",
-    "start": "yarn build-stats && docusaurus start",
-    "build": "yarn build-stats && docusaurus build && node scripts/fix-llms-paths.js",
+    "start": "yarn build-stats && yarn build-og && docusaurus start",
+    "build": "yarn build-stats && yarn build-og && docusaurus build && node scripts/fix-llms-paths.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "3.10.0",
-    "@docusaurus/plugin-client-redirects": "3.10.0",
-    "@docusaurus/plugin-content-docs": "3.10.0",
-    "@docusaurus/plugin-ideal-image": "3.10.0",
-    "@docusaurus/preset-classic": "3.10.0",
-    "@docusaurus/theme-mermaid": "3.10.0",
-    "@docusaurus/theme-search-algolia": "3.10.0",
+    "@docusaurus/core": "3.10.1",
+    "@docusaurus/plugin-client-redirects": "3.10.1",
+    "@docusaurus/plugin-content-docs": "3.10.1",
+    "@docusaurus/plugin-ideal-image": "3.10.1",
+    "@docusaurus/preset-classic": "3.10.1",
+    "@docusaurus/theme-mermaid": "3.10.1",
+    "@docusaurus/theme-search-algolia": "3.10.1",
     "@mdx-js/react": "^3.1.0",
     "@popperjs/core": "^2.11.2",
     "clsx": "^1.1.1",
@@ -41,6 +49,8 @@
     ]
   },
   "devDependencies": {
-    "docusaurus-plugin-llms": "0.4.0"
+    "docusaurus-plugin-llms": "0.4.0",
+    "satori": "^0.26.0",
+    "sharp": "^0.35.3"
   }
 }

@@ -3,7 +3,6 @@ id: defi
 title: DeFi on Cardano
 sidebar_label: DeFi on Cardano
 description: The core DeFi primitives, DEXes, AMMs, liquidity pools, impermanent loss, and how Cardano's eUTXO model changes how you build them, with order batching, pool sharding, and determinism.
-image: /img/og/og-developer-portal.png
 ---
 
 Decentralized finance (DeFi) replaces traditional financial intermediaries with smart contract protocols, enabling permissionless trading, lending, and yield generation directly on-chain. For web2 developers, DeFi introduces a paradigm where financial logic lives on-chain, composable like microservices but trustless and permissionless.
@@ -199,6 +198,10 @@ Three users can now swap concurrently against different shards.
 ```
 
 The trade-off is keeping pricing consistent across shards and higher slippage per shard (each holds less liquidity). The flip side of contention is covered as a vulnerability in [UTXO contention](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention).
+
+### Transaction chaining
+
+A third approach removes the wait rather than the contention. Because validation is [deterministic](/docs/developers/curriculum/smart-contracts/overview#deterministic-validation), a transaction's id, and so its outputs, are known the moment it is built, before it is confirmed. That lets each interaction build on the previous one's not-yet-settled output, forming a chain ordered by its on-chain input dependencies instead of by an off-chain batcher. Protocols use it to keep a batching pipeline moving without waiting on confirmations, and wallets use it to let a user spend change still sitting in the mempool. The concept and its trade-offs are in [transaction chaining](/docs/developers/curriculum/production/transaction-chaining); the build-side code is in [chaining transactions](/docs/developers/curriculum/start-building/transaction-building#chaining-transactions).
 
 ### Determinism: the compensating advantage
 

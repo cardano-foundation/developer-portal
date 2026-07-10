@@ -3,7 +3,6 @@ id: overview
 title: Scaling & Production
 sidebar_label: Overview
 description: How Cardano scales, at Layer 1 and with Hydra at Layer 2, and how to take a dApp from working on testnet to running in production.
-image: /img/og/og-developer-portal.png
 ---
 
 This module answers two questions every serious project reaches: **how does Cardano scale**, and **how do I take my dApp to production**. The first is about throughput and architecture; the second is about reliability, security, and infrastructure. Both build on everything in the earlier modules.
@@ -14,7 +13,7 @@ Scaling isn't one thing. Cardano scales at several layers, and the right approac
 
 ### Layer 1: the base chain
 
-The base chain has bounded capacity per block, so on Layer 1 you scale by **using blocks efficiently** rather than by sending more independent transactions at a shared piece of state. Because the [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) makes a UTXO spendable only once per block, high-contention designs (like a single shared pool) need the concurrency patterns covered in [DeFi on Cardano](/docs/developers/curriculum/dapps/defi#the-eutxo-design-challenge): **order batching** (many user intents executed in one transaction) and **pool sharding** (state split across many UTXOs so transactions run in parallel). At the protocol level, the [Ouroboros roadmap](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) includes Leios (input endorsers) aimed at substantially higher throughput.
+The base chain has bounded capacity per block, so on Layer 1 you scale by **using blocks efficiently** rather than by sending more independent transactions at a shared piece of state. Because the [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) makes a UTXO spendable only once per block, high-contention designs (like a single shared pool) need the concurrency patterns covered in [DeFi on Cardano](/docs/developers/curriculum/dapps/defi#the-eutxo-design-challenge): **order batching** (many user intents executed in one transaction) and **pool sharding** (state split across many UTXOs so transactions run in parallel). You can also drop the confirmation wait between dependent transactions with [transaction chaining](/docs/developers/curriculum/production/transaction-chaining), spending each transaction's outputs before it settles. At the protocol level, the [Ouroboros roadmap](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) includes Leios (input endorsers) aimed at substantially higher throughput.
 
 ### Layer 2: Hydra
 
@@ -23,6 +22,7 @@ When you need **near-instant, near-free, high-frequency** transactions, gaming, 
 | Need | Reach for |
 |---|---|
 | More throughput against shared state on L1 | [Order batching / pool sharding](/docs/developers/curriculum/dapps/defi#the-eutxo-design-challenge) |
+| Submit many dependent transactions without waiting for confirmation | [Transaction chaining](/docs/developers/curriculum/production/transaction-chaining) |
 | Instant, free, high-frequency transactions among known parties | [Hydra (Layer 2)](/docs/developers/curriculum/production/hydra) |
 | Higher base-layer throughput (future) | Ouroboros Leios ([roadmap](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros)) |
 

@@ -3,7 +3,6 @@ id: testing
 title: Testing Validators
 sidebar_label: Testing
 description: Test Aiken validators with mock transactions, the mocktail library, and the boolean-toggle pattern for systematically covering failure cases.
-image: /img/og/og-developer-portal.png
 ---
 
 Because a Cardano validator is a [pure function](/docs/developers/curriculum/smart-contracts/overview#smart-contracts-are-validators-not-actors), `f(datum, redeemer, context) -> Bool`, it is unusually easy to test. There is no network, no global state, no deployment required: you hand the function some mock data and assert the result. And because deployed validators are immutable and guard real value, testing is not optional.
@@ -204,7 +203,7 @@ Both live with the local-environment tooling rather than here: see [Testing with
 ## Beyond unit tests
 
 - **Property-based testing.** Instead of fixed cases, define properties that must always hold ("no transaction can extract more value than was deposited", "only the owner can withdraw") and let the framework generate thousands of random inputs to find violations. Aiken's fuzzer supports this; it catches edge cases manual tests miss. See [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) for fuzzer-driven fixtures and benchmarking.
-- **Audits.** For any contract holding significant value, a professional audit is standard practice. Testing finds the bugs you thought of; audits find the ones you didn't.
+- **Audits.** For any contract holding significant value, a professional audit is standard practice. Testing finds the bugs you thought of; audits find the ones you didn't. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare for one.
 
 ## Next steps
 

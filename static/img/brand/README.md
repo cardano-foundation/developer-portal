@@ -1,0 +1,21 @@
+# Cardano 2026 brand colours
+
+Hex values for the 2026 brand palette. The background and logo assets across the
+portal are built from these, so keep any custom colours in this range.
+
+| Colour | Hex |
+| --- | --- |
+| Blue | `#0033ad` |
+| Cream | `#fffaf3` |
+| Deep navy | `#000629` |
+| Amber | `#ffb122` |
+| Lavender | `#968cc3` |
+| Warm gray | `#aca6a6` |
+| Slate | `#5f6b85` |
+| Light lavender | `#c7c2e6` |
+| Teal | `#2fb7a8` |
+
+The developer surfaces (landing hero, generated OG cards) sit on deep navy with
+cream text and lavender accents. Brand font is Chivo (`static/fonts/`).
+
+Logo marks live in this folder: `cardano-black.svg`, `cardano-white.svg`.

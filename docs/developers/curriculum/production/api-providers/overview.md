@@ -3,7 +3,6 @@ id: overview
 title: API Providers
 sidebar_label: Overview
 description: The providers that power your SDK, how they work, and a reference for Blockfrost, Koios, and Ogmios.
-image: /img/og/og-developer-portal.png
 ---
 
 Your SDK does not talk to the chain directly. It talks to a **provider**: a service that runs a cardano-node and an indexer and exposes them through an API, so your app can read data and submit transactions without operating any infrastructure. You met providers when you [chose your tools](/docs/developers/curriculum/start-building/choose-your-tools#get-a-provider) and used one to [query the chain](/docs/developers/curriculum/start-building/query-the-chain). This section is the reference for the providers themselves: what each offers and how to run it.
@@ -43,16 +42,18 @@ Because the SDK only depends on that contract, anything that implements it is a 
 
 ## The providers
 
-To **choose** a provider for your SDK, see [Choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider). For the wider **managed-versus-self-hosted** decision, including Maestro, see [production infrastructure](/docs/developers/curriculum/production/infrastructure). The three documented here:
+To **choose** a provider for your SDK, see [Choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider). For the wider **managed-versus-self-hosted** decision, including Maestro, see [production infrastructure](/docs/developers/curriculum/production/infrastructure). The four documented here:
 
 | Provider | API | Access |
 | --- | --- | --- |
 | **[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost)** | REST | Managed, API key (free tier) |
-| **[Koios](/docs/developers/curriculum/production/api-providers/koios)** | REST, GraphQL | Community-run or self-hosted, key optional |
+| **[Koios](/docs/developers/curriculum/production/api-providers/koios)** | REST | Community-run or self-hosted, key optional |
 | **[Ogmios](/docs/developers/curriculum/production/api-providers/ogmios)** | WebSocket, JSON-RPC | Self-hosted against your own node (paired with Kupo as the "Kupmios" stack), or hosted via [Demeter](/docs/developers/curriculum/production/demeter) |
+| **[Dolos](/docs/developers/curriculum/production/api-providers/dolos)** | REST (Blockfrost-compatible), gRPC, node-to-client | Self-hosted data node, a single process with no separate cardano-node |
 
 ## Next steps
 
 - [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost): the quickest hosted start, with a free tier
 - [Koios](/docs/developers/curriculum/production/api-providers/koios): community-run, no key required for basic use
 - [Ogmios](/docs/developers/curriculum/production/api-providers/ogmios): low-level WebSocket access to a node you run
+- [Dolos](/docs/developers/curriculum/production/api-providers/dolos): a self-hosted data node serving a local Blockfrost-compatible API

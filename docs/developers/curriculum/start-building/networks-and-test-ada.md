@@ -3,7 +3,6 @@ id: networks-and-test-ada
 title: Networks & Test ADA
 sidebar_label: Networks & test ADA
 description: Choose a Cardano network, get free test ADA from the faucet, and find a block explorer.
-image: /img/og/og-developer-portal.png
 ---
 
 Before you build anything, pick a network and get some test ADA. You never need real ADA to develop: the **testnets** mirror mainnet using test ADA (tAda) that has no value, and a **faucet** hands it out for free.
