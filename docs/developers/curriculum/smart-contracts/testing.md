@@ -9,8 +9,6 @@ Because a Cardano validator is a [pure function](/docs/developers/curriculum/sma
 
 This page covers on-chain testing in [Aiken](/docs/developers/curriculum/smart-contracts/choose-a-language), which ships a test runner in the toolchain. The same ideas apply to other languages.
 
-> Runnable source for this page: [examples/bootcamp/04-contract-testing](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp/04-contract-testing)
-
 ## The test runner
 
 Define test functions with the `test` keyword, then run `aiken check` from the project root to execute every test it finds. A test passes when it returns `True`:

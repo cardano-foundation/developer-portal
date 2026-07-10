@@ -14,8 +14,6 @@ Inside a Hydra Head, transactions use the same format as Cardano Layer 1. **Fees
 
 If you have put a Redis cache in front of a Postgres database, the model is familiar: Layer 1 is the durable source of record, and the Head is the fast, temporary layer shared by a known set of participants. Depositing funds loads state into that fast layer, the participants transact there with no per-operation cost, and fanout flushes the agreed final state back to Layer 1, with the contestation period acting as a grace window to catch a disagreement before it finalizes. The trade-off is the same as a cache cluster: you pay a Layer 1 cost to open and close the Head, but everything inside is fast and free.
 
-> Runnable end-to-end example (two participants on preprod): [examples/bootcamp/09-hydra](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp/09-hydra).
-
 ## The security model
 
 A Head runs on **unanimous consensus**. Every confirmed Layer 2 transaction produces a new **snapshot** of the Head's state, and a snapshot only counts once every participant has signed it. That is a much stronger requirement than the majority or two-thirds thresholds of Layer 1 consensus protocols, and it buys a correspondingly strong guarantee: your funds cannot move without your signature, and the [Hydra Head paper](https://eprint.iacr.org/2020/299.pdf) proves the protocol secure as long as even one participant is honest.
@@ -95,10 +93,10 @@ The pattern at scale, from deployments you can inspect:
 
 ## End-to-end flow with MeshJS
 
-The off-chain flow uses `@meshsdk/hydra`. The condensed happy path is below; the [bootcamp example](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/bootcamp/09-hydra) has the full runnable version plus the node-setup shell scripts.
+The off-chain flow uses `@meshsdk/hydra`. The condensed happy path is below; for setting up the hydra-node pair it talks to, see the [Hydra documentation](https://hydra.family/head-protocol/docs/getting-started).
 
 :::info Version note
-This walkthrough follows the commit-phase flow of hydra-node 1.x, matching the runnable bootcamp example. On Hydra 2.x the Head opens directly after `init()` and funds enter through deposits; the Mesh APIs are largely the same, but the head-status events differ.
+This walkthrough follows the commit-phase flow of hydra-node 1.x. On Hydra 2.x the Head opens directly after `init()` and funds enter through deposits; the Mesh APIs are largely the same, but the head-status events differ.
 :::
 
 ### Prerequisites
