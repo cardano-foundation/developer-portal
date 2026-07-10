@@ -10,7 +10,14 @@
      width (it only ever trims the navy side-padding, never the arch/circle).
      min-height stays a floor for narrow/mobile viewports. */
   aspect-ratio: 3024 / 1080;
+  /* The clamp keeps WebKit from deriving the width from min-height via the
+     aspect ratio, which widens the hero past the viewport in Safari */
+  width: 100%;
+  max-width: 100%;
+  /* svh keeps mobile browsers from over-sizing the hero and resizing it when
+     the toolbar collapses on scroll; the vh line is the older-browser fallback */
   min-height: 65vh;
+  min-height: 65svh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -52,6 +59,7 @@
   justify-content: center;
   text-align: center;
   min-height: 45vh;
+  min-height: 45svh;
   max-width: 48rem;
   margin: 0 auto;
 }
@@ -101,10 +109,12 @@
 @media screen and (max-width: 768px) {
   .hero {
     min-height: 55vh;
+    min-height: 55svh;
   }
 
   .heroContent {
     min-height: 40vh;
+    min-height: 40svh;
   }
 }
 
@@ -1125,6 +1135,7 @@ html[data-theme="dark"] .scLearnOverlay {
   text-decoration: none !important;
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   color: #fff;
 }
