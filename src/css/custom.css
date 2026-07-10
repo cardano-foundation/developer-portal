@@ -81,6 +81,10 @@ html[data-theme="dark"] {
   transform: translateY(-5px);
 }
 
+.theme-doc-card-icon {
+  display: none;
+}
+
 .footer--dark {
   background-color: #232323 !important;
 }
