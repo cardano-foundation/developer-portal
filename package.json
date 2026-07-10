@@ -52,5 +52,8 @@
     "docusaurus-plugin-llms": "0.4.0",
     "satori": "^0.26.0",
     "sharp": "^0.35.3"
+  },
+  "resolutions": {
+    "sharp": "^0.35.3"
   }
 }
