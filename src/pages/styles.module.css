@@ -719,6 +719,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   padding: 1rem 1.25rem;
   border-radius: 16px;
   background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%);
+  min-width: 0;
 }
 
 .quickstartLeft {
@@ -748,6 +749,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .quickstartDocBtn {
@@ -782,6 +784,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   padding: 1rem 1.25rem;
   border-radius: 16px;
   background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%);
+  min-width: 0;
 }
 
 .quickstartBadge2 {
@@ -859,6 +862,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   flex: 1;
   white-space: nowrap;
   border: none;
+  min-width: 0;
 }
 
 .cliPrompt {
@@ -872,6 +876,12 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   flex: 1;
   border: none;
   box-shadow: none;
+  /* Long commands scroll inside the pill instead of widening the page on
+     narrow viewports (grid/flex items otherwise refuse to shrink below the
+     nowrap command's width and force horizontal page scroll). The copy
+     button stays pinned outside the scroll area. */
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .copyBtn {
