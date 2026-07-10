@@ -19,12 +19,10 @@ export default function DropdownNavbarItem({mobile = false, ...props}) {
     Array.isArray(props.customProps.columns);
 
   // On mobile or when not marked as mega, fall back to the original behavior.
-  // Strip our custom config keys first: the original component forwards
-  // unknown props all the way to the <a> element, where React warns about
-  // non-DOM attributes like `mega` and `customProps`.
+  // Strip mega-specific props so they don't leak onto DOM elements.
   if (!mega || isMobile) {
-    const {mega: _mega, customProps: _customProps, ...rest} = props;
-    return <OriginalDropdownNavbarItem mobile={mobile} {...rest} />;
+    const {customProps, mega: _mega, ...passthroughProps} = props;
+    return <OriginalDropdownNavbarItem mobile={mobile} {...passthroughProps} />;
   }
 
   const columns = props.customProps.columns;
