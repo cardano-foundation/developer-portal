@@ -3,7 +3,6 @@ id: scaffolding
 title: Project scaffolding
 sidebar_label: Scaffolding
 description: Start a Cardano dApp from a runnable template instead of a blank directory, with starter templates today and the cardano-init tool on the way.
-image: /img/og/og-developer-portal.png
 ---
 
 ## Introduction

@@ -3,7 +3,6 @@ id: koios
 title: Koios
 sidebar_label: Koios
 description: Community-driven, open-source Cardano API with REST and GraphQL endpoints.
-image: /img/og/og-getstarted-koios.png
 ---
 
 [Koios](https://koios.rest) is a **provider** your SDK can target: a decentralized, open-source API layer for querying Cardano across mainnet, testnets, and guildnet. Unlike a single hosted service, it is served by a community cluster of nodes (with optional self-hosting), so there is no single point of failure. Run it as a light web service or deploy your own instance with custom endpoints and automatic failover.
@@ -16,7 +15,7 @@ Access the full API documentation at [api.koios.rest](https://api.koios.rest). K
 
 Each endpoint provides sample curl commands you can execute directly from your browser for testing.
 
-![Koios API documentation](/img/get-started/koios/1-usage.png)
+![Koios API documentation](./img/1-usage.png)
 
 ### Rate Limits
 

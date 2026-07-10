@@ -3,7 +3,6 @@ id: mint-nft
 title: Mint an NFT
 sidebar_label: Mint an NFT
 description: Mint a one-of-one NFT on Cardano with CIP-25 metadata, using Evolution, Mesh, or cardano-cli.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

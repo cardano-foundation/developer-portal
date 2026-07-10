@@ -3,10 +3,9 @@ id: overview
 title: Build a dApp
 sidebar_label: Overview
 description: Connect Cardano to your application (wallets, payments, oracles, and AI agents) and build DeFi protocols on the eUTXO model.
-image: /img/og/og-developer-portal.png
 ---
 
-![Integrate Cardano](/img/card-integrate-cardano-title.svg)
+![Integrate Cardano](./img/card-integrate-cardano-title.svg)
 
 This module is about meeting users where they are: connecting Cardano to web apps, services, and protocols. Whether you're adding a "connect wallet" button, accepting ADA payments, feeding real-world prices into a contract, or building a full DeFi protocol, the building blocks live here.
 

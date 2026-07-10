@@ -3,7 +3,6 @@ id: ai-assisted-development
 title: Set up your AI assistant
 sidebar_label: Set up your AI assistant
 description: Use AI coding assistants to build on Cardano with current, authoritative context instead of stale training data.
-image: /img/og/og-developer-portal.png
 ---
 
 If you build with an AI coding assistant, this is a quick, optional setup step worth doing now: it pays off across every module that follows.
@@ -47,3 +46,4 @@ Reach for these only when you're working in Mesh and want more than Cardano Dev 
 ## Next steps
 
 - [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): build, sign, and submit a payment on testnet, then read it back from the chain
+- [Connect an AI assistant with MCP](/docs/developers/curriculum/dapps/ai-agents/mcp): beyond writing code, let an assistant read your live Cardano state and draft transactions you sign

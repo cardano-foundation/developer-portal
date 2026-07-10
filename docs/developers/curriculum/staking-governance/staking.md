@@ -3,7 +3,6 @@ id: staking
 title: Staking
 sidebar_label: Staking
 description: Cardano's non-custodial delegation model and how to register, delegate, withdraw rewards, query stake, and run a pool programmatically, with Evolution, Mesh, and cardano-cli.
-image: /img/og/og-developer-portal.png
 ---
 
 import Tabs from '@theme/Tabs';

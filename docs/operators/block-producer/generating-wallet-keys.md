@@ -3,7 +3,6 @@ id: generating-wallet-keys
 title: Generating Wallet Keys
 sidebar_label: Generating Wallet Keys
 description: Generate the payment and stake keys needed to register a Cardano stake pool.
-image: ../img/og-developer-portal.png
 ---
 
 :::info version reference

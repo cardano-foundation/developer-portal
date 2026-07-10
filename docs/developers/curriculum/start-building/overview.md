@@ -3,7 +3,6 @@ id: overview
 title: Setup & First Transaction
 sidebar_label: Overview
 description: Set up a Cardano dev environment, pick your tools, and send your first transaction on testnet.
-image: /img/og/og-developer-portal.png
 ---
 
 This is the hands-on on-ramp. By the end you will have a working environment, your tool of choice installed, and a real transaction submitted to a Cardano testnet, all without spending real ADA. It assumes you have the mental model from [Cardano Fundamentals](/docs/developers/curriculum/fundamentals/overview) and its [Core Concepts](/docs/developers/curriculum/fundamentals/core-concepts/overview); if a concept here is unfamiliar, those pages explain it.

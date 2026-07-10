@@ -14,7 +14,7 @@ import {
 
 import styles from "./styles.module.css";
 
-const OG_IMAGE = "https://developers.cardano.org/img/og/og-builder-tools.png";
+const OG_IMAGE = "https://developers.cardano.org/img/og/og-builder-tools.jpg";
 
 function CopyButton({ text }) {
   const [copied, setCopied] = useState(false);

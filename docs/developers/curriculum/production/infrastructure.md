@@ -3,7 +3,6 @@ id: infrastructure
 title: Production Infrastructure
 sidebar_label: Infrastructure
 description: The Cardano developer stack, from managed APIs to your own node and indexers, and how to choose the right infrastructure for a production dApp.
-image: /img/og/og-developer-portal.png
 ---
 
 Every application needs more than business logic: databases, APIs, hosting, monitoring, and staging environments. Cardano is no different. This page maps the developer infrastructure stack, from running your own full node to using managed API services, and helps you choose based on your needs for decentralization, performance, cost, and convenience.
@@ -25,7 +24,7 @@ graph TD
     App[Your application\nweb app, mobile app, CLI] --> TX[Transaction building\nEvolution, Mesh, cardano-cli]
     TX --> API[Chain query / submission\nBlockfrost, Koios, Maestro]
     API --> NI[Node interface\nOgmios, cardano-submit-api]
-    NI --> IDX[Chain indexers\nKupo, db-sync, Scrolls, Oura]
+    NI --> IDX[Chain indexers\nKupo, db-sync, Yaci Store, Oura]
     IDX --> Node[cardano-node\nfull chain copy, validation, consensus]
     style App fill:#9C27B0,color:#fff
     style TX fill:#2196F3,color:#fff
@@ -65,6 +64,8 @@ Between the raw node and high-level APIs sit two translators:
 - **Ogmios**: exposes the node's binary mini-protocols as WebSocket JSON: chain-sync (stream blocks), transaction submission, state queries, and mempool monitoring. Ideal for custom indexers and real-time chain following.
 - **cardano-submit-api**: a minimal HTTP service that accepts a serialized transaction and submits it to a local node.
 
+Both are translations of the node's own wire protocol, which you can also speak directly; see [the network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol).
+
 ```text
 Transaction submission options:
   cardano-cli           local, CLI:        cardano-cli transaction submit --tx-file signed.tx
@@ -80,6 +81,9 @@ Indexers follow the chain and store it in formats your app can query, something 
 - **cardano-db-sync**: the comprehensive IOG indexer; populates PostgreSQL (40+ tables) for full historical SQL. Heavy: ~150+ GB and a 2-3 day initial sync. Best for explorers and analytics.
 - **Kupo**: a lightweight indexer that tracks only UTXOs matching patterns you configure (by address, policy ID, etc.). Fast sync (hours), low resources, datum resolution. Ideal for dApp backends.
 - **Scrolls / Oura** (TxPipe): event pipelines: Scrolls reduces chain data into stores like Redis or Elasticsearch; Oura streams on-chain events to Kafka, webhooks, or files for reactive, event-driven systems.
+- **Yaci Store** (BloxBean): a modular Java indexer where you enable only the stores you need (blocks, UTXOs, metadata, staking, governance), with plugin-based filtering and Blockfrost-compatible REST on top of your own database. See [Indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics).
+
+A fourth option collapses the layers instead of adding one: a **data node**. [Dolos](/docs/developers/curriculum/production/api-providers/dolos) is a single process that syncs the ledger directly from relays and serves Blockfrost-compatible, Kupo-compatible, gRPC, and node-to-client APIs from embedded storage, replacing the node + indexer + API stack for read-and-submit backends at a few GB of RAM. The trade-off: it trusts the relays it syncs from rather than validating trustlessly, and it cannot produce blocks.
 
 ## Testnets are your staging environments
 
@@ -106,6 +110,7 @@ Common patterns:
 |---|---|---|
 | Hobby / learning | Blockfrost free tier + Preview | Zero infra to manage, fast iteration |
 | Production dApp backend | Kupo + Ogmios + cardano-node (self-hosted), or Maestro (managed) + Preprod staging | Fast UTXO queries at your script addresses, full control or managed reliability |
+| Self-hosted backend, minimal ops | Dolos data node | One process serving a local Blockfrost-compatible API, no separate node or database |
 | Block explorer / analytics | db-sync + PostgreSQL + node | Comprehensive historical SQL |
 | Event-driven app | Oura + Kafka/Redis + Blockfrost | React to on-chain events in near real-time |
 | Enterprise / high-throughput | Maestro dedicated + multiple nodes + Scrolls | SLAs, dedicated infra, custom indexing |
@@ -114,6 +119,7 @@ Common patterns:
 graph TD
     Q{What do you need?} -->|Simple queries, learning| BF[Blockfrost free tier]
     Q -->|Production dApp| KO[Kupo + Ogmios + node]
+    Q -->|Self-hosted, low footprint| DO[Dolos data node]
     Q -->|Full historical data| DB[db-sync + PostgreSQL]
     Q -->|Real-time events| OU[Oura + Kafka/Redis]
     Q -->|Enterprise SLA| MA[Maestro dedicated]
@@ -124,7 +130,7 @@ graph TD
 
 - **Running your own node is the sovereign, trustless option** but carries real ops overhead, unnecessary for most app developers, and a Mithril snapshot makes the sync fast when you do.
 - **Managed APIs (Blockfrost, Koios, Maestro) trade control for convenience**, like managed databases.
-- **Indexers turn raw chain data into queryable formats**: db-sync for full SQL, Kupo for lightweight UTXO tracking, Scrolls/Oura for event pipelines.
+- **Indexers turn raw chain data into queryable formats**: db-sync for full SQL, Kupo for lightweight UTXO tracking, Scrolls/Oura for event pipelines, and a Dolos data node when you want the whole read stack in one process.
 - **Use testnets as staging**: Preview to iterate, Preprod to rehearse, local devnets for the fastest loop.
 - **Choose per layer, by your needs**: most teams combine approaches (managed APIs in dev, self-hosted or dedicated in production).
 
