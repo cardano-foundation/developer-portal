@@ -957,7 +957,7 @@ export const BuilderTools = [
     icon: "/img/tool-icons/cardanovsc.png",
     description: "VS Code extension for Cardano smart contract development, with Haskell and Plutus syntax highlighting, code completion, on-chain queries via Blockfrost and CardanoScan, and script-address generation from compiled Plutus contracts.",
     website: "https://marketplace.visualstudio.com/items?itemName=AIQUANT-TECHNOLOGIES.cardanovsc",
-    docs: "https://github.com/AIQUANT-Tech/CardanoVSC/tree/main/CardanoVSC#readme",
+    docs: null,
     repository: "https://github.com/AIQUANT-Tech/CardanoVSC",
     category: "dev-env",
     properties: ["haskell"],
