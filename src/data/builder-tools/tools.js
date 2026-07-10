@@ -488,6 +488,16 @@ export const BuilderTools = [
     properties: ["rest"],
   },
   {
+    title: "NOWNodes",
+    icon: "/img/tool-icons/nownodes.jpg",
+    description: "Hosted Cardano API exposing Blockfrost-compatible REST, Rosetta, and Ogmios WebSocket endpoints.",
+    website: "https://nownodes.io",
+    docs: "https://nownodes.gitbook.io/ada-cardano-1",
+    repository: null,
+    category: "api",
+    properties: ["rest", "websocket"],
+  },
+  {
     title: "Hydra",
     icon: "/img/tools/hydra.png",
     description: "Layer 2 scaling protocol for Cardano using isomorphic state channels (Hydra Heads) to move transactions off-chain.",
