@@ -7,7 +7,7 @@ description: Secure your private keys on a network-free machine — Nix bootable
 
 An air-gapped machine is one that has never made a network connection and never will. Cold keys — pool registration keys, Constitutional Committee signing keys, any key that authorizes high-value operations — must be handled on a machine that meets this bar. If your cold key ever touches an internet-connected machine, it should be considered compromised.
 
-You have two paths to an air-gapped environment:
+You have three paths to an air-gapped environment:
 
 <details>
 <summary><strong>cardano-airgap — Nix bootable ISO (recommended)</strong></summary>
