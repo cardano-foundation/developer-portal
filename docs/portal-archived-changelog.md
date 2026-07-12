@@ -3,7 +3,6 @@ id: portal-old-changelog
 title: Archived developer portal changelog
 sidebar_label: Archived Changelog
 description: Archived developer portal changelog, February 28, 2021 - June 30,2024
-image: /img/og/og-developer-portal.png
 ---
 
 This changelog is no longer in use and is for reference purposes only. Please see https://github.com/cardano-foundation/developer-portal/releases for any update after June 30, 2024.

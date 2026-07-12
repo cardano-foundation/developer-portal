@@ -16,13 +16,13 @@
 }
 
 html[data-theme="light"] .hero {
-  background-image: url(/img/dev-portal-hero-light.webp);
+  background-image: url(/img/home/dev-portal-hero-light.webp);
   background-color: var(--site-color-brand-blue);
   color: #fff;
 }
 
 html[data-theme="dark"] .hero {
-  background-image: url(/img/dev-portal-hero-dark.webp);
+  background-image: url(/img/home/dev-portal-hero-dark.webp);
   background-color: var(--site-color-brand-teal-dark);
   color: #fff;
 }

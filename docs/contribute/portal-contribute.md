@@ -3,7 +3,6 @@ id: portal-contribute
 title: How to contribute to the developer portal
 sidebar_label: How to contribute
 description: How to contribute to the Cardano developer portal.
-image: /img/og/og-developer-portal.png
 ---
 
 We wanted to build a developer portal as open and inclusive as Cardano - a portal in the hands of the Cardano community that can be constantly evolved by it.
@@ -173,6 +172,15 @@ If your submission was rejected, reviewers will typically provide specific feedb
 A: No, never commit `yarn.lock` changes. This file is managed by maintainers. If you accidentally committed it, remove it with: `git checkout staging -- yarn.lock && git commit -m 'revert yarn.lock'`
 
 For more details on the GitHub workflow, see [CONTRIBUTING.md](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md).
+
+## Add a dApp Template or Contract
+
+Two more curated surfaces live under [/templates](https://developers.cardano.org/templates):
+
+- **App starters** are runnable front-end dApp projects you scaffold in one command. To add one, follow [`examples/templates/README.md`](https://github.com/cardano-foundation/developer-portal/blob/staging/examples/templates/README.md).
+- **The contract library** is a use-case index (escrow, vesting, HTLC...) that links out to on-chain and off-chain implementations. To add an entry, follow [`src/data/contracts/README.md`](https://github.com/cardano-foundation/developer-portal/blob/staging/src/data/contracts/README.md).
+
+Both are curated like Builder Tools: canonical and maintained, pointing at the established source rather than forking code into the portal. Each entry is validated by `yarn build`, and the same submitter requirements and review process above apply.
 
 ## Contributing Documentation
 

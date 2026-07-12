@@ -66,8 +66,8 @@ module.exports = {
   url: "https://developers.cardano.org",
   baseUrl: "/",
   trailingSlash: true,
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenAnchors: "warn",
   favicon: "img/favicon.ico",
   organizationName: "cardano-foundation",
   projectName: "developer-portal",
@@ -77,6 +77,9 @@ module.exports = {
   },
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
   },
   themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
@@ -107,7 +110,7 @@ module.exports = {
     announcementBar: isAnnouncementActive ? {
       id: "announcement_index11", // Any value that will identify this message + increment the number every time to be unique
       content:
-        `<strong>Join the Cardano developer talent pool and stay in the loop on upcoming hackathons. <a href="/hackathons/">Sign up here!</a></strong>`,
+        `<strong>Join the Cardano developer talent pool and stay in the loop on upcoming hackathons. <a href="/talent/">Sign up here!</a></strong>`,
       backgroundColor: "#2AA18A",
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
@@ -115,7 +118,7 @@ module.exports = {
 
     // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
     // Relative to your site's "static" directory, cannot be SVGs.
-    image: "img/og/og-developer-portal.png",
+    image: "img/og/og-developer-portal.jpg",
     metadata: [
       { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, stake pool, Web3" },
     ],
@@ -134,8 +137,8 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/cardano-black.svg",
-        srcDark: "img/cardano-white.svg",
+        src: "img/brand/cardano-black.svg",
+        srcDark: "img/brand/cardano-white.svg",
       },
 
       items: getNavbarItems(repository),
@@ -209,7 +212,7 @@ module.exports = {
               href: "https://www.cardanofoundation.org",
             },
             {
-              label: "Development Updates",
+              label: "Developer Activity",
               href: "https://cardanoupdates.com",
             },
             {
@@ -226,6 +229,7 @@ module.exports = {
   },
   plugins: [
     "./plugins/tools-routes",
+    "./plugins/templates-routes",
     [
       "@docusaurus/plugin-ideal-image",
       {

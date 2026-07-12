@@ -14,6 +14,7 @@ function getNavbarItems(repository) {
       items: [
         {to: "/docs/developers/", label: "Start Here"},
         {to: "/tools/", label: "Builder Tools"},
+        {to: "/templates/", label: "Templates"},
         {to: "/docs/developers/curriculum/start-building/ai-assisted-development", label: "Cardano Dev Skills"},
         {to: "/docs/developers/exchange-integrations", label: "Exchange Integration"},
         {to: "/docs/community/cardano-developer-community/", label: "Community"},
@@ -30,6 +31,7 @@ function getNavbarItems(repository) {
             items: [
               {to: '/docs/developers/', label: 'Start Here', description: 'The 7-module developer curriculum, zero to shipping', icon: 'book-solid'},
               {to: '/tools', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'wrench-solid'},
+              {to: '/templates', label: 'Templates', description: 'Runnable dApp starters you can scaffold in one command', icon: 'code-solid'},
               {to: '/docs/developers/curriculum/start-building/ai-assisted-development', label: 'Cardano Dev Skills', description: 'Give your AI coding assistant current, authoritative Cardano context', icon: 'plug-solid'},
               {to: '/docs/developers/exchange-integrations', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration for exchanges', icon: 'building-solid'},
             ],
@@ -78,7 +80,7 @@ function getNavbarItems(repository) {
       label: 'Ecosystem',
       position: 'left',
       items: [
-        {to: "blog/", label: "Dev Blog"},
+        {to: "/blog/", label: "Dev Blog"},
         {href: "https://www.addevent.com/calendar/TG807216", label: "Developer Office Hours"},
         {href: "https://cardanoupdates.com/", label: "Developer Activity"},
         {href: "https://cips.cardano.org/", label: "CIPs"},
@@ -116,6 +118,7 @@ function getNavbarItems(repository) {
       href: repository,
       position: "right",
       className: "header-github-link",
+      "aria-label": "GitHub repository",
     },
   ];
 }

@@ -3,7 +3,6 @@ id: funding
 title: Funding and grants
 sidebar_label: Funding
 description: Ways to fund your project on Cardano, from community grants to the on-chain treasury and open-source maintenance.
-image: /img/og/og-developer-portal.png
 ---
 
 Cardano funds builders through several independent channels. They change over time. Rounds open and close, programs move between stewards, and new ones appear, so treat this as a map of the landscape and follow each link for the current status. There is no single right door. Pick the avenues that fit what you are building and how far along you are.

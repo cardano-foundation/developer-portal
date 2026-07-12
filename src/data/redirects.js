@@ -558,7 +558,7 @@ const redirects = [
     from: '/docs/build/smart-contracts/languages/aiken/advanced-data-structures/trie',
   },
   {
-    to: '/docs/developers/curriculum/smart-contracts/contracts-library',
+    to: '/templates/contracts',
     from: ['/docs/build/smart-contracts/languages/aiken/smart-contract-library', '/docs/build/smart-contracts/smart-contract-library'],
   },
   {
@@ -685,7 +685,7 @@ const redirects = [
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator', from: '/docs/build/smart-contracts/lessons/practical/avoid-redundant-validation' },
   { to: '/docs/developers/curriculum/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/practical/interpreting-blueprint' },
   { to: '/docs/developers/curriculum/smart-contracts/lock-and-spend', from: '/docs/build/smart-contracts/lessons/practical/vesting' },
-  { to: '/docs/developers/curriculum/smart-contracts/contracts-library', from: '/docs/build/smart-contracts/lessons/practical/plutus-nft' },
+  { to: '/templates/contracts', from: '/docs/build/smart-contracts/lessons/practical/plutus-nft' },
   { to: '/docs/developers/curriculum/production/hydra', from: '/docs/build/smart-contracts/lessons/practical/hydra' },
   { to: '/docs/developers/curriculum/dapps/connect-a-wallet', from: '/docs/build/smart-contracts/lessons/practical/web3-services' },
   // Legacy flat lesson URLs (pre theory/practical split) -> module homes:
@@ -696,7 +696,7 @@ const redirects = [
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator', from: '/docs/build/smart-contracts/lessons/05-avoid-redundant-validation' },
   { to: '/docs/developers/curriculum/smart-contracts/write-a-validator', from: '/docs/build/smart-contracts/lessons/06-interpreting-blueprint' },
   { to: '/docs/developers/curriculum/smart-contracts/lock-and-spend', from: '/docs/build/smart-contracts/lessons/07-vesting' },
-  { to: '/docs/developers/curriculum/smart-contracts/contracts-library', from: '/docs/build/smart-contracts/lessons/08-plutus-nft' },
+  { to: '/templates/contracts', from: '/docs/build/smart-contracts/lessons/08-plutus-nft' },
   // --- Curriculum restructure (PR #1810): old prod URLs -> new homes ---
   {
     to: '/tools?tags=sdk',
@@ -1007,8 +1007,8 @@ const redirects = [
   { to: '/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-value', from: '/docs/build/smart-contracts/advanced/security/vulnerabilities/unbounded-value' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention', from: '/docs/build/smart-contracts/advanced/security/vulnerabilities/utxo-contention' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/uplc', from: '/docs/build/smart-contracts/advanced/uplc' },
-  { to: '/docs/developers/curriculum/smart-contracts/contracts-library', from: '/docs/build/smart-contracts/example-contracts' },
-  { to: '/docs/developers/curriculum/smart-contracts/contracts-library', from: '/docs/developers/curriculum/smart-contracts/example-contracts' },
+  { to: '/templates/contracts', from: '/docs/build/smart-contracts/example-contracts' },
+  { to: '/templates/contracts', from: '/docs/developers/curriculum/smart-contracts/example-contracts' },
   { to: '/docs/developers/curriculum/start-building/networks-and-test-ada', from: '/docs/get-started/networks/development-networks/overview' },
   { to: '/docs/developers/curriculum/dapps/ai-agents/masumi', from: '/docs/build/integrate/ai-agents/masumi' },
   { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/build/integrate/ai-agents/overview' },

@@ -4,7 +4,7 @@ title: "NOWPayments Interview"
 authors: [cf]
 tags: [payment, interview]
 description: "September Spotlight Interview"
-image: https://developers.cardano.org/img/og/og-blog-nowpayments.png
+image: https://developers.cardano.org/img/og/blog/nowpayments.png
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -13,8 +13,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
  [<ThemedImage
 alt="title image"
 sources={{
-    light: useBaseUrl('/img/devblog/nowpayments-white.png'),
-    dark: useBaseUrl('/img/devblog/nowpayments-dark.png'),
+    light: useBaseUrl('/img/blog/devblog/nowpayments-white.png'),
+    dark: useBaseUrl('/img/blog/devblog/nowpayments-dark.png'),
   }}
 />](https://nowpayments.io)
 

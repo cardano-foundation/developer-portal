@@ -3,7 +3,6 @@ id: deployment
 title: Block Producer Deployment
 sidebar_label: Deployment
 description: Issue the operational certificate and securely transfer credentials from your air-gapped machine to the block producer.
-image: ../img/og-developer-portal.png
 ---
 
 :::info version reference

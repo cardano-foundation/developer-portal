@@ -458,11 +458,11 @@ function MetaData() {
     <Head>
       <meta
         property="og:image"
-        content="https://developers.cardano.org/img/og/og-builder-tools.png"
+        content="https://developers.cardano.org/img/og/og-builder-tools.jpg"
       />
       <meta
         name="twitter:image"
-        content="https://developers.cardano.org/img/og/og-builder-tools.png"
+        content="https://developers.cardano.org/img/og/og-builder-tools.jpg"
       />
     </Head>
   );

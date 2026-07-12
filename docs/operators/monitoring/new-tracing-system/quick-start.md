@@ -281,6 +281,35 @@ Please make sure to enable the `PrometheusSimple` backend **if and only if** you
 
 ---
 
+#### 5. Example: tracing Ouroboros Genesis sync
+
+To debug a Genesis-mode sync (a node stuck in `PreSyncing` or `Syncing`), raise the Genesis component namespaces to `Debug`. The GSM transition events already appear at the default `Notice` severity; the CSJ jump events and per-peer BlockFetch decisions are `Info` or `Debug` and stay hidden until you raise them:
+
+```yaml
+Consensus.GSM:               { severity: Debug }
+Consensus.CSJ:               { severity: Debug }
+Consensus.GDD:               { severity: Debug }
+Consensus.DevotedBlockFetch: { severity: Debug }
+BlockFetch.Decision:         { severity: Debug, detail: DMaximum }
+ChainSync.Client:            { severity: Debug }
+Net.PeerSelection:           { severity: Debug }
+Net.ConnectionManager:       { severity: Debug }
+```
+
+Debug-level Genesis tracers are noisy. Rate-limit the high-volume namespaces and silence the low-signal ones:
+
+```yaml
+BlockFetch.Decision.PeersFetch:                          { maxFrequency: 1.0 }
+ChainSync.Client.DownloadedHeader:                       { maxFrequency: 1.0 }
+ChainSync.Client.ValidatedHeader:                        { maxFrequency: 1.0 }
+ChainDB.AddBlockEvent.TrySwitchToAFork:                  { severity: Silence }
+Net.ConnectionManager.Remote.ConnectionManagerCounters:  { severity: Silence }
+```
+
+For what these events mean and how to read a Genesis sync stall against the components that emit them, see the consensus reference [Observing and Debugging Genesis Sync](https://ouroboros-consensus.cardano.intersectmbo.org/docs/references/miscellaneous/genesis_observability).
+
+---
+
 ### Node-side configuration of new tracing: other fields
 
 In addition to providing a `TraceOptions` entry, the new tracing system introduces additional configuration values in the node configuration file:
