@@ -516,4 +516,64 @@ module.exports = {
       ],
     },
   ],
+
+  onboardingSidebar: [
+    {
+      type: "doc",
+      id: "developers/onboarding/introduction/overview",
+      label: "Introduction",
+    },
+    {
+      type: "category",
+      label: "Quick Start",
+      collapsed: false,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/quick-start/overview",
+      },
+      items: [
+        "developers/onboarding/quick-start/tools-overview",
+        "developers/onboarding/quick-start/set-up-environment",
+        "developers/onboarding/quick-start/on-chain-atomic-swap",
+        "developers/onboarding/quick-start/off-chain-atomic-swap",
+        "developers/onboarding/quick-start/integrate-frontend",
+      ],
+    },
+    {
+      type: "category",
+      label: "Beginner",
+      collapsed: true,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/beginner/overview",
+      },
+      items: [
+        "developers/onboarding/beginner/lecture-1",
+      ],
+    },
+    {
+      type: "category",
+      label: "Intermediate",
+      collapsed: true,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/intermediate/overview",
+      },
+      items: [
+        "developers/onboarding/intermediate/lecture-1",
+      ],
+    },
+    {
+      type: "category",
+      label: "Advanced",
+      collapsed: true,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/advanced/overview",
+      },
+      items: [
+        "developers/onboarding/advanced/lecture-1",
+      ],
+    },
+  ],
 };

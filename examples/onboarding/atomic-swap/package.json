@@ -1,0 +1,15 @@
+{
+  "name": "onboarding-atomic-swap",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Onboarding example: the Atomic Swap dApp. Runnable, tested code imported directly into the onboarding docs.",
+  "type": "module",
+  "scripts": {
+    "test": "node --import tsx --test build-tx.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.9.0"
+  }
+}

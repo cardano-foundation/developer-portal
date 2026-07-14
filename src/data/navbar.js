@@ -12,6 +12,7 @@ function getNavbarItems(repository) {
       label: 'Developers',
       position: 'left',
       items: [
+        {to: "/docs/developers/onboarding/introduction/overview", label: "Onboarding"},
         {to: "/docs/developers/", label: "Start Here"},
         {to: "/tools/", label: "Builder Tools"},
         {to: "/templates/", label: "Templates"},
@@ -29,6 +30,7 @@ function getNavbarItems(repository) {
             title: 'Learn & Build',
             icon: 'book-solid',
             items: [
+              {to: '/docs/developers/onboarding/introduction/overview', label: 'Onboarding', description: 'Hands-on, do-it-now path — every step ends in a real result', icon: 'book-solid'},
               {to: '/docs/developers/', label: 'Start Here', description: 'The 7-module developer curriculum, zero to shipping', icon: 'book-solid'},
               {to: '/tools', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'wrench-solid'},
               {to: '/templates', label: 'Templates', description: 'Runnable dApp starters you can scaffold in one command', icon: 'code-solid'},
