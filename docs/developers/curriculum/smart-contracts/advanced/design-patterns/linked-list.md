@@ -57,6 +57,12 @@ NFTs serve as robust and unique pointers within the list. Their uniqueness is en
 - **No reference scripts**: Elements are required to have no scripts attached to them, keeping the API manageable
 - **Address flexibility**: While continued anchor nodes are validated to go to the same address, new/removed nodes only validate that payment credentials match, allowing customization of staking parts
 
+### Membership and non-membership proofs
+
+Sorting the list by key turns it into a proof structure. Because every node points to the next and keys only increase, a single node answers a membership question without traversing anything. To prove a key K **is** present, exhibit the node whose key equals K. To prove K is **absent**, exhibit the one node whose key is smaller than K while its link is larger: the two adjacent keys straddle K, so no node for K can sit between them. Either way the proof is one UTxO, read as a reference input, not a walk over the whole list. This is the reason to reach for the ordered `insert_ascending`/`insert_descending` over `append_unordered`: only a sorted list supports these proofs, and `get_element_info` is the primitive that reads a node's key and link so another script can check the straddle.
+
+That absence proof is what makes the list a uniqueness-enforcing set or a live registry. Ordered insertion can never place a duplicate key, so a policy that appends a node for every asset it mints guarantees no asset is minted twice. And because a proof is a single node read as a reference input, an unrelated contract can attest that some party is, or is not, already in a directory of registered participants without spending or scanning the list.
+
 ## Aiken Implementation
 
 The API handles all linked list structural validations internally, pointer updates, key ordering, NFT minting/burning, and element authentication. Your contract only needs to provide application-specific validations through callback functions (`additional_validations`).

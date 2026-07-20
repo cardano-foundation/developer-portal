@@ -2,7 +2,7 @@
 id: write-a-validator
 title: Write a Validator
 sidebar_label: Write a validator
-description: "Author the on-chain code: Aiken validator types (minting, spending, withdrawing), what a validator sees in the transaction, native scripts for multisig, and the blueprint that bridges to off-chain."
+description: "Author the on-chain code: Aiken validator types (minting, spending, withdrawing, certificates), what a validator sees in the transaction, native scripts for multisig, and the blueprint that bridges to off-chain."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -20,9 +20,9 @@ If you have written web middleware, this is familiar: a validator is like route 
 
 Building validators means reasoning about transactions. A validator can inspect the whole `Transaction` it's validating (the full type is in the [Aiken stdlib](https://aiken-lang.github.io/stdlib/cardano/transaction.html)): its `inputs` and `outputs`, `reference_inputs`, `mint`, `extra_signatories`, and `validity_range`. For what each field means, see the [field breakdown in Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#the-transaction-as-the-validator-sees-it); the examples below show how you read them in Aiken.
 
-## The three validator types
+## The main validator types
 
-Most validators are one of three types, distinguished by what triggers them:
+Most validators are one of a handful of types, distinguished by what triggers them:
 
 ```mermaid
 flowchart TD
@@ -30,9 +30,11 @@ flowchart TD
     TX -->|"mints or burns under this policy"| MINT["mint: minting validator"]
     TX -->|"spends a UTXO at the script address"| SPEND["spend: spending validator"]
     TX -->|"withdraws rewards from the script stake address"| WITHDRAW["withdraw: withdrawal validator"]
+    TX -->|"publishes a certificate for the script stake credential"| PUB["publish: certificate validator"]
     MINT --> R["returns True / False"]
     SPEND --> R
     WITHDRAW --> R
+    PUB --> R
 ```
 
 ### Minting validator
@@ -85,6 +87,8 @@ validator minting_policy(owner_vkey: VerificationKeyHash, minting_deadline: Int)
 ```
 
 Helpers like `key_signed`, `valid_before`, and `check_policy_only_burn` come from the [vodka](https://github.com/sidan-lab/vodka) library. Minting policies are also covered, with off-chain minting, in [Native tokens > Minting policies](/docs/developers/curriculum/native-tokens/minting-policies).
+
+Note that `key_signed` checks that the owner's key is *among* the signatories, not that it is the only one. Prefer that membership form over exact equality like `[owner_vkey] == tx.extra_signatories`: requiring the signatory list to equal exactly one key means no other script in the same transaction can add its own required signer, so the validator stops composing with anything else.
 
 #### One-shot policies
 
@@ -141,14 +145,27 @@ validator hello_world {
 
 Runs when a transaction withdraws from the script's reward account. Withdrawal validators must be **registered** on-chain first (the `publish` handler validates registration/deregistration). Their main use isn't staking. It's the **withdraw-zero trick**, where a spending validator delegates its logic to a withdrawal validator that runs once for the whole transaction instead of once per input. That is the principle of [avoiding redundant validation](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview#avoid-redundant-validation), implemented as the [Stake Validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) pattern.
 
-```aiken
-validator always_succeed(_key_hash: VerificationKeyHash) {
-  withdraw(_redeemer: Data, _credential: Credential, _tx: Transaction) {
-    True
-  }
+When the script's funds *are* delegated and earning, the handler has a second job: deciding what may happen to real rewards. A withdrawal just moves lovelace from the reward account into the transaction; nothing routes it anywhere by default. If the rewards belong to the protocol rather than to whoever built the transaction, the handler has to say so. This one requires every withdrawn lovelace to arrive in the script's treasury UTXO, identified by a beacon NFT minted under the script's own hash:
 
-  publish(_redeemer: Data, _certificate: Certificate, _tx: Transaction) {
-    True
+```aiken
+validator treasury {
+  withdraw(_redeemer: Data, account: Credential, tx: Transaction) {
+    expect Script(own_hash) = account
+    // The treasury UTXO carries the beacon NFT of this script's own policy
+    expect Some(treasury_in) =
+      list.find(
+        tx.inputs,
+        fn(i) { quantity_of(i.output.value, own_hash, "treasury") == 1 },
+      )
+    expect Some(treasury_out) =
+      list.find(
+        tx.outputs,
+        fn(o) { quantity_of(o.value, own_hash, "treasury") == 1 },
+      )
+    // Whatever leaves the reward account must arrive there
+    expect Some(withdrawn) = pairs.get_first(tx.withdrawals, account)
+    lovelace_of(treasury_in.output.value) + withdrawn
+      == lovelace_of(treasury_out.value)
   }
 
   else(_) {
@@ -157,9 +174,42 @@ validator always_succeed(_key_hash: VerificationKeyHash) {
 }
 ```
 
+How the reward account came to be registered, and which pool it delegates to, are certificate events. Those belong to the `publish` handler.
+
+### Certificate validator
+
+Runs when a transaction publishes a **certificate** involving the script's stake credential: registering it, delegating it to a pool, deregistering it. Funds at a script address stake like any other funds, so `publish` is where the script sets its own staking policy.
+
+That assumes the stake part of the script's address points at the script, which is a choice, not a given. A script address's stake credential can just as well be the **depositor's own key**: the locked funds then keep earning staking rewards for that user with no on-chain staking logic at all, because delegation and reward withdrawal are authorized by the stake witness independently of the payment credential. Production lending protocols stake their pools' idle liquidity exactly this way, and the one on-chain obligation falls on the *spend* handler: continuing outputs must preserve the full address, or the user's rewards stream silently ends. Point the stake credential at the script instead and staking becomes protocol policy, which is what the handlers here govern. Leave it unset, or unchecked on outputs, and you are donating the rewards, or inviting the [insufficient staking control](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control) vulnerability.
+
+A useful split for the script-controlled case: registration is open, it costs the sender a deposit and merely switches the reward account on, so someone else registering for you is usually a favor; delegation is privileged, because which pool the protocol's funds back is policy; and everything unplanned is refused:
+
+```aiken
+validator stake_policy(admin: VerificationKeyHash) {
+  publish(_redeemer: Data, certificate: Certificate, tx: Transaction) {
+    when certificate is {
+      // Open: costs the sender a deposit, enables the reward account
+      RegisterCredential { .. } -> True
+      // Privileged: only the admin chooses where the funds delegate
+      DelegateCredential { .. } -> list.has(tx.extra_signatories, admin)
+      // Everything else, deregistration included, is refused
+      _ -> False
+    }
+  }
+
+  else(_) {
+    fail @"unsupported purpose"
+  }
+}
+```
+
+The explicit `when` is doing more work than it looks. A `publish` handler that returns `True`, or a permissive `else`, lets anyone deregister the stake credential, which halts reward accrual and breaks every pattern that relies on the withdrawal being available, the denial-of-service dissected on the [certificate deregistration](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/certificate-deregistration) page. Refusing the certificates you did not plan for is the defense.
+
+"Registration is a favor" holds only for credentials that are *meant* to earn. A credential that exists purely for withdraw-zero forwarding must refuse registration and delegation too: if an attacker registers it and delegates it to a pool, real rewards start accruing, and every transaction builder that hardcoded a zero-amount withdrawal quietly breaks. Decide which kind of credential you are writing before choosing what the handler permits.
+
 ## One validator, many purposes, one hash
 
-The three types above are not mutually exclusive. A single `validator` block can define more than one handler, and they compile to **one script with one hash**. That hash is at once the **minting policy ID** (for the `mint` handler) and the **payment credential of the script address** (for the `spend` handler): the policy and the address are two faces of the same script.
+These validator types are not mutually exclusive. A single `validator` block can define more than one handler, and they compile to **one script with one hash**. That hash is at once the **minting policy ID** (for the `mint` handler) and the **payment credential of the script address** (for the `spend` handler): the policy and the address are two faces of the same script.
 
 ```aiken
 validator protocol {
@@ -183,13 +233,17 @@ validator protocol {
 flowchart TB
     V["validator protocol<br/>one script, hash = H"]
     V -->|"mint handler"| P["Policy ID = H<br/>mints the state NFT"]
-    V -->|"spend handler"| S["Script credential = H<br/>guards the config UTXO"]
+    V -->|"spend handler"| S["Payment credential = H<br/>guards the config UTXO"]
+    V -->|"withdraw / publish handlers"| W["Stake credential = H<br/>governs rewards & delegation"]
     style V fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
     style P fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
     style S fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style W fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
 Because both handlers share the hash, each can name the other by it, with no circular parameter to resolve first. The `mint` handler can require that the NFT it creates lands at its own script address, and the `spend` handler can require that same NFT be present in the UTXO it guards. That mutual reference is the backbone of the [on-chain configuration](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#on-chain-configuration) pattern, and the same shared-hash idea drives [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter) for [efficient batch validation](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview#avoid-redundant-validation).
+
+The hash has a third face: it is also a valid **stake credential**. Build the script's address with `H` as both the payment part and the stake part, and the `spend`, `withdraw`, and `publish` handlers all describe one self-contained protocol: the spend handler can recover its own stake credential from the input it is validating (`own_input.output.address.stake_credential`) and require that credential to appear in `tx.withdrawals`, which is precisely the forwarding shape the [Stake Validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) pattern generalizes, with no second script hash to wire in as a parameter. The treasury example above leans on the same identity from the other side: its `withdraw` handler finds the treasury UTXO by a beacon NFT whose policy ID is the script's own hash.
 
 One script serving several purposes was possible under Plutus V1 and V2 as well; Plutus V3 and Aiken's multi-handler syntax make it first-class and add the Conway governance purposes (`vote`, `propose`).
 
@@ -357,6 +411,8 @@ Codegen covers the common case, but you should be able to read a `plutus.json` d
 - **A sum type is an `anyOf`.** Each entry is one constructor, with an `index` (its on-chain tag) and positional `fields`. So `MyRedeemer` with `MintToken` at `index: 0` and `BurnToken` at `index: 1` tells you exactly how to build the redeemer by hand: `MintToken` is constructor 0 with no fields, `BurnToken` is constructor 1. That is precisely what you pass as `mConStr0([])` (Mesh) or `Constr 0 []` (raw) when no generated codec is doing it for you.
 
 Read it that way (preamble, then a validator, then the schemas it names, then the definitions those point at) and a blueprint is a complete, language-agnostic description of how to talk to the contract.
+
+One consequence worth exploiting: the compiler only emits schemas for types reachable from some validator's parameter, datum, or redeemer signature. If a type *is* your integration contract, say, an order datum that any third-party contract may create and your protocol will accept from anywhere, you can force it into the blueprint with a deliberate no-op **documentation validator**: a `spend` handler that names the type in its signature and returns `True`, never meant to be deployed. The blueprint then carries the canonical, machine-readable schema of the datum for every integrator, which is exactly the OpenAPI role described above.
 
 ## Key takeaways
 Every validator is a **pure function**: it receives transaction context and returns `True` or `False`. No side effects, no storage writes, no network calls. The runtime only applies state changes if the validator approves, fundamentally different from a web2 backend that both validates and mutates.

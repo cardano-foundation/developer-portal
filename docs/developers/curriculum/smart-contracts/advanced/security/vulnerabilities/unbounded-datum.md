@@ -7,8 +7,6 @@ description: "How unbounded datums increase transaction costs and can block smar
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
 
-## 4. Unbounded datum
-
 **Identifier:** `unbounded-datum`
 
 **Property statement:**
@@ -25,7 +23,7 @@ A transaction can successfully lock in the protocol a legit UTxO with a datum su
 **Further explanation:**
 A common design pattern that introduces such vulnerability can be observed in the following excerpt:
 
-```rust
+```haskell
 data MyDatum = Foo {
   users :: [String],
   userToPkh :: Map String PubKeyHash

@@ -8,8 +8,6 @@ aliases: ["Infinite Mint"]
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
 
-## 2. Other token name
-
 **Identifier:** `other-token-name`
 
 **Property statement:**
@@ -26,11 +24,11 @@ A transaction can successfully mint a token with token name different than the i
 **Further explanation:**
 A common coding pattern that introduces such a vulnerability can be observed in the following excerpt:
 
-```rust
+```haskell
 myPolicy par red ctx = do
-  …
+  ...
   assetClassValueOf txInfoMint ownAssetClass == someQuantity
-  …
+  ...
 ```
 
 Note that on Cardano, a token is defined by its asset class, which consists of two parts: the currency symbol and the token name. The currency symbol is the hash of the minting policy containing the rules controlling the minting and burning of the token. The token name can be any string with a maximum length of 32 bytes.
@@ -39,11 +37,11 @@ The above minting policy checks that a specific asset class is found within the 
 
 The most straight-forward coding pattern to use in order to prevent such a vulnerability can be observed in the following excerpt:
 
-```rust
+```haskell
 myPolicy rmr ctx = do
-  …
+  ...
   txInfoMint == (assetClassValue ownAssetClass someQuantity)
- …
+  ...
 ```
 
 The fixed minting policy checks that only someQuantity of tokens are being minted, and all of them have the same asset class. Of course, this might be too restrictive if tokens with other currency symbols need to be minted in the same transaction. If this is the case, a slightly more complex solution will be needed.
@@ -54,7 +52,7 @@ The fixed minting policy checks that only someQuantity of tokens are being minte
 
 > From [Mesh Bad Contracts](https://github.com/MeshJS/mesh)
 
-Infinite mint is a vulnerability where there is no strict restriction on minting a particular policy where malicious players can mint more than desired tokens from one transaction. Normally it comes from when the validator checks against whether a particular token has been minted without strictly prohibiting other tokens from minting. This vulnerability is dangerous when a complex application relies on certain policy ID for authentication, while malicious players can produce uncontrolled circulation of token with that policy ID, leading to complex hacking scenarios causing loss of funds.
+Infinite mint is the same bug seen from the minting side: a policy that does not strictly bound what it mints lets an attacker mint more tokens than intended in a single transaction. It usually comes from a validator that checks *that* a particular token was minted without prohibiting other tokens under the same policy. It is dangerous when an application trusts a policy ID for authentication, because an attacker can then put an uncontrolled supply of that policy's tokens into circulation and use them to forge that trust.
 
 ### Code examples
 
