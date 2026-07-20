@@ -130,7 +130,7 @@ No single primitive does the job alone: hashes provide integrity and binding, Me
 
 ## What are Verifiable Random Functions (VRFs)?
 
-A VRF combines a signature with a random number generator: given a private key and an input, it produces a random output that is unpredictable without the private key, plus a proof anyone can verify with the public key. In Cardano's Ouroboros protocol, the slot number is the input and a pool's VRF key decides whether it "wins" the right to produce a block, making block-producer selection both random and verifiable. This is covered in depth in [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros).
+A VRF combines a signature with a random number generator: given a private key and an input, it produces a random output that is unpredictable without the private key, plus a proof anyone can verify with the public key. In Cardano's Ouroboros protocol, the slot number is the input and a pool's VRF key decides whether it "wins" the right to produce a block, making block-producer selection both random and verifiable. This is covered in depth in [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros). VRFs are not consensus-only machinery either: a smart contract can verify VRF proofs itself, covered in [BLS signatures, VRFs & credentials](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives#verifiable-random-functions) once you reach the smart contract module.
 
 ## What are zero-knowledge proofs?
 

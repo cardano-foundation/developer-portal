@@ -151,6 +151,8 @@ A few ledger features shape how you design contracts:
 
 A validator's rules cannot be changed after deployment, and the compiled code cannot be turned back into source.
 
+That permanence runs one way only. On-chain code keeps working unchanged for as long as the chain exists, across hard forks and new ledger eras. Off-chain code is the opposite: it depends on details that shift between eras, such as fee parameters and how transactions are assembled, so it has to be kept current and re-tested as the network evolves. The validator you deployed years ago still judges by the same rules; the code that builds transactions against it may need maintenance to keep up.
+
 ## Choose a language
 
 Validators can be written in several languages that all compile to the same on-chain bytecode (UPLC). For most new projects, **[Aiken](https://aiken-lang.org)** is the recommended starting point. See **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)** for the full comparison (Aiken, Plinth, Plutarch, OpShin, Scalus, Pebble, Marlowe).

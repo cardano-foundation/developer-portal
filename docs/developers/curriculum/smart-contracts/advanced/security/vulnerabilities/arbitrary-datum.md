@@ -7,8 +7,6 @@ description: "How the arbitrary datum vulnerability allows unexpected datum valu
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
 
-## 3. Arbitrary datum
-
 **Identifier:** `arbitrary-datum`
 
 **Property statement:**

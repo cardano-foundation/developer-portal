@@ -2,133 +2,78 @@
 id: double-satisfaction
 title: Double Satisfaction
 sidebar_label: Double satisfaction
-description: Classic double satisfaction vulnerability stems from using multiple contracts in the same transaction when they do not expect it. Each contract's validator validates the transaction independently and they all must be satisfied for the transaction to be validated by the blockchain.
+description: "The double-satisfaction vulnerability: when several validators in one transaction are each satisfied by the same output, so one payment covers many obligations."
 aliases: ["Multiple Satisfaction"]
 ---
 
-> Following sections can be found also at this [blog](https://medium.com/@invariant0/cardano-vulnerabilities-1-double-satisfaction-219f1bc9665e)
+> Adapted from [Invariant0's Cardano vulnerabilities series](https://medium.com/@invariant0/cardano-vulnerabilities-1-double-satisfaction-219f1bc9665e).
 
-Cardano smart contracts are very different from the ones on Ethereum. To represent its blockchain, Cardano uses the Unspent Transaction Output (UTxO) model. A simplification is that the blockchain is a list of unspent transactions, and the only thing we can do is spend them (though since the Vasil fork, we can also reference inputs without spending them).
+Cardano validates a transaction against the rules of *every* input independently, and every validator sees the same transaction. Double satisfaction is the bug that follows: when two validators each look for "an output that pays me", one output can satisfy both, so an attacker meets two obligations while paying for one.
 
-A transaction can be seen as a change of some already existing UTxOs into some new UTxOs. Each UTxO has some rules attached to it that detail what transaction can spend it. Cardano blockchain only validates a transaction if it follows rules for every single of its inputs. There are some additional rules imposed by the Cardano blockchain, for example, the sum of Ada on inputs and outputs must match (except for the fees, which are omitted here for simplicity).
+## A payment contract
 
-This model is pretty simple to understand if you disregard smart contracts. For usual UTxOs, there are explicit rules on how to spend them. The most common rule is the public-key hash UTxO, the transaction that spends it needs to be signed by a corresponding private key. This can be seen in the next image:
+Take a `BuyNFT` contract that sells an NFT to whoever pays the seller. Its datum holds two fields:
 
-![DS-1](../img/ds-1.png)
+- **seller**: the address the buyer must pay.
+- **price**: how much the buyer must pay.
 
-Alice pays Bob 20 ADA so she uses 2 of her UTxOs and signs the transaction.
+The rule is one line: the spending transaction contains an output to `seller` worth at least `price`.
 
-Cardano brings an extension to this UTxO model in the form of smart contracts. While UTxOs on a public-key hash address can be spent by signing the transaction with the owner's private key, UTxOs at smart contract addresses can be spent only by transactions that follow rules written in the smart contracts. These rules are called validators and can be written in programming languages such as Plutus, Plutarch, or Aiken. The validator is a pure function, its result depends only on the inputs to the function. The inputs to validators are:
+![Paying the seller unlocks the BuyNFT UTXO](../img/ds-2.png)
 
-1) Validated transaction, the validator can check anything about the transaction being validated including inputs, outputs, or minted tokens.
-2) Datum of the validated UTxO, this is some data attached to the UTxO that validators can use. The datum can represent the address of the owner, the price of the sold NFT, or more complex structures.
-3) UTxO redeemer, this is just any data that the spender can attach to the transaction. For example, if the smart contract can perform multiple actions, it's common to insert the name of the action we want to perform inside the redeemer.
-Nothing else comes into the validation process. For multiple smart contracts to interact, they all need to be included as inputs for the transaction in which they interact.
+The contract deliberately says nothing about the NFT itself. Alice only cares that she is paid, and what Eve does with the NFT afterward is her business. (If Alice locks no NFT in the contract, Eve simply sees an empty offer and does not spend it.)
 
-Consider a simple smart contract that will be used in all of the following examples, smart contract BuyNFT. The purpose of the contract is to sell an NFT to any buyer who is willing to pay the price to the seller. From this purpose, the datum of the smart contract can be viewed as a pair of:
+## The attack
 
-The seller of the NFT, an address, the contract needs to know who the buyer should pay.
-The price to pay, an integer, the contract needs to know how much the buyer should pay.
-With the datum defined as a pair of price and seller, you can write a simple validation rule for the smart contract:
+Alice lists two NFTs as two separate `BuyNFT` UTXOs. Buying both should mean paying both sellers:
 
-At least price ADA went to the address seller.
-More formally, the validator of BuyNFT checks that the transaction spending it contains an output UTxO to the address seller with the value of at least price ADA. A transaction that follows this rule satisfies the contract.
+![Two offers, expected to require two payments](../img/ds-3.png)
 
-![DS-2](../img/ds-2.png)
+But each validator checks the transaction on its own, and both see the same outputs. So Eve consumes both offers and pays Alice once:
 
-The BuyNFT UtxO can only be spent if 100ADA goes to Alice.
+![One payment satisfies both validators](../img/ds-4.png)
 
-A small detail to notice is that the contract doesn't force anything on the NFT or what should be done with it. It doesn't need to, as the only thing that Alice is interested in is getting the money when Eve spends the BuyNFT UTxO. What Eve does with the NFT doesn't need to be specified in the contract. On the other hand, if Alice creates the BuyNFT contract and doesn't put any NFT into it, Eve can see that the contract is empty and does not spend the BuyNFT UTxO.
+Both validators find an output paying Alice at least the price, both pass, and Eve buys two NFTs for the price of one. She satisfied two conditions where she should have satisfied one.
 
-## The double satisfaction
+## Escalating defenses, and why they fall short
 
-The classic double satisfaction vulnerability stems from using multiple contracts in the same transaction when they do not expect it. Each contract's validator validates the transaction independently and they all must be satisfied for the transaction to be validated by the blockchain.
+**Forbid a second copy of the same script.** A first fix makes each `BuyNFT` validator reject any transaction that spends another UTXO under the same validator hash. That stops two `BuyNFT` offers colliding. But when the contract is later updated to `BuyNFTv2`, the new hash differs from the old, and Eve can pair an old offer with a new one:
 
-Imagine that Alice wants to sell 2 different NFTs, so she creates 2 different BuyNFT contracts. If someone wants to buy both NFTs, Alice would expect them to use the contract this way:
+![Two different script hashes sidestep the same-hash check](../img/ds-5.png)
 
-![DS-3](../img/ds-3.png)
+**Forbid every other script.** So each validator must reject *any* other script among the inputs, not just its own. Stronger, but still not enough, because minting policies and staking scripts are validators too:
 
-Alice would expect Eve to use multiple BuyNFT UTxOs only if Eve pays for each of them.
+- A **minting policy** that lets anyone mint `AToken` by paying Alice 100 ADA is satisfied by the very same payment that satisfies a `BuyNFT` offer.
 
-However, because each validator validates the transaction independently of the second validator, if Eve pays just 120 ADA, both validators still pass:
+![Double satisfaction between a spending script and a minting policy](../img/ds-6.png)
 
-![DS-4](../img/ds-4.png)
+- A **staking script** that releases rewards to Alice's address is satisfied the same way: Eve withdraws the rewards and uses that payment to buy the NFT.
 
-Both validators see the same output UTxO with 120 ADA going to Alice so they are satisfied.
+**Double satisfaction within one script.** Even a single contract can double-satisfy itself. Suppose a 10% fee is added: 90% of the price to the seller, 10% to the operator, Bob. When Bob himself sells an NFT, he should receive both the fee and the price, but Eve can pay him just the price and let it count for both:
 
-So by paying just 120 ADA, Eve could buy both NFTs. This vulnerability is called double satisfaction because Eve satisfies two conditions where she should have satisfied only one.
+![Eve pays 90 ADA for an NFT that should cost 100](../img/ds-8.png)
 
-## Forbidding multiple script inputs
-
-Bob's first idea for disallowing such an attack is a simple one. The problem occurs when there are two UTxOs of the same script on the input, and such a situation can be prevented by the smart contract. He adds a new rule into the BuyNFT smart contract:
-
-The inputs of the transaction contain only a single BuyNFT script UTxO
-Each BuyNFT validator now checks that no other script with the same validator hash (a hash of the validator's code contained in the address of the UTxO) is on the input of the transaction. This is great as we no longer can be vulnerable to double satisfaction between two BuyNFT scripts! Alice therefore happily creates her NFT offers.
-
-After a while, the smart contract is updated with a minor change and Alice starts using the new one, BuyNFTv2 . The minor change, however, changed the script hash of the contract, and all the old NFTs that Alice offered are still locked in the original BuyNFT. These two scripts have different hashes, and therefore can be used in the following transaction by Eve:
-
-![DS-5](../img/ds-5.png)
-
-Eve uses scripts with two different script hashes to perform the double satisfaction attack.
-
-This is where Bob starts to understand that the problem he's dealing with is more difficult than he originally thought. Not only can an attacker utilize previous versions of the BuyNFT script, but the attacker can also utilize any script that Alice uses. Bob must therefore forbid all but one script among the inputs, now each BuyNFT validator checks that it's the only script among the inputs, and doesn't even look at the validator hashes of the other scripts.
-
-This might seem like an overkill, but actually, it's still not enough.
-
-## Minting policies and rewarding scripts
-
-Two other types of smart contracts on Cardano remain to be mentioned.
-
-- Minting policies, these are validators tied to specific tokens (for example, to an NFT). Anytime these tokens are minted or burned, the validator must verify the transaction.
-- Stake validators, validators tied to a staking credential. For now, the most important use case is that such a validator must be successful if relevant staking rewards are withdrawn in a transaction.
-
-The workings of minting policies are very similar to the validators shown earlier, except for a few minor changes (e.g. the minting policies do not contain any datum). You can write complex rules about the transaction. Only transactions fulfilling the rules in a minting policy can mint tokens. For example, Alice makes a minting policy that allows anyone who sends her 100 Ada to mint a single AToken. At the same time, she uses BuyNFT to sell some of her NFTs. By now you should know exactly where this is going;
-
-![DS-6](../img/ds-6.png)
-
-Eve exploits the double satisfaction vulnerability, but this time it's between the script UTxO and the minting policy for AToken.
-
-The same applies to staking scripts, if Alice had a staking credential that allows anyone to withdraw the rewards if the rewards are sent to her address, Eve could withdraw the rewards and buy the NFT with them.
-
-## Double satisfaction in the same script
-
-Bob's head now really starts to hurt and so he forbids all the scripts, minting policies and staking withdrawals. He also adds a fee for himself from each NFT sale. New contract rules are:
-
-At least 0.9 *price Ada go to the address of the seller.
-At least 0.1* price Ada go to the address of Bob.
-There are no smart contracts, minting policies or rewarding scripts in the same transaction.
-When Alice now sells an NFT, the transaction looks like this:
-
-![DS-7](../img/ds-7.png)
-Bob gets 10% of the price of each sold NFT.
-
-There is yet another variant of double satisfaction in this script. If Bob decides to sell an NFT, he should get both the fee and the NFT price. However, Eve doesn't need to pay him the fee, as she can satisfy the condition by just paying him the NFT price.
-
-![DS-8](../img/ds-8.png)
-Eve pays only 90 Ada for the NFT which should cost her 100 Ada.
-
-This is, strictly speaking, not a double satisfaction as the exploit does not satisfy two scripts. But the principle of the attack is so similar that it belongs here. A simple way to prevent this attack is to compute how much Ada should go to which address by summing the different datum fields, and then comparing the result with how much Ada actually goes there. In this case, the computation would require that at least 100 Ada go to Bob, and Eve's malicious attempt would fail.
+The fix for this last case is to compute how much each address is owed by summing the relevant datum fields, then check the actual total paid to each. Here that requires 100 ADA to Bob, and Eve's underpayment fails.
 
 ## Remediation
 
-In general, scripts that expect a payment to be made should:
+A script that expects a payment can, in the strict form:
 
-Ban all other scripts from the transaction inputs.
-Ban all staking withdrawals.
-Ban the minting of all tokens in the transaction.
-As you can see, this is very restricting for the scripts. In many cases, multiple smart contracts need to interact. Some other ways include:
+- ban all other scripts from the transaction inputs,
+- ban all staking withdrawals, and
+- ban minting of any tokens.
 
-Ordering of the inputs and the outputs. The first input's validator only checks the first corresponding output, the second only checks the second, etc. This prevents double satisfaction as each script checks its output independently.
-TxT pattern, the whole validation logic is offloaded from the input validators to the minting policy of a single token. The double satisfaction is more easily prevented because the minting policy is the single point that validates the whole transaction. It can pair the inputs and outputs in any way necessary. Read more about the TxT pattern here.
-Tagging the outputs in some way, this can be done with datums of the output UTxOs or by a mapping of the inputs to the outputs passed via a redeemer.
-However, no amount of prevention can ensure safe interaction of multiple scripts that do not know about each other straight away. That's because each of the scripts can choose a different way to deal with double satisfaction, while a script A can use the ordering of the inputs and the outputs, a script B can use the tagging of outputs. An attacker can then tag the first output and trick both scripts into thinking it's their output.
+That is very restrictive, and many protocols genuinely need several scripts to interact. The looser options each pair an output to its obligation explicitly:
 
-![DS-9](../img/ds-9.png)
-Both scripts check double satisfaction differently so they can both be satisfied.
+- **Ordering.** Match inputs to outputs by position: the first input's validator checks the first output, the second the second, and so on. Each script owns one output.
+- **Tagging.** Tag each output with a unique marker (an output datum, or an input-to-output map passed in the redeemer) so a validator checks *its* output, not just *some* output.
+- **Transaction-level validation.** Offload the whole check to the minting policy of a single token, so one script pairs every input to its output. This is the [transaction-level minter](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter) pattern.
 
-Until a solution is standardized, any interaction between multiple Cardano smart contracts is either forbidden or possibly vulnerable. For now, users can also help prevent double satisfaction themselves by using a unique address for each usage of the script. If Alice did so, Eve could never have exploited the contract as there would never have been two contracts expecting payment to the same address in the first place. This is, however, not always possible in this simple form, for example, when chaining an output of a script to be an input into another.
+No approach fully protects a script against interacting with *other* scripts that do not know about it: script A might defend by ordering while script B defends by tagging, and an attacker can tag the first output and fool both at once:
 
----
+![Two scripts defending differently can still both be satisfied](../img/ds-9.png)
+
+Until an approach is standardized, treat any interaction between mutually unaware scripts as either forbidden or potentially vulnerable. Users can help too: a script deployed at a unique address per usage cannot collide with another expecting payment to the same address, though that is not always possible, for example when chaining one script's output into another.
 
 ## Formal framework
 
@@ -137,20 +82,17 @@ Until a solution is standardized, any interaction between multiple Cardano smart
 **Identifier:** `multiple-satisfaction`
 
 **Property statement:**
-All scripts consider the totality of inputs to the transaction, as well as the totality of minted value and value withdrawn from staking validators when allowing spending, minting or withdrawing value.
+All scripts consider the totality of inputs to the transaction, as well as the totality of minted value and value withdrawn from staking validators, when allowing spending, minting, or withdrawing value.
 
 **Test:**
-A transaction consumes multiple UTxOs, successfully spending the value attributed to each individual UTxO and respecting the conditions under which value could be spent for each individual UTxO, but without respecting the intended aggregate conditions under which the totality of the value could be spent.
-
-More general variations of this test include the cases where the extra value is not being consumed in inputs to the transaction (and therefore subject to validator scripts rules) but rather from minted value controlled by minting polices or value withdrawn from staking validators.
+A transaction consumes multiple UTXOs, spending the value of each individual UTXO while respecting each individual UTXO's conditions, but without respecting the intended *aggregate* condition under which the total value could be spent. More general variants draw the extra value from minted value or staking withdrawals rather than from inputs.
 
 **Impact:**
 
-- Leaking protocol tokens
-- Unauthorised protocol actions
+- Leaking protocol tokens.
+- Unauthorised protocol actions.
 
-**Further explanation:**
-A common coding pattern that introduces such a vulnerability can be observed in the following excerpt:
+**A common vulnerable pattern:**
 
 ```haskell
 vulnValidator __ ctx =
@@ -160,22 +102,14 @@ vulnValidator __ ctx =
     [ownOutput] = getContinuingOutputs ctx
 ```
 
-The above validator ensures that tokens held by a consumed UTxO ('own input') are present in an output that is locked back in the validator ('continuing output' or 'own output').
+This checks that a consumed UTXO's value continues to an output locked back at the validator ("own input" to "own output"). The logic is correct for one UTXO in isolation, but breaks when two outputs at the validator hold the same value. Consider two of them:
 
-Although the logic is correct when considering validation for each UTxO in isolation, things can go wrong when consuming multiple UTxOs from the same script in the same transaction.
-
-For instance, consider the case where there are two outputs at vulnValidator holding the same values:
-
+```text
 Output A - TxOut ($FOO x 1 + $ADA x 2)
 Output B - TxOut ($FOO x 1 + $ADA x 2)
+```
 
-A transaction that spends both of these outputs can steal the value held by one of them by simply paying $FOO x 1 + $ADA x 2 back to the address corresponding to vulnValidator and paying the rest $FOO x 1 + $ADA x 2 to an arbitrary address.
-
-The simplest way of avoiding this vulnerability is to make sure to account for all inputs in the transaction, not only checking that the desired input is present but also that there are not undesired inputs. As these interaction between inputs can happen not only between inputs from the same script but also from different ones, external scripts should be taken into account too. Disallowing extra inputs coming from scripts, or tagging the outputs with an identifier are common ways of dealing with this problem.
-
-Finally, to be completely protected against multiple satisfaction attacks, it should be checked that no other scripts such as minting policies or staking validators are being executed.
-
----
+A transaction that spends both can steal the value of one. It pays `$FOO x 1 + $ADA x 2` back to the validator's address, which satisfies both validator runs (each finds a continuing output holding the expected value), and sends the other `$FOO x 1 + $ADA x 2` to an arbitrary address. The fix is to account for *all* inputs, not only that the desired input is present but that no undesired ones are, and, for full protection, to check that no minting policies or staking validators are also executing.
 
 ## Code examples
 

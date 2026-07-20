@@ -14,7 +14,7 @@ Detecting incoming payments is a core need for shops, payment gateways, donation
 
 Every method follows the same loop:
 
-1. **Generate a payment address** for the order (often shown as a [CIP-13](https://cips.cardano.org/cip/CIP-0013) QR code).
+1. **Generate a payment address** for the order (often shown as a [CIP-13 QR code](#as-a-uri-or-qr-code-cip-13)).
 2. **Display it** to the customer.
 3. **Poll the address** for incoming transactions.
 4. **Compare the received amount** against what you expect.
@@ -170,6 +170,14 @@ Show the amount and recipient before prompting, and handle the wallet's rejectio
 
 - **Provider keys.** The Evolution flow submits through a provider, so its key lives wherever the client runs; in the browser that key is exposed. Mesh's browser wallet submits through the wallet itself, so a plain transfer needs no key client-side. For anything beyond a trivial transfer, prefer building server-side.
 - **App-controlled transactions.** The moment your app contributes its own inputs, a minting policy, or a co-signature, the build moves to the backend and the user only partial-signs. That is the [sponsored and multi-party](/docs/developers/curriculum/dapps/sponsored-transactions) pattern, and the reason [connecting a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) recommends the frontend only sign.
+
+### As a URI or QR code (CIP-13)
+
+The connected-wallet path assumes the payer is already in your dApp with a browser wallet. The other way to request a payment needs no connection at all: encode the request as a [CIP-13](https://cips.cardano.org/cip/CIP-0013) `web+cardano:` URI, a link or QR code the payer opens or scans with a compatible mobile wallet, which opens pre-filled with your address and the amount for them to confirm and sign. This is the phone-first case with no dApp connector involved: a point-of-sale terminal, a code shown on a screen or printed on an invoice, a donation link.
+
+The format is `web+cardano:{address}?amount={ada}`, with the amount in decimal ada. Treat it as send-side convenience only. Wallet support for the amount varies, so it may or may not arrive pre-filled, and nothing tells you the payer scanned the code or what they will actually send. The URI improves the payer's experience but is never the source of truth: you still confirm exactly as [above](#detecting-a-payment), by polling the address for the lovelace you expect. To match a specific incoming payment to a specific request when you can't attach a memo, make the requested amount unique per request; a proper payment identifier on the URI is proposed in a follow-up (CIP-157, still in draft).
+
+For a full device-hosted build of this, a QR payment terminal running on hardware, see [IoT Workshop 05: CIP-13 Integration](/docs/developers/curriculum/dapps/iot/qr-code-payments/02-cip13-integration).
 
 ## Use cases
 

@@ -44,8 +44,6 @@ Safety:
 - With external power, tie grounds together (common ground).
 - Never run the ring at full brightness off the ESP32's 5V pin.
 - Test low first, then ramp up if you have proper external power.
-
-We're not responsible for any damage. Use the right supply and don't get cute with brightness.
 :::
 
 ### Wiring

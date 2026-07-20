@@ -56,6 +56,12 @@ The trick that makes it unpredictable is timing: pick the VRF of a block that do
 
 Oracle-published VRF is a good fit for public, auditable draws where the priority is that outsiders can check the result, and a poor fit where a well-resourced insider could collude with a block producer.
 
+## A VRF the validator itself verifies
+
+The oracle pattern above trusts the publisher unless the contract re-verifies, and re-verifying a *block's* VRF on-chain is not practical. But nothing stops you from running your own VRF: the BLS12-381 builtins let a validator [verify an ECVRF proof directly](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives#verifiable-random-functions), so the proof itself travels in the transaction and the contract enforces its validity, not an operator's signature.
+
+The shape: an operator publishes a VRF public key in advance. Each round's input is public and fixed before the draw, a round number or the hash of a commit transaction. The operator computes the output and its proof off-chain and submits both; the validator checks the proof against the registered key and input. Because a VRF has exactly one valid output per key and input, the operator cannot grind alternatives; their only remaining power is **withholding**, refusing to publish a round they dislike. That shifts the trust from integrity (enforced on-chain) to liveness (mitigate with deposits and deadlines, as with commit-reveal).
+
 ## On-chain entropy to be wary of
 
 Some values sitting in the ledger look random and are not safe to treat as such:
@@ -69,6 +75,7 @@ Some values sitting in the ledger look random and are not safe to treat as such:
 |---|---|
 | A fixed, accountable set of participants who each contribute | Commit-reveal with slashable deposits and a reveal deadline |
 | A public draw where auditability matters more than stopping a determined insider | Oracle-published block VRF, contract-verified where you can |
+| An accountable operator is acceptable, but their honesty about the *value* should not be assumed | Operator-run VRF with the proof verified in the validator; deposits and deadlines against withholding |
 | You only need a weak, non-adversarial nudge | On-chain entropy, with eyes open about its limits |
 | High value, open participation, and a strong adversary | No fully trustless native primitive exists; combine commit-reveal with deposits or a verifiable oracle, and design explicitly against grinding and withholding |
 
@@ -79,10 +86,12 @@ The honest bottom line: match the pattern to your threat model, and state the tr
 - **Validators cannot generate randomness.** Determinism forbids it, so verifiable randomness is constructed, not read.
 - **Commit-reveal is the only fully on-chain-enforceable pattern**, and its Achilles heel is the last revealer; deposits and deadlines are not optional.
 - **Block VRF is verifiable but not visible to a validator**, so it arrives through an oracle you must either trust or re-verify, and it is grindable by block producers.
+- **An operator-run VRF closes the integrity gap**: the validator verifies the proof itself via the BLS12-381 builtins, leaving only withholding to defend against.
 - **No native primitive is unpredictable, verifiable, grind-resistant, and high-entropy all at once.** Choose against your adversary, not against the happy path.
 
 ## Next steps
 
 - [Oracles on Cardano](/docs/developers/curriculum/dapps/oracles/overview): the publication and trust machinery an oracle-delivered random value rides on
+- [BLS signatures, VRFs & credentials](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives#verifiable-random-functions): the mechanics of an ECVRF a validator can verify
 - [Verifiable Random Functions](/docs/developers/curriculum/fundamentals/cryptographic-primitives#what-are-verifiable-random-functions-vrfs): what a VRF is and why its output is verifiable
 - [Time handling](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/time-handling): why a timestamp is not a source of randomness

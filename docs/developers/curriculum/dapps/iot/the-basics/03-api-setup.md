@@ -148,7 +148,7 @@ Epoch number: 252
 
 The output repeats every 60 seconds with fresh blockchain data.
 
-- **Connecting to WiFi…** - joining your network.
+- **Connecting to WiFi...** - joining your network.
 - **HTTP Response Code: 200** - successful API call.
 - **Response** - the full JSON from Koios.
 - **Epoch number** - the value parsed out of the JSON.
@@ -167,7 +167,6 @@ If you see `HTTP Response Code: -1` or connection errors:
 - [REST API Tutorial](https://www.restapitutorial.com/) - REST primer.
 - [Awesome JSON Viewer](https://github.com/rbrahul/Awesome-JSON-Viewer) - browser extension for readable JSON.
 - [Insomnia](https://insomnia.rest/) - free open-source API client.
-
 
 ---
 

@@ -62,6 +62,8 @@ Two practical constraints follow from the builtin design:
 - **Points cross the boundary compressed.** Curve points can only be stored in datums and redeemers in compressed form, 48 bytes for G1, 96 bytes for G2, so every pipeline includes a compression step off-chain and `uncompress` calls in the validator.
 - **Verification is affordable but not free.** A Groth16 verification costs roughly a quarter of one script's CPU budget; a full PLONK verification has been measured around a third. It fits comfortably in a transaction, but budget for it in validator design.
 
+Proof verification is also not all these builtins do: the same operations compose into aggregated [BLS signatures, on-chain key derivation, VRFs, and BBS+ anonymous credentials](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives).
+
 ## Proof systems in use on Cardano
 
 | Proof system | Proof size | Setup | How it reaches Cardano |
