@@ -36,15 +36,15 @@ Blockchains are deterministic systems where they can only see data within their 
 
 Smart contracts execute conditional logic: when event X happens, trigger action Y. Their code runs on a decentralized network, producing the same result every time. This "trustless" quality comes from cryptographic proofs and distributed consensus and no need for a trusted third party.
 
-But here's the catch: smart contracts need real-world data as inputs. A DeFi protocol needs current prices. An insurance contract needs weather data. A prediction market needs event outcomes. This data must be trustworthy because smart contract execution has real economic consequences, and blockchain transactions can't be reversed.
+But smart contracts need real-world data as inputs. A DeFi protocol needs current prices. An insurance contract needs weather data. A prediction market needs event outcomes. This data must be trustworthy because smart contract execution has real economic consequences, and blockchain transactions can't be reversed.
 
 Common oracle use cases:
 
-- **Price Feeds**: Exchange rate changes trigger trades, liquidations, or limit orders in DeFi protocols
-- **Real-World Events**: Weather data triggers crop insurance payouts; flight delays trigger travel insurance claims
-- **Sports & Betting**: Game scores trigger payouts in prediction markets
-- **Cross-Chain Data**: Bridge contracts need information from other blockchains
-- **Supply Chain & IoT**: Tracking requires sensor data, GPS coordinates, shipment verification
+- **Price feeds**: exchange-rate changes trigger trades, liquidations, or limit orders in DeFi protocols.
+- **Real-world events**: weather data triggers crop-insurance payouts; flight delays trigger travel-insurance claims.
+- **Sports and betting**: game scores trigger payouts in prediction markets.
+- **Cross-chain data**: bridge contracts need information from other blockchains.
+- **Supply chain and IoT**: tracking requires sensor data, GPS coordinates, shipment verification.
 - **Randomness**: Raffles, lotteries, and games need a verifiable random draw, which a validator cannot generate itself. See [On-chain randomness](/docs/developers/curriculum/dapps/oracles/randomness)
 
 ## The oracle problem
@@ -55,13 +55,10 @@ DeFi alone is critically dependent on oracle-provided data. But there are many o
 
 ### Key challenges
 
-**Single Point of Failure**: An oracle that pulls from just one data source creates a critical vulnerability. If that source is hacked or malfunctions, every smart contract using that oracle is affected.
-
-**Man-in-the-Middle Attacks**: Data can be intercepted and modified between the source and the blockchain. Preventing this remains challenging.
-
-**Lack of Transparency**: Some oracles don't show how they collect and validate data. You see a price appear on-chain, but have no way to verify where it came from or how it was validated.
-
-**Consensus vs. Authenticity**: Decentralized oracle pools might achieve consensus, all nodes agree on the data but that doesn't guarantee the underlying data source is authentic or accurate. Agreement on bad data is still bad data.
+- **Single point of failure**: an oracle that pulls from just one data source is a critical vulnerability. If that source is hacked or malfunctions, every smart contract using the oracle is affected.
+- **Man-in-the-middle attacks**: data can be intercepted and modified between the source and the blockchain, and preventing this is hard.
+- **Lack of transparency**: some oracles don't show how they collect and validate data. You see a price appear on-chain with no way to verify where it came from.
+- **Consensus vs. authenticity**: a decentralized oracle pool can agree on a value without that value being authentic. Agreement on bad data is still bad data.
 
 ## Oracles on Cardano's eUTXO model
 
@@ -163,7 +160,7 @@ This is also why the [multi-oracle reconciliation](#multi-oracle-validation) abo
 
 ## Security considerations
 
-Oracle security matters because smart contracts depend on accurate external data. Here's how oracles protect against bad data:
+Oracle security matters because smart contracts depend on accurate external data. Oracles defend against bad data in several ways:
 
 ```mermaid
 graph TD

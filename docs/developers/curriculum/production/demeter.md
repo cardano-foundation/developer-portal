@@ -13,11 +13,9 @@ description: Cloud-based Cardano infrastructure platform with managed nodes, ind
 
 Demeter offers managed Cardano services across mainnet, preprod, and preview networks:
 
-**Node Access**: Submit transactions and query blockchain through direct node connectivity
-
-**Indexers**: Query historical ledger data and UTXOs via DB-Sync, Kupo, and Mumak
-
-**RPC Services**: Access blockchain through Ogmios, Submit API, UTxO RPC, and Blockfrost (RYO)
+- **Node access.** Submit transactions and query the chain through direct node connectivity.
+- **Indexers.** Query historical ledger data and UTXOs via DB-Sync, Kupo, and Mumak.
+- **RPC services.** Access the chain through Ogmios, Submit API, UTxO RPC, and Blockfrost (RYO).
 
 Browse the full service catalog at [demeter.run](https://demeter.run).
 
@@ -56,4 +54,7 @@ For complete infrastructure control or stake pool operations, [run your own node
 
 Visit [demeter.run](https://demeter.run) to create an account. See their [documentation](https://docs.demeter.run) for service setup and integration guides.
 
-**Compare with**: [API Providers](/docs/developers/curriculum/production/api-providers/overview) or [Running your own node](/docs/developers/curriculum/production/run-your-own-node)
+## Related
+
+- [API providers](/docs/developers/curriculum/production/api-providers/overview): the hosted and self-hosted alternatives.
+- [Run your own node](/docs/developers/curriculum/production/run-your-own-node): full control instead of managed infrastructure.
