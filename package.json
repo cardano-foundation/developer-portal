@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "docusaurus-plugin-llms": "0.4.0",
+    "raw-loader": "^4.0.2",
     "satori": "^0.26.0",
     "sharp": "^0.35.3"
   },

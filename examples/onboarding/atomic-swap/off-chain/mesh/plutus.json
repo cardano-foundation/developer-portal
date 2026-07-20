@@ -1,0 +1,298 @@
+{
+  "preamble": {
+    "title": "cardano-foundation/atomic-swap",
+    "description": "Aiken contracts for project 'cardano-foundation/atomic-swap'",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.23+unknown"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "mint.token.mint",
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "parameters": [
+        {
+          "title": "owner",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+          }
+        }
+      ],
+      "compiledCode": "5897010100229800aba2aba1aab9faab9eaab9dab9a9bae002488888896600264646644b30013370e900018039baa00189991198008009bac300c300d300d300d300d300d300d300d300d300a3754601800c6eb8c028c020dd5000912cc00400629422b30013371e6eb8c03000401e2946266004004601a002804100b459006180400098041804800980400098021baa0088a4d13656400801",
+      "hash": "e066c6bda9520276cebc618decd6df908358a0bd9e33de43f71e9cc6"
+    },
+    {
+      "title": "mint.token.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "parameters": [
+        {
+          "title": "owner",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+          }
+        }
+      ],
+      "compiledCode": "5897010100229800aba2aba1aab9faab9eaab9dab9a9bae002488888896600264646644b30013370e900018039baa00189991198008009bac300c300d300d300d300d300d300d300d300d300a3754601800c6eb8c028c020dd5000912cc00400629422b30013371e6eb8c03000401e2946266004004601a002804100b459006180400098041804800980400098021baa0088a4d13656400801",
+      "hash": "e066c6bda9520276cebc618decd6df908358a0bd9e33de43f71e9cc6"
+    },
+    {
+      "title": "swap.swap.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/swap~1SwapDatum"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/swap~1SwapAction"
+        }
+      },
+      "compiledCode": "59029501010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cdc3a400530080024888966002600460106ea800e2653001300d00198069807000cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602c00200714a31330020023017001404480a0dd6180a180a980a980a980a980a980a980a980a98089baa009375c602660206ea80062c8070c048c03cdd5000c4c8c966002602a0031325980099baf30153012375400200913232323300100137586030603201044b30010018a518acc004c8cdc49bad3008301737540033001375c6034602e6ea80066eb8c014c05cdd5000c520004888cc88cc004004008c8c8cc0040040248966002003003899192cc004cdc8804000c56600266e3c02000626eacc07c00a00a80ea266008008604600680e8dd7180e8009810000a03c14bd6f7b630112cc004006007132325980099b910060018acc004cdc7803000c4dd6980f001401501c44cc010010c08800d01c1bae301c001301f00140743019001899801001180d000c5282028405c6eacc004c04cdd50011180b180b800c528202030140018b202432330010013758600460226ea8024896600200314bd7044cc896600264b30013370e9002180a1baa001899baf30183015375400201714a08098c014c050dd500144cc058008cc0100100062660080080028090c054004c05800501311809980a180a000a01a3011001300d37546020601a6ea800a2c8058c030dd50040c024dd5001c590070c020004c00cdd5004452689b2b20021",
+      "hash": "d11bcaece81730466ac0a9b089e152046e6b676c322fb8e0968d4daa"
+    },
+    {
+      "title": "swap.swap.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59029501010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cdc3a400530080024888966002600460106ea800e2653001300d00198069807000cdc3a400091119912cc004c00c0062b3001300f37540150028b20208acc004c0200062b3001300f37540150028b20208b201a40342b30013001300c37540051323259800980418071baa00a8992cc004c010c03cdd5000c4c8cc88cc008008004896600200314a115980099b8f375c602c00200714a31330020023017001404480a0dd6180a180a980a980a980a980a980a980a980a98089baa009375c602660206ea80062c8070c048c03cdd5000c4c8c966002602a0031325980099baf30153012375400200913232323300100137586030603201044b30010018a518acc004c8cdc49bad3008301737540033001375c6034602e6ea80066eb8c014c05cdd5000c520004888cc88cc004004008c8c8cc0040040248966002003003899192cc004cdc8804000c56600266e3c02000626eacc07c00a00a80ea266008008604600680e8dd7180e8009810000a03c14bd6f7b630112cc004006007132325980099b910060018acc004cdc7803000c4dd6980f001401501c44cc010010c08800d01c1bae301c001301f00140743019001899801001180d000c5282028405c6eacc004c04cdd50011180b180b800c528202030140018b202432330010013758600460226ea8024896600200314bd7044cc896600264b30013370e9002180a1baa001899baf30183015375400201714a08098c014c050dd500144cc058008cc0100100062660080080028090c054004c05800501311809980a180a000a01a3011001300d37546020601a6ea800a2c8058c030dd50040c024dd5001c590070c020004c00cdd5004452689b2b20021",
+      "hash": "d11bcaece81730466ac0a9b089e152046e6b676c322fb8e0968d4daa"
+    }
+  ],
+  "definitions": {
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "Int": {
+      "dataType": "integer"
+    },
+    "List<swap/PricedAsset>": {
+      "dataType": "list",
+      "items": {
+        "$ref": "#/definitions/swap~1PricedAsset"
+      }
+    },
+    "Option<cardano/address/StakeCredential>": {
+      "title": "Option",
+      "anyOf": [
+        {
+          "title": "Some",
+          "description": "An optional value.",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/cardano~1address~1StakeCredential"
+            }
+          ]
+        },
+        {
+          "title": "None",
+          "description": "Nothing.",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "aiken/crypto/ScriptHash": {
+      "title": "ScriptHash",
+      "dataType": "bytes"
+    },
+    "aiken/crypto/VerificationKeyHash": {
+      "title": "VerificationKeyHash",
+      "dataType": "bytes"
+    },
+    "cardano/address/Address": {
+      "title": "Address",
+      "description": "A Cardano `Address` typically holding one or two credential references.\n\n Note that legacy bootstrap addresses (a.k.a. 'Byron addresses') are\n completely excluded from Plutus contexts. Thus, from an on-chain\n perspective only exists addresses of type 00, 01, ..., 07 as detailed\n in [CIP-0019 :: Shelley Addresses](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0019/#shelley-addresses).",
+      "anyOf": [
+        {
+          "title": "Address",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "payment_credential",
+              "$ref": "#/definitions/cardano~1address~1PaymentCredential"
+            },
+            {
+              "title": "stake_credential",
+              "$ref": "#/definitions/Option<cardano~1address~1StakeCredential>"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/address/Credential": {
+      "title": "Credential",
+      "description": "A general structure for representing an on-chain `Credential`.\n\n Credentials are always one of two kinds: a direct public/private key\n pair, or a script (native or Plutus).",
+      "anyOf": [
+        {
+          "title": "VerificationKey",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        },
+        {
+          "title": "Script",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1ScriptHash"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/address/PaymentCredential": {
+      "title": "PaymentCredential",
+      "description": "A general structure for representing an on-chain `Credential`.\n\n Credentials are always one of two kinds: a direct public/private key\n pair, or a script (native or Plutus).",
+      "anyOf": [
+        {
+          "title": "VerificationKey",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            }
+          ]
+        },
+        {
+          "title": "Script",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "$ref": "#/definitions/aiken~1crypto~1ScriptHash"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/address/StakeCredential": {
+      "title": "StakeCredential",
+      "description": "Represent a type of object that can be represented either inline (by hash)\n or via a reference (i.e. a pointer to an on-chain location).\n\n This is mainly use for capturing pointers to a stake credential\n registration certificate in the case of so-called pointer addresses.",
+      "anyOf": [
+        {
+          "title": "Inline",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/cardano~1address~1Credential"
+            }
+          ]
+        },
+        {
+          "title": "Pointer",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "title": "slot_number",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "transaction_index",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "certificate_index",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/assets/AssetName": {
+      "title": "AssetName",
+      "dataType": "bytes"
+    },
+    "cardano/assets/PolicyId": {
+      "title": "PolicyId",
+      "dataType": "bytes"
+    },
+    "swap/PricedAsset": {
+      "title": "PricedAsset",
+      "anyOf": [
+        {
+          "title": "PricedAsset",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "policy_id",
+              "$ref": "#/definitions/cardano~1assets~1PolicyId"
+            },
+            {
+              "title": "asset_name",
+              "$ref": "#/definitions/cardano~1assets~1AssetName"
+            },
+            {
+              "title": "quantity",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "swap/SwapAction": {
+      "title": "SwapAction",
+      "anyOf": [
+        {
+          "title": "Swap",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "Cancel",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "swap/SwapDatum": {
+      "title": "SwapDatum",
+      "anyOf": [
+        {
+          "title": "SwapDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/cardano~1address~1Address"
+            },
+            {
+              "title": "price",
+              "$ref": "#/definitions/List<swap~1PricedAsset>"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,152 @@
+---
+title: "Get started"
+sidebar_label: "Get started"
+description: "Scaffold a new Cardano project with npx cardano-init, and start building."
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Get started
+
+Spin up a new Cardano project in one command. **[cardano-init](https://github.com/input-output-hk/cardano-init)** scaffolds a complete, ready-to-run project, a smart contract, off-chain code, a local devnet, and a working example, using the tools you choose.
+
+## Start with an AI agent
+
+Let your AI coding agent do the setup. Expand the prompt below, copy it, and paste it to your agent (like Claude Code).
+
+<details>
+<summary>Copy the AI prompt</summary>
+
+```text
+Set up a new Cardano project for me.
+
+First run `npx cardano-init --help` to see the current options, then ask me to choose
+each of these (show me the available values for each):
+- <project-name>
+- <on-chain>      (smart-contract language)
+- <off-chain>     (transaction SDK)
+- <devnet>        (local development network)
+- <infra>         (optional infrastructure, may be more than one)
+
+Then:
+1. If the Cardano Dev Skills aren't installed yet, add them for current Cardano context:
+   https://github.com/cardano-foundation/cardano-dev-skills
+   (In Claude Code, run each of these on its own line, one at a time:
+      /plugin marketplace add cardano-foundation/cardano-dev-skills
+      /plugin install cardano-dev-skills@cardano-dev-skills
+      /cardano-context)
+2. Scaffold the project with my answers:
+   npx cardano-init --name <project-name> --on-chain <on-chain> --off-chain <off-chain> --devnet <devnet>
+3. Build it (just build), run the example's tests (just test), and show me how to start it (just dev).
+```
+
+</details>
+
+:::note
+Installing the skills is a one-time action **you** run in Claude Code, agents can't invoke `/plugin` themselves. Run these **one at a time**, don't paste them together (the first opens a dialog that would swallow the other lines):
+
+1. `/plugin marketplace add cardano-foundation/cardano-dev-skills`
+2. `/plugin install cardano-dev-skills@cardano-dev-skills`
+3. `/cardano-context`
+
+Adding the marketplace only registers it, you still need `/plugin install` before `/cardano-context` exists. Full detail is on the [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development) page.
+:::
+
+## Quickstart
+
+Prefer to do it yourself? Run the scaffolder. `npx` needs nothing installed; the other methods install a `cardano-init` binary you then run directly.
+
+<Tabs groupId="install">
+<TabItem value="npx" label="npx" default>
+
+```bash
+# interactive
+npx cardano-init
+
+# with flags
+npx cardano-init --name my-app --on-chain aiken --off-chain meshjs --devnet yaci
+```
+
+</TabItem>
+<TabItem value="curl" label="curl (macOS / Linux)">
+
+```bash
+# install
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/input-output-hk/cardano-init/releases/latest/download/cardano-init-installer.sh | sh
+
+# interactive
+cardano-init
+
+# with flags
+cardano-init --name my-app --on-chain aiken --off-chain meshjs --devnet yaci
+```
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
+# install
+irm https://github.com/input-output-hk/cardano-init/releases/latest/download/cardano-init-installer.ps1 | iex
+
+# interactive
+cardano-init
+
+# with flags
+cardano-init --name my-app --on-chain aiken --off-chain meshjs --devnet yaci
+```
+
+</TabItem>
+<TabItem value="nix" label="Nix">
+
+```bash
+# interactive
+nix run github:input-output-hk/cardano-init
+
+# with flags
+nix run github:input-output-hk/cardano-init -- --name my-app --on-chain aiken --off-chain meshjs --devnet yaci
+```
+
+</TabItem>
+<TabItem value="cargo" label="Cargo">
+
+```bash
+# install
+cargo install --git https://github.com/input-output-hk/cardano-init
+
+# interactive
+cardano-init
+
+# with flags
+cardano-init --name my-app --on-chain aiken --off-chain meshjs --devnet yaci
+```
+
+</TabItem>
+</Tabs>
+
+Swap the tools to taste, on-chain `aiken` or `scalus`, off-chain `meshjs` or `scalus`, devnet `yaci`, plus optional infrastructure `kupo`, `ogmios`, or `dolos` (needs Docker). Run it with `--help` to see every option.
+
+Then build and run the generated project:
+
+```bash
+cd my-app
+just build   # compile the contract and off-chain code
+just test    # run the example's tests
+just dev     # start the local devnet and the app
+```
+
+You'll need [Node.js](https://nodejs.org/) and [`just`](https://github.com/casey/just). See the [cardano-init docs on GitHub](https://github.com/input-output-hk/cardano-init#readme) for the full command reference and all available options.
+
+## Try it now
+
+Want to see a real project end to end and understand how the pieces fit together? Build an atomic swap step by step in the [Tutorial](/docs/developers/onboarding/quick-start/overview).
+
+## Learn more
+
+Go deeper with the lectures:
+
+- [Beginner](/docs/developers/onboarding/beginner/overview)
+- [Intermediate](/docs/developers/onboarding/intermediate/overview)
+- [Advanced](/docs/developers/onboarding/advanced/overview)
+
+And to get the most from your AI assistant, see [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development).
