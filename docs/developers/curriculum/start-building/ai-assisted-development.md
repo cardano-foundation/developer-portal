@@ -23,10 +23,11 @@ Its scope is the developer toolchain (SDKs, validator libraries, design patterns
 
 ### Add it to your agent
 
-The skills are plain Markdown, so any agent that reads Markdown can use them. In Claude Code, add it from the plugin marketplace:
+The skills are plain Markdown, so any agent that reads Markdown can use them. In Claude Code, add the marketplace and install the plugin:
 
-```bash
+```
 /plugin marketplace add cardano-foundation/cardano-dev-skills
+/plugin install cardano-dev-skills@cardano-dev-skills
 ```
 
 Then run `/cardano-context` once per project to wire the directive into your `CLAUDE.md`. For Codex or other agents, clone the repo and symlink the skills into your project's `.agents/skills` directory, or point the agent at the Markdown directly. See the [repository](https://github.com/cardano-foundation/cardano-dev-skills) for the full list of skills and setup details.
