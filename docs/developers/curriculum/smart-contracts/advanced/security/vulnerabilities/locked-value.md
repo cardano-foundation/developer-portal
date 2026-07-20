@@ -2,12 +2,16 @@
 id: locked-value
 title: Locked Value
 sidebar_label: Locked value
-description: "How the locked value vulnerability permanently locks funds in a UTxO with no recovery path."
+description: "The locked-value vulnerability: a design that permanently traps funds in a UTXO with no way to recover them."
 ---
 
-> From [Mesh Bad Contracts](https://github.com/MeshJS/mesh)
+> Adapted from [Mesh's Bad Contracts](https://github.com/MeshJS/mesh).
 
-Locked value is a design where the application would cause permanent lock of value alike burning value permenantly. It will cause loss of fund and value circulation. However, in some scenarios it might be a intented behaviour to produce umtamperable utxos to serve as single proven source of truth for apps. One should consider the economics and tradeoff against the design choice. In the plutus nft example, locked value vulnerability is not considered as severe since only around 2 ADA would be permenantly lock in oracle.
+**Locked value** is a design where funds become permanently stuck in a UTXO with no way to spend them, the on-chain equivalent of burning them, so the value leaves circulation for good.
+
+Sometimes this is intentional: an untamperable UTXO can serve as a single, provable source of truth that no one, including its creator, can alter. The question is whether the value it traps is worth that guarantee. In the [Plutus NFT example](https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src/plutus-nft/locked-value) only about 2 ADA stays locked in the oracle UTXO, so there it is an acceptable tradeoff rather than a severe bug.
+
+Weigh the economics before adopting a design that locks value: how much is trapped, and what the permanence buys you.
 
 ## Code examples
 
