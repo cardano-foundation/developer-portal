@@ -987,7 +987,7 @@ export const BuilderTools = [
     icon: "/img/tool-icons/pyth.jpg",
     description: "Pull-based oracle delivering low-latency price feeds for crypto, equities, FX, and commodities to Cardano DeFi, sourced from first-party institutional publishers.",
     website: "https://www.pyth.network",
-    docs: "https://docs.pyth.network",
+    docs: "https://docs.pyth.network/price-feeds/pro/integrate-as-consumer/cardano",
     repository: "https://github.com/pyth-network/pyth-crosschain/tree/main/lazer/contracts/cardano",
     category: "oracle",
     properties: ["rest", "websocket"],
