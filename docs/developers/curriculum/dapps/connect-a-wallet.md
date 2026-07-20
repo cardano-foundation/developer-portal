@@ -76,7 +76,7 @@ In React, Mesh also ships a ready-made `<CardanoWallet />` connect button and a 
 
 ## Frontend signs, backend builds and submits
 
-The most important architectural rule for dApps: **the frontend should only sign**. Build and submit transactions on a backend that holds the provider connection, using a read-only view of the user's address. This keeps provider keys off the client and gives you one place to validate what you're asking users to sign.
+The most important architectural rule for dApps: **the frontend should only sign**. Build and submit transactions on a backend that holds the provider connection, using a read-only view of the user's address. This keeps provider keys off the client and gives you one place to validate what you're asking users to sign. When that backend's build logic is packaged as a reusable service behind a standard interface rather than wired into one app, you have a [headless dApp](/docs/developers/curriculum/start-building/transaction-building#headless-dapps).
 
 ```mermaid
 flowchart LR

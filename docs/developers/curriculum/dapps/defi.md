@@ -135,6 +135,52 @@ Impermanent loss: ~5.7%
 
 It's "impermanent" because if the price returns to the original ratio, the loss disappears; it only becomes permanent when the LP withdraws at a different ratio. Trading fees can offset IL, but in volatile periods IL can exceed fee income. Think of it as a "rebalancing cost": the AMM constantly sells the appreciating asset and buys the depreciating one.
 
+## Lending and borrowing
+
+Lending is DeFi's second pillar after DEXes: lenders supply assets to earn interest, borrowers lock collateral to take liquidity without selling what they hold. On Cardano there is no shared mutable "lending market" contract; a lending pool, a loan request, and an active loan are each UTXOs, typically identified by unique NFTs so fakes can't be injected, and every state change is a transaction the validators check. The mechanics below are protocol-independent.
+
+### Overcollateralization and loan-to-value
+
+On a public chain nobody can be pursued into repaying, so loans are **overcollateralized**: the borrower locks collateral worth more than the debt. Two ratios govern a position, both expressed as **loan-to-value (LTV)**, the debt divided by the collateral's current value:
+
+- The **borrow LTV** caps what can be borrowed at origination: at 60%, collateral worth 1,000 ADA supports at most 600 ADA worth of principal.
+- The **liquidation LTV** is the health threshold: if accrued interest grows the debt, or the collateral's price falls, and the ratio crosses it (say 80%), the position becomes liquidatable.
+
+The gap between the two is the safety margin. Debt and collateral are usually different assets, so the ratio is computed by pricing both through [oracle feeds](/docs/developers/curriculum/dapps/oracles/overview) against a common denominator, on Cardano naturally lovelace:
+
+```text
+Collateral: 1,000 ADA                          = 1,000,000,000 lovelace
+Debt: 450 USDx, feed: 1 USDx = 1,600,000       =   720,000,000 lovelace
+LTV = 720 / 1,000 = 72%   above the 60% borrow cap (no further borrowing),
+                          below the 80% liquidation threshold (safe, for now)
+```
+
+### Liquidation
+
+When a position crosses the liquidation threshold or misses a repayment deadline, someone must be able to close it, and in eUTXO that someone is anyone: liquidation is **permissionless**, incentivized by a liquidation fee, and executed in practice by competing bots watching the chain, the same open-market role batchers play on a DEX. What happens to the collateral is a design choice:
+
+- **Direct claim.** The lender or liquidator takes the collateral outright. Simple, but any collateral value above the debt is lost to the borrower.
+- **Dutch auction.** The collateral is offered at a price that starts above the debt and decays in steps over time until a buyer accepts; if the sale clears above the debt, the surplus returns to the borrower. On-chain, the decaying price is a pure function of time computed against the transaction's validity-interval **lower bound**: the earliest moment the transaction could be valid yields the fewest elapsed decay steps and so the highest price, so a buyer can never claim a discount that has not provably elapsed.
+- **DEX / market liquidation.** Rather than handing the collateral to a claimant or running a bespoke auction, the seized collateral is sold on an existing DEX into the borrowed asset, the debt is repaid from the proceeds, and any surplus returns to the borrower. It needs no auction machinery of its own, but it inherits the DEX's liquidity: a thin pool means heavy slippage, and the sale clears at whatever price the pool gives when the swap is batched, not a price the protocol sets.
+
+### Interest
+
+Three interest shapes cover most on-chain lending:
+
+- **Even split**: total repayment is principal plus a flat rate, divided across installments: each installment is `P * (1 + r) / n`.
+- **Amortized**: the classic mortgage formula, each installment `P * i * (1+i)^n / ((1+i)^n - 1)` with per-installment rate `i`; early installments are interest-heavy, later ones repay mostly principal.
+- **Interest-only / perpetual**: no final deadline; each period the borrower pays the interest accrued on the outstanding principal, and reduces the principal whenever they choose.
+
+Which shapes a protocol offers matters less than one property: the validator must be able to recompute the amount owed **deterministically from on-chain data**, the terms in the datum plus the transaction's [validity interval](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time), with no external clock.
+
+### Money math on-chain
+
+None of this uses floating point. Plutus has none, deliberately: consensus needs bit-identical results on every node, so on-chain financial math is integer math.
+
+- **Scaled integers**: rates are integers against a fixed denominator, a 4.5% rate stored as `450` over `10000`.
+- **Rationals**: Aiken's `aiken/math/rational` carries numerator and denominator separately through multi-step formulas (the same tool the [Pyth integration](/docs/developers/curriculum/dapps/oracles/pyth) uses for price scaling), so precision is lost only once, at the final comparison.
+- **Round in one direction, consistently**: round *up* what the user owes, round *down* what the user is owed. A rounding rule that ever favors the caller becomes a crumb-collecting exploit at scale; one that always favors the protocol is merely conservative.
+
 ## Oracles: DeFi's data dependency
 
 DeFi protocols need real-world data: prices for swaps and liquidations, rates for lending. Smart contracts can't query APIs, so **oracles** post verified data on-chain as datums that contracts read via reference inputs. A compromised oracle can make a lending protocol liquidate incorrectly or a stablecoin lose its peg, which makes oracles one of DeFi's most critical and most vulnerable components.
@@ -181,6 +227,14 @@ graph TD
 
 Orders process atomically, contention drops, and the batcher can optimize execution order. The trade-offs: latency (users wait for the batcher) and trust in the batcher (though the validator enforces correctness). Most Cardano DEXes decentralize the role by letting anyone run a batcher for fees. Batchers lean on the [UTXO indexer pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers) to map many order inputs to outputs cheaply on-chain.
 
+A batcher is a continuously running off-chain service, and it takes on the contention it spares users. It keeps its own view of the pending orders. Because the chain moves underneath it, before assembling a batch it re-checks that each queued order UTxO still exists, drops any that a user has since cancelled or spent, and saves enough state to resume after a crash. When one of its transactions loses the race for the shared pool UTxO, it [rebuilds from fresh chain state and retries](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe). It also chooses which orders to include and in what order, following a matching policy (first-come-first-served, largest-first, or whatever maximizes fees). That policy is where a batcher's fairness lives.
+
+Swaps are only one kind of order. Production DEXes run deposits and withdrawals through the same queue, and some add richer types:
+
+- **Donations**: assets paid into the pool with nothing asked back, spread pro-rata across all LPs. An on-chain incentive primitive other protocols can drive automatically.
+- **Signed-intent orders**: the order is posted before its exact terms are set, and an executor fills them in later. The owner's signature covers the whole intent and is bound to that specific order UTXO and a validity window, so it cannot be replayed, the same bind-to-context rule used everywhere else.
+- **Price-record orders**: mint a snapshot of the pool price that other protocols can read without touching the pool. The snapshot is taken at the end of a batch, so sandwiching it only hands an arbitrage opportunity to the next batch.
+
 ### Pool sharding
 
 Another approach splits the pool across multiple UTXOs, each holding a portion of the liquidity, so several transactions execute concurrently against different shards.
@@ -202,6 +256,12 @@ The trade-off is keeping pricing consistent across shards and higher slippage pe
 ### Transaction chaining
 
 A third approach removes the wait rather than the contention. Because validation is [deterministic](/docs/developers/curriculum/smart-contracts/overview#deterministic-validation), a transaction's id, and so its outputs, are known the moment it is built, before it is confirmed. That lets each interaction build on the previous one's not-yet-settled output, forming a chain ordered by its on-chain input dependencies instead of by an off-chain batcher. Protocols use it to keep a batching pipeline moving without waiting on confirmations, and wallets use it to let a user spend change still sitting in the mempool. The concept and its trade-offs are in [transaction chaining](/docs/developers/curriculum/production/transaction-chaining); the build-side code is in [chaining transactions](/docs/developers/curriculum/start-building/transaction-building#chaining-transactions).
+
+### Batcher-free pools
+
+Chaining applied to the pool itself removes the batcher rather than assisting it. There are no order UTXOs and no scooper: each user builds a transaction that spends the pool UTXO directly, performs the swap, and produces the next pool UTXO, and the following user chains onto that output before it confirms. Trades settle as fast as they can be submitted, with no batch cycle to wait on and no operator choosing the sequence. The cost moves rather than disappears: the app now has to track the pool's unconfirmed head and serve it to whoever swaps next, and because many users race to extend the same chain, only one wins each slot while the losers rebuild on fresh state and retry, the [same lost-race handling](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe) a batcher runs internally, now pushed out to every client.
+
+A pool that takes swaps directly also shapes its validator differently. The script guards only the pool: one pool UTXO in, one out, the [constant product](#how-amms-work) preserved after fees, its identifying token intact. It deliberately does not check that the swapper paid themselves the correct amount out, because a user who shortchanges their own output only harms themselves and the pool cannot be drained while its own invariant holds. Constraining just what the script is responsible for keeps validation cheap, but it leaves correct compensation to whoever builds the transaction, and it is the exact opening a [double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction) attack aims at, so a direct-interaction pool must be explicit about how many non-pool inputs and outputs it will accept.
 
 ### Determinism: the compensating advantage
 
@@ -235,6 +295,8 @@ Conform to the rules and your contract inherits the ecosystem's liquidity, users
 Flash loans on Ethereum let users borrow with no collateral as long as they repay within the same transaction. Cardano's eUTXO model prevents this because each transaction must balance its inputs and outputs **at construction time**. You cannot "borrow" assets mid-transaction. The EVM can check repayment at the end of sequential execution; a Cardano transaction must be fully defined before submission.
 
 This is a security advantage: flash loans have been used to manipulate prices and drain DeFi protocols in a single Ethereum transaction. Cardano's model makes those attack vectors much harder.
+
+eUTXO still lets you compose debt operations in a single transaction; what it removes is the *uncollateralized* loan. **Refinancing** is the clear example: you can repay an existing loan with liquidity from a new collateralized loan in one transaction, because both loans are ordinary UTXO flows and the transaction balances at construction time like any other. The only thing ruled out is borrowing with nothing at stake on a promise to repay inside the same transaction.
 
 ## Yield farming and liquidity mining
 

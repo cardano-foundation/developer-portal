@@ -70,9 +70,11 @@ A decentralized network of independent node operators runs a blockchain. On Card
 
 As of 2026, Cardano has roughly 3,000 active stake pools run by independent operators worldwide. No single entity, not even IOG (which built Cardano), controls the network. Decentralization is a spectrum, not a binary, and Cardano's reward design specifically incentivizes spreading stake across many pools.
 
+It helps to separate two properties that are easy to conflate. A system is **distributed** when many independent machines each hold and replicate the data, and **decentralized** when no single party controls it. These are independent axes: a large web service can be highly distributed across data centers yet remain centrally controlled by one company, while a system can be decentralized in authority without being widely distributed. A blockchain deliberately combines both, which is what makes its ledger hard to destroy and hard to capture.
+
 ### Why does decentralization matter for developers?
 
-- **Censorship resistance**: no single entity can block a valid transaction.
+- **Censorship resistance**: no single entity can block a valid transaction. It confirms as long as at least one block producer will include it; only the unanimous refusal of every producer could keep it out, and that agreement would itself be a form of consensus.
 - **Permissionless deployment**: you can deploy a contract without anyone's approval.
 - **Guaranteed execution**: once deployed, a contract runs exactly as written; no one can alter it.
 - **Transparent state**: every participant can verify the entire history.

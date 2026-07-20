@@ -2,12 +2,12 @@
 id: parameter-validation
 title: On-Chain Parameter Validation
 sidebar_label: On-chain parameter validation
-description: Check that a script hash is an instantiation of a unparameterised script.
+description: Check that a script hash is an instantiation of an unparameterised script.
 ---
 
 ## Introduction
 
-When writing onchain code you might encounter a situation where you want to be able to check that a script hash is an instantiation of a unparameterised script.
+When writing onchain code you might encounter a situation where you want to be able to check that a script hash is an instantiation of an unparameterised script.
 It is common for smart contracts to accept parameters (e.g. fees, references to other scripts, magical numbers). Perhaps the most well known example of such a script is the
 one-shot minting policy script, that enforces that the minting policy can only ever succeed once (ie. for NFTs, or fixed-supply fungible tokens).
 
@@ -30,7 +30,7 @@ To allow this validation on-chain, some restrictions are needed:
 1. Parameters of the script must have constant lengths, which can be achieved by having them hashed
 2. Consequently, for each transaction, the resolved value of those parameters must be provided through the redeemer
 3. The dependent script must be provided with CBOR bytes of instances before and after the parameter(s)
-4. Wrapping of instances' logics in an outer function so that there'll be single occurances of each parameter
+4. Wrapping of instances' logics in an outer function so that there'll be single occurrences of each parameter
 
 ### Library Functions
 
@@ -215,4 +215,4 @@ Library implementation: [parameter_validation module](https://github.com/Anastas
 
 This design pattern only works under the assumption that the parameter is constant size (this holds true for `TxOutRef`). If a script accepts parameters with dynamic size (ie. arbitrary size integer / bytestring) then to use it with this design pattern you should modify the parameter to be the hash of the original parameter, and then allow the pre-image to be provided in the tx and verify that it matches the hash.
 
-If you found this design pattern useful, please consider supporting the [builtinApplyParams CIP](https://github.com/cardano-foundation/CIPs/pull/934) which proposes the introduction of a new builtin that would make this pattern much more accessible and robust.
+The proposed [builtinApplyParams CIP](https://github.com/cardano-foundation/CIPs/pull/934) would add a builtin that makes this pattern much more accessible and robust.

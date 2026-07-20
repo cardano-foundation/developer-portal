@@ -5,18 +5,16 @@ sidebar_label: Capture the Flag (CTF)
 description: Learn smart contract security through hands-on vulnerability exploitation in the Cardano CTF game.
 ---
 
-## Cardano CTF: Learn Security by Breaking Things
-
 The Cardano Capture The Flag (CTF) is an interactive security game where developers exploit purposely vulnerable smart contracts to learn about common security issues and prevention techniques. The game is completely open-source and designed for developers, auditors, and security researchers.
 
-### What You'll Learn
+## What you'll learn
 
-- **Smart Contract Vulnerabilities**: Hands-on experience with real Cardano security issues
-- **Aiken Development**: Read and write smart contracts using Aiken
-- **Off-chain integration**: Build the exploit transactions in TypeScript with Lucid Evolution
-- **Security Mindset**: Think like an attacker to build more secure contracts
+- **Smart contract vulnerabilities**: hands-on experience with real Cardano security issues.
+- **Aiken development**: read and write smart contracts using Aiken.
+- **Off-chain integration**: build the exploit transactions in TypeScript with Lucid Evolution.
+- **Security mindset**: think like an attacker to build more secure contracts.
 
-### How It Works
+## How it works
 
 Each level presents a vulnerable smart contract with a sample interaction. Your goal is to:
 
@@ -27,7 +25,7 @@ Each level presents a vulnerable smart contract with a sample interaction. Your 
 
 Challenges progress from basic to advanced, covering the most critical smart contract security issues on Cardano.
 
-### Where to start: the Banking Series
+## Where to start: the Banking Series
 
 If you are new to Cardano security, begin with the **Banking Series**: 14 levels (0 to 13) that grow a deliberately simple bank, deposit and withdrawal, into a real protocol one vulnerability at a time. It is the gentler on-ramp, and each level's fix sets up the next level's flaw, which is exactly how real protocols evolve.
 
@@ -42,7 +40,7 @@ The progression is worth seeing as a whole:
 
 Once the bank stops surprising you, the **original series** (multi-validator protocols, complex transaction construction, deep UTxO specifics) is the full-complexity challenge. Every vulnerability here maps to the [vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview).
 
-### Get Started
+## Get started
 
 **Repository**: [cardano-ctf](https://github.com/Invariant-0/cardano-ctf) (open-source, GPL-3.0)
 
