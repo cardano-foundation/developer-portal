@@ -30,6 +30,6 @@ Typically, a large value could make a transaction fail in three ways:
 **Scenario 3:** if the input UTxO contains a lot of different native tokens and the script logic is such that it must go through and process them, then the transaction might fail due to execution resources (XU limits) being breached. This is the hardest scenario to identify, as it becomes a problem in scripts where unexpected tokens are not taken into account, being easy to forget about them. For instance, if a script had to fold through the value of an input looking for a specific combination of asset class and amount, it would be problematic if that input contained a large amount of asset classes.
 A common case where this problem arises is when the logic of the scripts allow the presence and addition of foreign tokens (i.e. tokens not expected by the protocol).
 
-This problem can be prevented with higher constrains around output values. This is, it is not enough to just check that the expected tokens are included in the locked outputs, but it also should be explicitely checked that only the expected tokens are present, disallowing for any extra tokens.
+This problem can be prevented with tighter constraints on output values: it is not enough to check that the expected tokens are present in the locked outputs, you should also explicitly check that *only* the expected tokens are present, disallowing any extras.
 
 Also, resource consumption monitoring tests should be implemented, and transactions involving maximum expected flows of value should be covered by those tests.

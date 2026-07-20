@@ -23,9 +23,9 @@ A transaction successfully changes or incorrectly sets the staking credential of
 **Further explanation:**
 When writing the logic for a Plutus script, it is easy to focus too much on the set of rules that must be enforced by a validator and start thinking of these rules as solely defining the Cardano addresses. This is, treating validator hashes and addresses interchangeably. An example of such behaviour is illustrated by the following excerpt:
 
-```rust
+```haskell
 vulnValidator __ ctx =
-  traceIfFalse “Must continue tokens” (txOutValue ownInput == contVal)
+  traceIfFalse "Must continue tokens" (txOutValue ownInput == contVal)
   where
     ownInput = txInInfoResolved $ findOwnInput ctx
     ownValidatorHash = ownHash ctx

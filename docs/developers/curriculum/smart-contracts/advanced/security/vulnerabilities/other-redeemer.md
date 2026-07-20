@@ -7,8 +7,6 @@ description: "How the other redeemer vulnerability allows attackers to bypass in
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
 
-## 1. Other redeemer
-
 **Identifier:** `other-redeemer`
 
 **Property statement:**

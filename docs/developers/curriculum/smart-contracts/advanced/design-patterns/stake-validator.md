@@ -113,7 +113,7 @@ validator spend(withdraw_script_hash: ScriptHash) {
 
 /// A very minimal example just to show how an accompanying staking script can
 /// be defined.
-validator witdhraw {
+validator withdraw {
   withdraw(
     redeemer: OutputReference,
     _own_credential: Credential,
