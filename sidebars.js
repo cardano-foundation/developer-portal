@@ -524,55 +524,72 @@ module.exports = {
       label: "Introduction",
     },
     {
+      type: "doc",
+      id: "developers/onboarding/get-started/overview",
+      label: "Get started",
+    },
+    {
+      type: "doc",
+      id: "developers/onboarding/what-to-build/overview",
+      label: "What to build",
+    },
+    {
       type: "category",
-      label: "Quick Start",
+      label: "Tutorial",
       collapsed: false,
       link: {
         type: "doc",
         id: "developers/onboarding/quick-start/overview",
       },
       items: [
-        "developers/onboarding/quick-start/tools-overview",
-        "developers/onboarding/quick-start/set-up-environment",
-        "developers/onboarding/quick-start/on-chain-atomic-swap",
-        "developers/onboarding/quick-start/off-chain-atomic-swap",
-        "developers/onboarding/quick-start/integrate-frontend",
+        { type: "doc", id: "developers/onboarding/quick-start/overview", label: "Overview" },
+        "developers/onboarding/quick-start/environment",
+        "developers/onboarding/quick-start/on-chain",
+        "developers/onboarding/quick-start/off-chain",
+        "developers/onboarding/quick-start/frontend",
       ],
     },
     {
       type: "category",
-      label: "Beginner",
-      collapsed: true,
-      link: {
-        type: "doc",
-        id: "developers/onboarding/beginner/overview",
-      },
+      label: "Lectures",
+      collapsed: false,
       items: [
-        "developers/onboarding/beginner/lecture-1",
-      ],
-    },
-    {
-      type: "category",
-      label: "Intermediate",
-      collapsed: true,
-      link: {
-        type: "doc",
-        id: "developers/onboarding/intermediate/overview",
-      },
-      items: [
-        "developers/onboarding/intermediate/lecture-1",
-      ],
-    },
-    {
-      type: "category",
-      label: "Advanced",
-      collapsed: true,
-      link: {
-        type: "doc",
-        id: "developers/onboarding/advanced/overview",
-      },
-      items: [
-        "developers/onboarding/advanced/lecture-1",
+        {
+          type: "category",
+          label: "Beginner",
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "developers/onboarding/beginner/overview",
+          },
+          items: [
+            "developers/onboarding/beginner/lecture-1",
+          ],
+        },
+        {
+          type: "category",
+          label: "Intermediate",
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "developers/onboarding/intermediate/overview",
+          },
+          items: [
+            "developers/onboarding/intermediate/lecture-1",
+          ],
+        },
+        {
+          type: "category",
+          label: "Advanced",
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "developers/onboarding/advanced/overview",
+          },
+          items: [
+            "developers/onboarding/advanced/lecture-1",
+          ],
+        },
       ],
     },
   ],

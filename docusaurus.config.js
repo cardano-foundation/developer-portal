@@ -227,6 +227,10 @@ module.exports = {
       copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Privacy Policy</a>`,
     },
   },
+  // Dev-only no-op shim so the google-gtag plugin's route handler doesn't throw
+  // "window.gtag is not a function" during `docusaurus start` (gtag is only
+  // injected in production builds). See src/client/gtag-dev-shim.js.
+  clientModules: [require.resolve("./src/client/gtag-dev-shim.js")],
   plugins: [
     "./plugins/tools-routes",
     "./plugins/templates-routes",

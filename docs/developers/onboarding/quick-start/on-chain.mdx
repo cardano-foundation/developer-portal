@@ -1,0 +1,98 @@
+---
+title: "On-chain: the swap rules"
+sidebar_label: "On-chain"
+description: The smart contract that enforces the atomic swap, plus a rule for creating the demo tokens.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+import extractRegion from "@site/src/utils/extractRegion";
+import SwapAiken from "!!raw-loader!@site/examples/onboarding/atomic-swap/on-chain/aiken/validators/swap.ak";
+import MintAiken from "!!raw-loader!@site/examples/onboarding/atomic-swap/on-chain/aiken/validators/mint.ak";
+
+# On-chain: the swap rules
+
+"On-chain" means the part of your app that lives **on the blockchain**: the **smart contract**. It's the rulebook. When someone tries to take the locked GOLD, the network runs this contract, and the trade only goes through if the rules say yes. Nobody, not even you, can get around it.
+
+The contract is written in a smart-contract language (pick one in the tabs below). Either way, it's really two small rules that work together:
+
+- **minting policy** the rule that controls creating tokens (making a new token is called _minting_). It decides who is allowed to make GOLD and SILVER, so nobody can create tokens they shouldn't.
+- **swap validator** the rule that guards a locked token. Whenever someone tries to take the GOLD out of the contract, this rule runs and lets the trade go through only if it's fair, meaning the seller is paid exactly what they asked for.
+
+Both rules are just **yes/no functions**. The network hands each one the whole transaction, and it returns exactly one thing: **`true`** (allow) or **`false`** (reject). A contract never moves tokens or does anything on its own, the transaction is already fully built before the rule runs. All the rule does is _judge_ it: return `true` and the transaction goes through as written, return `false` and the whole thing is rejected, so nothing happens.
+
+:::info When does each rule actually run?
+The contract has its own **address** on the blockchain, derived from its code. "Locking tokens in the contract" just means **sending them to that address**, exactly like paying any wallet. So the moment tokens go _in_, nothing special happens, **putting tokens into the contract runs nothing**:
+
+- **Locking** (Bob makes his offer) is an ordinary transaction that just _sends_ GOLD to the contract's address, with the offer note attached. No code runs, nothing is checked yet.
+- **Taking tokens back out** is the different part. To spend a token sitting at the contract's address, the transaction has to **carry the contract's code with it**, and the network runs that code to decide yes or no. This is where the **swap validator** runs, on the accept (`Swap`) or the owner's `Cancel`, rejecting the transaction if it isn't fair.
+- **Minting** runs the **minting policy** at the moment tokens are created, rejecting the transaction if the wrong person tries to make them.
+
+So the two transactions are very different: the first just _moves_ the GOLD to the contract's address; the second _spends_ it, running the contract's code embedded in that second transaction. The rule of thumb: a contract guards value **leaving** it, not arriving. It springs to life only when a transaction spends what it's protecting.
+:::
+
+<Tabs groupId="onchain">
+<TabItem value="aiken" label="Aiken" default>
+
+## The offer note (datum) and the two actions (redeemer)
+
+When Bob locks his GOLD, he attaches a small note to it called a **datum**. It records the terms of his offer: **who to pay** (`owner`, the seller's full wallet address, so the payment lands where their wallet can see it) and **what they want in return** (`price`).
+
+Later, when someone spends that locked GOLD, they say which of two things they're doing, this choice is called the **redeemer**: `Swap` (a buyer is taking the offer) or `Cancel` (the owner is reclaiming it).
+
+<CodeBlock language="aiken" title="swap.ak: the offer note and actions">
+  {extractRegion(SwapAiken, "types")}
+</CodeBlock>
+
+## The rule that makes it fair
+
+Here's the actual rule. On a **`Swap`**, the contract checks that the transaction pays the `owner` at least the `price` they asked for, if it doesn't, the transaction is rejected and no one gets anything. On a **`Cancel`**, it simply checks that the owner signed (proving it's really them).
+
+There's one extra safety check that's worth understanding. Every locked offer has its own **unique id** on the blockchain, a permanent reference that's never reused (think of it like a receipt number for that specific offer). The rule demands that the buyer **label the payment with that id**: the payment going to the owner must carry the exact offer's reference attached to it, or the transaction is rejected.
+
+Why bother? Imagine two separate offers that both say _"pay 1 SILVER to Bob."_ Without the label, a buyer could take **both** locked GOLD tokens in a single transaction while sending Bob just **one** SILVER, that one payment would appear to satisfy both offers at once (a known trick called a _double-satisfaction_ attack). Forcing every payment to be labeled with one specific offer's id closes the hole: a payment can carry only one id, so it settles exactly one offer. Want two offers? You have to pay for each one separately.
+
+<CodeBlock language="aiken" title="swap.ak — the rule">
+  {extractRegion(SwapAiken, "validator")}
+</CodeBlock>
+
+The small helper functions it uses:
+
+<CodeBlock language="aiken" title="swap.ak — helpers">
+  {extractRegion(SwapAiken, "helpers")}
+</CodeBlock>
+
+## Creating the tokens (minting policy)
+
+Alice and Bob each need a token to trade, so they each create ("mint") one. This rule says a token can only be minted by its owner. Because the rule is tied to each person's key, Alice's SILVER and Bob's GOLD are automatically two different tokens.
+
+<CodeBlock language="aiken" title="mint.ak — who can create tokens">
+  {extractRegion(MintAiken, "mint")}
+</CodeBlock>
+
+## Compile it
+
+Turn the contract into something the blockchain can run (this step needs [Aiken](https://aiken-lang.org/) installed; the example already ships the compiled `plutus.json`, so you can skip it if you're just running the demo):
+
+```bash
+cd on-chain/aiken
+aiken check   # run the contract's tests
+aiken build   # compile it — writes plutus.json
+```
+
+:::tip What just happened
+`aiken build` produced **`plutus.json`** your contract, compiled. That file is all the off-chain code needs to find the contract's address and enforce these rules, it doesn't need Aiken. You now have a working rulebook living on-chain.
+:::
+
+</TabItem>
+<TabItem value="scalus" label="Scalus">
+
+A [Scalus](https://scalus.org) version of the same contract is coming soon, for teams who prefer Scala. The rest of the walkthrough is unchanged, the off-chain code reads the compiled `plutus.json` either way.
+
+</TabItem>
+</Tabs>
+
+**Go deeper:** want to understand validators, datums, and minting properly? The [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview) and [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) curriculum cover the full detail.
+
+Next: the [off-chain code](/docs/developers/onboarding/quick-start/off-chain) that builds the transactions.

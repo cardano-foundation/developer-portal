@@ -1,0 +1,83 @@
+---
+title: "Integrate a frontend"
+sidebar_label: "Frontend"
+description: "Wire the atomic swap into a simple web frontend: connect a wallet, mint, list, and swap."
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import extractRegion from "@site/src/utils/extractRegion";
+import Ui from "!!raw-loader!@site/examples/onboarding/atomic-swap/off-chain/mesh/src/main.tsx";
+
+# Integrate a frontend
+
+The example also comes with a small web page, so you can run the whole swap with buttons instead of scripts. This frontend is a small React page that calls the **exact same** off-chain functions from the last page, so the page runs the exact code that's tested.
+
+Two words you'll see here:
+
+- **Sign** approve a transaction. When the app builds one, your wallet pops up and asks you to confirm; signing proves the transaction is really from you.
+- **Submit** send the signed transaction to the network so it takes effect.
+
+The app builds a transaction with the lib, then just asks the wallet to **sign and submit** it:
+
+<CodeBlock language="tsx" title="main.tsx — sign & submit">
+  {extractRegion(Ui, "connect")}
+</CodeBlock>
+
+Every button follows that same shape, build, sign, submit. For example, accepting an offer:
+
+<CodeBlock language="tsx" title="main.tsx — the swap button">
+  {extractRegion(Ui, "swap")}
+</CodeBlock>
+
+## Start the app
+
+```bash
+cd off-chain/mesh
+cp .env.example .env.local   # paste your Blockfrost Preview key
+npm install
+npm run dev
+```
+
+Open the printed URL (usually `http://localhost:5173`) in the browser where Lace is installed.
+
+## Using the app
+
+A real swap has two people, a seller and a buyer. To keep this simple, you'll play **both roles with a single wallet**: you'll make an offer, then accept it yourself. The contract runs exactly the same either way, so you still see the whole mechanism.
+
+**Before you start,** make sure your wallet has a little **test ADA** from the [faucet](https://docs.cardano.org/cardano-testnets/tools/faucet), you need it for fees and for the collateral in the next step.
+
+The page walks you through it in five numbered steps:
+
+1. **Connect your wallet** click **Connect Lace**. Your address and holdings appear.
+2. **Set up collateral** click **Check collateral**. If it's not set, add it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then check again. Minting and swapping stay disabled until it shows ✓ set. (Collateral is a small ADA deposit smart-contract transactions require, see [Set up collateral](/docs/developers/onboarding/quick-start/environment#set-up-collateral-in-your-wallet).)
+3. **Create your tokens** click **Mint GOLD**, approve in Lace, and wait about a minute for it to confirm. Do the same for **Mint SILVER**. Now you hold both tokens.
+4. **Make an offer** leave **Give** at **1 · your GOLD** and **Want** at **1 · your SILVER** (the defaults for a self-swap), then read the _"You'll lock 1 GOLD and receive 1 SILVER"_ line to confirm. Click **Create offer** and sign. Once it confirms, your GOLD is locked in the contract as an open offer. _(For a real trade with a second wallet, set **Want** to **other token…** and paste that wallet's token id, see [below](#go-further-a-real-two-party-swap).)_
+5. **Accept the offer** now you're the buyer. Click **Refresh offers**, your offer appears as _"Get 1 GOLD → pay 1 SILVER"_. Click **Swap** and sign.
+
+On your own offers you'll also see a **Cancel** button. Instead of accepting, an owner can click it to reclaim the locked token, useful when no one takes the offer. It runs the contract's `Cancel` action and returns the GOLD to you.
+
+:::tip What just happened
+That last transaction paid the seller their 1 SILVER and released the 1 GOLD to the buyer, in a single, all-or-nothing transaction. Since you played both parts, the tokens end up back with you, but the point is what the **contract** did: it only let the GOLD out because the SILVER was paid. You just ran a complete, trustless atomic swap on Cardano. 🎉
+
+Use the **view on explorer** link on the status line (or paste the tx hash into the [Cardano Explorer for Preview](https://explorer.cardano.org/preview)) to see it on-chain.
+:::
+
+## Go further: a real two-party swap
+
+The one-wallet flow runs the whole mechanism, but both sides are you. To see value actually move between **two different people**, use **two separate Lace wallets**. The easiest way is **two browser profiles** (Chrome, Brave, or Edge, each profile has its own extensions and so its own wallet). Give each profile's wallet its own **test ADA** from the [faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) and set up its **collateral**, and make sure both are on **Preview**.
+
+Then trade for real. Say profile **A** is the seller and profile **B** is the buyer:
+
+1. **Buyer (B)** open the app, connect, and **Mint SILVER**. Under _Create your tokens_, click **copy** next to **SILVER** to copy that token's id, and send it to the seller (paste it in a chat, a note, anywhere).
+2. **Seller (A)** open the app in the other profile, connect, and **Mint GOLD**. In _Make an offer_, set **Give** to **1 · your GOLD**, set **Want** to **other token…**, and paste **B's SILVER id** into the box that appears. Click **Create offer** and sign.
+3. **Buyer (B)** click **Refresh offers**. A's offer appears, _"Get 1 GOLD → pay 1 SILVER"_. Click **Swap** and sign.
+
+Now the GOLD really moves to B and the SILVER to A, a genuine trustless trade between two wallets. Each profile is an independent wallet (the app connects to whichever Lace is in the current profile), and offers are read from the chain, so both profiles see them.
+
+### If something's off
+
+- **"wallet has no collateral UTxO"** the wallet has no collateral set. Set it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then try again.
+- **Your offer doesn't appear after Refresh** the lock transaction hasn't confirmed yet. Wait a moment and click **Refresh** again.
+- **A button fails the instant you click it** (an error shows in the status line instead of your wallet popping up) the app couldn't reach the chain to build the transaction. Check that your Blockfrost key is set in `.env.local`, and that your wallet is on the **Preview** network.
+
+**Go deeper:** the [Build a dApp](/docs/developers/curriculum/dapps/overview) curriculum takes frontends, wallets, and dApp patterns much further.
