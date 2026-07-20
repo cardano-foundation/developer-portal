@@ -4,10 +4,10 @@ title: "How we minted the NFTAs, and why we went for this standard"
 authors: [cf]
 tags: [nft, nfta]
 description: "How we minted the NFTAs, and why we went for this standard."
-image: https://developers.cardano.org/img/og/og-blog-nftas.png
+image: https://developers.cardano.org/img/og/blog/nftas.png
 ---
 
-![title image](/img/devblog/nfta.jpg)
+![title image](/img/blog/devblog/nfta.jpg)
 
 **Dear Cardano community,**
 
@@ -34,6 +34,6 @@ To make sure the NFTAs came from the Cardano Foundation, a **policyId** identifi
 
 To mint the NFT’s, we first used a Cardano Foundation wallet to create a transaction to mint the tokens containing the metadata. Second, the ten developers sent us a receiving wallet address to receive the token. Third, another transaction to send the token to their wallet. Finally, to verify the work, each NFTA has a QR code that will navigate to the [Cardano Blockchain Explorer](https://explorer.cardano.org/en/address.html?address=addr1v8jad20nlga6ca7vjtqs2pr8cu0tcq3rq8s6svm546rvyjggl5yh7) for anyone to view and verify the transactions, including the Bronze Developer Portal Token issuance. Thus, no matter how much time goes by, the blockchain will have an immutable record to show that the community members received the first Non-Fungible Token of Appreciation.
 
-![title image](/img/devblog/how-to-mint.png)
+![title image](/img/blog/devblog/how-to-mint.png)
 
 At the time of writing this article, two NFTs have not been minted. We are waiting on two developers to provide their wallet addresses. Also, the Cardano Explorer is not showing the transactions correctly when you try to scan the QR code on the NFTAs. If you are interested in learning more or mint native assets or NFTs, visit the [Cardano Developer Portal](/docs/developers/curriculum/native-tokens/overview). 

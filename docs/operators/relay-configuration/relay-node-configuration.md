@@ -3,7 +3,6 @@ id: relay-node-configuration
 title: Relay Node Configuration
 sidebar_label: Relay Configuration
 description: How to configure a Cardano relay node for stake pool operation.
-image: ../img/og-developer-portal.png
 ---
 
 A relay node accepts connections from the network and forwards blocks and transactions to your block producer. It has a public IP address; your block producer does not.

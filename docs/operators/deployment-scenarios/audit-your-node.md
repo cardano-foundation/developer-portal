@@ -3,7 +3,6 @@ id: audit-your-node
 title: Audit your node
 sidebar_label: Audit your node
 description: "Stake pool guide: Audit your node configuration with a script"
-image: ../img/og/og-developer-portal.png
 ---
 
 In order to check if your node configuration is correct, you can run an audit script that checks SecOps basic settings, and Cardano node compliance (topology, version, key files...)

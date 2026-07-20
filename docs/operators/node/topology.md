@@ -201,3 +201,43 @@ During sync, the node bulk-downloads and validates blocks from big ledger peers.
 The sync targets must independently satisfy `known >= established >= active >= 0`. Additionally, `SyncTargetNumberOfActivePeers` must not exceed `TargetNumberOfEstablishedPeers` from the deadline set.
 
 Once the node deems itself caught up, it transitions back to the deadline targets.
+
+:::note Small or private networks
+The sync targets above are mainnet-scale.
+On a small or private network (for example a testnet with a handful of relays) they cannot be met, and the node stays in `PreSyncing`: `MinBigLedgerPeersForTrustedState` (default 5) is never reached, so the node never enters the trusted state that releases sync.
+
+Lower `MinBigLedgerPeersForTrustedState` to at most the number of big ledger peers the network has, and lower the big-ledger sync targets to match.
+Lowering `SyncTargetNumberOfActiveBigLedgerPeers` alone is not enough: `MinBigLedgerPeersForTrustedState` is the gate.
+
+```json
+{
+  "MinBigLedgerPeersForTrustedState": 1,
+  "SyncTargetNumberOfActiveBigLedgerPeers": 1,
+  "SyncTargetNumberOfEstablishedBigLedgerPeers": 1,
+  "SyncTargetNumberOfKnownBigLedgerPeers": 1
+}
+```
+
+This weakens the Genesis guarantee, which relies on a larger active big-ledger set, so use it only on networks you control.
+Keep `known >= established >= active >= 0`, and raise the values to match your real peer pool.
+:::
+
+### Binding addresses and IPv6 reachability
+
+`--host-addr` and `--host-ipv6-addr` are command-line options, not `config.json` fields:
+
+```bash
+cardano-node run --host-addr 0.0.0.0 --host-ipv6-addr ::
+```
+
+They set the local addresses the node binds its listening sockets to.
+`--host-ipv6-addr` also selects the DNS lookup family: without it the node resolves only A records, so peers given as domain names never yield IPv6 addresses.
+
+Neither option gates outbound connections to literal IPv6 addresses.
+If a Genesis peer snapshot lists a peer by its IPv6 address, the node dials it whether or not `--host-ipv6-addr` is set.
+On a host with no IPv6 route that dial fails with `Network is unreachable`.
+
+:::tip Diagnostic
+Repeated `Net.ConnectionManager.Remote.ConnectError` against IPv6 addresses, while every `HandshakeSuccess` is IPv4, means the host has no IPv6 route to those peers.
+Give the host an IPv6 route, or remove the IPv6 peers from the snapshot.
+:::

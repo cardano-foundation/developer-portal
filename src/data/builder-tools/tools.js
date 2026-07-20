@@ -38,7 +38,7 @@
 export const BuilderTools = [
   {
     title: "cardano-cli",
-    icon: "/img/tool-icons/intersect.png",
+    icon: "/img/tools/intersect.png",
     description: "Command-line tool for interacting with a Cardano node: keys, addresses, transactions, stake pools, and governance.",
     website: "https://github.com/IntersectMBO/cardano-cli#overview-of-the-cardano-cli-repository",
     docs: null,
@@ -48,7 +48,7 @@ export const BuilderTools = [
   },
   {
     title: "bech32",
-    icon: "/img/tool-icons/intersect.png",
+    icon: "/img/tools/intersect.png",
     description: "Haskell library and command-line tool for Bech32 address encoding and decoding.",
     website: "https://github.com/IntersectMBO/bech32/#readme",
     docs: null,
@@ -58,7 +58,7 @@ export const BuilderTools = [
   },
   {
     title: "cardano-wallet",
-    icon: "/img/tool-icons/cardano-logo.png",
+    icon: "/img/tools/cardano-logo.png",
     description: "HTTP server and CLI for managing Cardano HD wallets and UTxOs, backing frontends like Daedalus.",
     website: "https://github.com/cardano-foundation/cardano-wallet/#overview",
     docs: "https://cardano-foundation.github.io/cardano-wallet/",
@@ -68,7 +68,7 @@ export const BuilderTools = [
   },
   {
     title: "cardano-graphql",
-    icon: "/img/tool-icons/cardano-logo.png",
+    icon: "/img/tools/cardano-logo.png",
     description: "GraphQL API layer over Cardano blockchain data, built on cardano-db-sync.",
     website: "https://github.com/cardano-foundation/cardano-graphql/#overview",
     docs: "https://github.com/cardano-foundation/cardano-graphql#getting-started",
@@ -78,7 +78,7 @@ export const BuilderTools = [
   },
   {
     title: "cardano-rosetta-java",
-    icon: "/img/tool-icons/cardano-logo.png",
+    icon: "/img/tools/cardano-logo.png",
     description: "Java implementation of the Coinbase Mesh (Rosetta) API for Cardano, built on Yaci Store.",
     website: "https://github.com/cardano-foundation/cardano-rosetta-java",
     docs: "https://cardano-foundation.github.io/cardano-rosetta-java/",
@@ -88,7 +88,7 @@ export const BuilderTools = [
   },
   {
     title: "cardano-db-sync",
-    icon: "/img/tool-icons/intersect.png",
+    icon: "/img/tools/intersect.png",
     description: "Haskell indexer that follows the Cardano chain and stores all on-chain data in a structured PostgreSQL database.",
     website: "https://github.com/IntersectMBO/cardano-db-sync#cardano-db-sync",
     docs: null,
@@ -98,7 +98,7 @@ export const BuilderTools = [
   },
   {
     title: "cardano-addresses",
-    icon: "/img/tool-icons/intersect.png",
+    icon: "/img/tools/intersect.png",
     description: "Haskell library and command-line tool for Cardano mnemonics, key derivation, and address construction.",
     website: "https://github.com/IntersectMBO/cardano-addresses#overview",
     docs: "https://github.com/IntersectMBO/cardano-addresses#command-line",
@@ -108,7 +108,7 @@ export const BuilderTools = [
   },
   {
     title: "Blockfrost",
-    icon: "/img/tool-icons/blockfrost.png",
+    icon: "/img/tools/blockfrost.png",
     description: "Hosted REST API for reading the Cardano chain and submitting transactions, with an IPFS gateway.",
     website: "https://blockfrost.io",
     docs: "/docs/developers/curriculum/production/api-providers/blockfrost",
@@ -119,7 +119,7 @@ export const BuilderTools = [
   },
   {
     title: "StakePool Operator Scripts",
-    icon: "/img/tool-icons/gitmachtl.png",
+    icon: "/img/tools/gitmachtl.png",
     description: "CLI scripts for stake pool and DRep operations, with offline and hardware-wallet support.",
     website: "https://github.com/gitmachtl/scripts",
     docs: null,
@@ -129,7 +129,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Serialization Library",
-    icon: "/img/tool-icons/cardano-serialization-library.png",
+    icon: "/img/tools/cardano-serialization-library.png",
     description: "Rust library for serializing and deserializing Cardano's core data structures, with WebAssembly bindings for JavaScript and the browser.",
     website: "https://github.com/Emurgo/cardano-serialization-lib",
     docs: "https://github.com/Emurgo/cardano-serialization-lib",
@@ -139,7 +139,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Transaction Library",
-    icon: "/img/tool-icons/plutonomicon.png",
+    icon: "/img/tools/plutonomicon.png",
     description: "PureScript framework for building Cardano smart contract transactions, for Node.js and the browser.",
     website: "https://github.com/Plutonomicon/cardano-transaction-lib/",
     docs: "https://github.com/Plutonomicon/cardano-transaction-lib/blob/develop/doc/getting-started.md",
@@ -149,7 +149,7 @@ export const BuilderTools = [
   },
   {
     title: "Ogmios",
-    icon: "/img/tool-icons/ogmios.png",
+    icon: "/img/tools/ogmios.png",
     description: "Lightweight bridge that exposes a local Cardano node over a WebSocket/HTTP JSON-RPC API.",
     website: "https://ogmios.dev",
     docs: "/docs/developers/curriculum/production/api-providers/ogmios",
@@ -160,7 +160,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Client Library",
-    icon: "/img/tool-icons/cardano-client-library.png",
+    icon: "/img/tools/cardano-client-library.png",
     description: "Java library for building Cardano transactions, with key derivation, signing, and pluggable backends.",
     website: "https://github.com/bloxbean/cardano-client-lib",
     docs: null,
@@ -170,7 +170,7 @@ export const BuilderTools = [
   },
   {
     title: "Guild Operators Suite",
-    icon: "/img/tool-icons/cardano-community.jpg",
+    icon: "/img/tools/cardano-community.jpg",
     description: "Community toolset and guides for setting up, managing, and monitoring a Cardano stake pool.",
     website: "https://cardano-community.github.io/guild-operators/",
     docs: "/docs/operators/operator-tools/guild-ops-suite",
@@ -181,7 +181,7 @@ export const BuilderTools = [
   },
   {
     title: "Marlowe",
-    icon: "/img/tool-icons/marlowe.png",
+    icon: "/img/tools/marlowe.png",
     description: "Domain-specific language for financial contracts on Cardano, built on Plutus.",
     website: "https://marlowe-lang.org/",
     docs: "https://playground.marlowe-lang.org/",
@@ -191,7 +191,7 @@ export const BuilderTools = [
   },
   {
     title: "PyCardano",
-    icon: "/img/tool-icons/pycardano.png",
+    icon: "/img/tools/pycardano.png",
     description: "Python library for building and signing Cardano transactions, with no cardano-cli or CSL dependency.",
     website: "https://github.com/Python-Cardano/pycardano",
     docs: "https://pycardano.readthedocs.io/en/latest",
@@ -202,7 +202,7 @@ export const BuilderTools = [
   },
   {
     title: "Oura",
-    icon: "/img/tool-icons/oura.svg",
+    icon: "/img/tools/oura.svg",
     description: "Rust streaming pipeline that tails a Cardano node and forwards matching chain events to sinks like Kafka, Redis, or webhooks.",
     website: "https://github.com/txpipe/oura",
     docs: null,
@@ -212,7 +212,7 @@ export const BuilderTools = [
   },
   {
     title: "Typhonjs",
-    icon: "/img/tool-icons/typhonjs.png",
+    icon: "/img/tools/typhonjs.png",
     description: "Pure JavaScript library for Cardano address generation and transaction building.",
     website: "https://github.com/StricaHQ/typhonjs",
     docs: null,
@@ -222,7 +222,7 @@ export const BuilderTools = [
   },
   {
     title: "IntelliADA",
-    icon: "/img/tool-icons/intelliada.avif",
+    icon: "/img/tools/intelliada.avif",
     description: "IntelliJ IDEA plugin for Cardano: accounts, transfers, minting, and transaction inspection from the IDE.",
     website: "https://intelliada.bloxbean.com",
     docs: null,
@@ -232,7 +232,7 @@ export const BuilderTools = [
   },
   {
     title: "Koios",
-    icon: "/img/tool-icons/koios.svg",
+    icon: "/img/tools/koios.svg",
     description: "Community-run, decentralized REST query layer for Cardano blockchain data.",
     website: "https://koios.rest",
     docs: "/docs/developers/curriculum/production/api-providers/koios",
@@ -243,7 +243,7 @@ export const BuilderTools = [
   },
   {
     title: "Pallas",
-    icon: "/img/tool-icons/pallas.svg",
+    icon: "/img/tools/pallas.svg",
     description: "Rust-native building blocks for Cardano: serialization, crypto, ledger primitives, and Ouroboros networking.",
     website: "https://github.com/txpipe/pallas#readme",
     docs: null,
@@ -253,7 +253,7 @@ export const BuilderTools = [
   },
   {
     title: "Scrolls",
-    icon: "/img/tool-icons/scrolls.png",
+    icon: "/img/tools/scrolls.png",
     description: "Rust pipeline that builds read-optimized, use-case-specific key-value caches of Cardano on-chain data.",
     website: "https://github.com/txpipe/scrolls#readme",
     docs: null,
@@ -263,7 +263,7 @@ export const BuilderTools = [
   },
   {
     title: "Kupo",
-    icon: "/img/tool-icons/kupo.png",
+    icon: "/img/tools/kupo.png",
     description: "Lightweight Haskell chain-index that tracks only matching transaction outputs, served over an HTTP/JSON API.",
     website: "https://github.com/CardanoSolutions/kupo#readme",
     docs: null,
@@ -274,7 +274,7 @@ export const BuilderTools = [
   },
   {
     title: "cardano-multiplatform-lib",
-    icon: "/img/tool-icons/dcspark.png",
+    icon: "/img/tools/dcspark.png",
     description: "Rust library for serializing and deserializing Cardano's core data structures, with WebAssembly bindings and dApp and wallet utilities.",
     website: "https://github.com/dcSpark/cardano-multiplatform-lib#cardano-multiplatform-lib",
     docs: null,
@@ -284,7 +284,7 @@ export const BuilderTools = [
   },
   {
     title: "cardano-js-sdk",
-    icon: "/img/tool-icons/cardano-js-sdk.png",
+    icon: "/img/tools/cardano-js-sdk.png",
     description: "TypeScript SDK by Input Output for Cardano wallet platforms, with key management and hardware-wallet support.",
     website: "https://github.com/input-output-hk/cardano-js-sdk/#readme",
     docs: null,
@@ -294,7 +294,7 @@ export const BuilderTools = [
   },
   {
     title: "Lucid",
-    icon: "/img/tool-icons/lucid.svg",
+    icon: "/img/tools/lucid.svg",
     description: "TypeScript library for building Cardano transactions and off-chain Plutus code.",
     website: "https://github.com/Berry-Pool/lucid#readme",
     docs: "https://lucid.spacebudz.io/docs/getting-started/choose-wallet/",
@@ -304,7 +304,7 @@ export const BuilderTools = [
   },
   {
     title: "Lucid Evolution",
-    icon: "/img/tool-icons/lucid-evolution.svg",
+    icon: "/img/tools/lucid-evolution.svg",
     description: "TypeScript library for building Cardano transactions and off-chain code, a maintained fork of Lucid by Anastasia Labs.",
     website: "https://anastasia-labs.github.io/lucid-evolution/",
     docs: "https://anastasia-labs.github.io/lucid-evolution/",
@@ -314,7 +314,7 @@ export const BuilderTools = [
   },
   {
     title: "Plinth",
-    icon: "/img/tool-icons/intersect.png",
+    icon: "/img/tools/intersect.png",
     description: "Haskell-based smart contract language for Cardano, compiling to Plutus Core.",
     website: "https://plutus.cardano.intersectmbo.org/docs/",
     docs: "https://plutus.cardano.intersectmbo.org/docs/",
@@ -324,7 +324,7 @@ export const BuilderTools = [
   },
   {
     title: "Plutarch",
-    icon: "/img/tool-icons/plutonomicon.png",
+    icon: "/img/tools/plutonomicon.png",
     description: "Typed Haskell eDSL for writing efficient Plutus Core validators.",
     website: "https://github.com/Plutonomicon/plutarch#plutarch",
     docs: null,
@@ -335,7 +335,7 @@ export const BuilderTools = [
   },
   {
     title: "gOuroboros",
-    icon: "/img/tool-icons/gouroboros.png",
+    icon: "/img/tools/gouroboros.png",
     description: "Go library implementing the Cardano Ouroboros network mini-protocols.",
     website: "https://github.com/blinklabs-io/gouroboros",
     docs: "https://pkg.go.dev/github.com/blinklabs-io/gouroboros",
@@ -345,7 +345,7 @@ export const BuilderTools = [
   },
   {
     title: "Adder",
-    icon: "/img/tool-icons/adder.ico",
+    icon: "/img/tools/adder.ico",
     description: "Go streaming tool that tails the Cardano chain and emits block and transaction events through configurable filters.",
     website: "https://github.com/blinklabs-io/adder",
     docs: "https://pkg.go.dev/github.com/blinklabs-io/adder",
@@ -355,7 +355,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Node API",
-    icon: "/img/tool-icons/cardano-node-api.png",
+    icon: "/img/tools/cardano-node-api.png",
     description: "Exposes a local Cardano node over REST and gRPC (UTxO RPC) APIs.",
     website: "https://github.com/blinklabs-io/cardano-node-api",
     docs: "https://pkg.go.dev/github.com/blinklabs-io/cardano-node-api",
@@ -365,7 +365,7 @@ export const BuilderTools = [
   },
   {
     title: "Helios",
-    icon: "/img/tool-icons/helios.png",
+    icon: "/img/tools/helios.png",
     description: "Smart contract DSL for Cardano with a single-file, dependency-free JavaScript compiler.",
     website: "https://github.com/Hyperion-BT/Helios",
     docs: null,
@@ -375,7 +375,7 @@ export const BuilderTools = [
   },
   {
     title: "Pebble",
-    icon: "/img/tool-icons/pebble.jpg",
+    icon: "/img/tools/pebble.jpg",
     description: "Functional smart contract DSL for Cardano, embedded in TypeScript.",
     website: "https://pluts.harmoniclabs.tech/",
     docs: "https://pluts.harmoniclabs.tech/",
@@ -386,7 +386,7 @@ export const BuilderTools = [
   },
   {
     title: "Aiken",
-    icon: "/img/tool-icons/aiken.png",
+    icon: "/img/tools/aiken.png",
     description: "Purpose-built smart contract language and toolchain for Cardano, compiling to UPLC.",
     website: "https://aiken-lang.org",
     docs: "https://aiken-lang.org",
@@ -397,7 +397,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Signer",
-    icon: "/img/tool-icons/gitmachtl.png",
+    icon: "/img/tools/gitmachtl.png",
     description: "CLI tool for signing and verifying Cardano data, including governance (CIP-100/108/119) and Catalyst metadata.",
     website: "https://github.com/gitmachtl/cardano-signer",
     docs: null,
@@ -407,7 +407,7 @@ export const BuilderTools = [
   },
   {
     title: "Mesh",
-    icon: "/img/tool-icons/mesh.png",
+    icon: "/img/tools/mesh.png",
     description: "TypeScript SDK for Cardano with transaction building, wallet integration, providers, and React UI components.",
     website: "https://meshjs.dev/",
     docs: "https://meshjs.dev/",
@@ -418,7 +418,7 @@ export const BuilderTools = [
   },
   {
     title: "UTxOS",
-    icon: "/img/tool-icons/utxos.jpg",
+    icon: "/img/tools/utxos.jpg",
     description: "Wallet-as-a-service for onboarding users to Cardano with social-login, non-custodial wallets.",
     website: "https://utxos.dev/",
     docs: null,
@@ -429,7 +429,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Connect with Wallet",
-    icon: "/img/tool-icons/cardano-logo.png",
+    icon: "/img/tools/cardano-logo.png",
     description: "React hooks and components for connecting Cardano wallets to dApps (CIP-30/45).",
     website: "https://github.com/cardano-foundation/cardano-connect-with-wallet",
     docs: null,
@@ -449,7 +449,7 @@ export const BuilderTools = [
   },
   {
     title: "Carp",
-    icon: "/img/tool-icons/dcspark.png",
+    icon: "/img/tools/dcspark.png",
     description: "Rust indexer that syncs Cardano data into PostgreSQL with a modular, task-based architecture; an alternative to cardano-db-sync.",
     website: "https://github.com/dcSpark/carp",
     docs: "https://dcspark.github.io/carp/docs/intro",
@@ -459,7 +459,7 @@ export const BuilderTools = [
   },
   {
     title: "Demeter",
-    icon: "/img/tool-icons/demeter.png",
+    icon: "/img/tools/demeter.png",
     description: "Managed Cardano infrastructure and cloud workspaces for building dApps, with hosted Ogmios and Kupo endpoints.",
     website: "https://demeter.run/",
     docs: null,
@@ -469,7 +469,7 @@ export const BuilderTools = [
   },
   {
     title: "OpShin",
-    icon: "/img/tool-icons/opshin.png",
+    icon: "/img/tools/opshin.png",
     description: "Smart contract language for Cardano written as a strict subset of Python.",
     website: "https://github.com/OpShin/opshin",
     docs: "https://opshin.dev/user-manual",
@@ -479,7 +479,7 @@ export const BuilderTools = [
   },
   {
     title: "Maestro",
-    icon: "/img/tool-icons/maestro.jpg",
+    icon: "/img/tools/maestro.jpg",
     description: "Hosted Cardano API with chain indexing, transaction management, and DeFi market data.",
     website: "https://www.gomaestro.org/dapp-platform",
     docs: "https://docs.gomaestro.org/",
@@ -488,18 +488,28 @@ export const BuilderTools = [
     properties: ["rest"],
   },
   {
+    title: "NOWNodes",
+    icon: "/img/tool-icons/nownodes.jpg",
+    description: "Hosted Cardano API exposing Blockfrost-compatible REST, Rosetta, and Ogmios WebSocket endpoints.",
+    website: "https://nownodes.io",
+    docs: "https://nownodes.gitbook.io/ada-cardano-1",
+    repository: null,
+    category: "api",
+    properties: ["rest", "websocket"],
+  },
+  {
     title: "Hydra",
-    icon: "/img/tool-icons/hydra.png",
+    icon: "/img/tools/hydra.png",
     description: "Layer 2 scaling protocol for Cardano using isomorphic state channels (Hydra Heads) to move transactions off-chain.",
     website: "https://hydra.family/head-protocol/",
-    docs: null,
+    docs: "https://hydra.family/head-protocol/",
     repository: "https://github.com/cardano-scaling/hydra",
     category: "node",
     properties: ["haskell", "websocket"],
   },
   {
     title: "NFTCDN",
-    icon: "/img/tool-icons/nftcdn.svg",
+    icon: "/img/tools/nftcdn.svg",
     description: "Content delivery network for displaying Cardano NFT and token media in apps and sites.",
     website: "https://nftcdn.io",
     docs: null,
@@ -509,7 +519,7 @@ export const BuilderTools = [
   },
   {
     title: "Atlas",
-    icon: "/img/tool-icons/atlas.png",
+    icon: "/img/tools/atlas.png",
     description: "Haskell application backend for writing Cardano off-chain code for Plutus smart contracts.",
     website: "https://atlas-app.io/",
     docs: null,
@@ -519,7 +529,7 @@ export const BuilderTools = [
   },
   {
     title: "Yaci DevKit",
-    icon: "/img/tool-icons/yaci-devkit.png",
+    icon: "/img/tools/yaci-devkit.png",
     description: "Spin up a local Cardano devnet in seconds, with a built-in indexer, explorer, and Blockfrost-compatible APIs.",
     website: "https://github.com/bloxbean/yaci-devkit",
     docs: null,
@@ -530,7 +540,7 @@ export const BuilderTools = [
   },
   {
     title: "whisky",
-    icon: "/img/tool-icons/whisky.png",
+    icon: "/img/tools/whisky.png",
     description: "Rust SDK for building Cardano transactions, with pluggable CSL or Pallas serialization backends.",
     website: "https://github.com/sidan-lab/whisky",
     docs: "https://whisky.sidan.io/",
@@ -540,7 +550,7 @@ export const BuilderTools = [
   },
   {
     title: "UTxORPC",
-    icon: "/img/tool-icons/utxorpc.png",
+    icon: "/img/tools/utxorpc.png",
     description: "gRPC interface specification for interacting with UTxO blockchains like Cardano.",
     website: "https://utxorpc.org/",
     docs: "https://utxorpc.org/introduction",
@@ -550,7 +560,7 @@ export const BuilderTools = [
   },
   {
     title: "Mumak",
-    icon: "/img/tool-icons/txpipe.png",
+    icon: "/img/tools/txpipe.png",
     description: "PostgreSQL extension for querying Cardano transaction CBOR directly with SQL functions.",
     website: "https://github.com/txpipe/mumak",
     docs: "https://github.com/txpipe/mumak/blob/main/docs/INSTALL.md",
@@ -560,7 +570,7 @@ export const BuilderTools = [
   },
   {
     title: "Argus",
-    icon: "/img/tool-icons/argus.png",
+    icon: "/img/tools/argus.png",
     description: ".NET indexing framework for Cardano where you define reducers to shape the data stored in PostgreSQL.",
     website: "https://github.com/SAIB-Inc/Cardano.Sync",
     docs: null,
@@ -570,7 +580,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Node Audit",
-    icon: "/img/tool-icons/cardano-node-audit.png",
+    icon: "/img/tools/cardano-node-audit.png",
     description: "Bash script that audits a Cardano stake pool node for security and configuration compliance.",
     website: "https://github.com/Kirael12/cardano-node-audit",
     docs: "/docs/operators/deployment-scenarios/audit-your-node",
@@ -580,7 +590,7 @@ export const BuilderTools = [
   },
   {
     title: "ZhuLi",
-    icon: "/img/tool-icons/zhuli.png",
+    icon: "/img/tools/zhuli.png",
     description: "On-chain validator and CLI for hot/cold DRep account management on Cardano.",
     website: "https://github.com/CardanoSolutions/zhuli",
     docs: null,
@@ -590,7 +600,7 @@ export const BuilderTools = [
   },
   {
     title: "cf-java-rewards-calculation",
-    icon: "/img/tool-icons/cardano-logo.png",
+    icon: "/img/tools/cardano-logo.png",
     description: "Independent Java implementation of Cardano's reward and ada-pot calculations, used to validate the ledger.",
     website: "https://github.com/cardano-foundation/cf-java-rewards-calculation",
     docs: null,
@@ -600,7 +610,7 @@ export const BuilderTools = [
   },
   {
     title: "cf-ledger-sync",
-    icon: "/img/tool-icons/cardano-logo.png",
+    icon: "/img/tools/cardano-logo.png",
     description: "Java indexer that syncs Cardano data into PostgreSQL with db-sync-level completeness, and can stream events to Kafka or RabbitMQ.",
     website: "https://github.com/cardano-foundation/cf-ledger-sync",
     docs: null,
@@ -610,7 +620,7 @@ export const BuilderTools = [
   },
   {
     title: "pg_cardano",
-    icon: "/img/tool-icons/cardano-community.jpg",
+    icon: "/img/tools/cardano-community.jpg",
     description: "PostgreSQL extension providing Cardano cryptographic, address-encoding, and CBOR helper functions.",
     website: "https://github.com/cardano-community/pg_cardano",
     docs: "https://github.com/cardano-community/pg_cardano/blob/master/README.md#contents",
@@ -620,7 +630,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano-C",
-    icon: "/img/tool-icons/biglup.png",
+    icon: "/img/tools/biglup.png",
     description: "C library for serializing Cardano's core data structures and building transactions, MISRA-compliant and binding-friendly.",
     website: "https://github.com/Biglup/cardano-c",
     docs: "https://cardano-c.readthedocs.io/en/latest/getting_started.html",
@@ -630,7 +640,7 @@ export const BuilderTools = [
   },
   {
     title: "Evolution SDK",
-    icon: "/img/tool-icons/evolution-sdk.jpg",
+    icon: "/img/tools/evolution-sdk.jpg",
     description: "Pure-TypeScript SDK for building Cardano transactions and off-chain code, with no WebAssembly dependency, built on Effect.",
     website: "https://github.com/IntersectMBO/evolution-sdk",
     docs: "https://intersectmbo.github.io/evolution-sdk/docs/introduction/getting-started/",
@@ -641,7 +651,7 @@ export const BuilderTools = [
   },
   {
     title: "Scalus",
-    icon: "/img/tool-icons/scalus.png",
+    icon: "/img/tools/scalus.png",
     description: "Write Cardano smart contracts and off-chain code in Scala 3.",
     website: "https://scalus.org/",
     docs: "https://scalus.org/docs/get-started",
@@ -651,7 +661,7 @@ export const BuilderTools = [
   },
   {
     title: "Lace Anatomy",
-    icon: "/img/tool-icons/txpipe.png",
+    icon: "/img/tools/txpipe.png",
     description: "Web tool that decodes and visualizes Cardano addresses, CBOR, and transactions.",
     website: "https://laceanatomy.com",
     docs: "https://laceanatomy.com",
@@ -662,7 +672,7 @@ export const BuilderTools = [
   },
   {
     title: "Gastronomy",
-    icon: "/img/tool-icons/sundaeswap.jpg",
+    icon: "/img/tools/sundaeswap.jpg",
     description: "UPLC debugger that steps forward and backward through smart contract execution.",
     website: "https://sundae.fi/products/gastronomy",
     docs: "https://github.com/SundaeSwap-finance/gastronomy",
@@ -673,7 +683,7 @@ export const BuilderTools = [
   },
   {
     title: "Datum Explorer",
-    icon: "/img/tool-icons/datum-explorer.png",
+    icon: "/img/tools/datum-explorer.png",
     description: "Decodes Cardano CBOR datums into human-readable fields using CDDL schemas.",
     website: "https://github.com/WingRiders/datum-explorer#readme",
     docs: "https://datum-explorer.wingriders.com/?schema=detect",
@@ -683,7 +693,7 @@ export const BuilderTools = [
   },
   {
     title: "Apollo",
-    icon: "/img/tool-icons/apollo.jpg",
+    icon: "/img/tools/apollo.jpg",
     description: "Pure Go library for Cardano serialization and transaction building.",
     website: "https://github.com/Salvionied/apollo",
     docs: null,
@@ -693,7 +703,7 @@ export const BuilderTools = [
   },
   {
     title: "Weld",
-    icon: "/img/tool-icons/weld.png",
+    icon: "/img/tools/weld.png",
     description: "Headless multi-chain wallet-connection library for dApps, covering Cardano and other chains.",
     website: "https://github.com/Cardano-Forge/weld/",
     docs: "https://github.com/Cardano-Forge/weld#getting-started",
@@ -703,7 +713,7 @@ export const BuilderTools = [
   },
   {
     title: "Elm Cardano",
-    icon: "/img/tool-icons/elm-cardano.png",
+    icon: "/img/tools/elm-cardano.png",
     description: "Elm off-chain package for Cardano, designed to pair with Aiken for on-chain code.",
     website: "https://github.com/elm-cardano/elm-cardano",
     docs: "https://elm-doc-preview.netlify.app/Cardano-TxIntent?repo=elm-cardano%2Felm-cardano&version=elm-doc-preview",
@@ -713,7 +723,7 @@ export const BuilderTools = [
   },
   {
     title: "Blaze",
-    icon: "/img/tool-icons/blaze.svg",
+    icon: "/img/tools/blaze.svg",
     description: "TypeScript library for building Cardano transactions and off-chain code, oriented toward Aiken contracts.",
     website: "https://github.com/butaneprotocol/blaze-cardano",
     docs: "https://blaze.butane.dev/",
@@ -723,7 +733,7 @@ export const BuilderTools = [
   },
   {
     title: "Kuber",
-    icon: "/img/tool-icons/kuber.jpg",
+    icon: "/img/tools/kuber.jpg",
     description: "Haskell library and JSON API server for composing balanced Cardano transactions.",
     website: "https://github.com/dQuadrant/kuber",
     docs: "https://kuberide.com/",
@@ -733,7 +743,7 @@ export const BuilderTools = [
   },
   {
     title: "Sorbet",
-    icon: "/img/tool-icons/sundaeswap.jpg",
+    icon: "/img/tools/sundaeswap.jpg",
     description: "Browser-extension mock wallet for testing dApp CIP-30 integrations as the end user.",
     website: "https://github.com/SundaeSwap-finance/Sorbet",
     docs: null,
@@ -743,7 +753,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano Dev Wallet",
-    icon: "/img/tool-icons/cardano-dev-wallet.png",
+    icon: "/img/tools/cardano-dev-wallet.png",
     description: "Browser-extension Cardano wallet for developers, with CIP-30 logging and custom-network support.",
     website: "https://github.com/mlabs-haskell/cardano-dev-wallet",
     docs: null,
@@ -753,7 +763,7 @@ export const BuilderTools = [
   },
   {
     title: "Bursa",
-    icon: "/img/tool-icons/bursa.png",
+    icon: "/img/tools/bursa.png",
     description: "Programmatic Cardano wallet exposing key, address, and certificate derivation over a REST API and CLI.",
     website: "https://github.com/blinklabs-io/bursa",
     docs: null,
@@ -763,7 +773,7 @@ export const BuilderTools = [
   },
   {
     title: "CShell",
-    icon: "/img/tool-icons/txpipe.png",
+    icon: "/img/tools/txpipe.png",
     description: "Interactive command-line Cardano wallet for developers and power users.",
     website: "https://github.com/txpipe/cshell",
     docs: null,
@@ -773,7 +783,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardano HW CLI",
-    icon: "/img/tool-icons/cardano-hw-cli.jpg",
+    icon: "/img/tools/cardano-hw-cli.jpg",
     description: "Command-line tool for signing Cardano transactions with Ledger, Trezor, and Keystone hardware wallets.",
     website: "https://github.com/vacuumlabs/cardano-hw-cli",
     docs: null,
@@ -783,7 +793,7 @@ export const BuilderTools = [
   },
   {
     title: "Cardanopress",
-    icon: "/img/tool-icons/cardanopress.png",
+    icon: "/img/tools/cardanopress.png",
     description: "WordPress plugin for adding Cardano wallet login, token-gating, and payments to sites.",
     website: "https://cardanopress.io/",
     docs: "https://github.com/CardanoPress/cardanopress",
@@ -802,8 +812,8 @@ export const BuilderTools = [
   },
   {
     title: "Yaci Store",
-    icon: "/img/tool-icons/yaci-store.svg",
-    description: "Modular Java indexer for Cardano with pluggable stores you enable as needed, exposing Blockfrost-compatible REST APIs.",
+    icon: "/img/tools/yaci-store.svg",
+    description: "Modular Java indexer for Cardano with pluggable stores you enable as needed, plugin-based filtering, Blockfrost-compatible REST APIs, and Parquet analytics exports.",
     website: "https://github.com/bloxbean/yaci-store",
     docs: "https://store.yaci.xyz/",
     repository: "https://github.com/bloxbean/yaci-store",
@@ -813,7 +823,7 @@ export const BuilderTools = [
   },
   {
     title: "Anvil",
-    icon: "/img/tool-icons/anvil.jpg",
+    icon: "/img/tools/anvil.jpg",
     description: "Hosted REST API focused on building, signing, and submitting Cardano transactions and minting assets.",
     website: "https://ada-anvil.io/services/api",
     docs: "https://dev.ada-anvil.io/",
@@ -823,7 +833,7 @@ export const BuilderTools = [
   },
   {
     title: "Cometa.js",
-    icon: "/img/tool-icons/biglup.png",
+    icon: "/img/tools/biglup.png",
     description: "JavaScript/TypeScript toolkit for Cardano transaction building, backed by the Cardano-C library.",
     website: "https://github.com/Biglup/cometa.js",
     docs: "https://cometajs.readthedocs.io/en/latest",
@@ -833,7 +843,7 @@ export const BuilderTools = [
   },
   {
     title: "Dingo",
-    icon: "/img/tool-icons/dingo.png",
+    icon: "/img/tools/dingo.png",
     description: "Full Cardano node implementation in Go, with built-in indexing and Blockfrost / UTxO-RPC APIs.",
     website: "https://github.com/blinklabs-io/dingo",
     docs: "https://pkg.go.dev/github.com/blinklabs-io/dingo",
@@ -843,7 +853,7 @@ export const BuilderTools = [
   },
   {
     title: "Mithril",
-    icon: "/img/tool-icons/mithril.png",
+    icon: "/img/tools/mithril.png",
     description: "Stake-based protocol for fast node bootstrapping and lightweight blockchain certification.",
     website: "https://github.com/input-output-hk/mithril",
     docs: "https://mithril.network/doc/manual/welcome",
@@ -853,7 +863,7 @@ export const BuilderTools = [
   },
   {
     title: "ODATANO",
-    icon: "/img/tool-icons/odatano.png",
+    icon: "/img/tools/odatano.png",
     description: "Exposes Cardano to enterprise systems through a SAP CAP-based OData V4 API.",
     website: "https://github.com/ODATANO/ODATANO",
     docs: "https://odatano.dev",
@@ -863,7 +873,7 @@ export const BuilderTools = [
   },
   {
     title: "Dolos",
-    icon: "/img/tool-icons/dolos.png",
+    icon: "/img/tools/dolos.png",
     description: "Lightweight Rust data node that follows the Cardano chain and serves queries over REST, gRPC, and node-to-client APIs, without producing blocks.",
     website: "https://docs.txpipe.io/dolos",
     docs: null,
@@ -873,8 +883,18 @@ export const BuilderTools = [
     maintainerPick: true,
   },
   {
+    title: "Tx3",
+    icon: "/img/tools/txpipe.png",
+    description: "Declarative language for describing UTxO transactions as reusable templates, with typed client generation for TypeScript, Rust, Go, and Python.",
+    website: "https://docs.txpipe.io/tx3",
+    docs: "https://docs.txpipe.io/tx3",
+    repository: "https://github.com/tx3-lang/tx3",
+    category: "sdk",
+    properties: ["rust", "typescript", "python", "golang"],
+  },
+  {
     title: "cardano-node",
-    icon: "/img/tool-icons/intersect.png",
+    icon: "/img/tools/intersect.png",
     description: "The Cardano node maintained by IntersectMBO: validates the chain, produces blocks, and serves the node-to-node and node-to-client protocols.",
     website: "https://github.com/IntersectMBO/cardano-node",
     docs: null,
@@ -884,13 +904,63 @@ export const BuilderTools = [
   },
   {
     title: "CardanoKit",
-    icon: "/img/tool-icons/cardano-kit.png",
+    icon: "/img/tools/cardano-kit.png",
     description: "Swift library for building Cardano wallets and signing transactions in iOS and macOS apps, with HD wallet and address support built on the Cardano Serialization Library.",
     website: "https://github.com/TokeoPay/CardanoKit#readme",
     docs: null,
     repository: "https://github.com/TokeoPay/CardanoKit",
     category: "sdk",
     properties: ["swift"],
+  },
+  {
+    title: "gnark-cardano",
+    icon: "/img/tools/logical-mechanism.png",
+    description: "Pipeline for writing Groth16 zero-knowledge circuits in Go with gnark and verifying them on-chain with a generic Aiken verifier.",
+    website: "https://github.com/logical-mechanism/Peace-Protocol/tree/main/public/gnark-cardano",
+    docs: null,
+    repository: "https://github.com/logical-mechanism/Peace-Protocol",
+    category: "smart-contracts",
+    properties: ["golang", "python"],
+  },
+  {
+    title: "plutus-halo2-verifier-gen",
+    icon: "/img/tools/input-output.png",
+    description: "Generates on-chain verifiers in Plinth or Aiken from a Rust Halo2 circuit, so its zero-knowledge proofs can be verified inside Cardano validators.",
+    website: "https://github.com/input-output-hk/plutus-halo2-verifier-gen",
+    docs: null,
+    repository: "https://github.com/input-output-hk/plutus-halo2-verifier-gen",
+    category: "smart-contracts",
+    properties: ["rust", "haskell"],
+  },
+  {
+    title: "hydra-sdk",
+    icon: "/img/tools/vtechcom.png",
+    description: "TypeScript SDK for building wallet apps on Hydra, with Head lifecycle management, transaction building inside a Head, and WASM bindings for browser and Node.",
+    website: "https://hydrasdk.com",
+    docs: "https://sdk.hydrawallet.app/getting-started",
+    repository: "https://github.com/Vtechcom/hydra-sdk",
+    category: "sdk",
+    properties: ["typescript"],
+  },
+  {
+    title: "Cardano on BigQuery",
+    description: "Full Cardano mainnet dataset on Google BigQuery, updated hourly, verified each epoch, and queryable with standard SQL.",
+    category: "api",
+    icon: "/img/tools/bca.png",
+    properties: [],
+    website: "https://www.blockchain-applied.com/bca-cardano-on-bigquery/",
+    repository: "https://github.com/Blockchain-Data-Analytics/Cardano_on_BigQuery",
+    docs: null,
+  },
+  {
+    title: "CardanoVSC",
+    icon: "/img/tool-icons/cardanovsc.png",
+    description: "VS Code extension for Cardano smart contract development, with Haskell and Plutus syntax highlighting, code completion, on-chain queries via Blockfrost and CardanoScan, and script-address generation from compiled Plutus contracts.",
+    website: "https://marketplace.visualstudio.com/items?itemName=AIQUANT-TECHNOLOGIES.cardanovsc",
+    docs: null,
+    repository: "https://github.com/AIQUANT-Tech/CardanoVSC",
+    category: "dev-env",
+    properties: ["haskell"],
   },
   {
     title: "Charli3",
@@ -921,6 +991,7 @@ export const BuilderTools = [
     repository: "https://github.com/pyth-network/pyth-crosschain/tree/main/lazer/contracts/cardano",
     category: "oracle",
     properties: ["rest", "websocket"],
+    maintainerPick: true,
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE

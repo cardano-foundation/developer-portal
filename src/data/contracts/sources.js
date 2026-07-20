@@ -30,17 +30,17 @@ export const SOURCES = {
   monitoring: {
     label: "CF monitoring",
     url: "https://github.com/cardano-foundation/cardano-template-and-ecosystem-monitoring",
-    icon: "/img/tool-icons/cardano-foundation.png",
+    icon: "/img/tools/cardano-foundation.png",
   },
   awesomeAiken: {
     label: "awesome-aiken",
     url: "https://github.com/aiken-lang/awesome-aiken",
-    icon: "/img/tool-icons/aiken.png",
+    icon: "/img/tools/aiken.png",
   },
   meshjs: {
     label: "MeshJS",
     url: "https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src",
-    icon: "/img/tool-icons/mesh.png",
+    icon: "/img/tools/mesh.png",
   },
   // Overflow-only (no icon): folds into the "+N more" link, not shown as an avatar.
   anastasia: {

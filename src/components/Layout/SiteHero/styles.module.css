@@ -24,7 +24,7 @@
    * (a ::before with z-index:-1 gets hidden behind it on this site). The SVG
    * circles are #0033AD, so they only show against the lighter gradient. */
   background-color: #0035ad;
-  background-image: url(/img/hero-header-starburst.svg),
+  background-image: url(/img/home/hero-header-starburst.svg),
     linear-gradient(315deg, #305bbd, #0035ad);
   background-repeat: no-repeat, no-repeat;
   background-position: top right, center;
@@ -34,7 +34,7 @@
 html[data-theme="dark"] .heroBannerStarburst {
   color: #ffffff;
   background-color: #011034;
-  background-image: url(/img/hero-header-starburst.svg),
+  background-image: url(/img/home/hero-header-starburst.svg),
     linear-gradient(315deg, #244eaf, #011034);
 }
 

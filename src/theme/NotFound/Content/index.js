@@ -6,7 +6,7 @@ import { useColorMode } from "@docusaurus/theme-common";
 
 export default function NotFoundContent({ className }) {
   const { colorMode } = useColorMode();
-  const logo = colorMode === "dark" ? "img/cardano-white.svg" : "img/cardano-black.svg";
+  const logo = colorMode === "dark" ? "img/brand/cardano-white.svg" : "img/brand/cardano-black.svg";
 
   return (
     <main

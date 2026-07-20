@@ -3,12 +3,11 @@ id: air-gap
 title: Air Gap Environment
 sidebar_label: Air Gap Environment
 description: Secure your private keys on a network-free machine — Nix bootable ISO or manual Ubuntu setup.
-image: /img/og/og-security-air-gap-environment.png
 ---
 
 An air-gapped machine is one that has never made a network connection and never will. Cold keys — pool registration keys, Constitutional Committee signing keys, any key that authorizes high-value operations — must be handled on a machine that meets this bar. If your cold key ever touches an internet-connected machine, it should be considered compromised.
 
-You have two paths to an air-gapped environment:
+You have three paths to an air-gapped environment:
 
 <details>
 <summary><strong>cardano-airgap — Nix bootable ISO (recommended)</strong></summary>
@@ -185,7 +184,7 @@ If your computer doesn't have a cabled connection, it is acceptable under our se
 
 #### Updates and other software
 
-![img](/img/get-started/air-gap/10-software-choices.png)
+![img](./img/10-software-choices.png)
 
 Select **Minimal installation**, since this is the least likely to leave you with security intrusive applications and services.
 
@@ -199,7 +198,7 @@ Select **Minimal installation**, since this is the least likely to leave you wit
 
 #### Installation type
 
-![img](/img/get-started/air-gap/20-installation-type.png)
+![img](./img/20-installation-type.png)
 
 Tick **Erase disk and install Ubuntu**.... you've already confirmed there's nothing else that needs to be kept on this computer, and that it won't have any other operating systems or working disks.
 
@@ -213,7 +212,7 @@ Before you hit **Continue**, if you've chosen to encrypt your files:
 
 ##### (optional) Set up the hard drive for encryption
 
-![img](/img/get-started/air-gap/30-encrypt-disk.png)
+![img](./img/30-encrypt-disk.png)
 
 Hit the button below the *Erase disk* option: **Advanced Features** which will at first say *None selected*.
 
@@ -222,7 +221,7 @@ Hit the button below the *Erase disk* option: **Advanced Features** which will a
 
 Don't hit the **Continue** button unless you can verify it now says ***LVM and encryption selected*** under Advanced options:
 
-![img](/img/get-started/air-gap/35-disk-encrypted.png)
+![img](./img/35-disk-encrypted.png)
 
 Enter the password you have prepared earlier as a **volume decryption key.**
 

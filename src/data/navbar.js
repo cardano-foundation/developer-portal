@@ -80,7 +80,7 @@ function getNavbarItems(repository) {
       label: 'Ecosystem',
       position: 'left',
       items: [
-        {to: "blog/", label: "Dev Blog"},
+        {to: "/blog/", label: "Dev Blog"},
         {href: "https://www.addevent.com/calendar/TG807216", label: "Developer Office Hours"},
         {href: "https://cardanoupdates.com/", label: "Developer Activity"},
         {href: "https://cips.cardano.org/", label: "CIPs"},
@@ -118,6 +118,7 @@ function getNavbarItems(repository) {
       href: repository,
       position: "right",
       className: "header-github-link",
+      "aria-label": "GitHub repository",
     },
   ];
 }

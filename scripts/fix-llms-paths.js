@@ -1,14 +1,20 @@
-// Post-build patch for docusaurus-plugin-llms slug bug.
+// Post-build patch for docusaurus-plugin-llms and `slug:` frontmatter.
 //
-// docusaurus-plugin-llms v0.4.0 generates `.md` siblings at paths derived from
-// `slug:` frontmatter, but doesn't account for `routeBasePath: 'docs'`. So for
-// docs with `slug:`, appending `.md` to the rendered URL returns 404 because
-// the file lives at a different path than the page.
+// docusaurus-plugin-llms (v0.4.0) generates a raw `.md` sibling for each doc so that
+// appending `.md` to a page URL returns its Markdown (used by the "Copy page" button and
+// "View as Markdown" link in src/components/CopyMarkdownActions). For docs with `slug:`
+// frontmatter it ignores `routeBasePath: 'docs'` and the slug's directory shape, so the file
+// lands somewhere other than `<route>.md` and the fetch 404s. Two shapes are produced:
 //
-// This script moves the misplaced `.md` files to their URL-aligned location
-// and rewrites the URLs inside `llms.txt` and `llms-full.txt`.
+//   1. OUTSIDE build/docs at `build/<slug>.md`              (e.g. the IoT workshop overviews)
+//   2. doubled UNDER build/docs at `build/docs/<slug>/<basename>.md`   (e.g. /operators/, /developers/)
 //
-// Remove this script and its `build` step wiring once upstream is fixed.
+// This script relocates those to the URL-aligned `build/docs/<slug>.md` and rewrites the
+// matching URLs inside `llms.txt` / `llms-full.txt`. Slug docs are discovered by scanning
+// frontmatter, so no path list needs maintaining. (Docs without `slug:` already emit at their
+// route, since the curriculum folders carry no number prefixes.)
+//
+// Remove this script and its `build` step wiring once upstream honours routeBasePath + slug.
 // Tracking issue: https://github.com/cardano-foundation/developer-portal/issues/1791
 
 const fs = require('fs');
@@ -16,31 +22,31 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const BUILD = path.join(ROOT, 'build');
+const DOCS_BUILD = path.join(BUILD, 'docs'); // routeBasePath is the default 'docs'
+const DOCS_SRC = path.join(ROOT, 'docs');
 
-// Each entry: [pluginOutputPath, urlAlignedPath] relative to build/
-//
-// Two patterns produce misaligned `.md`:
-//   (1) `slug:` frontmatter — page URL differs from source path.
-//   (2) Filename matches parent dir name (e.g. `foo/bar/bar.md`) —
-//       Docusaurus collapses the URL to `/docs/foo/bar/`.
-//
-// Update if you add new docs of either pattern and the plugin is still
-// broken upstream.
-const moves = [
-  // (1) slug: frontmatter
-  ['docs/operators/operators.md',   'docs/operators.md'],
-  ['docs/developers/developers.md', 'docs/developers.md'],
-];
+const warnings = [];
+const warn = (msg) => warnings.push(msg);
+const buildRel = (abs) => path.relative(BUILD, abs).split(path.sep).join('/');
 
-function moveFile(fromAbs, toAbs) {
-  if (!fs.existsSync(fromAbs)) {
-    throw new Error(`Expected plugin output missing: ${path.relative(ROOT, fromAbs)} — plugin behavior may have changed, update scripts/fix-llms-paths.js`);
+// Collect every absolute `slug:` declared in the docs frontmatter, normalized to a path with
+// no surrounding slashes (e.g. `operators`, `developers/curriculum/dapps/iot/the-basics`).
+function collectSlugs(dir, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('_') || entry.name.startsWith('.')) continue;
+    const abs = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      collectSlugs(abs, out);
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      const fm = fs.readFileSync(abs, 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      if (!fm) continue;
+      const line = fm[1].split(/\r?\n/).find((l) => /^slug:\s*\//.test(l)); // absolute slugs only
+      if (!line) continue;
+      const value = line.replace(/^slug:\s*/, '').trim().replace(/^['"]|['"]$/g, ''); // drop key + quotes
+      out.push(value.replace(/^\/+|\/+$/g, '')); // store without surrounding slashes
+    }
   }
-  if (fs.existsSync(toAbs)) {
-    throw new Error(`Destination already exists: ${path.relative(ROOT, toAbs)}`);
-  }
-  fs.mkdirSync(path.dirname(toAbs), { recursive: true });
-  fs.renameSync(fromAbs, toAbs);
+  return out;
 }
 
 function cleanupEmptyDirs(startAbs) {
@@ -53,35 +59,48 @@ function cleanupEmptyDirs(startAbs) {
   }
 }
 
-function rewriteLlmsTxt(replacements) {
+// Point the plugin's llms.txt / llms-full.txt URLs at the relocated files. Each replacement
+// is anchored right after the host (the `https://host` capture) so a short path can never
+// match inside a longer URL.
+function rewriteLlmsUrls(replacements) {
   for (const filename of ['llms.txt', 'llms-full.txt']) {
     const filePath = path.join(BUILD, filename);
     if (!fs.existsSync(filePath)) continue;
     let content = fs.readFileSync(filePath, 'utf8');
     for (const [oldUrlPath, newUrlPath] of replacements) {
-      // URLs in llms.txt look like https://developers.cardano.org/learn/core-concepts.md
-      // Replace by suffix match so we don't have to hardcode the host.
-      const oldSuffix = '/' + oldUrlPath;
-      const newSuffix = '/' + newUrlPath;
-      // Escape regex metachars in the suffix
-      const escaped = oldSuffix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      content = content.replace(new RegExp(escaped + '(?=[):\\s])', 'g'), newSuffix);
+      const escaped = oldUrlPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const urlPattern = new RegExp('(https?://[^/\\s)]+)' + escaped + '(?=[):\\s]|$)', 'g');
+      content = content.replace(urlPattern, '$1' + newUrlPath);
     }
     fs.writeFileSync(filePath, content);
   }
 }
 
-function main() {
-  let moved = 0;
-  for (const [from, to] of moves) {
-    const fromAbs = path.join(BUILD, from);
-    const toAbs = path.join(BUILD, to);
-    moveFile(fromAbs, toAbs);
-    cleanupEmptyDirs(path.dirname(fromAbs));
-    moved++;
+let moved = 0;
+const replacements = []; // [oldUrlPath, newUrlPath] for llms.txt
+for (const slug of collectSlugs(DOCS_SRC)) {
+  const toAbs = path.join(DOCS_BUILD, slug + '.md');
+  if (fs.existsSync(toAbs)) continue; // already aligned
+  const fromAbs = [
+    path.join(BUILD, slug + '.md'), // shape 1: outside build/docs
+    path.join(DOCS_BUILD, slug, path.posix.basename(slug) + '.md'), // shape 2: doubled
+  ].find((c) => fs.existsSync(c));
+  if (!fromAbs) {
+    warn(`No generated markdown found for slug "/${slug}/" (plugin output may have changed).`);
+    continue;
   }
-  rewriteLlmsTxt(moves);
-  console.log(`[fix-llms-paths] Moved ${moved} slug-affected .md files to URL-aligned paths and updated llms.txt`);
+  const oldUrlPath = '/' + buildRel(fromAbs);
+  fs.mkdirSync(path.dirname(toAbs), { recursive: true });
+  fs.renameSync(fromAbs, toAbs);
+  cleanupEmptyDirs(path.dirname(fromAbs));
+  replacements.push([oldUrlPath, '/' + buildRel(toAbs)]);
+  moved++;
 }
 
-main();
+rewriteLlmsUrls(replacements);
+
+console.log(`[fix-llms-paths] Relocated ${moved} slug-affected .md file(s) and updated llms.txt`);
+if (warnings.length) {
+  console.warn(`[fix-llms-paths] ${warnings.length} warning(s):`);
+  for (const w of warnings) console.warn(`  - ${w}`);
+}

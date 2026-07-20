@@ -3,7 +3,6 @@ id: exchange-integrations
 title: Exchange Integrations
 sidebar_label: Exchanges
 description: Guide for integrating Cardano with exchanges.
-image: /img/og/og-developer-portal.png
 ---
 
 ## Overview

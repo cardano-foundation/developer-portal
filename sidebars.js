@@ -139,10 +139,16 @@ module.exports = {
                     "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention",
                     "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/cheap-spam",
                     "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/signature-domain-separation",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/certificate-deregistration",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missed-input",
                     "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/locked-value",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/hash-grinding",
+                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/evaluation-order",
                   ],
                 },
                 "developers/curriculum/smart-contracts/advanced/security/ctf",
+                "developers/curriculum/smart-contracts/advanced/security/audits",
                 "developers/curriculum/smart-contracts/advanced/security/formal-verification",
               ],
             },
@@ -179,6 +185,7 @@ module.exports = {
                 "developers/curriculum/smart-contracts/advanced/debug-cbor",
                 "developers/curriculum/smart-contracts/advanced/optimization",
                 "developers/curriculum/smart-contracts/advanced/zero-knowledge",
+                "developers/curriculum/smart-contracts/advanced/bls-primitives",
               ],
             },
           ],
@@ -207,6 +214,7 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/oracles/pyth",
+                "developers/curriculum/dapps/oracles/randomness",
               ],
             },
             {
@@ -218,6 +226,7 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/ai-agents/masumi",
+                "developers/curriculum/dapps/ai-agents/mcp",
               ],
             },
         {
@@ -339,6 +348,7 @@ module.exports = {
           items: [
             "developers/curriculum/production/going-to-production",
             "developers/curriculum/production/infrastructure",
+            "developers/curriculum/production/indexing-and-analytics",
             {
               type: "category",
               label: "API Providers",
@@ -350,11 +360,14 @@ module.exports = {
                 "developers/curriculum/production/api-providers/blockfrost",
                 "developers/curriculum/production/api-providers/koios",
                 "developers/curriculum/production/api-providers/ogmios",
+                "developers/curriculum/production/api-providers/dolos",
               ],
             },
             "developers/curriculum/production/run-your-own-node",
+            "developers/curriculum/production/network-protocol",
             "developers/curriculum/production/development-networks",
             "developers/curriculum/production/demeter",
+            "developers/curriculum/production/transaction-chaining",
             "developers/curriculum/production/hydra",
           ],
         },
