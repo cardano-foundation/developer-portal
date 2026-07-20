@@ -532,6 +532,10 @@ const tx = await client
 
 Mesh's builder takes a redeemer on a script **withdrawal** (the coordinator trigger below) but not on a stake **delegation** certificate, so script-controlled delegation is Evolution or cardano-cli only.
 
+This is the off-chain half: submitting the delegation with the script attached. The on-chain half, the validator logic that decides which registrations, delegations, and reward withdrawals to allow, is the [certificate and withdrawal handlers](/docs/developers/curriculum/smart-contracts/write-a-validator#certificate-validator) in Write a validator.
+
+The script does not have to hold the stake credential itself, either. When locked funds should keep earning for their depositor, the script address carries the *depositor's* stake credential, and staking needs no script logic at all: production lending pools stake idle liquidity this way, with the validator simply preserving the full address on every continuing output.
+
 The most important use isn't earning rewards. It's the **withdraw-zero coordinator pattern**, the smart-contract principle of [avoiding redundant validation](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview#avoid-redundant-validation) applied through staking. A zero-amount withdrawal triggers a stake validator that runs *once for the whole transaction*, letting it enforce global invariants across many script inputs far more cheaply than re-running a spending validator per input:
 
 <Tabs groupId="sdk">

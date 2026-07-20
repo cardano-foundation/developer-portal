@@ -2,56 +2,30 @@
 id: validity-range-normalization
 title: Validity Range Normalization
 sidebar_label: Validity range normalization
-description: Validators, at runtime, are intentionally deprived of direct access to the current time. Instead, they are equipped with information solely about the validity range of a transaction.
+description: Normalize a transaction's validity range to one canonical form so a validator handles every equivalent representation safely.
 ---
 
 ## Introduction
 
-In the intricate landscape of developing validators for the Cardano protocol, one encounters the
-necessity to implement checks that meticulously consider time-related factors. To circumvent the
-redundancy of executing smart contract code multiple times, Cardano has devised an approach that
-sets it apart from other blockchains. Specifically, validators, at runtime, are intentionally
-deprived of direct access to the current time. Instead, they are equipped with information solely
-about the validity range of a transaction. This design choice guarantees that a transaction is only
-admitted to the chain within its designated validity range. Consequently, smart contracts can
-implement checks based on the current time, while maintaining computational purity, wherein functions
-exhibit mathematical purity devoid of side-causes or side-effects.
+Cardano validators cannot read the current time directly. To keep execution deterministic, a validator sees only the transaction's validity range, the slot window in which the transaction may be included. The ledger admits the transaction only inside that window, so a validator can enforce time-based rules while staying pure, with no side-effects and no dependence on a live clock.
 
 ## The Problem
 
-The representation of validity ranges in Plutus introduces a subtle complexity with its lower and
-upper bounds, both capable of assuming the extremal values of `-∞` and `+∞`. Additionally, a boolean
-flag signifies whether the range is open or closed at each end. This flexibility, however, leads to
-multiple representations of the same validity range. For instance, the range `(a, b)` (open on both
-ends) is equivalent to the range `[a+1, b-1]` (closed on both ends) if both a and b are finite.
-Further complexity arises from the fact that infinite ranges are occasionally represented as closed
-on the "open" sides. For example, the always range is (at the time of writing) denoted as `[-∞,
-+∞]`, despite the inconsistency with the actual time values that do not include `-∞` or `+∞`.
+Plutus can represent the same validity range in more than one way. Each bound can be finite or infinite (`-∞`, `+∞`), and a flag marks whether the end is open or closed. So `(a, b)` (open on both ends) equals `[a+1, b-1]` (closed on both ends) when `a` and `b` are finite, and infinite ranges are sometimes written closed on the infinite side (the always-range is denoted `[-∞, +∞]` even though real times never include the infinities).
 
-This ambiguity can potentially result in unintended consequences for validators ill-equipped to
-handle these diverse representations. Moreover, as the standard method of communicating the range
-may change with any hard fork, long-lived smart contracts must be designed to accommodate various
-representations to prevent funds from being indefinitely locked within them.
+A validator that does not handle every representation can behave incorrectly on the ones it did not expect. And because the encoding can change at a hard fork, a long-lived contract that assumes one form risks locking funds forever when the form shifts.
 
 ## The Solution
 
-In our endeavor to establish best practices, we advocate for the adoption of normalized versions of
-validity ranges within the design patterns library. We propose incorporating functions that
-facilitate the normalization procedure to ensure consistency in the representation of these ranges.
-The recommended formats for normalized validity ranges are as follows:
+Normalize the range to a single canonical form before checking it. The design-patterns library does this, reducing every equivalent range to one representation:
 
-`[a, b]`: Denotes a closed range if both a and b are finite.  
-`(-∞, x]` and `[x, +∞)`: Represents a half-open range on the infinite side, where x is a finite value.  
-`(-∞, +∞)`: Signifies an open range on both sides, specifically used for the representation of the
-always range, aligning with the standard convention in mathematics.
+- `[a, b]`: a closed range when both bounds are finite.
+- `(-∞, x]` and `[x, +∞)`: half-open on the infinite side, with `x` finite.
+- `(-∞, +∞)`: open on both sides, used for the always-range, matching the mathematical convention.
 
 ## Aiken Implementation
 
-The datatype that models validity range in Cardano currently allows for values that are either meaningless, or can have more than one representations. For example, since the values are integers, the inclusive flag for each end is redundant and can be omitted in favor of a predefined convention (e.g. a value should always be considered inclusive).
-
-In this module we present a custom datatype that essentially reduces the value domain of the original validity range to a smaller one that eliminates meaningless instances and redundancies.
-
-The exposed function of the module (`normalize_time_range`), takes a `ValidityRange` and returns a datatype for eliminating meaningless ranges, without the redundant inclusiveness flag (instead all range values are inclusive):
+Cardano's validity-range type allows values that are either meaningless or redundant: because the bounds are integers, the inclusive/exclusive flag is unnecessary once you fix a convention (treat every bound as inclusive). This module maps the range onto a smaller datatype that drops the redundant flag and rules out the meaningless cases. `normalize_time_range` takes a `ValidityRange` and returns it:
 
 ```aiken
 pub type NormalizedTimeRange {
@@ -62,9 +36,6 @@ pub type NormalizedTimeRange {
   InvalidRange
 }
 ```
-
-The exposed function of the module (`normalize_time_range`), takes a
-`ValidityRange` and returns this custom datatype.
 
 ### Example Usage
 

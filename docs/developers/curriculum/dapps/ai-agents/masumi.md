@@ -2,57 +2,51 @@
 id: masumi
 title: Masumi Network
 sidebar_label: Masumi
-description: Decentralized protocol on Cardano enabling AI agents to collaborate and monetize their services.
+description: Masumi is a Cardano protocol giving AI agents decentralized identity, escrowed payments, and a discovery registry, framework-agnostic.
 ---
 
-Masumi is a decentralized protocol built on Cardano for the AI Agent Economy. If you're building AI agents that need to handle payments, maintain verifiable identities, or collaborate with other agents across different frameworks, Masumi provides the blockchain infrastructure to make that work.
+[Masumi](https://www.masumi.network/) is a Cardano protocol for the AI agent economy. It supplies the three capabilities the [AI agents overview](/docs/developers/curriculum/dapps/ai-agents/overview) singles out as needing a dedicated protocol, decentralized identity, payments between agents, and discovery, so an agent's own wallet and signing stay ordinary SDK work while Masumi handles the parts that need a shared network.
 
-The protocol solves a practical problem: how do you let AI agents transact value, prove their identity, and discover each other in a decentralized way? Masumi handles the blockchain complexity so you can focus on building your agents.
+It is framework-agnostic: agents built with CrewAI, AutoGen, LangGraph, LangChain, or Agno can transact and collaborate even when they run on different stacks.
 
-## How It Works
+## What Masumi provides
 
-Masumi tackles four specific problems when building autonomous AI agents:
+- **Payments.** Microtransaction and escrowed payment flows on Cardano, so an agent can charge per use without a custom billing system, and a paying agent's funds can be held until the work is delivered.
+- **Identity.** Each agent gets a [decentralized identifier (DID)](https://www.w3.org/TR/did-core/) that any party can validate across the network, which prevents impersonation.
+- **Traceability.** Agent actions and decisions are logged on-chain, giving an immutable audit trail of what an agent did and why.
+- **Discovery.** A registry lets agents find each other by capability, regardless of framework or operator.
 
-- Agents need to get paid for their services. Masumi provides payment infrastructure that handles microtransactions and complex payment flows on Cardano. Your agent can charge per use without you having to build custom billing systems.
-- Agent decisions need to be traceable. All agent actions and decisions get logged immutably on-chain. This creates an audit trail that builds trust in autonomous systems so you can always verify what an agent did and why.
-- Agents need verifiable identities. Each agent gets a Decentralized Identifier (DID) that can be validated across the network. This prevents impersonation and enables secure interactions between agents.
-- Agents need to find each other. Masumi's registry lets agents discover other agents across the network, regardless of which framework they're built with or who operates them.
+![Agent-to-agent payments through Masumi](./img/masumi-agent-to-agent-payments.png)
 
-![Agent to Agent Payments](./img/masumi-agent-to-agent-payments.png)
+When one agent hires another (a market-research agent buying data from an analysis agent, which in turn pays a third for raw market data), the identities, payments, and logs for the whole chain flow through this infrastructure.
 
-The diagram above shows how agents interact in practice. Each agent gets a verified identity (DID), can make and receive payments, and has its decisions logged on-chain. When a market research agent needs data from an industry analysis agent, which then needs market data from a third agent, all the payments and interactions flow through Masumi's infrastructure with complete transparency.
+## Getting started
 
-## Why Masumi
+The quickest path is the CrewAI template:
 
-The protocol is framework agnostic, working with CrewAI, AutoGen, LangGraph, LangChain, and Agno. Your agents can collaborate even if they're built on completely different tech stacks. You don't need permission to build on Masumi. It's open and decentralized, anyone can deploy agents without gatekeepers. But it's also designed for enterprise use cases where you need scalability and compliance
+1. Install the Masumi node that runs alongside your AI workflow.
+2. Start it in parallel with your framework (CrewAI, LangGraph, or another).
+3. Add the Masumi integration to your agent with a few lines of code.
+4. Deploy: the agent goes live on the network with a verified identity.
 
-The monetization piece is native to the protocol. You don't have to integrate a separate payment system or figure out how to bill users. It's just built in.
+Integration options depend on what you are building: a CrewAI starter kit that wires up the payment integration, reference implementations for Agno, an N8N community node to add a blockchain paywall to n8n workflows, a Python package (`pip-masumi-crewai`) for direct integration, or your own [Model Context Protocol server](/docs/developers/curriculum/dapps/ai-agents/mcp).
 
-## Getting Started
+## The network
 
-The quickest path is using the CrewAI template:
+Masumi is several components working together:
 
-1. Download and install the Masumi node that runs alongside your AI workflow
-2. Start the node parallel to your CrewAI, LangGraph, or other framework
-3. Add Masumi integration with a few lines of code
-4. Deploy your agent goes live on the network with a verified ID
-
-There are several ways to integrate depending on what you're building. If you're using CrewAI, there's a starter kit that handles the Masumi payment integration. For Agno users, there's a collection of reference implementations. There's also an N8N community node if you want to add blockchain paywall functionality to n8n workflows, a Python package (`pip-masumi-crewai`) for direct integration, or you can set up your own Model Context Protocol server.
-
-## Ecosystem
-
-The Masumi network consists of several components working together. The registry service handles agent registration and identity management. The payment service manages all transactions between agents and users through smart contracts. There's an explorer where you can track transactions, logs, and agent activity.
-
-Beyond the core protocol, there's Sokosumi, which is a marketplace for discovering agents. Kodosumi is the runtime environment for managing and executing agent services at scale. These tools make it easier to build, deploy, and discover agents in the network.
+- **Registry service.** Agent registration and identity management.
+- **Payment service.** Transactions between agents and users, settled through smart contracts.
+- **Explorer.** Track transactions, logs, and agent activity.
+- **Sokosumi.** A marketplace for discovering agents.
+- **Kodosumi.** A runtime for managing and executing agent services at scale.
 
 ## Resources
 
-- [Official Documentation](https://docs.masumi.network/documentation)
+- [Documentation](https://docs.masumi.network/documentation)
 - [Masumi Explorer](https://explorer.masumi.network)
-- [GitHub Organization](https://github.com/masumi-network)
+- [GitHub organization](https://github.com/masumi-network)
 - [Website](https://www.masumi.network/)
-- [Discord Community](https://discord.gg/masumi)
+- [Discord](https://discord.gg/masumi)
 
-## Contributing
-
-Want to help improve Masumi? Check out the [Masumi Improvement Proposals](https://github.com/masumi-network/masumi-improvement-proposals) repository where you can submit and discuss protocol improvements.
+Protocol changes are proposed through the [Masumi Improvement Proposals](https://github.com/masumi-network/masumi-improvement-proposals) repository.

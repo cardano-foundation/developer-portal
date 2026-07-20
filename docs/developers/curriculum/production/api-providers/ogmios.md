@@ -18,12 +18,12 @@ For a higher-level, hosted alternative, consider [Blockfrost](/docs/developers/c
 
 ## Installation
 
-The easiest way to get started with Ogmios is to use [docker](https://www.docker.com). Since Ogmios requires the presence of a Cardano node, it makes sense to use docker-compose to orchestrate both services. A compose file is available on the Ogmios repository, get it via:
+The easiest way to run Ogmios is with [Docker](https://www.docker.com). Because Ogmios needs a Cardano node alongside it, use Docker Compose to orchestrate both services. A compose file is available in the Ogmios repository:
 
 ```sh
 git clone --depth 1 https://github.com/CardanoSolutions/ogmios.git
 cd ogmios
-docker-compose up
+docker compose up
 ```
 
 For source builds or non-Docker installation, see [ogmios.dev/getting-started](https://ogmios.dev/getting-started).
@@ -34,24 +34,19 @@ Access the dashboard at [localhost:1337](http://localhost:1337) for real-time ru
 
 ![Ogmios Dashboard](./img/1-dashboard.gif)
 
-## Query Metrics
+## Query metrics
 
 The dashboard uses JSON responses from the health endpoint:
 
-<Tabs
-defaultValue="curl"
-values={[
-{label: 'curl', value: 'curl'},
-{label: 'wget', value: 'wget'},
-]}>
-<TabItem value="curl">
+<Tabs groupId="tool">
+<TabItem value="curl" label="curl" default>
 
 ```sh
 curl -H 'Accept: application/json' http://localhost:1337/health
 ```
 
   </TabItem>
-  <TabItem value="wget">
+  <TabItem value="wget" label="wget">
 
 ```sh
 wget --header='Accept: application/json' -qO- http://localhost:1337/health
