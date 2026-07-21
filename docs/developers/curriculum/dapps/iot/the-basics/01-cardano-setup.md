@@ -28,7 +28,7 @@ tADA is the testnet version of ADA, used to pay fees on Preprod.
 
 Within a few seconds, the faucet sends 10,000 tADA to your wallet. That's more than enough for every workshop in this section.
 
-## Sending and Receiving tADA
+## Sending and receiving tADA
 
 Now that you have tADA in your wallet, practise sending and receiving - you'll need this flow constantly when testing IoT projects that interact with the chain.
 
@@ -42,7 +42,7 @@ Preprod-only.
 
 To send tADA: open Yoroi → **Send** tab, paste the recipient address (use the PingPong address above to test), enter an amount, confirm. The transaction takes a few seconds to land.
 
-## Checking Transactions
+## Checking transactions
 
 Once you've sent or received tADA, verify it on a block explorer using the transaction hash.
 
@@ -92,7 +92,6 @@ CardanoScan is the most popular explorer, but several others work too: [Adastat]
 - [Cexplorer](https://cexplorer.io/) - detailed blockchain explorer (transactions, addresses, epochs).
 - [pool.pm](https://pool.pm/) - explorer + NFT viewer.
 - [Lido Nation](https://lidonation.com/) - articles and resources on Cardano and blockchain in general.
-
 
 ---
 

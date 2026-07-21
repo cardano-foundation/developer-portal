@@ -113,7 +113,7 @@ validator spend(withdraw_script_hash: ScriptHash) {
 
 /// A very minimal example just to show how an accompanying staking script can
 /// be defined.
-validator witdhraw {
+validator withdraw {
   withdraw(
     redeemer: OutputReference,
     _own_credential: Credential,
@@ -206,3 +206,17 @@ Library implementation: [stake_validator module](https://github.com/Anastasia-La
 - Processing multiple UTxOs in single transactions
 - Validation logic is expensive (CPU/memory)
 - You need transaction-level validation rather than per-UTxO validation
+
+## Registration state as global state
+
+The withdraw zero trick uses a stake credential for its logic, but the credential carries a second, often overlooked property: its registration status. Whether a credential is currently registered is tracked on the account-based side of the ledger, outside the UTxO set. That makes it one bit of global state that any transaction can set, unset, or test:
+
+- Registering the credential sets the bit. Registration fails if the credential is already registered, so a successful registration also proves the bit was unset.
+- Deregistering the credential unsets the bit, and proves it was set.
+- Registering and then deregistering in the same transaction tests that the bit is unset without leaving it set.
+
+The interesting consequence is proving that an event has *not* happened. The usual proof-of-occurrence technique mints a token when an event occurs; anyone can later prove the event happened by referencing the UTxO holding that token. It cannot prove the opposite, because no validator can force another transaction to include that UTxO as a reference input. If the event instead requires registering a stake credential, absence becomes checkable: a transaction that registers the credential only succeeds while the event has not occurred.
+
+Because this state lives on the account side of the ledger, reading or flipping it spends no UTxO. There is no contention: many transactions can interact with the same credential within one block without competing for an input.
+
+Two caveats. The certificate operations that make this work are exactly the ones covered in [Unconstrained Certificate Operations](../../security/vulnerabilities/certificate-deregistration): an unguarded certificate path lets anyone flip the bit and claim the registration deposit. And while several credentials give several bits, treating them as an integer reintroduces the concurrency problems the technique avoids; the [global state write-up](https://github.com/Anastasia-Labs/design-patterns/blob/main/stake-validator/GLOBAL-STATE.md) in the design patterns repository demonstrates multi-bit counters but labels them a proof of concept.

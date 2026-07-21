@@ -962,6 +962,37 @@ export const BuilderTools = [
     category: "dev-env",
     properties: ["haskell"],
   },
+  {
+    title: "Charli3",
+    icon: "/img/tool-icons/charli3.jpg",
+    description: "Decentralized oracle network delivering auditable on-chain price feeds and custom data records to Cardano smart contracts.",
+    website: "https://charli3.io",
+    docs: "https://docs.charli3.io",
+    repository: "https://github.com/Charli3-Official/charli3-pull-oracle-contracts",
+    category: "oracle",
+    properties: ["rest"],
+  },
+  {
+    title: "Orcfax",
+    icon: "/img/tool-icons/orcfax.jpg",
+    description: "Decentralized oracle publishing real-world price and event data to Cardano, delivered to on-chain Plutus contracts in eUTXO-native format.",
+    website: "https://orcfax.io",
+    docs: "https://docs.orcfax.io",
+    repository: "https://github.com/orcfax/orcfax-aiken",
+    category: "oracle",
+    properties: [],
+  },
+  {
+    title: "Pyth Pro",
+    icon: "/img/tool-icons/pyth.jpg",
+    description: "Pull-based oracle delivering low-latency price feeds for crypto, equities, FX, and commodities to Cardano DeFi, sourced from first-party institutional publishers.",
+    website: "https://www.pyth.network",
+    docs: "https://docs.pyth.network/price-feeds/pro/integrate-as-consumer/cardano",
+    repository: "https://github.com/pyth-network/pyth-crosschain/tree/main/lazer/contracts/cardano",
+    category: "oracle",
+    properties: ["rest", "websocket"],
+    maintainerPick: true,
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file

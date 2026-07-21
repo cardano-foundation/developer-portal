@@ -44,6 +44,8 @@ The example NFT metadata structure used in this lesson:
 
 `policyId` and `tokenName` are generated automatically by the server.
 
+**Where the minting happens** is its own design choice. A microcontroller is too small to hold a wallet or build a transaction, so the signing always happens elsewhere, and there are two ways to arrange it. This lesson runs your own minting API: you own the native policy, hold the keys, and your server builds and submits every transaction, so nothing about the mint depends on a third party. The alternative is to POST to a managed minting service that holds a policy for you and signs on your behalf, which skips running any infrastructure but hands over key ownership and control. Either way the device holds no signing keys, only a credential that triggers the mint - treat that credential as a secret, since anything that can read it off the device can mint under your policy.
+
 ## Minting your first NFT
 
 This script connects to Preprod, sets up your wallet, builds and signs a minting transaction with [CIP-25](https://cips.cardano.org/cips/cip25/) metadata, and submits it.

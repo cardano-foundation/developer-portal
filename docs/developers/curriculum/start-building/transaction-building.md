@@ -402,6 +402,14 @@ cardano-cli latest transaction sign \
 
 Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
 
+## Headless dApps
+
+So far you have built transactions inside your application with an SDK. But that transaction-building logic is where a Cardano dApp's business logic actually sits: a validator only checks that a finished transaction is valid, it holds no logic of its own, so the real work is turning external events (a button in a UI, an API call, an on-chain condition, a scheduled job) into the transactions that represent them. That logic does not have to live in your frontend. It can run in the browser, in a cloud backend, or in an unattended process like a batcher. Left unmanaged, every app ends up wiring its own way to read the chain, build transactions, and submit them, so no two are alike and none can reuse another's work.
+
+A *headless dApp* pushes all of that behind one well-defined interface: the business logic becomes a standalone service, and every input and output flows through that interface instead of being baked into a particular UI. It is hexagonal architecture (or clean architecture) applied to Cardano, separating the core logic from the adapters that connect it to the outside world. The payoff is reuse: one transaction-building service can back several frontends, other applications can compose it programmatically, and nobody re-implements chain queries, transaction building, and submission from scratch.
+
+Making this concrete needs standard interfaces for the two things such a service does, reading chain data and resolving or submitting transactions; UtxoRPC is one emerging interface for that read-and-submit side. The [declarative transactions](#declarative-transactions) below are one shape of the build side: a protocol publishes its transactions as a machine-readable interface, and the client calls a named function against a resolver that materializes and submits the concrete transaction, while the client signs locally and never runs a node.
+
 ## Declarative transactions
 
 Everything on this page states *how* to assemble a transaction: pick inputs, add outputs, attach metadata, compute the change. An emerging alternative flips the model: you describe *what* must be true of the transaction, and a resolver works out the rest at runtime. The most developed take on this for Cardano is [Tx3](https://docs.txpipe.io/tx3), a small declarative language that treats a transaction as a reusable, parameterized template:
@@ -447,7 +455,11 @@ Read it against the builder model above:
 - **Inputs are constraints, not UTXO references.** `payment` states its conditions (it must come from the Buyer and cover the price plus fees), and the resolver performs the coin selection you read about at the top of this page.
 - **Balancing is checked up front.** Minting sits in the same declaration, the asset math is type-checked at compile time, and fees and change are computed for you, so a transaction that doesn't balance never reaches submission.
 
-From a spec like this, the toolchain generates typed clients for TypeScript, Rust, Go, and Python, and a resolver materializes, signs, and submits the concrete transaction over a wire protocol (TRP). Your application code calls `buy_product(3)` instead of chaining builder calls. The project is young and its APIs still moving, but the paradigm is worth knowing as you design off-chain code: it is the same shift that constraint-based coin selection already made for inputs, applied to the whole transaction. See the [Tx3 documentation](https://docs.txpipe.io/tx3) and [repository](https://github.com/tx3-lang/tx3).
+From a spec like this, the toolchain generates typed clients for TypeScript, Rust, Go, and Python, and a resolver materializes the concrete transaction over a wire protocol (TRP); your application signs locally and submits. Your code calls `buy_product(3)` instead of chaining builder calls.
+
+The spec is also an interface. The author of a protocol fills in the transaction bodies once; an integrator sees only the named transactions and their parameters, the way a web developer reads an API reference rather than a database schema. That split decouples an on-chain protocol from any single frontend: another application can integrate a protocol from its published definition instead of re-deriving datum shapes and input selection from its validators, and published definitions are collected in a public [registry](https://tx3.land) where deployed protocols are already browsable. Because everything chain-specific lives in the resolver, one definition can also be resolved against more than one target; the same protocol can run against layer 1 or a [Hydra head](https://github.com/tx3-lang/hydra-app-example).
+
+The project is young and its APIs still moving, but the paradigm is worth knowing as you design off-chain code: it is the same shift that constraint-based coin selection already made for inputs, applied to the whole transaction. See the [Tx3 documentation](https://docs.txpipe.io/tx3) and [repository](https://github.com/tx3-lang/tx3).
 
 ## Next steps
 

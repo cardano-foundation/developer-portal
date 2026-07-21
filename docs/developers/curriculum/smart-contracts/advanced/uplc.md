@@ -92,11 +92,11 @@ On-chain, UPLC programs are stored as compact binary data using the "flat" encod
 
 **Size Implications**: UPLC programs can be large, which is why transaction size limits (16KB) become important for complex smart contracts. Recent improvements like reference scripts help mitigate this.
 
-**Execution Costs**: Every UPLC operation has precise memory and CPU costs defined by the protocol's cost model. These costs enable predictable fee calculation and execution budgets.
+**Execution Costs**: Every UPLC operation has precise memory and CPU costs defined by the protocol's cost model. These costs enable predictable fee calculation and execution budgets. The charged costs are deliberately conservative: each built-in is costed for its worst case, and much of the charge covers the interpreter machinery around the operation rather than the operation itself. Even so, a built-in call is far cheaper than expressing the same logic as plain UPLC terms, which is why compilers push as much work as possible into built-ins.
 
 ### Why This Matters for Developers
 
-- When smart contracts fail, understanding UPLC helps interpret low-level error messages and execution traces for debugging.
+- When smart contracts fail, understanding UPLC helps interpret low-level error messages and execution traces for debugging. Stepping debuggers such as [Gastronomy](https://github.com/SundaeSwap-finance/gastronomy) replay a script's execution state by state, forward and backward.
 
 - Knowing how high-level constructs compile to UPLC helps write more efficient smart contracts.
 
