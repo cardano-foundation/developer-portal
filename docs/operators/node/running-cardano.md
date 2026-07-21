@@ -34,7 +34,7 @@ Syncing from genesis takes over 24 hours on mainnet. [Mithril](https://mithril.n
 Install the Mithril client:
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf \
+curl --proto '=https' --tlsv1.2 -sSfL \
   https://raw.githubusercontent.com/input-output-hk/mithril/refs/heads/main/mithril-install.sh \
   | sh -s -- -c mithril-client -d latest -p $HOME/.local/bin
 ```
