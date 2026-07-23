@@ -121,6 +121,7 @@ module.exports = {
     image: "img/og/og-developer-portal.jpg",
     metadata: [
       { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, stake pool, Web3" },
+      { name: "algolia-site-verification", content: "9D24BBA9B6EA9390" },
     ],
 
     // Algolia Search
