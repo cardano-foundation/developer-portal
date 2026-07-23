@@ -54,7 +54,7 @@ There are data analysis agents that generate reports from datasets, portfolio ma
 
 ## Resources
 
-- [Official Documentation](https://docs.masumi.network/documentation)
+- [Official Documentation](https://www.masumi.network/dev)
 - [Masumi Explorer](https://explorer.masumi.network)
 - [GitHub Organization](https://github.com/masumi-network)
 - [Website](https://www.masumi.network/)

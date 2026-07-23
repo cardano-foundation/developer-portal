@@ -11,7 +11,7 @@ By default, `cardano-node` reads the KES signing key directly from disk. The KES
 Requires `cardano-node` 10.7.1 or later.
 
 :::note System hardening
-For the forward secrecy guarantee to hold, the signing key must not reach disk through other paths. Before running the KES agent, disable swap, hibernation, and core dumps on the block producer host. See the [KES agent guide](https://github.com/input-output-hk/kes-agent/blob/main/doc/guide.markdown) for full hardening recommendations.
+For the forward secrecy guarantee to hold, the signing key must not reach disk through other paths. Before running the KES agent, disable swap, hibernation, and core dumps on the block producer host. See the [KES agent guide](https://github.com/input-output-hk/kes-agent/blob/master/doc/guide.markdown) for full hardening recommendations.
 :::
 
 ## Setup
@@ -30,7 +30,7 @@ kes-agent run \
   --genesis-file          /etc/cardano/shelley-genesis.json
 ```
 
-For production, run it as a systemd service. A unit file template is available in the [kes-agent repository](https://github.com/input-output-hk/kes-agent/tree/main/systemd).
+For production, run it as a systemd service. A unit file template is available in the [kes-agent repository](https://github.com/input-output-hk/kes-agent/tree/master/systemd).
 
 ## Key generation workflow
 

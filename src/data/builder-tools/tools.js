@@ -459,7 +459,7 @@ export const BuilderTools = [
     title: "Maestro",
     description: "Blockchain indexer, APIs and event management system for the Cardano blockchain.",
     preview: require("./images/maestro.png"),
-    website: "https://www.gomaestro.org/dapp-platform",
+    website: "https://docs.gomaestro.org/general/platform-overview",
     getstarted: "https://docs.gomaestro.org/",
     tags: ["http", "hosted", "provider"]
   },
