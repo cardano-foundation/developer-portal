@@ -27,6 +27,35 @@ This is the most common external contribution. You add a tool entry and open a P
 
 Don't set `maintainerPick` yourself (maintainers choose those). Categories and properties are defined in `src/data/builder-tools/tags.js`. For the full guide, including what belongs here and how tools are curated, see the [portal contribution guide](https://developers.cardano.org/docs/contribute/portal-contribute/).
 
+## Embedding code from real examples
+
+When a tutorial shows code, embed it from a real, runnable example under `examples/` instead of pasting a copy into the page. That way the snippet on the page is the exact code that gets built and tested, so it can't drift out of date.
+
+Mark the part of the file you want to show with plain `// #region NAME` / `// #endregion NAME` comments. They're just comments, so the example still runs and is still tested:
+
+```ts
+// example source file
+export function build() {
+  // #region build
+  const tx = new Transaction();
+  tx.sendLovelace(address, "2000000");
+  // #endregion build
+  return tx;
+}
+```
+
+Then pull that region into an `.mdx` page with the `extractRegion` helper. The file is imported as raw text via `raw-loader`, and `extractRegion` returns the lines between the markers (trimmed, with indentation normalized):
+
+```mdx
+import CodeBlock from "@theme/CodeBlock";
+import extractRegion from "@site/src/utils/extractRegion";
+import Source from "!!raw-loader!@site/examples/path/to/file.ts";
+
+<CodeBlock language="ts">{extractRegion(Source, "build")}</CodeBlock>
+```
+
+If the named region doesn't exist, the build fails with `extractRegion: region "..." not found`, so a renamed or deleted region is caught at build time rather than silently showing nothing.
+
 ## Before you open a PR
 
 - Run `yarn build` and make sure it passes. It checks for broken links and validates builder tool entries.
