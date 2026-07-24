@@ -101,7 +101,7 @@ This walkthrough follows the commit-phase flow of hydra-node 1.x. On Hydra 2.x t
 
 ### Prerequisites
 
-- A synced `cardano-node` with `cardano-cli` (preprod), and the `hydra-node` binary ([install](https://hydra.family/head-protocol/docs/getting-started/installation)).
+- A synced `cardano-node` with `cardano-cli` (preprod), and the `hydra-node` binary ([install](https://hydra.family/head-protocol/docs/installation)).
 - Test ADA per participant ([faucet](/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada)), for L1 node fees and funds to commit.
 - Each participant generates **Cardano keys** (L1 identity/fees) and **Hydra keys** (snapshot signing), then starts a `hydra-node` peered with the others. Inside the Head, protocol parameters set all fee fields to zero.
 

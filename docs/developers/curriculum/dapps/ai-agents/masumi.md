@@ -43,7 +43,7 @@ Masumi is several components working together:
 
 ## Resources
 
-- [Documentation](https://docs.masumi.network/documentation)
+- [Documentation](https://www.masumi.network/dev)
 - [Masumi Explorer](https://explorer.masumi.network)
 - [GitHub organization](https://github.com/masumi-network)
 - [Website](https://www.masumi.network/)

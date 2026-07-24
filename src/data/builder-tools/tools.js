@@ -481,7 +481,7 @@ export const BuilderTools = [
     title: "Maestro",
     icon: "/img/tools/maestro.jpg",
     description: "Hosted Cardano API with chain indexing, transaction management, and DeFi market data.",
-    website: "https://www.gomaestro.org/dapp-platform",
+    website: "https://www.gomaestro.org/",
     docs: "https://docs.gomaestro.org/",
     repository: null,
     category: "api",
