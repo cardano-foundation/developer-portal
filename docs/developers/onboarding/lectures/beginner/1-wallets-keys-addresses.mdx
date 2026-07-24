@@ -1,0 +1,65 @@
+---
+title: "Wallets, keys & addresses"
+sidebar_label: "1. Wallets, keys & addresses"
+description: "Your account and identity on Cardano, what a wallet, a key, and an address actually are."
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CodeBlock from "@theme/CodeBlock";
+import extractRegion from "@site/src/utils/extractRegion";
+import ConnectWallet from "!!raw-loader!@site/examples/onboarding/lectures/mesh/src/connect-wallet.ts";
+
+# Wallets, keys & addresses
+
+Your account on Cardano is a **wallet**. It comes with two things worth understanding: **keys** and **addresses**.
+
+A **wallet** is your account _and_ your identity in one. The surprising part: your coins aren't "in" the wallet, they live on the blockchain. What the wallet actually holds is your **keys**, the secret that lets you approve (sign) moving that money(tokens). That's why reinstalling the app with your recovery phrase brings your funds back, they were never inside the app.
+
+A **key** is just a secret "hash". Signing with it proves an action is really from you, like a signature that can't be forged.
+
+An **address** is like an **"email" for money**: a public string you give people so they can send you funds (ADA or tokens). Share it freely, knowing your address lets people pay you, nothing more.
+
+:::tip The one rule
+Share your **address** freely. Never share your **recovery phrase** or private keys with anyone.
+:::
+
+## Try it
+
+Let's make a real wallet on Cardano's free **Preview** test network, where coins have no value.
+
+1. Install **[Lace](https://www.lace.io/)** and create a wallet (write down the recovery phrase).
+2. Switch it to the **Preview** network in its settings.
+3. Copy your **address** (it starts with `addr_test1...`).
+4. Paste your address into the **[Cardano faucet](https://docs.cardano.org/cardano-testnets/tools/faucet)** and request test ADA for Preview.
+5. Wait a minute, then paste your address into the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)** and search.
+
+You'll see _your_ address holding the test ADA, read straight from the blockchain. Keep this wallet, you'll reuse it in the next lectures.
+
+## See it in code
+
+Connecting a wallet is the first thing most apps do. Every Cardano browser wallet speaks the same standard, **CIP-30**, so one piece of code works with any of them (Lace, Eternl, and so on), you just pass the wallet's id. Here it is with a Cardano SDK:
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+<CodeBlock language="ts" title="connect-wallet.ts">
+  {extractRegion(ConnectWallet, "connect-wallet")}
+</CodeBlock>
+
+This runs in the **browser**: calling `enable()` is what makes the wallet pop up and ask you to approve the connection. It then hands back an object your app reads from, here the receiving address and balance. You can watch it work live in the **[Tutorial](/docs/developers/onboarding/tutorial/frontend)**, whose frontend connects Lace in exactly this way.
+
+</TabItem>
+<TabItem value="evolution" label="Evolution">
+
+An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is coming soon. The idea is identical, only the library calls differ.
+
+</TabItem>
+</Tabs>
+
+## Go deeper
+
+- [Keys & Wallets](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys)
+- [Addresses](/docs/developers/curriculum/fundamentals/core-concepts/addresses)
+
+Next: **[UTxOs & transactions](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions)**.
