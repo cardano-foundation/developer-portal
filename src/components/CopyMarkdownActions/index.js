@@ -76,8 +76,10 @@ export default function CopyMarkdownActions() {
   // pages, which have no DocProvider and would make useDoc() throw.
   const {pathname} = useLocation();
   // The .md sibling lives at the current route with the trailing slash
-  // replaced by the extension.
-  const markdownUrl = pathname.replace(/\/$/, '') + '.md';
+  // replaced by the extension. The docs root is the exception: its sibling
+  // is emitted at /docs/index.md, and /docs.md does not exist.
+  const base = pathname.replace(/\/$/, '');
+  const markdownUrl = base === '/docs' ? '/docs/index.md' : base + '.md';
 
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState('idle'); // 'idle' | 'copied' | 'error'
