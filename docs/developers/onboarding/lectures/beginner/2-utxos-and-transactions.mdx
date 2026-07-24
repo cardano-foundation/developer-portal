@@ -1,6 +1,6 @@
 ---
 title: "UTxOs & transactions"
-sidebar_label: "2. UTxOs & transactions"
+sidebar_label: "UTxOs & transactions"
 description: "How Cardano stores value as sealed bags of coins, and how a transaction moves it."
 ---
 
@@ -35,19 +35,35 @@ flowchart LR
 
 This is why any amount works: the blockchain isn't handing you an existing "6 ADA note", it **makes fresh bags for the exact amounts**. Your original bag is gone forever, a bag is always used **all at once, never partially** (a small fee is taken from your change). That's the **eUTxO model**, and because every bag going in and coming out is spelled out up front, a Cardano transaction either does exactly what it says or doesn't happen at all.
 
-## Try it
+## Blocks: how a transaction reaches the chain
 
-Let's watch a real transaction split into inputs and outputs.
+A transaction doesn't land on the chain by itself. When you submit it, it's sent to the network and waits briefly, then a **block producer** bundles it together with other people's transactions into a **block**, and that block is added to the chain.
 
-1. Open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)** and search your address from Lecture 1.
-2. Open the transaction where the faucet sent you test ADA.
-3. Look at its two sides: **Inputs** (the UTxOs it spent) and **Outputs** (the UTxOs it created, one of them is your ADA).
+That's what a **blockchain** literally is: a chain of blocks, each one linked to the block before it, in order. Once your transaction is inside a block it's **confirmed**, which is why, right after you send, you wait a moment for it to "appear", it's waiting to be picked up into the next block.
 
-Send some ADA to another address and look again, you'll see your UTxO become an input, and new outputs (the payment + your change) appear.
+```mermaid
+flowchart LR
+    subgraph Block["Block — a batch of transactions"]
+        direction TB
+        T1["tx"]
+        T2["your tx"]
+        T3["tx"]
+    end
+    Prev["earlier block"] --> Block --> Next["next block"]
+```
+
+Think of it like a ledger book: each transaction is one entry, a block is a page that gathers many entries at once, and the pages are bound in order into the book, the chain.
 
 ## See it in code
 
 Let's actually create one. This connects your wallet and sends **1 ADA to yourself**, sending to your own address is the simplest way to watch a real transaction appear, with no second wallet to set up. It uses **only the connected wallet**: the wallet gives up the bags to spend, signs, and submits, with no extra service in between.
+
+Before you read it, one thing worth calling out, because it can feel like magic and it isn't: **you never hand-pick which bag to spend.** Two lines in the code do it for you:
+
+- `await wallet.getUtxos()` asks the wallet for **all** your current bags (UTxOs).
+- `.selectUtxosFrom(...)` hands that whole pile to Mesh, which then does **coin selection**: inside `.complete()` it picks just enough bags to cover your 1 ADA payment plus the network fee, while `.changeAddress(...)` says where the leftover comes back as change.
+
+So the picking is **automated, not hidden**, you can point to the exact line where your UTxOs go in and where the change comes out.
 
 <Tabs groupId="offchain">
 <TabItem value="mesh" label="Mesh" default>
@@ -65,7 +81,7 @@ npm install
 npm run dev
 ```
 
-Open the printed URL in the browser where Lace lives, click **Connect Lace & send 1 ADA to myself**, and approve it in Lace. It prints an **explorer link**, open it and you'll see your brand-new transaction: the input bag on one side, the outputs (your 1 ADA + change) on the other. That's the same inputs-and-outputs split from the diagram above, this time created by you.
+Open the printed URL in the browser where Lace lives, click **Connect Lace & send 1 ADA to myself**, and approve it in Lace. It prints an **explorer link** to your brand-new transaction, let's open it and pull it apart next.
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">
@@ -75,9 +91,21 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 </TabItem>
 </Tabs>
 
+## Try it
+
+Now open your transaction on the explorer, use the **link the app printed** (or search your address on the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)** and pick your latest one), and read it side by side with what you built:
+
+1. **Inputs**, the bag (UTxO) your wallet chose to spend.
+2. **Outputs**, 1 ADA back to yourself, plus the **change** returning the rest.
+3. The small **fee**, taken from what went in.
+
+That's a transaction you created, laid out in full, the same inputs-and-outputs split from the diagram above. _(No wallet set up yet? Do the same with the transaction where the faucet funded you in Lecture 1, open your address and read its inputs and outputs.)_
+
 ## Go deeper
 
-- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo)
-- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions)
+- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) — the model behind inputs, outputs, and change.
+- [Transactions](/docs/developers/curriculum/fundamentals/core-concepts/transactions) — a transaction's full anatomy.
+- [What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) — how blocks link together into a chain.
+- [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) — how blocks get produced, and who the block producers are.
 
 Next: **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)**.
