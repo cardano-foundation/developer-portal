@@ -1,14 +1,8 @@
 ---
 title: "Wallets, keys & addresses"
-sidebar_label: "1. Wallets, keys & addresses"
+sidebar_label: "Wallets, keys & addresses"
 description: "Your account and identity on Cardano, what a wallet, a key, and an address actually are."
 ---
-
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import CodeBlock from "@theme/CodeBlock";
-import extractRegion from "@site/src/utils/extractRegion";
-import ConnectWallet from "!!raw-loader!@site/examples/onboarding/lectures/mesh/src/connect-wallet.ts";
 
 # Wallets, keys & addresses
 
@@ -36,26 +30,22 @@ Let's make a real wallet on Cardano's free **Preview** test network, where coins
 
 You'll see _your_ address holding the test ADA, read straight from the blockchain. Keep this wallet, you'll reuse it in the next lectures.
 
-## See it in code
+## Wallets your app controls
 
-Connecting a wallet is the first thing most apps do. Every Cardano browser wallet speaks the same standard, **CIP-30**, so one piece of code works with any of them (Lace, Eternl, and so on), you just pass the wallet's id. Here it is with a Cardano SDK:
+So far the wallet is **yours**, held in Lace, and you approve each action by hand. But sometimes the **app itself** needs to hold a wallet and move funds **without a human clicking approve**. For that, you generate the keys **in your backend** and sign there.
 
-<Tabs groupId="offchain">
-<TabItem value="mesh" label="Mesh" default>
+You'd reach for this when actions must happen automatically:
 
-<CodeBlock language="ts" title="connect-wallet.ts">
-  {extractRegion(ConnectWallet, "connect-wallet")}
-</CodeBlock>
+- **Automated payouts**, a rewards, payroll, or faucet service that sends ADA or tokens on its own.
+- **A minting service**, a backend that mints and delivers an NFT the moment a buyer pays.
+- **A marketplace or exchange hot wallet**, holding funds to settle trades and withdrawals programmatically.
+- **Bots and batching**, a trading bot, or a job that sweeps many small UTxOs into one.
 
-This runs in the **browser**: calling `enable()` is what makes the wallet pop up and ask you to approve the connection. It then hands back an object your app reads from, here the receiving address and balance. You can watch it work live in the **[Tutorial](/docs/developers/onboarding/tutorial/frontend)**, whose frontend connects Lace in exactly this way.
+How it works: an off-chain SDK (like Mesh or Evolution) can **generate a fresh wallet in code**, a recovery phrase (or private key) and its address. Your backend stores those keys, builds transactions, and **signs them itself**, no browser, no popup. It's the same keys and address from above, just held by your server instead of a person. (This is the wallet you'll meet again in the Intermediate track.)
 
-</TabItem>
-<TabItem value="evolution" label="Evolution">
-
-An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is coming soon. The idea is identical, only the library calls differ.
-
-</TabItem>
-</Tabs>
+:::warning Your backend now holds the keys
+An app-controlled wallet is **custodial**: whoever runs the server controls the funds. Guard those keys like a vault, never commit them to git, keep them in a secrets manager, and use a throwaway **Preview** wallet while you're learning.
+:::
 
 ## Go deeper
 
