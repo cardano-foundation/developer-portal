@@ -76,4 +76,4 @@ Every code snippet in these pages is pulled straight from a working, tested proj
 The code you read is the code that runs.
 :::
 
-Ready? Start by setting up your [Environment](/docs/developers/onboarding/quick-start/environment).
+Ready? Start by setting up your [Environment](/docs/developers/onboarding/tutorial/environment).

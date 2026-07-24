@@ -34,7 +34,7 @@ To run the example you only need Node.js:
 
 These are optional, only if you want to go beyond just running it:
 
-- **[Aiken](https://aiken-lang.org/)** the language this example's smart contract is written in. You do **not** need it to run the tutorial, the contract is already compiled to a file (`plutus.json`) that ships with the example. Install it with [`aikup`](https://aiken-lang.org/installation-instructions) only if you want to change or recompile the contract yourself, which the [On-chain](/docs/developers/onboarding/quick-start/on-chain) page walks through.
+- **[Aiken](https://aiken-lang.org/)** the language this example's smart contract is written in. You do **not** need it to run the tutorial, the contract is already compiled to a file (`plutus.json`) that ships with the example. Install it with [`aikup`](https://aiken-lang.org/installation-instructions) only if you want to change or recompile the contract yourself, which the [On-chain](/docs/developers/onboarding/tutorial/on-chain) page walks through.
 - **A code editor** any editor works, but something like [VS Code](https://code.visualstudio.com/) with a TypeScript and an Aiken extension gives you syntax highlighting and autocomplete, which makes reading along smoother.
 
 ## A wallet
@@ -45,7 +45,7 @@ A **wallet** is an app that holds your tokens and lets you approve (sign) transa
 Lace starts on **Mainnet** (real funds). This tutorial runs entirely on the **Preview** test network, so open your wallet's network settings and select **Preview** before you start (for Lace, see the [Lace FAQ](https://www.lace.io/faq)). On the wrong network nothing will work, you won't see your test ADA, the app won't find any offers, and connecting misbehaves.
 :::
 
-One wallet is enough. A real swap is between two people, but in this tutorial you'll play both sides yourself from a single wallet, so there's nothing to juggle. (Want to run a genuine two-party trade with a second wallet? See [Go further: a real two-party swap](/docs/developers/onboarding/quick-start/frontend#go-further-a-real-two-party-swap).)
+One wallet is enough. A real swap is between two people, but in this tutorial you'll play both sides yourself from a single wallet, so there's nothing to juggle. (Want to run a genuine two-party trade with a second wallet? See [Go further: a real two-party swap](/docs/developers/onboarding/tutorial/frontend#go-further-a-real-two-party-swap).)
 
 ## A test network and some test coins
 
@@ -77,4 +77,4 @@ See [API providers](/docs/developers/curriculum/production/api-providers/overvie
 
 ---
 
-Got all of that? Next, take a look at the contract: the [on-chain rules](/docs/developers/onboarding/quick-start/on-chain).
+Got all of that? Next, take a look at the contract: the [on-chain rules](/docs/developers/onboarding/tutorial/on-chain).

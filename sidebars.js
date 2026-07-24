@@ -540,31 +540,44 @@ module.exports = {
       collapsed: false,
       link: {
         type: "doc",
-        id: "developers/onboarding/quick-start/overview",
+        id: "developers/onboarding/tutorial/overview",
       },
       items: [
-        { type: "doc", id: "developers/onboarding/quick-start/overview", label: "Overview" },
-        "developers/onboarding/quick-start/environment",
-        "developers/onboarding/quick-start/on-chain",
-        "developers/onboarding/quick-start/off-chain",
-        "developers/onboarding/quick-start/frontend",
+        { type: "doc", id: "developers/onboarding/tutorial/overview", label: "Overview" },
+        "developers/onboarding/tutorial/environment",
+        "developers/onboarding/tutorial/on-chain",
+        "developers/onboarding/tutorial/off-chain",
+        "developers/onboarding/tutorial/frontend",
       ],
     },
     {
       type: "category",
       label: "Lectures",
       collapsed: false,
+      link: {
+        type: "doc",
+        id: "developers/onboarding/lectures/overview",
+      },
       items: [
+        {
+          type: "doc",
+          id: "developers/onboarding/lectures/overview",
+          label: "Introduction",
+        },
         {
           type: "category",
           label: "Beginner",
           collapsed: true,
           link: {
             type: "doc",
-            id: "developers/onboarding/beginner/overview",
+            id: "developers/onboarding/lectures/beginner/overview",
           },
           items: [
-            "developers/onboarding/beginner/lecture-1",
+            "developers/onboarding/lectures/beginner/wallets-keys-addresses",
+            "developers/onboarding/lectures/beginner/utxos-and-transactions",
+            "developers/onboarding/lectures/beginner/tokens-fungible-and-nfts",
+            "developers/onboarding/lectures/beginner/metadata-and-native-scripts",
+            "developers/onboarding/lectures/beginner/providers-and-explorers",
           ],
         },
         {
@@ -573,10 +586,10 @@ module.exports = {
           collapsed: true,
           link: {
             type: "doc",
-            id: "developers/onboarding/intermediate/overview",
+            id: "developers/onboarding/lectures/intermediate/overview",
           },
           items: [
-            "developers/onboarding/intermediate/lecture-1",
+            "developers/onboarding/lectures/intermediate/lecture-1",
           ],
         },
         {
@@ -585,10 +598,10 @@ module.exports = {
           collapsed: true,
           link: {
             type: "doc",
-            id: "developers/onboarding/advanced/overview",
+            id: "developers/onboarding/lectures/advanced/overview",
           },
           items: [
-            "developers/onboarding/advanced/lecture-1",
+            "developers/onboarding/lectures/advanced/lecture-1",
           ],
         },
       ],
