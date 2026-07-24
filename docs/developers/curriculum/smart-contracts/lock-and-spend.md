@@ -77,7 +77,7 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-Use `.txOutDatumHashValue(data)` instead of `.txOutInlineDatumValue(data)` if you need a datum hash rather than an inline datum. See the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract).
+Use `.txOutDatumHashValue(data)` instead of `.txOutInlineDatumValue(data)` if you need a datum hash rather than an inline datum. See the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contracts).
 
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
@@ -161,7 +161,7 @@ const signedTx = await wallet.signTx(unsignedTx);
 const txHash = await wallet.submitTx(signedTx);
 ```
 
-To spend, Mesh needs three things beyond `.txIn()`: the **script** (supplied with `.txInScript()` or referenced with `.spendingTxInReference()`), the **datum** (`.txInInlineDatumPresent()` or `.txInDatumValue()`), and the **redeemer** (`.txInRedeemerValue()`). See the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract).
+To spend, Mesh needs three things beyond `.txIn()`: the **script** (supplied with `.txInScript()` or referenced with `.spendingTxInReference()`), the **datum** (`.txInInlineDatumPresent()` or `.txInDatumValue()`), and the **redeemer** (`.txInRedeemerValue()`). See the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contracts).
 
 </TabItem>
 <TabItem value="cardano-cli" label="cardano-cli">
@@ -396,4 +396,4 @@ Submit the claim before the deadline and the ledger rejects it up front, so the 
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): test the validator before you deploy it
 - [Security](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview): the vulnerabilities to guard against when spending logic gets real
 - [Contract library](/templates/contracts): escrow, marketplace, swap, and more
-- Reference: [contract library](/templates/contracts) and the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contract)
+- Reference: [contract library](/templates/contracts) and the [Mesh smart contracts guide](https://meshjs.dev/apis/txbuilder/smart-contracts)
