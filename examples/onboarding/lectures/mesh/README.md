@@ -5,8 +5,8 @@ Small, self-contained [Mesh](https://meshsdk.dev/) snippets used by the lectures
 Get just this folder (no need to clone the whole repo):
 
 ```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh send-ada
-cd send-ada
+npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
+cd lectures-mesh
 ```
 
 The snippets run in the **browser** with a connected wallet (CIP-30), so there is no offline test to run; instead `npm test` type-checks them against the real Mesh types so they stay valid:
@@ -18,10 +18,10 @@ npm test
 
 ## Run it in the browser
 
-A tiny page (`index.html` + `src/app.ts`) wires the snippets to a button so you can actually connect a wallet and submit a transaction. You need [Lace](https://www.lace.io/) on the **Preview** network with a little test ADA.
+A tiny page (`index.html` + `src/app.ts`) wires the snippets to buttons so you can actually connect a wallet and submit a transaction. You need [Lace](https://www.lace.io/) on the **Preview** network with a little test ADA.
 
 ```bash
 npm run dev
 ```
 
-Open the printed URL in the browser where Lace lives, then click the button. The "send 1 ADA to yourself" example prints an explorer link so you can see the transaction on-chain.
+Open the printed URL in the browser where Lace lives, then click a button, "send 1 ADA to yourself" or "mint 100 GOLD". Each prints an explorer link so you can see the transaction on-chain.

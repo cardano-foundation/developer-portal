@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Send 1 ADA to yourself</title>
+    <title>Cardano beginner lectures playground</title>
   </head>
   <body
     style="
@@ -13,18 +13,28 @@
       padding: 0 1rem;
     "
   >
-    <h1>Send 1 ADA to yourself</h1>
+    <h1>Beginner lectures playground</h1>
     <p>
       Make sure <b>Lace</b> is installed, switched to the
       <b>Preview</b> network, and has a little test ADA (from Lecture 1).
     </p>
 
-    <button
-      id="go"
-      style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
-    >
-      Connect Lace and send 1 ADA to myself
-    </button>
+    <p>
+      <button
+        id="send"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Connect Lace and send 1 ADA to myself
+      </button>
+    </p>
+    <p>
+      <button
+        id="mint"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Connect Lace and mint 100 GOLD
+      </button>
+    </p>
     <p id="out" style="margin-top: 1rem"></p>
     <script type="module" src="/src/app.ts"></script>
   </body>
