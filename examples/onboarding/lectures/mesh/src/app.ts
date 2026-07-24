@@ -3,6 +3,8 @@ import type { BrowserWallet } from "@meshsdk/core";
 import { connectWallet } from "./connect-wallet.ts";
 import { sendAdaToSelf } from "./send-ada.ts";
 import { mintToken } from "./mint-token.ts";
+import { sendWithMetadata } from "./send-with-metadata.ts";
+import { sendWithDeadline } from "./send-with-deadline.ts";
 
 // A tiny page that runs the lecture snippets: connect the wallet, then either
 // send 1 ADA to yourself or mint a token. This is just the harness, the
@@ -33,3 +35,9 @@ function wire(id: string, working: string, action: (wallet: BrowserWallet) => Pr
 
 wire("#send", "Sending 1 ADA to yourself… approve it in Lace.", (w) => sendAdaToSelf(w));
 wire("#mint", "Minting 100 GOLD… approve it in Lace.", (w) => mintToken(w, "GOLD", "100"));
+wire("#metadata", "Sending a transaction with a memo… approve it in Lace.", (w) =>
+  sendWithMetadata(w, "gm from the beginner lectures"),
+);
+wire("#deadline", "Sending a time-limited transaction… approve it in Lace.", (w) =>
+  sendWithDeadline(w),
+);

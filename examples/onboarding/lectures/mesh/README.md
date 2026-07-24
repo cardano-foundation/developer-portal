@@ -24,4 +24,4 @@ A tiny page (`index.html` + `src/app.ts`) wires the snippets to buttons so you c
 npm run dev
 ```
 
-Open the printed URL in the browser where Lace lives, then click a button, "send 1 ADA to yourself" or "mint 100 GOLD". Each prints an explorer link so you can see the transaction on-chain.
+Open the printed URL in the browser where Lace lives, then click a button, "send 1 ADA to yourself", "mint 100 GOLD", "send a transaction with a memo", or "send a time-limited transaction". Each prints an explorer link so you can see the transaction on-chain.
