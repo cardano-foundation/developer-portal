@@ -95,7 +95,7 @@ You get NFTs in the wallet, tokens, USD price per token, amounts, 24h USD change
 
 [Cexplorer.io](https://cexplorer.io/) saves the day with a free tier. Sign up, click your wallet address (top right) to reach your profile, click the **API** tab, and create a new project to get an API key.
 
-Cexplorer also ships a Node.js SDK at [github.com/vellum-labs/cexplorer-api](https://github.com/vellum-labs/cexplorer-api/tree/main/packages/cexplorer-api).
+Cexplorer also ships a different client libraries as described at [https://cexplorer.apidocumentation.com/](https://cexplorer.apidocumentation.com/cexplorer-api).
 
 We'll use it to fetch floor prices for NFT collections via:
 
