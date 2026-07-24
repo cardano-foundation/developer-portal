@@ -126,8 +126,8 @@ module.exports = {
 
     // Algolia Search
     algolia: {
-      appId: "6QH8YVQXAE",
-      apiKey: "6033c09f3af6454c8c25efce0460b84a",
+      appId: "SM73IGPCDU",
+      apiKey: "7e5c27bffb971566ac4aa7d23cb8faaf",
       indexName: "developer-portal",
       contextualSearch: true,
     },
