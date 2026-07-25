@@ -32,16 +32,15 @@ You'll see _your_ address holding the test ADA, read straight from the blockchai
 
 ## Wallets your app controls
 
-So far the wallet is **yours**, held in Lace, and you approve each action by hand. But sometimes the **app itself** needs to hold a wallet and move funds **without a human clicking approve**. For that, you generate the keys **in your backend** and sign there.
+So far the wallet is **yours**, held in Lace, and you approve each action by hand. But sometimes the **app itself** needs a wallet, a key it can sign with, **without a human clicking approve**.
 
-You'd reach for this when actions must happen automatically:
+This is _not_ the same as a smart contract. A contract is a **rule** the chain enforces when someone spends funds locked at a script; it can't hold a key, sign, pay a fee, or start a transaction on its own. So whenever your backend has to **act on-chain by itself**, it needs a wallet, for example to:
 
-- **Automated payouts**, a rewards, payroll, or faucet service that sends ADA or tokens on its own.
-- **A minting service**, a backend that mints and delivers an NFT the moment a buyer pays.
-- **A marketplace or exchange hot wallet**, holding funds to settle trades and withdrawals programmatically.
-- **Bots and batching**, a trading bot, or a job that sweeps many small UTxOs into one.
+- **Pay fees for your users** ("gasless" flows), your backend's wallet covers the fee and collateral so the user doesn't have to.
+- **Run an automated agent**, a bot or keeper that builds and submits transactions on a schedule or when some off-chain event happens, a contract can't wake itself up.
+- **Sign as the service itself**, for example holding one key of a multi-signature treasury, or an oracle signing the data it publishes.
 
-How it works: an off-chain SDK (like Mesh or Evolution) can **generate a fresh wallet in code**, a recovery phrase (or private key) and its address. Your backend stores those keys, builds transactions, and **signs them itself**, no browser, no popup. It's the same keys and address from above, just held by your server instead of a person. (This is the wallet you'll meet again in the Intermediate track.)
+How it works: your backend **loads a key it already has** (for example from an environment variable or a secrets manager), and an off-chain SDK like Mesh or Evolution uses it to build and sign transactions, no browser, no popup. It's just a wallet, the same keys and address idea from above, held by your server instead of a person. (You'll meet this wallet again in the Intermediate track.)
 
 :::warning Your backend now holds the keys
 An app-controlled wallet is **custodial**: whoever runs the server controls the funds. Guard those keys like a vault, never commit them to git, keep them in a secrets manager, and use a throwaway **Preview** wallet while you're learning.
