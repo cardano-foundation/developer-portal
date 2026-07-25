@@ -32,11 +32,8 @@ You'll see _your_ address holding the test ADA, read straight from the blockchai
 
 ## Wallets your app controls
 
-So far the wallet is **yours**, held in Lace, and you approve each action by hand. But sometimes the **app itself** needs a wallet, a key it can sign with, **without a human clicking approve**.
+So far the wallet is **yours**, held in Lace, and you approve each action by hand. But sometimes the **app itself** needs a wallet, a key that it can sign with, **without a human clicking approve**.
 
-This is _not_ the same as a smart contract. A contract is a **rule** the chain enforces when someone spends funds locked at a script; it can't hold a key, sign, pay a fee, or start a transaction on its own. So whenever your backend has to **act on-chain by itself**, it needs a wallet, for example to:
-
-- **Pay fees for your users** ("gasless" flows), your backend's wallet covers the fee and collateral so the user doesn't have to.
 - **Run an automated agent**, a bot or keeper that builds and submits transactions on a schedule or when some off-chain event happens, a contract can't wake itself up.
 - **Sign as the service itself**, for example holding one key of a multi-signature treasury, or an oracle signing the data it publishes.
 
