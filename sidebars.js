@@ -556,12 +556,12 @@ module.exports = {
       collapsed: false,
       link: {
         type: "doc",
-        id: "developers/onboarding/lectures/overview",
+        id: "developers/onboarding/lectures/introduction",
       },
       items: [
         {
           type: "doc",
-          id: "developers/onboarding/lectures/overview",
+          id: "developers/onboarding/lectures/introduction",
           label: "Introduction",
         },
         {
@@ -570,7 +570,7 @@ module.exports = {
           collapsed: true,
           link: {
             type: "doc",
-            id: "developers/onboarding/lectures/beginner/overview",
+            id: "developers/onboarding/lectures/beginner/introduction",
           },
           items: [
             "developers/onboarding/lectures/beginner/wallets-keys-addresses",
@@ -587,7 +587,7 @@ module.exports = {
           collapsed: true,
           link: {
             type: "doc",
-            id: "developers/onboarding/lectures/intermediate/overview",
+            id: "developers/onboarding/lectures/intermediate/introduction",
           },
           items: [
             "developers/onboarding/lectures/intermediate/lecture-1",
@@ -599,7 +599,7 @@ module.exports = {
           collapsed: true,
           link: {
             type: "doc",
-            id: "developers/onboarding/lectures/advanced/overview",
+            id: "developers/onboarding/lectures/advanced/introduction",
           },
           items: [
             "developers/onboarding/lectures/advanced/lecture-1",

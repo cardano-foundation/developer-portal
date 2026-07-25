@@ -1,6 +1,6 @@
 ---
 title: "Lectures"
-sidebar_label: "Overview"
+sidebar_label: "Introduction"
 description: "A guided, hands-on path to learning Cardano development, from the basics to high-quality smart contracts."
 ---
 
@@ -14,7 +14,7 @@ The Lectures are a guided, hands-on path to learning Cardano development. Each l
 
 The core ideas you need before building anything: wallets, UTxOs, transactions, tokens, and the tools you use to read the chain (providers and explorers). After this you'll understand how Cardano works and be ready to build.
 
-**[Start the Beginner module](/docs/developers/onboarding/lectures/beginner/overview)**
+**[Start the Beginner module](/docs/developers/onboarding/lectures/beginner/introduction)**
 
 ### Intermediate: smart contracts
 
@@ -43,4 +43,4 @@ Most lectures have two kinds of hands-on.
 
 The code you see in a lecture is imported straight from those tested example projects, so **what you read is exactly what runs**, and it stays working.
 
-Ready? Start with the **[Beginner](/docs/developers/onboarding/lectures/beginner/overview)** module.
+Ready? Start with the **[Beginner](/docs/developers/onboarding/lectures/beginner/introduction)** module.

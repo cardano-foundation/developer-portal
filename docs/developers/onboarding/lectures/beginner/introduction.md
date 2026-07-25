@@ -1,6 +1,6 @@
 ---
 title: "Beginner: the base of Cardano"
-sidebar_label: "Overview"
+sidebar_label: "Introduction"
 description: "The concepts you need before building anything on Cardano, each with a hands-on step."
 ---
 
