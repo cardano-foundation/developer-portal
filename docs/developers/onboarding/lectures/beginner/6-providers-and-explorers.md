@@ -26,7 +26,7 @@ flowchart LR
     Explorer --> Chain
 ```
 
-Your app talks to a provider (to read the chain _and_ submit transactions); you talk to an explorer (to read it by eye). Underneath, both reach the very same blockchain.
+Your app talks to a provider (to read the chain _and_ submit transactions), you talk to an explorer (to read it by eye). Underneath, both reach the very same blockchain.
 
 ## A transaction, step by step
 
