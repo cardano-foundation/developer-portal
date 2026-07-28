@@ -1,3 +1,5 @@
+/* Mesh ships unlayered CSS; import it into a layer so our Tailwind utilities keep cascade priority. */
+@import "@meshsdk/react/styles.css" layer(mesh);
 @import "tailwindcss";
 
 :root {
