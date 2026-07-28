@@ -1,30 +1,25 @@
 ---
-title: "UTxOs & transactions"
-sidebar_label: "UTxOs & transactions"
+title: "UTxOs & Transactions"
+sidebar_label: "UTxOs & Transactions"
 description: "How Cardano stores value as sealed bags of coins, and how a transaction moves it."
 ---
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import CodeBlock from "@theme/CodeBlock";
-import extractRegion from "@site/src/utils/extractRegion";
-import SendAda from "!!raw-loader!@site/examples/onboarding/lectures/mesh/src/send-ada.ts";
-
-# UTxOs & transactions
+# UTxOs & Transactions
 
 You funded a wallet in the last lecture. Now let's see what that balance really is, and what happens when you spend it.
 
-On many systems your balance is a single number that goes up and down, like a bank account. Cardano works differently. Your balance is made of separate **sealed bags of coins**. Each bag holds a fixed amount, and once it's sealed **only the blockchain can open it**. Your balance is just the sum of all your bags.
+On many systems, your balance is a single number that goes up and down, like a bank account. Cardano works more similarly to cash. Your balance is made of separate **sealed bags of coins**. Each bag holds a fixed amount of coins determined when creating the bag. Your total balance is just the sum of all the bags in your address.
 
-Each sealed bag is a **UTxO** (an _unspent transaction output_). You might have one bag holding 10 ADA and another holding 2 ADA, together that's a balance of 12 ADA, but they stay two separate bags.
+Each sealed bag is a **UTxO** (an _unspent transaction output_). If your address has one bag holding 10 ADA and another holding 2 ADA, together, that's a balance of 12 ADA, but they stay as two separate bags.
 
-Here's the part that surprises people: **you can't reach into a bag and pull out part of it.** To spend, you hand a whole bag to the blockchain and let _it_ do the opening. Say you have a bag of 10 ADA and want to send 6 to a friend:
+Here's the part that surprises people: **you can't reach into a bag and pull out part of it; they are sealed!** To spend your tokens, you have to do a transaction that releases the tokens by destroying the whole bag (consuming the UTxO), sends the tokens you wanted to spend to the new address, and sends the ones you didn't want to spend back to your address. Both in brand new sealed bags. Say you have a bag of 10 ADA and want to send 6 to a friend. You'll create a transaction that:
 
-1. You put your **whole 10 ADA bag** into a **transaction**, it goes in as an **input**.
-2. The blockchain **opens it**, counts out 6 ADA, and seals them in a **new bag addressed to your friend**.
-3. It seals the leftover 4 ADA in **another new bag and sends it back to you** as change.
+1. Takes your **whole 10 ADA bag** as an **input**.
+2. Destroys the bag, releasing the ADA, to freely rearrange them into **outputs** (new bags).
+3. Creates two new sealed bags (outputs), one with 6 ADA on your friend's address and another with 4 ADA in your address.
+4. Checks that some rules called "ledger rules" are respected (like the sum of ADA in all inputs is equal to the sum of ADA of all outputs).
 
-Those two new bags are the transaction's **outputs**.
+This is a diagram of that transaction. Inputs go in, outputs go out:
 
 ```mermaid
 flowchart LR
@@ -33,7 +28,7 @@ flowchart LR
     TX --> O2["new ~4 ADA bag<br/>back to you (change)"]
 ```
 
-This is why any amount works: the blockchain isn't handing you an existing "6 ADA note", it **makes fresh bags for the exact amounts**. Your original bag is gone forever, a bag is always used **all at once, never partially** (a small fee is taken from your change). That's the **eUTxO model**, and because every bag going in and coming out is spelled out up front, a Cardano transaction either does exactly what it says or doesn't happen at all.
+This is why any amount works: the blockchain isn't handing you an existing "6 ADA note", it **makes fresh bags for the exact amounts**. Your original bag is gone forever. A bag is always used **all at once, never partially** (a small fee is taken from your change to pay for the processed transaction). That's the **UTxO model**. Each "bag" is called UTxO (_Unspent Transaction Output_) because it's an Output from a previous Transaction that hasn't been spent yet.
 
 ## Blocks: how a transaction reaches the chain
 
@@ -54,52 +49,15 @@ flowchart LR
 
 Think of it like a ledger book: each transaction is one entry, a block is a page that gathers many entries at once, and the pages are bound in order into the book, the chain.
 
-## See it in code
-
-Let's actually create one. This connects your wallet and sends **1 ADA to yourself**, sending to your own address is the simplest way to watch a real transaction appear, with no second wallet to set up. It uses **only the connected wallet**: the wallet gives up the bags to spend, signs, and submits, with no extra service in between.
-
-Before you read it, one thing worth calling out, because it can feel like magic and it isn't: **you never hand-pick which bag to spend.** Two lines in the code do it for you:
-
-- `await wallet.getUtxos()` asks the wallet for **all** your current bags (UTxOs).
-- `.selectUtxosFrom(...)` hands that whole pile to Mesh, which then does **coin selection**: inside `.complete()` it picks just enough bags to cover your 1 ADA payment plus the network fee, while `.changeAddress(...)` says where the leftover comes back as change.
-
-So the picking is **automated, not hidden**, you can point to the exact line where your UTxOs go in and where the change comes out.
-
-<Tabs groupId="offchain">
-<TabItem value="mesh" label="Mesh" default>
-
-<CodeBlock language="ts" title="send-ada.ts">
-  {extractRegion(SendAda, "send-ada")}
-</CodeBlock>
-
-**Run it and see it on the explorer.** You'll need **[Lace](https://www.lace.io/)** on the **Preview** network with a little test ADA (from Lecture 1). Grab just this example (no need to clone the whole repo) and start it:
-
-```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
-cd lectures-mesh
-npm install
-npm run dev
-```
-
-Open the printed URL in the browser where Lace lives, click **Connect Lace & send 1 ADA to myself**, and approve it in Lace. It prints an **explorer link** to your brand-new transaction, let's open it and pull it apart next.
-
-</TabItem>
-<TabItem value="evolution" label="Evolution">
-
-An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is coming soon. The idea is identical, only the library calls differ.
-
-</TabItem>
-</Tabs>
-
 ## Try it
 
-Now open your transaction on the explorer, use the **link the app printed** (or search your address on the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)** and pick your latest one), and read it side by side with what you built:
+Make a real transaction with your wallet, no code needed, and watch it split into inputs and outputs.
 
-1. **Inputs**, the bag (UTxO) your wallet chose to spend.
-2. **Outputs**, 1 ADA back to yourself, plus the **change** returning the rest.
-3. The small **fee**, taken from what went in.
+1. In **[Lace](https://www.lace.io/)** (on **Preview**, from the last lecture), send a small amount of ADA to **your own address**, copy your address and paste it as the recipient, then approve it.
+2. Wait a moment for it to confirm, then open it on the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)** (search your address and pick your latest transaction).
+3. Read its two sides: the **Inputs** (the bag, or UTxO, your wallet spent), the **Outputs** (the ADA to yourself plus the **change**), and the small **fee** taken from what went in.
 
-That's a transaction you created, laid out in full, the same inputs-and-outputs split from the diagram above. _(No wallet set up yet? Do the same with the transaction where the faucet funded you in Lecture 1, open your address and read its inputs and outputs.)_
+That's the input-to-output split from the diagram above, made by you. In the next lecture you'll do the very same thing **in code**, with an off-chain SDK.
 
 ## Go deeper
 
@@ -108,4 +66,4 @@ That's a transaction you created, laid out in full, the same inputs-and-outputs 
 - [What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) — how blocks link together into a chain.
 - [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) — how blocks get produced, and who the block producers are.
 
-Next: **[Tokens: fungible & NFTs](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts)**.
+Next: **[Off-chain SDKs](/docs/developers/onboarding/lectures/beginner/off-chain-sdks)**.

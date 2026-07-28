@@ -49,7 +49,7 @@ sequenceDiagram
 ```
 
 1. **Read**, the app asks the provider for what it needs, your UTxOs and the current fees.
-2. **Build**, the SDK assembles an unsigned transaction, choosing UTxOs and adding change, just like in [UTxOs & transactions](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions).
+2. **Build**, the SDK assembles an unsigned transaction, choosing UTxOs and adding change, just like in [Off-chain SDKs](/docs/developers/onboarding/lectures/beginner/off-chain-sdks).
 3. **Sign**, the wallet approves it with your key.
 4. **Submit**, the app hands the signed transaction back to the provider, which broadcasts it and returns the **transaction hash**.
 

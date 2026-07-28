@@ -575,6 +575,7 @@ module.exports = {
           items: [
             "developers/onboarding/lectures/beginner/wallets-keys-addresses",
             "developers/onboarding/lectures/beginner/utxos-and-transactions",
+            "developers/onboarding/lectures/beginner/off-chain-sdks",
             "developers/onboarding/lectures/beginner/tokens-fungible-and-nfts",
             "developers/onboarding/lectures/beginner/time-on-cardano",
             "developers/onboarding/lectures/beginner/metadata-and-native-scripts",
