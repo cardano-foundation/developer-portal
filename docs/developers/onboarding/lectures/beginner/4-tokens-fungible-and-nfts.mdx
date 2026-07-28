@@ -14,7 +14,7 @@ import MintToken from "!!raw-loader!@site/examples/onboarding/lectures/mesh/src/
 
 So far everything has been about ADA. But a UTxO (one of those sealed bags) can also hold **custom tokens** you create, and on Cardano that's simpler than on most chains.
 
-Tokens on Cardano are **native**: the ledger tracks your custom asset right alongside ADA, and moving it around needs **no smart contract**. Every token has a **policy ID** (who's allowed to create it) and an **asset name** (its label, like `GOLD`).
+Tokens on Cardano are **native**: the ledger tracks your custom asset right alongside ADA, and moving it around needs **no smart contract**. Every token has a **policy ID** (rules to create or destroy it) and an **asset name** (its label, like `GOLD`).
 
 There are two kinds, and you already know the difference from real life:
 
@@ -30,18 +30,16 @@ We keep mentioning the **policy ID**, so let's pin it down. Behind every token i
 It matters for two reasons:
 
 - **It's a unique namespace.** Your `GOLD` and someone else's `GOLD` never clash, because they sit under different policy IDs. A token's real, full identity is always **policy ID + asset name** together, not the name alone.
-- **It fixes the rules forever.** The simplest policy says "only the holder of this key may mint." An NFT usually uses a policy that can **only ever mint once** (often locked after a deadline), and that's exactly what makes it provably one-of-a-kind.
-
-So when the explorer shows a token, the policy ID tells you _which_ asset it truly is, and hints at what its creator is allowed to do next.
+- **It fixes the rules forever.** The simplest policy says "only the holder of this key may mint." An NFT usually uses a policy that can **mint only one token once** (we'll learn how in future lectures), and that's exactly what makes it provably one-of-a-kind.
 
 ## Try it
 
-- **See one:** open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, search your address, and check for any assets besides ADA, each shows its policy ID, name, and quantity.
+- **See one:** after you mint one just below, search your address on the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, your new token shows up next to your ADA, with its policy ID, name, and quantity.
 - **Make one:** mint your own token right below, or in the **[Tutorial](/docs/developers/onboarding/tutorial/overview)**, where you mint GOLD and SILVER. Afterward, look your address up on the explorer and see your new tokens sitting next to your ADA.
 
 ## See it in code
 
-Let's mint one. This creates **100 GOLD** under the simplest possible policy, a native script that only your wallet's key can use, and the new tokens land back in your wallet. No smart contract and no collateral, just the connected wallet. Notice how the **policy ID** falls out of hashing that policy:
+Let's mint one. This creates **100 GOLD** under the simplest possible policy: a **native script**. A native script is a small rule the ledger understands on its own, no smart-contract language, and ours says just _"only the holder of this wallet's key may mint."_ **Hashing that rule gives the policy ID** (we dig into native scripts in the [Metadata & native scripts](/docs/developers/onboarding/lectures/beginner/metadata-and-native-scripts) lecture). The new tokens land back in your wallet, no collateral, just the connected wallet:
 
 <Tabs groupId="offchain">
 <TabItem value="mesh" label="Mesh" default>
