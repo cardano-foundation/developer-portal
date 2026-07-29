@@ -27,7 +27,7 @@ Each interface is a bundle of **mini-protocols**: small, typed state machines, e
 - **Handshake** negotiates the protocol version and the [network magic](/docs/developers/curriculum/start-building/networks-and-test-ada), the identifier proving both sides are on the same chain, before anything else happens.
 - **Chain-sync** streams block headers as the chain grows, including *rollback* instructions when the peer switches to a better fork. This is the protocol every indexer is built on.
 - **Block-fetch** downloads block bodies for the headers you decide you want.
-- **Tx-submission** diffuses transactions toward block producers.
+- **Tx-submission** diffuses transactions toward block producers. It runs opposite to the block protocols: blocks fan out from the producing pool to everyone, while transactions converge from everywhere toward the producers.
 - **Keep-alive** and **peer-sharing** maintain the connection and support peer discovery.
 
 All of them share one TCP connection through a **multiplexer**: every message segment carries an 8-byte header, a timestamp, a 16-bit protocol identifier (one bit of which marks the direction of the conversation), and the payload length, so the demultiplexer on the other side can hand each segment to the right mini-protocol.
@@ -47,7 +47,7 @@ graph LR
     style R fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
-The full state machines and wire encodings are specified in the [Ouroboros network specification](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); [`ouroboros-network`](https://github.com/IntersectMBO/ouroboros-network) is the reference implementation inside `cardano-node`.
+The [Cardano Blueprint's mini-protocols section](https://cardano-scaling.github.io/cardano-blueprint/network/mini-protocols.html) is the readable orientation: a state machine diagram, agency table, and message CDDL for each protocol. The full state machines and wire encodings are specified in the [Ouroboros network specification](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); [`ouroboros-network`](https://github.com/IntersectMBO/ouroboros-network) is the reference implementation inside `cardano-node`.
 
 ## Addressing a block: chain points
 

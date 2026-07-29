@@ -146,7 +146,7 @@ A few ledger features shape how you design contracts:
 
 - **Reference inputs ([CIP-31](https://cips.cardano.org/cip/CIP-31))**: read a UTXO's data without spending it, so many contracts can read one oracle feed at once.
 - **Inline datums ([CIP-32](https://cips.cardano.org/cip/CIP-32))**: store the datum in the output itself instead of a hash. See [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#datum-hash-vs-inline-datum).
-- **Reference scripts ([CIP-33](https://cips.cardano.org/cip/CIP-33))**: deploy a script once and reference it from later transactions, for smaller transactions and lower fees. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts).
+- **Reference scripts ([CIP-33](https://cips.cardano.org/cip/CIP-33))**: deploy a script once and reference it from later transactions. The transaction shrinks, and the referenced bytes carry a [per-byte fee](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) well below the cost of inlining. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts).
 - **Collateral output ([CIP-40](https://cips.cardano.org/cip/CIP-40))**: return excess collateral to an address you choose.
 
 A validator's rules cannot be changed after deployment, and the compiled code cannot be turned back into source.
