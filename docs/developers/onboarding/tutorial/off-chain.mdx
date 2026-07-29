@@ -20,7 +20,7 @@ import Cancel from "!!raw-loader!@site/examples/onboarding/atomic-swap/off-chain
 
 The contract from the last page only ever answers one question: _is this transaction allowed?_ It doesn't build transactions. That's this part's job.
 
-"Off-chain" means the code that runs **on your computer** (not on the blockchain). It's the app that assembles each transaction, creating tokens, making an offer, accepting one, and hands it to the wallet to sign and send. It's written in TypeScript with a Cardano SDK (pick one in the tabs below).
+"Off-chain" means the code that runs **on your computer** or a **regular server** (not on the blockchain). It's the program that assembles each transaction, creating tokens, making an offer, accepting one, and hands it to the wallet to sign and send. It can be written in many languages that have a Cardano SDK (pick one in the tabs below).
 
 Each function below takes a **wallet** and a **provider** (your connection to the chain), so the exact same code works both in the browser and in the automated tests.
 
@@ -57,6 +57,8 @@ First we load the compiled `plutus.json` from the previous page. It tells us the
 ## Write the offer note
 
 This builds the **datum** the offer note in the exact shape the contract expects: who to pay (the seller's full wallet address, payment key **and** stake key), and what they want back.
+
+Notice how the price is built to **match the on-chain type field for field**. The contract's `PricedAsset { policy_id, asset_name, quantity }` becomes `mConStr0([policyId, assetName, quantity])` here, the same three fields, in the same order (`mConStr0` just means "constructor 0," the shape the contract reads back). The redeemers line up the same way: the on-chain `SwapAction { Swap, Cancel }` becomes `mConStr0([])` and `mConStr1([])`.
 
 <CodeBlock language="ts" title="datum.ts">
   {extractRegion(Datum, "datum")}
