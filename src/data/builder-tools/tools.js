@@ -999,7 +999,7 @@ export const BuilderTools = [
     description: "Hosted Cardano API with REST and WebSocket access to chain data: addresses, transactions, stake pools, DReps, and market data.",
     website: "https://nexus.gerowallet.io",
     docs: "https://nexus.gerowallet.io/docs",
-    repository: null,
+    repository: "https://github.com/Gero-Labs/nexus-sdk",
     category: "api",
     properties: ["rest", "websocket"],
   },
