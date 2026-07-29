@@ -1,7 +1,7 @@
 ---
 title: "Beginner: Cardano's Fundamentals"
 sidebar_label: "Introduction"
-description: "The concepts you need before building anything on Cardano, each with a hands-on step."
+description: "Cardano's fundamentals for newcomers: the core ideas you need before building anything, each with something you can run and see."
 ---
 
 # Beginner: Cardano's Fundamentals
