@@ -30,12 +30,11 @@ each of these (show me the available values for each):
 - <infra>         (optional infrastructure, may be more than one)
 
 Then:
-1. If the Cardano Dev Skills aren't installed yet, add them for current Cardano context:
-   https://github.com/cardano-foundation/cardano-dev-skills
-   (In Claude Code, run each of these on its own line, one at a time:
+1. If the Cardano Dev Skills aren't installed yet, ask me to install them (you can't run /plugin yourself). Point me to
+   https://github.com/cardano-foundation/cardano-dev-skills and have me run, one at a time:
       /plugin marketplace add cardano-foundation/cardano-dev-skills
       /plugin install cardano-dev-skills@cardano-dev-skills
-      /cardano-context)
+      /cardano-context
 2. Scaffold the project with my answers:
    npx cardano-init --name <project-name> --on-chain <on-chain> --off-chain <off-chain> --devnet <devnet>
 3. Build it (just build), run the example's tests (just test), and show me how to start it (just dev).
@@ -124,7 +123,7 @@ cardano-init --name my-app --on-chain aiken --off-chain meshjs --devnet yaci
 </TabItem>
 </Tabs>
 
-Swap the tools to taste, on-chain `aiken` or `scalus`, off-chain `meshjs` or `scalus`, devnet `yaci`, plus optional infrastructure `kupo`, `ogmios`, or `dolos` (needs Docker). Run it with `--help` to see every option.
+Swap the tools to taste, and run it with `--help` to see every available on-chain language, off-chain SDK, devnet, and optional infrastructure (some, like Docker-based ones, have their own requirements).
 
 Then build and run the generated project:
 
@@ -145,8 +144,8 @@ Want to see a real project end to end and understand how the pieces fit together
 
 Go deeper with the lectures:
 
-- [Beginner](/docs/developers/onboarding/lectures/beginner/introduction)
-- [Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction)
-- [Advanced](/docs/developers/onboarding/lectures/advanced/introduction)
+- [Beginner](/docs/developers/onboarding/lectures/beginner/introduction) — Cardano's fundamentals: wallets, UTxOs, transactions, tokens, and reading the chain.
+- [Intermediate](/docs/developers/onboarding/lectures/intermediate/introduction) — smart contracts from scratch: validators, datum & redeemer, and the tools to write and run them.
+- [Advanced](/docs/developers/onboarding/lectures/advanced/introduction) — production-ready contracts: security, design patterns, and getting to production.
 
 And to get the most from your AI assistant, see [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development).
