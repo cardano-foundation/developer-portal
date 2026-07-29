@@ -113,7 +113,7 @@ Each network has a fixed slot length (1s on mainnet/preprod/preview; configurabl
 Two Vasil-era features let transactions share data without contention:
 
 - **Reference inputs (CIP-31):** read a UTXO without consuming it. Many transactions can reference the same oracle or config UTXO in the same block. This is the canonical fix for read-only contention.
-- **Reference scripts (CIP-33):** store a script in a UTXO and reference it, instead of embedding the full script in every transaction, cutting size and fees.
+- **Reference scripts (CIP-33):** store a script in a UTXO and reference it, instead of embedding the full script in every transaction. The referenced bytes are not free, they carry a [per-byte fee of their own](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) that escalates for very large scripts, but it is normally far below the cost of inlining the script.
 
 ```
 Inputs (consumed):       UTXO_A (Alice's payment)
@@ -146,7 +146,7 @@ Once a transaction passes submission validation and enters the mempool, it is gu
 ### Latency vs finality
 
 - **Latency**: time to appear in a block (~20s average block time).
-- **Finality**: time to become practically irreversible. Depends on network conditions and your risk tolerance; most applications treat 6-20 confirmations as strong finality, high-value transfers wait longer.
+- **Finality**: time to become practically irreversible. Depends on your risk tolerance; most applications treat [10-20 confirmations](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work) (a few minutes) as strong finality, high-value transfers wait longer.
 
 ## Serialization (CBOR)
 

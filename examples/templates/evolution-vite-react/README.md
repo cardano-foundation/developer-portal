@@ -19,7 +19,7 @@ npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/evolu
 
 ## Prerequisites
 
-- Node.js 18+ and npm.
+- Node.js 20.19+ and npm.
 - A Cardano wallet browser extension (Eternl, Lace, Nami, and so on).
 - A free Blockfrost project ID from [blockfrost.io](https://blockfrost.io), matching your network.
 
@@ -35,7 +35,7 @@ npm install
 npm run dev
 ```
 
-The app runs at `http://localhost:5173`. Connect a wallet, then send test ADA.
+The app runs at `http://localhost:5173`. Connect a wallet, then send some [test ADA](https://developers.cardano.org/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada).
 
 ## The Evolution SDK pieces
 
