@@ -42,11 +42,12 @@ Because the SDK only depends on that contract, anything that implements it is a 
 
 ## The providers
 
-To **choose** a provider for your SDK, see [Choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider). For the wider **managed-versus-self-hosted** decision, including Maestro, see [production infrastructure](/docs/developers/curriculum/production/infrastructure). The four documented here:
+To **choose** a provider for your SDK, see [Choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider). For the wider **managed-versus-self-hosted** decision, including Maestro, see [production infrastructure](/docs/developers/curriculum/production/infrastructure). The five documented here:
 
 | Provider | API | Access |
 | --- | --- | --- |
 | **[Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost)** | REST | Managed, API key (free tier) |
+| **[Nexus](/docs/developers/curriculum/production/api-providers/nexus)** | REST, WebSocket | Managed, API key scoped per chain + network; multi-chain (Cardano, Bitcoin, Midnight) |
 | **[Koios](/docs/developers/curriculum/production/api-providers/koios)** | REST | Community-run or self-hosted, key optional |
 | **[Ogmios](/docs/developers/curriculum/production/api-providers/ogmios)** | WebSocket, JSON-RPC | Self-hosted against your own node (paired with Kupo as the "Kupmios" stack), or hosted via [Demeter](/docs/developers/curriculum/production/demeter) |
 | **[Dolos](/docs/developers/curriculum/production/api-providers/dolos)** | REST (Blockfrost-compatible), gRPC, node-to-client | Self-hosted data node, a single process with no separate cardano-node |
@@ -54,6 +55,7 @@ To **choose** a provider for your SDK, see [Choosing a provider](/docs/developer
 ## Next steps
 
 - [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost): the quickest hosted start, with a free tier
+- [Nexus](/docs/developers/curriculum/production/api-providers/nexus): hosted multi-chain (Cardano, Bitcoin, Midnight) REST + WebSocket, with market data
 - [Koios](/docs/developers/curriculum/production/api-providers/koios): community-run, no key required for basic use
 - [Ogmios](/docs/developers/curriculum/production/api-providers/ogmios): low-level WebSocket access to a node you run
 - [Dolos](/docs/developers/curriculum/production/api-providers/dolos): a self-hosted data node serving a local Blockfrost-compatible API

@@ -358,6 +358,7 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/production/api-providers/blockfrost",
+                "developers/curriculum/production/api-providers/nexus",
                 "developers/curriculum/production/api-providers/koios",
                 "developers/curriculum/production/api-providers/ogmios",
                 "developers/curriculum/production/api-providers/dolos",

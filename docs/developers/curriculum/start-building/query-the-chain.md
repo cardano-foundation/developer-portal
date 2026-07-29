@@ -20,6 +20,7 @@ A provider is the data source your SDK talks to. Most SDKs support several behin
 |---|---|---|---|
 | **Blockfrost** | Hosted | Required | Yes (free tier limited) |
 | **Maestro** | Hosted | Required | Yes (free tier limited) |
+| **Nexus** | Hosted | Required (scoped per chain + network) | Yes (tier-based) |
 | **Koios** | Hosted (community) or self-hosted | Optional | Yes (higher with a key) |
 | **Kupmios** | Self-hosted (Ogmios + Kupo) | Not applicable | None (your own infra) |
 
