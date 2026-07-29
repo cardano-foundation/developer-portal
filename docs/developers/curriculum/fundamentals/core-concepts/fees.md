@@ -31,6 +31,8 @@ A typical simple transfer costs roughly **0.17-0.20 ADA**. Transactions with nat
 
 Both parameters serve a purpose: `a` covers the resource cost of processing and storing larger transactions, while `b` is a base security layer, a minimum cost regardless of size that makes flooding the network with tiny transactions prohibitively expensive.
 
+The formula gives the minimum the ledger will accept. The fee a transaction declares only has to be at least that, and tooling often pads slightly for safety, which is why fees you see on-chain sit a little above what the formula computes.
+
 :::note Parameters change through governance
 Query current values with `cardano-cli query protocol-parameters` or via your API provider. They are set on-chain and can change through governance.
 :::
@@ -53,6 +55,12 @@ flowchart TD
 
 Script costs are measured in **execution units (ExUnits)**: memory units (peak memory) and CPU steps (CPU budget). The script fee is `mem_price * memory_units + step_price * cpu_steps`, added to the size fee. Transaction-building libraries simulate execution to compute ExUnits automatically before submission, see the Evolution SDK's [script evaluation](https://github.com/IntersectMBO/evolution-sdk) for how this works under the hood.
 
+## Reference script fees
+
+Transactions that use [reference scripts](/docs/developers/curriculum/fundamentals/core-concepts/transactions#reference-inputs-and-reference-scripts) pay a third component: every byte of every script the transaction references is charged, starting at 15 lovelace per byte (the `minFeeRefScriptCostPerByte` parameter, set through governance). The price is tiered: for each successive 25,600-byte increment of total referenced script size, the per-byte price multiplies by 1.2, so referencing a few kilobytes costs a fraction of an ADA while very large reference scripts get progressively expensive. Only the script's own serialized bytes count, not the CBOR wrapping around them.
+
+The tiering exists because a referenced script is cheap for the transaction that names it but real work for every node, which must fetch and deserialize it. After that asymmetry was exploited on mainnet in 2024, the pricing moved from linear to escalating: ordinary scripts stay cheap, abuse prices itself out. For a fully worked mainnet example, from raw CBOR to the final lovelace, see the [Cardano Blueprint's transaction fee page](https://cardano-scaling.github.io/cardano-blueprint/ledger/transaction-fee.html).
+
 ## Collateral
 
 Transactions that execute scripts must provide **collateral**: ADA-only UTXOs that are forfeited only if a script fails during phase-2 validation.
@@ -66,6 +74,8 @@ Rules:
 - **Returned untouched** if the transaction succeeds.
 - **Consumed only** if phase-2 validation fails.
 - **Collateral return (CIP-40):** since Vasil, a transaction can specify a collateral return address so only the required amount is taken, not the entire UTXO.
+
+Losing collateral is avoidable in practice. Phase-2 validation is deterministic: it depends only on the transaction and the outputs it spends or references, so a script that passed when you evaluated it locally cannot fail on-chain against those same inputs. If the chain changes underneath the transaction, say an input gets spent first, it fails phase 1 instead, which costs nothing. A submitter who validates before submitting should never actually forfeit collateral. The CIP-40 return address exists for the case where you cannot pre-validate because a third party evaluates scripts on your behalf; before it, whatever UTXO you put up as collateral was at risk in its entirety rather than just the required amount.
 
 This is the canonical reference for collateral; the [transaction lifecycle](/docs/developers/curriculum/fundamentals/core-concepts/transactions#deterministic-outcomes) and [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview) link here.
 
@@ -82,7 +92,7 @@ It's a real tuning axis, not just theory:
 ## Key takeaways
 
 - Fees are deterministic: `fee = a * size + b`, knowable exactly before submission.
-- Script transactions add an ExUnits-based execution fee on top of the size fee; builders compute it automatically.
+- Script transactions add an ExUnits-based execution fee on top of the size fee; builders compute it automatically. Reference scripts add a third, per-byte fee that escalates in tiers for very large scripts.
 - Collateral (ADA-only) is forfeited only on phase-2 script failure; CIP-40 returns the excess.
 - Fees are pooled and distributed across block-producing stake pools each epoch.
 

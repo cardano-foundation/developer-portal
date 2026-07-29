@@ -113,7 +113,7 @@ Each network has a fixed slot length (1s on mainnet/preprod/preview; configurabl
 Two Vasil-era features let transactions share data without contention:
 
 - **Reference inputs (CIP-31):** read a UTXO without consuming it. Many transactions can reference the same oracle or config UTXO in the same block. This is the canonical fix for read-only contention.
-- **Reference scripts (CIP-33):** store a script in a UTXO and reference it, instead of embedding the full script in every transaction, cutting size and fees.
+- **Reference scripts (CIP-33):** store a script in a UTXO and reference it, instead of embedding the full script in every transaction. The referenced bytes are not free, they carry a [per-byte fee of their own](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) that escalates for very large scripts, but it is normally far below the cost of inlining the script.
 
 ```
 Inputs (consumed):       UTXO_A (Alice's payment)
