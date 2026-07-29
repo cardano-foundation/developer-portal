@@ -12,13 +12,13 @@ import SendAda from "!!raw-loader!@site/examples/onboarding/lectures/mesh/src/se
 
 # Off-chain SDKs
 
-Last lecture you sent yourself ADA by hand, with Lace's buttons. But an **app** can't click buttons; it has to build that transaction **in code**. That's what an **off-chain SDK** is for.
+Last lecture you sent yourself ADA by hand, with Lace's buttons. But an **app** can't click buttons, it has to build that transaction **in code**. That's what an **off-chain SDK** is for.
 
 "Off-chain" means code that runs **on your computer or server**, not on the blockchain. An off-chain SDK is a library that:
 
 - **reads** the chain (your UTxOs, the current fee rates),
 - **builds** a transaction (chooses which bags to spend, adds the outputs and the change), and
-- hands it to the wallet to **sign** and **submit**.
+- **hands it to the wallet** to **sign** and **submit**.
 
 The common ones are **[Mesh](https://meshsdk.dev/)** and **[Evolution](https://no-witness-labs.github.io/evolution-sdk/)** (both TypeScript). You install one from npm and call it from your app.
 
