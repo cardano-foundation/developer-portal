@@ -327,7 +327,7 @@ Common rejection reasons from the node:
 | `FeeTooSmallUTxO` | Fee too low | No: rebuild |
 | Network timeout | Provider unreachable | Yes: retry after a delay |
 
-`BadInputsUTxO` from indexer lag is the classic one. Handle it with the [retry-safe pattern](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe), which re-reads chain state on every attempt.
+`BadInputsUTxO` from indexer lag is the classic one. Handle it with the [retry-safe pattern](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe), which re-reads chain state on every attempt. These names are the ledger's own validation rules; when an unfamiliar code comes back, the [Cardano Blueprint's block validation page](https://cardano-scaling.github.io/cardano-blueprint/ledger/block-validation.html) maps the full set in the order the ledger applies them.
 
 ## Inspect a transaction
 

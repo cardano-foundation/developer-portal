@@ -91,9 +91,13 @@ The stake used for election is a **snapshot from two epochs ago**. This delay st
 
 When multiple valid chains exist, nodes follow the **longest chain rule**, and Praos breaks equal-length ties by the block's leader VRF value. (The recent-chain-density rule is a feature of Ouroboros Genesis, which lets newly joining nodes bootstrap safely.) Blocks on abandoned forks are discarded and their transactions return to the mempool, which is why transactions need a few confirmations before they are settled.
 
+Short forks happen for two mundane reasons, and naming them removes the mystery. A **slot battle**: VRF elections are independent, so two pools can both win the same slot and both produce a block. A **height battle**: a leader elected a few slots later has not yet received the previous block and builds on the older tip. Both create momentary one-block forks that the selection rule resolves.
+
 ### Block diffusion and the security parameter k
 
-When a leader produces a block it must reach other nodes fast (Cardano targets diffusion within ~5 seconds) or risk being orphaned. The parameter **k** (currently 2160) defines settlement: a block is considered settled once k blocks follow it, roughly 12 hours at ~20s/block. In practice most applications treat a few minutes (10-20 blocks) as very safe; k is the absolute mathematical bound.
+When a leader produces a block it must reach other nodes fast (Cardano targets diffusion within ~5 seconds) or risk being orphaned. The parameter **k** (currently 2160) defines settlement: a block is considered settled once k blocks follow it, roughly 12 hours at ~20s/block. And k is not only a probability statement: nodes never adopt a chain that forks more than k blocks below their tip, so everything deeper than k is immutable by construction and only the last k blocks are ever up for revision.
+
+In practice forks are typically a block or two deep. Most applications treat 10-20 confirmations (a few minutes) as very safe for ordinary value; high-value receivers wait deeper, exchanges commonly 20-30 blocks or more; k is the absolute bound. The [Cardano Blueprint's chain selection page](https://cardano-scaling.github.io/cardano-blueprint/consensus/chainsel.html) covers the rule and its tie-breakers in detail.
 
 ### How do rewards and incentives drive decentralization?
 
@@ -109,13 +113,13 @@ Decentralization is not enforced by a rule; it emerges from economic incentives 
 
 ## How does finality work?
 
-Cardano provides **probabilistic finality**: the chance of reversal decreases exponentially with each block added. Practical finality is reached in 5-10 minutes; the mathematical bound is k = 2160 (~12 hours).
+Cardano provides **probabilistic finality**: the chance of reversal decreases exponentially with each block added, and beyond k = 2160 blocks (~12 hours) chain selection refuses to roll back at all, making k a hard bound on rollback depth rather than a probability. Practical finality is 10-20 confirmations, a few minutes.
 
 | Network | Typical finality | Mechanism |
 |---|---|---|
 | Bitcoin (PoW) | ~60 min (6 blocks) | Probabilistic |
 | Ethereum (PoS) | ~15 min | Deterministic after finalization |
-| Cardano (Praos) | ~5-10 min practical, ~12h bound | Probabilistic, stake-based |
+| Cardano (Praos) | ~3-7 min practical, ~12h bound | Probabilistic, stake-based |
 
 ## What happens during a complete epoch?
 

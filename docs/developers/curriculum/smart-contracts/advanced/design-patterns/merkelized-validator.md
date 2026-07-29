@@ -17,7 +17,7 @@ script size.
 
 We can take advantage of reference scripts and the withdraw-zero trick to separate the logic (and code) of our validator across a number of stake scripts (which we provide as reference inputs). Then our main validator simply checks for the presence of the associated staking script in the redeemers (and verifies that the redeemer to the scripts are as expected) where necessary to execute the branch of logic.
 
-This is useful because with reference scripts this essentially gives us the ability to create scripts with near infinite size which means optimization strategies that involve increasing script size to reduce mem / CPU (ie loop unrolling) now are available to us at nearly zero cost.
+This is useful because with reference scripts this essentially gives us the ability to create scripts with near infinite size which means optimization strategies that involve increasing script size to reduce mem / CPU (ie loop unrolling) now are available to us. The referenced bytes still pay the [tiered reference script fee](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees), but that is far below carrying the script inline.
 
 Consider a batching architecture, with a very large `processOrders` function. Normally it would not be feasible to perform recursion unrolling / inlining optimizations with such a function since it would quickly exceed the max script size limit; however, with this design pattern we simply move `processOrders` into its own validator script which we can fill with 16kb of loop unrolling and other powerful optimizations which increase script size in order to reduce ExUnits. We provide this new script as a reference script when executing our main validator. Then in our main validator we verify that the `processOrders` validator was executed with the expected redeemer (`input_arg` must match the arguments we want to pass to `processOrders`) after which we have access to the result of the optimized `processOrders` function applied to our inputs.
 
@@ -28,7 +28,7 @@ Since transaction size is limited in Cardano, some scripts benefit from a soluti
 This design pattern offers an interface for off-loading such validations into an external observer/withdrawal script, so that the sizes of the scripts themselves can stay within the limits of Cardano.
 
 :::note
-Be aware that total size of reference scripts is currently limited to 200KiB (204800 bytes), and they also impose additional fees in an exponential manner. See [here](https://github.com/IntersectMBO/cardano-ledger/issues/3952) and [here](https://github.com/CardanoSolutions/ogmios/releases/tag/v6.5.0) for more info.
+Be aware that total size of reference scripts is currently limited to 200KiB (204800 bytes), and they impose [per-byte fees that escalate in tiers](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees).
 :::
 
 ### Key Types

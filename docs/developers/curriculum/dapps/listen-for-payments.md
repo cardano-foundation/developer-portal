@@ -109,7 +109,7 @@ function receivedLovelace(addr) {
 For a complete point-of-sale app with a React UI, QR codes, and live USD/ADA conversion, fork the [Cardano POS starter](https://github.com/fill-the-fill/cardano-pos-starting-point).
 
 :::tip Wait for confirmations
-A transaction in the mempool can still be rolled back. Cardano produces a block roughly every 20 seconds, so for anything valuable, wait several blocks (a few minutes) before treating a payment as final; the larger the amount, the deeper you should wait.
+A transaction in a recent block can still be [rolled back](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work). Cardano produces a block roughly every 20 seconds, so for anything valuable, wait 10-20 blocks (a few minutes) before treating a payment as final; the larger the amount, the deeper you should wait. Track deposits by transaction id and credit each one exactly once, only after your chosen depth, so a rollback that replays the same transaction cannot double-credit.
 :::
 
 ## Requesting a payment
