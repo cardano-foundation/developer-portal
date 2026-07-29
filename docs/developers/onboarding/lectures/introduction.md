@@ -33,6 +33,6 @@ Depending on the lecture, you'll want:
 - **Latest [Node.js](https://nodejs.org/):** it runs the TypeScript examples directly.
 - **Sometimes:** a free **[Blockfrost](https://blockfrost.io/)** Preview API key (for lectures that query the live chain), and **[Aiken](https://aiken-lang.org/)** (for the Intermediate and Advanced lectures that compile on-chain code).
 
-Each lecture tells you exactly how to fetch and run its example when you get there. The code you see is imported straight from tested example projects, so **what you read is exactly what runs**.
+The code you see is imported straight from tested example projects, so **what you read is exactly what runs**.
 
 Ready? Start with the **[Beginner](/docs/developers/onboarding/lectures/beginner/introduction)** module.
