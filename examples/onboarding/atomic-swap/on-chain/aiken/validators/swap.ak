@@ -40,27 +40,34 @@ pub type SwapAction {
 
 // #region validator
 validator swap {
+  // `spend` defines the rules for spending (taking) a UTxO locked at this contract.
   spend(
     datum: Option<SwapDatum>,
     redeemer: SwapAction,
     own_ref: OutputReference,
-    self: Transaction,
+    tx: Transaction,
   ) {
+    // Extract the offer terms, the `owner` to pay and the `price`, from the datum.
     expect Some(SwapDatum { owner, price }) = datum
     when redeemer is {
       // The owner reclaims the offer: prove it's them by signing with the
       // payment key of their address.
       Cancel -> {
+        // A wallet address's payment credential is a `VerificationKey` (a public
+        // key hash). Pull that key hash out.
         expect VerificationKey(owner_key) = owner.payment_credential
-        list.has(self.extra_signatories, owner_key)
+        // `tx.extra_signatories` is the list of key hashes that signed this
+        // transaction; require the owner's to be among them.
+        list.has(tx.extra_signatories, owner_key)
       }
       // A taker fulfills the offer.
       Swap -> {
-        // Exactly one output must be "marked" with this UTxO's own reference
-        // as its inline datum. Output references are globally unique, so a
-        // single payment can settle exactly one swap (no double satisfaction).
+        // Exactly one output must be "marked" with this UTxO's own reference as
+        // its inline datum. Matching the filtered list as a singleton `[payment]`
+        // fails unless there's exactly one such output, so a single payment can
+        // settle exactly one swap (no double satisfaction).
         expect [payment] = list.filter(
-          self.outputs,
+          tx.outputs,
           fn(output) { marked_with(output, own_ref) },
         )
         // ...and that payment must go to the owner and cover the full price.

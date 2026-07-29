@@ -17,7 +17,7 @@ import MintAiken from "!!raw-loader!@site/examples/onboarding/atomic-swap/on-cha
 
 The contract is written in a smart-contract language (pick one in the tabs below). Either way, it's really two small rules that work together:
 
-- **minting policy** the rule that controls creating tokens (making a new token is called _minting_). It decides who is allowed to make GOLD and SILVER, so nobody can create tokens they shouldn't.
+- **minting policy** the rule that controls creating and destroying tokens (making a new token is called _minting_, destroying the token is called _burning_). It decides who and how is allowed to create and destroy GOLD and SILVER tokens, so nobody can create tokens they shouldn't.
 - **swap validator** the rule that guards a locked token. Whenever someone tries to take the GOLD out of the contract, this rule runs and lets the trade go through only if it's fair, meaning the seller is paid exactly what they asked for.
 
 Both rules are just **yes/no functions**. The network hands each one the whole transaction, and it returns exactly one thing: **`true`** (allow) or **`false`** (reject). A contract never moves tokens or does anything on its own, the transaction is already fully built before the rule runs. All the rule does is _judge_ it: return `true` and the transaction goes through as written, return `false` and the whole thing is rejected, so nothing happens.
@@ -26,7 +26,7 @@ Both rules are just **yes/no functions**. The network hands each one the whole t
 The contract has its own **address** on the blockchain, derived from its code. "Locking tokens in the contract" just means **sending them to that address**, exactly like paying any wallet. So the moment tokens go _in_, nothing special happens, **putting tokens into the contract runs nothing**:
 
 - **Locking** (Bob makes his offer) is an ordinary transaction that just _sends_ GOLD to the contract's address, with the offer note attached. No code runs, nothing is checked yet.
-- **Taking tokens back out** is the different part. To spend a token sitting at the contract's address, the transaction has to **carry the contract's code with it**, and the network runs that code to decide yes or no. This is where the **swap validator** runs, on the accept (`Swap`) or the owner's `Cancel`, rejecting the transaction if it isn't fair.
+- **Taking tokens back out** is the different part. To spend a token sitting at the contract's address, the transaction has to **carry the contract's code with it**, and the network runs that code to decide yes or no. This is where the **swap validator** runs, on the accept (`Swap`) or the owner's `Cancel`, rejecting the transaction if it isn't fair. Think of it like this: once something is sent to the contract's address, the contract is the owner and won't let you take it unless you follow the rules.
 - **Minting** runs the **minting policy** at the moment tokens are created, rejecting the transaction if the wrong person tries to make them.
 
 So the two transactions are very different: the first just _moves_ the GOLD to the contract's address; the second _spends_ it, running the contract's code embedded in that second transaction. The rule of thumb: a contract guards value **leaving** it, not arriving. It springs to life only when a transaction spends what it's protecting.
@@ -52,6 +52,10 @@ Here's the actual rule. On a **`Swap`**, the contract checks that the transactio
 There's one extra safety check that's worth understanding. Every locked offer has its own **unique id** on the blockchain, a permanent reference that's never reused (think of it like a receipt number for that specific offer). The rule demands that the buyer **label the payment with that id**: the payment going to the owner must carry the exact offer's reference attached to it, or the transaction is rejected.
 
 Why bother? Imagine two separate offers that both say _"pay 5 SILVER to Bob."_ Without the label, a buyer could take **both** locked GOLD tokens in a single transaction while paying Bob just **once** (5 SILVER, not the 10 the two offers total), and that single payment would appear to satisfy both offers at once (a known trick called a _double-satisfaction_ attack). Forcing every payment to be labeled with one specific offer's id closes the hole: a payment can carry only one id, so it settles exactly one offer. Want two offers? You have to pay for each one separately.
+
+:::note No need to master this now
+Double-satisfaction is a subtle attack, you don't have to fully understand it to follow along. When you're ready to go deeper, the [Double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction) page covers it in detail.
+:::
 
 <CodeBlock language="aiken" title="swap.ak — the rule">
   {extractRegion(SwapAiken, "validator")}
@@ -82,7 +86,7 @@ aiken build   # compile it — writes plutus.json
 ```
 
 :::tip What just happened
-`aiken build` produced **`plutus.json`** your contract, compiled. That file is all the off-chain code needs to find the contract's address and enforce these rules, it doesn't need Aiken. You now have a working rulebook living on-chain.
+`aiken build` produced **`plutus.json`** from your contract. Inside that file, there's a compiled contract, and everything the off-chain code needs to find the contract's address and enforce these rules; it doesn't need Aiken. You now have a working rulebook.
 :::
 
 </TabItem>
