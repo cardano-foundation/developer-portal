@@ -41,12 +41,12 @@ sequenceDiagram
     participant Alice
 
     Note over Bob,Contract: Transaction 1, Bob makes the offer
-    Bob->>Contract: Move 1 GOLD in + note "pay me 1 SILVER"
+    Bob->>Contract: Move 1 GOLD in + note "pay me 5 SILVER"
 
     Note over Contract: The GOLD now waits inside the contract<br/>until someone accepts (or Bob cancels)
 
     Note over Bob,Alice: Transaction 2, Alice accepts (this is the atomic one)
-    Alice->>Bob: Pay 1 SILVER
+    Alice->>Bob: Pay 5 SILVER
     Contract->>Alice: Release 1 GOLD
     Note over Bob,Alice: Both moves are in the same transaction <br/>all-or-nothing, so no one can take without paying
 ```
@@ -55,8 +55,8 @@ Transaction 1 just parks the GOLD in the contract, nothing is traded yet. The tr
 
 Here's the whole flow, step by step:
 
-1. **Bob makes an offer** He sends a transaction that moves his GOLD out of his wallet and into the contract, attaching a note: *"I want 1 SILVER in return, pay me at my address."* The GOLD now sits in the contract, out of Bob's hands, until someone accepts or he takes it back. This first transaction just *moves* the GOLD; the contract's rules aren't run yet.
-2. **Alice accepts** She sees Bob's offer and sends **one transaction** that does two things at once: it pays 1 SILVER to Bob **and** takes the GOLD out of the contract for herself. This is the moment the contract's rules actually run (they also run if Bob cancels), and they only let this transaction through if Bob really gets paid what he asked for.
+1. **Bob makes an offer** He sends a transaction that moves his GOLD out of his wallet and into the contract, attaching a note: *"I want 5 SILVER in return, pay me at my address."* The GOLD now sits in the contract, out of Bob's hands, until someone accepts or he takes it back. This first transaction just *moves* the GOLD; the contract's rules aren't run yet.
+2. **Alice accepts** She sees Bob's offer and sends **one transaction** that does two things at once: it pays 5 SILVER to Bob **and** takes the GOLD out of the contract for herself. This is the moment the contract's rules actually run (they also run if Bob cancels), and they only let this transaction through if Bob really gets paid what he asked for.
 3. **Or Bob cancels** If no one accepts, Bob can send a transaction to take his GOLD back.
 
 Because Alice's payment and her pickup happen inside the **same** transaction, the trade is **atomic**, it either fully happens or not at all. Alice can never grab the GOLD without paying, and Bob can never keep both the GOLD and the SILVER. No trust required.

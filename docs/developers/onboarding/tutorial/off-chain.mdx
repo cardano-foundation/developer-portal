@@ -83,7 +83,7 @@ This builds the transaction that moves Bob's GOLD **into the contract**, with th
 </CodeBlock>
 
 :::tip What just happened
-Bob's GOLD is no longer in his wallet, it now sits at the contract's address, tagged with "I want 1 SILVER." It stays there, visible to everyone, until someone accepts or Bob cancels. Note this transaction only _moves_ the token into the contract, the swap rule doesn't run here. It runs later, when someone spends this locked GOLD (the accept, or a cancel).
+Bob's GOLD is no longer in his wallet, it now sits at the contract's address, tagged with "I want 5 SILVER." It stays there, visible to everyone, until someone accepts or Bob cancels. Note this transaction only _moves_ the token into the contract, the swap rule doesn't run here. It runs later, when someone spends this locked GOLD (the accept, or a cancel).
 :::
 
 ## List the open offers
@@ -103,7 +103,7 @@ This is the heart of it. It builds the single transaction that pays the owner th
 </CodeBlock>
 
 :::tip What just happened
-In one transaction, Bob received his 1 SILVER and Alice walked away with the GOLD. Because both moves were in the same transaction, there was never a moment where one person had both, the trade was all-or-nothing.
+In one transaction, Bob received his 5 SILVER and Alice walked away with the GOLD. Because both moves were in the same transaction, there was never a moment where one person had both, the trade was all-or-nothing.
 :::
 
 ## Cancel an offer

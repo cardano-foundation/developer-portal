@@ -88,7 +88,7 @@ function App() {
   const [offers, setOffers] = useState<Offer[]>([]);
   const [giveQty, setGiveQty] = useState("1");
   const [giveSel, setGiveSel] = useState<"gold" | "silver">("gold");
-  const [wantQty, setWantQty] = useState("1");
+  const [wantQty, setWantQty] = useState("5");
   const [wantSel, setWantSel] = useState<"gold" | "silver" | "other">("silver");
   const [wantOther, setWantOther] = useState("");
   const [status, setStatus] = useState<ReactNode>("");
@@ -178,7 +178,9 @@ function App() {
   }
 
   const mint = (name: string) =>
-    run(async () => signAndSubmit(await buildMintTx(wallet!, provider, stringToHex(name), "1")));
+    run(async () =>
+      signAndSubmit(await buildMintTx(wallet!, provider, stringToHex(name), name === "SILVER" ? "5" : "1")),
+    );
 
   const makeOffer = () =>
     run(async () =>

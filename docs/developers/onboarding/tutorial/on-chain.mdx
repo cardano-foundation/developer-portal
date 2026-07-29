@@ -51,7 +51,7 @@ Here's the actual rule. On a **`Swap`**, the contract checks that the transactio
 
 There's one extra safety check that's worth understanding. Every locked offer has its own **unique id** on the blockchain, a permanent reference that's never reused (think of it like a receipt number for that specific offer). The rule demands that the buyer **label the payment with that id**: the payment going to the owner must carry the exact offer's reference attached to it, or the transaction is rejected.
 
-Why bother? Imagine two separate offers that both say _"pay 1 SILVER to Bob."_ Without the label, a buyer could take **both** locked GOLD tokens in a single transaction while sending Bob just **one** SILVER, that one payment would appear to satisfy both offers at once (a known trick called a _double-satisfaction_ attack). Forcing every payment to be labeled with one specific offer's id closes the hole: a payment can carry only one id, so it settles exactly one offer. Want two offers? You have to pay for each one separately.
+Why bother? Imagine two separate offers that both say _"pay 5 SILVER to Bob."_ Without the label, a buyer could take **both** locked GOLD tokens in a single transaction while paying Bob just **once** (5 SILVER, not the 10 the two offers total), and that single payment would appear to satisfy both offers at once (a known trick called a _double-satisfaction_ attack). Forcing every payment to be labeled with one specific offer's id closes the hole: a payment can carry only one id, so it settles exactly one offer. Want two offers? You have to pay for each one separately.
 
 <CodeBlock language="aiken" title="swap.ak — the rule">
   {extractRegion(SwapAiken, "validator")}
