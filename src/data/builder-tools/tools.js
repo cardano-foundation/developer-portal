@@ -993,6 +993,16 @@ export const BuilderTools = [
     properties: ["rest", "websocket"],
     maintainerPick: true,
   },
+  {
+    title: "Nexus",
+    icon: "/img/tools/nexus.svg",
+    description: "Hosted Cardano API with REST and WebSocket access to chain data: addresses, transactions, stake pools, DReps, and market data.",
+    website: "https://nexus.gerowallet.io",
+    docs: "https://nexus.gerowallet.io/docs",
+    repository: null,
+    category: "api",
+    properties: ["rest", "websocket"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file

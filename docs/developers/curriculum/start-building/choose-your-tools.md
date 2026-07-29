@@ -55,6 +55,7 @@ Your SDK doesn't reach the chain on its own. It sits on top of a **provider**, w
 - **Blockfrost**: hosted REST API with a free tier
 - **Koios**: community-run, no key required for basic use
 - **Maestro**: hosted, with extended analytics and history
+- **Nexus**: hosted REST and WebSocket API, with multi-provider failover and market data
 - **Kupmios** (self-hosted Ogmios + Kupo): full control and data sovereignty
 
 Compare them in [Query the chain › choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider), browse the full list with their capabilities in [Builder Tools](/tools/?tags=api), and see the [API providers reference](/docs/developers/curriculum/production/api-providers/overview) and [Demeter](/docs/developers/curriculum/production/demeter) for managed infrastructure.
