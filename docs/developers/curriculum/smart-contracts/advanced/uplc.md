@@ -88,7 +88,7 @@ This type system allows high-level languages to serialize complex data structure
 
 ### Binary Encoding and Execution
 
-On-chain, UPLC programs are stored as compact binary data using the "flat" encoding format. This binary representation is what validators actually receive and execute. The flat blob is then wrapped in a CBOR byte string, and the script hash that addresses the script on-chain is computed over that wrapper, which is why script bytes sometimes appear double-CBOR-encoded in tooling. The [reference script fee](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) is metered on the script's own serialized bytes.
+On-chain, UPLC programs are stored as compact binary data using the "flat" encoding format. This binary representation is what validators actually receive and execute. The flat blob is then wrapped in a CBOR byte string, and the script hash that addresses the script on-chain is computed over a one-byte language tag (PlutusV1, V2, or V3) followed by that wrapper. That is why identical bytes hash differently under different Plutus versions, and why script bytes sometimes appear double-CBOR-encoded in tooling. The [reference script fee](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) is metered on those same wrapped bytes, the language tag aside.
 
 **Size Implications**: UPLC programs can be large, which is why transaction size limits (16KB) become important for complex smart contracts. Recent improvements like reference scripts help mitigate this.
 

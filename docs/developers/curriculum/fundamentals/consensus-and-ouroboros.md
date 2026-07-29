@@ -97,7 +97,7 @@ Short forks happen for two mundane reasons, and naming them removes the mystery.
 
 When a leader produces a block it must reach other nodes fast (Cardano targets diffusion within ~5 seconds) or risk being orphaned. The parameter **k** (currently 2160) defines settlement: a block is considered settled once k blocks follow it, roughly 12 hours at ~20s/block. And k is not only a probability statement: nodes never adopt a chain that forks more than k blocks below their tip, so everything deeper than k is immutable by construction and only the last k blocks are ever up for revision.
 
-In practice real forks are one or two blocks deep. Most applications treat 10-20 confirmations (a few minutes) as very safe for ordinary value; high-value receivers wait deeper, exchanges commonly 20-30 blocks or more; k is the absolute bound. The [Cardano Blueprint's chain selection page](https://cardano-scaling.github.io/cardano-blueprint/consensus/chainsel.html) covers the rule and its tie-breakers in detail.
+In practice forks are typically a block or two deep. Most applications treat 10-20 confirmations (a few minutes) as very safe for ordinary value; high-value receivers wait deeper, exchanges commonly 20-30 blocks or more; k is the absolute bound. The [Cardano Blueprint's chain selection page](https://cardano-scaling.github.io/cardano-blueprint/consensus/chainsel.html) covers the rule and its tie-breakers in detail.
 
 ### How do rewards and incentives drive decentralization?
 
@@ -113,13 +113,13 @@ Decentralization is not enforced by a rule; it emerges from economic incentives 
 
 ## How does finality work?
 
-Cardano provides **probabilistic finality**: the chance of reversal decreases exponentially with each block added, and beyond k = 2160 blocks (~12 hours) reversal is impossible by construction, not merely unlikely. Practical finality is reached in 5-10 minutes.
+Cardano provides **probabilistic finality**: the chance of reversal decreases exponentially with each block added, and beyond k = 2160 blocks (~12 hours) chain selection refuses to roll back at all, making k a hard bound on rollback depth rather than a probability. Practical finality is 10-20 confirmations, a few minutes.
 
 | Network | Typical finality | Mechanism |
 |---|---|---|
 | Bitcoin (PoW) | ~60 min (6 blocks) | Probabilistic |
 | Ethereum (PoS) | ~15 min | Deterministic after finalization |
-| Cardano (Praos) | ~5-10 min practical, ~12h bound | Probabilistic, stake-based |
+| Cardano (Praos) | ~3-7 min practical, ~12h bound | Probabilistic, stake-based |
 
 ## What happens during a complete epoch?
 
