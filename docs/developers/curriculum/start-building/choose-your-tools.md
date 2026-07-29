@@ -60,7 +60,10 @@ Your SDK doesn't reach the chain on its own. It sits on top of a **provider**, w
 
 Compare them in [Query the chain › choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider), browse the full list with their capabilities in [Builder Tools](/tools/?tags=api), and see the [API providers reference](/docs/developers/curriculum/production/api-providers/overview) and [Demeter](/docs/developers/curriculum/production/demeter) for managed infrastructure.
 
-A hosted provider is the quickest way to start. With Blockfrost, for example:
+A hosted provider is the quickest way to start:
+
+<Tabs groupId="provider">
+<TabItem value="blockfrost" label="Blockfrost" default>
 
 1. Sign up at [blockfrost.io](https://blockfrost.io/).
 2. Create a project and select your network (**Preprod** for this guide).
@@ -71,6 +74,22 @@ A hosted provider is the quickest way to start. With Blockfrost, for example:
    # .env
    BLOCKFROST_API_KEY=preprod_xxxxxxxxxxateofyourprojectid
    ```
+
+</TabItem>
+<TabItem value="nexus" label="Nexus">
+
+1. Sign up at [nexus.gerowallet.io](https://nexus.gerowallet.io/).
+2. Create an API key. Each key is scoped to one chain and one network, so pick **Cardano** and **Preprod** for this guide.
+3. Copy the key (it starts with `nxs_`).
+4. Store it in an env var, and never commit it or ship it in client-side code:
+
+   ```bash
+   # .env
+   NEXUS_API_KEY=nxs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+
+</TabItem>
+</Tabs>
 
 ## Next steps
 
