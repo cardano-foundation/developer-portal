@@ -18,7 +18,7 @@ npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-
 
 ## Prerequisites
 
-- Node.js 18+ and npm.
+- Node.js 20.19+ and npm.
 - A Cardano wallet browser extension (Eternl, Lace, and so on).
 - A free Blockfrost project ID from [blockfrost.io](https://blockfrost.io), matching your network.
 
@@ -26,15 +26,15 @@ npx giget@latest gh:cardano-foundation/developer-portal/examples/templates/mesh-
 
 ```bash
 # 1. Set your Blockfrost key (used to build transactions)
-cp .env.example .env.local
-# edit .env.local: set NEXT_PUBLIC_BLOCKFROST_API_KEY (use a preprod key for testnet)
+cp .env.example .env
+# edit .env: set NEXT_PUBLIC_BLOCKFROST_API_KEY (use a preprod key for testnet)
 
 # 2. Install and run
 npm install
 npm run dev
 ```
 
-The app runs at `http://localhost:3000`. Connect a wallet, then send test ADA.
+The app runs at `http://localhost:3000`. Connect a wallet, then send some [test ADA](https://developers.cardano.org/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada).
 
 ## The Mesh pieces
 
