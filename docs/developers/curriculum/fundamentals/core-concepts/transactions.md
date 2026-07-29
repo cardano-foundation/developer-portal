@@ -146,7 +146,7 @@ Once a transaction passes submission validation and enters the mempool, it is gu
 ### Latency vs finality
 
 - **Latency**: time to appear in a block (~20s average block time).
-- **Finality**: time to become practically irreversible. Depends on network conditions and your risk tolerance; most applications treat 6-20 confirmations as strong finality, high-value transfers wait longer.
+- **Finality**: time to become practically irreversible. Depends on your risk tolerance; most applications treat [10-20 confirmations, a few minutes,](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work) as strong finality, high-value transfers wait longer.
 
 ## Serialization (CBOR)
 
