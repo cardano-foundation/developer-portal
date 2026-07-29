@@ -2,11 +2,12 @@
 title: "Build an Atomic Swap, end to end"
 sidebar_label: "Introduction"
 description: Build a complete atomic swap dApp on Cardano end to end, on-chain validator, off-chain code, and a simple frontend.
+pagination_next: developers/onboarding/tutorial/environment
 ---
 
 # Build an Atomic Swap, end to end
 
-Welcome! In this tutorial you'll set up and run one small, complete app on Cardano, and see how all the pieces fit together. You'll do everything on a **Testnet**(free practice network), so nothing here costs real money.
+Welcome! In this tutorial you'll set up and run one small, complete app on Cardano, and see how all the pieces fit together. You'll do everything on a **Testnet** (free practice network), so nothing here costs real money.
 
 That app is an **atomic swap**, a way for two people to trade tokens directly, without a middleman and without either one having to trust the other.
 
@@ -64,9 +65,9 @@ Because Alice's payment and her pickup happen inside the **same** transaction, t
 
 You won't type this app out by hand. You'll **get the example project and run it**, and these pages walk you through the parts that matter, so you finish understanding how it works. The app has three pieces:
 
-- **On-chain** the smart contract that enforces the swap, plus a small rule for creating the GOLD and SILVER tokens. You'll compile it once.
-- **Off-chain** the code that builds the transactions (create tokens, make an offer, accept one). It comes with tests you can run.
-- **A simple frontend** a small web page to connect a wallet, mint tokens, list an offer, and swap.
+- **On-chain:** the smart contract that enforces the swap, plus a small rule for creating the GOLD and SILVER tokens. You'll compile it once.
+- **Off-chain:** the code that builds the transactions (create tokens, make an offer, accept one). It comes with tests you can run.
+- **A simple frontend:** a small web page to connect a wallet, mint tokens, list an offer, and swap.
 
 By the end, you'll have run a real, trustless token swap on a Cardano test network, and understood every step.
 
