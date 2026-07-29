@@ -8,7 +8,7 @@ description: "Real things you can build on Cardano, in plain terms, and where to
 
 Cardano is a platform for building things people can **own, trust, and exchange** directly, without a bank, a platform, or a middleman sitting in between, taking a cut, and holding all the keys. You don't need to be a crypto expert to build something useful on it.
 
-Here are real things teams are building, in plain terms, with a link to how each one works.
+Here are real things teams are building, with a link to how each one works.
 
 ## Money and assets
 
