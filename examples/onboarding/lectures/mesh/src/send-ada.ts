@@ -2,11 +2,6 @@ import { MeshTxBuilder } from "@meshsdk/core";
 import type { BrowserWallet } from "@meshsdk/core";
 
 // #region send-ada
-/// Send 1 ADA from the connected wallet back to itself, then sign and submit it.
-/// It uses only the connected browser wallet, no external provider: the wallet
-/// gives up the UTxOs (your "bags") to spend, signs the transaction, and submits
-/// it. Sending to yourself is the simplest way to watch a real transaction appear
-/// on the explorer, with no second wallet to set up.
 export async function sendAdaToSelf(wallet: BrowserWallet): Promise<string> {
   const myAddress = await wallet.getChangeAddress();
 
