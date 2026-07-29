@@ -132,6 +132,14 @@ No single primitive does the job alone: hashes provide integrity and binding, Me
 
 A VRF combines a signature with a random number generator: given a private key and an input, it produces a random output that is unpredictable without the private key, plus a proof anyone can verify with the public key. In Cardano's Ouroboros protocol, the slot number is the input and a pool's VRF key decides whether it "wins" the right to produce a block, making block-producer selection both random and verifiable. This is covered in depth in [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros). VRFs are not consensus-only machinery either: a smart contract can verify VRF proofs itself, covered in [BLS signatures, VRFs & credentials](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives#verifiable-random-functions) once you reach the smart contract module.
 
+## What makes a curve pairing-friendly?
+
+Ed25519 signatures rely on one operation family: multiplying a curve point by a secret number, easy to compute and infeasible to reverse. That is all signing needs, and ordinary curves like Curve25519 or Bitcoin's secp256k1 offer nothing more.
+
+A pairing-friendly curve supports a second operation. A **pairing** takes one point from each of two groups on the curve and combines them into a value in a third group, and it is **bilinear**: scaling either input by a secret factor carries through to the output predictably. That single property lets a verifier check that hidden values stand in a claimed relationship, that a hundred signatures collapse into one valid aggregate, or that a random output really came from a specific key, without ever seeing the secrets themselves.
+
+**BLS12-381** is the pairing-friendly curve Cardano exposes to smart contracts (since the Chang upgrade). Aggregated signatures, the script-verifiable VRF proofs above, anonymous credentials, and the on-chain proof verification below all come down to a pairing check on this curve; the protocols built from it are collected in [BLS signatures, VRFs & credentials](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives).
+
 ## What are zero-knowledge proofs?
 
 Every primitive above proves something by *showing* something: a signature shows the public key, a Merkle proof shows the sibling hashes, a hash pre-image shows the secret itself. A **zero-knowledge proof** breaks that pattern: it convinces a verifier that a statement is true while revealing nothing else. The classic example is proving a predicate rather than the data, "this person is over 18" without the birthdate, "this account is solvent" without the balance, "I know the password" without the password.
@@ -155,6 +163,7 @@ Used for NFT metadata (CIP-25 / CIP-68), governance proposals, and audit trails.
 - **Merkle trees** enable logarithmic-time verification of a transaction within a block and make light clients possible.
 - **Digital signatures** (Ed25519) prove a transaction was authorized by the private-key holder; deterministic signing removes a whole class of bugs.
 - **Together** they create layered security: signatures authorize, Merkle trees organize, hash chains make history immutable.
+- **Pairing-friendly curves** (BLS12-381) add an operation that checks relationships between secrets without revealing them, the basis for signature aggregation and on-chain proof verification.
 - **Zero-knowledge proofs** go one step further: they prove a statement is true without revealing the data behind it, and Cardano can verify them on-chain.
 
 ## Next steps
