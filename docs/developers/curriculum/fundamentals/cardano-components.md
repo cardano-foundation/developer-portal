@@ -100,6 +100,7 @@ What distinguishes Cardano's engineering approach is that each layer is specifie
 The formal specs are public:
 - [Cardano Ledger Specifications](https://github.com/IntersectMBO/cardano-ledger#cardano-ledger)
 - [Ouroboros papers](https://cardano.org/research/), the academic papers underpinning the consensus protocol
+- [Cardano Blueprint](https://cardano-scaling.github.io/cardano-blueprint/), implementation-independent descriptions of each layer, written so alternative nodes can be built from them; the readable companion to the formal specs
 
 ## Further reading
 
