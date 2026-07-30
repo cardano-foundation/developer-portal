@@ -90,4 +90,4 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 - [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time) — the bounds in detail, and slot↔time conversion.
 - [Cardano for Ethereum developers](/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers) — why there's no `block.timestamp`.
 
-Next: **[Metadata & native scripts](/docs/developers/onboarding/lectures/beginner/metadata-and-native-scripts)**.
+Next: **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)**.

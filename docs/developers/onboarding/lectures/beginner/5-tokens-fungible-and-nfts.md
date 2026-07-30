@@ -16,6 +16,20 @@ So far everything has been about ADA. But a UTxO (one of those sealed bags) can 
 
 Tokens on Cardano are **native**: the ledger tracks your custom asset right alongside ADA, and moving it around needs **no smart contract**. Every token has a **policy ID** (rules to create or destroy it) and an **asset name** (its label, like `GOLD`).
 
+Because they ride in the same UTxOs as ADA, **one bag can hold ADA _and_ several different tokens at once**, a *bundle*:
+
+```mermaid
+flowchart TB
+    subgraph Bag["One UTxO — a single sealed bag"]
+        direction TB
+        A["2 ADA"]
+        G["100 GOLD"]
+        N["1 TICKET #7 &nbsp;(an NFT)"]
+    end
+```
+
+Each custom token in the bag is pinned down by three things: its **policy ID** + **asset name** + **quantity**. (ADA is just the one token every bag already knows how to hold.)
+
 There are two kinds, and you already know the difference from real life:
 
 - **Fungible tokens** are **interchangeable**, like **dollar bills**, every unit is identical. You make one by minting a quantity greater than 1. Good for currencies, points, in-game gold.
@@ -25,12 +39,12 @@ That's the whole distinction: **fungible = many identical units; NFT = a single 
 
 ## What's a policy ID?
 
-We keep mentioning the **policy ID**, so let's pin it down. Behind every token is a **minting policy**: the rule that decides who may create (or destroy) that token, and under what conditions. The **policy ID** is the _hash_ of that policy, a 56-character fingerprint.
+We keep mentioning the **policy ID**, so let's pin it down. Behind every token is a **minting policy**: the rule that decides who may create (or destroy) that token, and under what conditions. It's usually a **native script**, exactly the kind you met last lecture. The **policy ID** is the _hash_ of that policy, a 56-character fingerprint.
 
 It matters for two reasons:
 
 - **It's a unique namespace.** Your `GOLD` and someone else's `GOLD` never clash, because they sit under different policy IDs. A token's real, full identity is always **policy ID + asset name** together, not the name alone.
-- **It fixes the rules forever.** The simplest policy says "only the holder of this key may mint." An NFT usually uses a policy that can **mint only one token once** (we'll learn how in future lectures), and that's exactly what makes it provably one-of-a-kind.
+- **It fixes the rules forever.** The simplest policy is a one-line `sig` native script: "only the holder of this key may mint." An NFT usually uses a **time-locked** native-script policy that can **mint only one token once**, and that's exactly what makes it provably one-of-a-kind.
 
 ## Try it
 
@@ -39,7 +53,7 @@ It matters for two reasons:
 
 ## See it in code
 
-Let's mint one. This creates **100 GOLD** under the simplest possible policy: a **native script**. A native script is a small rule the ledger understands on its own, no smart-contract language, and ours says just _"only the holder of this wallet's key may mint."_ **Hashing that rule gives the policy ID** (we dig into native scripts in the [Metadata & native scripts](/docs/developers/onboarding/lectures/beginner/metadata-and-native-scripts) lecture). The new tokens land back in your wallet, no collateral, just the connected wallet:
+Let's mint one. This creates **100 GOLD** under the simplest possible policy: the **native script** you met last lecture, here it says just _"only the holder of this wallet's key may mint."_ **Hashing that rule gives the policy ID.** The new tokens land back in your wallet, no collateral, just the connected wallet:
 
 <Tabs groupId="offchain">
 <TabItem value="mesh" label="Mesh" default>
@@ -73,4 +87,4 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 - [Mint a fungible token](/docs/developers/curriculum/native-tokens/mint-fungible)
 - [Mint an NFT](/docs/developers/curriculum/native-tokens/mint-nft)
 
-Next: **[Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano)**.
+Next: **[Providers & explorers](/docs/developers/onboarding/lectures/beginner/providers-and-explorers)**.
