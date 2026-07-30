@@ -5,7 +5,7 @@ sidebar_label: Pyth
 description: High-frequency oracle providing real-time price feeds to Cardano smart contracts via Pyth Pro.
 ---
 
-Pyth is the production price oracle this curriculum recommends. If oracles are new to you, [Oracles](/docs/developers/curriculum/dapps/oracles/overview) covers the general problem of getting off-chain data on-chain and the pull-based model Cardano contracts use to read it.
+Pyth is the [recommended](/docs/developers/curriculum/dapps/oracles/overview#recommended-pyth) production price oracle for Cardano contracts. If oracles are new to you, [Oracles](/docs/developers/curriculum/dapps/oracles/overview) covers the general problem of getting off-chain data on-chain and the pull-based model Cardano contracts use to read it.
 
 ## What is Pyth?
 
@@ -76,7 +76,7 @@ The Pyth withdraw script verifies signature validity but does **not** enforce fr
 Use the TypeScript SDK to fetch a signed update. You need to request the `solana` format, which is the little-endian Ed25519-signed binary format used for both Cardano and Solana integrations.
 
 :::tip Getting an access token
-Fetching updates requires a Pyth Pro access token. Projects building on Cardano can currently get a year of full access for free: see the [Intersect announcement](https://intersectmbo.org/news/pyth-pro-on-cardano-subscription-offer) for how to request an API key.
+Fetching updates requires a Pyth Pro access token. Intersect has arranged access for projects building on Cardano; see the [Intersect announcement](https://intersectmbo.org/news/pyth-pro-on-cardano-subscription-offer) for how to request an API key.
 :::
 
 ```typescript
@@ -250,7 +250,7 @@ This is the core of a prediction market, an option expiry, or a parametric insur
 
 ### Refuse to act in a dislocated market
 
-The bid–ask spread is a live uncertainty measure. A settlement or liquidation that fires during a momentary dislocation is technically correct and practically wrong, so let the contract demand an orderly market:
+The bid-ask spread is a live uncertainty measure. A settlement or liquidation that fires during a momentary dislocation is technically correct and practically wrong, so let the contract demand an orderly market:
 
 ```aiken
 fn spread_within(feed: Feed, max_spread: Int) -> Bool {

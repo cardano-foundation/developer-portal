@@ -2,7 +2,7 @@
 id: overview
 title: Oracles on Cardano
 sidebar_label: Overview
-description: Learn about oracle services that bring real-world data to Cardano smart contracts.
+description: "How oracles bring real-world data to Cardano smart contracts: the oracle problem, publication models, security, and choosing a feed."
 ---
 
 ## What are oracles?
@@ -30,7 +30,7 @@ graph TD
     style I fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#fff
 ```
 
-Blockchains are deterministic systems where they can only see data within their own ledger. Oracles solve this limitation by bringing external data on-chain.
+Blockchains are deterministic systems that can only see data within their own ledger. Oracles solve this limitation by bringing external data on-chain.
 
 ## Why oracles matter
 
@@ -220,17 +220,10 @@ Statistical methods identify and exclude anomalous data that deviates significan
 
 ## Choosing an oracle
 
-Consider these factors when selecting an oracle for your Cardano application:
-
-- What sources does the oracle use? How reliable are they?
-- Does the publication model match your needs?
-- How distributed is the oracle network?
-- Can you audit the data collection and validation process?
-- How hard is it to integrate?
-- What are the fees for consuming oracle data?
+The factors that actually differentiate oracles are concrete, and the sections above explain what each one buys you: the data sources a feed draws from and how diverse they are, the publication model (push or pull) and the trust choice it implies, how distributed the operator set is, whether collection and validation are auditable, the integration effort, and the fee for consuming updates. Weigh them against your use case, in particular against whether you read the feed once at settlement or on every interaction.
 
 ### Recommended: Pyth
 
-For most Cardano applications, **[Pyth](/docs/developers/curriculum/dapps/oracles/pyth)** is the recommended oracle. It is an industry-grade network delivering sub-second, high-frequency price feeds through a pull-based model, with on-chain verification handled by an Aiken library, so your contract reads verified updates directly from the transaction it validates.
+For most Cardano applications, **[Pyth](/docs/developers/curriculum/dapps/oracles/pyth)** is the recommended oracle: sub-second, high-frequency price feeds through a pull-based model, with on-chain verification handled by an Aiken library, so your contract reads verified updates directly from the transaction it validates.
 
 Contracts can also read **multiple** oracle feeds and reconcile them on-chain, as shown above, so a single feed failing or being manipulated does not compromise the result. See the [Pyth integration guide](/docs/developers/curriculum/dapps/oracles/pyth) to wire it into your validator and off-chain code.
