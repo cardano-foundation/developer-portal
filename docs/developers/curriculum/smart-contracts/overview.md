@@ -168,11 +168,16 @@ Validators can be written in several languages that all compile to the same on-c
 - **The eUTXO model extends UTXOs** with datums, redeemers, and context, enabling full contract logic while preserving determinism and parallelism.
 
 ## Next steps
-This module builds up from here:
+
+This module builds up from here, in order:
 
 1. **[Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context)**: the three arguments every validator receives, in depth.
 2. **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)**: pick how you'll write validators (Aiken-first).
-3. **[Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
-4. **[Testing](/docs/developers/curriculum/smart-contracts/testing)**: verify validators with mock transactions before you deploy.
-5. **[Security](/docs/developers/curriculum/smart-contracts/security)**: the attack classes to defend against.
-6. **[Build a dApp](/docs/developers/curriculum/dapps/overview)**: the next module, where your contracts meet users.
+3. **[Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator)**: the on-chain code itself, purpose by purpose.
+4. **[Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
+5. **[Testing](/docs/developers/curriculum/smart-contracts/testing)**: verify validators with mock transactions before you deploy.
+6. **[Contract library](/templates/contracts)**: audited, open-source contracts to read or start from.
+7. **[Security](/docs/developers/curriculum/smart-contracts/security)**: what the eUTXO model protects you from, what it leaves to you, and how contracts are verified, with the [vulnerability reference](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) and the [CTF](/docs/developers/curriculum/smart-contracts/security/ctf) beneath it.
+8. **[Advanced](/docs/developers/curriculum/smart-contracts/advanced/overview)**: design patterns, UPLC, CBOR debugging, optimization, and the cryptographic primitives. Reference material, read when you need it.
+
+Then **[Build a dApp](/docs/developers/curriculum/dapps/overview)**, the next module, where your contracts meet users.

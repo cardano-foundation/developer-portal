@@ -251,7 +251,7 @@ Instead of one pool UTXO with 100,000 ADA / 50,000 USDx:
 Three users can now swap concurrently against different shards.
 ```
 
-The trade-off is keeping pricing consistent across shards and higher slippage per shard (each holds less liquidity). The flip side of contention is covered as a vulnerability in [UTXO contention](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/utxo-contention).
+The trade-off is keeping pricing consistent across shards and higher slippage per shard (each holds less liquidity). The flip side of contention is covered as a vulnerability in [UTXO contention](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion#utxo-contention).
 
 ### Transaction chaining
 

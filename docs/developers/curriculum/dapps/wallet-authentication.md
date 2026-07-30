@@ -140,3 +140,8 @@ Not every user has a browser wallet installed. [UTXOS](https://utxos.dev) offers
 ## Use cases
 
 Wallet-based authentication fits many scenarios: passwordless login where wallet ownership is the identity, whitelist verification (confirming a user controls a specific wallet or stake address), token-gated content (access for holders of a given native token or NFT), authenticating reward claims, and verifying approval for off-chain actions like in-game trading.
+
+## Next steps
+
+- [Listen for payments](/docs/developers/curriculum/dapps/listen-for-payments): the receiving side, detecting ADA arriving at an address
+- [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): the CIP-30 connector this sign-in flow builds on

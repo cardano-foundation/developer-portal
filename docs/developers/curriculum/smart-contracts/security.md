@@ -5,7 +5,7 @@ sidebar_label: Security
 description: How Cardano's eUTXO model neutralizes whole classes of attacks, the vulnerabilities you still have to guard against, and the patterns that keep validators safe.
 ---
 
-Smart contract bugs are uniquely dangerous: deployed validators are immutable (or very hard to change) and they often guard significant value, so a single vulnerability can mean irreversible loss of funds. For web2 developers, the shift is stark: a bug here isn't an embarrassing hotfix, it's a permanent financial loss in an adversarial environment where anyone in the world can attempt the exploit.
+Smart contract bugs are uniquely dangerous: deployed validators are immutable and they often guard significant value, so a single vulnerability can mean irreversible loss of funds. For web2 developers, the shift is stark: a bug here isn't an embarrassing hotfix, it's a permanent financial loss in an adversarial environment where anyone in the world can attempt the exploit.
 
 The good news: Cardano's [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) eliminates several of the worst attack classes by design. The rest you handle with careful validator logic and established patterns. This page covers what the platform protects you from, what it doesn't, and how to write validators that hold up.
 
@@ -70,7 +70,7 @@ Attack:
   Output UTXO: [Script Address, Datum: {owner: "Attacker", amount: 100}]  (owner changed!)
 ```
 
-**Prevention**: explicitly check that the output datum meets all expected constraints: immutable fields (like ownership) unchanged, mutable fields (like balances) changed only per the allowed rules, and the datum structure matching the expected schema. See [arbitrary datum](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/arbitrary-datum).
+**Prevention**: explicitly check that the output datum meets all expected constraints: immutable fields (like ownership) unchanged, mutable fields (like balances) changed only per the allowed rules, and the datum structure matching the expected schema. See [arbitrary datum](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/unchecked-inputs#arbitrary-datum).
 
 ### Double satisfaction
 
@@ -101,11 +101,17 @@ Policy: "minting allowed ONLY if this specific UTXO is consumed as input"
   Tx 2 (re-mint):  Inputs: [???]               Mints: [1 MyNFT]   <- FAILS, UTXO gone
 ```
 
-See [token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security) and [other token name](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/other-token-name).
+See [token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security) and [other token name](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/unchecked-inputs#other-token-name).
 
 ### Resource exhaustion
 
-Validators have [ExUnits budgets](/docs/developers/curriculum/smart-contracts/choose-a-language#what-you-pay-for-execution-costs). An attacker can craft transactions that approach the limits, creating denial-of-service conditions for a protocol. Be conscious of worst-case execution cost; use parameterized scripts, bound loop iterations, and pre-compute expensive work off-chain. See [unbounded inputs](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/unbounded-inputs) and related entries.
+Validators have [ExUnits budgets](/docs/developers/curriculum/smart-contracts/choose-a-language#what-you-pay-for-execution-costs). An attacker can craft transactions that approach the limits, creating denial-of-service conditions for a protocol. Be conscious of worst-case execution cost; use parameterized scripts, bound loop iterations, and pre-compute expensive work off-chain. See [unbounded inputs](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion#unbounded-inputs) and related entries.
+
+### Locked value
+
+Not every failure is an exploit. **Locked value** is a design where funds become permanently stuck in a UTXO with no way to spend them, the on-chain equivalent of burning them.
+
+Sometimes that is intentional: an untamperable UTXO can serve as a single, provable source of truth that no one, including its creator, can alter. The question is whether the value it traps is worth that guarantee. In Mesh's [Plutus NFT example](https://github.com/MeshJS/mesh/tree/main/packages/mesh-contract/src/plutus-nft/locked-value) only about 2 ADA stays locked in the oracle UTXO, an acceptable tradeoff rather than a bug. Weigh the economics before adopting a design that locks value: how much is trapped, and what the permanence buys you.
 
 ## Common security patterns
 
@@ -127,8 +133,70 @@ Defense in depth, from cheapest to strongest:
 
 - **Unit tests** find the bugs you thought of. See [Testing](/docs/developers/curriculum/smart-contracts/testing).
 - **Property-based testing** generates thousands of random inputs against invariants like "no transaction can extract more value than was deposited" or "only the owner can withdraw", catching edge cases you'd never enumerate by hand.
-- **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. See [Audits](/docs/developers/curriculum/smart-contracts/security/audits) for the process and how to prepare.
-- **Formal verification** uses mathematical proof that a property holds for *all* inputs. Cardano's own ledger specification is formalized in Agda, and the Haskell/Aiken ecosystem is well-suited to these rigorous techniques.
+- **Audits** by specialized firms are standard practice before mainnet for any contract holding real value.
+- **Formal verification** proves a property holds for *all* inputs, not just the ones you tried.
+
+The last two are detailed below.
+
+### Audits
+
+Testing and property-based checks find the bugs you thought of; an audit is where people whose job is to break contracts look for the ones you didn't. On Cardano the stakes are high in a specific way: a script's address *is* the hash of its compiled code, so a deployed validator cannot be changed. A protocol can be designed to evolve, by migrating users to a new script address or by delegating logic to a script hash it reads from state it controls, but that has to be built in before launch, not added after a bug. The security model resembles hardware more than software: once a faulty component ships, recalling it can be very difficult or impossible.
+
+#### What an audit checks
+
+A vulnerable validator can lead to money being stolen from the protocol or its users, protocol-only tokens being leaked, funds becoming permanently locked, or the protocol being stalled by a denial-of-service under the UTxO model. An audit exists to catch those outcomes before they happen: auditors confirm the contract behaves as intended, is resistant to malicious exploitation, and protects user funds. Because Cardano contracts often coordinate several UTxOs and scripts in one transaction, much of the work is reasoning about subtle interactions between components, exactly where the [vulnerabilities in this catalog](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) tend to hide.
+
+#### How to prepare
+
+The single biggest lever you control is how ready the codebase is when the auditors arrive. Time they spend reconstructing what the protocol is supposed to do is time not spent finding bugs. Provide:
+
+- **A specification of intended behavior, independent of the code.** State the use cases, the assumptions and invariants, and the expected interactions between contracts. Without a spec that is separate from the implementation, auditors cannot tell intentional behavior from a bug, they only see what the code does, not what it should do.
+- **A runnable test suite** covering the core on-chain logic with unit tests, realistic transaction flows with property-based or scenario tests, and edge cases (minimum-ADA boundaries, unexpected datum values). Auditors verify behavior by writing and modifying tests, so a suite they can run and extend lets them explore quickly.
+- **A reproducible build.** Simple, documented steps to compile and deploy, so an auditor can make a small change to the on-chain code and run a test against it. This matters most when investigating a complex vulnerability.
+
+The length of the first phase is roughly inversely proportional to the quality of this material. Shortening it is in your interest: every hour saved there is an hour available for deeper analysis.
+
+#### The process
+
+An audit usually runs in four phases.
+
+```mermaid
+graph LR
+    A[Understand<br/>the codebase] --> B[Security<br/>analysis]
+    B --> C[Prepare<br/>the report]
+    C --> D[Review<br/>the fixes]
+    style A fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
+    style B fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style C fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+    style D fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
+```
+
+1. **Understand the codebase.** Auditors study the documentation and the code until they know how the protocol is intended to work and how it works under the hood, and confirm the test suite runs. This is where good preparation pays off.
+2. **Security analysis.** They first check whether the common vulnerability classes apply to this code, writing tests to confirm each finding (a vulnerability is considered confirmed once a test demonstrates it), then move to protocol-design issues, the mathematical assumptions behind incentives and fees, and the parameters used to instantiate the contracts on-chain. Confirmed issues are communicated as they are found, though it is sometimes better to hold a fix until the whole picture is clear, since vulnerabilities can combine and a complete view often leads to a simpler, more efficient fix.
+3. **Prepare the report.** Findings are compiled into a report: a summary of each issue with suggested fixes, plus context, disclaimers, and a description of each issue type. By this point most issues have already been raised informally with the team.
+4. **Review the fixes.** After the team addresses the issues, the auditors verify each fix is the suggested one or equally effective and introduces no new problems, and record the outcome of every issue. Only then is the report final and ready to share publicly.
+
+#### Certification standards
+
+Cardano has a community standard for how audits are conducted and certified: **[CIP-52 (Cardano Audit Best Practice Guidelines)](https://cips.cardano.org/cip/CIP-52)**. It defines three assurance levels a project can target:
+
+- **Level 1**: automated tooling and static analysis.
+- **Level 2**: a manual audit by an independent team.
+- **Level 3**: formal verification of critical properties (see [Formal verification](#formal-verification) below).
+
+There is no mandatory audit registry on Cardano; certification runs through the auditors and certification services themselves. [CIP-96](https://github.com/cardano-foundation/CIPs/pull/499) proposes an on-chain standard for publishing certification metadata (audit reports, test results, formal proofs), but it remains a draft rather than an adopted mechanism.
+
+### Formal verification
+
+Testing shows a validator works on the cases you tried; **formal verification** proves it holds for all of them. Cardano's own ledger specification is formalized in Agda, and the Haskell and Aiken ecosystems are well suited to these techniques, so for high-value contracts machine-checked proofs are the strongest guarantee you can give.
+
+**Blaster.**
+
+[Blaster](https://github.com/input-output-hk/Lean-blaster) is proof automation for [Lean 4](https://lean-lang.org/): you hand it a theorem and it returns a proof, or a counterexample that shows why it is wrong. It simplifies the goal through a series of algebraic rewriting passes, emits a minimal SMT-Lib query, and discharges it with an SMT solver, so you can close goals with a single `blaster` tactic instead of writing proofs by hand.
+
+:::info In active development
+Blaster is under active development and not yet generally available. You can track progress and follow the documentation at the [Lean-blaster repository](https://github.com/input-output-hk/Lean-blaster). This page will be expanded as the tooling matures.
+:::
 
 ## Key takeaways
 

@@ -230,7 +230,7 @@ Both live with the local-environment tooling rather than here: see [Testing with
 
 ## Audits
 
-Testing finds the bugs you thought of; audits find the ones you didn't. For any contract holding significant value, a professional audit is standard practice. See [Audits](/docs/developers/curriculum/smart-contracts/security/audits) for the process and how to prepare for one.
+Testing finds the bugs you thought of; audits find the ones you didn't. For any contract holding significant value, a professional audit is standard practice. See [Audits](/docs/developers/curriculum/smart-contracts/security#audits) for the process and how to prepare for one.
 
 ## Next steps
 

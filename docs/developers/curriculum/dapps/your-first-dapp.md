@@ -33,7 +33,9 @@ On-chain logic (a validator) is an optional fifth block you layer on later. The 
 
 ## Start from a template
 
-Each SDK has a runnable starter, browsable in the [templates gallery](/templates): [Evolution + Vite + React](/templates/evolution-vite-react) and [Mesh + Next.js](/templates/mesh-nextjs). Scaffold one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new project), then install and run.
+Setting up a dApp means wiring together an off-chain library, a frontend, a provider, and often an on-chain language and a local devnet. A template does that wiring for you, so you start from a runnable project instead of a blank directory.
+
+Each SDK has a runnable starter, browsable in the [templates gallery](/templates): [Evolution + Vite + React](/templates/evolution-vite-react) and [Mesh + Next.js](/templates/mesh-nextjs). Both do the same thing, connect a wallet, show the balance, and send ADA. Scaffold one with [giget](https://github.com/unjs/giget) (it copies a single template folder into a new project), then install and run. Both need a free [Blockfrost](https://blockfrost.io) key in the env file.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -63,6 +65,12 @@ npm run dev            # http://localhost:3000
 
 </TabItem>
 </Tabs>
+
+For how the two SDKs compare before you commit to one, see [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools). If you want a contract from the start, the [Mesh Aiken template](https://github.com/MeshJS/mesh-aiken-template) is a full-stack starter pairing the Mesh SDK off-chain with Aiken on-chain.
+
+:::info cardano-init is on the way
+[cardano-init](https://github.com/input-output-hk/cardano-init) aims to unify scaffolding into one tool: you pick the tools for each role (on-chain validators, off-chain transaction building, local devnet, infrastructure, or formal methods) and it generates a runnable monorepo with everything pre-wired, plus an end-to-end example that builds and passes tests. It is an early prototype and not yet ready for use, with its templates, CLI flags, and output still changing. Track progress at the [cardano-init repository](https://github.com/input-output-hk/cardano-init).
+:::
 
 The rest of this page walks the building blocks the template wires together.
 
