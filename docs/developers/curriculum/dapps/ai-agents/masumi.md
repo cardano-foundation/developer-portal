@@ -50,3 +50,8 @@ Masumi is several components working together:
 - [Discord](https://discord.gg/masumi)
 
 Protocol changes are proposed through the [Masumi Improvement Proposals](https://github.com/masumi-network/masumi-improvement-proposals) repository.
+
+## Next steps
+
+- [MCP access](/docs/developers/curriculum/dapps/ai-agents/mcp): give an AI assistant Cardano tools, with the signing boundary intact
+- [Build a dApp](/docs/developers/curriculum/dapps/overview): back to the module, where the agent's wallet and transactions are ordinary dApp building blocks

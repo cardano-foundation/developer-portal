@@ -182,3 +182,8 @@ For a full device-hosted build of this, a QR payment terminal running on hardwar
 ## Use cases
 
 E-commerce checkout, payment gateways, donation platforms, subscription billing, event ticketing, in-app purchases, and vending or IoT machines: anywhere you fulfill something only after ada arrives.
+
+## Next steps
+
+- [Sponsored transactions](/docs/developers/curriculum/dapps/sponsored-transactions): multi-party transactions where someone else covers the fee
+- [Ship to Production](/docs/developers/curriculum/production/overview): take the app from testnet to mainnet
