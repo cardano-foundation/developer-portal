@@ -57,7 +57,7 @@ await wallet.submitTx(signedTx)
 Update metadata with `drepUpdateCertificate(dRepId, { anchorUrl, anchorDataHash })` and step down with `drepDeregistrationCertificate(dRepId)` (the deposit is refunded). See the [Mesh governance guide](https://meshjs.dev/apis/txbuilder/governance).
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 Generate the DRep key pair:
 
@@ -67,7 +67,7 @@ cardano-cli latest governance drep key-gen \
   --signing-key-file drep.skey
 ```
 
-Build the registration certificate with the deposit (query `dRepDeposit` from the protocol parameters; 500000000 lovelace here) and an optional metadata anchor:
+Build the registration certificate with the deposit and an optional metadata anchor. Query `dRepDeposit` rather than hardcoding it; the value below is the current 500 ADA:
 
 ```bash
 cardano-cli latest governance drep registration-certificate \
@@ -106,8 +106,7 @@ A DRep credential can also be a script hash instead of a key hash. The flow mirr
 
 For a **simple-script (multisig) DRep**, write a native script (for example `type: atLeast` over the members' DRep key hashes), hash it for the DRep ID, and register against that script hash:
 
-<Tabs groupId="sdk">
-<TabItem value="cli" label="cardano-cli" default>
+**cardano-cli**
 
 ```bash
 cardano-cli hash script --script-file drep-multisig.json --out-file drep-multisig.id
@@ -133,8 +132,6 @@ cardano-cli latest transaction build \
 
 Only the payment key signs; script validity comes from the redeemer, not a DRep key signature.
 
-</TabItem>
-</Tabs>
 
 ## Delegate your vote
 
@@ -182,7 +179,7 @@ await wallet.submitTx(signedTx)
 ```
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 Create the vote-delegation certificate from your stake key. Target a registered DRep with `--drep-key-hash` (or `--drep-script-hash`), or pick `--always-abstain` / `--always-no-confidence`:
 

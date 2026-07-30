@@ -175,7 +175,7 @@ Metadata is public: any provider can read it back. With Blockfrost, fetch every 
 
 ## Batching and airdrops
 
-A single transaction has a **max size (~16 KB)**. Each output adds ~60-100 bytes, so you fit roughly **20-30 ADA-only recipients** per transaction (fewer if outputs carry native tokens). To pay hundreds of recipients, chunk the list into transaction-sized batches:
+A single transaction has a maximum size (`maxTxSize`, currently ~16 KB, and [governance-controlled](/docs/developers/curriculum/staking-governance/governance) like every protocol parameter). Each output adds ~60-100 bytes, so you fit roughly **20-30 ADA-only recipients** per transaction (fewer if outputs carry native tokens). To pay hundreds of recipients, chunk the list into transaction-sized batches:
 
 ```typescript
 function chunk<T>(array: T[], size: number): T[][] {
@@ -345,9 +345,6 @@ This is what powers the withdraw-zero coordinator: the [Stake Validator design p
 
 SDKs build a transaction against a live provider. `cardano-cli` can also build one **fully offline**, where you calculate the fee and balance the transaction yourself, for air-gapped signing and reproducible builds. Of its three build commands, `transaction build` is the everyday node-connected one, `build-raw` is the offline one, and `build-estimate` sizes a fee offline without balancing.
 
-<Tabs groupId="sdk">
-<TabItem value="cardano-cli" label="cardano-cli" default>
-
 ```bash
 # 1. Protocol parameters (needs a node, once)
 cardano-cli query protocol-parameters --out-file pparams.json
@@ -372,17 +369,12 @@ cardano-cli latest transaction build-raw \
   --fee 173993 --protocol-params-file pparams.json --out-file tx.raw
 ```
 
-</TabItem>
-</Tabs>
 
 `--witness-count` is how many signatures the transaction will carry. It affects the fee. Inspect any draft with `cardano-cli debug transaction view --tx-body-file tx.draft`.
 
 ## Spending from several keys
 
 To spend UTXOs owned by *different* keys in one transaction (combining two wallets, or a multisig), list each `--tx-in`, set the witness count to the number of signers, and pass every signing key at sign time.
-
-<Tabs groupId="sdk">
-<TabItem value="cardano-cli" label="cardano-cli" default>
 
 ```bash
 cardano-cli latest transaction build-raw \
@@ -397,8 +389,6 @@ cardano-cli latest transaction sign \
   --out-file tx.signed
 ```
 
-</TabItem>
-</Tabs>
 
 Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
 

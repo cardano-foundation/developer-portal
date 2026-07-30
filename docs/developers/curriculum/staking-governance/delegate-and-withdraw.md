@@ -51,7 +51,7 @@ const wallet = await MeshCardanoHeadlessWallet.fromMnemonic({
 ```
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 You need `payment.skey` / `payment.addr` plus a registered stake key pair (`stake.vkey` / `stake.skey`). Operations that touch the stake credential are signed by both keys.
 
@@ -126,7 +126,7 @@ await wallet.submitTx(signedTx)
 `deserializePoolId` turns a bech32 `pool1...` ID into the hash the builder needs. Already registered? Use only `delegateStakeCertificate(rewardAddress, poolIdHash)`.
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 Generate a registration certificate (the deposit comes from the `stakeAddressDeposit` protocol parameter) and a delegation certificate, then submit both in one transaction:
 
@@ -214,7 +214,7 @@ await wallet.submitTx(signedTx)
 `withdrawal` takes the lovelace amount as a string; pass the whole `rewards` balance.
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 ```shell
 # Read the current reward balance
