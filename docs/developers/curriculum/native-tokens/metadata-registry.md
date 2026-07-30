@@ -22,7 +22,7 @@ CIP-20 transaction messages are covered under [Transactions](/docs/developers/cu
 
 ## CIP-25: NFT metadata in the minting transaction
 
-CIP-25 stores metadata in the minting transaction under label `721`. It is the simplest standard and the most widely used for NFTs. The metadata is recorded permanently in the transaction, but it is **not** readable by smart contracts.
+CIP-25 stores metadata in the minting transaction under label `721`. It is the simplest of the standards: the metadata is recorded permanently in the transaction, but it is **not** readable by smart contracts.
 
 ```json
 { "721": { "<policy_id>": { "<asset_name>": {

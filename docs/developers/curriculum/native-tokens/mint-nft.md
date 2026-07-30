@@ -8,7 +8,7 @@ description: Mint a one-of-one NFT on Cardano with CIP-25 metadata, using Evolut
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-An NFT is just a native token with a quantity of 1, made permanently unique by a minting policy that can only ever run once. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This guide mints one and sends it to a wallet, pick your tool below.
+An NFT is just a native token with a quantity of 1, made permanently unique by a minting policy that can only ever run once. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This page mints one and sends it to a wallet, pick your tool below.
 
 New to policies and what makes a token "non-fungible"? Read [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) and [What are native tokens](/docs/developers/curriculum/native-tokens/overview) first. This page is the hands-on version.
 
@@ -25,7 +25,7 @@ New to policies and what makes a token "non-fungible"? Read [Minting policies](/
 - An image pinned to IPFS (the `ipfs://...` URI goes in the metadata)
 
 :::tip CIP-25 or CIP-68?
-**CIP-25** stores metadata in the minting transaction (label 721). Simplest, and what this guide uses. **CIP-68** stores metadata in an on-chain datum that a smart contract can read and update later. Choose CIP-68 only if your NFT's metadata needs to change or be read on-chain. See [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry).
+**CIP-25** stores metadata in the minting transaction (label 721). Simplest, and what this page uses. **CIP-68** stores metadata in an on-chain datum that a smart contract can read and update later. Choose CIP-68 only if your NFT's metadata needs to change or be read on-chain. See [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry).
 :::
 
 ## Mint it
