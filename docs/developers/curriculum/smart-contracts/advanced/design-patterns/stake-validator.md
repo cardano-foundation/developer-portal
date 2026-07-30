@@ -260,7 +260,7 @@ The script does not have to hold the stake credential itself, either. When locke
 
 ## Double Satisfaction Protection
 
-When using this pattern with multiple inputs/outputs, protect against [double satisfaction attacks](../../security/vulnerabilities/double-satisfaction) by:
+When using this pattern with multiple inputs/outputs, protect against [double satisfaction attacks](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) by:
 
 1. **Tagging outputs** - Include input OutRef in output datums
 2. **Unique indexing** - Use redeemer indices to pair inputs with outputs
@@ -294,4 +294,4 @@ The interesting consequence is proving that an event has *not* happened. The usu
 
 Because this state lives on the account side of the ledger, reading or flipping it spends no UTxO. There is no contention: many transactions can interact with the same credential within one block without competing for an input.
 
-Two caveats. The certificate operations that make this work are exactly the ones covered in [Unconstrained Certificate Operations](../../security/vulnerabilities/certificate-deregistration): an unguarded certificate path lets anyone flip the bit and claim the registration deposit. And while several credentials give several bits, treating them as an integer reintroduces the concurrency problems the technique avoids; the [global state write-up](https://github.com/Anastasia-Labs/design-patterns/blob/main/stake-validator/GLOBAL-STATE.md) in the design patterns repository demonstrates multi-bit counters but labels them a proof of concept.
+Two caveats. The certificate operations that make this work are exactly the ones covered in [Unconstrained Certificate Operations](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/certificate-deregistration): an unguarded certificate path lets anyone flip the bit and claim the registration deposit. And while several credentials give several bits, treating them as an integer reintroduces the concurrency problems the technique avoids; the [global state write-up](https://github.com/Anastasia-Labs/design-patterns/blob/main/stake-validator/GLOBAL-STATE.md) in the design patterns repository demonstrates multi-bit counters but labels them a proof of concept.

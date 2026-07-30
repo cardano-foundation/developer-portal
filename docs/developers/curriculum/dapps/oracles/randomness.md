@@ -66,7 +66,7 @@ The shape: an operator publishes a VRF public key in advance. Each round's input
 
 Some values sitting in the ledger look random and are not safe to treat as such:
 
-- **Block or transaction hashes and validity-range timestamps.** These are chosen or influenced by whoever builds the transaction or produces the block, so they are grindable. Treating a timestamp as randomness is a known footgun, see [time handling](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/time-handling).
+- **Block or transaction hashes and validity-range timestamps.** These are chosen or influenced by whoever builds the transaction or produces the block, so they are grindable. Treating a timestamp as randomness is a known footgun, see [time handling](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling).
 - **The treasury amount.** Plutus V3 (Conway) can expose the current treasury balance to a validator, but only when the transaction chooses to include that optional field, and only as the current value with no built-in delta. It changes each epoch, yet the change is mostly predictable, only the low digits are hard to guess. It updates once every ~5 days and is public for the whole epoch, so it is low-entropy and already known to anyone acting late in the epoch. At best a weak supplementary seed, never a standalone source.
 
 ## Choosing an approach
@@ -94,4 +94,4 @@ The honest bottom line: match the pattern to your threat model, and state the tr
 - [AI agents on Cardano](/docs/developers/curriculum/dapps/ai-agents/overview): the next track, agents that hold wallets and act on-chain
 - [BLS signatures, VRFs & credentials](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives#verifiable-random-functions): the mechanics of an ECVRF a validator can verify
 - [Verifiable Random Functions](/docs/developers/curriculum/fundamentals/cryptographic-primitives#what-are-verifiable-random-functions-vrfs): what a VRF is and why its output is verifiable
-- [Time handling](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/time-handling): why a timestamp is not a source of randomness
+- [Time handling](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling): why a timestamp is not a source of randomness

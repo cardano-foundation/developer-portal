@@ -684,7 +684,7 @@ Ethereum's `mapping(address => uint)` has no direct equivalent. Instead, you use
 
 ### Smart Contract Security
 
-The eUTxO model has its own security considerations that differ from account-based systems. [Smart Contract Vulnerabilities](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview) serves as a reference for common issues and mitigations.
+The eUTxO model has its own security considerations that differ from account-based systems. [Smart Contract Vulnerabilities](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) serves as a reference for common issues and mitigations.
 
 **Example: Double Satisfaction**
 
@@ -710,7 +710,7 @@ flowchart TB
 
 Both validators ask "is there an output paying 5 ADA to the seller?" Both see the same output and pass. The attacker claims 20 tokens but only pays 5 ADA instead of 10. The fix is tagging outputs uniquely so each validator looks for its specific output.
 
-This is just one of many eUTxO-specific patterns. The documentation covers these vulnerabilities, and you can practice exploiting them in the [Cardano CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf).
+This is just one of many eUTxO-specific patterns. The documentation covers these vulnerabilities, and you can practice exploiting them in the [Cardano CTF](/docs/developers/curriculum/smart-contracts/security/ctf).
 
 ## Quick Reference: Ethereum to Cardano
 
