@@ -5,7 +5,7 @@ sidebar_label: Security
 description: How Cardano's eUTXO model neutralizes whole classes of attacks, the vulnerabilities you still have to guard against, and the patterns that keep validators safe.
 ---
 
-Smart contract bugs are uniquely dangerous: deployed validators are immutable (or very hard to change) and they often guard significant value, so a single vulnerability can mean irreversible loss of funds. For web2 developers, the shift is stark: a bug here isn't an embarrassing hotfix, it's a permanent financial loss in an adversarial environment where anyone in the world can attempt the exploit.
+Smart contract bugs are uniquely dangerous: deployed validators are immutable and they often guard significant value, so a single vulnerability can mean irreversible loss of funds. For web2 developers, the shift is stark: a bug here isn't an embarrassing hotfix, it's a permanent financial loss in an adversarial environment where anyone in the world can attempt the exploit.
 
 The good news: Cardano's [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) eliminates several of the worst attack classes by design. The rest you handle with careful validator logic and established patterns. This page covers what the platform protects you from, what it doesn't, and how to write validators that hold up.
 
@@ -140,7 +140,7 @@ The last two are detailed below.
 
 ### Audits
 
-Testing and property-based checks find the bugs you thought of; an audit is where people whose job is to break contracts look for the ones you didn't. On Cardano the stakes are high in a specific way: a deployed validator usually cannot be changed. The security model resembles hardware more than software, once a faulty component ships, recalling it can be very difficult or impossible.
+Testing and property-based checks find the bugs you thought of; an audit is where people whose job is to break contracts look for the ones you didn't. On Cardano the stakes are high in a specific way: a script's address *is* the hash of its compiled code, so a deployed validator cannot be changed. A protocol can be designed to evolve, by migrating users to a new script address or by delegating logic to a script hash it reads from state it controls, but that has to be built in before launch, not added after a bug. The security model resembles hardware more than software: once a faulty component ships, recalling it can be very difficult or impossible.
 
 #### What an audit checks
 
