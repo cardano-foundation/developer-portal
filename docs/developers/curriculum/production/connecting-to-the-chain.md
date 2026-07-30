@@ -111,27 +111,6 @@ The trade is explicit: a data node syncs from relay nodes you configure and trus
 
 **Demeter.** A managed platform hosts the *self-hosted* categories for you: node access, indexers (db-sync, Kupo), and node interfaces (Ogmios, submit API) provisioned as cloud services. You get the architecture of the self-hosted stack without operating it, at the price of reintroducing an operator you trust.
 
-## The stack, layer by layer
-
-Put together, the categories stack into layers, and you pick your answer per layer:
-
-```mermaid
-graph TD
-    App[Your application\nweb app, mobile app, CLI] --> TX[Transaction building\nEvolution, Mesh, cardano-cli]
-    TX --> API[Chain query / submission\nBlockfrost, Koios, Maestro]
-    API --> NI[Node interface\nOgmios, cardano-submit-api]
-    NI --> IDX[Chain indexers\nKupo, db-sync, Yaci Store, Oura]
-    IDX --> Node[cardano-node\nfull chain copy, validation, consensus]
-    style App fill:#9C27B0,color:#fff
-    style TX fill:#2196F3,color:#fff
-    style API fill:#4CAF50,color:#fff
-    style NI fill:#FF9800,color:#fff
-    style IDX fill:#F44336,color:#fff
-    style Node fill:#607D8B,color:#fff
-```
-
-A hosted query API is the top three layers run by someone else. A Kupmios stack is you running the bottom three. A data node is the bottom four collapsed into one process. The [network protocol](/docs/developers/curriculum/production/network-protocol) page goes beneath the bottom layer.
-
 ## What is not comparable to what
 
 The most common confusion in this landscape is comparing across categories. Three cases come up constantly:
