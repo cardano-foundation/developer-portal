@@ -160,3 +160,7 @@ Increment the `sequenceNumber` on `name` and `description` as with any update.
 **My pull request was closed.** Pull requests that fail the automated checks are closed after a while. Open the **Checks** tab and read the failing test for the reason. A pull request can also be rejected even when checks pass if it breaks the [Registry Terms of Use](https://github.com/cardano-foundation/cardano-token-registry/blob/master/Registry_Terms_of_Use.md). For questions about a submission, contact tokenregistry@cardanofoundation.org.
 
 **My pull request has not merged yet.** Review is done by humans, oldest first, and well-formed pull requests that pass every check are processed first. Make sure your checks are green (a red mark links to the failing detail) and be patient.
+
+## Next steps
+
+- [Token metadata server](/docs/developers/curriculum/native-tokens/token-registry/metadata-server): query the entry you just registered from your application
