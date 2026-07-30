@@ -34,11 +34,11 @@ The progression is worth seeing as a whole:
 - **Levels 0-1** are pure code smells: missing checks that would be bugs in any language.
 - **Levels 2-4** introduce UTxO thinking, where account-based assumptions stop translating.
 - **Levels 5-7** use tokens for authentication and teach that a token's security is its minting and movement, not its existence.
-- **Levels 8-9** bring [double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction), including the case where you play both sides yourself.
+- **Levels 8-9** bring [double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction), including the case where you play both sides yourself.
 - **Level 10** is a refactor pitfall: a check that was obviously necessary early on gets lost when a feature is added.
 - **Levels 11-13** are off-chain signature "cheques", walking three distinct ways to get signature verification wrong (binding the signer, preventing replay, and signing every security-relevant field).
 
-Once the bank stops surprising you, the **original series** (multi-validator protocols, complex transaction construction, deep UTxO specifics) is the full-complexity challenge. Every vulnerability here maps to the [vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview).
+Once the bank stops surprising you, the **original series** (multi-validator protocols, complex transaction construction, deep UTxO specifics) is the full-complexity challenge. Every vulnerability here maps to the [vulnerability reference](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview).
 
 ## Get started
 

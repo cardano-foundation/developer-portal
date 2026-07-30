@@ -468,7 +468,7 @@ function SmartContractsSection() {
                 <Link to={useBaseUrl("templates/contracts")}>
                   Examples
                 </Link>
-                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview")}>
                   Security
                 </Link>
               </div>
@@ -497,7 +497,7 @@ function SmartContractsSection() {
 
           {/* CTF */}
           <Link
-            to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/ctf")}
+            to={useBaseUrl("docs/developers/curriculum/smart-contracts/security/ctf")}
             className={styles.scCTFCard}
           >
             <img

@@ -35,8 +35,8 @@ For the fastest loop, run a [local development network](/docs/developers/curricu
 
 ## 2. Secure it
 
-- **Guard the vulnerability classes**: datum hijacking, double satisfaction, token forgery, resource exhaustion. See [Smart contract security](/docs/developers/curriculum/smart-contracts/security), and sharpen your eye on the [CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf).
-- **Get an audit**: for any contract holding meaningful value, a professional audit is standard practice before mainnet. Testing finds the bugs you thought of; audits find the ones you didn't. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare.
+- **Guard the vulnerability classes**: datum hijacking, double satisfaction, token forgery, resource exhaustion. See [Smart contract security](/docs/developers/curriculum/smart-contracts/security), and sharpen your eye on the [CTF](/docs/developers/curriculum/smart-contracts/security/ctf).
+- **Get an audit**: for any contract holding meaningful value, a professional audit is standard practice before mainnet. Testing finds the bugs you thought of; audits find the ones you didn't. See [Audits](/docs/developers/curriculum/smart-contracts/security/audits) for the process and how to prepare.
 - **Keep keys and secrets safe**: the frontend should only sign; build and submit on a backend ([frontend signs, backend submits](/docs/developers/curriculum/dapps/connect-a-wallet#frontend-signs-backend-builds-and-submits)). Never ship provider API keys in client-side code. Review [key & wallet security](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys#working-with-wallets-in-code). For backends that custody keys controlling real value, the operator cold-key playbook applies too: see the [secure transaction workflow](/docs/operators/security/secure-workflow) (build online, sign offline, submit online) and an [air-gapped environment](/docs/operators/security/air-gap).
 
 ## 3. Make transactions reliable

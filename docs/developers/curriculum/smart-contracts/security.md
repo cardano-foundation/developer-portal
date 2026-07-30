@@ -54,7 +54,7 @@ On Ethereum, tokens are smart contracts (ERC-20), and every token contract is it
 
 ## Vulnerabilities you still have to guard against
 
-The platform removes some attacks; the rest are your responsibility. These are the big ones, each has a deep-dive in the [vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview).
+The platform removes some attacks; the rest are your responsibility. These are the big ones, each has a deep-dive in the [vulnerability reference](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview).
 
 ### Datum hijacking
 
@@ -70,7 +70,7 @@ Attack:
   Output UTXO: [Script Address, Datum: {owner: "Attacker", amount: 100}]  (owner changed!)
 ```
 
-**Prevention**: explicitly check that the output datum meets all expected constraints: immutable fields (like ownership) unchanged, mutable fields (like balances) changed only per the allowed rules, and the datum structure matching the expected schema. See [arbitrary datum](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/arbitrary-datum).
+**Prevention**: explicitly check that the output datum meets all expected constraints: immutable fields (like ownership) unchanged, mutable fields (like balances) changed only per the allowed rules, and the datum structure matching the expected schema. See [arbitrary datum](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/arbitrary-datum).
 
 ### Double satisfaction
 
@@ -88,7 +88,7 @@ Attacker's transaction:
   but only one output exists. The attacker pays once for two obligations.
 ```
 
-**Prevention**: tag outputs with a unique identifier (a state/beacon token) and validate that *your specific* output exists, rather than that "some output" meets the condition. See [double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction).
+**Prevention**: tag outputs with a unique identifier (a state/beacon token) and validate that *your specific* output exists, rather than that "some output" meets the condition. See [double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction).
 
 ### Token forgery
 
@@ -101,11 +101,11 @@ Policy: "minting allowed ONLY if this specific UTXO is consumed as input"
   Tx 2 (re-mint):  Inputs: [???]               Mints: [1 MyNFT]   <- FAILS, UTXO gone
 ```
 
-See [token security](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/token-security) and [other token name](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/other-token-name).
+See [token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security) and [other token name](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/other-token-name).
 
 ### Resource exhaustion
 
-Validators have [ExUnits budgets](/docs/developers/curriculum/smart-contracts/choose-a-language#what-you-pay-for-execution-costs). An attacker can craft transactions that approach the limits, creating denial-of-service conditions for a protocol. Be conscious of worst-case execution cost; use parameterized scripts, bound loop iterations, and pre-compute expensive work off-chain. See [unbounded inputs](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-inputs) and related entries.
+Validators have [ExUnits budgets](/docs/developers/curriculum/smart-contracts/choose-a-language#what-you-pay-for-execution-costs). An attacker can craft transactions that approach the limits, creating denial-of-service conditions for a protocol. Be conscious of worst-case execution cost; use parameterized scripts, bound loop iterations, and pre-compute expensive work off-chain. See [unbounded inputs](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/unbounded-inputs) and related entries.
 
 ## Common security patterns
 
@@ -114,12 +114,12 @@ Experienced Cardano developers reach for the same defensive patterns:
 - **State / beacon token**: require a unique NFT (minted with a one-time policy) in every UTXO at a script address. This prevents rogue UTXOs at the address and solves double satisfaction.
 - **Value-preservation check**: explicitly verify that total value in script outputs equals the expected value (inputs minus authorized withdrawals plus authorized deposits). Never rely on implicit preservation.
 - **Datum-continuity validation**: when a script UTXO continues (is consumed and recreated with updated state), validate *every* field of the output datum against the transition rules. Never assume the datum is correct just because it's present.
-- **Deadline enforcement**: use the transaction's [validity range](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/time-handling) for time-based conditions; it's checked at the protocol level, giving reliable time bounds.
+- **Deadline enforcement**: use the transaction's [validity range](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling) for time-based conditions; it's checked at the protocol level, giving reliable time bounds.
 - **Minimal on-chain logic**: every line of on-chain code is potential attack surface. Keep validators small and focused; move complex logic off-chain and check only the critical invariants.
 
 ## Practice on a real target: the CTF
 
-The best way to internalize these is to attack them. The [Smart Contract CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf) is an interactive Capture-the-Flag where you exploit deliberately vulnerable validators: the fastest way to develop an attacker's eye for your own code.
+The best way to internalize these is to attack them. The [Smart Contract CTF](/docs/developers/curriculum/smart-contracts/security/ctf) is an interactive Capture-the-Flag where you exploit deliberately vulnerable validators: the fastest way to develop an attacker's eye for your own code.
 
 ## Verification: testing, PBT, and audits
 
@@ -127,7 +127,7 @@ Defense in depth, from cheapest to strongest:
 
 - **Unit tests** find the bugs you thought of. See [Testing](/docs/developers/curriculum/smart-contracts/testing).
 - **Property-based testing** generates thousands of random inputs against invariants like "no transaction can extract more value than was deposited" or "only the owner can withdraw", catching edge cases you'd never enumerate by hand.
-- **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare.
+- **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. See [Audits](/docs/developers/curriculum/smart-contracts/security/audits) for the process and how to prepare.
 - **Formal verification** uses mathematical proof that a property holds for *all* inputs. Cardano's own ledger specification is formalized in Agda, and the Haskell/Aiken ecosystem is well-suited to these rigorous techniques.
 
 ## Key takeaways
@@ -139,6 +139,6 @@ Defense in depth, from cheapest to strongest:
 
 ## Next steps
 
-- [Vulnerability reference](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview): the full catalog with deep-dives
-- [Smart Contract CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf): practice exploiting and fixing vulnerable validators
+- [Vulnerability reference](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview): the full catalog with deep-dives
+- [Smart Contract CTF](/docs/developers/curriculum/smart-contracts/security/ctf): practice exploiting and fixing vulnerable validators
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): build the test suite that catches these before deployment

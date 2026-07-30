@@ -196,7 +196,7 @@ Production suites push the same idea past booleans: an **options record** whose 
 
 ## Property-based testing
 
-The boolean-toggle pattern tests the failure cases you already thought of: every test names one condition you knew to check. Property-based testing inverts that. Instead of listing cases, you state an invariant that must hold for *every* input, then let the test runner generate hundreds of random inputs trying to break it. A unit test asks "does this specific transaction pass?"; a property asks "is there *any* input that violates this rule?". Good invariants read like the contract's real guarantees: no transaction releases more value than it locks, only the owner can withdraw, a counter only ever moves up by one. This is how you catch the boundary and double-satisfaction bugs you never wrote a case for, the classes catalogued in [Security](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview).
+The boolean-toggle pattern tests the failure cases you already thought of: every test names one condition you knew to check. Property-based testing inverts that. Instead of listing cases, you state an invariant that must hold for *every* input, then let the test runner generate hundreds of random inputs trying to break it. A unit test asks "does this specific transaction pass?"; a property asks "is there *any* input that violates this rule?". Good invariants read like the contract's real guarantees: no transaction releases more value than it locks, only the owner can withdraw, a counter only ever moves up by one. This is how you catch the boundary and double-satisfaction bugs you never wrote a case for, the classes catalogued in [Security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview).
 
 Aiken's runner has this built in. A `test` whose argument is drawn `via` a fuzzer runs many times over, each with a fresh generated value, and when it finds a counterexample it *shrinks* it to the smallest input that still fails before reporting:
 
@@ -230,10 +230,10 @@ Both live with the local-environment tooling rather than here: see [Testing with
 
 ## Audits
 
-Testing finds the bugs you thought of; audits find the ones you didn't. For any contract holding significant value, a professional audit is standard practice. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare for one.
+Testing finds the bugs you thought of; audits find the ones you didn't. For any contract holding significant value, a professional audit is standard practice. See [Audits](/docs/developers/curriculum/smart-contracts/security/audits) for the process and how to prepare for one.
 
 ## Next steps
 
-- [Security](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview): the vulnerability classes your tests should target
+- [Security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview): the vulnerability classes your tests should target
 - [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): exercise the validator end to end
 - [Contract library](/templates/contracts): read tested, production-grade validators

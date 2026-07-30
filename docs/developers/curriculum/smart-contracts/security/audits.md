@@ -11,7 +11,7 @@ This page covers what an audit involves and, more usefully, how to prepare so it
 
 ## What an audit checks
 
-A vulnerable validator can lead to money being stolen from the protocol or its users, protocol-only tokens being leaked, funds becoming permanently locked, or the protocol being stalled by a denial-of-service under the UTxO model. An audit exists to catch those outcomes before they happen: auditors confirm the contract behaves as intended, is resistant to malicious exploitation, and protects user funds. Because Cardano contracts often coordinate several UTxOs and scripts in one transaction, much of the work is reasoning about subtle interactions between components, exactly where the [vulnerabilities in this catalog](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview) tend to hide.
+A vulnerable validator can lead to money being stolen from the protocol or its users, protocol-only tokens being leaked, funds becoming permanently locked, or the protocol being stalled by a denial-of-service under the UTxO model. An audit exists to catch those outcomes before they happen: auditors confirm the contract behaves as intended, is resistant to malicious exploitation, and protects user funds. Because Cardano contracts often coordinate several UTxOs and scripts in one transaction, much of the work is reasoning about subtle interactions between components, exactly where the [vulnerabilities in this catalog](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) tend to hide.
 
 ## How to prepare
 
@@ -49,6 +49,6 @@ Cardano has a community standard for how audits are conducted and certified: **[
 
 - **Level 1**: automated tooling and static analysis.
 - **Level 2**: a manual audit by an independent team.
-- **Level 3**: formal verification of critical properties (see [Formal verification](/docs/developers/curriculum/smart-contracts/advanced/security/formal-verification)).
+- **Level 3**: formal verification of critical properties (see [Formal verification](/docs/developers/curriculum/smart-contracts/security/formal-verification)).
 
 There is no mandatory audit registry on Cardano; certification runs through the auditors and certification services themselves. [CIP-96](https://github.com/cardano-foundation/CIPs/pull/499) proposes an on-chain standard for publishing certification metadata (audit reports, test results, formal proofs), but it remains a draft rather than an adopted mechanism.
