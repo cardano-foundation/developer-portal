@@ -38,12 +38,6 @@ The **ESP32-C3** is a cost-effective, RISC-V based microcontroller with WiFi and
 - [ESP32-C3 on Random Nerd Tutorials](https://randomnerdtutorials.com/getting-started-esp32-c3-super-mini/)
 - [ESP32io.com](https://esp32io.com/) - wider ESP32 tutorial portal.
 
-## Where to buy
-
-- [AliExpress](https://s.click.aliexpress.com/e/_c3Eyz6EL)
-- [Amazon US](https://amzn.to/49V8xgT)
-- [Amazon Germany](https://amzn.to/4sv2isB)
-
 ---
 
 *Adapted from the [CardanoThings](https://cardanothings.io/hardware/esp32-c3) project, originally produced under [Project Catalyst Fund 11](https://projectcatalyst.io/funds/11). Source: [github.com/CardanoThings](https://github.com/CardanoThings).*

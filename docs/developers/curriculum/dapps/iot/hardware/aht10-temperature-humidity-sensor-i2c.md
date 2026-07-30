@@ -30,12 +30,6 @@ I2C address: `0x38` (fixed).
 - [Adafruit AHTX0 library](https://github.com/adafruit/Adafruit_AHTX0) - supports AHT10 and AHT20.
 - [Adafruit AHT20 tutorial](https://learn.adafruit.com/adafruit-aht20/arduino) - same library, similar API.
 
-## Where to buy
-
-- [AliExpress](https://s.click.aliexpress.com/e/_c32qqi9D)
-- [Amazon US](https://amzn.to/4jDI9fF)
-- [Amazon Germany](https://amzn.to/3Ywrml8)
-
 ---
 
 *Adapted from the [CardanoThings](https://cardanothings.io/hardware/aht10-temperature-humidity-sensor-i2c) project, originally produced under [Project Catalyst Fund 11](https://projectcatalyst.io/funds/11). Source: [github.com/CardanoThings](https://github.com/CardanoThings).*
