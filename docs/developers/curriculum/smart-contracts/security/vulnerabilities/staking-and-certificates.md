@@ -1,9 +1,13 @@
 ---
-id: insufficient-staking-control
-title: Insufficient Staking Control
-sidebar_label: Insufficient staking control
-description: "How insufficient staking control allows unauthorized staking operations or reward theft in smart contracts."
+id: staking-and-certificates
+title: Staking and Certificate Control
+sidebar_label: Staking and certificates
+description: "Two vulnerabilities in the staking half of a script credential: unguarded staking rights on script addresses, and unconstrained certificate operations."
 ---
+
+An address has two credentials, and a validator that only governs the payment half leaves the other one open. The staking credential controls who collects rewards and who may register or deregister the credential itself, and both are authorized independently of spending. These two entries are what goes wrong when a protocol forgets that.
+
+## Insufficient Staking Control
 
 > From [MLabs Common Plutus Vulnerabilities](https://www.mlabs.city/blog/common-plutus-security-vulnerabilities)
 
@@ -47,3 +51,31 @@ Finally, this not only applies when locking UTxOs in scripts but also when sendi
 This problem is prevented by explicitly checking the staking credentials, taking into account complete addresses instead of only the credentials controlling the spending of funds.
 
 An address assembled this way, the correct payment credential paired with an attacker's staking credential, is often called a **franken address** (or mangled address), and it has caused real value loss in deployed protocols. A related anti-pattern is using the **staking credential as an authorizer**: gating an action, a whitelist, or an airdrop on the stake credential of an address rather than the payment credential. Because anyone can build an address that reuses a victim's stake credential under a payment key they control, authorizing by the stake credential can be spoofed. Authorize by the payment credential (which actually controls the funds), and when paying out to an address, check or reconstruct the complete address rather than a single credential.
+
+## Unconstrained Certificate Operations
+
+> Concerns the withdraw-zero pattern documented by [Anastasia Labs design patterns](https://github.com/Anastasia-Labs/design-patterns/blob/main/stake-validator/STAKE-VALIDATOR.md) and [CIP-112](https://cips.cardano.org/cip/CIP-112).
+
+**Identifier:** `certificate-deregistration`
+
+**Property statement:**
+A staking script explicitly handles its certificate (registration and deregistration) operations, denying by default any it does not intend to allow.
+
+**Test:**
+A transaction submitted by an unrelated party successfully deregisters the protocol's staking credential.
+
+**Impact:**
+
+- Protocol liveness halted until re-registration
+- Repeatable griefing plus theft of the refunded key deposit
+
+**Further explanation:**
+Many protocols centralize validation with the **withdraw-zero** pattern: instead of each input re-running the same expensive checks, the spend validators only require that a specific staking script executes in the transaction, and the real logic runs once in that staking script. A staking script executes when the transaction includes a withdrawal from its reward account, even a withdrawal of zero, which is why the pattern is cheap. It has a precondition, though: the stake credential must be **registered**, or the zero withdrawal fails phase-1 validation.
+
+A staking script runs for more than withdrawals. Registering or deregistering its credential also invokes it, under its certifying (`publish`) purpose. If the script does not constrain that purpose, for example a catch-all fallback that returns success for any operation it did not explicitly consider, then anyone can submit a deregistration certificate for the credential and the script will approve it.
+
+Deregistration does two things: it refunds the key deposit (2 ADA on mainnet) to whoever submitted the certificate, and it removes the credential. Every subsequent protocol transaction that relies on the withdraw-zero withdrawal now fails, because it withdraws from a reward account that no longer exists, until someone re-registers the credential and pays the 2 ADA deposit again. An attacker can repeat this, turning it into a cheap, repeatable denial of service with a small profit on each round.
+
+The attack has a mirror image. If the unguarded operation is registration and **delegation** rather than deregistration, an attacker can register the credential and delegate it to a stake pool. Nothing halts on-chain, which is what makes it subtle: real rewards begin accruing to the reward account, and off-chain code that hardcodes a withdrawal amount of zero starts building invalid transactions, because the reward account's balance is no longer zero. Production teams have called this out as one of the least obvious ways to break a withdraw-zero deployment.
+
+Aiken's default is protective here: a validator with no fallback handler rejects any purpose it does not explicitly handle, so an unhandled certificate operation is denied. The vulnerability appears when a developer adds a permissive `else` that succeeds, or writes a `publish` handler that does not guard which certificate is being posted. Prevent it by handling the certificate purpose explicitly and denying deregistration unless the protocol genuinely intends to allow it, and by not making liveness depend on a single credential that anyone can deregister. The same discipline covers the mirror attack: on a forwarding-only credential, deny registration and delegation as well, and have off-chain code read the actual reward balance rather than assume it is zero.
