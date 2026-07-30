@@ -178,5 +178,10 @@ await hydraProvider.fanout();  // distributes final balances back to L1 -> "Head
 
 ## Next steps
 
-- [Going to production](/docs/developers/curriculum/production/going-to-production): reliability and security before mainnet
 - [Hydra protocol docs](https://hydra.family/head-protocol/) and [MeshJS Hydra](https://meshjs.dev/hydra): the full protocol and SDK reference
+
+Hydra closes the curriculum. From here the paths lead outward:
+
+- [Operate a Stake Pool](/docs/operators/): running Cardano infrastructure as a discipline of its own
+- [Templates](/templates): start your next project from a runnable starter
+- [Developer community](/docs/community/cardano-developer-community): where Cardano developers ask, answer, and ship

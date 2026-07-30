@@ -50,6 +50,7 @@ module.exports = {
           items: [
             "developers/curriculum/start-building/choose-your-tools",
             "developers/curriculum/start-building/networks-and-test-ada",
+            "developers/curriculum/start-building/development-networks",
             "developers/curriculum/start-building/ai-assisted-development",
             "developers/curriculum/start-building/your-first-transaction",
             "developers/curriculum/start-building/transaction-building",
@@ -347,26 +348,11 @@ module.exports = {
           },
           items: [
             "developers/curriculum/production/going-to-production",
-            "developers/curriculum/production/infrastructure",
+            "developers/curriculum/production/connecting-to-the-chain",
+            "developers/curriculum/production/use-a-provider",
+            "developers/curriculum/production/self-hosting",
             "developers/curriculum/production/indexing-and-analytics",
-            {
-              type: "category",
-              label: "API Providers",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/production/api-providers/overview",
-              },
-              items: [
-                "developers/curriculum/production/api-providers/blockfrost",
-                "developers/curriculum/production/api-providers/koios",
-                "developers/curriculum/production/api-providers/ogmios",
-                "developers/curriculum/production/api-providers/dolos",
-              ],
-            },
-            "developers/curriculum/production/run-your-own-node",
             "developers/curriculum/production/network-protocol",
-            "developers/curriculum/production/development-networks",
-            "developers/curriculum/production/demeter",
             "developers/curriculum/production/transaction-chaining",
             "developers/curriculum/production/hydra",
           ],
