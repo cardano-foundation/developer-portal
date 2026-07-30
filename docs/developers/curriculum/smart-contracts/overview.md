@@ -7,6 +7,8 @@ description: How smart contracts work on Cardano, validators that approve or rej
 
 ![Smart Contracts](./img/card-smart-contracts-title.svg)
 
+You arrive able to build transactions, mint under policies you wrote, and delegate stake and votes. Until now most rules you enforced were the ledger's own; this module generalizes the policy idea into validator scripts that guard any UTXO with logic you define.
+
 ## What are smart contracts?
 
 Smart contracts are agreements defined in code that enforce their terms automatically, without intermediaries. On Cardano they work differently from account-based chains, and the key to understanding them is the [eUTXO](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) model: a smart contract is a **validator script** that guards UTXOs locked at its address. You lock a UTXO at the script's address, and from then on it can only be spent by a transaction the script approves.
@@ -173,3 +175,4 @@ This module builds up from here:
 3. **[Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
 4. **[Testing](/docs/developers/curriculum/smart-contracts/testing)**: verify validators with mock transactions before you deploy.
 5. **[Security](/docs/developers/curriculum/smart-contracts/security)**: the attack classes to defend against.
+6. **[Build a dApp](/docs/developers/curriculum/dapps/overview)**: the next module, where your contracts meet users.

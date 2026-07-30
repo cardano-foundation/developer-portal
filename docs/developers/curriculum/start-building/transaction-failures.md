@@ -74,3 +74,4 @@ The important subtlety: `BadInputsUTxO` from indexer lag *looks* transient but a
 - [Resilient submission](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe): the retry-safe pattern in code
 - [Submitting transactions](/docs/developers/curriculum/start-building/query-the-chain#submitting-transactions): the full rejection-code reference
 - [Collateral](/docs/developers/curriculum/fundamentals/core-concepts/fees#collateral): how phase-2 failures are paid for
+- [Mint Tokens & NFTs](/docs/developers/curriculum/native-tokens/overview): the next module, custom assets in the transactions you can now debug

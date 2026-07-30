@@ -181,3 +181,7 @@ The trust anchor (issuer key and attribute schema) sits in the datum; the proof 
 :::info Research-grade, and moving fast
 As with the ZK verifiers, the builtins themselves sit on an audited library, but every protocol library on this page (`ilap/bls`, the CF examples, `cardano-bbs`) is unaudited, experimental code. Prototype on testnets, read the code you depend on, and treat cost figures as measured snapshots, not guarantees.
 :::
+
+## Next steps
+
+- [Build a dApp](/docs/developers/curriculum/dapps/overview): the next module. Put your contracts in front of users: wallets, payments, oracles, and agents.

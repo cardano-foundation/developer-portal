@@ -91,7 +91,7 @@ The honest bottom line: match the pattern to your threat model, and state the tr
 
 ## Next steps
 
-- [Oracles on Cardano](/docs/developers/curriculum/dapps/oracles/overview): the publication and trust machinery an oracle-delivered random value rides on
+- [AI agents on Cardano](/docs/developers/curriculum/dapps/ai-agents/overview): the next track, agents that hold wallets and act on-chain
 - [BLS signatures, VRFs & credentials](/docs/developers/curriculum/smart-contracts/advanced/bls-primitives#verifiable-random-functions): the mechanics of an ECVRF a validator can verify
 - [Verifiable Random Functions](/docs/developers/curriculum/fundamentals/cryptographic-primitives#what-are-verifiable-random-functions-vrfs): what a VRF is and why its output is verifiable
 - [Time handling](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/time-handling): why a timestamp is not a source of randomness
