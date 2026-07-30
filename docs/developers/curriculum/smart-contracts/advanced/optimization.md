@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 Optimizing code can be counter-intuitive, especially in the context of smart contracts. The virtual machine and its associated cost models can be sometimes confusing and move in ways that one fails to anticipate.
 
-Hence, before doing any optimisation work it is primordial to setup some baseline benchmarks. Those benchmarks shall cover simple and complex scenarios alike, to easily identify the impact of changes. Sometimes, a change may introduce a one-time cost that slightly increases a simple case while making a more complex scenario significantly better.
+Hence, before doing any optimisation work it is essential to set up some baseline benchmarks. Those benchmarks shall cover simple and complex scenarios alike, to easily identify the impact of changes. Sometimes, a change may introduce a one-time cost that slightly increases a simple case while making a more complex scenario significantly better.
 
 ### Writing baseline benchmarks
 
@@ -55,7 +55,7 @@ test baseline() {
 
 ### Using `Fuzzer`
 
-Fuzzers constitutes a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/fuzz/cardano/fuzz.html). For example:
+Fuzzers constitute a very practical way to write fixtures. Transactions in particular can be easily created using the primitives from [`fuzz/cardano`](https://aiken-lang.github.io/fuzz/cardano/fuzz.html). For example:
 
 ```aiken
 use aiken/fuzz
@@ -102,11 +102,11 @@ const transaction = Transaction {
 
 ### The standard library: good or bad?
 
-Let's cover one last point before we dive in: the standard library. Should you use it? Most certainly yes. Will it harm the performances of your program? To some extend, yes. The standard library is **reasonably well optimised**, yet it is tuned for **correctness** and **ease of use**. Its main goal is to get you started and to be convenient.
+Let's cover one last point before we dive in: the standard library. Should you use it? Most certainly yes. Will it harm the performance of your program? To some extent, yes. The standard library is **reasonably well optimised**, yet it is tuned for **correctness** and **ease of use**. Its main goal is to get you started and to be convenient.
 
 Yet, it is easy to replace surgically where needed. Most functions in the standard library are standalone, easily inlinable and can be specialised. Thus it is recommended to always start with the standard library in order to write the most _obviously correct_ code and only then, think about where it could be optimised.
 
-Many optimisations are actually domain-specific and requires intrinsic knowledge to be really effective. While still designing smart contracts, optimisations about how the code is written shouldn't be the priority (but rather, be only an architectural concern). Once your on-chain code is mostly fleshed out, it's good to take a step back and reflect on your usage of the standard lib in critical parts of your program: maybe you don't need all the genericity offere by this particular function, or maybe you can use a simpler, more direct recursive implementation of that other function.
+Many optimisations are actually domain-specific and require intrinsic knowledge to be really effective. While still designing smart contracts, optimisations about how the code is written shouldn't be the priority (but rather, be only an architectural concern). Once your on-chain code is mostly fleshed out, it's good to take a step back and reflect on your usage of the standard lib in critical parts of your program: maybe you don't need all the genericity offered by this particular function, or maybe you can use a simpler, more direct recursive implementation of that other function.
 
 There are few functions from the standard library that you particularly want to look for and avoid in validators. Those functions are usually only good for testing, but not so much for critical paths. These red flags are:
 
@@ -220,9 +220,9 @@ In particular, if you can avoid it, do not construct `Value` and prefer `Dict` o
 `Dict` preserves two important invariants: their keys are in ascending orders and contain no duplicate. If you do not rely on these invariants, you can safely go down to `Pairs`
 
 
-### Use fast recursion for infaillible searches
+### Use fast recursion for infallible searches
 
-This is a more specific version of the fail fast stategy that applies to _'infaillible searches'_. This happens when looking for specific elements within a collection without any possible error recovery: if not present, then it's an error and the entire validator must fail.
+This is a more specific version of the fail fast strategy that applies to _'infallible searches'_. This happens when looking for specific elements within a collection without any possible error recovery: if not present, then it's an error and the entire validator must fail.
 
 Such a scenario is actually quite common in validators, especially when dealing with elements that are part of a protocol.
 
@@ -336,7 +336,7 @@ In this example, we branch based on the value of some integer chosen between 0 a
 
 The _do_ example, however, arranges the conditions to reduce the amount of evaluations done at each pass. It performs a **binary search** which results in `log2(n)` evaluations. So for `n=7`, that's an average of `3` evaluations.
 
-Morover, the binary search has the benefit of being more **predictable**. In the previous example, it does not only average to 3 conditions evaluations, but it always evaluate 3 conditions per pass. Unlike the _don't_ example, which sometimes evaluate one condition, sometimes three, sometimes seven, etc...
+Moreover, the binary search has the benefit of being more **predictable**. In the previous example, it does not only average to 3 condition evaluations, it always evaluates 3 conditions per pass. Unlike the _don't_ example, which sometimes evaluates one condition, sometimes three, sometimes seven, etc...
 
 ### Put cheap and likely checks first
 

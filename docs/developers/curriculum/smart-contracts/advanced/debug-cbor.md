@@ -267,7 +267,7 @@ Plutus scripts are without doubt the biggest part of Conway transactions and an 
 
 For instance, in our example the Plutus script takes up to 4353 bytes, more than 45% of the total transaction size (9666 bytes).
 
-The Babbage era, introduced "reference scripts" [CIP 33](https://cips.cardano.org/cip/CIP-33), a feature that provides a way to use scripts without the need for explicitly including them in transactions. We will leave this discussion for a future article.
+The Babbage era introduced "reference scripts" [CIP 33](https://cips.cardano.org/cip/CIP-33), a feature that provides a way to use scripts without the need for explicitly including them in transactions; see [reference scripts](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts) for how to use them.
 
 ### Plutus data
 

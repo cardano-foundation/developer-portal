@@ -7,13 +7,11 @@ description: Assembly language of Cardano smart contract platform
 
 ## Untyped Plutus Core: The Execution Layer
 
-At the lowest level, all Cardano smart contracts execute as **Untyped Plutus Core** (UPLC) programs. Understanding UPLC provides crucial insight into how your high-level smart contract code actually runs on-chain.
+At the lowest level, all Cardano smart contracts execute as **Untyped Plutus Core** (UPLC) programs. Understanding UPLC shows you how your high-level smart contract code actually runs on-chain.
 
 ### What is UPLC?
 
-UPLC is the "assembly language" of Cardano smart contracts. Every smart contract language (Aiken, Plutus Haskell, OpShin, etc.) compiles down to UPLC before execution. Think of it as the intermediate representation that the Cardano virtual machine actually executes.
-
-**Why Multiple Languages?** The diverse ecosystem of languages targeting UPLC reflects different development philosophies. This diversity allows developers to choose tools that match their background and project needs while all compiling to the same execution target.
+UPLC is the "assembly language" of Cardano smart contracts. Every smart contract language (Aiken, Plutus Haskell, OpShin, etc.) compiles down to UPLC before execution. Think of it as the intermediate representation that the Cardano virtual machine actually executes. (Why several languages target it, and how to pick one, is [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language).)
 
 **Compilation Pipeline:**
 
