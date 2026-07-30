@@ -107,7 +107,7 @@ A transaction that includes scripts is validated in two phases:
 - **Phase 1** checks the transaction structure: inputs exist, signatures are valid, the transaction balances.
 - **Phase 2** runs the scripts. Each gets a budget of execution units (ExUnits), priced into the fee.
 
-Because phase-2 work is real, a script transaction also carries **collateral**: ADA-only UTXOs the node consumes only if a script fails phase 2. Honest transactions that succeed never lose it, while flooding the network with failing scripts becomes expensive. Setting collateral in practice is covered in [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#collateral); the SDKs select it for you.
+Because phase-2 work is real, a script transaction also carries **collateral**: ADA-only UTXOs the node consumes only if a script fails phase 2. Honest transactions that succeed never lose it, while flooding the network with failing scripts becomes expensive. The full rules live in [collateral](/docs/developers/curriculum/fundamentals/core-concepts/fees#collateral); setting it in practice is covered in [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#collateral), and the SDKs select it for you.
 
 ### Deterministic validation
 
@@ -161,7 +161,7 @@ Validators can be written in several languages that all compile to the same on-c
 
 - **Smart contracts are validators, not programs.** They check whether a transaction is allowed; they do not perform its logic.
 - **On-chain validates; off-chain constructs.** This keeps on-chain execution cheap and lets you write and test the two halves independently.
-- **Determinism is the superpower.** You know a transaction's outcome and cost before submitting it, which removes wasted fees, front-running, and MEV.
+- **Determinism is the superpower.** You know a transaction's outcome and cost before submitting it, which removes wasted fees and the fee-auction form of front-running.
 - **Script addresses lock UTXOs under code,** replacing key-based authorization with arbitrary rules.
 - **The eUTXO model extends UTXOs** with datums, redeemers, and context, enabling full contract logic while preserving determinism and parallelism.
 

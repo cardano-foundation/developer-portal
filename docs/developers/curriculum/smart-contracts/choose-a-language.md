@@ -7,7 +7,7 @@ description: Pick a language for writing Cardano validators. Every language comp
 
 You write a validator in a high-level language, and it compiles down to **UPLC** (Untyped Plutus Lambda Calculus), the one bytecode every Cardano node executes. Because the on-chain target is the same regardless of source language, choosing a language is mostly about **ergonomics**: which one lets your team write correct, efficient validators fastest.
 
-This page helps you pick. For most people starting today, the answer is **Aiken**.
+This page helps you pick. For most people starting out, the answer is **Aiken**.
 
 ## Everything compiles to UPLC
 
@@ -38,7 +38,7 @@ The practical consequence: **your language choice does not change what's possibl
 
 ## Recommended: Aiken
 
-[Aiken](https://aiken-lang.org) is a language purpose-built for Cardano validators, with syntax borrowed from Rust, Elm, and Gleam. It has become the most popular choice for new development, and it's where we point newcomers.
+[Aiken](https://aiken-lang.org) is a language purpose-built for Cardano validators, with syntax borrowed from Rust, Elm, and Gleam. In the [developer ecosystem survey](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2025/#what-do-you-use-or-plan-to-use-for-writing-plutus-script-validators-smart-contracts) it is the most-used language for writing validators, and it is where these docs point newcomers.
 
 Why Aiken:
 
@@ -76,8 +76,8 @@ Cardano's language diversity is a strength: because UPLC is a clean compilation 
 | Language | Best for | Notes |
 |---|---|---|
 | **[Aiken](https://aiken-lang.org)** | Most new projects | Purpose-built, fast, small output, built-in tests. The default recommendation. |
-| **[Plinth](https://plutus.cardano.intersectmbo.org/docs/)** (Plutus Tx) | Haskell teams | The "canonical" language; full Haskell power, on- and off-chain code sharing, mature tooling. Steeper learning curve and larger scripts. |
-| **[Plutarch](https://github.com/Plutonomicon/plutarch-plutus)** | Maximum performance | Fine-grained control close to writing UPLC by hand; almost always the highest performance. Not for the faint-hearted. |
+| **[Plinth](https://plutus.cardano.intersectmbo.org/docs/)** (Plutus Tx) | Haskell teams | The original language; full Haskell type system, on- and off-chain code sharing. Steeper learning curve and larger scripts. |
+| **[Plutarch](https://github.com/Plutonomicon/plutarch-plutus)** | Performance-critical validators | Fine-grained control close to writing UPLC by hand; the most verbose path, aimed at minimizing execution costs. |
 | **[OpShin](https://opshin.dev)** | Python teams | Write validators in a subset of valid Python; pairs with PyCardano. |
 | **[Scalus](https://scalus.org)** | JVM / Scala teams | Scala 3 for both on-chain and off-chain; works with the JVM and JavaScript. |
 | **[Pebble](https://github.com/HarmonicLabs/pebble)** | TypeScript-familiar teams | Strongly-typed, TypeScript-like syntax that compiles to UPLC. |
@@ -85,7 +85,7 @@ Cardano's language diversity is a strength: because UPLC is a clean compilation 
 
 ### A note on Plutus Tx (Plinth)
 
-Plutus Tx was the original framework: you write Haskell, annotate it, and a GHC plugin translates it to Plutus Core and then UPLC. Its strengths are real: the full Haskell type system, shared types between on-chain and off-chain code, and a path toward formal verification. Its costs are equally real: a steep learning curve (Haskell + blockchain + Template Haskell), long build times, cryptic errors, and relatively large scripts. It remains important for projects deeply embedded in the Haskell ecosystem; for everyone else, Aiken is the gentler path.
+Plutus Tx was the original framework: you write Haskell, annotate it, and a GHC plugin translates it to Plutus Core and then UPLC. Its strengths are real: the full Haskell type system, shared types between on-chain and off-chain code, and a path toward formal verification. Its costs are equally real: a steep learning curve (Haskell + blockchain + Template Haskell), long build times, cryptic errors, and relatively large scripts. It remains important for projects deeply embedded in the Haskell ecosystem; for teams not already there, Aiken avoids those costs.
 
 ## What you pay for: execution costs
 

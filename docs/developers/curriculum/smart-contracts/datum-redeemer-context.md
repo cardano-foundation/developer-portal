@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Every Cardano validator receives exactly three arguments: the **datum** (state locked at a script address), the **redeemer** (action submitted by the spender), and the **ScriptContext** (a complete snapshot of the transaction being validated). Together these three give a validator everything it needs to decide whether a UTXO can be spent.
 
-If the [overview](/docs/developers/curriculum/smart-contracts/overview) gave you the mental model (validators validate, they don't act), this page is the data model that makes it work. We dissect each argument, look at how datums are stored on-chain, see what reference scripts buy you, and survey the design patterns that fall out of this three-argument architecture.
+If the [overview](/docs/developers/curriculum/smart-contracts/overview) gave you the mental model (validators validate, they don't act), this page is the data model that makes it work: each argument in turn, how datums are stored on-chain, what reference scripts buy you, and the design patterns that fall out of this three-argument architecture.
 
 If you build web back-ends, the moving parts map cleanly onto things you already know:
 

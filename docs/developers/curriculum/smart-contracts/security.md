@@ -42,7 +42,7 @@ graph TD
 
 This is simpler and more robust than the account model, where double-spend prevention relies on nonce tracking and careful state management. Here it's structural, not procedural.
 
-### Determinism eliminates MEV
+### Determinism removes MEV levers
 
 On Ethereum a transaction's outcome depends on global state at execution time, which can differ from construction time: the root of **MEV** (Maximal Extractable Value), where block producers profit by reordering, inserting, or censoring transactions.
 
@@ -127,12 +127,12 @@ Defense in depth, from cheapest to strongest:
 
 - **Unit tests** find the bugs you thought of. See [Testing](/docs/developers/curriculum/smart-contracts/testing).
 - **Property-based testing** generates thousands of random inputs against invariants like "no transaction can extract more value than was deposited" or "only the owner can withdraw", catching edge cases you'd never enumerate by hand.
-- **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. The major Cardano protocols all undergo multiple audit rounds before launch. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare.
+- **Audits** by specialized firms (line-by-line review, attack-surface analysis, testnet penetration testing) are standard practice before mainnet for any contract holding real value. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare.
 - **Formal verification** uses mathematical proof that a property holds for *all* inputs. Cardano's own ledger specification is formalized in Agda, and the Haskell/Aiken ecosystem is well-suited to these rigorous techniques.
 
 ## Key takeaways
 
-- **Cardano removes whole attack classes by design**: reentrancy is impossible, double-spends are structurally prevented, determinism kills MEV, and native assets share the ledger's security.
+- **Cardano removes whole attack classes by design**: reentrancy is impossible, double-spends are structurally prevented, determinism removes entire categories of MEV, and native assets share the ledger's security.
 - **What remains is yours to handle**: datum hijacking, double satisfaction, token forgery, and resource exhaustion all come down to validating the whole transaction carefully.
 - **Use established patterns**, state tokens, value preservation, datum continuity, deadline enforcement, minimal logic, rather than inventing your own.
 - **Verify in layers**: unit tests, property-based testing, and an audit for anything holding real value.
