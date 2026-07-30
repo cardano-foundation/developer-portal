@@ -160,7 +160,7 @@ CIP-25 metadata (`metadata.json`):
 Build, sign, and submit (set `--testnet-magic 1|2` or `--mainnet`):
 
 ```bash
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in $txhash#$txix \
   --tx-out "$address+1500000+1 $policyid.$tokenname" \
   --change-address $address \
@@ -170,10 +170,10 @@ cardano-cli conway transaction build \
   --invalid-hereafter $slot \
   --out-file matx.raw
 
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --signing-key-file payment.skey --signing-key-file policy/policy.skey \
   --tx-body-file matx.raw --out-file matx.signed
-cardano-cli conway transaction submit --tx-file matx.signed
+cardano-cli latest transaction submit --tx-file matx.signed
 ```
 
 </TabItem>
@@ -378,7 +378,7 @@ const txHash = await wallet.submitTx(signedTx);
 | NFT not showing in wallet | metadata structure mismatch | policy ID and asset name in metadata must exactly match the minted token |
 | "Minting not allowed" | wrong key signed | the signing key's hash must match the policy |
 | Type error on label (Evolution) | `721` instead of `721n` | use the bigint `721n` |
-| Min UTxO too low | not enough ADA with the NFT | include about 2 ADA in the NFT output |
+| Min UTxO too low | not enough ADA with the NFT | include 2 ADA in the NFT output, comfortably above the floor |
 
 ## Next steps
 

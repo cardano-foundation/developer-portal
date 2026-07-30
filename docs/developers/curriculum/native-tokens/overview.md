@@ -68,10 +68,12 @@ ADA-only output:            ~1.0 ADA
 many tokens in one output:  ~3-5+ ADA
 ```
 
+These are floors, not the amounts you should send. The exact figure comes from `coinsPerUtxoByte` (a governance-controlled protocol parameter) multiplied by the serialized output size, so it shifts with the output's contents and can change by governance action. Production code usually sends a round 2 ADA with a token rather than computing the floor: it clears every case above, the surplus stays spendable by the recipient, and it removes a class of failed transactions. The examples on this page do exactly that.
+
 Practical consequences:
 
 - **You cannot send "just a token."** Some ADA always travels with it.
-- **Airdrop cost**: 10,000 recipients at ~1.2 ADA each is ~12,000 ADA locked in min-UTXO (held by recipients).
+- **Airdrop cost**: budget what you will actually send, not the floor. 10,000 recipients at 2 ADA each is ~20,000 ADA locked in min-UTXO (held by recipients); at the ~1.2 floor it would be ~12,000.
 - **Consolidation**: combining many small token UTXOs into one frees the excess ADA.
 
 :::tip

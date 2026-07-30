@@ -107,9 +107,9 @@ Signature policy (`policy/policy.script`):
 Get the policy ID, then build, sign, and submit (token name hex-encoded):
 
 ```bash
-cardano-cli conway transaction policyid --script-file policy/policy.script > policy/policyID
+cardano-cli latest transaction policyid --script-file policy/policy.script > policy/policyID
 
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
   --fee $fee \
   --tx-in $txhash#$txix \
   --tx-out "$address+$output+$amount $policyid.$tokenname" \
@@ -117,10 +117,10 @@ cardano-cli conway transaction build-raw \
   --minting-script-file policy/policy.script \
   --out-file matx.raw
 # calculate-min-fee, rebuild with the fee, then:
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --signing-key-file payment.skey --signing-key-file policy/policy.skey \
   --tx-body-file matx.raw --out-file matx.signed
-cardano-cli conway transaction submit --tx-file matx.signed
+cardano-cli latest transaction submit --tx-file matx.signed
 ```
 
 </TabItem>
@@ -167,7 +167,7 @@ const txHash = await wallet.submitTx(signedTx);
 <TabItem value="cardano-cli" label="cardano-cli">
 
 ```bash
-cardano-cli conway transaction build-raw \
+cardano-cli latest transaction build-raw \
   --tx-in $txhash#$txix \
   --tx-out "$address+$output+$remaining $policyid.$tokenname" \
   --mint "-500 $policyid.$tokenname" \

@@ -98,7 +98,7 @@ txBuilder.metadataValue(721, metadata)   // CIP-25
 <TabItem value="cardano-cli" label="cardano-cli">
 
 ```bash
-cardano-cli conway transaction build ... --metadata-json-file metadata.json
+cardano-cli latest transaction build ... --metadata-json-file metadata.json
 ```
 
 </TabItem>
