@@ -328,3 +328,4 @@ For production-grade, open-source references of these patterns, see [Anastasia L
 - [Oracles](/docs/developers/curriculum/dapps/oracles/overview): the price-feed infrastructure DeFi depends on
 - [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the attack classes (double satisfaction, contention) that hit DeFi hardest
 - [Contract library](/templates/contracts): escrow, swap, and production-grade dApp implementations
+- [Ship to Production](/docs/developers/curriculum/production/overview): infrastructure, reliability, and the scaling patterns a live protocol needs

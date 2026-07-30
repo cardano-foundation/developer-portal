@@ -1,13 +1,24 @@
 ---
 id: overview
-title: Scaling & Production
+title: Ship to Production
 sidebar_label: Overview
-description: How Cardano scales, at Layer 1 and with Hydra at Layer 2, and how to take a dApp from working on testnet to running in production.
+description: "Take a dApp from testnet to mainnet and scale it: the production checklist, chain-access infrastructure from hosted APIs to your own node, custom indexing, and Cardano's scaling options from transaction chaining to Hydra."
 ---
 
-This module answers two questions every serious project reaches: **how does Cardano scale**, and **how do I take my dApp to production**. The first is about throughput and architecture; the second is about reliability, security, and infrastructure. Both build on everything in the earlier modules.
+You arrive here with a working application from [Build a dApp](/docs/developers/curriculum/dapps/overview): a wallet connects, transactions build and submit, contracts validate on a testnet. This module covers what stands between that and a service real users rely on, in two arcs: **Ship**, then **Scale**.
 
-## How Cardano scales
+## Ship
+
+Shipping is readiness plus infrastructure. The readiness half is a checklist; the infrastructure half is a decision you make once, with the concepts to make it well:
+
+- **[Going to production](/docs/developers/curriculum/production/going-to-production)**: the pre-mainnet checklist: testing, security, reliable transactions, optimization, key safety, and the staging path through the testnets.
+- **[Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)**: the concept map of chain access: what query APIs, node interfaces, indexers, data nodes, full nodes, and managed platforms each are, which of them are genuine alternatives to each other, and the axes to choose by.
+- **[Use a provider](/docs/developers/curriculum/production/use-a-provider)**: the hosted path in practice: Blockfrost, Koios, and Maestro, set up with one identical skeleton.
+- **[Self-hosting](/docs/developers/curriculum/production/self-hosting)**: the self-run path in practice: a Dolos data node, a node with Ogmios and Kupo, or a full node, with Demeter as the managed variant.
+- **[Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics)**: when your application needs its own slice of the chain, or answers over its full history.
+- **[The network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol)**: an appendix on the wire protocol everything above abstracts, and how to speak it directly.
+
+## Scale
 
 Scaling isn't one thing. Cardano scales at several layers, and the right approach depends on your workload.
 
@@ -26,24 +37,11 @@ When you need **near-instant, near-free, high-frequency** transactions, gaming, 
 | Instant, free, high-frequency transactions among known parties | [Hydra (Layer 2)](/docs/developers/curriculum/production/hydra) |
 | Higher base-layer throughput (future) | Ouroboros Leios (proposed protocol upgrade) |
 
-## Taking a dApp to production
+## Where the curriculum ends
 
-Working on testnet is not the same as running in production. Two pages cover the rest:
-
-- **[Going to production](/docs/developers/curriculum/production/going-to-production)**: the checklist before you ship to mainnet: testing, security, reliable transactions, optimization, and key safety.
-- **[Production infrastructure](/docs/developers/curriculum/production/infrastructure)**: the stack that serves your dApp the chain: managed APIs vs running your own node, indexers, and how to choose.
-
-## Reference pages in this module
-
-The rest of the module is reference material to reach for as the need arises:
-
-- **[API providers](/docs/developers/curriculum/production/api-providers/overview)**: what a provider is, then one page each for [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost), [Koios](/docs/developers/curriculum/production/api-providers/koios), [Ogmios](/docs/developers/curriculum/production/api-providers/ogmios), and [Dolos](/docs/developers/curriculum/production/api-providers/dolos).
-- **[Run your own node](/docs/developers/curriculum/production/run-your-own-node)** and **[Demeter](/docs/developers/curriculum/production/demeter)**: the self-hosted and managed-cloud infrastructure paths.
-- **[Local development networks](/docs/developers/curriculum/production/development-networks)**: Yaci DevKit, cardano-testnet, and testing without a chain.
-- **[Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics)**: index exactly the chain data your app needs.
-- **[The network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol)**: the node's wire protocol, for when you outgrow the API layer.
+This is the last module. Past it, the paths lead outward: running Cardano infrastructure as a discipline of its own ([Operate a Stake Pool](/docs/operators/)), starting the next project from a runnable [template](/templates), and the [developer community](/docs/community/cardano-developer-community) where the ecosystem builds.
 
 ## Next steps
 
-- [Hydra](/docs/developers/curriculum/production/hydra): build on Cardano's Layer 2
-- [Going to production](/docs/developers/curriculum/production/going-to-production): ship to mainnet with confidence
+- [Going to production](/docs/developers/curriculum/production/going-to-production): start the Ship arc with the checklist
+- [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain): understand the infrastructure before you pick it

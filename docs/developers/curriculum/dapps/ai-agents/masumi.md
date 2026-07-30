@@ -1,11 +1,11 @@
 ---
 id: masumi
 title: Masumi Network
-sidebar_label: Masumi
+sidebar_label: Agent economy (Masumi)
 description: Masumi is a Cardano protocol giving AI agents decentralized identity, escrowed payments, and a discovery registry, framework-agnostic.
 ---
 
-[Masumi](https://www.masumi.network/) is a Cardano protocol for the AI agent economy. It supplies the three capabilities the [AI agents overview](/docs/developers/curriculum/dapps/ai-agents/overview) singles out as needing a dedicated protocol, decentralized identity, payments between agents, and discovery, so an agent's own wallet and signing stay ordinary SDK work while Masumi handles the parts that need a shared network.
+An agent economy needs three capabilities beyond any single agent's code: decentralized identity, payments between agents, and discovery, the ones the [AI agents overview](/docs/developers/curriculum/dapps/ai-agents/overview) singles out as needing a dedicated protocol. [Masumi](https://www.masumi.network/) is a Cardano protocol implementing all three, so an agent's own wallet and signing stay ordinary SDK work while Masumi handles the parts that need a shared network.
 
 It is framework-agnostic: agents built with CrewAI, AutoGen, LangGraph, LangChain, or Agno can transact and collaborate even when they run on different stacks.
 
