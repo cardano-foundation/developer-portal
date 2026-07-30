@@ -339,7 +339,7 @@ SDKs solve this by **deferring redeemer construction**: you provide a redeemer *
 | **Self** | called once per script UTXO, with its own index | a spend validator that looks up its own input |
 | **Static** | no indices, data used directly | a redeemer that doesn't depend on order |
 
-This is what powers the [withdraw-zero coordinator pattern](/docs/developers/curriculum/staking-governance/staking#script-controlled-stake-and-the-coordinator-pattern): the [Stake Validator design pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) runs business logic once for the whole transaction. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) for spending from scripts and [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for the on-chain side.
+This is what powers the withdraw-zero coordinator: the [Stake Validator design pattern](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) runs business logic once for the whole transaction. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) for spending from scripts and [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for the on-chain side.
 
 ## Offline builds (air-gapped)
 

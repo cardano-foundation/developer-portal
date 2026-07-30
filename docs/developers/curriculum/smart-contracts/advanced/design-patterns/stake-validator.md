@@ -5,6 +5,9 @@ sidebar_label: Stake validator
 description: Delegate computations to staking scripts using the "withdraw zero trick" for optimized validation
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Overview
 
 The Stake Validator pattern allows you to delegate validation logic to a staking script, significantly reducing script execution costs when processing multiple UTxOs. This is achieved through the "withdraw zero trick" - where spending validators simply check for the presence of a staking credential withdrawal, and the staking validator performs the actual business logic validation once per transaction.
@@ -182,6 +185,78 @@ pub fn validate_withdraw_minimal(
 ## Why "Withdraw Zero"?
 
 The pattern is called "withdraw zero trick" because you can withdraw 0 lovelace from the staking credential to trigger the staking validator - the withdrawal amount is irrelevant to the validation logic.
+
+## Submitting the trigger off-chain
+
+The off-chain half of the pattern is an ordinary transaction carrying a zero-amount withdrawal for the staking script, with a redeemer and the script attached. Withdrawal validators must be registered on-chain first; the on-chain logic that decides which registrations, delegations, and reward withdrawals to allow is the [certificate and withdrawal handlers](/docs/developers/curriculum/smart-contracts/write-a-validator#certificate-validator) in Write a validator.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+const tx = await client
+  .newTx()
+  .withdraw({
+    stakeCredential: scriptStakeCredential,
+    amount: 0n,
+    redeemer: Data.constr(0n, []),
+    label: "coordinator-trigger"
+  })
+  .attachScript({ script: stakeScript })
+  .build()
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder, mConStr0 } from "@meshsdk/core"
+
+declare const scriptRewardAddress: string   // reward address derived from the stake script hash
+declare const stakeScriptCbor: string
+
+const collateral = await wallet.getCollateralMesh()
+
+const unsignedTx = await new MeshTxBuilder({ fetcher: provider })
+  .withdrawalPlutusScriptV3()
+  .withdrawal(scriptRewardAddress, "0")        // zero-amount withdrawal triggers the validator
+  .withdrawalScript(stakeScriptCbor)
+  .withdrawalRedeemerValue(mConStr0([]))
+  .txInCollateral(collateral[0].input.txHash, collateral[0].input.outputIndex)
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete()
+
+const signedTx = await wallet.signTx(unsignedTx)
+await wallet.submitTx(signedTx)
+```
+
+</TabItem>
+</Tabs>
+
+Script control is not limited to the withdrawal trigger. In Evolution every staking operation accepts a `redeemer` and an attached script, so a script-held credential can also delegate:
+
+```typescript
+import { Credential, Data } from "@evolution-sdk/evolution"
+
+declare const scriptStakeCredential: Credential.Credential
+declare const stakeScript: any
+
+const tx = await client
+  .newTx()
+  .delegateToPool({
+    stakeCredential: scriptStakeCredential,
+    poolKeyHash,
+    redeemer: Data.constr(0n, []),
+    label: "delegate-script-stake"
+  })
+  .attachScript({ script: stakeScript })
+  .build()
+```
+
+Mesh's builder takes a redeemer on a script **withdrawal** (the trigger above) but not on a stake **delegation** certificate, so script-controlled delegation is Evolution or cardano-cli only.
+
+The script does not have to hold the stake credential itself, either. When locked funds should keep earning for their depositor, the script address carries the *depositor's* stake credential, and staking needs no script logic at all: production lending pools stake idle liquidity this way, with the validator simply preserving the full address on every continuing output.
 
 ## Double Satisfaction Protection
 
