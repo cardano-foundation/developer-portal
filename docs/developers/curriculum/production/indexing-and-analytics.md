@@ -111,7 +111,7 @@ yaci:
 The `{source}`, `{start_slot}`, `{end_slot}`, and `{epoch}` placeholders are filled in per partition. Enable with the `custom-exporters` profile alongside `analytics`. See the [Analytics Store docs](https://store.yaci.xyz/docs/v2/analytics/overview) for the full configuration surface.
 
 :::info Beta, and you produce the files yourself
-The Analytics Store ships in the 3.0.0-beta line (the stable line is 2.0.x), and there is no public dataset mirror yet, so today you run Yaci Store once to produce the export. The output is the stable part: standard Parquet files that remain useful regardless of what produced them.
+The Analytics Store ships in the 3.0.0-beta line (the stable line is 2.0.x), and there is no public dataset mirror yet, so you run Yaci Store once to produce the export. The output is the stable part: standard Parquet files that remain useful regardless of what produced them.
 :::
 
 ## Choosing your approach

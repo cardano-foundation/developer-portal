@@ -13,7 +13,7 @@ Scaling isn't one thing. Cardano scales at several layers, and the right approac
 
 ### Layer 1: the base chain
 
-The base chain has bounded capacity per block, so on Layer 1 you scale by **using blocks efficiently** rather than by sending more independent transactions at a shared piece of state. Because the [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) makes a UTXO spendable only once per block, high-contention designs (like a single shared pool) need the concurrency patterns covered in [DeFi on Cardano](/docs/developers/curriculum/dapps/defi#the-eutxo-design-challenge): **order batching** (many user intents executed in one transaction) and **pool sharding** (state split across many UTXOs so transactions run in parallel). You can also drop the confirmation wait between dependent transactions with [transaction chaining](/docs/developers/curriculum/production/transaction-chaining), spending each transaction's outputs before it settles. At the protocol level, the [Ouroboros roadmap](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) includes Leios (input endorsers) aimed at substantially higher throughput.
+The base chain has bounded capacity per block, so on Layer 1 you scale by **using blocks efficiently** rather than by sending more independent transactions at a shared piece of state. Because the [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) makes a UTXO spendable only once per block, high-contention designs (like a single shared pool) need the concurrency patterns covered in [DeFi on Cardano](/docs/developers/curriculum/dapps/defi#the-eutxo-design-challenge): **order batching** (many user intents executed in one transaction) and **pool sharding** (state split across many UTXOs so transactions run in parallel). You can also drop the confirmation wait between dependent transactions with [transaction chaining](/docs/developers/curriculum/production/transaction-chaining), spending each transaction's outputs before it settles. At the protocol level, proposed upgrades to Ouroboros (Leios, input endorsers) aim at substantially higher base-layer throughput.
 
 ### Layer 2: Hydra
 
@@ -24,7 +24,7 @@ When you need **near-instant, near-free, high-frequency** transactions, gaming, 
 | More throughput against shared state on L1 | [Order batching / pool sharding](/docs/developers/curriculum/dapps/defi#the-eutxo-design-challenge) |
 | Submit many dependent transactions without waiting for confirmation | [Transaction chaining](/docs/developers/curriculum/production/transaction-chaining) |
 | Instant, free, high-frequency transactions among known parties | [Hydra (Layer 2)](/docs/developers/curriculum/production/hydra) |
-| Higher base-layer throughput (future) | Ouroboros Leios ([roadmap](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros)) |
+| Higher base-layer throughput (future) | Ouroboros Leios (proposed protocol upgrade) |
 
 ## Taking a dApp to production
 
@@ -32,6 +32,16 @@ Working on testnet is not the same as running in production. Two pages cover the
 
 - **[Going to production](/docs/developers/curriculum/production/going-to-production)**: the checklist before you ship to mainnet: testing, security, reliable transactions, optimization, and key safety.
 - **[Production infrastructure](/docs/developers/curriculum/production/infrastructure)**: the stack that serves your dApp the chain: managed APIs vs running your own node, indexers, and how to choose.
+
+## Reference pages in this module
+
+The rest of the module is reference material to reach for as the need arises:
+
+- **[API providers](/docs/developers/curriculum/production/api-providers/overview)**: what a provider is, then one page each for [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost), [Koios](/docs/developers/curriculum/production/api-providers/koios), [Ogmios](/docs/developers/curriculum/production/api-providers/ogmios), and [Dolos](/docs/developers/curriculum/production/api-providers/dolos).
+- **[Run your own node](/docs/developers/curriculum/production/run-your-own-node)** and **[Demeter](/docs/developers/curriculum/production/demeter)**: the self-hosted and managed-cloud infrastructure paths.
+- **[Local development networks](/docs/developers/curriculum/production/development-networks)**: Yaci DevKit, cardano-testnet, and testing without a chain.
+- **[Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics)**: index exactly the chain data your app needs.
+- **[The network protocol beneath the APIs](/docs/developers/curriculum/production/network-protocol)**: the node's wire protocol, for when you outgrow the API layer.
 
 ## Next steps
 

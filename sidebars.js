@@ -70,7 +70,7 @@ module.exports = {
             "developers/curriculum/native-tokens/mint-nft",
             {
               type: "category",
-              label: "Token metadata & registry",
+              label: "Token Metadata & Registry",
               link: {
                 type: "doc",
                 id: "developers/curriculum/native-tokens/metadata-registry",
