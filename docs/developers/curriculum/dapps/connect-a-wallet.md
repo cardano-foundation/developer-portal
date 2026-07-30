@@ -274,7 +274,7 @@ Mesh uses Node built-ins (`Buffer`, `crypto`, `stream`) that modern bundlers no 
 - **Polyfill the Node built-ins.** Add [`node-polyfill-webpack-plugin`](https://www.npmjs.com/package/node-polyfill-webpack-plugin) in `next.config`, and also strip the `node:` scheme with a `NormalModuleReplacementPlugin` over `/^node:/`. The plugin alone does not cover `node:`-prefixed imports, so without the strip the build still fails with `UnhandledSchemeError: ... node:buffer`.
 - **Pin a working libsodium.** A current Mesh release transitively pulls `libsodium-wrappers-sumo@0.7.x`, whose ESM build is broken, so `next build` fails with `Can't resolve './libsodium-sumo.mjs'`. Add `"overrides": { "libsodium-wrappers-sumo": "^0.8.4" }` to your `package.json`. This is a temporary workaround until Mesh ships the upstream fix (`@cardano-sdk/crypto@0.4.6+` already pins the corrected libsodium).
 
-The [mesh-nextjs](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs) ships the complete, build-verified configuration; copy its `next.config.ts` and the `overrides` block.
+The [mesh-nextjs](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs) template carries this whole configuration already; copy its `next.config.ts` and the `overrides` block. Because it tracks upstream releases rather than pinned versions, check the versions it resolves against what you get.
 
 ## Next steps
 
