@@ -15,7 +15,7 @@ You will rarely build on this layer directly, but understanding it demystifies e
 
 A Cardano node exposes two distinct interfaces, built from the same protocol machinery but designed for different trust settings:
 
-- **Node-to-client (N2C)** runs over a local Unix socket, the `CARDANO_NODE_SOCKET_PATH` you set when [querying your own node](/docs/developers/curriculum/production/development-networks). It is a trusted interface for local processes: `cardano-cli` uses it, and Ogmios translates it into WebSocket JSON. Beyond following the chain and submitting transactions, it can query live ledger state (UTXOs, protocol parameters), which is why it stays local: those queries are not designed to be served to strangers.
+- **Node-to-client (N2C)** runs over a local Unix socket, the `CARDANO_NODE_SOCKET_PATH` you set when [querying your own node](/docs/developers/curriculum/production/run-your-own-node). It is a trusted interface for local processes: `cardano-cli` uses it, and Ogmios translates it into WebSocket JSON. Beyond following the chain and submitting transactions, it can query live ledger state (UTXOs, protocol parameters), which is why it stays local: those queries are not designed to be served to strangers.
 - **Node-to-node (N2N)** runs over TCP between peers that do not trust each other. It is how relays exchange blocks and transactions across the open internet, and it is deliberately narrow: sync headers, fetch blocks, diffuse transactions. This is the interface the rest of this page uses.
 
 The distinction explains a pattern you have already met in this module: "run your own node" tooling always talks about a local socket (N2C), while the network itself, and anything that taps it directly, speaks N2N.

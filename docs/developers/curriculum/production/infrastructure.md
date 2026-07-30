@@ -51,9 +51,9 @@ Run your own node when you can't afford to trust a third party (high-security ap
 
 For most application developers, a **managed API** removes that overhead. The full comparison lives in the [API providers reference](/docs/developers/curriculum/production/api-providers/overview); in short:
 
-- **Blockfrost**: the most widely used service: comprehensive REST API, excellent docs, wide SDK support, free and paid tiers (rate-limited free tier). Centralized; not for real-time event streaming.
-- **Koios**: community-run and decentralized, with a powerful PostgREST query syntax and no API key for basic use. Fewer SDK wrappers; response times vary by instance.
-- **Maestro**: a commercial platform adding transaction management (auto-resubmission, monitoring), DEX data aggregation, and dedicated infrastructure for enterprise.
+- **Blockfrost**: hosted REST API with free and paid tiers (rate-limited free tier) and broad SDK support. Centralized; not for real-time event streaming.
+- **Koios**: community-run and decentralized, with a PostgREST query syntax and no API key for basic use. Fewer SDK wrappers; response times vary by instance.
+- **Maestro**: a commercial platform adding transaction management (auto-resubmission, monitoring), DEX data aggregation, and dedicated infrastructure.
 
 **Demeter.run** offers these components (db-sync, Kupo, Ogmios, submit API) as managed cloud services if you want self-hosted-style control without the ops. See [Demeter](/docs/developers/curriculum/production/demeter).
 
@@ -109,22 +109,11 @@ Common patterns:
 | Use case | Stack | Why |
 |---|---|---|
 | Hobby / learning | Blockfrost free tier + Preview | Zero infra to manage, fast iteration |
-| Production dApp backend | Kupo + Ogmios + cardano-node (self-hosted), or Maestro (managed) + Preprod staging | Fast UTXO queries at your script addresses, full control or managed reliability |
+| Production dApp backend | Kupo + Ogmios + cardano-node (self-hosted), or a managed provider + Preprod staging | Fast UTXO queries at your script addresses; full control or managed reliability |
 | Self-hosted backend, minimal ops | Dolos data node | One process serving a local Blockfrost-compatible API, no separate node or database |
-| Block explorer / analytics | db-sync + PostgreSQL + node | Comprehensive historical SQL |
-| Event-driven app | Oura + Kafka/Redis + Blockfrost | React to on-chain events in near real-time |
-| Enterprise / high-throughput | Maestro dedicated + multiple nodes + Scrolls | SLAs, dedicated infra, custom indexing |
-
-```mermaid
-graph TD
-    Q{What do you need?} -->|Simple queries, learning| BF[Blockfrost free tier]
-    Q -->|Production dApp| KO[Kupo + Ogmios + node]
-    Q -->|Self-hosted, low footprint| DO[Dolos data node]
-    Q -->|Full historical data| DB[db-sync + PostgreSQL]
-    Q -->|Real-time events| OU[Oura + Kafka/Redis]
-    Q -->|Enterprise SLA| MA[Maestro dedicated]
-    style Q fill:#FF9800,color:#fff
-```
+| Block explorer / analytics | db-sync + PostgreSQL + node | Full historical chain data in SQL |
+| Event-driven app | Oura + Kafka/Redis + a provider | React to on-chain events in near real-time |
+| Enterprise / high-throughput | Dedicated managed infrastructure, or multiple nodes + custom indexing | SLAs and throughput beyond shared free tiers |
 
 ## Key takeaways
 

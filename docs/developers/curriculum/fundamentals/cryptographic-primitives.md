@@ -5,7 +5,7 @@ sidebar_label: Cryptographic primitives
 description: The mathematical building blocks of blockchain security, from hash functions and Merkle trees to digital signatures.
 ---
 
-Cryptographic primitives are mathematical functions with special properties that make it computationally infeasible to cheat, and they form the security foundation of every blockchain transaction. [Earlier](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) we described blockchain properties like immutability and tamper-evidence; this page reveals the concrete tools that enforce them: hash functions, Merkle trees, and digital signatures. You will understand not just what these primitives do, but why Cardano chose specific algorithms (Blake2b, Ed25519).
+Cryptographic primitives are mathematical functions with special properties that make it computationally infeasible to cheat, and they form the security foundation of every blockchain transaction. [What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain) described properties like immutability and tamper-evidence; this page covers the concrete tools that enforce them, hash functions, Merkle trees, and digital signatures, and why Cardano chose the specific algorithms it did (Blake2b, Ed25519).
 
 If you have worked with JWTs, the model will feel familiar: a JWT signs a payload with a private key, anyone with the public key verifies it, and modifying the payload invalidates the signature. A Cardano transaction works the same way, except verification happens on thousands of independent nodes rather than one server. Two related ideas carry over: a transaction ID is a content hash, so the content determines its identity the way a Git commit SHA does; and a VRF is a random value anyone can verify, which a server-side `Math.random()` can never be.
 
@@ -167,4 +167,4 @@ Used for NFT metadata (CIP-25 / CIP-68), governance proposals, and audit trails.
 - **Zero-knowledge proofs** go one step further: they prove a statement is true without revealing the data behind it, and Cardano can verify them on-chain.
 
 ## Next steps
-You now understand the security of individual blocks and transactions. But who decides which block comes next, and how do thousands of nodes agree? See [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros).
+These primitives secure individual blocks and transactions. But who decides which block comes next, and how do thousands of nodes agree? See [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros).

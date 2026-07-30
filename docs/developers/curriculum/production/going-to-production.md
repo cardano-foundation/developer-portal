@@ -27,7 +27,7 @@ Working on a testnet is not the same as being production-ready. Mainnet has real
 The most common production failure mode is a transaction rejected because an input was already spent or an indexer lagged.
 
 - **Retry safely**: structure build → sign → submit so retries re-read chain state instead of replaying a stale UTxO. See [resilient submission](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe).
-- **Chain multi-step flows**: build dependent transactions up front without waiting for confirmation between steps. See [transaction chaining](/docs/developers/curriculum/start-building/transaction-building#chaining-transactions).
+- **Chain multi-step flows**: build dependent transactions up front without waiting for confirmation between steps. See [transaction chaining](/docs/developers/curriculum/production/transaction-chaining) for the concept and [chaining transactions](/docs/developers/curriculum/start-building/transaction-building#chaining-transactions) for the code.
 - **Handle errors structurally**: distinguish recoverable (stale input, provider hiccup) from terminal (insufficient funds) failures. See [Error handling](https://github.com/IntersectMBO/evolution-sdk).
 
 ### Harden your provider

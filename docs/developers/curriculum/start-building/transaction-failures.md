@@ -12,7 +12,7 @@ Transactions fail, and on Cardano they fail in a small number of well-defined wa
 The ledger validates a transaction in two phases, and the phase a failure lands in decides what it costs you.
 
 - **Phase 1** checks structure: the inputs exist, the value balances (inputs equal outputs plus fee), signatures are present, and the fee is sufficient. A phase-1 failure is rejected for free, the transaction never makes it on-chain.
-- **Phase 2** runs the Plutus scripts. It only happens if phase 1 passed. A phase-2 failure (a validator returns false, or exhausts its budget) is the one case where a *submitted* transaction costs you: the node consumes your [collateral](/docs/developers/curriculum/smart-contracts/lock-and-spend#collateral). A transaction that passes both phases never loses collateral.
+- **Phase 2** runs the Plutus scripts. It only happens if phase 1 passed. A phase-2 failure (a validator returns false, or exhausts its budget) is the one case where a *submitted* transaction costs you: the node consumes your [collateral](/docs/developers/curriculum/fundamentals/core-concepts/fees#collateral). A transaction that passes both phases never loses collateral.
 
 The split exists for an economic reason. An invalid transaction never reaches the chain, so it never pays a fee, which means the work of rejecting it is unpaid; if that work were unbounded, flooding nodes with expensive-to-reject transactions would be a cheap attack. Phase 1 is the bounded, inexpensive gate that protects the node. Phase 2 is where the expensive script work lives, and its failures land on-chain and consume collateral precisely so that heavy validation work is always paid for. The [Cardano Blueprint's validity page](https://cardano-scaling.github.io/cardano-blueprint/ledger/state-transition/validity.html) walks through the full argument.
 
@@ -73,4 +73,4 @@ The important subtlety: `BadInputsUTxO` from indexer lag *looks* transient but a
 
 - [Resilient submission](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe): the retry-safe pattern in code
 - [Submitting transactions](/docs/developers/curriculum/start-building/query-the-chain#submitting-transactions): the full rejection-code reference
-- [Collateral](/docs/developers/curriculum/smart-contracts/lock-and-spend#collateral): how phase-2 failures are paid for
+- [Collateral](/docs/developers/curriculum/fundamentals/core-concepts/fees#collateral): how phase-2 failures are paid for

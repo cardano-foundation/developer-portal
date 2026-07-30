@@ -557,3 +557,4 @@ Plutus V3 added governance **script purposes**: a validator can run as a `Voting
 
 - [Staking](/docs/developers/curriculum/staking-governance/staking), the other delegation stake credentials carry
 - [cardano.org/governance](https://cardano.org/governance), the participant hub: delegate your vote, become a DRep, and read the constitution
+- [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview), the next module: put validation logic of your own on-chain

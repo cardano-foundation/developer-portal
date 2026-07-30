@@ -13,10 +13,12 @@ This module is about meeting users where they are: connecting Cardano to web app
 
 The front-end path most applications follow:
 
-- **[Your first dApp](/docs/developers/curriculum/dapps/your-first-dapp)**: start here to assemble a working dApp end to end (scaffold, connect, read balance, send), from a runnable Evolution or Mesh template.
+- **[Project scaffolding](/docs/developers/curriculum/dapps/scaffolding)**: start from a runnable template instead of a blank directory.
+- **[Your first dApp](/docs/developers/curriculum/dapps/your-first-dapp)**: assemble a working dApp end to end (scaffold, connect, read balance, send), from a runnable Evolution or Mesh template.
 - **[Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet)**: let users link their browser wallet (CIP-30). The starting point for any dApp.
 - **[Sign in with wallet](/docs/developers/curriculum/dapps/wallet-authentication)**: passwordless authentication by proving wallet ownership (CIP-8 message signing).
 - **[Listen for payments](/docs/developers/curriculum/dapps/listen-for-payments)**: detect and confirm ADA arriving at an address.
+- **[Sponsored transactions](/docs/developers/curriculum/dapps/sponsored-transactions)**: multi-party transactions where someone other than the user covers the fee.
 
 For building and submitting the transactions behind these flows, see [your first transaction](/docs/developers/curriculum/start-building/your-first-transaction) and [lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend). The same building blocks are what an [autonomous agent](/docs/developers/curriculum/dapps/ai-agents/overview) drives when it holds a wallet and acts without a human in the loop.
 
@@ -28,6 +30,10 @@ For building and submitting the transactions behind these flows, see [your first
 ## AI agents
 
 - **[AI agents on Cardano](/docs/developers/curriculum/dapps/ai-agents/overview)**: autonomous agents that hold wallets, make payments, and log decisions on-chain, including the [Masumi](/docs/developers/curriculum/dapps/ai-agents/masumi) agent economy.
+
+## Internet of Things
+
+- **[IoT on Cardano](/docs/developers/curriculum/dapps/iot/)**: hands-on workshops that read and write the chain from microcontrollers, from fetching a wallet balance on a display to minting sensor data on-chain.
 
 ## Exchanges & infrastructure
 
@@ -43,5 +49,5 @@ For exchanges, custodians, and back-end services that integrate at a lower level
   - See also the [Cardano components overview](/docs/developers/curriculum/fundamentals/cardano-components).
 
 ## Next steps
-- New to dApps? Start with [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet).
+- New to dApps? Start with [Your first dApp](/docs/developers/curriculum/dapps/your-first-dapp), a working app assembled end to end.
 - Building a protocol? Read [DeFi on Cardano](/docs/developers/curriculum/dapps/defi), then [Oracles](/docs/developers/curriculum/dapps/oracles/overview).

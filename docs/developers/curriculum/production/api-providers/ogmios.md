@@ -55,38 +55,25 @@ wget --header='Accept: application/json' -qO- http://localhost:1337/health
   </TabItem>
 </Tabs>
 
-**Example response:**
+**Response shape** (abbreviated):
 
 ```json
 {
     "metrics": {
-        "totalUnrouted": 1,
         "totalMessages": 30029,
-        "runtimeStats": {
-            "gcCpuTime": 1233009354,
-            "cpuTime": 81064672549,
-            "maxHeapSize": 41630,
-            "currentHeapSize": 1014
-        },
         "totalConnections": 10,
-        "sessionDurations": {
-            "max": 57385,
-            "mean": 7057,
-            "min": 0
-        },
-        "activeConnections": 0
+        "activeConnections": 0,
+        "sessionDurations": { "max": 57385, "mean": 7057, "min": 0 }
     },
-    "startTime": "2021-03-15T16:16:41.470782977Z",
-    "lastTipUpdate": "2021-03-15T16:28:36.853115034Z",
-    "lastKnownTip": {
-        "hash": "c29428f386c701c1d1ba1fd259d4be78921ee9ee6c174eac898245ceb55e8061",
-        "blockNo": 5034297,
-        "slot": 15520688
-    },
+    "startTime": "...",
+    "lastTipUpdate": "...",
+    "lastKnownTip": { "hash": "c29428f3...", "blockNo": 5034297, "slot": 15520688 },
     "networkSynchronization": 0.99,
-    "currentEra": "Mary"
+    "currentEra": "..."
 }
 ```
+
+For health checks the fields that matter are `networkSynchronization` (1.0 means fully synced) and `lastKnownTip`; the rest are connection and runtime metrics for the dashboard.
 
 ## Next steps
 
