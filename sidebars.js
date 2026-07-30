@@ -94,7 +94,12 @@ module.exports = {
           },
           items: [
             "developers/curriculum/staking-governance/staking",
+            "developers/curriculum/staking-governance/delegate-and-withdraw",
+            "developers/curriculum/staking-governance/manage-stake",
             "developers/curriculum/staking-governance/governance",
+            "developers/curriculum/staking-governance/drep-and-delegation",
+            "developers/curriculum/staking-governance/vote-and-propose",
+            "developers/curriculum/staking-governance/governance-operations",
           ],
         },
         {
