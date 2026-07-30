@@ -8,7 +8,7 @@ description: "Assemble a working Cardano dApp end to end: scaffold, connect a wa
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have met the pieces separately: [wallets](/docs/developers/curriculum/dapps/connect-a-wallet), [transactions](/docs/developers/curriculum/start-building/your-first-transaction), and [providers](/docs/developers/curriculum/production/api-providers/overview). A dApp is those pieces assembled into one running application. This page builds the smallest complete one, connect a wallet, show its balance, send ADA, and points you at a runnable template for each SDK so you start from working code, not a blank directory.
+You have met the pieces separately: [wallets](/docs/developers/curriculum/dapps/connect-a-wallet), [transactions](/docs/developers/curriculum/start-building/your-first-transaction), and [providers](/docs/developers/curriculum/production/connecting-to-the-chain). A dApp is those pieces assembled into one running application. This page builds the smallest complete one, connect a wallet, show its balance, send ADA, and points you at a runnable template for each SDK so you start from working code, not a blank directory.
 
 ## What a dApp is made of
 

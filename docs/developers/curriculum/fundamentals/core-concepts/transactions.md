@@ -106,7 +106,7 @@ const unsignedTx = await txBuilder
 </TabItem>
 </Tabs>
 
-Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/production/development-networks)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
+Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/start-building/development-networks)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
 
 ## Reference inputs and reference scripts
 

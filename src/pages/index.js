@@ -390,7 +390,7 @@ function DeveloperSection() {
 
           {/* Infrastructure */}
           <Link
-            to={useBaseUrl("docs/developers/curriculum/production/infrastructure")}
+            to={useBaseUrl("docs/developers/curriculum/production/connecting-to-the-chain")}
             className={styles.devLinkCard}
           >
             <div className={styles.devLinkIcon}>
