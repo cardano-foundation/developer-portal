@@ -5,7 +5,7 @@ sidebar_label: For Ethereum developers
 description: A complete guide to Cardano development for developers coming from Ethereum.
 ---
 
-This guide covers the key differences between Ethereum and Cardano development. Coming from Ethereum, Cardano will look and feel different: different account model, different smart contract paradigm, different tooling. By the end, you'll understand how to translate your Ethereum knowledge to Cardano and have clear next steps for building.
+Coming from Ethereum, Cardano will look and feel different: different account model, different smart contract paradigm, different tooling. This page maps the key differences, translates the Solidity habits that carry over (and the ones that don't), and ends with concrete next steps for building.
 
 ## What Makes Cardano Different from Ethereum?
 
@@ -25,7 +25,7 @@ Smart contracts on Cardano follow the same model. Validators (Cardano's term for
 
 ### Counter Example
 
-To make the contrast concrete, let's look at a counter implemented in Solidity on Ethereum and the same counter implemented in [Aiken](/docs/developers/curriculum/smart-contracts/choose-a-language) on Cardano.
+To make the contrast concrete, here is a counter implemented in Solidity on Ethereum, followed by the same counter implemented in [Aiken](/docs/developers/curriculum/smart-contracts/choose-a-language) on Cardano.
 
 #### Ethereum Counter Smart Contract
 
@@ -152,8 +152,6 @@ validator counter_validator {
 To explore more real-world smart contracts written in Aiken, see the [Contract library](/templates/contracts).
 
 ## How Do Transactions Work on Cardano?
-
-With the model clear, let's look at how transactions actually work.
 
 A Cardano transaction transforms UTxOs: it spends existing ones and creates new ones.
 
@@ -558,7 +556,7 @@ Ready to start building? Here's the tooling landscape.
 
 ### Programming Languages
 
-Ethereum developers primarily use Solidity. On Cardano, currently the [most popular language](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2025/#what-do-you-use-or-plan-to-use-for-writing-plutus-script-validators-smart-contracts) is **Aiken**: a purpose-built language with Rust-like syntax, strong static typing, and excellent tooling. Aiken compiles directly to UPLC (Untyped Plutus Core), Cardano's native bytecode.
+Ethereum developers primarily use Solidity. On Cardano, currently the [most popular language](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2025/#what-do-you-use-or-plan-to-use-for-writing-plutus-script-validators-smart-contracts) is **Aiken**: a purpose-built language with Rust-like syntax, strong static typing, and its own toolchain (compiler, test framework, formatter, LSP). Aiken compiles directly to UPLC (Untyped Plutus Core), Cardano's native bytecode.
 
 Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](https://scalus.org) (Scala), [Pebble](https://pluts.harmoniclabs.tech/) (TypeScript DSL). See the [Smart Contracts overview](/docs/developers/curriculum/smart-contracts/overview) for the full list.
 
@@ -569,7 +567,7 @@ Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](http
 | Hardhat | [Aiken CLI](https://aiken-lang.org/installation-instructions) (`aiken build`, `aiken check`) |
 | Remix | [Aiken Playground](https://play.aiken-lang.org) |
 | Web3.js, ethers.js | [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) like **Mesh SDK** (TypeScript) |
-| Ganache, Foundry | [Local development networks](/docs/developers/curriculum/production/api-providers/overview) like [Yaci DevKit](https://devkit.yaci.xyz/) |
+| Ganache, Foundry | [Local development networks](/docs/developers/curriculum/production/development-networks) like [Yaci DevKit](https://devkit.yaci.xyz/) |
 | Infura, Alchemy | [API Providers](/docs/developers/curriculum/production/api-providers/overview) like [Blockfrost](https://blockfrost.dev/), [Maestro](https://www.gomaestro.org/), [Koios](https://koios.rest/) |
 | Etherscan | [Explorers](https://explorer.cardano.org/) |
 | MetaMask | [Wallets](https://cardano.org/apps/?tags=wallet) |

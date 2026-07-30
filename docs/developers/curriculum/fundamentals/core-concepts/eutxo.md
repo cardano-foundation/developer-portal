@@ -117,7 +117,7 @@ graph TB
 - "This UTXO can only be spent after slot 50,000,000."
 - "This UTXO can only be spent if the transaction recreates this same script address with an updated datum." (This last pattern is the foundation of stateful contracts in eUTXO: the script enforces that its own state propagates correctly.)
 
-The full mechanics of writing validators against datum, redeemer, and context are covered in [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview); here we only need the model.
+The full mechanics of writing validators against datum, redeemer, and context are covered in [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview); this page only needs the model.
 
 ### What can a validator actually see? Bitcoin vs Ethereum vs Cardano
 
@@ -125,7 +125,7 @@ The scope of information available to a script is the key difference between the
 
 - **Bitcoin (UTXO):** scripts see only the redeemer (the unlocking data). Simple and secure, but it limits contracts to "dumb" logic.
 - **Ethereum (account):** scripts can read and modify the entire global state. Powerful, but it introduces unpredictability and a large security surface.
-- **Cardano (eUTXO):** scripts see all inputs and outputs of the specific transaction plus its context, but not arbitrary global state. This middle ground was mathematically researched to provide expressive power comparable to the account model while keeping stronger security guarantees.
+- **Cardano (eUTXO):** scripts see all inputs and outputs of the specific transaction plus its context, but not arbitrary global state. This middle ground was designed to provide expressive power comparable to the account model while keeping stronger security guarantees.
 
 Smart contract validators (written in Plutus or Aiken) are **pure functions**: given the same datum, redeemer, and context, they always return the same result. That purity buys you:
 
@@ -260,8 +260,8 @@ Read the [eUTXO handbook (PDF)](https://ucarecdn.com/3da33f2f-73ac-4c9b-844b-f21
 
 - **The UTXO model tracks discrete coins**, consumed entirely and recreated as change, like physical cash, rather than mutable balances.
 - **eUTXO extends it** with datums (state), redeemers (action arguments), and script context (transaction awareness), enabling smart contracts without losing UTXO benefits.
-- **Determinism is the superpower.** Outcomes are predictable before submission, which kills front-running and enables exact fees and off-chain validation.
-- **Concurrency is explicit.** Fan-out, batching, and reference inputs are the standard ways mature protocols handle contention.
+- **Determinism is the superpower.** Outcomes are predictable before submission, which shuts out fee-auction front-running and enables exact fees and off-chain validation.
+- **Concurrency is explicit.** Fan-out, batching, and reference inputs are the standard ways deployed protocols handle contention.
 - **Native tokens live in UTXOs alongside ADA**, inheriting protocol-level security without contracts for basic transfers.
 
 ## Next steps

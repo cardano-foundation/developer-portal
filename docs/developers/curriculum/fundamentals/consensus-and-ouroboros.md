@@ -5,7 +5,7 @@ sidebar_label: Consensus & Ouroboros
 description: How distributed networks agree on a single truth, from Proof of Work to Cardano's Ouroboros Proof of Stake protocol.
 ---
 
-A consensus mechanism is the protocol-level rule set that lets thousands of independent nodes agree on a single canonical chain without any central coordinator. We have established that a blockchain is a distributed ledger and that [cryptographic primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) secure individual transactions and blocks. This page answers the remaining question: when multiple nodes each propose a different block at the same time, how does the network decide which one becomes part of the chain?
+A consensus mechanism is the protocol-level rule set that lets thousands of independent nodes agree on a single canonical chain without any central coordinator. A blockchain is a distributed ledger, and [cryptographic primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) secure its individual transactions and blocks. This page answers the remaining question: when multiple nodes each propose a different block at the same time, how does the network decide which one becomes part of the chain?
 
 If you have used Raft or Paxos, the shape is familiar: a leader is elected to sequence writes, which maps to slot-leader selection, log entries to blocks, the term to an epoch, and heartbeats to block propagation. The critical difference is the threat model: Raft assumes honest nodes and only tolerates crashes, while Ouroboros assumes some nodes are malicious (Byzantine fault tolerance), which is why it needs VRFs, stake-weighted election, and a formal security proof.
 
@@ -153,4 +153,4 @@ Epoch N boundary: calculate and distribute rewards, take a new snapshot,
 - Cardano's incentive design makes **decentralization an emergent economic equilibrium**, not an enforced rule.
 
 ## Next steps
-Now that you know how blocks are produced and the network agrees, the next step is what is actually inside those blocks: Cardano's Extended UTXO model. See [the eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo).
+That settles how blocks are produced and agreed on. The next question is what is inside them: Cardano's Extended UTXO model. See [the eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo).

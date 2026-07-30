@@ -140,7 +140,7 @@ flowchart LR
 6. **Confirmation**: confidence grows with each subsequent block.
 
 :::note No reverted transactions
-Once a transaction passes submission validation and enters the mempool, it is guaranteed to be included (until its validity interval passes). There is no Ethereum-style "reverted but you still paid" for phase-1 failures, if it was valid when submitted, it is valid when included.
+Once a transaction passes submission validation and enters the mempool, it stays on track for inclusion for as long as it remains valid against the node's view of the chain. There is no Ethereum-style "reverted but you still paid" for phase-1 failures: if it was valid when submitted, it is valid when included, and if the chain changes underneath it (an input spent first, the validity window passing) it is dropped without charging you anything.
 :::
 
 ### Latency vs finality

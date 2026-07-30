@@ -11,7 +11,7 @@ AI coding assistants are fast, but their training data on Cardano drifts: APIs c
 
 ## Cardano Dev Skills
 
-[Cardano Dev Skills](https://github.com/cardano-foundation/cardano-dev-skills) is the go-to option for this today. It works with any AI coding agent that reads Markdown, bundling authoritative Cardano documentation and behavioral "skills" refreshed weekly from upstream project repositories, so your assistant answers from current sources rather than guessing from training data.
+[Cardano Dev Skills](https://github.com/cardano-foundation/cardano-dev-skills) is the Cardano Foundation's toolkit for exactly this. It works with any AI coding agent that reads Markdown, bundling authoritative Cardano documentation and behavioral "skills" refreshed weekly from upstream project repositories, so your assistant answers from current sources rather than guessing from training data.
 
 It ships:
 
@@ -34,9 +34,9 @@ Then run `/cardano-context` once per project to wire the directive into your `CL
 
 ## Going deeper on a specific SDK
 
-Start with Cardano Dev Skills. It aggregates context across the whole toolchain, so for most work it's all you need, and it stays tool-agnostic while you're still deciding how to build.
+Start with Cardano Dev Skills: it aggregates context across the whole toolchain and stays tool-agnostic while you are still deciding how to build.
 
-Once you've committed to a specific SDK, that SDK may ship its own AI context you can add on top, for depth on its API: correct method ordering, transaction patterns, and framework-specific mappings. [Mesh](https://meshjs.dev/ai) is the most developed example today:
+Once you've committed to a specific SDK, that SDK may ship its own AI context you can add on top, for depth on its API: correct method ordering, transaction patterns, and framework-specific mappings. [Mesh](https://meshjs.dev/ai) shows what that looks like:
 
 - **Agent Skills**: `npx skills add MeshJS/skills` installs deep SDK knowledge across `mesh-transaction` (MeshTxBuilder, minting, Plutus spending, staking, governance), `mesh-wallet` (CIP-30 and headless wallets, CIP-8 signing), and `mesh-core-cst` (CBOR and Plutus data serialization). The CLI detects your installed AI tools and drops the skills in the right place.
 - **MCP server**: the [`meshjs-mcp`](https://meshjs.dev/ai/mcp) server gives your assistant real-time access to Mesh docs and code generation in VS Code, Cursor, or Claude Desktop.

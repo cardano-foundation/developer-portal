@@ -404,7 +404,7 @@ Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. 
 
 ## Headless dApps
 
-So far you have built transactions inside your application with an SDK. But that transaction-building logic is where a Cardano dApp's business logic actually sits: a validator only checks that a finished transaction is valid, it holds no logic of its own, so the real work is turning external events (a button in a UI, an API call, an on-chain condition, a scheduled job) into the transactions that represent them. That logic does not have to live in your frontend. It can run in the browser, in a cloud backend, or in an unattended process like a batcher. Left unmanaged, every app ends up wiring its own way to read the chain, build transactions, and submit them, so no two are alike and none can reuse another's work.
+Everything above builds transactions inside your application with an SDK. But that transaction-building logic is where a Cardano dApp's business logic actually sits: a validator only checks that a finished transaction is valid, it holds no logic of its own, so the real work is turning external events (a button in a UI, an API call, an on-chain condition, a scheduled job) into the transactions that represent them. That logic does not have to live in your frontend. It can run in the browser, in a cloud backend, or in an unattended process like a batcher. Left unmanaged, every app ends up wiring its own way to read the chain, build transactions, and submit them, so no two are alike and none can reuse another's work.
 
 A *headless dApp* pushes all of that behind one well-defined interface: the business logic becomes a standalone service, and every input and output flows through that interface instead of being baked into a particular UI. It is hexagonal architecture (or clean architecture) applied to Cardano, separating the core logic from the adapters that connect it to the outside world. The payoff is reuse: one transaction-building service can back several frontends, other applications can compose it programmatically, and nobody re-implements chain queries, transaction building, and submission from scratch.
 
@@ -412,7 +412,7 @@ Making this concrete needs standard interfaces for the two things such a service
 
 ## Declarative transactions
 
-Everything on this page states *how* to assemble a transaction: pick inputs, add outputs, attach metadata, compute the change. An emerging alternative flips the model: you describe *what* must be true of the transaction, and a resolver works out the rest at runtime. The most developed take on this for Cardano is [Tx3](https://docs.txpipe.io/tx3), a small declarative language that treats a transaction as a reusable, parameterized template:
+Everything on this page states *how* to assemble a transaction: pick inputs, add outputs, attach metadata, compute the change. An emerging alternative flips the model: you describe *what* must be true of the transaction, and a resolver works out the rest at runtime. A concrete take on this for Cardano is [Tx3](https://docs.txpipe.io/tx3), a small declarative language that treats a transaction as a reusable, parameterized template:
 
 ```text title="buy_product.tx3"
 party Buyer;
