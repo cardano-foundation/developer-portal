@@ -57,7 +57,7 @@ Your SDK doesn't reach the chain on its own. It sits on top of a **provider**, w
 - **Maestro**: hosted, with extended analytics and history
 - **Kupmios** (self-hosted Ogmios + Kupo): full control and data sovereignty
 
-Compare them in [Query the chain › choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider), browse the full list with their capabilities in [Builder Tools](/tools/?tags=api), and see the [API providers reference](/docs/developers/curriculum/production/api-providers/overview) and [Demeter](/docs/developers/curriculum/production/demeter) for managed infrastructure.
+Compare them in [Query the chain › choosing a provider](/docs/developers/curriculum/start-building/query-the-chain#choosing-a-provider), and browse the full list with their capabilities in [Builder Tools](/tools/?tags=api). The full infrastructure map, from hosted APIs to running your own, is in [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain).
 
 A hosted provider is the quickest way to start. With Blockfrost, for example:
 

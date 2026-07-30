@@ -16,6 +16,23 @@ Working on a testnet is not the same as being production-ready. Mainnet has real
 - **Off-chain code**: test transaction building and submission too. Evolution ships unit tests, an emulator, and devnet integration tests ([Testing your off-chain code](/docs/developers/curriculum/smart-contracts/testing#testing-your-off-chain-code)).
 - **Rehearse on Preprod**: Preprod mirrors mainnet (same protocol parameters and epoch length). Do a full dry run of your user flow there before mainnet. See [Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada). Mainnet transactions cannot be reversed, so the burn-in happens here.
 
+### Testnets are your staging environments
+
+Mirror the staging progression you already use in web2, with the faucet as your Stripe test mode: valueless ADA to exercise real flows.
+
+```mermaid
+graph LR
+    Dev[Local devnet\nseconds to iterate] --> Preview[Preview testnet\nnew features first, 1-day epochs]
+    Preview --> Preprod[Preprod testnet\nproduction mirror, 5-day epochs]
+    Preprod --> Mainnet[Mainnet\nreal ADA, real users]
+    style Dev fill:#9E9E9E,color:#fff
+    style Preview fill:#FF9800,color:#fff
+    style Preprod fill:#2196F3,color:#fff
+    style Mainnet fill:#4CAF50,color:#fff
+```
+
+For the fastest loop, run a [local development network](/docs/developers/curriculum/start-building/development-networks). **Preview** receives protocol upgrades first (1-day epochs), best for testing new features. **Preprod** is the final rehearsal above. Get test ADA and explorer links from [Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada).
+
 ## 2. Secure it
 
 - **Guard the vulnerability classes**: datum hijacking, double satisfaction, token forgery, resource exhaustion. See [Smart contract security](/docs/developers/curriculum/smart-contracts/security), and sharpen your eye on the [CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf).
@@ -93,7 +110,7 @@ For the full walkthrough, see Mesh's [custom provider](https://meshjs.dev/guides
 
 ## 5. Choose your infrastructure
 
-Decide how your dApp will read and submit to the chain: a managed API (fastest to ship) or your own node and indexer (most control). See [Production infrastructure](/docs/developers/curriculum/production/infrastructure) for the full decision.
+Decide how your dApp will read and submit to the chain: a hosted query API (fastest to ship) or infrastructure you run (most control). [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain) maps the options and the axes to decide by; [use a provider](/docs/developers/curriculum/production/use-a-provider) and [self-hosting](/docs/developers/curriculum/production/self-hosting) set up whichever you choose.
 
 ## 6. Smooth the on-ramp
 
@@ -114,5 +131,5 @@ Production also means users who may not have a wallet or any ADA. Lower the barr
 
 ## Next steps
 
-- [Production infrastructure](/docs/developers/curriculum/production/infrastructure): pick and run your stack
-- [Scaling overview](/docs/developers/curriculum/production/overview): if production load needs Hydra or batching
+- [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain): pick your stack with the full map in view
+- [Ship to Production overview](/docs/developers/curriculum/production/overview): the Scale arc, if production load needs Hydra or batching

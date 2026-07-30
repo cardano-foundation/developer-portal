@@ -51,3 +51,4 @@ For exchanges, custodians, and back-end services that integrate at a lower level
 ## Next steps
 - New to dApps? Start with [Your first dApp](/docs/developers/curriculum/dapps/your-first-dapp), a working app assembled end to end.
 - Building a protocol? Read [DeFi on Cardano](/docs/developers/curriculum/dapps/defi), then [Oracles](/docs/developers/curriculum/dapps/oracles/overview).
+- Ready to launch? [Ship to Production](/docs/developers/curriculum/production/overview) takes the app from testnet to mainnet, and scales it.

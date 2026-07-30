@@ -1,11 +1,11 @@
 ---
 id: pyth
-title: Pyth
-sidebar_label: Pyth
-description: High-frequency oracle providing real-time price feeds to Cardano smart contracts via Pyth Pro.
+title: "Integrate a Price Feed: Pyth"
+sidebar_label: Integrate a price feed
+description: Feed real-time market prices into a Cardano validator with the pull-based oracle workflow, implemented with Pyth Pro.
 ---
 
-Pyth is the [recommended](/docs/developers/curriculum/dapps/oracles/overview#recommended-pyth) production price oracle for Cardano contracts. If oracles are new to you, [Oracles](/docs/developers/curriculum/dapps/oracles/overview) covers the general problem of getting off-chain data on-chain and the pull-based model Cardano contracts use to read it.
+Feeding a live market price into a validator is a workflow every price-dependent contract shares: fetch a signed price update off-chain, include it in the transaction, and verify it on-chain. This page walks that workflow with Pyth, the [recommended](/docs/developers/curriculum/dapps/oracles/overview#recommended-pyth) production price oracle for Cardano contracts. If oracles are new to you, [Oracles](/docs/developers/curriculum/dapps/oracles/overview) covers the general problem of getting off-chain data on-chain and the pull-based model Cardano contracts use to read it.
 
 ## What is Pyth?
 

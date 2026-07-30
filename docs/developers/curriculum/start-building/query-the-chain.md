@@ -92,7 +92,7 @@ const client = Client.make(mainnet).withKupmios({
 
 Mesh has no single Kupmios provider; pair `OgmiosProvider` with Kupo and pass the Demeter keys through each provider's connection options.
 
-Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself (Blockfrost projects, running your own node + Kupo + Ogmios, Demeter), see the [API providers reference](/docs/developers/curriculum/production/api-providers/overview) and [production infrastructure](/docs/developers/curriculum/production/infrastructure).
+Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself, see [Use a provider](/docs/developers/curriculum/production/use-a-provider) (Blockfrost, Koios, and Maestro projects) and [Self-hosting](/docs/developers/curriculum/production/self-hosting) (your own node + Kupo + Ogmios, a data node, Demeter).
 
 :::tip Privacy and trust
 A **hosted** provider sees every address you query and every transaction you submit, along with your IP. It's a third party in your data path, with rate limits and an uptime you don't control. **Self-hosting** (your own node + Kupo + Ogmios, or Kupmios) keeps that data private and removes the dependency, at the cost of running the infrastructure. Pick based on how sensitive your queries are and how much ops you want to own.
@@ -365,7 +365,7 @@ console.log("inputs:", body.inputs.length, "outputs:", body.outputs.length)
 console.log("fee:", body.fee, "mints:", body.mints?.length ?? 0)
 ```
 
-Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Testing without a chain](/docs/developers/curriculum/production/development-networks#testing-without-a-chain)).
+Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Testing without a chain](/docs/developers/curriculum/start-building/development-networks#testing-without-a-chain)).
 
 </TabItem>
 </Tabs>
@@ -375,4 +375,4 @@ Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned i
 - [Transaction building](/docs/developers/curriculum/start-building/transaction-building), use what you query to build and submit
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet), read a user's UTXOs and address in the browser
 - [Contract library](/templates/contracts), inspect real contracts' UTXOs and datums with what you just learned
-- [Production infrastructure](/docs/developers/curriculum/production/infrastructure), run your own provider stack at scale
+- [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain), the infrastructure behind a provider and when to run your own
