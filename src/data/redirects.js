@@ -604,6 +604,7 @@ const redirects = [
       '/docs/developers/curriculum/smart-contracts/security/formal-verification',
     ],
   },
+  { to: '/docs/developers/curriculum/dapps/your-first-dapp', from: '/docs/developers/curriculum/dapps/scaffolding' },
   // Security subtree moved out of the advanced section
   { to: '/docs/developers/curriculum/smart-contracts/security/ctf', from: '/docs/developers/curriculum/smart-contracts/advanced/security/ctf' },
   { to: '/docs/developers/curriculum/smart-contracts/security', from: '/docs/developers/curriculum/smart-contracts/advanced/security/audits' },
