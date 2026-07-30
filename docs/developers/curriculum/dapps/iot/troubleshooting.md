@@ -57,6 +57,10 @@ Two likely causes:
 - **Baud rate mismatch.** The serial monitor's baud rate (bottom-right of the IDE's Serial Monitor) must match `Serial.begin(...)` in your sketch. The workshops all use **115200**.
 - **Bad USB cable.** Same as above - try a different one.
 
+## Next steps
+
+- [Ship to Production](/docs/developers/curriculum/production/overview): the curriculum's final module. Choose your chain access, harden the app, and scale.
+
 ---
 
 *Adapted from the [CardanoThings](https://cardanothings.io/troubleshooting) project, originally produced under [Project Catalyst Fund 11](https://projectcatalyst.io/funds/11). Source: [github.com/CardanoThings](https://github.com/CardanoThings).*

@@ -7,7 +7,7 @@ description: Connect Cardano to your application (wallets, payments, oracles, an
 
 ![Integrate Cardano](./img/card-integrate-cardano-title.svg)
 
-This module is about meeting users where they are: connecting Cardano to web apps, services, and protocols. Whether you're adding a "connect wallet" button, accepting ADA payments, feeding real-world prices into a contract, or building a full DeFi protocol, the building blocks live here.
+You arrive from [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview) able to write and test validators. This module is about meeting users where they are: connecting Cardano to web apps, services, and protocols. Whether you're adding a "connect wallet" button, accepting ADA payments, feeding real-world prices into a contract, or building a full DeFi protocol, the building blocks live here.
 
 ## Build a dApp
 

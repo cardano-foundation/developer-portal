@@ -40,3 +40,7 @@ Two things keep this a proof of concept rather than a trust-minimized product.
 **The NFTs use [CIP-25](/docs/developers/curriculum/native-tokens/metadata-registry#cip-25-nft-metadata-in-the-minting-transaction).** CIP-25 records metadata in the minting transaction, where a smart contract can neither read nor update it. A [CIP-68](/docs/developers/curriculum/native-tokens/metadata-registry#cip-68-datum-metadata-updatable-on-chain)-style design would let a contract manage ownership instead: the holder keeps a token that points at the contract, and ownership counts only when an inline datum listing the current owners points back to the asset. That turns the physical-to-digital link into a transferable, trustless one.
 
 The larger step is the chip itself. [Signing NFC chips](https://www.azuki.com/blog/pbt) can sign a challenge with their own private key, so no secret has to be shared with the backend at all. Removing that last shared secret opens the door to multi-signature ownership transfer, where handing over the physical good and its NFT becomes a signed, on-chain event.
+
+## Next steps
+
+- [Programmable tokens](/docs/developers/curriculum/native-tokens/programmable-tokens): where token rules move from the mint to every transfer

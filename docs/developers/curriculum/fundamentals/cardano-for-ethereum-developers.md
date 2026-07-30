@@ -722,9 +722,7 @@ A few Solidity habits carry over, but the ones that matter are not one-to-one:
 - **The interface is a blueprint, not an ABI.** Tools read [`plutus.json`](https://cips.cardano.org/cip/CIP-0057) the way they read an ABI. Instead of view functions and events, you query UTxOs directly through a provider and use transaction metadata or an indexer for event-style history.
 
 ## Next steps
-1. **Learn Aiken**: Start with [aiken-lang.org](https://aiken-lang.org) for the language guide and tutorials. Check out the [Aiken Standard Library](https://aiken-lang.github.io/stdlib/) for more to help you build your validator.
-2. **Write a validator**: Work through [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for hands-on on-chain building
-3. **Set Up Off-chain**: Use [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) for transaction building
-4. **Get Test ADA**: Use the [testnet faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) to get tADA for [Preview or Preprod testnets](/docs/developers/curriculum/start-building/networks-and-test-ada)
-5. **Explore Core Concepts**: Read about the [eUTxO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) for deeper understanding
-6. **Join the Community**: Connect via the [Developer Community](/docs/community/cardano-developer-community)
+
+- [Start Building](/docs/developers/curriculum/start-building/overview): the next module. Pick your tools, get test ADA, and send your first transaction with the same SDKs used throughout this curriculum.
+- [eUTXO](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): the model behind every difference on this page, if you jumped straight here.
+- [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator): hands-on Aiken when you reach Module 5; [aiken-lang.org](https://aiken-lang.org) and the [standard library](https://aiken-lang.github.io/stdlib/) pair well with it.
