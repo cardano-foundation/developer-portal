@@ -20,14 +20,14 @@ The fixed shapes cover most applications. This page goes deeper on two needs the
 [Yaci Store](https://github.com/bloxbean/yaci-store) addresses both. It is an open-source (MIT) modular indexer in Java from the BloxBean project, developed with engineering support from the Cardano Foundation and used in production by [cardano-rosetta-java](https://github.com/cardano-foundation/cardano-rosetta-java) and CF Ledger Sync, among others.
 
 :::info The Yaci family
-Three related projects share the name: [yaci](https://github.com/bloxbean/yaci) is the underlying Java implementation of the [Ouroboros mini-protocols](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); **Yaci Store** is the indexer built on it, covered here; [Yaci DevKit](https://devkit.yaci.xyz/introduction) is the local devnet tool that bundles a Store instance, covered in [development networks](/docs/developers/curriculum/start-building/development-networks).
+Three related projects share the name: [yaci](https://github.com/bloxbean/yaci) is the underlying Java implementation of the [Ouroboros mini-protocols](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); **Yaci Store** is the indexer built on it, covered here; [Yaci DevKit](https://devkit.yaci.xyz/introduction) is the local devnet tool that bundles a Store instance, covered in [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada#yaci-devkit).
 :::
 
 ## A modular indexer
 
 Most indexers make the sizing decision for you: db-sync stores everything, Kupo stores only UTXOs. Yaci Store is assembled from **stores** you enable per use case: blocks, transactions, UTXOs, metadata, assets, scripts, staking, and governance each ship as separate modules, plus aggregation modules that derive account balances, rewards, and ledger state independently, without a db-sync instance behind them.
 
-It syncs directly from any Cardano node over the node-to-node protocol, so it can follow a remote relay without you operating a node, writes to PostgreSQL, MySQL, or H2, and exposes **Blockfrost-compatible REST APIs** out of the box, meaning SDKs that speak Blockfrost can point at your own index unchanged (the same property [Yaci DevKit](/docs/developers/curriculum/start-building/development-networks) exploits locally).
+It syncs directly from any Cardano node over the node-to-node protocol, so it can follow a remote relay without you operating a node, writes to PostgreSQL, MySQL, or H2, and exposes **Blockfrost-compatible REST APIs** out of the box, meaning SDKs that speak Blockfrost can point at your own index unchanged (the same property [Yaci DevKit](/docs/developers/curriculum/start-building/networks-and-test-ada#yaci-devkit) exploits locally).
 
 ## Index exactly what you need: plugins
 
