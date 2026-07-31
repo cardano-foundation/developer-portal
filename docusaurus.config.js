@@ -138,9 +138,9 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/brand/cardano-lockup-obsidian.png",
-        srcDark: "img/brand/cardano-lockup-clarity.png",
-        width: 160,
+        src: "img/brand/cardano-horizontal-black.svg",
+        srcDark: "img/brand/cardano-horizontal-white.svg",
+        width: 159,
         height: 32,
       },
 
