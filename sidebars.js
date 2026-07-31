@@ -2,7 +2,7 @@ module.exports = {
   developerSidebar: [
     {
       type: "doc",
-      id: "developers/overview",
+      id: "developers/start-here",
       label: "Start Here",
     },
     {
@@ -37,7 +37,6 @@ module.exports = {
                 "developers/curriculum/fundamentals/core-concepts/fees",
               ],
             },
-            "developers/curriculum/fundamentals/cardano-for-ethereum-developers",
           ],
         },
         {

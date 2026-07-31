@@ -15,7 +15,7 @@ When developing on Cardano, the most significant difference you will encounter i
 
 Unlike Ethereum, Cardano is designed around the **[Extended UTxO (eUTxO) model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo)** rather than an account-based model. On Ethereum, each address maintains a balance stored in global state. Transactions update these balances directly, and smart contracts hold and modify their own storage.
 
-![eUTxO vs Account Model](core-concepts/img/eutxo-vs-account-model.jpg)
+![eUTxO vs Account Model](./curriculum/fundamentals/core-concepts/img/eutxo-vs-account-model.jpg)
 
 On Cardano, there is no global mutable contract storage like on Ethereum. Instead, both value and application state are carried in discrete Unspent Transaction Outputs (UTxOs). While the ledger itself maintains global state (such as the UTxO set, protocol parameters, and staking state), smart contracts do not read from or write to shared storage. Everything a validator is allowed to reason about must be provided explicitly by the transaction through its inputs and outputs.
 
@@ -155,7 +155,7 @@ To explore more real-world smart contracts written in Aiken, see the [Contract l
 
 A Cardano transaction transforms UTxOs: it spends existing ones and creates new ones.
 
-![UTxO Transaction Flow](core-concepts/img/utxo-transaction-flow.png)
+![UTxO Transaction Flow](./curriculum/fundamentals/core-concepts/img/utxo-transaction-flow.png)
 
 The key components:
 
@@ -723,6 +723,6 @@ A few Solidity habits carry over, but the ones that matter are not one-to-one:
 
 ## Next steps
 
-- [Start Building](/docs/developers/curriculum/start-building/overview): the next module. Pick your tools, get test ADA, and send your first transaction with the same SDKs used throughout this curriculum.
+- [Start Building](/docs/developers/curriculum/start-building/overview): Module 2 of the curriculum. Pick your tools, get test ADA, and send your first transaction with the same SDKs used throughout.
 - [eUTXO](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): the model behind every difference on this page, if you jumped straight here.
 - [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator): hands-on Aiken when you reach Module 5; [aiken-lang.org](https://aiken-lang.org) and the [standard library](https://aiken-lang.github.io/stdlib/) pair well with it.
