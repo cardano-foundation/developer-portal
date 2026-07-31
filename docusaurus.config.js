@@ -138,8 +138,8 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/brand/cardano-black.svg",
-        srcDark: "img/brand/cardano-white.svg",
+        src: "img/brand/cardano-horizontal-black.svg",
+        srcDark: "img/brand/cardano-horizontal-white.svg",
       },
 
       items: getNavbarItems(repository),

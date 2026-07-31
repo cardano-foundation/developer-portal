@@ -6,9 +6,33 @@
  * work well for content-centric websites.
  */
 
+/* Brand font, the same variable files cardano.org serves. One file per style,
+   carrying the whole 100 to 900 weight axis. */
+@font-face {
+  font-family: "Chivo";
+  src: url("/fonts/Chivo-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Chivo";
+  src: url("/fonts/Chivo-Italic-VariableFont_wght.ttf")
+    format("truetype-variations");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* You can override the default Infima variables here. */
 
 :root {
+  /* The rest of the stack stays as the fallback for glyphs Chivo does not
+     carry, such as the ada sign. */
+  --ifm-font-family-base: "Chivo", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
   --ifm-color-primary: #0033AD;
   --ifm-color-primary-dark: #002E9C;
   --ifm-color-primary-darker: #002B93;
@@ -48,6 +72,16 @@ html[data-theme="dark"] {
   --site-color-surface-hover: #3a3a3d;
   --site-color-bg-dark: #1b1b1d;
   --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
+}
+
+/* Form controls do not inherit font-family: the browser's own stylesheet sets
+   them to Arial. Without this, every button and input on the portal opts out of
+   the site font. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 .button {
@@ -201,7 +235,7 @@ div#faucetcontainer {
   align-items: center;
   color: var(--ifm-navbar-link-color);
   font-size: var(--ifm-font-size-base);
-  font-weight: 550;
+  font-weight: 400;
   text-decoration: none;
 }
 
