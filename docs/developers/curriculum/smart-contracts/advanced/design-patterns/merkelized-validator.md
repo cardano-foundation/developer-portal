@@ -11,7 +11,7 @@ There are very tight execution budget constraints imposed on Plutus script evalu
 equates to higher transaction fees for end-users makes it such that ex-unit optimization is an extremely important component of smart contract development on Cardano.
 
 Often the most impactful optimization techniques involve trade-offs between ex-units and script size. This results in a tight balancing act where you want to minimize the
-ex-units while keeping the script below the ~16kb limit (script size that you can store as a reference script is limited by transaction size limit). Powerful ExUnit
+ex-units while keeping the script below the current ~16 kB limit (script size that you can store as a reference script is limited by transaction size limit). Powerful ExUnit
 optimizations such as unrolling recursion, inlining functions and preferring constants over variables all can drastically reduce ExUnit consumption at the cost of increasing
 script size.
 

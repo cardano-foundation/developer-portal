@@ -34,7 +34,7 @@ const resignTx = await client.newTx().resignCommitteeCold({ coldCredential, anch
 ```
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 A member holds a **cold** credential (offline, the on-chain identity) and a **hot** credential (signs votes); an authorization certificate links them, and a new one overrides the previous.
 

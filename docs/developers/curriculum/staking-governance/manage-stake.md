@@ -43,7 +43,7 @@ console.log("Balance:", info.balance)    // total controlled stake
 `fetchAccountInfo` returns `{ active, poolId, balance, rewards, withdrawals }`.
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 ```shell
 cardano-cli query stake-address-info --address $(< stake.addr)
@@ -116,7 +116,7 @@ await wallet.submitTx(signedTx)
 `deregisterStakeCertificate` reclaims the deposit; pairing it with `withdrawal` in the same transaction avoids losing accrued rewards.
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 ```shell
 # Deregistration certificate
@@ -195,7 +195,7 @@ await wallet.submitTx(signedTx)
 ```
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 ```bash
 # stake -> pool

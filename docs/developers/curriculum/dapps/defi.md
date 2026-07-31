@@ -137,7 +137,7 @@ It's "impermanent" because if the price returns to the original ratio, the loss 
 
 ## Lending and borrowing
 
-Lending is DeFi's second pillar after DEXes: lenders supply assets to earn interest, borrowers lock collateral to take liquidity without selling what they hold. On Cardano there is no shared mutable "lending market" contract; a lending pool, a loan request, and an active loan are each UTXOs, typically identified by unique NFTs so fakes can't be injected, and every state change is a transaction the validators check. The mechanics below are protocol-independent.
+Lending is DeFi's second pillar after DEXes: lenders supply assets to earn interest, borrowers lock collateral to take liquidity without selling what they hold. On Cardano there is no shared mutable "lending market" contract; a lending pool, a loan request, and an active loan are each UTXOs, and every state change is a transaction the validators check. Each of those UTXOs has to be identified by a unique NFT the protocol minted, because anyone can create a UTXO at a script address: without that check, a forged pool or loan is injectable. The mechanics below are protocol-independent.
 
 ### Overcollateralization and loan-to-value
 

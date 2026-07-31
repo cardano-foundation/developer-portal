@@ -16,7 +16,7 @@ Cardano's delegation is **non-custodial**, which is a strong selling point to su
 
 - **Your ADA never leaves your wallet.** You issue an on-chain certificate that counts your stake toward a pool; you keep full spending control.
 - **No lock-up.** Your ADA stays liquid, spendable at any time.
-- **No minimum to delegate.** Any amount counts toward the pool. Registering your stake key the first time costs a refundable 2 ADA deposit, returned when you deregister.
+- **No minimum to delegate.** Any amount counts toward the pool. Registering your stake key the first time costs a refundable deposit (`stakeAddressDeposit`, currently 2 ADA), returned when you deregister.
 - **No slashing.** Delegated ADA is never at risk. If a pool underperforms, you simply miss rewards for that epoch. You never lose principal. (Contrast Ethereum, where validators can be slashed.)
 - **Automatic re-delegation.** Add more ADA to the wallet and it's included from the next snapshot.
 
@@ -36,7 +36,7 @@ Epoch N+4    rewards distributed to your reward address
 
 After this initial delay (~15 to 20 days), rewards arrive every epoch (~5 days) as long as the pool produces blocks. Two things worth showing users:
 
-- **Saturation.** Each pool has a saturation point (total stake ÷ the `k` protocol parameter). Past it, rewards *per ADA* drop, a built-in nudge toward smaller pools and decentralization.
+- **Saturation.** Each pool has a saturation point (total stake ÷ `k0`, the [target number of pools](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-do-rewards-and-incentives-drive-decentralization), currently 500). Past it, rewards *per ADA* drop, a built-in nudge toward smaller pools and decentralization. Do not confuse `k0` with the security parameter `k` (2160), which bounds rollback depth.
 - **Performance.** A pool that misses assigned blocks earns fewer rewards, which flows through to delegators.
 
 The deeper consensus mechanics (epochs, slots, VRF leader selection, the reward formula) are in [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros).

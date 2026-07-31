@@ -65,7 +65,7 @@ await wallet.submitTx(signedTx)
 ```
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 Create the vote file, choosing `--yes`, `--no`, or `--abstain` and the governance action id (tx id + index). Sign as a DRep (`--drep-verification-key-file`), a CC member (`--cc-hot-verification-key-file`), or an SPO (`--cold-verification-key-file`):
 
@@ -149,7 +149,7 @@ await wallet.submitTx(signedTx)
 `governanceAction` is a discriminated union: swap `InfoAction` for `TreasuryWithdrawalsAction`, `ParameterChangeAction`, `NoConfidenceAction`, `UpdateCommitteeAction`, `NewConstitutionAction`, or `HardForkInitiationAction` (the chaining types take a `govActionId` of the last enacted action of that kind). The deposit defaults to `govActionDeposit`; pass a fourth argument to override. For a Plutus-script proposal, add `proposalScript(cbor, "V3")` and `proposalRedeemerValue(redeemer)`.
 
 </TabItem>
-<TabItem value="cli" label="cardano-cli">
+<TabItem value="cardano-cli" label="cardano-cli">
 
 Authoring an action produces a proposal: a deposit, a deposit-return stake credential, an [anchor](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0108) (URL + hash), and the action itself. Hash the anchor, create the action (treasury withdrawal shown), then build, sign, and submit:
 
