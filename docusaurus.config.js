@@ -81,20 +81,6 @@ module.exports = {
       onBrokenMarkdownLinks: "throw",
     },
   },
-  headTags: [
-    {
-      // Regular carries nearly all text, so fetching it early shortens the
-      // window where the page renders in the fallback font.
-      tagName: "link",
-      attributes: {
-        rel: "preload",
-        href: "/fonts/Chivo-400.ttf",
-        as: "font",
-        type: "font/ttf",
-        crossorigin: "anonymous",
-      },
-    },
-  ],
   themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
     // Toggle display of icons in the mega menu. Icons need to be added to /static/img/icons/ as svg files

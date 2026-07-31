@@ -6,30 +6,30 @@
  * work well for content-centric websites.
  */
 
-/* Brand font. scripts/generate-og.js reads the same two files at build time for
-   the OG cards, so pages and the cards that link to them share one typeface. */
+/* Brand font, the same variable files cardano.org serves. One file per style,
+   carrying the whole 100 to 900 weight axis. */
 @font-face {
   font-family: "Chivo";
-  src: url("/fonts/Chivo-400.ttf") format("truetype");
-  font-weight: 400;
+  src: url("/fonts/Chivo-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Chivo";
-  src: url("/fonts/Chivo-700.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
+  src: url("/fonts/Chivo-Italic-VariableFont_wght.ttf")
+    format("truetype-variations");
+  font-weight: 100 900;
+  font-style: italic;
   font-display: swap;
 }
 
 /* You can override the default Infima variables here. */
 
 :root {
-  /* Chivo ships 400 and 700 only, so the weight scale has two steps. Anything
-     above 500 renders bold, anything at or below renders regular. The rest of
-     the stack stays as the fallback for glyphs Chivo does not carry. */
+  /* The rest of the stack stays as the fallback for glyphs Chivo does not
+     carry, such as the ada sign. */
   --ifm-font-family-base: "Chivo", system-ui, -apple-system, "Segoe UI", Roboto,
     Ubuntu, Cantarell, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
