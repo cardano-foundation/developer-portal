@@ -249,17 +249,15 @@ const redirects = [
     to: '/docs/developers/curriculum/start-building/networks-and-test-ada',
     from: '/docs/integrate-cardano/testnet-faucet',
   },
+  // Local development networks folded into the network page; offline testing split out
   {
-    to: '/docs/developers/curriculum/start-building/development-networks',
-    from: '/docs/get-started/development-networks',
-  },
-  {
-    to: '/docs/developers/curriculum/start-building/development-networks',
-    from: '/docs/get-started/yaci-devkit',
-  },
-  {
-    to: '/docs/developers/curriculum/start-building/development-networks',
-    from: '/docs/get-started/cardano-testnet',
+    to: '/docs/developers/curriculum/start-building/networks-and-test-ada',
+    from: [
+      '/docs/developers/curriculum/start-building/development-networks',
+      '/docs/get-started/development-networks',
+      '/docs/get-started/yaci-devkit',
+      '/docs/get-started/cardano-testnet',
+    ],
   },
   {
     to: '/docs/developers/curriculum/production/connecting-to-the-chain',
@@ -305,7 +303,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/curriculum/start-building/development-networks',
+    to: '/docs/developers/curriculum/start-building/networks-and-test-ada',
     from: '/docs/developers/curriculum/production/development-networks',
   },
   {
@@ -1073,8 +1071,8 @@ const redirects = [
   { to: '/docs/developers/curriculum/production/self-hosting', from: '/docs/get-started/infrastructure/api-providers/ogmios' },
   { to: '/docs/developers/curriculum/production/connecting-to-the-chain', from: '/docs/get-started/infrastructure/api-providers/overview' },
   { to: '/docs/developers/curriculum/production/self-hosting', from: '/docs/get-started/infrastructure/demeter' },
-  { to: '/docs/developers/curriculum/start-building/development-networks', from: '/docs/get-started/networks/development-networks/cardano-testnet' },
-  { to: '/docs/developers/curriculum/start-building/development-networks', from: '/docs/get-started/networks/development-networks/yaci-devkit' },
+  { to: '/docs/developers/curriculum/start-building/networks-and-test-ada', from: '/docs/get-started/networks/development-networks/cardano-testnet' },
+  { to: '/docs/developers/curriculum/start-building/networks-and-test-ada', from: '/docs/get-started/networks/development-networks/yaci-devkit' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/debug-cbor', from: '/docs/build/smart-contracts/advanced/debug-cbor' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list', from: '/docs/build/smart-contracts/advanced/design-patterns/linked-list' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator', from: '/docs/build/smart-contracts/advanced/design-patterns/merkelized-validator' },

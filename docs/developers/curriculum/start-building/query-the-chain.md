@@ -371,7 +371,7 @@ console.log("inputs:", body.inputs.length, "outputs:", body.outputs.length)
 console.log("fee:", body.fee, "mints:", body.mints?.length ?? 0)
 ```
 
-Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Testing without a chain](/docs/developers/curriculum/start-building/development-networks#testing-without-a-chain)).
+Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Assert what you built](/docs/developers/curriculum/start-building/offline-testing#assert-what-you-built)).
 
 </TabItem>
 </Tabs>

@@ -90,9 +90,9 @@ An assistant can also read live chain state and draft transactions for you to si
 ## What you are not choosing yet
 
 - **The language you write smart contracts in.** A separate toolchain, covered in [Smart contracts](/docs/developers/curriculum/smart-contracts/choose-a-language). Every smart contract example in this curriculum is Aiken.
-- **Where you run the chain.** Preprod is enough to start. You can also run [a local development network](/docs/developers/curriculum/start-building/development-networks) on your own machine for offline, deterministic iteration.
+- **Where you run the chain.** Preprod is enough to start. You can also [run a chain yourself](/docs/developers/curriculum/start-building/networks-and-test-ada#run-a-chain-yourself), with block times you set, on the next page.
 
 ## Next steps
 
-- [Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada): pick a network and get free test ADA to build with
+- [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada): pick where your code runs, and get free test ADA to build with
 - [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): wire the SDK and provider together and send ADA
