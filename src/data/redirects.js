@@ -31,10 +31,13 @@ const redirects = [
     to: '/docs/developers/curriculum/native-tokens/overview',
     from: '/docs/learn/core-concepts/assets',
   },
-  // Module 1 (Cardano Foundations): Ethereum guide relocated out of Learn > Educational Resources
+  // Ethereum guide: out of Learn > Educational Resources, then out of the curriculum
   {
-    to: '/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers',
-    from: '/docs/learn/educational-resources/ethereum-developers',
+    to: '/docs/developers/cardano-for-ethereum-developers',
+    from: [
+      '/docs/learn/educational-resources/ethereum-developers',
+      '/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers',
+    ],
   },
   // Module 3 (Setup & First Transaction): network setup pages consolidated into first-steps
   {
