@@ -5,8 +5,6 @@ sidebar_label: Overview
 description: How smart contracts work on Cardano, validators that approve or reject transactions on the eUTXO model.
 ---
 
-![Smart Contracts](./img/card-smart-contracts-title.svg)
-
 You arrive able to build transactions, mint under policies you wrote, and delegate stake and votes. Until now most rules you enforced were the ledger's own; this module generalizes the policy idea into validator scripts that guard any UTXO with logic you define.
 
 ## What are smart contracts?

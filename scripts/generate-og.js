@@ -22,8 +22,11 @@ const ROOT = path.join(__dirname, '..');
 const DOCS_DIR = path.join(ROOT, 'docs');
 const TEMPLATE = path.join(ROOT, 'static', 'img', 'og', '_template', 'og-background.png');
 const OUT_DIR = path.join(ROOT, 'static', 'img', 'og', 'docs');
-const FONT_REGULAR = path.join(ROOT, 'static', 'fonts', 'Chivo-400.ttf');
-const FONT_BOLD = path.join(ROOT, 'static', 'fonts', 'Chivo-700.ttf');
+// Satori cannot parse the variable Chivo the site uses, so card generation keeps
+// static 400 and 700 cuts. They live here rather than in static/ because they are
+// build-time input, not something a browser should ever download.
+const FONT_REGULAR = path.join(__dirname, 'fonts', 'Chivo-400.ttf');
+const FONT_BOLD = path.join(__dirname, 'fonts', 'Chivo-700.ttf');
 
 // Docs that shouldn't get a card (archived changelog: huge, not a real page).
 const EXCLUDE = new Set(['portal-archived-changelog.md']);

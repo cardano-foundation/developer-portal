@@ -66,7 +66,7 @@ npm run dev            # http://localhost:3000
 </TabItem>
 </Tabs>
 
-For how the two SDKs compare before you commit to one, see [Choose your tools](/docs/developers/curriculum/start-building/choose-your-tools). If you want a contract from the start, the [Mesh Aiken template](https://github.com/MeshJS/mesh-aiken-template) is a full-stack starter pairing the Mesh SDK off-chain with Aiken on-chain.
+If you want a contract from the start, the [Mesh Aiken template](https://github.com/MeshJS/mesh-aiken-template) is a full-stack starter pairing the Mesh SDK off-chain with Aiken on-chain.
 
 :::info cardano-init is on the way
 [cardano-init](https://github.com/input-output-hk/cardano-init) aims to unify scaffolding into one tool: you pick the tools for each role (on-chain validators, off-chain transaction building, local devnet, infrastructure, or formal methods) and it generates a runnable monorepo with everything pre-wired, plus an end-to-end example that builds and passes tests. It is an early prototype and not yet ready for use, with its templates, CLI flags, and output still changing. Track progress at the [cardano-init repository](https://github.com/input-output-hk/cardano-init).

@@ -5,13 +5,11 @@ sidebar_label: Set up your AI assistant
 description: Use AI coding assistants to build on Cardano with current, authoritative context instead of stale training data.
 ---
 
-If you build with an AI coding assistant, this is a quick, optional setup step worth doing now: it pays off across every module that follows.
-
-AI coding assistants are fast, but their training data on Cardano drifts: APIs change, libraries get renamed, and patterns evolve faster than models are retrained. The fix is to give your assistant current, authoritative context.
+AI coding assistants are fast, but their training data on Cardano drifts: APIs change, libraries get renamed, and patterns evolve faster than models are retrained. The fix is to give your assistant current, authoritative context, and it costs a couple of minutes to set up.
 
 ## Cardano Dev Skills
 
-[Cardano Dev Skills](https://github.com/cardano-foundation/cardano-dev-skills) is the Cardano Foundation's toolkit for exactly this. It works with any AI coding agent that reads Markdown, bundling authoritative Cardano documentation and behavioral "skills" refreshed weekly from upstream project repositories, so your assistant answers from current sources rather than guessing from training data.
+[Cardano Dev Skills](https://github.com/cardano-foundation/cardano-dev-skills) is the Cardano Foundation's toolkit for keeping an assistant current. It works with any AI coding agent that reads Markdown, bundling authoritative Cardano documentation and behavioral "skills" refreshed weekly from upstream project repositories, so your assistant answers from current sources rather than guessing from training data.
 
 It ships:
 
@@ -23,14 +21,14 @@ Its scope is the developer toolchain (SDKs, validator libraries, design patterns
 
 ### Add it to your agent
 
-The skills are plain Markdown, so any agent that reads Markdown can use them. In Claude Code, add the marketplace and install the plugin:
+The skills are plain Markdown, so any agent that reads Markdown can use them. In Claude Code:
 
 ```
 /plugin marketplace add cardano-foundation/cardano-dev-skills
 /plugin install cardano-dev-skills@cardano-dev-skills
 ```
 
-Then run `/cardano-context` once per project to wire the directive into your `CLAUDE.md`. For Codex or other agents, clone the repo and symlink the skills into your project's `.agents/skills` directory, or point the agent at the Markdown directly. See the [repository](https://github.com/cardano-foundation/cardano-dev-skills) for the full list of skills and setup details.
+Then run `/cardano-context` once per project to wire the directive into your `CLAUDE.md`. For Codex or any other agent, clone the repo and symlink the skills into your project's `.agents/skills` directory, or point the agent at the Markdown directly, then add the equivalent directive to whatever file that agent reads at startup. The [repository](https://github.com/cardano-foundation/cardano-dev-skills) has the full list of skills and setup details.
 
 ## Going deeper on a specific SDK
 

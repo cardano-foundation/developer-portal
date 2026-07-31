@@ -93,14 +93,39 @@ cardano-cli latest query proposals --all-proposals           # actions eligible 
 
 ## Browser wallet APIs (CIP-95)
 
-For a browser dApp, [CIP-95](https://cips.cardano.org/cip/CIP-0095) extends the [wallet connector](/docs/developers/curriculum/dapps/connect-a-wallet) with governance methods, so you can read what you need to build governance transactions:
+For a browser dApp, [CIP-95](https://cips.cardano.org/cip/CIP-0095) adds governance methods to the [wallet connector](/docs/developers/curriculum/dapps/connect-a-wallet), so you can read what you need to build governance transactions.
+
+It is an **optional extension**, not part of the CIP-30 core, so two things follow. You have to ask for it when you connect, and a wallet is free to say no. Plenty of wallets implement core CIP-30 only, and your dApp has to handle that rather than assume the methods are there.
+
+<Tabs>
+<TabItem value="browser" label="Browser API" default>
 
 ```typescript
-const dRepKey = await wallet.getPubDRepKey()                 // the user's DRep ID key
-const stakeKeys = await wallet.getRegisteredPubStakeKeys()    // registered stake keys
+// Request the extension at enable time
+const api = await window.cardano.eternl.enable({ extensions: [{ cip: 95 }] })
+
+// A wallet without CIP-95 still connects, it just returns no cip95 namespace
+if (!api.cip95) throw new Error("This wallet does not support governance (CIP-95)")
+
+const dRepKey = await api.cip95.getPubDRepKey()                // the user's DRep key
+const stakeKeys = await api.cip95.getRegisteredPubStakeKeys()  // registered stake keys
 ```
 
-See [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) for the CIP-95 methods on the wallet API.
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshCardanoBrowserWallet } from "@meshsdk/wallet"
+
+const wallet = await MeshCardanoBrowserWallet.enable("eternl", [{ cip: 95 }])
+
+const dRepKey = await wallet.getPubDRepKey()
+```
+
+</TabItem>
+</Tabs>
+
+`signTx` and `signData` are extended rather than namespaced, so they keep working as before and gain the ability to witness Conway certificates and DRep credentials. For the connection itself, see [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet#governance-cip-95).
 
 ## Governance in your validators
 

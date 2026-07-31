@@ -5,8 +5,6 @@ sidebar_label: Overview
 description: Connect Cardano to your application (wallets, payments, oracles, and AI agents) and build DeFi protocols on the eUTXO model.
 ---
 
-![Integrate Cardano](./img/card-integrate-cardano-title.svg)
-
 You arrive from [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview) able to write and test validators. This module is about meeting users where they are: connecting Cardano to web apps, services, and protocols.
 
 It runs as two arcs. The first puts an application in front of users; the second builds the protocols underneath. Two side-tracks branch off, and you can skip both without losing the thread.
