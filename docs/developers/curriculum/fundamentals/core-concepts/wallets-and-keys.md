@@ -103,10 +103,10 @@ A wallet is software that stores your keys, scans the chain for UTXOs at your ad
 CIP-30 is the dApp connector standard. The wallet exposes an API; it signs only what the user approves and never exposes private keys, much like "Sign in with Google" hands an app a token, not your password.
 
 <Tabs>
-<TabItem value="cip30" label="CIP-30" default>
+<TabItem value="browser" label="Browser API" default>
 
 ```typescript
-// The raw standard, on window.cardano
+// No library: the standard as the wallet exposes it, on window.cardano
 const wallet = await window.cardano.eternl.enable()
 const utxos = await wallet.getUtxos()
 const signed = await wallet.signTx(unsignedTx)   // user approves in the wallet
@@ -135,7 +135,7 @@ const utxos = await wallet.getUtxosMesh()
 </TabItem>
 </Tabs>
 
-Both SDKs wrap the same API, so the wallet still holds the keys either way. [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) covers discovery, the sign-then-submit split, and the React components.
+CIP-30 is a standard, not a library. Every SDK and connect-button package is a wrapper over the same browser API, and the wallet holds the keys whichever one you pick. [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) covers discovery, the sign-then-submit split, and the framework options.
 
 Wallets can also sign arbitrary messages (CIP-8 / COSE) to prove address ownership without submitting a transaction, the basis for wallet login. For implementations, see [Wallet authentication](/docs/developers/curriculum/dapps/wallet-authentication).
 
