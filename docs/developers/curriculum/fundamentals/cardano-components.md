@@ -51,7 +51,7 @@ The networking layer handles peer topology and connection management. Both relay
 
 ### Scripting layer
 
-The scripting layer is the smart-contract execution engine embedded in the ledger. At its core it is a typed lambda calculus, a minimal formally-verified computation model; smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately compile down to Untyped Plutus Core (UPLC) for on-chain execution (reference implementation: [Plutus Core](https://github.com/IntersectMBO/plutus)).
+The scripting layer is the smart-contract execution engine embedded in the ledger. At its core it is a lambda calculus, a minimal formally-verified computation model. Compilers work through a typed form, Typed Plutus Core, but the language the ledger executes is untyped: smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately become [Untyped Plutus Core (UPLC)](/docs/developers/curriculum/smart-contracts/advanced/uplc) for on-chain execution (reference implementation: [Plutus Core](https://github.com/IntersectMBO/plutus)).
 
 Execution happens within the ledger layer during transaction validation. Every script execution is bounded by an execution unit budget (CPU steps and memory units) that must be declared in the transaction. The declared budget is consumed during validation; both per-transaction and per-block execution unit limits are enforced by the protocol parameters, preventing unbounded computation.
 
