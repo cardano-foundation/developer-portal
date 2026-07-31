@@ -12,7 +12,7 @@ An address is where value lives on Cardano: a public identifier others use to se
 
 ## Address structure
 
-A Cardano (Shelley-era) address has two or three parts:
+A Cardano (Shelley-era) address has two or three parts, laid out by [CIP-19](https://cips.cardano.org/cip/CIP-19):
 
 ```
 +--------+-------------------+-----------------------+
@@ -198,13 +198,6 @@ const address = serializeAddressObj(addressObj, 1)
 :::tip Always validate the network
 Checking the network discriminant before using an address in a transaction is the cheapest guard against sending mainnet funds to a testnet address (and vice versa). Legacy Byron and pointer formats are still parsed automatically when reading existing UTXOs, but shouldn't be used for new addresses.
 :::
-
-## Tools
-
-- [`cardano-address`](https://github.com/IntersectMBO/cardano-addresses): inspect components, extract key hashes
-- [`bech32`](https://github.com/input-output-hk/bech32): decode Bech32 to hex
-- [`cardano-cli`](/docs/developers/curriculum/start-building/your-first-transaction): generate and hash keys, build addresses
-- Technical reference: [CIP-19: Cardano Addresses](https://cips.cardano.org/cip/CIP-19)
 
 ## Key takeaways
 

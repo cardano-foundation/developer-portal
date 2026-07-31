@@ -18,4 +18,7 @@ portal are built from these, so keep any custom colours in this range.
 The developer surfaces (landing hero, generated OG cards) sit on deep navy with
 cream text and lavender accents. Brand font is Chivo (`static/fonts/`).
 
-Logo marks live in this folder: `cardano-black.svg`, `cardano-white.svg`.
+Logo assets live in this folder, taken from the brandhub on cardano.org. The horizontal
+lockup (mark plus wordmark) is `cardano-horizontal-black.svg` for light backgrounds and
+`cardano-horizontal-white.svg` for dark ones. The mark on its own is `cardano-black.svg`
+and `cardano-white.svg`.
