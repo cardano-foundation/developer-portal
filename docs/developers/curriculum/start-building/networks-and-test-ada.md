@@ -56,4 +56,4 @@ For offline, deterministic iteration you can run a local network instead of a pu
 ## Next steps
 
 - [Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction): now build, sign, and submit one
-- [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development): optionally give your AI coding assistant current Cardano context first
+- [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development): what the Cardano context contains, and how to add it to any agent
