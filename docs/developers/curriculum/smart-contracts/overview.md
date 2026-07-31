@@ -157,7 +157,7 @@ That permanence runs one way only. On-chain code keeps working unchanged for as 
 
 ## Choose a language
 
-Validators can be written in several languages that all compile to the same on-chain bytecode (UPLC). For most new projects, **[Aiken](https://aiken-lang.org)** is the recommended starting point. See **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)** for the full comparison (Aiken, Plinth, Plutarch, OpShin, Scalus, Pebble, Marlowe).
+Validators can be written in several languages that all compile to the same on-chain bytecode (UPLC). The examples in this module are written in **[Aiken](https://aiken-lang.org)**. See **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)** for the full comparison (Aiken, Plinth, Plutarch, OpShin, Scalus, Pebble, Marlowe).
 
 ## Key takeaways
 
@@ -172,7 +172,7 @@ Validators can be written in several languages that all compile to the same on-c
 This module builds up from here, in order:
 
 1. **[Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context)**: the three arguments every validator receives, in depth.
-2. **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)**: pick how you'll write validators (Aiken-first).
+2. **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)**: pick how you'll write validators.
 3. **[Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator)**: the on-chain code itself, purpose by purpose.
 4. **[Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
 5. **[Testing](/docs/developers/curriculum/smart-contracts/testing)**: verify validators with mock transactions before you deploy.

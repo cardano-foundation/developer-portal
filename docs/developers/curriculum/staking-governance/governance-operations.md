@@ -75,6 +75,9 @@ Script-based members use `--cold-script-hash` / `--hot-script-hash` instead of t
 
 To show proposals, DRep info, voting power, or committee state in a UI, query your node:
 
+<Tabs>
+<TabItem value="cardano-cli" label="cardano-cli" default>
+
 ```bash
 cardano-cli latest query gov-state                           # committee, constitution, params, proposals
 cardano-cli latest query drep-state --all-dreps              # DRep registration: deposit, expiry, anchor
@@ -82,6 +85,9 @@ cardano-cli latest query drep-stake-distribution --all-dreps # voting power per 
 cardano-cli latest query committee-state                     # members, hot-key auth, expiry, threshold
 cardano-cli latest query proposals --all-proposals           # actions eligible for ratification
 ```
+
+</TabItem>
+</Tabs>
 
 `query constitution` returns the current constitution anchor and guardrails script hash, and `query gov-state | jq -r .nextRatifyState.nextEnactState.prevGovActionIds` gives the last-enacted action IDs you need for the `--prev-governance-action-*` flags. Query APIs (Blockfrost, Koios, Maestro) expose the same data over HTTP; see [Use a provider](/docs/developers/curriculum/production/use-a-provider).
 

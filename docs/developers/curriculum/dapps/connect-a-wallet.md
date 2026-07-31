@@ -206,6 +206,9 @@ Connecting a wallet in a frontend is the same CIP-30 flow shown above; a framewo
 
 Wrap your app once in `<MeshProvider>` and import the stylesheet, then drop the pre-built button in:
 
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
+
 ```tsx
 // app root (pages/_app.tsx or app/layout.tsx)
 import "@meshsdk/react/styles.css"
@@ -228,6 +231,9 @@ import { CardanoWallet } from "@meshsdk/react"
 <CardanoWallet label="Connect" isDark persist onConnected={() => {}} />
 ```
 
+</TabItem>
+</Tabs>
+
 `<CardanoWallet />` renders the wallet-selection modal and connection flow for you. From any component under the provider, the hooks read live wallet state:
 
 | Hook | Returns |
@@ -242,6 +248,9 @@ import { CardanoWallet } from "@meshsdk/react"
 ### Svelte
 
 Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Instead of hooks, you read the reactive `BrowserWalletState` runes, accessed directly inside an `$effect` so reactivity isn't lost:
+
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
 
 ```svelte
 <script lang="ts">
@@ -262,6 +271,9 @@ Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Inste
   <CardanoWallet />
 {/if}
 ```
+
+</TabItem>
+</Tabs>
 
 `BrowserWalletState` exposes `wallet`, `connected`, `name`, and `connecting`. Read its properties directly (don't destructure) or you lose reactivity.
 

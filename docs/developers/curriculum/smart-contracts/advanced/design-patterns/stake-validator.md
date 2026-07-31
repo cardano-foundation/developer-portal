@@ -236,6 +236,9 @@ await wallet.submitTx(signedTx)
 
 Script control is not limited to the withdrawal trigger. In Evolution every staking operation accepts a `redeemer` and an attached script, so a script-held credential can also delegate:
 
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Credential, Data } from "@evolution-sdk/evolution"
 
@@ -253,6 +256,9 @@ const tx = await client
   .attachScript({ script: stakeScript })
   .build()
 ```
+
+</TabItem>
+</Tabs>
 
 Mesh's builder takes a redeemer on a script **withdrawal** (the trigger above) but not on a stake **delegation** certificate, so script-controlled delegation is Evolution or cardano-cli only.
 

@@ -236,7 +236,10 @@ For **native-token** airdrops, give each output enough ADA for the min-UTXO (tok
 
 ## Chaining transactions
 
-Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. For the concept beneath this, why an unconfirmed output is safe to spend and where chaining fits among Cardano's scaling options, see [transaction chaining](/docs/developers/curriculum/production/transaction-chaining). With Evolution:
+Normally you can't build transaction #2 until #1 confirms, because #1's new UTXOs don't exist from the provider's view yet, a 10-30 s wait per step. **Chaining** removes it: once you have built transaction #1, you feed the UTXOs you still hold **plus** its new outputs (already tagged with its pre-computed hash) into the build of transaction #2. For the concept beneath this, why an unconfirmed output is safe to spend and where chaining fits among Cardano's scaling options, see [transaction chaining](/docs/developers/curriculum/production/transaction-chaining).
+
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 import { Address, Assets } from "@evolution-sdk/evolution"
@@ -259,6 +262,9 @@ const tx2 = await client
 await (await tx1.sign()).submit()
 await (await tx2.sign()).submit()
 ```
+
+</TabItem>
+</Tabs>
 
 :::warning Submit in order
 Each chained transaction spends an output of the previous one. If tx2 reaches the node before tx1, the node sees inputs that don't exist and rejects it. A sequential loop guarantees ordering. The `available` outputs are **not on-chain yet**. Don't pass them to a provider query.
@@ -345,6 +351,9 @@ This is what powers the withdraw-zero coordinator: the [Stake Validator design p
 
 SDKs build a transaction against a live provider. `cardano-cli` can also build one **fully offline**, where you calculate the fee and balance the transaction yourself, for air-gapped signing and reproducible builds. Of its three build commands, `transaction build` is the everyday node-connected one, `build-raw` is the offline one, and `build-estimate` sizes a fee offline without balancing.
 
+<Tabs>
+<TabItem value="cardano-cli" label="cardano-cli" default>
+
 ```bash
 # 1. Protocol parameters (needs a node, once)
 cardano-cli query protocol-parameters --out-file pparams.json
@@ -369,12 +378,17 @@ cardano-cli latest transaction build-raw \
   --fee 173993 --protocol-params-file pparams.json --out-file tx.raw
 ```
 
+</TabItem>
+</Tabs>
 
 `--witness-count` is how many signatures the transaction will carry. It affects the fee. Inspect any draft with `cardano-cli debug transaction view --tx-body-file tx.draft`.
 
 ## Spending from several keys
 
 To spend UTXOs owned by *different* keys in one transaction (combining two wallets, or a multisig), list each `--tx-in`, set the witness count to the number of signers, and pass every signing key at sign time.
+
+<Tabs>
+<TabItem value="cardano-cli" label="cardano-cli" default>
 
 ```bash
 cardano-cli latest transaction build-raw \
@@ -389,6 +403,8 @@ cardano-cli latest transaction sign \
   --out-file tx.signed
 ```
 
+</TabItem>
+</Tabs>
 
 Then `submit` as usual. Parse CLI output with `jq` for scripted workflows, e.g. pick the first UTXO: `--tx-in $(cardano-cli query utxo --address $(< payment.addr) --output-json | jq -r 'keys[0]')`. The full command reference lives in the [cardano-cli repository](https://github.com/IntersectMBO/cardano-cli).
 
