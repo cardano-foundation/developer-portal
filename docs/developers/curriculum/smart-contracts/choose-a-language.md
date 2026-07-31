@@ -5,7 +5,7 @@ sidebar_label: Choose a smart contract language
 description: Pick a language for writing Cardano validators. Every language compiles to the same on-chain bytecode (UPLC), so the choice is about ergonomics rather than capability.
 ---
 
-You write a validator in a high-level language, and it compiles down to **UPLC** (Untyped Plutus Lambda Calculus), the one bytecode every Cardano node executes. Because the on-chain target is the same regardless of source language, choosing a language is mostly about **ergonomics**: which one lets your team write correct, efficient validators fastest.
+You write a validator in a high-level language, and it compiles down to **UPLC** (Untyped Plutus Core), the one bytecode every Cardano node executes. Because the on-chain target is the same regardless of source language, choosing a language is mostly about **ergonomics**: which one lets your team write correct, efficient validators fastest.
 
 This page helps you pick.
 

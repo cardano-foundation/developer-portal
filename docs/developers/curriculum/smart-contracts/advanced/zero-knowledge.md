@@ -55,7 +55,7 @@ Because Plutus evaluation is deterministic, verification cost is known before th
 On-chain verification is built on two protocol upgrades:
 
 - **Chang (September 2024, Plutus V3)** shipped [CIP-0381](https://cips.cardano.org/cip/CIP-0381): 17 builtins for the pairing-friendly **BLS12-381** curve, group operations (`bls12_381_G1_add`, `bls12_381_G1_scalarMul`, and their G2 counterparts), the pairing (`bls12_381_millerLoop`, `bls12_381_mulMlResult`, `bls12_381_finalVerify`), plus compression, hashing-to-group, and equality. They are backed by the independently audited `blst` library, so the *primitives* are production-grade even where the verifiers built on them are not. This made pairing-based SNARK verification possible on Cardano.
-- **van Rossem (June 2026, protocol version 11)** made it cheaper: [CIP-0133](https://cips.cardano.org/cip/CIP-0133) added multi-scalar multiplication builtins (`bls12_381_G1_multiScalarMul`, `bls12_381_G2_multiScalarMul`), the operation that dominates PLONK and Halo2 verification, and [CIP-0109](https://cips.cardano.org/cip/CIP-0109) added `expModInteger` for modular field arithmetic.
+- **van Rossem (July 2026, protocol version 11)** made it cheaper: [CIP-0133](https://cips.cardano.org/cip/CIP-0133) added multi-scalar multiplication builtins (`bls12_381_G1_multiScalarMul`, `bls12_381_G2_multiScalarMul`), the operation that dominates PLONK and Halo2 verification, and [CIP-0109](https://cips.cardano.org/cip/CIP-0109) added `expModInteger` for modular field arithmetic.
 
 Two practical constraints follow from the builtin design:
 
