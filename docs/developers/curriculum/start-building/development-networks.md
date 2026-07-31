@@ -42,13 +42,23 @@ Run it with Docker Compose, a standalone CLI zip (Linux x64, macOS arm64), or th
 
 Both SDKs drive a running Yaci devnet from code. Mesh has a first-class `YaciProvider` (`new YaciProvider("http://localhost:8080/api/v1/")`, or no argument for [Mesh's hosted devnet](https://cloud.meshjs.dev/yaci)); pass an admin URL and it can fund addresses and read devnet config programmatically (`addressTopup`, `getDevnetInfo`). Because Yaci's Store API is **Blockfrost-compatible**, Evolution points its Blockfrost provider straight at it:
 
-```typescript
-// Mesh
-const provider = new YaciProvider("http://localhost:8080/api/v1/")
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
 
-// Evolution (Yaci's API speaks Blockfrost)
+```typescript
+// Yaci's API speaks Blockfrost
 const client = Client.make(preprod).withBlockfrost({ baseUrl: "http://localhost:8080/api/v1", projectId: "" })
 ```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+const provider = new YaciProvider("http://localhost:8080/api/v1/")
+```
+
+</TabItem>
+</Tabs>
 
 ### cardano-testnet
 
@@ -151,6 +161,9 @@ Mesh ships a dedicated tool for each, below. Evolution covers the same ground di
 
 `OfflineFetcher` is an in-memory provider you populate with fixtures, then build and query against exactly like a real one. Construct it with a network, seed it with `addUTxOs([...])`, `addProtocolParameters({...})`, and `addAccount(...)`, and pass it anywhere a provider goes:
 
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
+
 ```typescript
 import { OfflineFetcher, MeshTxBuilder } from "@meshsdk/core";
 import { MeshCardanoHeadlessWallet, AddressType } from "@meshsdk/wallet";
@@ -178,11 +191,17 @@ const tx = await new MeshTxBuilder({ fetcher })
   .complete();
 ```
 
+</TabItem>
+</Tabs>
+
 Persist a populated fetcher with `fetcher.toJSON()` and rebuild it with `OfflineFetcher.fromJSON(json)`, so a fixture is a checked-in file, not setup code.
 
 ### Evaluate script budgets offline (OfflineEvaluator)
 
 `OfflineEvaluator` computes Plutus execution units offline. Pair it with an `OfflineFetcher` that holds the script UTxO and collateral, then call `evaluateTx(txCbor)`. It returns one budget per redeemer:
+
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
 
 ```typescript
 import { OfflineEvaluator } from "@meshsdk/core-csl";
@@ -202,11 +221,17 @@ const costs = await evaluator.evaluateTx(unsignedTx);
 // [{ index: 0, tag: "SPEND", budget: { mem: 508703, steps: 164980381 } }]
 ```
 
+</TabItem>
+</Tabs>
+
 The same mock supplies both data and budgets, so script tests run with no node and assert on `mem`/`steps` in CI.
 
 ### Assert the shape of a built tx (TxTester)
 
 `TxTester` checks what a transaction *is* without submitting it. Parse a tx with `TxParser`, call `toTester()`, then chain filters and assertions and read the verdict with `success()` / `errors()`:
+
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
 
 ```typescript
 import { TxParser, MeshValue } from "@meshsdk/core";
@@ -225,6 +250,9 @@ txTester.keySigned(keyHash);
 
 console.log(txTester.success(), txTester.errors());
 ```
+
+</TabItem>
+</Tabs>
 
 You assert that your *builder* produced the outputs, mint, validity window, and signers you intended, without submitting anything.
 

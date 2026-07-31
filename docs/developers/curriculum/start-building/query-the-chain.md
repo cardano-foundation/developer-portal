@@ -77,7 +77,10 @@ In Mesh the read methods live on the **provider** (an `IFetcher`/`ISubmitter`), 
 </TabItem>
 </Tabs>
 
-Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass the API keys through the connection. With Evolution that is the `headers` option on `withKupmios`:
+Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass the API keys through the connection with the `headers` option on `withKupmios`:
+
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 const client = Client.make(mainnet).withKupmios({
@@ -89,6 +92,9 @@ const client = Client.make(mainnet).withKupmios({
   }
 })
 ```
+
+</TabItem>
+</Tabs>
 
 Mesh has no single Kupmios provider; pair `OgmiosProvider` with Kupo and pass the Demeter keys through each provider's connection options.
 

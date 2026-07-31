@@ -237,6 +237,9 @@ const cancel = mConStr1([])
 
 Writing raw `Data.constr` is error-prone for real contracts. Evolution's **`TSchema`** defines the shape once and gives a type-safe codec, so the off-chain types match the on-chain definitions in your validator:
 
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Data, TSchema, Bytes } from "@evolution-sdk/evolution"
 
@@ -246,6 +249,9 @@ const Codec = Data.withSchema(VestingDatum)
 const datum = Codec.toData({ beneficiary: Bytes.fromHex("abc1...23de"), deadline: 1735689600000n })
 // Codec.toCBORHex(...) / Codec.fromData(...) round-trip too
 ```
+
+</TabItem>
+</Tabs>
 
 Mesh has no equivalent typed codec: you build the same datum with the raw `mConStr` constructors shown above, keeping field order and types aligned with your validator by hand.
 
@@ -292,6 +298,9 @@ const update = mConStr2(["def4...56ab", 1735776000000n])    // Update(new_benefi
 
 When a datum or redeemer holds a multi-asset value (a DEX order, locked escrow funds), both SDKs give you value helpers so you don't assemble nested asset maps by hand. In Mesh, `MeshValue` does the arithmetic:
 
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
+
 ```typescript
 import { MeshValue } from "@meshsdk/core"
 
@@ -304,6 +313,9 @@ offered.geq(required)          // true: covers what the swap needs
 offered.merge(required)        // combine two values
 const datumValue = offered.toData()   // → Mesh Data (nested Maps) for the datum field
 ```
+
+</TabItem>
+</Tabs>
 
 Evolution's equivalent is the `Value` schema from `@evolution-sdk/evolution/plutus`, a `Map` of policy → asset name → quantity that you drop straight into a `TSchema.Struct`.
 
