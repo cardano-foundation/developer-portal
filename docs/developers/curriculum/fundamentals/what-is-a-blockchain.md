@@ -59,7 +59,7 @@ graph LR
     B3 -->|"..."| BN["Block N<br/>prev: hash(B(N-1))"]
 ```
 
-The **genesis block** is the very first block; it has no predecessor. On Cardano it was created in September 2017 (the Byron era). Every block since links back to it through an unbroken chain of hash references. On mainnet a new block is produced roughly every 20 seconds.
+The **genesis block** is the very first block; it has no predecessor. You can open Cardano's on an explorer: [block `5f20df93...`](https://cexplorer.io/block/5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb), dated 23 September 2017 in the Byron era, with an empty parent field and 14,505 transactions handing out the initial 31.1 billion ADA. Every block since links back to it through an unbroken chain of hash references. On mainnet a new block is produced roughly every 20 seconds.
 
 ## Who runs a blockchain network?
 

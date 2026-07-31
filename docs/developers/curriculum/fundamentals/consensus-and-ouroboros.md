@@ -17,12 +17,9 @@ Consensus is hard because distributed nodes have different views of pending tran
 Node A (Tokyo)    sees [T1, T2, T3]
 Node B (New York) sees [T2, T4, T5]
 Node C (Berlin)   sees [T1, T4, T6]
-
-Which transactions go in the next block? Who decides?
-What if Node B is malicious and fabricates T5?
 ```
 
-The network must agree on **who** produces the next block, **what** goes in it, and **when** it is final, despite latency, node failures, malicious actors, and no central coordinator.
+Three honest nodes, three different views, and no two of them agree on what is pending. Now suppose Node B is lying and T5 never existed. The network still has to settle on **who** produces the next block, **what** goes in it, and **when** it is final, despite latency, node failures, malicious actors, and no central coordinator.
 
 ## How does Proof of Work achieve consensus?
 
@@ -104,10 +101,10 @@ In practice forks are typically a block or two deep. Most applications treat 10-
 Each epoch the protocol distributes rewards (from fees and monetary expansion) to operators (a fixed cost plus margin) and delegators (the remainder, proportional to stake). The reward formula caps oversized pools:
 
 ```
-Desirable pool size ~ 1 / k0   (k0 = target number of pools, currently 500)
-Beyond it: rewards are CAPPED, excess stake earns nothing,
-delegators are incentivized to move to smaller pools.
+desirable pool size ~ 1 / k0      (k0 = target number of pools, currently 500)
 ```
+
+Past that size a pool's rewards are capped. The excess stake earns nothing, so delegators have a reason to move to a smaller pool, and the operator has no reason to want them to stay.
 
 Decentralization is not enforced by a rule; it emerges from economic incentives (a Nash equilibrium toward ~500 evenly-sized pools). Operators can also **pledge** their own ADA, which slightly raises rewards and resists Sybil attacks (many tiny pools are less profitable than one well-pledged pool).
 
@@ -123,15 +120,12 @@ Cardano provides **probabilistic finality**: the chance of reversal decreases ex
 
 ## What happens during a complete epoch?
 
-```
-Epoch N-2: stake snapshot taken (active stake for Epoch N)
-Epoch N-1: VRF outputs contribute to the epoch nonce used for Epoch N
-Epoch N:   per slot, each pool checks its VRF; if elected it selects txs,
-           builds a block, signs with its KES key, and publishes with the VRF proof;
-           other nodes verify the VRF proof, KES signature, and all transactions
-Epoch N boundary: calculate and distribute rewards, take a new snapshot,
-           apply queued parameter changes, process pool registrations/retirements
-```
+Three epochs are in flight at any moment, because the inputs to block production are fixed two epochs ahead.
+
+- **Epoch N-2**: a stake snapshot is taken. This is the active stake that will decide leadership in epoch N.
+- **Epoch N-1**: VRF outputs from this epoch feed the nonce that seeds epoch N's leader election.
+- **Epoch N**: in every slot, each pool checks its VRF against its threshold. A pool that wins selects transactions, builds a block, signs it with its KES key, and publishes it with the VRF proof. Every other node verifies that proof, the KES signature, and each transaction in the block.
+- **At the boundary**: rewards are calculated and distributed, a new snapshot is taken, queued protocol-parameter changes take effect, and pool registrations and retirements are processed.
 
 ### What are KES keys?
 
