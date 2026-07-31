@@ -8,13 +8,11 @@ description: "Author the on-chain code: Aiken validator types (minting, spending
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You've [picked a language](/docs/developers/curriculum/smart-contracts/choose-a-language) (Aiken, for most people). Now you write the on-chain code: the validator. Remember the mental model: a validator is a **gatekeeper** that receives a transaction and returns `True` or `False`. It never moves funds or mutates state; it only decides whether a transaction is allowed.
+You've [picked a language](/docs/developers/curriculum/smart-contracts/choose-a-language). Now you write the on-chain code: the validator. Remember the mental model: a validator is a **gatekeeper** that receives a transaction and returns `True` or `False`. It never moves funds or mutates state; it only decides whether a transaction is allowed.
 
-This page covers writing validators in Aiken, the simpler native-script alternative for multisig and time-locks, and the blueprint that connects your validator to off-chain code. The deep treatment of the three arguments a validator receives is in [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context); here we focus on authoring.
+This page covers writing validators in Aiken, the simpler native-script alternative for multisig and time-locks, and the blueprint that connects your validator to off-chain code. The deep treatment of the three arguments a validator receives is in [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context); this page focuses on authoring.
 
 If you have written web middleware, this is familiar: a validator is like route middleware or an auth guard, a pure function that returns allow or deny without mutating state. The redeemer is the request body it branches on (`MintToken` vs `BurnToken`), and the blueprint (`plutus.json`) is the contract's OpenAPI spec that tools read to generate a typed client.
-
-> Install Aiken from [aiken-lang.org](https://aiken-lang.org/installation-instructions); scaffold a project with `npx meshjs <name>` and pick the Aiken template.
 
 ## What a validator sees
 
@@ -180,7 +178,7 @@ How the reward account came to be registered, and which pool it delegates to, ar
 
 Runs when a transaction publishes a **certificate** involving the script's stake credential: registering it, delegating it to a pool, deregistering it. Funds at a script address stake like any other funds, so `publish` is where the script sets its own staking policy.
 
-That assumes the stake part of the script's address points at the script, which is a choice, not a given. A script address's stake credential can just as well be the **depositor's own key**: the locked funds then keep earning staking rewards for that user with no on-chain staking logic at all, because delegation and reward withdrawal are authorized by the stake witness independently of the payment credential. Production lending protocols stake their pools' idle liquidity exactly this way, and the one on-chain obligation falls on the *spend* handler: continuing outputs must preserve the full address, or the user's rewards stream silently ends. Point the stake credential at the script instead and staking becomes protocol policy, which is what the handlers here govern. Leave it unset, or unchecked on outputs, and you are donating the rewards, or inviting the [insufficient staking control](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control) vulnerability.
+That assumes the stake part of the script's address points at the script, which is a choice, not a given. A script address's stake credential can just as well be the **depositor's own key**: the locked funds then keep earning staking rewards for that user with no on-chain staking logic at all, because delegation and reward withdrawal are authorized by the stake witness independently of the payment credential. Production lending protocols stake their pools' idle liquidity exactly this way, and the one on-chain obligation falls on the *spend* handler: continuing outputs must preserve the full address, or the user's rewards stream silently ends. Point the stake credential at the script instead and staking becomes protocol policy, which is what the handlers here govern. Leave it unset, or unchecked on outputs, and you are donating the rewards, or inviting the [insufficient staking control](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates#insufficient-staking-control) vulnerability.
 
 A useful split for the script-controlled case: registration is open, it costs the sender a deposit and merely switches the reward account on, so someone else registering for you is usually a favor; delegation is privileged, because which pool the protocol's funds back is policy; and everything unplanned is refused:
 
@@ -203,7 +201,7 @@ validator stake_policy(admin: VerificationKeyHash) {
 }
 ```
 
-The explicit `when` is doing more work than it looks. A `publish` handler that returns `True`, or a permissive `else`, lets anyone deregister the stake credential, which halts reward accrual and breaks every pattern that relies on the withdrawal being available, the denial-of-service dissected on the [certificate deregistration](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/certificate-deregistration) page. Refusing the certificates you did not plan for is the defense.
+The explicit `when` is doing more work than it looks. A `publish` handler that returns `True`, or a permissive `else`, lets anyone deregister the stake credential, which halts reward accrual and breaks every pattern that relies on the withdrawal being available, the denial-of-service dissected on the [certificate deregistration](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates#unconstrained-certificate-operations) page. Refusing the certificates you did not plan for is the defense.
 
 "Registration is a favor" holds only for credentials that are *meant* to earn. A credential that exists purely for withdraw-zero forwarding must refuse registration and delegation too: if an attacker registers it and delegates it to a pool, real rewards start accruing, and every transaction builder that hardcoded a zero-amount withdrawal quietly breaks. Decide which kind of credential you are writing before choosing what the handler permits.
 

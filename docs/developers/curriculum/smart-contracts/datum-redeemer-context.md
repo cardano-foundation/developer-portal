@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Every Cardano validator receives exactly three arguments: the **datum** (state locked at a script address), the **redeemer** (action submitted by the spender), and the **ScriptContext** (a complete snapshot of the transaction being validated). Together these three give a validator everything it needs to decide whether a UTXO can be spent.
 
-If the [overview](/docs/developers/curriculum/smart-contracts/overview) gave you the mental model (validators validate, they don't act), this page is the data model that makes it work. We dissect each argument, look at how datums are stored on-chain, see what reference scripts buy you, and survey the design patterns that fall out of this three-argument architecture.
+If the [overview](/docs/developers/curriculum/smart-contracts/overview) gave you the mental model (validators validate, they don't act), this page is the data model that makes it work: each argument in turn, how datums are stored on-chain, what reference scripts buy you, and the design patterns that fall out of this three-argument architecture.
 
 If you build web back-ends, the moving parts map cleanly onto things you already know:
 
@@ -237,6 +237,9 @@ const cancel = mConStr1([])
 
 Writing raw `Data.constr` is error-prone for real contracts. Evolution's **`TSchema`** defines the shape once and gives a type-safe codec, so the off-chain types match the on-chain definitions in your validator:
 
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
+
 ```typescript
 import { Data, TSchema, Bytes } from "@evolution-sdk/evolution"
 
@@ -246,6 +249,9 @@ const Codec = Data.withSchema(VestingDatum)
 const datum = Codec.toData({ beneficiary: Bytes.fromHex("abc1...23de"), deadline: 1735689600000n })
 // Codec.toCBORHex(...) / Codec.fromData(...) round-trip too
 ```
+
+</TabItem>
+</Tabs>
 
 Mesh has no equivalent typed codec: you build the same datum with the raw `mConStr` constructors shown above, keeping field order and types aligned with your validator by hand.
 
@@ -292,6 +298,9 @@ const update = mConStr2(["def4...56ab", 1735776000000n])    // Update(new_benefi
 
 When a datum or redeemer holds a multi-asset value (a DEX order, locked escrow funds), both SDKs give you value helpers so you don't assemble nested asset maps by hand. In Mesh, `MeshValue` does the arithmetic:
 
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
+
 ```typescript
 import { MeshValue } from "@meshsdk/core"
 
@@ -304,6 +313,9 @@ offered.geq(required)          // true: covers what the swap needs
 offered.merge(required)        // combine two values
 const datumValue = offered.toData()   // → Mesh Data (nested Maps) for the datum field
 ```
+
+</TabItem>
+</Tabs>
 
 Evolution's equivalent is the `Value` schema from `@evolution-sdk/evolution/plutus`, a `Map` of policy → asset name → quantity that you drop straight into a `TSchema.Struct`.
 
@@ -484,7 +496,7 @@ A beacon token is a unique native token held at a script address alongside a dat
 
 ### On-chain configuration
 
-Compose a beacon token with a reference input and you get the pattern most production protocols reach for first: a single **config UTXO** whose datum holds the protocol's mutable settings, a swap fee, an admin key, a treasury address. A unique [state NFT](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) marks the canonical UTXO so a look-alike cannot be substituted (the failure mode is [missing UTXO authentication](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication)), the whole protocol reads it as a [reference input](/docs/developers/curriculum/fundamentals/core-concepts/transactions#reference-inputs-and-reference-scripts) so any number of transactions read the same settings in parallel without consuming them, and an admin credential in the datum gates updates: an admin key checked as a required signer, or any other credential by requiring it to authorize the transaction. Production settings UTXOs usually go one step further and split authority into roles, an operations admin, a treasury admin, each with its own field allowlist: the validator reconstructs the expected output datum from the input datum, pinning every field the acting role may not touch, and compares wholesale, so a stray change to a protected field fails the equality check without per-field logic. Updating is an ordinary [continuing-output](#the-continuing-output-pattern) spend, consume the config UTXO and recreate it with new values, and the mint and spend rules usually live in [one validator that shares a single hash](/docs/developers/curriculum/smart-contracts/write-a-validator#one-validator-many-purposes-one-hash). The one-time transaction that first mints the NFT into the initial config is often called bootstrapping. This is protocol-level configuration, distinct from the network's own protocol parameters.
+Compose a beacon token with a reference input and you get the pattern most production protocols reach for first: a single **config UTXO** whose datum holds the protocol's mutable settings, a swap fee, an admin key, a treasury address. A unique [state NFT](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies) marks the canonical UTXO so a look-alike cannot be substituted (the failure mode is [missing UTXO authentication](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication)), the whole protocol reads it as a [reference input](/docs/developers/curriculum/fundamentals/core-concepts/transactions#reference-inputs-and-reference-scripts) so any number of transactions read the same settings in parallel without consuming them, and an admin credential in the datum gates updates: an admin key checked as a required signer, or any other credential by requiring it to authorize the transaction. Production settings UTXOs usually go one step further and split authority into roles, an operations admin, a treasury admin, each with its own field allowlist: the validator reconstructs the expected output datum from the input datum, pinning every field the acting role may not touch, and compares wholesale, so a stray change to a protected field fails the equality check without per-field logic. Updating is an ordinary [continuing-output](#the-continuing-output-pattern) spend, consume the config UTXO and recreate it with new values, and the mint and spend rules usually live in [one validator that shares a single hash](/docs/developers/curriculum/smart-contracts/write-a-validator#one-validator-many-purposes-one-hash). The one-time transaction that first mints the NFT into the initial config is often called bootstrapping. This is protocol-level configuration, distinct from the network's own protocol parameters.
 
 ### Authorization methods
 

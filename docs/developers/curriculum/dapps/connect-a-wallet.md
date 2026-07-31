@@ -206,6 +206,9 @@ Connecting a wallet in a frontend is the same CIP-30 flow shown above; a framewo
 
 Wrap your app once in `<MeshProvider>` and import the stylesheet, then drop the pre-built button in:
 
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
+
 ```tsx
 // app root (pages/_app.tsx or app/layout.tsx)
 import "@meshsdk/react/styles.css"
@@ -228,6 +231,9 @@ import { CardanoWallet } from "@meshsdk/react"
 <CardanoWallet label="Connect" isDark persist onConnected={() => {}} />
 ```
 
+</TabItem>
+</Tabs>
+
 `<CardanoWallet />` renders the wallet-selection modal and connection flow for you. From any component under the provider, the hooks read live wallet state:
 
 | Hook | Returns |
@@ -242,6 +248,9 @@ import { CardanoWallet } from "@meshsdk/react"
 ### Svelte
 
 Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Instead of hooks, you read the reactive `BrowserWalletState` runes, accessed directly inside an `$effect` so reactivity isn't lost:
+
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
 
 ```svelte
 <script lang="ts">
@@ -263,6 +272,9 @@ Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Inste
 {/if}
 ```
 
+</TabItem>
+</Tabs>
+
 `BrowserWalletState` exposes `wallet`, `connected`, `name`, and `connecting`. Read its properties directly (don't destructure) or you lose reactivity.
 
 Without these packages (Evolution, or a framework Mesh doesn't ship for) the concept is unchanged and the code is short: call `cardano[name].enable()` on a button click, stash the returned wallet API or `client` in a `useState`/`useContext` (React) or a store (Svelte), and read from it. Same CIP-30 surface, just without the pre-built widget.
@@ -274,7 +286,7 @@ Mesh uses Node built-ins (`Buffer`, `crypto`, `stream`) that modern bundlers no 
 - **Polyfill the Node built-ins.** Add [`node-polyfill-webpack-plugin`](https://www.npmjs.com/package/node-polyfill-webpack-plugin) in `next.config`, and also strip the `node:` scheme with a `NormalModuleReplacementPlugin` over `/^node:/`. The plugin alone does not cover `node:`-prefixed imports, so without the strip the build still fails with `UnhandledSchemeError: ... node:buffer`.
 - **Pin a working libsodium.** A current Mesh release transitively pulls `libsodium-wrappers-sumo@0.7.x`, whose ESM build is broken, so `next build` fails with `Can't resolve './libsodium-sumo.mjs'`. Add `"overrides": { "libsodium-wrappers-sumo": "^0.8.4" }` to your `package.json`. This is a temporary workaround until Mesh ships the upstream fix (`@cardano-sdk/crypto@0.4.6+` already pins the corrected libsodium).
 
-The [mesh-nextjs](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs) ships the complete, build-verified configuration; copy its `next.config.ts` and the `overrides` block.
+The [mesh-nextjs](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs) template carries this whole configuration already; copy its `next.config.ts` and the `overrides` block. Because it tracks upstream releases rather than pinned versions, check the versions it resolves against what you get.
 
 ## Next steps
 

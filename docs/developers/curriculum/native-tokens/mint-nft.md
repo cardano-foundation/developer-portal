@@ -8,7 +8,7 @@ description: Mint a one-of-one NFT on Cardano with CIP-25 metadata, using Evolut
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-An NFT is just a native token with a quantity of 1, made permanently unique by a minting policy that can only ever run once. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This guide mints one and sends it to a wallet, pick your tool below.
+An NFT is just a native token with a quantity of 1, made permanently unique by a minting policy that can only ever run once. The name, image, and description are attached to the minting transaction as CIP-25 metadata (label `721`). This page mints one and sends it to a wallet, pick your tool below.
 
 New to policies and what makes a token "non-fungible"? Read [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) and [What are native tokens](/docs/developers/curriculum/native-tokens/overview) first. This page is the hands-on version.
 
@@ -25,7 +25,7 @@ New to policies and what makes a token "non-fungible"? Read [Minting policies](/
 - An image pinned to IPFS (the `ipfs://...` URI goes in the metadata)
 
 :::tip CIP-25 or CIP-68?
-**CIP-25** stores metadata in the minting transaction (label 721). Simplest, and what this guide uses. **CIP-68** stores metadata in an on-chain datum that a smart contract can read and update later. Choose CIP-68 only if your NFT's metadata needs to change or be read on-chain. See [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry).
+**CIP-25** stores metadata in the minting transaction (label 721). Simplest, and what this page uses. **CIP-68** stores metadata in an on-chain datum that a smart contract can read and update later. Choose CIP-68 only if your NFT's metadata needs to change or be read on-chain. See [Token metadata & registry](/docs/developers/curriculum/native-tokens/metadata-registry).
 :::
 
 ## Mint it
@@ -160,7 +160,7 @@ CIP-25 metadata (`metadata.json`):
 Build, sign, and submit (set `--testnet-magic 1|2` or `--mainnet`):
 
 ```bash
-cardano-cli conway transaction build \
+cardano-cli latest transaction build \
   --tx-in $txhash#$txix \
   --tx-out "$address+1500000+1 $policyid.$tokenname" \
   --change-address $address \
@@ -170,10 +170,10 @@ cardano-cli conway transaction build \
   --invalid-hereafter $slot \
   --out-file matx.raw
 
-cardano-cli conway transaction sign \
+cardano-cli latest transaction sign \
   --signing-key-file payment.skey --signing-key-file policy/policy.skey \
   --tx-body-file matx.raw --out-file matx.signed
-cardano-cli conway transaction submit --tx-file matx.signed
+cardano-cli latest transaction submit --tx-file matx.signed
 ```
 
 </TabItem>
@@ -378,7 +378,7 @@ const txHash = await wallet.submitTx(signedTx);
 | NFT not showing in wallet | metadata structure mismatch | policy ID and asset name in metadata must exactly match the minted token |
 | "Minting not allowed" | wrong key signed | the signing key's hash must match the policy |
 | Type error on label (Evolution) | `721` instead of `721n` | use the bigint `721n` |
-| Min UTxO too low | not enough ADA with the NFT | include about 2 ADA in the NFT output |
+| Min UTxO too low | not enough ADA with the NFT | include 2 ADA in the NFT output, comfortably above the floor |
 
 ## Next steps
 

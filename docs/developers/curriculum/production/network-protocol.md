@@ -5,7 +5,7 @@ sidebar_label: Network protocol
 description: Every provider, indexer, and SDK ultimately sits on the same Ouroboros wire protocol. How node-to-node and node-to-client interfaces work, how mini-protocols share one TCP connection, and how to pull a block straight from a mainnet relay.
 ---
 
-Most applications reach Cardano through an abstraction: a [managed API](/docs/developers/curriculum/production/api-providers/overview), an [indexer](/docs/developers/curriculum/production/infrastructure#chain-indexers), a bridge like [Ogmios](/docs/developers/curriculum/production/api-providers/ogmios), or a [node of your own](/docs/developers/curriculum/production/run-your-own-node) queried over its socket. All of them bottom out in the same place: the **Ouroboros network protocol**, the wire format Cardano nodes use to talk to each other.
+Most applications reach Cardano through an abstraction: a [query API](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis), an [indexer](/docs/developers/curriculum/production/indexing-and-analytics), a [node interface](/docs/developers/curriculum/production/connecting-to-the-chain#node-interfaces) like Ogmios, or a [node of your own](/docs/developers/curriculum/production/self-hosting) queried over its socket. All of them bottom out in the same place: the **Ouroboros network protocol**, the wire format Cardano nodes use to talk to each other.
 
 A relay does not speak REST. It speaks a set of typed **mini-protocols** multiplexed over a single TCP connection. Nothing about that layer is reserved for nodes: any client that implements the protocol can dial a public relay and take part. This page explains that layer, then demonstrates it by fetching a block straight off a mainnet relay in about twenty lines of Rust, with no node, no indexer, and no API key involved.
 
@@ -15,7 +15,7 @@ You will rarely build on this layer directly, but understanding it demystifies e
 
 A Cardano node exposes two distinct interfaces, built from the same protocol machinery but designed for different trust settings:
 
-- **Node-to-client (N2C)** runs over a local Unix socket, the `CARDANO_NODE_SOCKET_PATH` you set when [querying your own node](/docs/developers/curriculum/production/development-networks). It is a trusted interface for local processes: `cardano-cli` uses it, and Ogmios translates it into WebSocket JSON. Beyond following the chain and submitting transactions, it can query live ledger state (UTXOs, protocol parameters), which is why it stays local: those queries are not designed to be served to strangers.
+- **Node-to-client (N2C)** runs over a local Unix socket, the `CARDANO_NODE_SOCKET_PATH` you set when [querying your own node](/docs/developers/curriculum/production/self-hosting). It is a trusted interface for local processes: `cardano-cli` uses it, and Ogmios translates it into WebSocket JSON. Beyond following the chain and submitting transactions, it can query live ledger state (UTXOs, protocol parameters), which is why it stays local: those queries are not designed to be served to strangers.
 - **Node-to-node (N2N)** runs over TCP between peers that do not trust each other. It is how relays exchange blocks and transactions across the open internet, and it is deliberately narrow: sync headers, fetch blocks, diffuse transactions. This is the interface the rest of this page uses.
 
 The distinction explains a pattern you have already met in this module: "run your own node" tooling always talks about a local socket (N2C), while the network itself, and anything that taps it directly, speaks N2N.
@@ -27,7 +27,7 @@ Each interface is a bundle of **mini-protocols**: small, typed state machines, e
 - **Handshake** negotiates the protocol version and the [network magic](/docs/developers/curriculum/start-building/networks-and-test-ada), the identifier proving both sides are on the same chain, before anything else happens.
 - **Chain-sync** streams block headers as the chain grows, including *rollback* instructions when the peer switches to a better fork. This is the protocol every indexer is built on.
 - **Block-fetch** downloads block bodies for the headers you decide you want.
-- **Tx-submission** diffuses transactions toward block producers.
+- **Tx-submission** diffuses transactions toward block producers. It runs opposite to the block protocols: blocks fan out from the producing pool to everyone, while transactions converge from everywhere toward the producers.
 - **Keep-alive** and **peer-sharing** maintain the connection and support peer discovery.
 
 All of them share one TCP connection through a **multiplexer**: every message segment carries an 8-byte header, a timestamp, a 16-bit protocol identifier (one bit of which marks the direction of the conversation), and the payload length, so the demultiplexer on the other side can hand each segment to the right mini-protocol.
@@ -47,7 +47,7 @@ graph LR
     style R fill:#FFFFFF,stroke:#0033AD,stroke-width:2px,color:#000000
 ```
 
-The full state machines and wire encodings are specified in the [Ouroboros network specification](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); [`ouroboros-network`](https://github.com/IntersectMBO/ouroboros-network) is the reference implementation inside `cardano-node`.
+The [Cardano Blueprint's mini-protocols section](https://cardano-scaling.github.io/cardano-blueprint/network/mini-protocols.html) is the readable orientation: a state machine diagram, agency table, and message CDDL for each protocol. The full state machines and wire encodings are specified in the [Ouroboros network specification](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); [`ouroboros-network`](https://github.com/IntersectMBO/ouroboros-network) is the reference implementation inside `cardano-node`.
 
 ## Addressing a block: chain points
 
@@ -114,6 +114,6 @@ From here you can walk transactions, outputs, datums, and native assets across a
 
 ## Where this sits in your stack
 
-Everything in the [production infrastructure stack](/docs/developers/curriculum/production/infrastructure) is built on these two interfaces. Ogmios bridges the node-to-client protocols of a local node into WebSocket JSON. Indexers and pipelines like Oura and Dolos speak node-to-node to follow the chain, and Dolos then serves node-to-client APIs to your app. Managed providers run all of that for you behind REST. The protocol itself has implementations beyond the Haskell reference: [Pallas](https://github.com/txpipe/pallas) in Rust (the foundation of Dolos, Oura, and the Amaru node project) and [gOuroboros](https://github.com/blinklabs-io/gouroboros) in Go (the foundation of the Dingo node), both listed in [Builder Tools](/tools/?tags=rust).
+Everything in [connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain) is built on these two interfaces. Ogmios bridges the node-to-client protocols of a local node into WebSocket JSON. Indexers and pipelines like Oura and Dolos speak node-to-node to follow the chain, and Dolos then serves node-to-client APIs to your app. Managed providers run all of that for you behind REST. The protocol itself has implementations beyond the Haskell reference: [Pallas](https://github.com/txpipe/pallas) in Rust (the foundation of Dolos, Oura, and the Amaru node project) and [gOuroboros](https://github.com/blinklabs-io/gouroboros) in Go (the foundation of the Dingo node), both listed in [Builder Tools](/tools/?tags=rust).
 
-Reach for this layer when you are building the tools other developers use: a custom indexer or event pipeline, chain monitoring that must not depend on third parties, or lightweight tooling that needs one thing from the chain without running a node. For a typical application backend, a [provider](/docs/developers/curriculum/production/api-providers/overview) or [your own node](/docs/developers/curriculum/production/run-your-own-node) remains the right entry point; now you know exactly what they are abstracting.
+Reach for this layer when you are building the tools other developers use: a custom indexer or event pipeline, chain monitoring that must not depend on third parties, or lightweight tooling that needs one thing from the chain without running a node. For a typical application backend, a [hosted provider](/docs/developers/curriculum/production/use-a-provider) or [your own stack](/docs/developers/curriculum/production/self-hosting) remains the right entry point; now you know exactly what they are abstracting.

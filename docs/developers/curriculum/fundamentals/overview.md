@@ -12,9 +12,11 @@ For the broader introduction to what Cardano is and why you would build here (th
 ## Recommended reading order
 
 1. **[What Is a Blockchain?](/docs/developers/curriculum/fundamentals/what-is-a-blockchain)**: distributed ledgers, blocks, immutability, and the trust problem
-2. **[Cryptographic Primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives)**: hashing, Merkle trees, and digital signatures
-3. **[Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros)**: how the network agrees on one chain, via Proof of Stake
-4. **[Cardano for Ethereum Developers](/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers)**: the mental-model shift if you are coming from the EVM
+2. **[Cardano Architecture](/docs/developers/curriculum/fundamentals/cardano-components)**: the node, the layers, and the components you will interact with
+3. **[Cryptographic Primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives)**: hashing, Merkle trees, and digital signatures
+4. **[Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros)**: how the network agrees on one chain, via Proof of Stake
+5. **[Core Concepts](/docs/developers/curriculum/fundamentals/core-concepts/overview)**: how Cardano represents and moves value, the eUTXO model, addresses, keys and wallets, transactions, and fees
+6. **[Cardano for Ethereum Developers](/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers)**: the mental-model shift if you are coming from the EVM
 
 import DocCardList from '@theme/DocCardList';
 
@@ -22,4 +24,4 @@ import DocCardList from '@theme/DocCardList';
 
 ## Where this leads
 
-Once these foundations click, [Core Concepts](/docs/developers/curriculum/fundamentals/core-concepts/overview) shows how Cardano actually represents and moves value with the Extended UTXO model, addresses, transactions, and fees. Everything you build sits on top of these fundamentals.
+Everything you build sits on top of these fundamentals. Once they click, [Start Building](/docs/developers/curriculum/start-building/overview) gets you a working environment and your first transaction on a test network.

@@ -5,7 +5,7 @@ sidebar_label: For Ethereum developers
 description: A complete guide to Cardano development for developers coming from Ethereum.
 ---
 
-This guide covers the key differences between Ethereum and Cardano development. Coming from Ethereum, Cardano will look and feel different: different account model, different smart contract paradigm, different tooling. By the end, you'll understand how to translate your Ethereum knowledge to Cardano and have clear next steps for building.
+Coming from Ethereum, Cardano will look and feel different: different account model, different smart contract paradigm, different tooling. This page maps the key differences, translates the Solidity habits that carry over (and the ones that don't), and ends with concrete next steps for building.
 
 ## What Makes Cardano Different from Ethereum?
 
@@ -25,7 +25,7 @@ Smart contracts on Cardano follow the same model. Validators (Cardano's term for
 
 ### Counter Example
 
-To make the contrast concrete, let's look at a counter implemented in Solidity on Ethereum and the same counter implemented in [Aiken](/docs/developers/curriculum/smart-contracts/choose-a-language) on Cardano.
+To make the contrast concrete, here is a counter implemented in Solidity on Ethereum, followed by the same counter implemented in [Aiken](/docs/developers/curriculum/smart-contracts/choose-a-language) on Cardano.
 
 #### Ethereum Counter Smart Contract
 
@@ -152,8 +152,6 @@ validator counter_validator {
 To explore more real-world smart contracts written in Aiken, see the [Contract library](/templates/contracts).
 
 ## How Do Transactions Work on Cardano?
-
-With the model clear, let's look at how transactions actually work.
 
 A Cardano transaction transforms UTxOs: it spends existing ones and creates new ones.
 
@@ -558,7 +556,7 @@ Ready to start building? Here's the tooling landscape.
 
 ### Programming Languages
 
-Ethereum developers primarily use Solidity. On Cardano, currently the [most popular language](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2025/#what-do-you-use-or-plan-to-use-for-writing-plutus-script-validators-smart-contracts) is **Aiken**: a purpose-built language with Rust-like syntax, strong static typing, and excellent tooling. Aiken compiles directly to UPLC (Untyped Plutus Core), Cardano's native bytecode.
+Ethereum developers primarily use Solidity. On Cardano, currently the [most popular language](https://cardano-foundation.github.io/state-of-the-developer-ecosystem/2025/#what-do-you-use-or-plan-to-use-for-writing-plutus-script-validators-smart-contracts) is **Aiken**: a purpose-built language with Rust-like syntax, strong static typing, and its own toolchain (compiler, test framework, formatter, LSP). Aiken compiles directly to UPLC (Untyped Plutus Core), Cardano's native bytecode.
 
 Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](https://scalus.org) (Scala), [Pebble](https://pluts.harmoniclabs.tech/) (TypeScript DSL). See the [Smart Contracts overview](/docs/developers/curriculum/smart-contracts/overview) for the full list.
 
@@ -569,8 +567,8 @@ Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](http
 | Hardhat | [Aiken CLI](https://aiken-lang.org/installation-instructions) (`aiken build`, `aiken check`) |
 | Remix | [Aiken Playground](https://play.aiken-lang.org) |
 | Web3.js, ethers.js | [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) like **Mesh SDK** (TypeScript) |
-| Ganache, Foundry | [Local development networks](/docs/developers/curriculum/production/api-providers/overview) like [Yaci DevKit](https://devkit.yaci.xyz/) |
-| Infura, Alchemy | [API Providers](/docs/developers/curriculum/production/api-providers/overview) like [Blockfrost](https://blockfrost.dev/), [Maestro](https://www.gomaestro.org/), [Koios](https://koios.rest/) |
+| Ganache, Foundry | [Local development networks](/docs/developers/curriculum/start-building/development-networks) like [Yaci DevKit](https://devkit.yaci.xyz/) |
+| Infura, Alchemy | [Query APIs](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis) like [Blockfrost](https://blockfrost.dev/), [Maestro](https://www.gomaestro.org/), [Koios](https://koios.rest/) |
 | Etherscan | [Explorers](https://explorer.cardano.org/) |
 | MetaMask | [Wallets](https://cardano.org/apps/?tags=wallet) |
 
@@ -686,7 +684,7 @@ Ethereum's `mapping(address => uint)` has no direct equivalent. Instead, you use
 
 ### Smart Contract Security
 
-The eUTxO model has its own security considerations that differ from account-based systems. [Smart Contract Vulnerabilities](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview) serves as a reference for common issues and mitigations.
+The eUTxO model has its own security considerations that differ from account-based systems. [Smart Contract Vulnerabilities](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) serves as a reference for common issues and mitigations.
 
 **Example: Double Satisfaction**
 
@@ -712,7 +710,7 @@ flowchart TB
 
 Both validators ask "is there an output paying 5 ADA to the seller?" Both see the same output and pass. The attacker claims 20 tokens but only pays 5 ADA instead of 10. The fix is tagging outputs uniquely so each validator looks for its specific output.
 
-This is just one of many eUTxO-specific patterns. The documentation covers these vulnerabilities, and you can practice exploiting them in the [Cardano CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf).
+This is just one of many eUTxO-specific patterns. The documentation covers these vulnerabilities, and you can practice exploiting them in the [Cardano CTF](/docs/developers/curriculum/smart-contracts/security/ctf).
 
 ## Quick Reference: Ethereum to Cardano
 
@@ -724,9 +722,7 @@ A few Solidity habits carry over, but the ones that matter are not one-to-one:
 - **The interface is a blueprint, not an ABI.** Tools read [`plutus.json`](https://cips.cardano.org/cip/CIP-0057) the way they read an ABI. Instead of view functions and events, you query UTxOs directly through a provider and use transaction metadata or an indexer for event-style history.
 
 ## Next steps
-1. **Learn Aiken**: Start with [aiken-lang.org](https://aiken-lang.org) for the language guide and tutorials. Check out the [Aiken Standard Library](https://aiken-lang.github.io/stdlib/) for more to help you build your validator.
-2. **Write a validator**: Work through [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator) for hands-on on-chain building
-3. **Set Up Off-chain**: Use [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) for transaction building
-4. **Get Test ADA**: Use the [testnet faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) to get tADA for [Preview or Preprod testnets](/docs/developers/curriculum/start-building/networks-and-test-ada)
-5. **Explore Core Concepts**: Read about the [eUTxO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) for deeper understanding
-6. **Join the Community**: Connect via the [Developer Community](/docs/community/cardano-developer-community)
+
+- [Start Building](/docs/developers/curriculum/start-building/overview): the next module. Pick your tools, get test ADA, and send your first transaction with the same SDKs used throughout this curriculum.
+- [eUTXO](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): the model behind every difference on this page, if you jumped straight here.
+- [Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator): hands-on Aiken when you reach Module 5; [aiken-lang.org](https://aiken-lang.org) and the [standard library](https://aiken-lang.github.io/stdlib/) pair well with it.

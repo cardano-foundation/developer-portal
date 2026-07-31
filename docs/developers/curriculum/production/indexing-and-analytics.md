@@ -5,7 +5,14 @@ sidebar_label: Indexing & analytics
 description: Index exactly the on-chain data your application needs with Yaci Store's modular stores and plugin filters, and analyze full Cardano history from Parquet files on a laptop, no permanent infrastructure required.
 ---
 
-The [infrastructure page](/docs/developers/curriculum/production/infrastructure) maps the indexer landscape: db-sync gives you the full chain in PostgreSQL, Kupo tracks UTXOs matching patterns, Oura streams events. This page goes deeper on two needs those tools don't quite cover:
+An [indexer](/docs/developers/curriculum/production/connecting-to-the-chain#indexers) follows the chain and stores what it sees in a form your application can query. The landscape sorts by the **shape** of what gets stored, and picking by shape is the whole game:
+
+- **Full copy**: [cardano-db-sync](https://github.com/IntersectMBO/cardano-db-sync) writes the whole chain into PostgreSQL (40+ tables) for full historical SQL. Heavy (~150+ GB, days of initial sync), and the backbone of explorers and analytics platforms.
+- **Filtered UTXO set**: [Kupo](https://github.com/CardanoSolutions/kupo) tracks only UTXOs matching patterns you configure (by address, policy ID, and more), with fast sync and low resource use. Ideal for dApp backends, and the indexer half of the [Kupmios stack](/docs/developers/curriculum/production/self-hosting).
+- **Event stream**: [Oura](https://github.com/txpipe/oura) streams on-chain events to Kafka, webhooks, or files for reactive, event-driven systems; [Scrolls](https://github.com/txpipe/scrolls) reduces chain data into stores like Redis.
+- **Modular stores**: per-table stores you enable selectively, with filtering hooked into the pipeline; this is Yaci Store, the rest of this page.
+
+The fixed shapes cover most applications. This page goes deeper on two needs they don't quite cover:
 
 - **Custom indexing**: your application needs one specific slice of the chain, say every transaction carrying a given metadata label, in a database you control, without indexing everything else.
 - **Analytics**: you want to ask questions over the chain's *full history* (fee trends, staking economics, governance participation) without keeping a node, an indexer, and a large database running just to run some queries.
@@ -13,14 +20,14 @@ The [infrastructure page](/docs/developers/curriculum/production/infrastructure)
 [Yaci Store](https://github.com/bloxbean/yaci-store) addresses both. It is an open-source (MIT) modular indexer in Java from the BloxBean project, developed with engineering support from the Cardano Foundation and used in production by [cardano-rosetta-java](https://github.com/cardano-foundation/cardano-rosetta-java) and CF Ledger Sync, among others.
 
 :::info The Yaci family
-Three related projects share the name: [yaci](https://github.com/bloxbean/yaci) is the underlying Java implementation of the [Ouroboros mini-protocols](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); **Yaci Store** is the indexer built on it, covered here; [Yaci DevKit](https://devkit.yaci.xyz/introduction) is the local devnet tool that bundles a Store instance, covered in [development networks](/docs/developers/curriculum/production/development-networks).
+Three related projects share the name: [yaci](https://github.com/bloxbean/yaci) is the underlying Java implementation of the [Ouroboros mini-protocols](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); **Yaci Store** is the indexer built on it, covered here; [Yaci DevKit](https://devkit.yaci.xyz/introduction) is the local devnet tool that bundles a Store instance, covered in [development networks](/docs/developers/curriculum/start-building/development-networks).
 :::
 
 ## A modular indexer
 
 Most indexers make the sizing decision for you: db-sync stores everything, Kupo stores only UTXOs. Yaci Store is assembled from **stores** you enable per use case: blocks, transactions, UTXOs, metadata, assets, scripts, staking, and governance each ship as separate modules, plus aggregation modules that derive account balances, rewards, and ledger state independently, without a db-sync instance behind them.
 
-It syncs directly from any Cardano node over the node-to-node protocol, so it can follow a remote relay without you operating a node, writes to PostgreSQL, MySQL, or H2, and exposes **Blockfrost-compatible REST APIs** out of the box, meaning SDKs that speak Blockfrost can point at your own index unchanged (the same property [Yaci DevKit](/docs/developers/curriculum/production/development-networks) exploits locally).
+It syncs directly from any Cardano node over the node-to-node protocol, so it can follow a remote relay without you operating a node, writes to PostgreSQL, MySQL, or H2, and exposes **Blockfrost-compatible REST APIs** out of the box, meaning SDKs that speak Blockfrost can point at your own index unchanged (the same property [Yaci DevKit](/docs/developers/curriculum/start-building/development-networks) exploits locally).
 
 ## Index exactly what you need: plugins
 
@@ -111,9 +118,9 @@ yaci:
 The `{source}`, `{start_slot}`, `{end_slot}`, and `{epoch}` placeholders are filled in per partition. Enable with the `custom-exporters` profile alongside `analytics`. See the [Analytics Store docs](https://store.yaci.xyz/docs/v2/analytics/overview) for the full configuration surface.
 
 :::info Beta, and you produce the files yourself
-The Analytics Store ships in the 3.0.0-beta line (the stable line is 2.0.x), and there is no public dataset mirror yet, so today you run Yaci Store once to produce the export. The output is the stable part: standard Parquet files that remain useful regardless of what produced them.
+The Analytics Store ships in the 3.0.0-beta line (the stable line is 2.0.x), and there is no public dataset mirror yet, so you run Yaci Store once to produce the export. The output is the stable part: standard Parquet files that remain useful regardless of what produced them.
 :::
 
 ## Choosing your approach
 
-For serving an application's live queries, a [provider](/docs/developers/curriculum/production/api-providers/overview) or the [infrastructure stack](/docs/developers/curriculum/production/infrastructure) remains the reference path; db-sync is still the answer when you need the entire chain in SQL continuously. Reach for Yaci Store when you want an index shaped like your application (modular stores, plugin filters, Blockfrost-compatible API against your own database), and for the Analytics Store when the goal is a portable, reproducible dataset for analysis rather than a running service.
+For serving an application's live queries, a [hosted query API](/docs/developers/curriculum/production/use-a-provider) or a [self-hosted stack](/docs/developers/curriculum/production/self-hosting) remains the reference path; db-sync is still the answer when you need the entire chain in SQL continuously. Reach for Yaci Store when you want an index shaped like your application (modular stores, plugin filters, Blockfrost-compatible API against your own database), and for the Analytics Store when the goal is a portable, reproducible dataset for analysis rather than a running service.

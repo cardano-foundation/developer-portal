@@ -5,7 +5,7 @@ import { useState } from "react"
 export default function WalletConnect() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const network = import.meta.env.MODE === "development" ? NetworkType.TESTNET : NetworkType.MAINNET
+  const network = import.meta.env.VITE_NETWORK === "mainnet" ? NetworkType.MAINNET : NetworkType.TESTNET
 
   const { accountBalance, connect, disconnect, installedExtensions, isConnected, stakeAddress } = useCardano({
     limitNetwork: network

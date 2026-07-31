@@ -51,7 +51,7 @@ Inspect your transactions, addresses, and blocks at [explorer.cardano.org](https
 
 ## Develop locally (optional)
 
-For offline, deterministic iteration you can run a local network instead of a public testnet. See [Local development networks](/docs/developers/curriculum/production/development-networks) for the options (Yaci DevKit and cardano-testnet) and how to set them up.
+For offline, deterministic iteration you can run a local network instead of a public testnet. See [Local development networks](/docs/developers/curriculum/start-building/development-networks) for the options (Yaci DevKit and cardano-testnet) and how to set them up.
 
 ## Next steps
 

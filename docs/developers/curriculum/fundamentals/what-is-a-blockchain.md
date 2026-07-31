@@ -68,7 +68,7 @@ A decentralized network of independent node operators runs a blockchain. On Card
 1. **Relay nodes** propagate blocks and transactions across the network.
 2. **Block-producing nodes (stake pools)** create new blocks according to the consensus protocol ([Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros)).
 
-As of 2026, Cardano has roughly 3,000 active stake pools run by independent operators worldwide. No single entity, not even IOG (which built Cardano), controls the network. Decentralization is a spectrum, not a binary, and Cardano's reward design specifically incentivizes spreading stake across many pools.
+Thousands of active stake pools, run by independent operators worldwide, produce Cardano's blocks. No single entity, not even IOG (which built Cardano), controls the network. Decentralization is a spectrum, not a binary, and Cardano's reward design specifically incentivizes spreading stake across many pools.
 
 It helps to separate two properties that are easy to conflate. A system is **distributed** when many independent machines each hold and replicate the data, and **decentralized** when no single party controls it. These are independent axes: a large web service can be highly distributed across data centers yet remain centrally controlled by one company, while a system can be decentralized in authority without being widely distributed. A blockchain deliberately combines both, which is what makes its ledger hard to destroy and hard to capture.
 
@@ -132,4 +132,4 @@ After a few more blocks are added on top, the transaction is considered final wi
 - Cardano's eUTXO model, native tokens, and on-chain governance are the design choices that most affect how you build.
 
 ## Next steps
-Now that you know what a blockchain is, the next page explores the cryptographic building blocks that make it work: hash functions, Merkle trees, and digital signatures. See [Cryptographic Primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives).
+The guarantees on this page all rest on three cryptographic building blocks: hash functions, Merkle trees, and digital signatures. [Cryptographic Primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) covers each one.

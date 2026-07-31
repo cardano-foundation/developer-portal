@@ -33,12 +33,6 @@ At full white, each LED can draw up to **60 mA**. A 12-LED ring at full white ca
 - [FastLED library](https://github.com/FastLED/FastLED) - alternate library, more performant for large arrays.
 - [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use)
 
-## Where to buy
-
-- [AliExpress](https://s.click.aliexpress.com/e/_c3iXvLqP)
-- [Amazon US](https://amzn.to/3NlRBIv)
-- [Amazon Germany](https://amzn.to/3Yw2IRH)
-
 ---
 
 *Adapted from the [CardanoThings](https://cardanothings.io/hardware/ws2812b-led-ring-12) project, originally produced under [Project Catalyst Fund 11](https://projectcatalyst.io/funds/11). Source: [github.com/CardanoThings](https://github.com/CardanoThings).*

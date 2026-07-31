@@ -2,16 +2,12 @@
 id: token-security
 title: Token Security
 sidebar_label: Token security
-description: Native tokens are an essential part of the Cardano blockchain representing value that can be created and traded. Understanding token security is crucial for smart contract developers.
+description: What native tokens look like to a validator, and the security pitfalls of handling, validating, and minting them.
 ---
 
-Native tokens introduced in the Mary protocol upgrade are an essential part of the Cardano blockchain. They represent value that can be created and traded on the blockchain in addition to ADA.
+Native tokens, introduced in the Mary protocol upgrade, represent value that can be created and traded on Cardano in addition to ADA. They can also be more than a representation of value: many tokens exist purely as technical devices inside protocols. Handling either kind safely means knowing how tokens behave inside transactions and where the pitfalls lie, which is what this page covers from a smart contract developer's point of view.
 
-Tokens can be more than just a representation of value. While interacting with Cardano, you will encounter a myriad of different tokens serving various purposes. It is therefore important to know what the tokens are, and to understand their common use and security pitfalls.
-
-This page covers the basics, what tokens are, how they integrate into the Cardano blockchain and how they can be incorporated into dApps. It focuses on what challenges they represent for smart contract developers.
-
-To make things simple, the word token represents both ADA and native tokens. However, note that ADA is a special case and its handling may be different from time to time, even though it behaves similarly to native tokens in a lot of cases.
+Throughout, the word token covers both ADA and native tokens. ADA is a special case whose handling sometimes differs, but it behaves like a native token in most contexts.
 
 ## Basics
 
@@ -92,7 +88,7 @@ By attacking these execution limits, an attacker could block even the withdrawal
 
 ## Correct value handling
 
-As always, theory is a lot cleaner than practice. The actual execution limits are determined by the validators that are run where it heavily depends on their actual implementation, how complex and efficient it is. Moreover, it also depends heavily on the context the validators are run on, the transaction validated, its structure and size.
+Theory is cleaner than practice. How close a transaction comes to the execution limits depends on the validators it runs, how complex and efficient their implementations are, and on the transaction itself: its structure and size.
 
 There is no simple catch-all solution for token handling. The best course of action is to first think about the types of tokens that can be deposited into the UTxO. If you only really care about ADA, enforce that no other tokens are added. If you need to support multiple policies, specify the set of policy IDs in the datum and test that the validator is efficient enough that it validates even when it contains all of them at the same time. If you need to be able to support any tokens, you could limit how many different tokens can be in a single UTxO. You might require a different solution altogether, though.
 
@@ -102,11 +98,11 @@ Rigorous testing should be in place to test whether even the most extreme edge c
 
 Comparing values is another place handling goes wrong. An on-chain `Value` is a normalized, canonically sorted map that by construction never holds a zero-quantity entry. The transaction's **mint field** is not normalized the same way, which is why Aiken historically exposed it as a distinct type converted with `from_minted_value` (that separate type has since been merged into the unified `cardano/assets` `Value`, but the underlying distinction remains). The risk is trusting value structure you did not normalize: an externally supplied value carrying a zero-quantity token, or a non-canonical ordering, can make a structural equality (`==`) or subset check behave wrongly, so two economically equal values compare as unequal (bypassing a guard) or a required equality can never be met (locking the UTxO). Do not compare raw value maps for equality when any part is attacker-controlled; check specific quantities with `quantity_of`, and normalize before comparing.
 
-## What's next?
+## Beyond value: technical tokens
 
-The token basics and the use of tokens as a representation of value, their primary purpose, are covered above. But native tokens can be used in various creative, more technical ways as well.
+Value is tokens' primary purpose, but not their only one; native tokens also serve as technical building blocks inside protocols.
 
-To demonstrate one use case, consider on-chain oracles. The main goal of an oracle is to reliably bring real-world data onto the Cardano blockchain. For example, you could want to know the value of a currency, a particular stock or the results of a real-world event. To do so, a special UTxO is often created and this UTxO contains the required information in its datum. The script validator of the UTxO can easily govern how updates are performed, usually, this is by allowing only certain trusted entities to spend the oracle UTxO, often requiring multiple of them to agree on the update. However, there could be multiple UTxOs created on the same script address and they could be created by anyone with any data (see the [Missing UTxO Authentication](../missing-utxo-authentication) page). Therefore, there is a need to recognize the correct current oracle UTxO.
+To demonstrate one use case, consider on-chain oracles. The main goal of an oracle is to reliably bring real-world data onto the Cardano blockchain. For example, you could want to know the value of a currency, a particular stock or the results of a real-world event. To do so, a special UTxO is often created and this UTxO contains the required information in its datum. The script validator of the UTxO can easily govern how updates are performed, usually, this is by allowing only certain trusted entities to spend the oracle UTxO, often requiring multiple of them to agree on the update. However, there could be multiple UTxOs created on the same script address and they could be created by anyone with any data (see the [Missing UTxO Authentication](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication) page). Therefore, there is a need to recognize the correct current oracle UTxO.
 
 Suppose the oracle's purpose is to bring just a single data point to the chain, meaning there's always just a single up-to-date UTxO valid. To make a UTxO uniquely recognizable, you can create a special kind of an NFT (without an image, just for development purposes) and lock it into the correct oracle UTxO. As there can be only one such NFT (by definition, a non-fungible token), there is always at most one oracle UTxO containing this NFT. When this UTxO is used in a transaction, either as a normal input or as a reference input, any validator can easily check whether the correct NFT is present. When the oracle information needs to be renewed, the old oracle UTxO is spent and the token is sent into the newly created oracle UTxO.
 
@@ -114,13 +110,13 @@ This is probably the most simple technical use case for tokens. This token does 
 
 ## Validation tokens
 
-This brings us to a fairly common use case of native tokens, to provide UTxO validation. Often there is a need to make sure that a UTxO was created correctly, it wasn't tampered with in any way or to prove authenticity of some kind. This section takes a more technical look at the concept of validation tokens.
+A fairly common use case of native tokens is to provide UTxO validation: making sure a UTxO was created correctly, wasn't tampered with, or proving authenticity of some kind.
 
 The crux of the problem is that a validator is run only when a UTxO at its address is spent, not when it is created. It is therefore very simple to create malicious UTxOs with invalid data and present them as a real thing. Without further protection, it's impossible to distinguish between them on-chain.
 
 Validation tokens fill in this missing piece of the puzzle as they can validate the initial transaction. You can enforce that the tokens can only be minted during the UTxO creation, validating that the created UTxO is correct and in the proper initial state. This validation is part of the corresponding minting policy. Note, that the minting policy has access to the whole script context, and it can therefore look at the whole transaction, including all the transaction inputs, outputs, signatories, datums, other minted tokens, etc.
 
-The minting policy of the validation token ensures that it is placed into the correct UTxO. As a result, the validator can assume that any UTxO that contains the validation token was created according to the specification. It is important to note that malicious UTxOs without the validation token may still exist. It is thus important for the protocol to not interact with any such invalid UTxOs.
+The minting policy of the validation token ensures that it is placed into the correct UTxO. As a result, the validator can assume that any UTxO that contains the validation token was created according to the specification. Malicious UTxOs without the validation token may still exist, so the protocol must refuse to interact with them.
 
 The idea is simple but not yet complete. As described, it creates several security pitfalls. As stated above, the validation token serves as a proof that the UTxO that holds it is correct. But this would only be the case if the UTxO was unspendable, once it's spent, the validation token could freely move away, potentially into a malicious UTxO.
 
@@ -130,15 +126,15 @@ Consider a situation in which the validation token is correctly minted and after
 
 It is therefore worth repeating that it is paramount for any smart contract with a validation token to take care of these tokens. The actual implementation varies depending on the use case. However, follow these two general recommendations:
 
-1) Count the number of validation tokens across all inputs and outputs to prevent double satisfaction attacks that could result in a "loss" of a token. The code should check that the number of input tokens and output tokens is as expected. For example, this way, you can not merge two UTxOs with validation tokens in them into a single one and claim the other validation token for nefarious uses. Remember that any single token lost to an unknown contract or to a public key address can ultimately break the whole protocol. You really need to validate every single token. Also note, that tokens can possibly be minted or burned in the same transaction if you don't restrict it. These double satisfaction attacks can be especially tricky when the minting policy is combined with the validator, an example of such an attack is as described previously above.
+1) Count the number of validation tokens across all inputs and outputs to prevent double satisfaction attacks that could result in a "loss" of a token. The code should check that the number of input tokens and output tokens is as expected. For example, this way, you can not merge two UTxOs with validation tokens in them into a single one and claim the other validation token for nefarious uses. Remember that any single token lost to an unknown contract or to a public key address can ultimately break the whole protocol. You really need to validate every single token. Note also that tokens can be minted or burned in the same transaction if you don't restrict it. These double satisfaction attacks can be especially tricky when the minting policy is combined with the validator, an example of such an attack is as described previously above.
 
 2) Lock the validation tokens into very specific UTxOs. Make sure to check the whole UTxO (address, value, datum) of all output UTxOs holding your validation tokens. By checking the address, you can be sure that a script you trust keeps the control of the token. By checking the datum, you make sure that you do not validate malicious data. You need to be careful of double satisfaction attacks again here (e.g. do not validate two of the same correct outputs if only one should be validated). Lastly, you should check the value of the UTxO as well; e.g. to verify that there are no dust tokens present that could potentially prevent you from further spending the UTxO by maliciously increasing the execution units.
 
-Additionally, if you don't need it, do not allow a mint of new validation tokens in case there are any on the input. It makes double satisfaction reasoning easier and, more often than not, you do not really need to allow it.
+Unless the design requires it, do not allow minting new validation tokens in a transaction that already has some on its inputs; it keeps the double satisfaction reasoning simple.
 
 ## Implementation
 
-This brings us to the technical part of the actual implementation. As mentioned above, the validation token needs to be locked into a correct UTxO. Therefore, the minting policy of the validation token needs to know the script hash of the correct validator. It can be either written directly into the minting policy or used as a parameter of it. The parametrization is a better code practice. The compiled code, however, is almost identical.
+The validation token needs to end up locked in the correct UTxO. Therefore, the minting policy of the validation token needs to know the script hash of the correct validator. It can be either written directly into the minting policy or used as a parameter of it. The parametrization is a better code practice. The compiled code, however, is almost identical.
 
 Additionally, the validator needs to check that the correct validation token is part of it in later transactions. Therefore, the validator needs to know the policy ID (hash of the minting policy) so that only that special validation token is supported. Once again, it can be known by the script by putting it as its parameter.
 
@@ -233,12 +229,12 @@ While this double satisfaction prevention is secure, it is inefficient. Assume t
 
 It would be much more efficient if this expensive validation could be run just a single time. This can be achieved by **delegating the whole transaction-level validation to a minting policy** of an artificially created token. The transaction token is a special token whose minting policy contains the validation logic. The actual validator now only needs to check that a correct transaction token is indeed minted, meaning that the validation is run in the transaction. It therefore really just delegates its validation to the transaction token's minting policy.
 
-Note that it is just an artificially created token for only this purpose. The token itself is not important, it can be freely moved or burned. The only important aspect of the token is that its mint provides the validation so that in this example, 5 inputs just check that the minting policy is run and the policy validates the whole transaction thoroughly. To read more about the transaction token pattern, look into [Plutonomicon](https://github.com/Plutonomicon/plutonomicon), which first came up with the idea.
+Note that it is just an artificially created token for only this purpose. The token itself is not important, it can be freely moved or burned. The only important aspect of the token is that its mint provides the validation so that in this example, 5 inputs just check that the minting policy is run and the policy validates the whole transaction thoroughly. This is the [transaction-level minting](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/tx-level-minter) design pattern; [Plutonomicon](https://github.com/Plutonomicon/plutonomicon), which first described it, calls it the transaction token pattern.
 
-This solution may appear hacky. It indeed is. Right now, there are just hacky ways to provide transaction-level validation. This is one example on how to achieve it.
+Every route to transaction-level validation is a workaround of one kind or another; this is one of them, and the alternatives below lean on other conventions.
 
 Another way would be to forward the validation to a single script input, e.g. the first one found in the transaction inputs as the order is set for the transaction and all the scripts see it in the same order. That would mean checking whether the current validation run is of the first script input, if so, run the transaction-level validation, otherwise validating straight away.
 
-Yet another approach is to use stake validators. This approach is not recommended. That's because it's the most hacky, to the point that it might break in the future. You need to always withdraw all the staking rewards in a withdraw staking rewards transaction. This inevitably means that, in order to be flexible, you would need to run it also when there are zero rewards available. This is currently possible and the validation is indeed required to run even when you specify in the transaction that you want to withdraw zero rewards. This, however, does not make sense when you think about it, why require a script when there are no rewards withdrawn from it? Also, it's inconsistent with how minting of zero tokens is handled. You can not mint zero tokens, such value would get filtered out from the mint transaction field. There's been an effort to even "fix" this behavior on the ledger level. It wasn't fixed as there's been pushback from developers already using it this way, though.
+Yet another approach is the [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) (withdraw-zero) pattern. Be aware of the convention it stands on: it relies on the ledger running a withdrawal script even for a zero-amount withdrawal, which is arguably an accident of the rules rather than a designed feature (minting zero tokens, by contrast, is filtered out and never runs a policy). A ledger-level effort to change the behavior was dropped precisely because deployed protocols already depend on it, so the pattern is widely used in practice, but it validates through a quirk, not a purpose-built mechanism.
 
 As token security is an integral part of overall Cardano smart contract security, the [Capture the Flag](https://github.com/Invariant-0/cardano-ctf) game features not one, but two levels focused on it. Check the levels `07_multisig_treasury_v2` and `09_multisig_treasury_v3`. Both of these tasks feature validation tokens. You can look at their implementation, find in what way they break the general recommendations, and try to exploit the vulnerabilities.

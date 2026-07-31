@@ -1,7 +1,7 @@
 ---
 id: wallets-and-keys
 title: Keys & Wallets
-sidebar_label: Keys & Wallets
+sidebar_label: Keys & wallets
 description: The identity layer of Cardano, from Ed25519 key pairs and BIP-39 seed phrases to HD derivation, wallet types, and CIP-30.
 ---
 

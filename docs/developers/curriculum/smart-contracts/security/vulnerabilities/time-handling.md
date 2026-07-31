@@ -2,7 +2,7 @@
 id: time-handling
 title: Time Handling
 sidebar_label: Time handling
-description: Time in Cardano transactions is a complex topic due to Cardano's deterministic transaction validation philosophy. Understanding proper time handling is crucial for smart contract security.
+description: "Time in Cardano transactions: deterministic validation, validity intervals, and the attacks that follow from picking the wrong interval bound."
 ---
 
 Time in Cardano transactions is a complex topic. To understand why, you must first understand Cardano's transaction validation philosophy.

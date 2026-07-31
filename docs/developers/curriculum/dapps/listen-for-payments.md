@@ -109,7 +109,7 @@ function receivedLovelace(addr) {
 For a complete point-of-sale app with a React UI, QR codes, and live USD/ADA conversion, fork the [Cardano POS starter](https://github.com/fill-the-fill/cardano-pos-starting-point).
 
 :::tip Wait for confirmations
-A transaction in the mempool can still be rolled back. Cardano produces a block roughly every 20 seconds, so for anything valuable, wait several blocks (a few minutes) before treating a payment as final; the larger the amount, the deeper you should wait.
+A transaction in a recent block can still be [rolled back](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work). Cardano produces a block roughly every 20 seconds, so for anything valuable, wait 10-20 blocks (a few minutes) before treating a payment as final; the larger the amount, the deeper you should wait. Track deposits by transaction id and credit each one exactly once, only after your chosen depth, so a rollback that replays the same transaction cannot double-credit.
 :::
 
 ## Requesting a payment
@@ -175,10 +175,15 @@ Show the amount and recipient before prompting, and handle the wallet's rejectio
 
 The connected-wallet path assumes the payer is already in your dApp with a browser wallet. The other way to request a payment needs no connection at all: encode the request as a [CIP-13](https://cips.cardano.org/cip/CIP-0013) `web+cardano:` URI, a link or QR code the payer opens or scans with a compatible mobile wallet, which opens pre-filled with your address and the amount for them to confirm and sign. This is the phone-first case with no dApp connector involved: a point-of-sale terminal, a code shown on a screen or printed on an invoice, a donation link.
 
-The format is `web+cardano:{address}?amount={ada}`, with the amount in decimal ada. Treat it as send-side convenience only. Wallet support for the amount varies, so it may or may not arrive pre-filled, and nothing tells you the payer scanned the code or what they will actually send. The URI improves the payer's experience but is never the source of truth: you still confirm exactly as [above](#detecting-a-payment), by polling the address for the lovelace you expect. To match a specific incoming payment to a specific request when you can't attach a memo, make the requested amount unique per request; a proper payment identifier on the URI is proposed in a follow-up (CIP-157, still in draft).
+The format is `web+cardano:{address}?amount={ada}`, with the amount in decimal ada. Treat it as send-side convenience only. Wallet support for the amount varies, so it may or may not arrive pre-filled, and nothing tells you the payer scanned the code or what they will actually send. The URI improves the payer's experience but is never the source of truth: you still confirm exactly as [above](#detecting-a-payment), by polling the address for the lovelace you expect. To match a specific incoming payment to a specific request when you can't attach a memo, make the requested amount unique per request; a follow-up proposal ([CIP-157](https://github.com/cardano-foundation/CIPs/pull/843)) adds a proper payment identifier to the URI, so check its status and wallet support before relying on it.
 
 For a full device-hosted build of this, a QR payment terminal running on hardware, see [IoT Workshop 05: CIP-13 Integration](/docs/developers/curriculum/dapps/iot/qr-code-payments/02-cip13-integration).
 
 ## Use cases
 
 E-commerce checkout, payment gateways, donation platforms, subscription billing, event ticketing, in-app purchases, and vending or IoT machines: anywhere you fulfill something only after ada arrives.
+
+## Next steps
+
+- [Sponsored transactions](/docs/developers/curriculum/dapps/sponsored-transactions): multi-party transactions where someone else covers the fee
+- [Ship to Production](/docs/developers/curriculum/production/overview): take the app from testnet to mainnet

@@ -2,26 +2,29 @@
 id: overview
 title: Staking & Governance
 sidebar_label: Overview
-description: "The developer's view of staking and governance on Cardano: how a dApp delegates stake, claims rewards, registers a DRep, and votes, all as ordinary transactions."
+description: "The developer's module for staking and governance: concept pages for each system, then practice pages that register, delegate, withdraw, vote, and propose as ordinary transactions."
 ---
 
-Staking and governance are two things your users do on Cardano, and a dApp can build all of it. Delegating stake, claiming rewards, registering as a DRep, delegating a vote, and voting on governance actions are **ordinary on-chain transactions**, the same build → sign → submit flow you already know, with a few extra certificate types.
+You can already build transactions and manage native tokens. This module adds what an ADA holder's *stake* can do from your application: back the network's security (staking) and steer the protocol's evolution (governance). Everything here is the same build → sign → submit flow you know, with a few extra certificate types, and a dApp can build all of it.
 
-This module is the **developer slice**: how to integrate staking and governance into an application.
+The module runs concept before practice, twice:
+
+- **[Staking](/docs/developers/curriculum/staking-governance/staking)**: the staking concept. Cardano's non-custodial delegation model, how rewards and timing work, and the lifecycle every integration follows.
+- **[Delegate and withdraw](/docs/developers/curriculum/staking-governance/delegate-and-withdraw)**: practice. Register a stake credential, delegate it to a pool, and withdraw rewards.
+- **[Manage stake](/docs/developers/curriculum/staking-governance/manage-stake)**: practice. Query delegation and rewards, deregister cleanly, and the combined certificate flow that bridges into governance.
+- **[Governance](/docs/developers/curriculum/staking-governance/governance)**: the governance concept. Why CIP-1694 shapes the platform you build on, the three bodies, the seven action types, and ratification.
+- **[DReps & vote delegation](/docs/developers/curriculum/staking-governance/drep-and-delegation)**: practice. Register a DRep, key- or script-based, and delegate voting power.
+- **[Vote & propose](/docs/developers/curriculum/staking-governance/vote-and-propose)**: practice. Cast votes on live actions and put actions of your own on-chain.
+- **[Governance operations](/docs/developers/curriculum/staking-governance/governance-operations)**: the appendix. Committee credentials, governance-state queries, CIP-95, and the handover to smart contracts.
 
 :::note Not covered here
 - **Running a stake pool** (relays, block producers, KES keys, pool registration, monitoring) is a separate discipline with its own section: [Operate a Stake Pool](/docs/operators/).
 - **Participating in governance** as an ADA holder, DRep, or committee member (delegating your vote, browsing actions, the constitution, submitting actions as a human) lives on the participant hub at [cardano.org/governance](https://cardano.org/governance).
 
-This page is about *building* staking and governance features, not operating a pool or participating by hand.
+This module is about *building* staking and governance features, not operating a pool or participating by hand.
 :::
-
-## In this module
-
-- **[Staking](/docs/developers/curriculum/staking-governance/staking)**: Cardano's non-custodial delegation model (no lock-up, no slashing), how rewards and timing work, and how to register, delegate, withdraw, and query stake from a dApp.
-- **[Governance](/docs/developers/curriculum/staking-governance/governance)**: what CIP-1694 governance means for developers, and how to register a DRep, delegate voting power, and vote, including the CIP-95 wallet APIs.
 
 ## Next steps
 
-- [Staking](/docs/developers/curriculum/staking-governance/staking), start here if you're adding delegation or rewards
-- [Governance](/docs/developers/curriculum/staking-governance/governance), add DRep registration, vote delegation, or voting
+- Start with [Staking](/docs/developers/curriculum/staking-governance/staking), or jump straight to [Delegate and withdraw](/docs/developers/curriculum/staking-governance/delegate-and-withdraw) if you already know the model
+- The module ends by handing over to [Smart Contracts](/docs/developers/curriculum/smart-contracts/overview), where the script credentials met here get their validation logic
