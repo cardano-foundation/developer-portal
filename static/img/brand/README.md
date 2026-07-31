@@ -21,4 +21,4 @@ cream text and lavender accents. Brand font is Chivo (`static/fonts/`).
 Logo assets live in this folder, taken from the brandhub on cardano.org. The horizontal
 lockup (mark plus wordmark) is `cardano-horizontal-black.svg` for light backgrounds and
 `cardano-horizontal-white.svg` for dark ones. The mark on its own is `cardano-black.svg`
-and `cardano-white.svg`. All four share the same 251.17 unit height, so they scale together.
+and `cardano-white.svg`.
