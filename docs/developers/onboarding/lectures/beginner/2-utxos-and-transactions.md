@@ -115,8 +115,6 @@ Two lines do the adding-up for you:
 - `await wallet.getUtxos()` hands the SDK **all** your current bags (UTxOs).
 - `.selectUtxosFrom(...)` lets it pick from them, and `.complete()` **makes the transaction add up**: it selects just enough bags to cover the payment plus the fee, and returns the leftover to `.changeAddress(...)` as change.
 
-**Run it and see it on the explorer.** This code is waiting for you in the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, a tiny app with every example from this track wired to a button (it takes a minute to set up, and you'll use it for the rest of the track). Start it, click **Connect Lace and send 1 ADA to myself**, and approve it in Lace. It prints an **explorer link** to your brand-new transaction, read it beside the one you sent by hand above: **same shape** (inputs, outputs, change, fee), only this time your code built it and the SDK did the balancing.
-
 </TabItem>
 <TabItem value="evolution" label="Evolution">
 
@@ -124,6 +122,8 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 </TabItem>
 </Tabs>
+
+**Run it and see it on the explorer.** This code is waiting for you in the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, a tiny app with every example from this track wired to a button (it takes a minute to set up, and you'll use it for the rest of the track). Start it, click **Connect Lace and send 1 ADA to myself**, and approve it in Lace. It prints an **explorer link** to your brand-new transaction, read it beside the one you sent by hand above: **same shape** (inputs, outputs, change, fee), only this time your code built it and the SDK did the balancing.
 
 ## Go deeper
 

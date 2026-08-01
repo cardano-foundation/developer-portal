@@ -158,8 +158,6 @@ Let's attach one. This sends a tiny transaction to yourself with a **memo** atta
   {extractRegion(SendWithMetadata, "metadata")}
 </CodeBlock>
 
-**Run it and see it on the explorer.** In the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, click **Connect Lace and send a transaction with a memo**, and approve it. Follow the **explorer link** and open the transaction's **metadata**, your message is sitting there on-chain, attached to the payment.
-
 </TabItem>
 <TabItem value="evolution" label="Evolution">
 
@@ -167,6 +165,8 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 </TabItem>
 </Tabs>
+
+**Run it and see it on the explorer.** In the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, click **Connect Lace and send a transaction with a memo**, and approve it. Follow the **explorer link** and open the transaction's **metadata**, your message is sitting there on-chain, attached to the payment.
 
 ### When would you use it?
 

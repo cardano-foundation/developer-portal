@@ -61,8 +61,6 @@ Let's mint one. This creates **100 GOLD** under the simplest possible policy: th
   {extractRegion(MintToken, "mint-token")}
 </CodeBlock>
 
-**Run it and see it on the explorer.** In the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, click **Connect Lace and mint 100 GOLD**, and approve it in Lace. Follow the **explorer link**, you'll see 100 GOLD minted and sitting in your wallet next to your ADA, under a brand-new policy ID that's yours.
-
 </TabItem>
 <TabItem value="evolution" label="Evolution">
 
@@ -70,6 +68,8 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 </TabItem>
 </Tabs>
+
+**Run it and see it on the explorer.** In the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, click **Connect Lace and mint 100 GOLD**, and approve it in Lace. Follow the **explorer link**, you'll see 100 GOLD minted and sitting in your wallet next to your ADA, under a brand-new policy ID that's yours.
 
 Two details surprise people the first time, whichever SDK they use:
 
