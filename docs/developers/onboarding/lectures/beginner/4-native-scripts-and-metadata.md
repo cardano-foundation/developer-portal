@@ -23,19 +23,27 @@ You've now met the two ingredients a simple rule is made of: **signatures** (fro
 
 A **native script** expresses a **simple condition** as data, no smart-contract language required, like the **rules on a shared bank account** ("any two of us must sign", "not before this date").
 
-Here's one that says _"both keys must sign"_:
+Here's a **time-locked shared wallet**, _"before a deadline, and at least 2 of 3 people must sign"_:
 
 ```json
 {
   "type": "all",
   "scripts": [
-    { "type": "sig", "keyHash": "KEY_HASH_1" },
-    { "type": "sig", "keyHash": "KEY_HASH_2" }
+    { "type": "before", "slot": 50000000 },
+    {
+      "type": "atLeast",
+      "required": 2,
+      "scripts": [
+        { "type": "sig", "keyHash": "ALICE_KEY_HASH" },
+        { "type": "sig", "keyHash": "BOB_KEY_HASH" },
+        { "type": "sig", "keyHash": "CAROL_KEY_HASH" }
+      ]
+    }
   ]
 }
 ```
 
-`sig` = this key must sign, `all` = every condition must hold (there's also `any` and `atLeast`), plus time conditions like `before`/`after` (measured in [slots](/docs/developers/onboarding/lectures/beginner/time-on-cardano), which you just met). The power is that they **nest**: you combine small rules into a bigger one. This tree means _"before a deadline **and** at least 2 of 3 people sign"_, a time-locked shared wallet:
+Reading it: `sig` = a specific key must sign, named by its **key hash** (a short public fingerprint of the key, safe to share, not the secret); `all` = every condition must hold; `atLeast` = a minimum number of them must (there's also `any`); and `before`/`after` are time conditions (measured in [slots](/docs/developers/onboarding/lectures/beginner/time-on-cardano), which you just met). Each person gets their own key hash from their wallet, an off-chain SDK derives it from their address or public key, so they only ever share that fingerprint, never a secret. The power is that they **nest**, small rules combine into a bigger one. The same rule as a tree:
 
 ```mermaid
 flowchart TD
@@ -47,7 +55,7 @@ flowchart TD
     Any --> C["sig, Carol's key"]
 ```
 
-Because it's just data, you assemble it in code like any object. Hashing it gives the **script hash**, the same value that becomes a **minting policy ID** or a **script address**:
+Because it's just data, you assemble it in code like any object. First get each signer's **key hash** from their address, then build the rule and hash it, that **script hash** is the same value that becomes a **minting policy ID** or a **script address**:
 
 <Tabs groupId="offchain">
 <TabItem value="mesh" label="Mesh" default>
@@ -66,13 +74,67 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 </TabItem>
 </Tabs>
 
+### Spending it: lock first, satisfy the rule later
+
+A rule guards nothing until value is actually sitting at its address, and that takes **two transactions**, usually far apart in time.
+
+Say **Bob** wants to hand 5 ADA to **Alice**, but not before a certain date. He builds a rule that names her key and that date:
+
+```json
+{
+  "type": "all",
+  "scripts": [
+    { "type": "after", "slot": 60000000 },
+    { "type": "sig", "keyHash": "ALICE_KEY_HASH" }
+  ]
+}
+```
+
+**Bob locks.** First his app **hashes** the rule. Hashing turns the rule into a short fingerprint of itself, the same idea as the key hashes above, and two properties are what make it useful: feed in the same rule and you always get the same fingerprint back, and change the smallest detail (Alice's key for Bob's, one digit of the slot) and the fingerprint comes out completely different. **That fingerprint, written as an address, is the script's address.**
+
+And that's a **different kind of address** from the one your wallet hands you. A wallet address is controlled by a **key**: whoever holds the matching private key can spend what sits there, which is why it belongs to a person. A script address is controlled by a **rule**: there's no wallet behind it, no keys, no owner, nobody to ask. Whatever sits there can be spent by anyone who hands the network a transaction satisfying the rule, and by no one else.
+
+So Bob's app builds an ordinary payment to that address, Bob signs it, and it's submitted. Nothing about building or signing it is special, paying a script address works exactly like paying a person. The 5 ADA leaves Bob's wallet and lands at an address that has no key of its own.
+
+The rule itself, though, **isn't sent**: the network only sees its fingerprint. It validates the payment like any other, Bob's inputs, his signature, the fee, but it has no idea what conditions now guard the 5 ADA, and it doesn't check them. Afterwards the 5 ADA sits in a **[UTxO](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions) at the script address**, and the rule is what guards it: **Bob can no longer touch it**, and no one but Alice ever will, not before that slot.
+
+**Alice unlocks.** Once the slot has passed, her app builds a transaction that **spends** that output, and now the rule finally has to show up: she **sends the full rule along with the transaction**, spelled out exactly as Bob wrote it, plus a validity window that starts **after** the slot (`invalidBefore`) and **Alice's signature**, which she signs in her wallet.
+
+The moment that transaction arrives, the network checks two separate things:
+
+1. **Is this really Bob's rule?** It hashes the rule Alice just sent and compares that fingerprint against the address the 5 ADA is sitting at. If they don't match, she handed over some other rule and the transaction is rejected. This is what makes a mere fingerprint enough to guard money: no one can quietly substitute a friendlier rule later, because a different rule hashes to a different address, and that address isn't holding the ADA.
+2. **Does the rule pass?** Only now are the conditions themselves checked: is the transaction's validity window entirely **after** the slot, and is **Alice's** signature on it? Both must hold.
+
+Pass both and the 5 ADA moves to Alice. Everything is settled before the transaction is ever accepted, so there's no "submit now, unlock later": submit too early and the ledger just rejects it.
+
+```mermaid
+sequenceDiagram
+    participant Bob as Bob's app + wallet
+    participant Net as Network
+    participant Script as The script address<br/>(no wallet, no keys, no owner)
+    participant Alice as Alice's app + wallet
+    Bob->>Bob: hash the rule, that fingerprint becomes the script address
+    Bob->>Net: sign + submit a plain payment of 5 ADA to that address
+    Net->>Script: payment valid, the 5 ADA now sits here
+    Note over Script: not Bob's, not Alice's, nobody's<br/>only a tx satisfying the rule can spend it
+    Note over Bob,Alice: nothing happens on-chain until the slot passes
+    Alice->>Alice: build tx spending that UTxO, attach the full rule + invalidBefore
+    Alice->>Net: sign + submit that transaction
+    Net->>Net: 1. hash that rule, does it match the script address?
+    Net->>Net: 2. past the slot? Alice's signature there?
+    Net-->>Alice: both checks pass
+    Script->>Alice: the 5 ADA moves into her wallet
+```
+
+This rule names a single signer, so one signature is enough. A rule that needs several, a 2-of-3, say, works the same way: each signature is collected **off-chain**, and the transaction is only submitted once it has enough of them.
+
 ### When would you use one?
 
 **Native scripts** shine when you need a rule, but signatures and time are enough, so a full smart contract would be overkill:
 
 - **Shared treasury / multisig wallet.** Funds that need, say, 2 of 3 signers to move. _Why:_ no single person can spend alone, and there's no smart-contract code to audit or get wrong.
 - **Fixed-supply NFTs & capped collections.** A time-locked minting policy so no more can ever be minted after a deadline. _Why:_ provable scarcity, which is what makes a collection trustworthy.
-- **Time-locked funds (simple vesting).** Value that can't move before a certain slot. _Why:_ enforce a cliff or release date with a plain rule instead of a program.
+- **Time-locked funds (simple vesting).** Value that can't move before a certain slot. _Why:_ enforce the release date with a plain rule instead of a program.
 - **Simple issuance control.** "Only these keys may mint this token." _Why:_ cheap, clear, and auditable when you don't need custom logic.
 
 The rule of thumb: reach for a **native script** when your condition is only about **who signs and when**, reach for a smart contract when the rules depend on amounts, on-chain state, or anything more.
@@ -126,7 +188,7 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 ## Try it
 
-- **Read a rule:** in the native-script JSON above, change `"all"` to `"any"`, now _either_ key can sign instead of both.
+- **Read a rule:** in the native-script JSON above, change `atLeast`'s `"required"` from `2` to `3`, now all three keys must sign, not just a majority.
 - **Read metadata:** on the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, open the memo transaction you sent above and find its **metadata**, that's the note attached to the payment.
 
 ## Go deeper
