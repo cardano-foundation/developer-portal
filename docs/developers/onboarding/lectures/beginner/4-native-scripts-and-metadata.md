@@ -158,16 +158,7 @@ Let's attach one. This sends a tiny transaction to yourself with a **memo** atta
   {extractRegion(SendWithMetadata, "metadata")}
 </CodeBlock>
 
-**Run it and see it on the explorer.** Same setup as before, **[Lace](https://www.lace.io/)** on **Preview** with a little test ADA.
-
-```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
-cd lectures-mesh
-npm install
-npm run dev
-```
-
-Open the printed URL in the browser where Lace lives, click **Connect Lace and send a transaction with a memo**, and approve it. Follow the **explorer link** and open the transaction's **metadata**, your message is sitting there on-chain, attached to the payment. _(Already downloaded this folder? Just `npm run dev` again.)_
+**Run it and see it on the explorer.** In the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, click **Connect Lace and send a transaction with a memo**, and approve it. Follow the **explorer link** and open the transaction's **metadata**, your message is sitting there on-chain, attached to the payment.
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">

@@ -60,16 +60,7 @@ Let's set a deadline. This sends **1 ADA to yourself**, but marks the transactio
   {extractRegion(SendWithDeadline, "deadline")}
 </CodeBlock>
 
-**Run it and see it on the explorer.** Same setup as before, **[Lace](https://www.lace.io/)** on **Preview** with a little test ADA.
-
-```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
-cd lectures-mesh
-npm install
-npm run dev
-```
-
-Open the printed URL in the browser where Lace lives, click **Connect Lace and send a time-limited transaction**, and approve it. Because you submit right away, you're inside the window and it succeeds, follow the **explorer link** and look for the transaction's **TTL / validity** field, that's the upper slot you set. _(If you somehow waited past the window, the ledger would reject it, that's time being enforced with no clock involved.)_ _(Already downloaded this folder? Just `npm run dev` again.)_
+**Run it and see it on the explorer.** In the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, click **Connect Lace and send a time-limited transaction**, and approve it. Because you submit right away, you're inside the window and it succeeds, follow the **explorer link** and look for the transaction's **TTL / validity** field, that's the upper slot you set. _(If you somehow waited past the window, the ledger would reject it, that's time being enforced with no clock involved.)_
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">

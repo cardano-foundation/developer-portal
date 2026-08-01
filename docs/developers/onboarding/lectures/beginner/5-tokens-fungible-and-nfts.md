@@ -62,16 +62,7 @@ Let's mint one. This creates **100 GOLD** under the simplest possible policy: th
   {extractRegion(MintToken, "mint-token")}
 </CodeBlock>
 
-**Run it and see it on the explorer.** Same setup as the last lecture, **[Lace](https://www.lace.io/)** on **Preview** with a little test ADA. Grab the example and start it:
-
-```bash
-npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
-cd lectures-mesh
-npm install
-npm run dev
-```
-
-Open the printed URL in the browser where Lace lives, click **Connect Lace and mint 100 GOLD**, and approve it in Lace. Follow the **explorer link**, you'll see 100 GOLD minted and sitting in your wallet next to your ADA, under a brand-new policy ID that's yours. _(Already downloaded this folder in the last lecture? Just `npm run dev` again.)_
+**Run it and see it on the explorer.** In the **[playground](/docs/developers/onboarding/lectures/beginner/introduction#the-playground)**, click **Connect Lace and mint 100 GOLD**, and approve it in Lace. Follow the **explorer link**, you'll see 100 GOLD minted and sitting in your wallet next to your ADA, under a brand-new policy ID that's yours.
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">

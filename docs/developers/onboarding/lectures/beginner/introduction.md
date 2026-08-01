@@ -35,4 +35,19 @@ After this track you'll be able to:
 
 Each lecture has a **Try it** you can finish in a few minutes and a **Go deeper** link into the handbook when you want the full detail.
 
+## The playground
+
+From lecture 2 onwards you run real transactions on Cardano's free test network. They all live in **one small app**, with every example in this track wired to its own button, grouped by lecture. There's nothing to write: the code each lecture shows you is imported straight from this app's `src/` folder, so what you read is exactly what runs.
+
+You'll need **[Lace](https://www.lace.io/)** on the **Preview** network with a little test ADA, which is what [lecture 1](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses) sets up. Then grab the app (no need to clone the whole repo) and start it:
+
+```bash
+npx giget@latest gh:cardano-foundation/developer-portal/examples/onboarding/lectures/mesh lectures-mesh
+cd lectures-mesh
+npm install
+npm run dev
+```
+
+Open the printed URL **in the browser where Lace lives**, and just leave it running for the rest of the track. Each lecture tells you which button to click, and every button prints an **explorer link** so you can see what you just did on-chain. _(Coming back later? `npm run dev` in that folder is all it takes.)_
+
 Ready? Start with **[Wallets, keys & addresses](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)**.
