@@ -28,7 +28,7 @@ graph LR
     Provider --> Indexer[Indexer]
     Provider --> API[API layer]
     Node --> |syncs| Blockchain[Cardano chain]
-    Indexer --> |queries| Node
+    Node --> |chain-sync| Indexer
     API --> |serves data| SDK
 
     style App fill:#0033AD,stroke:#0033AD,stroke-width:2px,color:#FFFFFF
@@ -55,7 +55,7 @@ The landscape looks crowded until you sort it by what each thing conceptually is
 
 ### Query APIs
 
-**Blockfrost, Koios, Maestro.** A complete data service behind one HTTP API: someone else runs the node, the indexer, and the API layer, and you get a base URL and usually a key. They are operated commercially (Blockfrost, Maestro) or by a community cluster with no single operator (Koios, which you can also self-host). This is the category most applications start with, and many never need anything else. [Use a provider](/docs/developers/curriculum/production/use-a-provider) sets up all three with one skeleton.
+**Blockfrost, Koios, Maestro.** A complete data service behind one HTTP API: someone else runs the node, the indexer, and the API layer, and you get a base URL and usually a key. They are operated commercially (Blockfrost, Maestro) or by a community cluster with no single operator (Koios, which you can also self-host). This is the category most applications start with, and many never need anything else. [Use a provider](/docs/developers/curriculum/production/use-a-provider) sets up all three with one skeleton, and [Builder Tools](/tools/?tags=api) has the rest, including narrower services built for one kind of data.
 
 ### Node interfaces
 
@@ -71,7 +71,7 @@ Transaction submission options:
 
 ### Indexers
 
-**db-sync, Kupo, Oura, Scrolls, Yaci Store.** The node holds the whole chain, but not in a form an application can query: there is no "UTXOs at this address" lookup inside cardano-node. An **indexer** follows the chain and stores what it sees in a queryable shape. The shapes differ, and picking by shape is the whole game: a full SQL copy (db-sync), a filtered UTXO set (Kupo), an event stream (Oura, Scrolls), or modular per-table stores (Yaci Store). [Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics) covers the shapes and builds one out.
+**db-sync, Kupo, Oura, Adder, Yaci Store.** The node holds the whole chain, but not in a form an application can query: there is no "UTXOs at this address" lookup inside cardano-node. An **indexer** follows the chain and stores what it sees in a queryable shape. The shapes differ, and picking by shape is the whole game: a full SQL copy (db-sync), a filtered UTXO set (Kupo), an event stream (Oura, Adder), or modular per-table stores (Yaci Store). What they share is the hard part, which is that the chain can take blocks back, so an index has to be able to unwind. [Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics) covers the shapes, that problem, and builds one out.
 
 ### The full node
 

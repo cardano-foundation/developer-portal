@@ -81,6 +81,8 @@ Cardano's language diversity is a strength: because UPLC is a clean compilation 
 | **[Pebble](https://github.com/HarmonicLabs/pebble)** | TypeScript-familiar teams | Strongly-typed, TypeScript-like syntax that compiles to UPLC. |
 | **[Marlowe](https://marlowe-lang.org)** | Financial contracts | A domain-specific language, intentionally **not** Turing-complete, guaranteeing termination; has a visual playground. |
 
+That table is the shortlist. Browse it alongside the rest of the on-chain toolchain in [Builder Tools](/tools/?tags=smart-contracts).
+
 ### A note on Plutus Tx (Plinth)
 
 Plutus Tx was the original framework: you write Haskell, annotate it, and a GHC plugin translates it to Plutus Core and then UPLC. Its strengths are real: the full Haskell type system, shared types between on-chain and off-chain code, and a path toward formal verification. Its costs are equally real: a steep learning curve (Haskell + blockchain + Template Haskell), long build times, cryptic errors, and relatively large scripts. It remains important for projects deeply embedded in the Haskell ecosystem; for teams not already there, Aiken avoids those costs.
