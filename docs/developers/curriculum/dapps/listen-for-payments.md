@@ -24,7 +24,7 @@ Every method follows the same loop:
 
 The only thing that differs between methods is *how you read the chain*: a hosted API, your own node via cardano-cli, or a cardano-wallet service. Start with Blockfrost unless you already run your own infrastructure.
 
-Cardano's read APIs don't push events, so every method here **polls** on an interval. In production you can replace the loop with a provider **webhook** (for example [Blockfrost webhooks](https://blockfrost.dev/docs/start-building/webhooks/)) that calls your backend when a matching transaction lands.
+Cardano's read APIs don't push events, so every method here **polls** on an interval. In production you can replace the loop two ways: with a provider **webhook** (for example [Blockfrost webhooks](https://blockfrost.dev/docs/start-building/webhooks/)) that calls your backend when a matching transaction lands, or with an [event-stream indexer](/docs/developers/curriculum/production/indexing-and-analytics) you run yourself, which tails the chain and forwards matching transactions with no third party in the path.
 
 ## Detecting a payment
 

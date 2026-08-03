@@ -23,6 +23,8 @@ A provider is the data source your SDK talks to. Most SDKs support several behin
 | **Koios** | Hosted (community) or self-hosted | Optional | Yes (higher with a key) |
 | **Kupmios** | Self-hosted (Ogmios + Kupo) | Not applicable | None (your own infra) |
 
+Those are the common choices; [Builder Tools](/tools/?tags=api) lists the hosted providers in full.
+
 Configure one when you make the client:
 
 <Tabs groupId="sdk">
