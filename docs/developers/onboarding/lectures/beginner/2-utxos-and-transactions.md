@@ -29,10 +29,31 @@ This is a diagram of that transaction. Inputs go in, outputs go out:
 
 ```mermaid
 flowchart LR
-    I["INPUT bag<br/>owner: you<br/>10 ADA<br/>(spent whole)"] --> TX(( transaction ))
-    TX --> O1["OUTPUT · new bag<br/>owner: friend<br/>6 ADA"]
-    TX --> O2["OUTPUT · new bag (change)<br/>owner: you<br/>~4 ADA"]
+    subgraph IN["INPUTS: bags destroyed"]
+        I["`**a1b2c3…#0**
+        address: you
+        value: 10 ADA`"]
+    end
+
+    TX{{"`**transaction**
+    fee: 0.17 ADA`"}}
+
+    subgraph OUT["OUTPUTS: bags created"]
+        O1["`**new #0**
+        address: friend
+        value: 6 ADA`"]
+        O2["`**new #1** _(change)_
+        address: you
+        value: 3.83 ADA`"]
+    end
+
+    I --> TX --> O1
+    TX --> O2
+
+    style I stroke-dasharray: 4 3
 ```
+
+Each bag carries three things: a **reference** (`a1b2c3…#0`, the transaction that created it and which output it was), an **address** saying who can spend it, and a **value**. The dashed border marks the input as destroyed.
 
 This is why any amount works: the blockchain isn't handing you an existing "6 ADA note", it **makes fresh bags for the exact amounts**. Your original bag is gone forever. A bag is always used **all at once, never partially** (a small fee is taken from your change to pay for the processed transaction). That's the **UTxO model**. Each "bag" is called UTxO (_Unspent Transaction Output_) because it's an Output from a previous Transaction that hasn't been spent yet.
 
