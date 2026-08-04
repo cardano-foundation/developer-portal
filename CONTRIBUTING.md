@@ -60,7 +60,7 @@ If the named region doesn't exist, the build fails with `extractRegion: region "
 
 `raw-loader` is a webpack feature, so it only resolves for the rendered page. `llms.txt`, `llms-full.txt` and the per-page Markdown behind the "Copy page as markdown" button are generated separately, straight from the source Markdown, and would otherwise carry the literal `<CodeBlock>` text instead of your code — the surface AI tooling reads. `scripts/fix-llms-snippets.js` runs after the build and expands those, using the same `extractRegion` so both copies always agree. If a snippet fails to reach that output, the build fails rather than shipping a page with a hole.
 
-One wrinkle while writing: `yarn start` watches `docs/`, not `examples/`, so editing an example mid-session won't refresh the page on its own. Save the `.md` file (or just `touch` it) and it recompiles with the current code.
+The command `yarn start` watches `docs/`, not `examples/`, so editing an example won't refresh the page on its own. Save the `.md` file (or just `touch` it) and the page recompiles with the current code. Also, the "Copy page as markdown" button gives you the site's HTML instead of Markdown, because the Markdown files are only generated during `yarn build`. To check that output, run `yarn build && yarn serve`.
 
 ## Before you open a PR
 
