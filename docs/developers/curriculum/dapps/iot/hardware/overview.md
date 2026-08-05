@@ -3,28 +3,48 @@ id: overview
 slug: /developers/curriculum/dapps/iot/hardware/
 title: Hardware Reference
 sidebar_label: Overview
-description: Hardware components used across the IoT-on-Cardano workshops - boards, sensors, displays, relays, and where to source them.
+description: The hardware the IoT-on-Cardano workshops use, what to search for to source each part, and a reference page per component with specs, pinouts, and datasheets.
 ---
 
-Reference pages for each hardware component the workshops in this section use. Each page covers what the part is, key specs, links to datasheets and tutorials, and suggested suppliers.
+Everything the workshops in this section use, in one place: what to get, what each part is called, and what substitutes work. Each component also has its own page with specs, pinouts, quirks, and datasheets.
 
-## Boards
+## What you need
 
-- **[Cheap Yellow Display (CYD)](./cheap-yellow-display-cyd.md)** - ESP32 + 2.8" TFT touchscreen in one board. Used in Workshops 02, 04, and 05.
-- **[ESP32-C3](./esp32-c3.md)** - RISC-V SoC with WiFi + Bluetooth 5 (LE). The default board used across all five workshops.
+Parts are named the way a supplier lists them, so the name below is the search term. These are commodity components sold by many vendors, so this page names the part rather than a shop.
 
-## Displays
+| Part | Search for | Needed by |
+| --- | --- | --- |
+| Microcontroller | **`ESP32-C3`** development board with USB-C. The workshops use the "Super Mini" form factor. | All workshops |
+| Board with screen | **`ESP32-2432S028R`**, widely sold as the **Cheap Yellow Display** or **CYD**: an ESP32 with a built-in 2.8" TFT and resistive touch. | Workshops 02, 04, 05 |
+| Display | 1.3" 128x64 monochrome I2C OLED with an **`SH1106`** controller. An **`SSD1306`** module is a common substitute and needs only a driver change in the sketch. | Workshop 03 (alternative to the CYD screen) |
+| Sensor | **`AHT10`** temperature and humidity sensor, I2C breakout. The **`AHT20`** is a drop-in upgrade. | Workshop 03 |
+| Actuator | Single-channel relay module with opto-isolation, rated for **3.3V logic**. | Workshop 02 |
+| Actuator | **`WS2812B`** addressable RGB LED ring, 12 LEDs. Sold as NeoPixel-compatible. | Workshop 02 |
+| Cabling | Breadboard, jumper wires, and a **USB data cable** (many cheap cables are charge-only and will not program the board). | All workshops |
 
-- **[1.3" OLED Display (SH1106, I2C)](./oled-display-sh1106-13inch-i2c.md)** - Compact monochrome OLED used in Workshop 03 as an alternative to the CYD's TFT.
+An ESP8266 or an original ESP32 works for most lessons, with pin numbers and occasionally a library differing from what the sketches use.
 
-## Sensors
+## Component reference
 
-- **[AHT10 Temperature & Humidity Sensor (I2C)](./aht10-temperature-humidity-sensor-i2c.md)** - Used in Workshop 03 to read environmental data and put it on-chain.
+### Boards
 
-## Actuators
+- **[Cheap Yellow Display (CYD)](./cheap-yellow-display-cyd.md)** - ESP32 with an integrated 2.8" TFT touchscreen. Used in Workshops 02, 04, and 05.
+- **[ESP32-C3](./esp32-c3.md)** - RISC-V SoC with WiFi and Bluetooth 5 (LE). The default board across all five workshops, and the page carries the WiFi transmit-power workaround the Super Mini variant often needs.
 
-- **[Relay Module 3V, 1 Channel](./relay-module-3v-1channel.md)** - Switches AC/DC loads from a 3.3V microcontroller. Used in Workshop 02's "Light up the Tree" lesson.
-- **[WS2812B LED Ring (12 LEDs)](./ws2812b-led-ring-12.md)** - Addressable RGB LED ring used to build the Epoch Clock in Workshop 02.
+### Displays
+
+- **[1.3" OLED Display (SH1106, I2C)](./oled-display-sh1106-13inch-i2c.md)** - compact monochrome OLED, used in Workshop 03 as an alternative to the CYD's TFT.
+
+### Sensors
+
+- **[AHT10 Temperature & Humidity Sensor (I2C)](./aht10-temperature-humidity-sensor-i2c.md)** - used in Workshop 03 to read environmental data and put it on-chain.
+
+### Actuators
+
+- **[Relay Module 3V, 1 Channel](./relay-module-3v-1channel.md)** - switches AC or DC loads from a 3.3V microcontroller. Used in Workshop 02's "Light up the Tree" lesson.
+- **[WS2812B LED Ring (12 LEDs)](./ws2812b-led-ring-12.md)** - addressable RGB ring used to build the Epoch Clock in Workshop 02.
+
+If a board will not accept an upload or the serial monitor prints nothing, [Troubleshooting](/docs/developers/curriculum/dapps/iot/troubleshooting) covers the cable, driver, and baud-rate causes before you suspect the hardware.
 
 ---
 

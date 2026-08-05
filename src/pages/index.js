@@ -65,7 +65,7 @@ function Hero() {
           <h1 className={styles.heroTitle}>Cardano Developer Portal</h1>
           <p className={styles.heroSubtitle}>
             From the first transaction to the production dApp and everything in
-            between. Docs, tools, and SDKs for everything Cardano.
+            between. Docs, tools, and SDKs for Cardano.
           </p>
           <div className={styles.heroActions}>
             <Link to={useBaseUrl("docs/developers/")} className={styles.heroCta}>
@@ -390,7 +390,7 @@ function DeveloperSection() {
 
           {/* Infrastructure */}
           <Link
-            to={useBaseUrl("docs/developers/curriculum/production/infrastructure")}
+            to={useBaseUrl("docs/developers/curriculum/production/connecting-to-the-chain")}
             className={styles.devLinkCard}
           >
             <div className={styles.devLinkIcon}>
@@ -468,7 +468,7 @@ function SmartContractsSection() {
                 <Link to={useBaseUrl("templates/contracts")}>
                   Examples
                 </Link>
-                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview")}>
+                <Link to={useBaseUrl("docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview")}>
                   Security
                 </Link>
               </div>
@@ -497,7 +497,7 @@ function SmartContractsSection() {
 
           {/* CTF */}
           <Link
-            to={useBaseUrl("docs/developers/curriculum/smart-contracts/advanced/security/ctf")}
+            to={useBaseUrl("docs/developers/curriculum/smart-contracts/security/ctf")}
             className={styles.scCTFCard}
           >
             <img

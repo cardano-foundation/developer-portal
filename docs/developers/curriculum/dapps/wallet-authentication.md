@@ -134,9 +134,14 @@ Not every user has a browser wallet installed. [UTXOS](https://utxos.dev) offers
 ## Zero-knowledge login
 
 :::info In active development
-[zkLogin for Cardano](https://github.com/eryxcoop/zklogin-aiken) lets users authenticate with an existing account (such as Google) and control funds through zero-knowledge proofs, without exposing their identity on-chain. A Circom circuit verifies the provider's signed identity token and binds it to an **ephemeral session key**, so the Aiken validator checks one proof and the session key signs transactions from there; a user-chosen salt keeps the web identity unlinkable to the on-chain address. It runs on the preprod testnet today as an unaudited proof of concept, with known limitations (proof generation runs on a backend, and there is no oracle yet for rotating the identity provider's public keys). Track progress at the [zklogin-aiken repository](https://github.com/eryxcoop/zklogin-aiken), and see [Zero-knowledge proofs](/docs/developers/curriculum/smart-contracts/advanced/zero-knowledge) for how on-chain verification works.
+[zkLogin for Cardano](https://github.com/eryxcoop/zklogin-aiken) lets users authenticate with an existing account (such as Google) and control funds through zero-knowledge proofs, without exposing their identity on-chain. A Circom circuit verifies the provider's signed identity token and binds it to an **ephemeral session key**, so the Aiken validator checks one proof and the session key signs transactions from there; a user-chosen salt keeps the web identity unlinkable to the on-chain address. It runs on the preprod testnet as an unaudited proof of concept, with known limitations (proof generation runs on a backend, and there is no oracle yet for rotating the identity provider's public keys). Track progress at the [zklogin-aiken repository](https://github.com/eryxcoop/zklogin-aiken), and see [Zero-knowledge proofs](/docs/developers/curriculum/smart-contracts/advanced/zero-knowledge) for how on-chain verification works.
 :::
 
 ## Use cases
 
 Wallet-based authentication fits many scenarios: passwordless login where wallet ownership is the identity, whitelist verification (confirming a user controls a specific wallet or stake address), token-gated content (access for holders of a given native token or NFT), authenticating reward claims, and verifying approval for off-chain actions like in-game trading.
+
+## Next steps
+
+- [Listen for payments](/docs/developers/curriculum/dapps/listen-for-payments): the receiving side, detecting ADA arriving at an address
+- [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): the CIP-30 connector this sign-in flow builds on

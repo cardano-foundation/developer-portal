@@ -23,6 +23,8 @@ A provider is the data source your SDK talks to. Most SDKs support several behin
 | **Koios** | Hosted (community) or self-hosted | Optional | Yes (higher with a key) |
 | **Kupmios** | Self-hosted (Ogmios + Kupo) | Not applicable | None (your own infra) |
 
+Those are the common choices; [Builder Tools](/tools/?tags=api) lists the hosted providers in full.
+
 Configure one when you make the client:
 
 <Tabs groupId="sdk">
@@ -77,7 +79,10 @@ In Mesh the read methods live on the **provider** (an `IFetcher`/`ISubmitter`), 
 </TabItem>
 </Tabs>
 
-Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass the API keys through the connection. With Evolution that is the `headers` option on `withKupmios`:
+Use the matching network base URL for Preprod/Preview (e.g. `https://cardano-preprod.blockfrost.io/api/v0`). For a **hosted Kupmios** like [Demeter](https://demeter.run), pass the API keys through the connection with the `headers` option on `withKupmios`:
+
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
 
 ```typescript
 const client = Client.make(mainnet).withKupmios({
@@ -90,9 +95,12 @@ const client = Client.make(mainnet).withKupmios({
 })
 ```
 
+</TabItem>
+</Tabs>
+
 Mesh has no single Kupmios provider; pair `OgmiosProvider` with Kupo and pass the Demeter keys through each provider's connection options.
 
-Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself (Blockfrost projects, running your own node + Kupo + Ogmios, Demeter), see the [API providers reference](/docs/developers/curriculum/production/api-providers/overview) and [production infrastructure](/docs/developers/curriculum/production/infrastructure).
+Because the interface is unified, switching provider (e.g. Blockfrost in dev, self-hosted Kupmios in prod) is a one-line change. The query calls stay the same. For setting up the provider infrastructure itself, see [Use a provider](/docs/developers/curriculum/production/use-a-provider) (Blockfrost, Koios, and Maestro projects) and [Self-hosting](/docs/developers/curriculum/production/self-hosting) (your own node + Kupo + Ogmios, a data node, Demeter).
 
 :::tip Privacy and trust
 A **hosted** provider sees every address you query and every transaction you submit, along with your IP. It's a third party in your data path, with rate limits and an uptime you don't control. **Self-hosting** (your own node + Kupo + Ogmios, or Kupmios) keeps that data private and removes the dependency, at the cost of running the infrastructure. Pick based on how sensitive your queries are and how much ops you want to own.
@@ -327,7 +335,7 @@ Common rejection reasons from the node:
 | `FeeTooSmallUTxO` | Fee too low | No: rebuild |
 | Network timeout | Provider unreachable | Yes: retry after a delay |
 
-`BadInputsUTxO` from indexer lag is the classic one. Handle it with the [retry-safe pattern](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe), which re-reads chain state on every attempt.
+`BadInputsUTxO` from indexer lag is the classic one. Handle it with the [retry-safe pattern](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe), which re-reads chain state on every attempt. These names are the ledger's own validation rules; when an unfamiliar code comes back, the [Cardano Blueprint's block validation page](https://cardano-scaling.github.io/cardano-blueprint/ledger/block-validation.html) maps the full set in the order the ledger applies them.
 
 ## Inspect a transaction
 
@@ -365,7 +373,7 @@ console.log("inputs:", body.inputs.length, "outputs:", body.outputs.length)
 console.log("fee:", body.fee, "mints:", body.mints?.length ?? 0)
 ```
 
-Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Testing without a chain](/docs/developers/curriculum/production/development-networks#testing-without-a-chain)).
+Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Assert what you built](/docs/developers/curriculum/start-building/offline-testing#assert-what-you-built)).
 
 </TabItem>
 </Tabs>
@@ -375,4 +383,4 @@ Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned i
 - [Transaction building](/docs/developers/curriculum/start-building/transaction-building), use what you query to build and submit
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet), read a user's UTXOs and address in the browser
 - [Contract library](/templates/contracts), inspect real contracts' UTXOs and datums with what you just learned
-- [Production infrastructure](/docs/developers/curriculum/production/infrastructure), run your own provider stack at scale
+- [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain), the infrastructure behind a provider and when to run your own

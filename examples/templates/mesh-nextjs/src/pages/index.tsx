@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import type { NextPage } from "next";
 import { CardanoWallet, useWallet, useLovelace } from "@meshsdk/react";
 import { BlockfrostProvider, MeshTxBuilder } from "@meshsdk/core";
@@ -49,6 +50,9 @@ const Home: NextPage = () => {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-12">
+      <Head>
+        <title>My Cardano dApp</title>
+      </Head>
       <h1 className="text-3xl font-bold">My Cardano dApp</h1>
 
       <CardanoWallet />

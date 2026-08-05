@@ -121,12 +121,13 @@ module.exports = {
     image: "img/og/og-developer-portal.jpg",
     metadata: [
       { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, stake pool, Web3" },
+      { name: "algolia-site-verification", content: "9D24BBA9B6EA9390" },
     ],
 
     // Algolia Search
     algolia: {
-      appId: "6QH8YVQXAE",
-      apiKey: "6033c09f3af6454c8c25efce0460b84a",
+      appId: "SM73IGPCDU",
+      apiKey: "7e5c27bffb971566ac4aa7d23cb8faaf",
       indexName: "developer-portal",
       contextualSearch: true,
     },
@@ -137,8 +138,8 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/brand/cardano-black.svg",
-        srcDark: "img/brand/cardano-white.svg",
+        src: "img/brand/cardano-horizontal-black.svg",
+        srcDark: "img/brand/cardano-horizontal-white.svg",
       },
 
       items: getNavbarItems(repository),

@@ -60,7 +60,9 @@
   text-align: center;
   min-height: 45vh;
   min-height: 45svh;
-  max-width: 48rem;
+  /* Wide enough for the title to hold one line at the clamp's top size; the
+     subtitle keeps its own narrower measure below */
+  max-width: 56rem;
   margin: 0 auto;
 }
 

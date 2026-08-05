@@ -57,13 +57,13 @@ validity_interval = { invalid_before: slot_500, invalid_hereafter: slot_1000 }
 ```
 
 - **Lower bound** (`invalid_before`): valid only after this slot.
-- **Upper bound** (`invalid_hereafter` / TTL): expires after this slot.
+- **Upper bound** (`invalid_hereafter`, also called the TTL, for time to live): expires after this slot.
 
 These are checked in phase-1, before scripts run, so a validator can safely assume the transaction is within the window, enabling deterministic time logic (deadlines, time-locks). Most simple transfers omit the lower bound and set a generous upper bound so a stuck transaction expires instead of lingering. Each slot maps to wall-clock time (one second on mainnet), so contracts reason about time without an oracle.
 
 ### Setting validity in code
 
-In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range:
+In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range. That conversion is per-network: each one has its own slot length (one second on mainnet, preprod, and preview, configurable on a [local devnet](/docs/developers/curriculum/start-building/networks-and-test-ada#run-a-chain-yourself)) and its own genesis `zeroTime`/`zeroSlot`, so the builder has to know which chain you are on.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -106,14 +106,12 @@ const unsignedTx = await txBuilder
 </TabItem>
 </Tabs>
 
-Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/production/development-networks)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
-
 ## Reference inputs and reference scripts
 
 Two Vasil-era features let transactions share data without contention:
 
 - **Reference inputs (CIP-31):** read a UTXO without consuming it. Many transactions can reference the same oracle or config UTXO in the same block. This is the canonical fix for read-only contention.
-- **Reference scripts (CIP-33):** store a script in a UTXO and reference it, instead of embedding the full script in every transaction, cutting size and fees.
+- **Reference scripts (CIP-33):** store a script in a UTXO and reference it, instead of embedding the full script in every transaction. The referenced bytes are not free, they carry a [per-byte fee of their own](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) that escalates for very large scripts, but it is normally far below the cost of inlining the script.
 
 ```
 Inputs (consumed):       UTXO_A (Alice's payment)
@@ -140,13 +138,13 @@ flowchart LR
 6. **Confirmation**: confidence grows with each subsequent block.
 
 :::note No reverted transactions
-Once a transaction passes submission validation and enters the mempool, it is guaranteed to be included (until its validity interval passes). There is no Ethereum-style "reverted but you still paid" for phase-1 failures, if it was valid when submitted, it is valid when included.
+Once a transaction passes submission validation and enters the mempool, it stays on track for inclusion for as long as it remains valid against the node's view of the chain. There is no Ethereum-style "reverted but you still paid" for phase-1 failures: if it was valid when submitted, it is valid when included, and if the chain changes underneath it (an input spent first, the validity window passing) it is dropped without charging you anything.
 :::
 
 ### Latency vs finality
 
 - **Latency**: time to appear in a block (~20s average block time).
-- **Finality**: time to become practically irreversible. Depends on network conditions and your risk tolerance; most applications treat 6-20 confirmations as strong finality, high-value transfers wait longer.
+- **Finality**: time to become practically irreversible. Depends on your risk tolerance; most applications treat [10-20 confirmations](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros#how-does-finality-work) (a few minutes) as strong finality, high-value transfers wait longer.
 
 ## Serialization (CBOR)
 

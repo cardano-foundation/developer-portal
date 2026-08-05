@@ -2,7 +2,7 @@ module.exports = {
   developerSidebar: [
     {
       type: "doc",
-      id: "developers/overview",
+      id: "developers/start-here",
       label: "Start Here",
     },
     {
@@ -37,7 +37,6 @@ module.exports = {
                 "developers/curriculum/fundamentals/core-concepts/fees",
               ],
             },
-            "developers/curriculum/fundamentals/cardano-for-ethereum-developers",
           ],
         },
         {
@@ -54,6 +53,7 @@ module.exports = {
             "developers/curriculum/start-building/your-first-transaction",
             "developers/curriculum/start-building/transaction-building",
             "developers/curriculum/start-building/query-the-chain",
+            "developers/curriculum/start-building/offline-testing",
             "developers/curriculum/start-building/transaction-failures",
           ],
         },
@@ -70,7 +70,7 @@ module.exports = {
             "developers/curriculum/native-tokens/mint-nft",
             {
               type: "category",
-              label: "Token metadata & registry",
+              label: "Token Metadata & Registry",
               link: {
                 type: "doc",
                 id: "developers/curriculum/native-tokens/metadata-registry",
@@ -93,7 +93,12 @@ module.exports = {
           },
           items: [
             "developers/curriculum/staking-governance/staking",
+            "developers/curriculum/staking-governance/delegate-and-withdraw",
+            "developers/curriculum/staking-governance/manage-stake",
             "developers/curriculum/staking-governance/governance",
+            "developers/curriculum/staking-governance/drep-and-delegation",
+            "developers/curriculum/staking-governance/vote-and-propose",
+            "developers/curriculum/staking-governance/governance-operations",
           ],
         },
         {
@@ -123,38 +128,29 @@ module.exports = {
                   label: "Vulnerabilities",
                   link: {
                     type: "doc",
-                    id: "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/overview",
+                    id: "developers/curriculum/smart-contracts/security/vulnerabilities/overview",
                   },
                   items: [
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missing-utxo-authentication",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/time-handling",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/token-security",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-value",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-datum",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/unbounded-inputs",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/other-redeemer",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/other-token-name",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/arbitrary-datum",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/cheap-spam",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/insufficient-staking-control",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/signature-domain-separation",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/certificate-deregistration",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/missed-input",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/locked-value",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/hash-grinding",
-                    "developers/curriculum/smart-contracts/advanced/security/vulnerabilities/evaluation-order",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/missing-utxo-authentication",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/time-handling",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/token-security",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/unchecked-inputs",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates",
+                    "developers/curriculum/smart-contracts/security/vulnerabilities/evaluation-and-grinding",
                   ],
                 },
-                "developers/curriculum/smart-contracts/advanced/security/ctf",
-                "developers/curriculum/smart-contracts/advanced/security/audits",
-                "developers/curriculum/smart-contracts/advanced/security/formal-verification",
+                "developers/curriculum/smart-contracts/security/ctf",
               ],
             },
             {
               type: "category",
               label: "Advanced",
+              link: {
+                type: "doc",
+                id: "developers/curriculum/smart-contracts/advanced/overview",
+              },
               items: [
                 {
                   type: "category",
@@ -171,14 +167,8 @@ module.exports = {
                     "developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator",
                     "developers/curriculum/smart-contracts/advanced/design-patterns/parameter-validation",
                     "developers/curriculum/smart-contracts/advanced/design-patterns/linked-list",
-                    {
-                      type: "category",
-                      label: "Data Structures",
-                      items: [
-                        "developers/curriculum/smart-contracts/advanced/design-patterns/merkle-tree",
-                        "developers/curriculum/smart-contracts/advanced/design-patterns/trie",
-                      ],
-                    },
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/merkle-tree",
+                    "developers/curriculum/smart-contracts/advanced/design-patterns/trie",
                   ],
                 },
                 "developers/curriculum/smart-contracts/advanced/uplc",
@@ -198,7 +188,6 @@ module.exports = {
             id: "developers/curriculum/dapps/overview",
           },
           items: [
-            "developers/curriculum/dapps/scaffolding",
             "developers/curriculum/dapps/your-first-dapp",
             "developers/curriculum/dapps/connect-a-wallet",
             "developers/curriculum/dapps/wallet-authentication",
@@ -214,6 +203,7 @@ module.exports = {
               },
               items: [
                 "developers/curriculum/dapps/oracles/pyth",
+                "developers/curriculum/dapps/oracles/prediction-market",
                 "developers/curriculum/dapps/oracles/randomness",
               ],
             },
@@ -229,113 +219,113 @@ module.exports = {
                 "developers/curriculum/dapps/ai-agents/mcp",
               ],
             },
-        {
-          type: "category",
-          label: "Internet of Things",
-          link: {
-            type: "doc",
-            id: "developers/curriculum/dapps/iot/overview",
-          },
-          items: [
             {
               type: "category",
-              label: "Introductions",
+              label: "Internet of Things",
               link: {
                 type: "doc",
-                id: "developers/curriculum/dapps/iot/introductions/overview",
+                id: "developers/curriculum/dapps/iot/overview",
               },
               items: [
-                "developers/curriculum/dapps/iot/introductions/arduino",
-                "developers/curriculum/dapps/iot/introductions/esp32-d1-microcontrollers",
-                "developers/curriculum/dapps/iot/introductions/rest-apis",
+                {
+                  type: "category",
+                  label: "Introductions",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/dapps/iot/introductions/overview",
+                  },
+                  items: [
+                    "developers/curriculum/dapps/iot/introductions/arduino",
+                    "developers/curriculum/dapps/iot/introductions/esp32-d1-microcontrollers",
+                    "developers/curriculum/dapps/iot/introductions/rest-apis",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Workshop 01: The Basics",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/dapps/iot/the-basics/overview",
+                  },
+                  items: [
+                    "developers/curriculum/dapps/iot/the-basics/01-cardano-setup",
+                    "developers/curriculum/dapps/iot/the-basics/02-arduino-setup",
+                    "developers/curriculum/dapps/iot/the-basics/03-api-setup",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Workshop 02: Read and Output",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/dapps/iot/read-and-output/overview",
+                  },
+                  items: [
+                    "developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance",
+                    "developers/curriculum/dapps/iot/read-and-output/02-display-data",
+                    "developers/curriculum/dapps/iot/read-and-output/03-light-up-the-tree",
+                    "developers/curriculum/dapps/iot/read-and-output/04-epoch-clock",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Workshop 03: Input and Write",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/dapps/iot/input-and-write/overview",
+                  },
+                  items: [
+                    "developers/curriculum/dapps/iot/input-and-write/01-connect-and-read-sensor-data",
+                    "developers/curriculum/dapps/iot/input-and-write/02-build-your-own-api",
+                    "developers/curriculum/dapps/iot/input-and-write/03-mint-sensor-data-on-chain",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Workshop 04: Cardano Ticker",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/dapps/iot/cardano-ticker/overview",
+                  },
+                  items: [
+                    "developers/curriculum/dapps/iot/cardano-ticker/01-gathering-data",
+                    "developers/curriculum/dapps/iot/cardano-ticker/02-building-the-ticker",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Workshop 05: QR-Code Payments",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/dapps/iot/qr-code-payments/overview",
+                  },
+                  items: [
+                    "developers/curriculum/dapps/iot/qr-code-payments/01-getting-started",
+                    "developers/curriculum/dapps/iot/qr-code-payments/02-cip13-integration",
+                    "developers/curriculum/dapps/iot/qr-code-payments/03-qr-code-creation",
+                    "developers/curriculum/dapps/iot/qr-code-payments/04-building-the-frontend",
+                    "developers/curriculum/dapps/iot/qr-code-payments/05-building-the-backend",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Hardware",
+                  link: {
+                    type: "doc",
+                    id: "developers/curriculum/dapps/iot/hardware/overview",
+                  },
+                  items: [
+                    "developers/curriculum/dapps/iot/hardware/cheap-yellow-display-cyd",
+                    "developers/curriculum/dapps/iot/hardware/esp32-c3",
+                    "developers/curriculum/dapps/iot/hardware/oled-display-sh1106-13inch-i2c",
+                    "developers/curriculum/dapps/iot/hardware/aht10-temperature-humidity-sensor-i2c",
+                    "developers/curriculum/dapps/iot/hardware/relay-module-3v-1channel",
+                    "developers/curriculum/dapps/iot/hardware/ws2812b-led-ring-12",
+                  ],
+                },
+                "developers/curriculum/dapps/iot/troubleshooting",
               ],
             },
-            {
-              type: "category",
-              label: "Workshop 01: The Basics",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/dapps/iot/the-basics/overview",
-              },
-              items: [
-                "developers/curriculum/dapps/iot/the-basics/01-cardano-setup",
-                "developers/curriculum/dapps/iot/the-basics/02-arduino-setup",
-                "developers/curriculum/dapps/iot/the-basics/03-api-setup",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 02: Read and Output",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/dapps/iot/read-and-output/overview",
-              },
-              items: [
-                "developers/curriculum/dapps/iot/read-and-output/01-fetch-wallet-balance",
-                "developers/curriculum/dapps/iot/read-and-output/02-display-data",
-                "developers/curriculum/dapps/iot/read-and-output/03-light-up-the-tree",
-                "developers/curriculum/dapps/iot/read-and-output/04-epoch-clock",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 03: Input and Write",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/dapps/iot/input-and-write/overview",
-              },
-              items: [
-                "developers/curriculum/dapps/iot/input-and-write/01-connect-and-read-sensor-data",
-                "developers/curriculum/dapps/iot/input-and-write/02-build-your-own-api",
-                "developers/curriculum/dapps/iot/input-and-write/03-mint-sensor-data-on-chain",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 04: Cardano Ticker",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/dapps/iot/cardano-ticker/overview",
-              },
-              items: [
-                "developers/curriculum/dapps/iot/cardano-ticker/01-gathering-data",
-                "developers/curriculum/dapps/iot/cardano-ticker/02-building-the-ticker",
-              ],
-            },
-            {
-              type: "category",
-              label: "Workshop 05: QR-Code Payments",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/dapps/iot/qr-code-payments/overview",
-              },
-              items: [
-                "developers/curriculum/dapps/iot/qr-code-payments/01-getting-started",
-                "developers/curriculum/dapps/iot/qr-code-payments/02-cip13-integration",
-                "developers/curriculum/dapps/iot/qr-code-payments/03-qr-code-creation",
-                "developers/curriculum/dapps/iot/qr-code-payments/04-building-the-frontend",
-                "developers/curriculum/dapps/iot/qr-code-payments/05-building-the-backend",
-              ],
-            },
-            {
-              type: "category",
-              label: "Hardware",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/dapps/iot/hardware/overview",
-              },
-              items: [
-                "developers/curriculum/dapps/iot/hardware/cheap-yellow-display-cyd",
-                "developers/curriculum/dapps/iot/hardware/esp32-c3",
-                "developers/curriculum/dapps/iot/hardware/oled-display-sh1106-13inch-i2c",
-                "developers/curriculum/dapps/iot/hardware/aht10-temperature-humidity-sensor-i2c",
-                "developers/curriculum/dapps/iot/hardware/relay-module-3v-1channel",
-                "developers/curriculum/dapps/iot/hardware/ws2812b-led-ring-12",
-              ],
-            },
-            "developers/curriculum/dapps/iot/troubleshooting",
-          ],
-        },
           ],
         },
         {
@@ -347,26 +337,11 @@ module.exports = {
           },
           items: [
             "developers/curriculum/production/going-to-production",
-            "developers/curriculum/production/infrastructure",
+            "developers/curriculum/production/connecting-to-the-chain",
+            "developers/curriculum/production/use-a-provider",
+            "developers/curriculum/production/self-hosting",
             "developers/curriculum/production/indexing-and-analytics",
-            {
-              type: "category",
-              label: "API Providers",
-              link: {
-                type: "doc",
-                id: "developers/curriculum/production/api-providers/overview",
-              },
-              items: [
-                "developers/curriculum/production/api-providers/blockfrost",
-                "developers/curriculum/production/api-providers/koios",
-                "developers/curriculum/production/api-providers/ogmios",
-                "developers/curriculum/production/api-providers/dolos",
-              ],
-            },
-            "developers/curriculum/production/run-your-own-node",
             "developers/curriculum/production/network-protocol",
-            "developers/curriculum/production/development-networks",
-            "developers/curriculum/production/demeter",
             "developers/curriculum/production/transaction-chaining",
             "developers/curriculum/production/hydra",
           ],

@@ -137,7 +137,7 @@ It's "impermanent" because if the price returns to the original ratio, the loss 
 
 ## Lending and borrowing
 
-Lending is DeFi's second pillar after DEXes: lenders supply assets to earn interest, borrowers lock collateral to take liquidity without selling what they hold. On Cardano there is no shared mutable "lending market" contract; a lending pool, a loan request, and an active loan are each UTXOs, typically identified by unique NFTs so fakes can't be injected, and every state change is a transaction the validators check. The mechanics below are protocol-independent.
+Lending is DeFi's second pillar after DEXes: lenders supply assets to earn interest, borrowers lock collateral to take liquidity without selling what they hold. On Cardano there is no shared mutable "lending market" contract; a lending pool, a loan request, and an active loan are each UTXOs, and every state change is a transaction the validators check. Each of those UTXOs has to be identified by a unique NFT the protocol minted, because anyone can create a UTXO at a script address: without that check, a forged pool or loan is injectable. The mechanics below are protocol-independent.
 
 ### Overcollateralization and loan-to-value
 
@@ -251,7 +251,7 @@ Instead of one pool UTXO with 100,000 ADA / 50,000 USDx:
 Three users can now swap concurrently against different shards.
 ```
 
-The trade-off is keeping pricing consistent across shards and higher slippage per shard (each holds less liquidity). The flip side of contention is covered as a vulnerability in [UTXO contention](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/utxo-contention).
+The trade-off is keeping pricing consistent across shards and higher slippage per shard (each holds less liquidity). The flip side of contention is covered as a vulnerability in [UTXO contention](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/resource-exhaustion#utxo-contention).
 
 ### Transaction chaining
 
@@ -261,7 +261,7 @@ A third approach removes the wait rather than the contention. Because validation
 
 Chaining applied to the pool itself removes the batcher rather than assisting it. There are no order UTXOs and no scooper: each user builds a transaction that spends the pool UTXO directly, performs the swap, and produces the next pool UTXO, and the following user chains onto that output before it confirms. Trades settle as fast as they can be submitted, with no batch cycle to wait on and no operator choosing the sequence. The cost moves rather than disappears: the app now has to track the pool's unconfirmed head and serve it to whoever swaps next, and because many users race to extend the same chain, only one wins each slot while the losers rebuild on fresh state and retry, the [same lost-race handling](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe) a batcher runs internally, now pushed out to every client.
 
-A pool that takes swaps directly also shapes its validator differently. The script guards only the pool: one pool UTXO in, one out, the [constant product](#how-amms-work) preserved after fees, its identifying token intact. It deliberately does not check that the swapper paid themselves the correct amount out, because a user who shortchanges their own output only harms themselves and the pool cannot be drained while its own invariant holds. Constraining just what the script is responsible for keeps validation cheap, but it leaves correct compensation to whoever builds the transaction, and it is the exact opening a [double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction) attack aims at, so a direct-interaction pool must be explicit about how many non-pool inputs and outputs it will accept.
+A pool that takes swaps directly also shapes its validator differently. The script guards only the pool: one pool UTXO in, one out, the [constant product](#how-amms-work) preserved after fees, its identifying token intact. It deliberately does not check that the swapper paid themselves the correct amount out, because a user who shortchanges their own output only harms themselves and the pool cannot be drained while its own invariant holds. Constraining just what the script is responsible for keeps validation cheap, but it leaves correct compensation to whoever builds the transaction, and it is the exact opening a [double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) attack aims at, so a direct-interaction pool must be explicit about how many non-pool inputs and outputs it will accept.
 
 ### Determinism: the compensating advantage
 
@@ -307,7 +307,7 @@ Yield farming strategically deploys capital across protocols to maximize returns
 The primitives above (AMMs, oracles, order batching, composability) combine into the common building blocks of a DeFi app. Each of these is language-agnostic and composes the on-chain techniques from [Design Patterns](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview):
 
 - **Reward accrual and claiming.** Distribute rewards proportionally to stake or LP share. Snapshots or time-locks stop last-minute gaming, and many claims are settled in batches using the [linked-list fold](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list) and a [stake validator](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/stake-validator) for transaction-level checks.
-- **Token vesting.** Lock tokens and release them on a datum-defined schedule (a cliff, then linear release). Unlock conditions are enforced against the transaction's [validity interval](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time), and each partial claim updates the remaining balance in the datum. Guard the claim against [double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction).
+- **Token vesting.** Lock tokens and release them on a datum-defined schedule (a cliff, then linear release). Unlock conditions are enforced against the transaction's [validity interval](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time), and each partial claim updates the remaining balance in the datum. Guard the claim against [double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction).
 - **P2P offers and atomic swaps.** Represent each offer as its own UTXO carrying the maker's terms (offered asset, asked asset, expiry). A taker spends it directly, or an off-chain matcher fills many offers in one transaction, pairing inputs to outputs with [UTXO indexers](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/utxo-indexers).
 - **Routing and aggregation.** Off-chain routers compute the best path across pools and submit a single transaction the validators check atomically. The on-chain side leans on the same order-batching and indexing patterns, so no centralized frontend has to be trusted.
 - **Cross-chain bridges.** Lock assets on the source chain and mint wrapped equivalents on the target (burn-to-unlock in reverse), with a multisig guardian set attesting to each transfer. Bridges depend on off-chain infrastructure and trust assumptions beyond a single chain, so treat them as their own design problem.
@@ -328,3 +328,4 @@ For production-grade, open-source references of these patterns, see [Anastasia L
 - [Oracles](/docs/developers/curriculum/dapps/oracles/overview): the price-feed infrastructure DeFi depends on
 - [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the attack classes (double satisfaction, contention) that hit DeFi hardest
 - [Contract library](/templates/contracts): escrow, swap, and production-grade dApp implementations
+- [Ship to Production](/docs/developers/curriculum/production/overview): infrastructure, reliability, and the scaling patterns a live protocol needs

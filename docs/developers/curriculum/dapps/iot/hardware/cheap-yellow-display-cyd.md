@@ -29,12 +29,6 @@ The **Cheap Yellow Display (CYD)** is an affordable ESP32-based development boar
 - [ESP32 CYD on Random Nerd Tutorials](https://randomnerdtutorials.com/cheap-yellow-display-esp32-2432s028r/)
 - [ESP32 CYD Case STL files](https://www.thingiverse.com/thing:6653040) - 3D-printable enclosure.
 
-## Where to buy
-
-- [AliExpress](https://s.click.aliexpress.com/e/_c3AtbKgB)
-- [Amazon US](https://amzn.to/4jy26EG)
-- [Amazon Germany](https://amzn.to/3LEmpUo)
-
 ---
 
 *Adapted from the [CardanoThings](https://cardanothings.io/hardware/cheap-yellow-display-cyd) project, originally produced under [Project Catalyst Fund 11](https://projectcatalyst.io/funds/11). Source: [github.com/CardanoThings](https://github.com/CardanoThings).*

@@ -7,13 +7,11 @@ description: Assembly language of Cardano smart contract platform
 
 ## Untyped Plutus Core: The Execution Layer
 
-At the lowest level, all Cardano smart contracts execute as **Untyped Plutus Core** (UPLC) programs. Understanding UPLC provides crucial insight into how your high-level smart contract code actually runs on-chain.
+At the lowest level, all Cardano smart contracts execute as **Untyped Plutus Core** (UPLC) programs. Understanding UPLC shows you how your high-level smart contract code actually runs on-chain.
 
 ### What is UPLC?
 
-UPLC is the "assembly language" of Cardano smart contracts. Every smart contract language (Aiken, Plutus Haskell, OpShin, etc.) compiles down to UPLC before execution. Think of it as the intermediate representation that the Cardano virtual machine actually executes.
-
-**Why Multiple Languages?** The diverse ecosystem of languages targeting UPLC reflects different development philosophies. This diversity allows developers to choose tools that match their background and project needs while all compiling to the same execution target.
+UPLC is the "assembly language" of Cardano smart contracts. Every smart contract language (Aiken, Plutus Haskell, OpShin, etc.) compiles down to UPLC before execution. Think of it as the intermediate representation that the Cardano virtual machine actually executes. (Why several languages target it, and how to pick one, is [Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language).)
 
 **Compilation Pipeline:**
 
@@ -88,15 +86,15 @@ This type system allows high-level languages to serialize complex data structure
 
 ### Binary Encoding and Execution
 
-On-chain, UPLC programs are stored as compact binary data using the "flat" encoding format. This binary representation is what validators actually receive and execute.
+On-chain, UPLC programs are stored as compact binary data using the "flat" encoding format. This binary representation is what validators actually receive and execute. The flat blob is then wrapped in a CBOR byte string, and the script hash that addresses the script on-chain is computed over a one-byte language tag (PlutusV1, V2, or V3) followed by that wrapper. That is why identical bytes hash differently under different Plutus versions, and why script bytes sometimes appear double-CBOR-encoded in tooling. The [reference script fee](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) is metered on those same wrapped bytes, the language tag aside.
 
-**Size Implications**: UPLC programs can be large, which is why transaction size limits (16KB) become important for complex smart contracts. Recent improvements like reference scripts help mitigate this.
+**Size Implications**: UPLC programs can be large, which is why the transaction size limit (`maxTxSize`, currently ~16 KB) becomes important for complex smart contracts. Recent improvements like reference scripts help mitigate this.
 
-**Execution Costs**: Every UPLC operation has precise memory and CPU costs defined by the protocol's cost model. These costs enable predictable fee calculation and execution budgets.
+**Execution Costs**: Every UPLC operation has precise memory and CPU costs defined by the protocol's cost model. These costs enable predictable fee calculation and execution budgets. The model has two kinds of charge: every step the evaluator takes (looking up a variable, processing a lambda) costs a small fixed amount, and every built-in call is priced by a costing function whose parameters were fitted statistically from benchmarks of the real evaluator. Integer multiplication, for example, is costed by the machine-word sizes of its two arguments, which is why a built-in's charge grows with the size of its inputs, not just the number of calls. The charged costs are deliberately conservative: each built-in is costed for its worst case, and much of the charge covers the interpreter machinery around the operation rather than the operation itself. Even so, a built-in call is far cheaper than expressing the same logic as plain UPLC terms, which is why compilers push as much work as possible into built-ins.
 
 ### Why This Matters for Developers
 
-- When smart contracts fail, understanding UPLC helps interpret low-level error messages and execution traces for debugging.
+- When smart contracts fail, understanding UPLC helps interpret low-level error messages and execution traces for debugging. Stepping debuggers such as [Gastronomy](https://github.com/SundaeSwap-finance/gastronomy) replay a script's execution state by state, forward and backward.
 
 - Knowing how high-level constructs compile to UPLC helps write more efficient smart contracts.
 
@@ -106,4 +104,4 @@ On-chain, UPLC programs are stored as compact binary data using the "flat" encod
 
 While you won't write UPLC directly, understanding it as the execution foundation helps you write better smart contracts in any high-level language.
 
-For complete technical details including formal syntax and semantics, see the [Formal Specification of the Plutus Core Language](https://plutus.cardano.intersectmbo.org/resources/plutus-core-spec.pdf).
+For complete technical details including formal syntax and semantics, see the [Formal Specification of the Plutus Core Language](https://plutus.cardano.intersectmbo.org/resources/plutus-core-spec.pdf). For a readable walk-through of the machine that executes UPLC, its states and every transition rule, see the [Cardano Blueprint's CEK machine page](https://cardano-scaling.github.io/cardano-blueprint/plutus/cek.html).

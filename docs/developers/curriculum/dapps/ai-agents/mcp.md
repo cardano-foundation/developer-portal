@@ -45,4 +45,4 @@ The Cardano MCP ecosystem is early and moving quickly, with wallets and protocol
 
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): the CIP-30 signing boundary an MCP server relies on
 - [Set up your AI assistant](/docs/developers/curriculum/start-building/ai-assisted-development): give your coding assistant current Cardano context
-- [AI agents on Cardano](/docs/developers/curriculum/dapps/ai-agents/overview): autonomous agents that hold their own wallet
+- [IoT on Cardano](/docs/developers/curriculum/dapps/iot/): the module's hands-on hardware track, and the road to [Ship to Production](/docs/developers/curriculum/production/overview)
