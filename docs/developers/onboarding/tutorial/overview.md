@@ -2,11 +2,12 @@
 title: "Build an Atomic Swap, end to end"
 sidebar_label: "Introduction"
 description: Build a complete atomic swap dApp on Cardano end to end, on-chain validator, off-chain code, and a simple frontend.
+pagination_next: developers/onboarding/tutorial/environment
 ---
 
 # Build an Atomic Swap, end to end
 
-Welcome! In this tutorial you'll set up and run one small, complete app on Cardano, and see how all the pieces fit together. You'll do everything on a **Testnet**(free practice network), so nothing here costs real money.
+Welcome! In this tutorial you'll set up and run one small, complete app on Cardano, and see how all the pieces fit together. You'll do everything on a **Testnet** (free practice network), so nothing here costs real money.
 
 That app is an **atomic swap**, a way for two people to trade tokens directly, without a middleman and without either one having to trust the other.
 
@@ -40,12 +41,12 @@ sequenceDiagram
     participant Alice
 
     Note over Bob,Contract: Transaction 1, Bob makes the offer
-    Bob->>Contract: Move 1 GOLD in + note "pay me 1 SILVER"
+    Bob->>Contract: Move 1 GOLD in + note "pay me 5 SILVER"
 
     Note over Contract: The GOLD now waits inside the contract<br/>until someone accepts (or Bob cancels)
 
     Note over Bob,Alice: Transaction 2, Alice accepts (this is the atomic one)
-    Alice->>Bob: Pay 1 SILVER
+    Alice->>Bob: Pay 5 SILVER
     Contract->>Alice: Release 1 GOLD
     Note over Bob,Alice: Both moves are in the same transaction <br/>all-or-nothing, so no one can take without paying
 ```
@@ -54,8 +55,8 @@ Transaction 1 just parks the GOLD in the contract, nothing is traded yet. The tr
 
 Here's the whole flow, step by step:
 
-1. **Bob makes an offer** He sends a transaction that moves his GOLD out of his wallet and into the contract, attaching a note: *"I want 1 SILVER in return, pay me at my address."* The GOLD now sits in the contract, out of Bob's hands, until someone accepts or he takes it back. This first transaction just *moves* the GOLD; the contract's rules aren't run yet.
-2. **Alice accepts** She sees Bob's offer and sends **one transaction** that does two things at once: it pays 1 SILVER to Bob **and** takes the GOLD out of the contract for herself. This is the moment the contract's rules actually run (they also run if Bob cancels), and they only let this transaction through if Bob really gets paid what he asked for.
+1. **Bob makes an offer** He sends a transaction that moves his GOLD out of his wallet and into the contract, attaching a note: *"I want 5 SILVER in return, pay me at my address."* The GOLD now sits in the contract, out of Bob's hands, until someone accepts or he takes it back. This first transaction just *moves* the GOLD; the contract's rules aren't run yet.
+2. **Alice accepts** She sees Bob's offer and sends **one transaction** that does two things at once: it pays 5 SILVER to Bob **and** takes the GOLD out of the contract for herself. This is the moment the contract's rules actually run (they also run if Bob cancels), and they only let this transaction through if Bob really gets paid what he asked for.
 3. **Or Bob cancels** If no one accepts, Bob can send a transaction to take his GOLD back.
 
 Because Alice's payment and her pickup happen inside the **same** transaction, the trade is **atomic**, it either fully happens or not at all. Alice can never grab the GOLD without paying, and Bob can never keep both the GOLD and the SILVER. No trust required.
@@ -64,9 +65,9 @@ Because Alice's payment and her pickup happen inside the **same** transaction, t
 
 You won't type this app out by hand. You'll **get the example project and run it**, and these pages walk you through the parts that matter, so you finish understanding how it works. The app has three pieces:
 
-- **On-chain** the smart contract that enforces the swap, plus a small rule for creating the GOLD and SILVER tokens. You'll compile it once.
-- **Off-chain** the code that builds the transactions (create tokens, make an offer, accept one). It comes with tests you can run.
-- **A simple frontend** a small web page to connect a wallet, mint tokens, list an offer, and swap.
+- **On-chain:** the smart contract that enforces the swap, plus a small rule for creating the GOLD and SILVER tokens. You'll compile it once.
+- **Off-chain:** the code that builds the transactions (create tokens, make an offer, accept one). It comes with tests you can run.
+- **A simple frontend:** a small web page to connect a wallet, mint tokens, list an offer, and swap.
 
 By the end, you'll have run a real, trustless token swap on a Cardano test network, and understood every step.
 
@@ -76,4 +77,4 @@ Every code snippet in these pages is pulled straight from a working, tested proj
 The code you read is the code that runs.
 :::
 
-Ready? Start by setting up your [Environment](/docs/developers/onboarding/quick-start/environment).
+Ready? Start by setting up your [Environment](/docs/developers/onboarding/tutorial/environment).

@@ -10,7 +10,7 @@ import Ui from "!!raw-loader!@site/examples/onboarding/atomic-swap/off-chain/mes
 
 # Integrate a frontend
 
-The example also comes with a small web page, so you can run the whole swap with buttons instead of scripts. This frontend is a small React page that calls the **exact same** off-chain functions from the last page, so the page runs the exact code that's tested.
+The example also comes with a small web page, so you can run the whole swap with buttons instead of scripts. This frontend is a small React page that calls the **exact same** off-chain functions we just covered.
 
 Two words you'll see here:
 
@@ -38,7 +38,7 @@ npm install
 npm run dev
 ```
 
-Open the printed URL (usually `http://localhost:5173`) in the browser where Lace is installed.
+Open the printed URL (usually `http://localhost:5173`) in the browser with a wallet (e.g., Lace) installed.
 
 ## Using the app
 
@@ -49,15 +49,15 @@ A real swap has two people, a seller and a buyer. To keep this simple, you'll pl
 The page walks you through it in five numbered steps:
 
 1. **Connect your wallet** click **Connect Lace**. Your address and holdings appear.
-2. **Set up collateral** click **Check collateral**. If it's not set, add it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then check again. Minting and swapping stay disabled until it shows ✓ set. (Collateral is a small ADA deposit smart-contract transactions require, see [Set up collateral](/docs/developers/onboarding/quick-start/environment#set-up-collateral-in-your-wallet).)
-3. **Create your tokens** click **Mint GOLD**, approve in Lace, and wait about a minute for it to confirm. Do the same for **Mint SILVER**. Now you hold both tokens.
-4. **Make an offer** leave **Give** at **1 · your GOLD** and **Want** at **1 · your SILVER** (the defaults for a self-swap), then read the _"You'll lock 1 GOLD and receive 1 SILVER"_ line to confirm. Click **Create offer** and sign. Once it confirms, your GOLD is locked in the contract as an open offer. _(For a real trade with a second wallet, set **Want** to **other token…** and paste that wallet's token id, see [below](#go-further-a-real-two-party-swap).)_
-5. **Accept the offer** now you're the buyer. Click **Refresh offers**, your offer appears as _"Get 1 GOLD → pay 1 SILVER"_. Click **Swap** and sign.
+2. **Set up collateral** click **Check collateral**. If it's not set, add it in your wallet (for Lace, see the [Lace FAQ](https://www.lace.io/faq)), then check again. Minting and swapping stay disabled until it shows ✓ set. (Collateral is a small ADA deposit smart-contract transactions require, see [Set up collateral](/docs/developers/onboarding/tutorial/environment#set-up-collateral-in-your-wallet).)
+3. **Create your tokens** click **Mint GOLD**, approve in Lace, and wait about a minute for it to confirm. Do the same for **Mint SILVER** (that one mints **5** SILVER). Now you hold **1 GOLD and 5 SILVER**.
+4. **Make an offer** leave **Give** at **1 · your GOLD** and **Want** at **5 · your SILVER** (the defaults for a self-swap), then read the _"You'll lock 1 GOLD and receive 5 SILVER"_ line to confirm. Click **Create offer** and sign. Once it confirms, your GOLD is locked in the contract as an open offer. _(For a real trade with a second wallet, set **Want** to **other token…** and paste that wallet's token id, see [below](#go-further-a-real-two-party-swap).)_
+5. **Accept the offer** now you're the buyer. Click **Refresh offers**, your offer appears as _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
 
 On your own offers you'll also see a **Cancel** button. Instead of accepting, an owner can click it to reclaim the locked token, useful when no one takes the offer. It runs the contract's `Cancel` action and returns the GOLD to you.
 
 :::tip What just happened
-That last transaction paid the seller their 1 SILVER and released the 1 GOLD to the buyer, in a single, all-or-nothing transaction. Since you played both parts, the tokens end up back with you, but the point is what the **contract** did: it only let the GOLD out because the SILVER was paid. You just ran a complete, trustless atomic swap on Cardano. 🎉
+That last transaction paid the seller their 5 SILVER and released the 1 GOLD to the buyer, in a single, all-or-nothing transaction. Since you played both parts, the tokens end up back with you, but the point is what the **contract** did: it only let the GOLD out because the SILVER was paid. You just ran a complete, trustless atomic swap on Cardano. 🎉
 
 Use the **view on explorer** link on the status line (or paste the tx hash into the [Cardano Explorer for Preview](https://explorer.cardano.org/preview)) to see it on-chain.
 :::
@@ -70,7 +70,7 @@ Then trade for real. Say profile **A** is the seller and profile **B** is the bu
 
 1. **Buyer (B)** open the app, connect, and **Mint SILVER**. Under _Create your tokens_, click **copy** next to **SILVER** to copy that token's id, and send it to the seller (paste it in a chat, a note, anywhere).
 2. **Seller (A)** open the app in the other profile, connect, and **Mint GOLD**. In _Make an offer_, set **Give** to **1 · your GOLD**, set **Want** to **other token…**, and paste **B's SILVER id** into the box that appears. Click **Create offer** and sign.
-3. **Buyer (B)** click **Refresh offers**. A's offer appears, _"Get 1 GOLD → pay 1 SILVER"_. Click **Swap** and sign.
+3. **Buyer (B)** click **Refresh offers**. A's offer appears, _"Get 1 GOLD → pay 5 SILVER"_. Click **Swap** and sign.
 
 Now the GOLD really moves to B and the SILVER to A, a genuine trustless trade between two wallets. Each profile is an independent wallet (the app connects to whichever Lace is in the current profile), and offers are read from the chain, so both profiles see them.
 

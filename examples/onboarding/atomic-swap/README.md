@@ -6,8 +6,8 @@ The runnable, tested code behind the onboarding **Quick Start** ([Build an Atomi
 
 **Bob** has GOLD and wants SILVER; **Alice** has SILVER and wants GOLD.
 
-1. Bob (maker) **locks** his GOLD at the swap contract with a datum: `{ owner: Bob, price: [1 SILVER] }`.
-2. Alice (taker) **swaps** in one transaction she pays 1 SILVER to Bob and takes the GOLD. The validator only allows it if Bob is paid the price, in an output **marked with the locked UTxO's reference** (so one payment can't settle two swaps).
+1. Bob (maker) **locks** his GOLD at the swap contract with a datum: `{ owner: Bob, price: [5 SILVER] }`.
+2. Alice (taker) **swaps** in one transaction she pays 5 SILVER to Bob and takes the GOLD. The validator only allows it if Bob is paid the price, in an output **marked with the locked UTxO's reference** (so one payment can't settle two swaps).
 3. If nobody takes it, Bob can **cancel** and reclaim his GOLD.
 
 ## Structure

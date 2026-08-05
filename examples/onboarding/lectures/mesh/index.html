@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardano beginner lectures playground</title>
+  </head>
+  <body
+    style="
+      font-family: system-ui, sans-serif;
+      max-width: 34rem;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    "
+  >
+    <h1>Beginner lectures playground</h1>
+    <p>
+      Make sure <b>Lace</b> is installed, switched to the
+      <b>Preview</b> network, and has a little test ADA (from Lecture 1).
+    </p>
+
+    <h2
+      style="
+        font-size: 1.05rem;
+        margin: 2rem 0 0.6rem;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.3rem;
+      "
+    >
+      UTxOs &amp; Transactions
+    </h2>
+    <p style="margin: 0 0 0.5rem; color: #555; font-size: 0.9rem">
+      Sends 1 ADA from your wallet back to itself. The SDK picks which UTxOs to
+      spend, adds the change, and balances the transaction, you just sign and
+      submit.
+    </p>
+    <p>
+      <button
+        id="send"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Connect Lace and send 1 ADA to myself
+      </button>
+    </p>
+
+    <h2
+      style="
+        font-size: 1.05rem;
+        margin: 2rem 0 0.6rem;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.3rem;
+      "
+    >
+      Time on Cardano
+    </h2>
+    <p style="margin: 0 0 0.5rem; color: #555; font-size: 0.9rem">
+      Sends 1 ADA to yourself, but valid only for the next ~2 minutes. It sets
+      an upper slot bound (<code>invalidHereafter</code>), submit in time and it
+      goes through, miss the window and the ledger rejects it.
+    </p>
+    <p>
+      <button
+        id="deadline"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Connect Lace and send a time-limited transaction
+      </button>
+    </p>
+
+    <h2
+      style="
+        font-size: 1.05rem;
+        margin: 2rem 0 0.6rem;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.3rem;
+      "
+    >
+      Native scripts &amp; metadata
+    </h2>
+    <p style="margin: 0 0 0.5rem; color: #555; font-size: 0.9rem">
+      <b>Lock</b> sends 5 ADA to a native-script address that only you can
+      reclaim, and only after ~5 minutes. <b>Unlock</b> spends that locked UTxO
+      back to your wallet once the 5 minutes have passed (try it too early and
+      the ledger rejects it).
+    </p>
+    <p>
+      <button
+        id="lock"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Connect Lace and lock 5 ADA (reclaimable after ~5 min)
+      </button>
+      <button
+        id="unlock"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Unlock
+      </button>
+    </p>
+    <p style="margin: 0 0 0.5rem; color: #555; font-size: 0.9rem">
+      Sends a tiny transaction to yourself with a text note attached as
+      <b>metadata</b>, readable later on the explorer (smart contracts can't see
+      it).
+    </p>
+    <p>
+      <button
+        id="metadata"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Connect Lace and send a transaction with a memo
+      </button>
+    </p>
+
+    <h2
+      style="
+        font-size: 1.05rem;
+        margin: 2rem 0 0.6rem;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.3rem;
+      "
+    >
+      Tokens
+    </h2>
+    <p style="margin: 0 0 0.5rem; color: #555; font-size: 0.9rem">
+      Mints 100 GOLD under a native-script policy that requires your signature.
+      The new tokens land back in your wallet, right next to your ADA.
+    </p>
+    <p>
+      <button
+        id="mint"
+        style="padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer"
+      >
+        Connect Lace and mint 100 GOLD
+      </button>
+    </p>
+
+    <p id="out" style="margin-top: 1.5rem"></p>
+    <script type="module" src="/src/app.ts"></script>
+  </body>
+</html>

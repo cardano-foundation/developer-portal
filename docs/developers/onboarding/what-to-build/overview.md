@@ -8,7 +8,7 @@ description: "Real things you can build on Cardano, in plain terms, and where to
 
 Cardano is a platform for building things people can **own, trust, and exchange** directly, without a bank, a platform, or a middleman sitting in between, taking a cut, and holding all the keys. You don't need to be a crypto expert to build something useful on it.
 
-Here are real things teams are building, in plain terms, with a link to how each one works.
+Here are real things teams are building, with a link to how each one works.
 
 ## Money and assets
 
@@ -58,7 +58,7 @@ Let people prove who they are, or what they've earned, a diploma, a license, a c
 
 Build financial apps where the rules are enforced by code instead of a company: trade one token for another, lend and earn, or run a marketplace, all with no middleman holding the funds.
 
-[Learn how](/docs/developers/curriculum/dapps/defi), or build a swap step by step in the [Tutorial](/docs/developers/onboarding/quick-start/overview).
+[Learn how](/docs/developers/curriculum/dapps/defi), or build a swap step by step in the [Tutorial](/docs/developers/onboarding/tutorial/overview).
 
 ### Community treasuries and governance
 
@@ -69,4 +69,4 @@ Let a community pool its funds and decide together, out in the open, how to spen
 ## Ready to build?
 
 - Scaffold a new project in minutes: [Get started](/docs/developers/onboarding/get-started/overview).
-- Prefer to learn by doing? Build a complete app in the [Tutorial](/docs/developers/onboarding/quick-start/overview).
+- Prefer to learn by doing? Build a complete app in the [Tutorial](/docs/developers/onboarding/tutorial/overview).
