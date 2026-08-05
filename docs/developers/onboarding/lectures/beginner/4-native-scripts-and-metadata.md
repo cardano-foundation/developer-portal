@@ -45,6 +45,10 @@ Here's a **time-locked shared wallet**, _"before a deadline, and at least 2 of 3
 
 Reading it: `sig` = a specific key must sign, named by its **key hash** (a short public fingerprint of the key, safe to share, not the secret); `all` = every condition must hold; `atLeast` = a minimum number of them must (there's also `any`); and `before`/`after` are time conditions (measured in [slots](/docs/developers/onboarding/lectures/beginner/time-on-cardano), which you just met). Each person gets their own key hash from their wallet, an off-chain SDK derives it from their address or public key, so they only ever share that fingerprint, never a secret. The power is that they **nest**, small rules combine into a bigger one. The same rule as a tree:
 
+:::note `before` and `after` name a slot, not a date
+A native script can only talk about **slot numbers**. Your app picks the slot by converting a date when it writes the rule, but the rule itself never stores that date. Since [slot length is a network parameter](/docs/developers/onboarding/lectures/beginner/time-on-cardano) that a hard fork can change, a lock set years out could come due at a somewhat different wall-clock moment than the one you had in mind. Fine for a deadline weeks away, worth a thought for one far in the future.
+:::
+
 ```mermaid
 flowchart TD
     Root["all<br/>(every rule must hold)"]
@@ -133,7 +137,6 @@ This rule names a single signer, so one signature is enough. A rule that needs s
 **Native scripts** shine when you need a rule, but signatures and time are enough, so a full smart contract would be overkill:
 
 - **Shared treasury / multisig wallet.** Funds that need, say, 2 of 3 signers to move. _Why:_ no single person can spend alone, and there's no smart-contract code to audit or get wrong.
-- **Fixed-supply NFTs & capped collections.** A time-locked minting policy so no more can ever be minted after a deadline. _Why:_ provable scarcity, which is what makes a collection trustworthy.
 - **Time-locked funds (simple vesting).** Value that can't move before a certain slot. _Why:_ enforce the release date with a plain rule instead of a program.
 - **Simple issuance control.** "Only these keys may mint this token." _Why:_ cheap, clear, and auditable when you don't need custom logic.
 

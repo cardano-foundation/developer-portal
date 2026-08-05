@@ -22,7 +22,7 @@ Here's the part that surprises people: **you can't reach into a bag and pull out
 
 1. Takes your **whole 10 ADA bag** as an **input**.
 2. Destroys the bag, releasing the ADA, to freely rearrange them into **outputs** (new bags).
-3. Creates two new sealed bags (outputs), one with 6 ADA on your friend's address and another with 4 ADA in your address.
+3. Creates two new sealed bags (outputs), one with 6 ADA on your friend's address and another with the remaining 3.83 ADA back in your address.
 4. Checks the **ledger rules**, above all that the sum of ADA in the inputs equals the sum in the outputs **plus the fee**, so nothing is created or lost.
 
 This is a diagram of that transaction. Inputs go in, outputs go out:
@@ -50,7 +50,7 @@ flowchart LR
     I --> TX --> O1
     TX --> O2
 
-    style I stroke-dasharray: 4 3
+    style I stroke-dasharray:4 3
 ```
 
 Each bag carries three things: a **reference** (`a1b2c3…#0`, the transaction that created it and which output it was), an **address** saying who can spend it, and a **value**. The dashed border marks the input as destroyed.
@@ -65,18 +65,17 @@ A transaction can't make ADA appear or disappear. The network accepts it **only*
 flowchart TB
     subgraph OK["✓ Accepted: 6 + 3.83 + 0.17 = 10"]
         direction LR
-        IA["input<br/>10 ADA"] --> A1["output<br/>6 ADA<br/>friend"]
-        IA --> A2["output<br/>3.83 ADA<br/>you (change)"]
-        IA --> A3["fee<br/>0.17 ADA<br/>to network"]
+        IA["input<br/>10 ADA"] --> TA{{"transaction<br/>fee: 0.17 ADA"}}
+        TA --> A1["output<br/>6 ADA<br/>friend"]
+        TA --> A2["output<br/>3.83 ADA<br/>you (change)"]
     end
     subgraph BAD["✗ Rejected: 6 + 0.17 ≠ 10"]
         direction LR
-        IB["input<br/>10 ADA"] --> B1["output<br/>6 ADA<br/>friend"]
-        IB --> B2["fee<br/>0.17 ADA<br/>to network"]
-        IB -.-> LOST["3.83 ADA<br/>unaccounted for"]
+        IB["input<br/>10 ADA"] --> TB{{"transaction<br/>fee: 0.17 ADA"}}
+        TB --> B1["output<br/>6 ADA<br/>friend"]
     end
-    style OK fill:#e6ffec,stroke:#1f883d
-    style BAD fill:#ffebe9,stroke:#cf222e
+    style OK fill:#2da44e1a,stroke:#2da44e
+    style BAD fill:#e5534b1a,stroke:#e5534b
 ```
 
 Both spend the same 10 ADA bag. The **accepted** one balances to the lovelace, so it's valid; the **rejected** one leaves 3.83 ADA unaccounted for, so the network won't accept it. To spend part of a bag, you always send the rest back to yourself as change.
@@ -90,10 +89,8 @@ That's what a **blockchain** literally is: a chain of blocks, each one linked to
 ```mermaid
 flowchart LR
     subgraph Block["Block, a batch of transactions"]
-        direction TB
-        T1["tx"]
-        T2["your tx"]
-        T3["tx"]
+        direction LR
+        T1["tx"] ~~~ T2["your tx"] ~~~ T3["tx"]
     end
     Prev["earlier block"] --> Block --> Next["next block"]
 ```

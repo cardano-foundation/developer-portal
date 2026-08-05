@@ -21,10 +21,8 @@ Because they ride in the same UTxOs as ADA, **one bag can hold ADA _and_ several
 ```mermaid
 flowchart TB
     subgraph Bag["One UTxO, a single sealed bag"]
-        direction TB
-        A["2 ADA"]
-        G["100 GOLD"]
-        N["1 TICKET #7 (an NFT)"]
+        direction LR
+        A["2 ADA"] ~~~ G["100 GOLD"] ~~~ N["1 TICKET #7 (an NFT)"]
     end
 ```
 
@@ -79,6 +77,10 @@ Two details surprise people the first time, whichever SDK they use:
 That second point is the whole difference between this token and an **NFT**. An NFT policy adds a time condition, `before` a slot, the time-locked native script from the last lecture, and mints a quantity of **1** while the window is open. Once that slot passes, nobody can ever mint under that policy again, not even you, and _that_ is what makes the token provably one-of-a-kind.
 
 The policy makes it unique, but it says nothing about what the NFT actually **is**. Its name, description, and image link ride along as **[metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)** on the minting transaction, following a community standard called **CIP-25**. That's what wallets and marketplaces read when they show your NFT with a picture and a title.
+
+:::note Native scripts are the simple half
+Every policy in this lecture is a native script, so it can only ask **who signed** and **when**. A **[smart contract](/docs/developers/curriculum/native-tokens/minting-policies)** can be a minting policy too, and then the rules can depend on anything the transaction contains: mint only when a payment goes to a specific address, guarantee a token can be minted exactly once by requiring a particular UTxO to be spent (the **[one-shot](/docs/developers/curriculum/smart-contracts/write-a-validator#one-shot-policies)** pattern, uniqueness without relying on a deadline), or let an NFT's data change later (the **[CIP-68](/docs/developers/curriculum/native-tokens/metadata-registry#cip-68-datum-metadata-updatable-on-chain)** approach, where metadata lives in a datum a contract can read instead of in transaction metadata it cannot). If you hit something a native script can't express, that's the door.
+:::
 
 ## Try it
 
