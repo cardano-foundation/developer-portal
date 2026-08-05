@@ -77,7 +77,7 @@ You're not locked into Blockfrost, though. The SDK works with several providers,
 - **Self-hosted** (you run it, for full control): **[Kupo](https://github.com/CardanoSolutions/kupo)**, **[Ogmios](https://github.com/CardanoSolutions/ogmios)**, or **[Dolos](https://github.com/txpipe/dolos)**.
 - **Local** (a whole test network on your own machine): **[Yaci DevKit](https://github.com/bloxbean/yaci-devkit)**.
 
-See [API providers](/docs/developers/curriculum/production/api-providers/overview) and [Query the chain](/docs/developers/curriculum/start-building/query-the-chain) to go deeper.
+See [Use a provider](/docs/developers/curriculum/production/use-a-provider) and [Query the chain](/docs/developers/curriculum/start-building/query-the-chain) to go deeper.
 
 ---
 

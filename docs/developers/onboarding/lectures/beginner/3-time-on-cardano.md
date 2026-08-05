@@ -83,6 +83,6 @@ An [Evolution](https://no-witness-labs.github.io/evolution-sdk/) version is comi
 
 - [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros) — how slots structure time, and where epochs come in.
 - [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time) — the bounds in detail, and slot↔time conversion.
-- [Cardano for Ethereum developers](/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers) — why there's no `block.timestamp`.
+- [Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers) — why there's no `block.timestamp`.
 
 Next: **[Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata)**.

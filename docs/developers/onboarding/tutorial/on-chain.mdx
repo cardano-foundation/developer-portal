@@ -54,7 +54,7 @@ There's one extra safety check that's worth understanding. Every locked offer ha
 Why bother? Imagine two separate offers that both say _"pay 5 SILVER to Bob."_ Without the label, a buyer could take **both** locked GOLD tokens in a single transaction while paying Bob just **once** (5 SILVER, not the 10 the two offers total), and that single payment would appear to satisfy both offers at once (a known trick called a _double-satisfaction_ attack). Forcing every payment to be labeled with one specific offer's id closes the hole: a payment can carry only one id, so it settles exactly one offer. Want two offers? You have to pay for each one separately.
 
 :::note No need to master this now
-Double-satisfaction is a subtle attack, you don't have to fully understand it to follow along. When you're ready to go deeper, the [Double satisfaction](/docs/developers/curriculum/smart-contracts/advanced/security/vulnerabilities/double-satisfaction) page covers it in detail.
+Double-satisfaction is a subtle attack, you don't have to fully understand it to follow along. When you're ready to go deeper, the [Double satisfaction](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) page covers it in detail.
 :::
 
 <CodeBlock language="aiken" title="swap.ak — the rule">

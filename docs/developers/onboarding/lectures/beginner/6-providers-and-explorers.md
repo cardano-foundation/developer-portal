@@ -72,8 +72,8 @@ That JSON is the same UTxOs the explorer drew as a balance, the explorer made it
 
 ## Go deeper
 
-- [API providers](/docs/developers/curriculum/production/api-providers/overview)
-- [Blockfrost](/docs/developers/curriculum/production/api-providers/blockfrost)
+- [Use a provider](/docs/developers/curriculum/production/use-a-provider)
+- [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain)
 - [Query the chain](/docs/developers/curriculum/start-building/query-the-chain) — providers compared, plus self-hosted Kupmios (Ogmios + Kupo) and Demeter.
 
 ## You've got the base

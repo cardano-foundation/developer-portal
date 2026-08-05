@@ -11,7 +11,7 @@ New to Cardano? Start here. This track covers the handful of ideas you need befo
 No blockchain background needed. Some of these ideas will be new, but we build each one up from scratch with everyday comparisons, so if you've written software before, you'll pick them up quickly.
 
 :::note Coming from Ethereum?
-You already know blockchains, but Cardano's model (the **eUTxO** ledger) works quite differently from the EVM's accounts and contracts, so this track is still worth a skim. If you'd rather jump straight to the differences, start with **[Cardano for Ethereum developers](/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers)**, then come back here for the hands-on.
+You already know blockchains, but Cardano's model (the **eUTxO** ledger) works quite differently from the EVM's accounts and contracts, so this track is still worth a skim. If you'd rather jump straight to the differences, start with **[Cardano for Ethereum developers](/docs/developers/cardano-for-ethereum-developers)**, then come back here for the hands-on.
 :::
 
 ## What you'll be able to do
