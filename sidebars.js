@@ -565,7 +565,7 @@ module.exports = {
             id: "developers/onboarding/lectures/intermediate/introduction",
           },
           items: [
-            "developers/onboarding/lectures/intermediate/lecture-1",
+            "developers/onboarding/lectures/intermediate/on-chain-vs-off-chain",
           ],
         },
         {

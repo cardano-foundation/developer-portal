@@ -31,7 +31,7 @@ After this track you'll be able to:
 
 ## The lectures
 
-1. **On-chain vs off-chain** — the two halves: your app prepares and the chain enforces.
+1. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** — the two halves: your app prepares and the chain enforces.
 2. **What a validator is** — a yes/no gatekeeper that guards a locked UTxO.
 3. **Datum & redeemer** — the data you hand a contract.
 4. **Validator purposes** — spend, mint, withdraw, under one script hash.
@@ -99,4 +99,4 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Ready? Start with **On-chain vs off-chain**.
+Ready? Start with **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)**.
