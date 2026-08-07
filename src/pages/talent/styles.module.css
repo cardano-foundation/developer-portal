@@ -42,7 +42,7 @@ html[data-theme="dark"] .hero {
 
 .heroTitle {
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin-bottom: 1.5rem;
   color: #fff;
 }
@@ -108,7 +108,7 @@ html[data-theme="dark"] .overview {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   font-size: 0.9rem;
 }
 
@@ -132,7 +132,7 @@ html[data-theme="dark"] .photoPlaceholder {
 
 .overviewText h2 {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin-bottom: 1.5rem;
 }
 
@@ -199,7 +199,7 @@ html[data-theme="dark"] .resources {
 
 .resourcesText h2 {
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin-bottom: 1rem;
 }
 
@@ -222,7 +222,7 @@ html[data-theme="dark"] .resources {
   gap: 0.75rem;
   padding: 0.875rem 1rem;
   border-radius: 8px;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none !important;
   transition: all 0.2s ease;
 }
@@ -293,7 +293,7 @@ html[data-theme="dark"] .cta {
 
 .cta h2 {
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin-bottom: 0.75rem;
 }
 

@@ -60,7 +60,7 @@
 .sectionTitle {
   margin: 0;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -79,7 +79,7 @@
 
 .sectionTitleMuted {
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-emphasis-800);
 }
 
@@ -90,7 +90,7 @@
 }
 
 .showAllButton {
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .allAppsHeader {
@@ -99,7 +99,7 @@
 
 .countMuted {
   color: var(--ifm-color-emphasis-600);
-  font-weight: 400;
+  font-weight: var(--ifm-font-weight-normal);
 }
 
 .rowGrid {
@@ -131,7 +131,7 @@
 .guidedPathsTitle {
   margin: 0;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
 }
 
 .guidedPathsSubtitle {
@@ -150,7 +150,7 @@
 
 .guidedPathChip {
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-primary);
   text-decoration: none;
   transition: color 150ms ease;

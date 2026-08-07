@@ -13,7 +13,7 @@
   padding: 0.5rem 1rem;
   border-radius: 999px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   cursor: pointer;
   transition: border-color 150ms ease, background 150ms ease;
 }
@@ -50,7 +50,7 @@
 
 .heading {
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   color: var(--ifm-color-emphasis-700);
   text-transform: uppercase;
   letter-spacing: 0.08em;
