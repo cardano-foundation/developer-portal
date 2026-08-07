@@ -115,9 +115,15 @@ import { Address, Assets, Client } from "@evolution-sdk/evolution"
 
 const mnemonic = "test test test ... sauce"
 const addressHex = Address.toHex(Address.fromSeed(mnemonic, { accountIndex: 0, networkId: 0 }))
-const genesisConfig = { ...Config.DEFAULT_SHELLEY_GENESIS, slotLength: 0.02, initialFunds: { [addressHex]: 10_000_000_000_000 } }
+const genesisConfig = { ...Config.DEFAULT_SHELLEY_GENESIS, slotLength: 0.1, initialFunds: { [addressHex]: 10_000_000_000_000 } }
 
-const cluster = await Cluster.make({ clusterName: "test-suite", shelleyGenesis: genesisConfig, kupo: { enabled: true, port: 1442 }, ogmios: { enabled: true, port: 1337 } })
+const cluster = await Cluster.make({
+  clusterName: "test-suite",
+  ports: { node: 3001, submit: 3002 },
+  shelleyGenesis: genesisConfig,
+  kupo: { enabled: true, port: 1442 },
+  ogmios: { enabled: true, port: 1337 },
+})
 await Cluster.start(cluster)
 
 const client = Client.make(Cluster.getChain(cluster))
@@ -133,7 +139,7 @@ const txHash = await (await tx.sign()).submit()
 await client.awaitTx(txHash, 1000)
 ```
 
-The genesis object is where the chain's behaviour lives: `slotLength: 0.02` gives 20-millisecond slots, which is why `awaitTx` returns in the time a test can afford. Spread `Config.DEFAULT_SHELLEY_GENESIS` and override what you need. Give cluster startup a generous timeout (it launches Docker containers), keep `clusterName` unique to avoid port clashes in parallel runs, and tear it down with `Cluster.stop` and `Cluster.remove` when the suite ends. For the full reference see the [Evolution SDK devnet docs](https://intersectmbo.github.io/evolution-sdk/docs/devnet/getting-started/).
+The genesis object is where the chain's behaviour lives: `slotLength: 0.1` gives 100-millisecond slots, which is why `awaitTx` returns in the time a test can afford. Spread `Config.DEFAULT_SHELLEY_GENESIS` and override what you need. Give cluster startup a generous timeout (it launches Docker containers), keep `clusterName` unique to avoid port clashes in parallel runs, and tear it down with `Cluster.stop` and `Cluster.remove` when the suite ends. For the full reference see the [Evolution SDK devnet docs](https://intersectmbo.github.io/evolution-sdk/docs/devnet/getting-started/).
 
 Mesh ships no cluster of its own; its integration tests drive a Yaci devnet through `YaciProvider` ([above](#yaci-devkit)).
 
