@@ -135,6 +135,15 @@ export default function TemplateDetail({ slug }) {
             </p>
 
             <h2 className={styles.sectionHeading}>Get started</h2>
+            <p className={styles.guideNote}>
+              You need Node.js 20.19+, a Cardano wallet browser extension, and a
+              free <Link href="https://blockfrost.io">Blockfrost</Link> project
+              ID. Get test ADA from the{" "}
+              <Link to="/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada">
+                faucet
+              </Link>
+              .
+            </p>
             <ol className={styles.steps}>
               <li>
                 Scaffold the project into a new <code>my-app</code> folder:

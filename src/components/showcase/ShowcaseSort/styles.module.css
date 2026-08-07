@@ -8,7 +8,7 @@
 }
 
 .sortLabelText {
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .sortSelect {

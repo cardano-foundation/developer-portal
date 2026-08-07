@@ -5,6 +5,9 @@ sidebar_label: Stake validator
 description: Delegate computations to staking scripts using the "withdraw zero trick" for optimized validation
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Overview
 
 The Stake Validator pattern allows you to delegate validation logic to a staking script, significantly reducing script execution costs when processing multiple UTxOs. This is achieved through the "withdraw zero trick" - where spending validators simply check for the presence of a staking credential withdrawal, and the staking validator performs the actual business logic validation once per transaction.
@@ -183,9 +186,87 @@ pub fn validate_withdraw_minimal(
 
 The pattern is called "withdraw zero trick" because you can withdraw 0 lovelace from the staking credential to trigger the staking validator - the withdrawal amount is irrelevant to the validation logic.
 
+## Submitting the trigger off-chain
+
+The off-chain half of the pattern is an ordinary transaction carrying a zero-amount withdrawal for the staking script, with a redeemer and the script attached. Withdrawal validators must be registered on-chain first; the on-chain logic that decides which registrations, delegations, and reward withdrawals to allow is the [certificate and withdrawal handlers](/docs/developers/curriculum/smart-contracts/write-a-validator#certificate-validator) in Write a validator.
+
+<Tabs groupId="sdk">
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+const tx = await client
+  .newTx()
+  .withdraw({
+    stakeCredential: scriptStakeCredential,
+    amount: 0n,
+    redeemer: Data.constr(0n, []),
+    label: "coordinator-trigger"
+  })
+  .attachScript({ script: stakeScript })
+  .build()
+```
+
+</TabItem>
+<TabItem value="mesh" label="Mesh">
+
+```typescript
+import { MeshTxBuilder, mConStr0 } from "@meshsdk/core"
+
+declare const scriptRewardAddress: string   // reward address derived from the stake script hash
+declare const stakeScriptCbor: string
+
+const collateral = await wallet.getCollateralMesh()
+
+const unsignedTx = await new MeshTxBuilder({ fetcher: provider })
+  .withdrawalPlutusScriptV3()
+  .withdrawal(scriptRewardAddress, "0")        // zero-amount withdrawal triggers the validator
+  .withdrawalScript(stakeScriptCbor)
+  .withdrawalRedeemerValue(mConStr0([]))
+  .txInCollateral(collateral[0].input.txHash, collateral[0].input.outputIndex)
+  .changeAddress(await wallet.getChangeAddressBech32())
+  .selectUtxosFrom(await wallet.getUtxosMesh())
+  .complete()
+
+const signedTx = await wallet.signTx(unsignedTx)
+await wallet.submitTx(signedTx)
+```
+
+</TabItem>
+</Tabs>
+
+Script control is not limited to the withdrawal trigger. In Evolution every staking operation accepts a `redeemer` and an attached script, so a script-held credential can also delegate:
+
+<Tabs>
+<TabItem value="evolution" label="Evolution" default>
+
+```typescript
+import { Credential, Data } from "@evolution-sdk/evolution"
+
+declare const scriptStakeCredential: Credential.Credential
+declare const stakeScript: any
+
+const tx = await client
+  .newTx()
+  .delegateToPool({
+    stakeCredential: scriptStakeCredential,
+    poolKeyHash,
+    redeemer: Data.constr(0n, []),
+    label: "delegate-script-stake"
+  })
+  .attachScript({ script: stakeScript })
+  .build()
+```
+
+</TabItem>
+</Tabs>
+
+Mesh's builder takes a redeemer on a script **withdrawal** (the trigger above) but not on a stake **delegation** certificate, so script-controlled delegation is Evolution or cardano-cli only.
+
+The script does not have to hold the stake credential itself, either. When locked funds should keep earning for their depositor, the script address carries the *depositor's* stake credential, and staking needs no script logic at all: production lending pools stake idle liquidity this way, with the validator simply preserving the full address on every continuing output.
+
 ## Double Satisfaction Protection
 
-When using this pattern with multiple inputs/outputs, protect against [double satisfaction attacks](../../security/vulnerabilities/double-satisfaction) by:
+When using this pattern with multiple inputs/outputs, protect against [double satisfaction attacks](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/double-satisfaction) by:
 
 1. **Tagging outputs** - Include input OutRef in output datums
 2. **Unique indexing** - Use redeemer indices to pair inputs with outputs
@@ -219,4 +300,4 @@ The interesting consequence is proving that an event has *not* happened. The usu
 
 Because this state lives on the account side of the ledger, reading or flipping it spends no UTxO. There is no contention: many transactions can interact with the same credential within one block without competing for an input.
 
-Two caveats. The certificate operations that make this work are exactly the ones covered in [Unconstrained Certificate Operations](../../security/vulnerabilities/certificate-deregistration): an unguarded certificate path lets anyone flip the bit and claim the registration deposit. And while several credentials give several bits, treating them as an integer reintroduces the concurrency problems the technique avoids; the [global state write-up](https://github.com/Anastasia-Labs/design-patterns/blob/main/stake-validator/GLOBAL-STATE.md) in the design patterns repository demonstrates multi-bit counters but labels them a proof of concept.
+Two caveats. The certificate operations that make this work are exactly the ones covered in [Unconstrained Certificate Operations](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/staking-and-certificates#unconstrained-certificate-operations): an unguarded certificate path lets anyone flip the bit and claim the registration deposit. And while several credentials give several bits, treating them as an integer reintroduces the concurrency problems the technique avoids; the [global state write-up](https://github.com/Anastasia-Labs/design-patterns/blob/main/stake-validator/GLOBAL-STATE.md) in the design patterns repository demonstrates multi-bit counters but labels them a proof of concept.

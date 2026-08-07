@@ -32,3 +32,7 @@ import DocCardList from '@theme/DocCardList';
 Cardano was designed with input from a global team of experts in programming languages, network design, and cryptography. If you haven't seen it, the 2017 whiteboard video is still a worthwhile primer on what Cardano is and where it came from (some details have since evolved).
 
 <iframe width="100%" height="325" src="https://www.youtube-nocookie.com/embed/Ja9D0kpksxw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Next steps
+
+- [Start Building](/docs/developers/curriculum/start-building/overview): Module 2, where these concepts become transactions

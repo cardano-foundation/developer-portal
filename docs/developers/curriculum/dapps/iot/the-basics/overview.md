@@ -18,11 +18,10 @@ This first workshop sets you up for everything that follows: install and fund a 
 
 ## What you'll need
 
-- ESP8266 or ESP32 microcontroller (the workshop uses the ESP32-C3 / Cheap Yellow Display family)
-- Micro USB **data** cable (not a charge-only cable)
-- A computer with the Arduino IDE installed
-- WiFi with internet access
-- Yoroi wallet on Preprod testnet
+- The board and USB data cable from the [Hardware reference](/docs/developers/curriculum/dapps/iot/hardware/).
+- A computer with the Arduino IDE installed.
+- WiFi with internet access.
+- Yoroi wallet on Preprod testnet.
 
 
 ---

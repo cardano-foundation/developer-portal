@@ -212,7 +212,7 @@ See [Calidus Keys](../../operator-tools/calidus-keys) for setup instructions.
 
 ## Further reading
 
-- [Submitting votes (cardano-cli full reference)](/docs/developers/curriculum/staking-governance/governance#vote-on-an-action)
-- [Governance queries](/docs/developers/curriculum/staking-governance/governance#query-governance-state)
+- [Submitting votes (cardano-cli full reference)](/docs/developers/curriculum/staking-governance/vote-and-propose#vote-on-an-action)
+- [Governance queries](/docs/developers/curriculum/staking-governance/governance-operations#query-governance-state)
 - [CIP-1694 specification](https://cips.cardano.org/cip/CIP-1694)
 - [Cardano GovTool](https://gov.tools)

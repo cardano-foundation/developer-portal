@@ -113,5 +113,5 @@ html[data-theme=dark] .iconBtn {
 }
 
 .btnSpan {
-  font-weight: bold;
+  font-weight: var(--ifm-font-weight-bold);
 }

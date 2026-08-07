@@ -30,7 +30,7 @@ export default function NotFoundContent({ className }) {
       <span
         style={{
           fontSize: "7rem",
-          fontWeight: 800,
+          fontWeight: "var(--site-font-weight-display)",
           lineHeight: 1,
           letterSpacing: "-0.04em",
           color: "var(--ifm-color-primary)",
@@ -40,7 +40,7 @@ export default function NotFoundContent({ className }) {
       >
         404
       </span>
-      <h1 style={{ fontSize: "1.75rem", fontWeight: 700, marginTop: "-0.5rem", marginBottom: "0.75rem" }}>
+      <h1 style={{ fontSize: "1.75rem", fontWeight: "var(--ifm-font-weight-bold)", marginTop: "-0.5rem", marginBottom: "0.75rem" }}>
         Page Not Found
       </h1>
       <p style={{

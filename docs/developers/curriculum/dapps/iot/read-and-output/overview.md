@@ -20,10 +20,8 @@ This workshop covers reading data from the blockchain in intervals and using tha
 ## What you'll need
 
 - Everything from Workshop 01.
-- A TFT display (the workshop uses the Cheap Yellow Display).
-- A relay module (with status LED).
-- A 12-LED WS2812 ring (NeoPixel) and an external 5V supply if you want to run it brighter than ~2%.
-- Breadboard, jumper wires.
+- The screen, relay module, and LED ring from the [Hardware reference](/docs/developers/curriculum/dapps/iot/hardware/), plus breadboard and jumper wires.
+- An external 5V supply if you want to run the LED ring brighter than ~2%.
 
 
 ---

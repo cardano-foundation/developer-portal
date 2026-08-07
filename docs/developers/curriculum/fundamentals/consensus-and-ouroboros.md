@@ -5,7 +5,7 @@ sidebar_label: Consensus & Ouroboros
 description: How distributed networks agree on a single truth, from Proof of Work to Cardano's Ouroboros Proof of Stake protocol.
 ---
 
-A consensus mechanism is the protocol-level rule set that lets thousands of independent nodes agree on a single canonical chain without any central coordinator. We have established that a blockchain is a distributed ledger and that [cryptographic primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) secure individual transactions and blocks. This page answers the remaining question: when multiple nodes each propose a different block at the same time, how does the network decide which one becomes part of the chain?
+A consensus mechanism is the protocol-level rule set that lets thousands of independent nodes agree on a single canonical chain without any central coordinator. A blockchain is a distributed ledger, and [cryptographic primitives](/docs/developers/curriculum/fundamentals/cryptographic-primitives) secure its individual transactions and blocks. This page answers the remaining question: when multiple nodes each propose a different block at the same time, how does the network decide which one becomes part of the chain?
 
 If you have used Raft or Paxos, the shape is familiar: a leader is elected to sequence writes, which maps to slot-leader selection, log entries to blocks, the term to an epoch, and heartbeats to block propagation. The critical difference is the threat model: Raft assumes honest nodes and only tolerates crashes, while Ouroboros assumes some nodes are malicious (Byzantine fault tolerance), which is why it needs VRFs, stake-weighted election, and a formal security proof.
 
@@ -17,12 +17,9 @@ Consensus is hard because distributed nodes have different views of pending tran
 Node A (Tokyo)    sees [T1, T2, T3]
 Node B (New York) sees [T2, T4, T5]
 Node C (Berlin)   sees [T1, T4, T6]
-
-Which transactions go in the next block? Who decides?
-What if Node B is malicious and fabricates T5?
 ```
 
-The network must agree on **who** produces the next block, **what** goes in it, and **when** it is final, despite latency, node failures, malicious actors, and no central coordinator.
+Three honest nodes, three different views, and no two of them agree on what is pending. Now suppose Node B is lying and T5 never existed. The network still has to settle on **who** produces the next block, **what** goes in it, and **when** it is final, despite latency, node failures, malicious actors, and no central coordinator.
 
 ## How does Proof of Work achieve consensus?
 
@@ -91,43 +88,44 @@ The stake used for election is a **snapshot from two epochs ago**. This delay st
 
 When multiple valid chains exist, nodes follow the **longest chain rule**, and Praos breaks equal-length ties by the block's leader VRF value. (The recent-chain-density rule is a feature of Ouroboros Genesis, which lets newly joining nodes bootstrap safely.) Blocks on abandoned forks are discarded and their transactions return to the mempool, which is why transactions need a few confirmations before they are settled.
 
+Short forks happen for two mundane reasons, and naming them removes the mystery. A **slot battle**: VRF elections are independent, so two pools can both win the same slot and both produce a block. A **height battle**: a leader elected a few slots later has not yet received the previous block and builds on the older tip. Both create momentary one-block forks that the selection rule resolves.
+
 ### Block diffusion and the security parameter k
 
-When a leader produces a block it must reach other nodes fast (Cardano targets diffusion within ~5 seconds) or risk being orphaned. The parameter **k** (currently 2160) defines settlement: a block is considered settled once k blocks follow it, roughly 12 hours at ~20s/block. In practice most applications treat a few minutes (10-20 blocks) as very safe; k is the absolute mathematical bound.
+When a leader produces a block it must reach other nodes fast (Cardano targets diffusion within ~5 seconds) or risk being orphaned. The parameter **k** (currently 2160) defines settlement: a block is considered settled once k blocks follow it, roughly 12 hours at ~20s/block. And k is not only a probability statement: nodes never adopt a chain that forks more than k blocks below their tip, so everything deeper than k is immutable by construction and only the last k blocks are ever up for revision.
+
+In practice forks are typically a block or two deep. Most applications treat 10-20 confirmations (a few minutes) as very safe for ordinary value; high-value receivers wait deeper, exchanges commonly 20-30 blocks or more; k is the absolute bound. The [Cardano Blueprint's chain selection page](https://cardano-scaling.github.io/cardano-blueprint/consensus/chainsel.html) covers the rule and its tie-breakers in detail.
 
 ### How do rewards and incentives drive decentralization?
 
 Each epoch the protocol distributes rewards (from fees and monetary expansion) to operators (a fixed cost plus margin) and delegators (the remainder, proportional to stake). The reward formula caps oversized pools:
 
 ```
-Desirable pool size ~ 1 / k0   (k0 = target number of pools, currently 500)
-Beyond it: rewards are CAPPED, excess stake earns nothing,
-delegators are incentivized to move to smaller pools.
+desirable pool size ~ 1 / k0      (k0 = target number of pools, currently 500)
 ```
+
+Past that size a pool's rewards are capped. The excess stake earns nothing, so delegators have a reason to move to a smaller pool, and the operator has no reason to want them to stay.
 
 Decentralization is not enforced by a rule; it emerges from economic incentives (a Nash equilibrium toward ~500 evenly-sized pools). Operators can also **pledge** their own ADA, which slightly raises rewards and resists Sybil attacks (many tiny pools are less profitable than one well-pledged pool).
 
 ## How does finality work?
 
-Cardano provides **probabilistic finality**: the chance of reversal decreases exponentially with each block added. Practical finality is reached in 5-10 minutes; the mathematical bound is k = 2160 (~12 hours).
+Cardano provides **probabilistic finality**: the chance of reversal decreases exponentially with each block added, and beyond k = 2160 blocks (~12 hours) chain selection refuses to roll back at all, making k a hard bound on rollback depth rather than a probability. Practical finality is 10-20 confirmations, a few minutes.
 
 | Network | Typical finality | Mechanism |
 |---|---|---|
 | Bitcoin (PoW) | ~60 min (6 blocks) | Probabilistic |
 | Ethereum (PoS) | ~15 min | Deterministic after finalization |
-| Cardano (Praos) | ~5-10 min practical, ~12h bound | Probabilistic, stake-based |
+| Cardano (Praos) | ~3-7 min practical, ~12h bound | Probabilistic, stake-based |
 
 ## What happens during a complete epoch?
 
-```
-Epoch N-2: stake snapshot taken (active stake for Epoch N)
-Epoch N-1: VRF outputs contribute to the epoch nonce used for Epoch N
-Epoch N:   per slot, each pool checks its VRF; if elected it selects txs,
-           builds a block, signs with its KES key, and publishes with the VRF proof;
-           other nodes verify the VRF proof, KES signature, and all transactions
-Epoch N boundary: calculate and distribute rewards, take a new snapshot,
-           apply queued parameter changes, process pool registrations/retirements
-```
+Three epochs are in flight at any moment, because the inputs to block production are fixed two epochs ahead.
+
+- **Epoch N-2**: a stake snapshot is taken. This is the active stake that will decide leadership in epoch N.
+- **Epoch N-1**: VRF outputs from this epoch feed the nonce that seeds epoch N's leader election.
+- **Epoch N**: in every slot, each pool checks its VRF against its threshold. A pool that wins selects transactions, builds a block, signs it with its KES key, and publishes it with the VRF proof. Every other node verifies that proof, the KES signature, and each transaction in the block.
+- **At the boundary**: rewards are calculated and distributed, a new snapshot is taken, queued protocol-parameter changes take effect, and pool registrations and retirements are processed.
 
 ### What are KES keys?
 
@@ -149,4 +147,4 @@ Epoch N boundary: calculate and distribute rewards, take a new snapshot,
 - Cardano's incentive design makes **decentralization an emergent economic equilibrium**, not an enforced rule.
 
 ## Next steps
-Now that you know how blocks are produced and the network agrees, the next step is what is actually inside those blocks: Cardano's Extended UTXO model. See [the eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo).
+That settles how blocks are produced and agreed on. The next question is what is inside them: Cardano's Extended UTXO model. See [the eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo).

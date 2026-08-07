@@ -255,8 +255,8 @@ graph LR
 
 Transaction level validation can be implemented using minting policies. However, if minting
 validation tokens is impractical, the recommended approach is to implement transaction level
-validation using a staking validator due to lower ExUnits cost compared to minting policy checks,
-based on our experience.
+validation using a staking validator, which in practice costs fewer ExUnits than minting policy
+checks.
 
 ## Example Code
 

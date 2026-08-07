@@ -194,17 +194,38 @@ Wallets and hardware devices follow Cardano's [BIP-32 / CIP-1852](/docs/develope
 
 `1852'` = Cardano purpose, `1815'` = ADA coin type, then account / role (`0` external, `1` change, `2` staking) / index.
 
+## Governance: CIP-95
+
+The core CIP-30 API has no governance methods. [CIP-95](https://cips.cardano.org/cip/CIP-0095) adds them as an **optional extension**, which you request when you connect:
+
+```typescript
+const api = await window.cardano.eternl.enable({ extensions: [{ cip: 95 }] })
+
+if (!api.cip95) {
+  // Connected, but this wallet speaks core CIP-30 only
+}
+```
+
+A wallet without CIP-95 still connects; it just returns no `cip95` namespace. Feature-detect before you put governance actions in front of a user, because plenty of wallets implement the core only.
+
+The extension adds `getPubDRepKey()` for the user's DRep key, and `getRegisteredPubStakeKeys()` / `getUnregisteredPubStakeKeys()` for their stake keys. `signTx` and `signData` are extended rather than namespaced, so existing calls keep working and gain the ability to witness Conway certificates and DRep credentials. For what to do with them, see [Governance operations](/docs/developers/curriculum/staking-governance/governance-operations#browser-wallet-apis-cip-95).
+
 ## No browser extension? Wallet as a Service
 
 Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [UTXOS Web3 Services](/docs/developers/curriculum/dapps/wallet-authentication#hosted-sign-in-as-a-service), which also supports [transaction sponsorship](https://docs.utxos.dev/sponsor) so users can transact without holding ADA for fees first.
 
 ## Framework integration (React & Svelte)
 
-Connecting a wallet in a frontend is the same CIP-30 flow shown above; a framework just needs somewhere to hold the connection state and a button to trigger it. How much you hand-roll depends on the SDK: **Mesh** ships ready-made React and Svelte packages (a connect button, hooks, reactive state), while **Evolution** has no UI package and stays framework-agnostic, so you wire the raw CIP-30 flow from [Connect](#connect) into your own hook, store, or context. The Mesh convenience path:
+Connecting a wallet in a frontend is the same CIP-30 flow shown above; a framework just needs somewhere to hold the connection state and a button to trigger it. How much you hand-roll depends on the SDK: **Mesh** ships ready-made React and Svelte packages (a connect button, hooks, reactive state), while **Evolution** has no UI package and stays framework-agnostic, so you wire the raw CIP-30 flow from [Connect](#connect) into your own hook, store, or context.
+
+The connect button is also its own concern, separable from whichever SDK builds your transactions. [`cardano-connect-with-wallet`](https://github.com/cardano-foundation/cardano-connect-with-wallet) is one option for that, worth knowing about if you are not on React or you need mobile wallet support; the Vite [template](/templates) pairs it with Evolution. [Builder Tools](/tools/?tags=wallet) lists the others.
 
 ### React
 
 Wrap your app once in `<MeshProvider>` and import the stylesheet, then drop the pre-built button in:
+
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
 
 ```tsx
 // app root (pages/_app.tsx or app/layout.tsx)
@@ -228,6 +249,9 @@ import { CardanoWallet } from "@meshsdk/react"
 <CardanoWallet label="Connect" isDark persist onConnected={() => {}} />
 ```
 
+</TabItem>
+</Tabs>
+
 `<CardanoWallet />` renders the wallet-selection modal and connection flow for you. From any component under the provider, the hooks read live wallet state:
 
 | Hook | Returns |
@@ -242,6 +266,9 @@ import { CardanoWallet } from "@meshsdk/react"
 ### Svelte
 
 Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Instead of hooks, you read the reactive `BrowserWalletState` runes, accessed directly inside an `$effect` so reactivity isn't lost:
+
+<Tabs>
+<TabItem value="mesh" label="Mesh" default>
 
 ```svelte
 <script lang="ts">
@@ -263,6 +290,9 @@ Mesh ships the same `<CardanoWallet />` from `@meshsdk/svelte` (Svelte 5). Inste
 {/if}
 ```
 
+</TabItem>
+</Tabs>
+
 `BrowserWalletState` exposes `wallet`, `connected`, `name`, and `connecting`. Read its properties directly (don't destructure) or you lose reactivity.
 
 Without these packages (Evolution, or a framework Mesh doesn't ship for) the concept is unchanged and the code is short: call `cardano[name].enable()` on a button click, stash the returned wallet API or `client` in a `useState`/`useContext` (React) or a store (Svelte), and read from it. Same CIP-30 surface, just without the pre-built widget.
@@ -274,7 +304,7 @@ Mesh uses Node built-ins (`Buffer`, `crypto`, `stream`) that modern bundlers no 
 - **Polyfill the Node built-ins.** Add [`node-polyfill-webpack-plugin`](https://www.npmjs.com/package/node-polyfill-webpack-plugin) in `next.config`, and also strip the `node:` scheme with a `NormalModuleReplacementPlugin` over `/^node:/`. The plugin alone does not cover `node:`-prefixed imports, so without the strip the build still fails with `UnhandledSchemeError: ... node:buffer`.
 - **Pin a working libsodium.** A current Mesh release transitively pulls `libsodium-wrappers-sumo@0.7.x`, whose ESM build is broken, so `next build` fails with `Can't resolve './libsodium-sumo.mjs'`. Add `"overrides": { "libsodium-wrappers-sumo": "^0.8.4" }` to your `package.json`. This is a temporary workaround until Mesh ships the upstream fix (`@cardano-sdk/crypto@0.4.6+` already pins the corrected libsodium).
 
-The [mesh-nextjs](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs) ships the complete, build-verified configuration; copy its `next.config.ts` and the `overrides` block.
+The [mesh-nextjs](https://github.com/cardano-foundation/developer-portal/tree/staging/examples/templates/mesh-nextjs) template carries this whole configuration already; copy its `next.config.ts` and the `overrides` block. Because it tracks upstream releases rather than pinned versions, check the versions it resolves against what you get.
 
 ## Next steps
 

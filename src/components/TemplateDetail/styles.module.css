@@ -29,7 +29,7 @@
   padding: 0.45rem 0.95rem;
   border-radius: 999px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   margin-bottom: 0.6rem;
 }
 
@@ -45,7 +45,7 @@
 .title {
   margin: 0;
   font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 800;
+  font-weight: var(--site-font-weight-display);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -78,7 +78,7 @@
 
 .sectionHeading {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.9rem;
 }
 
@@ -118,7 +118,7 @@
 
 .codeLang {
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ifm-color-emphasis-600);
@@ -131,7 +131,7 @@
   background: var(--ifm-background-surface-color);
   color: var(--ifm-color-emphasis-700);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
@@ -164,7 +164,7 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 /* Compact details card (label left, value right) */
@@ -189,13 +189,13 @@
 
 .metaLabel {
   color: var(--ifm-color-emphasis-600);
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   white-space: nowrap;
 }
 
 .metaValue {
   color: var(--ifm-color-emphasis-900);
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-align: right;
 }
 
@@ -212,7 +212,7 @@
   background: transparent;
   color: var(--ifm-color-emphasis-900);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
   transition: border-color 0.15s ease, background 0.15s ease;
 }

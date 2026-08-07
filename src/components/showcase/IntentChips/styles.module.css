@@ -5,7 +5,7 @@
 
 .intentTitle {
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-emphasis-600);
   margin-bottom: 0.6rem;
   text-transform: uppercase;
@@ -32,7 +32,7 @@
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   cursor: pointer;
   transition: background-color 150ms ease, border-color 150ms ease,
     color 150ms ease, box-shadow 150ms ease;

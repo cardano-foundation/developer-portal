@@ -13,13 +13,30 @@ Working on a testnet is not the same as being production-ready. Mainnet has real
 ## 1. Test thoroughly
 
 - **On-chain validators**: your validators are pure functions, so test them exhaustively with mock transactions. See [Testing](/docs/developers/curriculum/smart-contracts/testing), and use the fuzzer for property-based coverage ([Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization)).
-- **Off-chain code**: test transaction building and submission too. Evolution ships unit tests, an emulator, and devnet integration tests ([Testing your off-chain code](/docs/developers/curriculum/smart-contracts/testing#testing-your-off-chain-code)).
-- **Rehearse on Preprod**: Preprod mirrors mainnet (same protocol parameters and epoch length). Do a full dry run of your user flow there before mainnet. See [Networks & test ADA](/docs/developers/curriculum/start-building/networks-and-test-ada). Mainnet transactions cannot be reversed, so the burn-in happens here.
+- **Off-chain code**: test transaction building and submission too, with an in-memory emulator or devnet integration tests ([Local testing](/docs/developers/curriculum/start-building/local-testing)).
+- **Rehearse on Preprod**: Preprod mirrors mainnet (same protocol parameters and epoch length). Do a full dry run of your user flow there before mainnet. See [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada). Mainnet transactions cannot be reversed, so the burn-in happens here.
+
+### Testnets are your staging environments
+
+Mirror the staging progression you already use in web2, with the faucet as your Stripe test mode: valueless ADA to exercise real flows.
+
+```mermaid
+graph LR
+    Dev[Local devnet\nseconds to iterate] --> Preview[Preview testnet\nnew features first, 1-day epochs]
+    Preview --> Preprod[Preprod testnet\nproduction mirror, 5-day epochs]
+    Preprod --> Mainnet[Mainnet\nreal ADA, real users]
+    style Dev fill:#9E9E9E,color:#fff
+    style Preview fill:#FF9800,color:#fff
+    style Preprod fill:#2196F3,color:#fff
+    style Mainnet fill:#4CAF50,color:#fff
+```
+
+For the fastest loop, run a [local devnet](/docs/developers/curriculum/start-building/local-testing#local-devnets). **Preview** receives protocol upgrades first (1-day epochs), best for testing new features. **Preprod** is the final rehearsal above. Get test ADA and explorer links from [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada).
 
 ## 2. Secure it
 
-- **Guard the vulnerability classes**: datum hijacking, double satisfaction, token forgery, resource exhaustion. See [Smart contract security](/docs/developers/curriculum/smart-contracts/security), and sharpen your eye on the [CTF](/docs/developers/curriculum/smart-contracts/advanced/security/ctf).
-- **Get an audit**: for any contract holding meaningful value, a professional audit is standard practice before mainnet. Testing finds the bugs you thought of; audits find the ones you didn't. See [Audits](/docs/developers/curriculum/smart-contracts/advanced/security/audits) for the process and how to prepare.
+- **Guard the vulnerability classes**: datum hijacking, double satisfaction, token forgery, resource exhaustion. See [Smart contract security](/docs/developers/curriculum/smart-contracts/security), and sharpen your eye on the [CTF](/docs/developers/curriculum/smart-contracts/security/ctf).
+- **Get an audit**: for any contract holding meaningful value, a professional audit is standard practice before mainnet. Testing finds the bugs you thought of; audits find the ones you didn't. See [Audits](/docs/developers/curriculum/smart-contracts/security#audits) for the process and how to prepare.
 - **Keep keys and secrets safe**: the frontend should only sign; build and submit on a backend ([frontend signs, backend submits](/docs/developers/curriculum/dapps/connect-a-wallet#frontend-signs-backend-builds-and-submits)). Never ship provider API keys in client-side code. Review [key & wallet security](/docs/developers/curriculum/fundamentals/core-concepts/wallets-and-keys#working-with-wallets-in-code). For backends that custody keys controlling real value, the operator cold-key playbook applies too: see the [secure transaction workflow](/docs/operators/security/secure-workflow) (build online, sign offline, submit online) and an [air-gapped environment](/docs/operators/security/air-gap).
 
 ## 3. Make transactions reliable
@@ -27,7 +44,7 @@ Working on a testnet is not the same as being production-ready. Mainnet has real
 The most common production failure mode is a transaction rejected because an input was already spent or an indexer lagged.
 
 - **Retry safely**: structure build → sign → submit so retries re-read chain state instead of replaying a stale UTxO. See [resilient submission](/docs/developers/curriculum/start-building/transaction-building#resilient-submission-retry-safe).
-- **Chain multi-step flows**: build dependent transactions up front without waiting for confirmation between steps. See [transaction chaining](/docs/developers/curriculum/start-building/transaction-building#chaining-transactions).
+- **Chain multi-step flows**: build dependent transactions up front without waiting for confirmation between steps. See [transaction chaining](/docs/developers/curriculum/production/transaction-chaining) for the concept and [chaining transactions](/docs/developers/curriculum/start-building/transaction-building#chaining-transactions) for the code.
 - **Handle errors structurally**: distinguish recoverable (stale input, provider hiccup) from terminal (insufficient funds) failures. See [Error handling](https://github.com/IntersectMBO/evolution-sdk).
 
 ### Harden your provider
@@ -93,7 +110,7 @@ For the full walkthrough, see Mesh's [custom provider](https://meshjs.dev/guides
 
 ## 5. Choose your infrastructure
 
-Decide how your dApp will read and submit to the chain: a managed API (fastest to ship) or your own node and indexer (most control). See [Production infrastructure](/docs/developers/curriculum/production/infrastructure) for the full decision.
+Decide how your dApp will read and submit to the chain: a hosted query API (fastest to ship) or infrastructure you run (most control). [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain) maps the options and the axes to decide by; [use a provider](/docs/developers/curriculum/production/use-a-provider) and [self-hosting](/docs/developers/curriculum/production/self-hosting) set up whichever you choose.
 
 ## 6. Smooth the on-ramp
 
@@ -114,5 +131,5 @@ Production also means users who may not have a wallet or any ADA. Lower the barr
 
 ## Next steps
 
-- [Production infrastructure](/docs/developers/curriculum/production/infrastructure): pick and run your stack
-- [Scaling overview](/docs/developers/curriculum/production/overview): if production load needs Hydra or batching
+- [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain): pick your stack with the full map in view
+- [Ship to Production overview](/docs/developers/curriculum/production/overview): the Scale arc, if production load needs Hydra or batching

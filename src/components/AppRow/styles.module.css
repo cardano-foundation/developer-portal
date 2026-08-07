@@ -35,7 +35,7 @@
 .title {
   margin: 0 0 0.15rem;
   font-size: 0.98rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -53,7 +53,7 @@
 
 .newBadge {
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   letter-spacing: 0.06em;
   background: var(--ifm-color-warning);
   color: #1a1a1a;

@@ -5,7 +5,7 @@ sidebar_label: Overview
 description: How smart contracts work on Cardano, validators that approve or reject transactions on the eUTXO model.
 ---
 
-![Smart Contracts](./img/card-smart-contracts-title.svg)
+You arrive able to build transactions, mint under policies you wrote, and delegate stake and votes. Until now most rules you enforced were the ledger's own; this module generalizes the policy idea into validator scripts that guard any UTXO with logic you define.
 
 ## What are smart contracts?
 
@@ -107,7 +107,7 @@ A transaction that includes scripts is validated in two phases:
 - **Phase 1** checks the transaction structure: inputs exist, signatures are valid, the transaction balances.
 - **Phase 2** runs the scripts. Each gets a budget of execution units (ExUnits), priced into the fee.
 
-Because phase-2 work is real, a script transaction also carries **collateral**: ADA-only UTXOs the node consumes only if a script fails phase 2. Honest transactions that succeed never lose it, while flooding the network with failing scripts becomes expensive. Setting collateral in practice is covered in [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#collateral); the SDKs select it for you.
+Because phase-2 work is real, a script transaction also carries **collateral**: ADA-only UTXOs the node consumes only if a script fails phase 2. Honest transactions that succeed never lose it, while flooding the network with failing scripts becomes expensive. The full rules live in [collateral](/docs/developers/curriculum/fundamentals/core-concepts/fees#collateral); setting it in practice is covered in [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#collateral), and the SDKs select it for you.
 
 ### Deterministic validation
 
@@ -146,7 +146,7 @@ A few ledger features shape how you design contracts:
 
 - **Reference inputs ([CIP-31](https://cips.cardano.org/cip/CIP-31))**: read a UTXO's data without spending it, so many contracts can read one oracle feed at once.
 - **Inline datums ([CIP-32](https://cips.cardano.org/cip/CIP-32))**: store the datum in the output itself instead of a hash. See [Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context#datum-hash-vs-inline-datum).
-- **Reference scripts ([CIP-33](https://cips.cardano.org/cip/CIP-33))**: deploy a script once and reference it from later transactions, for smaller transactions and lower fees. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts).
+- **Reference scripts ([CIP-33](https://cips.cardano.org/cip/CIP-33))**: deploy a script once and reference it from later transactions. The transaction shrinks, and the referenced bytes carry a [per-byte fee](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) well below the cost of inlining. See [Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts).
 - **Collateral output ([CIP-40](https://cips.cardano.org/cip/CIP-40))**: return excess collateral to an address you choose.
 
 A validator's rules cannot be changed after deployment, and the compiled code cannot be turned back into source.
@@ -155,21 +155,27 @@ That permanence runs one way only. On-chain code keeps working unchanged for as 
 
 ## Choose a language
 
-Validators can be written in several languages that all compile to the same on-chain bytecode (UPLC). For most new projects, **[Aiken](https://aiken-lang.org)** is the recommended starting point. See **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)** for the full comparison (Aiken, Plinth, Plutarch, OpShin, Scalus, Pebble, Marlowe).
+Validators can be written in several languages that all compile to the same on-chain bytecode (UPLC). The examples in this module are written in **[Aiken](https://aiken-lang.org)**. See **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)** for the full comparison (Aiken, Plinth, Plutarch, OpShin, Scalus, Pebble, Marlowe).
 
 ## Key takeaways
 
 - **Smart contracts are validators, not programs.** They check whether a transaction is allowed; they do not perform its logic.
 - **On-chain validates; off-chain constructs.** This keeps on-chain execution cheap and lets you write and test the two halves independently.
-- **Determinism is the superpower.** You know a transaction's outcome and cost before submitting it, which removes wasted fees, front-running, and MEV.
+- **Determinism is the superpower.** You know a transaction's outcome and cost before submitting it, which removes wasted fees and the fee-auction form of front-running.
 - **Script addresses lock UTXOs under code,** replacing key-based authorization with arbitrary rules.
 - **The eUTXO model extends UTXOs** with datums, redeemers, and context, enabling full contract logic while preserving determinism and parallelism.
 
 ## Next steps
-This module builds up from here:
+
+This module builds up from here, in order:
 
 1. **[Datum, redeemer & context](/docs/developers/curriculum/smart-contracts/datum-redeemer-context)**: the three arguments every validator receives, in depth.
-2. **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)**: pick how you'll write validators (Aiken-first).
-3. **[Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
-4. **[Testing](/docs/developers/curriculum/smart-contracts/testing)**: verify validators with mock transactions before you deploy.
-5. **[Security](/docs/developers/curriculum/smart-contracts/security)**: the attack classes to defend against.
+2. **[Choose a language](/docs/developers/curriculum/smart-contracts/choose-a-language)**: pick how you'll write validators.
+3. **[Write a validator](/docs/developers/curriculum/smart-contracts/write-a-validator)**: the on-chain code itself, purpose by purpose.
+4. **[Lock and spend](/docs/developers/curriculum/smart-contracts/lock-and-spend)**: build the off-chain transactions that interact with a contract.
+5. **[Testing](/docs/developers/curriculum/smart-contracts/testing)**: verify validators with mock transactions before you deploy.
+6. **[Contract library](/templates/contracts)**: audited, open-source contracts to read or start from.
+7. **[Security](/docs/developers/curriculum/smart-contracts/security)**: what the eUTXO model protects you from, what it leaves to you, and how contracts are verified, with the [vulnerability reference](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/overview) and the [CTF](/docs/developers/curriculum/smart-contracts/security/ctf) beneath it.
+8. **[Advanced](/docs/developers/curriculum/smart-contracts/advanced/overview)**: design patterns, UPLC, CBOR debugging, optimization, and the cryptographic primitives. Reference material, read when you need it.
+
+Then **[Build a dApp](/docs/developers/curriculum/dapps/overview)**, the next module, where your contracts meet users.

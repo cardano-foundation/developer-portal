@@ -22,7 +22,7 @@ flowchart TD
     end
 ```
 
-[`cardano-node`](https://github.com/IntersectMBO/cardano-node) (Haskell) bundles the four layers into one process: it keeps a copy of the chain, validates blocks and transactions, takes part in consensus, and talks to other nodes. Relays, block producers, and full-node wallets all run it. You don't drive these layers directly; you reach the chain through CLIs, SDKs, and APIs (see [Production infrastructure](/docs/developers/curriculum/production/infrastructure) for the developer stack).
+[`cardano-node`](https://github.com/IntersectMBO/cardano-node) (Haskell) bundles the four layers into one process: it keeps a copy of the chain, validates blocks and transactions, takes part in consensus, and talks to other nodes. Relays, block producers, and full-node wallets all run it. You don't drive these layers directly; you reach the chain through CLIs, SDKs, and APIs (see [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain) for the developer stack).
 
 Each layer is specified and implemented as its own package:
 
@@ -51,7 +51,7 @@ The networking layer handles peer topology and connection management. Both relay
 
 ### Scripting layer
 
-The scripting layer is the smart-contract execution engine embedded in the ledger. At its core it is a typed lambda calculus, a minimal formally-verified computation model; smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately compile down to Untyped Plutus Core (UPLC) for on-chain execution (reference implementation: [Plutus Core](https://github.com/IntersectMBO/plutus)).
+The scripting layer is the smart-contract execution engine embedded in the ledger. At its core it is a lambda calculus, a minimal formally-verified computation model. Compilers work through a typed form, Typed Plutus Core, but the language the ledger executes is untyped: smart contracts compiled from Aiken, Plinth, Plutarch, or any other high-level language ultimately become [Untyped Plutus Core (UPLC)](/docs/developers/curriculum/smart-contracts/advanced/uplc) for on-chain execution (reference implementation: [Plutus Core](https://github.com/IntersectMBO/plutus)).
 
 Execution happens within the ledger layer during transaction validation. Every script execution is bounded by an execution unit budget (CPU steps and memory units) that must be declared in the transaction. The declared budget is consumed during validation; both per-transaction and per-block execution unit limits are enforced by the protocol parameters, preventing unbounded computation.
 
@@ -59,7 +59,7 @@ Execution happens within the ledger layer during transaction validation. Every s
 
 [`cardano-cli`](https://github.com/IntersectMBO/cardano-cli) is the command-line interface to a running node. It connects over a local socket to build, sign, and submit transactions, query chain state (UTXOs, protocol parameters, governance state), and manage keys and certificates. It is not a daemon; it runs a command against the node and exits.
 
-A few other components sit *around* the node rather than inside it: **cardano-tracer** collects the node's logs and Prometheus metrics, **[Mithril](/docs/operators/operator-tools/mithril)** lets a fresh node bootstrap to the chain tip in minutes from a stake-certified snapshot, and **[cardano-db-sync](/docs/developers/curriculum/production/infrastructure#chain-indexers)** indexes the whole chain into PostgreSQL for rich SQL queries. These are operational and indexing concerns, documented where you would actually reach for them.
+A few other components sit *around* the node rather than inside it: **cardano-tracer** collects the node's logs and Prometheus metrics, **[Mithril](/docs/operators/operator-tools/mithril)** lets a fresh node bootstrap to the chain tip in minutes from a stake-certified snapshot, and **cardano-db-sync** indexes the whole chain into PostgreSQL for rich SQL queries, one of several [indexer shapes](/docs/developers/curriculum/production/indexing-and-analytics). These are operational and indexing concerns, documented where you would actually reach for them.
 
 ## Network topology
 
@@ -100,10 +100,11 @@ What distinguishes Cardano's engineering approach is that each layer is specifie
 The formal specs are public:
 - [Cardano Ledger Specifications](https://github.com/IntersectMBO/cardano-ledger#cardano-ledger)
 - [Ouroboros papers](https://cardano.org/research/), the academic papers underpinning the consensus protocol
+- [Cardano Blueprint](https://cardano-scaling.github.io/cardano-blueprint/), implementation-independent descriptions of each layer, written so alternative nodes can be built from them; the readable companion to the formal specs
 
 ## Further reading
 
 - [Consensus & Ouroboros](/docs/developers/curriculum/fundamentals/consensus-and-ouroboros): how the consensus layer chooses blocks, in depth
 - [eUTXO model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): how the ledger layer tracks ownership
-- [Production infrastructure](/docs/developers/curriculum/production/infrastructure): the developer stack you reach the chain through
-- [Run your own node](/docs/developers/curriculum/production/run-your-own-node): install and run cardano-node yourself
+- [Connecting to the chain](/docs/developers/curriculum/production/connecting-to-the-chain): the developer stack you reach the chain through
+- [Self-hosting](/docs/developers/curriculum/production/self-hosting): install and run cardano-node yourself
