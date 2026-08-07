@@ -28,7 +28,7 @@
 
 .crumbCurrent {
   color: var(--ifm-color-emphasis-900);
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .pickBadgeRow {
@@ -44,7 +44,7 @@
   padding: 0.45rem 0.95rem;
   border-radius: 999px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .pickBadge svg {
@@ -72,7 +72,7 @@
   justify-content: center;
   color: #fff;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   flex-shrink: 0;
   text-transform: uppercase;
 }
@@ -95,7 +95,7 @@
 .title {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
+  font-weight: var(--site-font-weight-display);
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
@@ -114,7 +114,7 @@
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background: color-mix(in srgb, #2ea043 16%, transparent);
@@ -128,7 +128,7 @@
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   text-decoration: none;
@@ -172,7 +172,7 @@
   background: #0a1f5e;
   color: #fff;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
   transition: background 0.15s ease, transform 0.15s ease;
 }
@@ -202,7 +202,7 @@
   background: transparent;
   color: var(--ifm-color-emphasis-900);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
@@ -286,7 +286,7 @@
 .improveHeading {
   margin: 0 0 0.6rem;
   font-size: clamp(1.4rem, 3vw, 1.85rem);
-  font-weight: 800;
+  font-weight: var(--site-font-weight-display);
   letter-spacing: -0.01em;
 }
 
@@ -308,7 +308,7 @@
   background: transparent;
   color: var(--ifm-color-emphasis-900);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }

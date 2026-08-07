@@ -43,7 +43,7 @@
 
 .rankBadge {
   color: var(--ifm-color-emphasis-700);
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   font-size: 0.95rem;
   letter-spacing: -0.02em;
 }
@@ -51,7 +51,7 @@
 .title {
   margin: 0;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   line-height: 1.25;
 }
 
@@ -87,7 +87,7 @@
 .category {
   background: var(--ifm-color-emphasis-100);
   color: var(--ifm-color-emphasis-800);
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .property {
