@@ -47,7 +47,7 @@ Inside your SDK, a provider is also an **interface**: a small contract the SDK c
 - A **read** side: fetch a UTXO set, protocol parameters, and account or asset info (Mesh names this `IFetcher`; Evolution exposes the same reads through its provider).
 - A **write** side: submit a signed transaction (Mesh's `ISubmitter`).
 
-Because the SDK only depends on that contract, anything that implements it is a valid provider: a hosted service, your own stack, a private indexer, even an in-memory fixture. Two pages already use this: the [failover and cache wrapper](/docs/developers/curriculum/production/going-to-production#harden-your-provider) that composes several providers behind one interface, and the [offline fetcher](/docs/developers/curriculum/start-building/local-testing#mocks-and-assertions) that serves fixed UTXOs to a test suite with no network at all.
+Because the SDK only depends on that contract, anything that implements it is a valid provider: a hosted service, your own stack, a private indexer, even an in-memory fixture. Two pages already use this: the [failover and cache wrapper](/docs/developers/curriculum/production/going-to-production#harden-your-provider) that composes several providers behind one interface, and the [in-memory emulator](/docs/developers/curriculum/start-building/local-testing#the-in-memory-emulator) that serves a simulated ledger to a test suite with no network at all.
 
 ## The categories
 

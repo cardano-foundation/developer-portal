@@ -15,7 +15,7 @@ This is the hands-on on-ramp. By the end you will have a working environment, yo
 4. **[Your first transaction](/docs/developers/curriculum/start-building/your-first-transaction)**: build, sign, and submit a payment, then read it back from the chain
 5. **[Transaction building](/docs/developers/curriculum/start-building/transaction-building)**: the full builder toolkit, multi-asset outputs, metadata, and patterns beyond a simple payment
 6. **[Query the chain](/docs/developers/curriculum/start-building/query-the-chain)**: read UTXOs, addresses, and history through a provider
-7. **[Local testing](/docs/developers/curriculum/start-building/local-testing)**: test at the right level of realism, from in-memory mocks to a devnet you control
+7. **[Local testing](/docs/developers/curriculum/start-building/local-testing)**: speed up your loop with an in-memory emulator or a devnet you control
 8. **[When transactions fail](/docs/developers/curriculum/start-building/transaction-failures)**: the failure modes, which ones are retryable, and how to triage them
 
 import DocCardList from '@theme/DocCardList';
