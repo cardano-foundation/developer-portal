@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   font-size: 1.4rem;
   letter-spacing: -0.02em;
   text-transform: uppercase;

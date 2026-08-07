@@ -33,6 +33,18 @@
   --ifm-font-family-base: "Chivo", system-ui, -apple-system, "Segoe UI", Roboto,
     Ubuntu, Cantarell, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
+  /* Rebrand pilot weight scale, as specified by design. Every font-weight in
+     src/ must reference one of these tokens, never a raw number. Bold deviates
+     from the original spec (300): at 300 it matched semibold and headings read
+     the same as their subtext, so it sits one step up. Flagged to design. */
+  --ifm-font-weight-light: 100;
+  --ifm-font-weight-normal: 200;
+  --ifm-font-weight-semibold: 300;
+  --ifm-font-weight-bold: 400;
+  --ifm-font-weight-base: var(--ifm-font-weight-normal);
+  /* Display slot for elements that were heavier than bold (weight 800). The
+     designer's scale does not name this slot yet; tracks bold until it does. */
+  --site-font-weight-display: var(--ifm-font-weight-bold);
   --ifm-color-primary: #0033AD;
   --ifm-color-primary-dark: #002E9C;
   --ifm-color-primary-darker: #002B93;
@@ -121,6 +133,12 @@ textarea {
 
 .footer--dark {
   background-color: #232323 !important;
+}
+
+/* Infima sets .footer__title with a "font: bold ..." shorthand, bypassing the
+   weight tokens; without this it stays at 700, the heaviest text on the site. */
+.footer__title {
+  font-weight: var(--ifm-font-weight-bold);
 }
 
 .header-github-link:before {
@@ -235,7 +253,8 @@ div#faucetcontainer {
   align-items: center;
   color: var(--ifm-navbar-link-color);
   font-size: var(--ifm-font-size-base);
-  font-weight: 400;
+  /* Matches Infima's .navbar__link so every navbar item is one weight. */
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
 }
 
@@ -324,7 +343,7 @@ div#faucetcontainer {
 
 .megaMenuColumnTitle {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-transform: uppercase;
   margin-bottom: 8px;
   opacity: 0.7;
@@ -366,7 +385,7 @@ div#faucetcontainer {
 }
 
 .megaMenuItemLabel {
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   display: block;
   font-size: 1.05rem;
   /* force horizontal text flow */
@@ -460,7 +479,7 @@ div#faucetcontainer {
   gap: 0.4rem;
   padding: 0.4rem 0.7rem;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   line-height: 1.25;
   color: var(--ifm-font-color-base);
   background-color: var(--site-color-surface);
@@ -533,7 +552,7 @@ div#faucetcontainer {
 
 .copy-markdown__item-title {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .copy-markdown__item-desc {
