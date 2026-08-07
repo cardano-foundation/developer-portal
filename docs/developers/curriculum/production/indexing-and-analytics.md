@@ -37,14 +37,14 @@ A full copy, a filtered UTXO set and modular stores all persist something you qu
 [Yaci Store](https://store.yaci.xyz/) is the worked example for the rest of this page: an open-source (MIT) modular indexer in Java from the [BloxBean project](https://github.com/bloxbean/yaci-store).
 
 :::info The Yaci family
-Three related projects share the name: [yaci](https://github.com/bloxbean/yaci) is the underlying Java implementation of the [Ouroboros mini-protocols](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); **Yaci Store** is the indexer built on it, covered here; [Yaci DevKit](https://devkit.yaci.xyz/introduction) is the local devnet tool that bundles a Store instance, covered in [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada#yaci-devkit).
+Three related projects share the name: [yaci](https://github.com/bloxbean/yaci) is the underlying Java implementation of the [Ouroboros mini-protocols](https://ouroboros-network.cardano.intersectmbo.org/pdfs/network-spec/network-spec.pdf); **Yaci Store** is the indexer built on it, covered here; [Yaci DevKit](https://devkit.yaci.xyz/introduction) is the local devnet tool that bundles a Store instance, covered in [Local testing](/docs/developers/curriculum/start-building/local-testing#yaci-devkit).
 :::
 
 Most indexers make the sizing decision for you: db-sync stores everything, Kupo stores only UTXOs. Yaci Store is assembled from **stores** you enable per use case: blocks, transactions, UTXOs, metadata, assets, scripts, staking, and governance each ship as separate modules, plus aggregation modules that derive account balances, rewards, and ledger state independently, without a db-sync instance behind them.
 
 It syncs directly from any Cardano node over the node-to-node protocol, so it can follow a remote relay without you operating a node, and writes to PostgreSQL, MySQL, or H2. A local node is optional and does a different job: node-to-client is used for live protocol parameters, governance state, and transaction submission, never for indexing.
 
-It also ships **Blockfrost-compatible REST APIs**, behind a profile you switch on, so an SDK configured for Blockfrost can point at your own index unchanged. That is the same property [Yaci DevKit](/docs/developers/curriculum/start-building/networks-and-test-ada#yaci-devkit) uses to serve a local devnet. The next section switches it on.
+It also ships **Blockfrost-compatible REST APIs**, behind a profile you switch on, so an SDK configured for Blockfrost can point at your own index unchanged. That is the same property [Yaci DevKit](/docs/developers/curriculum/start-building/local-testing#yaci-devkit) uses to serve a local devnet. The next section switches it on.
 
 Rollback is its problem rather than yours: tables are slot-tagged and append-only, so an unwind is one delete.
 
