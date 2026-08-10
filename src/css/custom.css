@@ -311,9 +311,14 @@ div.theme-announcement-bar {
 
 /* The navbar is navy in both themes, but in light mode Docusaurus still
    dresses its controls for a light bar: dark toggle/hamburger glyphs and a
-   pale DocSearch pill. Force white chrome regardless of theme. */
+   pale DocSearch pill. Force white chrome regardless of theme.
+   The hairline replaces Infima's default shadow, which disappears where
+   the navy bar meets dark page backgrounds; it is the same edge the mega
+   menu panels and card borders carry. */
 .navbar {
   color: #fff;
+  border-bottom: 1px solid var(--site-color-card-border);
+  box-shadow: none;
 }
 
 /* Infima sets navbar links semibold; the 2026 type scale reads lighter, so
