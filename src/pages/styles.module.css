@@ -68,11 +68,16 @@
   overflow: hidden;
   background: var(--site-color-cream);
   padding: 4rem 0;
+  /* The hero shares the page background (cream on cream in light mode), so
+     without an edge the half-cropped circles just dissolve into the page.
+     Each theme gets the alpha hairline that reads on its own surface. */
+  border-bottom: 1px solid rgba(0, 6, 41, 0.08);
   transition: background 0.4s ease;
 }
 
 html[data-theme="dark"] .hero {
   background: var(--site-color-navy);
+  border-bottom-color: var(--site-color-card-border);
 }
 
 .heroBackground {
