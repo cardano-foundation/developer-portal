@@ -10,7 +10,7 @@
    carrying the whole 100 to 900 weight axis. */
 @font-face {
   font-family: "Chivo";
-  src: url("/fonts/Chivo-VariableFont_wght.ttf") format("truetype-variations");
+  src: url("/fonts/Chivo-VariableFont_wght.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -18,10 +18,21 @@
 
 @font-face {
   font-family: "Chivo";
-  src: url("/fonts/Chivo-Italic-VariableFont_wght.ttf")
-    format("truetype-variations");
+  src: url("/fonts/Chivo-Italic-VariableFont_wght.woff2")
+    format("woff2-variations");
   font-weight: 100 900;
   font-style: italic;
+  font-display: swap;
+}
+
+/* Label face for chip buttons, eyebrows, and badges. Not wired to
+   --ifm-font-family-monospace: code blocks keep their stack until design
+   decides otherwise. */
+@font-face {
+  font-family: "Chivo Mono";
+  src: url("/fonts/ChivoMono-VariableFont_wght.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -33,18 +44,27 @@
   --ifm-font-family-base: "Chivo", system-ui, -apple-system, "Segoe UI", Roboto,
     Ubuntu, Cantarell, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
-  /* Rebrand pilot weight scale, as specified by design. Every font-weight in
-     src/ must reference one of these tokens, never a raw number. Bold deviates
-     from the original spec (300): at 300 it matched semibold and headings read
-     the same as their subtext, so it sits one step up. Flagged to design. */
-  --ifm-font-weight-light: 100;
-  --ifm-font-weight-normal: 200;
-  --ifm-font-weight-semibold: 300;
-  --ifm-font-weight-bold: 400;
+  --site-font-family-mono-label: "Chivo Mono", ui-monospace, SFMono-Regular,
+    Menlo, monospace;
+  /* Code-sample face (landing page code window and CLI pills). Deliberately
+     not Chivo Mono: code keeps a familiar editor stack until design decides
+     otherwise. */
+  --site-font-family-mono-code: "SF Mono", "Fira Code", Consolas, monospace;
+  /* 2026 rebrand weight scale. Every font-weight in src/ must reference one
+     of these tokens, never a raw number. The scale tops out at Medium 500:
+     the brand uses no heavier Chivo cut, so bold and semibold intentionally
+     converge there. Headings have their own slot below rather than riding
+     the bold token. */
+  --ifm-font-weight-light: 300;
+  --ifm-font-weight-normal: 400;
+  --ifm-font-weight-semibold: 500;
+  --ifm-font-weight-bold: 500;
   --ifm-font-weight-base: var(--ifm-font-weight-normal);
-  /* Display slot for elements that were heavier than bold (weight 800). The
-     designer's scale does not name this slot yet; tracks bold until it does. */
-  --site-font-weight-display: var(--ifm-font-weight-bold);
+  /* Display slot: Chivo ExtraLight, for the hero and section headlines.
+     Heading slot: Chivo Light, driving every Infima heading. */
+  --site-font-weight-display: 200;
+  --site-font-weight-heading: var(--ifm-font-weight-light);
+  --ifm-heading-font-weight: var(--site-font-weight-heading);
   --ifm-color-primary: #0033AD;
   --ifm-color-primary-dark: #002E9C;
   --ifm-color-primary-darker: #002B93;
@@ -56,12 +76,40 @@
   --ifm-footer-link-hover-color: #6684CE;
   --site-color-tooltip: #fff;
   --site-color-tooltip-background: #353738;
-  /* Brand palette */
+  /* 2026 brand palette (hex reference: static/img/brand/README.md) */
+  --site-color-cream: #FFFAF3;
+  --site-color-navy: #000629;
   --site-color-brand-blue: #0033AD;
-  --site-color-brand-blue-light: #0055E5;
-  --site-color-brand-teal: #44BBA4;
+  /* Decorative only, for artwork circles and shapes. Never use for UI
+     surfaces or borders: interface blue is always #0033AD. */
+  --site-color-blue-bright: #0023EB;
+  --site-color-lavender: #C7C2E6;
+  --site-color-lavender-deep: #968CC3;
+  --site-color-amber: #FFB122;
+  --site-color-gray-light: #F2F2F2;
+  --site-color-ink: #111425;
+  --site-color-ink-muted: #5F6B85;
+  /* Muted text that follows the page background (ink on cream, white on navy) */
+  --site-color-text-muted: var(--site-color-ink-muted);
+  /* Card surfaces are navy with light text in BOTH themes, so they get
+     theme-invariant semantic tokens instead of data-theme rules. */
+  --site-color-card-surface: var(--site-color-navy);
+  --site-color-card-text: #ffffff;
+  --site-color-card-text-muted: rgba(255, 255, 255, 0.72);
+  --site-color-card-accent: var(--site-color-amber);
+  --site-color-card-border: rgba(255, 255, 255, 0.08);
+  /* Page cascade */
+  --ifm-background-color: var(--site-color-cream);
+  --ifm-font-color-base: var(--site-color-ink);
+  /* Navbar is navy in both themes */
+  --ifm-navbar-background-color: var(--site-color-navy);
+  --ifm-navbar-link-color: #ffffff;
+  /* The logo sits ~52px in from the edge on wide screens (3vw, clamped) */
+  --ifm-navbar-padding-horizontal: clamp(1rem, 3vw, 52px);
+  /* Pre-2026 teal, deprecated: one remaining reference in the /talent hero
+     (src/pages/talent/styles.module.css) until that page's rebrand round.
+     Delete this token when /talent is restyled. Do not add new uses. */
   --site-color-brand-teal-dark: #3BA18E;
-  --site-color-brand-teal-light: #5DCFB8;
   --site-color-surface: #f5f7fa;
   --site-color-surface-hover: #eef1f6;
   --site-color-bg-dark: #1b1b1d;
@@ -76,13 +124,20 @@ html[data-theme="dark"] {
   --ifm-color-primary-light: #7E97D7;
   --ifm-color-primary-lighter: #8AA0DB;
   --ifm-color-primary-lightest: #B0BFE7;
-  /* Brand palette */
-  --site-color-brand-blue: #0033AD;
-  --site-color-brand-teal: #44BBA4;
-  --site-color-brand-teal-light: #5DCFB8;
-  --site-color-surface: #242526;
-  --site-color-surface-hover: #3a3a3d;
-  --site-color-bg-dark: #1b1b1d;
+  /* Dark-mode page cascade: the page is dark blue-gray (#111425, the same
+     value as light-mode ink), with #1A1C2C as the panel/section shade. Navy
+     #000629 stays reserved for the navbar, hero, footer, and cards, which
+     is what separates them here. */
+  --ifm-background-color: #111425;
+  --ifm-background-surface-color: #1A1C2C;
+  /* Restore Infima's dark text color: the :root cascade override of
+     --ifm-font-color-base (cream-page ink) ties with Infima's dark block on
+     specificity and wins on load order, so dark mode must re-declare it. */
+  --ifm-font-color-base: #e3e3e3;
+  --site-color-surface: #1A1C2C;
+  --site-color-surface-hover: #232838;
+  --site-color-bg-dark: #111425;
+  --site-color-text-muted: rgba(255, 255, 255, 0.65);
   --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
 
@@ -94,6 +149,14 @@ input,
 select,
 textarea {
   font-family: inherit;
+}
+
+/* The heading slot (Chivo Light 300) reads weaker than 400 body copy at small
+   sizes, so the minor heading levels stay on the body weight. */
+h4,
+h5,
+h6 {
+  font-weight: var(--ifm-font-weight-normal);
 }
 
 .button {
@@ -132,7 +195,7 @@ textarea {
 }
 
 .footer--dark {
-  background-color: #232323 !important;
+  background-color: var(--site-color-navy) !important;
 }
 
 /* Infima sets .footer__title with a "font: bold ..." shorthand, bypassing the
@@ -146,10 +209,6 @@ textarea {
   width: 24px;
   height: 24px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E") no-repeat;
-}
-
-html[data-theme='dark'] .header-github-link:before {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E") no-repeat;
 }
 
@@ -162,10 +221,6 @@ html[data-theme='dark'] .header-github-link:before {
   width: 24px;
   height: 24px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z'/%3E%3C/svg%3E") no-repeat center / contain;
-}
-
-html[data-theme='dark'] .header-discord-link:before {
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='white' d='M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1 .1s-.6 .4-.8 .8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3 .1-.6 .4-.8 .7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3 .1 .5 .2 .8s.3 .4 .5 .6c44.4 32.9 94 58 146.8 74.2 .4 .1 .8 .1 1.1 0s.7-.4 .9-.7c11.3-15.4 21.4-31.8 30-48.8 .1-.2 .2-.5 .2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6 .2-.9 .3-.5 .6-.7c3.1-2.3 6.2-4.7 9.1-7.1 .3-.2 .6-.4 .9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1 .7-.2 1-.2s.7 .2 .9 .4c2.9 2.4 6 4.9 9.1 7.2 .2 .2 .4 .4 .6 .7s.2 .6 .2 .9-.1 .6-.3 .9-.4 .5-.6 .6c-14.7 8.6-30 15.9-45.9 21.8-.2 .1-.5 .2-.7 .4s-.3 .4-.4 .7-.1 .5-.1 .8 .1 .5 .2 .8c8.8 17 18.8 33.3 30 48.8 .2 .3 .6 .6 .9 .7s.8 .1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2 .2-.2 .4-.4 .5-.6s.2-.5 .2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
@@ -239,6 +294,72 @@ div#faucetcontainer {
   border-radius: 0.4rem;
 }
 
+/* theme-classic separates its (default white) announcement bar from the (default
+   white) navbar with a 1px emphasis-100 border. Ours are brand blue on navy: the
+   separator reads as a stray white hairline in light mode. No config knob.
+   .theme-announcement-bar is Docusaurus's stable public hook (ThemeClassNames);
+   the div qualifier outranks the theme's own equal-specificity rule, which is
+   bundled AFTER custom.css and would otherwise win on order. */
+div.theme-announcement-bar {
+  border-bottom: none;
+}
+
+/* The navbar is navy in both themes, but in light mode Docusaurus still
+   dresses its controls for a light bar: dark toggle/hamburger glyphs and a
+   pale DocSearch pill. Force white chrome regardless of theme. */
+.navbar {
+  color: #fff;
+}
+
+/* Infima sets navbar links semibold; the 2026 type scale reads lighter, so
+   the whole bar rides the light token (megaMenuTrigger matches below). */
+.navbar__link {
+  font-weight: var(--ifm-font-weight-light);
+}
+
+.navbar .DocSearch-Button {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.navbar .DocSearch-Button:hover,
+.navbar .DocSearch-Button:focus {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: none;
+}
+
+.navbar .DocSearch-Button .DocSearch-Search-Icon {
+  color: #fff;
+}
+
+.navbar .DocSearch-Button-Placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar .DocSearch-Button-Key {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Center the nav links in the bar: the logo hugs the left edge via its auto
+   margin, a mirroring auto-margin pseudo-element flexes at the group's end,
+   and the links settle in the middle of the space between logo and the
+   right-hand controls. Delete this block to restore the default
+   logo-adjacent links. Desktop only; the mobile drawer keeps Infima's
+   layout. */
+@media (min-width: 997px) {
+  .navbar__items:not(.navbar__items--right) .navbar__brand {
+    margin-right: auto;
+  }
+
+  .navbar__items:not(.navbar__items--right)::after {
+    content: "";
+    margin-left: auto;
+  }
+}
+
 /* Mega menu styles */
 .navbar__item--mega {
   position: relative;
@@ -253,8 +374,9 @@ div#faucetcontainer {
   align-items: center;
   color: var(--ifm-navbar-link-color);
   font-size: var(--ifm-font-size-base);
-  /* Matches Infima's .navbar__link so every navbar item is one weight. */
-  font-weight: var(--ifm-font-weight-semibold);
+  /* Matches .navbar__link (overridden above) so every navbar item is one
+     weight; light, to sit with the ExtraLight display type. */
+  font-weight: var(--ifm-font-weight-light);
   text-decoration: none;
 }
 
@@ -350,6 +472,9 @@ div#faucetcontainer {
   display: flex;
   align-items: center;
   gap: 6px;
+  /* Explicit color for the same reason as the item descriptions: the navy
+     navbar's white link color would otherwise be inherited into the panel */
+  color: var(--ifm-font-color-base);
 }
 
 .megaMenuColumnIcon {
@@ -404,6 +529,10 @@ div#faucetcontainer {
   font-size: 0.9rem;
   opacity: 0.85;
   display: block;
+  /* Explicit color: the navy navbar sets white link color in BOTH themes
+     since the 2026 rebrand, so inheriting it turns white-on-white inside
+     the light dropdown panel */
+  color: var(--ifm-font-color-base);
 }
 
 /* Replace default list bullets with Font Awesome icons */

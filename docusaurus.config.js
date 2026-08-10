@@ -106,12 +106,12 @@ module.exports = {
 
     // Announcement Bar
     // id: always change it when changing the announcement
-    // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
+    // backgroundColor: use #FD7575 for warnings and brand blue #0033AD for announcements (2026 brand)
     announcementBar: isAnnouncementActive ? {
       id: "announcement_index11", // Any value that will identify this message + increment the number every time to be unique
       content:
         `<strong>Join the Cardano developer talent pool and stay in the loop on upcoming hackathons. <a href="/talent/">Sign up here!</a></strong>`,
-      backgroundColor: "#2AA18A",
+      backgroundColor: "#0033AD", // 2026 brand blue (bright #0023EB is decorative-only)
       textColor: "#FFFFFF", // Use #FFFFFF
       isCloseable: true, // Use true
     } : undefined,
@@ -138,8 +138,9 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/brand/cardano-horizontal-black.svg",
-        srcDark: "img/brand/cardano-horizontal-white.svg",
+        // Navbar is navy in both themes since the 2026 rebrand, so the white
+        // logo serves both and no srcDark variant is needed.
+        src: "img/brand/cardano-horizontal-white.svg",
       },
 
       items: getNavbarItems(repository),
