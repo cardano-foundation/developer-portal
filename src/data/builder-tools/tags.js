@@ -121,6 +121,8 @@ export const InterfaceProperties = {
   graphql: { label: "GraphQL", color: "#E10098" },
   grpc: { label: "gRPC", color: "#00ADD8" },
   websocket: { label: "WebSocket", color: "#1DB7ff" },
+  webhooks: { label: "Webhooks", color: "#FF9F43" },
+  agentic: { label: "Agentic", color: "#8E44AD" },
 };
 
 export const Properties = { ...LanguageProperties, ...InterfaceProperties };

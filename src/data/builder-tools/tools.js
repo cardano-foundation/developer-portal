@@ -993,6 +993,16 @@ export const BuilderTools = [
     properties: ["rest", "websocket"],
     maintainerPick: true,
   },
+  {
+    title: "cardano.delivery",
+    icon: "/img/tools/cardano-delivery.svg",
+    description: "Webhook service that sends HTTP notifications for Cardano events, including transactions, blocks, delegations, epochs, governance actions, and more, filterable by address, amount, and policy ID.",
+    website: "https://cardano.delivery/",
+    repository: null,
+    docs: "https://cardano.delivery/docs/",
+    category: "api",
+    properties: ["webhooks", "agentic"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
