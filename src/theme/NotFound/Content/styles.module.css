@@ -1,0 +1,111 @@
+/* 404 page. The chips follow the brand rule for page surfaces: filled
+   blue mono chips (amber pills are reserved for navy bands). Values kept
+   in lockstep by hand with the talent chips
+   (src/pages/talent/styles.module.css) until a global utility exists. */
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+  padding: 2rem;
+  /* The keyframes live globally in custom.css; without the escape the
+     module would localize the name and the animation would never match */
+  animation: 600ms backwards global(fadeInUp);
+}
+
+.mark {
+  width: 56px;
+  height: 56px;
+  opacity: 0.1;
+  margin-bottom: 0.5rem;
+}
+
+/* Ghost number in the label face: big enough to set the scene, faint
+   enough to stay backdrop */
+.code {
+  font-family: var(--site-font-family-mono-label);
+  font-weight: var(--ifm-font-weight-light);
+  font-size: 7rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ifm-color-primary);
+  opacity: 0.15;
+  user-select: none;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: var(--site-font-weight-heading);
+  margin: -0.5rem 0 0.75rem;
+}
+
+.copy {
+  max-width: 420px;
+  color: var(--site-color-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.copyHint {
+  color: var(--site-color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.chipRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9em 1.15em;
+  border-radius: 999px;
+  background: var(--site-color-brand-blue);
+  color: var(--site-color-gray-light);
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.95rem;
+  font-weight: var(--ifm-font-weight-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgb(var(--site-color-brand-blue-rgb) / 0.25);
+  color: var(--site-color-gray-light);
+}
+
+.chipGhost {
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+}
+
+.chipGhost:hover {
+  box-shadow: none;
+  color: inherit;
+}
+
+html[data-theme="dark"] .chipGhost {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Surface-aware rings: the chips sit on the page background */
+.chip:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .chip:focus-visible {
+  outline-color: var(--site-color-amber);
+}

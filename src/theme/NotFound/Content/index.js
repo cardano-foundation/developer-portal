@@ -4,66 +4,32 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
 
+import styles from "./styles.module.css";
+
 export default function NotFoundContent({ className }) {
   const { colorMode } = useColorMode();
   const logo = colorMode === "dark" ? "img/brand/cardano-white.svg" : "img/brand/cardano-black.svg";
 
   return (
-    <main
-      className={clsx(className)}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        minHeight: "60vh",
-        padding: "2rem",
-        animation: "fadeInUp 600ms backwards",
-      }}
-    >
+    <main className={clsx(className, styles.notFound)}>
       <img
+        className={styles.mark}
         src={useBaseUrl(logo)}
         alt="Cardano logo"
-        style={{ width: 56, height: 56, opacity: 0.1, marginBottom: "0.5rem" }}
       />
-      <span
-        style={{
-          fontSize: "7rem",
-          fontWeight: "var(--site-font-weight-display)",
-          lineHeight: 1,
-          letterSpacing: "-0.04em",
-          color: "var(--ifm-color-primary)",
-          opacity: 0.15,
-          userSelect: "none",
-        }}
-      >
-        404
-      </span>
-      <h1 style={{ fontSize: "1.75rem", fontWeight: "var(--ifm-font-weight-bold)", marginTop: "-0.5rem", marginBottom: "0.75rem" }}>
-        Page Not Found
-      </h1>
-      <p style={{
-        maxWidth: 420,
-        color: "var(--ifm-color-emphasis-700)",
-        fontSize: "1.05rem",
-        lineHeight: 1.6,
-        marginBottom: "0.5rem",
-      }}>
+      <span className={styles.code}>404</span>
+      <h1 className={styles.title}>Page Not Found</h1>
+      <p className={styles.copy}>
         The page you're looking for doesn't exist or may have been moved.
       </p>
-      <p style={{
-        color: "var(--ifm-color-emphasis-500)",
-        fontSize: "0.9rem",
-        marginBottom: "2rem",
-      }}>
+      <p className={styles.copyHint}>
         Try the search bar above or head back to familiar ground.
       </p>
-      <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
-        <Link className="button button--primary button--lg" to="/">
+      <div className={styles.chipRow}>
+        <Link className={styles.chip} to="/">
           Go to Homepage
         </Link>
-        <Link className="button button--secondary button--lg" to="/docs/developers/">
+        <Link className={clsx(styles.chip, styles.chipGhost)} to="/docs/developers/">
           Browse Documentation
         </Link>
       </div>
