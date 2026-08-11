@@ -113,6 +113,20 @@
   /* The logo sits ~52px in from the edge on wide screens (3vw, clamped) */
   --ifm-navbar-padding-horizontal: clamp(1rem, 3vw, 52px);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Docs chrome (sidebar, TOC, breadcrumbs, tables, blockquotes). Infima
+     adapts these vars in dark mode through its emphasis scale or its own
+     dark block; a direct override detaches from both, so every var set
+     here is re-declared in the dark block below. */
+  --ifm-menu-color: var(--site-color-ink-muted);
+  --ifm-menu-color-active: var(--site-color-brand-blue);
+  --ifm-menu-color-background-active: rgb(var(--site-color-navy-rgb) / 0.05);
+  --ifm-menu-color-background-hover: rgb(var(--site-color-navy-rgb) / 0.05);
+  --ifm-toc-border-color: rgb(var(--site-color-navy-rgb) / 0.12);
+  --ifm-toc-link-color: var(--site-color-text-muted);
+  --ifm-breadcrumb-item-background-active: rgb(var(--site-color-navy-rgb) / 0.05);
+  --ifm-breadcrumb-border-radius: 999px;
+  --ifm-table-border-color: rgb(var(--site-color-navy-rgb) / 0.12);
+  --ifm-blockquote-border-color: rgb(var(--site-color-brand-blue-rgb) / 0.35);
 }
 
 html[data-theme="dark"] {
@@ -135,6 +149,16 @@ html[data-theme="dark"] {
   --ifm-font-color-base: #e3e3e3;
   --site-color-text-muted: rgba(255, 255, 255, 0.65);
   --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
+  /* Docs chrome, dark half: the :root overrides above detach these vars
+     from Infima's own dark adaptation, so each one is restated here. */
+  --ifm-menu-color: rgb(var(--site-color-cream-rgb) / 0.7);
+  --ifm-menu-color-active: var(--ifm-color-primary);
+  --ifm-menu-color-background-active: rgba(255, 255, 255, 0.06);
+  --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.06);
+  --ifm-toc-border-color: var(--site-color-card-border);
+  --ifm-breadcrumb-item-background-active: rgba(255, 255, 255, 0.06);
+  --ifm-table-border-color: var(--site-color-card-border);
+  --ifm-blockquote-border-color: var(--ifm-color-primary-darker);
 }
 
 /* Form controls do not inherit font-family: the browser's own stylesheet sets
@@ -652,6 +676,162 @@ html[data-theme="dark"] body {
 .megaMenuFeatured:focus-visible {
   outline: 2px solid var(--site-color-amber);
   outline-offset: -2px;
+}
+
+/* --- Docs reading experience ---
+   The docs area on the 2026 brand: variables and CSS on Docusaurus' stable
+   theme-* / Infima classes only. No doc component is swizzled, so theme
+   upgrades keep their markup and accessibility. The matching color tokens
+   live in the :root and dark blocks at the top of this file. */
+
+/* Sidebar: a quiet rail on the page background, scoped to the docs tree
+   (the desktop rail and the drawer's docs pane) so the drawer's primary
+   nav and the blog sidebar keep their own type. Infima sets the whole
+   menu semibold, so the tree resets to normal first and only the
+   top-level category labels carry weight, giving two tiers. Collapsible
+   category rows paint their hover on the list item, so the chip radius
+   goes there as well. */
+.theme-doc-sidebar-menu {
+  font-weight: var(--ifm-font-weight-normal);
+}
+
+.theme-doc-sidebar-menu .menu__link {
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.theme-doc-sidebar-menu .menu__list-item-collapsible {
+  border-radius: 8px;
+}
+
+.theme-doc-sidebar-item-category-level-1
+  > .menu__list-item-collapsible
+  > .menu__link {
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+/* The mobile drawer sits on the navy navbar surface in both themes, so its
+   menu rides the drawer's palette instead of the page rail's. The caret
+   filter borrows Infima's own dark-mode inversion, which light mode never
+   applies on its own. */
+.navbar-sidebar {
+  --ifm-menu-color: rgb(var(--site-color-cream-rgb) / 0.7);
+  --ifm-menu-color-active: #ffffff;
+  --ifm-menu-color-background-active: rgba(255, 255, 255, 0.06);
+  --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.06);
+  --ifm-menu-link-sublist-icon-filter: invert(100%) sepia(94%) saturate(17%)
+    hue-rotate(223deg) brightness(104%) contrast(98%);
+}
+
+/* TOC: Infima hardcodes the active color to primary with no variable for
+   it, so the active state needs a rule; the code descendant mirrors
+   upstream's own selector list. Idle links ride --ifm-toc-link-color. */
+.table-of-contents__link--active,
+.table-of-contents__link--active code {
+  color: var(--ifm-color-primary);
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+/* Breadcrumbs: upstream has no variable for the idle link color. The
+   active crumb keeps its own color through the breadcrumb tokens. */
+.breadcrumbs__link {
+  color: var(--site-color-text-muted);
+}
+
+/* Prev/next: Infima hardcodes the border color (no variable exists), and
+   the guillemets are pseudo-content, so both are replaced here. */
+.pagination-nav__link {
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.15);
+  border-radius: 12px;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--site-color-brand-blue);
+  background: rgb(var(--site-color-navy-rgb) / 0.03);
+  text-decoration: none;
+}
+
+.pagination-nav__sublabel {
+  color: var(--site-color-text-muted);
+}
+
+.pagination-nav__link--prev .pagination-nav__label::before {
+  content: "← ";
+}
+
+.pagination-nav__link--next .pagination-nav__label::after {
+  content: " →";
+}
+
+html[data-theme="dark"] .pagination-nav__link {
+  border-color: var(--site-color-card-border);
+}
+
+html[data-theme="dark"] .pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Category-index cards. Scoped to the docs card class: the global .card
+   also serves the landing page and must not change. */
+.theme-doc-card-container {
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
+  border-radius: 12px;
+}
+
+.theme-doc-card-container:hover {
+  border-color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .theme-doc-card-container {
+  border-color: var(--site-color-card-border);
+}
+
+html[data-theme="dark"] .theme-doc-card-container:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+/* Tabs: the active underline already rides --ifm-tabs-color-active, which
+   resolves to primary in both themes. Rounded top corners and a hover wash
+   bring the row into the chip family. */
+.tabs__item {
+  border-radius: 8px 8px 0 0;
+}
+
+.tabs__item:hover {
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+}
+
+html[data-theme="dark"] .tabs__item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Doc footer meta row */
+.theme-last-updated {
+  color: var(--site-color-text-muted);
+}
+
+/* Surface-aware focus rings for the docs chrome, following the site rule:
+   navy ring on light page surfaces, amber on dark ones, amber inside the
+   navy drawer in both themes. */
+.menu__link:focus-visible,
+.breadcrumbs__link:focus-visible,
+.table-of-contents__link:focus-visible,
+.pagination-nav__link:focus-visible,
+.theme-doc-card-container:focus-visible,
+.tabs__item:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .menu__link:focus-visible,
+html[data-theme="dark"] .breadcrumbs__link:focus-visible,
+html[data-theme="dark"] .table-of-contents__link:focus-visible,
+html[data-theme="dark"] .pagination-nav__link:focus-visible,
+html[data-theme="dark"] .theme-doc-card-container:focus-visible,
+html[data-theme="dark"] .tabs__item:focus-visible,
+.navbar-sidebar .menu__link:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 /* "Copy page" dropdown in the docs breadcrumb row
