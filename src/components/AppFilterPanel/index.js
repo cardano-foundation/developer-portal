@@ -16,7 +16,7 @@ import {
 import {
   readSearchTags,
   replaceSearchTags,
-} from "@site/src/components/showcase/ShowcaseTagSelect";
+} from "@site/src/components/showcase/tagQueryString";
 
 import styles from "./styles.module.css";
 

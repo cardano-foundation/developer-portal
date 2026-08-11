@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {
   readSearchTags,
   replaceSearchTags,
-} from "@site/src/components/showcase/ShowcaseTagSelect";
+} from "@site/src/components/showcase/tagQueryString";
 import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
 import InfoDot from "@site/src/components/showcase/InfoDot";
 import { Categories } from "@site/src/data/builder-tools/tags";

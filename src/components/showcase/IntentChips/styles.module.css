@@ -6,7 +6,7 @@
 .intentTitle {
   font-size: 0.78rem;
   font-weight: var(--ifm-font-weight-semibold);
-  color: var(--ifm-color-emphasis-600);
+  color: var(--site-color-text-muted);
   margin-bottom: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -26,41 +26,56 @@
 }
 
 .intentChip {
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  color: var(--ifm-color-emphasis-900);
+  background: transparent;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  color: var(--ifm-font-color-base);
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
   font-size: 0.95rem;
   font-weight: var(--ifm-font-weight-semibold);
   cursor: pointer;
   transition: background-color 150ms ease, border-color 150ms ease,
-    color 150ms ease, box-shadow 150ms ease;
+    color 150ms ease;
   white-space: nowrap;
 }
 
+html[data-theme="dark"] .intentChip {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 .intentChip:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+  border-color: var(--site-color-brand-blue);
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .intentChip:hover {
+  background: rgba(255, 255, 255, 0.06);
   border-color: var(--ifm-color-primary);
   color: var(--ifm-color-primary);
 }
 
+/* Surface-aware rings: the chips sit on the page background */
 .intentChip:focus-visible {
-  outline: 2px solid var(--ifm-color-primary);
+  outline: 2px solid var(--site-color-navy);
   outline-offset: 2px;
 }
 
-.intentChipActive {
-  background: var(--ifm-color-primary);
-  border-color: var(--ifm-color-primary-darker);
-  color: var(--ifm-color-primary-contrast-background);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+html[data-theme="dark"] .intentChip:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
-.intentChipActive:hover {
-  background: var(--ifm-color-primary-dark);
-  border-color: var(--ifm-color-primary-darker);
-  color: var(--ifm-color-primary-contrast-background);
+/* State selectors stay compound (.intentChip.intentChipActive) so they beat
+   the base rule on specificity: the CSS minifier dedupes identical-bodied
+   rules across module files into the earliest position, so source order
+   cannot be trusted. */
+.intentChip.intentChipActive,
+.intentChip.intentChipActive:hover,
+html[data-theme="dark"] .intentChip.intentChipActive,
+html[data-theme="dark"] .intentChip.intentChipActive:hover {
+  background: var(--site-color-brand-blue);
+  border-color: var(--site-color-brand-blue);
+  color: #ffffff;
 }
 
 @media (max-width: 600px) {
