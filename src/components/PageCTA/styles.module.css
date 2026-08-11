@@ -1,50 +1,97 @@
-.cta {
-  padding: 2.5rem 0;
-  margin-top: 1rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
+/* The shared brand CTA band: navy in both themes with amber pill buttons.
+   The recipe is kept in lockstep by hand with the talent page's band
+   (src/pages/talent/styles.module.css) until a global utility exists;
+   this version carries no artwork. */
+
+.ctaSection {
+  padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
 }
 
-.ctaPrimary {
-  background: var(--ifm-color-emphasis-100);
-  padding: 3rem 0;
-  border-top: 0;
+.band {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 2.5vw, 2.7rem);
+  padding: clamp(1.75rem, 2.5vw, 2.5rem);
+  border-radius: 20px;
+  background: var(--site-color-card-surface);
+  color: var(--site-color-card-text);
 }
 
-.inner {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
+/* Stroked glyph, colored through currentColor */
+.bandIcon {
+  flex: none;
+  width: clamp(40px, 4vw, 68px);
+  height: auto;
+  color: var(--site-color-brand-blue);
 }
 
-.title {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+.bandContent {
+  max-width: 811px;
 }
 
-.ctaPrimary .title {
-  font-size: 1.75rem;
+/* Tight title-to-text pairing, then air before the buttons */
+.bandTitle {
+  margin: 0 0 clamp(0.6rem, 1.1vw, 1.2rem);
+  font-size: clamp(1.9rem, 2.9vw, 3.25rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 0.95;
+  color: var(--site-color-cream);
 }
 
-.description {
-  color: var(--ifm-color-emphasis-700);
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
+.bandText {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.65vw, 1.875rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.25;
+  color: var(--site-color-cream);
 }
 
-.ctaPrimary .description {
-  font-size: 1.05rem;
-  margin-bottom: 1.5rem;
+/* Amber pill buttons with navy text: uppercase regular Chivo, the brand's
+   band-CTA button family */
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 2vw, 2.1rem);
+  margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
 }
 
-.button {
+.pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75em;
+  min-height: 48px;
+  padding: 0 1.1em 0 1.35em;
+  border-radius: 999px;
+  background: var(--site-color-amber);
+  color: var(--site-color-navy);
+  font-size: 1.05rem;
+  font-weight: var(--ifm-font-weight-normal);
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.buttonRow {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  justify-content: center;
+.pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  color: var(--site-color-navy);
+}
+
+.pillArrow {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* Cream ring on the navy band; amber-on-amber would vanish */
+.pill:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 996px) {
+  .band {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

@@ -386,7 +386,6 @@ function SubmitCTA() {
       description="Add it to this page. The submission process is open and lightweight."
       href="/docs/contribute/portal-contribute"
       buttonText="Add your tool"
-      variant="primary"
     />
   );
 }
