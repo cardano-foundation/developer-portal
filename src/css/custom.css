@@ -112,7 +112,7 @@
   --ifm-navbar-link-color: #ffffff;
   /* The logo sits ~52px in from the edge on wide screens (3vw, clamped) */
   --ifm-navbar-padding-horizontal: clamp(1rem, 3vw, 52px);
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgb(var(--site-color-navy-rgb) / 0.08);
   /* Docs chrome (sidebar, TOC, breadcrumbs, tables, blockquotes). Infima
      adapts these vars in dark mode through its emphasis scale or its own
      dark block; a direct override detaches from both, so every var set
@@ -148,7 +148,7 @@ html[data-theme="dark"] {
      specificity and wins on load order, so dark mode must re-declare it. */
   --ifm-font-color-base: #e3e3e3;
   --site-color-text-muted: rgba(255, 255, 255, 0.65);
-  --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.09);
   /* Docs chrome, dark half: the :root overrides above detach these vars
      from Infima's own dark adaptation, so each one is restated here. */
   --ifm-menu-color: rgb(var(--site-color-cream-rgb) / 0.7);
@@ -885,6 +885,26 @@ html[data-theme="dark"] .alert.theme-admonition-note {
    body that must not turn bold. */
 .theme-admonition > div:first-child:not(:only-child) {
   font-weight: var(--ifm-font-weight-semibold);
+}
+
+/* Code block chrome. The title bar and buttons carry only hashed module
+   classes, so they are reached through the stable .theme-code-block
+   ancestor (upstream keys button visibility off the same class). The
+   title-bar div only renders when a block sets a title. */
+.theme-code-block > div:first-child:not(:only-child) {
+  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
+}
+
+.theme-code-block .clean-btn {
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.15);
+}
+
+html[data-theme="dark"] .theme-code-block > div:first-child:not(:only-child) {
+  border-bottom-color: var(--site-color-card-border);
+}
+
+html[data-theme="dark"] .theme-code-block .clean-btn {
+  border-color: var(--site-color-card-border);
 }
 
 /* "Copy page" dropdown in the docs breadcrumb row

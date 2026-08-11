@@ -8,49 +8,53 @@ const isAnnouncementActive = true;
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-// One Light palette
+// 2026 brand code themes. Token shades are tuned for AA contrast against
+// their code background; interface colors stay in src/css/custom.css.
+// Light: warm paper panel, slightly deeper than the cream page, with ink
+// text and brand-blue keywords.
 const prismLightTheme = {
   plain: {
-    color: '#383a42',
-    backgroundColor: '#fafafa',
+    color: '#111425',
+    backgroundColor: '#F6F0E6',
   },
   styles: [
-    { types: ['comment', 'prolog', 'cdata'], style: { color: '#a0a1a7', fontStyle: 'italic' } },
-    { types: ['keyword', 'operator'], style: { color: '#a626a4' } },
-    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#50a14f' } },
-    { types: ['number'], style: { color: '#986801' } },
-    { types: ['boolean', 'constant'], style: { color: '#986801' } },
-    { types: ['class-name'], style: { color: '#c18401' } },
-    { types: ['function'], style: { color: '#4078f2' } },
-    { types: ['tag', 'deleted'], style: { color: '#e45649' } },
-    { types: ['attr-name'], style: { color: '#986801' } },
-    { types: ['namespace'], style: { color: '#383a42' } },
-    { types: ['punctuation'], style: { color: '#383a42' } },
-    { types: ['inserted'], style: { color: '#50a14f' } },
-    { types: ['builtin'], style: { color: '#4078f2' } },
+    { types: ['comment', 'prolog', 'cdata'], style: { color: '#5F6B85', fontStyle: 'italic' } },
+    { types: ['keyword', 'operator'], style: { color: '#0033AD' } },
+    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#2E7D32' } },
+    { types: ['number'], style: { color: '#8A5D00' } },
+    { types: ['boolean', 'constant'], style: { color: '#8A5D00' } },
+    { types: ['class-name'], style: { color: '#8F6100' } },
+    { types: ['function'], style: { color: '#6D5FA8' } },
+    { types: ['tag', 'deleted'], style: { color: '#B3362B' } },
+    { types: ['attr-name'], style: { color: '#8A5D00' } },
+    { types: ['namespace'], style: { color: '#111425' } },
+    { types: ['punctuation'], style: { color: '#3F4762' } },
+    { types: ['inserted'], style: { color: '#2E7D32' } },
+    { types: ['builtin'], style: { color: '#6D5FA8' } },
   ],
 };
 
-// One Dark palette
+// Dark: code blocks join the navy chrome (navbar, footer, cards), with
+// warm off-white text and the periwinkle/amber/lavender accent set.
 const prismDarkTheme = {
   plain: {
-    color: '#abb2bf',
-    backgroundColor: '#282c34',
+    color: '#E8E4DC',
+    backgroundColor: '#000629',
   },
   styles: [
-    { types: ['comment', 'prolog', 'cdata'], style: { color: '#5c6370', fontStyle: 'italic' } },
-    { types: ['keyword', 'operator'], style: { color: '#c678dd' } },
-    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#98c379' } },
-    { types: ['number'], style: { color: '#d19a66' } },
-    { types: ['boolean', 'constant'], style: { color: '#d19a66' } },
-    { types: ['class-name'], style: { color: '#e6c07b' } },
-    { types: ['function'], style: { color: '#61aeee' } },
-    { types: ['tag', 'deleted'], style: { color: '#e06c75' } },
-    { types: ['attr-name'], style: { color: '#d19a66' } },
-    { types: ['namespace'], style: { color: '#abb2bf' } },
-    { types: ['punctuation'], style: { color: '#abb2bf' } },
-    { types: ['inserted'], style: { color: '#98c379' } },
-    { types: ['builtin'], style: { color: '#61aeee' } },
+    { types: ['comment', 'prolog', 'cdata'], style: { color: 'rgba(232, 228, 220, 0.55)', fontStyle: 'italic' } },
+    { types: ['keyword', 'operator'], style: { color: '#7E97D7' } },
+    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#86C994' } },
+    { types: ['number'], style: { color: '#FFB122' } },
+    { types: ['boolean', 'constant'], style: { color: '#FFB122' } },
+    { types: ['class-name'], style: { color: '#FFCF87' } },
+    { types: ['function'], style: { color: '#C7C2E6' } },
+    { types: ['tag', 'deleted'], style: { color: '#E0776F' } },
+    { types: ['attr-name'], style: { color: '#FFB122' } },
+    { types: ['namespace'], style: { color: '#E8E4DC' } },
+    { types: ['punctuation'], style: { color: 'rgba(232, 228, 220, 0.7)' } },
+    { types: ['inserted'], style: { color: '#86C994' } },
+    { types: ['builtin'], style: { color: '#C7C2E6' } },
   ],
 };
 
