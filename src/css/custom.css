@@ -74,7 +74,7 @@
   --ifm-color-primary-lightest: #0042E1;
   --ifm-code-font-size: 95%;
   --site-color-tooltip: #fff;
-  --site-color-tooltip-background: #353738;
+  --site-color-tooltip-background: var(--site-color-navy);
   /* 2026 brand palette (hex reference: static/img/brand/README.md).
      The -rgb channel tokens exist for alpha composition: write
      rgb(var(--site-color-navy-rgb) / 0.5) instead of hand-expanding the
@@ -112,9 +112,6 @@
   --ifm-navbar-link-color: #ffffff;
   /* The logo sits ~52px in from the edge on wide screens (3vw, clamped) */
   --ifm-navbar-padding-horizontal: clamp(1rem, 3vw, 52px);
-  --site-color-surface: #f5f7fa;
-  --site-color-surface-hover: #eef1f6;
-  --site-color-bg-dark: #1b1b1d;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -136,9 +133,6 @@ html[data-theme="dark"] {
      --ifm-font-color-base (cream-page ink) ties with Infima's dark block on
      specificity and wins on load order, so dark mode must re-declare it. */
   --ifm-font-color-base: #e3e3e3;
-  --site-color-surface: #1A1C2C;
-  --site-color-surface-hover: #232838;
-  --site-color-bg-dark: #111425;
   --site-color-text-muted: rgba(255, 255, 255, 0.65);
   --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
@@ -180,7 +174,7 @@ h6 {
   animation-delay: 150ms;
   transition-property: all;
   transition-duration: 200ms;
-  box-shadow: 0 8px 28px 4px rgba(86, 91, 115, 0.15);
+  box-shadow: 0 8px 28px 4px rgb(var(--site-color-navy-rgb) / 0.1);
   min-height: calc(100% - 15px);
 }
 
@@ -220,70 +214,14 @@ h6 {
   opacity: 0.6;
 }
 
-div#faucetcontainer {
-  width: 100%;
-  max-width: 900px;
-  height: 750px;
-  /* defines the visible height of the part */
-  overflow: hidden;
-  /* resize and min-height are optional, allows user to resize viewable area */
-  -webkit-resize: vertical;
-  -moz-resize: vertical;
-  resize: vertical;
-  min-height: 600px;
-  border: 1px solid #ddd;
-  position: relative;
-}
-
-.faucet {
-  border: none;
-  width: 1200px;
-  /* set to approximate width of the faucet page */
-  height: 2500px;
-  /* determines where the bottom of the page cuts off */
-  margin-left: -300px;
-  /* defines the left clipping of the faucet page */
-  margin-top: -1050px;
-  /* defines the top clipping of the faucet page */
-  overflow: hidden;
-  -webkit-resize: none;
-  -moz-resize: none;
-  resize: none;
-}
-
-/* Hide mobile link on desktop */
-.faucet-mobile-link {
-  display: none;
-}
-
-/* Responsive adjustments for tablets and smaller screens */
-@media screen and (max-width: 996px) {
-  div#faucetcontainer {
-    height: 650px;
-    max-width: 750px;
-  }
-
-  .faucet {
-    width: 1100px;
-    margin-left: -250px;
-    margin-top: -900px;
-  }
-}
-
-/* Mobile devices - hide iframe and show link instead */
-@media screen and (max-width: 768px) {
-  div#faucetcontainer {
-    display: none;
-  }
-
-  .faucet-mobile-link {
-    display: block;
-  }
-}
-
 .tabsblock {
-  background: rgba(86, 91, 115, 0.15);
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
   border-radius: 0.4rem;
+}
+
+/* The navy tint disappears on the dark page, so dark mode lightens instead */
+html[data-theme="dark"] .tabsblock {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* theme-classic separates its (default white) announcement bar from the (default
@@ -747,7 +685,7 @@ html[data-theme="dark"] body {
   font-weight: var(--ifm-font-weight-semibold);
   line-height: 1.25;
   color: var(--ifm-font-color-base);
-  background-color: var(--site-color-surface);
+  background-color: rgb(var(--site-color-navy-rgb) / 0.04);
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 0.5rem;
   cursor: pointer;
@@ -755,8 +693,18 @@ html[data-theme="dark"] body {
 }
 
 .copy-markdown__trigger:hover {
-  background-color: var(--site-color-surface-hover);
+  background-color: rgb(var(--site-color-navy-rgb) / 0.08);
   border-color: var(--ifm-color-emphasis-400);
+}
+
+/* The navy washes vanish on the dark page, so dark mode lightens instead */
+html[data-theme="dark"] .copy-markdown__trigger {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .copy-markdown__trigger:hover,
+html[data-theme="dark"] .copy-markdown__item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .copy-markdown__chevron {
@@ -779,7 +727,7 @@ html[data-theme="dark"] body {
   background-color: var(--ifm-background-surface-color);
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 0.6rem;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 6px 24px rgb(var(--site-color-navy-rgb) / 0.14);
 }
 
 .copy-markdown__item {
@@ -799,7 +747,7 @@ html[data-theme="dark"] body {
 
 .copy-markdown__item:hover {
   color: var(--ifm-font-color-base);
-  background-color: var(--site-color-surface-hover);
+  background-color: rgb(var(--site-color-navy-rgb) / 0.08);
   text-decoration: none;
 }
 
