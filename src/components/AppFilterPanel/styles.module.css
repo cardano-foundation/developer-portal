@@ -7,9 +7,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  color: var(--ifm-color-emphasis-900);
+  background: transparent;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  color: var(--ifm-font-color-base);
   padding: 0.5rem 1rem;
   border-radius: 999px;
   font-size: 0.9rem;
@@ -18,12 +18,37 @@
   transition: border-color 150ms ease, background 150ms ease;
 }
 
+html[data-theme="dark"] .toggle {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 .toggle:hover {
+  border-color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .toggle:hover {
   border-color: var(--ifm-color-primary);
 }
 
-.toggleOpen {
-  background: var(--ifm-color-emphasis-100);
+.toggle:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .toggle:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* State selectors stay compound (.toggle.toggleOpen) so they beat the base
+   rule on specificity: the CSS minifier dedupes identical-bodied rules across
+   module files into the earliest position, so source order cannot be trusted. */
+.toggle.toggleOpen {
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+  border-color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .toggle.toggleOpen {
+  background: rgba(255, 255, 255, 0.06);
   border-color: var(--ifm-color-primary);
 }
 
@@ -34,10 +59,15 @@
   min-width: 320px;
   max-width: 480px;
   padding: 1.1rem 1.2rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
   border-radius: 12px;
+  background: var(--ifm-background-color);
+  box-shadow: 0 8px 28px rgb(var(--site-color-navy-rgb) / 0.12);
+}
+
+html[data-theme="dark"] .panel {
+  border-color: var(--site-color-card-border);
   background: var(--ifm-background-surface-color);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
 }
 
 .section {
@@ -51,7 +81,7 @@
 .heading {
   font-size: 0.78rem;
   font-weight: var(--ifm-font-weight-bold);
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 0.5rem;
@@ -67,9 +97,9 @@
 }
 
 .pill {
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  color: var(--ifm-color-emphasis-800);
+  background: transparent;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  color: var(--ifm-font-color-base);
   border-radius: 999px;
   padding: 0.3rem 0.85rem;
   font-size: 0.85rem;
@@ -77,20 +107,43 @@
   transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
+html[data-theme="dark"] .pill {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 .pill:hover {
+  border-color: var(--site-color-brand-blue);
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .pill:hover {
   border-color: var(--ifm-color-primary);
   color: var(--ifm-color-primary);
 }
 
-.pillActive {
-  color: #fff !important;
-  border-color: transparent !important;
+/* Surface-aware rings: light pills sit on the cream panel, dark on the shade */
+.pill:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .pill:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+.pill.pillActive,
+.pill.pillActive:hover,
+html[data-theme="dark"] .pill.pillActive,
+html[data-theme="dark"] .pill.pillActive:hover {
+  background: var(--site-color-brand-blue);
+  border-color: var(--site-color-brand-blue);
+  color: #ffffff;
 }
 
 .clearButton {
   background: transparent;
   border: 0;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
   font-size: 0.85rem;
   text-decoration: underline;
   cursor: pointer;
@@ -99,5 +152,9 @@
 }
 
 .clearButton:hover {
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .clearButton:hover {
   color: var(--ifm-color-primary);
 }

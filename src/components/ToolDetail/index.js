@@ -49,13 +49,8 @@ function TagPill({ tag, def, info }) {
     <Link
       to={`/tools?tags=${tag}`}
       className={styles.categoryPill}
-      style={{
-        backgroundColor: `color-mix(in srgb, ${def.color} 15%, transparent)`,
-        color: `color-mix(in srgb, ${def.color} 85%, black)`,
-      }}
       title={def.description}
     >
-      <span className={styles.tagDot} style={{ backgroundColor: def.color }} />
       {def.label}
       {info && <InfoDot />}
     </Link>
@@ -160,7 +155,6 @@ export default function ToolDetail({ slug }) {
 
   const categoryDef = Categories[tool.category];
   const relatedTools = getRelatedTools(tool);
-  const avatarColor = categoryDef?.color ?? "#888";
 
   const repository = siteConfig.customFields?.repository;
   const branch = siteConfig.customFields?.branch;
@@ -223,11 +217,7 @@ export default function ToolDetail({ slug }) {
               aria-hidden
             />
           ) : (
-            <div
-              className={styles.iconFallback}
-              style={{ backgroundColor: avatarColor }}
-              aria-hidden
-            >
+            <div className={styles.iconFallback} aria-hidden>
               {tool.title.charAt(0).toUpperCase()}
             </div>
           )}

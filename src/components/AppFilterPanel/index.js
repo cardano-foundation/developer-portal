@@ -85,11 +85,6 @@ export default function AppFilterPanel() {
                   type="button"
                   onClick={() => toggleProperty(prop)}
                   className={clsx(styles.pill, isActive && styles.pillActive)}
-                  style={
-                    isActive
-                      ? { backgroundColor: def.color, borderColor: def.color }
-                      : undefined
-                  }
                   aria-pressed={isActive}
                 >
                   {def.label}
@@ -132,11 +127,6 @@ export default function AppFilterPanel() {
                         type="button"
                         onClick={() => setCategory(cat)}
                         className={clsx(styles.pill, isActive && styles.pillActive)}
-                        style={
-                          isActive
-                            ? { backgroundColor: def.color, borderColor: def.color }
-                            : undefined
-                        }
                         aria-pressed={isActive}
                       >
                         {def.label}

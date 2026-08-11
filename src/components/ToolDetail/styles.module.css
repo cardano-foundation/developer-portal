@@ -48,7 +48,7 @@
 }
 
 .pickBadge svg {
-  color: #fbbf24;
+  color: var(--site-color-amber);
 }
 
 [data-theme="dark"] .pickBadge {
@@ -70,11 +70,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  background: var(--site-color-navy);
+  color: var(--site-color-cream);
   font-size: 3rem;
   font-weight: var(--ifm-font-weight-bold);
   flex-shrink: 0;
   text-transform: uppercase;
+}
+
+/* The navy tile blends into the dark page without an edge */
+html[data-theme="dark"] .iconFallback {
+  border: 1px solid var(--site-color-card-border);
 }
 
 .iconImage {
@@ -132,20 +138,24 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   text-decoration: none;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+  color: var(--site-color-text-muted);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+html[data-theme="dark"] .categoryPill {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .categoryPill:hover {
   text-decoration: none;
-  filter: brightness(0.95);
+  background: rgb(var(--site-color-navy-rgb) / 0.1);
+  color: var(--ifm-font-color-base);
   transform: translateY(-1px);
 }
 
-.tagDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  display: inline-block;
+html[data-theme="dark"] .categoryPill:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .description {
