@@ -834,6 +834,59 @@ html[data-theme="dark"] .tabs__item:focus-visible,
   outline-color: var(--site-color-amber);
 }
 
+/* Admonitions on the brand palette: warning and caution ride amber, info
+   and its important alias ride brand blue, note goes neutral; tip and
+   danger keep Infima's
+   conventional green and red. Only background and border move: foreground
+   and icon stay on Infima's contrast sets, which already adapt per theme.
+   The .alert prefix out-specifies Infima's .alert--type blocks instead of
+   relying on stylesheet order. <details> is named explicitly because it
+   renders as alert--info without a theme-admonition class; its summary
+   arrow follows the border color. */
+.alert.theme-admonition-warning,
+.alert.theme-admonition-caution {
+  --ifm-alert-background-color: rgb(var(--site-color-amber-rgb) / 0.12);
+  --ifm-alert-border-color: var(--site-color-amber);
+}
+
+.alert.theme-admonition-info,
+.alert.theme-admonition-important,
+details.alert--info {
+  --ifm-alert-background-color: rgb(var(--site-color-brand-blue-rgb) / 0.07);
+  --ifm-alert-border-color: var(--site-color-brand-blue);
+}
+
+.alert.theme-admonition-note {
+  --ifm-alert-background-color: rgb(var(--site-color-navy-rgb) / 0.04);
+  --ifm-alert-border-color: rgb(var(--site-color-navy-rgb) / 0.35);
+}
+
+html[data-theme="dark"] .alert.theme-admonition-warning,
+html[data-theme="dark"] .alert.theme-admonition-caution {
+  --ifm-alert-background-color: rgb(var(--site-color-amber-rgb) / 0.15);
+}
+
+html[data-theme="dark"] .alert.theme-admonition-info,
+html[data-theme="dark"] .alert.theme-admonition-important,
+html[data-theme="dark"] details.alert--info {
+  --ifm-alert-background-color: rgba(255, 255, 255, 0.05);
+  --ifm-alert-border-color: var(--ifm-color-primary);
+}
+
+html[data-theme="dark"] .alert.theme-admonition-note {
+  --ifm-alert-background-color: rgba(255, 255, 255, 0.04);
+  --ifm-alert-border-color: var(--site-color-card-border);
+}
+
+/* Uppercase admonition titles read spindly at the Light 300 heading
+   weight. The heading div carries only a hashed class, so it is reached
+   structurally; :not(:only-child) restricts the rule to admonitions that
+   render both heading and content, since a lone div could be a title-less
+   body that must not turn bold. */
+.theme-admonition > div:first-child:not(:only-child) {
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
 /* "Copy page" dropdown in the docs breadcrumb row
  * (rendered by src/theme/DocBreadcrumbs via src/components/CopyMarkdownActions) */
 .docbreadcrumbs-with-actions {
