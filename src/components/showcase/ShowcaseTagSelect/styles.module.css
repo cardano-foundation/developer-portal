@@ -39,9 +39,12 @@
     outline: 2px solid currentColor;
   }
   
+  /* This component is not mounted anywhere; only its readSearchTags and
+     replaceSearchTags helpers are imported. The token it referenced here
+     was undefined, so the checked state now rides the primary color. */
   input:checked + .checkboxLabel {
     opacity: 0.9;
-    background-color: var(--site-color-checkbox-checked-bg);
+    background-color: var(--ifm-color-primary);
     border: 2px solid var(--ifm-color-primary-darkest);
   }
   
