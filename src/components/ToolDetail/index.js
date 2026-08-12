@@ -3,7 +3,6 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import {
@@ -11,6 +10,7 @@ import {
   Properties,
   Showcases,
 } from "@site/src/data/builder-tools/showcase";
+import AppIcon from "@site/src/components/AppIcon";
 import AppTile from "@site/src/components/AppTile";
 import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
 import InfoDot from "@site/src/components/showcase/InfoDot";
@@ -209,18 +209,7 @@ export default function ToolDetail({ slug }) {
         )}
 
         <header className={styles.header}>
-          {tool.icon ? (
-            <img
-              className={styles.iconImage}
-              src={useBaseUrl(tool.icon)}
-              alt=""
-              aria-hidden
-            />
-          ) : (
-            <div className={styles.iconFallback} aria-hidden>
-              {tool.title.charAt(0).toUpperCase()}
-            </div>
-          )}
+          <AppIcon app={tool} size="detail" />
           <div className={styles.headerText}>
             <h1 className={styles.title}>{tool.title}</h1>
           </div>

@@ -63,36 +63,6 @@
   margin-bottom: 1.25rem;
 }
 
-.iconFallback {
-  width: 120px;
-  height: 120px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--site-color-navy);
-  color: var(--site-color-cream);
-  font-size: 3rem;
-  font-weight: var(--ifm-font-weight-bold);
-  flex-shrink: 0;
-  text-transform: uppercase;
-}
-
-/* The navy tile blends into the dark page without an edge */
-html[data-theme="dark"] .iconFallback {
-  border: 1px solid var(--site-color-card-border);
-}
-
-.iconImage {
-  width: 120px;
-  height: 120px;
-  border-radius: 24px;
-  object-fit: contain;
-  background: var(--ifm-color-emphasis-100);
-  padding: 8px;
-  flex-shrink: 0;
-}
-
 .headerText {
   flex: 1 1 auto;
   min-width: 0;
@@ -332,19 +302,6 @@ html[data-theme="dark"] .categoryPill:hover {
 }
 
 @media (max-width: 600px) {
-  .iconFallback {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-    font-size: 2.2rem;
-  }
-
-  .iconImage {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-  }
-
   .visitButton {
     flex: 1 1 auto;
     justify-content: center;
