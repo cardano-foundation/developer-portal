@@ -10,50 +10,42 @@
   gap: 0.5rem;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--site-color-text-muted);
 }
 
 .breadcrumb a {
-  color: var(--ifm-color-emphasis-700);
+  color: inherit;
   text-decoration: none;
 }
 
 .breadcrumb a:hover {
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .breadcrumb a:hover {
   color: var(--ifm-color-primary);
 }
 
+/* Surface-aware rings: the breadcrumb sits on the page background */
+.breadcrumb a:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+html[data-theme="dark"] .breadcrumb a:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* Fades the inherited muted token rather than naming a second color, so the
+   separator needs no dark counterpart */
 .crumbSep {
-  color: var(--ifm-color-emphasis-400);
+  opacity: 0.5;
 }
 
 .crumbCurrent {
-  color: var(--ifm-color-emphasis-900);
+  color: var(--ifm-font-color-base);
   font-weight: var(--ifm-font-weight-semibold);
-}
-
-.pickBadgeRow {
-  margin-bottom: 1.5rem;
-}
-
-.pickBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--ifm-color-emphasis-1000, #0b0d10);
-  color: #fff;
-  padding: 0.45rem 0.95rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-.pickBadge svg {
-  color: var(--site-color-amber);
-}
-
-[data-theme="dark"] .pickBadge {
-  background: #1c1f24;
-  border: 1px solid var(--ifm-color-emphasis-300);
 }
 
 .header {
@@ -84,17 +76,48 @@
   margin-bottom: 1.75rem;
 }
 
+/* One chip row, three weights: the maintainer pick is filled, the category is
+   washed, and the attributes are outlined. The two bordered chips
+   trim their padding by the border width so every chip in the row is the same
+   height. */
+.pickBadge,
 .osBadge {
   display: inline-flex;
   align-items: center;
-  padding: 0.45rem 0.9rem;
+  padding: calc(0.45rem - 1px) calc(0.9rem - 1px);
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background: color-mix(in srgb, #2ea043 16%, transparent);
-  color: color-mix(in srgb, #2ea043 88%, black);
+}
+
+.pickBadge {
+  gap: 0.4rem;
+  background: var(--site-color-navy);
+  color: var(--site-color-cream);
+  /* Transparent in the base so the dark hairline below cannot shift layout */
+  border: 1px solid transparent;
+}
+
+.pickBadge svg {
+  color: var(--site-color-amber);
+}
+
+/* The navy chip blends into the dark page without an edge */
+html[data-theme="dark"] .pickBadge {
+  border-color: var(--site-color-card-border);
+}
+
+/* Outlined chip, in lockstep with AppTile's `.property` */
+.osBadge {
+  background: transparent;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  color: var(--site-color-text-muted);
+}
+
+html[data-theme="dark"] .osBadge {
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .categoryPill {
@@ -128,10 +151,19 @@ html[data-theme="dark"] .categoryPill:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.categoryPill:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .categoryPill:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
 .description {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: var(--ifm-color-emphasis-800);
+  color: var(--site-color-text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -220,6 +252,7 @@ html[data-theme="dark"] .categoryPill:hover {
 
 .sectionHeading {
   font-size: 1.4rem;
+  font-weight: var(--ifm-font-weight-bold);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
@@ -239,6 +272,16 @@ html[data-theme="dark"] .categoryPill:hover {
 
 .relatedMore {
   font-size: 0.95rem;
+}
+
+.relatedMore:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+html[data-theme="dark"] .relatedMore:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 .improve {

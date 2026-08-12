@@ -194,20 +194,6 @@ export default function ToolDetail({ slug }) {
           <span className={styles.crumbCurrent}>{tool.title}</span>
         </nav>
 
-        {tool.maintainerPick && (
-          <div className={styles.pickBadgeRow}>
-            <span className={styles.pickBadge}>
-              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden focusable="false">
-                <path
-                  fill="currentColor"
-                  d="M12 2.5l2.9 6.5 7.1.8-5.3 4.9 1.5 7-6.2-3.6L5.8 21.7l1.5-7L2 9.8l7.1-.8z"
-                />
-              </svg>
-              Maintainer pick
-            </span>
-          </div>
-        )}
-
         <header className={styles.header}>
           <AppIcon app={tool} size="detail" />
           <div className={styles.headerText}>
@@ -216,6 +202,17 @@ export default function ToolDetail({ slug }) {
         </header>
 
         <div className={styles.tagRow}>
+          {tool.maintainerPick && (
+            <span className={styles.pickBadge}>
+              <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden focusable="false">
+                <path
+                  fill="currentColor"
+                  d="M12 2.5l2.9 6.5 7.1.8-5.3 4.9 1.5 7-6.2-3.6L5.8 21.7l1.5-7L2 9.8l7.1-.8z"
+                />
+              </svg>
+              Maintainer pick
+            </span>
+          )}
           {tool.repository && <span className={styles.osBadge}>Open Source</span>}
           <TagPill tag={tool.category} def={categoryDef} info />
           {tool.properties.map((p) => (
