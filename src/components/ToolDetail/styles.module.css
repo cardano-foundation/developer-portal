@@ -1,6 +1,16 @@
+/* The closing CTA band owns the bottom rhythm, so the page body carries no
+   bottom padding of its own. `.notFoundPad` restores it for the defensive
+   not-found branch, which renders no band. */
 .detail {
   padding-top: 2.5rem;
+}
+
+.notFoundPad {
   padding-bottom: 4rem;
+}
+
+.notFoundPad .description {
+  margin-top: 1rem;
 }
 
 .breadcrumb {
@@ -321,66 +331,6 @@ html[data-theme="dark"] .iconButton:focus-visible {
 
 html[data-theme="dark"] .relatedMore:focus-visible {
   outline-color: var(--site-color-amber);
-}
-
-.improve {
-  margin-top: 4rem;
-  padding: 3rem 1.5rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.improveIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  margin-bottom: 1.5rem;
-}
-
-.improveHeading {
-  margin: 0 0 0.6rem;
-  font-size: clamp(1.4rem, 3vw, 1.85rem);
-  font-weight: var(--site-font-weight-display);
-  letter-spacing: -0.01em;
-}
-
-.improveCopy {
-  margin: 0 0 1.75rem;
-  max-width: 480px;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--ifm-color-emphasis-700);
-}
-
-.improveButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid var(--ifm-color-emphasis-400);
-  background: transparent;
-  color: var(--ifm-color-emphasis-900);
-  font-size: 0.95rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-decoration: none;
-  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
-}
-
-.improveButton:hover {
-  border-color: var(--ifm-color-emphasis-700);
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  text-decoration: none;
-  transform: translateY(-1px);
 }
 
 @media (max-width: 600px) {
