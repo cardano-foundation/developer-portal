@@ -86,9 +86,38 @@ function eyebrowFor(rel) {
   return special[key] ?? key.replace(/-/g, ' ').toUpperCase();
 }
 
-// Fit the headline to the space: short titles get big and bold, long ones
-// scale down so every card carries the same visual weight.
-function titleSize(title) {
+// Headline sizes, largest first. Short titles get the big cut; long ones step
+// down so every card carries the same visual weight.
+const TITLE_SIZES = [88, 78, 68, 58, 52];
+
+// The headline may occupy this much of the card. The rest is the eyebrow, the
+// gap under it, and the margin that keeps the block off the card edges.
+const TITLE_BUDGET = 340;
+
+// Measure how tall the headline actually renders once it has wrapped.
+//
+// Satori draws the text as glyph outlines, so the largest Y in the emitted
+// path data is the bottom of the last line. Rendering into a tall box first
+// means the text wraps naturally rather than being clipped by the card.
+async function titleHeight(title, size) {
+  const svg = await satori(titleNode(title, size), {
+    width: WIDTH,
+    height: HEIGHT * 4,
+    fonts,
+  });
+  const d = [...svg.matchAll(/ d="([^"]+)"/g)].map((m) => m[1]).join(' ');
+  const nums = d.match(/-?\d+\.?\d*/g) || [];
+  let maxY = 0;
+  for (let i = 1; i < nums.length; i += 2) {
+    const v = Number(nums[i]);
+    if (v > maxY) maxY = v;
+  }
+  return maxY;
+}
+
+// The size the design asks for, by title length: short titles big and bold,
+// long ones stepped down so every card carries a similar visual weight.
+function preferredSize(title) {
   const n = title.length;
   if (n <= 15) return 88;
   if (n <= 22) return 78;
@@ -97,7 +126,49 @@ function titleSize(title) {
   return 52;
 }
 
-function card(title, eyebrow) {
+// Start from the size the design wants, then step down only while the headline
+// would actually overflow.
+//
+// Length alone cannot decide this: what overflows is the height after wrapping,
+// and two titles of the same length wrap to different line counts depending on
+// where their spaces fall. Length still decides the *look*, though, so it stays
+// in charge and the measurement is only a floor under it. Choosing purely by
+// what fits would instead resize 122 of the 169 current titles, mostly upward,
+// and discard the even-weight intent.
+//
+// The smallest step is the floor: a pathological title clips rather than
+// shrinking without bound, and gets logged so it can be shortened at source.
+async function fitTitleSize(title, onFloor) {
+  const start = TITLE_SIZES.indexOf(preferredSize(title));
+  for (let i = start; i < TITLE_SIZES.length; i++) {
+    if ((await titleHeight(title, TITLE_SIZES[i])) <= TITLE_BUDGET) return TITLE_SIZES[i];
+  }
+  onFloor(title);
+  return TITLE_SIZES[TITLE_SIZES.length - 1];
+}
+
+// The headline, as its own node so the measuring pass and the render use
+// byte-identical styling. Measuring anything else would drift from what ships.
+function titleNode(title, size) {
+  return {
+    type: 'div',
+    props: {
+      style: {
+        display: 'flex',
+        fontWeight: 700,
+        fontSize: size,
+        lineHeight: 1.03,
+        letterSpacing: -1.5,
+        color: CREAM,
+        maxWidth: 760,
+        textShadow: '0px 2px 20px rgba(0,3,10,0.40)',
+      },
+      children: title,
+    },
+  };
+}
+
+function card(title, eyebrow, size) {
   return {
     type: 'div',
     props: {
@@ -130,21 +201,7 @@ function card(title, eyebrow) {
                   children: eyebrow,
                 },
               },
-              {
-                type: 'div',
-                props: {
-                  style: {
-                    fontWeight: 700,
-                    fontSize: titleSize(title),
-                    lineHeight: 1.03,
-                    letterSpacing: -1.5,
-                    color: CREAM,
-                    maxWidth: 760,
-                    textShadow: '0px 2px 20px rgba(0,3,10,0.40)',
-                  },
-                  children: title,
-                },
-              },
+              titleNode(title, size),
             ],
           },
         },
@@ -160,6 +217,7 @@ async function main() {
     .toBuffer();
 
   const manifest = {};
+  const oversized = [];
   let made = 0;
   let skipped = 0;
 
@@ -172,7 +230,8 @@ async function main() {
       continue;
     }
     const eyebrow = eyebrowFor(rel);
-    const svg = await satori(card(title, eyebrow), { width: WIDTH, height: HEIGHT, fonts });
+    const size = await fitTitleSize(title, (t) => oversized.push(t));
+    const svg = await satori(card(title, eyebrow, size), { width: WIDTH, height: HEIGHT, fonts });
 
     const outRel = rel.replace(/\.md$/, '.jpg');
     const outPath = path.join(OUT_DIR, outRel);
@@ -192,6 +251,12 @@ async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   fs.writeFileSync(path.join(OUT_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   console.log(`Generated ${made} docs OG cards (${skipped} skipped, no title)`);
+  if (oversized.length) {
+    console.log(
+      `  ${oversized.length} title(s) overflow the card even at the smallest size; shorten them at the source:`
+    );
+    for (const t of oversized) console.log(`    - ${t}`);
+  }
 }
 
 main().catch((err) => {
