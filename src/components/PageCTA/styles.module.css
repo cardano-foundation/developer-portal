@@ -74,7 +74,7 @@
 
 .pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
   color: var(--site-color-navy);
 }
 

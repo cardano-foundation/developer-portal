@@ -198,6 +198,8 @@
    a light card behind it to keep it readable (the form's internal styling
    is owned by the form service) */
 html[data-theme="dark"] .formCol {
+  /* Pure white rather than a palette surface: the form's own text colours are
+     fixed by the service, so this needs the maximum contrast available. */
   background: #fff;
   padding: 1.5rem;
   border-radius: 18px;
@@ -256,7 +258,7 @@ html[data-theme="dark"] .formCol {
 
 .chip:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 51, 173, 0.25);
+  box-shadow: 0 10px 30px rgb(var(--site-color-brand-blue-rgb) / 0.25);
   color: var(--site-color-gray-light);
 }
 
@@ -342,7 +344,7 @@ html[data-theme="dark"] .formCol {
 
 .pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
   color: var(--site-color-navy);
 }
 

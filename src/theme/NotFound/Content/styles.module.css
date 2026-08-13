@@ -97,7 +97,7 @@
 }
 
 html[data-theme="dark"] .chipGhost {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
 }
 
 /* Surface-aware rings: the chips sit on the page background */

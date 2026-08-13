@@ -9,7 +9,7 @@
 }
 
 html[data-theme="dark"] .appIcon {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
 }
 
 .appIconTile {

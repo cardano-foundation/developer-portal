@@ -54,7 +54,7 @@
 }
 
 html[data-theme="dark"] .arrow {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
 }
 
 .arrow:hover:not(:disabled) {
@@ -88,7 +88,7 @@ html[data-theme="dark"] .arrow:focus-visible {
 }
 
 html[data-theme="dark"] .arrow:disabled:hover {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
 }
 
 .dots {
@@ -177,7 +177,7 @@ html[data-theme="dark"] .arrow:disabled:hover {
   }
 
   html[data-theme="dark"] .dot {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgb(var(--site-color-card-text-rgb) / 0.25);
   }
 
   .dot.dotActive {
