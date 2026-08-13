@@ -104,6 +104,15 @@
   --site-color-card-text-muted: rgba(255, 255, 255, 0.72);
   --site-color-card-accent: var(--site-color-amber);
   --site-color-card-border: rgba(255, 255, 255, 0.08);
+  /* The raised surface that sits on top of the page: filter rails, tool
+     cards, search and sort controls, intent tiles, category panels. One
+     value per theme, so these all read as the same layer. The light value
+     is a cool tint that cannot be mixed from the palette (its blue channel
+     runs above cream's), which is why it is stated rather than composed. */
+  --site-color-surface-raised: #ecf1ff;
+  /* Chips sitting on top of that surface need to lift off it again. */
+  --site-color-surface-chip: #ffffff;
+  --site-color-surface-raised-hover: #dfe7fb;
   /* Page cascade */
   --ifm-background-color: var(--site-color-cream);
   --ifm-font-color-base: var(--site-color-ink);
@@ -148,6 +157,11 @@ html[data-theme="dark"] {
      specificity and wins on load order, so dark mode must re-declare it. */
   --ifm-font-color-base: #e3e3e3;
   --site-color-text-muted: rgba(255, 255, 255, 0.65);
+  /* Dark twin of the raised surface: 20% brand blue over the page, which
+     lands exactly on the design's panel colour. */
+  --site-color-surface-raised: rgb(var(--site-color-brand-blue-rgb) / 0.2);
+  --site-color-surface-chip: rgb(var(--site-color-brand-blue-rgb) / 0.28);
+  --site-color-surface-raised-hover: rgb(var(--site-color-brand-blue-rgb) / 0.32);
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.09);
   /* Docs chrome, dark half: the :root overrides above detach these vars
      from Infima's own dark adaptation, so each one is restated here. */

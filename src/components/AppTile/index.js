@@ -3,19 +3,28 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
 import { Categories, Properties } from "@site/src/data/builder-tools/showcase";
-import { getAppBlurb } from "@site/src/utils/toolStats";
+import { getAppBlurb, isRecent } from "@site/src/utils/toolStats";
 import AppIcon from "@site/src/components/AppIcon";
 
 import styles from "./styles.module.css";
 
+const NEW_LABEL = "NEW";
+
 function AppTile({ app, badge = null }) {
   const categoryDef = Categories[app.category];
+  // Recency is a property of the tool, so the tile derives it rather than
+  // taking it from the caller. `badge` stays caller-supplied for the things
+  // only a section knows, like a maintainer pick star; a tool can be both.
+  const recent = isRecent(app);
 
   return (
     <Link to={`/tools/${app.slug}`} className={styles.tile}>
       <div className={styles.header}>
         <AppIcon app={app} size="tile" />
-        {badge && <span className={styles.badge}>{badge}</span>}
+        <span className={styles.badges}>
+          {recent && <span className={styles.newBadge}>{NEW_LABEL}</span>}
+          {badge}
+        </span>
       </div>
       <h3 className={styles.title}>{app.title}</h3>
       <p className={styles.description}>{getAppBlurb(app)}</p>
