@@ -94,6 +94,7 @@
   --site-color-amber: #FFB122;
   --site-color-amber-rgb: 255 177 34;
   --site-color-gray-light: #F2F2F2;
+  --site-color-gray-light-rgb: 242 242 242;
   /* One step down, for hover on a gray-light surface. Same relationship the
      raised-surface pair carries. */
   --site-color-gray-light-hover: #E8E6E1;

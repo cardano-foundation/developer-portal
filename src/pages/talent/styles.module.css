@@ -16,7 +16,13 @@
 
 /* --- HERO --- */
 
-/* Navy in both themes, like the rest of the site chrome */
+/* The one band on the site that is not navy in both themes.
+ *
+ * The artwork was drawn as a pair: the same circle field on a cream ground in
+ * light and a navy ground in dark. Every blue is identical across the two, and
+ * only the two neutrals swap with each other, so the field keeps its light and
+ * dark rhythm either way rather than going flat on one of them.
+ */
 .hero {
   position: relative;
   overflow: hidden;
@@ -25,7 +31,15 @@
   justify-content: center;
   min-height: clamp(320px, 36vw, 520px);
   padding: clamp(2rem, 4vw, 3.5rem) 1rem;
+  background: var(--site-color-cream);
+  /* Cream on cream, so without an edge the half-cropped circles dissolve into
+     the page below. Same hairline the landing hero carries. */
+  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
+}
+
+html[data-theme="dark"] .hero {
   background: var(--site-color-navy);
+  border-bottom-color: var(--site-color-card-border);
 }
 
 /* Decorative circle field behind the title panel. Sized relative to the
@@ -77,26 +91,55 @@
   background: var(--site-color-lavender-deep);
 }
 
+/* The two neutrals below are the pair that swaps between themes: on cream the
+   pale sphere would vanish and the dark one carries the weight, and on navy it
+   is the other way round. Everything else in the field is a brand colour and
+   stays put. */
+
+/* Pale sphere. On cream it takes the dark treatment instead. */
 .ballGray {
+  background: var(--site-color-navy);
+  box-shadow: inset 0 3px 80px rgb(var(--site-color-blue-bright-rgb) / 0.6);
+}
+
+html[data-theme="dark"] .ballGray {
+  background: var(--site-color-gray-light);
+  box-shadow: none;
+}
+
+/* Dark sphere lit from inside by a blue glow. On cream it becomes the pale
+   one, so the field keeps the same count of each. */
+.ballGlow {
   background: var(--site-color-gray-light);
 }
 
-/* Dark sphere lit from inside by a blue glow; one-off artwork values */
-.ballGlow {
-  background: #000;
-  box-shadow: inset 0 3px 80px rgba(0, 26, 233, 0.6);
+html[data-theme="dark"] .ballGlow {
+  background: var(--site-color-navy);
+  box-shadow: inset 0 3px 80px rgb(var(--site-color-blue-bright-rgb) / 0.6);
 }
 
-/* Translucent bubble that brightens toward its rim; one-off artwork values */
+/* Translucent bubble. It brightens toward its rim on navy and darkens toward
+   it on cream, so the edge reads against the ground either way. */
 .ballFade {
   background: radial-gradient(
     closest-side,
-    rgba(0, 35, 235, 0.08) 0%,
-    rgba(242, 242, 242, 0.4) 100%
+    rgb(var(--site-color-blue-bright-rgb) / 0.08) 0%,
+    rgb(var(--site-color-navy-rgb) / 0.28) 100%
   );
 }
 
-/* Rounded panel floating on the field, carrying the page title */
+html[data-theme="dark"] .ballFade {
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--site-color-blue-bright-rgb) / 0.08) 0%,
+    rgb(var(--site-color-gray-light-rgb) / 0.4) 100%
+  );
+}
+
+/* Rounded panel floating on the field, carrying the page title. It takes the
+   ground colour rather than a contrasting one: the panel is a clear space
+   punched through the field, not a card sitting on it, so the circles read as
+   cropping against it. */
 .heroPanel {
   position: relative;
   z-index: 1;
@@ -104,6 +147,11 @@
   border-radius: 35px;
   padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 5rem);
   text-align: center;
+  background: var(--site-color-cream);
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .heroPanel {
   background: var(--site-color-card-surface);
   color: var(--site-color-card-text);
 }
@@ -114,6 +162,10 @@
   font-weight: var(--site-font-weight-display);
   line-height: 1.37;
   letter-spacing: -0.02em;
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .heroTitle {
   color: var(--site-color-cream);
 }
 
