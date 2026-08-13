@@ -71,7 +71,7 @@
   /* The hero shares the page background (cream on cream in light mode), so
      without an edge the half-cropped circles just dissolve into the page.
      Each theme gets the alpha hairline that reads on its own surface. */
-  border-bottom: 1px solid rgba(0, 6, 41, 0.08);
+  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
   transition: background 0.4s ease;
 }
 
@@ -85,6 +85,9 @@ html[data-theme="dark"] .hero {
   inset: 0;
   z-index: 0;
 }
+
+/* The two mask gradients on .heroArt use a literal #000 because a mask reads
+   the alpha channel, so the colour is a channel value rather than a paint. */
 
 /* Circle-cascade artwork built in CSS: five equal gradient circles stepping
    down-left along a diagonal. Percentages are relative to a proportional
@@ -111,8 +114,8 @@ html[data-theme="dark"] .hero {
 }
 
 .heroArtDark {
-  --hero-circle: rgba(0, 35, 235, 0.5);
-  --hero-circle-fade: rgba(0, 35, 235, 0);
+  --hero-circle: rgb(var(--site-color-blue-bright-rgb) / 0.5);
+  --hero-circle-fade: rgb(var(--site-color-blue-bright-rgb) / 0);
   opacity: 0;
 }
 
@@ -199,7 +202,7 @@ html[data-theme="dark"] .heroTitle {
 }
 
 html[data-theme="dark"] .heroSubtitle {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgb(var(--site-color-card-text-rgb) / 0.82);
 }
 
 .heroActions {
@@ -233,7 +236,7 @@ html[data-theme="dark"] .heroSubtitle {
 
 .heroCta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
   color: var(--site-color-navy);
 }
 
@@ -323,7 +326,7 @@ html[data-theme="dark"] .heroCtaSecondary:hover {
 
 .bentoCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0, 6, 41, 0.25);
+  box-shadow: 0 20px 60px rgb(var(--site-color-navy-rgb) / 0.25);
 }
 
 .bentoCardContent {
@@ -494,8 +497,8 @@ html[data-theme="dark"] .heroCtaSecondary:hover {
 /* Unlike the navy-in-both-themes brand cards, this section keeps
    theme-dependent cards: light cards on cream, navy in dark */
 html[data-theme="light"] .devSdkCard {
-  background: #fff;
-  border: 1px solid rgba(0, 6, 41, 0.08);
+  background: var(--site-color-surface-chip);
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
   color: var(--site-color-ink);
 }
 
@@ -550,7 +553,7 @@ html[data-theme="light"] .sdkItem {
 }
 
 html[data-theme="dark"] .sdkItem {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
   color: var(--site-color-card-text);
 }
 
@@ -559,11 +562,11 @@ html[data-theme="dark"] .sdkItem {
 }
 
 html[data-theme="light"] .sdkItem:hover {
-  background: #e8e6e1;
+  background: var(--site-color-gray-light-hover);
 }
 
 html[data-theme="dark"] .sdkItem:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgb(var(--site-color-card-text-rgb) / 0.14);
 }
 
 .sdkItem img {
@@ -589,8 +592,8 @@ html[data-theme="dark"] .sdkItem:hover {
 }
 
 html[data-theme="light"] .devLinkCard {
-  background: #fff;
-  border: 1px solid rgba(0, 6, 41, 0.08);
+  background: var(--site-color-surface-chip);
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
   color: var(--site-color-ink);
 }
 
@@ -602,7 +605,7 @@ html[data-theme="dark"] .devLinkCard {
 
 .devLinkCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 6, 41, 0.15);
+  box-shadow: 0 8px 24px rgb(var(--site-color-navy-rgb) / 0.15);
 }
 
 .devLinkIcon {
@@ -620,7 +623,7 @@ html[data-theme="light"] .devLinkIcon {
 }
 
 html[data-theme="dark"] .devLinkIcon {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--site-color-card-border);
 }
 
 .devLinkIcon svg {
@@ -657,12 +660,14 @@ html[data-theme="dark"] .devLinkDesc {
   transition: transform 0.2s ease;
 }
 
+/* The arrow is small text, so it takes the muted token rather than a lighter
+   alpha of the ink: at 0.35 it measured 2.37:1 on the card. */
 html[data-theme="light"] .devLinkArrow {
-  color: rgba(0, 6, 41, 0.35);
+  color: var(--site-color-text-muted);
 }
 
 html[data-theme="dark"] .devLinkArrow {
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--site-color-card-text-muted);
 }
 
 .devLinkCard:hover .devLinkArrow {
@@ -694,7 +699,7 @@ html[data-theme="dark"] .devLinkArrow {
   letter-spacing: 0.04em;
   padding: 0.35rem 0.75rem;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(var(--site-color-card-text-rgb) / 0.2);
   color: var(--site-color-card-text);
 }
 
@@ -718,7 +723,7 @@ html[data-theme="dark"] .devLinkArrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgb(var(--site-color-card-text-rgb) / 0.15);
   color: var(--site-color-card-text);
   text-decoration: none !important;
   transition: all 0.2s ease;
@@ -726,7 +731,7 @@ html[data-theme="dark"] .devLinkArrow {
 }
 
 .quickstartDocBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(var(--site-color-card-text-rgb) / 0.3);
 }
 
 .quickstartDocIcon {
@@ -734,7 +739,10 @@ html[data-theme="dark"] .devLinkArrow {
   height: 16px;
 }
 
-/* code block window */
+/* Mock terminal window. The colours below are deliberately literal and not
+   brand tokens: this is a picture of an editor, so its chrome and syntax
+   colours imitate a dark editor theme rather than expressing the brand. The
+   real code blocks in docs are themed from the palette (see custom.css). */
 .codeBlock {
   background: #0A1130;
   border: 1px solid var(--site-color-card-border);
@@ -744,7 +752,7 @@ html[data-theme="dark"] .devLinkArrow {
   font-size: 0.85rem;
   line-height: 1.7;
   color: #d4d4d4;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgb(var(--site-color-navy-rgb) / 0.2);
   height: 100%;
 }
 
@@ -753,8 +761,8 @@ html[data-theme="dark"] .devLinkArrow {
   align-items: center;
   gap: 6px;
   padding: 0.875rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgb(var(--site-color-card-text-rgb) / 0.03);
+  border-bottom: 1px solid var(--site-color-card-border);
 }
 
 .codeDot {
@@ -767,10 +775,12 @@ html[data-theme="dark"] .devLinkArrow {
 .codeDot:nth-child(2) { background: #ffbd2e; }
 .codeDot:nth-child(3) { background: #27ca40; }
 
+/* The mock terminal is dark in both themes, so its labels take the on-navy
+   muted token. At 0.4 alpha this measured 3.77:1 against the panel. */
 .codeTitle {
   margin-left: auto;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--site-color-card-text-muted);
 }
 
 .codeBlock code {
@@ -794,7 +804,7 @@ html[data-theme="dark"] .devLinkArrow {
   border-radius: 8px;
   font-family: var(--site-font-family-mono-code);
   font-size: 0.8rem;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgb(var(--site-color-navy-rgb) / 0.25);
   color: var(--site-color-card-text);
   flex: 1;
   white-space: nowrap;
@@ -802,8 +812,9 @@ html[data-theme="dark"] .devLinkArrow {
   min-width: 0;
 }
 
+/* Same panel, same reason as .codeTitle: 0.5 alpha measured 4.26:1. */
 .cliPrompt {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--site-color-card-text-muted);
 }
 
 .cliMockup code {
@@ -829,7 +840,7 @@ html[data-theme="dark"] .devLinkArrow {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgb(var(--site-color-card-text-rgb) / 0.12);
   color: var(--site-color-card-text);
   display: flex;
   align-items: center;
@@ -838,7 +849,7 @@ html[data-theme="dark"] .devLinkArrow {
 }
 
 .copyBtn:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgb(var(--site-color-card-text-rgb) / 0.25);
 }
 
 .copyIcon {
@@ -946,7 +957,7 @@ html[data-theme="dark"] .devLinkArrow {
 
 .prodCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(0, 6, 41, 0.3);
+  box-shadow: 0 24px 64px rgb(var(--site-color-navy-rgb) / 0.3);
 }
 
 .prodCardOverlay {
@@ -954,9 +965,9 @@ html[data-theme="dark"] .devLinkArrow {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 6, 41, 0) 0%,
-    rgba(0, 6, 41, 0.6) 50%,
-    rgba(0, 6, 41, 0.95) 100%
+    rgb(var(--site-color-navy-rgb) / 0) 0%,
+    rgb(var(--site-color-navy-rgb) / 0.6) 50%,
+    rgb(var(--site-color-navy-rgb) / 0.95) 100%
   );
 }
 
@@ -978,7 +989,7 @@ html[data-theme="dark"] .devLinkArrow {
   font-size: 0.85rem;
   line-height: 1.5;
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgb(var(--site-color-card-text-rgb) / 0.85);
 }
 
 /* The chip row (Smart Contracts) and lone chips (Asteria, CTF) share the
@@ -1085,7 +1096,7 @@ html[data-theme="dark"] .devLinkArrow {
 
 .ctaCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(0, 6, 41, 0.25);
+  box-shadow: 0 24px 64px rgb(var(--site-color-navy-rgb) / 0.25);
 }
 
 .ctaCardMedia {
@@ -1184,7 +1195,7 @@ html[data-theme="dark"] .devLinkArrow {
   justify-content: center;
   background: var(--site-color-gray-light);
   color: var(--site-color-ink);
-  border: 1px solid rgba(0, 6, 41, 0.08);
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
 }
 
 .officeHoursBadge {
@@ -1237,7 +1248,7 @@ html[data-theme="dark"] .devLinkArrow {
 
 .officeHoursBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.25);
+  box-shadow: 0 8px 24px rgb(var(--site-color-brand-blue-rgb) / 0.25);
   color: var(--site-color-gray-light);
 }
 
@@ -1291,7 +1302,7 @@ html[data-theme="dark"] .devLinkArrow {
 .calendarTagline {
   margin-top: auto;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(var(--site-color-card-text-rgb) / 0.8);
 }
 
 @media screen and (max-width: 768px) {
@@ -1327,4 +1338,56 @@ html[data-theme="dark"] .devLinkArrow {
   .officeHours {
     padding: 3rem 0;
   }
+}
+
+/* ===========================================================================
+   KEYBOARD FOCUS
+
+   The page had nineteen :hover rules and no focus rules at all, so every
+   interactive element here fell back to the user agent ring. These are grouped
+   rather than filed next to each hover rule so the coverage stays auditable in
+   one place: if a control is added below without an entry here, it is obvious.
+
+   Ring colour follows the surface the ring is drawn on, not the theme, because
+   an outline sits outside the element. The three groups below were measured
+   against the composited backdrop in both themes; a navy ring on a navy card
+   is the exact defect this section exists to fix.
+   =========================================================================== */
+
+/* On the page itself: cream in light, the dark page in dark. */
+.heroCta:focus-visible,
+.heroCtaSecondary:focus-visible,
+.bentoCard:focus-visible,
+.sdkItem:focus-visible,
+.devLinkCard:focus-visible,
+.prodCard:focus-visible,
+.ctaCard:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .heroCta:focus-visible,
+html[data-theme="dark"] .heroCtaSecondary:focus-visible,
+html[data-theme="dark"] .bentoCard:focus-visible,
+html[data-theme="dark"] .sdkItem:focus-visible,
+html[data-theme="dark"] .devLinkCard:focus-visible,
+html[data-theme="dark"] .prodCard:focus-visible,
+html[data-theme="dark"] .ctaCard:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* On a blue or navy panel in BOTH themes, where navy would vanish:
+   quickstart 9.7:1, the code toolbar 12.6:1, the chips 19.1:1. */
+.quickstartDocBtn:focus-visible,
+.copyBtn:focus-visible,
+.prodChip:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
+}
+
+/* On the light gray card that stays light in BOTH themes, where cream would
+   vanish instead: navy reads at 17.7:1. */
+.officeHoursBtn:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
 }

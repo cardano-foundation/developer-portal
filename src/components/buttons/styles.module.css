@@ -27,6 +27,14 @@
   outline-offset: 2px;
 }
 
+/* The offset puts the ring outside the button, on the page rather than on the
+   amber fill, so in dark mode a navy ring sat on the dark page at about
+   1.1:1 and was effectively invisible. This renders on the landing page and
+   on /tools. */
+html[data-theme="dark"] .iconBtn:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
 .addBtn:hover {
   width: 180px;
   cursor: pointer;
