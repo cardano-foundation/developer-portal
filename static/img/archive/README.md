@@ -17,3 +17,5 @@ Current contents:
   old card illustrations, replaced by `static/img/home/rebrand/`, plus
   the starburst SVG from the old /tools hero, retired when SiteHero
   became a navy band.
+- `home/cards/` — the two card illustrations the templates and contracts
+  page headers used, retired when both pages moved onto SiteHero.

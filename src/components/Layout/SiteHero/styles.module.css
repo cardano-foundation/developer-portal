@@ -9,6 +9,16 @@
   border-bottom: 1px solid var(--site-color-card-border);
 }
 
+/* Reserved-description variant, for a band shared across sibling routes.
+   Compound for the same reason as the artwork rules below. The reserve is in
+   em so it tracks the subtitle's own font size, which is fluid: a line count
+   stays a line count at every width. The explicit line-height is what makes
+   the multiplication exact rather than dependent on an inherited value. */
+.heroBanner.withSubtitleReserve .subtitle {
+  line-height: 1.5;
+  min-height: calc(var(--site-hero-subtitle-lines) * 1.5em);
+}
+
 /* Artwork variant. Every rule here is compound so it outranks the base
    .heroBanner / .title rules on specificity rather than on source order,
    which the minifier is free to change. */
