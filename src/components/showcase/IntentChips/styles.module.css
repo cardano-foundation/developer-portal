@@ -1,50 +1,77 @@
 .intentSection {
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .intentTitle {
-  font-size: 0.78rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  color: var(--site-color-text-muted);
-  margin-bottom: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  margin: 0 0 1.1rem;
+  font-size: 1.75rem;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.01em;
+  color: var(--ifm-font-color-base);
 }
 
+/* Intents are a tile grid rather than a pill row: they are the page's primary
+   wayfinding, and equal-width tiles give them equal weight. auto-fit keeps
+   four across at full width and reflows down to one without breakpoints. */
 .intentList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.6rem;
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+/* Eight intents read as 4x2 in the design. auto-fit gives five across on a
+   wide browse column and leaves a ragged second row, so the count is fixed
+   once the rail is alongside. */
+@media (min-width: 997px) {
+  .intentList {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .intentItem {
   margin: 0;
 }
 
+.intentLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+/* The glyph must not shrink when a label wraps. */
+.intentChip svg {
+  flex: none;
+}
+
 .intentChip {
-  background: transparent;
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  /* Two labels wrap to two lines at this column width ("Write smart
+     contracts", "Set up a dev environment") and the rest do not. The floor is
+     the two-line height so every tile matches regardless. grid-auto-rows: 1fr
+     does not solve this: without a definite container height, 1fr resolves
+     against content and each row still sizes itself. */
+  min-height: 62px;
+  text-align: left;
+  background: var(--site-color-surface-raised);
+  border: 1px solid transparent;
   color: var(--ifm-font-color-base);
-  border-radius: 999px;
-  padding: 0.5rem 1.1rem;
-  font-size: 0.95rem;
+  border-radius: 8px;
+  padding: 0.7rem 0.95rem;
+  font-size: 0.92rem;
   font-weight: var(--ifm-font-weight-semibold);
+  line-height: 1.25;
   cursor: pointer;
   transition: background-color 150ms ease, border-color 150ms ease,
     color 150ms ease;
-  white-space: nowrap;
-}
-
-html[data-theme="dark"] .intentChip {
-  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .intentChip:hover {
-  background: rgb(var(--site-color-navy-rgb) / 0.05);
+  background: var(--site-color-surface-raised-hover);
   border-color: var(--site-color-brand-blue);
   color: var(--site-color-brand-blue);
 }
@@ -77,7 +104,7 @@ html[data-theme="dark"] .intentChip.intentChipActive,
 html[data-theme="dark"] .intentChip.intentChipActive:hover {
   background: var(--site-color-brand-blue);
   border-color: var(--site-color-brand-blue);
-  color: #ffffff;
+  color: var(--site-color-cream);
 }
 
 @media (max-width: 600px) {
