@@ -163,7 +163,7 @@ function ShowcaseHeader() {
     <SiteHero
       title={TITLE}
       description={HERO_DESCRIPTION}
-      artwork={useBaseUrl("/img/tools/hero-spheres.webp")}
+      artwork={useBaseUrl("/img/hero/spheres.webp")}
     />
   );
 }

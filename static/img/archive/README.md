@@ -19,3 +19,6 @@ Current contents:
   became a navy band.
 - `home/cards/` — the two card illustrations the templates and contracts
   page headers used, retired when both pages moved onto SiteHero.
+- `home/dev-portal-hero-*.webp` — a two-variant landing hero that was never
+  wired up; the landing page builds its hero artwork in CSS instead.
+- `icons/link-solid.svg` — an external-link glyph with no remaining callers.

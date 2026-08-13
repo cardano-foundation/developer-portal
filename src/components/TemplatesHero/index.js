@@ -22,8 +22,7 @@ const SUBTITLE_LINES = 2;
 
 // The same artwork the builder tools browse page leads with. Templates and
 // tools are the two browse surfaces and read as a pair, so they share it.
-// The file still sits under img/tools/ because that page shipped first.
-const ARTWORK = "/img/tools/hero-spheres.webp";
+const ARTWORK = "/img/hero/spheres.webp";
 
 // `meta` is the page's own metadata line under the tabs. Both routes pass one:
 // the row is part of what keeps the two bands the same height, so a page
