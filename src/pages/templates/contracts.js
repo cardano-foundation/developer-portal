@@ -23,6 +23,7 @@ import {
 
 import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
 import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 const TITLE = "Cardano Contracts Library";
 const DESCRIPTION =
@@ -91,8 +92,7 @@ function SourcesStrip() {
             key={s.id}
             className={heroStyles.avatar}
             href={s.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK_PROPS}
             title={s.label}
           >
             <img src={withBaseUrl(s.avatar)} alt={s.label} />
@@ -103,8 +103,7 @@ function SourcesStrip() {
         <a
           className={heroStyles.sourcesMore}
           href={CONTRIBUTE_DOC}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...EXTERNAL_LINK_PROPS}
           title={ContractSources.slice(MAX_SOURCE_AVATARS).map((s) => s.label).join(", ")}
         >
           +{overflow} more {overflow === 1 ? "source" : "sources"}
@@ -126,8 +125,7 @@ function ContractCard({ contract }) {
         <Link
           className={styles.cardTitleLink}
           href={contract.repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...EXTERNAL_LINK_PROPS}
         >
           {contract.title}
           {onGitHub && <GitHubIcon size={16} />}
@@ -224,8 +222,7 @@ export default function Contracts() {
             <a
               className={styles.contributeButton}
               href={CONTRIBUTE_DOC}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...EXTERNAL_LINK_PROPS}
             >
               <span aria-hidden="true">+</span>
               Contribute a contract

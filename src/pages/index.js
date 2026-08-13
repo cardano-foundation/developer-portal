@@ -5,6 +5,7 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 /* --- DATA --- */
 
@@ -267,7 +268,7 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
           </button>
         </div>
         {docExternal ? (
-          <a href={docHref} target="_blank" rel="noopener noreferrer" className={styles.quickstartDocBtn} aria-label={docLabel}>
+          <a href={docHref} {...EXTERNAL_LINK_PROPS} className={styles.quickstartDocBtn} aria-label={docLabel}>
             {docIcon}
           </a>
         ) : (
@@ -320,8 +321,7 @@ function DeveloperSection() {
           {/* Cardano Apps */}
           <a
             href="https://cardano.org/apps/"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK_PROPS}
             className={styles.devLinkCard}
           >
             <div className={styles.devLinkIcon}>
@@ -501,8 +501,7 @@ function SmartContractsSection() {
           {/* Asteria */}
           <a
             href="https://asteria.txpipe.io/"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK_PROPS}
             className={styles.prodCard}
           >
             <img
@@ -609,8 +608,7 @@ function CTASection() {
               <a
                 key={card.title}
                 href={card.to}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 className={styles.ctaCard}
               >
                 {inner}
@@ -643,16 +641,14 @@ function OfficeHoursSection() {
             <div className={styles.officeHoursActions}>
               <a
                 href="https://www.addevent.com/calendar/TG807216"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 className={styles.officeHoursBtn}
               >
                 Add to Calendar
               </a>
               <a
                 href="https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 className={styles.officeHoursBtn}
               >
                 Watch Recordings <span aria-hidden="true">↗</span>

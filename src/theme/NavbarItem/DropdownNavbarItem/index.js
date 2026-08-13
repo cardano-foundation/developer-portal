@@ -5,16 +5,11 @@ import OriginalDropdownNavbarItem from '@theme-original/NavbarItem/DropdownNavba
 import {useWindowSize} from '@docusaurus/theme-common';
 import {useLocation} from '@docusaurus/router';
 import icons from './icons';
+import {externalLinkProps} from "@site/src/utils/externalLink";
 
 const HOVER_OPEN_DELAY = 80;
 const HOVER_CLOSE_DELAY = 120;
 const VIEWPORT_MARGIN = 16;
-
-/* Props that make a Docusaurus Link open external targets in a new tab,
-   matching the ↗ affordance rendered next to external labels */
-function externalLinkProps(href) {
-  return href ? {target: '_blank', rel: 'noopener noreferrer'} : {};
-}
 
 function FeaturedTile({featured}) {
   return (

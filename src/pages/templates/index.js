@@ -19,6 +19,7 @@ import {
 
 import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
 import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 const TITLE = "Cardano dApp Templates";
 const DESCRIPTION = "Runnable dApp starters you can scaffold in one command";
@@ -123,8 +124,7 @@ export default function Templates() {
             <a
               className={styles.contributeButton}
               href="https://github.com/cardano-foundation/developer-portal/blob/staging/examples/templates/README.md"
-              target="_blank"
-              rel="noopener noreferrer"
+              {...EXTERNAL_LINK_PROPS}
             >
               <span aria-hidden="true">+</span>
               Contribute a template

@@ -5,17 +5,12 @@ import footer from '@site/src/data/footer';
 import DiscordIcon from '@site/static/img/icons/discord.svg';
 import GithubIcon from '@site/static/img/icons/github.svg';
 import styles from './styles.module.css';
+import {externalLinkProps} from "@site/src/utils/externalLink";
 
 const socialIcons = {
   discord: DiscordIcon,
   github: GithubIcon,
 };
-
-/* Props that make a Docusaurus Link open external targets in a new tab,
-   matching the ↗ affordance rendered next to external labels */
-function externalLinkProps(href) {
-  return href ? {target: '_blank', rel: 'noopener noreferrer'} : {};
-}
 
 function FooterLink({item}) {
   return (
