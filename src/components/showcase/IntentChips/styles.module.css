@@ -79,7 +79,7 @@
 /* The hover wash lightens the surface under the label, which drops plain
    primary to 4.3:1. The next step up clears the text floor. */
 html[data-theme="dark"] .intentChip:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
   border-color: var(--ifm-color-primary-light);
   color: var(--ifm-color-primary-light);
 }

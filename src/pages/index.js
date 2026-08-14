@@ -5,6 +5,7 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 /* --- DATA --- */
 
@@ -267,7 +268,7 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
           </button>
         </div>
         {docExternal ? (
-          <a href={docHref} target="_blank" rel="noopener noreferrer" className={styles.quickstartDocBtn} aria-label={docLabel}>
+          <a href={docHref} {...EXTERNAL_LINK_PROPS} className={styles.quickstartDocBtn} aria-label={docLabel}>
             {docIcon}
           </a>
         ) : (
@@ -280,8 +281,91 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
   );
 }
 
+/* One ecosystem destination. The trailing glyph doubles as the external-link
+   affordance, so it is an arrow for internal routes and the diagonal for
+   anything leaving the site. */
+function EcosystemCard({ title, description, to, href, icon }) {
+  const isExternal = Boolean(href);
+  const Tag = isExternal ? "a" : Link;
+  const linkProps = isExternal ? { href, ...EXTERNAL_LINK_PROPS } : { to };
+
+  return (
+    <Tag {...linkProps} className={styles.ecoCard}>
+      <div className={styles.ecoCardTop}>
+        <span className={styles.ecoCardIcon}>{icon}</span>
+        <span className={styles.ecoCardBadge} aria-hidden="true">
+          {isExternal ? "↗" : "→"}
+        </span>
+      </div>
+      <span className={styles.ecoCardTitle}>{title}</span>
+      <span className={styles.ecoCardDesc}>{description}</span>
+    </Tag>
+  );
+}
+
+const ecoIcons = {
+  tools: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </svg>
+  ),
+  apps: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="7" height="7" />
+      <rect x="14" y="3" width="7" height="7" />
+      <rect x="14" y="14" width="7" height="7" />
+      <rect x="3" y="14" width="7" height="7" />
+    </svg>
+  ),
+  infrastructure: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+      <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+      <line x1="6" y1="6" x2="6.01" y2="6" />
+      <line x1="6" y1="18" x2="6.01" y2="18" />
+    </svg>
+  ),
+  community: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  ),
+};
+
 function DeveloperSection() {
   const baseUrl = useBaseUrl("/");
+
+  // Built from baseUrl rather than calling useBaseUrl per card: hooks cannot
+  // run inside the map below.
+  const ecosystem = [
+    {
+      title: "Builder Tools",
+      description: "APIs, indexers, and utilities",
+      to: baseUrl + "tools",
+      icon: ecoIcons.tools,
+    },
+    {
+      title: "Cardano Apps",
+      description: "Explore the ecosystem",
+      href: "https://cardano.org/apps/",
+      icon: ecoIcons.apps,
+    },
+    {
+      title: "Infrastructure",
+      description: "Nodes, APIs, and services",
+      to: baseUrl + "docs/developers/curriculum/production/connecting-to-the-chain",
+      icon: ecoIcons.infrastructure,
+    },
+    {
+      title: "Community",
+      description: "Connect with developers",
+      to: baseUrl + "docs/community/cardano-developer-community",
+      icon: ecoIcons.community,
+    },
+  ];
 
   return (
     <section className={styles.developer}>
@@ -290,59 +374,15 @@ function DeveloperSection() {
           <h2>Start Building</h2>
           <p>Everything you need to build on Cardano</p>
         </div>
-        <div className={styles.devGrid}>
-          {/* Quickstart */}
-          <QuickstartCard
-            badge="AI agents"
-            text="Current Cardano context for your AI assistant"
-            command="/plugin marketplace add cardano-foundation/cardano-dev-skills"
-            docHref={useBaseUrl("docs/developers/curriculum/start-building/ai-assisted-development")}
-            docLabel="Set up your AI assistant"
-          />
 
-          {/* Builder Tools */}
-          <Link
-            to={useBaseUrl("tools")}
-            className={styles.devLinkCard}
-          >
-            <div className={styles.devLinkIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-              </svg>
-            </div>
-            <div className={styles.devLinkText}>
-              <span className={styles.devLinkTitle}>Builder Tools</span>
-              <span className={styles.devLinkDesc}>APIs, indexers, and utilities</span>
-            </div>
-            <span className={styles.devLinkArrow} aria-hidden="true">→</span>
-          </Link>
-
-          {/* Cardano Apps */}
-          <a
-            href="https://cardano.org/apps/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.devLinkCard}
-          >
-            <div className={styles.devLinkIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="7" height="7" />
-                <rect x="14" y="3" width="7" height="7" />
-                <rect x="14" y="14" width="7" height="7" />
-                <rect x="3" y="14" width="7" height="7" />
-              </svg>
-            </div>
-            <div className={styles.devLinkText}>
-              <span className={styles.devLinkTitle}>Cardano Apps</span>
-              <span className={styles.devLinkDesc}>Explore the ecosystem</span>
-            </div>
-            <span className={styles.devLinkArrow} aria-hidden="true">↗</span>
-          </a>
-
-          {/* SDKs */}
-          <div className={styles.devSdkCard}>
-            <div className={styles.devSdkHeader}>
-              <h3>Build in Your Language</h3>
+        {/* Panel one: the code sample beside the SDK list. The copy leads in
+            the markup and the artwork is moved left by CSS, so the heading is
+            read before the sample it introduces. Nothing in the artwork is
+            focusable, so visual and focus order stay in step. */}
+        <div className={styles.devPanel}>
+          <div className={styles.devPanelCopy}>
+            <div className={styles.devPanelHeader}>
+              <h3>Build in your language</h3>
               <p>Production-ready SDKs for every stack</p>
             </div>
             <div className={styles.sdkGrid}>
@@ -362,6 +402,7 @@ function DeveloperSection() {
             </div>
           </div>
 
+          <div className={clsx(styles.devPanelArt, styles.devPanelArtLead)}>
           {/* Code sample */}
           <div className={styles.devCodeCard}>
             <div className={styles.codeBlock}>
@@ -407,57 +448,44 @@ function DeveloperSection() {
               </code>
             </div>
           </div>
+          </div>
+        </div>
 
-          {/* Community */}
-          <Link
-            to={useBaseUrl("docs/community/cardano-developer-community")}
-            className={styles.devLinkCard}
-          >
-            <div className={styles.devLinkIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
+        {/* Panel two: the ecosystem destinations beside the two quickstarts.
+            Copy leads visually and in the markup here, so no reordering. */}
+        <div className={styles.devPanel}>
+          <div className={styles.devPanelCopy}>
+            <div className={styles.devPanelHeader}>
+              <h3>Use Cardano&rsquo;s ecosystem</h3>
+              <p>Directories, infrastructure, and the people building alongside you</p>
             </div>
-            <div className={styles.devLinkText}>
-              <span className={styles.devLinkTitle}>Community</span>
-              <span className={styles.devLinkDesc}>Connect with developers</span>
+            <div className={styles.ecoGrid}>
+              {ecosystem.map((card) => (
+                <EcosystemCard key={card.title} {...card} />
+              ))}
             </div>
-            <span className={styles.devLinkArrow} aria-hidden="true">→</span>
-          </Link>
+          </div>
 
-          {/* Infrastructure */}
-          <Link
-            to={useBaseUrl("docs/developers/curriculum/production/connecting-to-the-chain")}
-            className={styles.devLinkCard}
-          >
-            <div className={styles.devLinkIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
-                <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-                <line x1="6" y1="6" x2="6.01" y2="6" />
-                <line x1="6" y1="18" x2="6.01" y2="18" />
-              </svg>
+          <div className={styles.devPanelArt}>
+            <div className={styles.quickstartStack}>
+              <QuickstartCard
+                badge="AI agents"
+                text="Current Cardano context for your AI assistant"
+                command="/plugin marketplace add cardano-foundation/cardano-dev-skills"
+                docHref={baseUrl + "docs/developers/curriculum/start-building/ai-assisted-development"}
+                docLabel="Set up your AI assistant"
+              />
+              <QuickstartCard
+                badge="Devnet"
+                text="Local development network, ready in one command"
+                command="yaci-devkit up"
+                prompt
+                docHref="https://devkit.yaci.xyz/"
+                docLabel="YACI DevKit Docs"
+                docExternal
+              />
             </div>
-            <div className={styles.devLinkText}>
-              <span className={styles.devLinkTitle}>Infrastructure</span>
-              <span className={styles.devLinkDesc}>Nodes, APIs, and services</span>
-            </div>
-            <span className={styles.devLinkArrow} aria-hidden="true">→</span>
-          </Link>
-
-          {/* Devnet (YACI) */}
-          <QuickstartCard
-            badge="Devnet"
-            text="Local development network, ready in one command"
-            command="yaci-devkit up"
-            prompt
-            docHref="https://devkit.yaci.xyz/"
-            docLabel="YACI DevKit Docs"
-            docExternal
-          />
+          </div>
         </div>
       </div>
     </section>
@@ -501,8 +529,7 @@ function SmartContractsSection() {
           {/* Asteria */}
           <a
             href="https://asteria.txpipe.io/"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK_PROPS}
             className={styles.prodCard}
           >
             <img
@@ -609,8 +636,7 @@ function CTASection() {
               <a
                 key={card.title}
                 href={card.to}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 className={styles.ctaCard}
               >
                 {inner}
@@ -643,16 +669,14 @@ function OfficeHoursSection() {
             <div className={styles.officeHoursActions}>
               <a
                 href="https://www.addevent.com/calendar/TG807216"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 className={styles.officeHoursBtn}
               >
                 Add to Calendar
               </a>
               <a
                 href="https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 className={styles.officeHoursBtn}
               >
                 Watch Recordings <span aria-hidden="true">↗</span>

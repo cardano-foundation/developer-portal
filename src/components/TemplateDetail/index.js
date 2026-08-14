@@ -15,6 +15,7 @@ import {
 } from "@site/src/data/templates/showcase";
 
 import styles from "./styles.module.css";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 const OG_IMAGE = "https://developers.cardano.org/img/og/og-builder-tools.jpg";
 
@@ -174,8 +175,7 @@ export default function TemplateDetail({ slug }) {
               <Link
                 href={template.githubUrl}
                 className={styles.readmeLink}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
               >
                 <GitHubIcon size={16} />
                 Read the template README on GitHub
@@ -189,8 +189,7 @@ export default function TemplateDetail({ slug }) {
               <Link
                 href={template.githubUrl}
                 className={styles.sourceButton}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
               >
                 <GitHubIcon size={18} />
                 View source on GitHub

@@ -88,11 +88,16 @@
   /* Decorative only, for artwork circles and shapes. Never use for UI
      surfaces or borders: interface blue is always #0033AD. */
   --site-color-blue-bright: #0023EB;
+  --site-color-blue-bright-rgb: 0 35 235;
   --site-color-lavender: #C7C2E6;
   --site-color-lavender-deep: #968CC3;
   --site-color-amber: #FFB122;
   --site-color-amber-rgb: 255 177 34;
   --site-color-gray-light: #F2F2F2;
+  --site-color-gray-light-rgb: 242 242 242;
+  /* One step down, for hover on a gray-light surface. Same relationship the
+     raised-surface pair carries. */
+  --site-color-gray-light-hover: #E8E6E1;
   --site-color-ink: #111425;
   --site-color-ink-muted: #5F6B85;
   /* Muted text that follows the page background (ink on cream, white on navy) */
@@ -101,7 +106,11 @@
      theme-invariant semantic tokens instead of data-theme rules. */
   --site-color-card-surface: var(--site-color-navy);
   --site-color-card-text: #ffffff;
-  --site-color-card-text-muted: rgba(255, 255, 255, 0.72);
+  /* Pure white, not cream: washes and text layered on a navy surface read as
+     neutral, where cream's warmth shows as a tint. Channel form so hover
+     washes can set their own alpha without re-expanding the value. */
+  --site-color-card-text-rgb: 255 255 255;
+  --site-color-card-text-muted: rgb(var(--site-color-card-text-rgb) / 0.72);
   --site-color-card-accent: var(--site-color-amber);
   --site-color-card-border: rgba(255, 255, 255, 0.08);
   /* The raised surface that sits on top of the page: filter rails, tool
