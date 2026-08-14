@@ -26,6 +26,12 @@ html[data-theme="dark"] .appIcon {
   padding: 4px;
 }
 
+.appIconDetail {
+  width: 120px;
+  height: 120px;
+  padding: 8px;
+}
+
 .image {
   width: 100%;
   height: 100%;
@@ -53,7 +59,22 @@ html[data-theme="dark"] .appIcon {
   font-size: 1.05rem;
 }
 
+.appIconDetail .fallback {
+  font-size: 3rem;
+}
+
 /* The navy tile blends into the dark page without an edge */
 html[data-theme="dark"] .fallback {
   border-color: var(--site-color-card-border);
+}
+
+@media (max-width: 600px) {
+  .appIconDetail {
+    width: 88px;
+    height: 88px;
+  }
+
+  .appIconDetail .fallback {
+    font-size: 2.2rem;
+  }
 }
