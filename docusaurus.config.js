@@ -83,11 +83,6 @@ module.exports = {
   },
   themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
-    // Toggle display of icons in the mega menu. Icons need to be added to /static/img/icons/ as svg files
-    megaMenuIcons: false,
-    // Toggle display of icons in mega menu column titles. 
-    megaMenuColumnIcons: true,
-    
     // Docs Sidebar
     docs: {
       sidebar: {

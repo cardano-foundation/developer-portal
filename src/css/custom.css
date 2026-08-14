@@ -76,9 +76,14 @@
   --ifm-footer-link-hover-color: #6684CE;
   --site-color-tooltip: #fff;
   --site-color-tooltip-background: #353738;
-  /* 2026 brand palette (hex reference: static/img/brand/README.md) */
+  /* 2026 brand palette (hex reference: static/img/brand/README.md).
+     The -rgb channel tokens exist for alpha composition: write
+     rgb(var(--site-color-navy-rgb) / 0.5) instead of hand-expanding the
+     hex into rgba() literals that detach from the palette. */
   --site-color-cream: #FFFAF3;
+  --site-color-cream-rgb: 255 250 243;
   --site-color-navy: #000629;
+  --site-color-navy-rgb: 0 6 41;
   --site-color-brand-blue: #0033AD;
   /* Decorative only, for artwork circles and shapes. Never use for UI
      surfaces or borders: interface blue is always #0033AD. */
@@ -306,9 +311,14 @@ div.theme-announcement-bar {
 
 /* The navbar is navy in both themes, but in light mode Docusaurus still
    dresses its controls for a light bar: dark toggle/hamburger glyphs and a
-   pale DocSearch pill. Force white chrome regardless of theme. */
+   pale DocSearch pill. Force white chrome regardless of theme.
+   The hairline replaces Infima's default shadow, which disappears where
+   the navy bar meets dark page backgrounds; it is the same edge the mega
+   menu panels and card borders carry. */
 .navbar {
   color: #fff;
+  border-bottom: 1px solid var(--site-color-card-border);
+  box-shadow: none;
 }
 
 /* Infima sets navbar links semibold; the 2026 type scale reads lighter, so
@@ -360,7 +370,12 @@ div.theme-announcement-bar {
   }
 }
 
-/* Mega menu styles */
+/* --- Mega menus ---------------------------------------------------------
+   Navy frosted panels that read as an extension of the navbar in both
+   themes. Open/close is React state in
+   src/theme/NavbarItem/DropdownNavbarItem/index.js, which stamps
+   [data-open] on the item; CSS handles presentation and the transition. */
+
 .navbar__item--mega {
   position: relative;
 }
@@ -369,7 +384,8 @@ div.theme-announcement-bar {
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--ifm-navbar-item-padding-vertical) var(--ifm-navbar-item-padding-horizontal);
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   color: var(--ifm-navbar-link-color);
@@ -378,6 +394,12 @@ div.theme-announcement-bar {
      weight; light, to sit with the ExtraLight display type. */
   font-weight: var(--ifm-font-weight-light);
   text-decoration: none;
+  transition: background-color 0.16s ease;
+}
+
+.navbar__item--mega:hover .megaMenuTrigger,
+.navbar__item--mega[data-open] .megaMenuTrigger {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .megaMenuTrigger::after {
@@ -386,198 +408,255 @@ div.theme-announcement-bar {
   margin-left: 8px;
   width: 0;
   height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid currentColor;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid currentColor;
   vertical-align: middle;
   opacity: 0.9;
+  transition: transform 0.16s ease;
 }
 
+.navbar__item--mega[data-open] .megaMenuTrigger::after {
+  transform: rotate(180deg);
+}
+
+/* Panel: centered under its trigger, kept in the DOM so it can animate.
+   Width comes from its content (tile + fixed-width columns).
+   --mega-menu-shift is set by the React component when the centered
+   position would push the panel past a viewport edge. */
 .megaMenuPanel {
   position: absolute;
-  top: 100%;
-  left: 0;
-  margin: 0;
-  padding: 16px 24px 24px;
-  background: var(--ifm-background-surface-color);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-  border-radius: 8px;
-  z-index: 1000;
-  display: none;
-  box-sizing: border-box;
-  /* Width is set by data-column-count variant rules below */
+  top: calc(100% + 10px);
+  left: 50%;
+  z-index: 10;
+  width: max-content;
+  max-width: min(920px, calc(100vw - 2rem));
+  padding: 1.25rem;
+  background: rgb(var(--site-color-navy-rgb) / 0.92);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--site-color-card-border);
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgb(var(--site-color-navy-rgb) / 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(calc(-50% + var(--mega-menu-shift, 0px)), 6px);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
 }
 
-/* Invisible hover zone below panel to prevent closing when moving mouse down */
-.megaMenuPanel::after {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -20px;
-  right: -20px;
-  height: 10px;
+/* Without backdrop-filter the page ghosts through the 0.92 alpha behind
+   low-contrast panel text, so fall back to a solid surface */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .megaMenuPanel {
+    background: var(--site-color-navy);
+  }
+}
+
+.navbar__item--mega[data-open] .megaMenuPanel {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(calc(-50% + var(--mega-menu-shift, 0px)), 0);
   pointer-events: auto;
 }
 
-.navbar__item--mega:hover .megaMenuPanel,
-.navbar__item--mega:focus-within .megaMenuPanel {
-  display: block;
+@media (prefers-reduced-motion: reduce) {
+  .megaMenuPanel,
+  .megaMenuTrigger::after {
+    transition: none;
+  }
+}
+
+/* Invisible bridge over the trigger-to-panel gap so the pointer can travel
+   down without the hover-close timer firing mid-way */
+.megaMenuPanel::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
 }
 
 .megaMenuInner {
-  display: grid;
-  /* ensure each column has a reasonable minimum width so labels don't
-     wrap into vertical stacks on narrow viewports */
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 24px;
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
 }
 
-/* Dynamic width based on column count */
-.navbar__item--mega[data-column-count="1"] .megaMenuPanel {
-  width: min(340px, calc(100vw - 48px));
-  max-width: 340px;
-  min-width: 280px;
-}
-
-.navbar__item--mega[data-column-count="1"] .megaMenuInner {
-  grid-template-columns: minmax(240px, 1fr);
-}
-
-.navbar__item--mega[data-column-count="2"] .megaMenuPanel {
-  width: min(600px, calc(100vw - 48px));
-  max-width: 600px;
-  min-width: 480px;
-}
-
-.navbar__item--mega[data-column-count="2"] .megaMenuInner {
-  grid-template-columns: repeat(2, minmax(220px, 1fr));
-}
-
-.navbar__item--mega[data-column-count="3"] .megaMenuPanel {
-  width: min(800px, calc(100vw - 48px));
-  max-width: 800px;
-  min-width: 720px;
-}
-
-.navbar__item--mega[data-column-count="3"] .megaMenuInner {
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
+.megaMenuColumn {
+  width: 252px;
 }
 
 .megaMenuColumnTitle {
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   font-weight: var(--ifm-font-weight-semibold);
   text-transform: uppercase;
-  margin-bottom: 8px;
-  opacity: 0.7;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  /* Explicit color for the same reason as the item descriptions: the navy
-     navbar's white link color would otherwise be inherited into the panel */
-  color: var(--ifm-font-color-base);
+  letter-spacing: 0.08em;
+  color: rgb(var(--site-color-cream-rgb) / 0.55);
+  padding: 0.25rem 0.75rem 0.6rem;
 }
 
-.megaMenuColumnIcon {
-  width: 1rem;
-  height: 1rem;
-  object-fit: contain;
-  opacity: 0.7;
-  filter: none;
-}
-
-/* Improve contrast for column icons in dark mode */
-[data-theme="dark"] .megaMenuColumnIcon {
-  /* invert black icons to light, then tone down to a soft grey */
-  filter: invert(1) brightness(1.05) contrast(0.9) saturate(0.6);
-  opacity: 0.85;
-}
-
-.megaMenuItemLink {
-  display: flex;
-  align-items: flex-start;
-  padding: 8px 12px;
-  margin: 0 -12px;
-  border-radius: 4px;
-  transition: background-color 0.15s ease;
-  text-decoration: none;
-  color: inherit;
-  gap: 12px;
-}
-
-.megaMenuItemLink:hover {
-  background-color: var(--ifm-color-emphasis-100);
-  text-decoration: none;
-}
-
-.megaMenuItemLabel {
-  font-weight: var(--ifm-font-weight-semibold);
-  display: block;
-  font-size: 1.05rem;
-  /* force horizontal text flow */
-  writing-mode: horizontal-tb;
-  white-space: normal;
-  color: var(--ifm-color-primary);
-}
-
-.megaMenuItemContent {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.megaMenuItemDescription {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  display: block;
-  /* Explicit color: the navy navbar sets white link color in BOTH themes
-     since the 2026 rebrand, so inheriting it turns white-on-white inside
-     the light dropdown panel */
-  color: var(--ifm-font-color-base);
-}
-
-/* Replace default list bullets with Font Awesome icons */
 .megaMenuColumnList {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.megaMenuItem {
-  display: block;
+/* Hairline dividers separate rows without adding visual weight */
+.megaMenuItem + .megaMenuItem {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.megaMenuItemLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  text-decoration: none !important;
+  transition: background-color 0.16s ease;
+}
+
+.megaMenuItemLink:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.megaMenuItemIconTile {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--site-color-cream);
+  transition: background-color 0.16s ease, color 0.16s ease;
+}
+
+.megaMenuItemLink:hover .megaMenuItemIconTile {
+  background: var(--site-color-amber);
+  color: var(--site-color-navy);
 }
 
 .megaMenuItemIcon {
-  flex-shrink: 0;
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-top: 4px;
-  object-fit: contain;
-  opacity: 0.6;
-  transition: opacity 0.15s ease;
-  filter: grayscale(5%) brightness(0) saturate(100%) invert(21%) sepia(78%) saturate(2273%) hue-rotate(222deg);
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
 
-.megaMenuItemLink:hover .megaMenuItemIcon {
-  opacity: 0.95;
+.megaMenuItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
-/* Strong reset for text orientation inside the mega menu to avoid
-   inherited or theme rules that could produce vertical text. */
-.navbar__item--mega,
-.navbar__item--mega * {
-  writing-mode: horizontal-tb !important;
-  text-orientation: mixed !important;
-  transform: none !important;
-  white-space: normal !important;
-  word-break: normal !important;
-  letter-spacing: normal !important;
+.megaMenuItemLabel {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--site-color-cream);
 }
 
-/* Ensure mega menu doesn't display on small screens */
-@media (max-width: 899px) {
-  .megaMenuPanel {
-    display: none !important;
-  }
+.megaMenuItemDescription {
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgb(var(--site-color-cream-rgb) / 0.6);
+}
+
+/* Featured tile: one per panel, carrying the same artwork as the landing
+   section it links to, with copy over a darkening gradient and a pill CTA */
+.megaMenuFeatured {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 252px;
+  min-height: 252px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--site-color-navy);
+  border: 1px solid var(--site-color-card-border);
+  text-decoration: none !important;
+  transition: transform 0.16s ease;
+}
+
+.megaMenuFeatured:hover {
+  transform: translateY(-2px);
+}
+
+.megaMenuFeaturedArt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.megaMenuFeaturedBody {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 3rem 1rem 1rem;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--site-color-navy-rgb) / 0) 0%,
+    rgb(var(--site-color-navy-rgb) / 0.85) 45%,
+    rgb(var(--site-color-navy-rgb) / 0.97) 100%
+  );
+}
+
+.megaMenuFeaturedTitle {
+  font-size: 1.15rem;
+  font-weight: var(--site-font-weight-heading);
+  color: var(--site-color-cream);
+}
+
+.megaMenuFeaturedDescription {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgb(var(--site-color-cream-rgb) / 0.75);
+}
+
+/* Global mirror of the landing page's filled mono chip. The landing version
+   lives in a CSS module (src/pages/styles.module.css), whose classes global
+   CSS cannot compose; unifying both on one global utility is a follow-up. */
+.megaMenuFeaturedCta {
+  margin-top: 0.5rem;
+  align-self: flex-start;
+  font-family: var(--site-font-family-mono-label);
+  font-weight: var(--ifm-font-weight-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--site-color-brand-blue);
+  color: var(--site-color-gray-light);
+  transition: background-color 0.16s ease, color 0.16s ease;
+}
+
+.megaMenuFeatured:hover .megaMenuFeaturedCta {
+  background: var(--site-color-amber);
+  color: var(--site-color-navy);
+}
+
+/* Keyboard focus: an amber ring reads on the navy panel and navbar in both
+   themes; the featured tile pulls it inward so overflow:hidden can't clip it */
+.megaMenuTrigger:focus-visible,
+.megaMenuItemLink:focus-visible {
+  outline: 2px solid var(--site-color-amber);
+  outline-offset: 2px;
+}
+
+.megaMenuFeatured:focus-visible {
+  outline: 2px solid var(--site-color-amber);
+  outline-offset: -2px;
 }
 
 /* "Copy page" dropdown in the docs breadcrumb row
