@@ -97,7 +97,7 @@ export default function Templates() {
             </div>
             <img
               className={styles.headerArt}
-              src={useBaseUrl("img/home/card-get-started.svg")}
+              src={useBaseUrl("img/home/cards/card-get-started.svg")}
               alt=""
               aria-hidden="true"
             />

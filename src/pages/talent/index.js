@@ -77,7 +77,7 @@ function OverviewSection() {
 }
 
 function ResourcesSection() {
-  const imgUrl = useBaseUrl("img/home/card-get-started.svg");
+  const imgUrl = useBaseUrl("img/home/cards/card-get-started.svg");
   return (
     <section className={styles.resources}>
       <div className="container">

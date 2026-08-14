@@ -198,7 +198,7 @@ export default function Contracts() {
             </div>
             <img
               className={styles.headerArt}
-              src={useBaseUrl("img/home/card-smart-contracts.svg")}
+              src={useBaseUrl("img/home/cards/card-smart-contracts.svg")}
               alt=""
               aria-hidden="true"
             />
