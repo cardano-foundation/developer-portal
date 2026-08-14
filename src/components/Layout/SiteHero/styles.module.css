@@ -1,41 +1,29 @@
+/* Navy chrome band, identical in both themes like the navbar and footer.
+   The hairline lower edge separates it from the page, which matters most
+   in dark mode where navy sits on a dark background. */
+.heroBanner {
+  padding: clamp(3rem, 6vw, 4.5rem) 2rem;
+  text-align: left;
+  background: var(--site-color-navy);
+  color: var(--site-color-card-text);
+  border-bottom: 1px solid var(--site-color-card-border);
+}
+
+.title {
+  font-weight: var(--site-font-weight-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  letter-spacing: -0.02em;
+  color: var(--site-color-cream);
+}
+
+.subtitle {
+  font-weight: var(--ifm-font-weight-light);
+  color: rgb(var(--site-color-cream-rgb) / 0.8);
+  max-width: 55ch;
+}
+
 .taglineContainer {
   width: 70%;
-}
-
-@media (max-width: 768px) {
-  .taglineContainer {
-    width: 100%;
-  }
-}
-
-.backgroundBox {
-  padding-bottom: 40px;
-}
-
-.heroBannerStarburst {
-  padding: 4rem 2rem;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-  height: 410px;
-  color: #ffffff;
-  /* Layered background: starburst SVG on top of the gradient, both on the
-   * element itself so they paint above Infima's opaque .hero--primary color
-   * (a ::before with z-index:-1 gets hidden behind it on this site). The SVG
-   * circles are #0033AD, so they only show against the lighter gradient. */
-  background-color: #0035ad;
-  background-image: url(/img/home/hero-header-starburst.svg),
-    linear-gradient(315deg, #305bbd, #0035ad);
-  background-repeat: no-repeat, no-repeat;
-  background-position: top right, center;
-  background-size: cover, cover;
-}
-
-html[data-theme="dark"] .heroBannerStarburst {
-  color: #ffffff;
-  background-color: #011034;
-  background-image: url(/img/home/hero-header-starburst.svg),
-    linear-gradient(315deg, #244eaf, #011034);
 }
 
 .heroChildren {
@@ -44,42 +32,12 @@ html[data-theme="dark"] .heroBannerStarburst {
   flex-direction: column;
 }
 
-/* The bottom V-notch. Rendered as a plain global class by SiteHero. */
-:global(.sectionCaret) polygon {
-  fill: #ffffff;
-}
-
-html[data-theme="dark"] :global(.sectionCaret) polygon {
-  fill: #1b1b1d;
-}
-
-:global(.sectionCaret) {
-  height: 30px;
-  width: 2048px;
-  position: absolute;
-  bottom: 0;
-  display: inline-block;
-  left: 50%;
-  margin: 0 0 0 -1000px;
-}
-
-@media screen and (max-width: 576px) {
+@media (max-width: 768px) {
   .taglineContainer {
     width: 100%;
   }
-  .heroBannerStarburst {
-    padding: 2rem 1rem;
-    height: auto;
-  }
-  .backgroundBox {
-    padding-bottom: 20px;
-  }
-}
 
-@media screen and (min-width: 1950px) {
-  :global(.sectionCaret) {
-    height: 45px;
-    width: 3000px;
-    margin-left: -1500px;
+  .heroBanner {
+    padding: 2rem 1rem;
   }
 }

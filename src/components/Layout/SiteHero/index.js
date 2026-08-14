@@ -2,27 +2,18 @@ import React from "react";
 import clsx from "clsx";
 import styles from "./styles.module.css";
 
-// Gradient hero with the bottom V-notch ("sectionCaret"), ported from the
-// cardano.org/apps SiteHero (starburst variant) for visual parity. Trimmed to
-// the single banner style this page uses.
+// Navy chrome band shared with the navbar and footer, identical in both
+// themes. Replaced the gradient-and-caret banner that predated the 2026
+// brand and clashed with the cream page.
 export default function SiteHero({ title, description, children }) {
   return (
-    <header className={clsx("hero hero--primary", styles.heroBannerStarburst)}>
+    <header className={clsx("hero", styles.heroBanner)}>
       <div className="container">
-        <div className={styles.backgroundBox}>
-          <div className={styles.taglineContainer}>
-            <h1 className="hero__title">{title}</h1>
-            <p className={clsx("hero__subtitle", styles.subtitle)}>{description}</p>
-          </div>
-          {children && <div className={styles.heroChildren}>{children}</div>}
-
-          <div className="sectionCaret">
-            <svg x="0px" y="0px" viewBox="0 0 2000 30">
-              <polygon points="1000,30 0,30 0,0 980,0 "></polygon>
-              <polygon points="1000,30 2000,30 2000,0 1020,0 "></polygon>
-            </svg>
-          </div>
+        <div className={styles.taglineContainer}>
+          <h1 className={clsx("hero__title", styles.title)}>{title}</h1>
+          <p className={clsx("hero__subtitle", styles.subtitle)}>{description}</p>
         </div>
+        {children && <div className={styles.heroChildren}>{children}</div>}
       </div>
     </header>
   );

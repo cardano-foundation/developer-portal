@@ -74,7 +74,7 @@
   --ifm-color-primary-lightest: #0042E1;
   --ifm-code-font-size: 95%;
   --site-color-tooltip: #fff;
-  --site-color-tooltip-background: #353738;
+  --site-color-tooltip-background: var(--site-color-navy);
   /* 2026 brand palette (hex reference: static/img/brand/README.md).
      The -rgb channel tokens exist for alpha composition: write
      rgb(var(--site-color-navy-rgb) / 0.5) instead of hand-expanding the
@@ -84,12 +84,14 @@
   --site-color-navy: #000629;
   --site-color-navy-rgb: 0 6 41;
   --site-color-brand-blue: #0033AD;
+  --site-color-brand-blue-rgb: 0 51 173;
   /* Decorative only, for artwork circles and shapes. Never use for UI
      surfaces or borders: interface blue is always #0033AD. */
   --site-color-blue-bright: #0023EB;
   --site-color-lavender: #C7C2E6;
   --site-color-lavender-deep: #968CC3;
   --site-color-amber: #FFB122;
+  --site-color-amber-rgb: 255 177 34;
   --site-color-gray-light: #F2F2F2;
   --site-color-ink: #111425;
   --site-color-ink-muted: #5F6B85;
@@ -110,9 +112,6 @@
   --ifm-navbar-link-color: #ffffff;
   /* The logo sits ~52px in from the edge on wide screens (3vw, clamped) */
   --ifm-navbar-padding-horizontal: clamp(1rem, 3vw, 52px);
-  --site-color-surface: #f5f7fa;
-  --site-color-surface-hover: #eef1f6;
-  --site-color-bg-dark: #1b1b1d;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -134,9 +133,6 @@ html[data-theme="dark"] {
      --ifm-font-color-base (cream-page ink) ties with Infima's dark block on
      specificity and wins on load order, so dark mode must re-declare it. */
   --ifm-font-color-base: #e3e3e3;
-  --site-color-surface: #1A1C2C;
-  --site-color-surface-hover: #232838;
-  --site-color-bg-dark: #111425;
   --site-color-text-muted: rgba(255, 255, 255, 0.65);
   --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
@@ -178,7 +174,7 @@ h6 {
   animation-delay: 150ms;
   transition-property: all;
   transition-duration: 200ms;
-  box-shadow: 0 8px 28px 4px rgba(86, 91, 115, 0.15);
+  box-shadow: 0 8px 28px 4px rgb(var(--site-color-navy-rgb) / 0.1);
   min-height: calc(100% - 15px);
 }
 
@@ -218,70 +214,14 @@ h6 {
   opacity: 0.6;
 }
 
-div#faucetcontainer {
-  width: 100%;
-  max-width: 900px;
-  height: 750px;
-  /* defines the visible height of the part */
-  overflow: hidden;
-  /* resize and min-height are optional, allows user to resize viewable area */
-  -webkit-resize: vertical;
-  -moz-resize: vertical;
-  resize: vertical;
-  min-height: 600px;
-  border: 1px solid #ddd;
-  position: relative;
-}
-
-.faucet {
-  border: none;
-  width: 1200px;
-  /* set to approximate width of the faucet page */
-  height: 2500px;
-  /* determines where the bottom of the page cuts off */
-  margin-left: -300px;
-  /* defines the left clipping of the faucet page */
-  margin-top: -1050px;
-  /* defines the top clipping of the faucet page */
-  overflow: hidden;
-  -webkit-resize: none;
-  -moz-resize: none;
-  resize: none;
-}
-
-/* Hide mobile link on desktop */
-.faucet-mobile-link {
-  display: none;
-}
-
-/* Responsive adjustments for tablets and smaller screens */
-@media screen and (max-width: 996px) {
-  div#faucetcontainer {
-    height: 650px;
-    max-width: 750px;
-  }
-
-  .faucet {
-    width: 1100px;
-    margin-left: -250px;
-    margin-top: -900px;
-  }
-}
-
-/* Mobile devices - hide iframe and show link instead */
-@media screen and (max-width: 768px) {
-  div#faucetcontainer {
-    display: none;
-  }
-
-  .faucet-mobile-link {
-    display: block;
-  }
-}
-
 .tabsblock {
-  background: rgba(86, 91, 115, 0.15);
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
   border-radius: 0.4rem;
+}
+
+/* The navy tint disappears on the dark page, so dark mode lightens instead */
+html[data-theme="dark"] .tabsblock {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* theme-classic separates its (default white) announcement bar from the (default
@@ -336,6 +276,76 @@ div.theme-announcement-bar {
   background: rgba(255, 255, 255, 0.15);
   box-shadow: none;
   color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- Search modal --------------------------------------------------------
+   The DocSearch overlay themed onto the palette: cream surfaces in light
+   mode, and in dark mode the modal joins the navy chrome like the mega
+   menu panels. Docusaurus already maps --docsearch-primary-color and
+   --docsearch-text-color to Infima tokens, so those stay untouched.
+   Scoped on `html[data-theme] body` rather than :root: the library
+   declares its own values on :root and html[data-theme=dark], and theme
+   CSS bundles after this file, so only a strictly more specific selector
+   wins deterministically. The modal portals into body, so the variables
+   still inherit. */
+html[data-theme="light"] body {
+  --docsearch-modal-background: var(--site-color-cream);
+  --docsearch-background-color: var(--site-color-cream);
+  --docsearch-searchbox-background: rgb(var(--site-color-navy-rgb) / 0.05);
+  --docsearch-searchbox-focus-background: rgb(var(--site-color-navy-rgb) / 0.05);
+  --docsearch-hit-background: #fff;
+  --docsearch-hit-color: var(--site-color-ink);
+  --docsearch-highlight-color: var(--site-color-brand-blue);
+  --docsearch-hit-highlight-color: rgb(var(--site-color-brand-blue-rgb) / 0.1);
+  --docsearch-soft-primary-color: rgb(var(--site-color-brand-blue-rgb) / 0.1);
+  --docsearch-muted-color: var(--site-color-ink-muted);
+  --docsearch-secondary-text-color: var(--site-color-ink-muted);
+  --docsearch-icon-color: var(--site-color-ink-muted);
+  --docsearch-key-background: rgb(var(--site-color-navy-rgb) / 0.06);
+  --docsearch-key-color: var(--site-color-ink-muted);
+  --docsearch-key-pressed-shadow: none;
+  --docsearch-footer-background: var(--site-color-cream);
+  --docsearch-footer-shadow: 0 -1px 0 0 rgb(var(--site-color-navy-rgb) / 0.08);
+  --docsearch-container-background: rgb(var(--site-color-navy-rgb) / 0.6);
+  --docsearch-logo-color: var(--site-color-brand-blue);
+  --docsearch-border-radius: 12px;
+  --docsearch-focus-color: var(--site-color-navy);
+  /* The library derives these three from other variables at the html
+     level, where our body-scoped values cannot reach the substitution,
+     so they are set explicitly */
+  --docsearch-dropdown-menu-background: #fff;
+  --docsearch-dropdown-menu-item-hover-background: var(--site-color-cream);
+  --docsearch-subtle-color: rgb(var(--site-color-navy-rgb) / 0.12);
+}
+
+html[data-theme="dark"] body {
+  --docsearch-modal-background: var(--site-color-navy);
+  --docsearch-background-color: var(--site-color-navy);
+  --docsearch-modal-shadow: inset 0 0 0 1px var(--site-color-card-border),
+    0 24px 64px rgb(0 0 0 / 0.45);
+  --docsearch-searchbox-background: rgba(255, 255, 255, 0.08);
+  --docsearch-searchbox-focus-background: rgba(255, 255, 255, 0.08);
+  --docsearch-hit-background: rgba(255, 255, 255, 0.05);
+  --docsearch-hit-color: rgb(var(--site-color-cream-rgb) / 0.87);
+  --docsearch-highlight-color: var(--site-color-amber);
+  --docsearch-hit-highlight-color: rgb(var(--site-color-amber-rgb) / 0.15);
+  --docsearch-soft-primary-color: rgb(var(--site-color-amber-rgb) / 0.15);
+  --docsearch-muted-color: rgb(var(--site-color-cream-rgb) / 0.55);
+  --docsearch-secondary-text-color: rgb(var(--site-color-cream-rgb) / 0.7);
+  --docsearch-icon-color: rgb(var(--site-color-cream-rgb) / 0.6);
+  --docsearch-key-background: rgba(255, 255, 255, 0.1);
+  --docsearch-key-color: rgb(var(--site-color-cream-rgb) / 0.8);
+  --docsearch-key-pressed-shadow: none;
+  --docsearch-footer-background: var(--site-color-navy);
+  --docsearch-footer-shadow: 0 -1px 0 0 var(--site-color-card-border);
+  --docsearch-container-background: rgb(var(--site-color-navy-rgb) / 0.75);
+  --docsearch-logo-color: #fff;
+  --docsearch-border-radius: 12px;
+  --docsearch-focus-color: var(--site-color-amber);
+  /* Same derived-variable escape as the light block above */
+  --docsearch-dropdown-menu-background: rgba(255, 255, 255, 0.05);
+  --docsearch-dropdown-menu-item-hover-background: rgba(255, 255, 255, 0.1);
+  --docsearch-subtle-color: var(--site-color-card-border);
 }
 
 /* Center the nav links in the bar: the logo hugs the left edge via its auto
@@ -675,7 +685,7 @@ div.theme-announcement-bar {
   font-weight: var(--ifm-font-weight-semibold);
   line-height: 1.25;
   color: var(--ifm-font-color-base);
-  background-color: var(--site-color-surface);
+  background-color: rgb(var(--site-color-navy-rgb) / 0.04);
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 0.5rem;
   cursor: pointer;
@@ -683,8 +693,18 @@ div.theme-announcement-bar {
 }
 
 .copy-markdown__trigger:hover {
-  background-color: var(--site-color-surface-hover);
+  background-color: rgb(var(--site-color-navy-rgb) / 0.08);
   border-color: var(--ifm-color-emphasis-400);
+}
+
+/* The navy washes vanish on the dark page, so dark mode lightens instead */
+html[data-theme="dark"] .copy-markdown__trigger {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .copy-markdown__trigger:hover,
+html[data-theme="dark"] .copy-markdown__item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .copy-markdown__chevron {
@@ -707,7 +727,7 @@ div.theme-announcement-bar {
   background-color: var(--ifm-background-surface-color);
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 0.6rem;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 6px 24px rgb(var(--site-color-navy-rgb) / 0.14);
 }
 
 .copy-markdown__item {
@@ -727,7 +747,7 @@ div.theme-announcement-bar {
 
 .copy-markdown__item:hover {
   color: var(--ifm-font-color-base);
-  background-color: var(--site-color-surface-hover);
+  background-color: rgb(var(--site-color-navy-rgb) / 0.08);
   text-decoration: none;
 }
 
