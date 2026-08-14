@@ -13,7 +13,7 @@ Working on a testnet is not the same as being production-ready. Mainnet has real
 ## 1. Test thoroughly
 
 - **On-chain validators**: your validators are pure functions, so test them exhaustively with mock transactions. See [Testing](/docs/developers/curriculum/smart-contracts/testing), and use the fuzzer for property-based coverage ([Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization)).
-- **Off-chain code**: test transaction building and submission too. Evolution ships unit tests, an emulator, and devnet integration tests ([Testing your off-chain code](/docs/developers/curriculum/smart-contracts/testing#testing-your-off-chain-code)).
+- **Off-chain code**: test transaction building and submission too, with an in-memory emulator or devnet integration tests ([Local testing](/docs/developers/curriculum/start-building/local-testing)).
 - **Rehearse on Preprod**: Preprod mirrors mainnet (same protocol parameters and epoch length). Do a full dry run of your user flow there before mainnet. See [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada). Mainnet transactions cannot be reversed, so the burn-in happens here.
 
 ### Testnets are your staging environments
@@ -31,7 +31,7 @@ graph LR
     style Mainnet fill:#4CAF50,color:#fff
 ```
 
-For the fastest loop, [run a chain yourself](/docs/developers/curriculum/start-building/networks-and-test-ada#run-a-chain-yourself). **Preview** receives protocol upgrades first (1-day epochs), best for testing new features. **Preprod** is the final rehearsal above. Get test ADA and explorer links from [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada).
+For the fastest loop, run a [local devnet](/docs/developers/curriculum/start-building/local-testing#local-devnets). **Preview** receives protocol upgrades first (1-day epochs), best for testing new features. **Preprod** is the final rehearsal above. Get test ADA and explorer links from [Choose a network](/docs/developers/curriculum/start-building/networks-and-test-ada).
 
 ## 2. Secure it
 

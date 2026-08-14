@@ -226,9 +226,9 @@ test prop_never_overdraws(amount via fuzz.int()) {
 
 Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too, and it splits into two kinds of test, both covered in Module 2.
 
-**Unit tests** exercise the pure parts, datum and schema encoding, address parsing, and the shape of the transaction you build, with no chain at all. [Offline testing](/docs/developers/curriculum/start-building/offline-testing) covers the in-memory tools for that: `OfflineFetcher`, `OfflineEvaluator`, and `TxTester`.
+**Unit tests** exercise the pure parts, datum and schema encoding, address parsing, and the shape of the transaction you build, with no chain at all, against the [in-memory emulator](/docs/developers/curriculum/start-building/local-testing#the-in-memory-emulator).
 
-**Integration tests** drive the whole build → sign → submit → confirm lifecycle against [a devnet your tests start and stop](/docs/developers/curriculum/start-building/networks-and-test-ada#a-devnet-your-tests-start-and-stop): fund a wallet from genesis, submit, and assert on confirmation, with millisecond confirmations and fresh isolated state per run, offline and with no faucet.
+**Integration tests** drive the whole build → sign → submit → confirm lifecycle against a [programmatic devnet](/docs/developers/curriculum/start-building/local-testing#programmatic-devnets): fund a wallet from genesis, submit, and assert on confirmation, with millisecond confirmations and fresh isolated state per run, offline and with no faucet.
 
 ## Audits
 

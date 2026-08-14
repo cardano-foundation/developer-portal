@@ -1,6 +1,16 @@
+/* The closing CTA band owns the bottom rhythm, so the page body carries no
+   bottom padding of its own. `.notFoundPad` restores it for the defensive
+   not-found branch, which renders no band. */
 .detail {
   padding-top: 2.5rem;
+}
+
+.notFoundPad {
   padding-bottom: 4rem;
+}
+
+.notFoundPad .description {
+  margin-top: 1rem;
 }
 
 .breadcrumb {
@@ -10,50 +20,42 @@
   gap: 0.5rem;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--site-color-text-muted);
 }
 
 .breadcrumb a {
-  color: var(--ifm-color-emphasis-700);
+  color: inherit;
   text-decoration: none;
 }
 
 .breadcrumb a:hover {
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .breadcrumb a:hover {
   color: var(--ifm-color-primary);
 }
 
+/* Surface-aware rings: the breadcrumb sits on the page background */
+.breadcrumb a:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+html[data-theme="dark"] .breadcrumb a:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* Fades the inherited muted token rather than naming a second color, so the
+   separator needs no dark counterpart */
 .crumbSep {
-  color: var(--ifm-color-emphasis-400);
+  opacity: 0.5;
 }
 
 .crumbCurrent {
-  color: var(--ifm-color-emphasis-900);
-  font-weight: 500;
-}
-
-.pickBadgeRow {
-  margin-bottom: 1.5rem;
-}
-
-.pickBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--ifm-color-emphasis-1000, #0b0d10);
-  color: #fff;
-  padding: 0.45rem 0.95rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.pickBadge svg {
-  color: #fbbf24;
-}
-
-[data-theme="dark"] .pickBadge {
-  background: #1c1f24;
-  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-font-color-base);
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .header {
@@ -61,30 +63,6 @@
   gap: 1.5rem;
   align-items: center;
   margin-bottom: 1.25rem;
-}
-
-.iconFallback {
-  width: 120px;
-  height: 120px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 3rem;
-  font-weight: 700;
-  flex-shrink: 0;
-  text-transform: uppercase;
-}
-
-.iconImage {
-  width: 120px;
-  height: 120px;
-  border-radius: 24px;
-  object-fit: contain;
-  background: var(--ifm-color-emphasis-100);
-  padding: 8px;
-  flex-shrink: 0;
 }
 
 .headerText {
@@ -95,7 +73,7 @@
 .title {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
+  font-weight: var(--site-font-weight-display);
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
@@ -108,17 +86,48 @@
   margin-bottom: 1.75rem;
 }
 
+/* One chip row, three weights: the maintainer pick is filled, the category is
+   washed, and the attributes are outlined. The two bordered chips
+   trim their padding by the border width so every chip in the row is the same
+   height. */
+.pickBadge,
 .osBadge {
   display: inline-flex;
   align-items: center;
-  padding: 0.45rem 0.9rem;
+  padding: calc(0.45rem - 1px) calc(0.9rem - 1px);
   border-radius: 999px;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background: color-mix(in srgb, #2ea043 16%, transparent);
-  color: color-mix(in srgb, #2ea043 88%, black);
+}
+
+.pickBadge {
+  gap: 0.4rem;
+  background: var(--site-color-navy);
+  color: var(--site-color-cream);
+  /* Transparent in the base so the dark hairline below cannot shift layout */
+  border: 1px solid transparent;
+}
+
+.pickBadge svg {
+  color: var(--site-color-amber);
+}
+
+/* The navy chip blends into the dark page without an edge */
+html[data-theme="dark"] .pickBadge {
+  border-color: var(--site-color-card-border);
+}
+
+/* Outlined chip, in lockstep with AppTile's `.property` */
+.osBadge {
+  background: transparent;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  color: var(--site-color-text-muted);
+}
+
+html[data-theme="dark"] .osBadge {
+  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
 }
 
 .categoryPill {
@@ -128,30 +137,43 @@
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   text-decoration: none;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+  color: var(--site-color-text-muted);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+html[data-theme="dark"] .categoryPill {
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
 }
 
 .categoryPill:hover {
   text-decoration: none;
-  filter: brightness(0.95);
+  background: rgb(var(--site-color-navy-rgb) / 0.1);
+  color: var(--ifm-font-color-base);
   transform: translateY(-1px);
 }
 
-.tagDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  display: inline-block;
+html[data-theme="dark"] .categoryPill:hover {
+  background: rgb(var(--site-color-card-text-rgb) / 0.1);
+}
+
+.categoryPill:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .categoryPill:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 .description {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: var(--ifm-color-emphasis-800);
+  color: var(--site-color-text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -163,56 +185,63 @@
   margin-top: 0.5rem;
 }
 
+/* Filled brand pill, the page's one primary action. The fill is identical in
+   both themes: the dark primary under white text falls below the contrast
+   floor, so it is not used here. Motion is in lockstep by hand with the 404
+   chips (src/theme/NotFound/Content/styles.module.css). The padding is trimmed
+   by the border width, and the base border is transparent, so the dark edge
+   below cannot change the button's size. */
 .visitButton {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.85rem 1.6rem;
+  padding: calc(0.85rem - 1px) calc(1.6rem - 1px);
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: #0a1f5e;
-  color: #fff;
+  background: var(--site-color-brand-blue);
+  color: var(--site-color-card-text);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Brand blue is close to the dark page in luminance, so the fill alone does not
+   mark the button's edge. The hairline carries the boundary, the same way the
+   pick badge and the letter avatar do. */
+html[data-theme="dark"] .visitButton {
+  border-color: var(--ifm-color-primary);
 }
 
 .visitButton:hover {
-  background: #122a78;
-  color: #fff;
+  color: var(--site-color-card-text);
   text-decoration: none;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgb(var(--site-color-brand-blue-rgb) / 0.25);
 }
 
-[data-theme="dark"] .visitButton {
-  background: var(--ifm-color-primary);
+.visitButton:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
 }
 
-[data-theme="dark"] .visitButton:hover {
-  background: var(--ifm-color-primary-dark);
+html[data-theme="dark"] .visitButton:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
+/* Ghost controls, in lockstep by hand with the intent chips
+   (src/components/showcase/IntentChips/styles.module.css). The two share
+   grouped selectors so the controls sitting in one row cannot drift; only the
+   metrics differ. */
 .secondaryButton {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 1.4rem;
   border-radius: 999px;
-  border: 1px solid var(--ifm-color-emphasis-400);
-  background: transparent;
-  color: var(--ifm-color-emphasis-900);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
-  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
-}
-
-.secondaryButton:hover {
-  border-color: var(--ifm-color-emphasis-700);
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  text-decoration: none;
-  transform: translateY(-1px);
 }
 
 .iconButton {
@@ -222,24 +251,57 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  background: transparent;
-  color: var(--ifm-color-emphasis-900);
   cursor: pointer;
   padding: 0;
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
+.secondaryButton,
+.iconButton {
+  background: transparent;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  color: var(--ifm-font-color-base);
+  transition: background-color 150ms ease, border-color 150ms ease,
+    color 150ms ease;
+}
+
+html[data-theme="dark"] .secondaryButton,
+html[data-theme="dark"] .iconButton {
+  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
+}
+
+.secondaryButton:hover,
 .iconButton:hover {
-  background: var(--ifm-color-emphasis-100);
-  border-color: var(--ifm-color-emphasis-500);
-  color: var(--ifm-color-emphasis-900);
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+  border-color: var(--site-color-brand-blue);
+  color: var(--site-color-brand-blue);
   text-decoration: none;
-  transform: translateY(-1px);
 }
 
+/* The hover wash lightens the surface under the label, which drops plain
+   primary to 4.3:1. The next step up clears the text floor. */
+html[data-theme="dark"] .secondaryButton:hover,
+html[data-theme="dark"] .iconButton:hover {
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
+  border-color: var(--ifm-color-primary-light);
+  color: var(--ifm-color-primary-light);
+}
+
+.secondaryButton:focus-visible,
+.iconButton:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .secondaryButton:focus-visible,
+html[data-theme="dark"] .iconButton:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* Matches `.sectionTitle` on the browse page; the inherited heading weight is
+   light and reads thin above the card grid */
 .sectionHeading {
   font-size: 1.4rem;
+  font-weight: var(--ifm-font-weight-bold);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
@@ -261,80 +323,17 @@
   font-size: 0.95rem;
 }
 
-.improve {
-  margin-top: 4rem;
-  padding: 3rem 1.5rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.relatedMore:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-.improveIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  margin-bottom: 1.5rem;
-}
-
-.improveHeading {
-  margin: 0 0 0.6rem;
-  font-size: clamp(1.4rem, 3vw, 1.85rem);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-.improveCopy {
-  margin: 0 0 1.75rem;
-  max-width: 480px;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--ifm-color-emphasis-700);
-}
-
-.improveButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid var(--ifm-color-emphasis-400);
-  background: transparent;
-  color: var(--ifm-color-emphasis-900);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
-}
-
-.improveButton:hover {
-  border-color: var(--ifm-color-emphasis-700);
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-900);
-  text-decoration: none;
-  transform: translateY(-1px);
+html[data-theme="dark"] .relatedMore:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 @media (max-width: 600px) {
-  .iconFallback {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-    font-size: 2.2rem;
-  }
-
-  .iconImage {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-  }
-
   .visitButton {
     flex: 1 1 auto;
     justify-content: center;
