@@ -13,7 +13,7 @@ import ShowcaseSort, {
   DEFAULT_SORT,
   SORT_IDS,
 } from "@site/src/components/showcase/ShowcaseSort";
-import { readSearchTags } from "@site/src/components/showcase/ShowcaseTagSelect";
+import { readSearchTags } from "@site/src/components/showcase/tagQueryString";
 import SiteHero from "@site/src/components/Layout/SiteHero";
 import { StarBadge } from "@site/src/components/AppTile";
 import AppTileCarousel from "@site/src/components/AppTileCarousel";
@@ -39,18 +39,6 @@ const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
 const HERO_DESCRIPTION =
   "Discover developer tools, SDKs, and libraries for building on Cardano. Smart contracts, transactions, indexing, wallets, and more.";
-
-// NOTE: ShowcaseTagSelect imports prepareUserState from this module. Keep it
-// exported as a hoisted function declaration.
-export function prepareUserState() {
-  if (ExecutionEnvironment.canUseDOM) {
-    return {
-      scrollTopPosition: window.scrollY,
-      focusedElementId: document.activeElement?.id,
-    };
-  }
-  return undefined;
-}
 
 function restoreUserState(userState) {
   const { scrollTopPosition, focusedElementId } = userState ?? {

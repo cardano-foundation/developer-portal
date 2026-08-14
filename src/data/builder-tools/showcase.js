@@ -4,7 +4,7 @@
 // Reads the explicit `category` / `properties` / `maintainerPick` now carried by
 // each tools.js entry (no more derivation) and shapes them for the app-store
 // components: adds a `slug` and re-exports the taxonomy. Icons are not sourced
-// yet, so `icon` is null and AppIcon renders a colored-initial fallback.
+// yet, so `icon` is null and AppIcon renders a letter-avatar fallback.
 // ============================================================================
 
 import {

@@ -27,14 +27,23 @@
   height: 40px;
   padding: 0 1rem;
   border-radius: 999px;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  background: var(--ifm-background-surface-color);
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  background: var(--ifm-background-color);
   font-size: 0.95rem;
 }
 
+html[data-theme="dark"] .searchInput {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 .searchInput:focus-visible {
-  outline: 2px solid var(--ifm-color-primary);
+  outline: 2px solid var(--site-color-navy);
   outline-offset: 1px;
+  border-color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .searchInput:focus-visible {
+  outline-color: var(--site-color-amber);
   border-color: var(--ifm-color-primary);
 }
 
@@ -68,19 +77,23 @@
 
 .sectionSubtitle {
   font-size: 0.95rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
 }
 
 .sectionMuted {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
+  border-top: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
+}
+
+html[data-theme="dark"] .sectionMuted {
+  border-top-color: var(--site-color-card-border);
 }
 
 .sectionTitleMuted {
   font-size: 1.15rem;
   font-weight: var(--ifm-font-weight-semibold);
-  color: var(--ifm-color-emphasis-800);
+  color: var(--site-color-text-muted);
 }
 
 .allAppsReveal {
@@ -98,7 +111,7 @@
 }
 
 .countMuted {
-  color: var(--ifm-color-emphasis-600);
+  color: var(--site-color-text-muted);
   font-weight: var(--ifm-font-weight-normal);
 }
 
@@ -119,7 +132,11 @@
   margin-bottom: 2.5rem;
   padding: 1rem 1.25rem;
   border-radius: 12px;
-  background: var(--ifm-color-emphasis-100);
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+}
+
+html[data-theme="dark"] .guidedPathsBanner {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .guidedPathsHeader {
@@ -136,7 +153,7 @@
 
 .guidedPathsSubtitle {
   font-size: 0.85rem;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--site-color-text-muted);
 }
 
 .guidedPathChipList {

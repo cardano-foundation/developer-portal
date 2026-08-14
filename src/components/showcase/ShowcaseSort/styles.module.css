@@ -3,7 +3,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
   white-space: nowrap;
 }
 
@@ -11,24 +11,43 @@
   font-weight: var(--ifm-font-weight-semibold);
 }
 
+/* The chevron rides a background-image because a <select> cannot carry a
+   pseudo-element and a mask-image would clip the control itself, so each
+   theme needs its own stroke color baked into the data URI. */
 .sortSelect {
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  color: var(--ifm-color-emphasis-900);
+  background: transparent;
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  color: var(--ifm-font-color-base);
   padding: 0.4rem 2rem 0.4rem 0.8rem;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.875rem;
   font-family: inherit;
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%235F6B85%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
   transition: border-color 150ms ease;
 }
 
-.sortSelect:hover,
-.sortSelect:focus-visible {
+html[data-theme="dark"] .sortSelect {
+  border-color: rgba(255, 255, 255, 0.25);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFAF3%22%20stroke-opacity%3D%220.7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");
+}
+
+.sortSelect:hover {
+  border-color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .sortSelect:hover {
   border-color: var(--ifm-color-primary);
-  outline: none;
+}
+
+.sortSelect:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .sortSelect:focus-visible {
+  outline-color: var(--site-color-amber);
 }
