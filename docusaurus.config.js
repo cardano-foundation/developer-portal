@@ -8,49 +8,53 @@ const isAnnouncementActive = true;
 // There are various equivalent ways to declare the Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-// One Light palette
+// 2026 brand code themes. Token shades are tuned for AA contrast against
+// their code background; interface colors stay in src/css/custom.css.
+// Light: warm paper panel, slightly deeper than the cream page, with ink
+// text and brand-blue keywords.
 const prismLightTheme = {
   plain: {
-    color: '#383a42',
-    backgroundColor: '#fafafa',
+    color: '#111425',
+    backgroundColor: '#F6F0E6',
   },
   styles: [
-    { types: ['comment', 'prolog', 'cdata'], style: { color: '#a0a1a7', fontStyle: 'italic' } },
-    { types: ['keyword', 'operator'], style: { color: '#a626a4' } },
-    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#50a14f' } },
-    { types: ['number'], style: { color: '#986801' } },
-    { types: ['boolean', 'constant'], style: { color: '#986801' } },
-    { types: ['class-name'], style: { color: '#c18401' } },
-    { types: ['function'], style: { color: '#4078f2' } },
-    { types: ['tag', 'deleted'], style: { color: '#e45649' } },
-    { types: ['attr-name'], style: { color: '#986801' } },
-    { types: ['namespace'], style: { color: '#383a42' } },
-    { types: ['punctuation'], style: { color: '#383a42' } },
-    { types: ['inserted'], style: { color: '#50a14f' } },
-    { types: ['builtin'], style: { color: '#4078f2' } },
+    { types: ['comment', 'prolog', 'cdata'], style: { color: '#5F6B85', fontStyle: 'italic' } },
+    { types: ['keyword', 'operator'], style: { color: '#0033AD' } },
+    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#2E7D32' } },
+    { types: ['number'], style: { color: '#8A5D00' } },
+    { types: ['boolean', 'constant'], style: { color: '#8A5D00' } },
+    { types: ['class-name'], style: { color: '#8F6100' } },
+    { types: ['function'], style: { color: '#6D5FA8' } },
+    { types: ['tag', 'deleted'], style: { color: '#B3362B' } },
+    { types: ['attr-name'], style: { color: '#8A5D00' } },
+    { types: ['namespace'], style: { color: '#111425' } },
+    { types: ['punctuation'], style: { color: '#3F4762' } },
+    { types: ['inserted'], style: { color: '#2E7D32' } },
+    { types: ['builtin'], style: { color: '#6D5FA8' } },
   ],
 };
 
-// One Dark palette
+// Dark: code blocks join the navy chrome (navbar, footer, cards), with
+// warm off-white text and the periwinkle/amber/lavender accent set.
 const prismDarkTheme = {
   plain: {
-    color: '#abb2bf',
-    backgroundColor: '#282c34',
+    color: '#E8E4DC',
+    backgroundColor: '#000629',
   },
   styles: [
-    { types: ['comment', 'prolog', 'cdata'], style: { color: '#5c6370', fontStyle: 'italic' } },
-    { types: ['keyword', 'operator'], style: { color: '#c678dd' } },
-    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#98c379' } },
-    { types: ['number'], style: { color: '#d19a66' } },
-    { types: ['boolean', 'constant'], style: { color: '#d19a66' } },
-    { types: ['class-name'], style: { color: '#e6c07b' } },
-    { types: ['function'], style: { color: '#61aeee' } },
-    { types: ['tag', 'deleted'], style: { color: '#e06c75' } },
-    { types: ['attr-name'], style: { color: '#d19a66' } },
-    { types: ['namespace'], style: { color: '#abb2bf' } },
-    { types: ['punctuation'], style: { color: '#abb2bf' } },
-    { types: ['inserted'], style: { color: '#98c379' } },
-    { types: ['builtin'], style: { color: '#61aeee' } },
+    { types: ['comment', 'prolog', 'cdata'], style: { color: 'rgba(232, 228, 220, 0.55)', fontStyle: 'italic' } },
+    { types: ['keyword', 'operator'], style: { color: '#7E97D7' } },
+    { types: ['string', 'char', 'regex', 'attr-value'], style: { color: '#86C994' } },
+    { types: ['number'], style: { color: '#FFB122' } },
+    { types: ['boolean', 'constant'], style: { color: '#FFB122' } },
+    { types: ['class-name'], style: { color: '#FFCF87' } },
+    { types: ['function'], style: { color: '#C7C2E6' } },
+    { types: ['tag', 'deleted'], style: { color: '#E0776F' } },
+    { types: ['attr-name'], style: { color: '#FFB122' } },
+    { types: ['namespace'], style: { color: '#E8E4DC' } },
+    { types: ['punctuation'], style: { color: 'rgba(232, 228, 220, 0.7)' } },
+    { types: ['inserted'], style: { color: '#86C994' } },
+    { types: ['builtin'], style: { color: '#C7C2E6' } },
   ],
 };
 
@@ -83,11 +87,6 @@ module.exports = {
   },
   themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
-    // Toggle display of icons in the mega menu. Icons need to be added to /static/img/icons/ as svg files
-    megaMenuIcons: false,
-    // Toggle display of icons in mega menu column titles. 
-    megaMenuColumnIcons: true,
-    
     // Docs Sidebar
     docs: {
       sidebar: {
@@ -106,13 +105,13 @@ module.exports = {
 
     // Announcement Bar
     // id: always change it when changing the announcement
-    // backgroundColor: use #FD7575 for warnings and #2AA18A for announcements
+    // backgroundColor: use amber #FFB122 for warnings and brand blue #0033AD for announcements (2026 brand)
     announcementBar: isAnnouncementActive ? {
       id: "announcement_index11", // Any value that will identify this message + increment the number every time to be unique
       content:
         `<strong>Join the Cardano developer talent pool and stay in the loop on upcoming hackathons. <a href="/talent/">Sign up here!</a></strong>`,
-      backgroundColor: "#2AA18A",
-      textColor: "#FFFFFF", // Use #FFFFFF
+      backgroundColor: "#0033AD", // 2026 brand blue (bright #0023EB is decorative-only)
+      textColor: "#FFFFFF", // White on brand blue; an amber warning bar needs navy #000629 text
       isCloseable: true, // Use true
     } : undefined,
 
@@ -138,95 +137,15 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        src: "img/brand/cardano-horizontal-black.svg",
-        srcDark: "img/brand/cardano-horizontal-white.svg",
+        // Navbar is navy in both themes since the 2026 rebrand, so the white
+        // logo serves both and no srcDark variant is needed.
+        src: "img/brand/cardano-horizontal-white.svg",
       },
 
       items: getNavbarItems(repository),
     },
-    footer: {
-      style: "dark",
-      links: [
-        {
-          title: "Developer Portal",
-          items: [
-            {
-              label: "How to Contribute",
-              to: "docs/contribute/portal-contribute",
-            },
-            {
-              label: "Contributors",
-              href: "https://github.com/cardano-foundation/developer-portal/graphs/contributors",
-            },
-            {
-              label: "Releases",
-              href: "https://github.com/cardano-foundation/developer-portal/releases",
-            },
-            {
-              label: "Style Guide",
-              to: "docs/contribute/portal-style-guide",
-            },
-            {
-              label: "Suggest Content",
-              href: "https://github.com/cardano-foundation/developer-portal/discussions/161",
-            },
-            {
-              label: "Raise an Issue",
-              href: "https://github.com/cardano-foundation/developer-portal/issues",
-            },
-          ],
-        },
-        {
-          title: "Developer Community",
-          items: [
-            {
-              label: "Stack Exchange",
-              href: "https://cardano.stackexchange.com",
-            },
-            {
-              label: "Cardano Forum",
-              href: "https://forum.cardano.org/c/developers/29",
-            },
-            {
-              label: "Developer Ecosystem Survey",
-              href: "https://cardano-foundation.github.io/state-of-the-developer-ecosystem",
-            },
-            {
-              label: "More",
-              to: "docs/community/cardano-developer-community",
-            },
-          ],
-        },
-        {
-          title: "More about Cardano",
-          items: [
-            {
-              label: "Careers on Cardano",
-              to: "docs/community/cardano-developer-community#jobs-and-careers",
-            },
-            {
-              label: "Cardano Enterprise",
-              href: "https://cardano.org/enterprise",
-            },
-            {
-              label: "Cardano Foundation",
-              href: "https://www.cardanofoundation.org",
-            },
-            {
-              label: "Developer Activity",
-              href: "https://cardanoupdates.com",
-            },
-            {
-              label: "Ouroboros Protocol",
-              href: "https://cardano.org/ouroboros/",
-            },
-          ],
-        },
-      ],
-
-      // Let's use the copyright footer for terms and privacy policy for now
-      copyright: `<a href="https://cardanofoundation.org/en/terms-and-conditions" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Terms</a> | <a href="https://cardanofoundation.org/en/privacy" target="_blank" rel="noopener noreferrer" style="color: #ebedf0;">Privacy Policy</a>`,
-    },
+    // The footer is fully custom: content in src/data/footer.js, rendered
+    // by src/theme/Footer. No themeConfig.footer block is needed.
   },
   plugins: [
     "./plugins/tools-routes",

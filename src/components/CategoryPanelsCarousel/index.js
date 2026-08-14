@@ -9,14 +9,15 @@ import { Categories, Showcases } from "@site/src/data/builder-tools/showcase";
 import styles from "./styles.module.css";
 
 function selectPanelApps(category, limit) {
-  // Maintainer picks first, then random for some freshness. Cached below so
-  // order stays stable until the next full page load.
-  return Showcases.filter((app) => app.category === category)
-    .sort((a, b) => {
-      if (a.maintainerPick !== b.maintainerPick) return a.maintainerPick ? -1 : 1;
-      return Math.random() - 0.5;
-    })
-    .slice(0, limit);
+  // Newest first. `Showcases` keeps insertion order and entries are appended,
+  // so reading from the end gives the most recently added in each category.
+  // This used to be maintainer-picks-then-random; the panels are a recency
+  // surface, and dropping the randomness also makes the render deterministic.
+  const inCategory = [];
+  for (let i = Showcases.length - 1; i >= 0 && inCategory.length < limit; i--) {
+    if (Showcases[i].category === category) inCategory.push(Showcases[i]);
+  }
+  return inCategory;
 }
 
 const PANEL_APPS_CACHE = new Map();
@@ -44,7 +45,7 @@ const CategoryPanel = memo(function CategoryPanel({ category, limit }) {
       <ul className={styles.panelList}>
         {apps.map((app) => (
           <li key={app.slug}>
-            <AppRow app={app} hideCategory />
+            <AppRow app={app} compact />
           </li>
         ))}
       </ul>

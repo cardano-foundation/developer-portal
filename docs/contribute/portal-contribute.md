@@ -276,6 +276,11 @@ When contributing blog posts, please follow these guidelines:
 - Most blog posts should include `<!-- truncate -->` markers for better previews
 - **Exception:** Posts tagged with `media` (short video content) should NOT include truncation markers to preserve video visibility in blog listings
 
+**Social cards:**
+
+- The preview image shown when a post is shared on social media is generated at build time from the post title. You do not need to make one.
+- Do not add an `image:` field to the frontmatter. Every post gets a generated card, so the field is ignored.
+
 ### Review Pull Requests
 
 If you have excellent technical understanding and mistakes catch your eye, you can review pull requests. You should have made contributions before and have a GitHub account with some reputation. If you are unsure about if you are a good fit, participating in the active discussions that take place in developer portal github issues/pull requests is always a good place to start to have your name visible.

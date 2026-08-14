@@ -1,24 +1,27 @@
 # Cardano 2026 brand colours
 
-Hex values for the 2026 brand palette. The background and logo assets across the
+Hex values for the 2026 brand palette. Backgrounds and artwork across the
 portal are built from these, so keep any custom colours in this range.
 
-| Colour | Hex |
-| --- | --- |
-| Blue | `#0033ad` |
-| Cream | `#fffaf3` |
-| Deep navy | `#000629` |
-| Amber | `#ffb122` |
-| Lavender | `#968cc3` |
-| Warm gray | `#aca6a6` |
-| Slate | `#5f6b85` |
-| Light lavender | `#c7c2e6` |
-| Teal | `#2fb7a8` |
+| Colour | Hex | Note |
+| --- | --- | --- |
+| Blue | `#0033ad` | Primary brand blue; chips, pills, announcement bar |
+| Bright blue | `#0023eb` | Decorative artwork only, never for UI surfaces |
+| Cream | `#fffaf3` | Light page background |
+| Deep navy | `#000629` | Dark background; navbar, hero, and cards in both themes |
+| Amber | `#ffb122` | Accent; CTAs and arrow buttons |
+| Lavender | `#968cc3` | Artwork accent |
+| Warm gray | `#aca6a6` | Artwork accent |
+| Slate | `#5f6b85` | Muted text |
+| Light lavender | `#c7c2e6` | Artwork accent |
 
-The developer surfaces (landing hero, generated OG cards) sit on deep navy with
-cream text and lavender accents. Brand font is Chivo (`static/fonts/`).
+The developer surfaces (landing sections, generated OG cards) sit on deep navy
+with cream text and lavender accents. The brand fonts are Chivo for text and
+Chivo Mono for uppercase labels, chips, and badges; both live in
+`static/fonts/` (see the README there).
 
 Logo assets live in this folder, taken from the brandhub on cardano.org. The horizontal
-lockup (mark plus wordmark) is `cardano-horizontal-black.svg` for light backgrounds and
-`cardano-horizontal-white.svg` for dark ones. The mark on its own is `cardano-black.svg`
+lockup (mark plus wordmark) is `cardano-horizontal-white.svg`; the navbar is navy in both
+themes since the 2026 rebrand, so only the white lockup is in use (the black one is
+archived under `static/img/archive/brand/`). The mark on its own is `cardano-black.svg`
 and `cardano-white.svg`.

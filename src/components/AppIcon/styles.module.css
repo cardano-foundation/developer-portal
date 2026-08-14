@@ -5,21 +5,31 @@
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
-  background: var(--ifm-color-emphasis-100);
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+}
+
+html[data-theme="dark"] .appIcon {
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
 }
 
 .appIconTile {
   width: 56px;
   height: 56px;
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 6px;
 }
 
 .appIconRow {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 4px;
+}
+
+.appIconDetail {
+  width: 120px;
+  height: 120px;
+  padding: 8px;
 }
 
 .image {
@@ -35,7 +45,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  border-radius: 8px;
+  background: var(--site-color-navy);
+  border: 1px solid transparent;
+  color: var(--site-color-cream);
   font-weight: var(--ifm-font-weight-bold);
   font-size: 1.4rem;
   letter-spacing: -0.02em;
@@ -44,4 +57,24 @@
 
 .appIconRow .fallback {
   font-size: 1.05rem;
+}
+
+.appIconDetail .fallback {
+  font-size: 3rem;
+}
+
+/* The navy tile blends into the dark page without an edge */
+html[data-theme="dark"] .fallback {
+  border-color: var(--site-color-card-border);
+}
+
+@media (max-width: 600px) {
+  .appIconDetail {
+    width: 88px;
+    height: 88px;
+  }
+
+  .appIconDetail .fallback {
+    font-size: 2.2rem;
+  }
 }
