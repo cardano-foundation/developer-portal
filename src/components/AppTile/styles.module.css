@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  padding: 1rem 1.1rem 1.1rem;
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
+  padding: 1.15rem 1.25rem 1.25rem;
+  border: 1px solid transparent;
   border-radius: 12px;
-  background: var(--ifm-background-color);
+  background: var(--site-color-surface-raised);
+  min-height: 240px;
   text-decoration: none;
   color: inherit;
   transition: border-color 150ms ease, box-shadow 150ms ease,
@@ -13,13 +14,12 @@
   position: relative;
 }
 
-html[data-theme="dark"] .tile {
-  border-color: var(--site-color-card-border);
-}
-
+/* The card is a raised panel, not an outlined one: the surface token is what
+   separates it from the page. The border stays in the box at zero visible
+   weight so hover can colour it without shifting layout. */
 .tile:hover {
+  background: var(--site-color-surface-raised-hover);
   border-color: var(--site-color-brand-blue);
-  box-shadow: 0 2px 12px rgb(var(--site-color-navy-rgb) / 0.06);
   text-decoration: none;
   color: inherit;
 }
@@ -43,8 +43,31 @@ html[data-theme="dark"] .tile:focus-visible {
   justify-content: space-between;
 }
 
-.badge {
+.badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.85rem;
+}
+
+/* Filled brand-blue pill. Reads as state, not decoration, so it keeps the
+   solid fill in both themes rather than going ghost in dark. */
+.newBadge {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.62rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: var(--ifm-color-primary);
+  color: var(--site-color-cream);
+}
+
+/* The dark primary is a light lavender-blue, so cream on it is only 3.51:1.
+   Navy on the same fill is 5.44:1 — the same inversion the amber chips use. */
+html[data-theme="dark"] .newBadge {
+  color: var(--site-color-navy);
 }
 
 .starBadge {
@@ -73,7 +96,7 @@ html[data-theme="dark"] .tile:focus-visible {
   line-height: 1.5;
   color: var(--site-color-text-muted);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -87,30 +110,23 @@ html[data-theme="dark"] .tile:focus-visible {
   font-size: 0.78rem;
 }
 
+/* Tag chips: one treatment for the category and the property facets. They read
+   as the same kind of label on the card, so the earlier filled-vs-outlined
+   split has gone. Mono, because these are labels rather than prose. */
 .category,
 .property {
   display: inline-flex;
   align-items: center;
-  padding: 2px 9px;
-  border-radius: 999px;
-  line-height: 1.6;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.5;
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.72rem;
+  background: var(--site-color-surface-chip);
+  color: var(--ifm-color-primary);
 }
 
-.category {
-  background: rgb(var(--site-color-navy-rgb) / 0.05);
-  color: var(--site-color-text-muted);
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-html[data-theme="dark"] .category {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.property {
-  color: var(--site-color-text-muted);
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
-}
-
+html[data-theme="dark"] .category,
 html[data-theme="dark"] .property {
-  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--ifm-color-primary-light);
 }

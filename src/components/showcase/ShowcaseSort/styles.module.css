@@ -15,8 +15,10 @@
    pseudo-element and a mask-image would clip the control itself, so each
    theme needs its own stroke color baked into the data URI. */
 .sortSelect {
-  background: transparent;
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
+  /* background-COLOR, not the shorthand: the chevron below rides in
+     background-image, and `background:` would drop it silently. */
+  background-color: var(--site-color-surface-raised);
+  border: 1px solid transparent;
   color: var(--ifm-font-color-base);
   padding: 0.4rem 2rem 0.4rem 0.8rem;
   border-radius: 8px;
@@ -30,8 +32,9 @@
   transition: border-color 150ms ease;
 }
 
+/* Border stays transparent to match the other raised controls; this block
+   exists only to swap the chevron to its light-on-dark cut. */
 html[data-theme="dark"] .sortSelect {
-  border-color: rgba(255, 255, 255, 0.25);
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFAF3%22%20stroke-opacity%3D%220.7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E");
 }
 

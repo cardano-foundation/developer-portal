@@ -40,14 +40,13 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
+  /* Same raised surface as the tool cards above: these two sit next to each
+     other and read as one layer. The border stays in the box at zero visible
+     weight so overflow clipping and sizing are unchanged. */
+  border: 1px solid transparent;
   border-radius: 12px;
-  background: var(--ifm-background-color);
+  background: var(--site-color-surface-raised);
   overflow: hidden;
-}
-
-html[data-theme="dark"] .panel {
-  border-color: var(--site-color-card-border);
 }
 
 .panelHeader {
@@ -99,12 +98,8 @@ html[data-theme="dark"] .panelHeader {
 }
 
 .panelList > li > a:hover {
-  background: rgb(var(--site-color-navy-rgb) / 0.05);
+  background: var(--site-color-surface-raised-hover);
   box-shadow: none;
-}
-
-html[data-theme="dark"] .panelList > li > a:hover {
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .arrow {
@@ -112,8 +107,8 @@ html[data-theme="dark"] .panelList > li > a:hover {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
-  background: var(--ifm-background-color);
+  border: 1px solid transparent;
+  background: var(--site-color-surface-raised);
   color: var(--site-color-text-muted);
   cursor: pointer;
   display: inline-flex;

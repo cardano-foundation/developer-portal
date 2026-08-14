@@ -2,13 +2,15 @@ import React, { useCallback, useMemo } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 
+import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
+import InfoDot from "@site/src/components/showcase/InfoDot";
+import IntentIcon from "./icons";
+import { Categories } from "@site/src/data/builder-tools/tags";
+
 import {
   readSearchTags,
   replaceSearchTags,
 } from "@site/src/components/showcase/tagQueryString";
-import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
-import InfoDot from "@site/src/components/showcase/InfoDot";
-import { Categories } from "@site/src/data/builder-tools/tags";
 
 import styles from "./styles.module.css";
 
@@ -22,6 +24,7 @@ const INTENTS = [
   { id: "node", tags: ["node"], label: "Run a node" },
   { id: "wallet", tags: ["wallet"], label: "Integrate a wallet" },
   { id: "operations", tags: ["operations"], label: "Operate a pool" },
+  { id: "dev-env", tags: ["dev-env"], label: "Set up a dev environment" },
 ];
 
 function arraysEqualUnordered(a, b) {
@@ -54,38 +57,39 @@ export default function IntentChips() {
 
   return (
     <section className={styles.intentSection} aria-labelledby="tools-intent-title">
-      <div className="container">
-        <h2 id="tools-intent-title" className={styles.intentTitle}>
-          I want to
-        </h2>
-        <ul className={styles.intentList}>
-          {INTENTS.map((intent) => {
-            const isActive = intent.id === activeId;
-            const hint = Categories[intent.tags[0]]?.description;
-            return (
-              <li key={intent.id} className={styles.intentItem}>
-                <Tooltip
-                  text={hint || ""}
-                  id={`intent_${intent.id}`}
-                  anchorEl="#__docusaurus"
+      {/* No container of its own: this now renders inside the browse column,
+          which is already inside one. Nesting them double-pads the row. */}
+      <h2 id="tools-intent-title" className={styles.intentTitle}>
+        I want to
+      </h2>
+      <ul className={styles.intentList}>
+        {INTENTS.map((intent) => {
+          const isActive = intent.id === activeId;
+          const hint = Categories[intent.tags[0]]?.description;
+          return (
+            <li key={intent.id} className={styles.intentItem}>
+              <Tooltip
+                text={hint || ""}
+                id={`intent_${intent.id}`}
+                anchorEl="#__docusaurus"
+              >
+                <button
+                  type="button"
+                  onClick={() => applyIntent(intent)}
+                  className={clsx(styles.intentChip, {
+                    [styles.intentChipActive]: isActive,
+                  })}
+                  aria-pressed={isActive}
                 >
-                  <button
-                    type="button"
-                    onClick={() => applyIntent(intent)}
-                    className={clsx(styles.intentChip, {
-                      [styles.intentChipActive]: isActive,
-                    })}
-                    aria-pressed={isActive}
-                  >
-                    {intent.label}
-                    <InfoDot />
-                  </button>
-                </Tooltip>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                  <IntentIcon id={intent.id} />
+                  <span className={styles.intentLabel}>{intent.label}</span>
+                  <InfoDot />
+                </button>
+              </Tooltip>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
