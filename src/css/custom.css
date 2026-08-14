@@ -110,10 +110,6 @@
   --ifm-navbar-link-color: #ffffff;
   /* The logo sits ~52px in from the edge on wide screens (3vw, clamped) */
   --ifm-navbar-padding-horizontal: clamp(1rem, 3vw, 52px);
-  /* Pre-2026 teal, deprecated: one remaining reference in the /talent hero
-     (src/pages/talent/styles.module.css) until that page's rebrand round.
-     Delete this token when /talent is restyled. Do not add new uses. */
-  --site-color-brand-teal-dark: #3BA18E;
   --site-color-surface: #f5f7fa;
   --site-color-surface-hover: #eef1f6;
   --site-color-bg-dark: #1b1b1d;

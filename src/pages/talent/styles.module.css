@@ -1,368 +1,415 @@
-/* ===========================================
-   TALENT POOL PAGE
-   =========================================== */
+/* stylelint-disable docusaurus/copyright-header */
 
-/* ===========================================
-   HERO SECTION
-   =========================================== */
+/* Talent pool page. Brand tokens live in src/css/custom.css. The blue chip
+   recipe mirrors the landing module (src/pages/styles.module.css); CSS
+   modules cannot compose across files, so the values are kept in lockstep
+   by hand until a global utility exists. The amber pills are this page's
+   own button family: uppercase regular Chivo, not the mono chip face. */
 
+/* Same widened content band as the landing page: the cap includes the
+   container's own padding, so 1731 with 78px gutters leaves 1575px. */
+.talent {
+  --ifm-container-width: 1731px;
+  --ifm-container-width-xl: 1731px;
+  --ifm-spacing-horizontal: clamp(1.25rem, 4.5vw, 78px);
+}
+
+/* --- HERO --- */
+
+/* Navy in both themes, like the rest of the site chrome */
 .hero {
-  padding: 6rem 0;
-  text-align: center;
   position: relative;
   overflow: hidden;
-  background-size: auto;
-  background-position: 59% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(320px, 36vw, 520px);
+  padding: clamp(2rem, 4vw, 3.5rem) 1rem;
+  background: var(--site-color-navy);
 }
 
-html[data-theme="light"] .hero {
-  background-image: url(/img/home/dev-portal-hero-light.webp);
-  background-color: var(--site-color-brand-blue);
-  color: #fff;
+/* Decorative circle field behind the title panel. Sized relative to the
+   viewport so the grid keeps its density as the band scales down. */
+/* Six rows of 22 always exceed the band on every side (the hero caps at
+   520px tall and ~2600px of row width), so the field genuinely crops at
+   the edges instead of floating inside them */
+.heroField {
+  --ball-size: clamp(60px, 6.3vw, 109px);
+  --ball-gap: clamp(7px, 0.76vw, 13px);
+  position: absolute;
+  /* Larger than the band on every side, so the outer rows crop at the top
+     and bottom edges and the row ends crop at the viewport rim */
+  inset: calc(var(--ball-size) / -1.8) calc(var(--ball-size) / -1.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ball-gap);
 }
 
-html[data-theme="dark"] .hero {
-  background-image: url(/img/home/dev-portal-hero-dark.webp);
-  background-color: var(--site-color-brand-teal-dark);
-  color: #fff;
+.heroFieldRow {
+  display: flex;
+  gap: var(--ball-gap);
+  flex: none;
 }
 
-@media screen and (max-width: 1024px) {
-  .hero {
-    background-position: 34% 50%;
-  }
+/* Stagger alternate rows so the field reads as a loose weave, not a grid */
+.heroFieldRow:nth-child(even) {
+  margin-left: calc(var(--ball-size) + var(--ball-gap));
 }
 
-@media screen and (min-width: 1950px) {
-  .hero {
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.ball {
+  width: var(--ball-size);
+  height: var(--ball-size);
+  border-radius: 50%;
+  flex: none;
+}
+
+.ballBlue {
+  background: var(--site-color-brand-blue);
+}
+
+.ballAmber {
+  background: var(--site-color-amber);
+}
+
+.ballLavender {
+  background: var(--site-color-lavender-deep);
+}
+
+.ballGray {
+  background: var(--site-color-gray-light);
+}
+
+/* Dark sphere lit from inside by a blue glow; one-off artwork values */
+.ballGlow {
+  background: #000;
+  box-shadow: inset 0 3px 80px rgba(0, 26, 233, 0.6);
+}
+
+/* Translucent bubble that brightens toward its rim; one-off artwork values */
+.ballFade {
+  background: radial-gradient(
+    closest-side,
+    rgba(0, 35, 235, 0.08) 0%,
+    rgba(242, 242, 242, 0.4) 100%
+  );
+}
+
+/* Rounded panel floating on the field, carrying the page title */
+.heroPanel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1242px);
+  border-radius: 35px;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 5rem);
+  text-align: center;
+  background: var(--site-color-card-surface);
+  color: var(--site-color-card-text);
 }
 
 .heroTitle {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: var(--ifm-font-weight-bold);
-  margin-bottom: 1.5rem;
-  color: #fff;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4vw, 4.3rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 1.37;
+  letter-spacing: -0.02em;
+  color: var(--site-color-cream);
 }
 
 .heroSubtitle {
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-/* ===========================================
-   OVERVIEW SECTION (Photo Grid + Text)
-   =========================================== */
-
-.overview {
-  padding: 5rem 0;
-}
-
-html[data-theme="light"] .overview {
-  background-color: var(--site-color-surface);
-}
-
-html[data-theme="dark"] .overview {
-  background-color: var(--site-color-bg-dark);
-}
-
-.overviewContent {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.photoGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1rem;
-}
-
-.photoLarge {
-  grid-column: 1 / -1;
-}
-
-.photoLarge img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.photoSmall img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.photoPlaceholder {
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: var(--ifm-font-weight-semibold);
-  font-size: 0.9rem;
-}
-
-html[data-theme="light"] .photoPlaceholder {
-  background-color: var(--site-color-surface-hover);
-  color: #666;
-}
-
-html[data-theme="dark"] .photoPlaceholder {
-  background-color: var(--site-color-surface);
-  color: #888;
-}
-
-.photoLarge .photoPlaceholder {
-  height: 220px;
-}
-
-.photoSmall .photoPlaceholder {
-  height: 140px;
-}
-
-.overviewText h2 {
-  font-size: 2rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin-bottom: 1.5rem;
-}
-
-.overviewText p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  opacity: 0.85;
-  margin-bottom: 1.25rem;
-}
-
-.overviewButtons {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.buttonWithIcon {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.buttonWithIcon:hover {
-  background: var(--site-color-surface-hover) !important;
-  border-color: var(--ifm-color-primary) !important;
-  color: var(--ifm-color-primary) !important;
-}
-
-.buttonWithIcon img {
-  width: 16px;
-  height: 16px;
-}
-
-html[data-theme="light"] .buttonWithIcon img {
-  filter: invert(15%) sepia(95%) saturate(2000%) hue-rotate(215deg) brightness(90%);
-}
-
-html[data-theme="dark"] .buttonWithIcon img {
-  filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
-}
-
-/* ===========================================
-   RESOURCES SECTION
-   =========================================== */
-
-.resources {
-  padding: 5rem 0;
-}
-
-html[data-theme="light"] .resources {
-  background-color: var(--site-color-surface);
-}
-
-html[data-theme="dark"] .resources {
-  background-color: var(--site-color-bg-dark);
-}
-
-.resourcesContent {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.resourcesText h2 {
-  font-size: 1.75rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin-bottom: 1rem;
-}
-
-.resourcesText p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
-}
-
-.resourceLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.resourceLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  border-radius: 8px;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-decoration: none !important;
-  transition: all 0.2s ease;
-}
-
-html[data-theme="light"] .resourceLink {
-  background: #fff;
-  color: var(--ifm-color-primary);
-}
-
-html[data-theme="dark"] .resourceLink {
-  background: var(--site-color-surface);
-}
-
-.resourceLink:hover {
-  transform: translateX(4px);
-}
-
-html[data-theme="light"] .resourceLink:hover {
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-html[data-theme="dark"] .resourceLink:hover {
-  background: var(--site-color-surface-hover);
-}
-
-.resourceLink img {
-  width: 18px;
-  height: 18px;
-  opacity: 0.7;
-}
-
-html[data-theme="light"] .resourceLink img {
-  filter: invert(15%) sepia(95%) saturate(2000%) hue-rotate(215deg) brightness(90%);
-}
-
-html[data-theme="dark"] .resourceLink img {
-  filter: invert(70%) sepia(20%) saturate(500%) hue-rotate(190deg) brightness(100%);
-}
-
-.resourcesImage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.resourcesImage img {
-  max-width: 280px;
-  height: auto;
-}
-
-/* ===========================================
-   CTA SECTION
-   =========================================== */
-
-.cta {
-  padding: 5rem 0;
-  text-align: center;
-}
-
-html[data-theme="light"] .cta {
-  background-color: #fff;
-}
-
-html[data-theme="dark"] .cta {
-  background-color: var(--site-color-surface);
-}
-
-.cta h2 {
-  font-size: 1.75rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin-bottom: 0.75rem;
-}
-
-.cta p {
-  font-size: 1.1rem;
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
-}
-
-.hubspotFormWrapper {
-  max-width: 1000px;
   margin: 0 auto;
-  text-align: left;
+  max-width: 40ch;
+  font-size: clamp(1rem, 1.6vw, 1.75rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.2;
 }
 
-/* White background in dark mode ensures HubSpot form text is readable */
-html[data-theme="dark"] .hubspotFormWrapper {
-  background-color: #fff;
+/* --- SHARED SECTION PIECES --- */
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+.sectionHeader h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 3vw, 3.25rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.sectionHeader p {
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: clamp(1.1rem, 1.85vw, 2rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.2;
+  color: var(--site-color-text-muted);
+}
+
+/* Two-column content rows: text or form beside a photo card */
+.splitRow {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.splitRowWide {
+  gap: clamp(1.5rem, 6vw, 6.5rem);
+}
+
+.photoCard {
+  flex: 1 1 48%;
+  min-width: 0;
+  aspect-ratio: 781 / 553;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.photoCard img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- JOIN / SIGNUP --- */
+
+.join {
+  padding: clamp(3rem, 6vw, 6rem) 0 clamp(2.5rem, 5vw, 5rem);
+  /* Anchor target: keep the section heading clear of the fixed navbar */
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+/* The section receives focus after anchor jumps for assistive tech; it is
+   a scroll target, not a control, so it draws no ring of its own */
+.join:focus-visible {
+  outline: none;
+}
+
+.formCol {
+  flex: 1 1 46%;
+  min-width: 0;
+}
+
+/* The embedded form renders transparent with dark text, so dark mode puts
+   a light card behind it to keep it readable (the form's internal styling
+   is owned by the form service) */
+html[data-theme="dark"] .formCol {
+  background: #fff;
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 18px;
 }
 
-/* ===========================================
-   RESPONSIVE
-   =========================================== */
+/* --- HOW IT WORKS --- */
+
+.howItWorks {
+  padding: clamp(2.5rem, 5vw, 5rem) 0;
+}
+
+.howText {
+  flex: 1 1 48%;
+  min-width: 0;
+}
+
+.howText h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.75rem, 3vw, 3.25rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.howText p {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.1rem, 1.75vw, 1.875rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.2;
+}
+
+/* Blue mono chips (landing recipe: monoLabel + pillBlue) */
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4vw, 4rem);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.9em 1.15em;
+  border-radius: 999px;
+  background: var(--site-color-brand-blue);
+  color: var(--site-color-gray-light);
+  font-family: var(--site-font-family-mono-label);
+  font-size: 1rem;
+  font-weight: var(--ifm-font-weight-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 51, 173, 0.25);
+  color: var(--site-color-gray-light);
+}
+
+/* --- READY TO START BUILDING --- */
+
+.bandSection {
+  padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
+}
+
+.band {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 2.5vw, 2.7rem);
+  min-height: clamp(230px, 19vw, 370px);
+  padding: clamp(1.5rem, 2vw, 1.875rem);
+  border-radius: 20px;
+  background: var(--site-color-card-surface);
+  color: var(--site-color-card-text);
+}
+
+.bandIcon {
+  /* Lifted above the absolutely positioned artwork, like .bandContent.
+     The glyph is stroked, so it colors through currentColor. */
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: clamp(40px, 4vw, 68px);
+  height: auto;
+  color: var(--site-color-brand-blue);
+}
+
+.bandContent {
+  position: relative;
+  z-index: 1;
+  /* The percentage cap keeps the copy clear of the absolutely positioned
+     artwork, which flex layout does not reserve space for */
+  max-width: min(55%, 811px);
+}
+
+/* Tight title-to-text pairing, then air before the buttons */
+.bandTitle {
+  margin: 0 0 clamp(0.6rem, 1.1vw, 1.2rem);
+  font-size: clamp(1.9rem, 2.9vw, 3.25rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 0.95;
+  color: var(--site-color-cream);
+}
+
+.bandText {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.65vw, 1.875rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.25;
+  color: var(--site-color-cream);
+}
+
+/* Amber pill buttons with navy text (landing CTA family) */
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 2vw, 2.1rem);
+  margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  min-height: 48px;
+  padding: 0 1.1em 0 1.35em;
+  border-radius: 999px;
+  background: var(--site-color-amber);
+  color: var(--site-color-navy);
+  font-size: 1.05rem;
+  font-weight: var(--ifm-font-weight-normal);
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  color: var(--site-color-navy);
+}
+
+.pillArrow {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* The artwork sits in the band's right ~40%, vertically centered and
+   cropped by the rounded corners, with clear navy between it and the copy */
+.bandArt {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 41%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* --- FOCUS --- */
+
+/* Ring colors follow the surface: the chips sit on the page background
+   (cream in light mode, where amber lacks contrast), the amber pills on
+   the navy band (where cream reads and amber-on-amber would vanish) */
+.chip:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .chip:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
+}
+
+/* --- RESPONSIVE --- */
 
 @media screen and (max-width: 996px) {
-  .overviewContent {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+  .splitRow,
+  .splitRowWide {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .photoGrid {
-    max-width: 500px;
-    margin: 0 auto;
+  .photoCard {
+    order: 1;
   }
 
-  .resourcesContent {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .formCol,
+  .howText {
+    order: 0;
   }
 
-  .resourcesImage {
-    order: -1;
+  .band {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .resourcesImage img {
-    max-width: 200px;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .hero {
-    padding: 4rem 1rem;
+  .bandContent {
+    max-width: 100%;
   }
 
-  .overview,
-  .resources,
-  .cta {
-    padding: 3rem 0;
-  }
-
-  .photoLarge .photoPlaceholder,
-  .photoLarge img {
-    height: 180px;
-  }
-
-  .photoSmall .photoPlaceholder,
-  .photoSmall img {
-    height: 120px;
+  .bandArt {
+    display: none;
   }
 }
