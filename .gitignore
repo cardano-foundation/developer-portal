@@ -59,5 +59,6 @@ yarn.lock
 # Temporary files that sometimes get checked in by accident
 .yarn/**
 
-# Generated OG cards for docs pages (built by scripts/generate-og.js)
+# Generated OG cards for docs pages and blog posts (built by scripts/generate-og.js)
 /static/img/og/docs/
+/static/img/og/blog/
