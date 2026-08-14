@@ -35,5 +35,4 @@ Cardano was designed with input from a global team of experts in programming lan
 
 ## Next steps
 
-- [Cardano for Ethereum developers](/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers): the concept-by-concept translation, if you come from the EVM
 - [Start Building](/docs/developers/curriculum/start-building/overview): Module 2, where these concepts become transactions

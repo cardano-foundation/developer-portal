@@ -2,7 +2,7 @@ module.exports = {
   developerSidebar: [
     {
       type: "doc",
-      id: "developers/overview",
+      id: "developers/start-here",
       label: "Start Here",
     },
     {
@@ -37,7 +37,6 @@ module.exports = {
                 "developers/curriculum/fundamentals/core-concepts/fees",
               ],
             },
-            "developers/curriculum/fundamentals/cardano-for-ethereum-developers",
           ],
         },
         {
@@ -50,11 +49,11 @@ module.exports = {
           items: [
             "developers/curriculum/start-building/choose-your-tools",
             "developers/curriculum/start-building/networks-and-test-ada",
-            "developers/curriculum/start-building/development-networks",
             "developers/curriculum/start-building/ai-assisted-development",
             "developers/curriculum/start-building/your-first-transaction",
             "developers/curriculum/start-building/transaction-building",
             "developers/curriculum/start-building/query-the-chain",
+            "developers/curriculum/start-building/local-testing",
             "developers/curriculum/start-building/transaction-failures",
           ],
         },

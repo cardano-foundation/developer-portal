@@ -57,13 +57,13 @@ validity_interval = { invalid_before: slot_500, invalid_hereafter: slot_1000 }
 ```
 
 - **Lower bound** (`invalid_before`): valid only after this slot.
-- **Upper bound** (`invalid_hereafter` / TTL): expires after this slot.
+- **Upper bound** (`invalid_hereafter`, also called the TTL, for time to live): expires after this slot.
 
 These are checked in phase-1, before scripts run, so a validator can safely assume the transaction is within the window, enabling deterministic time logic (deadlines, time-locks). Most simple transfers omit the lower bound and set a generous upper bound so a stuck transaction expires instead of lingering. Each slot maps to wall-clock time (one second on mainnet), so contracts reason about time without an oracle.
 
 ### Setting validity in code
 
-In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range:
+In the SDKs you give a wall-clock window and the builder converts it to the on-chain slot range. That conversion is per-network: each one has its own slot length (one second on mainnet, preprod, and preview, configurable on a [local devnet](/docs/developers/curriculum/start-building/local-testing#local-devnets)) and its own genesis `zeroTime`/`zeroSlot`, so the builder has to know which chain you are on.
 
 <Tabs groupId="sdk">
 <TabItem value="evolution" label="Evolution" default>
@@ -105,8 +105,6 @@ const unsignedTx = await txBuilder
 
 </TabItem>
 </Tabs>
-
-Each network has a fixed slot length (1s on mainnet/preprod/preview; configurable on a [local devnet](/docs/developers/curriculum/start-building/development-networks)) and a genesis `zeroTime`/`zeroSlot`. The SDK's `SlotConfig.SLOT_CONFIG_NETWORK` presets carry these so conversions are correct per network.
 
 ## Reference inputs and reference scripts
 

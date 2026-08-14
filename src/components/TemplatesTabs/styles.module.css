@@ -13,7 +13,7 @@
   padding: 0.4rem 1rem;
   border-radius: 8px;
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-emphasis-700);
   text-decoration: none;
   transition: background-color 150ms ease, color 150ms ease;

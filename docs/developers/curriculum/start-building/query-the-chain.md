@@ -24,6 +24,8 @@ A provider is the data source your SDK talks to. Most SDKs support several behin
 | **Koios** | Hosted (community) or self-hosted | Optional | Yes (higher with a key) |
 | **Kupmios** | Self-hosted (Ogmios + Kupo) | Not applicable | None (your own infra) |
 
+Those are the common choices; [Builder Tools](/tools/?tags=api) lists the hosted providers in full.
+
 Configure one when you make the client:
 
 <Tabs groupId="sdk">
@@ -372,7 +374,7 @@ console.log("inputs:", body.inputs.length, "outputs:", body.outputs.length)
 console.log("fee:", body.fee, "mints:", body.mints?.length ?? 0)
 ```
 
-Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()` (see [Testing without a chain](/docs/developers/curriculum/start-building/development-networks#testing-without-a-chain)).
+Beyond reading, the parsed body can be rebuilt with `MeshTxBuilder`, or turned into a unit tester via `txParser.toTester()`.
 
 </TabItem>
 </Tabs>

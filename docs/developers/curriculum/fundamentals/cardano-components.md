@@ -59,7 +59,7 @@ Execution happens within the ledger layer during transaction validation. Every s
 
 [`cardano-cli`](https://github.com/IntersectMBO/cardano-cli) is the command-line interface to a running node. It connects over a local socket to build, sign, and submit transactions, query chain state (UTXOs, protocol parameters, governance state), and manage keys and certificates. It is not a daemon; it runs a command against the node and exits.
 
-A few other components sit *around* the node rather than inside it: **cardano-tracer** collects the node's logs and Prometheus metrics, **[Mithril](/docs/operators/operator-tools/mithril)** lets a fresh node bootstrap to the chain tip in minutes from a stake-certified snapshot, and **[cardano-db-sync](/docs/developers/curriculum/production/indexing-and-analytics)** indexes the whole chain into PostgreSQL for rich SQL queries. These are operational and indexing concerns, documented where you would actually reach for them.
+A few other components sit *around* the node rather than inside it: **cardano-tracer** collects the node's logs and Prometheus metrics, **[Mithril](/docs/operators/operator-tools/mithril)** lets a fresh node bootstrap to the chain tip in minutes from a stake-certified snapshot, and **cardano-db-sync** indexes the whole chain into PostgreSQL for rich SQL queries, one of several [indexer shapes](/docs/developers/curriculum/production/indexing-and-analytics). These are operational and indexing concerns, documented where you would actually reach for them.
 
 ## Network topology
 

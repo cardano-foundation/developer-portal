@@ -224,9 +224,11 @@ test prop_never_overdraws(amount via fuzz.int()) {
 
 ## Testing your off-chain code
 
-Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too, and it splits into two kinds of test. **Unit tests** exercise the pure parts (datum and schema encoding, address parsing, the shape of the tx you build) with no chain at all. **Integration tests** drive the whole build → sign → submit → confirm lifecycle against a [local development network](/docs/developers/curriculum/start-building/development-networks): you spin a programmatic devnet up inside the test suite, fund a wallet from genesis, submit, and assert on confirmation, with millisecond confirmations and fresh isolated state per run, all offline and with no faucet.
+Your validator isn't the only thing that needs tests. The transaction-building code that locks, spends, and mints deserves them too, and it splits into two kinds of test, both covered in Module 2.
 
-Both live with the local-environment tooling rather than here: see [Testing without a chain](/docs/developers/curriculum/start-building/development-networks#testing-without-a-chain) for the in-memory tools (`OfflineFetcher`, `OfflineEvaluator`, `TxTester`) that build, evaluate, and assert on a transaction with no node, and [Programmatic devnets](/docs/developers/curriculum/start-building/development-networks#programmatic-devnets) for the integration-test setup against a real local chain.
+**Unit tests** exercise the pure parts, datum and schema encoding, address parsing, and the shape of the transaction you build, with no chain at all, against the [in-memory emulator](/docs/developers/curriculum/start-building/local-testing#the-in-memory-emulator).
+
+**Integration tests** drive the whole build → sign → submit → confirm lifecycle against a [programmatic devnet](/docs/developers/curriculum/start-building/local-testing#programmatic-devnets): fund a wallet from genesis, submit, and assert on confirmation, with millisecond confirmations and fresh isolated state per run, offline and with no faucet.
 
 ## Audits
 

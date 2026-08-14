@@ -58,13 +58,13 @@
 .panelTitle {
   margin: 0;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   color: var(--ifm-font-color-base);
 }
 
 .seeAll {
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-primary);
   text-decoration: none;
 }

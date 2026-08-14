@@ -6,9 +6,45 @@
  * work well for content-centric websites.
  */
 
+/* Brand font, the same variable files cardano.org serves. One file per style,
+   carrying the whole 100 to 900 weight axis. */
+@font-face {
+  font-family: "Chivo";
+  src: url("/fonts/Chivo-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Chivo";
+  src: url("/fonts/Chivo-Italic-VariableFont_wght.ttf")
+    format("truetype-variations");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* You can override the default Infima variables here. */
 
 :root {
+  /* The rest of the stack stays as the fallback for glyphs Chivo does not
+     carry, such as the ada sign. */
+  --ifm-font-family-base: "Chivo", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  /* Rebrand pilot weight scale, as specified by design. Every font-weight in
+     src/ must reference one of these tokens, never a raw number. Bold deviates
+     from the original spec (300): at 300 it matched semibold and headings read
+     the same as their subtext, so it sits one step up. Flagged to design. */
+  --ifm-font-weight-light: 100;
+  --ifm-font-weight-normal: 200;
+  --ifm-font-weight-semibold: 300;
+  --ifm-font-weight-bold: 400;
+  --ifm-font-weight-base: var(--ifm-font-weight-normal);
+  /* Display slot for elements that were heavier than bold (weight 800). The
+     designer's scale does not name this slot yet; tracks bold until it does. */
+  --site-font-weight-display: var(--ifm-font-weight-bold);
   --ifm-color-primary: #0033AD;
   --ifm-color-primary-dark: #002E9C;
   --ifm-color-primary-darker: #002B93;
@@ -50,6 +86,16 @@ html[data-theme="dark"] {
   --docusaurus-highlighted-code-line-bg: rgb(72, 77, 91);
 }
 
+/* Form controls do not inherit font-family: the browser's own stylesheet sets
+   them to Arial. Without this, every button and input on the portal opts out of
+   the site font. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
 .button {
   border-style: solid !important;
   border-width: 1.3px !important;
@@ -87,6 +133,12 @@ html[data-theme="dark"] {
 
 .footer--dark {
   background-color: #232323 !important;
+}
+
+/* Infima sets .footer__title with a "font: bold ..." shorthand, bypassing the
+   weight tokens; without this it stays at 700, the heaviest text on the site. */
+.footer__title {
+  font-weight: var(--ifm-font-weight-bold);
 }
 
 .header-github-link:before {
@@ -201,7 +253,8 @@ div#faucetcontainer {
   align-items: center;
   color: var(--ifm-navbar-link-color);
   font-size: var(--ifm-font-size-base);
-  font-weight: 550;
+  /* Matches Infima's .navbar__link so every navbar item is one weight. */
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none;
 }
 
@@ -290,7 +343,7 @@ div#faucetcontainer {
 
 .megaMenuColumnTitle {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-transform: uppercase;
   margin-bottom: 8px;
   opacity: 0.7;
@@ -332,7 +385,7 @@ div#faucetcontainer {
 }
 
 .megaMenuItemLabel {
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   display: block;
   font-size: 1.05rem;
   /* force horizontal text flow */
@@ -426,7 +479,7 @@ div#faucetcontainer {
   gap: 0.4rem;
   padding: 0.4rem 0.7rem;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   line-height: 1.25;
   color: var(--ifm-font-color-base);
   background-color: var(--site-color-surface);
@@ -499,7 +552,7 @@ div#faucetcontainer {
 
 .copy-markdown__item-title {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .copy-markdown__item-desc {

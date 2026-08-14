@@ -31,10 +31,13 @@ const redirects = [
     to: '/docs/developers/curriculum/native-tokens/overview',
     from: '/docs/learn/core-concepts/assets',
   },
-  // Module 1 (Cardano Foundations): Ethereum guide relocated out of Learn > Educational Resources
+  // Ethereum guide: out of Learn > Educational Resources, then out of the curriculum
   {
-    to: '/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers',
-    from: '/docs/learn/educational-resources/ethereum-developers',
+    to: '/docs/developers/cardano-for-ethereum-developers',
+    from: [
+      '/docs/learn/educational-resources/ethereum-developers',
+      '/docs/developers/curriculum/fundamentals/cardano-for-ethereum-developers',
+    ],
   },
   // Module 3 (Setup & First Transaction): network setup pages consolidated into first-steps
   {
@@ -246,17 +249,16 @@ const redirects = [
     to: '/docs/developers/curriculum/start-building/networks-and-test-ada',
     from: '/docs/integrate-cardano/testnet-faucet',
   },
+  // Local testing (devnets, offline testing) now lives on one page in Start Building
   {
-    to: '/docs/developers/curriculum/start-building/development-networks',
-    from: '/docs/get-started/development-networks',
-  },
-  {
-    to: '/docs/developers/curriculum/start-building/development-networks',
-    from: '/docs/get-started/yaci-devkit',
-  },
-  {
-    to: '/docs/developers/curriculum/start-building/development-networks',
-    from: '/docs/get-started/cardano-testnet',
+    to: '/docs/developers/curriculum/start-building/local-testing',
+    from: [
+      '/docs/developers/curriculum/start-building/development-networks',
+      '/docs/developers/curriculum/start-building/offline-testing',
+      '/docs/get-started/development-networks',
+      '/docs/get-started/yaci-devkit',
+      '/docs/get-started/cardano-testnet',
+    ],
   },
   {
     to: '/docs/developers/curriculum/production/connecting-to-the-chain',
@@ -302,7 +304,7 @@ const redirects = [
     ],
   },
   {
-    to: '/docs/developers/curriculum/start-building/development-networks',
+    to: '/docs/developers/curriculum/start-building/local-testing',
     from: '/docs/developers/curriculum/production/development-networks',
   },
   {
@@ -1070,8 +1072,8 @@ const redirects = [
   { to: '/docs/developers/curriculum/production/self-hosting', from: '/docs/get-started/infrastructure/api-providers/ogmios' },
   { to: '/docs/developers/curriculum/production/connecting-to-the-chain', from: '/docs/get-started/infrastructure/api-providers/overview' },
   { to: '/docs/developers/curriculum/production/self-hosting', from: '/docs/get-started/infrastructure/demeter' },
-  { to: '/docs/developers/curriculum/start-building/development-networks', from: '/docs/get-started/networks/development-networks/cardano-testnet' },
-  { to: '/docs/developers/curriculum/start-building/development-networks', from: '/docs/get-started/networks/development-networks/yaci-devkit' },
+  { to: '/docs/developers/curriculum/start-building/local-testing', from: '/docs/get-started/networks/development-networks/cardano-testnet' },
+  { to: '/docs/developers/curriculum/start-building/local-testing', from: '/docs/get-started/networks/development-networks/yaci-devkit' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/debug-cbor', from: '/docs/build/smart-contracts/advanced/debug-cbor' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/linked-list', from: '/docs/build/smart-contracts/advanced/design-patterns/linked-list' },
   { to: '/docs/developers/curriculum/smart-contracts/advanced/design-patterns/merkelized-validator', from: '/docs/build/smart-contracts/advanced/design-patterns/merkelized-validator' },
@@ -1104,7 +1106,7 @@ const redirects = [
   { to: '/docs/developers/curriculum/smart-contracts/advanced/uplc', from: '/docs/build/smart-contracts/advanced/uplc' },
   { to: '/templates/contracts', from: '/docs/build/smart-contracts/example-contracts' },
   { to: '/templates/contracts', from: '/docs/developers/curriculum/smart-contracts/example-contracts' },
-  { to: '/docs/developers/curriculum/start-building/networks-and-test-ada', from: '/docs/get-started/networks/development-networks/overview' },
+  { to: '/docs/developers/curriculum/start-building/local-testing', from: '/docs/get-started/networks/development-networks/overview' },
   { to: '/docs/developers/curriculum/dapps/ai-agents/masumi', from: '/docs/build/integrate/ai-agents/masumi' },
   { to: '/docs/developers/curriculum/dapps/ai-agents/overview', from: '/docs/build/integrate/ai-agents/overview' },
   { to: '/docs/developers/exchange-integrations', from: '/docs/build/integrate/exchange-integrations' },

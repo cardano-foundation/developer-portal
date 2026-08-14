@@ -60,13 +60,15 @@
   text-align: center;
   min-height: 45vh;
   min-height: 45svh;
-  max-width: 48rem;
+  /* Wide enough for the title to hold one line at the clamp's top size; the
+     subtitle keeps its own narrower measure below */
+  max-width: 56rem;
   margin: 0 auto;
 }
 
 .heroTitle {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
+  font-weight: var(--site-font-weight-display);
   line-height: 1.03;
   letter-spacing: -0.03em;
   margin: 0 0 1.25rem;
@@ -94,7 +96,7 @@
   padding: 0.85rem 1.75rem;
   border-radius: 999px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-decoration: none !important;
   background: #fffaf3;
   color: #0b1020;
@@ -269,7 +271,7 @@ html[data-theme="dark"] .bentoAccent {
 
 .bentoThirdContent h3 {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.4rem;
   letter-spacing: -0.02em;
 }
@@ -321,7 +323,7 @@ html[data-theme="dark"] .bentoHalfImage {
 
 .bentoHalfContent h3 {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.35rem;
   letter-spacing: -0.02em;
 }
@@ -342,7 +344,7 @@ html[data-theme="dark"] .bentoHalfContent p {
 
 .bentoCardContent h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.5rem;
   letter-spacing: -0.02em;
 }
@@ -365,7 +367,7 @@ html[data-theme="dark"] .bentoCardContent p {
 .bentoLink {
   display: inline-block;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   margin-top: 1rem;
   transition: transform 0.2s ease;
 }
@@ -488,7 +490,7 @@ html[data-theme="dark"] .developer {
 
 .devHeader h2 {
   font-size: clamp(1.5rem, 3vw, 1.75rem);
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
 }
@@ -535,7 +537,7 @@ html[data-theme="dark"] .devSdkCard {
 
 .devSdkHeader h2 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   letter-spacing: -0.02em;
   margin: 0 0 0.35rem;
 }
@@ -567,7 +569,7 @@ html[data-theme="dark"] .devSdkHeader p {
   padding: 0.65rem 0.85rem;
   border-radius: 10px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none !important;
   transition: all 0.2s ease;
 }
@@ -680,7 +682,7 @@ html[data-theme="dark"] .devLinkIcon svg {
 
 .devLinkTitle {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .devLinkDesc {
@@ -740,7 +742,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 
 .quickstartBadge {
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0.35rem 0.75rem;
@@ -751,7 +753,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 
 .quickstartText {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   color: #fff;
 }
 
@@ -799,7 +801,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 
 .quickstartBadge2 {
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0.35rem 0.75rem;
@@ -1000,7 +1002,7 @@ html[data-theme="dark"] .smartContracts {
 
 .scHeader h2 {
   font-size: clamp(1.5rem, 3vw, 1.75rem);
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
 }
@@ -1108,7 +1110,7 @@ html[data-theme="dark"] .scLearnOverlay {
 
 .scLearnContent h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.4rem;
   color: #fff;
 }
@@ -1131,7 +1133,7 @@ html[data-theme="dark"] .scLearnOverlay {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none !important;
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.15);
@@ -1192,7 +1194,7 @@ html[data-theme="dark"] .scLearnOverlay {
 
 .asteriaContent h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.4rem;
   color: #fff;
 }
@@ -1207,7 +1209,7 @@ html[data-theme="dark"] .scLearnOverlay {
 .asteriaLink {
   display: inline-block;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   margin-top: 0.875rem;
   color: var(--site-color-brand-teal);
   transition: all 0.2s ease;
@@ -1265,7 +1267,7 @@ html[data-theme="dark"] .scLearnOverlay {
 
 .scCTFContent h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.4rem;
   color: #fff;
 }
@@ -1280,7 +1282,7 @@ html[data-theme="dark"] .scLearnOverlay {
 .scCTFLink {
   display: inline-block;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   margin-top: 0.875rem;
   color: var(--site-color-brand-teal);
   transition: all 0.2s ease;
@@ -1330,7 +1332,7 @@ html[data-theme="dark"] .cta {
 
 .ctaHeader h2 {
   font-size: clamp(1.5rem, 3vw, 1.75rem);
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
 }
@@ -1402,7 +1404,7 @@ html[data-theme="dark"] .ctaHeader p {
 
 .ctaHackathonsContent h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.4rem;
   color: #fff;
 }
@@ -1417,7 +1419,7 @@ html[data-theme="dark"] .ctaHeader p {
 .ctaHackathonsLink {
   display: inline-block;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   margin-top: 0.875rem;
   transition: all 0.2s ease;
 }
@@ -1481,7 +1483,7 @@ html[data-theme="dark"] .ctaHackathonsLink {
 
 .ctaEventsContent h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.4rem;
   color: #fff;
 }
@@ -1496,7 +1498,7 @@ html[data-theme="dark"] .ctaHackathonsLink {
 .ctaEventsLink {
   display: inline-block;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   margin-top: 0.875rem;
   transition: all 0.2s ease;
 }
@@ -1560,7 +1562,7 @@ html[data-theme="dark"] .ctaEventsLink {
 
 .ctaFundingContent h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 0.4rem;
   color: #fff;
 }
@@ -1575,7 +1577,7 @@ html[data-theme="dark"] .ctaEventsLink {
 .ctaFundingLink {
   display: inline-block;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   margin-top: 0.875rem;
   transition: all 0.2s ease;
 }
@@ -1661,7 +1663,7 @@ html[data-theme="dark"] .officeHoursContent {
 .officeHoursBadge {
   display: inline-block;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0.3rem 0.7rem;
@@ -1682,7 +1684,7 @@ html[data-theme="dark"] .officeHoursBadge {
 
 .officeHoursContent h2 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
   letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
 }
@@ -1715,7 +1717,7 @@ html[data-theme="dark"] .officeHoursContent p {
   padding: 0.6rem 1.25rem;
   border-radius: 10px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none !important;
   transition: all 0.25s ease;
 }
@@ -1749,7 +1751,7 @@ html[data-theme="dark"] .officeHoursBtn:hover {
   padding: 0.6rem 1.25rem;
   border-radius: 10px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none !important;
   transition: all 0.25s ease;
 }
