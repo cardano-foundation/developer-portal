@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  padding: 1rem 1.1rem 1.1rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 14px;
-  background: var(--ifm-background-surface-color);
+  padding: 1.15rem 1.25rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--site-color-surface-raised);
+  min-height: 240px;
   text-decoration: none;
   color: inherit;
   transition: border-color 150ms ease, box-shadow 150ms ease,
@@ -13,16 +14,27 @@
   position: relative;
 }
 
+/* The card is a raised panel, not an outlined one: the surface token is what
+   separates it from the page. The border stays in the box at zero visible
+   weight so hover can colour it without shifting layout. */
 .tile:hover {
-  border-color: var(--ifm-color-emphasis-400);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  background: var(--site-color-surface-raised-hover);
+  border-color: var(--site-color-brand-blue);
   text-decoration: none;
   color: inherit;
 }
 
+html[data-theme="dark"] .tile:hover {
+  border-color: var(--ifm-color-primary);
+}
+
 .tile:focus-visible {
-  outline: 2px solid var(--ifm-color-primary);
+  outline: 2px solid var(--site-color-navy);
   outline-offset: 2px;
+}
+
+html[data-theme="dark"] .tile:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 .header {
@@ -31,18 +43,41 @@
   justify-content: space-between;
 }
 
-.badge {
+.badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.85rem;
 }
 
+/* Filled brand-blue pill. Reads as state, not decoration, so it keeps the
+   solid fill in both themes rather than going ghost in dark. */
+.newBadge {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.62rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: var(--ifm-color-primary);
+  color: var(--site-color-cream);
+}
+
+/* The dark primary is a light lavender-blue, so cream on it is only 3.51:1.
+   Navy on the same fill is 5.44:1 — the same inversion the amber chips use. */
+html[data-theme="dark"] .newBadge {
+  color: var(--site-color-navy);
+}
+
 .starBadge {
-  color: #f5b301;
+  color: var(--site-color-amber);
   font-size: 1.2rem;
   line-height: 1;
 }
 
 .rankBadge {
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
   font-weight: var(--ifm-font-weight-bold);
   font-size: 0.95rem;
   letter-spacing: -0.02em;
@@ -59,9 +94,9 @@
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -75,22 +110,23 @@
   font-size: 0.78rem;
 }
 
+/* Tag chips: one treatment for the category and the property facets. They read
+   as the same kind of label on the card, so the earlier filled-vs-outlined
+   split has gone. Mono, because these are labels rather than prose. */
 .category,
 .property {
   display: inline-flex;
   align-items: center;
-  padding: 2px 9px;
-  border-radius: 999px;
-  line-height: 1.6;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.5;
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.72rem;
+  background: var(--site-color-surface-chip);
+  color: var(--ifm-color-primary);
 }
 
-.category {
-  background: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-emphasis-800);
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-.property {
-  color: var(--ifm-color-emphasis-700);
-  border: 1px solid var(--ifm-color-emphasis-300);
+html[data-theme="dark"] .category,
+html[data-theme="dark"] .property {
+  color: var(--ifm-color-primary-light);
 }

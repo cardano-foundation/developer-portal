@@ -1,27 +1,67 @@
 .row {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   gap: 0.85rem;
-  align-items: center;
+  align-items: start;
   padding: 0.85rem 1rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border: 1px solid transparent;
   border-radius: 12px;
-  background: var(--ifm-background-surface-color);
+  background: var(--site-color-surface-raised);
   text-decoration: none;
   color: inherit;
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
+/* In-panel rows sit directly on the panel surface and carry no chrome. The
+   compound selectors keep these ahead of the base rule regardless of where
+   the minifier hoists them. */
+.row.rowCompact {
+  background: none;
+  border-color: transparent;
+  padding: 0.6rem 0.25rem;
+  border-radius: 8px;
+}
+
+html[data-theme="dark"] .row.rowCompact {
+  background: none;
+  border-color: transparent;
+}
+
+/* Compact rows have no border to colour, so hover is a wash instead. These
+   must outrank the base .row:hover, which they do on specificity: (0,3,0)
+   against (0,2,0) in light, (0,4,1) against (0,3,1) in dark. */
+.row.rowCompact:hover {
+  background: rgb(var(--site-color-navy-rgb) / 0.04);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .row.rowCompact:hover {
+  background: rgb(var(--site-color-brand-blue-rgb) / 0.28);
+  border-color: transparent;
+}
+
+/* The dark hover counterpart is inherited from the shared token, so the row
+   needs no per-theme override beyond the compact case above. */
+
 .row:hover {
-  border-color: var(--ifm-color-emphasis-400);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  background: var(--site-color-surface-raised-hover);
+  border-color: var(--site-color-brand-blue);
   text-decoration: none;
   color: inherit;
 }
 
+html[data-theme="dark"] .row:hover {
+  border-color: var(--ifm-color-primary);
+}
+
 .row:focus-visible {
-  outline: 2px solid var(--ifm-color-primary);
+  outline: 2px solid var(--site-color-navy);
   outline-offset: 2px;
+}
+
+html[data-theme="dark"] .row:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 .icon {
@@ -45,27 +85,35 @@
 }
 
 .pickStar {
-  color: #f5b301;
+  color: var(--site-color-amber);
   font-size: 0.95rem;
   line-height: 1;
   flex-shrink: 0;
 }
 
+/* Matches the tile's badge so the same tool reads the same in both layouts. */
 .newBadge {
-  font-size: 0.65rem;
-  font-weight: var(--ifm-font-weight-bold);
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.62rem;
+  font-weight: var(--ifm-font-weight-semibold);
   letter-spacing: 0.06em;
-  background: var(--ifm-color-warning);
-  color: #1a1a1a;
-  padding: 1px 6px;
+  line-height: 1;
+  background: var(--ifm-color-primary);
+  color: var(--site-color-cream);
+  padding: 4px 7px;
   border-radius: 4px;
   flex-shrink: 0;
+}
+
+/* See AppTile: cream on the dark primary is 3.51:1, navy is 5.44:1. */
+html[data-theme="dark"] .newBadge {
+  color: var(--site-color-navy);
 }
 
 .description {
   margin: 0;
   font-size: 0.83rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -73,27 +121,25 @@
   overflow: hidden;
 }
 
-.metaRight {
+.tags {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
-  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
 }
 
-.category {
-  font-size: 0.78rem;
-  color: var(--ifm-color-emphasis-700);
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.5;
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.72rem;
+  background: var(--site-color-surface-chip);
+  color: var(--ifm-color-primary);
 }
 
-@media (max-width: 600px) {
-  .row {
-    grid-template-columns: auto 1fr;
-  }
-  .metaRight {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding-left: calc(40px + 0.85rem);
-  }
+html[data-theme="dark"] .tag {
+  color: var(--ifm-color-primary-light);
 }
