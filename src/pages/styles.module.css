@@ -478,73 +478,114 @@ html[data-theme="dark"] .heroCtaSecondary:hover {
   padding: 4rem 0;
 }
 
-.devGrid {
+/* Two panels, each pairing a block of copy with an artwork tile. They read as
+   raised cards on the page, following the same light/dark pair the rest of
+   this section uses. */
+.devPanel {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-}
-
-/* SDK card */
-.devSdkCard {
-  grid-column: span 5;
-  padding: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 82px);
+  padding: clamp(1.5rem, 4vw, 70px) clamp(1.5rem, 5.5vw, 94px);
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
 }
 
-/* Unlike the navy-in-both-themes brand cards, this section keeps
-   theme-dependent cards: light cards on cream, navy in dark */
-html[data-theme="light"] .devSdkCard {
+.devPanel + .devPanel {
+  margin-top: clamp(1.5rem, 3vw, 49px);
+}
+
+html[data-theme="light"] .devPanel {
   background: var(--site-color-surface-chip);
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
+  /* The design's soft drop shadow. It is the only thing separating a near-white
+     panel from the cream page, so dark mode swaps it for the hairline instead. */
+  box-shadow: 10px 13px 26px 6px rgb(var(--site-color-navy-rgb) / 0.08);
   color: var(--site-color-ink);
 }
 
-html[data-theme="dark"] .devSdkCard {
+html[data-theme="dark"] .devPanel {
   background: var(--site-color-card-surface);
   border: 1px solid var(--site-color-card-border);
   color: var(--site-color-card-text);
 }
 
-.devSdkHeader h3 {
-  font-size: 1.35rem;
-  font-weight: var(--site-font-weight-heading);
-  letter-spacing: -0.02em;
-  margin: 0 0 0.35rem;
+.devPanelCopy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 2.5vw, 40px);
+  min-width: 0;
 }
 
-.devSdkHeader p {
-  font-size: 0.875rem;
-  line-height: 1.5;
+.devPanelHeader h3 {
+  font-size: clamp(1.75rem, 3.4vw, 3.25rem);
+  line-height: 1.19;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6rem;
+}
+
+.devPanelHeader p {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.2;
+  font-weight: var(--site-font-weight-heading);
   margin: 0;
 }
 
-html[data-theme="light"] .devSdkHeader p {
+html[data-theme="light"] .devPanelHeader p {
   color: var(--site-color-ink-muted);
 }
 
-html[data-theme="dark"] .devSdkHeader p {
+html[data-theme="dark"] .devPanelHeader p {
   color: var(--site-color-card-text-muted);
+}
+
+/* Artwork tile. The dotted field is a repeating gradient rather than the ~600
+   individual dots the design exports as: identical pixels, no DOM. */
+.devPanelArt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2.5vw, 2.75rem);
+  border-radius: 13px;
+  min-width: 0;
+  background-image: radial-gradient(
+    circle,
+    rgb(var(--site-color-brand-blue-rgb) / 0.35) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
+}
+
+html[data-theme="light"] .devPanelArt {
+  background-color: var(--site-color-gray-light);
+}
+
+html[data-theme="dark"] .devPanelArt {
+  background-color: rgb(var(--site-color-card-text-rgb) / 0.04);
+}
+
+/* Panel one puts its artwork on the left. Only the placement moves; the copy
+   stays first in the markup so the heading is read before the sample. */
+.devPanelArtLead {
+  order: -1;
 }
 
 .sdkGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
 }
 
 .sdkItem {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 0.85rem;
-  border-radius: 10px;
-  font-size: 0.875rem;
-  font-weight: var(--ifm-font-weight-semibold);
+  gap: 13px;
+  padding: clamp(0.7rem, 1.1vw, 18px);
+  border-radius: 13px;
+  font-size: clamp(1rem, 1.4vw, 1.5rem);
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.02em;
   text-decoration: none !important;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 html[data-theme="light"] .sdkItem {
@@ -557,10 +598,6 @@ html[data-theme="dark"] .sdkItem {
   color: var(--site-color-card-text);
 }
 
-.sdkItem:hover {
-  transform: translateX(4px);
-}
-
 html[data-theme="light"] .sdkItem:hover {
   background: var(--site-color-gray-light-hover);
 }
@@ -570,120 +607,163 @@ html[data-theme="dark"] .sdkItem:hover {
 }
 
 .sdkItem img {
-  width: 20px;
-  height: 20px;
+  width: clamp(28px, 2.4vw, 40px);
+  height: clamp(28px, 2.4vw, 40px);
+  flex: none;
 }
 
 /* code sample block */
 .devCodeCard {
-  grid-column: span 7;
+  width: 100%;
+  min-width: 0;
 }
 
-/* link cards (Builder Tools, Apps, Community, Infrastructure) */
-.devLinkCard {
-  grid-column: span 3;
+/* Ecosystem destinations: a 2x2 grid of cards, icon and affordance on the top
+   row, then title and description. */
+.ecoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 22px);
+}
+
+.ecoCard {
   display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 1.25rem;
-  border-radius: 16px;
+  flex-direction: column;
+  gap: 11px;
+  padding: clamp(0.9rem, 1.1vw, 15px);
+  border-radius: 13px;
   text-decoration: none !important;
-  transition: all 0.25s ease;
+  transition: background-color 0.2s ease;
 }
 
-html[data-theme="light"] .devLinkCard {
-  background: var(--site-color-surface-chip);
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
+html[data-theme="light"] .ecoCard {
+  background: var(--site-color-gray-light);
   color: var(--site-color-ink);
 }
 
-html[data-theme="dark"] .devLinkCard {
-  background: var(--site-color-card-surface);
-  border: 1px solid var(--site-color-card-border);
+html[data-theme="dark"] .ecoCard {
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
   color: var(--site-color-card-text);
 }
 
-.devLinkCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgb(var(--site-color-navy-rgb) / 0.15);
+html[data-theme="light"] .ecoCard:hover {
+  background: var(--site-color-gray-light-hover);
 }
 
-.devLinkIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+html[data-theme="dark"] .ecoCard:hover {
+  background: rgb(var(--site-color-card-text-rgb) / 0.14);
+}
+
+.ecoCardTop {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.ecoCardIcon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  width: clamp(34px, 2.8vw, 46px);
+  height: clamp(34px, 2.8vw, 46px);
+  flex: none;
 }
 
-html[data-theme="light"] .devLinkIcon {
-  background: var(--site-color-gray-light);
+.ecoCardIcon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--site-color-brand-blue);
 }
 
-html[data-theme="dark"] .devLinkIcon {
-  background: var(--site-color-card-border);
+html[data-theme="dark"] .ecoCardIcon svg {
+  color: var(--ifm-color-primary-light);
 }
 
-.devLinkIcon svg {
-  width: 22px;
-  height: 22px;
-  color: var(--site-color-card-accent);
-}
-
-.devLinkText {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.devLinkTitle {
-  font-size: 0.95rem;
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-.devLinkDesc {
-  font-size: 0.75rem;
-}
-
-html[data-theme="light"] .devLinkDesc {
-  color: var(--site-color-ink-muted);
-}
-
-html[data-theme="dark"] .devLinkDesc {
-  color: var(--site-color-card-text-muted);
-}
-
-.devLinkArrow {
-  font-size: 1rem;
+.ecoCardBadge {
+  font-size: 1.1rem;
+  line-height: 1;
   transition: transform 0.2s ease;
 }
 
-/* The arrow is small text, so it takes the muted token rather than a lighter
-   alpha of the ink: at 0.35 it measured 2.37:1 on the card. */
-html[data-theme="light"] .devLinkArrow {
-  color: var(--site-color-text-muted);
+html[data-theme="light"] .ecoCardBadge {
+  color: var(--site-color-brand-blue);
 }
 
-html[data-theme="dark"] .devLinkArrow {
+html[data-theme="dark"] .ecoCardBadge {
+  color: var(--ifm-color-primary-light);
+}
+
+.ecoCard:hover .ecoCardBadge {
+  transform: translateX(3px);
+}
+
+.ecoCardTitle {
+  font-size: clamp(1.05rem, 1.3vw, 1.4rem);
+  line-height: 1.19;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.02em;
+}
+
+.ecoCardDesc {
+  font-size: clamp(0.85rem, 0.9vw, 0.95rem);
+  line-height: 1.2;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.02em;
+}
+
+html[data-theme="light"] .ecoCardDesc {
+  color: var(--site-color-ink-muted);
+}
+
+html[data-theme="dark"] .ecoCardDesc {
   color: var(--site-color-card-text-muted);
 }
 
-.devLinkCard:hover .devLinkArrow {
-  transform: translateX(4px);
-  color: var(--site-color-card-accent);
+/* The two quickstarts stack inside panel two's artwork tile. */
+.quickstartStack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.3vw, 19px);
+  width: 100%;
+  min-width: 0;
 }
 
-/* Quickstart */
+/* The panels are a two-column pairing at desktop and a single column below it.
+   Once stacked, the copy leads in both panels, so panel one's artwork drops
+   back to source order rather than staying above its own heading. */
+@media screen and (max-width: 996px) {
+  .devPanel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .devPanelArtLead {
+    order: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ecoGrid,
+  .sdkGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ecoCardTop {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Quickstart. Dark in both themes, and deliberately the same near-black
+   neutral as the mock terminal above rather than a brand colour: these two
+   read as the same kind of object, a shell you can copy from. */
 .devQuickstartCard {
-  grid-column: span 6;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
   padding: 1rem 1.25rem;
-  border-radius: 16px;
-  background: var(--site-color-brand-blue);
+  border-radius: 19px;
+  background: #25242d;
   min-width: 0;
 }
 
@@ -857,58 +937,15 @@ html[data-theme="dark"] .devLinkArrow {
   height: 14px;
 }
 
-@media screen and (max-width: 996px) {
-  .devGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .devSdkCard {
-    grid-column: span 1;
-  }
-
-  .devCodeCard {
-    grid-column: span 1;
-  }
-
-  .devLinkCard {
-    grid-column: span 1;
-  }
-
-  .devQuickstartCard {
-    grid-column: span 2;
-  }
-}
-
+/* The quickstart rows read better centred once the panel is a single column. */
 @media screen and (max-width: 768px) {
-  .devGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .devSdkCard,
-  .devCodeCard,
-  .devLinkCard,
-  .devQuickstartCard {
-    grid-column: span 1;
-  }
-
-  .sdkGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .quickstartLeft {
-    justify-content: center;
-  }
-
+  .quickstartLeft,
   .quickstartRight {
     justify-content: center;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .sdkGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .quickstartLeft {
     flex-direction: column;
     gap: 0.5rem;
@@ -1359,7 +1396,7 @@ html[data-theme="dark"] .devLinkArrow {
 .heroCtaSecondary:focus-visible,
 .bentoCard:focus-visible,
 .sdkItem:focus-visible,
-.devLinkCard:focus-visible,
+.ecoCard:focus-visible,
 .prodCard:focus-visible,
 .ctaCard:focus-visible {
   outline: 2px solid var(--site-color-navy);
@@ -1370,7 +1407,7 @@ html[data-theme="dark"] .heroCta:focus-visible,
 html[data-theme="dark"] .heroCtaSecondary:focus-visible,
 html[data-theme="dark"] .bentoCard:focus-visible,
 html[data-theme="dark"] .sdkItem:focus-visible,
-html[data-theme="dark"] .devLinkCard:focus-visible,
+html[data-theme="dark"] .ecoCard:focus-visible,
 html[data-theme="dark"] .prodCard:focus-visible,
 html[data-theme="dark"] .ctaCard:focus-visible {
   outline-color: var(--site-color-amber);
