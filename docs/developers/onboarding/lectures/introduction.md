@@ -21,6 +21,8 @@ The core ideas you need before building anything: wallets, UTxOs, transactions, 
 
 Smart contracts from scratch: their structure, their role, on-chain vs off-chain, what a validator is, datum and redeemer, the languages you write them in, and the whole development cycle. After this, you'll be able to **write and understand** smart contracts in Cardano.
 
+**[Start the Intermediate module](/docs/developers/onboarding/lectures/intermediate/introduction)**
+
 ### Advanced: Production-ready smart contracts
 
 Going from "it works" to "it's safe and scalable": common vulnerabilities, design patterns, optimization, and getting to production. After this, you'll be able to write **secure, scalable, high-quality** contracts.
