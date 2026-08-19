@@ -6,18 +6,10 @@ import { vaultScriptCbor } from "./blueprint.ts";
 import { unlockRedeemer } from "./datum.ts";
 
 /// Build a transaction that **unlocks** `lockedUtxo`. This is where the contract
-/// runs: the network hands the validator the datum (the owner), our redeemer, and
-/// the transaction, and only lets the spend through if the owner signed it.
+/// runs: the network hands the validator the datum, the redeemer and the
+/// transaction, and only lets the spend through if the owner signed.
 ///
-/// We declare the owner as a **required signer** so the wallet's signature is in
-/// the transaction for the validator to check. Spending a script UTxO also needs
-/// the **script**, the **redeemer**, and a **collateral** UTxO (a deposit the
-/// network keeps only if the script unexpectedly fails).
-///
-/// Passing an `evaluator` makes the builder **run the validator before it returns**,
-/// so a spend the contract would refuse fails here rather than on the chain. Without
-/// one the builder just guesses a cost budget and the refusal happens on-chain, which
-/// is what costs you the collateral.
+/// Pass an `evaluator` to run the validator here, before anything is sent.
 export async function buildUnlockTx(
   wallet: IWallet,
   provider: IFetcher,

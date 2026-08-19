@@ -6,9 +6,7 @@ import { vaultAddress } from "./blueprint.ts";
 import { vaultDatum } from "./datum.ts";
 
 /// Build a transaction that **locks** `lovelace` at the contract's address, with
-/// a datum naming the connected wallet as the **owner**, the only one who'll be
-/// able to unlock it. This is an ordinary payment to a script address; the
-/// contract doesn't run yet, it only runs later, when someone tries to unlock.
+/// a datum naming the connected wallet as the owner.
 export async function buildLockTx(
   wallet: IWallet,
   provider: IFetcher,

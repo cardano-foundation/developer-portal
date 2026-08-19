@@ -30,7 +30,7 @@ export async function buildRecoverTx(
   if (!collateral) {
     throw new Error(
       "no collateral: this wallet needs a UTxO holding at least 5 ADA and no tokens. " +
-        "Send it some test ADA and try again.",
+      "Send it some test ADA and try again.",
     );
   }
 
@@ -50,7 +50,7 @@ export async function buildRecoverTx(
     .txInScript(vaultScriptCbor)
     // The datum is already on the UTxO, so there is nothing to attach here.
     .txInInlineDatumPresent()
-// #region recover-redeemer
+    // #region recover-redeemer
     // **The one line that differs from `unlock.ts`**: `Recover`, not `Unlock`.
     // This is what tells the validator which of its two branches to take.
     .txInRedeemerValue(recoverRedeemer)

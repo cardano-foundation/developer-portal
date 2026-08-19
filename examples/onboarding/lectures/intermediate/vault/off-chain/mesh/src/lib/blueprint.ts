@@ -5,18 +5,15 @@
 // #region file
 import { applyParamsToScript, resolveScriptHash, serializePlutusScript } from "@meshsdk/core";
 
-// The blueprint your `aiken build` wrote, and the only file that names its
-// path. The title is `<file>.<validator>.<purpose>`, and your validator is in
-// `vault.ak`.
+// The blueprint your `aiken build` wrote, and the only file that names its path.
 // #replace ../../blueprints/vault.plutus.json -> ../../../on-chain/vault/plutus.json
 import blueprint from "../../blueprints/vault.plutus.json" with { type: "json" };
 
 export { blueprint };
 
 // #region recovery-const
-// The recovery key your vault was compiled around: the parameter from the
-// parameters lecture, filling the blank the compiler left. Any key hash works,
-// but it fixes the address, so it has to be the same every time.
+// The recovery key this vault is compiled around. It fixes the address, so it
+// has to stay the same forever.
 const RECOVERY = "00000000000000000000000000000000000000000000000000000000";
 // #endregion recovery-const
 
@@ -36,7 +33,6 @@ export const vaultScriptCbor = applyParamsToScript(compiledCode(blueprint, "vaul
 // #endregion params
 
 /// The script's address: the hash of that script, written for one network.
-/// Anything sent here can only be spent if the validator says yes.
 export function vaultAddress(networkId: number): string {
   return serializePlutusScript(
     { code: vaultScriptCbor, version: PLUTUS_VERSION },

@@ -10,11 +10,6 @@ export const VAULT_TOKEN_NAME = "VAULT";
 
 /// Build a transaction that **mints one vault token and locks it**, together with
 /// `lovelace`, at the vault's address.
-///
-/// One script does both jobs here, because its hash is both the address funds go
-/// to and the policy id the token is created under. The `mint` handler runs to
-/// approve the new token; the `spend` handler stays asleep, since locking is
-/// still an ordinary payment.
 export async function buildMintAndLockTx(
   wallet: IWallet,
   provider: IFetcher,

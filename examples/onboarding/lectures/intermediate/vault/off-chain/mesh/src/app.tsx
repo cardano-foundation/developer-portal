@@ -75,7 +75,7 @@ function App() {
     <main>
       <p>The vault lives at {vaultAddress(NETWORK_ID)}</p>
       <button onClick={lock}>Lock 5 ADA</button>
-      <button onClick={mintAndLock}>Mint &amp; lock 5 ADA</button>
+      <button onClick={mintAndLock}>Mint & lock 5 ADA</button>
       <button onClick={async () => setLocked(await fetchLocked(provider, NETWORK_ID, owner))}>
         Refresh locked
       </button>
