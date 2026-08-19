@@ -6,6 +6,9 @@ import { test } from "node:test";
 
 import {
   DEFAULT_PROTOCOL_PARAMETERS,
+  DEFAULT_V1_COST_MODEL_LIST,
+  DEFAULT_V2_COST_MODEL_LIST,
+  DEFAULT_V3_COST_MODEL_LIST,
   OfflineFetcher,
   deserializeAddress,
   serializeData,
@@ -14,16 +17,18 @@ import type { Asset } from "@meshsdk/core";
 import { OfflineEvaluator } from "@meshsdk/core-csl";
 import { MeshWallet } from "@meshsdk/wallet";
 
-import { blueprint, vaultAddress } from "./lib/blueprint.ts";
+import { vaultAddress } from "./lib/blueprint.ts";
 import { vaultDatum } from "./lib/datum.ts";
 import { buildLockTx } from "./lib/lock.ts";
 import { buildUnlockTx } from "./lib/unlock.ts";
 // #endregion offline-imports
 
-// The other tests in this file need more: the lock, mint and recover builders,
-// and two helpers for applying a parameter by hand. The blueprint itself comes
-// from `lib/blueprint.ts`, which is where its path is written down once.
+// The other tests in this file need more: the mint and recover builders, and two
+// helpers for applying a parameter by hand. The blueprint comes from
+// `lib/blueprint.ts`, which is where its path is written down once.
 import { applyParamsToScript, serializePlutusScript } from "@meshsdk/core";
+
+import { blueprint } from "./lib/blueprint.ts";
 
 import { buildMintAndLockTx } from "./lib/mint.ts";
 import { buildRecoverTx } from "./lib/recover.ts";
@@ -42,6 +47,13 @@ const OWNER =
 function newFetcher(): OfflineFetcher {
   const fetcher = new OfflineFetcher("preview");
   fetcher.addProtocolParameters(DEFAULT_PROTOCOL_PARAMETERS);
+  // A pretend chain has no cost models. Without these the builder still works,
+  // it just logs a stack trace on its way to these very defaults.
+  fetcher.fetchCostModels = async () => [
+    DEFAULT_V1_COST_MODEL_LIST,
+    DEFAULT_V2_COST_MODEL_LIST,
+    DEFAULT_V3_COST_MODEL_LIST,
+  ];
   return fetcher;
 }
 
