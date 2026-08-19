@@ -16,7 +16,6 @@ import FetchLib from "!!raw-loader!@site/examples/onboarding/lectures/intermedia
 import MintLib from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/lib/mint.ts";
 import OfflineTests from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/vault.test.ts";
 import Minimal from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/app.tsx";
-import Proxy from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/server/blockfrost.ts";
 
 # Off-chain and frontend integration
 
@@ -26,7 +25,7 @@ That something is your app, and this lecture is the whole of it. **[On-chain vs 
 
 It arrives all at once for a reason. The contract is where the thinking is, and it changed with every lecture: a datum, a rule, a parameter, a second purpose. The off-chain half barely changes at all. It is the same few builders every time: derive the address, attach the datum, spend the UTxO. Writing them against a contract that has stopped moving is far easier than rewriting them six times as the contract grows.
 
-**You write all of it, and there is less than you think.** Six files carry a Cardano idea: the address, the datum, and the four transactions your page sends. Two more are the small backend that keeps your Blockfrost key out of the browser and the page itself. Nothing is downloaded, and every file is short enough to read.
+**You write all of it, and there is less than you think.** Six files carry a Cardano idea: the address, the datum, and the four transactions your page sends. The rest is the page, its config, and the tests that prove the whole thing before a wallet is ever connected. Nothing is downloaded, and every file is short enough to read.
 
 ## The bridge: from blueprint to address
 
@@ -73,14 +72,14 @@ For the first half of this lecture your Blockfrost key sits in `.env`, and that 
 
 Vite, the build tool that serves and bundles your page, draws that line for you: **your page can only read variables whose names start with `VITE_`, and whatever it reads is written into the files it ships.** Everything else in `.env` stays on your machine, where the backend can still read it, and never reaches the browser at all. That is why your key is never given the prefix, and why the network id is.
 
-So the key needs a second program, running where you control it: the **frontend** builds transactions and holds no secrets, and the **backend** holds the key and is the only thing that talks to Blockfrost. The full version of that split, where transaction building moves server-side too, is **[frontend signs, backend builds and submits](/docs/developers/curriculum/dapps/connect-a-wallet#frontend-signs-backend-builds-and-submits)**. Here only the provider calls move, which is enough to protect the key.
+So the key has to live somewhere the browser never reaches: your **page** builds transactions and holds no secrets, and a small **proxy**, running on a machine you control, holds the key and is the only thing that talks to Blockfrost. The full version of that split, where transaction building moves server-side too, is **[frontend signs, backend builds and submits](/docs/developers/curriculum/dapps/connect-a-wallet#frontend-signs-backend-builds-and-submits)**. Here only the provider calls move, which is enough to protect the key.
 
 ## The whole flow, both halves together
 
 ```mermaid
 sequenceDiagram
     participant App as Your app<br/>(the browser, no secrets)
-    participant Back as Your backend<br/>(holds the Blockfrost key)
+    participant Back as Your proxy<br/>(holds the Blockfrost key)
     participant W as The wallet<br/>(browser extension)
     participant Net as Network
     participant Vault as The vault's address<br/>(no wallet, no keys, no owner)
@@ -123,7 +122,7 @@ You need **[Node.js](https://nodejs.org/) 22.18 or newer**, because from that ve
 npm init -y
 npm pkg set type=module
 npm install @meshsdk/core@^1.9.1 @meshsdk/core-csl@^1.9.1 @meshsdk/wallet@^1.9.1
-mkdir off-chain/src off-chain/src/lib off-chain/server
+mkdir off-chain/src off-chain/src/lib
 ```
 
 The SDK project is just a `package.json`. `npm pkg set type=module` switches it to modern `import` syntax, which the SDK uses. Of the three packages, `@meshsdk/core` is Mesh itself, `@meshsdk/core-csl` is the **evaluator** that runs a compiled validator on your own machine, and `@meshsdk/wallet` is a wallet that signs without a browser.
@@ -255,9 +254,9 @@ That `"tag":"spend"` says the refusal came from the spend validator, not from a 
 
 Put the line back and run it once more to be sure.
 
-### 6. The backend that keeps your key
+### 6. The key, and where it lives
 
-Everything so far ran on your machine and nowhere else. A page is different: everything it needs is sent to whoever opens it. So before writing the page, write the half that holds the key.
+Everything so far ran on your machine and nowhere else. A page is different: everything it needs is sent to whoever opens it. So the key gets its own file, which the page never reads.
 
 First a `.env` file at the top of `cardano-vault/`, beside `package.json`, so no key is ever written into your code:
 
@@ -271,17 +270,7 @@ VITE_NETWORK_ID=0
 
 Nothing in this track puts `cardano-vault/` into version control, but the day you do, add `.env` to a `.gitignore` **before** the first commit. A key in a commit is a key you have given away, even if you delete it in the next one.
 
-Now the backend itself. Create `off-chain/server/blockfrost.ts`:
-
-<CodeBlock language="ts" title="off-chain/server/blockfrost.ts">
-  {extractRegion(Proxy, "file")}
-</CodeBlock>
-
-It is a relay and nothing more. It reads the key once, forwards whatever arrives to Blockfrost with the key attached, and hands the answer back untouched. The body is passed along rather than parsed, because reading the chain is a `GET`, evaluating a script is a `POST` carrying JSON, and submitting carries raw CBOR, the binary encoding a signed transaction travels in, and a `Buffer` passes all three through unharmed. The network comes from the key itself: a Blockfrost key names its own network in its first seven characters, which is why one variable configures both halves.
-
-:::note What "backend" means here, exactly
-`handleBlockfrost` is an ordinary Node request handler and knows nothing about Vite. Mounting it on Vite's server is a convenience, so `npm run dev` starts the front and the back together. Putting this on the internet means running that same function in a server you deploy. The handler does not change; only what hosts it does.
-:::
+Nothing reads that key in the browser. What reads it is a **proxy**: a rule that catches every call your page makes to `/api/blockfrost/…`, adds the key, and passes the call on to Blockfrost. Your page therefore only ever talks to its own origin. You write that rule in the next step, because it lives in the same file that configures the page.
 
 ### 7. The page, and run it
 
@@ -312,22 +301,43 @@ Two small files Vite needs, and they are the only ones whose paths depend on whe
 </html>
 ```
 
-And `vite.config.ts` beside it, mounting the backend you wrote in step 6:
+And `vite.config.ts` beside it, which carries the proxy rule from the step before:
 
 ```ts title="vite.config.ts"
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
-import { blockfrostProxy } from "./off-chain/server/blockfrost.ts";
 
-export default defineConfig({
-  plugins: [
-    react(),
-    nodePolyfills({ globals: { Buffer: true, global: true, process: true } }),
-    blockfrostProxy(),
-  ],
+export default defineConfig(({ mode }) => {
+  // Read `.env` here, in Node. Nothing in this file reaches the browser.
+  const env = loadEnv(mode, process.cwd(), "");
+  const key = env.BLOCKFROST_API_KEY ?? "";
+
+  const proxy = {
+    "/api/blockfrost": {
+      target: `https://cardano-${key.slice(0, 7)}.blockfrost.io/api/v0`,
+      changeOrigin: true,
+      rewrite: (path: string) => path.replace(/^\/api\/blockfrost/, ""),
+      headers: { project_id: key },
+    },
+  };
+
+  return {
+    plugins: [
+      react(),
+      nodePolyfills({ globals: { Buffer: true, global: true, process: true } }),
+    ],
+    server: { proxy },
+    preview: { proxy },
+  };
 });
 ```
+
+Four lines do the work. `target` is where the calls really go, `rewrite` strips the `/api/blockfrost` prefix your page uses, `headers` attaches the key, and `changeOrigin` makes the request look like it came from Blockfrost's own host. The network comes from the key itself: a Blockfrost key names its own network in its first seven characters, which is why one variable configures both halves.
+
+:::note This proxy runs with the dev server, not on the internet
+`server.proxy` applies to `npm run dev` and `preview.proxy` to `npm run preview`, which is everything this lecture needs. A deployed site has no Vite, so hosting this page for real means giving your host the same rule: a redirect on Netlify or Vercel, a `location` block in nginx, or a small server of your own. What must stay true is the shape: the browser calls your origin, and something you control adds the key.
+:::
 
 **And none of `off-chain/src/lib/` changes here.** Until now a `MeshWallet` built from a seed phrase satisfied the `IWallet` argument your builders take. A browser wallet satisfies exactly the same one. That is the whole swap, and it is why those builders were typed against the interface Mesh defines rather than against a particular wallet.
 
@@ -337,7 +347,7 @@ So the last file you write is the page. Create `off-chain/src/app.tsx`:
   {extractRegion(Minimal, "file")}
 </CodeBlock>
 
-Look at the provider line first, because it is the entire client-side cost of having a backend:
+Look at the provider line first, because it is the entire client-side cost of keeping the key out of the browser:
 
 ```ts
 const provider = new BlockfrostProvider("/api/blockfrost");
@@ -375,17 +385,11 @@ Now check the code that goes to the browser, which is the part that would have b
 npm run build
 ```
 
-Then look in what it produced for the exact key your `.env` holds:
+Then search `dist/` for your key. It is not there. Without the proxy it would have been, sitting in `dist/assets/index-*.js`, where anyone who opened your page could have read it. Search for the bare word `preview` instead and you will get hits, but those are Mesh's own network names, not your key.
 
-```bash
-grep -rF "$(grep BLOCKFROST_API_KEY .env | cut -d= -f2)" dist/ || echo "not there"
-```
+**And notice which rules applied where.** Your proxy reads the key straight out of `.env` and that is correct: it runs on your machine, for you. The page goes to anyone who opens it, so it gets none of it. Same key, same file, trusted in one place and not in the other, and the only thing that decides which rules apply is **where the code runs**.
 
-It is not there. Without the backend it would have been, sitting in `dist/assets/index-*.js`, where anyone who opened your page could have read it. Search for the bare word `preview` instead and you will get hits, but those are Mesh's own network names, not your key.
-
-**And notice which rules applied where.** Your backend reads the key straight out of `.env` and that is correct: it runs on your machine, for you. The page goes to anyone who opens it, so it gets none of it. Same key, same file, trusted in one place and not in the other, and the only thing that decides which rules apply is **where the code runs**.
-
-**Then break it on purpose, one last time.** You already watched the offline tests catch a missing `.requiredSignerHash(owner)`. Delete that line again and press **Unlock** here. Nothing reaches the chain: the check before sending, where your backend asks Blockfrost to run the script, already said no. The owner's key was never in `extra_signatories`, so `list.has` was false. Same refusal, same rule, now with a wallet connected and real test ADA at stake. Put the line back.
+**Then break it on purpose, one last time.** You already watched the offline tests catch a missing `.requiredSignerHash(owner)`. Delete that line again and press **Unlock** here. Nothing reaches the chain: the check before sending, where your proxy asks Blockfrost to run the script, already said no. The owner's key was never in `extra_signatories`, so `list.has` was false. Same refusal, same rule, now with a wallet connected and real test ADA at stake. Put the line back.
 
 </TabItem>
 <TabItem value="evolution" label="Evolution">
