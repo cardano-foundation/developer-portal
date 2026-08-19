@@ -8,7 +8,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import CodeBlock from "@theme/CodeBlock";
 import extractRegion from "@site/src/utils/extractRegion";
-import MintToken from "!!raw-loader!@site/examples/onboarding/lectures/mesh/src/mint-token.ts";
+import MintToken from "!!raw-loader!@site/examples/onboarding/lectures/beginner/mesh/src/mint-token.ts";
 
 # Tokens: fungible & NFTs
 
