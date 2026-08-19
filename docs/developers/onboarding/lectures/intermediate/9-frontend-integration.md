@@ -16,6 +16,7 @@ import FetchLib from "!!raw-loader!@site/examples/onboarding/lectures/intermedia
 import MintLib from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/lib/mint.ts";
 import OfflineTests from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/vault.test.ts";
 import Minimal from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/src/app.tsx";
+import VercelFn from "!!raw-loader!@site/examples/onboarding/lectures/intermediate/vault/off-chain/mesh/api/blockfrost/[...path].ts";
 
 # Off-chain and frontend integration
 
@@ -129,6 +130,31 @@ The SDK project is just a `package.json`. `npm pkg set type=module` switches it 
 
 Note where that `package.json` landed: the **workspace root**, not inside `off-chain/`. `npm` acts on the folder holding `package.json`, and `node` looks there for the packages it installed, so putting it at the root means every command in this track still runs from `cardano-vault/`.
 
+One more file, so your editor understands the code you are about to write. Create `tsconfig.json` beside `package.json`:
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "types": ["node", "vite/client"]
+  },
+  "include": ["off-chain/src"]
+}
+```
+
+Four of those lines are doing real work. `skipLibCheck` stops TypeScript checking Mesh's own dependencies and reporting errors from libraries you never imported. `types` brings in Node's globals, which the tests need, and Vite's, which is what makes `import.meta.env` a known thing. `resolveJsonModule` lets you import `plutus.json`. And `allowImportingTsExtensions` is what lets your imports say `./lib/lock.ts`, extension and all, the way Node runs them.
+
 ### 2. From blueprint to address
 
 The first file you write, and the bridge the top of this lecture describes. Create `off-chain/src/lib/blueprint.ts`:
@@ -168,15 +194,15 @@ These are the whole off-chain half: lock funds, find them again, unlock them, an
 
 An ordinary payment, with two additions. `deserializeAddress(...).pubKeyHash` pulls your key hash out of your address, which is what goes in the datum, and `.txOutInlineDatumValue(...)` attaches that datum to the output. No script, no collateral, no redeemer: the contract does not run when you lock.
 
-Notice the wallet argument. It is typed as `IWallet`, the interface Mesh defines, and nothing here names a particular wallet. That is why the same file works with the seed-phrase wallet your tests use in step 5 and with the browser extension your page uses in step 7.
-
 Then `off-chain/src/lib/unlock.ts`, which is where the contract does run:
 
 <CodeBlock language="ts" title="off-chain/src/lib/unlock.ts">
   {extractRegion(UnlockLib, "file")}
 </CodeBlock>
 
-Every extra line here is one item in that list. `.txInScript` carries the compiled contract, `.txInRedeemerValue` says which action you are taking, `.txInCollateral` offers the deposit, and `.requiredSignerHash(owner)` is the one people forget: it puts your key hash in `extra_signatories`, which is the list your validator actually reads.
+Four of the extra lines are the four things a script spend adds. `.txInScript` carries the compiled contract, `.txInRedeemerValue` says which action you are taking, `.txInCollateral` offers the deposit, and `.requiredSignerHash(owner)` is the one people forget: it puts your key hash in `extra_signatories`, which is the list your validator actually reads.
+
+Three more lines say what is being spent. `.spendingPlutusScriptV3()` declares that this input is guarded by a script, `.txIn(...)` names the locked UTxO, and `.txInInlineDatumPresent()` says its datum is already on the chain, so there is nothing to attach.
 
 One argument is worth stopping on, because the next step is built on it. Passing an **evaluator** makes the builder run your **real compiled validator** before it returns anything. A spend the contract would refuse fails here, immediately, instead of on the chain where it would cost you the collateral.
 
@@ -206,7 +232,7 @@ Create `off-chain/src/vault.test.ts`. The imports first:
   {extractRegion(OfflineTests, "offline-imports")}
 </CodeBlock>
 
-Then a pretend chain and a wallet to go with it. `OfflineFetcher` is an in-memory chain you fill in yourself, and `MeshWallet` is a wallet built from a seed phrase rather than an extension:
+Then a pretend chain and a wallet to go with it. `OfflineFetcher` is an in-memory chain you fill in yourself, and `MeshWallet` is a wallet built from a seed phrase rather than an extension. The cost-model lines are housekeeping: a pretend chain has none, and handing over the same defaults the builder would fall back to keeps the output clean:
 
 <CodeBlock language="ts" title="off-chain/src/vault.test.ts">
   {extractRegion(OfflineTests, "offline-setup")}
@@ -236,21 +262,21 @@ Run it:
 node --test off-chain/src/vault.test.ts
 ```
 
-Two tests, two passes, in a few milliseconds. Node runs the TypeScript directly, which is why step 1 asked for 22.18 or newer.
+Two tests, two passes, in a few milliseconds. Node runs the TypeScript directly, which is why this lecture opened by asking for 22.18 or newer.
 
-Expect some extra output above that result, including a warning that cost models fell back to defaults. That is the offline chain saying it has no real protocol parameters, the network's current fee and size settings, to hand out. Read the `pass` and `fail` counts at the bottom, not the messages above them.
+Node prints one warning above that, about importing a WebAssembly module. It comes from Mesh loading the library that serialises transactions, and it is safe to ignore.
 
 **Now break the off-chain side, and watch which layer notices.** In `off-chain/src/lib/unlock.ts`, delete the `.requiredSignerHash(owner)` line and save.
 
-Run `aiken check on-chain/vault` first, passing the project folder now that you are one level above it. All eight contract tests still pass, because the contract is still correct. Nothing is wrong with the rule.
+Your contract is untouched, and its eight tests would still pass, because nothing is wrong with the rule. They never see your app, which is exactly the gap this level exists to close.
 
-Then run the test file again. It fails, in the same few milliseconds, and the evaluator reports which script did the refusing:
+Run the test file again. It fails, in the same few milliseconds, and the evaluator reports which script did the refusing:
 
 ```
 "tag":"spend","errorMessage":"the validator crashed / exited prematurely"
 ```
 
-That `"tag":"spend"` says the refusal came from the spend validator, not from a transaction that failed to build. The gap between a correct contract and an app that builds the wrong transaction is invisible to a contract test, and this is exactly what catches it. Finding it took milliseconds and no test ADA. Finding it on the network would have meant locking real funds first and waiting for two confirmations.
+That `"tag":"spend"` says the refusal came from the spend validator, not from a transaction that failed to build. It cost milliseconds and no test ADA. On the network you would have had to lock funds first and wait for that transaction to settle before you could even attempt the unlock that fails.
 
 Put the line back and run it once more to be sure.
 
@@ -283,7 +309,7 @@ npm pkg set scripts.dev=vite
 npm pkg set scripts.build="vite build"
 ```
 
-`vite` is the dev server, and the `build` script is there for the last exercise in this lecture. `typescript` and the `@types/` packages are for your editor rather than for any command here. `vite-plugin-node-polyfills` is the surprising one: Mesh reaches for Node built-ins like `Buffer` and `crypto`, which a browser does not have, so they have to be supplied.
+`vite` is the dev server, and the `build` script is there for the last exercise in this lecture. `typescript` and the `@types/` packages are what your `tsconfig.json` from step 1 has been describing; nothing here runs `tsc`. `vite-plugin-node-polyfills` is the surprising one: Mesh reaches for Node built-ins like `Buffer` and `crypto`, which a browser does not have, so they have to be supplied.
 
 Two small files Vite needs, and they are the only ones whose paths depend on where things sit in your workspace. `index.html` goes at the top of `cardano-vault/`, beside `package.json`, because Vite serves the folder you run it from:
 
@@ -335,9 +361,19 @@ export default defineConfig(({ mode }) => {
 
 Four lines do the work. `target` is where the calls really go, `rewrite` strips the `/api/blockfrost` prefix your page uses, `headers` attaches the key, and `changeOrigin` makes the request look like it came from Blockfrost's own host. The network comes from the key itself: a Blockfrost key names its own network in its first seven characters, which is why one variable configures both halves.
 
-:::note This proxy runs with the dev server, not on the internet
-`server.proxy` applies to `npm run dev` and `preview.proxy` to `npm run preview`, which is everything this lecture needs. A deployed site has no Vite, so hosting this page for real means giving your host the same rule: a redirect on Netlify or Vercel, a `location` block in nginx, or a small server of your own. What must stay true is the shape: the browser calls your origin, and something you control adds the key.
+:::note Where this rule still applies once you deploy
+It depends on what the host runs. On anything with a **Node process**, a container, a VPS, or a service that runs `npm run preview`, this same config serves the built page and proxies exactly as it does locally. On a **static host**, which is what Vercel and Netlify give a Vite app by default, there is no Node process: the page is served from a CDN and nothing answers `/api/blockfrost/…`.
+
+A redirect will not rescue the static case, because it passes the browser's headers along and cannot add your key. What has to stay true is the shape: the browser calls your own origin, and something you control attaches the key.
 :::
+
+**If you deploy it to Vercel**, that something is one file. Put it at `api/blockfrost/[...path].ts`, set `BLOCKFROST_API_KEY` in the project's environment variables, and change nothing else. Your page still calls `/api/blockfrost/…`, and Vercel routes it here instead of to Vite:
+
+<CodeBlock language="ts" title="api/blockfrost/[...path].ts">
+  {extractRegion(VercelFn, "file")}
+</CodeBlock>
+
+It is the same four decisions as the config: where the call really goes, strip the prefix, attach the key, hand the answer back. Returning `fetch(...)` straight out passes the status and body through untouched. The forwarding itself is portable, since it is plain `Request` in, `Response` out, but each host wants its own entry point: Netlify Edge Functions expect the file under `netlify/edge-functions/`, and Cloudflare Workers export `{ fetch }` and read secrets from an `env` argument rather than `process.env`.
 
 **And none of `off-chain/src/lib/` changes here.** Until now a `MeshWallet` built from a seed phrase satisfied the `IWallet` argument your builders take. A browser wallet satisfies exactly the same one. That is the whole swap, and it is why those builders were typed against the interface Mesh defines rather than against a particular wallet.
 
@@ -405,7 +441,7 @@ Stuck? The finished code is in the playground — see the **[introduction](/docs
 
 You started with an empty folder. You now have a contract you wrote and tested, with two purposes under one hash, and an app that locks, mints and unlocks real test ADA through it.
 
-Look back at what each half cost. The contract took six lectures, because every one of them changed what the rule was. The app took one, because there was only ever one shape to it: derive the address, attach the datum, spend the UTxO, hand it to a wallet. That difference is not an accident of this example. It is the normal shape of Cardano work, and it is why the rest of this track goes straight back to contracts.
+Notice the balance. Six lectures went into the contract, and every one of them added something to it. One went into the app, because its shape never changed: derive the address, build a transaction, hand it to a wallet. That is the usual balance of Cardano work, and it is why the rest of this track goes back to contracts.
 
 Each of the remaining lectures is the same shape with a different rule in the middle. The contracts arrive finished, and each lecture has you break one and write the missing rule back:
 
