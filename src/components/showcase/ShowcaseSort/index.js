@@ -7,13 +7,17 @@ export const SortQueryStringKey = "sort";
 
 // "Most active" is intentionally omitted: tools have no on-chain tx data.
 export const SORT_IDS = {
+  NEWEST: "newest",
   FEATURED: "featured",
   ALPHABETICAL: "alphabetical",
 };
 
-export const DEFAULT_SORT = SORT_IDS.FEATURED;
+// Newest leads: the directory's value is what has just landed, and the
+// entries carry insertion order already.
+export const DEFAULT_SORT = SORT_IDS.NEWEST;
 
 export const SORT_OPTIONS = [
+  { id: SORT_IDS.NEWEST, label: "Newest" },
   { id: SORT_IDS.FEATURED, label: "Featured" },
   { id: SORT_IDS.ALPHABETICAL, label: "A to Z" },
 ];

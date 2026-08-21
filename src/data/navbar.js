@@ -2,112 +2,126 @@
  * Navbar mega menu items for the Cardano Developer Portal.
  * Extracted from docusaurus.config.js for maintainability.
  *
+ * Each mega menu is defined ONCE: an optional featured tile plus link
+ * columns. The flat `items` array that Docusaurus's mobile drawer consumes
+ * is derived from that definition, so the desktop and mobile menus cannot
+ * drift apart.
+ *
+ * Shapes:
+ *   featured: {title, description, image, to|href, cta, placement}
+ *     placement 'start' puts the tile before the columns, 'end' after.
+ *   columns:  [{title, items: [{label, description?, to|href, icon?}]}]
+ *     icon is a name from src/theme/NavbarItem/DropdownNavbarItem/icons.js.
+ *
  * @param {string} repository - GitHub repository URL
  */
+
+/** Flatten a mega menu definition into the mobile drawer's link list,
+ *  keeping the featured tile in its desktop position. */
+function toMobileItems({featured, columns}) {
+  const items = [];
+  const featuredItem = featured
+    ? {...(featured.to ? {to: featured.to} : {href: featured.href}), label: featured.title}
+    : null;
+  if (featuredItem && featured.placement !== 'end') {
+    items.push(featuredItem);
+  }
+  for (const column of columns) {
+    for (const {to, href, label} of column.items) {
+      items.push(href ? {href, label} : {to, label});
+    }
+  }
+  if (featuredItem && featured.placement === 'end') {
+    items.push(featuredItem);
+  }
+  return items;
+}
+
+function megaMenu({label, featured, columns}) {
+  return {
+    type: 'dropdown',
+    label,
+    position: 'left',
+    items: toMobileItems({featured, columns}),
+    mega: true,
+    customProps: {featured, columns},
+  };
+}
+
 function getNavbarItems(repository) {
   return [
-    {
-      // Developers mega menu
-      type: 'dropdown',
+    megaMenu({
       label: 'Developers',
-      position: 'left',
-      items: [
-        {to: "/docs/developers/", label: "Start Here"},
-        {to: "/tools/", label: "Builder Tools"},
-        {to: "/templates/", label: "Templates"},
-        {to: "/docs/developers/curriculum/start-building/ai-assisted-development", label: "Cardano Dev Skills"},
-        {to: "/docs/developers/exchange-integrations", label: "Exchange Integration"},
-        {to: "/docs/community/cardano-developer-community/", label: "Community"},
-        {to: "/docs/community/funding/", label: "Grants & Funding"},
-        {to: "/talent/", label: "Talent Pool"},
-      ],
-      mega: true,
-      customProps: {
-        columnCount: 2,
-        columns: [
-          {
-            title: 'Learn & Build',
-            icon: 'book-solid',
-            items: [
-              {to: '/docs/developers/', label: 'Start Here', description: 'The 7-module developer curriculum, zero to shipping', icon: 'book-solid'},
-              {to: '/tools', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'wrench-solid'},
-              {to: '/templates', label: 'Templates', description: 'Runnable dApp starters you can scaffold in one command', icon: 'code-solid'},
-              {to: '/docs/developers/curriculum/start-building/ai-assisted-development', label: 'Cardano Dev Skills', description: 'Give your AI coding assistant current, authoritative Cardano context', icon: 'plug-solid'},
-              {to: '/docs/developers/exchange-integrations', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration for exchanges', icon: 'building-solid'},
-            ],
-          },
-          {
-            title: 'Get Involved',
-            icon: 'people-group-solid',
-            items: [
-              {to: '/docs/community/cardano-developer-community', label: 'Community', description: 'Connect with other developers', icon: 'people-group-solid'},
-              {to: '/docs/community/funding', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'handshake-solid'},
-              {to: '/talent', label: 'Talent Pool', description: 'Join the developer network', icon: 'code-solid'},
-            ],
-          },
-        ],
+      featured: {
+        title: 'Start Here',
+        description:
+          'The 7-module path from zero to shipping, fundamentals through production.',
+        image: '/img/home/rebrand/bento-start-here.webp',
+        to: '/docs/developers/',
+        cta: 'Start the Curriculum',
+        placement: 'start',
       },
-    },
-    {
-      // Operators mega menu
-      type: 'dropdown',
+      columns: [
+        {
+          title: 'Build',
+          items: [
+            {to: '/tools/', label: 'Builder Tools', description: 'Curated tools, SDKs, and libraries', icon: 'wrench'},
+            {to: '/templates/', label: 'Templates', description: 'Runnable dApp starters you can scaffold in one command', icon: 'code'},
+            {to: '/templates/contracts/', label: 'Contracts Library', description: 'Reference smart contracts by use case', icon: 'scroll'},
+            {to: '/docs/developers/curriculum/start-building/ai-assisted-development/', label: 'Cardano Dev Skills', description: 'Current Cardano context for your AI coding assistant', icon: 'plug'},
+          ],
+        },
+        {
+          title: 'Guides',
+          items: [
+            {to: '/docs/developers/cardano-for-ethereum-developers/', label: 'Cardano for Ethereum Developers', description: 'Map your existing mental model to Cardano', icon: 'shapes'},
+            {to: '/docs/developers/exchange-integrations/', label: 'Exchange Integration', description: 'Custodial deposit and withdrawal integration', icon: 'building'},
+          ],
+        },
+      ],
+    }),
+    megaMenu({
       label: 'Operators',
-      position: 'left',
-      items: [
-        {to: '/docs/operators/', label: 'Overview'},
-        {to: '/docs/operators/basics/consensus-staking', label: 'Handbook'},
-        {to: '/docs/operators/operator-tools/guild-ops-suite', label: 'Operator Tools'},
+      columns: [
+        {
+          title: 'Run a Stake Pool',
+          items: [
+            {to: '/docs/operators/', label: 'Overview', description: 'What it takes to run a stake pool', icon: 'book'},
+            {to: '/docs/operators/basics/consensus-staking/', label: 'Handbook', description: 'Step by step from setup to governance', icon: 'building'},
+            {to: '/docs/operators/operator-tools/guild-ops-suite/', label: 'Operator Tools', description: 'Guild Ops, Calidus keys, and Mithril', icon: 'wrench'},
+          ],
+        },
       ],
-      mega: true,
-      customProps: {
-        columnCount: 1,
-        columns: [
-          {
-            title: 'Run a Stake Pool',
-            icon: 'book-solid',
-            items: [
-              {to: '/docs/operators/', label: 'Overview', description: 'What it takes to run a stake pool', icon: 'book-solid'},
-              {to: '/docs/operators/basics/consensus-staking', label: 'Handbook', description: 'Step by step from setup to governance', icon: 'building-solid'},
-              {to: '/docs/operators/operator-tools/guild-ops-suite', label: 'Operator Tools', description: 'Guild Ops, Calidus keys, and Mithril', icon: 'wrench-solid'},
-            ],
-          },
-        ],
-      },
-    },
-    {
-      // Ecosystem mega menu
-      type: 'dropdown',
+    }),
+    megaMenu({
       label: 'Ecosystem',
-      position: 'left',
-      items: [
-        {to: "/blog/", label: "Dev Blog"},
-        {href: "https://www.addevent.com/calendar/TG807216", label: "Developer Office Hours"},
-        {href: "https://cardanoupdates.com/", label: "Developer Activity"},
-        {href: "https://cips.cardano.org/", label: "CIPs"},
-      ],
-      mega: true,
-      customProps: {
-        columnCount: 2,
-        columns: [
-          {
-            title: 'Explore',
-            icon: 'shapes-solid',
-            items: [
-              {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book-solid'},
-              {href: 'https://www.addevent.com/calendar/TG807216', label: 'Developer Office Hours', description: 'Weekly live Q&A with Cardano Foundation engineers', icon: 'people-group-solid'},
-            ],
-          },
-          {
-            title: 'External Resources',
-            icon: 'link-solid',
-            items: [
-              {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Track ecosystem-wide development progress', icon: 'chart-line-solid'},
-              {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll-solid'},
-            ],
-          },
-        ],
+      featured: {
+        title: 'Developer Office Hours',
+        description: 'Weekly live Q&A with Cardano Foundation engineers.',
+        image: '/img/home/rebrand/calendar-spiral.webp',
+        href: 'https://www.addevent.com/calendar/TG807216',
+        cta: 'Add to Calendar',
+        placement: 'end',
       },
-    },
+      columns: [
+        {
+          title: 'Community',
+          items: [
+            {to: '/docs/community/cardano-developer-community/', label: 'Community', description: 'Forums, chats, and weekly office hours', icon: 'people-group'},
+            {to: '/talent/', label: 'Talent Pool', description: 'Hackathons, jobs, and grants for developers', icon: 'users'},
+            {to: '/docs/community/funding/', label: 'Grants & Funding', description: 'Get funding for your project', icon: 'handshake'},
+          ],
+        },
+        {
+          title: 'Stay Current',
+          items: [
+            {to: '/blog/', label: 'Dev Blog', description: 'Latest developer updates', icon: 'book'},
+            {href: 'https://cardanoupdates.com/', label: 'Developer Activity', description: 'Ecosystem-wide development progress', icon: 'chart-line'},
+            {href: 'https://cips.cardano.org/', label: 'CIPs', description: 'Cardano Improvement Proposals', icon: 'scroll'},
+          ],
+        },
+      ],
+    }),
     {
       href: "https://discord.gg/MmeqpAzKbp",
       position: "right",
