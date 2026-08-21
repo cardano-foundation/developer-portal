@@ -1,0 +1,73 @@
+{
+  "preamble": {
+    "title": "cardano-foundation/onboarding-vesting",
+    "description": "The vesting contract from the onboarding Intermediate lectures",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.23+unknown"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "vesting.vesting.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/vesting~1VestingDatum"
+        }
+      },
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "compiledCode": "59015f01010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cdc3a400530080024888966002600460106ea800e2646644b30013370e900018059baa0018992cc004c8c8cc004004dd618091809980998099809980998099809980998079baa0072259800800c528456600266e3cdd71809800801c528c4cc008008c05000500e2022375c60200031323232332259800980598089baa0028acc004c02cc044dd5180a980b001c4cdc40009bad3015301237540051337120026eb4c054c048dd500120208a50404060260026eb4c04cc050010cc044c048004cc04660026010601c6ea8c048c04c006980103d87a8000a60103d8798000403497ae0300e37546022601c6ea8004c040c044c044c044c044c044c044c044c034dd5002c5282016300c3754601e60186ea80062c8050c034004c034c038004c024dd5001c590070c020004c00cdd5004452689b2b200201",
+      "hash": "550f731e0f5e582a5b681ff15ac23ad226629cc599365f5fa73d3f93"
+    },
+    {
+      "title": "vesting.vesting.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "59015f01010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cdc3a400530080024888966002600460106ea800e2646644b30013370e900018059baa0018992cc004c8c8cc004004dd618091809980998099809980998099809980998079baa0072259800800c528456600266e3cdd71809800801c528c4cc008008c05000500e2022375c60200031323232332259800980598089baa0028acc004c02cc044dd5180a980b001c4cdc40009bad3015301237540051337120026eb4c054c048dd500120208a50404060260026eb4c04cc050010cc044c048004cc04660026010601c6ea8c048c04c006980103d87a8000a60103d8798000403497ae0300e37546022601c6ea8004c040c044c044c044c044c044c044c044c034dd5002c5282016300c3754601e60186ea80062c8050c034004c034c038004c024dd5001c590070c020004c00cdd5004452689b2b200201",
+      "hash": "550f731e0f5e582a5b681ff15ac23ad226629cc599365f5fa73d3f93"
+    }
+  ],
+  "definitions": {
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "Int": {
+      "dataType": "integer"
+    },
+    "aiken/crypto/VerificationKeyHash": {
+      "title": "VerificationKeyHash",
+      "dataType": "bytes"
+    },
+    "vesting/VestingDatum": {
+      "title": "VestingDatum",
+      "anyOf": [
+        {
+          "title": "VestingDatum",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "beneficiary",
+              "$ref": "#/definitions/aiken~1crypto~1VerificationKeyHash"
+            },
+            {
+              "title": "lock_until",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
