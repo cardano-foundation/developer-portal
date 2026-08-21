@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
@@ -17,7 +19,6 @@ import {
 import styles from "./styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
-const OG_IMAGE = "https://developers.cardano.org/img/og/og-builder-tools.jpg";
 
 function CopyButton({ text }) {
   const [copied, setCopied] = useState(false);
@@ -110,9 +111,8 @@ export default function TemplateDetail({ slug }) {
       <Head>
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
+      <PageMetadata image={ogCards.templates} />
       {/* PageCTA brings its own container, so it sits beside the inner one
           rather than inside it. Keeping it within <main> leaves the edit link
           inside a landmark. */}
