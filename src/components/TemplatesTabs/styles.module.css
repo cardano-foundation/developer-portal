@@ -1,10 +1,18 @@
+/* Section switcher for the two templates routes. It sits inside SiteHero's
+   children slot, so every colour here composites over the navy band rather
+   than the page, and the palette is identical in both themes for the same
+   reason the band is. */
+
 .tabs {
+  /* SiteHero's children slot is a column flex container, which would
+     otherwise stretch the track to the full band width. */
+  align-self: flex-start;
   display: inline-flex;
   gap: 0.25rem;
-  margin: 1.5rem 0 0;
+  margin: 0;
   padding: 0.25rem;
   border-radius: 10px;
-  background: var(--ifm-color-emphasis-100);
+  background: rgb(var(--site-color-cream-rgb) / 0.1);
 }
 
 .tab {
@@ -13,23 +21,34 @@
   padding: 0.4rem 1rem;
   border-radius: 8px;
   font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--ifm-color-emphasis-700);
+  font-weight: var(--ifm-font-weight-semibold);
+  /* 9.27:1 against the track over navy */
+  color: rgb(var(--site-color-cream-rgb) / 0.75);
   text-decoration: none;
   transition: background-color 150ms ease, color 150ms ease;
 }
 
 .tab:hover {
   text-decoration: none;
-  color: var(--ifm-color-emphasis-1000);
+  color: var(--site-color-cream);
+  background: rgb(var(--site-color-cream-rgb) / 0.08);
 }
 
-.tabActive {
-  background: var(--ifm-background-surface-color);
-  color: var(--ifm-color-primary);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+/* Cream ring, in both themes: the track sits on the navy band, where the
+   usual navy-in-light ring would be invisible. Same call as the CTA pills. */
+.tab:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
 }
 
-.tabActive:hover {
-  color: var(--ifm-color-primary);
+/* Compound so it beats .tab on specificity rather than on source order:
+   cssnano is free to reorder identical-bodied rules across modules. */
+.tab.tabActive {
+  background: var(--site-color-cream);
+  color: var(--site-color-navy);
+}
+
+.tab.tabActive:hover {
+  background: var(--site-color-cream);
+  color: var(--site-color-navy);
 }

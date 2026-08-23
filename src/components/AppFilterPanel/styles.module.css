@@ -1,103 +1,172 @@
-.wrap {
-  display: inline-block;
-  position: relative;
+/* Persistent facet rail, on the same raised surface as the tool cards and
+   the browse controls so the whole browse area reads as one layer. */
+.rail {
+  padding: 1.25rem 1.15rem;
+  border: 0;
+  border-radius: 12px;
+  background: var(--site-color-surface-raised);
+  align-self: start;
 }
 
-.toggle {
+/* Hairline between groups: the portal's standard divider, the same edge the
+   navbar and hero carry. It is what gives the rail structure instead of three
+   runs of text stacked on each other. */
+.group + .group {
+  margin-top: 1.35rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgb(var(--site-color-navy-rgb) / 0.1);
+}
+
+html[data-theme="dark"] .group + .group {
+  border-top-color: var(--site-color-card-border);
+}
+
+.groupLabel {
+  margin: 0 0 0.6rem;
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.68rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--site-color-text-muted);
+}
+
+.facetList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+/* Languages are short labels, so they flow inline instead of stacking. */
+.facetListInline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.7rem;
+}
+
+/* Facets read as a list of links, not as buttons: no fill, no border, until
+   one is selected. */
+.facet {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  color: var(--ifm-color-emphasis-900);
-  padding: 0.5rem 1rem;
+  width: 100%;
+  padding: 0.28rem 0.5rem;
+  border: 0;
   border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  background: none;
+  color: var(--ifm-font-color-base);
+  font-family: inherit;
+  font-size: 0.87rem;
+  line-height: 1.4;
+  text-align: left;
   cursor: pointer;
-  transition: border-color 150ms ease, background 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
-.toggle:hover {
-  border-color: var(--ifm-color-primary);
+.facetListInline .facet {
+  width: auto;
+  padding: 0.3rem 0.35rem;
 }
 
-.toggleOpen {
-  background: var(--ifm-color-emphasis-100);
-  border-color: var(--ifm-color-primary);
-}
-
-.panel {
-  position: absolute;
-  z-index: 30;
-  margin-top: 0.75rem;
-  min-width: 320px;
-  max-width: 480px;
-  padding: 1.1rem 1.2rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 12px;
-  background: var(--ifm-background-surface-color);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
-}
-
-.section {
-  margin-bottom: 1.1rem;
-}
-
-.section:last-of-type {
-  margin-bottom: 0.6rem;
-}
-
-.heading {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--ifm-color-emphasis-700);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.5rem;
-}
-
-.pillList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.pill {
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-color-emphasis-300);
-  color: var(--ifm-color-emphasis-800);
-  border-radius: 999px;
-  padding: 0.3rem 0.85rem;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
-}
-
-.pill:hover {
-  border-color: var(--ifm-color-primary);
+.facet:hover {
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
   color: var(--ifm-color-primary);
 }
 
-.pillActive {
-  color: #fff !important;
-  border-color: transparent !important;
+/* Every light hover needs its dark counterpart, or html[data-theme="dark"]
+   rules at (0,2,1) outrank the (0,2,0) hover and nothing happens. */
+html[data-theme="dark"] .facet:hover {
+  background: rgb(var(--site-color-brand-blue-rgb) / 0.3);
+  color: var(--ifm-color-primary-light);
+}
+
+.facet:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .facet:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* Selected facets become a filled chip. Compound so they stay ahead of the
+   base and hover rules wherever the minifier hoists them. */
+.facet.facetActive {
+  background: rgb(var(--site-color-brand-blue-rgb) / 0.12);
+  color: var(--ifm-color-primary);
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.facet.facetActive:hover {
+  background: rgb(var(--site-color-brand-blue-rgb) / 0.18);
+}
+
+html[data-theme="dark"] .facet.facetActive {
+  background: rgb(var(--site-color-brand-blue-rgb) / 0.45);
+  color: var(--site-color-cream);
+}
+
+html[data-theme="dark"] .facet.facetActive:hover {
+  background: rgb(var(--site-color-brand-blue-rgb) / 0.55);
+  color: var(--site-color-cream);
+}
+
+.facetLabel {
+  min-width: 0;
+}
+
+/* Bucket size, pushed to the trailing edge. Tabular figures keep the column
+   of numbers from jittering between rows. */
+.facetCount {
+  margin-left: auto;
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--site-color-text-muted);
+}
+
+.facetListInline .facetCount {
+  margin-left: 0.15rem;
+  font-size: 0.62rem;
+}
+
+.facet.facetActive .facetCount {
+  color: inherit;
+  opacity: 0.75;
+}
+
+.facetRemove {
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0.75;
 }
 
 .clearButton {
-  background: transparent;
-  border: 0;
-  color: var(--ifm-color-emphasis-700);
-  font-size: 0.85rem;
-  text-decoration: underline;
-  cursor: pointer;
+  margin-top: 1.4rem;
   padding: 0;
-  margin-top: 0.4rem;
+  border: 0;
+  background: none;
+  color: var(--ifm-color-primary);
+  font-family: inherit;
+  font-size: 0.83rem;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-.clearButton:hover {
-  color: var(--ifm-color-primary);
+html[data-theme="dark"] .clearButton {
+  color: var(--ifm-color-primary-light);
 }
+
+.clearButton:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .clearButton:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+

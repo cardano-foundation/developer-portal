@@ -567,7 +567,7 @@ Alternatives include [OpShin](https://opshin.dev) (Python syntax), [Scalus](http
 | Hardhat | [Aiken CLI](https://aiken-lang.org/installation-instructions) (`aiken build`, `aiken check`) |
 | Remix | [Aiken Playground](https://play.aiken-lang.org) |
 | Web3.js, ethers.js | [Client SDKs](/docs/developers/curriculum/start-building/choose-your-tools) like **Mesh SDK** (TypeScript) |
-| Ganache, Foundry | [Local development networks](/docs/developers/curriculum/start-building/networks-and-test-ada#run-a-chain-yourself) like [Yaci DevKit](https://devkit.yaci.xyz/) |
+| Ganache, Foundry | [Local devnets](/docs/developers/curriculum/start-building/local-testing#local-devnets) like [Yaci DevKit](https://devkit.yaci.xyz/) |
 | Infura, Alchemy | [Query APIs](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis) like [Blockfrost](https://blockfrost.dev/), [Maestro](https://www.gomaestro.org/), [Koios](https://koios.rest/) |
 | Etherscan | [Explorers](https://explorer.cardano.org/) |
 | MetaMask | [Wallets](https://cardano.org/apps/?tags=wallet) |

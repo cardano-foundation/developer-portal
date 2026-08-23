@@ -8,7 +8,7 @@ The `/tools` page is a port of the cardano.org/apps app-store UX, adapted to dev
 - `src/data/builder-tools.js`, entry point: imports the catalog, validates every entry at build time, exports the sorted list.
 - `src/pages/tools/index.js`, the `/tools` page (hero, intents, filters, sort, category browse, picks).
 - `plugins/tools-routes/`, Docusaurus plugin that generates a static `/tools/<slug>` route per tool, rendered by `src/components/ToolDetail/`.
-- `src/components/`, the ported UI: `AppTile`, `AppRow`, `AppIcon`, `AppTileCarousel`, `CategoryPanelsCarousel`, `AppFilterPanel`, `PageCTA`, `Layout/SiteHero`, plus the filter/sort controls in `src/components/showcase/` (`IntentChips`, `ShowcaseSort`, `ShowcaseTagSelect`, `ShowcaseTooltip`, `InfoDot`).
+- `src/components/`, the ported UI: `AppTile`, `AppRow`, `AppIcon`, `AppTileCarousel`, `CategoryPanelsCarousel`, `AppFilterPanel`, `PageCTA`, `Layout/SiteHero`, plus the filter/sort controls in `src/components/showcase/` (`IntentChips`, `ShowcaseSort`, `ShowcaseTooltip`, `InfoDot`, and the `tagQueryString.js` URL helpers).
 - `src/utils/toolStats.js`, shared listing helpers: recent/NEW badge, card blurb, and category/property matching for the filter panel. (cardano-org's `appStats.js` tx metrics were not ported; tools have no on-chain tx data.)
 
 ## Data flow
@@ -22,7 +22,7 @@ Component names, folder layout, and data export names (`AppTile`, `AppRow`, `sho
 ## Contracts to not break
 
 - `slugify()` in `plugins/tools-routes/index.js` must byte-match the one in `showcase.js`. If they diverge, detail routes 404.
-- `prepareUserState()` exported from `src/pages/tools/index.js` is imported by `ShowcaseTagSelect`; keep it exported as a hoisted function declaration.
+- The `?tags=` URL format is owned by `src/components/showcase/tagQueryString.js`; the filter panel, the intent chips, and the page all read it through those helpers.
 - `category` and `properties` values must exist in `tags.js`; `yarn build` fails otherwise (see `validation.js`).
 
 ## Adding or curating tools

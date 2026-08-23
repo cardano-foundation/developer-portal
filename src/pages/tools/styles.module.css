@@ -1,40 +1,70 @@
-/* Sticky so the controls stay visible when applying a filter collapses the
-   page height (the browse -> filtered layout swap clamps scroll toward top). */
-.controlsSticky {
-  position: sticky;
-  top: var(--ifm-navbar-height);
-  z-index: 50;
-  background: var(--ifm-background-color);
+/* Browse area: the facet rail beside the controls, intents and primary
+   results. The sections below this grid stay full width. */
+.browse {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  padding-top: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+/* The last block in the browse column already has section spacing of its own,
+   which would stack with the grid's margin and open a gap before the
+   full-width sections below. */
+.browseMain > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Below this the rail collapses behind the Filter button and, when opened,
+   stacks above the results rather than beside them. */
+@media (max-width: 996px) {
+  .browse {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 1.5rem;
+  }
+}
+
+.browseMain {
+  min-width: 0;
 }
 
 .controls {
   display: flex;
   gap: 0.75rem;
-  align-items: flex-start;
-  margin-top: 1.25rem;
-  margin-bottom: 1.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
 .searchInputWrap {
   flex: 1 1 280px;
   min-width: 200px;
-  max-width: 420px;
 }
 
 .searchInput {
   width: 100%;
-  height: 40px;
-  padding: 0 1rem;
-  border-radius: 999px;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  background: var(--ifm-background-surface-color);
+  height: 48px;
+  padding: 0 1.1rem;
+  border-radius: 8px;
+  border: 1px solid rgb(var(--site-color-brand-blue-rgb) / 0.35);
+  background: var(--site-color-surface-raised);
+  text-align: center;
   font-size: 0.95rem;
 }
 
+html[data-theme="dark"] .searchInput {
+  border-color: rgb(var(--site-color-brand-blue-rgb) / 0.65);
+}
+
 .searchInput:focus-visible {
-  outline: 2px solid var(--ifm-color-primary);
+  outline: 2px solid var(--site-color-navy);
   outline-offset: 1px;
+  border-color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .searchInput:focus-visible {
+  outline-color: var(--site-color-amber);
   border-color: var(--ifm-color-primary);
 }
 
@@ -46,7 +76,7 @@
 }
 
 .section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
 }
 
 .sectionHeader {
@@ -59,8 +89,9 @@
 
 .sectionTitle {
   margin: 0;
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -68,19 +99,23 @@
 
 .sectionSubtitle {
   font-size: 0.95rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--site-color-text-muted);
 }
 
 .sectionMuted {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
+  border-top: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
+}
+
+html[data-theme="dark"] .sectionMuted {
+  border-top-color: var(--site-color-card-border);
 }
 
 .sectionTitleMuted {
   font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--ifm-color-emphasis-800);
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--site-color-text-muted);
 }
 
 .allAppsReveal {
@@ -90,7 +125,7 @@
 }
 
 .showAllButton {
-  font-weight: 600;
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 .allAppsHeader {
@@ -98,8 +133,8 @@
 }
 
 .countMuted {
-  color: var(--ifm-color-emphasis-600);
-  font-weight: 400;
+  color: var(--site-color-text-muted);
+  font-weight: var(--ifm-font-weight-normal);
 }
 
 .rowGrid {
@@ -119,7 +154,7 @@
   margin-bottom: 2.5rem;
   padding: 1rem 1.25rem;
   border-radius: 12px;
-  background: var(--ifm-color-emphasis-100);
+  background: var(--site-color-surface-raised);
 }
 
 .guidedPathsHeader {
@@ -131,12 +166,12 @@
 .guidedPathsTitle {
   margin: 0;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
 }
 
 .guidedPathsSubtitle {
   font-size: 0.85rem;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--site-color-text-muted);
 }
 
 .guidedPathChipList {
@@ -150,7 +185,7 @@
 
 .guidedPathChip {
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-primary);
   text-decoration: none;
   transition: color 150ms ease;

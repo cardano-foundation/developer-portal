@@ -53,7 +53,7 @@ module.exports = {
             "developers/curriculum/start-building/your-first-transaction",
             "developers/curriculum/start-building/transaction-building",
             "developers/curriculum/start-building/query-the-chain",
-            "developers/curriculum/start-building/offline-testing",
+            "developers/curriculum/start-building/local-testing",
             "developers/curriculum/start-building/transaction-failures",
           ],
         },
