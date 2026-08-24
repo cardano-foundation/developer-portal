@@ -25,7 +25,7 @@ html[data-theme="dark"] .sortLabelText {
      background-image, and `background:` would drop it silently. */
   background-color: var(--site-color-cream);
   /* "Light Grey (WEB)", shared with the search field beside it */
-  border: 1px solid #E5E2E2;
+  border: 1px solid var(--site-color-light-grey);
   color: var(--site-color-ink-muted);
   height: clamp(60px, 5vw, 86px);
   padding: 0 3rem 0 30px;

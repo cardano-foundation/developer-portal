@@ -85,7 +85,7 @@ html[data-theme="dark"] .panel {
   gap: 1rem;
   padding-bottom: 10px;
   margin-bottom: 1.25rem;
-  border-bottom: 1px solid #06187D;
+  border-bottom: 1px solid var(--site-color-blue-deep);
 }
 
 html[data-theme="dark"] .panelHeader {
