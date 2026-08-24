@@ -14,12 +14,25 @@
 
 /* In-panel rows sit directly on the panel surface and carry no chrome. The
    compound selectors keep these ahead of the base rule regardless of where
-   the minifier hoists them. */
+   the minifier hoists them. Type steps up to the template's panel rows. */
+/* The negative margin keeps the row's content on the card edge while the
+   padding still gives the hover wash a shape. */
 .row.rowCompact {
   background: none;
   border-color: transparent;
-  padding: 0.6rem 0.25rem;
+  padding: 0.35rem 0.4rem;
+  margin: -0.35rem -0.4rem;
   border-radius: 8px;
+}
+
+.row.rowCompact .title {
+  font-size: 1.25rem;
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.row.rowCompact .description {
+  font-size: 1rem;
+  line-height: 1.25;
 }
 
 html[data-theme="dark"] .row.rowCompact {
@@ -91,23 +104,17 @@ html[data-theme="dark"] .row:focus-visible {
   flex-shrink: 0;
 }
 
-/* Matches the tile's badge so the same tool reads the same in both layouts. */
+/* Matches the tile's Deep Blue capsule at row scale, so the same tool
+   reads the same in both layouts; cream on it is 13:1 in both themes. */
 .newBadge {
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.62rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  letter-spacing: 0.06em;
-  line-height: 1;
-  background: var(--ifm-color-primary);
+  font-size: 0.78rem;
+  font-weight: var(--ifm-font-weight-normal);
+  line-height: 1.25;
+  background: #06187D;
   color: var(--site-color-cream);
-  padding: 4px 7px;
-  border-radius: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
   flex-shrink: 0;
-}
-
-/* See AppTile: cream on the dark primary is 3.51:1, navy is 5.44:1. */
-html[data-theme="dark"] .newBadge {
-  color: var(--site-color-navy);
 }
 
 .description {
