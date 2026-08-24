@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
@@ -18,7 +20,6 @@ import InfoDot from "@site/src/components/showcase/InfoDot";
 
 import styles from "./styles.module.css";
 
-const OG_IMAGE = "https://developers.cardano.org/img/og/og-builder-tools.jpg";
 // Three fills the related grid's row exactly at the container width; a
 // fourth card would wrap alone.
 const RELATED_LIMIT = 3;
@@ -178,12 +179,11 @@ export default function ToolDetail({ slug }) {
       <Head>
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
         <script type="application/ld+json">
           {buildJsonLd(tool, categoryDef?.label)}
         </script>
       </Head>
+      <PageMetadata image={ogCards.tools} />
       {/* The CTA band brings its own container, so the page body carries one of
           its own rather than main. Both stay inside the main landmark. */}
       <main className={styles.detail}>
