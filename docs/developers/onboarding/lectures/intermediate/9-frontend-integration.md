@@ -445,10 +445,10 @@ Notice the balance. Six lectures went into the contract, and every one of them a
 
 Each of the remaining lectures is the same shape with a different rule in the middle. The contracts arrive finished, and each lecture has you break one and write the missing rule back:
 
-- **Handling time** — funds that cannot move before a date.
-- **Multi validators** — a token that acts as a key, where burning it is what opens the lock.
-- **Modifying state** — data that is updated instead of released.
-- **Reference inputs & scripts** — one contract reading another's data.
+- **[Handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)** — funds that cannot move before a date.
+- **[Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** — a token that acts as a key, where burning it is what opens the lock.
+- **[Modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)** — data that is updated instead of released.
+- **[Reference inputs & scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)** — one contract reading another's data.
 
 ## Go deeper
 
@@ -460,4 +460,4 @@ Each of the remaining lectures is the same shape with a different rule in the mi
 - [Going to production](/docs/developers/curriculum/production/going-to-production) — the rest of the checklist this is one line of.
 - [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) — keeping execution units, and therefore fees, down.
 
-Next: **Handling time: vesting**.
+Next: **[Handling time: vesting](/docs/developers/onboarding/lectures/intermediate/handling-time)**.

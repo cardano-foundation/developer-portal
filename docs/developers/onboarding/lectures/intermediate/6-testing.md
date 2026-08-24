@@ -93,7 +93,7 @@ A **property test** states that rule directly and lets the test runner go lookin
 
 If any of them fails, it does more than report it. It **reduces** the failing input to the smallest one that still breaks, so you get the exact edge case rather than whichever random value happened to fail first.
 
-A property test is worth reaching for whenever a rule holds "for all" of something: every key, every amount, every moment after a deadline. You will meet that last one in **handling time**, where the vesting contract arrives with `claim_ok_at_any_time_after_the_deadline` already written.
+A property test is worth reaching for whenever a rule holds "for all" of something: every key, every amount, every moment after a deadline. You will meet that last one in **[handling time](/docs/developers/onboarding/lectures/intermediate/handling-time)**, where you write `claim_ok_at_any_time_after_the_deadline` for the vesting contract.
 
 ## The level these two cannot reach
 

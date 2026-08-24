@@ -98,7 +98,7 @@ There is one more thing you could do, and it is worth knowing why it is worse. Y
 :::
 
 :::note The same shape is how contracts get an admin
-`Recover` is one instance of a wider pattern: a named key with a path of its own, for the cases the main rule cannot cover. Contracts use it for a project key that alone may mint a collection's NFTs, for the single key allowed to update a price feed, which is the oracle you build in **modifying state**, and for an admin who can pause a protocol by updating a config UTxO that every other validator reads as a **reference input**.
+`Recover` is one instance of a wider pattern: a named key with a path of its own, for the cases the main rule cannot cover. Contracts use it for a project key that alone may mint a collection's NFTs, for the single key allowed to update a price feed, which is the oracle you build in **[modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)**, and for an admin who can pause a protocol by updating a config UTxO that every other validator reads as a **[reference input](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)**.
 
 Where that key is named follows the rule above: a parameter when it is fixed for the whole deployment, the datum when it differs from one UTxO to the next, as the oracle's does.
 :::
@@ -109,7 +109,7 @@ The three values travel by three different routes, and each is put in place by s
 
 Filling the blank does not compile anything and does not ask the network for anything. Your off-chain code takes the compiled script from your blueprint (`plutus.json`), with the blank still in it, supplies the missing value, and hashes what comes out. Two lines of ordinary code, no deployment, no transaction, no announcement. **That is the whole of "deploying" a parameterized contract**, and you will write those two lines in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
 
-You will meet the word "deploy" in one other sense, though. It also describes putting the script into a UTxO, so that later transactions point at it instead of carrying a copy of it. That one really is a transaction, and it is optional: a way to make every spend smaller, not a step you must take before a contract works. **Reference inputs & scripts** does it.
+You will meet the word "deploy" in one other sense, though. It also describes putting the script into a UTxO, so that later transactions point at it instead of carrying a copy of it. That one really is a transaction, and it is optional: a way to make every spend smaller, not a step you must take before a contract works. **[Reference inputs & scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)** does it.
 
 One consequence lands right away, though, and it lands on the redeemer. This contract's `VaultAction` finally lists two choices, so its redeemers finally use both constructor numbers from **[datum & redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**: `Unlock` is constructor 0 and `Recover` is constructor 1. Get those two the wrong way round later and the vault will look at the wrong key, without complaining.
 

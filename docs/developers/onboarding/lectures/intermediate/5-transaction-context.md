@@ -43,7 +43,7 @@ The list also grows. Each version of the on-chain language has added fields: `re
 
 A transaction can trigger more than one script: two contracts being spent at once, or a mint and a spend under the same hash. **They are all handed the same transaction.** Only the purpose-specific part differs, so each one knows which UTxO it is guarding, or which policy is minting, while the facts they judge are identical.
 
-That is what makes contracts work together on Cardano. They never call each other, because they do not have to: one script can require something of a transaction and rely on another script seeing the same thing. **Multi validators** builds exactly that, a mint and a spend cooperating inside one transaction.
+That is what makes contracts work together on Cardano. They never call each other, because they do not have to: one script can require something of a transaction and rely on another script seeing the same thing. **[Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** builds exactly that, a mint and a spend cooperating inside one transaction.
 
 It also has a sharp edge. If two contracts each demand "5 ADA must go to my address", one output paying 5 ADA to the right place can satisfy both at once, which is not what either author intended. That is called double satisfaction, and the handbook's [security page](/docs/developers/curriculum/smart-contracts/security) covers it and the rest of the family.
 
@@ -83,10 +83,10 @@ Now imagine `self` had an underscore too. The vault would be left with the datum
 Five of the context's fields carry the rest of this track, and the vault has just shown you the first. The contract shape stays the same each time; only the question changes:
 
 - `extra_signatories`: only the owner may unlock, in the Try it below.
-- `mint`: a contract that controls its own token, in [Validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes) and then the gift card in Multi validators.
-- `validity_range`: funds that cannot move before a date, in Handling time.
-- `inputs` and `outputs`: data that is updated instead of released, in Modifying state.
-- `reference_inputs`: reading another contract's data without spending it, in Reference inputs.
+- `mint`: a contract that controls its own token, in [Validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes) and then the gift card in [Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators).
+- `validity_range`: funds that cannot move before a date, in [Handling time](/docs/developers/onboarding/lectures/intermediate/handling-time).
+- `inputs` and `outputs`: data that is updated instead of released, in [Modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state).
+- `reference_inputs`: reading another contract's data without spending it, in [Reference inputs](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts).
 
 Learning contracts is mostly learning which field answers which question.
 
@@ -105,7 +105,7 @@ All of these come back to the same rule from **[on-chain vs off-chain](/docs/dev
 :::tip The transaction is the whole world
 A validator runs **inside** a single transaction, and that transaction is everything it can see: its inputs and their datums, the UTxOs it references, its outputs, its signatures, its window. No API to call, no database to query, not even the block it sits in. What is not in the transaction does not exist as far as the contract is concerned.
 
-So a contract never gathers facts, it only judges the ones already in front of it, and **whoever builds the transaction has to put them there**. That is what the datum, the redeemer and the reference inputs are for. The question is never "how does the contract fetch this", it is "who puts it in, and why should the contract believe them". **Modifying state** builds an oracle, which is that question answered.
+So a contract never gathers facts, it only judges the ones already in front of it, and **whoever builds the transaction has to put them there**. That is what the datum, the redeemer and the reference inputs are for. The question is never "how does the contract fetch this", it is "who puts it in, and why should the contract believe them". **[Modifying state](/docs/developers/onboarding/lectures/intermediate/modifying-state)** builds an oracle, which is that question answered.
 :::
 
 ## Try it

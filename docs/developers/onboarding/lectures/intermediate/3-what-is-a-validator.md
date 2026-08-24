@@ -15,7 +15,7 @@ Here is the part that surprises people: **a validator never moves funds.** It is
 
 So a validator is defined by what it **refuses**. A guard who lets everyone through is not guarding anything. Writing a contract means choosing the cases where you say no.
 
-One more point before we continue. "A smart contract" does not always mean *one* validator. A real application often uses a **set of validators that work together**. Each one protects its own thing, and each one judges the same transaction. Our examples use a single validator for now. **Multi validators** shows one script guarding two different actions at once, and **reference inputs** shows two separate contracts working together.
+One more point before we continue. "A smart contract" does not always mean *one* validator. A real application often uses a **set of validators that work together**. Each one protects its own thing, and each one judges the same transaction. Our examples use a single validator for now. **[Multi validators](/docs/developers/onboarding/lectures/intermediate/multi-validators)** shows one script guarding two different actions at once, and **[reference inputs](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)** shows two separate contracts working together.
 
 ## Where the locked funds live
 
