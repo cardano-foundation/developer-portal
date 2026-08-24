@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from "lodash/debounce";
@@ -523,28 +524,12 @@ function SecondarySections({ data }) {
   );
 }
 
-// Open graph image for the builder tools page.
-function MetaData() {
-  return (
-    <Head>
-      <meta
-        property="og:image"
-        content="https://developers.cardano.org/img/og/og-builder-tools.jpg"
-      />
-      <meta
-        name="twitter:image"
-        content="https://developers.cardano.org/img/og/og-builder-tools.jpg"
-      />
-    </Head>
-  );
-}
-
 function Showcase() {
   const data = useSectionData();
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <MetaData />
+      <PageMetadata image={ogCards.tools} />
       {/* The hero is the page banner and stays outside the main landmark;
           everything else, including the CTA band ShowcaseSections renders and
           the sticky submit button, belongs inside it. The page had no <main>

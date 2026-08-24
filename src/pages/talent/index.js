@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
@@ -21,15 +22,6 @@ const HERO_ROWS = [
   ["ballLavender", "ballGlow", "ballBlue", "ballGray", "ballAmber", "ballFade", "ballGlow", "ballLavender", "ballBlue", "ballAmber", "ballGray", "ballGlow", "ballFade", "ballBlue", "ballLavender", "ballGlow", "ballAmber", "ballGray", "ballFade", "ballBlue", "ballLavender", "ballGray"],
   ["ballBlue", "ballAmber", "ballGlow", "ballLavender", "ballAmber", "ballBlue", "ballGray", "ballAmber", "ballGlow", "ballBlue", "ballGray", "ballAmber", "ballLavender", "ballBlue", "ballGray", "ballGlow", "ballAmber", "ballGray", "ballFade", "ballLavender", "ballBlue", "ballAmber"],
 ];
-
-function MetaData() {
-  return (
-    <Head>
-      <meta property="og:image" content="https://developers.cardano.org/img/og/og-developer-portal.jpg" />
-      <meta name="twitter:image" content="https://developers.cardano.org/img/og/og-developer-portal.jpg" />
-    </Head>
-  );
-}
 
 function HeroSection() {
   return (
@@ -170,7 +162,7 @@ function StartBuildingSection() {
 export default function TalentPoolPage() {
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <MetaData />
+      <PageMetadata image={ogCards.talent} />
       <main className={styles.talent}>
         <HeroSection />
         <JoinSection />

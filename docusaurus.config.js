@@ -115,9 +115,11 @@ module.exports = {
       isCloseable: true, // Use true
     } : undefined,
 
-    // Meta Image that will be used for your meta tag, in particular og:image and twitter:image
-    // Relative to your site's "static" directory, cannot be SVGs.
-    image: "img/og/og-developer-portal.jpg",
+    // Site-wide og:image / twitter:image: the landing card that scripts/generate-og.js
+    // writes on every `yarn start` / `yarn build` (gitignored). Docs, blog posts and
+    // the section pages set their own card; everything else (landing page, blog
+    // tags and archive, 404) shares this one. Relative to static/, cannot be an SVG.
+    image: "img/og/pages/home.jpg",
     metadata: [
       { name: "keywords", content: "Cardano, blockchain, smart contracts, dApp, native tokens, Plutus, Aiken, developer tools, developer documentation, stake pool, Web3" },
       { name: "algolia-site-verification", content: "9D24BBA9B6EA9390" },

@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Head from "@docusaurus/Head";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
@@ -89,6 +91,7 @@ export default function Templates() {
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESCRIPTION} />
       </Head>
+      <PageMetadata image={ogCards.templates} />
       <TemplatesHero
         title={TITLE}
         description={HERO_DESCRIPTION}
