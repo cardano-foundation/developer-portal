@@ -19,9 +19,10 @@ import { fetchLocked } from "./lib/fetch.ts";
 
 const NETWORK_ID = Number(import.meta.env.VITE_NETWORK_ID ?? "0");
 
-// No key here. The provider points at our own backend, which holds it, see
-// `server/blockfrost.ts`. Mesh supports this: give it a path instead of a
-// project id and it treats it as a privately hosted Blockfrost.
+// No key here. The provider points at the proxy rule in `vite.config.ts`, which
+// runs in Node and is the only thing that holds the key. Mesh supports this:
+// give it a path instead of a project id and it treats it as a privately
+// hosted Blockfrost.
 const provider = new BlockfrostProvider("/api/blockfrost");
 
 function App() {
