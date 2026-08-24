@@ -1,6 +1,6 @@
 <div align="center">
 
-<img alt="Cardano Developer Portal" src="https://developers.cardano.org/img/og/pages/home.jpg" width="100%">
+<img alt="Cardano Developer Portal" src="./static/img/og/og-developer-portal.jpg" width="100%">
 
 # Cardano Developer Portal
 

@@ -13,3 +13,9 @@ the only cards left on the old design, which is why they were retired.
 
 Those pages now read their card from `static/img/og/pages/`, written by
 `scripts/generate-og.js` on every build. Nothing here is referenced by the site.
+
+The path `static/img/og/og-developer-portal.jpg` still exists, holding a
+committed copy of the generated home card: the repository README uses it as
+its hero image, and that has to render on GitHub regardless of what is
+deployed. Refresh the copy from `static/img/og/pages/home.jpg` if the card
+design ever changes.
