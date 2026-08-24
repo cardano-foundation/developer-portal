@@ -15,6 +15,10 @@ Each example is a self-contained project. It carries its own dependencies (`pack
 back into the repo root. This keeps each example easy to maintain in isolation and easy to copy
 out, and it leaves future options open (see below) without committing to any of them now.
 
+Because examples are self-contained, each uses its own package manager (the current templates use
+npm). The repo-wide "use yarn" rule applies to the Docusaurus site build, not to the apps in this
+folder. Example lockfiles are not committed (see `.gitignore`).
+
 ## What's here
 
 - `templates/`: runnable dApp starter templates, one per SDK (`evolution-vite-react`,
