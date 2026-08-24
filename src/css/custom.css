@@ -38,6 +38,13 @@
 
 /* You can override the default Infima variables here. */
 
+/* The template's nav bar is 102px tall; mobile keeps Infima's height. */
+@media (min-width: 997px) {
+  :root {
+    --ifm-navbar-height: 102px;
+  }
+}
+
 :root {
   /* The rest of the stack stays as the fallback for glyphs Chivo does not
      carry, such as the ada sign. */
@@ -102,6 +109,9 @@
   /* One step down, for hover on a gray-light surface. Same relationship the
      raised-surface pair carries. */
   --site-color-gray-light-hover: #E8E6E1;
+  /* "Light Grey (WEB)" on the design sheet: hairlines and outlines on light
+     surfaces (submenu item cards, the navbar search pill). */
+  --site-color-light-grey: #E5E2E2;
   --site-color-ink: #111425;
   --site-color-ink-muted: #5F6B85;
   /* Muted text that follows the page background (ink on cream, white on navy) */
@@ -129,9 +139,10 @@
   /* Page cascade */
   --ifm-background-color: var(--site-color-cream);
   --ifm-font-color-base: var(--site-color-ink);
-  /* Navbar is navy in both themes */
-  --ifm-navbar-background-color: var(--site-color-navy);
-  --ifm-navbar-link-color: #ffffff;
+  /* The navbar follows the theme since the design template's nav revision:
+     cream bar with ink links in light mode, navy with white links in dark. */
+  --ifm-navbar-background-color: var(--site-color-cream);
+  --ifm-navbar-link-color: var(--site-color-ink);
   /* The logo sits ~52px in from the edge on wide screens (3vw, clamped) */
   --ifm-navbar-padding-horizontal: clamp(1rem, 3vw, 52px);
   --docusaurus-highlighted-code-line-bg: rgb(var(--site-color-navy-rgb) / 0.08);
@@ -165,6 +176,8 @@ html[data-theme="dark"] {
      is what separates them here. */
   --ifm-background-color: #111425;
   --ifm-background-surface-color: #1A1C2C;
+  --ifm-navbar-background-color: var(--site-color-navy);
+  --ifm-navbar-link-color: #ffffff;
   /* Restore Infima's dark text color: the :root cascade override of
      --ifm-font-color-base (cream-page ink) ties with Infima's dark block on
      specificity and wins on load order, so dark mode must re-declare it. */
@@ -248,7 +261,7 @@ h6 {
   width: 24px;
   height: 24px;
   display: flex;
-  background-color: #ffffff;
+  background-color: var(--ifm-navbar-link-color);
   -webkit-mask: url(/img/icons/github.svg) no-repeat center / contain;
   mask: url(/img/icons/github.svg) no-repeat center / contain;
 }
@@ -262,7 +275,7 @@ h6 {
   width: 24px;
   height: 24px;
   display: flex;
-  background-color: #ffffff;
+  background-color: var(--ifm-navbar-link-color);
   -webkit-mask: url(/img/icons/discord.svg) no-repeat center / contain;
   mask: url(/img/icons/discord.svg) no-repeat center / contain;
 }
@@ -291,47 +304,86 @@ div.theme-announcement-bar {
   border-bottom: none;
 }
 
-/* The navbar is navy in both themes, but in light mode Docusaurus still
-   dresses its controls for a light bar: dark toggle/hamburger glyphs and a
-   pale DocSearch pill. Force white chrome regardless of theme.
-   The hairline replaces Infima's default shadow, which disappears where
-   the navy bar meets dark page backgrounds; it is the same edge the mega
-   menu panels and card borders carry. */
+/* The navbar follows the theme, so Docusaurus's default light-bar chrome
+   (dark toggle/hamburger glyphs) is right in light mode and the white
+   dressing scopes to dark. The hairline replaces Infima's default shadow,
+   which disappears where the bar meets same-colour page backgrounds; it is
+   the same edge the cards carry. */
 .navbar {
-  color: #fff;
-  border-bottom: 1px solid var(--site-color-card-border);
+  /* The template's solid Obsidian rule, at half weight: 1px reads harsher
+     on screen than in the mock. Renders as a single device pixel on
+     high-density screens; low-density ones round it back up to 1px. */
+  border-bottom: 0.5px solid var(--site-color-navy);
   box-shadow: none;
 }
 
-/* Infima sets navbar links semibold; the 2026 type scale reads lighter, so
-   the whole bar rides the light token (megaMenuTrigger matches below). */
+html[data-theme="dark"] .navbar {
+  color: #fff;
+  border-bottom-color: var(--site-color-card-border);
+}
+
+/* Infima sets navbar links semibold; the template sets them Regular at
+   ~17px (megaMenuTrigger matches below). */
 .navbar__link {
-  font-weight: var(--ifm-font-weight-light);
+  font-weight: var(--ifm-font-weight-normal);
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.navbar__logo {
+  height: 40px;
 }
 
 .navbar .DocSearch-Button {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: var(--site-color-gray-light);
+  border: 1px solid var(--site-color-light-grey);
+  border-radius: 999px;
+  color: rgb(var(--site-color-navy-rgb) / 0.4);
 }
 
 .navbar .DocSearch-Button:hover,
 .navbar .DocSearch-Button:focus {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: var(--site-color-gray-light-hover);
+  color: rgb(var(--site-color-navy-rgb) / 0.6);
   box-shadow: none;
 }
 
 .navbar .DocSearch-Button .DocSearch-Search-Icon {
-  color: #fff;
+  color: rgb(var(--site-color-navy-rgb) / 0.4);
 }
 
 .navbar .DocSearch-Button-Placeholder {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(var(--site-color-navy-rgb) / 0.4);
 }
 
 .navbar .DocSearch-Button-Key {
-  background: rgba(255, 255, 255, 0.15);
+  background: transparent;
   box-shadow: none;
+  color: rgb(var(--site-color-navy-rgb) / 0.4);
+}
+
+html[data-theme="dark"] .navbar .DocSearch-Button {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: transparent;
+  color: #fff;
+}
+
+html[data-theme="dark"] .navbar .DocSearch-Button:hover,
+html[data-theme="dark"] .navbar .DocSearch-Button:focus {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+html[data-theme="dark"] .navbar .DocSearch-Button .DocSearch-Search-Icon {
+  color: #fff;
+}
+
+html[data-theme="dark"] .navbar .DocSearch-Button-Placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+html[data-theme="dark"] .navbar .DocSearch-Button-Key {
+  background: rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -423,8 +475,8 @@ html[data-theme="dark"] body {
 }
 
 /* --- Mega menus ---------------------------------------------------------
-   Navy frosted panels that read as an extension of the navbar in both
-   themes. Open/close is React state in
+   The design template's submenu panels: cream in light mode, lifted navy
+   in dark. Open/close is React state in
    src/theme/NavbarItem/DropdownNavbarItem/index.js, which stamps
    [data-open] on the item; CSS handles presentation and the transition. */
 
@@ -436,21 +488,27 @@ html[data-theme="dark"] body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.375rem 0.875rem;
+  padding: 0.7rem 1.4rem;
   border-radius: 999px;
   display: flex;
   align-items: center;
   color: var(--ifm-navbar-link-color);
-  font-size: var(--ifm-font-size-base);
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
   /* Matches .navbar__link (overridden above) so every navbar item is one
-     weight; light, to sit with the ExtraLight display type. */
-  font-weight: var(--ifm-font-weight-light);
+     weight. */
+  font-weight: var(--ifm-font-weight-normal);
   text-decoration: none;
   transition: background-color 0.16s ease;
 }
 
 .navbar__item--mega:hover .megaMenuTrigger,
 .navbar__item--mega[data-open] .megaMenuTrigger {
+  background: rgb(var(--site-color-navy-rgb) / 0.06);
+}
+
+html[data-theme="dark"] .navbar__item--mega:hover .megaMenuTrigger,
+html[data-theme="dark"] .navbar__item--mega[data-open] .megaMenuTrigger {
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -475,21 +533,25 @@ html[data-theme="dark"] body {
 /* Panel: centered under its trigger, kept in the DOM so it can animate.
    Width comes from its content (tile + fixed-width columns).
    --mega-menu-shift is set by the React component when the centered
-   position would push the panel past a viewport edge. */
+   position would push the panel past a viewport edge.
+   Skin from the design template's submenu components: a cream panel in
+   light mode, a lifted navy in dark. The submenu carries four colours of
+   its own that exist nowhere else on the sheet, declared here as scoped
+   tokens: panel #0E1A40, item border #133483 and icon chip #112256 on
+   dark; the light item border rides the Light Grey token. */
 .megaMenuPanel {
+  --mega-item-border: var(--site-color-light-grey);
+  --mega-chip-bg: rgba(172, 166, 166, 0.2);
   position: absolute;
   top: calc(100% + 10px);
   left: 50%;
   z-index: 10;
   width: max-content;
-  max-width: min(920px, calc(100vw - 2rem));
-  padding: 1.25rem;
-  background: rgb(var(--site-color-navy-rgb) / 0.92);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--site-color-card-border);
-  border-radius: 16px;
-  box-shadow: 0 24px 64px rgb(var(--site-color-navy-rgb) / 0.45);
+  max-width: min(1010px, calc(100vw - 2rem));
+  padding: 20px 30px;
+  background: var(--site-color-cream);
+  border-radius: 14px;
+  box-shadow: 4px 8px 15px rgb(var(--site-color-navy-rgb) / 0.1);
   opacity: 0;
   visibility: hidden;
   transform: translate(calc(-50% + var(--mega-menu-shift, 0px)), 6px);
@@ -497,12 +559,11 @@ html[data-theme="dark"] body {
   transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
 }
 
-/* Without backdrop-filter the page ghosts through the 0.92 alpha behind
-   low-contrast panel text, so fall back to a solid surface */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .megaMenuPanel {
-    background: var(--site-color-navy);
-  }
+html[data-theme="dark"] .megaMenuPanel {
+  --mega-item-border: #133483;
+  --mega-chip-bg: #112256;
+  background: #0E1A40;
+  box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.35);
 }
 
 .navbar__item--mega[data-open] .megaMenuPanel {
@@ -533,58 +594,72 @@ html[data-theme="dark"] body {
 .megaMenuInner {
   display: flex;
   align-items: stretch;
-  gap: 1.5rem;
+  gap: 20px;
 }
 
 .megaMenuColumn {
-  width: 252px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 322px;
 }
 
+/* Column eyebrow in the text face, not the mono label: the template sets
+   it in Chivo Medium */
 .megaMenuColumnTitle {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: var(--ifm-font-weight-semibold);
+  line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgb(var(--site-color-cream-rgb) / 0.55);
-  padding: 0.25rem 0.75rem 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--site-color-ink-muted);
+}
+
+html[data-theme="dark"] .megaMenuColumnTitle {
+  color: var(--site-color-cream);
 }
 
 .megaMenuColumnList {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Hairline dividers separate rows without adding visual weight */
-.megaMenuItem + .megaMenuItem {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
+/* Items are outlined cards on the panel, one fixed-height row each */
 .megaMenuItemLink {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
-  border-radius: 10px;
+  gap: 14px;
+  height: 70px;
+  padding: 0 10px;
+  border: 1px solid var(--mega-item-border);
+  border-radius: 8px;
   text-decoration: none !important;
   transition: background-color 0.16s ease;
 }
 
 .megaMenuItemLink:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--mega-chip-bg);
 }
 
 .megaMenuItemIconTile {
   flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--site-color-cream);
+  background: var(--mega-chip-bg);
+  color: var(--site-color-navy);
   transition: background-color 0.16s ease, color 0.16s ease;
+}
+
+html[data-theme="dark"] .megaMenuItemIconTile {
+  color: var(--site-color-cream);
 }
 
 .megaMenuItemLink:hover .megaMenuItemIconTile {
@@ -593,45 +668,53 @@ html[data-theme="dark"] body {
 }
 
 .megaMenuItemIcon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
 }
 
 .megaMenuItemContent {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   min-width: 0;
 }
 
 .megaMenuItemLabel {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: var(--ifm-font-weight-semibold);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--site-color-navy);
+}
+
+html[data-theme="dark"] .megaMenuItemLabel {
   color: var(--site-color-cream);
 }
 
+/* Slate in both themes, per the template */
 .megaMenuItemDescription {
   display: block;
-  font-size: 0.78rem;
-  line-height: 1.4;
-  color: rgb(var(--site-color-cream-rgb) / 0.6);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--site-color-ink-muted);
 }
 
-/* Featured tile: one per panel, carrying the same artwork as the landing
-   section it links to, with copy over a darkening gradient and a pill CTA */
+/* Featured tile: one per panel, an Obsidian card carrying the same artwork
+   as the landing section it links to, with copy over a darkening gradient
+   and a capsule CTA. Obsidian in both themes, per the template. */
 .megaMenuFeatured {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 252px;
+  width: 260px;
   min-height: 252px;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--site-color-navy);
-  border: 1px solid var(--site-color-card-border);
   text-decoration: none !important;
   transition: transform 0.16s ease;
 }
@@ -653,7 +736,7 @@ html[data-theme="dark"] body {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 6px;
   padding: 3rem 1rem 1rem;
   background: linear-gradient(
     180deg,
@@ -664,33 +747,43 @@ html[data-theme="dark"] body {
 }
 
 .megaMenuFeaturedTitle {
-  font-size: 1.15rem;
-  font-weight: var(--site-font-weight-heading);
+  font-size: 1.35rem;
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1;
   color: var(--site-color-cream);
 }
 
 .megaMenuFeaturedDescription {
-  font-size: 0.78rem;
-  line-height: 1.45;
-  color: rgb(var(--site-color-cream-rgb) / 0.75);
+  font-size: 0.85rem;
+  line-height: 1.25;
+  color: rgb(var(--site-color-card-text-rgb) / 0.85);
 }
 
 /* Global mirror of the landing page's filled mono chip. The landing version
    lives in a CSS module (src/pages/styles.module.css), whose classes global
    CSS cannot compose; unifying both on one global utility is a follow-up. */
 .megaMenuFeaturedCta {
-  margin-top: 0.5rem;
+  margin-top: 10px;
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--site-font-family-mono-label);
   font-weight: var(--ifm-font-weight-normal);
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  font-size: 0.7rem;
-  padding: 0.4rem 0.9rem;
+  font-size: 0.75rem;
+  padding: 0.65rem 0.9rem 0.65rem 1.1rem;
   border-radius: 999px;
   background: var(--site-color-brand-blue);
   color: var(--site-color-gray-light);
   transition: background-color 0.16s ease, color 0.16s ease;
+}
+
+.megaMenuFeaturedCtaArrow {
+  width: 10px;
+  height: 10px;
+  display: block;
 }
 
 .megaMenuFeatured:hover .megaMenuFeaturedCta {
@@ -743,11 +836,11 @@ html[data-theme="dark"] body {
   font-weight: var(--ifm-font-weight-semibold);
 }
 
-/* The mobile drawer sits on the navy navbar surface in both themes, so its
-   menu rides the drawer's palette instead of the page rail's. The caret
-   filter borrows Infima's own dark-mode inversion, which light mode never
-   applies on its own. */
-.navbar-sidebar {
+/* The mobile drawer follows the bar: Infima's own light palette works on
+   the cream bar, and in dark mode the drawer sits on navy, so the navy
+   dressing scopes there. The caret filter borrows Infima's dark-mode
+   inversion, which light mode never applies on its own. */
+html[data-theme="dark"] .navbar-sidebar {
   --ifm-menu-color: rgb(var(--site-color-cream-rgb) / 0.7);
   --ifm-menu-color-active: #ffffff;
   --ifm-menu-color-background-active: rgba(255, 255, 255, 0.06);
@@ -863,6 +956,26 @@ html[data-theme="dark"] .table-of-contents__link:focus-visible,
 html[data-theme="dark"] .pagination-nav__link:focus-visible,
 html[data-theme="dark"] .theme-doc-card-container:focus-visible,
 html[data-theme="dark"] .tabs__item:focus-visible,
+/* GitHub/Discord/theme buttons sit in circular chips on hover, the
+   template's toggle treatment. */
+.navbar .header-github-link,
+.navbar .header-discord-link {
+  border-radius: 999px;
+  padding: 10px;
+  transition: background-color 0.16s ease;
+}
+
+.navbar .header-github-link:hover,
+.navbar .header-discord-link:hover {
+  background: var(--site-color-surface-raised);
+  opacity: 1;
+}
+
+html[data-theme="dark"] .navbar .header-github-link:hover,
+html[data-theme="dark"] .navbar .header-discord-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .navbar-sidebar .menu__link:focus-visible {
   outline-color: var(--site-color-amber);
 }
