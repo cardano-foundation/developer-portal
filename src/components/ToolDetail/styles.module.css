@@ -316,7 +316,9 @@ html[data-theme="dark"] .iconButton:focus-visible {
   margin: 0 0 1rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* Wide enough for the tile's template padding and type scale; min()
+     keeps a 320px track from overflowing narrower viewports. */
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
 }
 
 .relatedMore {

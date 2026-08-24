@@ -2,7 +2,6 @@ import React, { useState, useMemo, useCallback, useEffect } from "react";
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from "lodash/debounce";
 import clsx from "clsx";
@@ -16,7 +15,6 @@ import ShowcaseSort, {
 } from "@site/src/components/showcase/ShowcaseSort";
 import { readSearchTags } from "@site/src/components/showcase/tagQueryString";
 import SiteHero from "@site/src/components/Layout/SiteHero";
-import { StarBadge } from "@site/src/components/AppTile";
 import AppTileCarousel from "@site/src/components/AppTileCarousel";
 import CategoryPanelsCarousel from "@site/src/components/CategoryPanelsCarousel";
 import AppRow from "@site/src/components/AppRow";
@@ -158,14 +156,21 @@ function useFilteredProjects() {
   return { filtered, sortOption, isUnfiltered, selectedTags };
 }
 
-function ShowcaseHeader() {
+/* The header's circle artwork, the designers' own exports as a theme pair:
+   the gradient and hole shading differ per theme, not just the hole colour,
+   so each theme gets its file. The files ride CSS backgrounds rather than
+   an <img> pair — a background in an unmatched theme selector is never
+   fetched, so a visit downloads only its own theme's ~300 KB. */
+function HeroRings() {
   return (
-    <SiteHero
-      title={TITLE}
-      description={HERO_DESCRIPTION}
-      artwork={useBaseUrl("/img/hero/spheres.webp")}
-    />
+    <div className={styles.heroRings} aria-hidden="true">
+      <div className={styles.heroRingsArt} />
+    </div>
   );
+}
+
+function ShowcaseHeader() {
+  return <SiteHero title={TITLE} description={HERO_DESCRIPTION} art={<HeroRings />} />;
 }
 
 function SearchBar() {
@@ -214,6 +219,7 @@ function SearchBar() {
         ref={inputRef}
         id="searchbar"
         className={styles.searchInput}
+        aria-label="Search tools"
         placeholder="Search tools, SDKs, APIs, docs..."
         value={value}
         onInput={handleInput}
@@ -239,11 +245,18 @@ function HighlightsSection({ apps, title, subtitle }) {
   if (apps.length === 0) return null;
   return (
     <section className={styles.section}>
-      <header className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>{title}</h2>
-        <span className={styles.sectionSubtitle}>{subtitle}</span>
-      </header>
-      <AppTileCarousel apps={apps} ariaLabel={title} />
+      <AppTileCarousel
+        apps={apps}
+        labelledBy="tools-highlights-title"
+        header={
+          <>
+            <h2 className={styles.sectionTitle} id="tools-highlights-title">
+              {title}
+            </h2>
+            <span className={styles.sectionSubtitle}>{subtitle}</span>
+          </>
+        }
+      />
     </section>
   );
 }
@@ -251,8 +264,8 @@ function HighlightsSection({ apps, title, subtitle }) {
 function GuidedPathsBanner() {
   const paths = [
     { to: "/docs/developers/", label: "Get started" },
-    { to: "/docs/developers/curriculum/smart-contracts/overview", label: "Write smart contracts" },
-    { to: "/docs/developers/curriculum/native-tokens/overview", label: "Create native tokens" },
+    { to: "/docs/developers/curriculum/smart-contracts/overview/", label: "Write smart contracts" },
+    { to: "/docs/developers/curriculum/native-tokens/overview/", label: "Create native tokens" },
     { to: "/docs/operators/", label: "Run a stake pool" },
   ];
   return (
@@ -276,19 +289,27 @@ function GuidedPathsBanner() {
   );
 }
 
-function CategoryBrowseSection({ categories, title, subtitle, muted = false }) {
+function CategoryBrowseSection({ categories, title, subtitle, titleId, muted = false }) {
   if (categories.length === 0) return null;
   return (
     <section
       className={clsx("container", styles.section, muted && styles.sectionMuted)}
     >
-      <header className={styles.sectionHeader}>
-        <h2 className={clsx(styles.sectionTitle, muted && styles.sectionTitleMuted)}>
-          {title}
-        </h2>
-        <span className={styles.sectionSubtitle}>{subtitle}</span>
-      </header>
-      <CategoryPanelsCarousel categories={categories} ariaLabel={title} />
+      <CategoryPanelsCarousel
+        categories={categories}
+        labelledBy={titleId}
+        header={
+          <>
+            <h2
+              className={clsx(styles.sectionTitle, muted && styles.sectionTitleMuted)}
+              id={titleId}
+            >
+              {title}
+            </h2>
+            <span className={styles.sectionSubtitle}>{subtitle}</span>
+          </>
+        }
+      />
     </section>
   );
 }
@@ -299,6 +320,7 @@ function BrowseByCategorySection() {
       categories={PROMINENT_CATEGORY_ORDER}
       title="Browse tools by category"
       subtitle="The newest additions in each category."
+      titleId="tools-browse-title"
     />
   );
 }
@@ -309,26 +331,39 @@ function MoreToolsSection() {
       categories={COMPACT_CATEGORY_ORDER}
       title="Utilities & more"
       subtitle="IDEs, testing, security, and operator tooling."
+      titleId="tools-more-title"
       muted
     />
   );
 }
 
+// The template's full-bleed Cardano Blue band, identical in both themes.
+// The section itself marks these as picks, so the tiles carry no star.
 function MaintainerPicksSection({ apps }) {
   if (apps.length === 0) return null;
   return (
-    <section className={clsx("container", styles.section)}>
-      <header className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>★ Maintainer picks</h2>
-        <span className={styles.sectionSubtitle}>
-          Selected by the Developer Portal maintainers
-        </span>
-      </header>
-      <AppTileCarousel
-        apps={apps}
-        ariaLabel="Maintainer picks"
-        renderBadge={() => <StarBadge />}
-      />
+    <section className={styles.picksBand}>
+      <div className="container">
+        <AppTileCarousel
+          apps={apps}
+          labelledBy="tools-picks-title"
+          variant="pick"
+          onBlue
+          header={
+            <>
+              <h2
+                className={clsx(styles.sectionTitle, styles.onBlueTitle)}
+                id="tools-picks-title"
+              >
+                Maintainer picks
+              </h2>
+              <span className={clsx(styles.sectionSubtitle, styles.onBlueSubtitle)}>
+                Selected by the Developer Portal maintainers
+              </span>
+            </>
+          }
+        />
+      </div>
     </section>
   );
 }
@@ -452,7 +487,7 @@ function PrimaryResults({ data }) {
   if (data.empty) {
     return (
       <section className={clsx(styles.section, "text--center")}>
-        <h2>No result</h2>
+        <h2 className={styles.sectionTitle}>No results</h2>
       </section>
     );
   }

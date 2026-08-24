@@ -3,7 +3,6 @@ import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 
 import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
-import InfoDot from "@site/src/components/showcase/InfoDot";
 
 import {
   Showcases,
@@ -59,14 +58,16 @@ export default function AppFilterPanel() {
     () => selectedTags.filter((t) => PropertyList.includes(t)),
     [selectedTags]
   );
-  const activeCount = (activeCategory ? 1 : 0) + activeProperties.length;
-
+  // Every replace clears location.state: a search leaves `isSearch` there,
+  // and carrying it forward would let the SearchBar effect steal focus into
+  // the input on the next facet click.
   const setCategory = useCallback(
     (cat) => {
       const others = selectedTags.filter((t) => !CategoryList.includes(t));
       const nextTags = activeCategory === cat ? others : [cat, ...others];
       history.replace({
         ...location,
+        state: undefined,
         search: replaceSearchTags(location.search, nextTags),
       });
     },
@@ -81,26 +82,38 @@ export default function AppFilterPanel() {
         : [...selectedTags, prop];
       history.replace({
         ...location,
+        state: undefined,
         search: replaceSearchTags(location.search, nextTags),
       });
     },
     [selectedTags, location, history]
   );
 
-  const clearAll = useCallback(() => {
-    history.replace({
-      ...location,
-      search: replaceSearchTags(location.search, []),
-    });
-  }, [location, history]);
+  // One reset per group, the template's control: each clears only its own
+  // group's selection and leaves the others standing.
+  const resetGroup = useCallback(
+    (groupList, hasActive) => {
+      if (!hasActive) return;
+      const nextTags = selectedTags.filter((t) => !groupList.includes(t));
+      history.replace({
+        ...location,
+        state: undefined,
+        search: replaceSearchTags(location.search, nextTags),
+      });
+    },
+    [selectedTags, location, history]
+  );
 
   // An active facet keeps its label as its accessible name and carries
   // aria-pressed, so the button reads as a toggle rather than as a separate
   // "remove" control. The glyph is decorative.
-  // `hint` is the taxonomy's own description, shown on the info dot. Only the
-  // category facets carry one; the language and interface labels speak for
-  // themselves and have no description in the data.
-  function facet(key, label, isActive, onToggle, hint) {
+  // `hint` is the taxonomy's own description, shown as a hover tooltip on
+  // the whole row. Only the category facets carry one; the language and
+  // interface labels speak for themselves and have no description in the
+  // data.
+  // Counts render only where the template shows them: beside the category
+  // labels, and never on a selected facet, whose capsule carries label + ×.
+  function facet(key, label, isActive, onToggle, hint, showCount) {
     const button = (
       <button
         type="button"
@@ -109,12 +122,13 @@ export default function AppFilterPanel() {
         aria-pressed={isActive}
       >
         <span className={styles.facetLabel}>{label}</span>
-        {hint && <InfoDot />}
         {/* The count is decoration on top of the label, which already names
             the facet, so it stays out of the accessible name. */}
-        <span className={styles.facetCount} aria-hidden="true">
-          {FACET_COUNTS[key] ?? 0}
-        </span>
+        {showCount && !isActive && (
+          <span className={styles.facetCount} aria-hidden="true">
+            {FACET_COUNTS[key] ?? 0}
+          </span>
+        )}
         {isActive && (
           <span className={styles.facetRemove} aria-hidden="true">
             ×
@@ -139,13 +153,28 @@ export default function AppFilterPanel() {
   // they are not headings: making them h3 put an h1 -> h3 skip at the top of
   // the page. role="group" + aria-labelledby gives assistive tech the same
   // grouping without touching the heading outline.
-  function group(heading, children, inline) {
+  function group(heading, children, inline, onReset, hasActive) {
     const labelId = `tools-facets-${heading.toLowerCase()}`;
     return (
       <div className={styles.group} role="group" aria-labelledby={labelId}>
-        <p className={styles.groupLabel} id={labelId}>
-          {heading}
-        </p>
+        <div className={styles.groupHead}>
+          <p className={styles.groupLabel} id={labelId}>
+            {heading}
+          </p>
+          {/* The template shows Reset in every header; it only does anything
+              once the group has a selection. aria-disabled rather than
+              disabled: a button that disables itself on activation would
+              drop keyboard focus to the body. */}
+          <button
+            type="button"
+            onClick={onReset}
+            className={styles.groupReset}
+            aria-disabled={!hasActive}
+            aria-label={`Reset ${heading.toLowerCase()} filters`}
+          >
+            Reset
+          </button>
+        </div>
         <ul className={clsx(styles.facetList, inline && styles.facetListInline)}>
           {children}
         </ul>
@@ -154,6 +183,7 @@ export default function AppFilterPanel() {
   }
 
   function propertyGroup(heading, list, inline) {
+    const hasActive = activeProperties.some((p) => list.includes(p));
     return group(
       heading,
       list.map((prop) =>
@@ -161,7 +191,9 @@ export default function AppFilterPanel() {
           toggleProperty(prop)
         )
       ),
-      inline
+      inline,
+      () => resetGroup(list, hasActive),
+      hasActive
     );
   }
 
@@ -175,18 +207,16 @@ export default function AppFilterPanel() {
             Categories[cat].label,
             activeCategory === cat,
             () => setCategory(cat),
-            Categories[cat].description
+            Categories[cat].description,
+            true
           )
         ),
-        false
+        false,
+        () => resetGroup(CategoryList, Boolean(activeCategory)),
+        Boolean(activeCategory)
       )}
       {propertyGroup("Language", LanguageList, true)}
       {propertyGroup("Interface", InterfaceList, true)}
-      {activeCount > 0 && (
-        <button type="button" onClick={clearAll} className={styles.clearButton}>
-          Clear all filters
-        </button>
-      )}
     </section>
   );
 }

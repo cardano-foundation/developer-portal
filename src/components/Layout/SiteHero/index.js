@@ -2,9 +2,12 @@ import React from "react";
 import clsx from "clsx";
 import styles from "./styles.module.css";
 
-// Navy chrome band shared with the navbar and footer, identical in both
-// themes. Replaced the gradient-and-caret banner that predated the 2026
-// brand and clashed with the cream page.
+// Page header band. Follows the theme like the navbar: cream with ink
+// type in light mode, navy with cream type in dark.
+//
+// `art` is an optional decorative node (its component carries aria-hidden)
+// painted absolutely behind the copy. Unlike `artwork` below, the band
+// keeps its theme-following ground and the node brings its own visuals.
 //
 // `artwork` is an optional full-bleed background for pages that lead with a
 // graphic. It deepens the band and sets the title in the display treatment.
@@ -23,6 +26,7 @@ export default function SiteHero({
   title,
   description,
   artwork,
+  art,
   subtitleLines,
   children,
 }) {
@@ -36,10 +40,12 @@ export default function SiteHero({
         "hero",
         styles.heroBanner,
         artwork && styles.withArtwork,
+        art && styles.withArt,
         subtitleLines && styles.withSubtitleReserve
       )}
       style={Object.keys(style).length > 0 ? style : undefined}
     >
+      {art}
       <div className="container">
         <div className={styles.taglineContainer}>
           <h1 className={clsx("hero__title", styles.title)}>{title}</h1>
