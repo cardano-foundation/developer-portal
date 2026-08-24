@@ -12,7 +12,7 @@ import VestingAiken from "!!raw-loader!@site/examples/onboarding/lectures/interm
 
 # Handling time: vesting
 
-You now have the whole machine. You can write a validator, test it, compile it, and drive it from an app.
+You have the whole flow done now. You can write a validator, test it, compile it, and drive it from an app.
 
 The next three lectures are about the step that comes **before** all of that. Somebody describes an idea to you. It may be a business idea, a financial one, or a game. Your job is to decide what the contract has to remember, which actions it has to allow, and what it has to refuse. That decision is the **design**, and it is where most of the thinking happens.
 
@@ -93,6 +93,39 @@ One detail is worth knowing. You are free to declare a window that opens later t
 ## How the date reaches the validator
 
 Locking the funds is an ordinary payment, exactly as before. The claim is the vault's unlock with one extra instruction: the app has to declare the window.
+
+```mermaid
+flowchart TB
+    subgraph LOCK["1. the lock: an ordinary payment"]
+        direction LR
+        W["`**your wallet**
+        5 ADA`"] --> T1{{"`**transaction**`"}}
+        T1 --> V["`**UTxO at the vesting address**
+        value: 5 ADA
+        datum:
+        beneficiary = the developer
+        lock_until = 12:00`"]
+    end
+
+    subgraph CLAIM["2. the claim: the vault's unlock, plus a window"]
+        direction LR
+        V2["`**that same UTxO**
+        beneficiary = the developer
+        lock_until = 12:00`"] --> T2{{"`**transaction**
+        signed by: the developer
+        valid from: 13:00`"}}
+        T2 --> D["`**the developer's wallet**
+        5 ADA`"]
+        T2 -.->|"the contract checks"| R["`is the developer among the signers?
+        does 13:00 come after 12:00?`"]
+    end
+
+    LOCK ~~~ CLAIM
+
+    style V2 stroke-dasharray:4 3
+```
+
+Two transactions, and the deadline travels between them inside the datum. The lock writes it, and the claim is the only thing that reads it. The claim's window is not part of the datum: it is a statement the second transaction makes about itself, which is why the contract can compare the two.
 
 Notice what the app does that the contract cannot do. The app has a real clock. So the app is the part that turns your deadline into a **slot number**, and writes that slot into the transaction.
 
