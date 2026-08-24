@@ -20,10 +20,12 @@ function AppRow({ app, compact = false }) {
 
   return (
     <Link
-      to={`/tools/${app.slug}`}
+      to={`/tools/${app.slug}/`}
       className={clsx(styles.row, compact && styles.rowCompact)}
     >
-      <AppIcon app={app} size="row" className={styles.icon} />
+      {/* In-panel rows take the card-sized icon per the template; the
+          standalone result rows keep the smaller one. */}
+      <AppIcon app={app} size={compact ? "tile" : "row"} className={styles.icon} />
       <div className={styles.content}>
         <h4 className={styles.title}>
           {app.title}
