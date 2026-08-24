@@ -10,21 +10,35 @@ import styles from "./styles.module.css";
 
 const NEW_LABEL = "NEW";
 
-function AppTile({ app, badge = null }) {
+function AppTile({ app, variant }) {
   const categoryDef = Categories[app.category];
   // Recency is a property of the tool, so the tile derives it rather than
-  // taking it from the caller. `badge` stays caller-supplied for the things
-  // only a section knows, like a maintainer pick star; a tool can be both.
+  // taking it from the caller.
   const recent = isRecent(app);
 
+  // The template's pick card lays the tool out beside a large icon, with
+  // only the category capsule above the name; the section itself already
+  // says these are picks.
+  if (variant === "pick") {
+    return (
+      <Link to={`/tools/${app.slug}/`} className={clsx(styles.tile, styles.tilePick)}>
+        <AppIcon app={app} size="pick" className={styles.pickIcon} />
+        <div className={styles.pickBody}>
+          {categoryDef && (
+            <span className={styles.category}>{categoryDef.label}</span>
+          )}
+          <h3 className={styles.title}>{app.title}</h3>
+          <p className={styles.description}>{getAppBlurb(app)}</p>
+        </div>
+      </Link>
+    );
+  }
+
   return (
-    <Link to={`/tools/${app.slug}`} className={styles.tile}>
+    <Link to={`/tools/${app.slug}/`} className={styles.tile}>
       <div className={styles.header}>
         <AppIcon app={app} size="tile" />
-        <span className={styles.badges}>
-          {recent && <span className={styles.newBadge}>{NEW_LABEL}</span>}
-          {badge}
-        </span>
+        {recent && <span className={styles.newBadge}>{NEW_LABEL}</span>}
       </div>
       <h3 className={styles.title}>{app.title}</h3>
       <p className={styles.description}>{getAppBlurb(app)}</p>
@@ -47,19 +61,3 @@ function AppTile({ app, badge = null }) {
 }
 
 export default memo(AppTile);
-
-export function StarBadge() {
-  return (
-    <span className={clsx(styles.starBadge)} aria-label="Maintainer pick">
-      ★
-    </span>
-  );
-}
-
-export function RankBadge({ rank }) {
-  return (
-    <span className={clsx(styles.rankBadge)} aria-label={`Rank ${rank}`}>
-      #{rank}
-    </span>
-  );
-}

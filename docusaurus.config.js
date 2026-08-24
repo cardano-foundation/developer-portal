@@ -137,9 +137,10 @@ module.exports = {
       title: "",
       logo: {
         alt: "Cardano Logo",
-        // Navbar is navy in both themes since the 2026 rebrand, so the white
-        // logo serves both and no srcDark variant is needed.
-        src: "img/brand/cardano-horizontal-white.svg",
+        // The navbar follows the theme, so each bar gets its own lockup:
+        // black on the cream bar, white on the navy one.
+        src: "img/brand/cardano-horizontal-black.svg",
+        srcDark: "img/brand/cardano-horizontal-white.svg",
       },
 
       items: getNavbarItems(repository),

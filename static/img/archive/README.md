@@ -11,8 +11,6 @@ here comes back into use, move it out of the archive first.
 
 Current contents:
 
-- `brand/` — the black horizontal logo lockup, retired when the navbar
-  became navy in both themes (2026 rebrand).
 - `home/` — the pre-2026 landing page artwork: hero background and the
   old card illustrations, replaced by `static/img/home/rebrand/`, plus
   the starburst SVG from the old /tools hero, retired when SiteHero

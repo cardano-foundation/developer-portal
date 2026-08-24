@@ -1,12 +1,14 @@
+/* The template's tool card: an outlined Clarity panel. "Light Grey (WEB)"
+   border. */
 .tile {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: 1.15rem 1.25rem 1.25rem;
-  border: 1px solid transparent;
+  gap: 10px;
+  padding: 1.875rem 2.5rem;
+  border: 1px solid var(--site-color-light-grey);
   border-radius: 12px;
-  background: var(--site-color-surface-raised);
-  min-height: 240px;
+  background: var(--site-color-cream);
+  min-height: 295px;
   text-decoration: none;
   color: inherit;
   transition: border-color 150ms ease, box-shadow 150ms ease,
@@ -14,11 +16,12 @@
   position: relative;
 }
 
-/* The card is a raised panel, not an outlined one: the surface token is what
-   separates it from the page. The border stays in the box at zero visible
-   weight so hover can colour it without shifting layout. */
+html[data-theme="dark"] .tile {
+  background: var(--ifm-background-surface-color);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 .tile:hover {
-  background: var(--site-color-surface-raised-hover);
   border-color: var(--site-color-brand-blue);
   text-decoration: none;
   color: inherit;
@@ -41,62 +44,35 @@ html[data-theme="dark"] .tile:focus-visible {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.badges {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
-}
-
-/* Filled brand-blue pill. Reads as state, not decoration, so it keeps the
-   solid fill in both themes rather than going ghost in dark. */
+/* The template's NEW badge: a Deep Blue capsule in the text face. Cream
+   on it is 13:1, so it holds in both themes. */
 .newBadge {
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.62rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  letter-spacing: 0.06em;
-  line-height: 1;
-  padding: 4px 7px;
-  border-radius: 4px;
-  background: var(--ifm-color-primary);
+  font-size: 1rem;
+  font-weight: var(--ifm-font-weight-normal);
+  line-height: 1.25;
+  padding: 3px 13px;
+  border-radius: 999px;
+  background: var(--site-color-blue-deep);
   color: var(--site-color-cream);
-}
-
-/* The dark primary is a light lavender-blue, so cream on it is only 3.51:1.
-   Navy on the same fill is 5.44:1 — the same inversion the amber chips use. */
-html[data-theme="dark"] .newBadge {
-  color: var(--site-color-navy);
-}
-
-.starBadge {
-  color: var(--site-color-amber);
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.rankBadge {
-  color: var(--site-color-text-muted);
-  font-weight: var(--ifm-font-weight-bold);
-  font-size: 0.95rem;
-  letter-spacing: -0.02em;
 }
 
 .title {
   margin: 0;
-  font-size: 1.05rem;
-  font-weight: var(--ifm-font-weight-bold);
-  line-height: 1.25;
+  font-size: 1.375rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  line-height: 1.5;
 }
 
 .description {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.25;
   color: var(--site-color-text-muted);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -104,29 +80,94 @@ html[data-theme="dark"] .newBadge {
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.875rem;
   margin-top: auto;
-  padding-top: 0.25rem;
-  font-size: 0.78rem;
+  padding-top: 0.5rem;
 }
 
-/* Tag chips: one treatment for the category and the property facets. They read
-   as the same kind of label on the card, so the earlier filled-vs-outlined
-   split has gone. Mono, because these are labels rather than prose. */
+/* Tag chips, one treatment for the category and property facets: the
+   template's grey-lavender capsules in the text face, deliberately the
+   same fill in both themes. The template sets their labels in white,
+   which fails contrast on this fill, so they carry navy instead. */
 .category,
 .property {
   display: inline-flex;
   align-items: center;
-  padding: 3px 8px;
-  border-radius: 4px;
-  line-height: 1.5;
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.72rem;
-  background: var(--site-color-surface-chip);
-  color: var(--ifm-color-primary);
+  padding: 3px 13px;
+  border-radius: 999px;
+  line-height: 1.25;
+  font-size: 1rem;
+  background: var(--site-color-chip-grey);
+  color: var(--site-color-navy);
 }
 
-html[data-theme="dark"] .category,
-html[data-theme="dark"] .property {
-  color: var(--ifm-color-primary-light);
+/* The template's pick card: the tool beside its large icon on a Clarity
+   container, part of the Cardano Blue band that stays identical in both
+   themes — so the card keeps its light dress in dark mode too. */
+.tile.tilePick,
+html[data-theme="dark"] .tile.tilePick {
+  flex-direction: row;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 1.875rem 2.5rem;
+  min-height: 263px;
+  background: var(--site-color-cream);
+  border-color: rgba(172, 166, 166, 0.2);
+  border-radius: 11px;
+}
+
+/* The icon ground must not follow the theme either, or dark mode drops the
+   tile from under the logo while the card stays light. Compound through the
+   card class to outrank AppIcon's own dark rule. */
+.tilePick .pickIcon,
+html[data-theme="dark"] .tilePick .pickIcon {
+  background: rgb(var(--site-color-navy-rgb) / 0.05);
+}
+
+.tile.tilePick:hover,
+html[data-theme="dark"] .tile.tilePick:hover {
+  border-color: var(--site-color-navy);
+}
+
+/* The focus ring falls on the blue band, not the card, so navy would
+   vanish there — cream in both themes. */
+.tile.tilePick:focus-visible,
+html[data-theme="dark"] .tile.tilePick:focus-visible {
+  outline-color: var(--site-color-cream);
+}
+
+.pickBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tilePick .title,
+html[data-theme="dark"] .tilePick .title {
+  font-size: 1.28rem;
+  line-height: 1.5;
+  color: var(--site-color-navy);
+}
+
+.tilePick .description,
+html[data-theme="dark"] .tilePick .description {
+  font-size: 0.93rem;
+  -webkit-line-clamp: 3;
+  /* ink-muted, not text-muted: the muted alias goes light in dark mode,
+     which would put light type on this always-light card. */
+  color: var(--site-color-ink-muted);
+}
+
+/* On narrow carousel items the row form squeezes the text to a sliver, so
+   the pick card stacks instead. */
+@media (max-width: 600px) {
+  .tile.tilePick,
+  html[data-theme="dark"] .tile.tilePick {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    min-height: 0;
+  }
 }

@@ -653,18 +653,43 @@ function CTASection() {
   );
 }
 
+/* The banner artwork, exported straight from the design template: scattered
+   brand dots as transparent webps, clipped to the banner frame at 2x so they
+   scale with the banner height exactly. One export per theme, the same
+   pattern the hero uses: the pair differs only where a ball must flip
+   between near-navy (visible on the light ground) and a pale orb (visible
+   on navy). */
+function OfficeHoursArt() {
+  return (
+    <div className={styles.officeHoursArt} aria-hidden="true">
+      <img
+        src={useBaseUrl("img/home/rebrand/office-hours-dots-light.webp")}
+        alt=""
+        className={styles.officeHoursArtLight}
+      />
+      <img
+        src={useBaseUrl("img/home/rebrand/office-hours-dots-dark.webp")}
+        alt=""
+        className={styles.officeHoursArtDark}
+      />
+    </div>
+  );
+}
+
+/* The Office Hours banner from the brand template: one rounded block, copy on
+   the left, the circle-column artwork on the right. */
 function OfficeHoursSection() {
   return (
     <section className={styles.officeHours}>
       <div className="container">
-        <div className={styles.officeHoursInner}>
+        <div className={styles.officeHoursBanner}>
+          <OfficeHoursArt />
           <div className={styles.officeHoursContent}>
-            <span className={styles.officeHoursBadge}>Every week</span>
+            <span className={styles.officeHoursBadge}>Weekly</span>
             <h2>Developer Office Hours</h2>
             <p>
               Get your questions answered live by Cardano Foundation engineers.
-              Each session features a different topic followed by open Q&A. All
-              recordings available on YouTube.
+              Each session features a different topic followed by open Q&A.
             </p>
             <div className={styles.officeHoursActions}>
               <a
@@ -672,33 +697,21 @@ function OfficeHoursSection() {
                 {...EXTERNAL_LINK_PROPS}
                 className={styles.officeHoursBtn}
               >
-                Add to Calendar
+                Add to calendar
+                <span className={styles.officeHoursBtnArrow} aria-hidden="true">
+                  <ArrowUpRight />
+                </span>
               </a>
               <a
                 href="https://www.youtube.com/playlist?list=PLCuyQuWCJVQ3IZiQQvHtczEM-cFAqoHBr"
                 {...EXTERNAL_LINK_PROPS}
                 className={styles.officeHoursBtn}
               >
-                Watch Recordings <span aria-hidden="true">↗</span>
+                Watch recordings
+                <span className={styles.officeHoursBtnArrow} aria-hidden="true">
+                  <ArrowUpRight />
+                </span>
               </a>
-            </div>
-          </div>
-          <div className={styles.officeHoursImageCard}>
-            <img
-              src={useBaseUrl("img/home/rebrand/calendar-spiral.webp")}
-              alt=""
-              className={styles.officeHoursImage}
-            />
-            <div className={styles.calendarOverlay}>
-              <img
-                src={useBaseUrl("img/brand/cardano-horizontal-white.svg")}
-                alt="Cardano"
-                className={styles.calendarLogo}
-              />
-              <h3>Developers calendar</h3>
-              <span className={styles.calendarTagline}>
-                Start building on Cardano
-              </span>
             </div>
           </div>
         </div>

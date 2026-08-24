@@ -1,18 +1,39 @@
+/* Template layout: the section header and the outlined circular arrows
+   share the top row, the scroller runs full width beneath them. */
 .carousel {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr auto;
-  align-items: stretch;
-  column-gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.headerContent {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
 }
 
 .scroller {
   list-style: none;
   margin: 0;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem;
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
@@ -26,9 +47,10 @@
   display: none;
 }
 
+/* The template's 393px category card. */
 .item {
-  flex: 0 0 340px;
-  max-width: 340px;
+  flex: 0 0 min(393px, 85vw);
+  max-width: 393px;
   scroll-snap-align: start;
 }
 
@@ -36,80 +58,106 @@
   height: 100%;
 }
 
+/* The template's category card: a Clarity panel on the Neutral Grey
+   outline, unlike the tool cards' "Light Grey (WEB)". */
 .panel {
   display: flex;
   flex-direction: column;
   height: 100%;
-  /* Same raised surface as the tool cards above: these two sit next to each
-     other and read as one layer. The border stays in the box at zero visible
-     weight so overflow clipping and sizing are unchanged. */
-  border: 1px solid transparent;
+  padding: 1.875rem 2.5rem;
+  border: 1px solid #ACA6A6;
   border-radius: 12px;
-  background: var(--site-color-surface-raised);
-  overflow: hidden;
+  background: var(--site-color-cream);
 }
 
+html[data-theme="dark"] .panel {
+  background: var(--ifm-background-surface-color);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Header row over the template's Deep Blue rule, the same treatment as the
+   filter rail groups. In dark the rule takes the primary accent; Deep Blue
+   disappears on the navy surface. */
 .panelHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
+  gap: 1rem;
+  padding-bottom: 10px;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--site-color-blue-deep);
 }
 
 html[data-theme="dark"] .panelHeader {
-  border-bottom-color: var(--site-color-card-border);
+  border-bottom-color: var(--ifm-color-primary);
 }
 
 .panelTitle {
   margin: 0;
-  font-size: 1rem;
-  font-weight: var(--ifm-font-weight-bold);
-  color: var(--ifm-font-color-base);
+  font-size: 1.125rem;
+  font-weight: var(--ifm-font-weight-normal);
+  color: var(--site-color-navy);
 }
 
+html[data-theme="dark"] .panelTitle {
+  color: var(--site-color-cream);
+}
+
+/* The template's dormant "See All" in Neutral Grey; it wakes on hover. */
 .seeAll {
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  color: var(--ifm-color-primary);
+  font-size: 1rem;
+  font-weight: var(--ifm-font-weight-normal);
+  color: #ACA6A6;
   text-decoration: none;
+  white-space: nowrap;
+}
+
+.seeAll::after {
+  content: " ↗";
 }
 
 .seeAll:hover {
-  text-decoration: underline;
-  color: var(--ifm-color-primary-darker);
+  text-decoration: none;
+  color: var(--site-color-text-muted);
+}
+
+.seeAll:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .seeAll:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+html[data-theme="dark"] .seeAll {
+  color: rgb(var(--site-color-cream-rgb) / 0.55);
+}
+
+html[data-theme="dark"] .seeAll:hover {
+  color: var(--site-color-cream);
 }
 
 .panelList {
   list-style: none;
   margin: 0;
-  padding: 0.5rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 1.25rem;
 }
 
-.panelList > li > a {
-  border: none;
-  background: transparent;
-  padding: 0.5rem 0.65rem;
-  border-radius: 8px;
-}
+/* Rows sit bare on the card; their compact form in AppRow carries the
+   negative-margin hover wash. */
 
-.panelList > li > a:hover {
-  background: var(--site-color-surface-raised-hover);
-  box-shadow: none;
-}
-
+/* The template's outlined circular arrows */
 .arrow {
-  align-self: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 1px solid transparent;
-  background: var(--site-color-surface-raised);
-  color: var(--site-color-text-muted);
+  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.5);
+  background: transparent;
+  color: var(--site-color-navy);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -120,7 +168,8 @@ html[data-theme="dark"] .panelHeader {
 }
 
 html[data-theme="dark"] .arrow {
-  border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
+  border-color: rgb(var(--site-color-card-text-rgb) / 0.4);
+  color: var(--site-color-cream);
 }
 
 .arrow:hover:not(:disabled) {
@@ -162,12 +211,8 @@ html[data-theme="dark"] .arrow:disabled:hover {
 }
 
 @media (max-width: 600px) {
-  .arrow {
+  .arrows {
     display: none;
-  }
-
-  .carousel {
-    grid-template-columns: 1fr;
   }
 
   .scroller {
@@ -222,13 +267,16 @@ html[data-theme="dark"] .arrow:disabled:hover {
   }
 
   .item {
-    flex: 0 0 280px;
-    max-width: 280px;
+    flex: 0 0 300px;
+    max-width: 300px;
+  }
+
+  .panel {
+    padding: 1.5rem 1.5rem;
   }
 
   .dots {
     display: flex;
-    grid-column: 1 / -1;
     justify-content: center;
     gap: 6px;
     margin-top: 0.75rem;

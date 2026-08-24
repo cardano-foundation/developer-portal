@@ -2,7 +2,7 @@
    results. The sections below this grid stay full width. */
 .browse {
   display: grid;
-  grid-template-columns: 270px minmax(0, 1fr);
+  grid-template-columns: 255px minmax(0, 1fr);
   gap: 2rem;
   align-items: start;
   padding-top: 2.5rem;
@@ -16,8 +16,7 @@
   margin-bottom: 0;
 }
 
-/* Below this the rail collapses behind the Filter button and, when opened,
-   stacks above the results rather than beside them. */
+/* Below this the rail stacks above the results rather than beside them. */
 @media (max-width: 996px) {
   .browse {
     grid-template-columns: minmax(0, 1fr);
@@ -42,19 +41,26 @@
   min-width: 200px;
 }
 
+/* The template's search field: a tall outlined Clarity bar with the
+   placeholder in Slate, "Light Grey (WEB)" border. */
 .searchInput {
   width: 100%;
-  height: 48px;
-  padding: 0 1.1rem;
-  border-radius: 8px;
-  border: 1px solid rgb(var(--site-color-brand-blue-rgb) / 0.35);
-  background: var(--site-color-surface-raised);
-  text-align: center;
-  font-size: 0.95rem;
+  height: clamp(60px, 5vw, 86px);
+  padding: 0 31px;
+  border-radius: 12px;
+  border: 1px solid var(--site-color-light-grey);
+  background: var(--site-color-cream);
+  font-size: 1rem;
+}
+
+.searchInput::placeholder {
+  color: var(--site-color-ink-muted);
 }
 
 html[data-theme="dark"] .searchInput {
-  border-color: rgb(var(--site-color-brand-blue-rgb) / 0.65);
+  background: var(--ifm-background-surface-color);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--ifm-font-color-base);
 }
 
 .searchInput:focus-visible {
@@ -87,19 +93,40 @@ html[data-theme="dark"] .searchInput:focus-visible {
   margin-bottom: 1rem;
 }
 
+/* The template's section title: 36px Chivo Light in Obsidian. */
 .sectionTitle {
   margin: 0;
-  font-size: 1.75rem;
-  font-weight: var(--site-font-weight-heading);
-  letter-spacing: -0.01em;
+  font-size: 2.25rem;
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 1.19;
+  letter-spacing: normal;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  color: var(--site-color-navy);
+}
+
+html[data-theme="dark"] .sectionTitle {
+  color: var(--site-color-cream);
 }
 
 .sectionSubtitle {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--site-color-text-muted);
+}
+
+/* On the Cardano Blue picks band everything goes cream in both themes.
+   Compound with the base classes: a lone .onBlueTitle ties .sectionTitle's
+   specificity and loses whenever the minifier reorders them. */
+.sectionTitle.onBlueTitle,
+html[data-theme="dark"] .sectionTitle.onBlueTitle {
+  color: var(--site-color-cream);
+}
+
+.sectionSubtitle.onBlueSubtitle,
+html[data-theme="dark"] .sectionSubtitle.onBlueSubtitle {
+  font-size: 1.1rem;
+  color: var(--site-color-cream);
 }
 
 .sectionMuted {
@@ -112,9 +139,14 @@ html[data-theme="dark"] .sectionMuted {
   border-top-color: var(--site-color-card-border);
 }
 
-.sectionTitleMuted {
-  font-size: 1.15rem;
-  font-weight: var(--ifm-font-weight-semibold);
+/* Same family scale as the full titles, quieter voice. Compound so the
+   muted colour outranks .sectionTitle regardless of minified order, and
+   the dark form outranks the dark base rule. */
+.sectionTitle.sectionTitleMuted {
+  color: var(--site-color-text-muted);
+}
+
+html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   color: var(--site-color-text-muted);
 }
 
@@ -146,49 +178,60 @@ html[data-theme="dark"] .sectionMuted {
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 }
 
+/* The template's Guided paths bar: a Cardano Blue band with cream type,
+   identical in both themes like the buttons. */
 .guidedPathsBanner {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  justify-content: space-between;
+  gap: 1.25rem 2.5rem;
   flex-wrap: wrap;
   margin-bottom: 2.5rem;
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
-  background: var(--site-color-surface-raised);
+  padding: 1.5rem 2.5rem;
+  border-radius: 11px;
+  background: var(--site-color-brand-blue);
 }
 
 .guidedPathsHeader {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.3rem;
 }
 
 .guidedPathsTitle {
   margin: 0;
-  font-size: 1.05rem;
-  font-weight: var(--ifm-font-weight-bold);
+  font-size: 1.25rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--site-color-cream);
 }
 
 .guidedPathsSubtitle {
-  font-size: 0.85rem;
-  color: var(--site-color-text-muted);
+  font-size: 1rem;
+  color: var(--site-color-cream);
 }
 
+/* The capsules carry their own padding, so the list gap shrinks and the
+   negative margin keeps the labels optically on the banner's inset. */
 .guidedPathChipList {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 -0.7rem;
   display: flex;
-  gap: 1.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .guidedPathChip {
-  font-size: 0.95rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  color: var(--ifm-color-primary);
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 1.33rem;
+  font-weight: var(--ifm-font-weight-normal);
+  color: var(--site-color-cream);
   text-decoration: none;
-  transition: color 150ms ease;
+  transition: background-color 150ms ease;
 }
 
 .guidedPathChip::after {
@@ -198,11 +241,64 @@ html[data-theme="dark"] .sectionMuted {
   transition: transform 150ms ease;
 }
 
+/* The hover must restate cream: without it, Infima's global link hover
+   paints the label primary blue, which vanishes on the blue band. The
+   wash gives the link its affordance instead of an underline. */
 .guidedPathChip:hover {
-  color: var(--ifm-color-primary-dark);
-  text-decoration: underline;
+  color: var(--site-color-cream);
+  text-decoration: none;
+  background: rgb(var(--site-color-cream-rgb) / 0.14);
 }
 
 .guidedPathChip:hover::after {
   transform: translateX(2px);
+}
+
+.guidedPathChip:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
+}
+
+/* The maintainer picks band: full-bleed Cardano Blue, identical in both
+   themes; the cards on it keep their light dress (see AppTile). */
+.picksBand {
+  background: var(--site-color-brand-blue);
+  padding: 3rem 0 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+
+/* --- Hero circle artwork (see HeroRings in index.js) --- */
+
+.heroRings {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* The export's crop matches the band's proportions, so scaling it to the
+   band's height reproduces the template's bleed. The aspect ratio is the
+   export's own 1609x967. */
+.heroRingsArt {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 1609 / 967;
+  transform: translateY(-50%);
+  background: url("/img/hero/tools-rings-light.webp") no-repeat center /
+    contain;
+}
+
+html[data-theme="dark"] .heroRingsArt {
+  background-image: url("/img/hero/tools-rings-dark.webp");
+}
+
+/* Where the copy spans the full band, the artwork leaves rather than
+   sitting behind the title. */
+@media (max-width: 768px) {
+  .heroRings {
+    display: none;
+  }
 }
