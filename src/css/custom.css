@@ -82,7 +82,11 @@
   --ifm-code-font-size: 95%;
   --site-color-tooltip: #fff;
   --site-color-tooltip-background: var(--site-color-navy);
-  /* 2026 brand palette (hex reference: static/img/brand/README.md).
+  /* 2026 brand palette (full sheet with the official names and Pantone refs:
+     static/img/brand/README.md). Tokens keep functional names; on the design
+     team's colour sheet they are: brand-blue = Cardano Blue, navy = Obsidian,
+     cream = Clarity, amber = Photon Signal, lavender-deep = Lavender,
+     lavender = Pedal, ink-muted = Slate.
      The -rgb channel tokens exist for alpha composition: write
      rgb(var(--site-color-navy-rgb) / 0.5) instead of hand-expanding the
      hex into rgba() literals that detach from the palette. */
