@@ -31,6 +31,15 @@ description: One sentence saying what this page covers.
 
 Internal links are checked at build time. A link that points to a page or file that does not exist fails the build, so run `yarn build` before opening a pull request.
 
+:::note Frontmatter and colons
+A `title` or `description` containing a colon must be wrapped in quotes, or the build fails with a YAML parse error.
+:::
+
+## Files and navigation
+
+- Docs pages are always `.md` files. Docusaurus components (Tabs, DocCardList, images via `import`) work inside `.md`, so never create `.mdx` files.
+- Navigation is hand-authored in `sidebars.js`; there are no `_category_.json` files. A new page needs a manual sidebar entry, or it won't appear in the navigation.
+
 ## Markdown Examples
 
 This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. Read the [docusaurus Markdown features](https://docusaurus.io/docs/next/markdown-features) for more examples.
@@ -158,7 +167,7 @@ Here's is the Plutus logo (hover to see the title text):
 Inline-style: ![alt text](./img/logo-plutus-small.png 'This is the Plutus logo inline-style')
 
 Reference-style: ![alt text][logo]
-[logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
+[logo]: ./img/logo-plutus-small.png 'This is a logo reference-style'
 
 Images from any folder can be used by providing path to file. Path should be relative to Markdown file:
 ![alt text](./img/logo-plutus.png)
@@ -168,10 +177,12 @@ Here's is the Plutus logo (hover to see the title text):
 Inline-style: ![alt text](./img/logo-plutus-small.png 'This is the Plutus logo inline-style')
 
 Reference-style: ![alt text][logo]
-[logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
+[logo]: ./img/logo-plutus-small.png 'This is a logo reference-style'
 
 Images from any folder can be used by providing path to file. Path should be relative to Markdown file:
 ![alt text](./img/logo-plutus.png)
+
+**Where images live:** an image used by a doc page is co-located next to the page in an `img/` folder and referenced relatively (`./img/name.png`), as in the examples above. Site-owned assets (home page, blog, tool icons, brand) live under `static/img/<consumer>/` and are referenced as `/img/…`. Always self-host: external image hosts are blocked by the site's Content Security Policy and break on deploy.
 
   </TabItem>
   <TabItem value="lists" label="Lists">
