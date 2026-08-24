@@ -31,7 +31,13 @@ function FeaturedTile({featured}) {
         </span>
         <span className="megaMenuFeaturedCta">
           {featured.cta}
-          {featured.href && <span aria-hidden="true"> ↗</span>}
+          <svg
+            className="megaMenuFeaturedCtaArrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true">
+            <path d="M1 23 23 1M3 1.25h19.75V21" stroke="currentColor" strokeWidth="2.4" />
+          </svg>
         </span>
       </div>
     </Link>

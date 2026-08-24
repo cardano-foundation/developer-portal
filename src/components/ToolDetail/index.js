@@ -19,7 +19,9 @@ import InfoDot from "@site/src/components/showcase/InfoDot";
 import styles from "./styles.module.css";
 
 const OG_IMAGE = "https://developers.cardano.org/img/og/og-builder-tools.jpg";
-const RELATED_LIMIT = 4;
+// Three fills the related grid's row exactly at the container width; a
+// fourth card would wrap alone.
+const RELATED_LIMIT = 3;
 
 function buildJsonLd(tool, categoryLabel) {
   return JSON.stringify({

@@ -19,8 +19,8 @@ Secondary:
 
 | Colour | Hex | Pantone | Use on the portal |
 | --- | --- | --- | --- |
-| Deep Blue | `#06187D` | 2575 C | Not used yet |
-| Neutral Grey | `#ACA6A6` | Cool Gray 4 | Artwork accent |
+| Deep Blue | `#06187D` | 2575 C | NEW badge and panel header rules on Builder Tools |
+| Neutral Grey | `#ACA6A6` | Cool Gray 4 | Artwork accent; count capsules and dormant controls on Builder Tools |
 | Slate | `#5F6B85` | 7545 C | Muted text |
 | Teal | `#2FB7A8` | 3262 C | Not used yet |
 | Pedal | `#C7C2E6` | 7443 C | Artwork accent |
@@ -37,7 +37,7 @@ Chivo Mono for uppercase labels, chips, and badges; both live in
 `static/fonts/` (see the README there).
 
 Logo assets live in this folder, taken from the brandhub on cardano.org. The horizontal
-lockup (mark plus wordmark) is `cardano-horizontal-white.svg`; the navbar is navy in both
-themes since the 2026 rebrand, so only the white lockup is in use (the black one is
-archived under `static/img/archive/brand/`). The mark on its own is `cardano-black.svg`
+lockup (mark plus wordmark) comes in `cardano-horizontal-black.svg` for the cream navbar
+in light mode and `cardano-horizontal-white.svg` for the navy one in dark mode. The mark
+on its own is `cardano-black.svg`
 and `cardano-white.svg`.

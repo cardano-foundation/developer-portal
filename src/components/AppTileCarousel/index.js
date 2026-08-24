@@ -32,7 +32,12 @@ function ChevronRight() {
   );
 }
 
-function AppTileCarousel({ apps, ariaLabel, renderBadge }) {
+// `header` is the section's own heading content, rendered on the template's
+// header row with the arrows at its trailing edge; `labelledBy` names the
+// region from that heading, so screen readers don't hear the title twice.
+// `variant="pick"` switches the tiles to the horizontal pick card and
+// `onBlue` dresses the chrome for the Cardano Blue band.
+function AppTileCarousel({ apps, labelledBy, header, variant, onBlue }) {
   const scrollerRef = useRef(null);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -49,8 +54,17 @@ function AppTileCarousel({ apps, ariaLabel, renderBadge }) {
       setActiveIndex(0);
       return;
     }
-    const progress = node.scrollLeft / max;
-    setActiveIndex(Math.round(progress * lastIndex));
+    // Index from the item stride, so the active dot tracks the leading
+    // card. The stride never reaches the last index while later cards are
+    // still visible, so the scroll end snaps to it explicitly.
+    const firstItem = node.firstElementChild;
+    const itemWidth = firstItem ? firstItem.getBoundingClientRect().width : 393;
+    const gap = parseFloat(getComputedStyle(node).columnGap) || 20;
+    setActiveIndex(
+      node.scrollLeft >= max - 1
+        ? lastIndex
+        : Math.min(lastIndex, Math.round(node.scrollLeft / (itemWidth + gap)))
+    );
   }, [apps.length]);
 
   useIsomorphicLayoutEffect(() => {
@@ -72,23 +86,41 @@ function AppTileCarousel({ apps, ariaLabel, renderBadge }) {
     const node = scrollerRef.current;
     if (!node) return;
     const firstItem = node.firstElementChild;
-    const itemWidth = firstItem ? firstItem.getBoundingClientRect().width : 260;
-    const gap = parseFloat(getComputedStyle(node).columnGap) || 16;
+    const itemWidth = firstItem ? firstItem.getBoundingClientRect().width : 393;
+    const gap = parseFloat(getComputedStyle(node).columnGap) || 20;
     node.scrollBy({ left: direction * (itemWidth + gap), behavior: "smooth" });
     requestAnimationFrame(updateScrollState);
   };
 
   return (
-    <div className={styles.carousel} aria-label={ariaLabel} role="region">
-      <button
-        type="button"
-        className={clsx(styles.arrow, styles.arrowPrev)}
-        onClick={() => scrollBy(-1)}
-        disabled={!canScrollPrev}
-        aria-label="Previous"
-      >
-        <ChevronLeft />
-      </button>
+    <div
+      className={clsx(styles.carousel, onBlue && styles.carouselOnBlue)}
+      aria-labelledby={labelledBy}
+      role="region"
+    >
+      <div className={styles.headerRow}>
+        <div className={styles.headerContent}>{header}</div>
+        <div className={styles.arrows}>
+          <button
+            type="button"
+            className={styles.arrow}
+            onClick={() => scrollBy(-1)}
+            disabled={!canScrollPrev}
+            aria-label="Previous"
+          >
+            <ChevronLeft />
+          </button>
+          <button
+            type="button"
+            className={styles.arrow}
+            onClick={() => scrollBy(1)}
+            disabled={!canScrollNext}
+            aria-label="Next"
+          >
+            <ChevronRight />
+          </button>
+        </div>
+      </div>
       <ul
         ref={scrollerRef}
         className={clsx(
@@ -97,21 +129,15 @@ function AppTileCarousel({ apps, ariaLabel, renderBadge }) {
           canScrollNext && styles.canNext
         )}
       >
-        {apps.map((app, i) => (
-          <li key={app.slug} className={styles.item}>
-            <AppTile app={app} badge={renderBadge ? renderBadge(app, i) : null} />
+        {apps.map((app) => (
+          <li
+            key={app.slug}
+            className={clsx(styles.item, variant === "pick" && styles.itemPick)}
+          >
+            <AppTile app={app} variant={variant} />
           </li>
         ))}
       </ul>
-      <button
-        type="button"
-        className={clsx(styles.arrow, styles.arrowNext)}
-        onClick={() => scrollBy(1)}
-        disabled={!canScrollNext}
-        aria-label="Next"
-      >
-        <ChevronRight />
-      </button>
       <div className={styles.dots} aria-hidden>
         {apps.map((app, i) => (
           <span

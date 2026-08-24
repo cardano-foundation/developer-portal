@@ -7,13 +7,15 @@ import styles from "./styles.module.css";
 const SIZE_CLASS = {
   tile: styles.appIconTile,
   row: styles.appIconRow,
+  pick: styles.appIconPick,
   detail: styles.appIconDetail,
 };
 
 // Render a tool's icon. Primary path: <img src={app.icon}> via useBaseUrl.
 // Fallback when icon is missing OR fails to load: a neutral letter avatar,
 // the tool's first letter on a navy tile.
-// Sizes: "tile" on the card grid, "row" in list rows, "detail" on the tool page.
+// Sizes: "tile" on the card grid, "row" in list rows, "pick" on the
+// maintainer pick cards, "detail" on the tool page.
 // Only the detail icon loads eagerly, since it is above the fold on its page.
 export default function AppIcon({ app, size = "tile", className }) {
   const iconHref = useBaseUrl(app.icon || "");

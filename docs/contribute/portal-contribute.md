@@ -64,42 +64,7 @@ Cardano is a vast sea of open-source repositories that work together, and a dire
 
 Open source is encouraged (set `repository`); hosted and closed services are welcome too (`repository: null`).
 
-**Step-by-Step Process:**
-
-1. **Add your tool entry**
-   - Edit: `src/data/builder-tools/tools.js`
-   - Add your entry to the **END** of the BuilderTools array
-   - Use this format:
-
-   ```javascript
-   {
-     title: "Your Tool Name",
-     description: "Brief description of what your tool does",
-     category: "sdk",                // exactly ONE — see Categories in tags.js
-     properties: ["typescript"],     // language + interface facets — see tags.js
-     website: "https://your-tool.com",
-     repository: "https://github.com/owner/repo", // public source repo, or null
-     docs: "https://docs.your-tool.com/getting-started", // or null if no docs
-   }
-   ```
-
-2. **Choose a category and properties**
-
-   **Important:**
-   - **Title**: use the project's own name, styled how the project styles it (e.g. lowercase `cardano-cli`, `gOuroboros`). Do not add descriptors or parentheticals, or re-case it for uniformity.
-   - **Description**: one or two factual sentences, sentence case, ending with a period. No superlatives. Describe what the tool does and how it differs from similar tools (its language/interface), rather than restating its name.
-   - Pick exactly **one** primary `category` that best describes what the tool *is*. The 12 categories live in `src/data/builder-tools/tags.js`. If the tool reads, serves, or indexes chain data, or runs/talks to a node, see "How the data & node categories relate" below to pick the right layer.
-   - `properties` = the language(s) the tool is written in, plus its interface (`rest` / `graphql` / `grpc` / `websocket`) where relevant.
-   - Open source is encouraged: set `repository` to your public repo (it adds an "Open Source" badge + a GitHub link on the tool's page). Hosted/closed services are welcome too — use `null`.
-   - Do NOT set `maintainerPick` yourself (maintainers choose those).
-
-3. **Test your submission**
-   - Run `yarn build` (must complete without errors)
-   - Check that your tool displays correctly
-
-4. **Submit your pull request**
-   - Use the "Add Builder Tool" GitHub PR template
-   - Fill out the checklist in the template
+**The mechanics** — the exact entry format, field conventions, validation, and PR flow — live in [CONTRIBUTING.md](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md#adding-a-builder-tool). In short: add your entry to the **end** of the `BuilderTools` array in `src/data/builder-tools/tools.js`, pick exactly one `category` and the language/interface `properties` from `tags.js`, run `yarn build` (it validates your entry), and open a pull request with the "Add Builder Tool" template. If your tool reads, serves, or indexes chain data, or runs/talks to a node, the next section helps pick the right category layer.
 
 ### How the data & node categories relate
 
@@ -169,7 +134,7 @@ If your submission was rejected, reviewers will typically provide specific feedb
 
 **Q: Should I commit yarn.lock changes?**
 
-A: No, never commit `yarn.lock` changes. This file is managed by maintainers. If you accidentally committed it, remove it with: `git checkout staging -- yarn.lock && git commit -m 'revert yarn.lock'`
+A: No, never commit `yarn.lock` changes. This file is managed by maintainers. If some slipped into your branch, the [CONTRIBUTING FAQ](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md#faq) has the exact commands to revert them.
 
 For more details on the GitHub workflow, see [CONTRIBUTING.md](https://github.com/cardano-foundation/developer-portal/blob/staging/CONTRIBUTING.md).
 
@@ -188,22 +153,7 @@ For **content writers and developers** who want to work on documentation, blog p
 
 ### Local Development Setup
 
-**Requirements:**
-
-- [Node.js](https://nodejs.org/en/download/) >= 20.0 (check with `node -v`)
-- [Yarn](https://yarnpkg.com/en/) >= 1.20 (check with `yarn --version`)
-- On macOS: Xcode and Command Line Tools
-
-**Setup:**
-
-```bash
-# Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-github-username>/developer-portal.git
-cd developer-portal
-yarn install
-yarn build  # Required at least once - pulls missing files
-yarn start  # Development server at http://localhost:3000
-```
+Follow the [local development setup](https://github.com/cardano-foundation/developer-portal/blob/staging/README.md#local-development-setup) in the README: fork, clone, `yarn install`, `yarn build`, `yarn start`. It requires Node.js 22 (the pinned version lives in `.nvmrc`, so `nvm use` picks it up) and Yarn 1.20+.
 
 :::info Development vs Production
 
@@ -212,15 +162,20 @@ yarn start  # Development server at http://localhost:3000
 
 :::
 
+Both commands first run two generators: `scripts/generate-stats.js` (writes `static/stats.json`) and `scripts/generate-og.js` (renders the social-preview cards). Their output is gitignored - never commit it.
+
 ### Project Structure
 
 ```bash
 developer-portal/
-├── docs/              # Documentation content (you'll edit these)
-├── blog/              # Developer blog posts
-├── src/data/          # Builder tools data
-├── static/img/        # Images and assets
-├── sidebars.js        # Navigation structure
+├── docs/              # Documentation content (images co-located in img/ folders)
+├── blog/              # Developer blog posts (tags.yml defines allowed tags)
+├── examples/          # Runnable example projects (dApp starter templates)
+├── src/data/          # Site data: builder-tools, templates, contracts, navbar, footer, redirects
+├── static/img/        # Site-owned assets, grouped by consumer (home, blog, tools, brand, og)
+├── plugins/           # Custom Docusaurus plugins
+├── scripts/           # Build helpers (stats, social cards, llms.txt paths)
+├── sidebars.js        # Navigation structure (hand-authored)
 └── docusaurus.config.js
 ```
 
@@ -236,6 +191,9 @@ developer-portal/
 
 **Essential rules:**
 
+- Pages are `.md` files - Docusaurus components (Tabs, DocCardList) work inside `.md`, so never create `.mdx`
+- A new page needs a manual entry in `sidebars.js`; navigation is hand-authored (no `_category_.json` files)
+- Doc images live next to the page in an `img/` folder, referenced relatively (`./img/name.png`)
 - Use `## Level 2` headings as top-level (page title is auto-generated)
 - Include frontmatter with `id`, `title`, `description`
 - Test with `yarn build` before submitting
@@ -243,13 +201,7 @@ developer-portal/
 ### Troubleshooting
 
 **Node.js version error:** `[ERROR] Minimum Node.js version not met`
-**Solution:** Use Node.js >= 20.0. Use `nvm use 20` if you have multiple versions.
-
-**Sidebars loading error:** `[ERROR] Sidebars file failed to be loaded`
-**Solution:** Run `yarn build` first - this pulls missing auto-generated files.
-
-**Token Registry error:** `[ERROR] Sidebar category Token Registry has no subitem`
-**Solution:** Run `yarn build` first - same as above.
+**Solution:** Use Node.js 22. With nvm installed, `nvm use` in the repo root switches to the version pinned in `.nvmrc`.
 
 ## More Ways to Contribute
 
@@ -280,6 +232,7 @@ When contributing blog posts, please follow these guidelines:
 
 - The preview image shown when a post is shared on social media is generated at build time from the post title. You do not need to make one.
 - Do not add an `image:` field to the frontmatter. Every post gets a generated card, so the field is ignored.
+- The same applies to documentation pages: `scripts/generate-og.js` renders a branded card for every doc and site page during the build.
 
 ### Review Pull Requests
 

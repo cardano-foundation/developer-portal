@@ -1214,59 +1214,85 @@ html[data-theme="dark"] .ecoCardDesc {
   padding: 4rem 0 5rem;
 }
 
-.officeHoursInner {
+/* One rounded banner from the brand template: copy on the left, the circle
+   columns on the right. Light gray surface with a navy WEEKLY pill in light
+   mode; the whole block inverts onto navy in dark mode. */
+.officeHoursBanner {
+  position: relative;
+  overflow: hidden;
   display: flex;
-  align-items: stretch;
-  gap: 1.25rem;
-  min-height: 280px;
-}
-
-/* Light card in BOTH themes, the inverse of the navy cards: #F2F2F2 fill,
-   ink badge, brand-blue pill buttons. */
-.officeHoursContent {
-  flex: 1;
-  padding: 2rem;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  min-height: 360px;
+  border-radius: 15px;
   background: var(--site-color-gray-light);
-  color: var(--site-color-ink);
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
+  /* The template outlines the banner with a thin dark stroke. */
+  border: 1px solid var(--site-color-navy);
 }
 
-.officeHoursBadge {
-  composes: monoLabel;
-  display: inline-block;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  padding: 0.3rem 0.85rem;
-  border-radius: 999px;
-  width: fit-content;
-  margin-bottom: 1rem;
-  background: var(--site-color-ink);
+html[data-theme="dark"] .officeHoursBanner {
+  background: var(--site-color-navy);
+  border-color: var(--site-color-card-border);
+}
+
+.officeHoursContent {
+  position: relative;
+  z-index: 1;
+  max-width: 54%;
+  padding: 2.75rem 2.5rem;
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .officeHoursContent {
   color: var(--site-color-cream);
 }
 
+/* Chivo at light weight, not the mono label face: the template sets the
+   WEEKLY pill in the text face. Inverts with the theme. */
+.officeHoursBadge {
+  display: inline-block;
+  width: fit-content;
+  font-size: 1rem;
+  font-weight: var(--ifm-font-weight-light);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 1.2rem;
+  border-radius: 999px;
+  margin-bottom: 1.6rem;
+  background: var(--site-color-navy);
+  color: var(--site-color-cream);
+}
+
+html[data-theme="dark"] .officeHoursBadge {
+  background: var(--site-color-cream);
+  color: var(--site-color-navy);
+}
+
 .officeHoursContent h2 {
-  font-size: 2.4rem;
-  font-weight: var(--site-font-weight-display);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin: 0 0 0.75rem;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.4rem;
+  /* Narrow enough to break after "Developer", the template's line split. */
+  max-width: 6.5em;
 }
 
 .officeHoursContent p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0 0 1.25rem;
-  color: var(--site-color-ink-muted);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin: 0 0 1.8rem;
+  max-width: 30em;
+  color: var(--site-color-text-muted);
+}
+
+html[data-theme="dark"] .officeHoursContent p {
+  color: var(--site-color-cream);
 }
 
 .officeHoursActions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
@@ -1277,8 +1303,8 @@ html[data-theme="dark"] .ecoCardDesc {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.55rem 1.15rem;
-  font-size: 0.8rem;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.85rem;
   text-decoration: none !important;
   transition: all 0.25s ease;
 }
@@ -1289,75 +1315,65 @@ html[data-theme="dark"] .ecoCardDesc {
   color: var(--site-color-gray-light);
 }
 
-.officeHoursImageCard {
-  flex: 1;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  background: var(--site-color-card-surface);
-}
-
-/* Pinwheel art at natural proportions anchored to the right edge, dark hub
-   at right-center; the left fade blends the crop into the navy card */
-.officeHoursImage {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: auto;
+.officeHoursBtnArrow svg {
   display: block;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 25%);
-  mask-image: linear-gradient(to right, transparent, #000 25%);
+  width: 11px;
+  height: 11px;
 }
 
-.calendarOverlay {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  min-height: 280px;
-  display: flex;
-  flex-direction: column;
-  padding: 1.75rem;
-  color: var(--site-color-card-text);
+.officeHoursArt {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.calendarLogo {
-  height: 22px;
-  width: auto;
-  align-self: flex-start;
+/* Bleeds to the right edge like the template. Sized by width, not height:
+   at full banner width this equals full height (the export is the banner's
+   right 52% at the same aspect), and at narrower widths it shrinks with the
+   banner instead of sliding under the copy. */
+.officeHoursArt img {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 52%;
+  height: auto;
+  display: block;
 }
 
-.calendarOverlay h3 {
-  font-size: 1.9rem;
-  font-weight: var(--site-font-weight-heading);
-  line-height: 1.1;
-  margin: 0.75rem 0 0;
-  color: var(--site-color-card-text);
-  max-width: 10em;
+.officeHoursArt .officeHoursArtDark {
+  display: none;
 }
 
-.calendarTagline {
-  margin-top: auto;
-  font-size: 0.85rem;
-  color: rgb(var(--site-color-card-text-rgb) / 0.8);
+html[data-theme="dark"] .officeHoursArt .officeHoursArtLight {
+  display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .officeHoursInner {
-    flex-direction: column;
-    min-height: auto;
-  }
+html[data-theme="dark"] .officeHoursArt .officeHoursArtDark {
+  display: block;
+}
 
-  .officeHoursImageCard {
-    min-height: 180px;
+/* Below this width the artwork would crowd the copy, so the banner reads as
+   a plain centred card. */
+@media screen and (max-width: 996px) {
+  .officeHoursArt {
+    display: none;
   }
 
   .officeHoursContent {
+    max-width: none;
     text-align: center;
   }
 
-  .officeHoursBadge {
-    align-self: center;
+  .officeHoursBadge,
+  .officeHoursContent h2,
+  .officeHoursContent p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .officeHoursContent h2 {
+    max-width: none;
   }
 
   .officeHoursActions {
