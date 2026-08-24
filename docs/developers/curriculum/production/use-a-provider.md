@@ -2,13 +2,13 @@
 id: use-a-provider
 title: Use a Provider
 sidebar_label: Use a provider
-description: "Set up a hosted Cardano query API with one skeleton for Blockfrost, Koios, and Maestro: create access, find your network's endpoint, make a first request, wire your SDK, and know the limits."
+description: "Set up a hosted Cardano query API with one skeleton for Blockfrost, Koios, Maestro, and Nexus: create access, find your network's endpoint, make a first request, wire your SDK, and know the limits."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A [query API](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis) is the fastest way to serve your application the chain: someone else runs the node and the indexer, and your SDK points at a URL. The three documented here are directly comparable, they answer the same REST-shaped reads and accept the same transaction submissions, so this page sets all three up with one identical skeleton: create access, find your network's endpoint, make a first raw request, point your SDK at it, and know the limits. Pick one tab and the rest of the curriculum works the same; switching later is a configuration change.
+A [query API](/docs/developers/curriculum/production/connecting-to-the-chain#query-apis) is the fastest way to serve your application the chain: someone else runs the node and the indexer, and your SDK points at a URL. The four documented here are directly comparable, they answer the same REST-shaped reads and accept the same transaction submissions, so this page sets all four up with one identical skeleton: create access, find your network's endpoint, make a first raw request, point your SDK at it, and know the limits. Pick one tab and the rest of the curriculum works the same; switching later is a configuration change.
 
 The differences that matter are operational, not functional: who operates it, how access is granted, and how usage is limited. Where they genuinely differ, the tabs say so.
 
@@ -32,6 +32,11 @@ Nothing to create for basic use: Koios is a community-run cluster and its **publ
 <TabItem value="maestro" label="Maestro">
 
 Create a free account at [dashboard.gomaestro.org](https://dashboard.gomaestro.org/). Create a project, selecting **Cardano** and your network, then copy the project's API key from the dashboard. Each project is scoped to one network.
+
+</TabItem>
+<TabItem value="nexus" label="Nexus">
+
+Sign up at [nexus.gerowallet.io](https://nexus.gerowallet.io/) and create an API key. Each key is scoped to **one chain and one network** (e.g. Cardano Preprod), so you make a key per chain and network you call; it starts with `nxs_`.
 
 </TabItem>
 </Tabs>
@@ -66,6 +71,15 @@ Each network has its own base URL, and your access is scoped to the network you 
 | Mainnet | `https://mainnet.gomaestro-api.org/v1` |
 | Preprod | `https://preprod.gomaestro-api.org/v1` |
 | Preview | `https://preview.gomaestro-api.org/v1` |
+
+</TabItem>
+<TabItem value="nexus" label="Nexus">
+
+One base URL for every network; the network comes from your key's scope (and is accepted as a `?network=` query):
+
+| Base URL | Network query |
+| --- | --- |
+| `https://nexus.gerowallet.io/api` | `CARDANO_MAINNET` · `CARDANO_PREPROD` · `CARDANO_PREVIEW` |
 
 </TabItem>
 </Tabs>
@@ -130,6 +144,18 @@ curl -H "api-key: $MAESTRO_API_KEY" \
 ```
 
 The response is the current chain tip: block hash, height, and slot. Responses are cursor-paginated where lists are involved: pass the returned `next_cursor` back as the `cursor` query parameter to fetch the next page.
+
+</TabItem>
+<TabItem value="nexus" label="Nexus">
+
+Authentication is the `X-Api-Key` header:
+
+```bash
+curl -H "X-Api-Key: $NEXUS_API_KEY" \
+  https://nexus.gerowallet.io/api/blocks/latest
+```
+
+A JSON block is returned. The same key format and base URL also serve Bitcoin and Midnight endpoints and Cardano market data.
 
 </TabItem>
 </Tabs>
@@ -199,6 +225,11 @@ The public tier carries shared rate limits that protect the community cluster; a
 Requests per second depend on your subscription plan, and each call also consumes **compute credits** from a tier-dependent allowance (heavier queries cost more). The `X-RateLimit-*` and `X-Maestro-Credits-*` response headers report where you stand. Current tiers are on [gomaestro.org/developer](https://gomaestro.org/developer).
 
 </TabItem>
+<TabItem value="nexus" label="Nexus">
+
+Access is gated by your subscription tier, and each key is scoped to one chain and one network — a request whose network disagrees with the key is rejected. Extras such as market data and IPFS are addon-gated. Current tiers and addons are on [nexus.gerowallet.io](https://nexus.gerowallet.io).
+
+</TabItem>
 </Tabs>
 
 ## The full references
@@ -208,10 +239,11 @@ Each provider's own documentation is the authority on its endpoints:
 - **Blockfrost**: [blockfrost.dev](https://blockfrost.dev/), with official SDKs for 15+ languages beyond the Cardano SDK providers above
 - **Koios**: [api.koios.rest](https://api.koios.rest/), every endpoint with a runnable sample query
 - **Maestro**: [docs.gomaestro.org](https://docs.gomaestro.org/cardano), covering the indexer plus transaction-management extras
+- **Nexus**: [nexus.gerowallet.io/docs](https://nexus.gerowallet.io/docs), covering Cardano, Bitcoin, and Midnight plus market data; a typed client is published as [`@adlabs/nexus`](https://www.npmjs.com/package/@adlabs/nexus)
 
 ## The same APIs, self-hosted
 
-Two of the three are open source end to end, so outgrowing a hosted tier does not mean leaving the API behind:
+Two of the four are open source end to end, so outgrowing a hosted tier does not mean leaving the API behind:
 
 - **Blockfrost**: the backend ([blockfrost-backend-ryo](https://github.com/blockfrost/blockfrost-backend-ryo)), SDKs, and [OpenAPI spec](https://github.com/blockfrost/openapi) are open source; a Docker image runs your own instance against your own node and db-sync.
 - **Koios**: the [guild-operators suite](https://cardano-community.github.io/guild-operators/Build/grest/) deploys a full gRest instance (node, db-sync, PostgREST, HAProxy) with the same API, removing shared rate limits; you can also [contribute the instance back](https://github.com/cardano-community/koios-artifacts/tree/main/topology) to the community cluster.
