@@ -4,8 +4,8 @@
 // templates, contracts, talent, blog index).
 //
 // For each page we stamp its title and a section eyebrow onto one of the brand
-// backgrounds, under the shared chrome (Cardano lockup and a DEVELOPER PORTAL pill),
-// and write a 1920x1080 JPG. Consumers read the manifests this writes and point each
+// background frames (exported from the design template with the Cardano lockup
+// and DEVELOPER PORTAL pill already in) and write a 1920x1080 JPG. Consumers read the manifests this writes and point each
 // page's og:image / twitter:image at its card, so pages need no per-page image
 // frontmatter:
 //   docs  -> src/theme/DocItem/Metadata/index.js
@@ -30,7 +30,6 @@ const sharp = require('sharp');
 
 const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'static', 'img', 'og', '_template');
-const LOGO = path.join(ROOT, 'static', 'img', 'brand', 'cardano-horizontal-white.svg');
 // Satori cannot parse the variable Chivo the site uses (it reads TTF/OTF/WOFF, not
 // WOFF2), so card generation carries a static cut instanced from it. The card sets
 // every string in ExtraLight, so that is the only weight needed. It lives here
@@ -45,20 +44,11 @@ const WIDTH = 1920;
 const HEIGHT = 1080;
 
 const CREAM = '#FFFAF3';
-const NAVY = '#000629';
 
-// Design measurements, from the brand's card template. The top band holds the
-// lockup on the left and a "DEVELOPER PORTAL" pill on the right, both at the
-// template's own placements; the text blocks below share the lockup's left inset,
-// and the headline is capped so it never runs under the artwork.
+// Design measurements, from the brand's card template: the text blocks share the
+// lockup's left inset, and the headline is capped so it never runs under the
+// artwork.
 const INSET = 86;
-const LOGO_BOX = { left: 86, top: 81, width: 462, height: 93 };
-// The pill fills with the card's own navy, so it reads as a capsule wherever it
-// sits over artwork and as bare text over dark ground; the label stays legible
-// either way. Its type matches the eyebrow. `left` is the template's placement,
-// measured off its exported frame, so the burned-in pill lands exactly where a
-// composed background already carries one.
-const PILL = { left: 1201, top: 76, width: 624, height: 86, radius: 52, size: 50, tracking: 0.09, label: 'DEVELOPER PORTAL' };
 const EYEBROW = { top: 421, size: 50, tracking: 0.09 };
 const HEADLINE = { top: 538, width: 1101, tracking: -0.02, lineHeight: 0.98 };
 
@@ -121,7 +111,7 @@ const SOURCES = [
 // no-break space ties each headline's last word pair so none wraps to a lone word.
 // Set `bg` to pin a card to a background index instead of taking the hashed pick.
 const PAGES = [
-  // The site's front door draws the composed frame: the template's own card.
+  // The site's front door is pinned to the design template's own card frame.
   { key: 'home', eyebrow: '', title: 'Start building on Cardano', bg: 2 },
   { key: 'tools', eyebrow: 'BUILDER TOOLS', title: 'SDKs, APIs and services for every\u00A0stack' },
   { key: 'templates', eyebrow: 'TEMPLATES', title: 'Scaffold a wallet-connected dApp in one\u00A0command' },
@@ -280,72 +270,10 @@ function card(title, eyebrow, size) {
   };
 }
 
-// The lockup is identical on every card, so it is rasterised once and composited
-// into each background rather than re-rendered per page. The source SVG paints
-// pure white; the card calls for the brand cream.
-async function logoBuffer() {
-  const svg = fs.readFileSync(LOGO, 'utf8').replace(/#fff\b/gi, CREAM);
-  return sharp(Buffer.from(svg))
-    .resize(LOGO_BOX.width, LOGO_BOX.height, { fit: 'fill' })
-    .png()
-    .toBuffer();
-}
-
-// The pill is likewise identical on every card, so it is drawn once and burned into
-// the backgrounds beside the lockup. Tracking adds its gap after the last glyph too,
-// so the label is padded on the left by the same amount to sit optically centred.
-async function pillBuffer() {
-  const tracking = PILL.size * PILL.tracking;
-  const svg = await satori(
-    {
-      type: 'div',
-      props: {
-        style: {
-          width: PILL.width,
-          height: PILL.height,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingLeft: tracking,
-          borderRadius: PILL.radius,
-          background: NAVY,
-          fontFamily: 'Chivo',
-          fontSize: PILL.size,
-          fontWeight: 200,
-          letterSpacing: tracking,
-          lineHeight: HEADLINE.lineHeight,
-          color: CREAM,
-        },
-        children: PILL.label,
-      },
-    },
-    { width: PILL.width, height: PILL.height, fonts }
-  );
-  return sharp(Buffer.from(svg)).png().toBuffer();
-}
-
-// A navy scrim washing left to right, from the design. The artwork is weighted to
-// the right of the frame and the text to the left, and this is what keeps the two
-// apart: it holds the headline on near-solid navy however busy the artwork behind
-// it gets. Applied to every background so no single export has to remember it.
-function scrim() {
-  return Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}">
-       <defs>
-         <linearGradient id="s" x1="0" y1="0" x2="1" y2="0">
-           <stop offset="0.079" stop-color="${NAVY}" stop-opacity="1"/>
-           <stop offset="0.586" stop-color="${NAVY}" stop-opacity="0"/>
-         </linearGradient>
-       </defs>
-       <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#s)"/>
-     </svg>`
-  );
-}
-
 // Backgrounds are whatever `bg-*.jpg` the template folder holds, so a new one is a
-// drop-in. They come in two forms: raw artwork, which gets the scrim, lockup and
-// pill burned in at prep, and finished frames exported straight from the design
-// template with that chrome already in (named `*-composed.jpg`), used as-is. A
+// drop-in. Each is a finished frame exported straight from the design template,
+// carrying the chrome (Cardano lockup, DEVELOPER PORTAL pill) and the left-side
+// scrim that holds the text on near-solid navy however busy the artwork gets. A
 // page always draws the same one: the choice is a hash of its source path, which
 // keeps cards stable across rebuilds while varying across the site.
 function loadBackgrounds() {
@@ -463,21 +391,11 @@ async function generatePages(backgrounds) {
 }
 
 async function main() {
-  const [logo, pill] = await Promise.all([logoBuffer(), pillBuffer()]);
-  // Each raw background is prepared once, with the scrim, lockup and pill burned
-  // in; a composed one already carries all three.
+  // Each background is normalised to the card size once, then shared by every render.
   const backgrounds = await Promise.all(
-    loadBackgrounds().map((file) => {
-      const base = sharp(file).resize(WIDTH, HEIGHT, { fit: 'cover', position: 'centre' });
-      if (file.endsWith('-composed.jpg')) return base.toBuffer();
-      return base
-        .composite([
-          { input: scrim(), left: 0, top: 0 },
-          { input: logo, left: LOGO_BOX.left, top: LOGO_BOX.top },
-          { input: pill, left: PILL.left, top: PILL.top },
-        ])
-        .toBuffer();
-    })
+    loadBackgrounds().map((file) =>
+      sharp(file).resize(WIDTH, HEIGHT, { fit: 'cover', position: 'centre' }).toBuffer()
+    )
   );
   console.log(`Using ${backgrounds.length} background variant(s)`);
 
