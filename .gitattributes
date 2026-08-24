@@ -1,0 +1,4 @@
+# Normalize text files to LF in the repository so cross-platform edits don't produce whole-file CRLF diffs.
+* text=auto
+# Keep GitHub's language stats about the site, not the bundled example apps.
+examples/** linguist-vendored

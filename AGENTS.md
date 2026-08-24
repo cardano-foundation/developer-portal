@@ -76,7 +76,7 @@ See `package.json` > `scripts` for the rest.
 ---
 
 ## Hard guardrails (don'ts)
-- **Do not change security headers or CSP** (`netlify.toml`), **analytics** (the gtag config in `docusaurus.config.js`), or **CI** (`.github/workflows/`, the `yarn-build` action) without maintainer sign-off and a stated reason. These are runtime and security sensitive, and are not build-tested.
+- **Do not change security headers or CSP** (`netlify.toml`), **analytics** (the gtag config in `docusaurus.config.js`), or **CI** (`.github/workflows/`) without maintainer sign-off and a stated reason. These are runtime and security sensitive, and are not build-tested.
 - **Do not use external image hosts.** The CSP `img-src` is an allowlist; hosts like `raw.githubusercontent.com` and `shields.io` are blocked and break on deploy. Self-host in the repo (co-located `img/` or `static/img/`, see common tasks).
 - **Do not set `maintainerPick`** on builder tools.
 - **Do not mass-reformat** or make wide refactors without an explicit OK. Keep diffs surgical.
