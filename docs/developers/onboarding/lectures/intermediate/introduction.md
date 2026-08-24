@@ -1,7 +1,7 @@
 ---
 title: "Intermediate: smart contracts"
 sidebar_label: "Introduction"
-description: "Smart contracts from scratch — on-chain vs off-chain, validators, datum and redeemer, the tools to write and run them, then vesting, gift cards, oracles and testing."
+description: "Smart contracts from scratch — on-chain vs off-chain, validators, datum and redeemer, the tools to write and run them, then how to turn an idea into a contract design: vesting, gift cards and oracles."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -25,7 +25,8 @@ After this track you'll be able to:
 - Write a validator, compile it, and get a script address out of the blueprint.
 - Build the transactions that lock funds at that address and unlock them again, collateral included.
 - Run a contract you wrote end to end on the test network, and watch it refuse a spend that breaks its rule.
-- Put a deadline on funds, mint a token from a contract, and change data that's already on the chain.
+- Take an idea and turn it into a contract design: what has to be remembered, which actions are possible, what must be true for each one, and what breaks if a rule is missing.
+- Put a deadline on funds, mint a token from a contract, and change data that is already on the chain.
 - Publish a contract once instead of carrying it in every transaction, and let one contract read another's data without consuming it.
 - Test a contract properly before it ever holds anything real.
 
@@ -44,24 +45,29 @@ Those eight are the contract, and nothing after them changes it. The ninth is th
 
 9. **[Off-chain and frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** — derive the address, build every transaction, prove them offline, then connect a wallet and drive the vault from a page in the browser.
 
-The last four are what you build with the machine:
+Those nine lectures are the machine. The next three are about the step that comes before it: taking an idea and deciding what contract it needs. Each one walks the same path, from the idea to the design to the code.
 
-10. **Handling time: vesting** — funds that can't move before a date, enforced without the contract ever reading a clock.
-11. **Multi validators: a gift card** — one script guarding two different actions at once, and minting from a contract.
-12. **Modifying state: an oracle** — changing data that's already on the chain.
-13. **Reference inputs & reference scripts** — publish a contract once, and let one contract read another's data without consuming it.
+10. **[Handling time: vesting](/docs/developers/onboarding/lectures/intermediate/handling-time)** — a promise with a date on it, enforced without the contract ever reading a clock.
+11. **[Multi validators: a gift card](/docs/developers/onboarding/lectures/intermediate/multi-validators)** — a token that is the key to some locked funds, guarded by one script with two handlers.
+12. **[Modifying state: an oracle](/docs/developers/onboarding/lectures/intermediate/modifying-state)** — a published price that stays on the chain and keeps changing.
 
-## You write the vault, one lecture at a time
+The last one is a feature rather than a use case, and it is what lets contracts share code and data:
 
-Lectures 1 to 9 build **one worked example**: a vault that locks funds and only releases them to the owner who signs. You do not read it, you write it.
+13. **[Reference inputs & reference scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)** — publish a contract once instead of carrying it in every transaction, and let one contract read another's data without consuming it.
 
-**The contract comes first, and it comes alone.** Lectures 2 to 8 are on-chain only: you write the validator, compile it, test it and finish it, with no app yet. The whole off-chain half is lecture 9. That is deliberate. The contract is where the thinking is, and it changes with every idea in the track, while the app that drives it is nearly the same code every time.
+## You write every contract in the track
 
-Lectures 1 and 2 set up your workspace, `cardano-vault/`, with a half for each side, and leave you inside the contract project at `on-chain/vault/`. You stay there through lecture 8, so every Aiken command is the short kind: `aiken check`, `aiken add`, `aiken build`, with no paths to get wrong. Lecture 9 steps back up to the root, and that is the last folder change in the track. In between, each lecture explains one idea and has you add it to your contract: a validator that says yes to everybody, then the datum and redeemer, then the rule itself, then tests to hold it still, then a backup key, and finally a **mint** purpose so the vault can create its own token.
+Lectures 1 to 9 build **one worked example**: a vault that locks funds and only releases them to the owner who signs. You do not read it, you write it. Lectures 10 to 13 add four more contracts to the same project, and you write those too.
+
+**The contract comes first, and it comes alone.** Lectures 2 to 8 are on-chain only: you write the validator, compile it, test it and finish it, with no app yet. The whole off-chain half of the track is lecture 9, and lectures 10 to 13 are on-chain again. That is deliberate. The contract is where the thinking is, and it changes with every idea in the track, while the app that drives it is nearly the same code every time.
+
+Lectures 1 and 2 set up your workspace, `cardano-vault/`, with a half for each side, and leave you inside the contract project at `on-chain/vault/`. You stay there through lecture 8, and you come back to it for lectures 10 to 13, so every Aiken command is the short kind: `aiken check`, `aiken add`, `aiken build`, with no paths to get wrong. Lecture 9 is the one detour, up to the root and into the app. In between, each lecture explains one idea and has you add it to your contract: a validator that says yes to everybody, then the datum and redeemer, then the rule itself, then tests to hold it still, then a backup key, and finally a **mint** purpose so the vault can create its own token.
 
 Each step is a few lines and one command, and each one ends with a clean `aiken check`. From **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** onwards it also ends with a passing test suite, which is what makes the two lectures after it safe: both change a contract that already works.
 
-The four lectures after that work differently. Those contracts arrive finished, and the exercises have you break one and write the missing rule back.
+The four lectures after that work differently. Each of 10, 11 and 12 starts from an idea described in plain words, asks the same four questions to turn that idea into a design, and only then shows the code. Lecture 13 covers the feature that lets contracts share code and data.
+
+All four end the way lectures 3 to 8 end. You write the contract into the same `on-chain/vault/` project, run `aiken check` and `aiken build`, and compare the hash with ours. By lecture 13 that project holds five contracts and five addresses, and you wrote all of them.
 
 ## What you need
 
@@ -124,7 +130,7 @@ Inside the folder, one directory per contract, and the code you read in these le
 
 ```
 playground/
-├── vault/          the contract you are about to write     lectures 3-9, 13
+├── vault/          the vault, and its app                  lectures 3-9, 13
 │   ├── on-chain/aiken/
 │   └── off-chain/mesh/
 ├── vesting/        handling time                           lecture 10
@@ -145,6 +151,6 @@ The cost of that separation is that every app is separately installed and separa
 cp vault/off-chain/mesh/.env vesting/off-chain/mesh/.env
 ```
 
-Lectures 10 to 13 work directly in these folders, with `playground/` as the folder you run from: a different workspace, named on every command. Lectures 1 to 9 do not: there you build your own, and `playground/vault/` is the answer sheet.
+You never write code in these folders. Every lecture has you build in your own workspace, and the matching folder here is the answer sheet. What you do run from `playground/` are the apps: the vault's in lecture 9, the vesting one in lecture 10, and the oracle one in lecture 12. Each contract is a separate project here, while in your own workspace all five live together in `on-chain/vault/`. That makes no difference to the compiler, which is why the hashes match.
 
 Ready? Start with **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)**.
