@@ -53,6 +53,7 @@
   },
   "//": "resolutions: sharp is pinned so plugin-ideal-image's transitive sharp stays off the flaky prebuild line (PR #1883). Drop the pin once plugin-ideal-image ships sharp >= 0.33, tracked in #1884.",
   "resolutions": {
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.3",
+    "serialize-javascript": "7.0.5"
   }
 }
