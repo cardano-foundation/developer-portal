@@ -1,11 +1,11 @@
-/* The template's tool card: an outlined Clarity panel. The border is the
-   sheet's "Light Grey (WEB)", a literal until a shared token exists. */
+/* The template's tool card: an outlined Clarity panel. "Light Grey (WEB)"
+   border. */
 .tile {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 1.875rem 2.5rem;
-  border: 1px solid #E5E2E2;
+  border: 1px solid var(--site-color-light-grey);
   border-radius: 12px;
   background: var(--site-color-cream);
   min-height: 295px;
@@ -47,16 +47,15 @@ html[data-theme="dark"] .tile:focus-visible {
   margin-bottom: 1rem;
 }
 
-/* The template's NEW badge: a Deep Blue capsule in the text face — the
-   colour sheet's first secondary with a consumer. Cream on it is 13:1, so
-   it holds in both themes. */
+/* The template's NEW badge: a Deep Blue capsule in the text face. Cream
+   on it is 13:1, so it holds in both themes. */
 .newBadge {
   font-size: 1rem;
   font-weight: var(--ifm-font-weight-normal);
   line-height: 1.25;
   padding: 3px 13px;
   border-radius: 999px;
-  background: #06187D;
+  background: var(--site-color-blue-deep);
   color: var(--site-color-cream);
 }
 
@@ -98,7 +97,7 @@ html[data-theme="dark"] .tile:focus-visible {
   border-radius: 999px;
   line-height: 1.25;
   font-size: 1rem;
-  background: #B8BBCD;
+  background: var(--site-color-chip-grey);
   color: var(--site-color-navy);
 }
 

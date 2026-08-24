@@ -42,14 +42,13 @@
 }
 
 /* The template's search field: a tall outlined Clarity bar with the
-   placeholder in Slate. The border is the sheet's "Light Grey (WEB)", a
-   literal until a shared token exists. */
+   placeholder in Slate, "Light Grey (WEB)" border. */
 .searchInput {
   width: 100%;
   height: clamp(60px, 5vw, 86px);
   padding: 0 31px;
   border-radius: 12px;
-  border: 1px solid #E5E2E2;
+  border: 1px solid var(--site-color-light-grey);
   background: var(--site-color-cream);
   font-size: 1rem;
 }

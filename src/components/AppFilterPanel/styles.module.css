@@ -1,12 +1,11 @@
 /* Persistent facet rail as the template's Menu panel: an outlined Clarity
    card like the tool tiles, so the whole browse area shares one treatment.
-   The border is the sheet's "Light Grey (WEB)", a literal until a shared
-   token exists. */
+   "Light Grey (WEB)" border. */
 .rail {
   /* The template's Menu insets: 20 left, 12 right, which is also what keeps
      the longest category label on one line. */
   padding: 25px 12px 25px 20px;
-  border: 1px solid #E5E2E2;
+  border: 1px solid var(--site-color-light-grey);
   border-radius: 12px;
   background: var(--site-color-cream);
   align-self: start;
@@ -32,7 +31,7 @@ html[data-theme="dark"] .rail {
   gap: 23px;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #06187D;
+  border-bottom: 1px solid var(--site-color-blue-deep);
 }
 
 html[data-theme="dark"] .groupHead {

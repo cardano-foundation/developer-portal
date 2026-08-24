@@ -38,10 +38,11 @@
 
 /* You can override the default Infima variables here. */
 
-/* The template's nav bar is 102px tall; mobile keeps Infima's height. */
+/* Deliberately below the template's 102px bar; mobile keeps Infima's
+   height. */
 @media (min-width: 997px) {
   :root {
-    --ifm-navbar-height: 102px;
+    --ifm-navbar-height: 84px;
   }
 }
 
@@ -110,8 +111,15 @@
      raised-surface pair carries. */
   --site-color-gray-light-hover: #E8E6E1;
   /* "Light Grey (WEB)" on the design sheet: hairlines and outlines on light
-     surfaces (submenu item cards, the navbar search pill). */
+     surfaces (submenu item cards, the navbar search pill, the Builder
+     Tools cards and fields). */
   --site-color-light-grey: #E5E2E2;
+  /* "Deep Blue" on the design sheet: the NEW badge and the panel header
+     rules on the Builder Tools page. */
+  --site-color-blue-deep: #06187D;
+  /* The template's grey-lavender chip fill on the tool cards. Off-sheet,
+     from the Figma frames. */
+  --site-color-chip-grey: #B8BBCD;
   --site-color-ink: #111425;
   --site-color-ink-muted: #5F6B85;
   /* Muted text that follows the page background (ink on cream, white on navy) */
