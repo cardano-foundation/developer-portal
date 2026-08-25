@@ -250,7 +250,7 @@ See [Calidus Keys](../../operator-tools/calidus-keys) for setup instructions.
 ## Key points
 
 - **One vote per proposal per pool.** Submitting a second vote overwrites the first.
-- **Many proposals per transaction.** One vote file per governance action, all of them in a single transaction, signed once with your cold key. Use it when several actions are live so your cold key comes out of the air gap once instead of once per proposal.
+- **Many proposals per transaction.** One vote file per governance action, all of them in a single transaction, signed once with your cold key. Use it when several actions are live so you unlock your cold key once instead of once per proposal.
 - **Votes expire with the proposal.** Proposals expire after a set number of epochs if the ratification threshold is not met.
 - **No vote = implicit no.** Non-participating stake is excluded from the yes count but included in the total, which drags the ratification rate down. Delegate to `alwaysAbstain` to opt out genuinely.
 - **Cold key security.** Your cold key is your pool's most sensitive credential. Never expose it on an internet-connected machine.
