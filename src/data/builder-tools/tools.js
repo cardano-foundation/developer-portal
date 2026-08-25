@@ -994,6 +994,16 @@ export const BuilderTools = [
     maintainerPick: true,
   },
   {
+    title: "cardano.delivery",
+    icon: "/img/tools/cardano-delivery.svg",
+    description: "Webhook service that sends HTTP notifications for Cardano events, including transactions, blocks, delegations, epochs and governance actions, filterable by address, amount, and policy ID. Agents can create self-expiring webhooks with a single call and no account, and an MCP server is included.",
+    website: "https://cardano.delivery/",
+    repository: null,
+    docs: "https://cardano.delivery/docs/",
+    category: "api",
+    properties: ["webhooks", "agentic"],
+  },
+  {
     title: "Nexus",
     icon: "/img/tools/nexus.svg",
     description: "Hosted Cardano API with REST and WebSocket access to chain data: addresses, transactions, stake pools, DReps, and market data.",
@@ -1002,6 +1012,16 @@ export const BuilderTools = [
     repository: "https://github.com/Gero-Labs/nexus-sdk",
     category: "api",
     properties: ["rest", "websocket"],
+  },
+  {
+    title: "PoolTerminal",
+    icon: "/img/tools/poolterminal.png",
+    description: "Desktop dashboard for stake pool operators that connects to a block producer over SSH and surfaces chain, KES, block propagation, delegator and reward data in one view, with history stored locally. Read-only: it observes the node and cannot sign, spend, or control it.",
+    website: "https://server-tools.grahamsnumberplus1.com/PoolTerminal/",
+    docs: null,
+    repository: "https://github.com/GNP1-dev/PoolTerminal",
+    category: "operations",
+    properties: ["javascript", "rust"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
