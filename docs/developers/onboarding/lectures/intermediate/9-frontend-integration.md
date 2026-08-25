@@ -1,7 +1,7 @@
 ---
 title: "Off-chain and frontend integration"
 sidebar_label: "Frontend integration"
-description: "The other half of a contract: deriving its address, building the transactions that lock and unlock, proving them offline, and wiring the whole thing to a wallet in the browser."
+description: "The off-chain half of a contract: deriving its address, building the transactions that lock and unlock, proving them offline, and wiring the whole thing to a wallet in the browser."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -75,7 +75,7 @@ Vite, the build tool that serves and bundles your page, draws that line for you:
 
 So the key has to live somewhere the browser never reaches: your **page** builds transactions and holds no secrets, and a small **proxy**, running on a machine you control, holds the key and is the only thing that talks to Blockfrost. The full version of that split, where transaction building moves server-side too, is **[frontend signs, backend builds and submits](/docs/developers/curriculum/dapps/connect-a-wallet#frontend-signs-backend-builds-and-submits)**. Here only the provider calls move, which is enough to protect the key.
 
-## The whole flow, both halves together
+## The whole flow, end to end
 
 ```mermaid
 sequenceDiagram
@@ -165,7 +165,7 @@ The first file you write, and the bridge the top of this lecture describes. Crea
 
 Four things in it are worth reading slowly:
 
-- **The import path** reaches across into the other half of your workspace: from `off-chain/src/lib/` that is `"../../../on-chain/vault/plutus.json"`. This is the only place the two halves touch, and it is a file, not a network call.
+- **The import path** reaches across into the other half of your workspace: from `off-chain/src/lib/` that is `"../../../on-chain/vault/plutus.json"`. This is the only place the two halves of your workspace touch, and it is a file, not a network call.
 - **The title** `vault.vault.spend` is `<file>.<validator>.<purpose>`, so it names your `vault.ak`, its `vault` validator, and its spend handler.
 - **`applyParamsToScript`** fills the blank from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. These are the two lines that lecture promised you.
 - **`RECOVERY`** is that parameter, and it decides the address. Any 56-character hex string works, which is 28 bytes written out, but whatever you choose has to stay the same forever.
@@ -359,7 +359,7 @@ export default defineConfig(({ mode }) => {
 });
 ```
 
-Four lines do the work. `target` is where the calls really go, `rewrite` strips the `/api/blockfrost` prefix your page uses, `headers` attaches the key, and `changeOrigin` makes the request look like it came from Blockfrost's own host. The network comes from the key itself: a Blockfrost key names its own network in its first seven characters, which is why one variable configures both halves.
+Four lines do the work. `target` is where the calls really go, `rewrite` strips the `/api/blockfrost` prefix your page uses, `headers` attaches the key, and `changeOrigin` makes the request look like it came from Blockfrost's own host. The network comes from the key itself: a Blockfrost key names its own network in its first seven characters, which is why one variable configures both.
 
 :::note Where this rule still applies once you deploy
 It depends on what the host runs. On anything with a **Node process**, a container, a VPS, or a service that runs `npm run preview`, this same config serves the built page and proxies exactly as it does locally. On a **static host**, which is what Vercel and Netlify give a Vite app by default, there is no Node process: the page is served from a CDN and nothing answers `/api/blockfrost/…`.
@@ -435,7 +435,7 @@ An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming 
 </TabItem>
 </Tabs>
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## That is the vault, finished
 
@@ -445,19 +445,19 @@ Notice the balance. Six lectures went into the contract, and every one of them a
 
 Each of the remaining lectures is the same shape with a different rule in the middle. The contracts arrive finished, and each lecture has you break one and write the missing rule back:
 
-- **Handling time** — funds that cannot move before a date.
-- **Multi validators** — a token that acts as a key, where burning it is what opens the lock.
-- **Modifying state** — data that is updated instead of released.
-- **Reference inputs & scripts** — one contract reading another's data.
+- **Handling time**: funds that cannot move before a date.
+- **Multi validators**: a token that acts as a key, where burning it is what opens the lock.
+- **Modifying state**: data that is updated instead of released.
+- **Reference inputs & scripts**: one contract reading another's data.
 
 ## Go deeper
 
-- [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) — the same two transactions, using more of what the SDK offers.
-- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain) — providers, and reading datums back out.
-- [Use a provider](/docs/developers/curriculum/production/use-a-provider) — keys, quotas and what to do when one goes down.
-- [Offline testing](/docs/developers/curriculum/start-building/offline-testing) — mocking the chain and evaluating budgets without a node.
-- [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet) — CIP-30 in full, and the backend-builds pattern this lecture starts.
-- [Going to production](/docs/developers/curriculum/production/going-to-production) — the rest of the checklist this is one line of.
-- [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization) — keeping execution units, and therefore fees, down.
+- [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): the same two transactions, using more of what the SDK offers.
+- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain): providers, and reading datums back out.
+- [Use a provider](/docs/developers/curriculum/production/use-a-provider): keys, quotas and what to do when one goes down.
+- [Offline testing](/docs/developers/curriculum/start-building/offline-testing): mocking the chain and evaluating budgets without a node.
+- [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): CIP-30 in full, and the backend-builds pattern this lecture starts.
+- [Going to production](/docs/developers/curriculum/production/going-to-production): the rest of the checklist this is one line of.
+- [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization): keeping execution units, and therefore fees, down.
 
 Next: **Handling time: vesting**.

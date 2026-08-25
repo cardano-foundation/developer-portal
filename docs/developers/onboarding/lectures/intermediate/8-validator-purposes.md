@@ -1,7 +1,7 @@
 ---
 title: "Validator purposes"
 sidebar_label: "Validator purposes"
-description: "One validator can guard different things — spending a UTxO, minting tokens, withdrawing rewards — depending on its purpose."
+description: "One validator can guard different things depending on its purpose: spending a UTxO, minting tokens, withdrawing rewards."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -46,7 +46,7 @@ flowchart TD
     guards reward withdrawals`"]
 ```
 
-That is not three scripts. It is one compiled script doing three jobs. The hash **is** the script's identity, and where you put that hash decides which question the network asks it. Put it in an address and it guards funds. Put it on a token as the policy ID and it guards who may create that token. Register it as a stake credential and it guards rewards.
+That is one compiled script doing three jobs. The hash **is** the script's identity, and where you put that hash decides which question the network asks it. Put it in an address and it guards funds. Put it on a token as the policy ID and it guards who may create that token. Register it as a stake credential and it guards rewards.
 
 The result is more useful than it first sounds. Because the script sees its own hash in more than one role, it can **connect** them. One script can create a token and also control how the UTxO holding that token is spent, all under one identity. Many real Cardano designs are built this way, using a token as a mark that says "this UTxO is the real one", which only that same script could have created.
 
@@ -211,13 +211,13 @@ That is the vault: a spend rule with two doors, a mint rule guarding its own tok
 
 Nothing after this changes it. **[Frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** is the other half of the track, and it is the whole off-chain side in one go: the address, the transactions that lock, unlock, recover and mint, the tests that drive them, and a page in a browser with buttons on it. It can be written straight through now, without stopping, precisely because the contract behind it has stopped moving.
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## Go deeper
 
-- [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator) — "one validator, many purposes, one hash," with real handlers.
-- [Smart Contracts (overview)](/docs/developers/curriculum/smart-contracts/overview) — the full purpose table.
-- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) — the mint purpose in depth, native and script policies side by side.
-- [Staking](/docs/developers/curriculum/staking-governance/staking) — where stake credentials and the withdraw purpose fit in.
+- [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator): "one validator, many purposes, one hash," with real handlers.
+- [Smart Contracts (overview)](/docs/developers/curriculum/smart-contracts/overview): the full purpose table.
+- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies): the mint purpose in depth, native and script policies side by side.
+- [Staking](/docs/developers/curriculum/staking-governance/staking): where stake credentials and the withdraw purpose fit in.
 
 Next: **[Off-chain and frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.

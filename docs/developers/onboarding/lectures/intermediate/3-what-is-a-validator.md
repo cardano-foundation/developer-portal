@@ -1,7 +1,7 @@
 ---
 title: "What a validator is"
 sidebar_label: "What a validator is"
-description: "A smart contract on Cardano is a validator: a small yes/no function the network runs to approve or reject spending a locked UTxO."
+description: "A smart contract on Cardano is a validator: a small yes/no function the network runs to approve or reject a transaction."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -9,13 +9,19 @@ import TabItem from "@theme/TabItem";
 
 # What a validator is
 
-A smart contract on Cardano is a **validator**: a small function the network runs when someone tries to spend a **locked** UTxO. It looks at the transaction and returns exactly one thing, **yes (true)** or **no (false)**. If it says yes, the spend happens. If it says no, the whole transaction is rejected and nothing it was trying to do takes place.
+A smart contract on Cardano is a **validator**: a small function the network runs when a transaction tries to do something that validator guards. Spending a **locked** UTxO is the most common case, and the one this lecture uses. Minting is another, and your vault gains that purpose in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**. It looks at the transaction and returns exactly one thing, **yes (true)** or **no (false)**. If it says yes, the action is allowed. If it says no, the whole transaction is rejected and nothing it was trying to do takes place.
 
-Here is the part that surprises people: **a validator never moves funds.** It is not a program that holds money and pays it out. It is a **guard at a door**. A guard does not carry anything in or out. They stand at one door, look at each person who arrives, and say "yes, you may pass" or "no". Everything that happens on the other side of the door is done by somebody else. It works the same way here. The value is moved by the **transaction**, which your off-chain code built, and the validator only approves it.
+Here is the part that surprises people: **a validator never moves funds.** Think of it as a **guard at a door** rather than a program that holds money and pays it out. A guard does not carry anything in or out. They stand at one door, look at each person who arrives, and say "yes, you may pass" or "no". Everything that happens on the other side of the door is done by somebody else. It works the same way here. The value is moved by the **transaction**, which your off-chain code built, and the validator only approves it.
 
 So a validator is defined by what it **refuses**. A guard who lets everyone through is not guarding anything. Writing a contract means choosing the cases where you say no.
 
-One more point before we continue. "A smart contract" does not always mean *one* validator. A real application often uses a **set of validators that work together**. Each one protects its own thing, and each one judges the same transaction. Our examples use a single validator for now. **Multi validators** shows one script guarding two different actions at once, and **reference inputs** shows two separate contracts working together.
+## One contract, several validators
+
+"A smart contract" does not always mean *one* validator. A real application often uses several. Each one protects its own thing, and each one judges the same transaction on its own, without ever calling the others.
+
+What ties them together is a single rule: **every validator the transaction triggers has to say yes.** One no anywhere, and the whole transaction is rejected. That is how contracts cooperate on Cardano, by each making its own demand of the same transaction.
+
+Our examples use a single validator for now. **Multi validators** shows one script guarding two different actions at once, and **reference inputs** shows two separate contracts working together.
 
 ## Where the locked funds live
 
@@ -25,11 +31,11 @@ You have already met the other kind. When Bob locked 5 ADA behind a native scrip
 
 ```mermaid
 flowchart TB
-    subgraph K["Key address — controlled by a person"]
+    subgraph K["Key address: controlled by a person"]
         KA["10 ADA sitting here"] --> KR["to spend it:<br/>sign with the matching private key"]
     end
 
-    subgraph S["Script address — controlled by a rule"]
+    subgraph S["Script address: controlled by a rule"]
         SA["5 ADA sitting here"] --> SR["to spend it:<br/>build a transaction the validator approves"]
     end
 
@@ -140,7 +146,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## What compiling produced
 
@@ -153,13 +159,13 @@ Open it. Four things are inside:
 - **`compiledCode`:** the actual program, as a hex string. This is the **only** part the network ever runs. It is a low-level language called UPLC, and every contract language compiles down to it.
 - **`definitions`:** the shapes of your datum and redeemer types, which is [the next lecture](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer). Right now they are just `Data`, because your validator accepts anything.
 
-Notice what is **not** in there: the address. It is not part of the compiled output. It is built from the hash, and it depends on which network you are on.
+Notice what is **not** in there: the address. It is built from the hash, and it depends on which network you are on.
 
 ## Go deeper
 
-- [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator) — the gatekeeper model, with real validator code.
-- [Smart Contracts (overview)](/docs/developers/curriculum/smart-contracts/overview) — "validators, not actors."
-- [Addresses](/docs/developers/curriculum/fundamentals/core-concepts/addresses) — key addresses, script addresses, and how each one is built.
-- [Smart contract security](/docs/developers/curriculum/smart-contracts/security#locked-value) — the "locked value" section, on what actually happens when a validator can never say yes.
+- [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator): the gatekeeper model, with real validator code.
+- [Smart Contracts (overview)](/docs/developers/curriculum/smart-contracts/overview): "validators, not actors."
+- [Addresses](/docs/developers/curriculum/fundamentals/core-concepts/addresses): key addresses, script addresses, and how each one is built.
+- [Smart contract security](/docs/developers/curriculum/smart-contracts/security#locked-value): the "locked value" section, on what actually happens when a validator can never say yes.
 
 Next: **[Datum & redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**.

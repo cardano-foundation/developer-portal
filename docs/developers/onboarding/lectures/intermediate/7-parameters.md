@@ -24,7 +24,7 @@ So a parameter is one more way a fact reaches a contract, sitting on a different
 | **datum** | lock time | the locked UTxO | lock a new UTxO |
 | **redeemer** | spend time | the spending transaction | just send a different one |
 
-The context is missing from that table on purpose. It is not a value you choose and hand over: it is the transaction itself, and it is settled by whoever builds the spend.
+The context is missing from that table on purpose. It is the transaction itself, settled by whoever builds the spend, rather than a value you choose and pass.
 
 Why would you want one? Think about the vault so far. It releases funds to one owner, proven by one signature. Lose that key and the funds are gone for good, with nobody to ask for help. So we add a **backup key**: a second key, chosen when the vault is made, that can also take the funds out. The owner uses their key for normal spending. The backup is kept somewhere safe and is not touched until it is needed.
 
@@ -35,11 +35,11 @@ Here are all three ways in, in one small contract:
 
 It is your vault with the backup key added, and the **[Try it](#try-it)** below makes exactly this change to the `vault.ak` you have been building:
 
-<CodeBlock language="aiken" title="vault.ak — the types">
+<CodeBlock language="aiken" title="vault.ak: the types">
   {extractRegion(VaultAiken, "types")}
 </CodeBlock>
 
-<CodeBlock language="aiken" title="vault.ak — the rule">
+<CodeBlock language="aiken" title="vault.ak: the rule">
   {extractRegion(VaultAiken, "vault", "mint-handler")}
 </CodeBlock>
 
@@ -78,7 +78,7 @@ flowchart LR
     **addr_test1wpc707…**`"]
 ```
 
-Those two addresses come from one file and two recovery keys, with nothing in common between them. This is not a side effect to work around: it is the reason to use a parameter at all.
+Those two addresses come from one file and two recovery keys, with nothing in common between them. That difference is the reason to use a parameter at all.
 
 Anyone can read the recovery key straight out of the contract. That is fine, because it is a public key **hash**, the same kind of value the datum holds. It names *who* may recover, and naming somebody is not the same as being them: taking the funds still needs a **signature** from that key, and only its owner can produce one.
 
@@ -179,12 +179,12 @@ Open `plutus.json` and look at the entry for `vault.vault.spend`. It has grown a
 
 The blank itself is still empty. Filling it in is the first thing **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** does, and until something does, this contract has no address at all.
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## Go deeper
 
-- [Parameterized scripts](/docs/developers/curriculum/smart-contracts/lock-and-spend#parameterized-scripts) — applying parameters from an SDK, with typed and untyped versions.
-- [Addresses](/docs/developers/curriculum/fundamentals/core-concepts/addresses) — how a script hash becomes an address in the first place.
-- [Smart contract security](/docs/developers/curriculum/smart-contracts/security) — what belongs in a parameter, and what must never go anywhere public.
+- [Parameterized scripts](/docs/developers/curriculum/smart-contracts/lock-and-spend#parameterized-scripts): applying parameters from an SDK, with typed and untyped versions.
+- [Addresses](/docs/developers/curriculum/fundamentals/core-concepts/addresses): how a script hash becomes an address in the first place.
+- [Smart contract security](/docs/developers/curriculum/smart-contracts/security): what belongs in a parameter, and what must never go anywhere public.
 
 Next: **[Validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.

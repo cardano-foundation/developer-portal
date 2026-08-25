@@ -12,7 +12,7 @@ import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/interme
 
 # Testing
 
-A contract has no update button. Once funds sit behind it, a mistake is not a bug you can fix. It is value that is lost or given away. **[What a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** put it plainly: a validator that always says yes gives the funds away, and one that always says no means nobody can ever move them.
+A contract has no update button. Once funds sit behind it, a mistake means value lost or given away, and no patch can take it back. **[What a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** put it plainly: a validator that always says yes gives the funds away, and one that always says no means nobody can ever move them.
 
 So the question is not whether to test. It is how to be sure **before** anything real is at risk.
 
@@ -54,7 +54,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 
 ## Tracing: reading a refusal
 
-This is not a separate level. It is how you read the answer at any of them.
+Tracing works at any of those levels: it is how you read the answer the contract gave.
 
 A validator only ever answers yes or no. That is all the chain needs, but it is thin when a test goes red: you learn *that* the contract refused and nothing about *which* check refused it. Your vault has one check, so there is only one suspect. A contract with a dozen leaves twelve, and by the end of this track yours will have several.
 
@@ -182,13 +182,13 @@ You now have something the next two lectures need. **[Parameters](/docs/develope
 
 Every contract in the rest of the track arrives with tests already written, in the same style. Each of those lectures names its own project path, so the command keeps the shape you have been using here.
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## Go deeper
 
-- [Testing](/docs/developers/curriculum/smart-contracts/testing) — the test runner, mock transactions, and property testing in depth.
-- [Offline testing](/docs/developers/curriculum/start-building/offline-testing) — mocking the chain and evaluating budgets without a node.
-- [Smart contract security](/docs/developers/curriculum/smart-contracts/security) — the failure modes worth writing tests against.
-- [Audits](/docs/developers/curriculum/smart-contracts/security#audits) — when to bring in outside review, and how to prepare for it.
+- [Testing](/docs/developers/curriculum/smart-contracts/testing): the test runner, mock transactions, and property testing in depth.
+- [Offline testing](/docs/developers/curriculum/start-building/offline-testing): mocking the chain and evaluating budgets without a node.
+- [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the failure modes worth writing tests against.
+- [Audits](/docs/developers/curriculum/smart-contracts/security#audits): when to bring in outside review, and how to prepare for it.
 
 Next: **[Parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**.
