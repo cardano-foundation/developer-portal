@@ -994,6 +994,16 @@ export const BuilderTools = [
     maintainerPick: true,
   },
   {
+    title: "cardano.delivery",
+    icon: "/img/tools/cardano-delivery.svg",
+    description: "Webhook service that sends HTTP notifications for Cardano events, including transactions, blocks, delegations, epochs and governance actions, filterable by address, amount, and policy ID. Agents can create self-expiring webhooks with a single call and no account, and an MCP server is included.",
+    website: "https://cardano.delivery/",
+    repository: null,
+    docs: "https://cardano.delivery/docs/",
+    category: "api",
+    properties: ["webhooks", "agentic"],
+  },
+  {
     title: "Nexus",
     icon: "/img/tools/nexus.svg",
     description: "Hosted Cardano API with REST and WebSocket access to chain data: addresses, transactions, stake pools, DReps, and market data.",
