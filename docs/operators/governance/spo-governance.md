@@ -181,7 +181,7 @@ cardano-cli conway query proposals \
   | jq '.[0].stakePoolVotes'
 ```
 
-Your pool ID should appear in the `stakePoolVotes` object with your chosen vote (`VoteYes`, `VoteNo` or `Abstain`). If you voted on several actions in one transaction, check each action ID in turn — or list every vote your pool has cast in one pass:
+Your pool ID should appear in the `stakePoolVotes` object with your chosen vote (`VoteYes`, `VoteNo` or `Abstain`). If you voted on several actions in one transaction, check each action ID in turn — or list your pool's votes on all currently active proposals in one pass:
 
 ```shell
 # stakePoolVotes is keyed by the hex-encoded pool ID, not the bech32 pool1... form
