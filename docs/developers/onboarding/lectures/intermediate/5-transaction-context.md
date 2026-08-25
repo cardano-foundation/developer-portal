@@ -157,12 +157,12 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## Go deeper
 
-- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context) — the full field list, with the checks contracts most often write.
-- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) — why a transaction is a complete, self-contained thing to check.
-- [Smart contract security](/docs/developers/curriculum/smart-contracts/security) — most real bugs are a context check that was missing.
+- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context): the full field list, with the checks contracts most often write.
+- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): why a transaction is a complete, self-contained thing to check.
+- [Smart contract security](/docs/developers/curriculum/smart-contracts/security): most real bugs are a context check that was missing.
 
 Next: **[Testing](/docs/developers/onboarding/lectures/intermediate/testing)**.

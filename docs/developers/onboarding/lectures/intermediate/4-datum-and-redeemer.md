@@ -28,7 +28,7 @@ sequenceDiagram
     participant Net as Network
     participant Vault as The script address<br/>(no wallet, no keys, no owner)
 
-    Note over You,Vault: Transaction 1 — locking
+    Note over You,Vault: Transaction 1, locking
     You->>Net: sign + submit a payment to the script address,<br/>with the datum attached
     Net->>Vault: an ordinary payment, accepted. The 5 ADA sits here
     Note over Net: the validator does not run:<br/>nothing is being unlocked yet
@@ -36,7 +36,7 @@ sequenceDiagram
 
     Note over You,Vault: later. Anyone may try to spend that UTxO
 
-    Note over You,Vault: Transaction 2 — unlocking
+    Note over You,Vault: Transaction 2, unlocking
     You->>Net: sign + submit a spend of that UTxO,<br/>with the redeemer attached
     Net->>Net: run the validator on three things:<br/>the datum (read off the UTxO), the redeemer (from this transaction),<br/>and the context (this transaction itself)
     Net-->>You: True, or False
@@ -55,7 +55,7 @@ Our example contract is a **vault**. It locks some funds so that only their owne
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-<CodeBlock language="aiken" title="vault.ak — the datum and redeemer types">
+<CodeBlock language="aiken" title="vault.ak: the datum and redeemer types">
   {extractRegion(VaultSimple, "types")}
 </CodeBlock>
 
@@ -196,13 +196,13 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 
 **And the redeemer?** You cannot watch it decide anything yet, and that is worth saying plainly rather than inventing a contract to hide it. `VaultAction` offers one choice, so every spender sends the identical thing and it changes no outcome. A redeemer only starts doing work once there is more than one action to pick from, which is what happens in **[Parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** when the vault gains a second way to be opened.
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## Go deeper
 
-- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context) — the full model, with a vesting example.
-- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo) — how a datum rides along on an output.
-- [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend) — datum and redeemer inside a complete lock/spend flow.
-- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain) — reading datums back out from your app.
+- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context): the full model, with a vesting example.
+- [The Extended UTXO Model](/docs/developers/curriculum/fundamentals/core-concepts/eutxo): how a datum rides along on an output.
+- [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): datum and redeemer inside a complete lock/spend flow.
+- [Query the chain](/docs/developers/curriculum/start-building/query-the-chain): reading datums back out from your app.
 
 Next: **[The transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
