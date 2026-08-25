@@ -188,6 +188,8 @@ Your pool ID should appear in the `stakePoolVotes` object with your chosen vote 
 POOL_ID=$(cardano-cli conway stake-pool id \
   --cold-verification-key-file cold.vkey --output-hex)
 
+# on cardano-cli < 10.9.0.0 use --output-format hex instead.
+
 cardano-cli conway query proposals --all-proposals \
   | jq --arg pool "$POOL_ID" \
       '[.[] | select(.stakePoolVotes[$pool] != null)
