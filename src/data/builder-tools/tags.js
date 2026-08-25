@@ -108,6 +108,8 @@ export const InterfaceProperties = {
   graphql: { label: "GraphQL" },
   grpc: { label: "gRPC" },
   websocket: { label: "WebSocket" },
+  webhooks: { label: "Webhooks" },
+  agentic: { label: "Agentic" },
 };
 
 export const Properties = { ...LanguageProperties, ...InterfaceProperties };
