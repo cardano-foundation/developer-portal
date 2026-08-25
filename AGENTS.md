@@ -1,6 +1,6 @@
 # AGENTS.md — AI agent guide for the Cardano Developer Portal
 
-> Use **yarn**, not npm, for all dependency and script management. Requires **Node 22** (see `.nvmrc`).
+> Use **yarn**, not npm, for all dependency and script management. Requires **Node 22** (see `.nvmrc`). The self-contained apps under `examples/` are the exception: each manages its own dependencies with its own package manager.
 
 This file gives AI coding agents (and their operators) the context to contribute correctly to the Cardano Developer Portal (`developers.cardano.org`), a [Docusaurus](https://docusaurus.io/) site. Read it before making changes. Human contributors should start with [README.md](./README.md) and [CONTRIBUTING.md](./CONTRIBUTING.md).
 
@@ -30,16 +30,17 @@ This file gives AI coding agents (and their operators) the context to contribute
 ---
 
 ## Repository map
-- `docs/` — content: `developers/` (the curriculum), `operators/`, `community/`, `contribute/`.
-- `blog/` — the developer blog.
+- `docs/` — content: `developers/` (the curriculum), `operators/`, `community/`, `contribute/`. Doc images are co-located in `img/` folders next to the pages that use them.
+- `blog/` — the developer blog (`tags.yml` defines the allowed tags).
 - `src/`
   - `pages/` — standalone React pages (for example `talent/`, `tools/`).
-  - `data/` — site data: `builder-tools/` (`tools.js` entries + `tags.js` taxonomy + validation), `navbar.js`, `redirects.js`, `templates/`, `contracts/`.
+  - `data/` — site data: `builder-tools/` (`tools.js` entries + `tags.js` taxonomy + validation), `templates/`, `contracts/`, `navbar.js`, `footer.js`, `redirects.js`.
   - `components/`, `theme/`, `css/`, `utils/`, `svg/` — UI.
-- `static/` — static assets. **Self-host images here** (see guardrails).
+- `static/` — site-owned assets, grouped by consumer under `static/img/` (`home/`, `blog/`, `tools/`, `tool-icons/`, `brand/`, `og/`, …).
+- `examples/` — runnable, self-contained example projects (`templates/` holds the dApp starters). Not served by Docusaurus; see `examples/README.md`.
 - `plugins/` — custom Docusaurus plugins (`tools-routes`, `templates-routes`).
-- `scripts/` — build helpers (`generate-stats.js`, `fix-llms-paths.js`).
-- Config: `docusaurus.config.js` (site), `netlify.toml` (redirects + security headers), `searchconfig.json` (Algolia crawler), `.nvmrc` (Node version).
+- `scripts/` — build helpers wired into `yarn start`/`yarn build`: `generate-stats.js` (writes `static/stats.json`), `generate-og.js` (renders the social-preview cards for every doc, blog post, and site page into `static/img/og/`, gitignored), `fix-llms-paths.js` (path fixes for the generated llms.txt).
+- Config: `docusaurus.config.js` (site), `sidebars.js` (navigation — hand-authored, see below), `netlify.toml` (redirects + security headers), `searchconfig.json` (Algolia crawler), `.nvmrc` (Node version — the source of truth).
 
 ---
 
@@ -67,15 +68,16 @@ See `package.json` > `scripts` for the rest.
 
 ## Common tasks
 - **Add a builder tool:** append an entry to the end of the `BuilderTools` array in `src/data/builder-tools/tools.js`; pick exactly one `category` and the `properties` (language and interface) from `src/data/builder-tools/tags.js`; run `yarn build`; open a PR with the **Add Builder Tool** template. These PRs require **3 approvals**. Do not set `maintainerPick` (maintainers choose those).
-- **Edit or add a doc:** files live under `docs/…`. Use relative links to other docs and canonical paths (`/docs/contribute/…`, not redirect aliases). `yarn build` catches broken links.
+- **Edit or add a doc:** files live under `docs/…` and are always `.md` (MDX components like Tabs work inside `.md`; never create `.mdx`). A new doc needs a manual entry in `sidebars.js` — navigation is hand-authored, there are no `_category_.json` files. Use relative links to other docs and canonical paths (`/docs/contribute/…`, not redirect aliases). `yarn build` catches broken links.
 - **Add a redirect:** for internal path moves, add an entry to `src/data/redirects.js` (client-side, via `@docusaurus/plugin-client-redirects`), following the style of existing entries. External-domain routing (for example `testnets.cardano.org`) lives in `netlify.toml` instead. The site uses `trailingSlash: true`; verify the redirect resolves after `yarn build`.
-- **Add an image:** put it under `static/img/` and reference it as `/img/…`. External image hosts are blocked by the CSP (see guardrails).
+- **Add an image:** an image used by a doc page is co-located next to it in an `img/` folder and referenced relatively (`./img/name.png`). Site-owned assets (home page, blog, tool icons, brand) live under `static/img/<consumer>/` and are referenced as `/img/…`. External image hosts are blocked by the CSP (see guardrails).
+- **Social-preview (OG) cards need no work:** `scripts/generate-og.js` renders a card for every doc, blog post, and site page at build time. Do not add `image:` frontmatter and do not commit generated cards (`static/img/og/docs/`, `static/img/og/blog/` are gitignored).
 
 ---
 
 ## Hard guardrails (don'ts)
-- **Do not change security headers or CSP** (`netlify.toml`), **analytics** (the gtag config in `docusaurus.config.js`), or **CI** (`.github/workflows/`, the `yarn-build` action) without maintainer sign-off and a stated reason. These are runtime and security sensitive, and are not build-tested.
-- **Do not use external image hosts.** The CSP `img-src` is an allowlist; hosts like `raw.githubusercontent.com` and `shields.io` are blocked and break on deploy. Self-host under `static/img/`.
+- **Do not change security headers or CSP** (`netlify.toml`), **analytics** (the gtag config in `docusaurus.config.js`), or **CI** (`.github/workflows/`) without maintainer sign-off and a stated reason. These are runtime and security sensitive, and are not build-tested.
+- **Do not use external image hosts.** The CSP `img-src` is an allowlist; hosts like `raw.githubusercontent.com` and `shields.io` are blocked and break on deploy. Self-host in the repo (co-located `img/` or `static/img/`, see common tasks).
 - **Do not set `maintainerPick`** on builder tools.
 - **Do not mass-reformat** or make wide refactors without an explicit OK. Keep diffs surgical.
 - **No secrets or real keys** in code, config, or examples.

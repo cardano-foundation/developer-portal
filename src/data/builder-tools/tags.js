@@ -12,13 +12,11 @@ export const Categories = {
   "smart-contracts": {
     label: "Smart Contracts",
     description: "Languages and frameworks for writing on-chain validators.",
-    color: "#FF6B6B",
     prominent: true,
   },
   sdk: {
     label: "SDKs & Libraries",
     description: "Build transactions and talk to the chain from your code.",
-    color: "#16A085",
     prominent: true,
   },
   // --------------------------------------------------------------------------
@@ -32,97 +30,86 @@ export const Categories = {
   api: {
     label: "APIs & Providers",
     description: "Hosted APIs and RPC providers for accessing the chain without running infrastructure.",
-    color: "#4ECDC4",
     prominent: true,
   },
   indexer: {
     label: "Indexers & Data",
     description: "Self-host a queryable store of chain data: indexers, data nodes, and pipelines.",
-    color: "#2E3B4E",
     prominent: true,
   },
   node: {
     label: "Nodes & Clients",
     description: "Run a Cardano node, or an alternative client implementation.",
-    color: "#5b8a72",
     prominent: true,
   },
   "node-access": {
     label: "Node Access & RPC",
     description: "Connect to a node and talk to it: CLIs, RPC bridges, and protocol libraries.",
-    color: "#517fa4",
     prominent: true,
   },
   wallet: {
     label: "Wallets & Connectivity",
     description: "Wallet backends, dApp connectors, hardware signers, and programmatic wallets.",
-    color: "#E1B12c",
     prominent: true,
   },
   "dev-env": {
     label: "Developer Environments",
     description: "IDEs, cloud environments, and local devnets.",
-    color: "#3742fa",
     prominent: false,
   },
   testing: {
     label: "Testing & Debugging",
     description: "Inspect, decode, debug, simulate, and test dApp integrations.",
-    color: "#6ab04c",
     prominent: false,
   },
   operations: {
     label: "Node Operations",
     description: "Tooling for stake pool and node operators.",
-    color: "#4267b2",
     prominent: false,
   },
   governance: {
     label: "Governance",
     description: "Tooling for on-chain governance and voting.",
-    color: "#673AB7",
     prominent: false,
   },
   integration: {
     label: "Integration & Middleware",
     description: "Connectors and standardized integration interfaces.",
-    color: "#9C27B0",
     prominent: false,
   },
   oracle: {
     label: "Oracles & Data Feeds",
     description: "On-chain price feeds and external data sources for smart contracts.",
-    color: "#E67E22",
     prominent: false,
   },
 };
 
 // Properties, facet 1: Language (the implementation / familiar language).
 export const LanguageProperties = {
-  typescript: { label: "TypeScript", color: "#3178C6" },
-  javascript: { label: "JavaScript", color: "#f0c000" },
-  python: { label: "Python", color: "#5dc942" },
-  rust: { label: "Rust", color: "#7e6a4c" },
-  haskell: { label: "Haskell", color: "#5F5287" },
-  java: { label: "Java", color: "#d5232d" },
-  net: { label: ".NET", color: "#e46fd9" },
-  golang: { label: "Go", color: "#50b7e0" },
-  scala: { label: "Scala", color: "#DC322F" },
-  c: { label: "C", color: "#a37c5b" },
-  purescript: { label: "PureScript", color: "#0F9D58" },
-  elm: { label: "Elm", color: "#60B5CC" },
-  php: { label: "PHP", color: "#777BB4" },
-  swift: { label: "Swift", color: "#F05138" },
+  typescript: { label: "TypeScript" },
+  javascript: { label: "JavaScript" },
+  python: { label: "Python" },
+  rust: { label: "Rust" },
+  haskell: { label: "Haskell" },
+  java: { label: "Java" },
+  net: { label: ".NET" },
+  golang: { label: "Go" },
+  scala: { label: "Scala" },
+  c: { label: "C" },
+  purescript: { label: "PureScript" },
+  elm: { label: "Elm" },
+  php: { label: "PHP" },
+  swift: { label: "Swift" },
 };
 
 // Properties, facet 2: Interface (how you talk to it; mainly API/data tools).
 export const InterfaceProperties = {
-  rest: { label: "REST", color: "#7F8C8D" },
-  graphql: { label: "GraphQL", color: "#E10098" },
-  grpc: { label: "gRPC", color: "#00ADD8" },
-  websocket: { label: "WebSocket", color: "#1DB7ff" },
-  webhooks: { label: "Webhooks", color: "#FF9F43" },
-  agentic: { label: "Agentic", color: "#8E44AD" },
+  rest: { label: "REST" },
+  graphql: { label: "GraphQL" },
+  grpc: { label: "gRPC" },
+  websocket: { label: "WebSocket" },
+  webhooks: { label: "Webhooks" },
+  agentic: { label: "Agentic" },
 };
 
 export const Properties = { ...LanguageProperties, ...InterfaceProperties };

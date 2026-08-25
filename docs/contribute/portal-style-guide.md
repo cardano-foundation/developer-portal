@@ -7,6 +7,39 @@ description: Style guide for the Cardano developer portal.
 
 You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/). [Markdown](https://github.github.com/gfm/) is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
 
+## Front matter
+
+Every docs page starts with a front matter block between two `---` lines. The portal uses these fields:
+
+| Field           | Required    | Purpose                                                                    |
+| --------------- | ----------- | -------------------------------------------------------------------------- |
+| `id`            | yes         | The page identifier used in URLs and sidebar references.                    |
+| `title`         | yes         | The page title. It renders as the top heading and names the browser tab.    |
+| `description`   | yes         | One or two sentences for search engines and link previews.                  |
+| `sidebar_label` | recommended | A shorter name for the sidebar. Falls back to `title` if omitted.           |
+| `slug`          | optional    | Overrides the URL path when it needs to differ from `id`.                   |
+| `keywords`      | optional    | Extra terms for search engines.                                             |
+
+```md
+---
+id: my-page
+title: My Page Title
+sidebar_label: My Page
+description: One sentence saying what this page covers.
+---
+```
+
+Internal links are checked at build time. A link that points to a page or file that does not exist fails the build, so run `yarn build` before opening a pull request.
+
+:::note Frontmatter and colons
+A `title` or `description` containing a colon must be wrapped in quotes, or the build fails with a YAML parse error.
+:::
+
+## Files and navigation
+
+- Docs pages are always `.md` files. Docusaurus components (Tabs, DocCardList, images via `import`) work inside `.md`, so never create `.mdx` files.
+- Navigation is hand-authored in `sidebars.js`; there are no `_category_.json` files. A new page needs a manual sidebar entry, or it won't appear in the navigation.
+
 ## Markdown Examples
 
 This page will help you learn about the Markdown used in the Cardano Developer Portal, but the list is not intended to be exhaustive. Read the [docusaurus Markdown features](https://docusaurus.io/docs/next/markdown-features) for more examples.
@@ -16,17 +49,8 @@ Let's start with the basics:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs
-  defaultValue="text"
-  values={[
-    {label: 'Text', value: 'text' },
-    {label: 'Headers', value: 'headers' },
-    {label: 'Links', value: 'links' },
-    {label: 'Quotes', value: 'quotes' },
-    {label: 'Images', value: 'images' },
-    {label: 'Lists', value: 'lists' },
-  ]}>
-  <TabItem value="text">
+<Tabs>
+  <TabItem value="text" label="Text" default>
 
 ```text
 Emphasis, aka italics, with *asterisks* 
@@ -55,7 +79,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 You can even [link to the Forum!](https://forum.cardano.org)
 
   </TabItem>
-  <TabItem value="headers">
+  <TabItem value="headers" label="Headers">
 
 :::note Avoid top-level headings
 
@@ -64,41 +88,22 @@ You can even [link to the Forum!](https://forum.cardano.org)
 :::
 
 ```md
----
-id: front-matter
-title: I am the frontmatter
-description: Always include the frontmatter in your documents
----
-
 ## Structured documents
 
-As a rule, it is useful to have different levels
-of headings to structure your documents. Start rows 
-with a `##` to create headings. Several `#` in a row 
-indicate smaller heading sizes.
+Start a row with `##` to create a heading. Adding more
+`#` characters creates deeper, smaller headings.
 
 ### This is a level 3 heading
 
 #### This is a level 4 heading
 
-You can use up to `######` six for different heading sizes.
-
+Heading levels go down to `######` (level 6).
 ```
 
-# I am the frontmatter
-
-## Structured documents
-
-As a rule, it is useful to have different levels of headings to structure your documents. Start rows with a `#` to create headings. Several `##` in a row indicate smaller heading sizes.
-
-### This is a level 3 heading
-
-#### This is a level 4 heading
-
-You can use up to `######` six for different heading sizes.
+The rendered headings are not shown live here because they would land in this page's own table of contents. The block between the `---` lines at the top of a page is covered in the [Front matter](#front-matter) section.
 
   </TabItem>
-  <TabItem value="links">
+  <TabItem value="links" label="Links">
 
 ```text
 [I'm an inline-style link](https://forum.cardano.org)
@@ -139,7 +144,7 @@ Some text to show that the reference links can follow later.
 [link text itself]: https://www.cardano.org
 
   </TabItem>
-  <TabItem value="quotes">
+  <TabItem value="quotes" label="Quotes">
 
 ```text
 If you'd like to quote someone, use the > character 
@@ -155,14 +160,14 @@ If you'd like to quote someone, use the > character before the line:
 > It’s not about who’s first to market or how quickly we can upgrade something. It’s about what’s fit for purpose. - **Charles Hoskinson**
 
   </TabItem>
-  <TabItem value="images">
+  <TabItem value="images" label="Images">
 
 ```text
 Here's is the Plutus logo (hover to see the title text):
 Inline-style: ![alt text](./img/logo-plutus-small.png 'This is the Plutus logo inline-style')
 
 Reference-style: ![alt text][logo]
-[logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
+[logo]: ./img/logo-plutus-small.png 'This is a logo reference-style'
 
 Images from any folder can be used by providing path to file. Path should be relative to Markdown file:
 ![alt text](./img/logo-plutus.png)
@@ -172,13 +177,15 @@ Here's is the Plutus logo (hover to see the title text):
 Inline-style: ![alt text](./img/logo-plutus-small.png 'This is the Plutus logo inline-style')
 
 Reference-style: ![alt text][logo]
-[logo]: https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png 'This is a logo reference-style'
+[logo]: ./img/logo-plutus-small.png 'This is a logo reference-style'
 
 Images from any folder can be used by providing path to file. Path should be relative to Markdown file:
 ![alt text](./img/logo-plutus.png)
 
+**Where images live:** an image used by a doc page is co-located next to the page in an `img/` folder and referenced relatively (`./img/name.png`), as in the examples above. Site-owned assets (home page, blog, tool icons, brand) live under `static/img/<consumer>/` and are referenced as `/img/…`. Always self-host: external image hosts are blocked by the site's Content Security Policy and break on deploy.
+
   </TabItem>
-  <TabItem value="lists">
+  <TabItem value="lists" label="Lists">
 
 ```text
 1. First ordered list item
@@ -220,18 +227,8 @@ Images from any folder can be used by providing path to file. Path should be rel
 ## Code
 
 In the developer portal, you will often have to display code. You can display code with different syntax highlighting:
-<Tabs
-  defaultValue="js"
-  values={[
-    {label: 'JavaScript', value: 'js' },
-    {label: 'Python', value: 'py' },
-    {label: 'C#', value: 'cs' },
-    {label: 'JSON', value: 'json' },
-    {label: 'Shell', value: 'sh' },
-    {label: 'Text', value: 'txt' },
-    {label: 'Extras', value: 'extras' },
-  ]}>
-<TabItem value="js">
+<Tabs>
+<TabItem value="js" label="JavaScript" default>
 
     ```javascript
     var s = 'JavaScript syntax highlighting';
@@ -244,7 +241,7 @@ alert(s);
 ```
 
 </TabItem>
-<TabItem value="py">
+<TabItem value="py" label="Python">
 
     ```python
     s = "Python syntax highlighting"
@@ -257,7 +254,22 @@ print(s)
 ```
 
 </TabItem>
-<TabItem value="cs">
+<TabItem value="aiken" label="Aiken">
+
+    ```aiken
+    fn add_one(n: Int) -> Int {
+      n + 1
+    }
+    ```
+
+```aiken
+fn add_one(n: Int) -> Int {
+  n + 1
+}
+```
+
+</TabItem>
+<TabItem value="cs" label="C#">
 
     ```csharp
     using System;
@@ -272,7 +284,7 @@ Console.WriteLine(s);
 ```
 
 </TabItem>
-<TabItem value="json">
+<TabItem value="json" label="JSON">
 
     ```json
     {
@@ -291,7 +303,7 @@ Console.WriteLine(s);
 ```
 
 </TabItem>
-<TabItem value="sh">
+<TabItem value="sh" label="Shell">
 
     ```shell
     ls 
@@ -308,7 +320,24 @@ top
 ```
 
 </TabItem>
-<TabItem value="txt">
+<TabItem value="diff" label="Diff">
+
+    ```diff
+     fn add_one(n: Int) -> Int {
+    -  n + 2
+    +  n + 1
+     }
+    ```
+
+```diff
+ fn add_one(n: Int) -> Int {
+-  n + 2
++  n + 1
+ }
+```
+
+</TabItem>
+<TabItem value="txt" label="Text">
 
     ```
     No language indicated, so no syntax highlighting.
@@ -323,23 +352,15 @@ But let's throw in a <b>tag</b>.
 <!-- markdownlint-enable MD040-->
 
 </TabItem>
-<TabItem value="extras">
+</Tabs>
 
-    ```javascript {2,3}
-    function highlightMe() {
-      console.log('This line can be highlighted!');
-      console.log('You can also highlight multiple lines');
-    }
-    ```
+### Supported languages
 
-```javascript {2,3}
-function highlightMe() {
-  console.log('This line can be highlighted!');
-  console.log('You can also highlight multiple lines');
-}
-```
+Syntax highlighting works out of the box for common web languages such as `javascript`, `typescript`, `jsx`, `python`, `rust`, `go`, `css`, and `markdown`. The portal additionally enables `aiken`, `bash` (also usable as `sh` or `shell`), `csharp`, `diff`, `haskell`, `java`, `json`, `php`, and `yaml`. If your language is not in either list, ask in your pull request; adding one is a one-line config change.
 
-You can add a title to the code block by adding `title` key after the language (leave a space between them).
+### Code block titles
+
+You can add a title to the code block by adding a `title` key after the language (leave a space between them). Use it when the reader needs to know which file the code belongs in.
 
     ```jsx title="/src/components/HelloCodeTitle.js"
     function HelloCodeTitle(props) {
@@ -353,61 +374,76 @@ function HelloCodeTitle(props) {
 }
 ```
 
-  </TabItem>
-</Tabs>
+### Highlighting lines
+
+Highlighting draws the reader's eye to the lines that matter, which makes it ideal for step-by-step tutorials. The preferred way is a highlight comment in the code itself. The comment is removed from the rendered output and the line after it gets a highlight:
+
+    ```javascript
+    function highlightMe() {
+      // highlight-next-line
+      console.log('This line gets highlighted');
+    }
+    ```
+
+```javascript
+function highlightMe() {
+  // highlight-next-line
+  console.log('This line gets highlighted');
+}
+```
+
+For a block of lines, wrap them in `highlight-start` and `highlight-end` comments:
+
+    ```javascript
+    function highlightRange() {
+      // highlight-start
+      console.log('These lines');
+      console.log('are all highlighted');
+      // highlight-end
+    }
+    ```
+
+```javascript
+function highlightRange() {
+  // highlight-start
+  console.log('These lines');
+  console.log('are all highlighted');
+  // highlight-end
+}
+```
+
+You can also highlight by line number in the code fence, for example ` ```javascript {2,3} `. Prefer the comment form: line numbers silently point at the wrong lines after the snippet is edited, while comments move with the code.
+
+```javascript {2,3}
+function highlightMe() {
+  console.log('This line can be highlighted!');
+  console.log('You can also highlight multiple lines');
+}
+```
+
+### Line numbers
+
+Add `showLineNumbers` to the fence when prose refers to specific lines, for example ` ```javascript showLineNumbers `:
+
+```javascript showLineNumbers
+function numberedLines() {
+  console.log('This block');
+  console.log('shows line numbers');
+}
+```
 
 ---
 
 ## Tabs
 
-You can use tabs to display code examples in different languages. For example:
+You can use tabs to display code examples in different languages. Import the two components once, below your front matter, then wrap each variant in a `TabItem`:
 
- html
+````jsx
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs
-  defaultValue="js"
-  values={[
-    {label: 'JavaScript', value: 'js'},
-    {label: 'PHP', value: 'php'},
-    {label: 'Python', value: 'py'},
-  ]}>
-  <TabItem value="js">
-
-    ```js
-      function helloWorld() {
-        console.log('Hello, world!');
-      }
-    ```
-
-  </TabItem>
-  <TabItem value="php">
-
-    ```php
-      <?php echo '<p>Hello, world!</p>'; ?>
-    ```
-
-  </TabItem>
-  <TabItem value="py">
-
-    ```py
-    def hello_world():
-      print 'Hello, world!'
-    ```
-
-  </TabItem>
-</Tabs>
- 
-
-<Tabs
-  defaultValue="js"
-  values={[
-    {label: 'JavaScript', value: 'js'},
-    {label: 'PHP', value: 'php'},
-    {label: 'Python', value: 'py'},
-  ]}>
-  <TabItem value="js">
+<Tabs>
+  <TabItem value="js" label="JavaScript" default>
 
 ```js
 function helloWorld() {
@@ -416,18 +452,48 @@ function helloWorld() {
 ```
 
   </TabItem>
-  <TabItem value="php">
+  <TabItem value="php" label="PHP">
 
 ```php
 <?php echo '<p>Hello, world!</p>'; ?>
 ```
 
   </TabItem>
-  <TabItem value="py">
+  <TabItem value="py" label="Python">
 
 ```py
 def hello_world():
-  print 'Hello, world!'
+  print('Hello, world!')
+```
+
+  </TabItem>
+</Tabs>
+````
+
+This renders as:
+
+<Tabs>
+  <TabItem value="js" label="JavaScript" default>
+
+```js
+function helloWorld() {
+  console.log('Hello, world!');
+}
+```
+
+  </TabItem>
+  <TabItem value="php" label="PHP">
+
+```php
+<?php echo '<p>Hello, world!</p>'; ?>
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```py
+def hello_world():
+  print('Hello, world!')
 ```
 
   </TabItem>
@@ -439,67 +505,73 @@ Note that the empty lines above and below each language block (in the *md file) 
 
 ---
 
-## Synching tab choices
+## Syncing tab choices
 
-You can also switch multiple tabs at the same time based on user input:
+You can also switch multiple tabs at the same time based on user input. Give the tab groups the same `groupId` and the same `value`s, and the reader's choice syncs across them (and persists across pages):
 
-```html
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + C to copy.</TabItem>
-<TabItem value="mac">Use Command + C to copy.</TabItem>
-<TabItem value="linux">Use Ctrl + C to copy.</TabItem>
+```jsx
+<Tabs groupId="operating-systems">
+<TabItem value="win" label="Windows" default>Use Ctrl + C to copy.</TabItem>
+<TabItem value="mac" label="macOS">Use Command + C to copy.</TabItem>
+<TabItem value="linux" label="Linux">Use Ctrl + C to copy.</TabItem>
 </Tabs>
 
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + V to paste.</TabItem>
-<TabItem value="mac">Use Command + V to paste.</TabItem>
-<TabItem value="linux">Use Ctrl + V to paste.</TabItem>
+<Tabs groupId="operating-systems">
+<TabItem value="win" label="Windows" default>Use Ctrl + V to paste.</TabItem>
+<TabItem value="mac" label="macOS">Use Command + V to paste.</TabItem>
+<TabItem value="linux" label="Linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
 ```
 
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + C to copy.</TabItem>
-<TabItem value="mac">Use Command + C to copy.</TabItem>
-<TabItem value="linux">Use Ctrl + C to copy.</TabItem>
+<Tabs groupId="operating-systems">
+<TabItem value="win" label="Windows" default>Use Ctrl + C to copy.</TabItem>
+<TabItem value="mac" label="macOS">Use Command + C to copy.</TabItem>
+<TabItem value="linux" label="Linux">Use Ctrl + C to copy.</TabItem>
 </Tabs>
 
-<Tabs
-  groupId="operating-systems"
-  defaultValue="win"
-  values={[
-    {label: 'Windows', value: 'win'},
-    {label: 'macOS', value: 'mac'},
-    {label: 'Linux', value: 'linux'},
-  ]
-}>
-<TabItem value="win">Use Ctrl + V to paste.</TabItem>
-<TabItem value="mac">Use Command + V to paste.</TabItem>
-<TabItem value="linux">Use Ctrl + V to paste.</TabItem>
+<Tabs groupId="operating-systems">
+<TabItem value="win" label="Windows" default>Use Ctrl + V to paste.</TabItem>
+<TabItem value="mac" label="macOS">Use Command + V to paste.</TabItem>
+<TabItem value="linux" label="Linux">Use Ctrl + V to paste.</TabItem>
 </Tabs>
+
+The portal standardizes on a few shared group ids so choices carry across the whole site. Use `groupId="sdk"` for SDK and CLI variants and `groupId="operating-systems"` for platform instructions.
+
+## Components
+
+Beyond tabs, two theme components are worth knowing.
+
+### DocCardList
+
+`DocCardList` renders a card grid of all pages in the current sidebar category. Use it on overview pages so they stay current without hand-maintained link lists; the curriculum overview pages use this pattern.
+
+```jsx
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+```
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+
+### Optimized images
+
+For large images, `IdealImage` generates responsive sizes at build time and lazy-loads them with a low-quality placeholder. Import the image as a module and pass it to the component:
+
+```jsx
+import Image from '@theme/IdealImage';
+import plutusLogo from './img/logo-plutus.png';
+
+<Image img={plutusLogo} />
+```
+
+import Image from '@theme/IdealImage';
+import plutusLogo from './img/logo-plutus.png';
+
+<Image img={plutusLogo} />
+
+Plain Markdown images stay fine for icons and small screenshots.
 
 ## Concepts, code, and tools
 
@@ -639,19 +711,10 @@ This line is a separate line in the _same paragraph_, created either by two blan
 
 ## Admonitions
 
-These different admonitions are available to you. As a general rule: don't overdo it and avoid using admonitions in a row.
+Admonitions are the callout boxes of the portal. These are the available types. As a general rule: don't overdo it and avoid using admonitions in a row.
 
-<Tabs
-  defaultValue="warning"
-  values={[
-    {label: 'Note', value: 'note'},
-    {label: 'Tip', value: 'tip'},
-    {label: 'Important', value: 'important'},
-    {label: 'Caution', value: 'caution'},
-    {label: 'Warning', value: 'warning'},
-    {label: 'Custom', value: 'custom'},
-  ]}>
-  <TabItem value="note">
+<Tabs>
+  <TabItem value="note" label="Note" default>
 
 ```text
 :::note
@@ -668,7 +731,7 @@ This is a note
 :::
 
   </TabItem>
-  <TabItem value="tip">
+  <TabItem value="tip" label="Tip">
 
 ```text
 :::tip
@@ -685,24 +748,24 @@ This is a tip
 :::
 
   </TabItem>
-  <TabItem value="important">
+  <TabItem value="info" label="Info">
 
 ```text
-:::important
+:::info
 
-This is important
+This is background information
 
 :::
 ```
 
-:::important
+:::info
 
-This is important
+This is background information
 
 :::
 
   </TabItem>
-  <TabItem value="caution">
+  <TabItem value="caution" label="Caution">
 
 ```text
 :::caution
@@ -719,7 +782,7 @@ This is a caution
 :::
 
   </TabItem>
-  <TabItem value="warning">
+  <TabItem value="warning" label="Warning">
 
 ```text
 :::warning
@@ -736,24 +799,67 @@ This is a warning
 :::
 
   </TabItem>
-  <TabItem value="custom">
+  <TabItem value="danger" label="Danger">
 
 ```text
-:::tip Custom Title
+:::danger
+
+This action is irreversible
+
+:::
+```
+
+:::danger
+
+This action is irreversible
+
+:::
+
+  </TabItem>
+  <TabItem value="custom" label="Custom title">
+
+```text
+:::tip[Custom Title]
 
 This is a tip admonition with a custom title
 
 :::
 ```
 
-:::tip  Custom Title
+:::tip[Custom Title]
 
 This is a tip admonition with a custom title
 
 :::
+
+The older form without brackets (`:::tip Custom Title`) also works.
 
   </TabItem>
 </Tabs>
+
+Two aliases exist: `:::caution` is an alias of `warning`, and `:::important` renders in the info family. Both are fine to use when the wording fits better. Reserve `danger` for real hazards such as loss of funds or keys.
+
+### Collapsible details
+
+Long optional content, such as full command output or a deep dive, can sit in a collapsible block so it does not break the reading flow. The portal uses the HTML `details` element for this:
+
+```html
+<details>
+<summary>Show the full output</summary>
+
+The content is hidden until the reader expands it.
+It supports regular Markdown, including `code` and **emphasis**.
+
+</details>
+```
+
+<details>
+<summary>Show the full output</summary>
+
+The content is hidden until the reader expands it.
+It supports regular Markdown, including `code` and **emphasis**.
+
+</details>
 
 ## Mermaid
 
@@ -802,9 +908,6 @@ pie
     "Simple transactions" : 231
 ```
 
-
-
-
 ## Other style elements
 Please try to avoid other style elements, and always keep in mind that people with visual handicaps should also be able to cope with your content.
 
@@ -812,32 +915,27 @@ Please try to avoid other style elements, and always keep in mind that people wi
 
 Last but not least, let's talk about editors, extensions and configurations.
 
-You can use any text editor you like to write Markdown. [Visual Studio Code](https://code.visualstudio.com/), [Sublime](https://www.sublimetext.com/), [Atom](https://atom.io/), etc. have plugins that help you adhere to style guides by displaying warnings if you break the rules.
+You can use any text editor you like to write Markdown. [Visual Studio Code](https://code.visualstudio.com/), [Sublime](https://www.sublimetext.com/) and others have plugins that help you adhere to style guides by displaying warnings if you break the rules.
 
-Below are some extensions for these editors that help you write clean guides for the developer portal.
+Below are some extensions for these editors that help you write clean guides for the developer portal. All of them are optional local helpers; the repository does not ship a Markdown linter configuration and the build does not run one.
 
 ### markdownlint
 
-Adds syntax highligting for Markdown files and display configurable warnings for invalid formatting.
+Displays configurable warnings for invalid Markdown formatting.
 
-<Tabs
-  defaultValue="vscode"
-  values={[
-    {label: 'Visual Studio Code', value: 'vscode'},
-    {label: 'Sublime', value: 'sublime'},
-  ]}>
-  <TabItem value="vscode">
+<Tabs>
+  <TabItem value="vscode" label="Visual Studio Code" default>
 
 * Install the extension via *Command Palette (Ctrl+P)* using `ext install DavidAnson.vscode-markdownlint`
 
-* Add a `.markdownlint.json` file to your project with the following configuration.
+* If you want to tune it for this project, add a local `.markdownlint.json` (it is not tracked in the repository) with a configuration like this:
 
 ```json
 {
     "line-length": false,
     "MD004" : false,
     "MD033":{
-        "allowed_elements": ["TabItem", "br", "iframe", "dl", "dt","dd", "em"]
+        "allowed_elements": ["Tabs", "TabItem", "DocCardList", "Image", "details", "summary", "br", "iframe", "dl", "dt", "dd", "em"]
     },
     "MD034" : false,
     "MD046" : false
@@ -845,27 +943,14 @@ Adds syntax highligting for Markdown files and display configurable warnings for
 ```
 
   </TabItem>
-  <TabItem value="sublime">
+  <TabItem value="sublime" label="Sublime">
 
 1. Install SublimeLinter as described [here](http://www.sublimelinter.com/en/stable/)
 2. Install [Node.js](https://nodejs.org)
 3. Install `markdownlint` by using `npm install -g markdownlint-cli`
 4. Within Sublime Text's *Command Palette (Ctrl+Shift+P)* type `install` and select `Package Control: Install Package`.
 5. When the plug-in list appears, type `markdownlint` and select `SublimeLinter-contrib-markdownlint`.
-
-* Add a `.markdownlintrc` file to your project with the following configuration.
-
-```json
-{
-    "line-length": false,
-    "MD004" : false,
-    "MD033":{
-        "allowed_elements": ["TabItem", "br", "iframe", "dl", "dt","dd", "em"]
-    },
-    "MD034" : false,
-    "MD046" : false
-}
-```
+6. If you want to tune it for this project, add a local `.markdownlint.json` (it is gitignored) with the same configuration as shown in the Visual Studio Code tab.
 
   </TabItem>
 </Tabs>
@@ -874,12 +959,8 @@ Adds syntax highligting for Markdown files and display configurable warnings for
 
 Helps you work with tables
 
-<Tabs
-  defaultValue="vscode"
-  values={[
-    {label: 'Visual Studio Code', value: 'vscode'}
-  ]}>
-  <TabItem value="vscode">
+<Tabs>
+  <TabItem value="vscode" label="Visual Studio Code" default>
 
 * Install the extension via *Command Palette (Ctrl+P)* using `ext install pharndt.vscode-markdown-table`
 
@@ -905,13 +986,9 @@ Helps you work with tables
 
 When you write guides for `cardano-wallet` or other components with an API, you might want to include the response for a certain request in your guide. It can be useful not to leave the environment of your editor as to not lose focus or get distracted. `rest-book` allows you to execute HTTP requests within your editor.
 
-<Tabs
-  defaultValue="vscode"
-  values={[
-    {label: 'Visual Studio Code', value: 'vscode'}
-  ]}>
+<Tabs>
 
-<TabItem value="vscode">
+<TabItem value="vscode" label="Visual Studio Code" default>
 
 * Install the extension via *Command Palette (Ctrl+P)* using `ext install tanhakabir.rest-book`
 * Open or create a `.restbook` file to use the extension.
@@ -942,7 +1019,7 @@ To make everything consistent we should agree on spellings and terms here.
 | `IOHK` | IOHK is now IOG. |
 | `IOG` | IOG was IOHK. |
 | `Mainnet`    | One word.  Capitalise when it's a noun (the _Mainnet_) but not when it's an adjective (_mainnet_ functionality), qualified by another proper name (the Cardano _mainnet_), or used as a symbol (e.g. enable Marlowe on `mainnet`). |
- `Ouroboros`           | Ouroboros is a family of Cardano's consensus protocols. There are different flavors: Classic, Praos, Genesis, Chronos |
+| `Ouroboros`           | Ouroboros is a family of Cardano's consensus protocols. There are different flavors: Classic, Praos, Genesis, Chronos |
 | `sidechains` | One word. |
 | `stake pool` | Two words. |
 | `staking`    | Try to avoid term `staking` without context as it is ambiguous. `staking` refers to the whole process of both delegating and setting up a pool but many people confuse this with the actual process of creating blocks. `delegating` means that people delegate their stake to a stake pool. |

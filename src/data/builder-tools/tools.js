@@ -996,12 +996,22 @@ export const BuilderTools = [
   {
     title: "cardano.delivery",
     icon: "/img/tools/cardano-delivery.svg",
-    description: "Webhook service that sends HTTP notifications for Cardano events, including transactions, blocks, delegations, epochs, governance actions, and more, filterable by address, amount, and policy ID.",
+    description: "Webhook service that sends HTTP notifications for Cardano events, including transactions, blocks, delegations, epochs and governance actions, filterable by address, amount, and policy ID. Agents can create self-expiring webhooks with a single call and no account, and an MCP server is included.",
     website: "https://cardano.delivery/",
     repository: null,
     docs: "https://cardano.delivery/docs/",
     category: "api",
     properties: ["webhooks", "agentic"],
+  },
+  {
+    title: "Nexus",
+    icon: "/img/tools/nexus.svg",
+    description: "Hosted Cardano API with REST and WebSocket access to chain data: addresses, transactions, stake pools, DReps, and market data.",
+    website: "https://nexus.gerowallet.io",
+    docs: "https://nexus.gerowallet.io/docs",
+    repository: "https://github.com/Gero-Labs/nexus-sdk",
+    category: "api",
+    properties: ["rest", "websocket"],
   },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE

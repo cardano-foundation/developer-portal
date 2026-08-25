@@ -2,26 +2,82 @@
 
 /* Landing page. Brand colors defined as CSS variables in src/css/custom.css */
 
+/* The 2026 design lays sections on a 1731px page with ~78px side gutters
+   (~1575px of content). Infima's .container reads these variables, so
+   overriding them on the landing wrapper widens every section here while
+   docs/blog keep the 1140px default until the rebrand reaches them. */
+.landing {
+  /* Infima's max-width includes the container's own padding, so the cap is
+     the full canvas (1731) and the 78px gutters leave 1575px of content */
+  --ifm-container-width: 1731px;
+  --ifm-container-width-xl: 1731px;
+  --ifm-spacing-horizontal: clamp(1.25rem, 4.5vw, 78px);
+}
+
+/* --- SHARED PIECES --- */
+
+/* Centered display heading + muted intro that opens every section */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: var(--site-font-weight-display);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+}
+
+.sectionHeader p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--site-color-text-muted);
+}
+
+/* Chivo Mono label treatment shared by every chip, badge, and pill CTA */
+.monoLabel {
+  font-family: var(--site-font-family-mono-label);
+  font-weight: var(--ifm-font-weight-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Filled brand-blue pill, the brand's standard chip shape */
+.pillBlue {
+  border-radius: 999px;
+  background: var(--site-color-brand-blue);
+  color: var(--site-color-gray-light);
+}
+
 /* --- HERO --- */
 
+/* Theme-paired hero: cream with the lavender circle cascade in light mode,
+   navy with the obsidian variant in dark, crossfading on theme switch. */
 .hero {
   position: relative;
-  /* Match the background image's ratio so cover shows its full height at any
-     width (it only ever trims the navy side-padding, never the arch/circle).
-     min-height stays a floor for narrow/mobile viewports. */
-  aspect-ratio: 3024 / 1080;
-  /* The clamp keeps WebKit from deriving the width from min-height via the
-     aspect ratio, which widens the hero past the viewport in Safari */
-  width: 100%;
-  max-width: 100%;
   /* svh keeps mobile browsers from over-sizing the hero and resizing it when
-     the toolbar collapses on scroll; the vh line is the older-browser fallback */
-  min-height: 65vh;
-  min-height: 65svh;
+     the toolbar collapses on scroll; the vh line is the older-browser fallback.
+     60svh gives the circle cascade enough room to read large. */
+  min-height: 60vh;
+  min-height: 60svh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: #05091c;
+  background: var(--site-color-cream);
+  padding: 4rem 0;
+  /* The hero shares the page background (cream on cream in light mode), so
+     without an edge the half-cropped circles just dissolve into the page.
+     Each theme gets the alpha hairline that reads on its own surface. */
+  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
+  transition: background 0.4s ease;
+}
+
+html[data-theme="dark"] .hero {
+  background: var(--site-color-navy);
+  border-bottom-color: var(--site-color-card-border);
 }
 
 .heroBackground {
@@ -30,82 +86,198 @@
   z-index: 0;
 }
 
-.heroBackgroundImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+/* The two mask gradients on .heroArt use a literal #000 because a mask reads
+   the alpha channel, so the colour is a channel value rather than a paint. */
 
-/* Centered scrim so the cream text reads over the arch, fading out before the
-   bottom so the brand circle stays bright */
-.heroOverlay {
+/* Circle-cascade artwork built in CSS: five equal gradient circles stepping
+   down-left along a diagonal. Percentages are relative to a proportional
+   1920x1080 art box, so light and dark share identical geometry and only
+   the palette differs; the two stacked copies crossfade on theme switch,
+   reading as an in-place color morph. The light circle color rgb(55,80,235)
+   at 0.5 alpha composites over cream to the brand lavender. */
+.heroArt {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 60% 62% at 50% 42%,
-    rgba(3, 6, 20, 0.62) 0%,
-    rgba(3, 6, 20, 0.3) 55%,
-    rgba(3, 6, 20, 0) 80%
-  );
+  right: 0;
+  top: 0;
+  height: 100%;
+  aspect-ratio: 1920 / 1080;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 22%);
+  mask-image: linear-gradient(to right, transparent, #000 22%);
+  transition: opacity 0.4s ease;
 }
 
+.heroArtLight {
+  --hero-circle: rgba(55, 80, 235, 0.5);
+  --hero-circle-fade: rgba(55, 80, 235, 0);
+  opacity: 1;
+}
+
+.heroArtDark {
+  --hero-circle: rgb(var(--site-color-blue-bright-rgb) / 0.5);
+  --hero-circle-fade: rgb(var(--site-color-blue-bright-rgb) / 0);
+  opacity: 0;
+}
+
+html[data-theme="dark"] .heroArtLight {
+  opacity: 0;
+}
+
+html[data-theme="dark"] .heroArtDark {
+  opacity: 1;
+}
+
+.heroCircle {
+  position: absolute;
+  width: 36.25%;
+  height: 64.44%;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    var(--hero-circle) -1.1%,
+    var(--hero-circle-fade) 106.93%
+  );
+  transform: rotate(7.13deg);
+}
+
+.heroCircle1 { left: 77.5%; top: -5.19%; }
+.heroCircle2 { left: 71.98%; top: 9.63%; }
+.heroCircle3 { left: 66.46%; top: 24.44%; }
+.heroCircle4 { left: 60.94%; top: 39.26%; }
+.heroCircle5 { left: 55.42%; top: 54.07%; }
+
+/* The subtitle column follows the title instead of flushing to the
+   container's right edge, so it can never drift into the circle artwork
+   on wide screens: the title column shrinks to its own line width and the
+   gap sets the distance between the two. */
 .heroContent {
   position: relative;
   z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 45vh;
-  min-height: 45svh;
-  /* Wide enough for the title to hold one line at the clamp's top size; the
-     subtitle keeps its own narrower measure below */
-  max-width: 56rem;
-  margin: 0 auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4rem;
+  text-align: left;
+  /* Hero copy sits ~44px deeper than the card grid's 78px gutter */
+  padding-left: clamp(0rem, 2.5vw, 44px);
 }
 
+.heroLeft {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Chivo ExtraLight display type with slightly positive tracking; the clamp
+   keeps the three stacked lines clear of the circle artwork */
 .heroTitle {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(3rem, 8vw, 7rem);
   font-weight: var(--site-font-weight-display);
-  line-height: 1.03;
-  letter-spacing: -0.03em;
-  margin: 0 0 1.25rem;
-  color: #fffaf3;
-  text-shadow: 0 2px 24px rgba(0, 3, 10, 0.6);
+  line-height: 0.87;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+  color: var(--site-color-ink);
+  /* Just wider than the longest line (DEVELOPER), so the title wraps to its
+     three stacked lines and the column width tracks the type scale */
+  max-width: 6.5em;
+}
+
+html[data-theme="dark"] .heroTitle {
+  color: var(--site-color-cream);
+}
+
+/* Right-hand column (subtitle + CTA as one unit), vertically centered
+   against the title; centering the taller block lands the subtitle's first
+   line level with the DEVELOPER line of the title */
+.heroRight {
+  flex: 0 1 24rem;
+  align-self: center;
 }
 
 .heroSubtitle {
-  font-size: 1.15rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.5;
   margin: 0;
-  max-width: 34rem;
-  color: rgba(255, 255, 255, 0.82);
-  text-shadow: 0 2px 16px rgba(0, 3, 10, 0.5);
+  color: var(--site-color-ink-muted);
+}
+
+html[data-theme="dark"] .heroSubtitle {
+  color: rgb(var(--site-color-card-text-rgb) / 0.82);
 }
 
 .heroActions {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.heroCta {
+/* Shared shell for the CTA pair below */
+.heroCtaBase {
+  composes: monoLabel;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: 999px;
-  font-size: 1rem;
-  font-weight: var(--ifm-font-weight-bold);
+  gap: 0.4em;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  font-size: 0.875rem;
   text-decoration: none !important;
-  background: #fffaf3;
-  color: #0b1020;
   transition: all 0.25s ease;
+}
+
+/* Amber with navy glyphs, same in both themes (matches the bento arrow
+   squares and the floating button) */
+.heroCta {
+  composes: heroCtaBase;
+  background: var(--site-color-amber);
+  color: var(--site-color-navy);
 }
 
 .heroCta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
+  color: var(--site-color-navy);
+}
+
+/* Ghost sibling of the primary: same shell, outline instead of fill */
+.heroCtaSecondary {
+  composes: heroCtaBase;
+  border: 1px solid var(--site-color-ink);
+  color: var(--site-color-ink);
+  background: transparent;
+}
+
+.heroCtaSecondary:hover {
+  transform: translateY(-2px);
+  background: var(--site-color-navy);
+  border-color: var(--site-color-navy);
+  color: var(--site-color-cream);
+}
+
+html[data-theme="dark"] .heroCtaSecondary {
+  border-color: var(--site-color-cream);
+  color: var(--site-color-cream);
+}
+
+html[data-theme="dark"] .heroCtaSecondary:hover {
+  background: var(--site-color-cream);
+  color: var(--site-color-navy);
+}
+
+@media screen and (max-width: 996px) {
+  .heroContent {
+    flex-direction: column;
+    gap: 0;
+    padding-left: 0;
+  }
+
+  .heroRight {
+    flex: none;
+    align-self: flex-start;
+    max-width: 34rem;
+    margin: 1.5rem 0 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -114,31 +286,29 @@
     min-height: 55svh;
   }
 
-  .heroContent {
-    min-height: 40vh;
-    min-height: 40svh;
+  /* Stacked text spans the full width here; the artwork simply goes away
+     and the hero is a clean themed surface */
+  .heroArt {
+    display: none;
   }
 }
 
-/* --- BENTO GRID --- */
+/* --- BENTO GRID (Get started on Cardano) --- */
 
 .bento {
-  padding: 3.5rem 0;
+  padding: 4rem 0;
 }
 
-html[data-theme="light"] .bento {
-  background: #fff;
-}
-
-html[data-theme="dark"] .bento {
-  background: var(--site-color-bg-dark);
+/* On top of .sectionHeader: keeps the intro copy at a readable measure */
+.bentoHeader p {
+  margin: 0 auto;
+  max-width: 34rem;
 }
 
 .bentoGrid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto auto auto;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .bentoCard {
@@ -147,241 +317,122 @@ html[data-theme="dark"] .bento {
   transition: all 0.3s ease;
   overflow: hidden;
   position: relative;
-}
-
-html[data-theme="light"] .bentoCard {
-  background: var(--site-color-surface);
-  color: var(--ifm-font-color-base);
-}
-
-html[data-theme="dark"] .bentoCard {
-  background: var(--site-color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--ifm-font-color-base);
+  display: flex;
+  flex-direction: column;
+  background: var(--site-color-card-surface);
+  border: 1px solid var(--site-color-card-border);
+  color: var(--site-color-card-text);
 }
 
 .bentoCard:hover {
   transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgb(var(--site-color-navy-rgb) / 0.25);
 }
 
-html[data-theme="light"] .bentoCard:hover {
-  box-shadow: 0 20px 60px rgba(0, 51, 173, 0.12);
-}
-
-html[data-theme="dark"] .bentoCard:hover {
-  box-shadow: 0 20px 60px rgba(68, 187, 164, 0.1);
-  border-color: rgba(68, 187, 164, 0.3);
-}
-
-/* large card (Smart Contracts) */
-.bentoLarge {
-  grid-column: span 8;
-  display: flex;
-  align-items: stretch;
-  min-height: 260px;
-}
-
-.bentoLarge .bentoCardContent {
-  flex: 1;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 50%;
-}
-
-.bentoLarge .bentoCardImage {
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 110%;
-  width: auto;
-  opacity: 0.9;
-}
-
-html[data-theme="dark"] .bentoLarge .bentoCardImage {
-  opacity: 0.8;
-}
-
-/* medium card (Native Tokens) */
-.bentoMedium {
-  grid-column: span 4;
-  display: flex;
-  flex-direction: column;
-  min-height: 260px;
-}
-
-.bentoMedium .bentoCardImageTop {
-  width: 100%;
-  height: 130px;
-  object-fit: contain;
-  padding: 0.75rem;
-}
-
-.bentoMedium .bentoCardContent {
-  padding: 1rem 1.5rem 1.5rem;
+.bentoCardContent {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 1.25rem;
 }
 
-/* accent card (Get Started) */
-.bentoAccent {
-  background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%) !important;
-  color: #fff !important;
-  border: none !important;
-}
-
-html[data-theme="dark"] .bentoAccent {
-  background: linear-gradient(135deg, var(--site-color-brand-teal) 0%, var(--site-color-brand-teal-dark) 100%) !important;
-}
-
-.bentoAccent h3,
-.bentoAccent p,
-.bentoAccent .bentoLink {
-  color: #fff !important;
-}
-
-/* third-width cards */
-.bentoThird {
-  grid-column: span 4;
-  display: flex;
-  flex-direction: column;
-  min-height: 230px;
-}
-
-.bentoThirdImage {
-  width: 100%;
-  height: 110px;
-  object-fit: contain;
-  padding: 1rem 1rem 0;
-}
-
-.bentoAccent .bentoThirdImage {
-  opacity: 0.9;
-}
-
-.bentoThirdContent {
-  padding: 1rem 1.5rem 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.bentoThirdContent h3 {
-  font-size: 1.1rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.4rem;
-  letter-spacing: -0.02em;
-}
-
-.bentoThirdContent p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0;
-  flex-grow: 1;
-}
-
-html[data-theme="light"] .bentoThirdContent p {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .bentoThirdContent p {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-/* half-width cards (Stake Pools, Governance) */
-.bentoHalf {
-  grid-column: span 6;
-  display: flex;
-  align-items: center;
-  padding: 1.5rem;
-  min-height: 140px;
-  gap: 1.25rem;
-}
-
-.bentoHalfImage {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-html[data-theme="light"] .bentoHalfImage {
-  opacity: 0.9;
-}
-
-html[data-theme="dark"] .bentoHalfImage {
-  opacity: 0.9;
-  filter: brightness(0.95);
-}
-
-.bentoHalfContent {
-  flex: 1;
-}
-
-.bentoHalfContent h3 {
-  font-size: 1.1rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.35rem;
-  letter-spacing: -0.02em;
-}
-
-.bentoHalfContent p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0 0 0.5rem;
-}
-
-html[data-theme="light"] .bentoHalfContent p {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .bentoHalfContent p {
-  color: rgba(255, 255, 255, 0.65);
-}
-
+/* Card titles are display-weight Chivo ExtraLight: 50px on a 362px card,
+   0.9 line-height, cream */
 .bentoCardContent h3 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.5rem;
-  letter-spacing: -0.02em;
+  font-size: 3.125rem;
+  font-weight: var(--site-font-weight-display);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+  color: var(--site-color-cream);
 }
 
 .bentoCardContent p {
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 0.875rem;
+  line-height: 1.5;
   margin: 0;
-  flex-grow: 1;
+  color: var(--site-color-card-text-muted);
 }
 
-html[data-theme="light"] .bentoCardContent p {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .bentoCardContent p {
-  color: rgba(255, 255, 255, 0.65);
+/* CTA row: plain text link left, amber arrow square right, vertically
+   centered as one 48px unit */
+.bentoCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .bentoLink {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: var(--ifm-font-weight-normal);
+  color: var(--site-color-card-text);
+}
+
+.bentoArrowBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: var(--site-color-card-accent);
+  color: var(--site-color-navy);
   transition: transform 0.2s ease;
 }
 
-html[data-theme="light"] .bentoLink {
-  color: var(--site-color-brand-blue);
+.bentoCard:hover .bentoArrowBtn {
+  transform: translate(2px, -2px);
 }
 
-html[data-theme="dark"] .bentoLink {
-  color: var(--site-color-brand-teal);
+/* Start Here — large card, coil artwork bleeding on the right */
+.bentoLarge {
+  grid-column: span 6;
+  min-height: 400px;
 }
 
-.bentoCard:hover .bentoLink {
-  transform: translateX(4px);
+.bentoLarge .bentoCardContent {
+  justify-content: flex-end;
+  max-width: 48%;
+}
+
+/* Footer stays inside the content column: the arrow sits right beside the
+   text instead of floating over the art at the far edge */
+.bentoLarge .bentoCardFooter {
+  justify-content: flex-start;
+}
+
+/* Natural aspect, oversized past the card so the edges crop into the
+   artwork: burst rays cut at the top, amber circle clipped at the right
+   edge, squares cut at the bottom */
+.bentoLargeArt {
+  position: absolute;
+  right: -8%;
+  top: -25%;
+  height: 150%;
+  width: auto;
+}
+
+/* Small cards (designed at 362×399): icon top-right, title bottom-heavy */
+.bentoSmall {
+  grid-column: span 3;
+  min-height: 400px;
+}
+
+.bentoIcon {
+  align-self: flex-end;
+  height: 75px;
+  width: auto;
+  margin: 1.25rem 1.25rem 0 0;
+}
+
+.bentoSmall .bentoCardContent {
+  justify-content: flex-end;
+  padding-top: 0.75rem;
 }
 
 @media screen and (max-width: 996px) {
@@ -391,81 +442,33 @@ html[data-theme="dark"] .bentoLink {
 
   .bentoLarge {
     grid-column: span 6;
+    min-height: 280px;
   }
 
-  .bentoLarge .bentoCardContent {
-    max-width: 60%;
-  }
-
-  .bentoMedium {
+  .bentoSmall {
     grid-column: span 3;
-  }
-
-  .bentoThird {
-    grid-column: span 2;
-    min-height: 200px;
-  }
-
-  .bentoThirdImage {
-    height: 80px;
-  }
-
-  .bentoHalf {
-    grid-column: span 3;
+    min-height: 260px;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 576px) {
   .bentoGrid {
     grid-template-columns: 1fr;
   }
 
   .bentoLarge,
-  .bentoMedium,
-  .bentoThird,
-  .bentoHalf {
+  .bentoSmall {
     grid-column: span 1;
-  }
-
-  .bentoLarge {
-    min-height: 220px;
+    min-height: 240px;
   }
 
   .bentoLarge .bentoCardContent {
-    max-width: 100%;
-    padding: 1.5rem;
+    max-width: 70%;
   }
 
-  .bentoLarge .bentoCardImage {
-    opacity: 0.15;
-    right: -50px;
-  }
-
-  .bentoMedium {
-    min-height: auto;
-  }
-
-  .bentoMedium .bentoCardImageTop {
-    height: 100px;
-  }
-
-  .bentoThird {
-    min-height: auto;
-  }
-
-  .bentoThirdImage {
-    height: 100px;
-  }
-
-  .bentoHalf {
-    min-height: auto;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .bentoHalfImage {
-    width: 80px;
-    height: 80px;
+  .bentoLargeArt {
+    width: 45%;
+    opacity: 0.85;
   }
 }
 
@@ -475,262 +478,292 @@ html[data-theme="dark"] .bentoLink {
   padding: 4rem 0;
 }
 
-html[data-theme="light"] .developer {
-  background: #fff;
-}
-
-html[data-theme="dark"] .developer {
-  background: var(--site-color-bg-dark);
-}
-
-.devHeader {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.devHeader h2 {
-  font-size: clamp(1.5rem, 3vw, 1.75rem);
-  font-weight: var(--ifm-font-weight-bold);
-  letter-spacing: -0.02em;
-  margin: 0 0 0.5rem;
-}
-
-.devHeader p {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-html[data-theme="light"] .devHeader p {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .devHeader p {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.devGrid {
+/* Two panels, each pairing a block of copy with an artwork tile. They read as
+   raised cards on the page, following the same light/dark pair the rest of
+   this section uses. */
+.devPanel {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 82px);
+  padding: clamp(1.5rem, 4vw, 70px) clamp(1.5rem, 5.5vw, 94px);
+  border-radius: 20px;
 }
 
-/* SDK card */
-.devSdkCard {
-  grid-column: span 5;
-  padding: 1.5rem;
-  border-radius: 20px;
+.devPanel + .devPanel {
+  margin-top: clamp(1.5rem, 3vw, 49px);
+}
+
+html[data-theme="light"] .devPanel {
+  background: var(--site-color-surface-chip);
+  /* The design's soft drop shadow. It is the only thing separating a near-white
+     panel from the cream page, so dark mode swaps it for the hairline instead. */
+  box-shadow: 10px 13px 26px 6px rgb(var(--site-color-navy-rgb) / 0.08);
+  color: var(--site-color-ink);
+}
+
+html[data-theme="dark"] .devPanel {
+  background: var(--site-color-card-surface);
+  border: 1px solid var(--site-color-card-border);
+  color: var(--site-color-card-text);
+}
+
+.devPanelCopy {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: clamp(1.5rem, 2.5vw, 40px);
+  min-width: 0;
 }
 
-html[data-theme="light"] .devSdkCard {
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-}
-
-html[data-theme="dark"] .devSdkCard {
-  background: var(--site-color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.devSdkHeader h2 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
+.devPanelHeader h3 {
+  font-size: clamp(1.75rem, 3.4vw, 3.25rem);
+  line-height: 1.19;
+  font-weight: var(--site-font-weight-heading);
   letter-spacing: -0.02em;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.6rem;
 }
 
-.devSdkHeader p {
-  font-size: 0.875rem;
-  line-height: 1.5;
+.devPanelHeader p {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.2;
+  font-weight: var(--site-font-weight-heading);
   margin: 0;
 }
 
-html[data-theme="light"] .devSdkHeader p {
-  color: rgba(0, 0, 0, 0.6);
+html[data-theme="light"] .devPanelHeader p {
+  color: var(--site-color-ink-muted);
 }
 
-html[data-theme="dark"] .devSdkHeader p {
-  color: rgba(255, 255, 255, 0.6);
+html[data-theme="dark"] .devPanelHeader p {
+  color: var(--site-color-card-text-muted);
+}
+
+/* Artwork tile. The dotted field is a repeating gradient rather than the ~600
+   individual dots the design exports as: identical pixels, no DOM. */
+.devPanelArt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2.5vw, 2.75rem);
+  border-radius: 13px;
+  min-width: 0;
+  background-image: radial-gradient(
+    circle,
+    rgb(var(--site-color-brand-blue-rgb) / 0.35) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
+}
+
+html[data-theme="light"] .devPanelArt {
+  background-color: var(--site-color-gray-light);
+}
+
+html[data-theme="dark"] .devPanelArt {
+  background-color: rgb(var(--site-color-card-text-rgb) / 0.04);
+}
+
+/* Panel one puts its artwork on the left. Only the placement moves; the copy
+   stays first in the markup so the heading is read before the sample. */
+.devPanelArtLead {
+  order: -1;
 }
 
 .sdkGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
 }
 
 .sdkItem {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 0.85rem;
-  border-radius: 10px;
-  font-size: 0.875rem;
-  font-weight: var(--ifm-font-weight-semibold);
+  gap: 13px;
+  padding: clamp(0.7rem, 1.1vw, 18px);
+  border-radius: 13px;
+  font-size: clamp(1rem, 1.4vw, 1.5rem);
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.02em;
   text-decoration: none !important;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 html[data-theme="light"] .sdkItem {
-  background: var(--site-color-surface);
-  color: var(--ifm-font-color-base);
+  background: var(--site-color-gray-light);
+  color: var(--site-color-ink);
 }
 
 html[data-theme="dark"] .sdkItem {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--ifm-font-color-base);
-}
-
-.sdkItem:hover {
-  transform: translateX(4px);
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
+  color: var(--site-color-card-text);
 }
 
 html[data-theme="light"] .sdkItem:hover {
-  background: var(--site-color-surface-hover);
+  background: var(--site-color-gray-light-hover);
 }
 
 html[data-theme="dark"] .sdkItem:hover {
-  background: rgba(68, 187, 164, 0.12);
+  background: rgb(var(--site-color-card-text-rgb) / 0.14);
 }
 
 .sdkItem img {
-  width: 20px;
-  height: 20px;
+  width: clamp(28px, 2.4vw, 40px);
+  height: clamp(28px, 2.4vw, 40px);
+  flex: none;
 }
 
 /* code sample block */
 .devCodeCard {
-  grid-column: span 7;
+  width: 100%;
+  min-width: 0;
 }
 
-/* link cards (Builder Tools, Apps, Community, Infrastructure) */
-.devLinkCard {
-  grid-column: span 3;
+/* Ecosystem destinations: a 2x2 grid of cards, icon and affordance on the top
+   row, then title and description. */
+.ecoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 22px);
+}
+
+.ecoCard {
   display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding: 1.25rem;
-  border-radius: 16px;
+  flex-direction: column;
+  gap: 11px;
+  padding: clamp(0.9rem, 1.1vw, 15px);
+  border-radius: 13px;
   text-decoration: none !important;
-  transition: all 0.25s ease;
+  transition: background-color 0.2s ease;
 }
 
-html[data-theme="light"] .devLinkCard {
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  color: var(--ifm-font-color-base);
+html[data-theme="light"] .ecoCard {
+  background: var(--site-color-gray-light);
+  color: var(--site-color-ink);
 }
 
-html[data-theme="dark"] .devLinkCard {
-  background: var(--site-color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: var(--ifm-font-color-base);
+html[data-theme="dark"] .ecoCard {
+  background: rgb(var(--site-color-card-text-rgb) / 0.06);
+  color: var(--site-color-card-text);
 }
 
-.devLinkCard:hover {
-  transform: translateY(-3px);
+html[data-theme="light"] .ecoCard:hover {
+  background: var(--site-color-gray-light-hover);
 }
 
-html[data-theme="light"] .devLinkCard:hover {
-  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.1);
+html[data-theme="dark"] .ecoCard:hover {
+  background: rgb(var(--site-color-card-text-rgb) / 0.14);
 }
 
-html[data-theme="dark"] .devLinkCard:hover {
-  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.1);
-  border-color: rgba(68, 187, 164, 0.3);
-}
-
-.devLinkIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+.ecoCardTop {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.ecoCardIcon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  width: clamp(34px, 2.8vw, 46px);
+  height: clamp(34px, 2.8vw, 46px);
+  flex: none;
 }
 
-html[data-theme="light"] .devLinkIcon {
-  background: var(--site-color-surface);
-}
-
-html[data-theme="dark"] .devLinkIcon {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.devLinkIcon svg {
-  width: 22px;
-  height: 22px;
-}
-
-html[data-theme="light"] .devLinkIcon svg {
+.ecoCardIcon svg {
+  width: 100%;
+  height: 100%;
   color: var(--site-color-brand-blue);
 }
 
-html[data-theme="dark"] .devLinkIcon svg {
-  color: var(--site-color-brand-teal);
+html[data-theme="dark"] .ecoCardIcon svg {
+  color: var(--ifm-color-primary-light);
 }
 
-.devLinkText {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.devLinkTitle {
-  font-size: 0.95rem;
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
-.devLinkDesc {
-  font-size: 0.75rem;
-}
-
-html[data-theme="light"] .devLinkDesc {
-  color: rgba(0, 0, 0, 0.55);
-}
-
-html[data-theme="dark"] .devLinkDesc {
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.devLinkArrow {
-  font-size: 1rem;
+.ecoCardBadge {
+  font-size: 1.1rem;
+  line-height: 1;
   transition: transform 0.2s ease;
 }
 
-html[data-theme="light"] .devLinkArrow {
-  color: rgba(0, 0, 0, 0.35);
-}
-
-html[data-theme="dark"] .devLinkArrow {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.devLinkCard:hover .devLinkArrow {
-  transform: translateX(4px);
-}
-
-html[data-theme="light"] .devLinkCard:hover .devLinkArrow {
+html[data-theme="light"] .ecoCardBadge {
   color: var(--site-color-brand-blue);
 }
 
-html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
-  color: var(--site-color-brand-teal);
+html[data-theme="dark"] .ecoCardBadge {
+  color: var(--ifm-color-primary-light);
 }
 
-/* Quickstart */
+.ecoCard:hover .ecoCardBadge {
+  transform: translateX(3px);
+}
+
+.ecoCardTitle {
+  font-size: clamp(1.05rem, 1.3vw, 1.4rem);
+  line-height: 1.19;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.02em;
+}
+
+.ecoCardDesc {
+  font-size: clamp(0.85rem, 0.9vw, 0.95rem);
+  line-height: 1.2;
+  font-weight: var(--site-font-weight-heading);
+  letter-spacing: -0.02em;
+}
+
+html[data-theme="light"] .ecoCardDesc {
+  color: var(--site-color-ink-muted);
+}
+
+html[data-theme="dark"] .ecoCardDesc {
+  color: var(--site-color-card-text-muted);
+}
+
+/* The two quickstarts stack inside panel two's artwork tile. */
+.quickstartStack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.3vw, 19px);
+  width: 100%;
+  min-width: 0;
+}
+
+/* The panels are a two-column pairing at desktop and a single column below it.
+   Once stacked, the copy leads in both panels, so panel one's artwork drops
+   back to source order rather than staying above its own heading. */
+@media screen and (max-width: 996px) {
+  .devPanel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .devPanelArtLead {
+    order: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ecoGrid,
+  .sdkGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ecoCardTop {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Quickstart. Dark in both themes, and deliberately the same near-black
+   neutral as the mock terminal above rather than a brand colour: these two
+   read as the same kind of object, a shell you can copy from. */
 .devQuickstartCard {
-  grid-column: span 6;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
   padding: 1rem 1.25rem;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%);
+  border-radius: 19px;
+  background: #25242d;
   min-width: 0;
 }
 
@@ -741,20 +774,19 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 }
 
 .quickstartBadge {
+  composes: monoLabel;
   font-size: 0.7rem;
-  font-weight: var(--ifm-font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   padding: 0.35rem 0.75rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  border-radius: 4px;
+  background: rgb(var(--site-color-card-text-rgb) / 0.2);
+  color: var(--site-color-card-text);
 }
 
 .quickstartText {
   font-size: 0.875rem;
   font-weight: var(--ifm-font-weight-semibold);
-  color: #fff;
+  color: var(--site-color-card-text);
 }
 
 .quickstartRight {
@@ -771,15 +803,15 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: rgb(var(--site-color-card-text-rgb) / 0.15);
+  color: var(--site-color-card-text);
   text-decoration: none !important;
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
 .quickstartDocBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(var(--site-color-card-text-rgb) / 0.3);
 }
 
 .quickstartDocIcon {
@@ -787,39 +819,20 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   height: 16px;
 }
 
-/* Devnet */
-.devQuickstartCard2 {
-  grid-column: span 6;
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-  padding: 1rem 1.25rem;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--site-color-brand-blue) 0%, var(--site-color-brand-blue-light) 100%);
-  min-width: 0;
-}
-
-.quickstartBadge2 {
-  font-size: 0.7rem;
-  font-weight: var(--ifm-font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.35rem 0.75rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-/* code block window */
+/* Mock terminal window. The colours below are deliberately literal and not
+   brand tokens: this is a picture of an editor, so its chrome and syntax
+   colours imitate a dark editor theme rather than expressing the brand. The
+   real code blocks in docs are themed from the palette (see custom.css). */
 .codeBlock {
-  background: #1a1a1f;
+  background: #0A1130;
+  border: 1px solid var(--site-color-card-border);
   border-radius: 20px;
   overflow: hidden;
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: var(--site-font-family-mono-code);
   font-size: 0.85rem;
   line-height: 1.7;
   color: #d4d4d4;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgb(var(--site-color-navy-rgb) / 0.2);
   height: 100%;
 }
 
@@ -828,8 +841,8 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   align-items: center;
   gap: 6px;
   padding: 0.875rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgb(var(--site-color-card-text-rgb) / 0.03);
+  border-bottom: 1px solid var(--site-color-card-border);
 }
 
 .codeDot {
@@ -842,10 +855,12 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 .codeDot:nth-child(2) { background: #ffbd2e; }
 .codeDot:nth-child(3) { background: #27ca40; }
 
+/* The mock terminal is dark in both themes, so its labels take the on-navy
+   muted token. At 0.4 alpha this measured 3.77:1 against the panel. */
 .codeTitle {
   margin-left: auto;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--site-color-card-text-muted);
 }
 
 .codeBlock code {
@@ -867,24 +882,25 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-family: var(--site-font-family-mono-code);
   font-size: 0.8rem;
-  background: rgba(0, 0, 0, 0.25);
-  color: #fff;
+  background: rgb(var(--site-color-navy-rgb) / 0.25);
+  color: var(--site-color-card-text);
   flex: 1;
   white-space: nowrap;
   border: none;
   min-width: 0;
 }
 
+/* Same panel, same reason as .codeTitle: 0.5 alpha measured 4.26:1. */
 .cliPrompt {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--site-color-card-text-muted);
 }
 
 .cliMockup code {
   background: none;
   padding: 0;
-  color: #fff;
+  color: var(--site-color-card-text);
   flex: 1;
   border: none;
   box-shadow: none;
@@ -904,8 +920,8 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgb(var(--site-color-card-text-rgb) / 0.12);
+  color: var(--site-color-card-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -913,7 +929,7 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
 }
 
 .copyBtn:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgb(var(--site-color-card-text-rgb) / 0.25);
 }
 
 .copyIcon {
@@ -921,60 +937,15 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   height: 14px;
 }
 
-@media screen and (max-width: 996px) {
-  .devGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .devSdkCard {
-    grid-column: span 1;
-  }
-
-  .devCodeCard {
-    grid-column: span 1;
-  }
-
-  .devLinkCard {
-    grid-column: span 1;
-  }
-
-  .devQuickstartCard,
-  .devQuickstartCard2 {
-    grid-column: span 2;
-  }
-}
-
+/* The quickstart rows read better centred once the panel is a single column. */
 @media screen and (max-width: 768px) {
-  .devGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .devSdkCard,
-  .devCodeCard,
-  .devLinkCard,
-  .devQuickstartCard,
-  .devQuickstartCard2 {
-    grid-column: span 1;
-  }
-
-  .sdkGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .quickstartLeft {
-    justify-content: center;
-  }
-
+  .quickstartLeft,
   .quickstartRight {
     justify-content: center;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .sdkGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .quickstartLeft {
     flex-direction: column;
     gap: 0.5rem;
@@ -987,40 +958,6 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   padding: 3.5rem 0 5rem;
 }
 
-html[data-theme="light"] .smartContracts {
-  background: #fff;
-}
-
-html[data-theme="dark"] .smartContracts {
-  background: var(--site-color-bg-dark);
-}
-
-.scHeader {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.scHeader h2 {
-  font-size: clamp(1.5rem, 3vw, 1.75rem);
-  font-weight: var(--ifm-font-weight-bold);
-  letter-spacing: -0.02em;
-  margin: 0 0 0.5rem;
-}
-
-.scHeader p {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-html[data-theme="light"] .scHeader p {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .scHeader p {
-  color: rgba(255, 255, 255, 0.65);
-}
-
 .scGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1031,12 +968,6 @@ html[data-theme="dark"] .scHeader p {
   .scGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .scLearnCard,
-  .asteriaCard,
-  .scCTFCard {
-    min-height: 260px;
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1045,81 +976,96 @@ html[data-theme="dark"] .scHeader p {
   }
 }
 
-/* Smart contracts learn card */
-.scLearnCard {
+/* One card recipe for the row (Smart Contracts, Asteria, CTF): navy media
+   card with bottom-anchored copy over a darkening gradient. The per-card
+   image classes below handle each artwork's own placement. */
+.prodCard {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   border-radius: 16px;
   overflow: hidden;
+  text-decoration: none !important;
   min-height: 260px;
   transition: all 0.3s ease;
+  background: var(--site-color-card-surface);
 }
 
-.scLearnCard:hover {
+.prodCard:hover {
   transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgb(var(--site-color-navy-rgb) / 0.3);
 }
 
-html[data-theme="light"] .scLearnCard:hover {
-  box-shadow: 0 24px 64px rgba(0, 51, 173, 0.15);
-}
-
-html[data-theme="dark"] .scLearnCard:hover {
-  box-shadow: 0 24px 64px rgba(68, 187, 164, 0.15);
-}
-
-.scLearnImage {
+.prodCardOverlay {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.scLearnOverlay {
-  position: absolute;
-  inset: 0;
-}
-
-html[data-theme="light"] .scLearnOverlay {
   background: linear-gradient(
     180deg,
-    rgba(0, 51, 173, 0.1) 0%,
-    rgba(0, 51, 173, 0.6) 50%,
-    rgba(0, 33, 110, 0.95) 100%
+    rgb(var(--site-color-navy-rgb) / 0) 0%,
+    rgb(var(--site-color-navy-rgb) / 0.6) 50%,
+    rgb(var(--site-color-navy-rgb) / 0.95) 100%
   );
 }
 
-html[data-theme="dark"] .scLearnOverlay {
-  background: linear-gradient(
-    180deg,
-    rgba(68, 187, 164, 0.05) 0%,
-    rgba(20, 40, 50, 0.7) 50%,
-    rgba(15, 25, 35, 0.98) 100%
-  );
-}
-
-.scLearnContent {
+.prodCardContent {
   position: relative;
   z-index: 1;
   padding: 1.5rem;
-  color: #fff;
+  color: var(--site-color-card-text);
 }
 
-.scLearnContent h3 {
+.prodCardContent h3 {
   font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
+  font-weight: var(--site-font-weight-heading);
   margin: 0 0 0.4rem;
-  color: #fff;
+  color: var(--site-color-card-text);
 }
 
-.scLearnContent > p {
+.prodCardContent p {
   font-size: 0.85rem;
   line-height: 1.5;
-  margin: 0 0 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  color: rgb(var(--site-color-card-text-rgb) / 0.85);
+}
+
+/* The chip row (Smart Contracts) and lone chips (Asteria, CTF) share the
+   same gap below the body copy */
+.prodCardContent > .prodChip,
+.scLearnLinks {
+  margin-top: 0.875rem;
+}
+
+.prodChip {
+  composes: monoLabel;
+  composes: pillBlue;
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  font-size: 0.75rem;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+/* Lone chips (whole-card links) recolor amber when the card is hovered;
+   the Smart Contracts chip row recolors and lifts per chip on direct hover */
+.prodCard:hover .prodCardContent > .prodChip,
+.scLearnLinks .prodChip:hover {
+  background: var(--site-color-card-accent);
+  color: var(--site-color-navy);
+}
+
+.scLearnLinks .prodChip:hover {
+  transform: translateY(-2px);
+}
+
+/* The circles art is semi-transparent and reads correctly only over the navy
+   card; anchored top-right with bleed instead of full-bleed cover */
+.scLearnImage {
+  position: absolute;
+  right: -13%;
+  top: -48%;
+  height: 108%;
+  width: auto;
 }
 
 .scLearnLinks {
@@ -1128,186 +1074,35 @@ html[data-theme="dark"] .scLearnOverlay {
   gap: 0.5rem;
 }
 
-.scLearnLinks a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-decoration: none !important;
-  transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.15);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  color: #fff;
-}
-
-.scLearnLinks a:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-/* Asteria */
-.asteriaCard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-radius: 16px;
-  overflow: hidden;
-  text-decoration: none !important;
-  min-height: 260px;
-  transition: all 0.3s ease;
-}
-
-.asteriaCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(68, 187, 164, 0.25);
-}
-
+/* Anchored right so the green moon sits at the card's right edge */
 .asteriaImage {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: right center;
 }
 
-.asteriaOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 20, 30, 0.6) 50%,
-    rgba(0, 15, 25, 0.95) 100%
-  );
-}
-
-.asteriaContent {
-  position: relative;
-  z-index: 1;
-  padding: 1.5rem;
-  color: #fff;
-}
-
-.asteriaContent h3 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.4rem;
-  color: #fff;
-}
-
-.asteriaContent p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.asteriaLink {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  margin-top: 0.875rem;
-  color: var(--site-color-brand-teal);
-  transition: all 0.2s ease;
-}
-
-.asteriaCard:hover .asteriaLink {
-  transform: translateX(4px);
-  color: var(--site-color-brand-teal-light);
-}
-
-/* CTF card */
-.scCTFCard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-radius: 16px;
-  overflow: hidden;
-  text-decoration: none !important;
-  min-height: 260px;
-  transition: all 0.3s ease;
-}
-
-.scCTFCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(68, 187, 164, 0.25);
-}
-
+/* Glow-circles art, a right-edge crop; anchored right over the navy surface
+   with a left fade so the crop seam blends away */
 .scCTFImage {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  right: 0;
+  top: 0;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
-
-.scCTFOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 20, 30, 0.6) 50%,
-    rgba(0, 15, 25, 0.95) 100%
-  );
-}
-
-.scCTFContent {
-  position: relative;
-  z-index: 1;
-  padding: 1.5rem;
-  color: #fff;
-}
-
-.scCTFContent h3 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.4rem;
-  color: #fff;
-}
-
-.scCTFContent p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.scCTFLink {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  margin-top: 0.875rem;
-  color: var(--site-color-brand-teal);
-  transition: all 0.2s ease;
-}
-
-.scCTFCard:hover .scCTFLink {
-  transform: translateX(4px);
-  color: #fff;
+  width: auto;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 30%);
+  mask-image: linear-gradient(to right, transparent, #000 30%);
 }
 
 @media screen and (max-width: 576px) {
-  .scLearnCard,
-  .asteriaCard,
-  .scCTFCard {
+  .prodCard {
     min-height: 220px;
   }
 
-  .scLearnLinks {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .scLearnLinks a {
+  .scLearnLinks .prodChip {
     padding: 0.4rem 0.75rem;
-    font-size: 0.75rem;
   }
 }
 
@@ -1317,40 +1112,6 @@ html[data-theme="dark"] .scLearnOverlay {
   padding: 4rem 0 5rem;
 }
 
-html[data-theme="light"] .cta {
-  background: #fff;
-}
-
-html[data-theme="dark"] .cta {
-  background: var(--site-color-bg-dark);
-}
-
-.ctaHeader {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.ctaHeader h2 {
-  font-size: clamp(1.5rem, 3vw, 1.75rem);
-  font-weight: var(--ifm-font-weight-bold);
-  letter-spacing: -0.02em;
-  margin: 0 0 0.5rem;
-}
-
-.ctaHeader p {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-html[data-theme="light"] .ctaHeader p {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-html[data-theme="dark"] .ctaHeader p {
-  color: rgba(255, 255, 255, 0.65);
-}
-
 .ctaRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1358,241 +1119,72 @@ html[data-theme="dark"] .ctaHeader p {
   min-height: 280px;
 }
 
-/* Hackathons */
-.ctaHackathons {
-  position: relative;
+/* Split cards: photo top, navy panel below */
+.ctaCard {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   border-radius: 16px;
   overflow: hidden;
   text-decoration: none !important;
   transition: all 0.3s ease;
+  background: var(--site-color-card-surface);
+  border: 1px solid var(--site-color-card-border);
 }
 
-.ctaHackathons:hover {
+.ctaCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 24px 64px rgb(var(--site-color-navy-rgb) / 0.25);
 }
 
-.ctaHackathonsImage {
-  position: absolute;
-  inset: 0;
+.ctaCardMedia {
+  height: 210px;
+  flex-shrink: 0;
+}
+
+.ctaCardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
+  display: block;
 }
 
-.ctaHackathonsOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
-}
-
-.ctaHackathonsContent {
-  position: relative;
-  z-index: 1;
+.ctaCardBody {
+  flex: 1;
   padding: 1.5rem;
-  color: #fff;
-}
-
-.ctaHackathonsContent h3 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.4rem;
-  color: #fff;
-}
-
-.ctaHackathonsContent p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.ctaHackathonsLink {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  margin-top: 0.875rem;
-  transition: all 0.2s ease;
-}
-
-html[data-theme="light"] .ctaHackathonsLink {
-  color: var(--site-color-brand-teal);
-}
-
-html[data-theme="dark"] .ctaHackathonsLink {
-  color: var(--site-color-brand-teal-light);
-}
-
-.ctaHackathons:hover .ctaHackathonsLink {
-  transform: translateX(4px);
-  color: #fff;
-}
-
-/* Events */
-.ctaEvents {
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  border-radius: 16px;
-  overflow: hidden;
-  text-decoration: none !important;
-  transition: all 0.3s ease;
+  color: var(--site-color-card-text);
 }
 
-.ctaEvents:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+/* Uppercase Chivo Light titles, ~31px at full design width */
+.ctaCardBody h3 {
+  font-size: 1.9rem;
+  font-weight: var(--site-font-weight-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+  color: var(--site-color-card-text);
 }
 
-.ctaEventsImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 125%;
-}
-
-.ctaEventsOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
-}
-
-.ctaEventsContent {
-  position: relative;
-  z-index: 1;
-  padding: 1.5rem;
-  color: #fff;
-}
-
-.ctaEventsContent h3 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.4rem;
-  color: #fff;
-}
-
-.ctaEventsContent p {
+.ctaCardBody p {
   font-size: 0.85rem;
   line-height: 1.5;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 1rem;
+  flex-grow: 1;
+  color: var(--site-color-card-text-muted);
 }
 
-.ctaEventsLink {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  margin-top: 0.875rem;
+.ctaCardLink {
+  composes: monoLabel;
+  font-size: 1rem;
+  color: var(--site-color-card-text);
   transition: all 0.2s ease;
 }
 
-html[data-theme="light"] .ctaEventsLink {
-  color: var(--site-color-brand-teal);
-}
-
-html[data-theme="dark"] .ctaEventsLink {
-  color: var(--site-color-brand-teal-light);
-}
-
-.ctaEvents:hover .ctaEventsLink {
-  transform: translateX(4px);
-  color: #fff;
-}
-
-/* Funding */
-.ctaFunding {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-radius: 16px;
-  overflow: hidden;
-  text-decoration: none !important;
-  transition: all 0.3s ease;
-}
-
-.ctaFunding:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
-}
-
-.ctaFundingImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.ctaFundingOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
-}
-
-.ctaFundingContent {
-  position: relative;
-  z-index: 1;
-  padding: 1.5rem;
-  color: #fff;
-}
-
-.ctaFundingContent h3 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
-  margin: 0 0 0.4rem;
-  color: #fff;
-}
-
-.ctaFundingContent p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.ctaFundingLink {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  margin-top: 0.875rem;
-  transition: all 0.2s ease;
-}
-
-html[data-theme="light"] .ctaFundingLink {
-  color: var(--site-color-brand-teal);
-}
-
-html[data-theme="dark"] .ctaFundingLink {
-  color: var(--site-color-brand-teal-light);
-}
-
-.ctaFunding:hover .ctaFundingLink {
-  transform: translateX(4px);
-  color: #fff;
+.ctaCard:hover .ctaCardLink {
+  color: var(--site-color-card-accent);
 }
 
 @media screen and (max-width: 996px) {
@@ -1600,7 +1192,7 @@ html[data-theme="dark"] .ctaFundingLink {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .ctaFunding {
+  .ctaCard:last-child {
     grid-column: span 2;
   }
 }
@@ -1611,12 +1203,7 @@ html[data-theme="dark"] .ctaFundingLink {
     min-height: auto;
   }
 
-  .ctaHackathons,
-  .ctaEvents {
-    min-height: 220px;
-  }
-
-  .ctaFunding {
+  .ctaCard:last-child {
     grid-column: span 1;
   }
 }
@@ -1627,248 +1214,170 @@ html[data-theme="dark"] .ctaFundingLink {
   padding: 4rem 0 5rem;
 }
 
-html[data-theme="light"] .officeHours {
-  background: #fff;
-}
-
-html[data-theme="dark"] .officeHours {
-  background: var(--site-color-bg-dark);
-}
-
-.officeHoursInner {
+/* One rounded banner from the brand template: copy on the left, the circle
+   columns on the right. Light gray surface with a navy WEEKLY pill in light
+   mode; the whole block inverts onto navy in dark mode. */
+.officeHoursBanner {
+  position: relative;
+  overflow: hidden;
   display: flex;
-  align-items: stretch;
-  gap: 1.25rem;
-  min-height: 280px;
+  align-items: center;
+  min-height: 360px;
+  border-radius: 15px;
+  background: var(--site-color-gray-light);
+  /* The template outlines the banner with a thin dark stroke. */
+  border: 1px solid var(--site-color-navy);
+}
+
+html[data-theme="dark"] .officeHoursBanner {
+  background: var(--site-color-navy);
+  border-color: var(--site-color-card-border);
 }
 
 .officeHoursContent {
-  flex: 1;
-  padding: 2rem;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-html[data-theme="light"] .officeHoursContent {
-  background: var(--site-color-surface);
+  position: relative;
+  z-index: 1;
+  max-width: 54%;
+  padding: 2.75rem 2.5rem;
+  color: var(--site-color-ink);
 }
 
 html[data-theme="dark"] .officeHoursContent {
-  background: var(--site-color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--site-color-cream);
 }
 
+/* Chivo at light weight, not the mono label face: the template sets the
+   WEEKLY pill in the text face. Inverts with the theme. */
 .officeHoursBadge {
   display: inline-block;
-  font-size: 0.7rem;
-  font-weight: var(--ifm-font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.3rem 0.7rem;
-  border-radius: 8px;
   width: fit-content;
-  margin-bottom: 1rem;
-}
-
-html[data-theme="light"] .officeHoursBadge {
-  background: rgba(0, 51, 173, 0.1);
-  color: var(--site-color-brand-blue);
+  font-size: 1rem;
+  font-weight: var(--ifm-font-weight-light);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 1.2rem;
+  border-radius: 999px;
+  margin-bottom: 1.6rem;
+  background: var(--site-color-navy);
+  color: var(--site-color-cream);
 }
 
 html[data-theme="dark"] .officeHoursBadge {
-  background: rgba(68, 187, 164, 0.15);
-  color: var(--site-color-brand-teal);
+  background: var(--site-color-cream);
+  color: var(--site-color-navy);
 }
 
 .officeHoursContent h2 {
-  font-size: 1.35rem;
-  font-weight: var(--ifm-font-weight-bold);
-  letter-spacing: -0.02em;
-  margin: 0 0 0.5rem;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: var(--ifm-font-weight-light);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.4rem;
+  /* Narrow enough to break after "Developer", the template's line split. */
+  max-width: 6.5em;
 }
 
 .officeHoursContent p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0 0 1.25rem;
-}
-
-html[data-theme="light"] .officeHoursContent p {
-  color: rgba(0, 0, 0, 0.65);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin: 0 0 1.8rem;
+  max-width: 30em;
+  color: var(--site-color-text-muted);
 }
 
 html[data-theme="dark"] .officeHoursContent p {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--site-color-cream);
 }
 
 .officeHoursActions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
+/* Both actions are identical filled pills; no secondary variant. */
 .officeHoursBtn {
+  composes: monoLabel;
+  composes: pillBlue;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.6rem 1.25rem;
-  border-radius: 10px;
+  padding: 0.85rem 1.2rem;
   font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
   text-decoration: none !important;
   transition: all 0.25s ease;
-}
-
-html[data-theme="light"] .officeHoursBtn {
-  background: var(--site-color-brand-blue);
-  color: #fff;
-}
-
-html[data-theme="dark"] .officeHoursBtn {
-  background: var(--site-color-brand-teal);
-  color: #fff;
 }
 
 .officeHoursBtn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(var(--site-color-brand-blue-rgb) / 0.25);
+  color: var(--site-color-gray-light);
 }
 
-html[data-theme="light"] .officeHoursBtn:hover {
-  box-shadow: 0 8px 24px rgba(0, 51, 173, 0.2);
+.officeHoursBtnArrow svg {
+  display: block;
+  width: 11px;
+  height: 11px;
 }
 
-html[data-theme="dark"] .officeHoursBtn:hover {
-  box-shadow: 0 8px 24px rgba(68, 187, 164, 0.2);
+.officeHoursArt {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.officeHoursBtnSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.25rem;
-  border-radius: 10px;
-  font-size: 0.85rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-decoration: none !important;
-  transition: all 0.25s ease;
-}
-
-html[data-theme="light"] .officeHoursBtnSecondary {
-  background: transparent;
-  color: var(--site-color-brand-blue);
-  border: 1px solid rgba(0, 51, 173, 0.2);
-}
-
-html[data-theme="dark"] .officeHoursBtnSecondary {
-  background: transparent;
-  color: var(--site-color-brand-teal);
-  border: 1px solid rgba(68, 187, 164, 0.25);
-}
-
-.officeHoursBtnSecondary:hover {
-  transform: translateY(-2px);
-}
-
-html[data-theme="light"] .officeHoursBtnSecondary:hover {
-  background: rgba(0, 51, 173, 0.05);
-}
-
-html[data-theme="dark"] .officeHoursBtnSecondary:hover {
-  background: rgba(68, 187, 164, 0.1);
-}
-
-.officeHoursImageCard {
-  flex: 1;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-}
-
-.officeHoursImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+/* Bleeds to the right edge like the template. Sized by width, not height:
+   at full banner width this equals full height (the export is the banner's
+   right 52% at the same aspect), and at narrower widths it shrinks with the
+   banner instead of sliding under the copy. */
+.officeHoursArt img {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 52%;
+  height: auto;
   display: block;
 }
 
-@media screen and (max-width: 768px) {
-  .officeHoursInner {
-    flex-direction: column;
-    min-height: auto;
-  }
+.officeHoursArt .officeHoursArtDark {
+  display: none;
+}
 
-  .officeHoursImageCard {
-    min-height: 180px;
+html[data-theme="dark"] .officeHoursArt .officeHoursArtLight {
+  display: none;
+}
+
+html[data-theme="dark"] .officeHoursArt .officeHoursArtDark {
+  display: block;
+}
+
+/* Below this width the artwork would crowd the copy, so the banner reads as
+   a plain centred card. */
+@media screen and (max-width: 996px) {
+  .officeHoursArt {
+    display: none;
   }
 
   .officeHoursContent {
+    max-width: none;
     text-align: center;
   }
 
-  .officeHoursBadge {
-    align-self: center;
+  .officeHoursBadge,
+  .officeHoursContent h2,
+  .officeHoursContent p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .officeHoursContent h2 {
+    max-width: none;
   }
 
   .officeHoursActions {
     justify-content: center;
-  }
-}
-
-/* Portal hero (portalhero.js) */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background-size: auto;
-  background-position: 59% 50%;
-}
-
-html[data-theme="light"] .heroBanner {
-  background-image: url(/img/home/dev-portal-hero-light.webp);
-  background-color: var(--site-color-brand-blue);
-}
-
-html[data-theme="dark"] .heroBanner {
-  background-image: url(/img/home/dev-portal-hero-dark.webp);
-  background-color: var(--site-color-brand-teal-dark);
-}
-
-html[data-theme="light"] .getStarted {
-  color: #fff;
-}
-
-html[data-theme="dark"] .getStarted {
-  color: #000;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media screen and (max-width: 1024px) {
-  .heroBanner {
-    background-position: 34% 50%;
-  }
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-@media screen and (min-width: 1950px) {
-  .heroBanner {
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 }
 
@@ -1882,4 +1391,56 @@ html[data-theme="dark"] .getStarted {
   .officeHours {
     padding: 3rem 0;
   }
+}
+
+/* ===========================================================================
+   KEYBOARD FOCUS
+
+   The page had nineteen :hover rules and no focus rules at all, so every
+   interactive element here fell back to the user agent ring. These are grouped
+   rather than filed next to each hover rule so the coverage stays auditable in
+   one place: if a control is added below without an entry here, it is obvious.
+
+   Ring colour follows the surface the ring is drawn on, not the theme, because
+   an outline sits outside the element. The three groups below were measured
+   against the composited backdrop in both themes; a navy ring on a navy card
+   is the exact defect this section exists to fix.
+   =========================================================================== */
+
+/* On the page itself: cream in light, the dark page in dark. */
+.heroCta:focus-visible,
+.heroCtaSecondary:focus-visible,
+.bentoCard:focus-visible,
+.sdkItem:focus-visible,
+.ecoCard:focus-visible,
+.prodCard:focus-visible,
+.ctaCard:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .heroCta:focus-visible,
+html[data-theme="dark"] .heroCtaSecondary:focus-visible,
+html[data-theme="dark"] .bentoCard:focus-visible,
+html[data-theme="dark"] .sdkItem:focus-visible,
+html[data-theme="dark"] .ecoCard:focus-visible,
+html[data-theme="dark"] .prodCard:focus-visible,
+html[data-theme="dark"] .ctaCard:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
+/* On a blue or navy panel in BOTH themes, where navy would vanish:
+   quickstart 9.7:1, the code toolbar 12.6:1, the chips 19.1:1. */
+.quickstartDocBtn:focus-visible,
+.copyBtn:focus-visible,
+.prodChip:focus-visible {
+  outline: 2px solid var(--site-color-cream);
+  outline-offset: 2px;
+}
+
+/* On the light gray card that stays light in BOTH themes, where cream would
+   vanish instead: navy reads at 17.7:1. */
+.officeHoursBtn:focus-visible {
+  outline: 2px solid var(--site-color-navy);
+  outline-offset: 2px;
 }
