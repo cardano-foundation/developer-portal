@@ -1013,6 +1013,16 @@ export const BuilderTools = [
     category: "api",
     properties: ["rest", "websocket"],
   },
+  {
+    title: "PoolTerminal",
+    icon: "/img/tools/poolterminal.png",
+    description: "Desktop dashboard for stake pool operators that connects to a block producer over SSH and surfaces chain, KES, block propagation, delegator and reward data in one view, with history stored locally. Read-only: it observes the node and cannot sign, spend, or control it.",
+    website: "https://server-tools.grahamsnumberplus1.com/PoolTerminal/",
+    docs: null,
+    repository: "https://github.com/GNP1-dev/PoolTerminal",
+    category: "operations",
+    properties: ["javascript", "rust"],
+  },
   // ============================================================================
   // ADD YOUR BUILDER TOOL ABOVE THIS LINE
   // Copy the template from the top of this file
