@@ -35,7 +35,7 @@ flowchart TB
         KA["10 ADA sitting here"] --> KR["to spend it:<br/>sign with the matching private key"]
     end
 
-    subgraph S["Script address: controlled by a rule"]
+    subgraph S["Script address: controlled by the validator"]
         SA["5 ADA sitting here"] --> SR["to spend it:<br/>build a transaction the validator approves"]
     end
 
