@@ -116,7 +116,7 @@ So a contract never gathers facts, it only judges the ones already in front of i
 
 Everything below runs from `on-chain/vault/`, where lecture 2 left you.
 
-The rule in words: **allow the spend only if the owner named in the datum is among the keys the transaction requires a signature from.** You have every piece. `self` is the transaction, `self.extra_signatories` is that list, `owner` came out of the datum last lecture, and `list.has` answers whether something is in a list.
+What we check: **allow the spend only if the owner named in the datum is among the keys the transaction requires a signature from.** You have every piece. `self` is the transaction, `self.extra_signatories` is that list, `owner` came out of the datum last lecture, and `list.has` answers whether something is in a list.
 
 In `validators/vault.ak`, make three changes:
 
