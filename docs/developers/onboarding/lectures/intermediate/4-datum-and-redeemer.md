@@ -61,7 +61,7 @@ Our example contract is a **vault**. It locks some funds so that only their owne
 
 Read it as two shapes being declared:
 
-- `VaultDatum` has a single field, `owner`, of type `VerificationKeyHash`. That is a **public key hash**, the short fingerprint of a public key. Native scripts used the same thing to name a signer back in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata). It says who must sign, but it is not a key itself.
+- `VaultDatum` has a single field, `owner`, of type `VerificationKeyHash`. That is a **public key hash**, the short fingerprint of a public key. Native scripts used the same thing to name a signer back in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata).
 - `VaultAction` has a single choice, `Unlock`. A larger contract would list several, such as `Unlock`, `Cancel` and `Extend`, and the validator would check which one the spender chose.
 
 </TabItem>
