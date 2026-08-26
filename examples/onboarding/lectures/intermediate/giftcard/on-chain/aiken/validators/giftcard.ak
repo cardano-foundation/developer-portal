@@ -21,7 +21,7 @@ validator giftcard {
     or {
       token_minted(self.mint, policy_id, card_name, 1),
       token_minted(self.mint, policy_id, card_name, -1),
-    }
+    }?
   }
 
   spend(
@@ -33,7 +33,7 @@ validator giftcard {
     expect Some(own_input) =
       list.find(self.inputs, fn(input) { input.output_reference == own_ref })
     expect Script(policy_id) = own_input.output.address.payment_credential
-    token_minted(self.mint, policy_id, card_name, -1)
+    token_minted(self.mint, policy_id, card_name, -1)?
   }
 
   else(_) {

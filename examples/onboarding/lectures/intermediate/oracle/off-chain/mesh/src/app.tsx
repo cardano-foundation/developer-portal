@@ -54,7 +54,7 @@ function App() {
       const changeAddress = await connected.getChangeAddress();
       setAddress(changeAddress);
       // Your key hash. Every oracle here is readable, but only the ones whose
-      // datum names you can be updated — the validator checks that.
+      // datum names you can be updated, and the validator checks that.
       setOwner(deserializeAddress(changeAddress).pubKeyHash);
       setHasCollateral((await connected.getCollateral()).length > 0);
       setOracles(await fetchOracles(provider, NETWORK_ID));

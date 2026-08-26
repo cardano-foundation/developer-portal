@@ -48,7 +48,7 @@ The design in one sentence: **the owner may spend the oracle's UTxO, but only in
 
 ## Nothing is edited, everything is replaced
 
-The answer is simple once you see it. You do not edit a UTxO. You spend it, and you create its replacement **in the same transaction**.
+A UTxO is replaced rather than edited: you spend it, and you create its replacement **in the same transaction**.
 
 ```mermaid
 flowchart LR
@@ -85,7 +85,7 @@ Write the contract first, then watch a value change on the real network.
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs from `on-chain/vault/`, the same project as the last two lectures.
+Everything below runs in the same project as the last two lectures.
 
 Create `validators/oracle.ak`. The imports first, contract and tests together:
 
@@ -127,7 +127,7 @@ Open `plutus.json` and find `oracle.oracle.spend`. Compare its hash with ours:
 e17872fdaba9b9906fa71fb30bf7773832b8b488cf6075c61d4a61a9
 ```
 
-Your project now holds three contracts, each with its own hash and therefore its own address: the vault, the vesting contract, and this oracle. One project, three addresses. Nothing was deployed to produce them.
+Your project now holds four contracts, each with its own hash and therefore its own address: the vault, the vesting contract, the gift card, and this oracle. One project, four addresses. Nothing was deployed to produce them.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -137,11 +137,14 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ### Then run it
 
 The playground has an app for this contract. From `playground/`:
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
 
 ```bash
 cd oracle/off-chain/mesh
@@ -149,6 +152,14 @@ npm install
 cp ../../../vault/off-chain/mesh/.env .env   # or fill in .env.example again
 npm run dev
 ```
+
+</TabItem>
+<TabItem value="evolution" label="Evolution">
+
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon. The idea is identical, only the library calls differ.
+
+</TabItem>
+</Tabs>
 
 Connect your wallet and set up collateral, then:
 
@@ -167,13 +178,13 @@ Take the first: **the value has to come back too**. At the moment, the owner can
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Back in `on-chain/vault/`, in the `validators/oracle.ak` you just wrote.
+Back in the `validators/oracle.ak` you just wrote.
 
 **Start with the test, because a weakness is easier to see than to fix.** Copy `update_ok_when_owner_signs_and_utxo_returns`. Give the copy a new name. Then lower the amount in its `tx_out(...)` line, so that the update returns less ADA than it took. Mark the test `fail`, because a correct contract should refuse this transaction.
 
 Run `aiken check`. Your new test **fails**. You said that the contract should refuse this transaction, and the contract did not refuse it. That failure makes the weakness visible.
 
-**Then fix the validator.** What came in is `own_input.output.value`. What goes back is `continuing.value`. Compare the two and refuse the transaction when the value gets smaller. `lovelace_of` from `cardano/assets` is enough for a first version, and that module is already imported at the top of the file.
+**Then fix the validator.** What came in is `own_input.output.value`. What goes back is `continuing.value`. Compare the two and refuse the transaction when the value gets smaller. `assets.lovelace_of` is enough for a first version, and `cardano/assets` is already imported at the top of the file.
 
 When your test passes, you have found a real weakness, written a test that proves it, and fixed it. That is a small example of the whole job.
 
@@ -187,9 +198,9 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 
 ## Go deeper
 
-- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context) — the continuing-output pattern and state machines in full.
-- [Oracles](/docs/developers/curriculum/dapps/oracles/overview) — how real oracles publish data, including the common design where the price is signed off-chain rather than stored in a UTxO like ours.
-- [Design patterns](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview) — how contracts store state across many UTxOs when one is not enough.
-- [A prediction market](/docs/developers/curriculum/dapps/oracles/prediction-market) — this pattern at real size, with a real oracle behind it.
+- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context): the continuing-output pattern and state machines in full.
+- [Oracles](/docs/developers/curriculum/dapps/oracles/overview): how real oracles publish data, including the common design where the price is signed off-chain rather than stored in a UTxO like ours.
+- [Design patterns](/docs/developers/curriculum/smart-contracts/advanced/design-patterns/overview): how contracts store state across many UTxOs when one is not enough.
+- [A prediction market](/docs/developers/curriculum/dapps/oracles/prediction-market): this pattern at real size, with a real oracle behind it.
 
 Next: **[Reference inputs & reference scripts](/docs/developers/onboarding/lectures/intermediate/reference-inputs-and-scripts)**.

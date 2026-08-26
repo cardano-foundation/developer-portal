@@ -37,7 +37,7 @@ validator oracle {
     expect [continuing] = outputs_at(self.outputs, own_input.output.address)
     expect _updated: OracleDatum = output_inline_datum(continuing)
 
-    key_signed(self.extra_signatories, owner)
+    key_signed(self.extra_signatories, owner)?
   }
 
   else(_) {

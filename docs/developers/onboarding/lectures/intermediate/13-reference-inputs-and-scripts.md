@@ -128,7 +128,7 @@ One more contract to write, and it is the shortest in the track.
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs from `on-chain/vault/`, the same project as the last three lectures. This contract reads the oracle you wrote in the last lecture, so `validators/oracle.ak` has to be there already.
+Everything below runs in the same project as the last three lectures. This contract reads the oracle you wrote in the last lecture, so `validators/oracle.ak` has to be there already.
 
 Create `validators/consumer.ak`. The imports first. The last line is the interesting one: this contract imports `OracleDatum` from your own oracle, because it has to know the shape of the datum it is about to read.
 
@@ -136,7 +136,7 @@ Create `validators/consumer.ak`. The imports first. The last line is the interes
   {extractRegion(ConsumerAiken, "consumer-imports")}
 </CodeBlock>
 
-Then the validator itself, which is four lines:
+Then the validator itself, whose body is three lines:
 
 <CodeBlock language="aiken" title="validators/consumer.ak">
   {extractRegion(ConsumerAiken, "consumer")}
@@ -161,7 +161,7 @@ Open `plutus.json` and find `consumer.consumer.spend`. Compare its hash with our
 451d79ec8b1a4be9bd4006a0abb63afb75354667586ffdefe244355e
 ```
 
-**Then break it.** Delete the reference input from the passing test's transaction and run `aiken check` again. The validator can no longer find the oracle, so it refuses. A contract that depends on referenced data does not carry on without that data, and it does not fail silently. It refuses.
+**Then break it.** Delete the `ref_tx_in(...)` line from `tx_reading_oracle`, the helper both tests use, and run `aiken check` again. `spend_ok_when_the_oracle_price_is_positive` goes red: the validator can no longer find the oracle, so it refuses. A contract that depends on referenced data does not carry on without that data, and it does not fail silently. It refuses.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -171,11 +171,11 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ### Then go and see the cost
 
-Open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, find any **unlock** transaction you have sent from the [playground](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground), and look at its **size**. The compiled contract is inside that transaction, and you paid for those bytes. A reference script removes those bytes from every future spend.
+Open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, find any **unlock** transaction you have sent, from your own app in lecture 9 or from the [playground](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground), and look at its **size**. The compiled contract is inside that transaction, and you paid for those bytes. A reference script removes those bytes from every future spend.
 
 _(The playground has no button for either feature, so this lecture is for writing and compiling, like the gift card one.)_
 
@@ -194,7 +194,7 @@ Everything else is a larger version of these same parts. When the size grows, th
 
 ## Go deeper
 
-- [Reference inputs and reference scripts](/docs/developers/curriculum/fundamentals/core-concepts/transactions#reference-inputs-and-reference-scripts) — both, inside a transaction's full structure.
-- [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts) — deploying and consuming reference scripts in code.
-- [Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees) — what referencing a script actually costs.
-- [Oracles](/docs/developers/curriculum/dapps/oracles/overview) — reference inputs as the foundation of oracle design.
+- [Reference inputs and reference scripts](/docs/developers/curriculum/fundamentals/core-concepts/transactions#reference-inputs-and-reference-scripts): both, inside a transaction's full structure.
+- [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend#reference-scripts): deploying and consuming reference scripts in code.
+- [Transaction fees](/docs/developers/curriculum/fundamentals/core-concepts/fees#reference-script-fees): what referencing a script actually costs.
+- [Oracles](/docs/developers/curriculum/dapps/oracles/overview): reference inputs as the foundation of oracle design.

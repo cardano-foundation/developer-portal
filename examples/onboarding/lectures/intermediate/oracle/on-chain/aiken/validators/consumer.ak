@@ -24,7 +24,7 @@ validator consumer {
   ) {
     expect [oracle_input] = self.reference_inputs
     expect oracle_datum: OracleDatum = input_inline_datum(oracle_input)
-    oracle_datum.price > 0
+    (oracle_datum.price > 0)?
   }
 
   else(_) {

@@ -91,7 +91,7 @@ There is no app for this one. The interesting part is in the blueprint, so you w
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs from `on-chain/vault/`, the same project as the last lecture.
+Everything below runs in the same project as the last lecture.
 
 Create `validators/giftcard.ak`. The imports first, contract and tests together:
 
@@ -108,15 +108,13 @@ Then the token name and the two handlers:
 There is no datum type in this file, which is answer 1: the token is the state. The two handlers are answer 2, and the body of each one is answer 3.
 
 - The **mint** handler allows one card to be created, or one card to be destroyed. That is what the `1` and the `-1` mean. A transaction records how many tokens it changes as a plain number, so destroying a token is minting a **negative** amount. This is why a single handler covers both actions. Anything else under this policy is refused.
-- The **spend** handler asks whether a card is being **destroyed** here. Notice how it finds the policy ID. It looks for the input that it is guarding, takes the address of that input, and reads the script hash out of that address. That hash **is** the policy ID. This is how a script recognises the tokens that it created itself.
+- The **spend** handler asks whether a card is being **destroyed** here. Notice how it finds the policy ID. It looks for the input that it is guarding, takes the address of that input, and reads the script hash out of that address. That hash **is** the policy ID. This is how a script recognizes the tokens that it created itself.
 
 Then five tests. Three of them call the `mint` handler and two call the `spend` handler, which is the first time you have tested two doors of one script:
 
 <CodeBlock language="aiken" title="validators/giftcard.ak">
   {extractRegion(GiftcardAiken, "giftcard-tests")}
 </CodeBlock>
-
-They cover creating one card, destroying one card, refusing two at once, using a card correctly, and refusing an attempt that keeps the card.
 
 ```bash
 aiken check
@@ -128,8 +126,6 @@ Now open `plutus.json` and find the three `giftcard.giftcard.*` entries. One is 
 ```
 9dfcd92c37def0a97a0ffd1431e548f23561fa2a83628d73939aef23
 ```
-
-The same hash is the script's **address** for the spend handler and its **policy ID** for the mint handler. One number, two jobs, which is the whole reason a single contract is enough here.
 
 **Then break it.** Delete the burn check from the spend handler and return `True` instead. Run the tests again. `redeem_fails_when_the_card_is_kept` now **fails**. The validator releases the funds whether or not the card is destroyed, and the one test written to catch that problem reports it. The token no longer protects anything.
 
@@ -143,12 +139,12 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ## Go deeper
 
-- [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator) — "one validator, many purposes, one hash," with more handlers.
-- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies) — the mint purpose in depth.
-- [Token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security) — what goes wrong when a token is used as a key.
+- [Write a Validator](/docs/developers/curriculum/smart-contracts/write-a-validator): "one validator, many purposes, one hash," with more handlers.
+- [Minting policies](/docs/developers/curriculum/native-tokens/minting-policies): the mint purpose in depth.
+- [Token security](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/token-security): what goes wrong when a token is used as a key.
 
 Next: **[Modifying state: an oracle](/docs/developers/onboarding/lectures/intermediate/modifying-state)**.

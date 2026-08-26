@@ -47,7 +47,7 @@ export async function buildOracleCreateTx(
 ): Promise<string> {
   // Where the wallet wants anything left over sent back to.
   const changeAddress = await wallet.getChangeAddress();
-  // The key hash inside that address — who will be allowed to update the price.
+  // The key hash inside that address: who will be allowed to update the price.
   const owner = deserializeAddress(changeAddress).pubKeyHash;
 
   // The builder. `fetcher` is how it looks up UTxOs and protocol parameters.
@@ -84,7 +84,7 @@ export async function buildOracleUpdateTx(
 ): Promise<string> {
   // Where the wallet wants anything left over sent back to.
   const changeAddress = await wallet.getChangeAddress();
-  // The key hash inside it — the owner the current datum names.
+  // The key hash inside it: the owner the current datum names.
   const owner = deserializeAddress(changeAddress).pubKeyHash;
   // The deposit, as with any spend that runs a script.
   const collateral = (await wallet.getCollateral())[0];
