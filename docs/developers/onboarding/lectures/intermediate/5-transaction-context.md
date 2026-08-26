@@ -100,7 +100,6 @@ The context is generous, but it stops at the edge of one transaction. A contract
 - **the rest of the block**: other transactions being confirmed at the same moment are invisible.
 - **the metadata**. This one surprises people, because you attached metadata to a transaction back in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata). It is stored on the chain and anyone can read it, but scripts are not shown it. So a contract can never enforce a rule about metadata.
 
-All of these come back to the same rule from **[on-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)**: every node must reach the **same answer, forever**. Anything that could differ between two nodes is left out.
 
 :::tip The transaction is the whole world
 A validator runs **inside** a single transaction, and that transaction is everything it can see: its inputs and their datums and values, the UTxOs it references, its outputs, its signatures, its window, etc. No API to call, no database to query, not even the block it sits in. What isn't in the transaction doesn't exist, as far as the contract is concerned.
