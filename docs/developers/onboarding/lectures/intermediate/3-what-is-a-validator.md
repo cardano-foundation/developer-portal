@@ -78,7 +78,7 @@ validator(datum, redeemer, context) -> True | False
 
 Depending on the language you choose to write your validators in, you can see more or fewer arguments. That is just the language trying to be convenient for you. At the end of the day, everything is inside the transaction context.
 
-It is **handed** nothing else. No network access, no clock, no storage, and nothing about the world beyond what it is given. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** explained why. The next two lectures cover all three in detail, and then [Parameters](/docs/developers/onboarding/lectures/intermediate/parameters) adds the one route that does not go through this list at all. For now, remember the shape: **information in, one yes or no out.**
+The validator cannot access anything else. No network access, no clock, no storage, and nothing about the world beyond what it is given. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** explained why. The next lectures cover all three inputs in detail, and then [Parameters](/docs/developers/onboarding/lectures/intermediate/parameters) adds a way to hardcode values directly into the validator.
 
 :::warning A validator is only as good as what it refuses
 Think about the two simplest validators possible, and you will see the full range you are working in:
