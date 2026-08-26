@@ -19,7 +19,7 @@ So a validator is defined by what it **refuses**. A guard who lets everyone thro
 
 "A smart contract" does not always mean *one* validator. A real application often uses several. Each one protects its own thing, and each one judges the same transaction on its own, without ever calling the others.
 
-What ties them together is a single rule: **every validator the transaction triggers has to say yes.** One no anywhere, and the whole transaction is rejected. That is how contracts cooperate on Cardano, by each making its own demand of the same transaction.
+What ties them together is a single rule: **every validator the transaction triggers has to say yes.** If a single validator rejects it, the whole transaction is rejected. That is how contracts cooperate on Cardano, by each making its own demand of the same transaction.
 
 Our examples use a single validator for now. **Multi validators** shows one script guarding two different actions at once, and **reference inputs** shows two separate contracts working together.
 
