@@ -21,7 +21,7 @@ So a validator is defined by what it **refuses**. A guard who lets everyone thro
 
 What ties them together is a single rule: **every validator the transaction triggers has to say yes.** If a single validator rejects it, the whole transaction is rejected. That is how contracts cooperate on Cardano, by each making its own demand of the same transaction.
 
-Our examples use a single validator for now. **Multi validators** shows one script guarding two different actions at once, and **reference inputs** shows two separate contracts working together.
+The next few examples use a single validator, but we'll cover more complex contracts later.
 
 ## Where the locked funds live
 
