@@ -62,7 +62,7 @@ flowchart LR
     V -->|no| No["transaction rejected,<br/>the UTxO stays put"]
 ```
 
-So a validator only checks funds on the way **out**, never on the way in. Anyone can send funds in, even by mistake, and nothing checks them. Taking them out is the only guarded step. This matters more than it first appears, and it is the shape of every contract in this track. You lock first, and all the interesting logic happens at the spend.
+So a validator only checks funds on the way **out**, never on the way in. That's why it's called a "spending validator" (we'll explain more in the [purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes) lecture). Anyone can send funds in, even by mistake, and nothing checks them. Only taking them out is guarded. This matters more than it first appears, since it affects how you write your logic. You lock first, and all the interesting logic happens at the spend.
 
 ## What the validator sees
 
