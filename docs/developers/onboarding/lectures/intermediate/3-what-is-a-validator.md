@@ -118,6 +118,7 @@ Four arguments, three ideas. `_datum` and `_redeemer` are the first two from the
 
 The body is the entire rule: `True`, yes to everybody.
 
+Run in your terminal:
 ```bash
 aiken check
 ```
