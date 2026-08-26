@@ -27,7 +27,7 @@ The next few examples use a single validator, but we'll cover more complex contr
 
 Remember from Beginner that a [UTxO](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions) (a "sealed bag") always sits at an **[address](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)**. Most of the addresses you have used belong to a person. These are **key addresses**, and whoever holds the matching private key can spend what is there.
 
-You have already met the other kind. When Bob locked 5 ADA behind a native script in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata), the funds went to a **script address**, controlled by a **rule** instead of a person. A validator uses the same kind of address. The only difference is how complex the rule is allowed to be.
+You have already met the other kind. When Bob locked 5 ADA behind a native script in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata), the funds went to a **script address**, controlled by **a set of rules** instead of a person. A validator uses the same kind of address. The only difference is how complex the rules can be. Validators allow for arbitrarily complex logic (as long as you're within the transaction's budget).
 
 ```mermaid
 flowchart TB
