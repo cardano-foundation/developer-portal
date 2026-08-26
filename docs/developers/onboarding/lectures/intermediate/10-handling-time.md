@@ -24,11 +24,11 @@ A company hires a developer and promises them tokens. The tokens belong to the d
 
 The same shape appears in many places:
 
-- A salary that is paid on the first day of each month.
-- A refund period that ends after thirty days.
-- A grant that is released in four steps over two years.
+- An investor who cannot sell for six months after a token sale.
+- A seller who is paid only once the buyer's refund window has closed.
+- A researcher whose grant arrives in four instalments over two years.
 
-All of these are called **vesting**. Two people are involved. One person puts money aside. The other person takes it later.
+**Vesting** is the name for it. Two people are involved. One person puts money aside. The other person takes it later.
 
 The important part is the word "promise". The company must not be able to change its mind on the day before the date. An app cannot enforce that, because the company controls the app. Only the chain can enforce it. That is why vesting is a contract and not a calendar reminder.
 
@@ -36,7 +36,7 @@ The important part is the word "promise". The company must not be able to change
 
 Four questions turn an idea into a contract. Ask them in this order. The next two lectures ask the same four.
 
-**1. What has to be remembered?** This becomes the **datum**. A vesting contract has to remember two things: **who** may take the money, and **from when**. Nothing else. The amount does not need to be remembered, because the UTxO already holds it.
+**1. What has to be remembered?** This becomes the **datum**. A vesting contract has to remember two things: **who** may take the money, and **when** they can take it. Nothing else. The amount does not need to be remembered, because the UTxO already holds it.
 
 **2. What actions are possible?** This becomes the set of handlers, and the **redeemer** if there is more than one action. Here there is only one action: claim the money. So the contract needs a single `spend` handler, and the redeemer carries nothing.
 
@@ -46,7 +46,7 @@ Four questions turn an idea into a contract. Ask them in this order. The next tw
 
 The design in one sentence: **the funds go to the person named in the datum, and only in a transaction that happens after the date in the datum.**
 
-That second half is a problem. A contract cannot read a clock. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain#why-the-split-exists)** explained why. Every node has to reach the same answer forever, and a clock gives a different answer every time you ask it.
+That second rule is a problem. A contract cannot read a clock. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain#why-the-split-exists)** explained why. Every node has to reach the same answer forever, and a clock gives a different answer every time you ask it.
 
 ## The window, not the moment
 
@@ -88,18 +88,18 @@ So **the contract never checks the time. It checks a statement that the ledger h
 
 But the window is only a **bound**. Whoever builds the transaction chooses it and may make it as wide as they like, so the contract never learns the exact moment the transaction ran. That is why the rule is written on the **lower bound**: the only way to be sure the claim is late is to require that the whole window is late.
 
-One detail is worth knowing. You are free to declare a window that opens later than the current time, and the validator will believe it. But you cannot get that transaction into a block early, because the ledger refuses it until the real slot arrives. An honest window is accepted. A dishonest window only waits until it expires.
+You are free to declare a window that opens later than the current time, and the validator will believe it. But you cannot get that transaction into a block early, because the ledger refuses it until the real slot arrives. An honest window is accepted straight away. A window that opens in the future is refused until that slot arrives.
 
 ## How the date reaches the validator
 
-Locking the funds is an ordinary payment, exactly as before. The claim is the vault's unlock with one extra instruction: the app has to declare the window.
+Locking the funds is an ordinary payment, exactly as before. The claim has the same shape as the unlock you already know, with one extra instruction: the app has to declare the window.
 
 ```mermaid
 flowchart TB
     subgraph LOCK["1. the lock: an ordinary payment"]
         direction LR
-        W["`**your wallet**
-        5 ADA`"] --> T1{{"`**transaction**`"}}
+        W["`**UTxO in your wallet**
+        value: 5 ADA`"] --> T1{{"`**transaction**`"}}
         T1 --> V["`**UTxO at the vesting address**
         value: 5 ADA
         datum:
@@ -107,17 +107,20 @@ flowchart TB
         lock_until = 12:00`"]
     end
 
-    subgraph CLAIM["2. the claim: the vault's unlock, plus a window"]
+    subgraph CLAIM["2. the claim: an unlock, plus a window"]
         direction LR
         V2["`**that same UTxO**
+        value: 5 ADA
+        datum:
         beneficiary = the developer
         lock_until = 12:00`"] --> T2{{"`**transaction**
         signed by: the developer
         valid from: 13:00`"}}
-        T2 --> D["`**the developer's wallet**
-        5 ADA`"]
-        T2 -.->|"the contract checks"| R["`is the developer among the signers?
-        does 13:00 come after 12:00?`"]
+        T2 --> C{"`**the validator asks**
+        is the developer among the signers?
+        does 13:00 come after 12:00?`"}
+        C -->|"both yes"| D["`**UTxO in the developer's wallet**
+        value: 5 ADA`"]
     end
 
     LOCK ~~~ CLAIM
@@ -131,30 +134,13 @@ Notice what the app does that the contract cannot do. The app has a real clock. 
 
 The validator never sees that slot. Once the ledger has checked the window, it converts the window into **POSIX milliseconds**, which is the number of milliseconds since 1 January 1970. Only then does it run the script. This is why `lock_until` in the datum is a plain timestamp and not a slot number.
 
-The script is given real time instead of slots on purpose. Slot length is a network parameter, so a hard fork could change it. A rule written in slot numbers would then mean a different moment, and nothing would warn you. A date always means the same moment.
-
-So the window is converted **twice**, by two different parties. Your app turns a date into slots when it builds the transaction. The ledger turns those slots back into milliseconds before the validator runs. You only ever do the first conversion.
-
-Watch the unit. A deadline written in **seconds** is a thousand times too small, so it points at a date in 1970. That date is already in the past, so anybody could claim the funds immediately.
+The script is given dates instead of slots on purpose. Slot length is a network parameter, so a hard fork could change it. A rule written in slot numbers would then mean a different moment, and nothing would warn you. A date always means the same moment.
 
 ## Why the claim must declare a window
 
 Both bounds of the window are optional, and this is the part that people often get wrong. A bound you leave out is treated as **infinite**. If the transaction declares no lower bound, it says "I have been valid since the beginning of time". That statement proves nothing about a deadline, so the check refuses the transaction.
 
-That is why the claim has to set a lower bound at all. The lower bound is not a formal detail. It is the evidence the validator reads, and if the bound is missing, the validator has nothing to read.
-
-<Tabs groupId="onchain">
-<TabItem value="aiken" label="Aiken" default>
-
-`vesting.ak` has a test for exactly this case, `claim_fails_without_a_deadline_bound`. The right person signs, and everything else about the claim is correct, but the transaction declares no lower bound. The contract refuses it anyway.
-
-</TabItem>
-<TabItem value="scalus" label="Scalus">
-
-A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, only the language differs.
-
-</TabItem>
-</Tabs>
+That is why the claim has to set a lower bound at all. The lower bound is the evidence the validator reads, and if the bound is missing, the validator has nothing to read.
 
 :::warning A deadline far in the future is an estimate
 Converting a date to a slot meets that same network parameter, from the other side. When an SDK converts a date, it assumes that slots keep the length they have today. As [Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano) explained, the conversion is only reliable a fixed distance ahead, currently about a day and a half (36 hours).
@@ -164,18 +150,16 @@ The real risk is that you get no warning. If you ask an SDK to convert a date fi
 
 ## Try it
 
-Three steps. Write the contract, check that you wrote ours, then watch the real network refuse an early claim.
+Three steps. Write the contract, break it and write it back, then watch the real network refuse an early claim.
 
 ### Write the contract
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs from `on-chain/vault/`, the contract project you left at the end of lecture 8. Lecture 9 was a detour into the app, and this is the way back.
+Everything below runs inside an Aiken project. Carry on in the one you have been building since **[Set up your tools](/docs/developers/onboarding/lectures/intermediate/tools)**, or start a fresh one the same way. Either one needs the two packages **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** added, `sidan-lab/vodka` and `aiken-lang/fuzz`. The hash below comes out the same in both, because it depends on the contract and not on the project around it.
 
-Create a new file, `validators/vesting.ak`, beside `vault.ak`. One Aiken project can hold as many validators as you want, and each one gets its own entry in the blueprint.
-
-Start with the imports. Some belong to the contract and the rest belong to the tests below, and `aiken fmt` keeps them in this order:
+Create a new file, `validators/vesting.ak`. One Aiken project can hold as many validators as you want, and each one gets its own entry in the blueprint.
 
 <CodeBlock language="aiken" title="validators/vesting.ak">
   {extractRegion(VestingAiken, "vesting-imports")}
@@ -189,27 +173,25 @@ Then the datum and the validator. The vesting contract is the vault from the ear
 
 That is the design turned into code. The two fields in `VestingDatum` are answer 1: who may claim, and from when. The single `spend` handler is answer 2. The `and { … }` block is answer 3, one line per rule:
 
-- `key_signed` is the vault's signature check with a clearer name. It is the same "is this key among the signers?" test that you wrote with `list.has` in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
+- `key_signed` is the check that the signature is correct: "is this key among the signers?" In **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)** lecture you wrote it using `list.has`.
 - `valid_after` is the new part. It reads the **lower bound** of the transaction's validity window. It returns true only if that bound is later than the deadline in the datum.
-
-Both come from `cocktail`, which you can see in the imports above. As **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** explained, **vodka** is the package you added in testing, and **cocktail** is its half for contracts.
 
 Both checks must pass. So an early claim fails even with the right signature, and a late claim by the wrong person also fails.
 
-Then the tests, so that `aiken check` has something to say. Four unit tests cover the four answers this contract can give, and one property test states the rule itself:
+Then the tests, so that `aiken check` has something to say. Four unit tests cover the four cases this contract has to get right, and one property test states the rule itself:
 
 <CodeBlock language="aiken" title="validators/vesting.ak">
   {extractRegion(VestingAiken, "vesting-tests")}
 </CodeBlock>
 
-`invalid_before` in these tests is the **lower bound** from the top of this lecture, set on a mock transaction. `claim_ok_at_any_time_after_the_deadline` is the property test that **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** promised you would meet here. Each unit test pins down one moment that you thought of. The property test states the rule and lets the runner hunt for a moment that you did not.
+`invalid_before` in these tests is the **lower bound** from the top of this lecture, set on a mock transaction.
 
 ```bash
 aiken check
 aiken build
 ```
 
-Five tests, five passes. Now open `plutus.json`. Next to the vault's entries there are two new ones, `vesting.vesting.spend` and `vesting.vesting.else`, and both carry the same hash. Compare it with ours:
+Five tests, five passes. Now open `plutus.json`. This contract has two entries, `vesting.vesting.spend` and `vesting.vesting.else`, and both carry the same hash. Compare it with ours:
 
 ```
 550f731e0f5e582a5b681ff15ac23ad226629cc599365f5fa73d3f93
@@ -217,11 +199,9 @@ Five tests, five passes. Now open `plutus.json`. Next to the vault's entries the
 
 If it matches, you wrote the same contract we did, byte for byte. This one takes no parameter, so unlike the vault there is no blank left to fill. That hash is already the address the funds sit at.
 
-### Then break it
+**Then break it.** Replace the whole `and { … }` block with just the signature check, so that the contract no longer looks at time at all. Run `aiken check` again. Both `claim_fails_before_the_deadline` and `claim_fails_without_a_deadline_bound` now **fail**, because a contract with no deadline releases the funds at any moment.
 
-Replace the whole `and { … }` block with just the signature check, so that the contract no longer looks at time at all. Run `aiken check` again. Both `claim_fails_before_the_deadline` and `claim_fails_without_a_deadline_bound` now **fail**, because a vault with no deadline releases the funds at any moment.
-
-Now write the time check back, without scrolling up. The rule in words: the transaction's validity window must **start after** the deadline held in the datum. Two things you already know are enough: the window is on the transaction, and the field in the datum is called `lock_until`.
+**Now write the time check back, without scrolling up.** The rule in words: the transaction's validity window must **start after** the deadline held in the datum. Two things you already know are enough: the window is on the transaction, and the field in the datum is called `lock_until`.
 
 When both tests are green again, you wrote it.
 
@@ -233,11 +213,14 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-Stuck? The finished code is in the playground — see the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
+Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
 ### Then run it
 
 The playground has a small app for this contract, so you can watch the rule work on the real network. From `playground/`:
+
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
 
 ```bash
 cd vesting/off-chain/mesh
@@ -245,6 +228,14 @@ npm install
 cp ../../../vault/off-chain/mesh/.env .env   # or fill in .env.example again
 npm run dev
 ```
+
+</TabItem>
+<TabItem value="evolution" label="Evolution">
+
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon. The idea is identical, only the library calls differ.
+
+</TabItem>
+</Tabs>
 
 Connect your wallet and set up collateral, the same first two steps as the vault's app. Then:
 
@@ -256,8 +247,8 @@ The difference between those two attempts is a rule enforced by the chain. It is
 
 ## Go deeper
 
-- [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time) — the bounds in detail, and slot↔time conversion.
-- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context) — a fuller vesting example, with an owner who can cancel.
-- [Time handling](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling) — the ways time checks go wrong, and how to write them safely.
+- [Transactions: validity intervals and time](/docs/developers/curriculum/fundamentals/core-concepts/transactions#validity-intervals-and-time): the bounds in detail, and slot↔time conversion.
+- [Datum, Redeemer, and ScriptContext](/docs/developers/curriculum/smart-contracts/datum-redeemer-context): a fuller vesting example, with an owner who can cancel.
+- [Time handling](/docs/developers/curriculum/smart-contracts/security/vulnerabilities/time-handling): the ways time checks go wrong, and how to write them safely.
 
 Next: **[Multi validators: a gift card](/docs/developers/onboarding/lectures/intermediate/multi-validators)**.

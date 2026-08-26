@@ -38,7 +38,7 @@ export async function buildVestingLockTx(
 ): Promise<string> {
   // Where the wallet wants anything left over sent back to.
   const changeAddress = await wallet.getChangeAddress();
-  // The key hash inside that address — who will be allowed to claim.
+  // The key hash inside that address: who will be allowed to claim.
   const beneficiary = deserializeAddress(changeAddress).pubKeyHash;
 
   // The builder. `fetcher` is how it looks up UTxOs and protocol parameters.
@@ -47,7 +47,7 @@ export async function buildVestingLockTx(
     // Create an output at the contract's address, holding the funds.
     .txOut(vestingAddress(networkId), [{ unit: "lovelace", quantity: lovelace }])
     // Attach both terms at once: who may claim, and from when. The deadline is
-    // ordinary data on the UTxO — nothing enforces it until someone tries.
+    // ordinary data on the UTxO, and nothing enforces it until someone tries.
     .txOutInlineDatumValue(vestingDatum(beneficiary, lockUntilMs))
     // Send the remainder back to you.
     .changeAddress(changeAddress)
@@ -74,7 +74,7 @@ export async function buildVestingClaimTx(
 ): Promise<string> {
   // Where the wallet wants anything left over sent back to.
   const changeAddress = await wallet.getChangeAddress();
-  // The key hash inside it — the beneficiary the datum named at lock time.
+  // The key hash inside it: the beneficiary the datum named at lock time.
   const beneficiary = deserializeAddress(changeAddress).pubKeyHash;
   // The deposit, as with any spend that runs a script.
   const collateral = (await wallet.getCollateral())[0];
@@ -116,7 +116,7 @@ export async function buildVestingClaimTx(
     // **The only line the vault's unlock does not have.** It declares that this
     // transaction may not be included in a block before that slot. The validator
     // reads this declaration rather than a clock, and the ledger has already
-    // checked it against the real slot — so claiming early fails, it cannot lie.
+    // checked it against the real slot, so claiming early fails and it cannot lie.
     .invalidBefore(lowerBoundSlot)
     // Offer the deposit found above.
     .txInCollateral(

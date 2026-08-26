@@ -15,9 +15,9 @@ function compiledCode(source: Blueprint, title: string): string {
   return validator.compiledCode;
 }
 
-/// The compiled contract. Unlike the vault, vesting takes no parameter — the
-/// deadline lives in each UTxO's datum, not in the code — so the list is empty
-/// and every vested UTxO shares one address.
+/// The compiled contract. Unlike the vault, vesting takes no parameter: the
+/// deadline lives in each UTxO's datum rather than in the code, so the list is
+/// empty and every vested UTxO shares one address.
 export const vestingScriptCbor = applyParamsToScript(
   compiledCode(blueprint, "vesting.vesting.spend"),
   [],

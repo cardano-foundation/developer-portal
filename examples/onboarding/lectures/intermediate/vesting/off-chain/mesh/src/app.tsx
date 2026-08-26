@@ -106,7 +106,7 @@ function App() {
     <main className="mx-auto max-w-xl p-6 font-sans">
       <h1 className="text-xl font-bold">Vesting: lock until a deadline</h1>
       <p className="mt-1 text-sm text-gray-600">
-        The vault, plus a time check. The contract never reads a clock — it reads the validity
+        The vault, plus a time check. The contract never reads a clock, only the validity
         window the transaction declared, which the ledger has already checked against the real slot.
         Claim early and the contract itself refuses.
       </p>

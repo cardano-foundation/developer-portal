@@ -26,8 +26,8 @@ validator vesting {
   ) {
     expect Some(VestingDatum { beneficiary, lock_until }) = datum
     and {
-      key_signed(self.extra_signatories, beneficiary),
-      valid_after(self.validity_range, lock_until),
+      key_signed(self.extra_signatories, beneficiary)?,
+      valid_after(self.validity_range, lock_until)?,
     }
   }
 
@@ -85,10 +85,6 @@ test claim_fails_for_a_stranger() fail {
   vesting.spend(vesting_datum(), Void, dummy_ref, tx)
 }
 
-// A property test. The tests above each pin down one moment we thought of; this
-// one states the rule itself and lets the runner hunt for a moment we didn't:
-// for *any* claim window starting after the deadline, the beneficiary gets the
-// funds.
 test claim_ok_at_any_time_after_the_deadline(
   offset via fuzz.int_between(1, 1_000_000_000),
 ) {
