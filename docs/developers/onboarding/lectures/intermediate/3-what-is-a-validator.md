@@ -50,7 +50,7 @@ Where does that address come from? From the validator itself, using the same has
 
 A very important detail: **the validator does not run when you lock funds (create a UTxO in its address).**
 
-Sending ADA to a script address is an **ordinary payment**. Your wallet does not know or care that the recipient is a script. The network runs nothing, because there is nothing to approve. The UTxO simply arrives and sits there, with a note attached to it. That note is the **datum**, and it has [a lecture of its own](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer) next. The contract does not run at all.
+Sending ADA to a script address is an **ordinary payment**. Your wallet does not know or care that the recipient is a script. The UTxO simply arrives and sits there, with a note attached to it. That note is the **datum**, and it has [a lecture of its own](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer) next. The contract does not run at all.
 
 It runs only when someone tries to **spend** that UTxO. At that moment the network takes the validator, gives it the transaction, and asks its one question.
 
