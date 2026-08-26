@@ -48,7 +48,7 @@ Where does that address come from? From the validator itself, using the same has
 
 ## Locking is just a payment
 
-Here is the part that catches almost everyone out: **the contract does not run when you lock funds.**
+A very important detail: **the validator does not run when you lock funds (create a UTxO in its address).**
 
 Sending ADA to a script address is an **ordinary payment**. Your wallet does not know or care that the recipient is a script. The network runs nothing, because there is nothing to approve. The UTxO simply arrives and sits there, with a note attached to it. That note is the **datum**, and it has [a lecture of its own](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer) next. The contract does not run at all.
 
