@@ -103,7 +103,7 @@ The context is generous, but it stops at the edge of one transaction. A contract
 All of these come back to the same rule from **[on-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)**: every node must reach the **same answer, forever**. Anything that could differ between two nodes is left out.
 
 :::tip The transaction is the whole world
-A validator runs **inside** a single transaction, and that transaction is everything it can see: its inputs and their datums, the UTxOs it references, its outputs, its signatures, its window. No API to call, no database to query, not even the block it sits in. What is not in the transaction does not exist as far as the contract is concerned.
+A validator runs **inside** a single transaction, and that transaction is everything it can see: its inputs and their datums and values, the UTxOs it references, its outputs, its signatures, its window, etc. No API to call, no database to query, not even the block it sits in. What isn't in the transaction doesn't exist, as far as the contract is concerned.
 
 So a contract never gathers facts, it only judges the ones already in front of it, and **whoever builds the transaction has to put them there**. That is what the datum, the redeemer and the reference inputs are for. The question is never "how does the contract fetch this", it is "who puts it in, and why should the contract believe them". **Modifying state** builds an oracle, which is that question answered.
 :::
