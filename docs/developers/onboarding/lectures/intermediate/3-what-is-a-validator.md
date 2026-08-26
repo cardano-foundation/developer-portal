@@ -114,7 +114,7 @@ validator vault {
 
 `validator vault` names the script. `spend` is the handler that runs when someone tries to spend a locked UTxO. The underscore in front of each name means "given, but not used here", so this contract ignores everything it is handed.
 
-Four arguments, three ideas. `_datum` and `_redeemer` are the first two from the list above. The context is the other two together: `_own_ref` points at the UTxO being spent, and `_self` is the whole transaction. What is inside it is the subject of **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
+Four arguments, three ideas. `_datum` and `_redeemer` are the first two from the list above. `_own_ref` points at the UTxO being spent, and `_self` is the whole transaction context. What is inside it is the subject of **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
 The body is the entire rule: `True`, yes to everybody.
 
