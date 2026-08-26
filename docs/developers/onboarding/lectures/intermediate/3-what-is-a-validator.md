@@ -96,7 +96,7 @@ Real people have shipped both of these by mistake. A contract that always passes
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
 
-Everything below runs from `on-chain/vault/`, where lecture 2 left you.
+Everything below runs inside `on-chain/vault/`, where lecture 2 left you.
 
 Now the contract itself: the smallest one that compiles, and it says yes to everything. Create the file `validators/vault.ak` and put this in it. Copy it as it is: **[datum & redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)** explains the arguments, and **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** explains the `else` block.
 
