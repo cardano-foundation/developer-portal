@@ -44,7 +44,7 @@ flowchart TB
 
 Both hold ordinary UTxOs, with the same ADA and tokens, on the same explorer page. The only difference is what it takes to open them. A script address has no key, no recovery phrase, and nobody who can give permission. Even the person who wrote the contract has to satisfy the rule like everyone else.
 
-Where does that address come from? From the validator itself, using the same hashing you saw there. You hash the compiled contract, and that fingerprint becomes the address. Change one character of the contract and you get a completely different address, guarding completely different funds. You will do exactly this, in three calls, in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.
+Where does that address come from? From the validator itself, using the same hashing you saw there. You hash the compiled contract, and use that fingerprint to derive the address. Change one character of the contract, and you get a completely different address that guards completely different funds. You will do exactly this in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.
 
 ## Locking is just a payment
 
