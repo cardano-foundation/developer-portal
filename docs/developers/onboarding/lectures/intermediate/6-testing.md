@@ -187,7 +187,7 @@ Stuck? The finished code is in the playground. See the **[introduction](/docs/de
 ## Go deeper
 
 - [Testing](/docs/developers/curriculum/smart-contracts/testing): the test runner, mock transactions, and property testing in depth.
-- [Offline testing](/docs/developers/curriculum/start-building/offline-testing): mocking the chain and evaluating budgets without a node.
+- [Local testing](/docs/developers/curriculum/start-building/local-testing): an in-memory emulator or a private devnet, so a run costs milliseconds instead of a confirmation.
 - [Smart contract security](/docs/developers/curriculum/smart-contracts/security): the failure modes worth writing tests against.
 - [Audits](/docs/developers/curriculum/smart-contracts/security#audits): when to bring in outside review, and how to prepare for it.
 

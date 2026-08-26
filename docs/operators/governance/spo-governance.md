@@ -49,6 +49,10 @@ cardano-cli conway query gov-state
 
 You can also browse active proposals on [Cardano GovTool](https://gov.tools), [CardanoScan](https://cardanoscan.io/govActions), [Adastat](https://adastat.net/governances) or [CGOV](https://app.cgov.io/).
 
+:::tip Check every action you can vote on before you start
+If several proposals requiring SPO votes are live at the same time, you can vote on all of them in a **single transaction** — one trip to the air-gapped machine, one cold key signature. Take stock of the full list here, so you only unlock your cold key once.
+:::
+
 ## Step 2 — Review the proposal
 
 Every governance action must include an **anchor** — a URL pointing to a document describing the rationale, and a hash of that document. Verify the content before voting:
@@ -90,36 +94,65 @@ Alternatives: the [Frankenwallet](/docs/operators/security/air-gap) (encrypted b
 4. Transfer only `vote-tx.signed` back to the online machine
 5. **Online** — submit
 
-## Step 3 — Cast your vote
+## Step 3 — Cast your votes
+
+A vote is scoped to a single governance action, but a transaction is not: you create **one vote file per action** and then include **as many vote files as you like in one transaction**. All of them are witnessed by the same cold key signature, so voting on five live proposals costs you exactly the same key handling as voting on one.
 
 You will need:
-- Your pool's cold verification key (`cold.vkey`) to create the vote
+- Your pool's cold verification key (`cold.vkey`) to create the votes
 - Your pool's cold signing key (`cold.skey`) to sign the transaction (on the air-gapped machine)
-- A funded payment key to cover the transaction fee (~0.2 ADA)
+- A funded payment key to cover the transaction fee (~0.2 ADA; each extra vote adds roughly 40 bytes to the transaction, so batching barely moves the fee)
 
-**Create the vote file** (can be done online, uses only the public `cold.vkey`):
+**Create a vote file for each action** (can be done online, uses only the public `cold.vkey`). Give each one a distinct `--out-file` name so they do not overwrite each other:
 
 ```shell
+# Action 1 — vote yes
 cardano-cli conway governance vote create \
   --yes \
-  --governance-action-tx-id "<TX_ID>" \
+  --governance-action-tx-id "<TX_ID_1>" \
   --governance-action-index 0 \
   --cold-verification-key-file cold.vkey \
-  --out-file spo.vote
+  --out-file spo-action-1.vote
+
+# Action 2 — vote no
+cardano-cli conway governance vote create \
+  --no \
+  --governance-action-tx-id "<TX_ID_2>" \
+  --governance-action-index 0 \
+  --cold-verification-key-file cold.vkey \
+  --out-file spo-action-2.vote
+
+# Action 3 — abstain
+cardano-cli conway governance vote create \
+  --abstain \
+  --governance-action-tx-id "<TX_ID_3>" \
+  --governance-action-index 0 \
+  --cold-verification-key-file cold.vkey \
+  --out-file spo-action-3.vote
 ```
 
-Replace `--yes` with `--no` or `--abstain` as appropriate.
+Each vote file carries its own decision, so you can mix `--yes`, `--no` and `--abstain` freely across the actions in the same transaction.
 
-**Build the unsigned transaction** (online):
+**Build the unsigned transaction** (online) — repeat `--vote-file` once per vote:
 
 ```shell
 cardano-cli conway transaction build \
   --tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \
   --change-address "$(< payment.addr)" \
-  --vote-file spo.vote \
+  --vote-file spo-action-1.vote \
+  --vote-file spo-action-2.vote \
+  --vote-file spo-action-3.vote \
   --witness-override 2 \
   --out-file vote-tx.raw
 ```
+
+If you are only voting on a single action, use a single `--vote-file` flag — everything else stays the same.
+
+:::caution One vote file per action, and all-or-nothing
+Do not include two vote files for the *same* governance action in one transaction — the build fails with a vote merging conflict. (Re-voting on an action is still possible; it just has to be a *later* transaction, which overwrites the earlier vote.)
+
+The votes also travel together: if the transaction fails, none of them are recorded. Double-check every action ID and index before you take the transaction to the air-gapped machine.
+:::
 
 **Sign on the air-gapped machine** (cold key never leaves the air gap):
 
@@ -137,9 +170,9 @@ cardano-cli conway transaction sign \
 cardano-cli conway transaction submit --tx-file vote-tx.signed
 ```
 
-## Step 4 — Verify your vote
+## Step 4 — Verify your votes
 
-After submission, confirm your vote was recorded by querying the proposal:
+After submission, confirm each vote was recorded by querying its proposal:
 
 ```shell
 cardano-cli conway query proposals \
@@ -148,7 +181,20 @@ cardano-cli conway query proposals \
   | jq '.[0].stakePoolVotes'
 ```
 
-Your pool ID should appear in the `stakePoolVotes` object with your chosen vote.
+Your pool ID should appear in the `stakePoolVotes` object with your chosen vote (`VoteYes`, `VoteNo` or `Abstain`). If you voted on several actions in one transaction, check each action ID in turn — or list your pool's votes on all currently active proposals in one pass:
+
+```shell
+# stakePoolVotes is keyed by the hex-encoded pool ID, not the bech32 pool1... form
+POOL_ID=$(cardano-cli conway stake-pool id \
+  --cold-verification-key-file cold.vkey --output-hex)
+
+# on cardano-cli < 10.9.0.0 use --output-format hex instead.
+
+cardano-cli conway query proposals --all-proposals \
+  | jq --arg pool "$POOL_ID" \
+      '[.[] | select(.stakePoolVotes[$pool] != null)
+            | {id: .actionId, vote: .stakePoolVotes[$pool]}]'
+```
 
 ## Opting out — delegating to alwaysAbstain
 
@@ -206,6 +252,7 @@ See [Calidus Keys](../../operator-tools/calidus-keys) for setup instructions.
 ## Key points
 
 - **One vote per proposal per pool.** Submitting a second vote overwrites the first.
+- **Many proposals per transaction.** One vote file per governance action, all of them in a single transaction, signed once with your cold key. Use it when several actions are live so you unlock your cold key once instead of once per proposal.
 - **Votes expire with the proposal.** Proposals expire after a set number of epochs if the ratification threshold is not met.
 - **No vote = implicit no.** Non-participating stake is excluded from the yes count but included in the total, which drags the ratification rate down. Delegate to `alwaysAbstain` to opt out genuinely.
 - **Cold key security.** Your cold key is your pool's most sensitive credential. Never expose it on an internet-connected machine.

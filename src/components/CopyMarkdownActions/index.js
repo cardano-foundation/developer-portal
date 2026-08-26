@@ -4,6 +4,7 @@
 // No markdown is generated client-side.
 import React, {useEffect, useRef, useState} from 'react';
 import {useLocation} from '@docusaurus/router';
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 const RESET_MS = 2000;
 
@@ -178,8 +179,7 @@ export default function CopyMarkdownActions() {
           <a
             className="copy-markdown__item"
             href={markdownUrl}
-            target="_blank"
-            rel="noopener"
+            {...EXTERNAL_LINK_PROPS}
             onClick={() => setOpen(false)}>
             <FileIcon />
             <span className="copy-markdown__item-text">

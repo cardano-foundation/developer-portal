@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from "lodash/debounce";
@@ -13,9 +14,8 @@ import ShowcaseSort, {
   DEFAULT_SORT,
   SORT_IDS,
 } from "@site/src/components/showcase/ShowcaseSort";
-import { readSearchTags } from "@site/src/components/showcase/ShowcaseTagSelect";
+import { readSearchTags } from "@site/src/components/showcase/tagQueryString";
 import SiteHero from "@site/src/components/Layout/SiteHero";
-import { StarBadge } from "@site/src/components/AppTile";
 import AppTileCarousel from "@site/src/components/AppTileCarousel";
 import CategoryPanelsCarousel from "@site/src/components/CategoryPanelsCarousel";
 import AppRow from "@site/src/components/AppRow";
@@ -26,7 +26,6 @@ import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import {
   SortedShowcases,
   Showcases,
-  RECENT_APPS_COUNT,
   Categories,
   CategoryList,
   LanguageList,
@@ -37,20 +36,7 @@ import styles from "./styles.module.css";
 
 const TITLE = "Builder Tools";
 const DESCRIPTION = "Tools to help you build on Cardano";
-const HERO_DESCRIPTION =
-  "Discover developer tools, SDKs, and libraries for building on Cardano. Smart contracts, transactions, indexing, wallets, and more.";
-
-// NOTE: ShowcaseTagSelect imports prepareUserState from this module. Keep it
-// exported as a hoisted function declaration.
-export function prepareUserState() {
-  if (ExecutionEnvironment.canUseDOM) {
-    return {
-      scrollTopPosition: window.scrollY,
-      focusedElementId: document.activeElement?.id,
-    };
-  }
-  return undefined;
-}
+const HERO_DESCRIPTION = "Every tool for you to build with Cardano.";
 
 function restoreUserState(userState) {
   const { scrollTopPosition, focusedElementId } = userState ?? {
@@ -61,8 +47,6 @@ function restoreUserState(userState) {
   window.scrollTo({ top: scrollTopPosition });
 }
 
-// Newest tools first (insertion order, last appended = newest).
-const recentTools = [...Showcases.slice(-RECENT_APPS_COUNT)].reverse();
 const maintainerPicks = SortedShowcases.filter((t) => t.maintainerPick);
 
 const isProminentCategory = (c) => Categories[c]?.prominent === true;
@@ -83,13 +67,31 @@ const COMPACT_CATEGORY_ORDER = deriveCategoryOrder(isCompactCategory);
 
 const SearchNameQueryKey = "name";
 
+// The primary list is the top of the sorted, filtered set. Its heading follows
+// the sort so the control is never claiming an order the list is not in.
+const PRIMARY_COUNT = 12;
+const SORT_HEADINGS = {
+  [SORT_IDS.NEWEST]: ["Recently added", "The newest tools in the directory"],
+  [SORT_IDS.FEATURED]: ["Featured", "Maintainer picks first"],
+  [SORT_IDS.ALPHABETICAL]: ["All tools, A to Z", "Every tool, alphabetically"],
+};
+
 function readSearchName(search) {
   return new URLSearchParams(search).get(SearchNameQueryKey);
 }
 
+// Insertion rank per tool: `Showcases` keeps the order entries were appended
+// to tools.js, so a higher index is a more recent addition. Built once.
+const INSERTION_RANK = new Map(Showcases.map((tool, i) => [tool.slug, i]));
+
 function sortProjects(projects, sortOption) {
   if (sortOption === SORT_IDS.ALPHABETICAL) {
     return [...projects].sort((a, b) => a.title.localeCompare(b.title));
+  }
+  if (sortOption === SORT_IDS.NEWEST) {
+    return [...projects].sort(
+      (a, b) => (INSERTION_RANK.get(b.slug) ?? 0) - (INSERTION_RANK.get(a.slug) ?? 0)
+    );
   }
   // FEATURED: SortedShowcases order (maintainer picks first, then alphabetical).
   return projects;
@@ -155,8 +157,21 @@ function useFilteredProjects() {
   return { filtered, sortOption, isUnfiltered, selectedTags };
 }
 
+/* The header's circle artwork, the designers' own exports as a theme pair:
+   the gradient and hole shading differ per theme, not just the hole colour,
+   so each theme gets its file. The files ride CSS backgrounds rather than
+   an <img> pair — a background in an unmatched theme selector is never
+   fetched, so a visit downloads only its own theme's ~300 KB. */
+function HeroRings() {
+  return (
+    <div className={styles.heroRings} aria-hidden="true">
+      <div className={styles.heroRingsArt} />
+    </div>
+  );
+}
+
 function ShowcaseHeader() {
-  return <SiteHero title={TITLE} description={HERO_DESCRIPTION} />;
+  return <SiteHero title={TITLE} description={HERO_DESCRIPTION} art={<HeroRings />} />;
 }
 
 function SearchBar() {
@@ -205,7 +220,8 @@ function SearchBar() {
         ref={inputRef}
         id="searchbar"
         className={styles.searchInput}
-        placeholder="Search builder tools..."
+        aria-label="Search tools"
+        placeholder="Search tools, SDKs, APIs, docs..."
         value={value}
         onInput={handleInput}
       />
@@ -215,29 +231,33 @@ function SearchBar() {
 
 function SearchControls() {
   return (
-    <div className={styles.controlsSticky}>
-      <section className={clsx("container", styles.controls)}>
-        <SearchBar />
-        <div className={styles.controlsRight}>
-          <AppFilterPanel />
-          <ShowcaseSort />
-        </div>
-      </section>
-    </div>
+    <section className={styles.controls}>
+      <SearchBar />
+      <div className={styles.controlsRight}>
+        <ShowcaseSort />
+      </div>
+    </section>
   );
 }
 
-function HighlightsSection({ apps }) {
+// Renders inside the browse column, which already supplies the container.
+// Adding another one indents this section past the controls above it.
+function HighlightsSection({ apps, title, subtitle }) {
   if (apps.length === 0) return null;
   return (
-    <section className={clsx("container", styles.section)}>
-      <header className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>Recently added</h2>
-        <span className={styles.sectionSubtitle}>
-          The newest tools in the directory
-        </span>
-      </header>
-      <AppTileCarousel apps={apps} ariaLabel="Recently added" />
+    <section className={styles.section}>
+      <AppTileCarousel
+        apps={apps}
+        labelledBy="tools-highlights-title"
+        header={
+          <>
+            <h2 className={styles.sectionTitle} id="tools-highlights-title">
+              {title}
+            </h2>
+            <span className={styles.sectionSubtitle}>{subtitle}</span>
+          </>
+        }
+      />
     </section>
   );
 }
@@ -245,8 +265,8 @@ function HighlightsSection({ apps }) {
 function GuidedPathsBanner() {
   const paths = [
     { to: "/docs/developers/", label: "Get started" },
-    { to: "/docs/developers/curriculum/smart-contracts/overview", label: "Write smart contracts" },
-    { to: "/docs/developers/curriculum/native-tokens/overview", label: "Create native tokens" },
+    { to: "/docs/developers/curriculum/smart-contracts/overview/", label: "Write smart contracts" },
+    { to: "/docs/developers/curriculum/native-tokens/overview/", label: "Create native tokens" },
     { to: "/docs/operators/", label: "Run a stake pool" },
   ];
   return (
@@ -270,19 +290,27 @@ function GuidedPathsBanner() {
   );
 }
 
-function CategoryBrowseSection({ categories, title, subtitle, muted = false }) {
+function CategoryBrowseSection({ categories, title, subtitle, titleId, muted = false }) {
   if (categories.length === 0) return null;
   return (
     <section
       className={clsx("container", styles.section, muted && styles.sectionMuted)}
     >
-      <header className={styles.sectionHeader}>
-        <h2 className={clsx(styles.sectionTitle, muted && styles.sectionTitleMuted)}>
-          {title}
-        </h2>
-        <span className={styles.sectionSubtitle}>{subtitle}</span>
-      </header>
-      <CategoryPanelsCarousel categories={categories} ariaLabel={title} />
+      <CategoryPanelsCarousel
+        categories={categories}
+        labelledBy={titleId}
+        header={
+          <>
+            <h2
+              className={clsx(styles.sectionTitle, muted && styles.sectionTitleMuted)}
+              id={titleId}
+            >
+              {title}
+            </h2>
+            <span className={styles.sectionSubtitle}>{subtitle}</span>
+          </>
+        }
+      />
     </section>
   );
 }
@@ -292,7 +320,8 @@ function BrowseByCategorySection() {
     <CategoryBrowseSection
       categories={PROMINENT_CATEGORY_ORDER}
       title="Browse tools by category"
-      subtitle="A taste of each category. Maintainer picks first, then a sample of the rest."
+      subtitle="The newest additions in each category."
+      titleId="tools-browse-title"
     />
   );
 }
@@ -303,37 +332,52 @@ function MoreToolsSection() {
       categories={COMPACT_CATEGORY_ORDER}
       title="Utilities & more"
       subtitle="IDEs, testing, security, and operator tooling."
+      titleId="tools-more-title"
       muted
     />
   );
 }
 
+// The template's full-bleed Cardano Blue band, identical in both themes.
+// The section itself marks these as picks, so the tiles carry no star.
 function MaintainerPicksSection({ apps }) {
   if (apps.length === 0) return null;
   return (
-    <section className={clsx("container", styles.section)}>
-      <header className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>★ Maintainer picks</h2>
-        <span className={styles.sectionSubtitle}>
-          Selected by the Developer Portal maintainers
-        </span>
-      </header>
-      <AppTileCarousel
-        apps={apps}
-        ariaLabel="Maintainer picks"
-        renderBadge={() => <StarBadge />}
-      />
+    <section className={styles.picksBand}>
+      <div className="container">
+        <AppTileCarousel
+          apps={apps}
+          labelledBy="tools-picks-title"
+          variant="pick"
+          onBlue
+          header={
+            <>
+              <h2
+                className={clsx(styles.sectionTitle, styles.onBlueTitle)}
+                id="tools-picks-title"
+              >
+                Maintainer picks
+              </h2>
+              <span className={clsx(styles.sectionSubtitle, styles.onBlueSubtitle)}>
+                Selected by the Developer Portal maintainers
+              </span>
+            </>
+          }
+        />
+      </div>
     </section>
   );
 }
 
-function AllToolsSection({ apps, sortOption, isUnfiltered, heading }) {
+// `bare` drops the container for the in-column use; the full-width reveal
+// below the browse grid still needs its own.
+function AllToolsSection({ apps, sortOption, isUnfiltered, heading, bare = false }) {
   const visible = useMemo(
     () => (isUnfiltered ? sortProjects(SortedShowcases, sortOption) : apps),
     [isUnfiltered, sortOption, apps]
   );
   return (
-    <section className={clsx("container", styles.section)}>
+    <section className={clsx(!bare && "container", styles.section)}>
       <header className={clsx(styles.sectionHeader, styles.allAppsHeader)}>
         <h2 className={styles.sectionTitle}>
           {heading}
@@ -386,12 +430,15 @@ function SubmitCTA() {
       description="Add it to this page. The submission process is open and lightweight."
       href="/docs/contribute/portal-contribute"
       buttonText="Add your tool"
-      variant="primary"
     />
   );
 }
 
-function ShowcaseSections() {
+// The page splits in two: a browse column that sits beside the filter rail
+// (controls, intents, the primary result set) and the full-width sections
+// below it. Both read the same filter state, so it is derived once here
+// rather than by each half calling useFilteredProjects separately.
+function useSectionData() {
   const { filtered, sortOption, isUnfiltered, selectedTags } =
     useFilteredProjects();
 
@@ -400,12 +447,11 @@ function ShowcaseSections() {
     [filtered]
   );
 
-  const highlightApps = useMemo(
-    () =>
-      isUnfiltered
-        ? recentTools
-        : recentTools.filter((a) => filteredSlugs.has(a.slug)),
-    [filteredSlugs, isUnfiltered]
+  // Was a fixed "newest 5" constant that ignored sortOption entirely, which
+  // left the sort control inert on the default view.
+  const primaryApps = useMemo(
+    () => filtered.slice(0, PRIMARY_COUNT),
+    [filtered]
   );
 
   const pickApps = useMemo(
@@ -416,67 +462,91 @@ function ShowcaseSections() {
     [filteredSlugs, isUnfiltered]
   );
 
-  if (filtered.length === 0) {
-    return (
-      <section className="container margin-top--lg margin-bottom--xl text--center">
-        <h2>No result</h2>
-      </section>
-    );
-  }
-
   const scopeLabel =
     !isUnfiltered && selectedTags.length === 1
       ? Categories[selectedTags[0]]?.label
       : null;
-  const restHeading = scopeLabel ? `All ${scopeLabel}` : "All tools";
 
+  const [primaryTitle, primarySubtitle] =
+    SORT_HEADINGS[sortOption] ?? SORT_HEADINGS[SORT_IDS.NEWEST];
+
+  return {
+    empty: filtered.length === 0,
+    filtered,
+    sortOption,
+    isUnfiltered,
+    primaryApps,
+    primaryTitle,
+    primarySubtitle,
+    pickApps,
+    restHeading: scopeLabel ? `All ${scopeLabel}` : "All tools",
+  };
+}
+
+// Sits in the browse column, beside the rail.
+function PrimaryResults({ data }) {
+  if (data.empty) {
+    return (
+      <section className={clsx(styles.section, "text--center")}>
+        <h2 className={styles.sectionTitle}>No results</h2>
+      </section>
+    );
+  }
+  return data.isUnfiltered ? (
+    <HighlightsSection
+      apps={data.primaryApps}
+      title={data.primaryTitle}
+      subtitle={data.primarySubtitle}
+    />
+  ) : (
+    <AllToolsSection
+      apps={data.filtered}
+      sortOption={data.sortOption}
+      isUnfiltered={false}
+      heading={data.restHeading}
+      bare
+    />
+  );
+}
+
+// Full width, below the browse column.
+function SecondarySections({ data }) {
+  if (data.empty) return <SubmitCTA />;
   return (
     <>
-      <HighlightsSection apps={highlightApps} />
-      {isUnfiltered && <GuidedPathsBanner />}
-      {isUnfiltered ? (
-        <BrowseByCategorySection />
-      ) : (
-        <AllToolsSection
-          apps={filtered}
-          sortOption={sortOption}
-          isUnfiltered={false}
-          heading={restHeading}
-        />
-      )}
-      <MaintainerPicksSection apps={pickApps} />
-      {isUnfiltered && <MoreToolsSection />}
-      {isUnfiltered && <AllToolsReveal />}
+      {data.isUnfiltered && <GuidedPathsBanner />}
+      {data.isUnfiltered && <BrowseByCategorySection />}
+      <MaintainerPicksSection apps={data.pickApps} />
+      {data.isUnfiltered && <MoreToolsSection />}
+      {data.isUnfiltered && <AllToolsReveal />}
       <SubmitCTA />
     </>
   );
 }
 
-// Open graph image for the builder tools page.
-function MetaData() {
-  return (
-    <Head>
-      <meta
-        property="og:image"
-        content="https://developers.cardano.org/img/og/og-builder-tools.jpg"
-      />
-      <meta
-        name="twitter:image"
-        content="https://developers.cardano.org/img/og/og-builder-tools.jpg"
-      />
-    </Head>
-  );
-}
-
 function Showcase() {
+  const data = useSectionData();
+
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <MetaData />
+      <PageMetadata image={ogCards.tools} />
+      {/* The hero is the page banner and stays outside the main landmark;
+          everything else, including the CTA band ShowcaseSections renders and
+          the sticky submit button, belongs inside it. The page had no <main>
+          at all before, which left every section outside a landmark. */}
       <ShowcaseHeader />
-      <IntentChips />
-      <SearchControls />
-      <ShowcaseSections />
-      <OpenStickyButton />
+      <main>
+        <div className={clsx("container", styles.browse)}>
+          <AppFilterPanel />
+          <div className={styles.browseMain}>
+            <SearchControls />
+            <IntentChips />
+            <PrimaryResults data={data} />
+          </div>
+        </div>
+        <SecondarySections data={data} />
+        <OpenStickyButton />
+      </main>
     </Layout>
   );
 }

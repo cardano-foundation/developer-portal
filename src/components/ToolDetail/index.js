@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
+import { PageMetadata } from "@docusaurus/theme-common";
+import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
 import {
@@ -11,14 +12,17 @@ import {
   Properties,
   Showcases,
 } from "@site/src/data/builder-tools/showcase";
+import AppIcon from "@site/src/components/AppIcon";
 import AppTile from "@site/src/components/AppTile";
+import PageCTA from "@site/src/components/PageCTA";
 import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
 import InfoDot from "@site/src/components/showcase/InfoDot";
 
 import styles from "./styles.module.css";
 
-const OG_IMAGE = "https://developers.cardano.org/img/og/og-builder-tools.jpg";
-const RELATED_LIMIT = 4;
+// Three fills the related grid's row exactly at the container width; a
+// fourth card would wrap alone.
+const RELATED_LIMIT = 3;
 
 function buildJsonLd(tool, categoryLabel) {
   return JSON.stringify({
@@ -49,13 +53,8 @@ function TagPill({ tag, def, info }) {
     <Link
       to={`/tools?tags=${tag}`}
       className={styles.categoryPill}
-      style={{
-        backgroundColor: `color-mix(in srgb, ${def.color} 15%, transparent)`,
-        color: `color-mix(in srgb, ${def.color} 85%, black)`,
-      }}
       title={def.description}
     >
-      <span className={styles.tagDot} style={{ backgroundColor: def.color }} />
       {def.label}
       {info && <InfoDot />}
     </Link>
@@ -141,12 +140,16 @@ function ShareButton({ title }) {
 function NotFound() {
   return (
     <Layout title="Tool not found">
-      <main className={clsx("container", styles.detail)}>
-        <h1>Tool not found</h1>
-        <p>
-          This tool may have been renamed or removed.{" "}
-          <Link to="/tools">Back to Builder Tools</Link>.
+      <main className={clsx("container", styles.detail, styles.notFoundPad)}>
+        <h1 className={styles.title}>Tool not found</h1>
+        <p className={styles.description}>
+          This tool may have been renamed or removed.
         </p>
+        <div className={styles.actions}>
+          <Link to="/tools" className={styles.visitButton}>
+            Back to Builder Tools
+          </Link>
+        </div>
       </main>
     </Layout>
   );
@@ -160,7 +163,6 @@ export default function ToolDetail({ slug }) {
 
   const categoryDef = Categories[tool.category];
   const relatedTools = getRelatedTools(tool);
-  const avatarColor = categoryDef?.color ?? "#888";
 
   const repository = siteConfig.customFields?.repository;
   const branch = siteConfig.customFields?.branch;
@@ -177,146 +179,117 @@ export default function ToolDetail({ slug }) {
       <Head>
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:image" content={OG_IMAGE} />
-        <meta name="twitter:image" content={OG_IMAGE} />
         <script type="application/ld+json">
           {buildJsonLd(tool, categoryDef?.label)}
         </script>
       </Head>
-      <main className={clsx("container", styles.detail)}>
-        <nav className={styles.breadcrumb} aria-label="breadcrumb">
-          <Link to="/tools">Builder Tools</Link>
-          {categoryDef && (
-            <>
-              <span className={styles.crumbSep} aria-hidden>
-                /
-              </span>
-              <Link to={`/tools?tags=${tool.category}`}>{categoryDef.label}</Link>
-            </>
-          )}
-          <span className={styles.crumbSep} aria-hidden>
-            /
-          </span>
-          <span className={styles.crumbCurrent}>{tool.title}</span>
-        </nav>
-
-        {tool.maintainerPick && (
-          <div className={styles.pickBadgeRow}>
-            <span className={styles.pickBadge}>
-              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden focusable="false">
-                <path
-                  fill="currentColor"
-                  d="M12 2.5l2.9 6.5 7.1.8-5.3 4.9 1.5 7-6.2-3.6L5.8 21.7l1.5-7L2 9.8l7.1-.8z"
-                />
-              </svg>
-              Maintainer pick
+      <PageMetadata image={ogCards.tools} />
+      {/* The CTA band brings its own container, so the page body carries one of
+          its own rather than main. Both stay inside the main landmark. */}
+      <main className={styles.detail}>
+        <div className="container">
+          <nav className={styles.breadcrumb} aria-label="breadcrumb">
+            <Link to="/tools">Builder Tools</Link>
+            {categoryDef && (
+              <>
+                <span className={styles.crumbSep} aria-hidden>
+                  /
+                </span>
+                <Link to={`/tools?tags=${tool.category}`}>{categoryDef.label}</Link>
+              </>
+            )}
+            <span className={styles.crumbSep} aria-hidden>
+              /
             </span>
-          </div>
-        )}
+            <span className={styles.crumbCurrent}>{tool.title}</span>
+          </nav>
 
-        <header className={styles.header}>
-          {tool.icon ? (
-            <img
-              className={styles.iconImage}
-              src={useBaseUrl(tool.icon)}
-              alt=""
-              aria-hidden
-            />
-          ) : (
-            <div
-              className={styles.iconFallback}
-              style={{ backgroundColor: avatarColor }}
-              aria-hidden
-            >
-              {tool.title.charAt(0).toUpperCase()}
+          <header className={styles.header}>
+            <AppIcon app={tool} size="detail" />
+            <div className={styles.headerText}>
+              <h1 className={styles.title}>{tool.title}</h1>
             </div>
-          )}
-          <div className={styles.headerText}>
-            <h1 className={styles.title}>{tool.title}</h1>
+          </header>
+
+          <div className={styles.tagRow}>
+            {tool.maintainerPick && (
+              <span className={styles.pickBadge}>
+                <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M12 2.5l2.9 6.5 7.1.8-5.3 4.9 1.5 7-6.2-3.6L5.8 21.7l1.5-7L2 9.8l7.1-.8z"
+                  />
+                </svg>
+                Maintainer pick
+              </span>
+            )}
+            {tool.repository && <span className={styles.osBadge}>Open Source</span>}
+            <TagPill tag={tool.category} def={categoryDef} info />
+            {tool.properties.map((p) => (
+              <TagPill key={p} tag={p} def={Properties[p]} />
+            ))}
           </div>
-        </header>
 
-        <div className={styles.tagRow}>
-          {tool.repository && <span className={styles.osBadge}>Open Source</span>}
-          <TagPill tag={tool.category} def={categoryDef} info />
-          {tool.properties.map((p) => (
-            <TagPill key={p} tag={p} def={Properties[p]} />
-          ))}
+          <p className={styles.description}>{tool.description}</p>
+
+          <div className={styles.actions}>
+            {tool.repository ? (
+              <Link href={tool.repository} className={styles.visitButton}>
+                <GitHubIcon size={18} />
+                View on GitHub
+              </Link>
+            ) : (
+              <Link href={tool.website} className={styles.visitButton}>
+                {`Visit ${tool.title}`}
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden focusable="false">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M7 17L17 7M9 7h8v8"
+                  />
+                </svg>
+              </Link>
+            )}
+            {tool.repository && tool.website && tool.website !== tool.repository && (
+              <Link href={tool.website} className={styles.secondaryButton}>
+                Visit website
+              </Link>
+            )}
+            {tool.docs && (
+              <Link href={tool.docs} className={styles.secondaryButton}>
+                Get Started
+              </Link>
+            )}
+            <ShareButton title={tool.title} />
+          </div>
+
+          {relatedTools.length > 0 && (
+            <section className={styles.related}>
+              <h2 className={styles.sectionHeading}>More in this category</h2>
+              <ul className={styles.relatedGrid}>
+                {relatedTools.map((related) => (
+                  <li key={related.slug}>
+                    <AppTile app={related} />
+                  </li>
+                ))}
+              </ul>
+              <Link className={styles.relatedMore} to={`/tools?tags=${tool.category}`}>
+                {`View all ${categoryDef?.label ?? tool.category} tools`}
+              </Link>
+            </section>
+          )}
         </div>
-
-        <p className={styles.description}>{tool.description}</p>
-
-        <div className={styles.actions}>
-          {tool.repository ? (
-            <Link href={tool.repository} className={styles.visitButton}>
-              <GitHubIcon size={18} />
-              View on GitHub
-            </Link>
-          ) : (
-            <Link href={tool.website} className={styles.visitButton}>
-              {`Visit ${tool.title}`}
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden focusable="false">
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M7 17L17 7M9 7h8v8"
-                />
-              </svg>
-            </Link>
-          )}
-          {tool.repository && tool.website && tool.website !== tool.repository && (
-            <Link href={tool.website} className={styles.secondaryButton}>
-              Visit website
-            </Link>
-          )}
-          {tool.docs && (
-            <Link href={tool.docs} className={styles.secondaryButton}>
-              Get Started
-            </Link>
-          )}
-          <ShareButton title={tool.title} />
-        </div>
-
-        {relatedTools.length > 0 && (
-          <section className={styles.related}>
-            <h2 className={styles.sectionHeading}>More in this category</h2>
-            <ul className={styles.relatedGrid}>
-              {relatedTools.map((related) => (
-                <li key={related.slug}>
-                  <AppTile app={related} />
-                </li>
-              ))}
-            </ul>
-            <Link className={styles.relatedMore} to={`/tools?tags=${tool.category}`}>
-              {`View all ${categoryDef?.label ?? tool.category} tools`}
-            </Link>
-          </section>
+        {editUrl && (
+          <PageCTA
+            title="Spotted something off?"
+            description="This directory is open source. Open a pull request to update or correct this entry."
+            href={editUrl}
+            buttonText={`Edit ${tool.title} on GitHub`}
+          />
         )}
-
-        <aside className={styles.improve}>
-          <div className={styles.improveIcon} aria-hidden>
-            <svg viewBox="0 0 24 24" width="28" height="28" focusable="false">
-              <path
-                fill="currentColor"
-                d="M12 3 2 8l10 5 10-5-10-5zm-8 9.5L12 17l8-4.5 2 1L12 19 2 13.5l2-1zm0 4L12 21l8-4.5 2 1L12 23 2 17.5l2-1z"
-              />
-            </svg>
-          </div>
-          <h2 className={styles.improveHeading}>Spotted something off?</h2>
-          <p className={styles.improveCopy}>
-            This directory is open source. Open a pull request to update or correct
-            this entry.
-          </p>
-          {editUrl && (
-            <Link href={editUrl} className={styles.improveButton}>
-              <GitHubIcon />
-              {`Edit ${tool.title} on GitHub`}
-            </Link>
-          )}
-        </aside>
       </main>
     </Layout>
   );

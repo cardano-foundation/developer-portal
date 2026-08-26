@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
-import { Categories } from "@site/src/data/builder-tools/showcase";
+import { Categories, Properties } from "@site/src/data/builder-tools/showcase";
 import { isRecent, getAppBlurb } from "@site/src/utils/toolStats";
 import AppIcon from "@site/src/components/AppIcon";
 
@@ -11,13 +11,21 @@ import styles from "./styles.module.css";
 const NEW_LABEL = "NEW";
 const PICK_LABEL = "Maintainer pick";
 
-function AppRow({ app, hideCategory = false }) {
+// `compact` is the in-panel form: the panel already supplies the raised
+// surface, so the row drops its own card chrome and its tag row and shows
+// name + blurb only. Standalone rows keep both.
+function AppRow({ app, compact = false }) {
   const categoryDef = Categories[app.category];
   const recent = isRecent(app);
 
   return (
-    <Link to={`/tools/${app.slug}`} className={styles.row}>
-      <AppIcon app={app} size="row" className={styles.icon} />
+    <Link
+      to={`/tools/${app.slug}/`}
+      className={clsx(styles.row, compact && styles.rowCompact)}
+    >
+      {/* In-panel rows take the card-sized icon per the template; the
+          standalone result rows keep the smaller one. */}
+      <AppIcon app={app} size={compact ? "tile" : "row"} className={styles.icon} />
       <div className={styles.content}>
         <h4 className={styles.title}>
           {app.title}
@@ -29,10 +37,21 @@ function AppRow({ app, hideCategory = false }) {
           {recent && <span className={styles.newBadge}>{NEW_LABEL}</span>}
         </h4>
         <p className={styles.description}>{getAppBlurb(app)}</p>
-      </div>
-      <div className={styles.metaRight}>
-        {!hideCategory && categoryDef && (
-          <span className={styles.category}>{categoryDef.label}</span>
+        {!compact && (
+          <div className={styles.tags}>
+            {categoryDef && (
+              <span className={styles.tag}>{categoryDef.label}</span>
+            )}
+            {app.properties.slice(0, 2).map((p) => {
+              const def = Properties[p];
+              if (!def) return null;
+              return (
+                <span key={p} className={styles.tag}>
+                  {def.label}
+                </span>
+              );
+            })}
+          </div>
         )}
       </div>
     </Link>

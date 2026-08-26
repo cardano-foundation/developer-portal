@@ -34,8 +34,8 @@ Syncing from genesis takes over 24 hours on mainnet. [Mithril](https://mithril.n
 Install the Mithril client:
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf \
-  https://raw.githubusercontent.com/input-output-hk/mithril/refs/heads/main/mithril-install.sh \
+curl --proto '=https' --tlsv1.2 -sSfL \
+  https://raw.githubusercontent.com/IntersectMBO/mithril/refs/heads/main/mithril-install.sh \
   | sh -s -- -c mithril-client -d latest -p $HOME/.local/bin
 ```
 
@@ -45,9 +45,9 @@ Set environment variables for mainnet (see [network configurations](https://mith
 export CARDANO_NETWORK=mainnet
 export AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator
 export GENESIS_VERIFICATION_KEY=$(wget -q -O - \
-  https://raw.githubusercontent.com/input-output-hk/mithril/main/mithril-infra/configuration/release-mainnet/genesis.vkey)
+  https://raw.githubusercontent.com/IntersectMBO/mithril/main/mithril-infra/configuration/release-mainnet/genesis.vkey)
 export ANCILLARY_VERIFICATION_KEY=$(wget -q -O - \
-  https://raw.githubusercontent.com/input-output-hk/mithril/main/mithril-infra/configuration/release-mainnet/ancillary.vkey)
+  https://raw.githubusercontent.com/IntersectMBO/mithril/main/mithril-infra/configuration/release-mainnet/ancillary.vkey)
 ```
 
 Download and verify the snapshot:

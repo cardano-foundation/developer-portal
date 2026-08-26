@@ -455,7 +455,7 @@ Each of the remaining lectures is the same shape with a different rule in the mi
 - [Lock and Spend](/docs/developers/curriculum/smart-contracts/lock-and-spend): the same two transactions, using more of what the SDK offers.
 - [Query the chain](/docs/developers/curriculum/start-building/query-the-chain): providers, and reading datums back out.
 - [Use a provider](/docs/developers/curriculum/production/use-a-provider): keys, quotas and what to do when one goes down.
-- [Offline testing](/docs/developers/curriculum/start-building/offline-testing): mocking the chain and evaluating budgets without a node.
+- [Local testing](/docs/developers/curriculum/start-building/local-testing): an in-memory emulator or a private devnet to build against, instead of Preview.
 - [Connect a wallet](/docs/developers/curriculum/dapps/connect-a-wallet): CIP-30 in full, and the backend-builds pattern this lecture starts.
 - [Going to production](/docs/developers/curriculum/production/going-to-production): the rest of the checklist this is one line of.
 - [Optimization](/docs/developers/curriculum/smart-contracts/advanced/optimization): keeping execution units, and therefore fees, down.

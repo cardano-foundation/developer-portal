@@ -1,14 +1,10 @@
-html[data-theme=light] .iconBtn {
-  border: 1px solid #cdcdcd;
-  background-color: var(--site-color-brand-blue);
-}
-
-html[data-theme=dark] .iconBtn {
-  border: 1px solid #000;
-  background-color: var(--site-color-brand-teal-dark);
-}
-
+/* Amber in both themes; navy glyph for contrast. The border must stay 1px:
+   the plus-glyph bars below are positioned against the 48px padding box it
+   creates, and meet edge-to-edge only at that size. Background-colored, so
+   it reads as no border. */
 .iconBtn {
+  border: 1px solid var(--site-color-amber);
+  background-color: var(--site-color-amber);
   width: 50px;
   height: 50px;
   border-radius: 25px;
@@ -20,8 +16,23 @@ html[data-theme=dark] .iconBtn {
   z-index: 999;
 }
 
+/* Keyboard focus gets a visible ring; the bare outline reset is only for
+   mouse clicks, where the hover expansion already signals the state */
 .iconBtn:focus {
   outline: none;
+}
+
+.iconBtn:focus-visible {
+  outline: 3px solid var(--site-color-navy);
+  outline-offset: 2px;
+}
+
+/* The offset puts the ring outside the button, on the page rather than on the
+   amber fill, so in dark mode a navy ring sat on the dark page at about
+   1.1:1 and was effectively invisible. This renders on the landing page and
+   on /tools. */
+html[data-theme="dark"] .iconBtn:focus-visible {
+  outline-color: var(--site-color-amber);
 }
 
 .addBtn:hover {
@@ -37,7 +48,7 @@ html[data-theme=dark] .iconBtn {
   height: 4px;
   width: 10px;
   top: calc(50% - 2px);
-  background: #fff;
+  background: var(--site-color-navy);
 }
 
 .addBtn::after {
@@ -62,12 +73,12 @@ html[data-theme=dark] .iconBtn {
 .btnText {
   opacity: 0;
   transition: opacity 0.2s;
-  color: #fff;
+  color: var(--site-color-navy);
   text-decoration: none;
 }
 
 .btnText:hover {
-  color: #fff;
+  color: var(--site-color-navy);
   text-decoration: none;
 }
 
@@ -84,7 +95,7 @@ html[data-theme=dark] .iconBtn {
   height: 20px;
   width: 2px;
   top: calc(50% - 10px);
-  background: #fff;
+  background: var(--site-color-navy);
   overflow: hidden;
 }
 
@@ -113,5 +124,5 @@ html[data-theme=dark] .iconBtn {
 }
 
 .btnSpan {
-  font-weight: bold;
+  font-weight: var(--ifm-font-weight-bold);
 }

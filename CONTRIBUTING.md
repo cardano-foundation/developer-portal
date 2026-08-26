@@ -25,7 +25,20 @@ This is the most common external contribution. You add a tool entry and open a P
 2. Run `yarn build` and confirm it passes with no errors (it validates your entry).
 3. Open a pull request using the "Add Builder Tool" template. Builder tool PRs require 3 approvals.
 
-Don't set `maintainerPick` yourself (maintainers choose those). Categories and properties are defined in `src/data/builder-tools/tags.js`. For the full guide, including what belongs here and how tools are curated, see the [portal contribution guide](https://developers.cardano.org/docs/contribute/portal-contribute/).
+Field conventions:
+
+- **Title**: the project's own name, styled how the project styles it (e.g. lowercase `cardano-cli`, `gOuroboros`). No descriptors, parentheticals, or re-casing.
+- **Description**: one or two factual sentences, sentence case, ending with a period. No superlatives. Say what the tool does and how it differs from similar tools rather than restating its name.
+- **Category**: exactly one, from the 12 defined in `src/data/builder-tools/tags.js`. For tools that read, serve, or index chain data, or run/talk to a node, the [data & node category layers](https://developers.cardano.org/docs/contribute/portal-contribute/#how-the-data--node-categories-relate) explain which layer to pick.
+- **Properties**: the language(s) the tool is written in, plus its interface (`rest` / `graphql` / `grpc` / `websocket`) where relevant — all defined in `tags.js`.
+- **Repository**: a public source repo adds an "Open Source" badge and a GitHub link; hosted or closed services use `null`.
+- Don't set `maintainerPick` yourself (maintainers choose those).
+
+For what belongs in the directory and how tools are curated, see the [portal contribution guide](https://developers.cardano.org/docs/contribute/portal-contribute/).
+
+## Adding a template or contract
+
+Two more curated surfaces live under [/templates](https://developers.cardano.org/templates): runnable dApp starter templates (in this repo under `examples/templates/`, registered in `src/data/templates/`) and the contract library (a use-case index in `src/data/contracts/`). Each has its own README with the exact steps: [`examples/templates/README.md`](./examples/templates/README.md) and [`src/data/contracts/README.md`](./src/data/contracts/README.md). Both are validated by `yarn build` and follow the same review process as builder tools.
 
 ## Before you open a PR
 

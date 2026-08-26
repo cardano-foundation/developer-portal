@@ -1,41 +1,119 @@
+/* Header band, following the theme like the navbar: cream with ink type in
+   light mode, navy with cream type in dark. The hairline lower edge
+   separates it from the page on both grounds. */
+.heroBanner {
+  padding: clamp(3rem, 6vw, 4.5rem) 2rem;
+  text-align: left;
+  background: var(--site-color-cream);
+  color: var(--site-color-ink);
+  border-bottom: 1px solid rgb(var(--site-color-navy-rgb) / 0.08);
+}
+
+html[data-theme="dark"] .heroBanner {
+  background: var(--site-color-navy);
+  color: var(--site-color-card-text);
+  border-bottom-color: var(--site-color-card-border);
+}
+
+/* Reserved-description variant, for a band shared across sibling routes.
+   Compound for the same reason as the artwork rules below. The reserve is in
+   em so it tracks the subtitle's own font size, which is fluid: a line count
+   stays a line count at every width. The explicit line-height is what makes
+   the multiplication exact rather than dependent on an inherited value. */
+.heroBanner.withSubtitleReserve .subtitle {
+  line-height: 1.5;
+  min-height: calc(var(--site-hero-subtitle-lines) * 1.5em);
+}
+
+/* Artwork variant. Every rule here is compound so it outranks the base
+   .heroBanner / .title rules on specificity rather than on source order,
+   which the minifier is free to change. */
+.heroBanner.withArtwork {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(4rem, 9vw, 7.5rem) 2rem;
+  background-color: var(--site-color-navy);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* The artwork is weighted to the right and the copy to the left, so a navy
+   scrim holds the text on near-solid navy however the image crops. Without
+   it a narrow viewport can pull a bright sphere in behind the headline. */
+.heroBanner.withArtwork::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--site-color-navy-rgb) / 0.92) 8%,
+    rgb(var(--site-color-navy-rgb) / 0) 58%
+  );
+}
+
+/* The artwork ground is navy in both themes, so the type stays cream and
+   ignores the band's theme-following colors. */
+.heroBanner.withArtwork .title {
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+  color: var(--site-color-cream);
+}
+
+.heroBanner.withArtwork .subtitle {
+  color: rgb(var(--site-color-cream-rgb) / 0.8);
+}
+
+.title {
+  font-weight: var(--site-font-weight-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  letter-spacing: -0.02em;
+  color: var(--site-color-navy);
+}
+
+html[data-theme="dark"] .title {
+  color: var(--site-color-cream);
+}
+
+.subtitle {
+  font-weight: var(--ifm-font-weight-light);
+  color: var(--site-color-navy);
+  max-width: 55ch;
+}
+
+html[data-theme="dark"] .subtitle {
+  color: rgb(var(--site-color-cream-rgb) / 0.8);
+}
+
+/* CSS-artwork variant: the copy scales to the template's header type and
+   sits above the art. Compound rules, like the artwork variant below. */
+.heroBanner.withArt {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(4rem, 8vw, 7rem) 2rem;
+}
+
+.heroBanner.withArt .taglineContainer,
+.heroBanner.withArt .heroChildren {
+  position: relative;
+  z-index: 1;
+}
+
+.heroBanner.withArt .title {
+  font-size: clamp(3rem, 6.5vw, 6.15rem);
+  line-height: 1.2;
+}
+
+.heroBanner.withArt .subtitle {
+  font-size: clamp(1.25rem, 2.2vw, 2.25rem);
+  line-height: 1.2;
+}
+
 .taglineContainer {
   width: 70%;
-}
-
-@media (max-width: 768px) {
-  .taglineContainer {
-    width: 100%;
-  }
-}
-
-.backgroundBox {
-  padding-bottom: 40px;
-}
-
-.heroBannerStarburst {
-  padding: 4rem 2rem;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-  height: 410px;
-  color: #ffffff;
-  /* Layered background: starburst SVG on top of the gradient, both on the
-   * element itself so they paint above Infima's opaque .hero--primary color
-   * (a ::before with z-index:-1 gets hidden behind it on this site). The SVG
-   * circles are #0033AD, so they only show against the lighter gradient. */
-  background-color: #0035ad;
-  background-image: url(/img/home/hero-header-starburst.svg),
-    linear-gradient(315deg, #305bbd, #0035ad);
-  background-repeat: no-repeat, no-repeat;
-  background-position: top right, center;
-  background-size: cover, cover;
-}
-
-html[data-theme="dark"] .heroBannerStarburst {
-  color: #ffffff;
-  background-color: #011034;
-  background-image: url(/img/home/hero-header-starburst.svg),
-    linear-gradient(315deg, #244eaf, #011034);
 }
 
 .heroChildren {
@@ -44,42 +122,16 @@ html[data-theme="dark"] .heroBannerStarburst {
   flex-direction: column;
 }
 
-/* The bottom V-notch. Rendered as a plain global class by SiteHero. */
-:global(.sectionCaret) polygon {
-  fill: #ffffff;
-}
-
-html[data-theme="dark"] :global(.sectionCaret) polygon {
-  fill: #1b1b1d;
-}
-
-:global(.sectionCaret) {
-  height: 30px;
-  width: 2048px;
-  position: absolute;
-  bottom: 0;
-  display: inline-block;
-  left: 50%;
-  margin: 0 0 0 -1000px;
-}
-
-@media screen and (max-width: 576px) {
+@media (max-width: 768px) {
   .taglineContainer {
     width: 100%;
   }
-  .heroBannerStarburst {
-    padding: 2rem 1rem;
-    height: auto;
-  }
-  .backgroundBox {
-    padding-bottom: 20px;
-  }
-}
 
-@media screen and (min-width: 1950px) {
-  :global(.sectionCaret) {
-    height: 45px;
-    width: 3000px;
-    margin-left: -1500px;
+  /* The withArt rule is compound, so the reset must match its specificity
+     or it keeps its desktop padding on phones. withArtwork stays out: its
+     consumers keep the taller band. */
+  .heroBanner,
+  .heroBanner.withArt {
+    padding: 2rem 1rem;
   }
 }
