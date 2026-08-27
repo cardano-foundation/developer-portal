@@ -193,7 +193,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-**And the redeemer?** You cannot watch it decide anything yet, and that is worth saying plainly rather than inventing a contract to hide it. `VaultAction` offers one choice, so every spender sends the identical thing and it changes no outcome. A redeemer only starts doing work once there is more than one action to pick from, which is what happens in **[Parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** when the vault gains a second way to be opened.
+**And the redeemer?** You cannot watch it decide anything yet. `VaultAction` offers only one choice, and it contains no data. So every spender sends the same thing, and it changes nothing. A redeemer only starts doing real work once there is more than one action to pick from or when it provides information inside, which will happen in **[a future lecture](/docs/developers/onboarding/lectures/intermediate/parameters)** when the vault gains a second way to be opened.
 
 Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 
