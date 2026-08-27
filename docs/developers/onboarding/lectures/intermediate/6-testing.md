@@ -85,7 +85,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-## Property tests: the cases you didn't
+## Property tests
 
 Unit tests only check the cases you thought of. Your two name one owner, a key you picked. But the rule is not about that key. It is about **any** key: whoever the datum names must be the one who signed.
 
