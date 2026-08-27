@@ -123,7 +123,7 @@ Run in your terminal:
 aiken check
 ```
 
-It compiles. Now change `True` to `False` and run it again. The result is **identical**: no error, no warning. Both are valid contracts. One gives the funds to whoever asks first, the other locks them away from everyone forever, and the compiler has no opinion about either. Only you decide what your contract refuses.
+It type-checks. Now change `True` to `False` and run it again. The result is **identical**: no error, no warning. Both are valid contracts.
 
 Put `True` back, and compile it for real:
 
