@@ -12,26 +12,26 @@ import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/interme
 
 # Testing
 
-A contract has no update button. Once funds sit behind it, a mistake means value lost or given away, and no patch can take it back. **[What a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** put it plainly: a validator that always says yes gives the funds away, and one that always says no means nobody can ever move them.
+You can't update a validator. Once funds sit behind it, a mistake means lost or given-away value, and no patch can take it back. **[What a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** puts it plainly: a validator that always says yes gives the funds away, and one that always says no means nobody can ever move them.
 
 So the question is not whether to test. It is how to be sure **before** anything real is at risk.
 
-[Last lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context) you wrote a real rule, and every `aiken check` you have run so far has only **compiled** it. The compiler proves the contract is valid Aiken. It cannot tell you whether the rule you wrote is the rule you meant. Your vault would compile just as happily with `list.has` replaced by `True`.
+[In the last lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context), you wrote a real validator, and every `aiken check` you have run so far has only **compiled** it. The compiler proves the contract is valid Aiken. It cannot tell you whether the checks you wrote are the logic you meant. Your vault would compile just as happily with `list.has` replaced by `True`. That is what we explore in this lecture.
 
-That is this lecture. It arrives here, in the middle of the track rather than at the end, because everything after it changes the rule: **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** adds a second door and **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** adds a mint. Each of those is a change to a contract that already works, and the way you find out you broke something is a test you wrote before you started.
+Here's an overview of the types of verifications we could do to check if our contract behaves as we expect, ordered from simples/less accurate to more complex/more accurate:
 
 ```mermaid
 flowchart LR
     U["unit tests<br/>one case you thought of"] --> P["property tests<br/>one rule, a hundred inputs"] --> S["scenario tests<br/>the whole transaction,<br/>never submitted"]
 ```
 
-The first two are this lecture, and they need nothing but the contract. The third needs an app to test against, so it waits for **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
+In this lecture, we'll cover Unit and Property testing, since they only need the contract. Integration testing requires building and submitting transactions, so we'll wait for **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**, and Formal Methods is for when you can write protocols with your eyes closed. So, we won't cover those during the onboarding
 
-## Unit tests: the cases you thought of
+## Unit tests
 
 The cheapest test builds a **fake transaction**, hands it to the validator, and checks the answer. No network, no wallet, no test ADA, and it finishes in milliseconds.
 
-Your vault has one rule, so it needs two tests: one person who should get through, and one who should not.
+Your vault has one real check, so it needs two tests: one for when the transaction should get through, and one for when it shouldn't.
 
 That second one is the one that matters. Notice the balance: half of these check a **refusal**, and that is the habit worth copying for every contract in this track. **A validator is defined by what it rejects.** A validator that always said yes would pass every success test you could write, which is why a suite of nothing but success tests tells you almost nothing.
 
@@ -85,13 +85,13 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 </TabItem>
 </Tabs>
 
-## Property tests: the cases you didn't
+## Property tests
 
 Unit tests only check the cases you thought of. Your two name one owner, a key you picked. But the rule is not about that key. It is about **any** key: whoever the datum names must be the one who signed.
 
-A **property test** states that rule directly and lets the test runner go looking for an example that breaks it. Instead of the one key you chose, it generates a hundred and tries every one.
+A **property test** states a property directly and lets the test runner find an example that breaks it. Instead of the one key you chose, it explores the space, generating cleverly crafted counterexamples hundreds or thousands of times.
 
-If any of them fails, it does more than report it. It **reduces** the failing input to the smallest one that still breaks, so you get the exact edge case rather than whichever random value happened to fail first.
+If any of them fails, it does more than report it. It **reduces ("shrinks")** the counterexample to the smallest one that still breaks the property, so you get the exact edge case rather than whichever random value happened to fail first.
 
 A property test is worth reaching for whenever a rule holds "for all" of something: every key, every amount, every moment after a deadline. You will meet that last one in **handling time**, where the vesting contract arrives with `claim_ok_at_any_time_after_the_deadline` already written.
 
@@ -101,7 +101,7 @@ Both levels above test the validator **on its own**, and that is also their limi
 
 Many things go wrong in the gap between those two: a datum built with the wrong constructor number, a missing required signer, a redeemer that does not match. None of these are contract bugs, none of them appear in a contract test, and your vault can be perfect while your app is still unable to open it.
 
-Closing that gap needs an app to test, so it is the first thing **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** does once there is one: build the **real transaction** with your real off-chain code, then run the **real compiled validator** against it, with no network at all.
+Closing that gap needs off-chain for integration testing, so it is the first thing **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** does once there is one: build the **real transaction** with your real off-chain code, then check the transaction against a real or simulated node.
 
 ## Try it
 

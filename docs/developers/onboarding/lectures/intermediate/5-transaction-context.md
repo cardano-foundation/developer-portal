@@ -16,9 +16,9 @@ import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/interme
 
 The **context** is the **transaction itself**. When someone tries to spend your locked funds, the network hands your contract the entire transaction that is trying to do it, and lets the contract look at any part of it before answering.
 
-So the datum and the redeemer are two small values you supply. The context is **everything else the contract can see about the transaction it is judging**: which UTxOs are being spent, what is being created, who signed, and the time window the transaction declared.
+So the datum and the redeemer are two small values you supply. The context is **everything else the contract can see about the transaction it is judging**: which UTxOs are being spent and all their properties, which tokens are being minted and burned, who signed the transaction, the time window the transaction declared, etc.
 
-A rule that only compares the datum with the redeemer protects nothing. Both are data, and data cannot show who signed, what moved, or when it happened. Only the transaction shows that, which is why nearly every rule you write is a question about the transaction, measured against what the datum says. Your vault is about to ask exactly one: is the owner named in the datum among the keys that signed?
+A validator that only compares the datum with the redeemer protects nothing. Both are data, and data cannot show who signed, what moved, or when it happened. Only the transaction shows that, which is why nearly every check you write is a question about the transaction, measured against what the datum says. Your vault is about to ask exactly one: is the owner named in the datum among the keys that signed?
 
 ## What is inside
 
@@ -31,21 +31,20 @@ The context holds one transaction, described in full. Here is everything in it, 
 | **Who and when** | `extra_signatories`, `validity_range` | the keys the transaction requires a signature from, and the time window it declared |
 | **The rest** | `certificates`, `withdrawals`, `redeemers`, `datums`, `id`, and the governance and treasury fields | staking, voting, the transaction's own id, and the datums and redeemers it carries |
 
-Most contracts use the first three groups and never touch the fourth.
+Depending on what your contract wants to check, you'll choose what to look at.
 
 :::note These names come from the ledger, not from a language
 The names above are spelled the way this track's examples spell them, and another language will write some of them a little differently. What the list holds is decided by **Cardano**, not by the tool you write your contract in, so learn it once and it carries over.
 
-The list also grows. Each version of the on-chain language has added fields: `reference_inputs` arrived with v2, and the governance and treasury fields with v3. A contract sees the shape of the version it was compiled against, the `v3` recorded in its blueprint, from **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)**, and it keeps that view for as long as it exists. A later upgrade cannot change what an already deployed contract is shown.
+The list also grows. Each version of the on-chain language has added fields: `reference_inputs` arrived with v2, and the governance and treasury fields with v3. A contract sees the shape of the version it was compiled against (the `v3` recorded in its blueprint, from **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)**), and it keeps that view for as long as it exists. A later upgrade cannot change what an already deployed contract is shown.
 :::
 
-## One transaction, every script
+## One transaction context for all validators
 
-A transaction can trigger more than one script: two contracts being spent at once, or a mint and a spend under the same hash. **They are all handed the same transaction.** Only the purpose-specific part differs, so each one knows which UTxO it is guarding, or which policy is minting, while the facts they judge are identical.
+A single transaction can trigger more than one script/validator: two contracts being spent at once, or a mint and a spend under the same hash. **They all receive the same transaction context.** Only the purpose-specific part differs, so each one knows which UTxO it is guarding, or which policy is minting.
 
-That is what makes contracts work together on Cardano. They never call each other, because they do not have to: one script can require something of a transaction and rely on another script seeing the same thing. **Multi validators** builds exactly that, a mint and a spend cooperating inside one transaction.
+That is what makes contracts work together on Cardano. They never call each other because they don't have to: one script can require something of a transaction that can only happen if another script accepts the transaction, and vice versa. No direct interaction between scripts.
 
-It also has a sharp edge. If two contracts each demand "5 ADA must go to my address", one output paying 5 ADA to the right place can satisfy both at once, which is not what either author intended. That is called double satisfaction, and the handbook's [security page](/docs/developers/curriculum/smart-contracts/security) covers it and the rest of the family.
 
 ## One field is the whole vault
 
@@ -100,10 +99,9 @@ The context is generous, but it stops at the edge of one transaction. A contract
 - **the rest of the block**: other transactions being confirmed at the same moment are invisible.
 - **the metadata**. This one surprises people, because you attached metadata to a transaction back in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata). It is stored on the chain and anyone can read it, but scripts are not shown it. So a contract can never enforce a rule about metadata.
 
-All of these come back to the same rule from **[on-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)**: every node must reach the **same answer, forever**. Anything that could differ between two nodes is left out.
 
 :::tip The transaction is the whole world
-A validator runs **inside** a single transaction, and that transaction is everything it can see: its inputs and their datums, the UTxOs it references, its outputs, its signatures, its window. No API to call, no database to query, not even the block it sits in. What is not in the transaction does not exist as far as the contract is concerned.
+A validator runs **inside** a single transaction, and that transaction is everything it can see: its inputs and their datums and values, the UTxOs it references, its outputs, its signatures, its window, etc. No API to call, no database to query, not even the block it sits in. What isn't in the transaction doesn't exist, as far as the contract is concerned.
 
 So a contract never gathers facts, it only judges the ones already in front of it, and **whoever builds the transaction has to put them there**. That is what the datum, the redeemer and the reference inputs are for. The question is never "how does the contract fetch this", it is "who puts it in, and why should the contract believe them". **Modifying state** builds an oracle, which is that question answered.
 :::
@@ -117,7 +115,7 @@ So a contract never gathers facts, it only judges the ones already in front of i
 
 Everything below runs from `on-chain/vault/`, where lecture 2 left you.
 
-The rule in words: **allow the spend only if the owner named in the datum is among the keys the transaction requires a signature from.** You have every piece. `self` is the transaction, `self.extra_signatories` is that list, `owner` came out of the datum last lecture, and `list.has` answers whether something is in a list.
+What we check: **allow the spend only if the owner named in the datum is among the keys the transaction requires a signature from.** You have every piece. `self` is the transaction, `self.extra_signatories` is that list, `owner` came out of the datum last lecture, and `list.has` answers whether something is in a list.
 
 In `validators/vault.ak`, make three changes:
 
