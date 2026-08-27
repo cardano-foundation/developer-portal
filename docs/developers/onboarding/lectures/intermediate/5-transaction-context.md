@@ -31,7 +31,7 @@ The context holds one transaction, described in full. Here is everything in it, 
 | **Who and when** | `extra_signatories`, `validity_range` | the keys the transaction requires a signature from, and the time window it declared |
 | **The rest** | `certificates`, `withdrawals`, `redeemers`, `datums`, `id`, and the governance and treasury fields | staking, voting, the transaction's own id, and the datums and redeemers it carries |
 
-Most contracts use the first three groups and never touch the fourth.
+Depending on what your contract wants to check, you'll choose what to look at.
 
 :::note These names come from the ledger, not from a language
 The names above are spelled the way this track's examples spell them, and another language will write some of them a little differently. What the list holds is decided by **Cardano**, not by the tool you write your contract in, so learn it once and it carries over.
