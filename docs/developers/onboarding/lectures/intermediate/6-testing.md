@@ -25,7 +25,7 @@ flowchart LR
     U["unit tests<br/>one case you thought of"] --> P["property tests<br/>one rule, a hundred inputs"] --> S["scenario tests<br/>the whole transaction,<br/>never submitted"]
 ```
 
-The first two are this lecture, and they need nothing but the contract. The third needs an app to test against, so it waits for **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
+In this lecture, we'll cover Unit and Property testing, since they only need the contract. Integration testing requires building and submitting transactions, so we'll wait for **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**, and Formal Methods is for when you can write protocols with your eyes closed. So, we won't cover those during the onboarding
 
 ## Unit tests
 
