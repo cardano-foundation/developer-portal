@@ -16,7 +16,7 @@ import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/interme
 
 The **context** is the **transaction itself**. When someone tries to spend your locked funds, the network hands your contract the entire transaction that is trying to do it, and lets the contract look at any part of it before answering.
 
-So the datum and the redeemer are two small values you supply. The context is **everything else the contract can see about the transaction it is judging**: which UTxOs are being spent, what is being created, who signed, and the time window the transaction declared.
+So the datum and the redeemer are two small values you supply. The context is **everything else the contract can see about the transaction it is judging**: which UTxOs are being spent and all their properties, which tokens are being minted and burned, who signed the transaction, the time window the transaction declared, etc.
 
 A rule that only compares the datum with the redeemer protects nothing. Both are data, and data cannot show who signed, what moved, or when it happened. Only the transaction shows that, which is why nearly every rule you write is a question about the transaction, measured against what the datum says. Your vault is about to ask exactly one: is the owner named in the datum among the keys that signed?
 
