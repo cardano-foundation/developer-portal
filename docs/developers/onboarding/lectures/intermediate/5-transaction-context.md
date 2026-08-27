@@ -41,7 +41,7 @@ The list also grows. Each version of the on-chain language has added fields: `re
 
 ## One transaction context for all validators
 
-A transaction can trigger more than one script: two contracts being spent at once, or a mint and a spend under the same hash. **They are all handed the same transaction.** Only the purpose-specific part differs, so each one knows which UTxO it is guarding, or which policy is minting, while the facts they judge are identical.
+A single transaction can trigger more than one script/validator: two contracts being spent at once, or a mint and a spend under the same hash. **They all receive the same transaction context.** Only the purpose-specific part differs, so each one knows which UTxO it is guarding, or which policy is minting.
 
 That is what makes contracts work together on Cardano. They never call each other, because they do not have to: one script can require something of a transaction and rely on another script seeing the same thing. **Multi validators** builds exactly that, a mint and a spend cooperating inside one transaction.
 
