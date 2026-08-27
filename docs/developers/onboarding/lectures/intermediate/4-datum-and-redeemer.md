@@ -165,7 +165,7 @@ aiken check
 
 Everything should be working, but **what changed?**:
 
-- `datum: Option<VaultDatum>` uses `Option` because an output at a script address **might have no datum at all**. Anyone can send funds there without one. The contract has to handle that case rather than assume.
+- `datum: Option<VaultDatum>` uses `Option` because an output at a script address **might have no datum at all**. Anyone can send funds there without one. The contract has to handle that case rather than assume. However, if there is a datum, it'll be of type `ValutDatum`.
 - `expect Some(VaultDatum { owner }) = datum` means "there must be a datum, it must be a `VaultDatum`, and I want its `owner`". If any of that is untrue the validator fails and the spend is refused. This is the line the warning above describes: it is where a mismatched datum gets caught, long after it was attached.
 
 The contract still returns `True`, so it still gives the funds to anybody. But it now insists on being handed a note it can read, and it knows the owner. The [next lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context) is where that owner starts deciding things.
