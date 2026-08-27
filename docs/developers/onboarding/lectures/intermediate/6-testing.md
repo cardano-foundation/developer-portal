@@ -12,7 +12,7 @@ import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/interme
 
 # Testing
 
-A contract has no update button. Once funds sit behind it, a mistake means value lost or given away, and no patch can take it back. **[What a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** put it plainly: a validator that always says yes gives the funds away, and one that always says no means nobody can ever move them.
+You can't update a validator. Once funds sit behind it, a mistake means lost or given-away value, and no patch can take it back. **[What a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)** puts it plainly: a validator that always says yes gives the funds away, and one that always says no means nobody can ever move them.
 
 So the question is not whether to test. It is how to be sure **before** anything real is at risk.
 
