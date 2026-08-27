@@ -137,7 +137,7 @@ Then write the datum and the redeemer themselves, **between the imports and the 
   {extractRegion(VaultSimple, "types")}
 </CodeBlock>
 
-Last, **replace the whole `validator` block** with this one. The rule has not changed, it still ends in `True`, but the handler now says what it expects to be handed, and reads the owner out of it:
+Lastly, **replace the whole `validator` block** with this one. The contract behavior changed slightly: it still always allows anyone to spend the UTxO because it ends in `True`, but only if the datum has the expected shape (`VaultDatum`).
 
 ```aiken title="validators/vault.ak"
 validator vault {
