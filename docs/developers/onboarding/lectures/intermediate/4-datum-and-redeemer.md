@@ -14,7 +14,7 @@ import VaultSimple from "!!raw-loader!@site/examples/onboarding/lectures/interme
 
 [Last lecture](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator) said a validator is a function of **datum**, **redeemer**, and **context**. The validator you wrote ignores all three. This lecture is about the first two, which are how you give information to a contract. They are also the part newcomers most often confuse, so they are worth explaining carefully.
 
-- The **datum** is information **attached to the locked UTxO** when you lock it. These are the _terms_. Think of it as a note that says "this is locked under these conditions". It is fixed the moment the funds are locked and never changes.
+- The **datum** is information attached to the UTxO when you **lock it**. You can put anything in there. Addresses, numbers, information, anything! The important part is that it is fixed the moment the funds are locked and never changes.
 - The **redeemer** is what the **spender provides** when they try to unlock. It is their _choice_ for this attempt, and it is supplied fresh in the spending transaction.
 - The **context** is the rest of the transaction: its inputs, outputs, signatures, and the validity window from [Time on Cardano](/docs/developers/onboarding/lectures/beginner/time-on-cardano). The validator can read all of it. There is enough of it to fill [the next lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context) on its own, so this one is about the first two.
 
