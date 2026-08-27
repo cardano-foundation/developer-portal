@@ -39,7 +39,7 @@ The names above are spelled the way this track's examples spell them, and anothe
 The list also grows. Each version of the on-chain language has added fields: `reference_inputs` arrived with v2, and the governance and treasury fields with v3. A contract sees the shape of the version it was compiled against (the `v3` recorded in its blueprint, from **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)**), and it keeps that view for as long as it exists. A later upgrade cannot change what an already deployed contract is shown.
 :::
 
-## One transaction, every script
+## One transaction context for all validators
 
 A transaction can trigger more than one script: two contracts being spent at once, or a mint and a spend under the same hash. **They are all handed the same transaction.** Only the purpose-specific part differs, so each one knows which UTxO it is guarding, or which policy is minting, while the facts they judge are identical.
 
