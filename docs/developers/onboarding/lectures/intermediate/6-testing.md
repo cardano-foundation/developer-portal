@@ -89,7 +89,7 @@ A [Scalus](https://scalus.org/) version is coming soon. The idea is identical, o
 
 Unit tests only check the cases you thought of. Your two name one owner, a key you picked. But the rule is not about that key. It is about **any** key: whoever the datum names must be the one who signed.
 
-A **property test** states that rule directly and lets the test runner go looking for an example that breaks it. Instead of the one key you chose, it generates a hundred and tries every one.
+A **property test** states a property directly and lets the test runner find an example that breaks it. Instead of the one key you chose, it explores the space, generating cleverly crafted counterexamples hundreds or thousands of times.
 
 If any of them fails, it does more than report it. It **reduces** the failing input to the smallest one that still breaks, so you get the exact edge case rather than whichever random value happened to fail first.
 
