@@ -151,7 +151,7 @@ Stuck? The finished code is in the playground. See the **[introduction](/docs/de
 
 ## What compiling produced
 
-Compiling wrote **`plutus.json`**, next to `aiken.toml`. This is the **blueprint**: the compiled contract, described in a format every Cardano language shares. Your off-chain code reads this file and turns it into an address, which you will see done in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
+Compiling wrote **`plutus.json`**. This is the **blueprint**: the compiled contract, described in a format all Cardano languages share. Your off-chain code reads this file and turns it into an address, which you will see done in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
 
 Open it. Four things are inside:
 
