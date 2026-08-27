@@ -24,23 +24,22 @@ So: **datum is what was set at lock time, and redeemer is what the spender says 
 
 ```mermaid
 sequenceDiagram
-    participant You as Your app + wallet
-    participant Net as Network
-    participant Vault as The script address<br/>(no wallet, no keys, no owner)
+    participant You as Your app
+    participant Car as Cardano
 
-    Note over You,Vault: Transaction 1, locking
-    You->>Net: sign + submit a payment to the script address,<br/>with the datum attached
-    Net->>Vault: an ordinary payment, accepted. The 5 ADA sits here
-    Note over Net: the validator does not run:<br/>nothing is being unlocked yet
-    Note over Vault: 5 ADA + datum (the terms): owner = your key hash
+    Note over You,Car: Transaction 1, locking
+    You->>Car: sign + submit a payment to the script address,<br/>with the datum attached
+    Note over Car: an ordinary payment, accepted. The 5 ADA sits in the Vault's address in a new UTxO. The validator does not run:<br/>nothing is being unlocked yet
+    Note over You,Car: Transaction 2, unlocking
+    You->>Car: sign + submit to consume the UTxO from the script address,<br/>providing the redeemer
+    Car->>Car: Run the validator providing:<br/>the datum (read off the UTxO), the redeemer (from this transaction),<br/>and the context (this transaction itself)
 
-    Note over You,Vault: later. Anyone may try to spend that UTxO
-
-    Note over You,Vault: Transaction 2, unlocking
-    You->>Net: sign + submit a spend of that UTxO,<br/>with the redeemer attached
-    Net->>Net: run the validator on three things:<br/>the datum (read off the UTxO), the redeemer (from this transaction),<br/>and the context (this transaction itself)
-    Net-->>You: True, or False
-    Note over Net,You: True → the 5 ADA moves where transaction 2 says<br/>False → transaction 2 is rejected, the UTxO stays put
+  alt validator acepted
+        Car->>Car: Transaction applied to the blockchain
+        Car->>You: Transaction accepted
+    else validator rejected
+        Car->>You: Blockchain rejected the transaction
+    end
 ```
 
 Two transactions, and only the second one is judged. Everything the **datum** says was settled in
