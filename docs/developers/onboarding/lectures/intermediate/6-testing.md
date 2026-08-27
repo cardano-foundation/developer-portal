@@ -101,7 +101,7 @@ Both levels above test the validator **on its own**, and that is also their limi
 
 Many things go wrong in the gap between those two: a datum built with the wrong constructor number, a missing required signer, a redeemer that does not match. None of these are contract bugs, none of them appear in a contract test, and your vault can be perfect while your app is still unable to open it.
 
-Closing that gap needs an app to test, so it is the first thing **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** does once there is one: build the **real transaction** with your real off-chain code, then run the **real compiled validator** against it, with no network at all.
+Closing that gap needs off-chain for integration testing, so it is the first thing **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** does once there is one: build the **real transaction** with your real off-chain code, then check the transaction against a real or simulated node.
 
 ## Try it
 
