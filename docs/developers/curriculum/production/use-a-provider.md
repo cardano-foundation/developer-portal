@@ -258,3 +258,4 @@ One hosted API is a single point of failure, and chatty code hits rate limits. B
 
 - [Self-hosting](/docs/developers/curriculum/production/self-hosting): the same two workflows served from infrastructure you run
 - [Going to production](/docs/developers/curriculum/production/going-to-production): the pre-mainnet checklist, including provider hardening
+- [Builder Tools](/tools/?tags=api): the hosted providers in full, beyond the four set up here
