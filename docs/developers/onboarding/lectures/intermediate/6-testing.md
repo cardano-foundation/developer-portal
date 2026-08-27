@@ -27,7 +27,7 @@ flowchart LR
 
 The first two are this lecture, and they need nothing but the contract. The third needs an app to test against, so it waits for **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
 
-## Unit tests: the cases you thought of
+## Unit tests
 
 The cheapest test builds a **fake transaction**, hands it to the validator, and checks the answer. No network, no wallet, no test ADA, and it finishes in milliseconds.
 
