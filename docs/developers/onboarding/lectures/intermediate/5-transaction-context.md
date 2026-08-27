@@ -45,7 +45,6 @@ A single transaction can trigger more than one script/validator: two contracts b
 
 That is what makes contracts work together on Cardano. They never call each other because they don't have to: one script can require something of a transaction that can only happen if another script accepts the transaction, and vice versa. No direct interaction between scripts.
 
-It also has a sharp edge. If two contracts each demand "5 ADA must go to my address", one output paying 5 ADA to the right place can satisfy both at once, which is not what either author intended. That is called double satisfaction, and the handbook's [security page](/docs/developers/curriculum/smart-contracts/security) covers it and the rest of the family.
 
 ## One field is the whole vault
 
