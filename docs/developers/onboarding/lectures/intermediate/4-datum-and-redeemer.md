@@ -163,7 +163,7 @@ Save it, and:
 aiken check
 ```
 
-Green. Two lines are worth a moment, because they are doing more than they look:
+Everything should be working, but **what changed?**:
 
 - `datum: Option<VaultDatum>` uses `Option` because an output at a script address **might have no datum at all**. Anyone can send funds there without one. The contract has to handle that case rather than assume.
 - `expect Some(VaultDatum { owner }) = datum` means "there must be a datum, it must be a `VaultDatum`, and I want its `owner`". If any of that is untrue the validator fails and the spend is refused. This is the line the warning above describes: it is where a mismatched datum gets caught, long after it was attached.
