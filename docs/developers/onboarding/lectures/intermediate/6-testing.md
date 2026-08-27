@@ -31,7 +31,7 @@ In this lecture, we'll cover Unit and Property testing, since they only need the
 
 The cheapest test builds a **fake transaction**, hands it to the validator, and checks the answer. No network, no wallet, no test ADA, and it finishes in milliseconds.
 
-Your vault has one rule, so it needs two tests: one person who should get through, and one who should not.
+Your vault has one real check, so it needs two tests: one for when the transaction should get through, and one for when it shouldn't.
 
 That second one is the one that matters. Notice the balance: half of these check a **refusal**, and that is the habit worth copying for every contract in this track. **A validator is defined by what it rejects.** A validator that always said yes would pass every success test you could write, which is why a suite of nothing but success tests tells you almost nothing.
 
