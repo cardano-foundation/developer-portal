@@ -16,7 +16,7 @@ You can't update a validator. Once funds sit behind it, a mistake means lost or 
 
 So the question is not whether to test. It is how to be sure **before** anything real is at risk.
 
-[Last lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context) you wrote a real rule, and every `aiken check` you have run so far has only **compiled** it. The compiler proves the contract is valid Aiken. It cannot tell you whether the rule you wrote is the rule you meant. Your vault would compile just as happily with `list.has` replaced by `True`.
+[In the last lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context), you wrote a real validator, and every `aiken check` you have run so far has only **compiled** it. The compiler proves the contract is valid Aiken. It cannot tell you whether the checks you wrote are the logic you meant. Your vault would compile just as happily with `list.has` replaced by `True`. That is what we explore in this lecture.
 
 Here's an overview of the types of verifications we could do to check if our contract behaves as we expect, ordered from simples/less accurate to more complex/more accurate:
 
