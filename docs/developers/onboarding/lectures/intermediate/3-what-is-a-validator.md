@@ -160,7 +160,7 @@ Open it. Four things are inside:
 - **`compiledCode`:** the actual program, as a hex string. This is the **only** part the network ever runs. It is a low-level language called UPLC, and every contract language compiles down to it.
 - **`definitions`:** the shapes of your datum and redeemer types, which is [the next lecture](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer). Right now they are just `Data`, because your validator accepts anything.
 
-Notice what is **not** in there: the address. It is built from the hash, and it depends on which network you are on.
+Notice what is **not** in there: the address. It is built from the hash and depends on other factors, like which network (testnet or mainnet) you're using.
 
 ## Go deeper
 
