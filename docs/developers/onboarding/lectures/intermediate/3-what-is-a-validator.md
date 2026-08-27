@@ -155,7 +155,7 @@ Compiling wrote **`plutus.json`**. This is the **blueprint**: the compiled contr
 
 Open it. Four things are inside:
 
-- **`preamble`:** who built it, with which compiler, and which Plutus version (`v3` here).
+- **`preamble`:** who built it, with which compiler, and which Plutus version.
 - **`validators[]`:** one entry per **purpose**, titled `file.validator.purpose`. Yours has two, `vault.vault.spend` and `vault.vault.else`, and they share one `hash`. That hash is the fingerprint from earlier in this lecture: the contract's identity, and the value its address is built from. Why one script has several entries under it is the subject of **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.
 - **`compiledCode`:** the actual program, as a hex string. This is the **only** part the network ever runs. It is a low-level language called UPLC, and every contract language compiles down to it.
 - **`definitions`:** the shapes of your datum and redeemer types, which is [the next lecture](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer). Right now they are just `Data`, because your validator accepts anything.
