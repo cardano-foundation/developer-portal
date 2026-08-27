@@ -36,7 +36,7 @@ Depending on what your contract wants to check, you'll choose what to look at.
 :::note These names come from the ledger, not from a language
 The names above are spelled the way this track's examples spell them, and another language will write some of them a little differently. What the list holds is decided by **Cardano**, not by the tool you write your contract in, so learn it once and it carries over.
 
-The list also grows. Each version of the on-chain language has added fields: `reference_inputs` arrived with v2, and the governance and treasury fields with v3. A contract sees the shape of the version it was compiled against, the `v3` recorded in its blueprint, from **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)**, and it keeps that view for as long as it exists. A later upgrade cannot change what an already deployed contract is shown.
+The list also grows. Each version of the on-chain language has added fields: `reference_inputs` arrived with v2, and the governance and treasury fields with v3. A contract sees the shape of the version it was compiled against (the `v3` recorded in its blueprint, from **[what a validator is](/docs/developers/onboarding/lectures/intermediate/what-is-a-validator)**), and it keeps that view for as long as it exists. A later upgrade cannot change what an already deployed contract is shown.
 :::
 
 ## One transaction, every script
