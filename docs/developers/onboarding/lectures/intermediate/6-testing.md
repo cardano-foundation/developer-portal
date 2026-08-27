@@ -91,7 +91,7 @@ Unit tests only check the cases you thought of. Your two name one owner, a key y
 
 A **property test** states a property directly and lets the test runner find an example that breaks it. Instead of the one key you chose, it explores the space, generating cleverly crafted counterexamples hundreds or thousands of times.
 
-If any of them fails, it does more than report it. It **reduces** the failing input to the smallest one that still breaks, so you get the exact edge case rather than whichever random value happened to fail first.
+If any of them fails, it does more than report it. It **reduces ("shrinks")** the counterexample to the smallest one that still breaks the property, so you get the exact edge case rather than whichever random value happened to fail first.
 
 A property test is worth reaching for whenever a rule holds "for all" of something: every key, every amount, every moment after a deadline. You will meet that last one in **handling time**, where the vesting contract arrives with `claim_ok_at_any_time_after_the_deadline` already written.
 
