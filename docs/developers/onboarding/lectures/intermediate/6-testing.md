@@ -18,7 +18,7 @@ So the question is not whether to test. It is how to be sure **before** anything
 
 [Last lecture](/docs/developers/onboarding/lectures/intermediate/transaction-context) you wrote a real rule, and every `aiken check` you have run so far has only **compiled** it. The compiler proves the contract is valid Aiken. It cannot tell you whether the rule you wrote is the rule you meant. Your vault would compile just as happily with `list.has` replaced by `True`.
 
-That is this lecture. It arrives here, in the middle of the track rather than at the end, because everything after it changes the rule: **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** adds a second door and **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** adds a mint. Each of those is a change to a contract that already works, and the way you find out you broke something is a test you wrote before you started.
+Here's an overview of the types of verifications we could do to check if our contract behaves as we expect, ordered from simples/less accurate to more complex/more accurate:
 
 ```mermaid
 flowchart LR
