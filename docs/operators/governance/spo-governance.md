@@ -213,7 +213,7 @@ Create the DRep delegation certificate using the reward account stake key (uses 
 ```bash
 cardano-cli conway stake-address vote-delegation-certificate \
     --stake-verification-key-file reward-stake.vkey \
-    --drep-always-abstain \
+    --always-abstain \
     --out-file drep-abstain.cert
 ```
 
