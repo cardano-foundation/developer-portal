@@ -13,8 +13,8 @@ import "./index.css";
 
 const NETWORK_ID = Number(import.meta.env.VITE_NETWORK_ID ?? "0");
 
-// No key here. The provider points at our own backend, which holds it, see
-// `server/blockfrost.ts`.
+// No key here. The provider points at our own backend, which holds it: see
+// `api/blockfrost/[...path].ts`.
 const provider = new BlockfrostProvider("/api/blockfrost");
 const EXPLORER = "https://explorer.cardano.org/preview/transaction?id=";
 
@@ -152,9 +152,9 @@ function App() {
           Mint &amp; lock 5 ADA
         </button>
         <p className="mt-2 text-xs text-gray-500">
-          The second button also <b>mints</b> one VAULT token and locks it with the ADA. Same script
-          hash, two jobs: the address the funds go to, and the policy id the token is created under.
-          Unlocking brings both back.
+          The second button also <b>mints</b> one VAULT token and locks it with the ADA. Two scripts
+          run in that one transaction: the policy decides the token may exist, and the vault's
+          address is where it lands. Unlocking brings both back.
         </p>
       </Step>
 

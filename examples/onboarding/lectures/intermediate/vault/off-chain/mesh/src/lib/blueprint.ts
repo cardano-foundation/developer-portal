@@ -32,6 +32,10 @@ function compiledCode(source: Blueprint, title: string): string {
 export const vaultScriptCbor = applyParamsToScript(compiledCode(blueprint, "vault.vault.spend"), [RECOVERY]);
 // #endregion params
 
+/// The token's policy, a second script. It takes no parameter, so the list of
+/// values to fill in is empty and every reader compiles the same bytes.
+export const vaultTokenScriptCbor = applyParamsToScript(compiledCode(blueprint, "vault.vault_policy.mint"), []);
+
 /// The script's address: the hash of that script, written for one network.
 export function vaultAddress(networkId: number): string {
   return serializePlutusScript(
@@ -41,8 +45,8 @@ export function vaultAddress(networkId: number): string {
   ).address;
 }
 
-/// The same hash, read as a **policy id**.
-export function vaultPolicyId(): string {
-  return resolveScriptHash(vaultScriptCbor, PLUTUS_VERSION);
+/// The policy script's hash, which is the policy id the token is filed under.
+export function vaultTokenPolicyId(): string {
+  return resolveScriptHash(vaultTokenScriptCbor, PLUTUS_VERSION);
 }
 // #endregion file

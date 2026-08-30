@@ -20,14 +20,14 @@ An app built on a blockchain is called a **dApp**, short for decentralized appli
 
 You built the first four in Beginner, and **[a transaction, step by step](/docs/developers/onboarding/lectures/beginner/providers-and-explorers#a-transaction-step-by-step)** shows them working together. The smart contract is what this track adds.
 
-One idea has to be clear before any code, because the rest of the track is built on it. Two of those pieces do completely different jobs:
+Two of those pieces do completely different jobs:
 
 - **Off-chain** is the code that runs **in your browser or on a server** (your app, plus an off-chain SDK). It reads the chain, **builds transactions**, and asks the wallet to sign them. This is the same work you did for the [send](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions) and [mint](/docs/developers/onboarding/lectures/beginner/tokens-fungible-and-nfts) transactions in Beginner. It **prepares**.
 - **On-chain** is the **smart contract (logic) and data that lives on the blockchain**. A Cardano smart contract is code that runs on the blockchain and checks whether the transaction is allowed. It either **approves or rejects** the transaction. It **enforces**.
 
 The apps you built [in Beginner](/docs/developers/onboarding/lectures/beginner/introduction) had only off-chain code.
 
-Think of applying for a permit to build something. Your app is the person applying: it decides what it wants to build, fills in every field, and hands the form in. The contract is the officer who reads the form and either approves it or rejects it. The person can ask for anything, and the officer decides what is allowed. Notice what the officer never does. They do not decide what to build, and they do not build it themselves. They only decide yes or no.
+Think of applying for a permit to build something. Your app is the person applying: it decides what it wants to build, fills in every field, and hands the form in. The contract is the officer who reads the form and either approves it or rejects it. The person can ask for anything, and the officer decides what is allowed.
 
 ```mermaid
 flowchart LR
@@ -44,7 +44,7 @@ flowchart LR
     Wallet -->|submits| Chain
 ```
 
-Read it from left to right. Everything in the left box is your side of the line. It is work your code does before anything is final. As soon as the transaction is sent, control passes to the chain, and the validator makes the final decision. Notice that no arrow comes back. The contract cannot ask your app for more information, and your app cannot change the answer.
+As soon as the transaction is sent, control passes to the chain, and the validator makes the final decision. The contract cannot ask your app for more information, and your app cannot change the answer.
 
 ## Who does what
 
@@ -59,7 +59,7 @@ Split any Cardano app along that line and it becomes much easier to understand:
 | Collect the wallet's signature | See which signatures are on the transaction |
 | Submit | Answer **yes** or **no** |
 
-Almost every line is on the left. The next section explains why.
+Almost every line is on the left.
 
 ## Why the split exists
 
@@ -78,11 +78,11 @@ That is a promise about the **contract's answer**, not about the transaction get
 
 There is a practical reason for the split as well. Everything on-chain is stored by every node and re-checked forever, so moving the transaction building there too would grow the chain faster than most people could afford to keep up with, and a chain only a few can verify is not decentralized.
 
-## Two things that surprise newcomers
+## Where the contract runs, and what it can do
 
-**The contract does not run on your computer.** You write it, compile it, and read it in your editor, so it is easy to think of it as part of your app. It is not. Your app carries the compiled contract **inside the transaction**, and the **network** runs it when that transaction is checked. The answer is the same for everyone, forever.
+**The contract does not run on your computer.** You write it, compile it, and read it in your editor, so it is easy to think of it as part of your app. Your app carries the compiled contract **inside the transaction**, and the **network** runs it when that transaction is checked. The answer is the same for everyone, forever.
 
-**The contract cannot _do_ anything.** It never sends funds, never updates a balance, and never changes data on its own. Every movement of value in this track is done by a **transaction your off-chain code built**. All the contract ever adds is a yes or a no. All the action is off-chain, and all the enforcement is on-chain. Remember that sentence, because the rest of this track repeats it in different forms.
+**The contract cannot _do_ anything.** Every movement of value in this track is done by a **transaction your off-chain code built**. All the contract ever adds is a yes or a no.
 
 ## Try it
 
@@ -107,13 +107,13 @@ cardano-vault/
 └── off-chain/     <- the app. Runs on your machine and builds transactions. Enforces nothing.
 ```
 
-Both are empty. The next lecture puts a contract project in `on-chain/` and leaves you working inside it. `off-chain/` stays empty until **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**, which is the one place in the track you change folder again.
+The next lecture puts a contract project in `on-chain/` and leaves you working inside it. `off-chain/` stays empty until **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**, which is the one place in the track you change folder again.
 
 Keep the name or pick your own, and read `cardano-vault/` as "wherever you put it".
 
-Whether a file is on-chain or off-chain is always worth knowing. Code in `off-chain/` can be wrong, or replaced. The network does not care, because it checks every transaction against what is in `on-chain/`. Code in `on-chain/` is the part the network enforces.
+Code in `off-chain/` can be wrong, or replaced. The network does not care, because it checks every transaction against what is in `on-chain/`.
 
-For the vault you are about to build, the split runs like this. Off-chain builds a transaction that sends ADA to the contract's address, which locks it. Later, off-chain builds a second transaction that tries to spend it back, so on-chain, the validator runs and answers yes or no, and only a "yes" allows the spend. Every contract you write follows this shape.
+For the vault you are about to build, the split runs like this. Off-chain builds a transaction that sends ADA to the contract's address, which locks it. Later, off-chain builds a second transaction that tries to spend it back, so on-chain, the validator runs and answers yes or no, and only a "yes" allows the spend.
 
 Stuck? The finished code is in the playground. See the **[introduction](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground)**.
 

@@ -9,9 +9,9 @@ import TabItem from "@theme/TabItem";
 
 # What a validator is
 
-The simplest smart contract on Cardano is a **validator**: a small function the network runs when a transaction tries to do something that validator guards. Spending a **locked** UTxO is the most common case, and the one this lecture uses. Minting is another, and your vault gains that purpose in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**. It looks at the transaction and returns exactly one thing, **yes (true)** or **no (false)**. If it says yes, the action is allowed. If it says no, the whole transaction is rejected and nothing it was trying to do takes place.
+The simplest smart contract on Cardano is a **validator**: a small function the network runs when a transaction tries to do something that validator guards. Spending a **locked** UTxO is the most common case, and the one this lecture uses. Minting is another, and your vault gains that purpose in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**. It looks at the transaction and returns exactly one thing, **yes (true)** or **no (false)**. If it says yes, the action is allowed. If it says no, the whole transaction is rejected.
 
-Here is the part that surprises people: **a validator never moves funds.** Think of it as a **guard at a door** rather than a program that holds money and pays it out. A guard does not carry anything in or out. They stand at one door, look at each person who arrives, and say "yes, you may pass" or "no". Everything that happens on the other side of the door is done by somebody else. It works the same way here. The value is moved by the **transaction**, which your off-chain code built, and the validator only approves it.
+**A validator never moves funds.** Think of it as a **guard at a door** rather than a program that holds money and pays it out. They stand at one door, look at each person who arrives, and say "yes, you may pass" or "no". Everything that happens on the other side of the door is done by somebody else. The value is moved by the **transaction**, which your off-chain code built, and the validator only approves it.
 
 So a validator is defined by what it **refuses**. A guard who lets everyone through is not guarding anything. Writing a contract means choosing the cases where you say no.
 
@@ -21,13 +21,11 @@ So a validator is defined by what it **refuses**. A guard who lets everyone thro
 
 What ties them together is a single rule: **every validator the transaction triggers has to say yes.** If a single validator rejects it, the whole transaction is rejected. That is how contracts cooperate on Cardano, by each making its own demand of the same transaction.
 
-The next few examples use a single validator, but we'll cover more complex contracts later.
-
 ## Where the locked funds live
 
 Remember from Beginner that a [UTxO](/docs/developers/onboarding/lectures/beginner/utxos-and-transactions) (a "sealed bag") always sits at an **[address](/docs/developers/onboarding/lectures/beginner/wallets-keys-addresses)**. Most of the addresses you have used belong to a person. These are **key addresses**, and whoever holds the matching private key can spend what is there.
 
-You have already met the other kind. When Bob locked 5 ADA behind a native script in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata), the funds went to a **script address**, controlled by **a set of rules** instead of a person. A validator uses the same kind of address. The only difference is how complex the rules can be. Validators allow for arbitrarily complex logic (as long as you're within the transaction's budget).
+You met the other kind when Bob locked 5 ADA behind a native script in [Native scripts & metadata](/docs/developers/onboarding/lectures/beginner/native-scripts-and-metadata): the funds went to a **script address**, controlled by **a set of rules** instead of a person. A validator uses the same kind of address. The only difference is how complex the rules can be. Validators allow for arbitrarily complex logic (as long as you're within the transaction's budget).
 
 ```mermaid
 flowchart TB
@@ -42,15 +40,15 @@ flowchart TB
     K ~~~ S
 ```
 
-Both hold ordinary UTxOs, with the same ADA and tokens, on the same explorer page. The only difference is what it takes to open them. A script address has no key, no recovery phrase, and nobody who can give permission. Even the person who wrote the contract has to satisfy the rule like everyone else.
+Both hold ordinary UTxOs, with the same ADA and tokens, on the same explorer page. A script address has no key. Even the person who wrote the contract has to satisfy the rule like everyone else.
 
-Where does that address come from? From the validator itself, using the same hashing you saw there. You hash the compiled contract, and use that fingerprint to derive the address. Change one character of the contract, and you get a completely different address that guards completely different funds. You will do exactly this in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.
+That address comes from the validator itself, using the same hashing you saw there. You hash the compiled contract, and use that fingerprint to derive the address. Change one character of the contract, and you get a completely different address that guards completely different funds. You will do exactly this in **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)**.
 
 ## Locking is just a payment
 
-A very important detail: **the validator does not run when you lock funds (create a UTxO in its address).**
+**The validator does not run when you lock funds (create a UTxO in its address).**
 
-Sending ADA to a script address is an **ordinary payment**. Your wallet does not know or care that the recipient is a script. The UTxO simply arrives and sits there, with a note attached to it. That note is the **datum**, and it has [a lecture of its own](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer) next. The contract does not run at all.
+Sending ADA to a script address is an **ordinary payment**. Your wallet does not know or care that the recipient is a script. The UTxO simply arrives and sits there, with a note attached to it. That note is the **datum**, and it has [a lecture of its own](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer) next.
 
 It runs only when someone tries to **spend** that UTxO. At that moment the network takes the validator, gives it the transaction, and asks its one question.
 
@@ -62,7 +60,7 @@ flowchart LR
     V -->|no| No["transaction rejected,<br/>the UTxO stays put"]
 ```
 
-So a validator only checks funds on the way **out**, never on the way in. That's why it's called a "spending validator" (we'll explain more in the [purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes) lecture). Anyone can send funds in, even by mistake, and nothing checks them. Only taking them out is guarded. This matters more than it first appears, since it affects how you write your logic. You lock first, and all the interesting logic happens at the spend.
+So a validator only checks funds on the way **out**, never on the way in. That's why it's called a "spending validator" (we'll explain more in the [purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes) lecture). Anyone can send funds in, even by mistake, and nothing checks them.
 
 ## What the validator sees
 
@@ -76,22 +74,22 @@ validator(datum, redeemer, context) -> True | False
 - **redeemer** what the spender provides when unlocking,
 - **context** the whole transaction around it.
 
-Depending on the language you choose to write your validators in, you can see more or fewer arguments. That is just the language trying to be convenient for you. At the end of the day, everything is inside the transaction context.
+Depending on the language you choose to write your validators in, you can see more or fewer arguments.
 
-The validator cannot access anything else. No network access, no clock, no storage, and nothing about the world beyond what it is given. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** explained why. The next lectures cover all three inputs in detail, and then [Parameters](/docs/developers/onboarding/lectures/intermediate/parameters) adds a way to hardcode values directly into the validator.
+The validator cannot access anything else. **[On-chain vs off-chain](/docs/developers/onboarding/lectures/intermediate/on-chain-vs-off-chain)** explained why. The next lectures cover all three inputs in detail, and then [Parameters](/docs/developers/onboarding/lectures/intermediate/parameters) adds a way to hardcode values directly into the validator.
 
 :::warning A validator is only as good as what it refuses
-Think about the two simplest validators possible, and you will see the full range you are working in:
+Think about the two simplest validators possible:
 
 - **Always true** returns `True` no matter what, so **anyone** can spend the funds, for any reason, at any time.
 - **Always false** returns `False` no matter what, so **nobody** can ever spend them. The funds are **permanently unspendable**: not by you, not by the person who locked them, not by anyone, ever.
 
-Real people have shipped both of these by mistake. A contract that always passes gives the funds away to whoever asks first. A contract that always fails means nobody can ever move them ([locked value](/docs/developers/curriculum/smart-contracts/security#locked-value) in the handbook). Neither mistake can be undone. Real validators sit between these two and say yes only when specific conditions are met. This is also why you test the vault in **[testing](/docs/developers/onboarding/lectures/intermediate/testing)**, and why those tests are mostly about what it refuses.
+Real people have shipped both of these by mistake, and neither can be undone ([locked value](/docs/developers/curriculum/smart-contracts/security#locked-value) in the handbook). Real validators sit between these two and say yes only when specific conditions are met. This is also why you test the vault in **[testing](/docs/developers/onboarding/lectures/intermediate/testing)**, and why those tests are mostly about what it refuses.
 :::
 
 ## Try it
 
-**Write both extremes and compile them.** You write one file and change one word in it, so you see the pair from the box above: the validator that always says yes, and the one that always says no.
+**Write both extremes and compile them.** You write one file and change one word in it, so you see the pair from the box above.
 
 <Tabs groupId="onchain">
 <TabItem value="aiken" label="Aiken" default>
@@ -112,9 +110,9 @@ validator vault {
 }
 ```
 
-`validator vault` names the script. `spend` is the handler that runs when someone tries to spend a locked UTxO. The underscore in front of each name means "given, but not used here", so this contract ignores everything it is handed.
+`validator vault` names the script. `spend` is a **handler**: a block inside the validator that runs for one kind of action. This one runs when someone tries to spend a locked UTxO. A validator can hold several, one per action it guards, and **[validator purposes](/docs/developers/onboarding/lectures/intermediate/validator-purposes)** is where you add a second. The underscore in front of each argument name means "given, but not used here", so this contract ignores everything it is handed.
 
-Four arguments, three ideas. `_datum` and `_redeemer` are the first two from the list above. `_own_ref` points at the UTxO being spent, and `_self` is the whole transaction context. What is inside it is the subject of **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
+`_datum` and `_redeemer` are the first two from the list above. `_own_ref` points at the UTxO being spent, and `_self` is the whole transaction context. What is inside it is the subject of **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
 The body is the entire rule: `True`, yes to everybody.
 
