@@ -14,7 +14,7 @@ import OracleAiken from "!!raw-loader!@site/examples/onboarding/lectures/interme
 
 Every contract so far has ended the same way. The validator says yes, and the funds **leave**. Lock, then unlock. Buy, then use.
 
-This lecture is the third and last design walk, and it breaks that pattern. The thing you build is not meant to end. It is meant to stay on the chain and keep changing.
+This contract breaks that pattern. The thing you build is meant to stay on the chain and keep changing.
 
 ## The idea
 
@@ -28,19 +28,19 @@ The idea has three parts:
 
 An oracle is the clearest example, but the same shape is behind almost anything with a memory. A counter. A registry of members. A configuration that an admin can update. In all of them, a value has to **stay** on the chain and be **changed**.
 
-Cardano has no way to change anything. A UTxO cannot be edited. The only thing you can do with a UTxO is spend it.
+A UTxO cannot be edited. The only thing you can do with a UTxO is spend it.
 
 ## From idea to contract
 
 The same four questions.
 
-**1. What has to be remembered?** Two things: the **owner**, which is the key allowed to publish, and the **price** itself. Both go in the datum. Notice that the datum now holds real application data, not only permissions. That is what makes this contract a piece of storage rather than a lock.
+**1. What has to be remembered?** Two things: the **owner**, which is the key allowed to publish, and the **price** itself. Both go in the datum, which now holds application data and not only permissions.
 
 **2. What actions are possible?** One: update the price. There is no "close" and no "withdraw" in this version, because the oracle is meant to keep existing.
 
 **3. What must be true for each action?** Two conditions. The owner has to sign. And the oracle has to still exist after the transaction, with the new price in it.
 
-That second condition is new, and it is the whole lecture. Every contract until now finished when the funds left. This one must refuse to let the funds leave.
+That second condition is new: this contract must refuse to let the funds leave.
 
 **4. What breaks if a rule is missing?** Drop the signature check and anybody can publish any price, which destroys the point of an oracle. Drop the second condition and the owner can spend the UTxO and keep the money, and the oracle simply disappears. What you have then is a vault, and a vault that is harder to use than the one you already wrote.
 
@@ -56,11 +56,11 @@ flowchart LR
     TX -->|"created"| New["UTxO at the same contract<br/>datum: price = 150"]
 ```
 
-Nothing was edited. The old UTxO is gone forever, and a new UTxO exists. Because both things happen in one transaction, there is no moment in between where the oracle is missing. To anybody reading the chain, a value changed.
+Because both things happen in one transaction, there is no moment in between where the oracle is missing. To anybody reading the chain, a value changed.
 
 The output that goes straight back to the address it came from is called a **continuing output**. It is the pattern behind almost everything on Cardano that stores changing data.
 
-For the app that builds the transaction, this is the unlock you already know, with one addition: one extra output, sent back to the contract's own address, carrying the new datum. That one extra output is the difference between changing a value and taking the funds.
+For the app that builds the transaction, this is the unlock you already know, with one addition: one extra output, sent back to the contract's own address, carrying the new datum.
 
 :::warning A real oracle checks more than this
 The oracle you are about to write checks that *an* output comes back carrying *a* readable datum. That is enough to show the pattern, but not enough to trust. A real version also checks three more things:
@@ -78,7 +78,7 @@ A UTxO can only be spent once. So if two updates try to change the same oracle a
 
 ## Try it
 
-Write the contract first, then watch a value change on the real network.
+**Write the contract, then watch a value change on the real network.**
 
 ### Write the contract
 
@@ -106,7 +106,7 @@ Then the datum and the validator:
 3. Require **exactly one** output going back to that address, and check that its datum has the same type. `outputs_at` and `output_inline_datum` do this work, both from `cocktail`.
 4. Check the signature.
 
-Requiring *exactly* one output matters. Two outputs at the same address would make the next update unclear, because nothing would say which of them is the oracle.
+The contract requires *exactly* one output because two outputs at the same address would make the next update unclear: nothing would say which of them is the oracle.
 
 Then three tests. These ones build a transaction with an **output** as well as an input, which the vault's tests never needed, because the vault never cared where the funds went:
 
@@ -114,7 +114,7 @@ Then three tests. These ones build a transaction with an **output** as well as a
   {extractRegion(OracleAiken, "oracle-tests")}
 </CodeBlock>
 
-`update_fails_when_the_utxo_does_not_return` is the one that matters. It sends the output to an ordinary key address instead of back to the script, and a correct contract refuses that transaction. Without this test, nothing would tell an oracle apart from a vault.
+`update_fails_when_the_utxo_does_not_return` sends the output to an ordinary key address instead of back to the script, and a correct contract refuses that transaction. Without this test, nothing would tell an oracle apart from a vault.
 
 ```bash
 aiken check
@@ -127,7 +127,7 @@ Open `plutus.json` and find `oracle.oracle.spend`. Compare its hash with ours:
 e17872fdaba9b9906fa71fb30bf7773832b8b488cf6075c61d4a61a9
 ```
 
-Your project now holds four contracts, each with its own hash and therefore its own address: the vault, the vesting contract, the gift card, and this oracle. One project, four addresses. Nothing was deployed to produce them.
+Your project now holds four contracts, each with its own hash and therefore its own address: the vault, the vesting contract, the gift card, and this oracle.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -167,11 +167,11 @@ Connect your wallet and set up collateral, then:
 2. **Refresh oracles**, then **Raise by 50**. Approve it and wait.
 3. Refresh again. The price now reads 150.
 
-Now look at what actually happened, using the explorer. Follow the link from the update transaction and read its two sides. The input is the old oracle UTxO. One of the outputs is a **new UTxO at the same address**, with a different datum. Nothing was edited. One UTxO was destroyed and a new one appeared. That is what "changing data" means here.
+Now look at what actually happened, using the explorer. Follow the link from the update transaction and read its two sides. The input is the old oracle UTxO. One of the outputs is a **new UTxO at the same address**, with a different datum.
 
 ## Now close one of the weaknesses
 
-The warning box listed three checks that a real oracle needs and ours skips. This time you write one, instead of reading it.
+The warning box listed three checks that a real oracle needs and ours skips. Now you write one.
 
 Take the first: **the value has to come back too**. At the moment, the owner can publish a new price and take the ADA in the same transaction. This is possible because the contract only checks that *an* output returned with *a* readable datum.
 
@@ -186,7 +186,7 @@ Run `aiken check`. Your new test **fails**. You said that the contract should re
 
 **Then fix the validator.** What came in is `own_input.output.value`. What goes back is `continuing.value`. Compare the two and refuse the transaction when the value gets smaller. `assets.lovelace_of` is enough for a first version, and `cardano/assets` is already imported at the top of the file.
 
-When your test passes, you have found a real weakness, written a test that proves it, and fixed it. That is a small example of the whole job.
+When your test passes, you have found a real weakness, written a test that proves it, and fixed it.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">

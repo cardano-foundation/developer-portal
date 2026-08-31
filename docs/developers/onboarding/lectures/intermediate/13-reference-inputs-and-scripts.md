@@ -14,14 +14,14 @@ import ConsumerAiken from "!!raw-loader!@site/examples/onboarding/lectures/inter
 
 Until now, a transaction could do only one thing with a UTxO: **spend** it. Take it, use it, destroy it.
 
-This lecture adds the other thing a transaction can do. It can **point at a UTxO** without spending it. The UTxO stays exactly where it is.
+A transaction can also **point at a UTxO** without spending it. The UTxO stays exactly where it is.
 
 That single idea has two uses, and they have confusingly similar names:
 
 - A **reference script** points at published **code**.
 - A **reference input** points at published **data**.
 
-They solve two different problems. Both problems appear as soon as you have the oracle from the last lecture and you want other contracts to use it. Take them one at a time, and ask the same questions about each: what it is, why you need it, when to use it, and what to watch out for.
+They solve two different problems. Both problems appear as soon as you have the oracle from the last lecture and you want other contracts to use it. Take them one at a time.
 
 ## Reference scripts
 
@@ -29,7 +29,7 @@ They solve two different problems. Both problems appear as soon as you have the 
 
 A reference script is a compiled contract that has been stored inside a UTxO on the chain. After you store it, a transaction can point at that UTxO instead of carrying its own copy of the contract.
 
-The UTxO that holds the script is an ordinary one at **your own address**. The ADA inside it stays yours. Nothing about the contract changes: same code, same hash, same address, same answers. The contract itself does not know or care.
+The UTxO that holds the script is an ordinary one at **your own address**. The ADA inside it stays yours. Nothing about the contract changes: same code, same hash, same address, same answers.
 
 ### Why you need it
 
@@ -62,11 +62,9 @@ Use one for any contract that will be spent more than a few times. The cost of p
 
 Skip it for a contract you will run twice and throw away. Publishing costs one transaction, and it locks a small amount of ADA in the UTxO that holds the script. At very low volume, that is not worth the trouble.
 
-This is also the only sense in which a Cardano contract is "deployed". **[Parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** already made that point: publishing a script is a way to make every spend smaller, not a step you must take before a contract works. It changes nothing about how the contract behaves.
+This is also the only sense in which a Cardano contract is "deployed", a point **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)** already made.
 
 ### What to watch out for
-
-Two things.
 
 **Pointing at a script is not free.** The bytes still cost a small amount each. The cost is far lower than putting the whole script into every transaction, but it is not zero.
 
@@ -80,13 +78,13 @@ A reference input is a UTxO that a transaction attaches only in order to **read*
 
 Inside the validator, referenced UTxOs arrive in their own field, `reference_inputs`, separate from the ones being spent. You met that field in **[the transaction context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**.
 
-The contract you write at the end of this lecture reads the oracle that way. It is a second contract making a decision from the **first** contract's data. It makes no call, and it has no direct connection to the oracle. It reads the datum of a UTxO that the transaction attached for it, and the oracle does not know that this second contract exists.
+The contract you write at the end of this lecture reads the oracle that way. It reads the datum of a UTxO that the transaction attached for it, and the oracle does not know that this second contract exists.
 
 ### Why you need it
 
 Go back to the oracle. It sits on the chain holding a price, and another contract wants to know that price.
 
-So far, the only way you have had to bring a UTxO into a transaction is to spend it. Spending the oracle would be a serious problem for two reasons. The oracle would disappear at the moment it was read. And only one contract per block could ever read it, because a UTxO can only be spent once.
+So far, the only way you have had to bring a UTxO into a transaction is to spend it. Spending the oracle would be a serious problem. The oracle would disappear at the moment it was read, and only one contract per block could ever read it, because a UTxO can only be spent once.
 
 A reference input solves both. The oracle stays where it is, and any number of transactions can point at the same one at the same time.
 
@@ -98,7 +96,7 @@ Use one whenever many transactions have to read the same piece of data:
 - A registry of members, or of approved tokens.
 - A configuration UTxO that an admin updates and every other validator reads.
 
-The test is simple. If a contract needs to **know** something that lives in another UTxO, but has no business **taking** that UTxO, use a reference input.
+If a contract needs to **know** something that lives in another UTxO, but has no business **taking** that UTxO, use a reference input.
 
 ### What to watch out for
 
@@ -108,7 +106,7 @@ So a contract must always point at the UTxO that is **current**, and not at one 
 
 ## Which one do I need?
 
-The sharpest difference is what the validator sees. A reference script is invisible to it: the contract runs exactly as it always did, and only the transaction that calls it is built differently. A reference input is something the validator reads and reasons about.
+A reference script is invisible to the validator: the contract runs exactly as it always did, and only the transaction that calls it is built differently.
 
 |  | Reference script | Reference input |
 |---|---|---|
@@ -121,7 +119,7 @@ The sharpest difference is what the validator sees. A reference script is invisi
 
 ## Try it
 
-One more contract to write, and it is the shortest in the track.
+**Write a second contract that reads the first one's data.** It is the shortest in the track.
 
 ### Write the consumer
 
@@ -142,7 +140,7 @@ Then the validator itself, whose body is three lines:
   {extractRegion(ConsumerAiken, "consumer")}
 </CodeBlock>
 
-`self.reference_inputs` is the field this whole lecture is about. `input_inline_datum`, from `cocktail`, reads the datum off the UTxO the transaction attached. Then the contract compares the price, with no call and no direct connection to the oracle.
+`input_inline_datum`, from `cocktail`, reads the datum off the UTxO the transaction attached to `self.reference_inputs`. Then the contract compares the price, with no call and no direct connection to the oracle.
 
 Then two tests. Both attach the oracle as a reference input with `ref_tx_in`, which is the test-side twin of `tx_in`. The only difference between the two tests is the price in that datum:
 
@@ -161,7 +159,7 @@ Open `plutus.json` and find `consumer.consumer.spend`. Compare its hash with our
 451d79ec8b1a4be9bd4006a0abb63afb75354667586ffdefe244355e
 ```
 
-**Then break it.** Delete the `ref_tx_in(...)` line from `tx_reading_oracle`, the helper both tests use, and run `aiken check` again. `spend_ok_when_the_oracle_price_is_positive` goes red: the validator can no longer find the oracle, so it refuses. A contract that depends on referenced data does not carry on without that data, and it does not fail silently. It refuses.
+**Then break it.** Delete the `ref_tx_in(...)` line from `tx_reading_oracle`, the helper both tests use, and run `aiken check` again. `spend_ok_when_the_oracle_price_is_positive` now **fails**: the validator can no longer find the oracle. A contract that depends on referenced data refuses when that data is missing.
 
 </TabItem>
 <TabItem value="scalus" label="Scalus">
@@ -177,9 +175,20 @@ Stuck? The finished code is in the playground. See the **[introduction](/docs/de
 
 Open the **[Cardano explorer for Preview](https://explorer.cardano.org/preview)**, find any **unlock** transaction you have sent, from your own app in lecture 9 or from the [playground](/docs/developers/onboarding/lectures/intermediate/introduction#the-playground), and look at its **size**. The compiled contract is inside that transaction, and you paid for those bytes. A reference script removes those bytes from every future spend.
 
-_(The playground has no button for either feature, so this lecture is for writing and compiling, like the gift card one.)_
+The off-chain code for each feature lives with the contract it belongs to.
 
-If you want to read the off-chain side, it lives with the contract it belongs to. Deploying a reference script and then spending through it is the vault's code, in `vault/off-chain/mesh/src/lib/reference-script.ts`. Reading a reference input is the oracle's code, in `oracle/off-chain/mesh/src/lib/reference-input.ts`. Both files are real and type-checked, and they use the same **[Mesh](/docs/developers/onboarding/lectures/intermediate/frontend-integration)** calls you already know.
+<Tabs groupId="offchain">
+<TabItem value="mesh" label="Mesh" default>
+
+Deploying a reference script and then spending through it is the vault's code, in `vault/off-chain/mesh/src/lib/reference-script.ts`. Reading a reference input is the oracle's code, in `oracle/off-chain/mesh/src/lib/reference-input.ts`. Both files are type-checked, and they use the same calls you wrote in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
+
+</TabItem>
+<TabItem value="evolution" label="Evolution">
+
+An [Evolution](https://github.com/IntersectMBO/evolution-sdk) version is coming soon. The idea is identical, only the library calls differ.
+
+</TabItem>
+</Tabs>
 
 ## You have finished the Intermediate track
 
