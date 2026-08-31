@@ -144,7 +144,7 @@ Both branches ask `list.has`, so there is nothing new to import.
 aiken check
 ```
 
-**It does not compile**, and the error is the lesson. Your two tests from **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** call `vault.spend` with four arguments, and the handler now takes five. A parameter always comes **first**, before the handler's own arguments, so every call has to gain a `recovery` in front:
+**It compiles and type-checks, but it doesn't pass the tests**. Your two tests from **[testing](/docs/developers/onboarding/lectures/intermediate/testing)** call `vault.spend` with four arguments, and the handler now takes five. A parameter always comes **first**, before the handler's own arguments, so every call has to gain a `recovery` in front:
 
 ```aiken
 // was
