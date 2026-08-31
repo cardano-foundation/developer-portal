@@ -18,7 +18,7 @@ A **parameter** is not on that list. It is a value built into the contract's own
 
 Of the values **you** supply, the useful way to tell them apart is **when the value is provided**:
 
-| | Fixed when | Lives in | To change it |
+| | Provided at | Lives in | To change it |
 |---|---|---|---|
 | **parameter** | build time | the contract itself | fill the blank differently: a new contract, at a **new address** |
 | **datum** | lock time | the locked UTxO | lock a new UTxO |
