@@ -104,16 +104,8 @@ html[data-theme="dark"] .row:focus-visible {
   flex-shrink: 0;
 }
 
-/* Matches the tile's Deep Blue capsule at row scale, so the same tool
-   reads the same in both layouts; cream on it is 13:1 in both themes. */
+/* Sits in the title row and must not squeeze */
 .newBadge {
-  font-size: 0.78rem;
-  font-weight: var(--ifm-font-weight-normal);
-  line-height: 1.25;
-  background: var(--site-color-blue-deep);
-  color: var(--site-color-cream);
-  padding: 2px 10px;
-  border-radius: 999px;
   flex-shrink: 0;
 }
 
@@ -135,18 +127,3 @@ html[data-theme="dark"] .row:focus-visible {
   margin-top: 0.55rem;
 }
 
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 8px;
-  border-radius: 4px;
-  line-height: 1.5;
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.72rem;
-  background: var(--site-color-surface-chip);
-  color: var(--ifm-color-primary);
-}
-
-html[data-theme="dark"] .tag {
-  color: var(--ifm-color-primary-light);
-}

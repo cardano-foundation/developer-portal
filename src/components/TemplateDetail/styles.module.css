@@ -40,32 +40,13 @@ html[data-theme="dark"] .backLink:focus-visible {
   margin: 1.4rem 0 0;
 }
 
-/* In lockstep with ToolDetail's pick badge: a navy chip in both themes, with
-   the amber star doing the accent work. */
+/* The pick chip is the shared badge; it keeps its amber star */
 .pickBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  /* Transparent in the base so the dark hairline below cannot shift layout */
-  border: 1px solid transparent;
-  padding: calc(0.45rem - 1px) calc(0.9rem - 1px);
-  border-radius: 999px;
-  background: var(--site-color-navy);
-  color: var(--site-color-cream);
-  font-size: 0.78rem;
-  font-weight: var(--ifm-font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
   margin-bottom: 0.6rem;
 }
 
 .pickBadge svg {
   color: var(--site-color-amber);
-}
-
-/* The navy chip blends into the dark page without an edge */
-html[data-theme="dark"] .pickBadge {
-  border-color: var(--site-color-card-border);
 }
 
 .title {
@@ -259,48 +240,9 @@ html[data-theme="dark"] .metaRow {
   text-align: right;
 }
 
-/* Outlined ghost button, in lockstep with ToolDetail's secondary actions */
+/* Source link inside the meta card; the button is the shared outline primitive */
 .sourceButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
   margin-top: 1rem;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
-  background: transparent;
-  color: var(--ifm-font-color-base);
-  font-size: 0.9rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-decoration: none;
-  transition: border-color 150ms ease, background-color 150ms ease;
-}
-
-html[data-theme="dark"] .sourceButton {
-  border-color: rgb(var(--site-color-cream-rgb) / 0.25);
-}
-
-.sourceButton:hover {
-  border-color: var(--site-color-brand-blue);
-  background: var(--site-color-surface-chip);
-  color: var(--ifm-font-color-base);
-  text-decoration: none;
-}
-
-html[data-theme="dark"] .sourceButton:hover {
-  border-color: var(--ifm-color-primary);
-  background: var(--site-color-surface-chip);
-}
-
-.sourceButton:focus-visible {
-  outline: 2px solid var(--site-color-navy);
-  outline-offset: 2px;
-}
-
-html[data-theme="dark"] .sourceButton:focus-visible {
-  outline-color: var(--site-color-amber);
 }
 
 @media (max-width: 768px) {

@@ -156,10 +156,6 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   margin-top: 1.5rem;
 }
 
-.showAllButton {
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
 .allAppsHeader {
   justify-content: space-between;
 }
@@ -234,13 +230,6 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   transition: background-color 150ms ease;
 }
 
-.guidedPathChip::after {
-  content: " →";
-  display: inline-block;
-  margin-left: 0.25rem;
-  transition: transform 150ms ease;
-}
-
 /* The hover must restate cream: without it, Infima's global link hover
    paints the label primary blue, which vanishes on the blue band. The
    wash gives the link its affordance instead of an underline. */
@@ -248,10 +237,6 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   color: var(--site-color-cream);
   text-decoration: none;
   background: rgb(var(--site-color-cream-rgb) / 0.14);
-}
-
-.guidedPathChip:hover::after {
-  transform: translateX(2px);
 }
 
 .guidedPathChip:focus-visible {
@@ -266,7 +251,6 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   padding: 3rem 0 3.5rem;
   margin-bottom: 3.5rem;
 }
-
 
 /* --- Hero circle artwork (see HeroRings in index.js) --- */
 

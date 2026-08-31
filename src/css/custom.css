@@ -241,9 +241,146 @@ h6 {
   font-weight: var(--ifm-font-weight-normal);
 }
 
+/* =============================================================================
+   Primitives. Infima's .button and .badge are the portal's buttons and chips,
+   themed once here; pages compose them and keep only layout in module CSS.
+
+     button button--primary                   filled capsule, brand blue
+     button button--outline button--primary   outlined capsule
+     button--sm (chip-sized links)            button--block (sidebar width)
+     badge badge--primary (deep blue)         badge badge--secondary (grey)
+
+   Amber is a context, not a class: a container that is itself a call to
+   action (the hero, the CTA bands) sets --site-button-primary-bg and
+   --site-button-primary-fg, and every primary button inside it turns amber.
+   Fills are pinned in both themes because the dark --ifm-color-primary is a
+   light lavender that fails contrast under light text.
+
+   cardano.org uses the same --site-radius-* token names (unconsumed so far);
+   when the 2026 brand lands there, this block ports as is and its global
+   30px .button override becomes the radius mappings above.
+   ============================================================================= */
 .button {
-  border-style: solid !important;
-  border-width: 1.3px !important;
+  --ifm-button-font-weight: var(--ifm-font-weight-normal);
+  --ifm-button-padding-vertical: 1em;
+  --ifm-button-padding-horizontal: 1.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-family: var(--site-font-family-mono-label);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.button:hover,
+.button:focus {
+  text-decoration: none;
+}
+
+/* One ring for every button and linked badge: navy on the light page, amber
+   on the dark one. A container that is dark in BOTH themes (the CTA bands)
+   sets --site-button-ring to cream, where either default would vanish. */
+.button:focus-visible,
+a.badge:focus-visible {
+  outline: 2px solid var(--site-button-ring, var(--site-color-navy));
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .button:focus-visible,
+html[data-theme="dark"] a.badge:focus-visible {
+  outline-color: var(--site-button-ring, var(--site-color-amber));
+}
+
+.button--primary {
+  --ifm-button-background-color: var(--site-button-primary-bg, var(--site-color-brand-blue));
+  --ifm-button-border-color: var(--site-button-primary-bg, var(--site-color-brand-blue));
+  --ifm-button-color: var(--site-button-primary-fg, var(--site-color-cream));
+}
+
+/* The fill sits close to the dark page in luminance; a faint edge marks it */
+html[data-theme="dark"] .button--primary:not(.button--outline) {
+  --ifm-button-border-color: rgb(var(--site-color-cream-rgb) / 0.3);
+}
+
+.button--primary:not(.button--outline):hover {
+  --ifm-button-background-color: var(--site-button-primary-bg, var(--site-color-brand-blue));
+  --ifm-button-color: var(--site-button-primary-fg, var(--site-color-cream));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
+}
+
+.button--outline.button--primary {
+  --ifm-button-background-color: transparent;
+  --ifm-button-border-color: rgb(var(--site-color-navy-rgb) / 0.2);
+  --ifm-button-color: var(--ifm-font-color-base);
+}
+
+html[data-theme="dark"] .button--outline.button--primary {
+  --ifm-button-border-color: rgb(var(--site-color-card-text-rgb) / 0.25);
+}
+
+.button--outline.button--primary:hover,
+.button--outline.button--primary:active {
+  --ifm-button-background-color: rgb(var(--site-color-navy-rgb) / 0.05);
+  --ifm-button-border-color: var(--site-color-brand-blue);
+  --ifm-button-color: var(--site-color-brand-blue);
+}
+
+/* The hover wash lightens the surface under the label, which drops plain
+   primary below the text floor; the next step up clears it. */
+html[data-theme="dark"] .button--outline.button--primary:hover,
+html[data-theme="dark"] .button--outline.button--primary:active {
+  --ifm-button-background-color: rgb(var(--site-color-card-text-rgb) / 0.06);
+  --ifm-button-border-color: var(--ifm-color-primary-light);
+  --ifm-button-color: var(--ifm-color-primary-light);
+}
+
+/* The docs sidebar's collapse strip is theme chrome, not a site CTA; give it
+   back Infima's face and geometry. */
+.theme-doc-sidebar-container .button {
+  --ifm-button-padding-vertical: 0.375rem;
+  --ifm-button-padding-horizontal: 1.5rem;
+  gap: 0;
+  font-family: var(--ifm-font-family-base);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Chips and badges: the text face at label size, fills identical in both
+   themes (contrast-picked: cream on deep blue 13:1, navy on the grey). */
+.badge {
+  --ifm-badge-padding-vertical: 3px;
+  --ifm-badge-padding-horizontal: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.78rem;
+  font-weight: var(--ifm-font-weight-normal);
+  line-height: 1.35;
+}
+
+.badge--primary {
+  --ifm-badge-background-color: var(--site-color-blue-deep);
+  --ifm-badge-border-color: var(--site-color-blue-deep);
+  --ifm-badge-color: var(--site-color-cream);
+}
+
+.badge--secondary {
+  --ifm-badge-background-color: var(--site-color-chip-grey);
+  --ifm-badge-border-color: var(--site-color-chip-grey);
+  --ifm-badge-color: var(--site-color-navy);
+  color: var(--ifm-badge-color);
+}
+
+/* Restate the variant's own colour; Infima's link hover would repaint it */
+a.badge:hover {
+  text-decoration: none;
+  color: var(--ifm-badge-color);
 }
 
 @keyframes fadeInUp {
@@ -781,36 +918,11 @@ html[data-theme="dark"] .megaMenuItemLabel {
   color: rgb(var(--site-color-card-text-rgb) / 0.85);
 }
 
-/* Global mirror of the landing page's filled mono chip. The landing version
-   lives in a CSS module (src/pages/styles.module.css), whose classes global
-   CSS cannot compose; unifying both on one global utility is a follow-up. */
+/* Layout hook for the featured tile's badge; the chip itself is the shared
+   badge primitive. */
 .megaMenuFeaturedCta {
   margin-top: 10px;
   align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--site-font-family-mono-label);
-  font-weight: var(--ifm-font-weight-normal);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-size: 0.75rem;
-  padding: 0.65rem 0.9rem 0.65rem 1.1rem;
-  border-radius: 999px;
-  background: var(--site-color-brand-blue);
-  color: var(--site-color-gray-light);
-  transition: background-color 0.16s ease, color 0.16s ease;
-}
-
-.megaMenuFeaturedCtaArrow {
-  width: 10px;
-  height: 10px;
-  display: block;
-}
-
-.megaMenuFeatured:hover .megaMenuFeaturedCta {
-  background: var(--site-color-amber);
-  color: var(--site-color-navy);
 }
 
 /* Keyboard focus: an amber ring reads on the navy panel and navbar in both

@@ -283,35 +283,12 @@ html[data-theme="dark"] .formCol {
   line-height: 1.2;
 }
 
-/* Blue mono chips (landing recipe: monoLabel + pillBlue) */
+/* Actions row; the chips are the shared primary buttons */
 .chipRow {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
   margin-top: clamp(2rem, 4vw, 4rem);
-}
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35em;
-  padding: 0.9em 1.15em;
-  border-radius: 999px;
-  background: var(--site-color-brand-blue);
-  color: var(--site-color-gray-light);
-  font-family: var(--site-font-family-mono-label);
-  font-size: 1rem;
-  font-weight: var(--ifm-font-weight-normal);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  text-decoration: none !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.chip:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgb(var(--site-color-brand-blue-rgb) / 0.25);
-  color: var(--site-color-gray-light);
 }
 
 /* --- READY TO START BUILDING --- */
@@ -321,6 +298,9 @@ html[data-theme="dark"] .formCol {
 }
 
 .band {
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
+  --site-button-ring: var(--site-color-cream);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -369,40 +349,11 @@ html[data-theme="dark"] .formCol {
   color: var(--site-color-cream);
 }
 
-/* Amber pill buttons with navy text (landing CTA family) */
 .pillRow {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(1rem, 2vw, 2.1rem);
   margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75em;
-  min-height: 48px;
-  padding: 0 1.1em 0 1.35em;
-  border-radius: 999px;
-  background: var(--site-color-amber);
-  color: var(--site-color-navy);
-  font-size: 1.05rem;
-  font-weight: var(--ifm-font-weight-normal);
-  line-height: 1.4;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.pill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
-  color: var(--site-color-navy);
-}
-
-.pillArrow {
-  font-size: 1.2em;
-  line-height: 1;
 }
 
 /* The artwork sits in the band's right ~40%, vertically centered and
@@ -418,23 +369,6 @@ html[data-theme="dark"] .formCol {
 }
 
 /* --- FOCUS --- */
-
-/* Ring colors follow the surface: the chips sit on the page background
-   (cream in light mode, where amber lacks contrast), the amber pills on
-   the navy band (where cream reads and amber-on-amber would vanish) */
-.chip:focus-visible {
-  outline: 2px solid var(--site-color-navy);
-  outline-offset: 2px;
-}
-
-html[data-theme="dark"] .chip:focus-visible {
-  outline-color: var(--site-color-amber);
-}
-
-.pill:focus-visible {
-  outline: 2px solid var(--site-color-cream);
-  outline-offset: 2px;
-}
 
 /* --- RESPONSIVE --- */
 

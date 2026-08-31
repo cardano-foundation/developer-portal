@@ -178,17 +178,13 @@ html[data-theme="dark"] .facet.facetActive:hover {
   min-width: 0;
 }
 
-/* Bucket size as the template's Neutral Grey capsule beside the label. The
-   template sets its figure in Clarity, which fails contrast on this fill,
-   so it carries navy instead, like the tool cards' tag chips. */
-.facetCount {
-  padding: 0 5px;
-  border-radius: 999px;
-  background: #ACA6A6;
+/* Bucket size beside the label: the shared grey badge, shrunk to fit the
+   facet row and set in tabular figures so counts align as they change. */
+:global(.badge).facetCount {
+  --ifm-badge-padding-vertical: 0;
+  --ifm-badge-padding-horizontal: 5px;
   font-size: 0.76rem;
-  line-height: 1.35;
   font-variant-numeric: tabular-nums;
-  color: var(--site-color-navy);
 }
 
 .facetRemove {

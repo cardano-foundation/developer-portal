@@ -6,6 +6,7 @@ import {useWindowSize} from '@docusaurus/theme-common';
 import {useLocation} from '@docusaurus/router';
 import icons from './icons';
 import {externalLinkProps} from "@site/src/utils/externalLink";
+import ExternalArrow from "@site/src/components/ExternalArrow";
 
 const HOVER_OPEN_DELAY = 80;
 const HOVER_CLOSE_DELAY = 120;
@@ -29,15 +30,9 @@ function FeaturedTile({featured}) {
         <span className="megaMenuFeaturedDescription">
           {featured.description}
         </span>
-        <span className="megaMenuFeaturedCta">
+        <span className="badge badge--primary megaMenuFeaturedCta">
           {featured.cta}
-          <svg
-            className="megaMenuFeaturedCtaArrow"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true">
-            <path d="M1 23 23 1M3 1.25h19.75V21" stroke="currentColor" strokeWidth="2.4" />
-          </svg>
+          {featured.href && <ExternalArrow />}
         </span>
       </div>
     </Link>
@@ -66,7 +61,12 @@ function MegaColumn({column}) {
                 <span className="megaMenuItemContent">
                   <span className="megaMenuItemLabel">
                     {item.label}
-                    {item.href && <span aria-hidden="true"> ↗</span>}
+                    {item.href && (
+                      <>
+                        {" "}
+                        <ExternalArrow />
+                      </>
+                    )}
                   </span>
                   {item.description && (
                     <span className="megaMenuItemDescription">

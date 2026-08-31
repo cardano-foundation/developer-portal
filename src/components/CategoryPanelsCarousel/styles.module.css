@@ -112,10 +112,6 @@ html[data-theme="dark"] .panelTitle {
   white-space: nowrap;
 }
 
-.seeAll::after {
-  content: " ↗";
-}
-
 .seeAll:hover {
   text-decoration: none;
   color: var(--site-color-text-muted);
