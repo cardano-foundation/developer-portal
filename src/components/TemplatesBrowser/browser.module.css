@@ -130,12 +130,6 @@ html[data-theme="dark"] .filterSection {
 
 .filterHeading {
   margin: 0 0 0.6rem;
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.68rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--site-color-text-muted);
 }
 
 .checkList {
@@ -277,12 +271,6 @@ html[data-theme="dark"] .card:hover {
 .chipLabel {
   display: block;
   margin-bottom: 0.35rem;
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.68rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--site-color-text-muted);
 }
 
 .chips {

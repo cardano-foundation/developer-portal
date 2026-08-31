@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { PageMetadata } from "@docusaurus/theme-common";
@@ -8,8 +8,9 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
 
 import ExternalArrow from "@site/src/components/ExternalArrow";
-import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
+import GitHubIcon from "@site/src/components/GitHubIcon";
 import PageCTA from "@site/src/components/PageCTA";
+import PickBadge from "@site/src/components/PickBadge";
 import {
   TemplateShowcases,
   Frameworks,
@@ -19,29 +20,15 @@ import {
 
 import styles from "./styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
+import useCopyToClipboard from "@site/src/utils/useCopyToClipboard";
 
 function CopyButton({ text }) {
-  const [copied, setCopied] = useState(false);
-  const timerRef = useRef(null);
-  useEffect(() => () => clearTimeout(timerRef.current), []);
-
-  const onClick = async () => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      try {
-        await navigator.clipboard.writeText(text);
-        setCopied(true);
-        clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => setCopied(false), 1500);
-      } catch {
-        // clipboard blocked: fail silently
-      }
-    }
-  };
+  const [copied, copy] = useCopyToClipboard();
 
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={() => copy(text)}
       className={styles.copyButton}
       aria-label="Copy to clipboard"
     >
@@ -56,7 +43,7 @@ function CodeBlock({ code }) {
   return (
     <div className={styles.codeBlock}>
       <div className={styles.codeBar}>
-        <span className={styles.codeLang}>Terminal</span>
+        <span className="monoKicker">Terminal</span>
         <CopyButton text={code} />
       </div>
       <pre className={styles.codePre}>
@@ -124,15 +111,7 @@ export default function TemplateDetail({ slug }) {
 
           <header className={styles.header}>
             {template.maintainerPick && (
-              <span className={clsx("badge badge--primary", styles.pickBadge)}>
-                <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable={false}>
-                  <path
-                    fill="currentColor"
-                    d="M12 2.5l2.9 6.5 7.1.8-5.3 4.9 1.5 7-6.2-3.6L5.8 21.7l1.5-7L2 9.8l7.1-.8z"
-                  />
-                </svg>
-                Maintainer pick
-              </span>
+              <PickBadge className={styles.pickBadge} starSize={14} />
             )}
             <h1 className={styles.title}>{template.title}</h1>
           </header>
@@ -203,8 +182,7 @@ export default function TemplateDetail({ slug }) {
           <PageCTA
             title="Spotted something off?"
             description="This directory is open source. Open a pull request to update or correct this entry."
-            href={editUrl}
-            buttonText={`Edit ${template.title} on GitHub`}
+            buttons={[{ href: editUrl, label: `Edit ${template.title} on GitHub` }]}
           />
         )}
       </main>

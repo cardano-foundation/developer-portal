@@ -10,6 +10,7 @@ import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
 import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
 import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
+import useFacetSelection from "@site/src/components/TemplatesBrowser/useFacetSelection";
 import {
   SortedTemplateShowcases,
   Frameworks,
@@ -61,25 +62,11 @@ function TemplateCard({ template }) {
 
 export default function Templates() {
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState({
-    frameworks: [],
-    sdks: [],
-    wallets: [],
-  });
-
-  const toggle = (group) => (id) =>
-    setSelected((prev) => {
-      const has = prev[group].includes(id);
-      return {
-        ...prev,
-        [group]: has ? prev[group].filter((x) => x !== id) : [...prev[group], id],
-      };
-    });
-
-  const activeCount =
-    selected.frameworks.length + selected.sdks.length + selected.wallets.length;
-
-  const clearAll = () => setSelected({ frameworks: [], sdks: [], wallets: [] });
+  const { selected, toggle, activeCount, clearAll } = useFacetSelection([
+    "frameworks",
+    "sdks",
+    "wallets",
+  ]);
 
   const filtered = useMemo(
     () => filterTemplates(SortedTemplateShowcases, selected, search),

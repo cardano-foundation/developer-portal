@@ -1,7 +1,5 @@
 /* 404 page. The chips follow the brand rule for page surfaces: filled
-   blue mono chips (amber pills are reserved for navy bands). Values kept
-   in lockstep by hand with the talent chips
-   (src/pages/talent/styles.module.css) until a global utility exists. */
+   blue mono chips (amber pills are reserved for navy bands). */
 
 .notFound {
   display: flex;

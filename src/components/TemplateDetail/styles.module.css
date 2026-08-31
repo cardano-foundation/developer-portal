@@ -45,10 +45,6 @@ html[data-theme="dark"] .backLink:focus-visible {
   margin-bottom: 0.6rem;
 }
 
-.pickBadge svg {
-  color: var(--site-color-amber);
-}
-
 .title {
   margin: 0;
   font-size: clamp(1.8rem, 4vw, 2.4rem);
@@ -125,15 +121,6 @@ html[data-theme="dark"] .backLink:focus-visible {
 
 html[data-theme="dark"] .codeBar {
   border-bottom-color: var(--site-color-card-border);
-}
-
-.codeLang {
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.68rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--site-color-text-muted);
 }
 
 .copyButton {

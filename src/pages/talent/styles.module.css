@@ -1,10 +1,7 @@
 /* stylelint-disable docusaurus/copyright-header */
 
-/* Talent pool page. Brand tokens live in src/css/custom.css. The blue chip
-   recipe mirrors the landing module (src/pages/styles.module.css); CSS
-   modules cannot compose across files, so the values are kept in lockstep
-   by hand until a global utility exists. The amber pills are this page's
-   own button family: uppercase regular Chivo, not the mono chip face. */
+/* Talent pool page. Brand tokens live in src/css/custom.css; the chips are
+   the shared button primitive, and the closing band is the shared PageCTA. */
 
 /* Same widened content band as the landing page: the cap includes the
    container's own padding, so 1731 with 78px gutters leaves 1575px. */
@@ -291,85 +288,6 @@ html[data-theme="dark"] .formCol {
   margin-top: clamp(2rem, 4vw, 4rem);
 }
 
-/* --- READY TO START BUILDING --- */
-
-.bandSection {
-  padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
-}
-
-.band {
-  --site-button-primary-bg: var(--site-color-amber);
-  --site-button-primary-fg: var(--site-color-navy);
-  --site-button-ring: var(--site-color-cream);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  gap: clamp(1.5rem, 2.5vw, 2.7rem);
-  min-height: clamp(230px, 19vw, 370px);
-  padding: clamp(1.5rem, 2vw, 1.875rem);
-  border-radius: 20px;
-  background: var(--site-color-card-surface);
-  color: var(--site-color-card-text);
-}
-
-.bandIcon {
-  /* Lifted above the absolutely positioned artwork, like .bandContent.
-     The glyph is stroked, so it colors through currentColor. */
-  position: relative;
-  z-index: 1;
-  flex: none;
-  width: clamp(40px, 4vw, 68px);
-  height: auto;
-  color: var(--site-color-brand-blue);
-}
-
-.bandContent {
-  position: relative;
-  z-index: 1;
-  /* The percentage cap keeps the copy clear of the absolutely positioned
-     artwork, which flex layout does not reserve space for */
-  max-width: min(55%, 811px);
-}
-
-/* Tight title-to-text pairing, then air before the buttons */
-.bandTitle {
-  margin: 0 0 clamp(0.6rem, 1.1vw, 1.2rem);
-  font-size: clamp(1.9rem, 2.9vw, 3.25rem);
-  font-weight: var(--site-font-weight-display);
-  line-height: 0.95;
-  color: var(--site-color-cream);
-}
-
-.bandText {
-  margin: 0;
-  font-size: clamp(1.05rem, 1.65vw, 1.875rem);
-  font-weight: var(--ifm-font-weight-light);
-  line-height: 1.25;
-  color: var(--site-color-cream);
-}
-
-.pillRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1rem, 2vw, 2.1rem);
-  margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
-}
-
-/* The artwork sits in the band's right ~40%, vertically centered and
-   cropped by the rounded corners, with clear navy between it and the copy */
-.bandArt {
-  position: absolute;
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 41%;
-  height: auto;
-  pointer-events: none;
-}
-
-/* --- FOCUS --- */
-
 /* --- RESPONSIVE --- */
 
 @media screen and (max-width: 996px) {
@@ -386,18 +304,5 @@ html[data-theme="dark"] .formCol {
   .formCol,
   .howText {
     order: 0;
-  }
-
-  .band {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .bandContent {
-    max-width: 100%;
-  }
-
-  .bandArt {
-    display: none;
   }
 }

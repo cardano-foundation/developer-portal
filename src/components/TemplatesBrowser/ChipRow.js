@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 
 import styles from "./browser.module.css";
 
@@ -9,7 +10,7 @@ export default function ChipRow({ label, ids = [], taxonomy }) {
   if (!ids.length) return null;
   return (
     <div className={styles.chipGroup}>
-      <span className={styles.chipLabel}>{label}</span>
+      <span className={clsx("monoKicker", styles.chipLabel)}>{label}</span>
       <div className={styles.chips}>
         {ids.map((id) => (
           <span key={id} className="badge badge--secondary">

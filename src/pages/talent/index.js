@@ -5,7 +5,7 @@ import ogCards from "@site/static/img/og/pages/manifest.json";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
-import FileIcon from "@site/static/img/icons/file-outline.svg";
+import PageCTA from "@site/src/components/PageCTA";
 import styles from "./styles.module.css";
 
 const TITLE = "Cardano Developer Talent Pool";
@@ -118,43 +118,8 @@ function HowItWorksSection() {
   );
 }
 
-function StartBuildingSection() {
-  return (
-    <section className={styles.bandSection}>
-      <div className="container">
-        <div className={styles.band}>
-          <FileIcon className={styles.bandIcon} aria-hidden="true" />
-          <div className={styles.bandContent}>
-            <h2 className={styles.bandTitle}>Ready to Start Building?</h2>
-            <p className={styles.bandText}>
-              Explore Cardano development today with guides, tutorials,
-              and builder tools.
-            </p>
-            <div className={styles.pillRow}>
-              <Link className="button button--primary" to="/docs/developers/">
-                Get Started
-              </Link>
-              <Link className="button button--primary" to="/docs/developers/curriculum/start-building/choose-your-tools/">
-                Client SDKs
-              </Link>
-              <Link className="button button--primary" to="/docs/developers/curriculum/smart-contracts/overview/">
-                Smart Contracts
-              </Link>
-            </div>
-          </div>
-          <img
-            className={styles.bandArt}
-            src={useBaseUrl("img/talent/start-building-cubes.webp")}
-            alt=""
-            aria-hidden="true"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function TalentPoolPage() {
+  const bandArt = useBaseUrl("img/talent/start-building-cubes.webp");
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <PageMetadata image={ogCards.talent} />
@@ -162,7 +127,22 @@ export default function TalentPoolPage() {
         <HeroSection />
         <JoinSection />
         <HowItWorksSection />
-        <StartBuildingSection />
+        <PageCTA
+          title="Ready to Start Building?"
+          description="Explore Cardano development today with guides, tutorials, and builder tools."
+          buttons={[
+            { href: "/docs/developers/", label: "Get Started" },
+            {
+              href: "/docs/developers/curriculum/start-building/choose-your-tools/",
+              label: "Client SDKs",
+            },
+            {
+              href: "/docs/developers/curriculum/smart-contracts/overview/",
+              label: "Smart Contracts",
+            },
+          ]}
+          art={bandArt}
+        />
       </main>
     </Layout>
   );

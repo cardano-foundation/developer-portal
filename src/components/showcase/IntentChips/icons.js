@@ -10,7 +10,6 @@ import React from "react";
 function Glyph({ children }) {
   return (
     <svg
-      className="intentGlyph"
       width="18"
       height="18"
       viewBox="0 0 24 24"

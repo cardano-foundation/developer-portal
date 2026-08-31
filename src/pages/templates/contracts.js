@@ -11,7 +11,8 @@ import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
 import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
 import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
-import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
+import useFacetSelection from "@site/src/components/TemplatesBrowser/useFacetSelection";
+import GitHubIcon from "@site/src/components/GitHubIcon";
 import {
   SortedContractShowcases,
   ContractSources,
@@ -163,26 +164,11 @@ function ContractCard({ contract }) {
 
 export default function Contracts() {
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState({
-    categories: [],
-    onchain: [],
-    offchain: [],
-  });
-
-  const toggle = (group) => (id) =>
-    setSelected((prev) => {
-      const has = prev[group].includes(id);
-      return {
-        ...prev,
-        [group]: has ? prev[group].filter((x) => x !== id) : [...prev[group], id],
-      };
-    });
-
-  const activeCount =
-    selected.categories.length + selected.onchain.length + selected.offchain.length;
-
-  const clearAll = () =>
-    setSelected({ categories: [], onchain: [], offchain: [] });
+  const { selected, toggle, activeCount, clearAll } = useFacetSelection([
+    "categories",
+    "onchain",
+    "offchain",
+  ]);
 
   const filtered = useMemo(
     () => filterContracts(SortedContractShowcases, selected, search),
