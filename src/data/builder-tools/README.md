@@ -1,28 +1,28 @@
 # Builder Tools: how the code fits together
 
-The `/tools` page is a port of the cardano.org/apps app-store UX, adapted to developer tools. This note maps where everything lives and the contracts that keep it working.
+The `/tools` page is an app-store-style directory of developer tools. This note maps where everything lives and the contracts that keep it working.
 
 ## Feature map
 
-- `src/data/builder-tools/`, the data layer: `tools.js` (the catalog), `tags.js` (taxonomy: categories + language/interface properties), `validation.js` (build-time checks), `showcase.js` (adapter, see below).
-- `src/data/builder-tools.js`, entry point: imports the catalog, validates every entry at build time, exports the sorted list.
+- `src/data/builder-tools/`, the data layer: `tools.js` (the entries), `tags.js` (taxonomy: categories + language/interface properties), `validation.js` (build-time checks), `slug.js` (the `/tools/<slug>` derivation), `catalog.js` (adapter, see below).
+- `src/data/builder-tools.js`, entry point: imports the entries, validates each at build time, exports the sorted list.
 - `src/pages/tools/index.js`, the `/tools` page (hero, intents, filters, sort, category browse, picks).
 - `plugins/tools-routes/`, Docusaurus plugin that generates a static `/tools/<slug>` route per tool, rendered by `src/components/ToolDetail/`.
-- `src/components/`, the ported UI: `AppTile`, `AppRow`, `AppIcon`, `AppTileCarousel`, `CategoryPanelsCarousel`, `AppFilterPanel`, `PageCTA`, `Layout/SiteHero`, plus the filter/sort controls in `src/components/showcase/` (`IntentChips`, `ShowcaseSort`, `ShowcaseTagSelect`, `ShowcaseTooltip`, `InfoDot`).
-- `src/utils/toolStats.js`, shared listing helpers: recent/NEW badge, card blurb, and category/property matching for the filter panel. (cardano-org's `appStats.js` tx metrics were not ported; tools have no on-chain tx data.)
+- `src/components/`, the UI: `ToolTile`, `ToolRow`, `ToolIcon`, `ToolTileCarousel`, `CategoryPanelsCarousel`, `ToolFilterPanel`, `PageCTA`, `SiteHero`, plus the filter/sort controls in `src/components/tools/` (`IntentChips`, `ToolSort`, `Tooltip`, `InfoDot`, and the `tagQueryString.js` URL helpers).
+- `src/utils/toolDisplay.js`, shared listing helpers: recent/NEW badge and card blurb.
 
 ## Data flow
 
-`tools.js` (catalog) → `builder-tools.js` (validate + sort) → `showcase.js` (adds the URL `slug`, shapes entries for the components) → page + components.
+`tools.js` (entries) → `builder-tools.js` (validate + sort) → `catalog.js` (adds the URL `slug`, shapes entries for the components) → page + components.
 
-## Parity with cardano.org
+## Relationship to cardano.org
 
-Component names, folder layout, and data export names (`AppTile`, `AppRow`, `showcase/*`, `Showcases`, `SortedShowcases`, ...) are intentionally kept 1:1 with the `/apps` feature in the cardano-org repo. That's what lets an improvement in one repo port to the other with minimal friction. The names read app-flavored on purpose; don't rename one side alone.
+The UX began as a port of the `/apps` feature in the cardano-org repo, originally kept name-for-name in sync. The two implementations have since diverged (this side moved to shared Infima primitives and portal component names), so treat cardano-org as this feature's ancestor, not a mirror: port ideas deliberately, not diffs.
 
 ## Contracts to not break
 
-- `slugify()` in `plugins/tools-routes/index.js` must byte-match the one in `showcase.js`. If they diverge, detail routes 404.
-- `prepareUserState()` exported from `src/pages/tools/index.js` is imported by `ShowcaseTagSelect`; keep it exported as a hoisted function declaration.
+- The `/tools/<slug>` derivation lives in `slug.js`, shared by `catalog.js` and `plugins/tools-routes`, so generated routes and detail-page lookups can't diverge.
+- The `?tags=` URL format is owned by `src/components/tools/tagQueryString.js`; the filter panel, the intent chips, and the page all read it through those helpers.
 - `category` and `properties` values must exist in `tags.js`; `yarn build` fails otherwise (see `validation.js`).
 
 ## Adding or curating tools

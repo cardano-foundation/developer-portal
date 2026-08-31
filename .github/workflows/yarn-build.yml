@@ -2,7 +2,15 @@ name: "Yarn Build"
 
 on:
   push:
+    branches: [staging, main]
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -12,12 +20,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Install
-        uses: ./.github/actions/yarn-build
+      - name: Set up Node
+        uses: actions/setup-node@v7
         with:
-          cmd: install
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - name: Install
+        run: yarn install --frozen-lockfile
 
       - name: Build
-        uses: ./.github/actions/yarn-build
-        with:
-          cmd: build
+        run: yarn build

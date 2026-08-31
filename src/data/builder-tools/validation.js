@@ -1,4 +1,4 @@
-import { difference } from "@site/src/utils/jsUtils";
+import { difference } from "@site/src/utils/arrays";
 import { CategoryList, PropertyList } from "./tags";
 
 // Fail-fast on common errors (runs at build via builder-tools.js).

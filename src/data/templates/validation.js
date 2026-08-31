@@ -1,4 +1,4 @@
-import { difference } from "@site/src/utils/jsUtils";
+import { difference } from "@site/src/utils/arrays";
 import { FrameworkList, SdkList, WalletList } from "./tags";
 
 // Fail-fast on common errors (runs at build via src/data/templates.js).

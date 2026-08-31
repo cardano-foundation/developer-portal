@@ -5,7 +5,7 @@
 // Contributors: edit ./contracts/contracts.js to add a contract.
 // ============================================================================
 
-import { sortBy } from "@site/src/utils/jsUtils";
+import { sortBy } from "@site/src/utils/arrays";
 import { Contracts } from "./contracts/contracts";
 import {
   OnchainLangs,

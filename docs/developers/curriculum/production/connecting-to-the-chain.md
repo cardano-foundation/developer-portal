@@ -47,7 +47,7 @@ Inside your SDK, a provider is also an **interface**: a small contract the SDK c
 - A **read** side: fetch a UTXO set, protocol parameters, and account or asset info (Mesh names this `IFetcher`; Evolution exposes the same reads through its provider).
 - A **write** side: submit a signed transaction (Mesh's `ISubmitter`).
 
-Because the SDK only depends on that contract, anything that implements it is a valid provider: a hosted service, your own stack, a private indexer, even an in-memory fixture. Two pages already use this: the [failover and cache wrapper](/docs/developers/curriculum/production/going-to-production#harden-your-provider) that composes several providers behind one interface, and the [offline fetcher](/docs/developers/curriculum/start-building/offline-testing#mock-the-data-source) that serves fixed UTXOs to a test suite with no network at all.
+Because the SDK only depends on that contract, anything that implements it is a valid provider: a hosted service, your own stack, a private indexer, even an in-memory fixture. Two pages already use this: the [failover and cache wrapper](/docs/developers/curriculum/production/going-to-production#harden-your-provider) that composes several providers behind one interface, and the [in-memory emulator](/docs/developers/curriculum/start-building/local-testing#the-in-memory-emulator) that serves a simulated ledger to a test suite with no network at all.
 
 ## The categories
 
@@ -71,7 +71,7 @@ Transaction submission options:
 
 ### Indexers
 
-**db-sync, Kupo, Oura, Adder, Yaci Store.** The node holds the whole chain, but not in a form an application can query: there is no "UTXOs at this address" lookup inside cardano-node. An **indexer** follows the chain and stores what it sees in a queryable shape. The shapes differ, and picking by shape is the whole game: a full SQL copy (db-sync), a filtered UTXO set (Kupo), an event stream (Oura, Adder), or modular per-table stores (Yaci Store). What they share is the hard part, which is that the chain can take blocks back, so an index has to be able to unwind. [Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics) covers the shapes, that problem, and builds one out.
+**db-sync, Kupo, Oura, Adder, Yaci Store.** The node holds the whole chain, but not in a form an application can query: there is no "UTXOs at this address" lookup inside cardano-node. An **indexer** follows the chain and stores what it sees in a queryable shape. The shapes differ, and picking by shape is the whole game: a full SQL copy (db-sync), a filtered UTXO set (Kupo), an event stream (Oura, Adder), or modular per-table stores (Yaci Store). What they share is the hard part, which is that the chain can take blocks back, so an index has to be able to unwind. [Custom indexing & analytics](/docs/developers/curriculum/production/indexing-and-analytics) covers the shapes, that problem, and builds one out. [Builder Tools](/tools/?tags=indexer) has the full set.
 
 ### The full node
 
