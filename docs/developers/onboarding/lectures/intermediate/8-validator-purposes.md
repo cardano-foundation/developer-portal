@@ -129,7 +129,7 @@ Read the arguments, because they differ from `spend`. **No datum reaches this ha
 
 `self.mint` holds everything the transaction creates or destroys, under every policy. `assets.tokens` gives back only the tokens minted under this one, as a dictionary of token name to amount, and `dict.to_pairs` turns that into a list. Matching the list against `[Pair(name, _)]` succeeds only if it holds exactly one entry, so the transaction cannot mint a second name under this policy. `name == vault_token` then decides which name that has to be.
 
-**Notice which script this is.** The vault takes `recovery` as a parameter and this policy takes none, so the two hashes move independently. Change your backup key and the vault's address changes, from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. The policy id stays exactly where it was, because there is nothing in it to change. Every reader of this track ends up with a different vault and the same token.
+**Notice which script this is.** The vault takes `recovery` as a parameter, and this policy takes none, so no need to apply parameters to this one. Change your backup key, and the vault's address changes, from **[parameters](/docs/developers/onboarding/lectures/intermediate/parameters)**. The policy ID stays exactly where it was, because there is nothing to change. Every reader of this track ends up with a different vault and the same token.
 
 ```bash
 aiken check
