@@ -125,7 +125,7 @@ export default function AppFilterPanel() {
         {/* The count is decoration on top of the label, which already names
             the facet, so it stays out of the accessible name. */}
         {showCount && !isActive && (
-          <span className={styles.facetCount} aria-hidden="true">
+          <span className={clsx("badge badge--secondary", styles.facetCount)} aria-hidden="true">
             {FACET_COUNTS[key] ?? 0}
           </span>
         )}

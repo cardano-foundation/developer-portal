@@ -30,7 +30,8 @@ module.exports = function templatesRoutesPlugin(context) {
         source = fs.readFileSync(templatesPath, "utf8");
       } catch (e) {
         throw new Error(
-          `templates-routes: could not read src/data/templates/templates.js (${e.message})`
+          `templates-routes: could not read src/data/templates/templates.js (${e.message})`,
+          { cause: e }
         );
       }
       // Entry repoPaths only: line-leading horizontal whitespace + `repoPath: "..."`.
@@ -51,6 +52,11 @@ module.exports = function templatesRoutesPlugin(context) {
         }
         seen.add(slug);
         slugs.push(slug);
+      }
+      if (slugs.length === 0) {
+        throw new Error(
+          "templates-routes: found no template entries in templates.js; the entry pattern no longer matches"
+        );
       }
       return slugs;
     },

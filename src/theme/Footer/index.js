@@ -6,6 +6,7 @@ import DiscordIcon from '@site/static/img/icons/discord.svg';
 import GithubIcon from '@site/static/img/icons/github.svg';
 import styles from './styles.module.css';
 import {externalLinkProps} from "@site/src/utils/externalLink";
+import ExternalArrow from "@site/src/components/ExternalArrow";
 
 const socialIcons = {
   discord: DiscordIcon,
@@ -20,7 +21,12 @@ function FooterLink({item}) {
       href={item.href}
       {...externalLinkProps(item.href)}>
       {item.label}
-      {item.href && <span aria-hidden="true"> ↗</span>}
+      {item.href && (
+        <>
+          {" "}
+          <ExternalArrow />
+        </>
+      )}
     </Link>
   );
 }

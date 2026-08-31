@@ -28,7 +28,15 @@ module.exports = function toolsRoutesPlugin(context) {
         context.siteDir,
         "src/data/builder-tools/tools.js"
       );
-      const source = fs.readFileSync(toolsPath, "utf8");
+      let source;
+      try {
+        source = fs.readFileSync(toolsPath, "utf8");
+      } catch (e) {
+        throw new Error(
+          `tools-routes: could not read src/data/builder-tools/tools.js (${e.message})`,
+          { cause: e }
+        );
+      }
       // Entry titles only: line-leading horizontal whitespace + `title: "..."`.
       // The how-to comment block uses ` * ` line prefixes and won't match.
       const titleRegex = /^[^\S\n]*title:\s*"((?:[^"\\]|\\.)*)"/gm;
@@ -47,6 +55,11 @@ module.exports = function toolsRoutesPlugin(context) {
         }
         seen.add(slug);
         slugs.push(slug);
+      }
+      if (slugs.length === 0) {
+        throw new Error(
+          "tools-routes: found no tool entries in tools.js; the entry pattern no longer matches"
+        );
       }
       return slugs;
     },

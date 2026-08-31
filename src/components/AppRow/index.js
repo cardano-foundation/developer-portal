@@ -34,19 +34,19 @@ function AppRow({ app, compact = false }) {
               ★
             </span>
           )}
-          {recent && <span className={styles.newBadge}>{NEW_LABEL}</span>}
+          {recent && <span className={clsx("badge badge--primary", styles.newBadge)}>{NEW_LABEL}</span>}
         </h4>
         <p className={styles.description}>{getAppBlurb(app)}</p>
         {!compact && (
           <div className={styles.tags}>
             {categoryDef && (
-              <span className={styles.tag}>{categoryDef.label}</span>
+              <span className="badge badge--secondary">{categoryDef.label}</span>
             )}
             {app.properties.slice(0, 2).map((p) => {
               const def = Properties[p];
               if (!def) return null;
               return (
-                <span key={p} className={styles.tag}>
+                <span key={p} className="badge badge--secondary">
                   {def.label}
                 </span>
               );

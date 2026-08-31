@@ -66,7 +66,7 @@
   height: 100%;
   padding: 1.875rem 2.5rem;
   border: 1px solid #ACA6A6;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-cream);
 }
 
@@ -110,10 +110,6 @@ html[data-theme="dark"] .panelTitle {
   color: #ACA6A6;
   text-decoration: none;
   white-space: nowrap;
-}
-
-.seeAll::after {
-  content: " ↗";
 }
 
 .seeAll:hover {

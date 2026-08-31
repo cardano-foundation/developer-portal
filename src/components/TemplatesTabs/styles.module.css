@@ -11,7 +11,7 @@
   gap: 0.25rem;
   margin: 0;
   padding: 0.25rem;
-  border-radius: 10px;
+  border-radius: var(--site-radius-md);
   background: rgb(var(--site-color-cream-rgb) / 0.1);
 }
 
@@ -19,7 +19,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 1rem;
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   font-size: 0.92rem;
   font-weight: var(--ifm-font-weight-semibold);
   /* 9.27:1 against the track over navy */

@@ -60,7 +60,7 @@
   background: var(--site-color-surface-raised);
   border: 1px solid transparent;
   color: var(--ifm-font-color-base);
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   padding: 0.7rem 0.95rem;
   font-size: 0.92rem;
   font-weight: var(--ifm-font-weight-semibold);
@@ -108,7 +108,10 @@ html[data-theme="dark"] .intentChip.intentChipActive:hover {
 }
 
 @media (max-width: 600px) {
+  /* The base list is a grid, where flex-wrap is inert; the strip needs flex
+     for nowrap + horizontal scroll to actually happen. */
   .intentList {
+    display: flex;
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: 0.5rem;
