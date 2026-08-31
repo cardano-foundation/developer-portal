@@ -383,6 +383,17 @@ a.badge:hover {
   color: var(--ifm-badge-color);
 }
 
+/* Mono kicker: the small uppercase Chivo Mono label over filter groups,
+   chip rows, and code bars. Consumers keep only their own spacing. */
+.monoKicker {
+  font-family: var(--site-font-family-mono-label);
+  font-size: 0.68rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--site-color-text-muted);
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;

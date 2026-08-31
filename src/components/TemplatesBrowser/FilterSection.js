@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 
 import styles from "./browser.module.css";
 
@@ -8,7 +9,7 @@ import styles from "./browser.module.css";
 export default function FilterSection({ heading, list, taxonomy, selected, onToggle }) {
   return (
     <div className={styles.filterSection}>
-      <h3 className={styles.filterHeading}>{heading}</h3>
+      <h3 className={clsx("monoKicker", styles.filterHeading)}>{heading}</h3>
       <ul className={styles.checkList}>
         {list.map((id) => (
           <li key={id}>

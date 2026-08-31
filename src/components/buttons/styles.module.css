@@ -1,128 +1,105 @@
-/* Amber in both themes; navy glyph for contrast. The border must stay 1px:
-   the plus-glyph bars below are positioned against the 48px padding box it
-   creates, and meet edge-to-edge only at that size. Background-colored, so
-   it reads as no border. */
-.iconBtn {
-  border: 1px solid var(--site-color-amber);
-  background-color: var(--site-color-amber);
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  overflow: hidden;
-  transition: width 0.2s ease-in-out;
+/* The floating contribute button: the shared primary button as a fixed 50px
+   circle, amber in both themes via the amber context, expanding on hover to
+   reveal its label. The border must stay 1px: the plus-glyph bars below are
+   positioned against the 48px padding box it creates, and meet edge-to-edge
+   only at that size. */
+.fab {
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
+  --ifm-button-padding-vertical: 0;
+  --ifm-button-padding-horizontal: 0;
   position: fixed;
   bottom: 30px;
   right: 30px;
   z-index: 999;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    width 0.2s ease-in-out;
 }
 
-/* Keyboard focus gets a visible ring; the bare outline reset is only for
-   mouse clicks, where the hover expansion already signals the state */
-.iconBtn:focus {
-  outline: none;
-}
-
-.iconBtn:focus-visible {
-  outline: 3px solid var(--site-color-navy);
-  outline-offset: 2px;
-}
-
-/* The offset puts the ring outside the button, on the page rather than on the
-   amber fill, so in dark mode a navy ring sat on the dark page at about
-   1.1:1 and was effectively invisible. This renders on the landing page and
-   on /tools. */
-html[data-theme="dark"] .iconBtn:focus-visible {
-  outline-color: var(--site-color-amber);
-}
-
-.addBtn:hover {
+.fab:hover {
   width: 180px;
-  cursor: pointer;
 }
 
-.addBtn::before,
-.addBtn::after {
-  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+/* The plus glyph, drawn from four bars: the horizontal stubs ride on the
+   button itself, the vertical pair on the inner span. On hover the four
+   retreat into small dots flanking the label. */
+.fab::before,
+.fab::after {
   content: "";
   position: absolute;
   height: 4px;
   width: 10px;
   top: calc(50% - 2px);
   background: var(--site-color-navy);
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
 }
 
-.addBtn::after {
-  right: 14px;
-  overflow: hidden;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
-.addBtn::before {
+.fab::before {
   left: 14px;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 }
 
-.addBtn:hover::before,
-.addBtn:hover::after {
+.fab::after {
+  right: 14px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.fab:hover::before,
+.fab:hover::after {
   width: 4px;
   border-radius: 2px;
 }
 
-.btnText {
-  opacity: 0;
-  transition: opacity 0.2s;
-  color: var(--site-color-navy);
-  text-decoration: none;
-}
-
-.btnText:hover {
-  color: var(--site-color-navy);
-  text-decoration: none;
-}
-
-.addBtn:hover .btnText {
-  opacity: 1;
-  transition: opacity 1s;
-}
-
-.addIcon::after,
-.addIcon::before {
-  transition: all 0.2s ease-in-out;
+.glyph::before,
+.glyph::after {
   content: "";
   position: absolute;
   height: 20px;
   width: 2px;
   top: calc(50% - 10px);
   background: var(--site-color-navy);
-  overflow: hidden;
+  transition: all 0.2s ease-in-out;
 }
 
-.addIcon::before {
+.glyph::before {
   left: 22px;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 }
 
-.addIcon::after {
+.glyph::after {
   right: 22px;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
 
-.addBtn:hover .addIcon::before {
+.fab:hover .glyph::before {
   left: 15px;
   height: 4px;
   top: calc(50% - 2px);
 }
 
-.addBtn:hover .addIcon::after {
+.fab:hover .glyph::after {
   right: 15px;
   height: 4px;
   top: calc(50% - 2px);
 }
 
-.btnSpan {
-  font-weight: var(--ifm-font-weight-bold);
+/* The label rides hidden in the circle and fades in as it widens. */
+.label {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.fab:hover .label {
+  opacity: 1;
+  transition: opacity 1s;
 }

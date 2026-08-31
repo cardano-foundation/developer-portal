@@ -43,7 +43,7 @@ function CodeBlock({ code }) {
   return (
     <div className={styles.codeBlock}>
       <div className={styles.codeBar}>
-        <span className={styles.codeLang}>Terminal</span>
+        <span className="monoKicker">Terminal</span>
         <CopyButton text={code} />
       </div>
       <pre className={styles.codePre}>

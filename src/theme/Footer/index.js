@@ -72,10 +72,7 @@ function Footer() {
 
         <div className={styles.columns}>
           {footer.columns.map((column) => (
-            <nav
-              key={column.title}
-              className={styles.column}
-              aria-label={`${column.title} links`}>
+            <nav key={column.title} aria-label={`${column.title} links`}>
               <div className={styles.columnTitle}>{column.title}</div>
               <ul className={styles.linkList}>
                 {column.items.map((item) => (

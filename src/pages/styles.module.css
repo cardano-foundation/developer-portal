@@ -702,7 +702,7 @@ html[data-theme="dark"] .ecoCardDesc {
   flex-direction: column;
   gap: 0.625rem;
   padding: 1rem 1.25rem;
-  border-radius: 19px;
+  border-radius: 20px;
   background: #25242d;
   min-width: 0;
 }

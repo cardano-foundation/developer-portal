@@ -123,15 +123,6 @@ html[data-theme="dark"] .codeBar {
   border-bottom-color: var(--site-color-card-border);
 }
 
-.codeLang {
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.68rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--site-color-text-muted);
-}
-
 .copyButton {
   padding: 0.2rem 0.6rem;
   border-radius: var(--site-radius-md);

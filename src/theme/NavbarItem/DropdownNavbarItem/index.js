@@ -47,7 +47,7 @@ function MegaColumn({column}) {
         {column.items.map((item) => {
           const Icon = icons[item.icon];
           return (
-            <li className="megaMenuItem" key={item.label}>
+            <li key={item.label}>
               <Link
                 className="megaMenuItemLink"
                 to={item.to}

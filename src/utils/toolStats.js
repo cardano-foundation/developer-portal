@@ -1,5 +1,5 @@
 // Shared helpers for the builder-tools listing: NEW badge for recently added
-// tools, card blurbs, and category/property matching for the filter panel.
+// tools and card blurbs.
 
 import {
   Showcases,
@@ -16,8 +16,4 @@ export function getAppBlurb(app) {
 
 export function isRecent(app) {
   return RECENT_SLUGS.has(app.slug);
-}
-
-export function appHasTag(app, tag) {
-  return app.category === tag || (app.properties || []).includes(tag);
 }
