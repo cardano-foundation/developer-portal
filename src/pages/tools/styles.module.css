@@ -47,7 +47,7 @@
   width: 100%;
   height: clamp(60px, 5vw, 86px);
   padding: 0 31px;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   border: 1px solid var(--site-color-light-grey);
   background: var(--site-color-cream);
   font-size: 1rem;
@@ -156,10 +156,6 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   margin-top: 1.5rem;
 }
 
-.showAllButton {
-  font-weight: var(--ifm-font-weight-semibold);
-}
-
 .allAppsHeader {
   justify-content: space-between;
 }
@@ -188,7 +184,7 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   flex-wrap: wrap;
   margin-bottom: 2.5rem;
   padding: 1.5rem 2.5rem;
-  border-radius: 11px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-brand-blue);
 }
 
@@ -226,19 +222,12 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
 .guidedPathChip {
   display: inline-block;
   padding: 0.35rem 0.7rem;
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   font-size: 1.33rem;
   font-weight: var(--ifm-font-weight-normal);
   color: var(--site-color-cream);
   text-decoration: none;
   transition: background-color 150ms ease;
-}
-
-.guidedPathChip::after {
-  content: " →";
-  display: inline-block;
-  margin-left: 0.25rem;
-  transition: transform 150ms ease;
 }
 
 /* The hover must restate cream: without it, Infima's global link hover
@@ -248,10 +237,6 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   color: var(--site-color-cream);
   text-decoration: none;
   background: rgb(var(--site-color-cream-rgb) / 0.14);
-}
-
-.guidedPathChip:hover::after {
-  transform: translateX(2px);
 }
 
 .guidedPathChip:focus-visible {
@@ -266,7 +251,6 @@ html[data-theme="dark"] .sectionTitle.sectionTitleMuted {
   padding: 3rem 0 3.5rem;
   margin-bottom: 3.5rem;
 }
-
 
 /* --- Hero circle artwork (see HeroRings in index.js) --- */
 

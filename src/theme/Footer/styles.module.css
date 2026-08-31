@@ -64,7 +64,7 @@
 .socialLink {
   width: 38px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

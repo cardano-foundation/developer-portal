@@ -7,6 +7,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
 
+import ExternalArrow from "@site/src/components/ExternalArrow";
 import GitHubIcon from "@site/src/components/TemplatesBrowser/GitHubIcon";
 import PageCTA from "@site/src/components/PageCTA";
 import {
@@ -18,7 +19,6 @@ import {
 
 import styles from "./styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
-
 
 function CopyButton({ text }) {
   const [copied, setCopied] = useState(false);
@@ -124,7 +124,7 @@ export default function TemplateDetail({ slug }) {
 
           <header className={styles.header}>
             {template.maintainerPick && (
-              <span className={styles.pickBadge}>
+              <span className={clsx("badge badge--primary", styles.pickBadge)}>
                 <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable={false}>
                   <path
                     fill="currentColor"
@@ -152,7 +152,7 @@ export default function TemplateDetail({ slug }) {
               <h2 className={styles.sectionHeading}>Get started</h2>
               <p className={styles.guideNote}>
                 You need Node.js 20.19+, a Cardano wallet browser extension, and a
-                free <Link href="https://blockfrost.io">Blockfrost</Link> project
+                free <Link href="https://blockfrost.io" {...EXTERNAL_LINK_PROPS}>Blockfrost</Link> project
                 ID. Get test ADA from the{" "}
                 <Link to="/docs/developers/curriculum/start-building/networks-and-test-ada#get-test-ada">
                   faucet
@@ -179,6 +179,7 @@ export default function TemplateDetail({ slug }) {
               >
                 <GitHubIcon size={16} />
                 Read the template README on GitHub
+                <ExternalArrow />
               </Link>
             </div>
 
@@ -188,11 +189,12 @@ export default function TemplateDetail({ slug }) {
               <MetaRow label="Wallet" value={Wallets[template.wallet]?.label} />
               <Link
                 href={template.githubUrl}
-                className={styles.sourceButton}
+                className={clsx("button button--outline button--primary button--block", styles.sourceButton)}
                 {...EXTERNAL_LINK_PROPS}
               >
                 <GitHubIcon size={18} />
                 View source on GitHub
+                <ExternalArrow />
               </Link>
             </aside>
           </div>

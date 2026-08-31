@@ -6,6 +6,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
+import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
 import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
 import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
@@ -125,12 +126,12 @@ export default function Templates() {
               aria-label="Search templates"
             />
             <a
-              className={styles.contributeButton}
+              className={clsx("button button--primary button--block", styles.contributeButton)}
               href="https://github.com/cardano-foundation/developer-portal/blob/staging/examples/templates/README.md"
               {...EXTERNAL_LINK_PROPS}
             >
-              <span aria-hidden="true">+</span>
               Contribute a template
+              <ExternalArrow />
             </a>
             <FilterSection
               heading="Frameworks"
@@ -174,7 +175,7 @@ export default function Templates() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="button button--secondary"
+                    className="button button--outline button--primary"
                   >
                     Clear filters
                   </button>

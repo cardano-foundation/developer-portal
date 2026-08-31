@@ -6,6 +6,7 @@ import {useWindowSize} from '@docusaurus/theme-common';
 import {useLocation} from '@docusaurus/router';
 import icons from './icons';
 import {externalLinkProps} from "@site/src/utils/externalLink";
+import ExternalArrow from "@site/src/components/ExternalArrow";
 
 const HOVER_OPEN_DELAY = 80;
 const HOVER_CLOSE_DELAY = 120;
@@ -29,15 +30,9 @@ function FeaturedTile({featured}) {
         <span className="megaMenuFeaturedDescription">
           {featured.description}
         </span>
-        <span className="megaMenuFeaturedCta">
+        <span className="badge badge--primary megaMenuFeaturedCta">
           {featured.cta}
-          <svg
-            className="megaMenuFeaturedCtaArrow"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true">
-            <path d="M1 23 23 1M3 1.25h19.75V21" stroke="currentColor" strokeWidth="2.4" />
-          </svg>
+          {featured.href && <ExternalArrow />}
         </span>
       </div>
     </Link>
@@ -66,7 +61,12 @@ function MegaColumn({column}) {
                 <span className="megaMenuItemContent">
                   <span className="megaMenuItemLabel">
                     {item.label}
-                    {item.href && <span aria-hidden="true"> ↗</span>}
+                    {item.href && (
+                      <>
+                        {" "}
+                        <ExternalArrow />
+                      </>
+                    )}
                   </span>
                   {item.description && (
                     <span className="megaMenuItemDescription">
@@ -135,24 +135,38 @@ function MegaDropdownNavbarItem({label, className, customProps}) {
   }, [open]);
 
   // The panel centers on its trigger; near the viewport edges that center
-  // position would push it off-screen, so measure once per open and shift
-  // it back inside via a custom property the transform picks up.
+  // position would push it off-screen, so shift it back inside via a custom
+  // property the transform picks up. The centered position is derived from
+  // the trigger and the panel's layout width rather than read off the panel:
+  // the shift rides on a transitioned transform, so right after a style
+  // change the panel's own rect still reports its previous, already-shifted
+  // position and a stale shift from the last open would read as "fits".
   useLayoutEffect(() => {
+    const root = rootRef.current;
     const panel = panelRef.current;
-    if (!open || !panel) {
-      return;
+    if (!open || !root || !panel) {
+      return undefined;
     }
-    panel.style.removeProperty('--mega-menu-shift');
-    const rect = panel.getBoundingClientRect();
-    let shift = 0;
-    if (rect.left < VIEWPORT_MARGIN) {
-      shift = VIEWPORT_MARGIN - rect.left;
-    } else if (rect.right > window.innerWidth - VIEWPORT_MARGIN) {
-      shift = window.innerWidth - VIEWPORT_MARGIN - rect.right;
-    }
-    if (shift !== 0) {
-      panel.style.setProperty('--mega-menu-shift', `${shift}px`);
-    }
+    const place = () => {
+      const anchor = root.getBoundingClientRect();
+      const width = panel.offsetWidth;
+      const left = anchor.left + anchor.width / 2 - width / 2;
+      const right = left + width;
+      let shift = 0;
+      if (left < VIEWPORT_MARGIN) {
+        shift = VIEWPORT_MARGIN - left;
+      } else if (right > window.innerWidth - VIEWPORT_MARGIN) {
+        shift = window.innerWidth - VIEWPORT_MARGIN - right;
+      }
+      if (shift !== 0) {
+        panel.style.setProperty('--mega-menu-shift', `${shift}px`);
+      } else {
+        panel.style.removeProperty('--mega-menu-shift');
+      }
+    };
+    place();
+    window.addEventListener('resize', place);
+    return () => window.removeEventListener('resize', place);
   }, [open]);
 
   // Hover-intent opening is a mouse behavior; on touch the synthetic

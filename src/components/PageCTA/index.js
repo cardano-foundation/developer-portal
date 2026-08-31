@@ -1,11 +1,29 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import isInternalUrl from "@docusaurus/isInternalUrl";
+import ExternalArrow from "@site/src/components/ExternalArrow";
+import { externalLinkProps } from "@site/src/utils/externalLink";
 import FileIcon from "@site/static/img/icons/file-outline.svg";
 
 import styles from "./styles.module.css";
 
-// Reusable section-level CTA: a navy band with amber pill buttons, the
-// brand's call-to-action treatment. `secondaryButton` is optional.
+// Reusable section-level CTA: a navy band whose buttons take the amber
+// context. A button whose href leaves the site opens a new tab and carries the
+// external arrow. `secondaryButton` is optional.
+function CtaLink({ href, children }) {
+  const external = !isInternalUrl(href);
+  return (
+    <Link
+      className="button button--primary"
+      to={href}
+      {...(external ? externalLinkProps(href) : {})}
+    >
+      {children}
+      {external && <ExternalArrow />}
+    </Link>
+  );
+}
+
 export default function PageCTA({
   title,
   description,
@@ -22,15 +40,9 @@ export default function PageCTA({
             <h2 className={styles.bandTitle}>{title}</h2>
             <p className={styles.bandText}>{description}</p>
             <div className={styles.pillRow}>
-              <Link className={styles.pill} to={href}>
-                {buttonText}
-                <span className={styles.pillArrow} aria-hidden="true">→</span>
-              </Link>
+              <CtaLink href={href}>{buttonText}</CtaLink>
               {secondaryButton && (
-                <Link className={styles.pill} to={secondaryButton.href}>
-                  {secondaryButton.label}
-                  <span className={styles.pillArrow} aria-hidden="true">→</span>
-                </Link>
+                <CtaLink href={secondaryButton.href}>{secondaryButton.label}</CtaLink>
               )}
             </div>
           </div>

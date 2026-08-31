@@ -26,10 +26,10 @@ export default function NotFoundContent({ className }) {
         Try the search bar above or head back to familiar ground.
       </p>
       <div className={styles.chipRow}>
-        <Link className={styles.chip} to="/">
+        <Link className="button button--primary" to="/">
           Go to Homepage
         </Link>
-        <Link className={clsx(styles.chip, styles.chipGhost)} to="/docs/developers/">
+        <Link className="button button--outline button--primary" to="/docs/developers/">
           Browse Documentation
         </Link>
       </div>
