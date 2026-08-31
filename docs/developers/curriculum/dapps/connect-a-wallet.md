@@ -212,7 +212,7 @@ The extension adds `getPubDRepKey()` for the user's DRep key, and `getRegistered
 
 ## No browser extension? Wallet as a Service
 
-Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [UTXOS Web3 Services](/docs/developers/curriculum/dapps/wallet-authentication#hosted-sign-in-as-a-service), which also supports [transaction sponsorship](https://docs.utxos.dev/sponsor) so users can transact without holding ADA for fees first.
+Not every user has a browser wallet installed. **Wallet-as-a-Service (WaaS)** lets users create a non-custodial wallet via social login, removing the install step entirely (keys are split with Shamir's Secret Sharing and reconstructed only on the user's device at signing time). See [hosted sign-in as a service](/docs/developers/curriculum/dapps/wallet-authentication#hosted-sign-in-as-a-service), and pair it with [sponsored transactions](/docs/developers/curriculum/dapps/sponsored-transactions) so users can transact without holding ADA for fees first.
 
 ## Framework integration (React & Svelte)
 

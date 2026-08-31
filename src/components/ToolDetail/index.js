@@ -14,11 +14,13 @@ import {
 } from "@site/src/data/builder-tools/showcase";
 import AppIcon from "@site/src/components/AppIcon";
 import AppTile from "@site/src/components/AppTile";
+import ExternalArrow from "@site/src/components/ExternalArrow";
 import PageCTA from "@site/src/components/PageCTA";
 import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
 import InfoDot from "@site/src/components/showcase/InfoDot";
 
 import styles from "./styles.module.css";
+import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 
 // Three fills the related grid's row exactly at the container width; a
 // fourth card would wrap alone.
@@ -52,7 +54,7 @@ function TagPill({ tag, def, info }) {
   const pill = (
     <Link
       to={`/tools?tags=${tag}`}
-      className={styles.categoryPill}
+      className="badge badge--secondary"
       title={def.description}
     >
       {def.label}
@@ -107,7 +109,7 @@ function ShareButton({ title }) {
     <button
       type="button"
       onClick={onClick}
-      className={styles.iconButton}
+      className={clsx("button button--outline button--primary", styles.iconButton)}
       aria-label="Share"
     >
       {copied ? (
@@ -146,7 +148,7 @@ function NotFound() {
           This tool may have been renamed or removed.
         </p>
         <div className={styles.actions}>
-          <Link to="/tools" className={styles.visitButton}>
+          <Link to="/tools" className="button button--primary">
             Back to Builder Tools
           </Link>
         </div>
@@ -213,7 +215,7 @@ export default function ToolDetail({ slug }) {
 
           <div className={styles.tagRow}>
             {tool.maintainerPick && (
-              <span className={styles.pickBadge}>
+              <span className={clsx("badge badge--primary", styles.pickBadge)}>
                 <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden focusable="false">
                   <path
                     fill="currentColor"
@@ -223,7 +225,7 @@ export default function ToolDetail({ slug }) {
                 Maintainer pick
               </span>
             )}
-            {tool.repository && <span className={styles.osBadge}>Open Source</span>}
+            {tool.repository && <span className="badge badge--secondary">Open Source</span>}
             <TagPill tag={tool.category} def={categoryDef} info />
             {tool.properties.map((p) => (
               <TagPill key={p} tag={p} def={Properties[p]} />
@@ -234,33 +236,27 @@ export default function ToolDetail({ slug }) {
 
           <div className={styles.actions}>
             {tool.repository ? (
-              <Link href={tool.repository} className={styles.visitButton}>
+              <Link href={tool.repository} className="button button--primary" {...EXTERNAL_LINK_PROPS}>
                 <GitHubIcon size={18} />
                 View on GitHub
+                <ExternalArrow />
               </Link>
             ) : (
-              <Link href={tool.website} className={styles.visitButton}>
+              <Link href={tool.website} className="button button--primary" {...EXTERNAL_LINK_PROPS}>
                 {`Visit ${tool.title}`}
-                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden focusable="false">
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M7 17L17 7M9 7h8v8"
-                  />
-                </svg>
+                <ExternalArrow />
               </Link>
             )}
             {tool.repository && tool.website && tool.website !== tool.repository && (
-              <Link href={tool.website} className={styles.secondaryButton}>
+              <Link href={tool.website} className="button button--outline button--primary" {...EXTERNAL_LINK_PROPS}>
                 Visit website
+                <ExternalArrow />
               </Link>
             )}
             {tool.docs && (
-              <Link href={tool.docs} className={styles.secondaryButton}>
+              <Link href={tool.docs} className="button button--outline button--primary" {...EXTERNAL_LINK_PROPS}>
                 Get Started
+                <ExternalArrow />
               </Link>
             )}
             <ShareButton title={tool.title} />

@@ -7,6 +7,7 @@ import Link from "@docusaurus/Link";
 import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import clsx from "clsx";
 
+import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
 import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
 import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
@@ -139,7 +140,7 @@ function ContractCard({ contract }) {
       {isReference ? (
         <div className={styles.chipGroup}>
           <div className={styles.chips}>
-            <span className={clsx(styles.chip, styles.chipMuted)}>Reference</span>
+            <span className={clsx("badge badge--secondary", styles.chipMuted)}>Reference</span>
           </div>
         </div>
       ) : (
@@ -223,12 +224,12 @@ export default function Contracts() {
               aria-label="Search contracts"
             />
             <a
-              className={styles.contributeButton}
+              className={clsx("button button--primary button--block", styles.contributeButton)}
               href={CONTRIBUTE_DOC}
               {...EXTERNAL_LINK_PROPS}
             >
-              <span aria-hidden="true">+</span>
               Contribute a contract
+              <ExternalArrow />
             </a>
             <FilterSection
               heading="Category"
@@ -269,7 +270,7 @@ export default function Contracts() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="button button--secondary"
+                    className="button button--outline button--primary"
                   >
                     Clear filters
                   </button>

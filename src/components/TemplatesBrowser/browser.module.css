@@ -33,7 +33,7 @@
   position: sticky;
   top: calc(var(--ifm-navbar-height) + 1rem);
   padding: 1.25rem 1.15rem;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-surface-raised);
 }
 
@@ -80,7 +80,7 @@ html[data-theme="dark"] .clearButton:focus-visible {
   height: 40px;
   padding: 0 0.9rem;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: var(--site-radius-lg);
   border: 1px solid transparent;
   background: var(--site-color-surface-chip);
   color: var(--ifm-font-color-base);
@@ -105,49 +105,9 @@ html[data-theme="dark"] .searchInput:focus-visible {
   border-color: var(--ifm-color-primary-light);
 }
 
-/* Contribute call to action: a solid brand-blue button below the search input */
+/* Contribute call to action below the search input; the shared primary button */
 .contributeButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  width: 100%;
   margin-bottom: 1.25rem;
-  padding: 0.6rem 0.9rem;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background: var(--ifm-color-primary);
-  color: var(--site-color-cream);
-  font-size: 0.9rem;
-  font-weight: var(--ifm-font-weight-semibold);
-  text-decoration: none;
-  transition: background-color 150ms ease;
-}
-
-/* The dark primary is a light lavender-blue, so cream on it is only 3.51:1.
-   Navy on the same fill is 5.44:1 — the same inversion the tile badges use. */
-html[data-theme="dark"] .contributeButton {
-  color: var(--site-color-navy);
-}
-
-.contributeButton:hover {
-  background: var(--ifm-color-primary-dark);
-  color: var(--site-color-cream);
-  text-decoration: none;
-}
-
-html[data-theme="dark"] .contributeButton:hover {
-  background: var(--ifm-color-primary-light);
-  color: var(--site-color-navy);
-}
-
-.contributeButton:focus-visible {
-  outline: 2px solid var(--site-color-navy);
-  outline-offset: 2px;
-}
-
-html[data-theme="dark"] .contributeButton:focus-visible {
-  outline-color: var(--site-color-amber);
 }
 
 /* Hairline between filter groups: the portal's standard divider, the same
@@ -192,7 +152,7 @@ html[data-theme="dark"] .filterSection {
   align-items: center;
   gap: 0.6rem;
   padding: 0.28rem 0.5rem;
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   font-size: 0.87rem;
   line-height: 1.4;
   color: var(--ifm-font-color-base);
@@ -272,7 +232,7 @@ html[data-theme="dark"] .checkRow input:focus-visible {
   flex-direction: column;
   height: 100%;
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-surface-raised);
   padding: 1.25rem 1.35rem 1.35rem;
   transition: background-color 150ms ease, border-color 150ms ease;
@@ -331,37 +291,18 @@ html[data-theme="dark"] .card:hover {
   gap: 0.4rem;
 }
 
-/* One treatment shared with the tool cards: mono, because these are labels
-   rather than prose. */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 8px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  line-height: 1.5;
-  font-family: var(--site-font-family-mono-label);
-  font-size: 0.72rem;
-  background: var(--site-color-surface-chip);
-  color: var(--ifm-color-primary);
-}
-
-html[data-theme="dark"] .chip {
-  color: var(--ifm-color-primary-light);
-}
-
-/* Muted chip: used for "Reference" contracts that have no published code.
-   Compound so it stays ahead of .chip however the minifier orders them. */
-.chip.chipMuted {
+/* Reference contracts have no published code: the shared badge, outlined
+   dashed instead of filled. Compound so it beats the badge fill however the
+   stylesheets are ordered. */
+:global(.badge).chipMuted {
+  --ifm-badge-background-color: transparent;
+  --ifm-badge-border-color: rgb(var(--site-color-navy-rgb) / 0.25);
   border-style: dashed;
-  border-color: rgb(var(--site-color-navy-rgb) / 0.25);
   color: var(--site-color-text-muted);
-  background: transparent;
 }
 
-html[data-theme="dark"] .chip.chipMuted {
-  border-color: rgb(var(--site-color-cream-rgb) / 0.25);
-  color: var(--site-color-text-muted);
+html[data-theme="dark"] :global(.badge).chipMuted {
+  --ifm-badge-border-color: rgb(var(--site-color-cream-rgb) / 0.25);
 }
 
 /* The title links to its source; on contract cards a GitHub mark is pinned to

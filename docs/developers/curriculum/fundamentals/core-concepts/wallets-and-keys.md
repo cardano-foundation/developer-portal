@@ -91,12 +91,14 @@ The last two levels are not hardened, which has a practical payoff: you can give
 
 A wallet is software that stores your keys, scans the chain for UTXOs at your addresses, computes your balance, and builds and signs transactions. Your funds live on-chain as UTXOs; they are not "inside" the app.
 
-| Wallet type | Examples | Trade-off |
+| Wallet type | Form | Trade-off |
 |---|---|---|
-| **Full-node** | Daedalus | Maximum trustlessness; downloads the whole chain |
+| **Full-node** | Desktop wallets that run their own node | Maximum trustlessness; downloads the whole chain |
 | **Light** | Browser and mobile wallets | Fast; relies on a backend for chain data (signing stays local) |
-| **Hardware** | Ledger, Trezor | Keys never leave a secure device; strongest theft protection |
+| **Hardware** | Signing devices used through a companion app | Keys never leave a secure device; strongest theft protection |
 | **Browser extension** | (implements CIP-30) | The standard way dApps connect to users |
+
+[cardano.org/apps](https://cardano.org/apps/?tags=wallet) lists the current wallets.
 
 ## How dApps connect: CIP-30
 
