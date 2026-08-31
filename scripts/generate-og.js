@@ -73,7 +73,7 @@ function eyebrowFor(rel) {
     // folder.
     key = seg.length > 2 ? seg[1] : seg[0];
   }
-  const special = { dapps: 'dApps', iot: 'IoT' };
+  const special = { dapps: 'dApps' };
   return special[key] ?? key.replace(/-/g, ' ').toUpperCase();
 }
 
@@ -109,10 +109,10 @@ const SOURCES = [
 // no words on the site's name. The landing page and the blog index sit above every
 // section, and the pill already names the site, so they carry no eyebrow. A
 // no-break space ties each headline's last word pair so none wraps to a lone word.
-// Set `bg` to pin a card to a background index instead of taking the hashed pick.
+// Set `bg` to a background filename to pin a card instead of taking the hashed pick.
 const PAGES = [
   // The site's front door is pinned to the design template's own card frame.
-  { key: 'home', eyebrow: '', title: 'Start building on Cardano', bg: 2 },
+  { key: 'home', eyebrow: '', title: 'Start building on Cardano', bg: 'bg-3-composed.jpg' },
   { key: 'tools', eyebrow: 'BUILDER TOOLS', title: 'SDKs, APIs and services for every\u00A0stack' },
   { key: 'templates', eyebrow: 'TEMPLATES', title: 'Scaffold a wallet-connected dApp in one\u00A0command' },
   { key: 'contracts', eyebrow: 'CONTRACTS LIBRARY', title: 'Reference contracts, indexed by use\u00A0case' },
@@ -270,8 +270,8 @@ function card(title, eyebrow, size) {
   };
 }
 
-// Backgrounds are whatever `bg-*.jpg` the template folder holds, so a new one is a
-// drop-in. Each is a finished frame exported straight from the design template,
+// Backgrounds are whatever `bg-*-composed.jpg` the template folder holds, so a new
+// one is a drop-in. Each is a finished frame exported straight from the design template,
 // carrying the chrome (Cardano lockup, DEVELOPER PORTAL pill) and the left-side
 // scrim that holds the text on near-solid navy however busy the artwork gets. A
 // page always draws the same one: the choice is a hash of its source path, which
@@ -279,9 +279,9 @@ function card(title, eyebrow, size) {
 function loadBackgrounds() {
   const files = fs
     .readdirSync(TEMPLATE_DIR)
-    .filter((f) => /^bg-.*\.jpg$/.test(f))
+    .filter((f) => /^bg-.*-composed\.jpg$/.test(f))
     .sort();
-  if (!files.length) throw new Error(`No bg-*.jpg backgrounds in ${TEMPLATE_DIR}`);
+  if (!files.length) throw new Error(`No bg-*-composed.jpg backgrounds in ${TEMPLATE_DIR}`);
   return files.map((f) => path.join(TEMPLATE_DIR, f));
 }
 
@@ -362,8 +362,19 @@ async function generate(source, backgrounds) {
   reportOversized(oversized);
 }
 
+// A pinned background is named by file so reordering or adding frames cannot
+// silently re-skin a card; a name that matches nothing is an error.
+function resolvePinnedBg(page, bgNames) {
+  if (page.bg == null) return undefined;
+  const index = bgNames.indexOf(page.bg);
+  if (index === -1) {
+    throw new Error(`Pinned background "${page.bg}" for page "${page.key}" not found in ${TEMPLATE_DIR}`);
+  }
+  return index;
+}
+
 // Render the page list and write its manifest, keyed by page key.
-async function generatePages(backgrounds) {
+async function generatePages(backgrounds, bgNames) {
   fs.rmSync(PAGES_OUT_DIR, { recursive: true, force: true });
   fs.mkdirSync(PAGES_OUT_DIR, { recursive: true });
 
@@ -377,7 +388,7 @@ async function generatePages(backgrounds) {
         eyebrow: page.eyebrow,
         hashKey: `pages/${page.key}`,
         outPath: path.join(PAGES_OUT_DIR, `${page.key}.jpg`),
-        bg: page.bg,
+        bg: resolvePinnedBg(page, bgNames),
       },
       backgrounds,
       oversized
@@ -392,8 +403,12 @@ async function generatePages(backgrounds) {
 
 async function main() {
   // Each background is normalised to the card size once, then shared by every render.
+  const bgPaths = loadBackgrounds();
+  const bgNames = bgPaths.map((file) => path.basename(file));
+  // Fail fast on a bad pin before minutes of card rendering.
+  for (const page of PAGES) resolvePinnedBg(page, bgNames);
   const backgrounds = await Promise.all(
-    loadBackgrounds().map((file) =>
+    bgPaths.map((file) =>
       sharp(file).resize(WIDTH, HEIGHT, { fit: 'cover', position: 'centre' }).toBuffer()
     )
   );
@@ -402,7 +417,7 @@ async function main() {
   for (const source of SOURCES) {
     await generate(source, backgrounds);
   }
-  await generatePages(backgrounds);
+  await generatePages(backgrounds, bgNames);
 }
 
 main().catch((err) => {

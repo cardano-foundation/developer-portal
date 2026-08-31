@@ -39,7 +39,7 @@ This file gives AI coding agents (and their operators) the context to contribute
 - `static/` — site-owned assets, grouped by consumer under `static/img/` (`home/`, `blog/`, `tools/`, `tool-icons/`, `brand/`, `og/`, …).
 - `examples/` — runnable, self-contained example projects (`templates/` holds the dApp starters). Not served by Docusaurus; see `examples/README.md`.
 - `plugins/` — custom Docusaurus plugins (`tools-routes`, `templates-routes`).
-- `scripts/` — build helpers wired into `yarn start`/`yarn build`: `generate-stats.js` (writes `static/stats.json`), `generate-og.js` (renders the social-preview cards for every doc, blog post, and site page into `static/img/og/`, gitignored), `fix-llms-paths.js` (path fixes for the generated llms.txt).
+- `scripts/` — build helpers wired into `yarn start`/`yarn build`: `generate-stats.js` (writes `static/stats.json`), `generate-og.js` (renders the social-preview cards for every doc, blog post, and site page into the gitignored `static/img/og/docs|blog|pages/`; the background frames in `static/img/og/_template/` are tracked), `fix-llms-paths.js` (path fixes for the generated llms.txt).
 - Config: `docusaurus.config.js` (site), `sidebars.js` (navigation — hand-authored, see below), `netlify.toml` (redirects + security headers), `searchconfig.json` (Algolia crawler), `.nvmrc` (Node version — the source of truth).
 
 ---
@@ -71,7 +71,7 @@ See `package.json` > `scripts` for the rest.
 - **Edit or add a doc:** files live under `docs/…` and are always `.md` (MDX components like Tabs work inside `.md`; never create `.mdx`). A new doc needs a manual entry in `sidebars.js` — navigation is hand-authored, there are no `_category_.json` files. Use relative links to other docs and canonical paths (`/docs/contribute/…`, not redirect aliases). `yarn build` catches broken links.
 - **Add a redirect:** for internal path moves, add an entry to `src/data/redirects.js` (client-side, via `@docusaurus/plugin-client-redirects`), following the style of existing entries. External-domain routing (for example `testnets.cardano.org`) lives in `netlify.toml` instead. The site uses `trailingSlash: true`; verify the redirect resolves after `yarn build`.
 - **Add an image:** an image used by a doc page is co-located next to it in an `img/` folder and referenced relatively (`./img/name.png`). Site-owned assets (home page, blog, tool icons, brand) live under `static/img/<consumer>/` and are referenced as `/img/…`. External image hosts are blocked by the CSP (see guardrails).
-- **Social-preview (OG) cards need no work:** `scripts/generate-og.js` renders a card for every doc, blog post, and site page at build time. Do not add `image:` frontmatter and do not commit generated cards (`static/img/og/docs/`, `static/img/og/blog/` are gitignored).
+- **Social-preview (OG) cards need no work:** `scripts/generate-og.js` renders a card for every doc, blog post, and site page at build time. Do not add `image:` frontmatter and do not commit generated cards (`static/img/og/docs/`, `static/img/og/blog/`, and `static/img/og/pages/` are gitignored; the `_template/` backgrounds beside them are tracked).
 
 ---
 
