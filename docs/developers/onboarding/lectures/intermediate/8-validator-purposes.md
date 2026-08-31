@@ -42,7 +42,7 @@ flowchart TD
     guards the UTxOs locked there`"]
     H -->|works as a policy ID| P["`**mint**
     guards tokens issued under it`"]
-    H -->|registered as a stake credential| W["`**withdraw**
+    H -->|works as stake credential (inside address)| W["`**withdraw**
     guards reward withdrawals`"]
 ```
 
