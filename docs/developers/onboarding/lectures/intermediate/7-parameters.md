@@ -12,7 +12,7 @@ import VaultAiken from "!!raw-loader!@site/examples/onboarding/lectures/intermed
 
 # Parameters
 
-The last two lectures finished the list of what a validator is **given**: the **[datum and the redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**, then the **[context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**. Nothing else is handed to a validator when it runs.
+The last two lectures finished the list of what a validator is **given**: the **[datum and the redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**, then the **[context](/docs/developers/onboarding/lectures/intermediate/transaction-context)**. Nothing else is handed to a validator **when it runs**.
 
 A **parameter** is not on that list. It is a value built into the contract's own code, before the contract ever reaches the chain. Compiling leaves a **blank** where the value goes, and the contract is finished by filling that blank in. A parameter is baked **into** the validator, which is why you will never find it in `validator(datum, redeemer, context)`.
 
