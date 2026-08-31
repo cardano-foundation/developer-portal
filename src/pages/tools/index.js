@@ -414,7 +414,7 @@ function AllToolsReveal() {
     <section className={clsx("container", styles.section, styles.allAppsReveal)}>
       <button
         type="button"
-        className={clsx("button button--secondary", styles.showAllButton)}
+        className="button button--outline button--primary"
         onClick={() => setShown(true)}
       >
         {`View all ${SortedShowcases.length} tools alphabetically`}

@@ -1,13 +1,15 @@
-/* The shared brand CTA band: navy in both themes with amber pill buttons.
-   The recipe is kept in lockstep by hand with the talent page's band
-   (src/pages/talent/styles.module.css) until a global utility exists;
-   this version carries no artwork. */
+/* The shared brand CTA band: navy in both themes. Its buttons are the shared
+   primary primitive, turned amber by the band's context; the talent page's
+   band carries the same context with its own artwork. */
 
 .ctaSection {
   padding: clamp(2.5rem, 5vw, 5rem) 0 clamp(3rem, 6vw, 6rem);
 }
 
 .band {
+  --site-button-primary-bg: var(--site-color-amber);
+  --site-button-primary-fg: var(--site-color-navy);
+  --site-button-ring: var(--site-color-cream);
   display: flex;
   align-items: center;
   gap: clamp(1.5rem, 2.5vw, 2.7rem);
@@ -46,47 +48,11 @@
   color: var(--site-color-cream);
 }
 
-/* Amber pill buttons with navy text: uppercase regular Chivo, the brand's
-   band-CTA button family */
 .pillRow {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(1rem, 2vw, 2.1rem);
   margin-top: clamp(1.5rem, 2.4vw, 2.5rem);
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75em;
-  min-height: 48px;
-  padding: 0 1.1em 0 1.35em;
-  border-radius: 999px;
-  background: var(--site-color-amber);
-  color: var(--site-color-navy);
-  font-size: 1.05rem;
-  font-weight: var(--ifm-font-weight-normal);
-  line-height: 1.4;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.pill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgb(var(--site-color-navy-rgb) / 0.35);
-  color: var(--site-color-navy);
-}
-
-.pillArrow {
-  font-size: 1.2em;
-  line-height: 1;
-}
-
-/* Cream ring on the navy band; amber-on-amber would vanish */
-.pill:focus-visible {
-  outline: 2px solid var(--site-color-cream);
-  outline-offset: 2px;
 }
 
 @media screen and (max-width: 996px) {
