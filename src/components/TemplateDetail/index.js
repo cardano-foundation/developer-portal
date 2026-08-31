@@ -10,7 +10,7 @@ import clsx from "clsx";
 import ExternalArrow from "@site/src/components/ExternalArrow";
 import GitHubIcon from "@site/src/components/GitHubIcon";
 import PageCTA from "@site/src/components/PageCTA";
-import PickBadge from "@site/src/components/PickBadge";
+import MaintainerPickBadge from "@site/src/components/MaintainerPickBadge";
 import {
   Templates,
   Frameworks,
@@ -111,7 +111,7 @@ export default function TemplateDetail({ slug }) {
 
           <header className={styles.header}>
             {template.maintainerPick && (
-              <PickBadge className={styles.pickBadge} starSize={14} />
+              <MaintainerPickBadge className={styles.pickBadge} starSize={14} />
             )}
             <h1 className={styles.title}>{template.title}</h1>
           </header>

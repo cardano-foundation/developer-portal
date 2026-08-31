@@ -8,9 +8,9 @@ import clsx from "clsx";
 
 import ExternalArrow from "@site/src/components/ExternalArrow";
 import TemplatesHero from "@site/src/components/TemplatesHero";
-import FilterSection from "@site/src/components/TemplatesBrowser/FilterSection";
-import ChipRow from "@site/src/components/TemplatesBrowser/ChipRow";
-import useFacetSelection from "@site/src/components/TemplatesBrowser/useFacetSelection";
+import FilterSection from "@site/src/components/browse/FilterSection";
+import ChipRow from "@site/src/components/browse/ChipRow";
+import useFacetSelection from "@site/src/components/browse/useFacetSelection";
 import {
   SortedTemplates,
   Frameworks,
@@ -21,7 +21,7 @@ import {
   WalletList,
 } from "@site/src/data/templates/catalog";
 
-import styles from "@site/src/components/TemplatesBrowser/browser.module.css";
+import styles from "@site/src/components/browse/browser.module.css";
 import heroStyles from "@site/src/components/TemplatesHero/styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";
 

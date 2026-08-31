@@ -15,12 +15,12 @@ import ToolSort, {
   SORT_IDS,
 } from "@site/src/components/tools/ToolSort";
 import { readSearchTags } from "@site/src/components/tools/tagQueryString";
-import SiteHero from "@site/src/components/Layout/SiteHero";
+import SiteHero from "@site/src/components/SiteHero";
 import ToolTileCarousel from "@site/src/components/ToolTileCarousel";
 import CategoryPanelsCarousel from "@site/src/components/CategoryPanelsCarousel";
 import ToolRow from "@site/src/components/ToolRow";
 import ToolFilterPanel from "@site/src/components/ToolFilterPanel";
-import OpenStickyButton from "@site/src/components/buttons/OpenStickyButton";
+import ContributeButton from "@site/src/components/ContributeButton";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 import {
@@ -552,7 +552,7 @@ function ToolsPage() {
           </div>
         </div>
         <SecondarySections data={data} />
-        <OpenStickyButton />
+        <ContributeButton />
       </main>
     </Layout>
   );
