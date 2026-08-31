@@ -113,7 +113,7 @@ The **datum** goes on the output when you lock. The **redeemer** goes in the spe
 
 Filling the blank does not compile anything and does not ask the network for anything. Your off-chain code takes the compiled script from your blueprint (`plutus.json`), with the blank still in it, supplies the missing value, and hashes what comes out. Two lines of ordinary code, and no transaction. **That is the whole of "deploying" a parameterized contract**, and you will write those two lines in **[frontend integration](/docs/developers/onboarding/lectures/intermediate/frontend-integration)**.
 
-You will meet the word "deploy" in one other sense, though. It also describes putting the script into a UTxO, so that later transactions point at it instead of carrying a copy of it. That one really is a transaction, and it is optional: a way to make every spend smaller, not a step you must take before a contract works. **Reference inputs & scripts** does it.
+You will meet the word "deploy" in one other sense, though. It also describes putting the script into a UTxO, so that later transactions point at it instead of carrying a copy of it. That one really is a transaction, and it is optional: a way to make every spend smaller, not a step you must take before a contract works. **Reference inputs & scripts** explains it.
 
 This contract's `VaultAction` finally lists two choices, so its redeemers finally use both constructor numbers from **[datum & redeemer](/docs/developers/onboarding/lectures/intermediate/datum-and-redeemer)**: `Unlock` is constructor 0 and `Recover` is constructor 1. Get those two the wrong way round later and the vault will look at the wrong key, without complaining.
 
