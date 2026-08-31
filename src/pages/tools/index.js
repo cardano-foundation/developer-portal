@@ -7,14 +7,14 @@ import { useHistory, useLocation } from "@docusaurus/router";
 import _debounce from "lodash/debounce";
 import clsx from "clsx";
 
-import IntentChips from "@site/src/components/showcase/IntentChips";
+import IntentChips from "@site/src/components/tools/IntentChips";
 import PageCTA from "@site/src/components/PageCTA";
-import ShowcaseSort, {
+import ToolSort, {
   readSortOption,
   DEFAULT_SORT,
   SORT_IDS,
-} from "@site/src/components/showcase/ShowcaseSort";
-import { readSearchTags } from "@site/src/components/showcase/tagQueryString";
+} from "@site/src/components/tools/ToolSort";
+import { readSearchTags } from "@site/src/components/tools/tagQueryString";
 import SiteHero from "@site/src/components/Layout/SiteHero";
 import AppTileCarousel from "@site/src/components/AppTileCarousel";
 import CategoryPanelsCarousel from "@site/src/components/CategoryPanelsCarousel";
@@ -172,7 +172,7 @@ function HeroRings() {
   );
 }
 
-function ShowcaseHeader() {
+function ToolsHero() {
   return <SiteHero title={TITLE} description={HERO_DESCRIPTION} art={<HeroRings />} />;
 }
 
@@ -240,7 +240,7 @@ function SearchControls() {
     <section className={styles.controls}>
       <SearchBar />
       <div className={styles.controlsRight}>
-        <ShowcaseSort />
+        <ToolSort />
       </div>
     </section>
   );
@@ -531,17 +531,17 @@ function SecondarySections({ data }) {
   );
 }
 
-function Showcase() {
+function ToolsPage() {
   const data = useSectionData();
 
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <PageMetadata image={ogCards.tools} />
       {/* The hero is the page banner and stays outside the main landmark;
-          everything else, including the CTA band ShowcaseSections renders and
+          everything else, including the CTA band SecondarySections renders and
           the sticky submit button, belongs inside it. The page had no <main>
           at all before, which left every section outside a landmark. */}
-      <ShowcaseHeader />
+      <ToolsHero />
       <main>
         <div className={clsx("container", styles.browse)}>
           <AppFilterPanel />
@@ -558,4 +558,4 @@ function Showcase() {
   );
 }
 
-export default Showcase;
+export default ToolsPage;

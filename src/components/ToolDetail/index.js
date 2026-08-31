@@ -16,8 +16,8 @@ import AppIcon from "@site/src/components/AppIcon";
 import AppTile from "@site/src/components/AppTile";
 import ExternalArrow from "@site/src/components/ExternalArrow";
 import PageCTA from "@site/src/components/PageCTA";
-import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
-import InfoDot from "@site/src/components/showcase/InfoDot";
+import Tooltip from "@site/src/components/tools/Tooltip";
+import InfoDot from "@site/src/components/tools/InfoDot";
 
 import styles from "./styles.module.css";
 import { EXTERNAL_LINK_PROPS } from "@site/src/utils/externalLink";

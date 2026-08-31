@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import clsx from "clsx";
 
-import Tooltip from "@site/src/components/showcase/ShowcaseTooltip/index";
+import Tooltip from "@site/src/components/tools/Tooltip";
 
 import {
   Showcases,
@@ -16,7 +16,7 @@ import {
 import {
   readSearchTags,
   replaceSearchTags,
-} from "@site/src/components/showcase/tagQueryString";
+} from "@site/src/components/tools/tagQueryString";
 
 import styles from "./styles.module.css";
 
