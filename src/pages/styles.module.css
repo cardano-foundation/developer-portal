@@ -545,7 +545,7 @@ html[data-theme="dark"] .devPanelHeader p {
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 2.5vw, 2.75rem);
-  border-radius: 13px;
+  border-radius: var(--site-radius-lg);
   min-width: 0;
   background-image: radial-gradient(
     circle,
@@ -580,7 +580,7 @@ html[data-theme="dark"] .devPanelArt {
   align-items: center;
   gap: 13px;
   padding: clamp(0.7rem, 1.1vw, 18px);
-  border-radius: 13px;
+  border-radius: var(--site-radius-lg);
   font-size: clamp(1rem, 1.4vw, 1.5rem);
   font-weight: var(--site-font-weight-heading);
   letter-spacing: -0.02em;
@@ -631,7 +631,7 @@ html[data-theme="dark"] .sdkItem:hover {
   flex-direction: column;
   gap: 11px;
   padding: clamp(0.9rem, 1.1vw, 15px);
-  border-radius: 13px;
+  border-radius: var(--site-radius-lg);
   text-decoration: none !important;
   transition: background-color 0.2s ease;
 }
@@ -799,7 +799,7 @@ html[data-theme="dark"] .ecoCardDesc {
 .quickstartDocBtn {
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -881,7 +881,7 @@ html[data-theme="dark"] .ecoCardDesc {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   font-family: var(--site-font-family-mono-code);
   font-size: 0.8rem;
   background: rgb(var(--site-color-navy-rgb) / 0.25);
@@ -916,7 +916,7 @@ html[data-theme="dark"] .ecoCardDesc {
   width: 32px;
   height: 32px;
   padding: 0;
-  border-radius: 6px;
+  border-radius: var(--site-radius-md);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;

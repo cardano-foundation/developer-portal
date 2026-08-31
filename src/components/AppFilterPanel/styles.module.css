@@ -6,7 +6,7 @@
      the longest category label on one line. */
   padding: 25px 12px 25px 20px;
   border: 1px solid var(--site-color-light-grey);
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-cream);
   align-self: start;
 }
@@ -55,7 +55,7 @@ html[data-theme="dark"] .groupLabel {
 .groupReset {
   padding: 3px 12px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   background: none;
   font-family: inherit;
   font-size: 1rem;
@@ -117,7 +117,7 @@ html[data-theme="dark"] .groupReset:focus-visible {
   gap: 5px;
   padding: 0;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   background: none;
   color: var(--site-color-text-muted);
   font-family: inherit;

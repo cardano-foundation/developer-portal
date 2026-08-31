@@ -127,7 +127,7 @@ html[data-theme="dark"] .pickBadge {
    the line when it scrolls. */
 .codeBlock {
   margin-top: 0.5rem;
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   border: 1px solid transparent;
   overflow: hidden;
   background: var(--site-color-surface-raised);
@@ -157,7 +157,7 @@ html[data-theme="dark"] .codeBar {
 
 .copyButton {
   padding: 0.2rem 0.6rem;
-  border-radius: 6px;
+  border-radius: var(--site-radius-md);
   border: 1px solid transparent;
   background: var(--site-color-surface-chip);
   color: var(--ifm-font-color-base);
@@ -228,7 +228,7 @@ html[data-theme="dark"] .readmeLink:focus-visible {
   position: sticky;
   top: calc(var(--ifm-navbar-height) + 1rem);
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   padding: 0.4rem 1.1rem 1.1rem;
   background: var(--site-color-surface-raised);
 }

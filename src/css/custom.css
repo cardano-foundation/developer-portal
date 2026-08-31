@@ -58,6 +58,20 @@
      not Chivo Mono: code keeps a familiar editor stack until design decides
      otherwise. */
   --site-font-family-mono-code: "SF Mono", "Fira Code", Consolas, monospace;
+
+  /* Corner radius, three tiers. Actions (buttons, chips, badges, facets) are
+     capsules; surfaces and inputs (tiles, rows, rails, search, sort, panels,
+     doc cards, pagination) sit on lg; compact controls inside dense UI (tabs,
+     sidebar links, copy buttons, mega-menu item links) on md. Icon-only
+     buttons are circles (50%) and need no token. Whole-card links on the
+     landing page keep their own larger radii on purpose. Infima reads the
+     same tiers below, so its .button and .badge come out as capsules. */
+  --site-radius-md: 8px;
+  --site-radius-lg: 12px;
+  --site-radius-pill: 999px;
+  --ifm-global-radius: var(--site-radius-md);
+  --ifm-button-border-radius: var(--site-radius-pill);
+  --ifm-badge-border-radius: var(--site-radius-pill);
   /* 2026 rebrand weight scale. Every font-weight in src/ must reference one
      of these tokens, never a raw number. The scale tops out at Medium 500:
      the brand uses no heavier Chivo cut, so bold and semibold intentionally
@@ -165,7 +179,7 @@
   --ifm-toc-border-color: rgb(var(--site-color-navy-rgb) / 0.12);
   --ifm-toc-link-color: var(--site-color-text-muted);
   --ifm-breadcrumb-item-background-active: rgb(var(--site-color-navy-rgb) / 0.05);
-  --ifm-breadcrumb-border-radius: 999px;
+  --ifm-breadcrumb-border-radius: var(--site-radius-pill);
   --ifm-table-border-color: rgb(var(--site-color-navy-rgb) / 0.12);
   --ifm-blockquote-border-color: rgb(var(--site-color-brand-blue-rgb) / 0.35);
 }
@@ -294,7 +308,7 @@ h6 {
 
 .tabsblock {
   background: rgb(var(--site-color-navy-rgb) / 0.05);
-  border-radius: 0.4rem;
+  border-radius: var(--site-radius-md);
 }
 
 /* The navy tint disappears on the dark page, so dark mode lightens instead */
@@ -345,7 +359,7 @@ html[data-theme="dark"] .navbar {
 .navbar .DocSearch-Button {
   background: var(--site-color-gray-light);
   border: 1px solid var(--site-color-light-grey);
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   color: rgb(var(--site-color-navy-rgb) / 0.4);
 }
 
@@ -425,7 +439,7 @@ html[data-theme="light"] body {
   --docsearch-footer-shadow: 0 -1px 0 0 rgb(var(--site-color-navy-rgb) / 0.08);
   --docsearch-container-background: rgb(var(--site-color-navy-rgb) / 0.6);
   --docsearch-logo-color: var(--site-color-brand-blue);
-  --docsearch-border-radius: 12px;
+  --docsearch-border-radius: var(--site-radius-lg);
   --docsearch-focus-color: var(--site-color-navy);
   /* The library derives these three from other variables at the html
      level, where our body-scoped values cannot reach the substitution,
@@ -457,7 +471,7 @@ html[data-theme="dark"] body {
   --docsearch-footer-shadow: 0 -1px 0 0 var(--site-color-card-border);
   --docsearch-container-background: rgb(var(--site-color-navy-rgb) / 0.75);
   --docsearch-logo-color: #fff;
-  --docsearch-border-radius: 12px;
+  --docsearch-border-radius: var(--site-radius-lg);
   --docsearch-focus-color: var(--site-color-amber);
   /* Same derived-variable escape as the light block above */
   --docsearch-dropdown-menu-background: rgba(255, 255, 255, 0.05);
@@ -497,7 +511,7 @@ html[data-theme="dark"] body {
   border: none;
   cursor: pointer;
   padding: 0.7rem 1.4rem;
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   display: flex;
   align-items: center;
   color: var(--ifm-navbar-link-color);
@@ -558,7 +572,7 @@ html[data-theme="dark"] .navbar__item--mega[data-open] .megaMenuTrigger {
   max-width: min(1010px, calc(100vw - 2rem));
   padding: 20px 30px;
   background: var(--site-color-cream);
-  border-radius: 14px;
+  border-radius: var(--site-radius-lg);
   box-shadow: 4px 8px 15px rgb(var(--site-color-navy-rgb) / 0.1);
   opacity: 0;
   visibility: hidden;
@@ -644,7 +658,7 @@ html[data-theme="dark"] .megaMenuColumnTitle {
   height: 70px;
   padding: 0 10px;
   border: 1px solid var(--mega-item-border);
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   text-decoration: none !important;
   transition: background-color 0.16s ease;
 }
@@ -657,7 +671,7 @@ html[data-theme="dark"] .megaMenuColumnTitle {
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  border-radius: 7px;
+  border-radius: var(--site-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -720,7 +734,7 @@ html[data-theme="dark"] .megaMenuItemLabel {
   justify-content: flex-end;
   width: 260px;
   min-height: 252px;
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   overflow: hidden;
   background: var(--site-color-navy);
   text-decoration: none !important;
@@ -830,12 +844,12 @@ html[data-theme="dark"] .megaMenuItemLabel {
 }
 
 .theme-doc-sidebar-menu .menu__link {
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
   font-size: 0.9rem;
 }
 
 .theme-doc-sidebar-menu .menu__list-item-collapsible {
-  border-radius: 8px;
+  border-radius: var(--site-radius-md);
 }
 
 .theme-doc-sidebar-item-category-level-1
@@ -876,7 +890,7 @@ html[data-theme="dark"] .navbar-sidebar {
    the guillemets are pseudo-content, so both are replaced here. */
 .pagination-nav__link {
   border: 1px solid rgb(var(--site-color-navy-rgb) / 0.15);
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
 }
 
 .pagination-nav__link:hover {
@@ -910,7 +924,7 @@ html[data-theme="dark"] .pagination-nav__link:hover {
    also serves the landing page and must not change. */
 .theme-doc-card-container {
   border: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
 }
 
 .theme-doc-card-container:hover {
@@ -929,7 +943,7 @@ html[data-theme="dark"] .theme-doc-card-container:hover {
    resolves to primary in both themes. Rounded top corners and a hover wash
    bring the row into the chip family. */
 .tabs__item {
-  border-radius: 8px 8px 0 0;
+  border-radius: var(--site-radius-md) var(--site-radius-md) 0 0;
 }
 
 .tabs__item:hover {
@@ -968,7 +982,7 @@ html[data-theme="dark"] .tabs__item:focus-visible,
    template's toggle treatment. */
 .navbar .header-github-link,
 .navbar .header-discord-link {
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   padding: 10px;
   transition: background-color 0.16s ease;
 }
@@ -1094,7 +1108,7 @@ html[data-theme="dark"] .theme-code-block .clean-btn {
   color: var(--ifm-font-color-base);
   background-color: rgb(var(--site-color-navy-rgb) / 0.04);
   border: 1px solid rgb(var(--site-color-navy-rgb) / 0.2);
-  border-radius: 0.5rem;
+  border-radius: var(--site-radius-md);
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
@@ -1138,7 +1152,7 @@ html[data-theme="dark"] .copy-markdown__item:hover {
   padding: 0.35rem;
   background-color: var(--ifm-background-surface-color);
   border: 1px solid rgb(var(--site-color-navy-rgb) / 0.12);
-  border-radius: 0.6rem;
+  border-radius: var(--site-radius-md);
   box-shadow: 0 6px 24px rgb(var(--site-color-navy-rgb) / 0.14);
 }
 
@@ -1156,7 +1170,7 @@ html[data-theme="dark"] .copy-markdown__menu {
   color: var(--ifm-font-color-base);
   background-color: transparent;
   border: 0;
-  border-radius: 0.4rem;
+  border-radius: var(--site-radius-md);
   cursor: pointer;
   text-decoration: none;
 }

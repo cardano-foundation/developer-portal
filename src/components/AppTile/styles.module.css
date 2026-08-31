@@ -6,7 +6,7 @@
   gap: 10px;
   padding: 1.875rem 2.5rem;
   border: 1px solid var(--site-color-light-grey);
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-cream);
   min-height: 295px;
   text-decoration: none;
@@ -113,7 +113,7 @@ html[data-theme="dark"] .tile.tilePick {
   min-height: 263px;
   background: var(--site-color-cream);
   border-color: rgba(172, 166, 166, 0.2);
-  border-radius: 11px;
+  border-radius: var(--site-radius-lg);
 }
 
 /* The icon ground must not follow the theme either, or dark mode drops the

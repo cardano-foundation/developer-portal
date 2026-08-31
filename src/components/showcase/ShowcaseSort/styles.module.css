@@ -29,7 +29,7 @@ html[data-theme="dark"] .sortLabelText {
   color: var(--site-color-ink-muted);
   height: clamp(60px, 5vw, 86px);
   padding: 0 3rem 0 30px;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   font-size: 1rem;
   font-family: inherit;
   cursor: pointer;

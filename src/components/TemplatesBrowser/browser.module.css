@@ -33,7 +33,7 @@
   position: sticky;
   top: calc(var(--ifm-navbar-height) + 1rem);
   padding: 1.25rem 1.15rem;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-surface-raised);
 }
 
@@ -80,7 +80,7 @@ html[data-theme="dark"] .clearButton:focus-visible {
   height: 40px;
   padding: 0 0.9rem;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: var(--site-radius-lg);
   border: 1px solid transparent;
   background: var(--site-color-surface-chip);
   color: var(--ifm-font-color-base);
@@ -192,7 +192,7 @@ html[data-theme="dark"] .filterSection {
   align-items: center;
   gap: 0.6rem;
   padding: 0.28rem 0.5rem;
-  border-radius: 999px;
+  border-radius: var(--site-radius-pill);
   font-size: 0.87rem;
   line-height: 1.4;
   color: var(--ifm-font-color-base);
@@ -272,7 +272,7 @@ html[data-theme="dark"] .checkRow input:focus-visible {
   flex-direction: column;
   height: 100%;
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: var(--site-radius-lg);
   background: var(--site-color-surface-raised);
   padding: 1.25rem 1.35rem 1.35rem;
   transition: background-color 150ms ease, border-color 150ms ease;
