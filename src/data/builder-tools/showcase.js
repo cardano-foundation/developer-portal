@@ -4,7 +4,7 @@
 // Reads the explicit `category` / `properties` / `maintainerPick` now carried by
 // each tools.js entry (no more derivation) and shapes them for the app-store
 // components: adds a `slug` and re-exports the taxonomy. Most entries carry an
-// `icon`; where it is null AppIcon renders a letter-avatar fallback instead.
+// `icon`; where it is null ToolIcon renders a letter-avatar fallback instead.
 // ============================================================================
 
 import {
@@ -30,7 +30,7 @@ export {
 };
 
 // "NEW" badge + "Recently added" use the last N entries in insertion order.
-export const RECENT_APPS_COUNT = 5;
+export const RECENT_TOOLS_COUNT = 5;
 
 // MUST byte-match slugify() in plugins/tools-routes/index.js (detail routes).
 function slugify(title) {

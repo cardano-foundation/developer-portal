@@ -41,7 +41,7 @@ const FACET_COUNTS = (() => {
 //
 // The rail is permanent at every width. Below the browse grid's breakpoint it
 // stacks above the results rather than sitting beside them.
-export default function AppFilterPanel() {
+export default function ToolFilterPanel() {
   const location = useLocation();
   const history = useHistory();
   const [selectedTags, setSelectedTags] = useState([]);

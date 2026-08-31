@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import Link from "@docusaurus/Link";
 
-import AppRow from "@site/src/components/AppRow";
+import ToolRow from "@site/src/components/ToolRow";
 import Carousel from "@site/src/components/Carousel";
 import { Categories, Showcases } from "@site/src/data/builder-tools/showcase";
 
 import styles from "./styles.module.css";
 
-function selectPanelApps(category, limit) {
+function selectPanelTools(category, limit) {
   // Newest first. `Showcases` keeps insertion order and entries are appended,
   // so reading from the end gives the most recently added in each category.
   // This used to be maintainer-picks-then-random; the panels are a recency
@@ -19,20 +19,20 @@ function selectPanelApps(category, limit) {
   return inCategory;
 }
 
-const PANEL_APPS_CACHE = new Map();
-function getPanelApps(category, limit) {
+const PANEL_TOOLS_CACHE = new Map();
+function getPanelTools(category, limit) {
   const key = `${category}:${limit}`;
-  if (!PANEL_APPS_CACHE.has(key)) {
-    PANEL_APPS_CACHE.set(key, selectPanelApps(category, limit));
+  if (!PANEL_TOOLS_CACHE.has(key)) {
+    PANEL_TOOLS_CACHE.set(key, selectPanelTools(category, limit));
   }
-  return PANEL_APPS_CACHE.get(key);
+  return PANEL_TOOLS_CACHE.get(key);
 }
 
 const CategoryPanel = memo(function CategoryPanel({ category, limit }) {
   const def = Categories[category];
   if (!def) return null;
-  const apps = getPanelApps(category, limit);
-  if (apps.length === 0) return null;
+  const tools = getPanelTools(category, limit);
+  if (tools.length === 0) return null;
   return (
     <article className={styles.panel}>
       <header className={styles.panelHeader}>
@@ -42,9 +42,9 @@ const CategoryPanel = memo(function CategoryPanel({ category, limit }) {
         </Link>
       </header>
       <ul className={styles.panelList}>
-        {apps.map((app) => (
-          <li key={app.slug}>
-            <AppRow app={app} compact />
+        {tools.map((tool) => (
+          <li key={tool.slug}>
+            <ToolRow tool={tool} compact />
           </li>
         ))}
       </ul>

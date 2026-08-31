@@ -12,8 +12,8 @@ import {
   Properties,
   Showcases,
 } from "@site/src/data/builder-tools/showcase";
-import AppIcon from "@site/src/components/AppIcon";
-import AppTile from "@site/src/components/AppTile";
+import ToolIcon from "@site/src/components/ToolIcon";
+import ToolTile from "@site/src/components/ToolTile";
 import ExternalArrow from "@site/src/components/ExternalArrow";
 import PageCTA from "@site/src/components/PageCTA";
 import Tooltip from "@site/src/components/tools/Tooltip";
@@ -207,7 +207,7 @@ export default function ToolDetail({ slug }) {
           </nav>
 
           <header className={styles.header}>
-            <AppIcon app={tool} size="detail" />
+            <ToolIcon tool={tool} size="detail" />
             <div className={styles.headerText}>
               <h1 className={styles.title}>{tool.title}</h1>
             </div>
@@ -268,7 +268,7 @@ export default function ToolDetail({ slug }) {
               <ul className={styles.relatedGrid}>
                 {relatedTools.map((related) => (
                   <li key={related.slug}>
-                    <AppTile app={related} />
+                    <ToolTile tool={related} />
                   </li>
                 ))}
               </ul>

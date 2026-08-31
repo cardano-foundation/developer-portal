@@ -1,6 +1,6 @@
 /* Radius lives on the size classes; a base value here would tie them on
    specificity and win or lose on minified order. */
-.appIcon {
+.toolIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -9,32 +9,32 @@
   background: rgb(var(--site-color-navy-rgb) / 0.05);
 }
 
-html[data-theme="dark"] .appIcon {
+html[data-theme="dark"] .toolIcon {
   background: rgb(var(--site-color-card-text-rgb) / 0.06);
 }
 
-.appIconTile {
+.toolIconTile {
   width: 62px;
   height: 62px;
   border-radius: 10px;
   padding: 6px;
 }
 
-.appIconPick {
+.toolIconPick {
   width: 110px;
   height: 110px;
   border-radius: 8px;
   padding: 8px;
 }
 
-.appIconRow {
+.toolIconRow {
   width: 40px;
   height: 40px;
   border-radius: 8px;
   padding: 4px;
 }
 
-.appIconDetail {
+.toolIconDetail {
   width: 120px;
   height: 120px;
   border-radius: 12px;
@@ -64,15 +64,15 @@ html[data-theme="dark"] .appIcon {
   text-transform: uppercase;
 }
 
-.appIconRow .fallback {
+.toolIconRow .fallback {
   font-size: 1.05rem;
 }
 
-.appIconPick .fallback {
+.toolIconPick .fallback {
   font-size: 2.6rem;
 }
 
-.appIconDetail .fallback {
+.toolIconDetail .fallback {
   font-size: 3rem;
 }
 
@@ -82,12 +82,12 @@ html[data-theme="dark"] .fallback {
 }
 
 @media (max-width: 600px) {
-  .appIconDetail {
+  .toolIconDetail {
     width: 88px;
     height: 88px;
   }
 
-  .appIconDetail .fallback {
+  .toolIconDetail .fallback {
     font-size: 2.2rem;
   }
 }
