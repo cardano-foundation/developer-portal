@@ -38,7 +38,7 @@ A **single validator** can handle **several purposes at once**, and it has exact
 ```mermaid
 flowchart TD
     S["your validator,<br/>compiled"] -->|hash it| H["one script hash"]
-    H -->|written as an address| A["`**spend**
+    H -->|works as payment credential (inside address)| A["`**spend**
     guards the UTxOs locked there`"]
     H -->|works as a policy ID| P["`**mint**
     guards tokens issued under it`"]
