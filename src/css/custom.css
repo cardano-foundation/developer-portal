@@ -1089,7 +1089,10 @@ html[data-theme="dark"] .breadcrumbs__link:focus-visible,
 html[data-theme="dark"] .table-of-contents__link:focus-visible,
 html[data-theme="dark"] .pagination-nav__link:focus-visible,
 html[data-theme="dark"] .theme-doc-card-container:focus-visible,
-html[data-theme="dark"] .tabs__item:focus-visible,
+html[data-theme="dark"] .tabs__item:focus-visible {
+  outline-color: var(--site-color-amber);
+}
+
 /* GitHub/Discord/theme buttons sit in circular chips on hover, the
    template's toggle treatment. */
 .navbar .header-github-link,

@@ -1199,27 +1199,35 @@ html[data-theme="dark"] .officeHoursContent p {
 /* Bleeds to the right edge like the template. Sized by width, not height:
    at full banner width this equals full height (the export is the banner's
    right 52% at the same aspect), and at narrower widths it shrinks with the
-   banner instead of sliding under the copy. */
-.officeHoursArt img {
+   banner instead of sliding under the copy. CSS backgrounds instead of <img>
+   so a visit downloads only its own theme's file; a background in an
+   unmatched theme selector is never fetched. */
+.officeHoursArtLight,
+.officeHoursArtDark {
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
   width: 52%;
-  height: auto;
-  display: block;
+  aspect-ratio: 1592 / 856;
+  background: center / contain no-repeat;
 }
 
-.officeHoursArt .officeHoursArtDark {
+.officeHoursArtLight {
+  background-image: url("/img/home/rebrand/office-hours-dots-light.webp");
+}
+
+html[data-theme="dark"] .officeHoursArtLight {
   display: none;
 }
 
-html[data-theme="dark"] .officeHoursArt .officeHoursArtLight {
+.officeHoursArtDark {
   display: none;
 }
 
-html[data-theme="dark"] .officeHoursArt .officeHoursArtDark {
+html[data-theme="dark"] .officeHoursArtDark {
   display: block;
+  background-image: url("/img/home/rebrand/office-hours-dots-dark.webp");
 }
 
 /* Below this width the artwork would crowd the copy, so the banner reads as

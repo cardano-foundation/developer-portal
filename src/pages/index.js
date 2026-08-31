@@ -211,6 +211,7 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
   React.useEffect(() => () => clearTimeout(timeoutRef.current), []);
 
   const copyCommand = () => {
+    if (!navigator.clipboard) return;
     navigator.clipboard
       .writeText(command)
       .then(() => {
@@ -238,6 +239,7 @@ function QuickstartCard({ badge, text, command, prompt, docHref, docLabel, docEx
           {prompt && <span className={styles.cliPrompt}>$</span>}
           <code>{command}</code>
           <button
+            type="button"
             className={styles.copyBtn}
             onClick={copyCommand}
             aria-label="Copy command"
@@ -488,7 +490,7 @@ function SmartContractsSection() {
           <div className={styles.prodCard}>
             <img
               src={useBaseUrl("img/home/rebrand/prod-smart-contracts.webp")}
-              alt="Smart contract design patterns and security"
+              alt=""
               className={styles.scLearnImage}
             />
             <div className={styles.prodCardOverlay} />
@@ -517,7 +519,7 @@ function SmartContractsSection() {
           >
             <img
               src={useBaseUrl("img/home/rebrand/prod-asteria.webp")}
-              alt="Asteria space game for learning eUTxO development"
+              alt=""
               className={styles.asteriaImage}
             />
             <div className={styles.prodCardOverlay} />
@@ -537,7 +539,7 @@ function SmartContractsSection() {
           >
             <img
               src={useBaseUrl("img/home/rebrand/prod-ctf.webp")}
-              alt="Cardano Capture The Flag security challenge"
+              alt=""
               className={styles.scCTFImage}
             />
             <div className={styles.prodCardOverlay} />
@@ -645,16 +647,8 @@ function CTASection() {
 function OfficeHoursArt() {
   return (
     <div className={styles.officeHoursArt} aria-hidden="true">
-      <img
-        src={useBaseUrl("img/home/rebrand/office-hours-dots-light.webp")}
-        alt=""
-        className={styles.officeHoursArtLight}
-      />
-      <img
-        src={useBaseUrl("img/home/rebrand/office-hours-dots-dark.webp")}
-        alt=""
-        className={styles.officeHoursArtDark}
-      />
+      <div className={styles.officeHoursArtLight} />
+      <div className={styles.officeHoursArtDark} />
     </div>
   );
 }

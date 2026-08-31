@@ -108,7 +108,10 @@ html[data-theme="dark"] .intentChip.intentChipActive:hover {
 }
 
 @media (max-width: 600px) {
+  /* The base list is a grid, where flex-wrap is inert; the strip needs flex
+     for nowrap + horizontal scroll to actually happen. */
   .intentList {
+    display: flex;
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: 0.5rem;
