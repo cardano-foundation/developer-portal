@@ -40,7 +40,7 @@ flowchart TD
     S["your validator,<br/>compiled"] -->|hash it| H["one script hash"]
     H -->|written as an address| A["`**spend**
     guards the UTxOs locked there`"]
-    H -->|written as a policy ID| P["`**mint**
+    H -->|works as a policy ID| P["`**mint**
     guards tokens issued under it`"]
     H -->|registered as a stake credential| W["`**withdraw**
     guards reward withdrawals`"]
