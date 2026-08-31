@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Layout from "@theme/Layout";
 import { PageMetadata } from "@docusaurus/theme-common";
 import ogCards from "@site/static/img/og/pages/manifest.json";
@@ -50,7 +50,9 @@ function restoreUserState(userState) {
 const maintainerPicks = SortedShowcases.filter((t) => t.maintainerPick);
 
 const isProminentCategory = (c) => Categories[c]?.prominent === true;
-const isCompactCategory = (c) => Categories[c]?.prominent === false;
+// Everything not prominent is compact, so a category missing the flag still
+// shows up instead of silently falling out of both carousels.
+const isCompactCategory = (c) => !isProminentCategory(c);
 
 // Category order is derived by how many tools sit in each category (desc).
 function deriveCategoryOrder(predicate) {
@@ -192,16 +194,20 @@ function SearchBar() {
     }
   }, [location]);
 
-  const debouncedHistoryPush = useCallback(
-    _debounce((newSearchString) => {
-      history.push({
-        ...location,
-        search: newSearchString,
-        state: { isSearch: true },
-      });
-    }, 300),
-    [history, location]
+  // Stable across keystrokes (reading the current path off `history` itself),
+  // so pending pushes are debounced for real and cancelled on unmount.
+  const debouncedHistoryPush = useMemo(
+    () =>
+      _debounce((newSearchString) => {
+        history.push({
+          pathname: history.location.pathname,
+          search: newSearchString,
+          state: { isSearch: true },
+        });
+      }, 300),
+    [history]
   );
+  useEffect(() => () => debouncedHistoryPush.cancel(), [debouncedHistoryPush]);
 
   const handleInput = (e) => {
     const currentInputValue = e.currentTarget.value;
@@ -406,7 +412,7 @@ function AllToolsReveal() {
         apps={null}
         sortOption={SORT_IDS.ALPHABETICAL}
         isUnfiltered={true}
-        heading={`All ${SortedShowcases.length} tools, A to Z`}
+        heading="All tools, A to Z"
       />
     );
   }
